@@ -1,26 +1,38 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifthen": []
-  },
-  "macros": {
-    "euro": {
-      "detail": "€",
-      "documentation": "EURO SIGN"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "sanseuro": {},
-    "serifeuro": {},
-    "ProcessOptionsWithKV{}": {
-      "snippet": "ProcessOptionsWithKV{${1:family}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "sans",
-    "serif",
-    "scaled",
-    "scaled=${1:factor}",
-    "bolder"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "euro",
+      "detail": "€",
+      "doc": "Euro sign"
+    },
+    {
+      "name": "sanseuro",
+      "unusual": true
+    },
+    {
+      "name": "serifeuro",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/euroitc#c": [
+      "sans",
+      "serif",
+      "scaled",
+      "scaled=${1:factor}",
+      "bolder"
+    ]
+  },
+  "args": [
+    "\\usepackage/euroitc#c"
+  ]
 }

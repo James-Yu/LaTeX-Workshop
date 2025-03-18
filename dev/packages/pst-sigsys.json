@@ -1,69 +1,632 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psstem{}": {
-      "snippet": "psstem{${1:list}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psstem[]{}": {
-      "snippet": "psstem[${2:options}]{${1:list}}"
+    {
+      "name": "pst-node"
     },
-    "nclist{}{}": {
-      "snippet": "nclist{${1:nc csname}}{${2:list}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psaxeslabels",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "psaxeslabels(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:x label}}{${2:y label}}"
+      }
     },
-    "nclist{}[]{}": {
-      "snippet": "nclist{${1:nc csname}}[${2:nc label}]{${3:list}}"
+    {
+      "name": "psaxeslabels",
+      "unusual": true,
+      "arg": {
+        "format": "{}()()(){}{}",
+        "snippet": "psaxeslabels{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${2:x label}}{${3:y label}}"
+      }
     },
-    "nclist{}{}{}": {
-      "snippet": "nclist{${1:arrows}}{${2:nc csname}}{${3:list}}"
+    {
+      "name": "psaxeslabels",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "psaxeslabels[${3:options%keyvals}](${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${1:x label}}{${2:y label}}"
+      }
     },
-    "nclist{}{}[]{}": {
-      "snippet": "nclist{${1:arrows}}{${2:nc csname}}[${3:nc label}]{${4:list}}"
+    {
+      "name": "psaxeslabels",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()()(){}{}",
+        "snippet": "psaxeslabels[${4:options%keyvals}]{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1})(${9:x2},${10:y2}){${2:x label}}{${3:y label}}"
+      }
     },
-    "nclist[]{}{}": {
-      "snippet": "nclist[${3:options}]{${1:nc csname}}{${2:list}}"
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pstick(${2:x},${3:y}){${1:ticklength}}"
+      }
     },
-    "nclist[]{}[]{}": {
-      "snippet": "nclist[${3:options}]{${1:nc csname}}[${4:nc label}]{${2:list}}"
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "pstick{${1:angle}}(${3:x},${4:y}){${2:ticklength}}"
+      }
     },
-    "nclist[]{}{}{}": {
-      "snippet": "nclist[${4:options}]{${1:arrows}}{${2:nc csname}}{${3:list}}"
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pstick[${2:options%keyvals}](${3:x},${4:y}){${1:ticklength}}"
+      }
     },
-    "nclist[]{}{}[]{}": {
-      "snippet": "nclist[${4:options}]{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}"
+    {
+      "name": "pstick",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "pstick[${3:options%keyvals}]{${1:angle}}(${4:x},${5:y}){${2:ticklength}}"
+      }
     },
-    "ncstar{}{}{}": {
-      "snippet": "ncstar{${1:nc csname}}{${2:list}}{${3:node}}"
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "()",
+        "snippet": "psTick(${1:x},${2:y})"
+      }
     },
-    "ncstar{}[]{}{}": {
-      "snippet": "ncstar{${1:nc csname}}[${2:nc label}]{${3:list}}{${4:node}}"
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psTick{${1:angle}}(${2:x},${3:y})"
+      }
     },
-    "ncstar{}{}{}{}": {
-      "snippet": "ncstar{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psTick[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "ncstar{}{}[]{}{}": {
-      "snippet": "ncstar{${1:arrows}}{${2:nc csname}}[${3:nc label}]{${4:list}}{${5:node}}"
+    {
+      "name": "psTick",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psTick[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
     },
-    "ncstar[]{}{}{}": {
-      "snippet": "ncstar[${4:options}]{${1:nc csname}}{${2:list}}{${3:node}}"
+    {
+      "name": "pssignal",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pssignal(${3:x},${4:y}){${1:node}}{${2:stuff}}"
+      }
     },
-    "ncstar[]{}[]{}{}": {
-      "snippet": "ncstar[${4:options}]{${1:nc csname}}[${5:nc label}]{${2:list}}{${3:node}}"
+    {
+      "name": "pssignal",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pssignal[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
     },
-    "ncstar[]{}{}{}{}": {
-      "snippet": "ncstar[${5:options}]{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "{}",
+        "snippet": "psstem{${1:list}}"
+      }
     },
-    "ncstar[]{}{}[]{}{}": {
-      "snippet": "ncstar[${5:options}]{${1:arrows}}{${2:nc csname}}[${6:nc label}]{${3:list}}{${4:node}}"
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psstem(${2:x},${3:∆x}){${1:list}}"
+      }
     },
-    "pstsigsysFV": {},
-    "pstsigsysFD": {},
-    "PSTsigsysLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psstem[${2:options%keyvals}]{${1:list}}"
+      }
+    },
+    {
+      "name": "psstem",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psstem[${2:options%keyvals}](${3:x},${4:∆x}){${1:list}}"
+      }
+    },
+    {
+      "name": "pszero",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pszero(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pszero",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pszero[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pspole",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pspole(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pspole",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pspole[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pscircleop",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pscircleop(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "pscircleop",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pscircleop[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psframeop",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psframeop(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psframeop",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psframeop[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psdisk",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psdisk(${2:x},${3:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psdisk",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psdisk[${2:options%keyvals}](${3:x},${4:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psring",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psring(${3:x},${4:y}){${1:inner radius}}{${2:outer radius}}"
+      }
+    },
+    {
+      "name": "psring",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psring[${3:options%keyvals}](${4:x},${5:y}){${1:inner radius}}{${2:outer radius}}"
+      }
+    },
+    {
+      "name": "psdiskc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psdiskc(${2:x},${3:y})(${4:x0},${5:y0}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psdiskc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psdiskc[${2:options%keyvals}](${3:x},${4:y})(${5:x0},${6:y0}){${1:radius}}"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "()",
+        "snippet": "psldots(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psldots{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psldots[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psldots",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psldots[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "(){}",
+        "snippet": "ldotsnode(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "ldotsnode{${1:angle}}(${3:x},${4:y}){${2:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "ldotsnode[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "ldotsnode",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "ldotsnode[${3:options%keyvals}]{${1:angle}}(${4:x},${5:y}){${2:node}}"
+      }
+    },
+    {
+      "name": "psblock",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psblock(${3:x},${4:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psblock",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psblock[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psfblock",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psfblock(${3:x},${4:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psfblock",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psfblock[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "psadaptive{${1:nodeA}}(${3:x},${4:y}){${2:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}(){}",
+        "snippet": "psadaptive{${1:arrows}}{${2:nodeA}}(${4:x},${5:y}){${3:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "psadaptive[${3:options%keyvals}]{${1:nodeA}}(${4:x},${5:y}){${2:nodeB}}"
+      }
+    },
+    {
+      "name": "psadaptive",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}(){}",
+        "snippet": "psadaptive[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}(${5:x},${6:y}){${3:nodeB}}"
+      }
+    },
+    {
+      "name": "psknob",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psknob(${2:x},${3:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psknob",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psknob[${2:options%keyvals}](${3:x},${4:y}){${1:node}}"
+      }
+    },
+    {
+      "name": "psusampler",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psusampler(${3:x},${4:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psusampler",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psusampler[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psdsampler",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psdsampler(${3:x},${4:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psdsampler",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psdsampler[${3:options%keyvals}](${4:x},${5:y}){${1:node}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nclist{${1:nc csname}}{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "nclist{${1:nc csname}}[${3:nc label}]{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nclist{${1:arrows}}{${2:nc csname}}{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "nclist{${1:arrows}}{${2:nc csname}}[${4:nc label}]{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nclist[${3:options%keyvals}]{${1:nc csname}}{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "nclist[${3:options%keyvals}]{${1:nc csname}}[${4:nc label}]{${2:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "nclist[${4:options%keyvals}]{${1:arrows}}{${2:nc csname}}{${3:list}}"
+      }
+    },
+    {
+      "name": "nclist",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "nclist[${4:options%keyvals}]{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ncstar{${1:nc csname}}{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "ncstar{${1:nc csname}}[${4:nc label}]{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ncstar{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}{}",
+        "snippet": "ncstar{${1:arrows}}{${2:nc csname}}[${5:nc label}]{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ncstar[${4:options%keyvals}]{${1:nc csname}}{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "ncstar[${4:options%keyvals}]{${1:nc csname}}[${5:nc label}]{${2:list}}{${3:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "ncstar[${5:options%keyvals}]{${1:arrows}}{${2:nc csname}}{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "ncstar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}{}",
+        "snippet": "ncstar[${5:options%keyvals}]{${1:arrows}}{${2:nc csname}}[${6:nc label}]{${3:list}}{${4:node}}"
+      }
+    },
+    {
+      "name": "psBraceUp",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceUp(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceUp[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp*",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceUp*(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceUp*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceUp*[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceDown(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceDown[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown*",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceDown*(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceDown*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceDown*[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceRight(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceRight[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight*",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceRight*(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceRight*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceRight*[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceLeft(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceLeft[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft*",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBraceLeft*(${2:A})(${3:B}){${1:text}}"
+      }
+    },
+    {
+      "name": "psBraceLeft*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBraceLeft*[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

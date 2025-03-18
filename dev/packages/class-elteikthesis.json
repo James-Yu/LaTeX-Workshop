@@ -1,356 +1,946 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "ifthen": [],
-    "class-report": [],
-    "iftex": [],
-    "inputenc": [],
-    "fontenc": [],
-    "babel": [],
-    "indentfirst": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "graphicx": [],
-    "float": [],
-    "adjustbox": [],
-    "subcaption": [],
-    "rotating": [],
-    "epstopdf": [],
-    "parskip": [],
-    "setspace": [],
-    "paralist": [],
-    "amsthm": [],
-    "amsmath": [],
-    "amsfonts": [],
-    "xcolor": [],
-    "hyperref": [],
-    "hypcap": [],
-    "url": [],
-    "bookmark": [],
-    "multirow": [],
-    "longtable": [],
-    "array": [],
-    "makecell": [],
-    "chngcntr": [],
-    "pdfpages": [],
-    "appendix": [],
-    "csquotes": [],
-    "biblatex": [],
-    "caption": [],
-    "tocloft": [],
-    "makeidx": [],
-    "nomencl": [],
-    "algorithm": [],
-    "algpseudocode": [],
-    "listingsutf8": [],
-    "todonotes": [],
-    "preview": [],
-    "hyphenat": [
-      "nohyp"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "class-report"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "subcaption"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "epstopdf"
+    },
+    {
+      "name": "parskip"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "paralist"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amsfonts"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "hypcap"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "makecell"
+    },
+    {
+      "name": "chngcntr"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "tocloft"
+    },
+    {
+      "name": "makeidx"
+    },
+    {
+      "name": "nomencl"
+    },
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algpseudocode"
+    },
+    {
+      "name": "listingsutf8"
+    },
+    {
+      "name": "todonotes"
+    },
+    {
+      "name": "preview"
+    },
+    {
+      "name": "hyphenat",
+      "if": "nohyp"
+    }
+  ],
+  "macros": [
+    {
+      "name": "acklabel",
+      "unusual": true
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "affiliation{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "alglabel",
+      "unusual": true
+    },
+    {
+      "name": "authorlabel",
+      "unusual": true
+    },
+    {
+      "name": "authorname",
+      "unusual": true
+    },
+    {
+      "name": "biblabel",
+      "unusual": true
+    },
+    {
+      "name": "city",
+      "arg": {
+        "format": "{}",
+        "snippet": "city{${1:city}}"
+      }
+    },
+    {
+      "name": "cityname",
+      "unusual": true
+    },
+    {
+      "name": "clearemptydoublepage",
+      "unusual": true
+    },
+    {
+      "name": "codelabel",
+      "unusual": true
+    },
+    {
+      "name": "deflabel",
+      "unusual": true
+    },
+    {
+      "name": "degree",
+      "arg": {
+        "format": "{}",
+        "snippet": "degree{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "degreename",
+      "unusual": true
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:department%text}}"
+      }
+    },
+    {
+      "name": "deptname",
+      "unusual": true
+    },
+    {
+      "name": "documentlang",
+      "arg": {
+        "format": "{}",
+        "snippet": "documentlang{${1:language}}"
+      }
+    },
+    {
+      "name": "extaffiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "extaffiliation{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "extsupaff",
+      "unusual": true
+    },
+    {
+      "name": "extsupervisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "extsupervisor{${1:name}}"
+      }
+    },
+    {
+      "name": "extsuplabel",
+      "unusual": true
+    },
+    {
+      "name": "extsupname",
+      "unusual": true
+    },
+    {
+      "name": "facname",
+      "unusual": true
+    },
+    {
+      "name": "faculty",
+      "arg": {
+        "format": "{}",
+        "snippet": "faculty{${1:faculty%text}}"
+      }
+    },
+    {
+      "name": "intsuplabel",
+      "unusual": true
+    },
+    {
+      "name": "logo",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "logofilename",
+      "unusual": true
+    },
+    {
+      "name": "lstalgorithmlabel",
+      "unusual": true
+    },
+    {
+      "name": "lstcodelabel",
+      "unusual": true
+    },
+    {
+      "name": "lstfigurelabel",
+      "unusual": true
+    },
+    {
+      "name": "lstnomencl",
+      "unusual": true
+    },
+    {
+      "name": "lsttablelabel",
+      "unusual": true
+    },
+    {
+      "name": "notelabel",
+      "unusual": true
+    },
+    {
+      "name": "remlabel",
+      "unusual": true
+    },
+    {
+      "name": "subscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "subscript{${1:arg}}"
+      }
+    },
+    {
+      "name": "supaff",
+      "unusual": true
+    },
+    {
+      "name": "superscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "superscript{${1:arg}}"
+      }
+    },
+    {
+      "name": "supervisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "supervisor{${1:name}}"
+      }
+    },
+    {
+      "name": "suplabel",
+      "unusual": true
+    },
+    {
+      "name": "supname",
+      "unusual": true
+    },
+    {
+      "name": "theconpageno",
+      "unusual": true
+    },
+    {
+      "name": "theolabel",
+      "unusual": true
+    },
+    {
+      "name": "thesistitle",
+      "unusual": true
+    },
+    {
+      "name": "thesisyear",
+      "unusual": true
+    },
+    {
+      "name": "todolabel",
+      "unusual": true
+    },
+    {
+      "name": "university",
+      "arg": {
+        "format": "{}",
+        "snippet": "university{${1:university%text}}"
+      }
+    },
+    {
+      "name": "univname",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "captionshungarian",
+      "unusual": true
+    },
+    {
+      "name": "datehungarian",
+      "unusual": true
+    },
+    {
+      "name": "extrashungarian",
+      "unusual": true
+    },
+    {
+      "name": "noextrashungarian",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "acite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "acite*{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Acite*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Acite*{${1:keylist}}"
+      }
+    },
+    {
+      "name": "acite",
+      "arg": {
+        "format": "{}",
+        "snippet": "acite{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Acite",
+      "arg": {
+        "format": "{}",
+        "snippet": "Acite{${1:keylist}}"
+      }
+    },
+    {
+      "name": "apageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "apageref*{${1:label}}"
+      }
+    },
+    {
+      "name": "Apageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Apageref*{${1:label}}"
+      }
+    },
+    {
+      "name": "apageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "apageref{${1:label}}"
+      }
+    },
+    {
+      "name": "Apageref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Apageref{${1:label}}"
+      }
+    },
+    {
+      "name": "aref",
+      "arg": {
+        "format": "()",
+        "snippet": "aref({${1:label}})"
+      }
+    },
+    {
+      "name": "Aref",
+      "arg": {
+        "format": "()",
+        "snippet": "Aref({${1:label}})"
+      }
+    },
+    {
+      "name": "aref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "aref*{${1:label}}"
+      }
+    },
+    {
+      "name": "Aref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aref*{${1:label}}"
+      }
+    },
+    {
+      "name": "aref",
+      "arg": {
+        "format": "{}",
+        "snippet": "aref{${1:label}}"
+      }
+    },
+    {
+      "name": "Aref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aref{${1:label}}"
+      }
+    },
+    {
+      "name": "az*",
+      "arg": {
+        "format": "{}",
+        "snippet": "az*{${1:szó}}"
+      }
+    },
+    {
+      "name": "Az*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Az*{${1:szó}}"
+      }
+    },
+    {
+      "name": "az",
+      "arg": {
+        "format": "{}",
+        "snippet": "az{${1:szó}}"
+      }
+    },
+    {
+      "name": "Az",
+      "arg": {
+        "format": "{}",
+        "snippet": "Az{${1:szó}}"
+      }
+    },
+    {
+      "name": "azc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "azc{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Azc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Azc{${1:keylist}}"
+      }
+    },
+    {
+      "name": "azp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "azp{${1:label}}"
+      }
+    },
+    {
+      "name": "Azp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Azp{${1:label}}"
+      }
+    },
+    {
+      "name": "azr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "azr{${1:label}}"
+      }
+    },
+    {
+      "name": "Azr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Azr{${1:label}}"
+      }
+    },
+    {
+      "name": "editorfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "editorfootnote{${1:lábjegyzet-szöveg%text}}"
+      }
+    },
+    {
+      "name": "emitdate",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "emitdate[${3:toldalék}]{${1:formátum}}{${2:dátum}}"
+      }
+    },
+    {
+      "name": "emitdate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "emitdate{${1:formátum}}{${2:dátum}}"
+      }
+    },
+    {
+      "name": "factorial"
+    },
+    {
+      "name": "footnotestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "footnotestyle{${1:előírás%keyvals}}",
+        "keys": [
+          "\\footnotestyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hang",
+      "arg": {
+        "format": "{}",
+        "snippet": "hang{${1:bekezdéskezdő jel}}"
+      }
+    },
+    {
+      "name": "headingfootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "headingfootnote[${2:szám}]{${1:lábjegyzet-szöveg%text}}"
+      }
+    },
+    {
+      "name": "headingfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "headingfootnote{${1:lábjegyzet-szöveg%text}}"
+      }
+    },
+    {
+      "name": "HuComma",
+      "unusual": true
+    },
+    {
+      "name": "hunnewlabel",
+      "unusual": true
+    },
+    {
+      "name": "Hunumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "Hunumeral{${1:counter}}"
+      }
+    },
+    {
+      "name": "hunumeral",
+      "arg": {
+        "format": "{}",
+        "snippet": "hunumeral{${1:counter}}"
+      }
+    },
+    {
+      "name": "huordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "huordinal{${1:counter}}"
+      }
+    },
+    {
+      "name": "Huordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "Huordinal{${1:counter}}"
+      }
+    },
+    {
+      "name": "magyarDumpHuMin",
+      "unusual": true
+    },
+    {
+      "name": "makeFootnotable",
+      "arg": {
+        "format": "{}",
+        "snippet": "makeFootnotable{${1:környezet-név}}"
+      }
+    },
+    {
+      "name": "MathBrk",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathBrk{${1:szimbólum}}"
+      }
+    },
+    {
+      "name": "MathBrkAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathBrkAll{${1:szimbólum}}"
+      }
+    },
+    {
+      "name": "MathReal",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathReal{${1:képlet tizedestörtekkel%formula}}"
+      }
+    },
+    {
+      "name": "ondatehungarian"
+    },
+    {
+      "name": "ontoday"
+    },
+    {
+      "name": "refstruc",
+      "arg": {
+        "format": "{}",
+        "snippet": "refstruc{${1:label}}"
+      }
+    },
+    {
+      "name": "refstrucparen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "refstrucparen{${1:label}}"
+      }
+    },
+    {
+      "name": "SafeToday"
+    },
+    {
+      "name": "textqq",
+      "arg": {
+        "format": "{}",
+        "snippet": "textqq{${1:szövegközti idézet%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "definition"
+    },
+    {
+      "name": "definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark"
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/elteikthesis#c": [
+      "nohyp",
+      "parspace",
+      "noindent",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ],
+    "\\footnotestyle": [
+      "reset=${1|none,section,chapter,page,page-resume,page-cont|}",
+      "resume",
+      "indent=${1|article-nosp,article-sp,hulist|}",
+      "ruler=${1|none,one-line,fourth,choose|}",
+      "marksize=max-normal",
+      "mark=${1|arabic,stars,stars-max|}",
+      "mpmark=${1|arabic,stars,stars-max|}",
+      "plain",
+      "huplain",
+      "starplain",
+      "editor"
     ]
   },
-  "macros": {
-    "acklabel": {},
-    "affiliation{}": {
-      "snippet": "affiliation{${1:affiliation}}"
-    },
-    "alglabel": {},
-    "authorlabel": {},
-    "authorname": {},
-    "biblabel": {},
-    "city{}": {
-      "snippet": "city{${1:city}}"
-    },
-    "cityname": {},
-    "clearemptydoublepage": {},
-    "codelabel": {},
-    "deflabel": {},
-    "degree{}": {
-      "snippet": "degree{${1:degree}}"
-    },
-    "degreename": {},
-    "department{}": {
-      "snippet": "department{${1:department}}"
-    },
-    "deptname": {},
-    "documentlang{}": {
-      "snippet": "documentlang{${1:language}}"
-    },
-    "extaffiliation{}": {
-      "snippet": "extaffiliation{${1:affiliation}}"
-    },
-    "extsupaff": {},
-    "extsupervisor{}": {
-      "snippet": "extsupervisor{${1:name}}"
-    },
-    "extsuplabel": {},
-    "extsupname": {},
-    "facname": {},
-    "faculty{}": {
-      "snippet": "faculty{${1:faculty}}"
-    },
-    "hyperrefComp": {},
-    "intsuplabel": {},
-    "logo{}": {
-      "snippet": "logo{${1:imagefile}}"
-    },
-    "logofilename": {},
-    "lstalgorithmlabel": {},
-    "lstcodelabel": {},
-    "lstfigurelabel": {},
-    "lstnomencl": {},
-    "lsttablelabel": {},
-    "notelabel": {},
-    "oldtableofcontents": {},
-    "origdoublepage": {},
-    "remlabel": {},
-    "subscript{}": {
-      "snippet": "subscript{${1:arg}}"
-    },
-    "supaff": {},
-    "superscript{}": {
-      "snippet": "superscript{${1:arg}}"
-    },
-    "supervisor{}": {
-      "snippet": "supervisor{${1:name}}"
-    },
-    "suplabel": {},
-    "supname": {},
-    "theconpageno": {},
-    "theolabel": {},
-    "thesistitle": {},
-    "thesisyear": {},
-    "todolabel": {},
-    "university{}": {
-      "snippet": "university{${1:university}}"
-    },
-    "univname": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "captionshungarian": {},
-    "datehungarian": {},
-    "extrashungarian": {},
-    "noextrashungarian": {},
-    "notesname": {},
-    "acite*{}": {
-      "snippet": "acite*{${1:keylist}}"
-    },
-    "Acite*{}": {
-      "snippet": "Acite*{${1:keylist}}"
-    },
-    "acite{}": {
-      "snippet": "acite{${1:keylist}}"
-    },
-    "Acite{}": {
-      "snippet": "Acite{${1:keylist}}"
-    },
-    "apageref*{}": {
-      "snippet": "apageref*{${1:label}}"
-    },
-    "Apageref*{}": {
-      "snippet": "Apageref*{${1:label}}"
-    },
-    "apageref{}": {
-      "snippet": "apageref{${1:label}}"
-    },
-    "Apageref{}": {
-      "snippet": "Apageref{${1:label}}"
-    },
-    "aref*{}": {
-      "snippet": "aref*{${1:label}}"
-    },
-    "Aref*{}": {
-      "snippet": "Aref*{${1:label}}"
-    },
-    "aref{}": {
-      "snippet": "aref{${1:label}}"
-    },
-    "Aref{}": {
-      "snippet": "Aref{${1:label}}"
-    },
-    "az*{}": {
-      "snippet": "az*{${1:szó}}"
-    },
-    "Az*{}": {
-      "snippet": "Az*{${1:szó}}"
-    },
-    "az{}": {
-      "snippet": "az{${1:szó}}"
-    },
-    "Az{}": {
-      "snippet": "Az{${1:szó}}"
-    },
-    "azc{}": {
-      "snippet": "azc{${1:keylist}}"
-    },
-    "Azc{}": {
-      "snippet": "Azc{${1:keylist}}"
-    },
-    "azp{}": {
-      "snippet": "azp{${1:label}}"
-    },
-    "Azp{}": {
-      "snippet": "Azp{${1:label}}"
-    },
-    "azr{}": {
-      "snippet": "azr{${1:label}}"
-    },
-    "Azr{}": {
-      "snippet": "Azr{${1:label}}"
-    },
-    "captionlabeldelim": {},
-    "dMf": {},
-    "editorfootnote{}": {
-      "snippet": "editorfootnote{${1:lábjegyzet-szöveg}}"
-    },
-    "emitdate[]{}{}": {
-      "snippet": "emitdate[${3:toldalék}]{${1:formátum}}{${2:dátum}}"
-    },
-    "emitdate{}{}": {
-      "snippet": "emitdate{${1:formátum}}{${2:dátum}}"
-    },
-    "factorial": {},
-    "footnotestyle{}": {
-      "snippet": "footnotestyle{${1:előírás}}"
-    },
-    "hang{}": {
-      "snippet": "hang{${1:bekezdéskezdő jel}}"
-    },
-    "headingfootnote[]{}": {
-      "snippet": "headingfootnote[${2:szám}]{${1:lábjegyzet-szöveg}}"
-    },
-    "headingfootnote{}": {
-      "snippet": "headingfootnote{${1:lábjegyzet-szöveg}}"
-    },
-    "HuComma": {},
-    "hunnewlabel": {},
-    "Hunumeral{}": {
-      "snippet": "Hunumeral{${1:counter}}"
-    },
-    "hunumeral{}": {
-      "snippet": "hunumeral{${1:counter}}"
-    },
-    "huordinal{}": {
-      "snippet": "huordinal{${1:counter}}"
-    },
-    "Huordinal{}": {
-      "snippet": "Huordinal{${1:counter}}"
-    },
-    "magyarDumpHuMin": {},
-    "makeFootnotable{}": {
-      "snippet": "makeFootnotable{${1:környezet-név}}"
-    },
-    "MathBrk{}": {
-      "snippet": "MathBrk{${1:szimbólum}}"
-    },
-    "MathBrkAll{}": {
-      "snippet": "MathBrkAll{${1:szimbólum}}"
-    },
-    "MathReal{}": {
-      "snippet": "MathReal{${1:képlet tizedestörtekkel}}"
-    },
-    "ondatehungarian": {},
-    "ontoday": {},
-    "refstruc{}": {
-      "snippet": "refstruc{${1:label}}"
-    },
-    "refstrucparen{}": {
-      "snippet": "refstrucparen{${1:label}}"
-    },
-    "SafeToday": {},
-    "textqq{}": {
-      "snippet": "textqq{${1:szövegközti idézet}}"
-    }
-  },
-  "envs": {
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "note": {},
-    "note[]": {
-      "name": "note",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "nohyp",
-    "parspace",
-    "noindent",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/elteikthesis#c"
+  ]
 }

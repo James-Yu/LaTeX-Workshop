@@ -1,41 +1,87 @@
 {
-  "includes": {
-    "trimspaces": []
-  },
-  "macros": {
-    "NewEnviron{}{}": {
-      "snippet": "NewEnviron{${1:envname}}{${2:definition}}"
-    },
-    "NewEnviron{}[]{}": {
-      "snippet": "NewEnviron{${1:envname}}[${2:args}]{${3:definition}}"
-    },
-    "NewEnviron{}[][]{}": {
-      "snippet": "NewEnviron{${1:envname}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "NewEnviron{}[][]{}[]": {
-      "snippet": "NewEnviron{${1:envname}}[${2:args}][${3:default}]{${4:definition}}[${5:final code}]"
-    },
-    "RenewEnviron{}{}": {
-      "snippet": "RenewEnviron{${1:envname}}{${2:definition}}"
-    },
-    "RenewEnviron{}[]{}": {
-      "snippet": "RenewEnviron{${1:envname}}[${2:args}]{${3:definition}}"
-    },
-    "RenewEnviron{}[][]{}": {
-      "snippet": "RenewEnviron{${1:envname}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "RenewEnviron{}[][]{}[]": {
-      "snippet": "RenewEnviron{${1:envname}}[${2:args}][${3:default}]{${4:definition}}[${5:final code}]"
-    },
-    "BODY": {},
-    "environfinalcode{}": {
-      "snippet": "environfinalcode{${1:code}}"
-    },
-    "environbodyname{}": {
-      "snippet": "environbodyname{${1:cmd}}"
+  "deps": [
+    {
+      "name": "trimspaces"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "NewEnviron",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewEnviron{${1:envname}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "NewEnviron",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "NewEnviron{${1:envname}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "NewEnviron",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "NewEnviron{${1:envname}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "NewEnviron",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}[]",
+        "snippet": "NewEnviron{${1:envname}}[${3:args}][${4:default}]{${2:definition}}[${5:final code}]"
+      }
+    },
+    {
+      "name": "RenewEnviron",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewEnviron{${1:envname}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "RenewEnviron",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "RenewEnviron{${1:envname}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "RenewEnviron",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "RenewEnviron{${1:envname}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "RenewEnviron",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}[]",
+        "snippet": "RenewEnviron{${1:envname}}[${3:args}][${4:default}]{${2:definition}}[${5:final code}]"
+      }
+    },
+    {
+      "name": "BODY"
+    },
+    {
+      "name": "environfinalcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "environfinalcode{${1:code}}"
+      }
+    },
+    {
+      "name": "environbodyname",
+      "arg": {
+        "format": "{}",
+        "snippet": "environbodyname{${1:cmd}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

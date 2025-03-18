@@ -1,17 +1,29 @@
 {
-  "includes": {
-    "iftex": [],
-    "auxhook": []
-  },
-  "macros": {
-    "transparent{}": {
-      "snippet": "transparent{${1:value}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "texttransparent{}{}": {
-      "snippet": "texttransparent{${1:value}}{${2:text}}"
+    {
+      "name": "auxhook"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "transparent",
+      "arg": {
+        "format": "{}",
+        "snippet": "transparent{${1:value}}"
+      }
+    },
+    {
+      "name": "texttransparent",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "texttransparent{${1:value}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

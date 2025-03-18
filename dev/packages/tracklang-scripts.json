@@ -1,40 +1,92 @@
 {
-  "includes": {
-    "tracklang": []
-  },
-  "macros": {
-    "TrackLangScriptMap{}{}{}{}{}": {
-      "snippet": "TrackLangScriptMap{${1:letter code}}{${2:numeric code}}{${3:script name}}{${4:direction}}{${5:parent script}}"
-    },
-    "TrackLangScriptAlphaToNumeric{}": {
-      "snippet": "TrackLangScriptAlphaToNumeric{${1:alpha code}}"
-    },
-    "TrackLangScriptIfKnownAlpha{}{}{}": {
-      "snippet": "TrackLangScriptIfKnownAlpha{${1:alpha code}}{${2:true}}{${3:false}}"
-    },
-    "TrackLangScriptNumericToAlpha{}": {
-      "snippet": "TrackLangScriptNumericToAlpha{${1:numeric code}}"
-    },
-    "TrackLangScriptIfKnownNumeric{}{}{}": {
-      "snippet": "TrackLangScriptIfKnownNumeric{${1:numeric code}}{${2:true}}{${3:false}}"
-    },
-    "TrackLangScriptAlphaToName{}": {
-      "snippet": "TrackLangScriptAlphaToName{${1:alpha code}}"
-    },
-    "TrackLangScriptAlphaToDir{}": {
-      "snippet": "TrackLangScriptAlphaToDir{${1:alpha code}}"
-    },
-    "TrackLangScriptSetParent{}{}": {
-      "snippet": "TrackLangScriptSetParent{${1:alpha code}}{${2:parent alpha code}}"
-    },
-    "TrackLangScriptGetParent{}": {
-      "snippet": "TrackLangScriptGetParent{${1:alpha code}}"
-    },
-    "TrackLangScriptIfHasParent{}{}{}": {
-      "snippet": "TrackLangScriptIfHasParent{${1:alpha code}}{${2:true}}{${3:false}}"
+  "deps": [
+    {
+      "name": "tracklang"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "TrackLangScriptMap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "TrackLangScriptMap{${1:letter code}}{${2:numeric code}}{${3:script name}}{${4:direction}}{${5:parent script}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptAlphaToNumeric",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TrackLangScriptAlphaToNumeric{${1:alpha code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptIfKnownAlpha",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TrackLangScriptIfKnownAlpha{${1:alpha code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptNumericToAlpha",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TrackLangScriptNumericToAlpha{${1:numeric code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptIfKnownNumeric",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TrackLangScriptIfKnownNumeric{${1:numeric code}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptAlphaToName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TrackLangScriptAlphaToName{${1:alpha code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptAlphaToDir",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TrackLangScriptAlphaToDir{${1:alpha code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptSetParent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TrackLangScriptSetParent{${1:alpha code}}{${2:parent alpha code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptGetParent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TrackLangScriptGetParent{${1:alpha code}}"
+      }
+    },
+    {
+      "name": "TrackLangScriptIfHasParent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TrackLangScriptIfHasParent{${1:alpha code}}{${2:true}}{${3:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

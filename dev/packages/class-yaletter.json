@@ -1,140 +1,401 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "textpos": []
-  },
-  "macros": {
-    "yadate{}": {
-      "snippet": "yadate{${1:date}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "yahdateskip": {},
-    "yadatestyle": {},
-    "yainsideaddr{}": {
-      "snippet": "yainsideaddr{${1:address}}"
+    {
+      "name": "geometry"
     },
-    "yahinsideaddrskip": {},
-    "yainsideaddrstyle": {},
-    "yasalutation{}": {
-      "snippet": "yasalutation{${1:text}}"
+    {
+      "name": "fancyhdr"
     },
-    "yahsalutationskip": {},
-    "yasalutationstyle": {},
-    "yafarewell{}": {
-      "snippet": "yafarewell{${1:text}}"
+    {
+      "name": "textpos"
+    }
+  ],
+  "macros": [
+    {
+      "name": "yadate",
+      "arg": {
+        "format": "{}",
+        "snippet": "yadate{${1:date}}"
+      }
     },
-    "yahfarewellskip": {},
-    "yafarewellstyle": {},
-    "yasignature{}": {
-      "snippet": "yasignature{${1:signature}}"
+    {
+      "name": "yahdateskip",
+      "unusual": true
     },
-    "yahsignatureskip": {},
-    "yasignaturestyle": {},
-    "yaenclosure": {},
-    "yahenclosureskip": {},
-    "yaenclosurestyle": {},
-    "yaoptions{}": {
-      "snippet": "yaoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "yadatestyle",
+      "unusual": true
     },
-    "defineletterhead{}{}": {
-      "snippet": "defineletterhead{${1:name}}{${2:code}}"
+    {
+      "name": "yainsideaddr",
+      "arg": {
+        "format": "{}",
+        "snippet": "yainsideaddr{${1:address%text}}"
+      }
     },
-    "yauseletterhead{}": {
-      "snippet": "yauseletterhead{${1:name}}"
+    {
+      "name": "yahinsideaddrskip",
+      "unusual": true
     },
-    "yaletterblock": {},
-    "yalettermodblock": {},
-    "yaletternormal": {},
-    "yaparskip": {},
-    "yaparindent": {},
-    "yawriter": {},
-    "yasetwriter{}": {
-      "snippet": "yasetwriter{${1:name}}"
+    {
+      "name": "yainsideaddrstyle",
+      "unusual": true
     },
-    "yawriterstyle": {},
-    "yasetaddressee{}": {
-      "snippet": "yasetaddressee{${1:name}}"
+    {
+      "name": "yasalutation",
+      "arg": {
+        "format": "{}",
+        "snippet": "yasalutation{${1:text}}"
+      }
     },
-    "yaaddresseestyle": {},
-    "yaaddressee": {},
-    "yathedate": {},
-    "yalastpage": {},
-    "defineaddress{}{}{}": {
-      "snippet": "defineaddress{${1:name}}{${2:short name}}{${3:code}}"
+    {
+      "name": "yahsalutationskip",
+      "unusual": true
     },
-    "yatoaddress{}": {
-      "snippet": "yatoaddress{${1:name}}"
+    {
+      "name": "yasalutationstyle",
+      "unusual": true
     },
-    "yareturnaddress{}": {
-      "snippet": "yareturnaddress{${1:name}}"
+    {
+      "name": "yafarewell",
+      "arg": {
+        "format": "{}",
+        "snippet": "yafarewell{${1:text}}"
+      }
     },
-    "yafromaddress{}": {
-      "snippet": "yafromaddress{${1:name}}"
+    {
+      "name": "yahfarewellskip",
+      "unusual": true
     },
-    "yaaddress{}": {
-      "snippet": "yaaddress{${1:name}}"
+    {
+      "name": "yafarewellstyle",
+      "unusual": true
     },
-    "yaenvelope{}{}": {
-      "snippet": "yaenvelope{${1:width}}{${2:height}}"
+    {
+      "name": "yasignature",
+      "arg": {
+        "format": "{}",
+        "snippet": "yasignature{${1:signature}}"
+      }
     },
-    "yaenvunit{}": {
-      "snippet": "yaenvunit{${1:unit}}"
+    {
+      "name": "yahsignatureskip",
+      "unusual": true
     },
-    "yaenvrethskip": {},
-    "yaenvretvskip": {},
-    "yaenvtohskip": {},
-    "yaenvtovskip": {},
-    "yaenvtoaddr": {},
-    "yaenvretaddr": {},
-    "yabusiness": {},
-    "yananoxenvelope": {},
-    "yadlenvelope": {},
-    "yacvienvelope": {},
-    "yacvicvenvelope": {},
-    "yacvenvelope": {},
-    "yacivenvelope": {},
-    "yaciiienvelope": {},
-    "yanaaiienvelope": {},
-    "yanaavienvelope": {},
-    "yanaaviienvelope": {},
-    "yanaaviiienvelope": {},
-    "yanaaixenvelope": {},
-    "yanaaxenvelope": {},
-    "yananovienvelope": {},
-    "yananoviienvelope": {},
-    "yananoixenvelope": {},
-    "yananoxienvelope": {},
-    "yananoxiienvelope": {},
-    "yananoxivenvelope": {},
-    "yalabelsheet{}{}{}{}{}{}{}{}": {
-      "snippet": "yalabelsheet{${1:pagewidth}}{${2:pageheight}}{${3:labelwidth}}{${4:labelheight}}{${5:hsep}}{${6:vsep}}{${7:num across}}{${8:num down}}"
+    {
+      "name": "yasignaturestyle",
+      "unusual": true
     },
-    "yalableftmarg": {},
-    "yalabrightmarg": {},
-    "yalabtopmarg": {},
-    "yalabbotmarg": {},
-    "yalabeltext": {},
-    "yaplacelabel{}{}{}": {
-      "snippet": "yaplacelabel{${1:text}}{${2:num across}}{${3:num down}}"
+    {
+      "name": "yaenclosure"
     },
-    "yalabelmarg": {},
-    "yashowboxeson": {},
-    "yashowboxesoff": {},
-    "yaavery{}": {
-      "snippet": "yaavery{${1:number}}"
+    {
+      "name": "yahenclosureskip",
+      "unusual": true
     },
-    "nloop{}": {
-      "snippet": "nloop{${1:arg}}"
+    {
+      "name": "yaenclosurestyle",
+      "unusual": true
     },
-    "yalastpagestyle": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "yaoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "yaoptions{${1:options%keyvals}}",
+        "keys": [
+          "\\yaoptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defineletterhead",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defineletterhead{${1:name%specialDef}}{${2:code%text}}"
+      }
+    },
+    {
+      "name": "yauseletterhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "yauseletterhead{${1:name%keyvals}}",
+        "keys": [
+          "\\yauseletterhead#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "yaletterblock"
+    },
+    {
+      "name": "yalettermodblock"
+    },
+    {
+      "name": "yaletternormal"
+    },
+    {
+      "name": "yaparskip",
+      "unusual": true
+    },
+    {
+      "name": "yaparindent",
+      "unusual": true
+    },
+    {
+      "name": "yawriter"
+    },
+    {
+      "name": "yasetwriter",
+      "arg": {
+        "format": "{}",
+        "snippet": "yasetwriter{${1:name}}"
+      }
+    },
+    {
+      "name": "yawriterstyle",
+      "unusual": true
+    },
+    {
+      "name": "yasetaddressee",
+      "arg": {
+        "format": "{}",
+        "snippet": "yasetaddressee{${1:name}}"
+      }
+    },
+    {
+      "name": "yaaddresseestyle",
+      "unusual": true
+    },
+    {
+      "name": "yaaddressee"
+    },
+    {
+      "name": "yathedate"
+    },
+    {
+      "name": "yalastpage"
+    },
+    {
+      "name": "defineaddress",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "defineaddress{${1:name%specialDef}}{${2:short name%text}}{${3:code%text}}"
+      }
+    },
+    {
+      "name": "yatoaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "yatoaddress{${1:name%keyvals}}",
+        "keys": [
+          "\\yatoaddress#c,\\yareturnaddress#c,\\yafromaddress#c,\\yaaddress#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "yareturnaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "yareturnaddress{${1:name%keyvals}}",
+        "keys": [
+          "\\yatoaddress#c,\\yareturnaddress#c,\\yafromaddress#c,\\yaaddress#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "yafromaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "yafromaddress{${1:name%keyvals}}",
+        "keys": [
+          "\\yatoaddress#c,\\yareturnaddress#c,\\yafromaddress#c,\\yaaddress#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "yaaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "yaaddress{${1:name%keyvals}}",
+        "keys": [
+          "\\yatoaddress#c,\\yareturnaddress#c,\\yafromaddress#c,\\yaaddress#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "yaenvelope",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "yaenvelope{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "yaenvunit",
+      "arg": {
+        "format": "{}",
+        "snippet": "yaenvunit{${1:unit}}"
+      }
+    },
+    {
+      "name": "yaenvrethskip",
+      "unusual": true
+    },
+    {
+      "name": "yaenvretvskip",
+      "unusual": true
+    },
+    {
+      "name": "yaenvtohskip",
+      "unusual": true
+    },
+    {
+      "name": "yaenvtovskip",
+      "unusual": true
+    },
+    {
+      "name": "yaenvtoaddr",
+      "unusual": true
+    },
+    {
+      "name": "yaenvretaddr",
+      "unusual": true
+    },
+    {
+      "name": "yabusiness"
+    },
+    {
+      "name": "yananoxenvelope"
+    },
+    {
+      "name": "yadlenvelope"
+    },
+    {
+      "name": "yacvienvelope"
+    },
+    {
+      "name": "yacvicvenvelope"
+    },
+    {
+      "name": "yacvenvelope"
+    },
+    {
+      "name": "yacivenvelope"
+    },
+    {
+      "name": "yaciiienvelope"
+    },
+    {
+      "name": "yanaaiienvelope"
+    },
+    {
+      "name": "yanaavienvelope"
+    },
+    {
+      "name": "yanaaviienvelope"
+    },
+    {
+      "name": "yanaaviiienvelope"
+    },
+    {
+      "name": "yanaaixenvelope"
+    },
+    {
+      "name": "yanaaxenvelope"
+    },
+    {
+      "name": "yananovienvelope"
+    },
+    {
+      "name": "yananoviienvelope"
+    },
+    {
+      "name": "yananoixenvelope"
+    },
+    {
+      "name": "yananoxienvelope"
+    },
+    {
+      "name": "yananoxiienvelope"
+    },
+    {
+      "name": "yananoxivenvelope"
+    },
+    {
+      "name": "yalabelsheet",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "yalabelsheet{${1:pagewidth}}{${2:pageheight}}{${3:labelwidth}}{${4:labelheight}}{${5:hsep}}{${6:vsep}}{${7:num across}}{${8:num down}}"
+      }
+    },
+    {
+      "name": "yalableftmarg",
+      "unusual": true
+    },
+    {
+      "name": "yalabrightmarg",
+      "unusual": true
+    },
+    {
+      "name": "yalabtopmarg",
+      "unusual": true
+    },
+    {
+      "name": "yalabbotmarg",
+      "unusual": true
+    },
+    {
+      "name": "yalabeltext",
+      "unusual": true
+    },
+    {
+      "name": "yaplacelabel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "yaplacelabel{${1:text}}{${2:num across}}{${3:num down}}"
+      }
+    },
+    {
+      "name": "yalabelmarg",
+      "unusual": true
+    },
+    {
+      "name": "yashowboxeson"
+    },
+    {
+      "name": "yashowboxesoff"
+    },
+    {
+      "name": "yaavery",
+      "arg": {
+        "format": "{}",
+        "snippet": "yaavery{${1:number}}"
+      }
+    },
+    {
+      "name": "nloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nloop{${1:arg}}"
+      }
+    },
+    {
+      "name": "yalastpagestyle",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\yaoptions": [
       "pageheight=",
       "pagewidth=",
       "lftmarg=",
@@ -174,6 +435,13 @@
       "parskip=",
       "parindent=",
       "datafile=${1:file}"
+    ],
+    "\\yauseletterhead#c": [
+      "%yaletterhead"
+    ],
+    "\\yatoaddress#c,\\yareturnaddress#c,\\yafromaddress#c,\\yaaddress#c": [
+      "%yaaddress"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,84 +1,345 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "luatexja": [],
-    "fontspec": []
-  },
-  "macros": {
-    "Cjascale": {},
-    "jfontspec{}": {
-      "snippet": "jfontspec{${1:font}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "jfontspec[]{}": {
-      "snippet": "jfontspec[${2:font features}]{${1:font}}"
+    {
+      "name": "luatexja"
     },
-    "setmainjfont{}": {
-      "snippet": "setmainjfont{${1:font}}"
-    },
-    "setmainjfont[]{}": {
-      "snippet": "setmainjfont[${2:font features}]{${1:font}}"
-    },
-    "setsansjfont{}": {
-      "snippet": "setsansjfont{${1:font}}"
-    },
-    "setsansjfont[]{}": {
-      "snippet": "setsansjfont[${2:font features}]{${1:font}}"
-    },
-    "setmonojfont{}": {
-      "snippet": "setmonojfont{${1:font}}"
-    },
-    "setmonojfont[]{}": {
-      "snippet": "setmonojfont[${2:font features}]{${1:font}}"
-    },
-    "newjfontfamily{}{}": {
-      "snippet": "newjfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "newjfontfamily{}[]{}": {
-      "snippet": "newjfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "renewjfontfamily{}{}": {
-      "snippet": "renewjfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "renewjfontfamily{}[]{}": {
-      "snippet": "renewjfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "setjfontfamily{}{}": {
-      "snippet": "setjfontfamily{${1:cmd}}{${2:font}}"
-    },
-    "setjfontfamily{}[]{}": {
-      "snippet": "setjfontfamily{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "newjfontface{}{}": {
-      "snippet": "newjfontface{${1:cmd}}{${2:font}}"
-    },
-    "newjfontface{}[]{}": {
-      "snippet": "newjfontface{${1:cmd}}[${2:font features}]{${3:font}}"
-    },
-    "defaultjfontfeatures{}": {
-      "snippet": "defaultjfontfeatures{${1:font features}}"
-    },
-    "defaultjfontfeatures[]{}": {
-      "snippet": "defaultjfontfeatures[${2:font name list}]{${1:font features}}"
-    },
-    "addjfontfeatures{}": {
-      "snippet": "addjfontfeatures{${1:font features}}"
-    },
-    "addjfontfeature{}": {
-      "snippet": "addjfontfeature{${1:font features}}"
+    {
+      "name": "fontspec"
     }
-  },
-  "envs": {},
-  "options": [
-    "match",
-    "scale=${1:factor}",
-    "tuenc",
-    "euenc",
-    "math",
-    "no-math",
-    "config",
-    "no-config",
-    "quiet",
-    "silent"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Cjascale"
+    },
+    {
+      "name": "jfontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "jfontspec{${1:font}}"
+      }
+    },
+    {
+      "name": "jfontspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "jfontspec[${2:font features%keyvals}]{${1:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmainjfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmainjfont{${1:font}}"
+      }
+    },
+    {
+      "name": "setmainjfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmainjfont[${2:font features%keyvals}]{${1:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setsansjfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsansjfont{${1:font}}"
+      }
+    },
+    {
+      "name": "setsansjfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setsansjfont[${2:font features%keyvals}]{${1:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmonojfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonojfont{${1:font}}"
+      }
+    },
+    {
+      "name": "setmonojfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmonojfont[${2:font features%keyvals}]{${1:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newjfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newjfontfamily{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "newjfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newjfontfamily{${1:cmd}}[${3:font features%keyvals}]{${2:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewjfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewjfontfamily{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "renewjfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewjfontfamily{${1:cmd}}[${3:font features%keyvals}]{${2:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setjfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setjfontfamily{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "setjfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setjfontfamily{${1:cmd}}[${3:font features%keyvals}]{${2:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "providejfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "providejfontfamily{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "providejfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providejfontfamily{${1:cmd}}[${3:font features%keyvals}]{${2:font}}"
+      }
+    },
+    {
+      "name": "newjfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newjfontface{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "newjfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newjfontface{${1:cmd}}[${3:font features%keyvals}]{${2:font}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewjfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewjfontface{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "renewjfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewjfontface{${1:cmd}}[${3:font features%keyvals}]{${2:font}}"
+      }
+    },
+    {
+      "name": "setjfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setjfontface{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "setjfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setjfontface{${1:cmd}}[${3:font features%keyvals}]{${2:font}}"
+      }
+    },
+    {
+      "name": "providejfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "providejfontface{${1:cmd}}{${2:font}}"
+      }
+    },
+    {
+      "name": "providejfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providejfontface{${1:cmd}}[${3:font features%keyvals}]{${2:font}}"
+      }
+    },
+    {
+      "name": "defaultjfontfeatures",
+      "arg": {
+        "format": "{}",
+        "snippet": "defaultjfontfeatures{${1:font features%keyvals}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultjfontfeatures",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "defaultjfontfeatures[${2:font name list}]{${1:font features%keyvals}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "addjfontfeatures",
+      "arg": {
+        "format": "{}",
+        "snippet": "addjfontfeatures{${1:font features%keyvals}}",
+        "keys": [
+          "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luatexja-fontspec#c": [
+      "match",
+      "scale=${1:factor}",
+      "tuenc",
+      "euenc",
+      "math",
+      "no-math",
+      "config",
+      "no-config",
+      "quiet",
+      "silent"
+    ],
+    "\\jfontspec,\\setmainjfont,\\setsansjfont,\\setmonojfont,\\newjfontfamily,\\renewjfontfamily,\\setjfontfamily,\\newjfontface,\\defaultjfontfeatures,\\addjfontfeatures,\\addjfontfeature": [
+      "CID=${1:name}",
+      "JFM=${1:name}",
+      "JFM-var=${1:name}",
+      "NoEmbed",
+      "Kanjiskip",
+      "TateFeatures={${1:features}}",
+      "TateFont=${1:font}",
+      "YokoFeatures={${1:features}}",
+      "AltFont={${1:specification}}",
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "BoldSwashFeatures={${1:features}}",
+      "BoldSwashFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Script=${1:name}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "SwashFeatures={${1:features}}",
+      "SwashFont=${1:font name}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
+    ]
+  },
+  "args": [
+    "\\usepackage/luatexja-fontspec#c"
+  ]
 }

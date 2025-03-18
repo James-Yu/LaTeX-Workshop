@@ -1,0 +1,645 @@
+{
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "hypdoc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SetupDoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetupDoc{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/doc#c,\\SetupDoc#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DocInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "DocInput{${1:file}}"
+      }
+    },
+    {
+      "name": "IndexInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "IndexInput{${1:file}}"
+      }
+    },
+    {
+      "name": "DescribeMacro",
+      "arg": {
+        "format": "{}",
+        "snippet": "DescribeMacro{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "DescribeMacro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DescribeMacro[${2:options%keyvals}]{${1:macro%cmd}}",
+        "keys": [
+          "\\DescribeMacro#c,\\DescribeEnv#c,\\begin{macro}#c,\\begin{environment}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DescribeEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "DescribeEnv{${1:envname}}"
+      }
+    },
+    {
+      "name": "DescribeEnv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DescribeEnv[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\DescribeMacro#c,\\DescribeEnv#c,\\begin{macro}#c,\\begin{environment}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MacrocodeTopsep",
+      "unusual": true
+    },
+    {
+      "name": "MacroTopsep",
+      "unusual": true
+    },
+    {
+      "name": "MacroIndent",
+      "unusual": true
+    },
+    {
+      "name": "MacroFont",
+      "unusual": true
+    },
+    {
+      "name": "PrintDescribeMacro",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintDescribeMacro{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "PrintDescribeEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintDescribeEnv{${1:envname}}"
+      }
+    },
+    {
+      "name": "PrintMacroName",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintMacroName{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "PrintEnvName",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintEnvName{${1:envname}}"
+      }
+    },
+    {
+      "name": "NewDocElement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewDocElement{${1:element}}{${2:envname}}"
+      }
+    },
+    {
+      "name": "NewDocElement",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "NewDocElement[${3:options%keyvals}]{${1:element}}{${2:envname}}",
+        "keys": [
+          "\\NewDocElement#c,\\RenewDocElement#c,\\ProvideDocElement#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RenewDocElement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewDocElement{${1:element}}{${2:envname}}"
+      }
+    },
+    {
+      "name": "RenewDocElement",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "RenewDocElement[${3:options%keyvals}]{${1:element}}{${2:envname}}",
+        "keys": [
+          "\\NewDocElement#c,\\RenewDocElement#c,\\ProvideDocElement#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProvideDocElement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ProvideDocElement{${1:element}}{${2:envname}}"
+      }
+    },
+    {
+      "name": "ProvideDocElement",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ProvideDocElement[${3:options%keyvals}]{${1:element}}{${2:envname}}",
+        "keys": [
+          "\\NewDocElement#c,\\RenewDocElement#c,\\ProvideDocElement#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SpecialEscapechar"
+    },
+    {
+      "name": "DisableCrossrefs"
+    },
+    {
+      "name": "EnableCrossrefs"
+    },
+    {
+      "name": "DoNotIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "DoNotIndex{${1:macro list%definition}}"
+      }
+    },
+    {
+      "name": "PageIndex"
+    },
+    {
+      "name": "CodelineIndex"
+    },
+    {
+      "name": "theCodelineNo"
+    },
+    {
+      "name": "CodelineNumbered"
+    },
+    {
+      "name": "actualchar",
+      "unusual": true
+    },
+    {
+      "name": "quotechar",
+      "unusual": true
+    },
+    {
+      "name": "encapchar",
+      "unusual": true
+    },
+    {
+      "name": "levelchar",
+      "unusual": true
+    },
+    {
+      "name": "SpecialMainMacroIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMainMacroIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SpecialMainEnvIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMainEnvIndex{${1:envname}}"
+      }
+    },
+    {
+      "name": "SpecialMacroIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMacroIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SpecialEnvIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialEnvIndex{${1:envname}}"
+      }
+    },
+    {
+      "name": "SpecialIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SpecialShortIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialShortIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SpecialMainIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMainIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SpecialUsageIndex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialUsageIndex{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SortIndex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SortIndex{${1:sort key}}{${2:index entry}}"
+      }
+    },
+    {
+      "name": "verbatimchar",
+      "unusual": true
+    },
+    {
+      "name": "PrintIndex"
+    },
+    {
+      "name": "IndexMin",
+      "unusual": true
+    },
+    {
+      "name": "IndexPrologue",
+      "arg": {
+        "format": "{}",
+        "snippet": "IndexPrologue{${1:text}}"
+      }
+    },
+    {
+      "name": "IndexParms",
+      "unusual": true
+    },
+    {
+      "name": "main",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "main{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "usage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usage{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "code",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "code{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "DocstyleParms",
+      "unusual": true
+    },
+    {
+      "name": "MakeShortVerb",
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeShortVerb{${1:\\character}}"
+      }
+    },
+    {
+      "name": "MakeShortVerb*",
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeShortVerb*{${1:\\character}}"
+      }
+    },
+    {
+      "name": "DeleteShortVerb",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeleteShortVerb{${1:\\character}}"
+      }
+    },
+    {
+      "name": "Web"
+    },
+    {
+      "name": "AmSTeX"
+    },
+    {
+      "name": "BibTeX"
+    },
+    {
+      "name": "SliTeX"
+    },
+    {
+      "name": "PlainTeX"
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "meta{${1:arg}}"
+      }
+    },
+    {
+      "name": "OnlyDescription"
+    },
+    {
+      "name": "MaybeStop",
+      "arg": {
+        "format": "{}",
+        "snippet": "MaybeStop{${1:finale code}}"
+      }
+    },
+    {
+      "name": "StopEventually",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "StopEventually{${1:finale code}}"
+      }
+    },
+    {
+      "name": "Finale"
+    },
+    {
+      "name": "AlsoImplementation"
+    },
+    {
+      "name": "changes",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "changes{${1:version}}{${2:date}}{${3:text}}"
+      }
+    },
+    {
+      "name": "generalname",
+      "unusual": true
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:csname}}"
+      }
+    },
+    {
+      "name": "RecordChanges"
+    },
+    {
+      "name": "PrintChanges"
+    },
+    {
+      "name": "GlossaryMin",
+      "unusual": true
+    },
+    {
+      "name": "GlossaryPrologue",
+      "arg": {
+        "format": "{}",
+        "snippet": "GlossaryPrologue{${1:text}}"
+      }
+    },
+    {
+      "name": "GlossaryParms",
+      "unusual": true
+    },
+    {
+      "name": "bslash"
+    },
+    {
+      "name": "MakePrivateLetters"
+    },
+    {
+      "name": "DontCheckModules"
+    },
+    {
+      "name": "CheckModules"
+    },
+    {
+      "name": "Module",
+      "arg": {
+        "format": "{}",
+        "snippet": "Module{${1:directive}}"
+      }
+    },
+    {
+      "name": "AltMacroFont",
+      "unusual": true
+    },
+    {
+      "name": "theStandardModuleDepth",
+      "unusual": true
+    },
+    {
+      "name": "OldMakeindex",
+      "unusual": true
+    },
+    {
+      "name": "percentchar",
+      "unusual": true
+    },
+    {
+      "name": "CharacterTable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CharacterTable{${1:contents}}"
+      }
+    },
+    {
+      "name": "CharTableChanges",
+      "unusual": true
+    },
+    {
+      "name": "CheckSum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CheckSum{${1:number}}"
+      }
+    },
+    {
+      "name": "efill",
+      "unusual": true
+    },
+    {
+      "name": "filedate",
+      "unusual": true
+    },
+    {
+      "name": "fileinfo",
+      "unusual": true
+    },
+    {
+      "name": "filename",
+      "unusual": true
+    },
+    {
+      "name": "fileversion",
+      "unusual": true
+    },
+    {
+      "name": "GetFileInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GetFileInfo{${1:file}}"
+      }
+    },
+    {
+      "name": "LeftBraceIndex",
+      "unusual": true
+    },
+    {
+      "name": "MakePercentComment",
+      "unusual": true
+    },
+    {
+      "name": "MakePercentIgnore",
+      "unusual": true
+    },
+    {
+      "name": "PercentIndex",
+      "unusual": true
+    },
+    {
+      "name": "pfill",
+      "unusual": true
+    },
+    {
+      "name": "RecordIndexType",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RecordIndexType{${1:cmd}}{${2:type}}"
+      }
+    },
+    {
+      "name": "RecordIndexTypeAux",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RecordIndexTypeAux{${1:cmd}}{${2:type}}"
+      }
+    },
+    {
+      "name": "RightBraceIndex",
+      "unusual": true
+    },
+    {
+      "name": "ShowIndexingState",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "macrocode"
+    },
+    {
+      "name": "macrocode*"
+    },
+    {
+      "name": "macro",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "macro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:macro%cmd}}",
+        "keys": [
+          "\\DescribeMacro#c,\\DescribeEnv#c,\\begin{macro}#c,\\begin{environment}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "environment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname}}"
+      }
+    },
+    {
+      "name": "environment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\DescribeMacro#c,\\DescribeEnv#c,\\begin{macro}#c,\\begin{environment}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "theglossary"
+    }
+  ],
+  "keys": {
+    "\\usepackage/doc#c,\\SetupDoc#c": [
+      "hyperref",
+      "nohyperref",
+      "multicol",
+      "nomulticol",
+      "debugshow",
+      "noindex",
+      "noprint",
+      "reportchangedates",
+      "toplevel",
+      "notoplevel"
+    ],
+    "\\DescribeMacro#c,\\DescribeEnv#c,\\begin{macro}#c,\\begin{environment}#c": [
+      "noindex",
+      "noprint"
+    ],
+    "\\NewDocElement#c,\\RenewDocElement#c,\\ProvideDocElement#c": [
+      "macrolike",
+      "envlike",
+      "toplevel",
+      "notoplevel",
+      "idxtype=${1:string}",
+      "printtype=${1:string}",
+      "idxgroup=${1:string}",
+      "noindex",
+      "noprint"
+    ]
+  },
+  "args": [
+    "\\usepackage/doc#c,\\SetupDoc#c"
+  ]
+}

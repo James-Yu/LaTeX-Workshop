@@ -1,31 +1,62 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "burl{}": {
-      "snippet": "burl{${1:URL}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "burlalt{}{}": {
-      "snippet": "burlalt{${1:URL}}{${2:text}}"
-    },
-    "urlalt{}{}": {
-      "snippet": "urlalt{${1:URL}}{${2:text}}"
-    },
-    "UrlRight{}": {
-      "snippet": "UrlRight{${1:arg}}"
-    },
-    "UrlLeft{}": {
-      "snippet": "UrlLeft{${1:arg}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "envs": {},
-  "options": [
-    "hyphenbreaks",
-    "anythingbreaks",
-    "preserveurlmacro",
-    "vertfit=${1:criterion}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "burl",
+      "arg": {
+        "format": "{}",
+        "snippet": "burl{${1:URL}}"
+      }
+    },
+    {
+      "name": "burlalt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "burlalt{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "urlalt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "urlalt{${1:URL}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "UrlRight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "UrlRight{${1:arg%URL}}"
+      }
+    },
+    {
+      "name": "UrlLeft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "UrlLeft{${1:arg%URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/breakurl#c": [
+      "hyphenbreaks",
+      "anythingbreaks",
+      "preserveurlmacro",
+      "vertfit=${1:criterion}"
+    ]
+  },
+  "args": [
+    "\\usepackage/breakurl#c"
+  ]
 }

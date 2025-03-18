@@ -1,26 +1,81 @@
 {
-  "includes": {
-    "pstricks": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psDartBoard": {},
-    "psDartBoard[]": {
-      "snippet": "psDartBoard[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "psDartBoard"
+    },
+    {
+      "name": "psDartBoard",
+      "arg": {
+        "format": "()",
+        "snippet": "psDartBoard(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psDartBoard",
+      "arg": {
+        "format": "[]",
+        "snippet": "psDartBoard[${1:options%keyvals}]",
+        "keys": [
+          "\\psDartBoard#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psDartBoard",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psDartBoard[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psDartBoard#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psDart",
+      "arg": {
+        "format": "()",
+        "snippet": "psDart(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psDart",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psDart[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psDart#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psDartBoard#c": [
       "fontsize=",
       "unit=${1:number}",
       "viewpoint=${1:x y z}",
       "preCode=${1:code}",
       "postCode=${1:code}"
+    ],
+    "\\psDart#c": [
+      "rot=${1:degrees}",
+      "unit=${1:number}",
+      "dartcolor="
     ]
-  ]
+  },
+  "args": []
 }

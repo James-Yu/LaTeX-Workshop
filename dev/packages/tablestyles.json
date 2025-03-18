@@ -1,61 +1,160 @@
 {
-  "includes": {
-    "array": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "ragged2e": [],
-    "colortbl": []
+  "deps": [
+    {
+      "name": "array"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "colortbl"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tablestyle"
+    },
+    {
+      "name": "tablestyle",
+      "arg": {
+        "format": "[]",
+        "snippet": "tablestyle[${1:style%keyvals}]",
+        "keys": [
+          "\\tablestyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tbegin"
+    },
+    {
+      "name": "tend"
+    },
+    {
+      "name": "tbody"
+    },
+    {
+      "name": "theadstart"
+    },
+    {
+      "name": "tsubheadstart"
+    },
+    {
+      "name": "theadend"
+    },
+    {
+      "name": "tsubheadend"
+    },
+    {
+      "name": "thead"
+    },
+    {
+      "name": "tsubhead"
+    },
+    {
+      "name": "theadrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "theadrow{${1:number of cells}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tsubheadrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tsubheadrow{${1:number of cells}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tlinetop",
+      "unusual": true
+    },
+    {
+      "name": "tlinemid",
+      "unusual": true
+    },
+    {
+      "name": "tlinebottom",
+      "unusual": true
+    },
+    {
+      "name": "setuptablefontsize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setuptablefontsize{${1:name}}{${2:size definition}}"
+      }
+    },
+    {
+      "name": "tablefontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "tablefontsize{${1:name}}"
+      }
+    },
+    {
+      "name": "setuptablecolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setuptablecolor{${1:color name%specialDef}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "tablecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "tablecolor{${1:color}}"
+      }
+    },
+    {
+      "name": "tablealtcolored"
+    },
+    {
+      "name": "disablealternatecolors"
+    },
+    {
+      "name": "coloredhline",
+      "arg": {
+        "format": "{}",
+        "snippet": "coloredhline{${1:color}}"
+      }
+    },
+    {
+      "name": "coloredvline",
+      "arg": {
+        "format": "{}",
+        "snippet": "coloredvline{${1:color}}"
+      }
+    },
+    {
+      "name": "setuptablestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setuptablestyle{${1:style name%specialDef}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "resettablestyle"
+    },
+    {
+      "name": "tableitemize"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tablestyle": [
+      "default",
+      "roman",
+      "sansbold",
+      "sansboldbw",
+      "%tablestyle"
+    ]
   },
-  "macros": {
-    "tablestyle": {},
-    "tablestyle[]": {
-      "snippet": "tablestyle[${1:style}]"
-    },
-    "tbegin": {},
-    "tend": {},
-    "tbody": {},
-    "theadstart": {},
-    "tsubheadstart": {},
-    "theadend": {},
-    "tsubheadend": {},
-    "thead": {},
-    "tsubhead": {},
-    "theadrow{}{}": {
-      "snippet": "theadrow{${1:number of cells}}{${2:text}}"
-    },
-    "tsubheadrow{}{}": {
-      "snippet": "tsubheadrow{${1:number of cells}}{${2:text}}"
-    },
-    "tlinetop": {},
-    "tlinemid": {},
-    "tlinebottom": {},
-    "setuptablefontsize{}{}": {
-      "snippet": "setuptablefontsize{${1:name}}{${2:size definition}}"
-    },
-    "tablefontsize{}": {
-      "snippet": "tablefontsize{${1:name}}"
-    },
-    "setuptablecolor{}{}": {
-      "snippet": "setuptablecolor{${1:color name}}{${2:definition}}"
-    },
-    "tablecolor{}": {
-      "snippet": "tablecolor{${1:color}}"
-    },
-    "tablealtcolored": {},
-    "disablealternatecolors": {},
-    "coloredhline{}": {
-      "snippet": "coloredhline{${1:color}}"
-    },
-    "coloredvline{}": {
-      "snippet": "coloredvline{${1:color}}"
-    },
-    "setuptablestyle{}{}": {
-      "snippet": "setuptablestyle{${1:style name}}{${2:definition}}"
-    },
-    "resettablestyle": {},
-    "tableitemize": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,301 +1,410 @@
 {
-  "includes": {
-    "pgfplots": [],
-    "array": []
-  },
-  "macros": {
-    "pgfplotstableset{}": {
-      "snippet": "pgfplotstableset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfplots"
     },
-    "pgfplotstabletypeset{}": {
-      "snippet": "pgfplotstabletypeset{${1:table}}"
+    {
+      "name": "array"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfplotstableset",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstableset{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c",
+          "\\pgfplotstableset#c",
+          "\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstableset#c",
+          "\\pgfplotstablesort#c,\\pgfplotstableset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfplotstabletypeset[]{}": {
-      "snippet": "pgfplotstabletypeset[${2:options}]{${1:table}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstabletypeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstabletypeset{${1:table}}"
+      }
     },
-    "pgfplotstabletypesetfile{}": {
-      "snippet": "pgfplotstabletypesetfile{${1:file}}"
+    {
+      "name": "pgfplotstabletypeset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfplotstabletypeset[${2:options%keyvals}]{${1:table}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfplotstabletypesetfile[]{}": {
-      "snippet": "pgfplotstabletypesetfile[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstabletypesetfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstabletypesetfile{${1:file}}"
+      }
     },
-    "pgfplotstableread{}{}": {
-      "snippet": "pgfplotstableread{${1:table}}{${2:macro}}"
+    {
+      "name": "pgfplotstabletypesetfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfplotstabletypesetfile[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfplotstablecol": {},
-    "pgfplotstablecolname": {},
-    "pgfplotstablerow": {},
-    "pgfplotstablecols": {},
-    "pgfplotstablerows": {},
-    "pgfplotstablename": {},
-    "pgfplotstablepartno": {},
-    "pgfplotstablenew{}{}": {
-      "snippet": "pgfplotstablenew{${1:row count}}{${2:macro}}"
+    {
+      "name": "pgfplotstableread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstableread{${1:table}}{${2:macro%cmd}}"
+      }
     },
-    "pgfplotstablenew[]{}{}": {
-      "snippet": "pgfplotstablenew[${3:options}]{${1:row count}}{${2:macro}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstablecol",
+      "unusual": true
     },
-    "pgfplotstablenew*{}{}": {
-      "snippet": "pgfplotstablenew*{${1:row count}}{${2:macro}}"
+    {
+      "name": "pgfplotstablecolname",
+      "unusual": true
     },
-    "pgfplotstablenew*[]{}{}": {
-      "snippet": "pgfplotstablenew*[${3:options}]{${1:row count}}{${2:macro}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstablerow",
+      "unusual": true
     },
-    "pgfplotstablevertcat{}{}": {
-      "snippet": "pgfplotstablevertcat{${1:table1}}{${2:table2}}"
+    {
+      "name": "pgfplotstablecols",
+      "unusual": true
     },
-    "pgfplotstableclear{}": {
-      "snippet": "pgfplotstableclear{${1:table}}"
+    {
+      "name": "pgfplotstablerows",
+      "unusual": true
     },
-    "pgfplotstablecreatecol{}{}": {
-      "snippet": "pgfplotstablecreatecol{${1:new col name}}{${2:table}}"
+    {
+      "name": "pgfplotstablename",
+      "unusual": true
     },
-    "pgfplotstablecreatecol[]{}{}": {
-      "snippet": "pgfplotstablecreatecol[${3:options}]{${1:new col name}}{${2:table}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstablepartno",
+      "unusual": true
     },
-    "prevrow{}": {
-      "snippet": "prevrow{${1:col name}}"
+    {
+      "name": "pgfplotstablenew",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablenew{${1:row count}}{${2:macro%cmd}}"
+      }
     },
-    "getprevrow{}{}": {
-      "snippet": "getprevrow{${1:col name}}{${2:macro}}"
+    {
+      "name": "pgfplotstablenew",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstablenew[${3:options%keyvals}]{${1:row count}}{${2:macro%cmd}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "thisrow{}": {
-      "snippet": "thisrow{${1:col name}}"
+    {
+      "name": "pgfplotstablenew*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablenew*{${1:row count}}{${2:macro%cmd}}"
+      }
     },
-    "getthisrow{}{}": {
-      "snippet": "getthisrow{${1:col name}}{${2:macro}}"
+    {
+      "name": "pgfplotstablenew*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstablenew*[${3:options%keyvals}]{${1:row count}}{${2:macro%cmd}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "nextrow{}": {
-      "snippet": "nextrow{${1:col name}}"
+    {
+      "name": "pgfplotstablevertcat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablevertcat{${1:table1%cmd}}{${2:table2}}"
+      }
     },
-    "getnextrow{}{}": {
-      "snippet": "getnextrow{${1:col name}}{${2:macro}}"
+    {
+      "name": "pgfplotstableclear",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstableclear{${1:table}}"
+      }
     },
-    "pgfmathaccuma": {},
-    "pgfmathaccumb": {},
-    "pgfplotstablesave{}{}": {
-      "snippet": "pgfplotstablesave{${1:table}}{${2:output-file name}}"
+    {
+      "name": "pgfplotstablecreatecol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablecreatecol{${1:new col name}}{${2:table}}"
+      }
     },
-    "pgfplotstablesave[]{}{}": {
-      "snippet": "pgfplotstablesave[${3:options}]{${1:table}}{${2:output-file name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pgfplotstablecreatecol",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstablecreatecol[${3:options%keyvals}]{${1:new col name}}{${2:table}}",
+        "keys": [
+          "\\pgfplotstablecreatecol#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfplotstablegetrowsof{}": {
-      "snippet": "pgfplotstablegetrowsof{${1:table}}"
+    {
+      "name": "prevrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prevrow{${1:col name}}"
+      }
     },
-    "pgfplotstablegetcolsof{}": {
-      "snippet": "pgfplotstablegetcolsof{${1:table}}"
+    {
+      "name": "getprevrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getprevrow{${1:col name}}{${2:macro%cmd}}"
+      }
     },
-    "pgfplotstabletranspose{}{}": {
-      "snippet": "pgfplotstabletranspose{${1:macro}}{${2:table}}"
+    {
+      "name": "thisrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thisrow{${1:col name}}"
+      }
     },
-    "pgfplotstabletranspose[]{}{}": {
-      "snippet": "pgfplotstabletranspose[${3:options}]{${1:macro}}{${2:table}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "getthisrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getthisrow{${1:col name}}{${2:macro%cmd}}"
+      }
     },
-    "pgfplotstabletranspose*{}{}": {
-      "snippet": "pgfplotstabletranspose*{${1:macro}}{${2:table}}"
+    {
+      "name": "nextrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nextrow{${1:col name}}"
+      }
     },
-    "pgfplotstabletranspose*[]{}{}": {
-      "snippet": "pgfplotstabletranspose*[${3:options}]{${1:macro}}{${2:table}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "getnextrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getnextrow{${1:col name}}{${2:macro%cmd}}"
+      }
     },
-    "pgfplotstablesort{}{}": {
-      "snippet": "pgfplotstablesort{${1:macro}}{${2:table}}"
+    {
+      "name": "pgfmathaccuma",
+      "unusual": true
     },
-    "pgfplotstablesort[]{}{}": {
-      "snippet": "pgfplotstablesort[${3:options}]{${1:macro}}{${2:table}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "pgfmathaccumb",
+      "unusual": true
     },
-    "monthname": {},
-    "monthshortname": {},
-    "weekday": {},
-    "weekdayname": {},
-    "weekdayshortname": {},
-    "ifpgfplotstabletypesetdebug": {},
-    "pgfplotstabletypesetdebugtrue": {},
-    "pgfplotstabletypesetdebugfalse": {},
-    "ifpgfplotstabletypesetskipcoltypes": {},
-    "pgfplotstabletypesetskipcoltypestrue": {},
-    "pgfplotstabletypesetskipcoltypesfalse": {},
-    "ifpgfplotstabletypesetresult": {},
-    "pgfplotstabletypesetresulttrue": {},
-    "pgfplotstabletypesetresultfalse": {},
-    "ifpgfplotstableuserow": {},
-    "pgfplotstableuserowtrue": {},
-    "pgfplotstableuserowfalse": {},
-    "prevrowno{}": {
-      "snippet": "prevrowno{${1:col name}}"
+    {
+      "name": "pgfplotstablesave",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablesave{${1:table}}{${2:output-file name}}"
+      }
     },
-    "thisrowno{}": {
-      "snippet": "thisrowno{${1:col name}}"
+    {
+      "name": "pgfplotstablesave",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstablesave[${3:options%keyvals}]{${1:table}}{${2:output-file name}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "nextrowno{}": {
-      "snippet": "nextrowno{${1:col name}}"
+    {
+      "name": "pgfplotstablegetrowsof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstablegetrowsof{${1:table}}"
+      }
     },
-    "pgfplotstableresetcolortbloverhangright": {},
-    "pgfplotstableresetcolortbloverhangleft": {},
-    "pgfmatharga": {},
-    "pgfmathargb": {},
-    "pgfplotstablecoltype": {},
-    "endpgfplotstablecoltype": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "col sep=",
+    {
+      "name": "pgfplotstablegetcolsof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstablegetcolsof{${1:table}}"
+      }
+    },
+    {
+      "name": "pgfplotstabletranspose",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstabletranspose{${1:macro%cmd}}{${2:table}}"
+      }
+    },
+    {
+      "name": "pgfplotstabletranspose",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstabletranspose[${3:options%keyvals}]{${1:macro%cmd}}{${2:table}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c",
+          "\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstableset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfplotstabletranspose*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstabletranspose*{${1:macro%cmd}}{${2:table}}"
+      }
+    },
+    {
+      "name": "pgfplotstabletranspose*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstabletranspose*[${3:options%keyvals}]{${1:macro%cmd}}{${2:table}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c",
+          "\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstableset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfplotstablesort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfplotstablesort{${1:macro%cmd}}{${2:table}}"
+      }
+    },
+    {
+      "name": "pgfplotstablesort",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfplotstablesort[${3:options%keyvals}]{${1:macro%cmd}}{${2:table}}",
+        "keys": [
+          "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c",
+          "\\pgfplotstablesort#c,\\pgfplotstableset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifpgfplotstabletypesetdebug",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetdebugtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetdebugfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfplotstabletypesetskipcoltypes",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetskipcoltypestrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetskipcoltypesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfplotstabletypesetresult",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetresulttrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstabletypesetresultfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfplotstableuserow",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstableuserowtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstableuserowfalse",
+      "unusual": true
+    },
+    {
+      "name": "prevrowno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prevrowno{${1:col name}}"
+      }
+    },
+    {
+      "name": "thisrowno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thisrowno{${1:col name}}"
+      }
+    },
+    {
+      "name": "nextrowno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nextrowno{${1:col name}}"
+      }
+    },
+    {
+      "name": "pgfplotstableresetcolortbloverhangright",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstableresetcolortbloverhangleft",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstablecoltype",
+      "unusual": true
+    },
+    {
+      "name": "endpgfplotstablecoltype",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfplotstableset#c,\\pgfplotstabletypeset#c,\\pgfplotstabletypesetfile#c,\\pgfplotstablenew#c,\\pgfplotstablenew*#c,\\pgfplotstablesave#c,\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstablesort#c": [
+      "col sep=${1|space,tab,comma,semicolon,colon,braces,&,ampersand|}",
       "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
-      "ignore chars={${1:char1,char2,...}}",
-      "white space chars={${1:char1,char2,...}}",
-      "text special chars={${1:char1,char2,...}}",
-      "comment chars={${1:char1,char2,...}}",
-      "percent is letter",
-      "text indicator=${1:char}",
-      "skip first n=${1:integer}",
-      "search path=${1:path}",
-      "search path/implicit .",
-      "columns={${1:colname1,colname2,...}}",
-      "columns/${1:colname}/.style={${2:options}}",
-      "display columns/${1:index}/.style={${2:options}}",
-      "every col no ${1:index}/.style={${2:options}}",
-      "column type=${1:tabular col type}",
-      "column type/.add={${1:before}}{${2:after}}",
-      "column name=${1:TeX display colname}",
-      "multicolumn names=${1:tabular col type}",
-      "dec sep align=${1:header col type}",
-      "sci sep align=${1:header col type}",
-      "dcolumn={${1:tabular col type}}{${2:type for colname}}",
-      "sort",
-      "every first column/.style={${1:options}}",
-      "every last column/.style={${1:options}}",
-      "every even column/.style={${1:options}}",
-      "every column/.style={${1:options}}",
-      "every odd column/.style={${1:options}}",
-      "before row={${1:code}}",
-      "after row={${1:code}}",
-      "every even row/.style={${1:options}}",
-      "every odd row/.style={${1:options}}",
-      "every head row/.style={${1:options}}",
-      "every first row/.style={${1:options}}",
-      "every last row/.style={${1:options}}",
-      "every row no ${1:index}/.style={${2:options}}",
-      "every nth row={${1:integer}}{${2:options}}",
-      "every nth row={${1:integer[shift]}}{${2:options}}",
-      "every row ${1:index} column ${2:index}/.style={${3:options}}",
-      "every row ${1:index} column ${2:colname}/.style={${3:options}}",
-      "every row no ${1:index} column no ${2:index}/.style={${3:options}}",
-      "font=${1:font commands}",
-      "begin table={${1:code}}",
-      "end table={${1:code}}",
-      "outfile=${1:file}",
-      "include outfiles",
-      "force remake",
-      "write to macro=${1:\\macro}",
-      "skip coltypes",
-      "typeset",
-      "debug",
-      "TeX comment=${1:comment sign}",
-      "fixed",
-      "fixed zerofill",
-      "sci",
-      "sci zerofill",
-      "zerofill",
-      "std",
-      "std=${1:lower e}",
-      "std=${1:lower e}:${2:upper e}",
-      "relative*=${1:exponent base 10}",
-      "relative style={${1:options}}",
-      "fixed relative",
-      "int detect",
-      "int trunc",
-      "frac",
-      "frac TeX=${1:\\macro}",
-      "frac denom=${1:integer}",
-      "frac whole",
-      "frac shift=${1:integer}",
-      "precision=${1:number}",
-      "sci precision=${1:number}",
-      "read comma as period",
-      "set decimal separator=${1:text}",
-      "dec sep=${1:text}",
-      "set thousands separator=${1:text}",
-      "1000 sep=${1:text}",
-      "1000 sep in fractionals",
-      "min exponent for 1000 sep=${1:number}",
-      "use period",
-      "use comma",
-      "skip 0.",
-      "showpos",
-      "print sign",
-      "sci 10e",
-      "sci 10^e",
-      "sci E",
-      "sci subscript",
-      "sci superscript",
-      "sci generic={${1:keys}}",
-      "retain unit mantissa",
-      "assume math mode",
-      "verbatim",
-      "assign cell content/.code={${1:code}}",
-      "numeric type",
-      "string type",
-      "verb string type",
-      "numeric as string type",
-      "date type=${1:date format}",
-      "preproc cell content/.code={${1:code}}",
-      "string replace={${1:cell match}}{${2:cell replacement}}",
-      "string replace*={${1:pattern}}{${2:cell replacement}}",
-      "clear infinite",
-      "preproc/expr={${1:math expr}}",
-      "multiply by=${1:real number}",
-      "divide by=${1:real number}",
-      "sqrt",
-      "multiply -1",
-      "row predicate/.code={${1:code}}",
-      "skip rows between index={${1:begin}}{${2:end}}",
-      "select equal part entry of={${1:part no}}{${2:part count}}",
-      "unique=${1:colname}",
-      "postproc cell content/.code={${1:code}}",
-      "empty cells with=${1:replacement}",
-      "set content=${1:content}",
-      "fonts by sign={${1:positive-code}}{${2:negative-code}}",
-      "create on use/${1:colname}/.style={${2:options}}",
-      "disable rowcol styles",
-      "reset styles",
-      "alias/${1:colname}/.initial=${2:real colname}",
-      "every table=${1:file}",
-      "colnames from=${1:colname}",
-      "input colnames to=${1:colname}",
-      "sort key=${1:column}",
-      "sort key from=${1:table}",
-      "sort cmp="
-    ],
-    [
-      "col sep=",
-      "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
+      "header=${1|true,false,has colnames|}",
+      "format=${1|auto,inline,file|}",
+      "row sep=${1|newline,\\\\|}",
       "ignore chars={${1:char1,char2,...}}",
       "white space chars={${1:char1,char2,...}}",
       "text special chars={${1:char1,char2,...}}",
@@ -414,7 +523,11 @@
       "disable rowcol styles",
       "reset styles"
     ],
-    [
+    "\\pgfplotstableset#c": [
+      "alias/${1:colname}/.initial=${2:real colname}",
+      "every table=${1:file}"
+    ],
+    "\\pgfplotstablecreatecol#c": [
       "set=${1:value}",
       "set list={${1:val1,val2,...}}",
       "copy=${1:colname}",
@@ -433,258 +546,15 @@
       "function graph cut y={${1:cut value}}{${2:common options}}{${3:one keyval set for each plot}}",
       "function graph cut x={${1:cut value}}{${2:common options}}{${3:one keyval set for each plot}}"
     ],
-    [
-      "col sep=",
-      "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
-      "ignore chars={${1:char1,char2,...}}",
-      "white space chars={${1:char1,char2,...}}",
-      "text special chars={${1:char1,char2,...}}",
-      "comment chars={${1:char1,char2,...}}",
-      "percent is letter",
-      "text indicator=${1:char}",
-      "skip first n=${1:integer}",
-      "search path=${1:path}",
-      "search path/implicit .",
-      "columns={${1:colname1,colname2,...}}",
-      "columns/${1:colname}/.style={${2:options}}",
-      "display columns/${1:index}/.style={${2:options}}",
-      "every col no ${1:index}/.style={${2:options}}",
-      "column type=${1:tabular col type}",
-      "column type/.add={${1:before}}{${2:after}}",
-      "column name=${1:TeX display colname}",
-      "multicolumn names=${1:tabular col type}",
-      "dec sep align=${1:header col type}",
-      "sci sep align=${1:header col type}",
-      "dcolumn={${1:tabular col type}}{${2:type for colname}}",
-      "sort",
-      "every first column/.style={${1:options}}",
-      "every last column/.style={${1:options}}",
-      "every even column/.style={${1:options}}",
-      "every column/.style={${1:options}}",
-      "every odd column/.style={${1:options}}",
-      "before row={${1:code}}",
-      "after row={${1:code}}",
-      "every even row/.style={${1:options}}",
-      "every odd row/.style={${1:options}}",
-      "every head row/.style={${1:options}}",
-      "every first row/.style={${1:options}}",
-      "every last row/.style={${1:options}}",
-      "every row no ${1:index}/.style={${2:options}}",
-      "every nth row={${1:integer}}{${2:options}}",
-      "every nth row={${1:integer[shift]}}{${2:options}}",
-      "every row ${1:index} column ${2:index}/.style={${3:options}}",
-      "every row ${1:index} column ${2:colname}/.style={${3:options}}",
-      "every row no ${1:index} column no ${2:index}/.style={${3:options}}",
-      "font=${1:font commands}",
-      "begin table={${1:code}}",
-      "end table={${1:code}}",
-      "outfile=${1:file}",
-      "include outfiles",
-      "force remake",
-      "write to macro=${1:\\macro}",
-      "skip coltypes",
-      "typeset",
-      "debug",
-      "TeX comment=${1:comment sign}",
-      "fixed",
-      "fixed zerofill",
-      "sci",
-      "sci zerofill",
-      "zerofill",
-      "std",
-      "std=${1:lower e}",
-      "std=${1:lower e}:${2:upper e}",
-      "relative*=${1:exponent base 10}",
-      "relative style={${1:options}}",
-      "fixed relative",
-      "int detect",
-      "int trunc",
-      "frac",
-      "frac TeX=${1:\\macro}",
-      "frac denom=${1:integer}",
-      "frac whole",
-      "frac shift=${1:integer}",
-      "precision=${1:number}",
-      "sci precision=${1:number}",
-      "read comma as period",
-      "set decimal separator=${1:text}",
-      "dec sep=${1:text}",
-      "set thousands separator=${1:text}",
-      "1000 sep=${1:text}",
-      "1000 sep in fractionals",
-      "min exponent for 1000 sep=${1:number}",
-      "use period",
-      "use comma",
-      "skip 0.",
-      "showpos",
-      "print sign",
-      "sci 10e",
-      "sci 10^e",
-      "sci E",
-      "sci subscript",
-      "sci superscript",
-      "sci generic={${1:keys}}",
-      "retain unit mantissa",
-      "assume math mode",
-      "verbatim",
-      "assign cell content/.code={${1:code}}",
-      "numeric type",
-      "string type",
-      "verb string type",
-      "numeric as string type",
-      "date type=${1:date format}",
-      "preproc cell content/.code={${1:code}}",
-      "string replace={${1:cell match}}{${2:cell replacement}}",
-      "string replace*={${1:pattern}}{${2:cell replacement}}",
-      "clear infinite",
-      "preproc/expr={${1:math expr}}",
-      "multiply by=${1:real number}",
-      "divide by=${1:real number}",
-      "sqrt",
-      "multiply -1",
-      "row predicate/.code={${1:code}}",
-      "skip rows between index={${1:begin}}{${2:end}}",
-      "select equal part entry of={${1:part no}}{${2:part count}}",
-      "unique=${1:colname}",
-      "postproc cell content/.code={${1:code}}",
-      "empty cells with=${1:replacement}",
-      "set content=${1:content}",
-      "fonts by sign={${1:positive-code}}{${2:negative-code}}",
-      "create on use/${1:colname}/.style={${2:options}}",
-      "disable rowcol styles",
-      "reset styles",
+    "\\pgfplotstabletranspose#c,\\pgfplotstabletranspose*#c,\\pgfplotstableset#c": [
       "colnames from=${1:colname}",
       "input colnames to=${1:colname}"
     ],
-    [
-      "col sep=",
-      "trim cells",
-      "header=",
-      "format=",
-      "row sep=",
-      "ignore chars={${1:char1,char2,...}}",
-      "white space chars={${1:char1,char2,...}}",
-      "text special chars={${1:char1,char2,...}}",
-      "comment chars={${1:char1,char2,...}}",
-      "percent is letter",
-      "text indicator=${1:char}",
-      "skip first n=${1:integer}",
-      "search path=${1:path}",
-      "search path/implicit .",
-      "columns={${1:colname1,colname2,...}}",
-      "columns/${1:colname}/.style={${2:options}}",
-      "display columns/${1:index}/.style={${2:options}}",
-      "every col no ${1:index}/.style={${2:options}}",
-      "column type=${1:tabular col type}",
-      "column type/.add={${1:before}}{${2:after}}",
-      "column name=${1:TeX display colname}",
-      "multicolumn names=${1:tabular col type}",
-      "dec sep align=${1:header col type}",
-      "sci sep align=${1:header col type}",
-      "dcolumn={${1:tabular col type}}{${2:type for colname}}",
-      "sort",
-      "every first column/.style={${1:options}}",
-      "every last column/.style={${1:options}}",
-      "every even column/.style={${1:options}}",
-      "every column/.style={${1:options}}",
-      "every odd column/.style={${1:options}}",
-      "before row={${1:code}}",
-      "after row={${1:code}}",
-      "every even row/.style={${1:options}}",
-      "every odd row/.style={${1:options}}",
-      "every head row/.style={${1:options}}",
-      "every first row/.style={${1:options}}",
-      "every last row/.style={${1:options}}",
-      "every row no ${1:index}/.style={${2:options}}",
-      "every nth row={${1:integer}}{${2:options}}",
-      "every nth row={${1:integer[shift]}}{${2:options}}",
-      "every row ${1:index} column ${2:index}/.style={${3:options}}",
-      "every row ${1:index} column ${2:colname}/.style={${3:options}}",
-      "every row no ${1:index} column no ${2:index}/.style={${3:options}}",
-      "font=${1:font commands}",
-      "begin table={${1:code}}",
-      "end table={${1:code}}",
-      "outfile=${1:file}",
-      "include outfiles",
-      "force remake",
-      "write to macro=${1:\\macro}",
-      "skip coltypes",
-      "typeset",
-      "debug",
-      "TeX comment=${1:comment sign}",
-      "fixed",
-      "fixed zerofill",
-      "sci",
-      "sci zerofill",
-      "zerofill",
-      "std",
-      "std=${1:lower e}",
-      "std=${1:lower e}:${2:upper e}",
-      "relative*=${1:exponent base 10}",
-      "relative style={${1:options}}",
-      "fixed relative",
-      "int detect",
-      "int trunc",
-      "frac",
-      "frac TeX=${1:\\macro}",
-      "frac denom=${1:integer}",
-      "frac whole",
-      "frac shift=${1:integer}",
-      "precision=${1:number}",
-      "sci precision=${1:number}",
-      "read comma as period",
-      "set decimal separator=${1:text}",
-      "dec sep=${1:text}",
-      "set thousands separator=${1:text}",
-      "1000 sep=${1:text}",
-      "1000 sep in fractionals",
-      "min exponent for 1000 sep=${1:number}",
-      "use period",
-      "use comma",
-      "skip 0.",
-      "showpos",
-      "print sign",
-      "sci 10e",
-      "sci 10^e",
-      "sci E",
-      "sci subscript",
-      "sci superscript",
-      "sci generic={${1:keys}}",
-      "retain unit mantissa",
-      "assume math mode",
-      "verbatim",
-      "assign cell content/.code={${1:code}}",
-      "numeric type",
-      "string type",
-      "verb string type",
-      "numeric as string type",
-      "date type=${1:date format}",
-      "preproc cell content/.code={${1:code}}",
-      "string replace={${1:cell match}}{${2:cell replacement}}",
-      "string replace*={${1:pattern}}{${2:cell replacement}}",
-      "clear infinite",
-      "preproc/expr={${1:math expr}}",
-      "multiply by=${1:real number}",
-      "divide by=${1:real number}",
-      "sqrt",
-      "multiply -1",
-      "row predicate/.code={${1:code}}",
-      "skip rows between index={${1:begin}}{${2:end}}",
-      "select equal part entry of={${1:part no}}{${2:part count}}",
-      "unique=${1:colname}",
-      "postproc cell content/.code={${1:code}}",
-      "empty cells with=${1:replacement}",
-      "set content=${1:content}",
-      "fonts by sign={${1:positive-code}}{${2:negative-code}}",
-      "create on use/${1:colname}/.style={${2:options}}",
-      "disable rowcol styles",
-      "reset styles",
+    "\\pgfplotstablesort#c,\\pgfplotstableset#c": [
       "sort key=${1:column}",
       "sort key from=${1:table}",
-      "sort cmp="
+      "sort cmp=${1|fixed <,fixed >,int <,int >,float <,float >,date <,date >,string <,string >|}"
     ]
-  ]
+  },
+  "args": []
 }

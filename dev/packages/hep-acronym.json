@@ -1,113 +1,278 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "glossaries-extra": [],
-    "everyhook": [],
-    "xspace": [],
-    "amstext": []
-  },
-  "macros": {
-    "acronym{}{}": {
-      "snippet": "acronym{${1:abbr}}{${2:def}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "acronym[]{}{}": {
-      "snippet": "acronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
+    {
+      "name": "glossaries-extra"
     },
-    "acronym{}{}[]": {
-      "snippet": "acronym{${1:abbr}}{${2:def}}[${3:plural def}]"
+    {
+      "name": "everyhook"
     },
-    "acronym[]{}{}[]": {
-      "snippet": "acronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
+    {
+      "name": "xspace"
     },
-    "acronym*{}{}": {
-      "snippet": "acronym*{${1:abbr}}{${2:def}}"
-    },
-    "acronym*[]{}{}": {
-      "snippet": "acronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
-    },
-    "acronym*{}{}[]": {
-      "snippet": "acronym*{${1:abbr}}{${2:def}}[${3:plural def}]"
-    },
-    "acronym*[]{}{}[]": {
-      "snippet": "acronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
-    },
-    "sentence": {},
-    "shortacronym{}{}": {
-      "snippet": "shortacronym{${1:abbr}}{${2:def}}"
-    },
-    "shortacronym[]{}{}": {
-      "snippet": "shortacronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
-    },
-    "shortacronym{}{}[]": {
-      "snippet": "shortacronym{${1:abbr}}{${2:def}}[${3:plural def}]"
-    },
-    "shortacronym[]{}{}[]": {
-      "snippet": "shortacronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
-    },
-    "shortacronym*{}{}": {
-      "snippet": "shortacronym*{${1:abbr}}{${2:def}}"
-    },
-    "shortacronym*[]{}{}": {
-      "snippet": "shortacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
-    },
-    "shortacronym*{}{}[]": {
-      "snippet": "shortacronym*{${1:abbr}}{${2:def}}[${3:plural def}]"
-    },
-    "shortacronym*[]{}{}[]": {
-      "snippet": "shortacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
-    },
-    "longacronym{}{}": {
-      "snippet": "longacronym{${1:abbr}}{${2:def}}"
-    },
-    "longacronym[]{}{}": {
-      "snippet": "longacronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
-    },
-    "longacronym{}{}[]": {
-      "snippet": "longacronym{${1:abbr}}{${2:def}}[${3:plural def}]"
-    },
-    "longacronym[]{}{}[]": {
-      "snippet": "longacronym[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
-    },
-    "longacronym*{}{}": {
-      "snippet": "longacronym*{${1:abbr}}{${2:def}}"
-    },
-    "longacronym*[]{}{}": {
-      "snippet": "longacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}"
-    },
-    "longacronym*{}{}[]": {
-      "snippet": "longacronym*{${1:abbr}}{${2:def}}[${3:plural def}]"
-    },
-    "longacronym*[]{}{}[]": {
-      "snippet": "longacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def}}[${4:plural def}]"
-    },
-    "resetacronym{}": {
-      "snippet": "resetacronym{${1:key}}"
-    },
-    "dummyacronym{}": {
-      "snippet": "dummyacronym{${1:key}}"
-    },
-    "acronymalternative{}{}{}": {
-      "snippet": "acronymalternative{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "acronymalternative{}{}*{}": {
-      "snippet": "acronymalternative{${1:arg1}}{${2:arg2}}*{${3:arg3}}"
-    },
-    "mathdef{}{}": {
-      "snippet": "mathdef{${1:cmd}}{${2:def}}"
-    },
-    "mathdef{}[]{}": {
-      "snippet": "mathdef{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "acronyms{}": {
-      "snippet": "acronyms{${1:name}}"
-    },
-    "acronyms[]{}": {
-      "snippet": "acronyms[${2:opt}]{${1:name}}"
+    {
+      "name": "amstext"
     }
-  },
-  "envs": {},
-  "options": [
-    "hyper"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "acronym{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "acronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "acronym{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "acronym",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "acronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "acronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "acronym*{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "acronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "acronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "acronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "acronym*{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "acronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "acronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "sentence"
+    },
+    {
+      "name": "shortacronym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "shortacronym{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "shortacronym",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "shortacronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "shortacronym",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "shortacronym{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "shortacronym",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "shortacronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "shortacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "shortacronym*{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "shortacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "shortacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "shortacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "shortacronym*{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "shortacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "shortacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "longacronym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "longacronym{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "longacronym",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "longacronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "longacronym",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "longacronym{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "longacronym",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "longacronym[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "longacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "longacronym*{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "longacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "longacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}"
+      }
+    },
+    {
+      "name": "longacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "longacronym*{${1:abbr}}{${2:def%text}}[${3:plural def%text}]"
+      }
+    },
+    {
+      "name": "longacronym*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "longacronym*[${3:typeset abbr}]{${1:abbr}}{${2:def%text}}[${4:plural def%text}]"
+      }
+    },
+    {
+      "name": "resetacronym",
+      "arg": {
+        "format": "{}",
+        "snippet": "resetacronym{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "dummyacronym",
+      "arg": {
+        "format": "{}",
+        "snippet": "dummyacronym{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "acronymalternative",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "acronymalternative{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "acronymalternative",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}*{}",
+        "snippet": "acronymalternative{${1:arg1}}{${2:arg2}}*{${3:arg3}}"
+      }
+    },
+    {
+      "name": "mathdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mathdef{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "mathdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "mathdef{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "acronyms",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "acronyms{${1:name}}"
+      }
+    },
+    {
+      "name": "acronyms",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acronyms[${2:opt}]{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hep-acronym#c": [
+      "hyper"
+    ]
+  },
+  "args": [
+    "\\usepackage/hep-acronym#c"
+  ]
 }

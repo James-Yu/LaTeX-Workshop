@@ -1,514 +1,1267 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "class-book": [],
-    "fontsize": [],
-    "geometry": [],
-    "enumitem": [],
-    "caption": [],
-    "multicol": [],
-    "emptypage": [],
-    "microtype": [],
-    "color": [],
-    "iftex": [],
-    "etoolbox": [],
-    "crop": [],
-    "fontenc": [],
-    "titlesec": [],
-    "appendix": [],
-    "titletoc": [],
-    "fancyhdr": [],
-    "cochineal": [],
-    "inconsolata": [],
-    "biolinum": [],
-    "newtxmath": [],
-    "zref-perpage": [
-      "fewfootnotes=true",
-      "fewfootnotes"
-    ],
-    "lmodern": [
-      "defaultfont=standard"
-    ],
-    "newpxtext": [
-      "defaultfont=palatino"
-    ],
-    "newpxmath": [
-      "defaultfont=palatino"
-    ],
-    "libertine": [
-      "defaultfont=libertine"
-    ],
-    "libertinust1math": [
-      "defaultfont=libertine"
-    ],
-    "mathpazo": [
-      "defaultfont=compatibility"
-    ],
-    "beramono": [
-      "defaultfont=compatibility"
-    ],
-    "amsthm": [
-      "mathfont=extended"
-    ],
-    "mathalpha": [
-      "mathfont=extended"
-    ],
-    "cclicenses": [
-      "style=FSPLa",
-      "style=FSPLb",
-      "style=FSPLc"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "class-book"
+    },
+    {
+      "name": "fontsize"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "emptypage"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "crop"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "cochineal"
+    },
+    {
+      "name": "inconsolata"
+    },
+    {
+      "name": "biolinum"
+    },
+    {
+      "name": "newtxmath"
+    },
+    {
+      "name": "zref-perpage",
+      "if": "fewfootnotes=true"
+    },
+    {
+      "name": "zref-perpage",
+      "if": "fewfootnotes"
+    },
+    {
+      "name": "lmodern",
+      "if": "defaultfont=standard"
+    },
+    {
+      "name": "newpxtext",
+      "if": "defaultfont=palatino"
+    },
+    {
+      "name": "newpxmath",
+      "if": "defaultfont=palatino"
+    },
+    {
+      "name": "libertine",
+      "if": "defaultfont=libertine"
+    },
+    {
+      "name": "libertinust1math",
+      "if": "defaultfont=libertine"
+    },
+    {
+      "name": "mathpazo",
+      "if": "defaultfont=compatibility"
+    },
+    {
+      "name": "beramono",
+      "if": "defaultfont=compatibility"
+    },
+    {
+      "name": "amsthm",
+      "if": "mathfont=extended"
+    },
+    {
+      "name": "mathalpha",
+      "if": "mathfont=extended"
+    },
+    {
+      "name": "cclicenses",
+      "if": "style=FSPLa"
+    },
+    {
+      "name": "cclicenses",
+      "if": "style=FSPLb"
+    },
+    {
+      "name": "cclicenses",
+      "if": "style=FSPLc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fAlt",
+      "unusual": true
+    },
+    {
+      "name": "rhoAlt",
+      "unusual": true
+    },
+    {
+      "name": "mathbfcal",
+      "if": "mathfont=extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbfcal{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "greektext",
+      "if": "greekfont=artemisia",
+      "arg": {
+        "format": "{}",
+        "snippet": "greektext{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "if": "greekfont=artemisia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textgreek{${1:text}}"
+      }
+    },
+    {
+      "name": "greektext",
+      "if": "greekfont=porson",
+      "arg": {
+        "format": "{}",
+        "snippet": "greektext{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "if": "greekfont=porson",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textgreek{${1:text}}"
+      }
+    },
+    {
+      "name": "greektext",
+      "if": "greekfont=bodoni",
+      "arg": {
+        "format": "{}",
+        "snippet": "greektext{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "if": "greekfont=bodoni",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textgreek{${1:text}}"
+      }
+    },
+    {
+      "name": "greektext",
+      "if": "greekfont=cbgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "greektext{${1:text}}"
+      }
+    },
+    {
+      "name": "textgreek",
+      "if": "greekfont=cbgreek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textgreek{${1:text}}"
+      }
+    },
+    {
+      "name": "FSPLcolophon",
+      "if": "style=FSPLa",
+      "arg": {
+        "format": "{}",
+        "snippet": "FSPLcolophon{${1:name}}"
+      }
+    },
+    {
+      "name": "FSPLcolophon",
+      "if": "style=FSPLb",
+      "arg": {
+        "format": "{}",
+        "snippet": "FSPLcolophon{${1:name}}"
+      }
+    },
+    {
+      "name": "FSPLcolophon",
+      "if": "style=FSPLc",
+      "arg": {
+        "format": "{}",
+        "snippet": "FSPLcolophon{${1:name}}"
+      }
+    },
+    {
+      "name": "partfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "partfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "chapfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "chapfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "secfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "secfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subsecfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subsubsecfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "parfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "parfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subparfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "partnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "chapnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "chapnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "secnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "secnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subsecnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsecnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subsubsecnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsecnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "parnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "parnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "subparnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "subparnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "breakintoc"
+    },
+    {
+      "name": "breakinbody"
+    },
+    {
+      "name": "breakinbodyleft"
+    },
+    {
+      "name": "chapterintro"
+    },
+    {
+      "name": "chapterintroname",
+      "arg": {
+        "format": "{}",
+        "snippet": "chapterintroname{${1:name}}"
+      }
+    },
+    {
+      "name": "tocpartfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocpartfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocchapfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocchapfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsecfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubsecfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubsubsecfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocparfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubparfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocpartnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocpartnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocchapnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocchapnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsecnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsecnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubsecnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubsecnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubsubsecnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubsubsecnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocparnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocparnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "tocsubparnumfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocsubparnumfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "toclabelwidth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "toclabelwidth{${1:level}}{${2:width}}"
+      }
+    },
+    {
+      "name": "tocpartname",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocpartname{${1:definition}}"
+      }
+    },
+    {
+      "name": "printpartialtoc",
+      "if": "printpartialtoc"
+    },
+    {
+      "name": "partialtocsecfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsecfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubsecfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocparfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubparfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocseclabelfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubseclabelfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubseclabelfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocparlabelfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocparlabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubparlabelfont",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubparlabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsize",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsize{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocbeforespace",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocbeforespace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocafterpace",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocafterpace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocbeforecode",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocbeforecode{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocaftercode",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocaftercode{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocafterspace",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocafterspace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocseclabel",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubseclabel",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubseclabel",
+      "if": "printpartialtoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "startchappartialtoc",
+      "if": "printpartialtoc",
+      "unusual": true
+    },
+    {
+      "name": "startsecpartialtoc",
+      "if": "printpartialtoc",
+      "unusual": true
+    },
+    {
+      "name": "printpartialtoc",
+      "if": "printpartialtoc=true"
+    },
+    {
+      "name": "partialtocsecfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsecfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubsecfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubsecfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocparfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubparfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubparfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocseclabelfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubseclabelfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubseclabelfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubseclabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocparlabelfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocparlabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubparlabelfont",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubparlabelfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsize",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsize{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocbeforespace",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocbeforespace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocafterpace",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocafterpace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocbeforecode",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocbeforecode{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocaftercode",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocaftercode{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocafterspace",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocafterspace{${1:space%l}}"
+      }
+    },
+    {
+      "name": "partialtocseclabel",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubseclabel",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "partialtocsubsubseclabel",
+      "if": "printpartialtoc=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialtocsubsubseclabel{${1:definition}}"
+      }
+    },
+    {
+      "name": "startchappartialtoc",
+      "if": "printpartialtoc=true",
+      "unusual": true
+    },
+    {
+      "name": "startsecpartialtoc",
+      "if": "printpartialtoc=true",
+      "unusual": true
+    },
+    {
+      "name": "xfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "xfootnote{${1:text}}"
+      }
+    },
+    {
+      "name": "xfootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xfootnote[${2:symbol}]{${1:text}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:short title}]{${1:text}}"
+      }
+    },
+    {
+      "name": "titlefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlefont{${1:definition}}"
+      }
+    },
+    {
+      "name": "authorfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "authorfont{${1:definition}}"
+      }
+    },
+    {
+      "name": "datefont",
+      "arg": {
+        "format": "{}",
+        "snippet": "datefont{${1:definition}}"
+      }
+    },
+    {
+      "name": "makecover"
+    },
+    {
+      "name": "makecover",
+      "arg": {
+        "format": "[]",
+        "snippet": "makecover[${1:TikZ options}]"
+      }
+    },
+    {
+      "name": "Cauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cauthor{${1:text}}"
+      }
+    },
+    {
+      "name": "Ctitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ctitle{${1:text}}"
+      }
+    },
+    {
+      "name": "Csubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "Csubtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "Ceditor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ceditor{${1:text}}"
+      }
+    },
+    {
+      "name": "Cfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "Cpagecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cpagecolor{${1:color}}"
+      }
+    },
+    {
+      "name": "Ctextcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ctextcolor{${1:color}}"
+      }
+    },
+    {
+      "name": "Cfootcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cfootcolor{${1:color}}"
+      }
+    },
+    {
+      "name": "colophon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "colophon{${1:name}}{${2:additional info%text}}"
+      }
+    },
+    {
+      "name": "colophon",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "colophon[${3:OS}]{${1:name}}{${2:additional info%text}}"
+      }
+    },
+    {
+      "name": "bookcolophon",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bookcolophon{${1:copyright notice%text}}{${2:attribution%text}}"
+      }
+    },
+    {
+      "name": "artcolophon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "artcolophon{${1:content%text}}"
+      }
+    },
+    {
+      "name": "finalcolophon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "finalcolophon{${1:content%text}}"
+      }
+    },
+    {
+      "name": "collectiontitlepage",
+      "if": "structure=collection"
+    },
+    {
+      "name": "collectiontitle",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "collectiontitle{${1:text}}"
+      }
+    },
+    {
+      "name": "collectioneditor",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "collectioneditor{${1:text}}"
+      }
+    },
+    {
+      "name": "fulljournal",
+      "if": "structure=collection"
+    },
+    {
+      "name": "issue",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "issue{${1:text}}"
+      }
+    },
+    {
+      "name": "issuename",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "issuename{${1:text}}"
+      }
+    },
+    {
+      "name": "journalname",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "journalname{${1:text}}"
+      }
+    },
+    {
+      "name": "journalnumber",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "journalnumber{${1:text}}"
+      }
+    },
+    {
+      "name": "journalvolume",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "journalvolume{${1:text}}"
+      }
+    },
+    {
+      "name": "journalwebsite",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "journalwebsite{${1:text}}"
+      }
+    },
+    {
+      "name": "journalyear",
+      "if": "structure=collection",
+      "arg": {
+        "format": "{}",
+        "snippet": "journalyear{${1:text}}"
+      }
+    },
+    {
+      "name": "theissue",
+      "if": "structure=collection"
+    },
+    {
+      "name": "thejournalnumber",
+      "if": "structure=collection"
+    },
+    {
+      "name": "thejournalvolume",
+      "if": "structure=collection"
+    },
+    {
+      "name": "thearticle",
+      "if": "structure=collection"
+    },
+    {
+      "name": "SUFfntscale",
+      "unusual": true
+    },
+    {
+      "name": "adjtoclabelsep",
+      "unusual": true
+    },
+    {
+      "name": "adjtocpagesep",
+      "unusual": true
+    },
+    {
+      "name": "appendicesname",
+      "unusual": true
+    },
+    {
+      "name": "doi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "doi{${1:DOI}}"
+      }
+    },
+    {
+      "name": "isbn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "isbn{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "itlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "itlabel{${1:arg}}"
+      }
+    },
+    {
+      "name": "lmfntscale",
+      "unusual": true
+    },
+    {
+      "name": "sectionsep",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [
+    {
+      "name": "article",
+      "if": "structure=collection"
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "enumerate*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "itemize*"
+    },
+    {
+      "name": "itemize*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "description*"
+    },
+    {
+      "name": "description*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/suftesi#c": [
+      "structure=${1|book,article,collection|}",
+      "pagelayout=${1|standard,standardaureo,periodical,periodicalaureo,compact,compactaureo,supercompact,supercompactaureo,pocketa,pocketb,pocketc|}",
+      "version=${1|screen,cscreen,draft,final|}",
+      "parindent=",
+      "defaultfont=${1|none,cochineal,libertine,palatino,standard|}",
+      "fontsize=",
+      "smallcapsstyle=${1|low,upper|}",
+      "mathfont=${1|none,minimal,extended|}",
+      "greekfont=${1|none,artemisia,porson,bodoni,cbgreek|}",
+      "partfont=${1|roman,italic,smallcaps|}",
+      "chapfont=${1|roman,italic,smallcaps|}",
+      "secfont=${1|roman,italic,smallcaps|}",
+      "subsecfont=${1|roman,italic,smallcaps|}",
+      "subsubsecfont=${1|roman,italic,smallcaps|}",
+      "parfont=${1|roman,italic,smallcaps|}",
+      "subparfont=${1|roman,italic,smallcaps|}",
+      "partstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "chapstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "secstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "subsecstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "subsubsecstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "parstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "subparstyle=${1|left,center,right,parleft,parcenter,parright|}",
+      "partnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "chapnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "secnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "subsecnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "subsubsecnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "parnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "subparnumstyle=${1|arabic,roman,Roman,dotarabic,dotroman,dotRoman|}",
+      "partpage",
+      "tocstyle=${1|standard,dotted,ragged,leftpage|}",
+      "compacttoc=${1|sec,subsec,subsubsec,par,subpar|}",
+      "tocpartfont=${1|roman,italic,smallcaps|}",
+      "tocchapfont=${1|roman,italic,smallcaps|}",
+      "tocsecfont=${1|roman,italic,smallcaps|}",
+      "tocsubsecfont=${1|roman,italic,smallcaps|}",
+      "tocsubsubsecfont=${1|roman,italic,smallcaps|}",
+      "tocparfont=${1|roman,italic,smallcaps|}",
+      "tocsubparfont=${1|roman,italic,smallcaps|}",
+      "twocolcontents=${1|toc,lof,lot,toclof,toclot,loflot,all|}",
+      "partialtoc",
+      "headerstyle=${1|inner,center,plain,authortitleinner,authortitlecenter|}",
+      "headerfont=${1|roman,italic,smallcaps|}",
+      "draftdate",
+      "footnotestyle=${1|bulged,hung,dotted,superscript|}",
+      "fewfootnotes",
+      "marginpar",
+      "captionstyle=${1|standard,sanserif,italic,smallcaps|}",
+      "liststyle=${1|bulged,aligned,indented|}",
+      "quotestyle=${1|center,right,justify|}",
+      "quotesize=${1|tiny,tinyr,tinyrr,tinyrrr,scriptsizer,scriptsizerr,scriptsizerrr,footnotesizer,footnotesizerr,footnotesizerrr,smallr,smallrr,smallrrr,normalsizer,normalsizerr,normalsizerrr,larger,largerr,largerrr,Larger,Largerr,Largerrr,LARGEr,LARGErr,LARGErrr,huger,hugerr,hugerrr,Huger,Hugerr,Hugerrr,HUGE,HUGEr,HUGErr,HUGErrr|}",
+      "style=${1|roman1,roman2,roman3,roman4,roman5,roman6italic1,italic2,italic3,italic4,italic5,italic6,italic7,italic8,italic9,italic10,italic11,italic12,smallcaps1,smallcaps2,smallcaps3,smallcaps4,smallcaps5,smallcaps6,smallcaps7,smallcaps8,smallcaps9,smallcaps10,smallcaps11,smallcaps12|}",
+      "maketitlestyle=${1|suftesi,standard|}",
+      "reverseauthortitle",
+      "titlefont=${1|roman,italic,smallcaps|}",
+      "authorfont=${1|roman,italic,smallcaps|}",
+      "datefont=${1|roman,italic,smallcaps|}",
+      "authortitlealign=${1|left,center,right|}",
+      "toctitlefont=${1|roman,italic,smallcaps|}",
+      "tocauthorfont=${1|roman,italic,smallcaps|}"
     ]
   },
-  "macros": {
-    "fAlt": {},
-    "rhoAlt": {},
-    "mathbfcal{}": {
-      "snippet": "mathbfcal{${1:text}}",
-      "option": "mathfont=extended"
-    },
-    "greektext{}": {
-      "snippet": "greektext{${1:text}}",
-      "option": "greekfont=cbgreek"
-    },
-    "textgreek{}": {
-      "snippet": "textgreek{${1:text}}",
-      "option": "greekfont=cbgreek"
-    },
-    "FSPLcolophon{}": {
-      "snippet": "FSPLcolophon{${1:name}}",
-      "option": "style=FSPLc"
-    },
-    "partfont{}": {
-      "snippet": "partfont{${1:definition}}"
-    },
-    "chapfont{}": {
-      "snippet": "chapfont{${1:definition}}"
-    },
-    "secfont{}": {
-      "snippet": "secfont{${1:definition}}"
-    },
-    "subsecfont{}": {
-      "snippet": "subsecfont{${1:definition}}"
-    },
-    "subsubsecfont{}": {
-      "snippet": "subsubsecfont{${1:definition}}"
-    },
-    "parfont{}": {
-      "snippet": "parfont{${1:definition}}"
-    },
-    "subparfont{}": {
-      "snippet": "subparfont{${1:definition}}"
-    },
-    "partnumfont{}": {
-      "snippet": "partnumfont{${1:definition}}"
-    },
-    "chapnumfont{}": {
-      "snippet": "chapnumfont{${1:definition}}"
-    },
-    "secnumfont{}": {
-      "snippet": "secnumfont{${1:definition}}"
-    },
-    "subsecnumfont{}": {
-      "snippet": "subsecnumfont{${1:definition}}"
-    },
-    "subsubsecnumfont{}": {
-      "snippet": "subsubsecnumfont{${1:definition}}"
-    },
-    "parnumfont{}": {
-      "snippet": "parnumfont{${1:definition}}"
-    },
-    "subparnumfont{}": {
-      "snippet": "subparnumfont{${1:definition}}"
-    },
-    "breakintoc": {},
-    "breakinbody": {},
-    "breakinbodyleft": {},
-    "chapterintro": {},
-    "chapterintroname{}": {
-      "snippet": "chapterintroname{${1:name}}"
-    },
-    "tocpartfont{}": {
-      "snippet": "tocpartfont{${1:definition}}"
-    },
-    "tocchapfont{}": {
-      "snippet": "tocchapfont{${1:definition}}"
-    },
-    "tocsecfont{}": {
-      "snippet": "tocsecfont{${1:definition}}"
-    },
-    "tocsubsecfont{}": {
-      "snippet": "tocsubsecfont{${1:definition}}"
-    },
-    "tocsubsubsecfont{}": {
-      "snippet": "tocsubsubsecfont{${1:definition}}"
-    },
-    "tocparfont{}": {
-      "snippet": "tocparfont{${1:definition}}"
-    },
-    "tocsubparfont{}": {
-      "snippet": "tocsubparfont{${1:definition}}"
-    },
-    "tocpartnumfont{}": {
-      "snippet": "tocpartnumfont{${1:definition}}"
-    },
-    "tocchapnumfont{}": {
-      "snippet": "tocchapnumfont{${1:definition}}"
-    },
-    "tocsecnumfont{}": {
-      "snippet": "tocsecnumfont{${1:definition}}"
-    },
-    "tocsubsecnumfont{}": {
-      "snippet": "tocsubsecnumfont{${1:definition}}"
-    },
-    "tocsubsubsecnumfont{}": {
-      "snippet": "tocsubsubsecnumfont{${1:definition}}"
-    },
-    "tocparnumfont{}": {
-      "snippet": "tocparnumfont{${1:definition}}"
-    },
-    "tocsubparnumfont{}": {
-      "snippet": "tocsubparnumfont{${1:definition}}"
-    },
-    "toclabelwidth{}{}": {
-      "snippet": "toclabelwidth{${1:level}}{${2:width}}"
-    },
-    "tocpartname{}": {
-      "snippet": "tocpartname{${1:definition}}"
-    },
-    "printpartialtoc": {
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsecfont{}": {
-      "snippet": "partialtocsecfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubsecfont{}": {
-      "snippet": "partialtocsubsecfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubsubsecfont{}": {
-      "snippet": "partialtocsubsubsecfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocparfont{}": {
-      "snippet": "partialtocparfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubparfont{}": {
-      "snippet": "partialtocsubparfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocseclabelfont{}": {
-      "snippet": "partialtocseclabelfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubseclabelfont{}": {
-      "snippet": "partialtocsubseclabelfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubsubseclabelfont{}": {
-      "snippet": "partialtocsubsubseclabelfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocparlabelfont{}": {
-      "snippet": "partialtocparlabelfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubparlabelfont{}": {
-      "snippet": "partialtocsubparlabelfont{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsize{}": {
-      "snippet": "partialtocsize{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocbeforespace{}": {
-      "snippet": "partialtocbeforespace{${1:space}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocafterpace{}": {
-      "snippet": "partialtocafterpace{${1:space}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocbeforecode{}": {
-      "snippet": "partialtocbeforecode{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocaftercode{}": {
-      "snippet": "partialtocaftercode{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocafterspace{}": {
-      "snippet": "partialtocafterspace{${1:space}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocseclabel{}": {
-      "snippet": "partialtocseclabel{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubseclabel{}": {
-      "snippet": "partialtocsubseclabel{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "partialtocsubsubseclabel{}": {
-      "snippet": "partialtocsubsubseclabel{${1:definition}}",
-      "option": "printpartialtoc=true"
-    },
-    "startchappartialtoc": {
-      "option": "printpartialtoc=true"
-    },
-    "startsecpartialtoc": {
-      "option": "printpartialtoc=true"
-    },
-    "xfootnote{}": {
-      "snippet": "xfootnote{${1:text}}"
-    },
-    "xfootnote[]{}": {
-      "snippet": "xfootnote[${2:symbol}]{${1:text}}"
-    },
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "titlefont{}": {
-      "snippet": "titlefont{${1:definition}}"
-    },
-    "authorfont{}": {
-      "snippet": "authorfont{${1:definition}}"
-    },
-    "datefont{}": {
-      "snippet": "datefont{${1:definition}}"
-    },
-    "makecover": {},
-    "makecover[]": {
-      "snippet": "makecover[${1:TikZ options}]"
-    },
-    "Cauthor{}": {
-      "snippet": "Cauthor{${1:text}}"
-    },
-    "Ctitle{}": {
-      "snippet": "Ctitle{${1:text}}"
-    },
-    "Csubtitle{}": {
-      "snippet": "Csubtitle{${1:text}}"
-    },
-    "Ceditor{}": {
-      "snippet": "Ceditor{${1:text}}"
-    },
-    "Cfoot{}": {
-      "snippet": "Cfoot{${1:text}}"
-    },
-    "Cpagecolor{}": {
-      "snippet": "Cpagecolor{${1:color}}"
-    },
-    "Ctextcolor{}": {
-      "snippet": "Ctextcolor{${1:color}}"
-    },
-    "Cfootcolor{}": {
-      "snippet": "Cfootcolor{${1:color}}"
-    },
-    "colophon{}{}": {
-      "snippet": "colophon{${1:name}}{${2:additional info}}"
-    },
-    "colophon[]{}{}": {
-      "snippet": "colophon[${3:OS}]{${1:name}}{${2:additional info}}"
-    },
-    "bookcolophon{}{}": {
-      "snippet": "bookcolophon{${1:copyright notice}}{${2:attribution}}"
-    },
-    "artcolophon{}": {
-      "snippet": "artcolophon{${1:content}}"
-    },
-    "finalcolophon{}": {
-      "snippet": "finalcolophon{${1:content}}"
-    },
-    "collectiontitlepage": {
-      "option": "structure=collection"
-    },
-    "collectiontitle{}": {
-      "snippet": "collectiontitle{${1:text}}",
-      "option": "structure=collection"
-    },
-    "collectioneditor{}": {
-      "snippet": "collectioneditor{${1:text}}",
-      "option": "structure=collection"
-    },
-    "fulljournal": {
-      "option": "structure=collection"
-    },
-    "issue{}": {
-      "snippet": "issue{${1:text}}",
-      "option": "structure=collection"
-    },
-    "issuename{}": {
-      "snippet": "issuename{${1:text}}",
-      "option": "structure=collection"
-    },
-    "journalname{}": {
-      "snippet": "journalname{${1:text}}",
-      "option": "structure=collection"
-    },
-    "journalnumber{}": {
-      "snippet": "journalnumber{${1:text}}",
-      "option": "structure=collection"
-    },
-    "journalvolume{}": {
-      "snippet": "journalvolume{${1:text}}",
-      "option": "structure=collection"
-    },
-    "journalwebsite{}": {
-      "snippet": "journalwebsite{${1:text}}",
-      "option": "structure=collection"
-    },
-    "journalyear{}": {
-      "snippet": "journalyear{${1:text}}",
-      "option": "structure=collection"
-    },
-    "theissue": {
-      "option": "structure=collection"
-    },
-    "thejournalnumber": {
-      "option": "structure=collection"
-    },
-    "thejournalvolume": {
-      "option": "structure=collection"
-    },
-    "thearticle": {
-      "option": "structure=collection"
-    },
-    "SUFfntscale": {},
-    "adjtoclabelsep": {},
-    "adjtocpagesep": {},
-    "appendicesname": {},
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "isbn{}": {
-      "snippet": "isbn{${1:ISBN}}"
-    },
-    "itlabel{}": {
-      "snippet": "itlabel{${1:arg}}"
-    },
-    "lmfntscale": {},
-    "sectionsep": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {},
-    "origtableofcontents": {},
-    "oldmarginpar": {},
-    "headbreak": {},
-    "hemph": {},
-    "frontispiece": {},
-    "losname": {},
-    "texorpdfstring": {},
-    "xheadbreak": {},
-    "yheadbreak": {}
-  },
-  "envs": {
-    "article": {
-      "option": "structure=collection"
-    },
-    "enumerate*": {},
-    "enumerate*[]": {
-      "name": "enumerate*",
-      "snippet": "[${1:options}]"
-    },
-    "itemize*": {},
-    "itemize*[]": {
-      "name": "itemize*",
-      "snippet": "[${1:options}]"
-    },
-    "description*": {},
-    "description*[]": {
-      "name": "description*",
-      "snippet": "[${1:options}]"
-    },
-    "bibliografia": {},
-    "sigle": {}
-  },
-  "options": [
-    "structure=",
-    "pagelayout=",
-    "version=",
-    "parindent=",
-    "defaultfont=",
-    "fontsize=",
-    "smallcapsstyle=",
-    "mathfont=",
-    "greekfont=",
-    "partfont=",
-    "chapfont=",
-    "secfont=",
-    "subsecfont=",
-    "subsubsecfont=",
-    "parfont=",
-    "subparfont=",
-    "partstyle=",
-    "chapstyle=",
-    "secstyle=",
-    "subsecstyle=",
-    "subsubsecstyle=",
-    "parstyle=",
-    "subparstyle=",
-    "partnumstyle=",
-    "chapnumstyle=",
-    "secnumstyle=",
-    "subsecnumstyle=",
-    "subsubsecnumstyle=",
-    "parnumstyle=",
-    "subparnumstyle=",
-    "partpage",
-    "tocstyle=",
-    "compacttoc=",
-    "tocpartfont=",
-    "tocchapfont=",
-    "tocsecfont=",
-    "tocsubsecfont=",
-    "tocsubsubsecfont=",
-    "tocparfont=",
-    "tocsubparfont=",
-    "twocolcontents=",
-    "partialtoc",
-    "headerstyle=",
-    "headerfont=",
-    "draftdate",
-    "footnotestyle=",
-    "fewfootnotes",
-    "marginpar",
-    "captionstyle=",
-    "liststyle=",
-    "quotestyle=",
-    "quotesize=",
-    "style=",
-    "maketitlestyle=",
-    "reverseauthortitle",
-    "titlefont=",
-    "authorfont=",
-    "datefont=",
-    "authortitlealign=",
-    "toctitlefont=",
-    "tocauthorfont="
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/suftesi#c"
+  ]
 }

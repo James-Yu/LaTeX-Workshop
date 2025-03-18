@@ -1,25 +1,76 @@
 {
-  "includes": {},
-  "macros": {
-    "defUniStr{}{}": {
-      "snippet": "defUniStr{${1:name}}{${2:string}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "defUniStr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defUniStr{${1:name%specialDef}}{${2:string}}"
+      }
     },
-    "EURO": {},
-    "BSLASH": {},
-    "LBRACE": {},
-    "RBRACE": {},
-    "DQUOTE": {},
-    "ucspace": {},
-    "convertChriiUnicode{}{}": {
-      "snippet": "convertChriiUnicode{${1:char}}{${2:codepoint}}"
+    {
+      "name": "unicodeStr",
+      "arg": {
+        "format": "()",
+        "snippet": "unicodeStr(${1:name%keyvals})"
+      }
     },
-    "displayUnicode{}": {
-      "snippet": "displayUnicode{${1:arg}}"
+    {
+      "name": "EURO"
     },
-    "getUniDescript": {},
-    "stringiiUnicode": {}
+    {
+      "name": "BSLASH"
+    },
+    {
+      "name": "LBRACE"
+    },
+    {
+      "name": "RBRACE"
+    },
+    {
+      "name": "DQUOTE"
+    },
+    {
+      "name": "ucspace"
+    },
+    {
+      "name": "aref",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "aref(${1:arg})"
+      }
+    },
+    {
+      "name": "convertChriiUnicode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "convertChriiUnicode{${1:char}}{${2:codepoint}}"
+      }
+    },
+    {
+      "name": "displayUnicode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "displayUnicode{${1:arg}}"
+      }
+    },
+    {
+      "name": "getUniDescript",
+      "unusual": true
+    },
+    {
+      "name": "stringiiUnicode",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\unicodeStr#c": [
+      "%unicodestr"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

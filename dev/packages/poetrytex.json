@@ -1,143 +1,450 @@
 {
-  "includes": {
-    "tocloft": []
-  },
-  "macros": {
-    "pttitle": {},
-    "ptsubtitle": {},
-    "ptauthor": {},
-    "ptdate": {},
-    "poemvspace": {},
-    "pttitleleftspace": {},
-    "pttitlerightspace": {},
-    "ptsubtitleleftspace": {},
-    "ptsubtitlerightspace": {},
-    "usedefaulttitles": {},
-    "nousedefaulttitles": {},
-    "ptdefaulttitle": {},
-    "useincipits": {},
-    "nouseincipits": {},
-    "ptdefaultenv": {},
-    "pttitleenv": {},
-    "ptdefaultgroupenv": {},
-    "grouppagestyle": {},
-    "pregroupvspace": {},
-    "postgroupvspace": {},
-    "ptannotationenv": {},
-    "ptdedication": {},
-    "makededication": {},
-    "listofpoem": {},
-    "listofpoems": {},
-    "resetnumon": {},
-    "topname": {},
-    "topentrytype": {},
-    "toptocentrytype": {},
-    "listpoemsintoc": {},
-    "nolistpoemsintoc": {},
-    "tocentrytype": {},
-    "maketoc": {},
-    "maketop": {},
-    "maketop*": {},
-    "numbertop": {},
-    "numbertoc": {},
-    "nonumbertop": {},
-    "nonumbertoc": {},
-    "beforetitle": {},
-    "aftertitle": {},
-    "beforesubtitle": {},
-    "aftersubtitle": {},
-    "beforeauthor": {},
-    "afterauthor": {},
-    "beforedate": {},
-    "afterdate": {},
-    "dedicationformat": {},
-    "prededicationvspace": {},
-    "postdedicationvspace": {},
-    "beforededication": {},
-    "afterdedication": {},
-    "beforetoc": {},
-    "aftertoc": {},
-    "beforetop": {},
-    "aftertop": {},
-    "beforepoemgroup": {},
-    "afterpoemgroup": {},
-    "incipit{}": {
-      "snippet": "incipit{${1:text}}"
-    },
-    "incipit*{}": {
-      "snippet": "incipit*{${1:text}}"
-    },
-    "theincipit": {},
-    "poetryheadings": {},
-    "numberpoems": {},
-    "nonumberpoems": {},
-    "titlepoemnum": {},
-    "toppoemnum": {},
-    "tocpoemnum": {},
-    "stanzaparskip": {},
-    "clearpageafterpoem": {},
-    "noclearpageafterpoem": {},
-    "clearpageafterannotation": {},
-    "noclearpageafterannotation": {},
-    "ptgap": {},
-    "ptind": {},
-    "ptind*": {},
-    "poemtitleformat": {},
-    "incipittopformat": {},
-    "incipittocformat": {},
-    "ptspacergap": {},
-    "ptspacerchar": {},
-    "ptspacer": {},
-    "ptspacer*": {},
-    "linktopoem{}": {
-      "snippet": "linktopoem{${1:link text}}"
-    },
-    "linktopoem[]{}": {
-      "snippet": "linktopoem[${2:number}]{${1:link text}}"
-    },
-    "ptgroup": {},
-    "poemgroup{}": {
-      "snippet": "poemgroup{${1:contents}}"
-    },
-    "poemgroup*{}": {
-      "snippet": "poemgroup*{${1:contents}}"
-    },
-    "setpoemgroup{}": {
-      "snippet": "setpoemgroup{${1:contents}}"
-    },
-    "setpoemgroup*{}": {
-      "snippet": "setpoemgroup*{${1:contents}}"
-    },
-    "annotationheadings": {},
-    "theabsolutepoemnum": {},
-    "theabsoluteannotationnum": {},
-    "theabsolutetitledpoemnum": {},
-    "theabsoluteuntitledpoemnum": {},
-    "theannotationnum": {},
-    "thepoemgroupnum": {},
-    "thepoemnum": {},
-    "theptspacernum": {},
-    "thetitledpoemnum": {},
-    "theuntitledpoemnum": {}
-  },
-  "envs": {
-    "poem{}{}": {
-      "name": "poem",
-      "snippet": "{${1:title}}{${2:subtitle}}"
-    },
-    "poem[]{}{}": {
-      "name": "poem",
-      "snippet": "[${3:envname}]{${1:title}}{${2:subtitle}}"
-    },
-    "annotation{}": {
-      "name": "annotation",
-      "snippet": "{${1:title}}"
-    },
-    "annotation[]{}": {
-      "name": "annotation",
-      "snippet": "[${2:envname}]{${1:title}}"
+  "deps": [
+    {
+      "name": "tocloft"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "pttitle",
+      "unusual": true
+    },
+    {
+      "name": "ptsubtitle",
+      "unusual": true
+    },
+    {
+      "name": "ptauthor",
+      "unusual": true
+    },
+    {
+      "name": "ptdate",
+      "unusual": true
+    },
+    {
+      "name": "poemvspace",
+      "unusual": true
+    },
+    {
+      "name": "pttitleleftspace",
+      "unusual": true
+    },
+    {
+      "name": "pttitlerightspace",
+      "unusual": true
+    },
+    {
+      "name": "ptsubtitleleftspace",
+      "unusual": true
+    },
+    {
+      "name": "ptsubtitlerightspace",
+      "unusual": true
+    },
+    {
+      "name": "usedefaulttitles"
+    },
+    {
+      "name": "nousedefaulttitles"
+    },
+    {
+      "name": "ptdefaulttitle",
+      "unusual": true
+    },
+    {
+      "name": "useincipits"
+    },
+    {
+      "name": "nouseincipits"
+    },
+    {
+      "name": "ptdefaultenv",
+      "unusual": true
+    },
+    {
+      "name": "pttitleenv",
+      "unusual": true
+    },
+    {
+      "name": "ptdefaultgroupenv",
+      "unusual": true
+    },
+    {
+      "name": "grouppagestyle",
+      "unusual": true
+    },
+    {
+      "name": "pregroupvspace",
+      "unusual": true
+    },
+    {
+      "name": "postgroupvspace",
+      "unusual": true
+    },
+    {
+      "name": "ptannotationenv",
+      "unusual": true
+    },
+    {
+      "name": "ptdedication",
+      "unusual": true
+    },
+    {
+      "name": "makededication"
+    },
+    {
+      "name": "listofpoem",
+      "unusual": true
+    },
+    {
+      "name": "listofpoems"
+    },
+    {
+      "name": "resetnumon"
+    },
+    {
+      "name": "topname",
+      "unusual": true
+    },
+    {
+      "name": "topentrytype",
+      "unusual": true
+    },
+    {
+      "name": "toptocentrytype",
+      "unusual": true
+    },
+    {
+      "name": "listpoemsintoc",
+      "unusual": true
+    },
+    {
+      "name": "nolistpoemsintoc",
+      "unusual": true
+    },
+    {
+      "name": "tocentrytype",
+      "unusual": true
+    },
+    {
+      "name": "maketoc"
+    },
+    {
+      "name": "maketop"
+    },
+    {
+      "name": "maketop*"
+    },
+    {
+      "name": "numbertop",
+      "unusual": true
+    },
+    {
+      "name": "numbertoc",
+      "unusual": true
+    },
+    {
+      "name": "nonumbertop",
+      "unusual": true
+    },
+    {
+      "name": "nonumbertoc",
+      "unusual": true
+    },
+    {
+      "name": "beforetitle",
+      "unusual": true
+    },
+    {
+      "name": "aftertitle",
+      "unusual": true
+    },
+    {
+      "name": "beforesubtitle",
+      "unusual": true
+    },
+    {
+      "name": "aftersubtitle",
+      "unusual": true
+    },
+    {
+      "name": "beforeauthor",
+      "unusual": true
+    },
+    {
+      "name": "afterauthor",
+      "unusual": true
+    },
+    {
+      "name": "beforedate",
+      "unusual": true
+    },
+    {
+      "name": "afterdate",
+      "unusual": true
+    },
+    {
+      "name": "dedicationformat",
+      "unusual": true
+    },
+    {
+      "name": "prededicationvspace",
+      "unusual": true
+    },
+    {
+      "name": "postdedicationvspace",
+      "unusual": true
+    },
+    {
+      "name": "beforededication",
+      "unusual": true
+    },
+    {
+      "name": "afterdedication",
+      "unusual": true
+    },
+    {
+      "name": "beforetoc",
+      "unusual": true
+    },
+    {
+      "name": "aftertoc",
+      "unusual": true
+    },
+    {
+      "name": "beforetop",
+      "unusual": true
+    },
+    {
+      "name": "aftertop",
+      "unusual": true
+    },
+    {
+      "name": "beforepoemgroup",
+      "unusual": true
+    },
+    {
+      "name": "afterpoemgroup",
+      "unusual": true
+    },
+    {
+      "name": "incipit",
+      "arg": {
+        "format": "{}",
+        "snippet": "incipit{${1:text}}"
+      }
+    },
+    {
+      "name": "incipit*",
+      "arg": {
+        "format": "{}",
+        "snippet": "incipit*{${1:text}}"
+      }
+    },
+    {
+      "name": "theincipit"
+    },
+    {
+      "name": "poetryheadings",
+      "unusual": true
+    },
+    {
+      "name": "numberpoems"
+    },
+    {
+      "name": "nonumberpoems"
+    },
+    {
+      "name": "titlepoemnum",
+      "unusual": true
+    },
+    {
+      "name": "toppoemnum",
+      "unusual": true
+    },
+    {
+      "name": "tocpoemnum",
+      "unusual": true
+    },
+    {
+      "name": "stanzaparskip",
+      "unusual": true
+    },
+    {
+      "name": "clearpageafterpoem"
+    },
+    {
+      "name": "noclearpageafterpoem"
+    },
+    {
+      "name": "clearpageafterannotation"
+    },
+    {
+      "name": "noclearpageafterannotation"
+    },
+    {
+      "name": "ptgap",
+      "unusual": true
+    },
+    {
+      "name": "ptind",
+      "unusual": true
+    },
+    {
+      "name": "ptind*",
+      "unusual": true
+    },
+    {
+      "name": "poemtitleformat",
+      "unusual": true
+    },
+    {
+      "name": "incipittopformat",
+      "unusual": true
+    },
+    {
+      "name": "incipittocformat",
+      "unusual": true
+    },
+    {
+      "name": "ptspacergap",
+      "unusual": true
+    },
+    {
+      "name": "ptspacerchar",
+      "unusual": true
+    },
+    {
+      "name": "ptspacer"
+    },
+    {
+      "name": "ptspacer*"
+    },
+    {
+      "name": "linktopoem",
+      "arg": {
+        "format": "{}",
+        "snippet": "linktopoem{${1:link text}}"
+      }
+    },
+    {
+      "name": "linktopoem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "linktopoem[${2:number}]{${1:link text}}"
+      }
+    },
+    {
+      "name": "ptgroup",
+      "unusual": true
+    },
+    {
+      "name": "poemgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "poemgroup{${1:contents}}"
+      }
+    },
+    {
+      "name": "poemgroup*",
+      "arg": {
+        "format": "{}",
+        "snippet": "poemgroup*{${1:contents}}"
+      }
+    },
+    {
+      "name": "setpoemgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpoemgroup{${1:contents}}"
+      }
+    },
+    {
+      "name": "setpoemgroup*",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpoemgroup*{${1:contents}}"
+      }
+    },
+    {
+      "name": "annotationheadings",
+      "unusual": true
+    },
+    {
+      "name": "theabsolutepoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theabsoluteannotationnum",
+      "unusual": true
+    },
+    {
+      "name": "theabsolutepoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theabsolutetitledpoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theabsoluteuntitledpoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theannotationnum",
+      "unusual": true
+    },
+    {
+      "name": "thepoemgroupnum",
+      "unusual": true
+    },
+    {
+      "name": "thepoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theptspacernum",
+      "unusual": true
+    },
+    {
+      "name": "thetitledpoemnum",
+      "unusual": true
+    },
+    {
+      "name": "theuntitledpoemnum",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "poem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:title}}{${2:subtitle}}"
+      }
+    },
+    {
+      "name": "poem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:envname}]{${1:title}}{${2:subtitle}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "annotation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:envname}]{${1:title}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

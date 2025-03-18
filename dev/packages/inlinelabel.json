@@ -1,39 +1,85 @@
 {
-  "includes": {
-    "amsmath": [],
-    "otf": [
-      "circled"
-    ],
-    "refcount": [
+  "deps": [
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "otf",
+      "if": "circled"
+    },
+    {
+      "name": "refcount",
+      "if": "circled"
+    },
+    {
+      "name": "luatexja-otf",
+      "if": "luacircled"
+    },
+    {
+      "name": "refcount",
+      "if": "luacircled"
+    }
+  ],
+  "macros": [
+    {
+      "name": "circledref",
+      "if": "circled",
+      "arg": {
+        "format": "{}",
+        "snippet": "circledref{${1:label}}"
+      }
+    },
+    {
+      "name": "equationref",
+      "if": "circled",
+      "arg": {
+        "format": "{}",
+        "snippet": "equationref{${1:label}}"
+      }
+    },
+    {
+      "name": "circledref",
+      "if": "luacircled",
+      "arg": {
+        "format": "{}",
+        "snippet": "circledref{${1:label}}"
+      }
+    },
+    {
+      "name": "equationref",
+      "if": "luacircled",
+      "arg": {
+        "format": "{}",
+        "snippet": "equationref{${1:label}}"
+      }
+    },
+    {
+      "name": "inlinelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "inlinelabel{${1:label}}"
+      }
+    },
+    {
+      "name": "inlinelabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "inlinelabel*{${1:label}}"
+      }
+    },
+    {
+      "name": "equationreset"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/inlinelabel#c": [
+      "nospace",
       "circled",
-      "luacircled"
-    ],
-    "luatexja-otf": [
       "luacircled"
     ]
   },
-  "macros": {
-    "circledref{}": {
-      "snippet": "circledref{${1:label}}",
-      "option": "luacircled"
-    },
-    "equationref{}": {
-      "snippet": "equationref{${1:label}}",
-      "option": "luacircled"
-    },
-    "inlinelabel{}": {
-      "snippet": "inlinelabel{${1:label}}"
-    },
-    "inlinelabel*{}": {
-      "snippet": "inlinelabel*{${1:label}}"
-    },
-    "equationreset": {}
-  },
-  "envs": {},
-  "options": [
-    "nospace",
-    "circled",
-    "luacircled"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/inlinelabel#c"
+  ]
 }

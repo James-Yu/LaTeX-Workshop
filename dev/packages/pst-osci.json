@@ -1,34 +1,67 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "Oscillo": {},
-    "Oscillo[]": {
-      "snippet": "Oscillo[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "TriangleA": {},
-    "TriangleB": {},
-    "RectangleA": {},
-    "RectangleB": {},
-    "RDogToothA": {},
-    "RDogToothB": {},
-    "LDogToothA": {},
-    "LDogToothB": {},
-    "SinusA": {},
-    "SinusB": {},
-    "ssf": {},
-    "PSTOscilloLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-plot"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Oscillo"
+    },
+    {
+      "name": "Oscillo",
+      "arg": {
+        "format": "[]",
+        "snippet": "Oscillo[${1:options%keyvals}]",
+        "keys": [
+          "\\Oscillo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TriangleA"
+    },
+    {
+      "name": "TriangleB"
+    },
+    {
+      "name": "RectangleA"
+    },
+    {
+      "name": "RectangleB"
+    },
+    {
+      "name": "RDogToothA"
+    },
+    {
+      "name": "RDogToothB"
+    },
+    {
+      "name": "LDogToothA"
+    },
+    {
+      "name": "LDogToothB"
+    },
+    {
+      "name": "SinusA"
+    },
+    {
+      "name": "SinusB"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Oscillo#c": [
       "period1=${1:number}",
       "period2=${1:number}",
       "periodmodulation1=${1:number}",
@@ -54,13 +87,14 @@
       "plotstyle2=${1:style}",
       "plotstyle3=${1:style}",
       "plotstyle4=${1:style}",
-      "operation=",
-      "Wave1=",
-      "Wave2=",
+      "operation=${1|add,sub,mul|}",
+      "Wave1=${1|\\TriangleA,\\RectangleA,\\RDogToothA,\\LDogToothA,\\SinusA|}",
+      "Wave2=${1|\\TriangleB,\\RectangleB,\\RDogToothB,\\LDogToothB,\\SinusB|}",
       "Lissajous",
       "AllColor",
       "combine",
       "plotpoints=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

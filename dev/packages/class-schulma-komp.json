@@ -1,41 +1,86 @@
 {
-  "includes": {
-    "class-schulma-ab": [],
-    "datetime2": []
-  },
-  "macros": {
-    "Nr{}": {
-      "snippet": "Nr{${1:Nummer}}"
+  "deps": [
+    {
+      "name": "class-schulma-ab"
     },
-    "Klausurdatum{}": {
-      "snippet": "Klausurdatum{${1:Datum}}"
-    },
-    "Abschnitt{}": {
-      "snippet": "Abschnitt{${1:Thema}}"
-    },
-    "Abschnitt[]{}": {
-      "snippet": "Abschnitt[${2:Nummer}]{${1:Thema}}"
-    },
-    "Unterabschnitt{}": {
-      "snippet": "Unterabschnitt{${1:Thema}}"
-    },
-    "Unterabschnitt[]{}": {
-      "snippet": "Unterabschnitt[${2:Nummer}]{${1:Thema}}"
-    },
-    "Unterabschnitt{}[]": {
-      "snippet": "Unterabschnitt{${1:Thema}}[${2:Kompetenzen}]"
-    },
-    "Unterabschnitt[]{}[]": {
-      "snippet": "Unterabschnitt[${2:Nummer}]{${1:Thema}}[${3:Kompetenzen}]"
-    },
-    "Unterunterabschnitt{}{}": {
-      "snippet": "Unterunterabschnitt{${1:Thema}}{${2:Kompetenzen}}"
-    },
-    "Unterunterabschnitt[]{}{}": {
-      "snippet": "Unterunterabschnitt[${3:Nummer}]{${1:Thema}}{${2:Kompetenzen}}"
+    {
+      "name": "datetime2"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "Nr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Nr{${1:Nummer}}"
+      }
+    },
+    {
+      "name": "Klausurdatum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Klausurdatum{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Abschnitt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Abschnitt{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Abschnitt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Abschnitt[${2:Nummer}]{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Unterabschnitt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Unterabschnitt{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Unterabschnitt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Unterabschnitt[${2:Nummer}]{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Unterabschnitt",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Unterabschnitt{${1:Thema%text}}[${2:Kompetenzen%text}]"
+      }
+    },
+    {
+      "name": "Unterabschnitt",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "Unterabschnitt[${2:Nummer}]{${1:Thema%text}}[${3:Kompetenzen%text}]"
+      }
+    },
+    {
+      "name": "Unterunterabschnitt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Unterunterabschnitt{${1:Thema%text}}{${2:Kompetenzen%text}}"
+      }
+    },
+    {
+      "name": "Unterunterabschnitt",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Unterunterabschnitt[${3:Nummer}]{${1:Thema%text}}{${2:Kompetenzen%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

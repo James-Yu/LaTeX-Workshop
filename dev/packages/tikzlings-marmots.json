@@ -1,30 +1,69 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": [],
-    "tikzlibraryshadows.blur": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "marmot": {},
-    "marmot[]": {
-      "snippet": "marmot[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "marmothookbackground": {},
-    "marmothookbelly": {},
-    "marmothookbody": {},
-    "marmothookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    },
+    {
+      "name": "tikzlibraryshadows.blur"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "marmot"
+    },
+    {
+      "name": "marmot",
+      "arg": {
+        "format": "[]",
+        "snippet": "marmot[${1:options%keyvals}]",
+        "keys": [
+          "\\marmot#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "marmothookbackground",
+      "unusual": true
+    },
+    {
+      "name": "marmothookbelly",
+      "unusual": true
+    },
+    {
+      "name": "marmothookbody",
+      "unusual": true
+    },
+    {
+      "name": "marmothookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\marmot#c": [
       "body=",
       "eye=",
       "mouth=",
@@ -155,5 +194,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

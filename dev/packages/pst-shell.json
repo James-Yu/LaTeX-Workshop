@@ -1,23 +1,42 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-solides3d": []
-  },
-  "macros": {
-    "psShell[]": {
-      "snippet": "psShell[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PSTSHELLLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-solides3d"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psShell",
+      "arg": {
+        "format": "[]",
+        "snippet": "psShell[${1:options%keyvals}]",
+        "keys": [
+          "\\psShell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psShell",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psShell[${1:options%keyvals}](${2:x},${3:y},${4:z})",
+        "keys": [
+          "\\psShell"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psShell": [
       "A=${1:number}",
       "a=${1:number}",
-      "action=",
+      "action=${1|none,draw,draw*,draw**,writesolid,writeobj,writeoff|}",
       "alpha=${1:degrees}",
       "b=${1:number}",
       "base=${1:base spec}",
@@ -44,11 +63,12 @@
       "RotX=${1:degrees}",
       "RotY=${1:degrees}",
       "RotZ=${1:degrees}",
-      "style=",
+      "style=${1|Achatina,Ammonite,Argonauta,Codakia,Conus,Epiteonium,Escalaria,Helcion,Lyria,Natalina,Nautilus,Oxystele,Planorbis,Tonna,Turritella|}",
       "unit=${1:number}",
       "W1=${1:number}",
       "W2=${1:number}",
       "writedata"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,32 +1,57 @@
 {
-  "includes": {
-    "amsmath": []
-  },
-  "macros": {
-    "ring{}": {
-      "snippet": "ring{${1:arg}}"
-    },
-    "adots": {
-      "detail": "⋰",
-      "documentation": "three do ascending"
-    },
-    "wideparen{}": {
-      "snippet": "wideparen{${1:arg}}"
-    },
-    "widetriangle{}": {
-      "snippet": "widetriangle{${1:arg}}"
-    },
-    "widering{}": {
-      "snippet": "widering{${1:arg}}"
+  "deps": [
+    {
+      "name": "amsmath"
     }
-  },
-  "envs": {
-    "amatrix": {}
-  },
-  "options": [
-    "minimal",
-    "full",
-    "nowidering"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ring",
+      "arg": {
+        "format": "{}",
+        "snippet": "ring{${1:arg}}"
+      }
+    },
+    {
+      "name": "adots",
+      "detail": "⋰ (\"mathdots\" command)",
+      "doc": "\\adots (yhmath), three dots, ascending"
+    },
+    {
+      "name": "wideparen",
+      "arg": {
+        "format": "{}",
+        "snippet": "wideparen{${1:arg}}"
+      }
+    },
+    {
+      "name": "widetriangle",
+      "arg": {
+        "format": "{}",
+        "snippet": "widetriangle{${1:arg}}"
+      }
+    },
+    {
+      "name": "widering",
+      "arg": {
+        "format": "{}",
+        "snippet": "widering{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "amatrix"
+    }
+  ],
+  "keys": {
+    "\\usepackage/yhmath#c": [
+      "minimal",
+      "full",
+      "nowidering"
+    ]
+  },
+  "args": [
+    "\\usepackage/yhmath#c"
+  ]
 }

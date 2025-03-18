@@ -1,484 +1,862 @@
 {
-  "includes": {
-    "silence": [],
-    "geometry": [],
-    "minimalist": [],
-    "indentfirst": [],
-    "projlib-font": [],
-    "mathpazo": [
-      "palatino",
-      "palatino=true"
-    ],
-    "newpxtext": [
-      "palatino",
-      "palatino=true"
-    ],
-    "amssymb": [
-      "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "nowidow": [],
-    "regexpatch": [],
-    "embrac": [],
-    "graphicx": [],
-    "wrapfig": [],
-    "float": [],
-    "caption": [],
-    "draftwatermark": [
+  "deps": [
+    {
+      "name": "silence"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "minimalist"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "projlib-font"
+    },
+    {
+      "name": "mathpazo"
+    },
+    {
+      "name": "newpxtext"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "nowidow"
+    },
+    {
+      "name": "regexpatch"
+    },
+    {
+      "name": "embrac"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "wrapfig"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draft"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draft=true"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "fast"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "fast=true"
+    },
+    {
+      "name": "parskip",
+      "if": "useindent=false"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "mathpazo",
+      "if": "palatino"
+    },
+    {
+      "name": "newpxtext",
+      "if": "palatino"
+    },
+    {
+      "name": "mathpazo",
+      "if": "palatino=true"
+    },
+    {
+      "name": "newpxtext",
+      "if": "palatino=true"
+    },
+    {
+      "name": "newtxtext",
+      "if": "times"
+    },
+    {
+      "name": "newtxmath",
+      "if": "times"
+    },
+    {
+      "name": "newtxtext",
+      "if": "times=true"
+    },
+    {
+      "name": "newtxmath",
+      "if": "times=true"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond=true"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto"
+    },
+    {
+      "name": "notomath",
+      "if": "noto"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto=true"
+    },
+    {
+      "name": "notomath",
+      "if": "noto=true"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum"
+    },
+    {
+      "name": "biolinum",
+      "if": "biolinum"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum=true"
+    },
+    {
+      "name": "biolinum",
+      "if": "biolinum=true"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "desculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "desculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "captionsjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "datejapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "extrasjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "noextrasjapanese",
+      "if": "Japanese",
+      "unusual": true
+    },
+    {
+      "name": "cyrdash",
+      "if": "Russian"
+    },
+    {
+      "name": "asbuk",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Asbuk",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "Asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Russian",
+      "if": "Russian"
+    },
+    {
+      "name": "sh",
+      "if": "Russian"
+    },
+    {
+      "name": "ch",
+      "if": "Russian"
+    },
+    {
+      "name": "tg",
+      "if": "Russian"
+    },
+    {
+      "name": "ctg",
+      "if": "Russian"
+    },
+    {
+      "name": "arctg",
+      "if": "Russian"
+    },
+    {
+      "name": "arcctg",
+      "if": "Russian"
+    },
+    {
+      "name": "th",
+      "if": "Russian"
+    },
+    {
+      "name": "cth",
+      "if": "Russian"
+    },
+    {
+      "name": "cosec",
+      "if": "Russian"
+    },
+    {
+      "name": "Prob",
+      "if": "Russian"
+    },
+    {
+      "name": "Variance",
+      "if": "Russian"
+    },
+    {
+      "name": "NOD",
+      "if": "Russian"
+    },
+    {
+      "name": "nod",
+      "if": "Russian"
+    },
+    {
+      "name": "NOK",
+      "if": "Russian"
+    },
+    {
+      "name": "nok",
+      "if": "Russian"
+    },
+    {
+      "name": "Proj",
+      "if": "Russian"
+    },
+    {
+      "name": "cyrillicencoding",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrillictext",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyr",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "textcyrillic",
+      "if": "Russian",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcyrillic{${1:text}}"
+      }
+    },
+    {
+      "name": "dq",
+      "if": "Russian"
+    },
+    {
+      "name": "captionsrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "daterussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "extrasrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "noextrasrussian",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRA",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRB",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRV",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRG",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRGUP",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRD",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRE",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRIE",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRZH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRZ",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRI",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRII",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYI",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRISHRT",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRK",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRL",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRM",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRN",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRO",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRP",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRR",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRS",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRT",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRU",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRF",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRC",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRCH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSHCH",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYU",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRYA",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRSFTSN",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "CYRERY",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyra",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrb",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrv",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrg",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrgup",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrd",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyre",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrie",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrzh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrz",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyri",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrii",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyryi",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrishrt",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrk",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrl",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrm",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrn",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyro",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrp",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrr",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrs",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrt",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyru",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrf",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrc",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrch",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrsh",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrshch",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyryu",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrya",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrsftsn",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cyrery",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "cdash",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "tocname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "authorname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "acronymname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "lstlistlistingname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "nomname",
+      "if": "Russian",
+      "unusual": true
+    },
+    {
+      "name": "IfPrintModeTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfPrintModeTF{${1:true-code}}{${2:false-code}}"
+      }
+    },
+    {
+      "name": "IfPrintModeT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfPrintModeT{${1:true-code}}"
+      }
+    },
+    {
+      "name": "IfPrintModeF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfPrintModeF{${1:false-code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/minimart#c": [
       "draft",
-      "draft=true",
       "fast",
-      "fast=true"
-    ],
-    "parskip": [
-      "useindent=false"
-    ],
-    "lmodern": [
+      "classical",
+      "useindent",
+      "a4paper",
+      "b5paper",
+      "oneside",
+      "twoside",
+      "11pt",
+      "12pt",
+      "title in boldface",
+      "title in scshape",
+      "runin",
+      "nothms",
+      "nothmnum",
+      "thmnum",
+      "thmnum=${1:counter}",
+      "theorem style=${1:style}",
+      "complex name",
+      "simple name",
+      "no preset names",
+      "regionalref",
+      "originalref",
+      "Chinese",
+      "TChinese",
+      "English",
+      "German",
+      "Italian",
+      "Portuguese",
+      "Brazilian",
+      "Spanish",
+      "Japanese",
+      "Russian",
+      "useosf",
       "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "newtxtext": [
+      "palatino",
       "times",
-      "times=true"
-    ],
-    "newtxmath": [
-      "times",
-      "times=true",
       "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond-maths": [
-      "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond": [
-      "garamond",
-      "garamond=true"
-    ],
-    "anyfontsize": [
       "noto",
-      "noto=true"
-    ],
-    "notomath": [
-      "noto",
-      "noto=true"
-    ],
-    "eulervm": [
-      "biolinum",
-      "biolinum=true"
-    ],
-    "biolinum": [
-      "biolinum",
-      "biolinum=true"
-    ],
-    "mathastext": [
-      "biolinum",
-      "biolinum=true"
+      "biolinum"
     ]
   },
-  "macros": {
-    "desculine": {
-      "option": "classical=true"
-    },
-    "seculine": {
-      "option": "classical=true"
-    },
-    "simpleqedsymbol": {
-      "option": "classical=true"
-    },
-    "subseculine": {
-      "option": "classical=true"
-    },
-    "captionsjapanese": {
-      "option": "Japanese"
-    },
-    "datejapanese": {
-      "option": "Japanese"
-    },
-    "extrasjapanese": {
-      "option": "Japanese"
-    },
-    "noextrasjapanese": {
-      "option": "Japanese"
-    },
-    "cyrdash": {
-      "option": "Russian"
-    },
-    "asbuk{}": {
-      "snippet": "asbuk{${1:counter}}",
-      "option": "Russian"
-    },
-    "Asbuk{}": {
-      "snippet": "Asbuk{${1:counter}}",
-      "option": "Russian"
-    },
-    "Russian": {
-      "option": "Russian"
-    },
-    "sh": {
-      "option": "Russian"
-    },
-    "ch": {
-      "option": "Russian"
-    },
-    "tg": {
-      "option": "Russian"
-    },
-    "ctg": {
-      "option": "Russian"
-    },
-    "arctg": {
-      "option": "Russian"
-    },
-    "arcctg": {
-      "option": "Russian"
-    },
-    "th": {
-      "option": "Russian"
-    },
-    "cth": {
-      "option": "Russian"
-    },
-    "cosec": {
-      "option": "Russian"
-    },
-    "Prob": {
-      "option": "Russian"
-    },
-    "Variance": {
-      "option": "Russian"
-    },
-    "NOD": {
-      "option": "Russian"
-    },
-    "nod": {
-      "option": "Russian"
-    },
-    "NOK": {
-      "option": "Russian"
-    },
-    "nok": {
-      "option": "Russian"
-    },
-    "Proj": {
-      "option": "Russian"
-    },
-    "cyrillicencoding": {
-      "option": "Russian"
-    },
-    "cyrillictext": {
-      "option": "Russian"
-    },
-    "cyr": {
-      "option": "Russian"
-    },
-    "textcyrillic{}": {
-      "snippet": "textcyrillic{${1:text}}",
-      "option": "Russian"
-    },
-    "dq": {
-      "option": "Russian"
-    },
-    "captionsrussian": {
-      "option": "Russian"
-    },
-    "daterussian": {
-      "option": "Russian"
-    },
-    "extrasrussian": {
-      "option": "Russian"
-    },
-    "noextrasrussian": {
-      "option": "Russian"
-    },
-    "CYRA": {
-      "option": "Russian"
-    },
-    "CYRB": {
-      "option": "Russian"
-    },
-    "CYRV": {
-      "option": "Russian"
-    },
-    "CYRG": {
-      "option": "Russian"
-    },
-    "CYRGUP": {
-      "option": "Russian"
-    },
-    "CYRD": {
-      "option": "Russian"
-    },
-    "CYRE": {
-      "option": "Russian"
-    },
-    "CYRIE": {
-      "option": "Russian"
-    },
-    "CYRZH": {
-      "option": "Russian"
-    },
-    "CYRZ": {
-      "option": "Russian"
-    },
-    "CYRI": {
-      "option": "Russian"
-    },
-    "CYRII": {
-      "option": "Russian"
-    },
-    "CYRYI": {
-      "option": "Russian"
-    },
-    "CYRISHRT": {
-      "option": "Russian"
-    },
-    "CYRK": {
-      "option": "Russian"
-    },
-    "CYRL": {
-      "option": "Russian"
-    },
-    "CYRM": {
-      "option": "Russian"
-    },
-    "CYRN": {
-      "option": "Russian"
-    },
-    "CYRO": {
-      "option": "Russian"
-    },
-    "CYRP": {
-      "option": "Russian"
-    },
-    "CYRR": {
-      "option": "Russian"
-    },
-    "CYRS": {
-      "option": "Russian"
-    },
-    "CYRT": {
-      "option": "Russian"
-    },
-    "CYRU": {
-      "option": "Russian"
-    },
-    "CYRF": {
-      "option": "Russian"
-    },
-    "CYRH": {
-      "option": "Russian"
-    },
-    "CYRC": {
-      "option": "Russian"
-    },
-    "CYRCH": {
-      "option": "Russian"
-    },
-    "CYRSH": {
-      "option": "Russian"
-    },
-    "CYRSHCH": {
-      "option": "Russian"
-    },
-    "CYRYU": {
-      "option": "Russian"
-    },
-    "CYRYA": {
-      "option": "Russian"
-    },
-    "CYRSFTSN": {
-      "option": "Russian"
-    },
-    "CYRERY": {
-      "option": "Russian"
-    },
-    "cyra": {
-      "option": "Russian"
-    },
-    "cyrb": {
-      "option": "Russian"
-    },
-    "cyrv": {
-      "option": "Russian"
-    },
-    "cyrg": {
-      "option": "Russian"
-    },
-    "cyrgup": {
-      "option": "Russian"
-    },
-    "cyrd": {
-      "option": "Russian"
-    },
-    "cyre": {
-      "option": "Russian"
-    },
-    "cyrie": {
-      "option": "Russian"
-    },
-    "cyrzh": {
-      "option": "Russian"
-    },
-    "cyrz": {
-      "option": "Russian"
-    },
-    "cyri": {
-      "option": "Russian"
-    },
-    "cyrii": {
-      "option": "Russian"
-    },
-    "cyryi": {
-      "option": "Russian"
-    },
-    "cyrishrt": {
-      "option": "Russian"
-    },
-    "cyrk": {
-      "option": "Russian"
-    },
-    "cyrl": {
-      "option": "Russian"
-    },
-    "cyrm": {
-      "option": "Russian"
-    },
-    "cyrn": {
-      "option": "Russian"
-    },
-    "cyro": {
-      "option": "Russian"
-    },
-    "cyrp": {
-      "option": "Russian"
-    },
-    "cyrr": {
-      "option": "Russian"
-    },
-    "cyrs": {
-      "option": "Russian"
-    },
-    "cyrt": {
-      "option": "Russian"
-    },
-    "cyru": {
-      "option": "Russian"
-    },
-    "cyrf": {
-      "option": "Russian"
-    },
-    "cyrh": {
-      "option": "Russian"
-    },
-    "cyrc": {
-      "option": "Russian"
-    },
-    "cyrch": {
-      "option": "Russian"
-    },
-    "cyrsh": {
-      "option": "Russian"
-    },
-    "cyrshch": {
-      "option": "Russian"
-    },
-    "cyryu": {
-      "option": "Russian"
-    },
-    "cyrya": {
-      "option": "Russian"
-    },
-    "cyrsftsn": {
-      "option": "Russian"
-    },
-    "cyrery": {
-      "option": "Russian"
-    },
-    "cdash": {
-      "option": "Russian"
-    },
-    "tocname": {
-      "option": "Russian"
-    },
-    "authorname": {
-      "option": "Russian"
-    },
-    "acronymname": {
-      "option": "Russian"
-    },
-    "lstlistingname": {
-      "option": "Russian"
-    },
-    "lstlistlistingname": {
-      "option": "Russian"
-    },
-    "notesname": {
-      "option": "Russian"
-    },
-    "nomname": {
-      "option": "Russian"
-    },
-    "IfPrintModeTF{}{}": {
-      "snippet": "IfPrintModeTF{${1:true-code}}{${2:false-code}}"
-    },
-    "IfPrintModeT{}": {
-      "snippet": "IfPrintModeT{${1:true-code}}"
-    },
-    "IfPrintModeF{}": {
-      "snippet": "IfPrintModeF{${1:false-code}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "fast",
-    "classical",
-    "useindent",
-    "a4paper",
-    "b5paper",
-    "oneside",
-    "twoside",
-    "11pt",
-    "12pt",
-    "title in boldface",
-    "title in scshape",
-    "runin",
-    "nothms",
-    "nothmnum",
-    "thmnum",
-    "thmnum=${1:counter}",
-    "theorem style=${1:style}",
-    "complex name",
-    "simple name",
-    "no preset names",
-    "regionalref",
-    "originalref",
-    "Chinese",
-    "TChinese",
-    "English",
-    "German",
-    "Italian",
-    "Portuguese",
-    "Brazilian",
-    "Spanish",
-    "Japanese",
-    "Russian",
-    "useosf",
-    "lmodern",
-    "palatino",
-    "times",
-    "garamond",
-    "noto",
-    "biolinum"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/minimart#c"
+  ]
 }

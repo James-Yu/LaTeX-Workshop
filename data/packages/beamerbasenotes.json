@@ -1,40 +1,84 @@
 {
-  "includes": {},
-  "macros": {
-    "note{}": {
-      "snippet": "note{${1:note text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "note{${1:note text%text}}"
+      }
     },
-    "note<>{}": {
-      "snippet": "note<${2:overlay specification}>{${1:note text}}"
+    {
+      "name": "note<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "note<overlay specification>{${1:note text%text}}"
+      }
     },
-    "note[]{}": {
-      "snippet": "note[${2:options}]{${1:note text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "note[${2:options%keyvals}]{${1:note text%text}}",
+        "keys": [
+          "\\note"
+        ],
+        "keyPos": 0
+      }
     },
-    "note[]<>{}": {
-      "snippet": "note[${2:options}]<${3:overlay specification}>{${1:note text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "note[${2:options%keyvals}]<${3:overlay specification}>{${1:note text%text}}",
+        "keys": [
+          "\\note"
+        ],
+        "keyPos": 0
+      }
     },
-    "insertnote": {},
-    "AtBeginNote{}": {
-      "snippet": "AtBeginNote{${1:text}}"
+    {
+      "name": "insertnote",
+      "unusual": true
     },
-    "AtEndNote{}": {
-      "snippet": "AtEndNote{${1:text}}"
+    {
+      "name": "AtBeginNote",
+      "arg": {
+        "format": "{}",
+        "snippet": "AtBeginNote{${1:text}}"
+      }
     },
-    "insertslideintonotes{}": {
-      "snippet": "insertslideintonotes{${1:magnification}}"
+    {
+      "name": "AtEndNote",
+      "arg": {
+        "format": "{}",
+        "snippet": "AtEndNote{${1:text}}"
+      }
+    },
+    {
+      "name": "insertslideintonotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "insertslideintonotes{${1:magnification}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\setbeameroption#c": [
+      "hide notes",
+      "show notes",
+      "show notes on second screen",
+      "show notes on second screen=${1|left,right,bottom,top|}",
+      "show only notes",
+      "show only slides with notes"
+    ],
+    "\\note": [
       "item",
       "itemize",
       "enumerate"
     ]
-  ]
+  },
+  "args": []
 }

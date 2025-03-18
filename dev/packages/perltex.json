@@ -1,88 +1,198 @@
 {
-  "includes": {},
-  "macros": {
-    "ifperl": {},
-    "perltrue": {},
-    "perlfalse": {},
-    "perlnewcommand{}{}": {
-      "snippet": "perlnewcommand{${1:command}}{${2:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifperl"
     },
-    "perlnewcommand{}[]{}": {
-      "snippet": "perlnewcommand{${1:command}}[${2:args}]{${3:definition}}"
+    {
+      "name": "perltrue"
     },
-    "perlnewcommand{}[][]{}": {
-      "snippet": "perlnewcommand{${1:command}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "perlfalse"
     },
-    "perlnewcommand*{}{}": {
-      "snippet": "perlnewcommand*{${1:command}}{${2:definition}}"
+    {
+      "name": "perlnewcommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "perlnewcommand{${1:command}}{${2:definition}}"
+      }
     },
-    "perlnewcommand*{}[]{}": {
-      "snippet": "perlnewcommand*{${1:command}}[${2:args}]{${3:definition}}"
+    {
+      "name": "perlnewcommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "perlnewcommand{${1:command}}[${3:args}]{${2:definition}}"
+      }
     },
-    "perlnewcommand*{}[][]{}": {
-      "snippet": "perlnewcommand*{${1:command}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "perlnewcommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "perlnewcommand{${1:command}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "perlrenewcommand{}{}": {
-      "snippet": "perlrenewcommand{${1:command}}{${2:definition}}"
+    {
+      "name": "perlnewcommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "perlnewcommand*{${1:command}}{${2:definition}}"
+      }
     },
-    "perlrenewcommand{}[]{}": {
-      "snippet": "perlrenewcommand{${1:command}}[${2:args}]{${3:definition}}"
+    {
+      "name": "perlnewcommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "perlnewcommand*{${1:command}}[${3:args}]{${2:definition}}"
+      }
     },
-    "perlrenewcommand{}[][]{}": {
-      "snippet": "perlrenewcommand{${1:command}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "perlnewcommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "perlnewcommand*{${1:command}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "perlrenewcommand*{}{}": {
-      "snippet": "perlrenewcommand*{${1:command}}{${2:definition}}"
+    {
+      "name": "perlrenewcommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "perlrenewcommand{${1:command}}{${2:definition}}"
+      }
     },
-    "perlrenewcommand*{}[]{}": {
-      "snippet": "perlrenewcommand*{${1:command}}[${2:args}]{${3:definition}}"
+    {
+      "name": "perlrenewcommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "perlrenewcommand{${1:command}}[${3:args}]{${2:definition}}"
+      }
     },
-    "perlrenewcommand*{}[][]{}": {
-      "snippet": "perlrenewcommand*{${1:command}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "perlrenewcommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "perlrenewcommand{${1:command}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "perlnewenvironment{}[][]{}{}": {
-      "snippet": "perlnewenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "perlrenewcommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "perlrenewcommand*{${1:command}}{${2:definition}}"
+      }
     },
-    "perlnewenvironment{}[]{}{}": {
-      "snippet": "perlnewenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "perlrenewcommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "perlrenewcommand*{${1:command}}[${3:args}]{${2:definition}}"
+      }
     },
-    "perlnewenvironment{}{}{}": {
-      "snippet": "perlnewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "perlrenewcommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "perlrenewcommand*{${1:command}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "perlnewenvironment*{}[][]{}{}": {
-      "snippet": "perlnewenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "perlnewenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "perlnewenvironment{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlnewenvironment*{}[]{}{}": {
-      "snippet": "perlnewenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "perlnewenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "perlnewenvironment{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlnewenvironment*{}{}{}": {
-      "snippet": "perlnewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "perlnewenvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "perlnewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment{}[][]{}{}": {
-      "snippet": "perlrenewenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "perlnewenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "perlnewenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment{}[]{}{}": {
-      "snippet": "perlrenewenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "perlnewenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "perlnewenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment{}{}{}": {
-      "snippet": "perlrenewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "perlnewenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "perlnewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment*{}[][]{}{}": {
-      "snippet": "perlrenewenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "perlrenewenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "perlrenewenvironment{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment*{}[]{}{}": {
-      "snippet": "perlrenewenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "perlrenewenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "perlrenewenvironment{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perlrenewenvironment*{}{}{}": {
-      "snippet": "perlrenewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "perlrenewenvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "perlrenewenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "perldo{}": {
-      "snippet": "perldo{${1:perl code}}"
+    {
+      "name": "perlrenewenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "perlrenewenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "perlrenewenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "perlrenewenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "perlrenewenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "perlrenewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "perldo",
+      "arg": {
+        "format": "{}",
+        "snippet": "perldo{${1:perl code%definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "optional"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/perltex#c": [
+      "optional"
+    ]
+  },
+  "args": [
+    "\\usepackage/perltex#c"
+  ]
 }

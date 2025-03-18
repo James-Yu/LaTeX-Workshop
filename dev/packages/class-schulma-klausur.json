@@ -1,199 +1,464 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "schulma": [],
-    "schulma-physik": [],
-    "class-scrartcl": [],
-    "scrlayer-scrpage": [],
-    "pdfpages": [],
-    "geometry": [],
-    "comment": [],
-    "beamerarticle": [],
-    "tasks": [],
-    "adjustbox": [],
-    "babel": [],
-    "datetime2": [],
-    "isodate": [],
-    "class-schulma-praes": [
-      "Musterloesung"
-    ],
-    "pgfpages": [
-      "druck",
-      "druck2"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "schulma"
+    },
+    {
+      "name": "schulma-physik"
+    },
+    {
+      "name": "class-scrartcl"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "comment"
+    },
+    {
+      "name": "beamerarticle"
+    },
+    {
+      "name": "tasks"
+    },
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "datetime2"
+    },
+    {
+      "name": "isodate"
+    },
+    {
+      "name": "class-schulma-praes",
+      "if": "Musterloesung"
+    },
+    {
+      "name": "pgfpages",
+      "if": "druck"
+    },
+    {
+      "name": "pgfpages",
+      "if": "druck2"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Nr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Nr{${1:Nummer}}"
+      }
+    },
+    {
+      "name": "theAufgabe",
+      "unusual": true
+    },
+    {
+      "name": "theTeilaufgabe",
+      "unusual": true
+    },
+    {
+      "name": "Aufgabenabstand",
+      "unusual": true
+    },
+    {
+      "name": "Teilaufgabenabstand",
+      "unusual": true
+    },
+    {
+      "name": "Kurs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Kurs{${1:Kursbezeichnung%text}}"
+      }
+    },
+    {
+      "name": "Datum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Datum{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Aufgabe"
+    },
+    {
+      "name": "Aufgabe",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "Aufgabe[${1:Thema%text}]"
+      }
+    },
+    {
+      "name": "Aufgabe",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "Aufgabe[${1:Thema%text}][${2:Bearbeitungszeit}]"
+      }
+    },
+    {
+      "name": "Aufgabe",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "Aufgabe(${1:Punktzahl})"
+      }
+    },
+    {
+      "name": "Aufgabe",
+      "arg": {
+        "format": "[]()",
+        "snippet": "Aufgabe[${1:Thema%text}](${2:Punktzahl})"
+      }
+    },
+    {
+      "name": "Aufgabe",
+      "arg": {
+        "format": "[][]()",
+        "snippet": "Aufgabe[${1:Thema%text}][${2:Bearbeitungszeit}](${3:Punktzahl})"
+      }
+    },
+    {
+      "name": "Aufgabe*"
+    },
+    {
+      "name": "Aufgabe*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "Aufgabe*[${1:Thema%text}]"
+      }
+    },
+    {
+      "name": "Aufgabe*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "Aufgabe*[${1:Thema%text}][${2:Bearbeitungszeit}]"
+      }
+    },
+    {
+      "name": "Aufgabe*",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "Aufgabe*(${1:Punktzahl})"
+      }
+    },
+    {
+      "name": "Aufgabe*",
+      "arg": {
+        "format": "[]()",
+        "snippet": "Aufgabe*[${1:Thema%text}](${2:Punktzahl})"
+      }
+    },
+    {
+      "name": "Aufgabe*",
+      "arg": {
+        "format": "[][]()",
+        "snippet": "Aufgabe*[${1:Thema%text}][${2:Bearbeitungszeit}](${3:Punktzahl})"
+      }
+    },
+    {
+      "name": "schulmaalph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "schulmaalph{${1:counter}}"
+      }
+    },
+    {
+      "name": "Klausurtitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Klausurtitel{${1:Titel%text}}"
+      }
+    },
+    {
+      "name": "Klausuruntertitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Klausuruntertitel{${1:Untertitel%text}}"
+      }
+    },
+    {
+      "name": "Klausurteiltitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Klausurteiltitel{${1:Teiltitel%text}}"
+      }
+    },
+    {
+      "name": "Bearbeitungszeit",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bearbeitungszeit{${1:Zeit in Minuten}}"
+      }
+    },
+    {
+      "name": "Hilfsmittel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Hilfsmittel{${1:Hilfsmittel%text}}"
+      }
+    },
+    {
+      "name": "Loesungsdatum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Loesungsdatum{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Formeldokument",
+      "arg": {
+        "format": "{}",
+        "snippet": "Formeldokument{${1:Seitenzahlen}}"
+      }
+    },
+    {
+      "name": "Gruppen",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Gruppen{${1:Text für GruppeA%text}}{${2:Text für GruppeB%text}}"
+      }
+    },
+    {
+      "name": "Gruppen*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Gruppen*{${1:Text für GruppeA%text}}{${2:Text für GruppeB%text}}"
+      }
+    },
+    {
+      "name": "Aufgabentitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aufgabentitel{${1:Bezeichnung%text}}"
+      }
+    },
+    {
+      "name": "Notenspiegel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Notenspiegel{${1:kommaseparierte Notenliste}}"
+      }
+    },
+    {
+      "name": "Notenpunktspiegel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Notenpunktspiegel{${1:kommaseparierte Notenliste}}"
+      }
+    },
+    {
+      "name": "FarbeAufgabe"
+    },
+    {
+      "name": "FarbeLoesung"
+    },
+    {
+      "name": "NurAufgabe",
+      "arg": {
+        "format": "{}",
+        "snippet": "NurAufgabe{${1:Teil der Aufgabe}}"
+      }
+    },
+    {
+      "name": "NurLoesung",
+      "arg": {
+        "format": "{}",
+        "snippet": "NurLoesung{${1:Teil der Aufgabe}}"
+      }
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "captionsnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "datenaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "extrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "noextrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Teilaufgaben"
+    },
+    {
+      "name": "Lsg"
+    },
+    {
+      "name": "Lsg",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/schulma-klausur#c": [
+      "SLK",
+      "p-q-Formel",
+      "Differenzenquotient",
+      "Differentialquotient",
+      "A5quer",
+      "AT",
+      "GruppeA",
+      "GruppeB",
+      "Musterloesung",
+      "MusterloesungD",
+      "Seitenzahlen",
+      "Druck",
+      "Druck2",
+      "usepdftitle",
+      "envcountsect",
+      "notheorems",
+      "noamsthm",
+      "compress",
+      "t",
+      "c",
+      "leqno",
+      "fleqn",
+      "handout",
+      "trans",
+      "pdftex",
+      "nativepdf",
+      "pdfmark",
+      "dvips",
+      "dviwindo",
+      "dvipsone",
+      "vtex",
+      "ps2pdf",
+      "ignorenonframetext",
+      "noamssymb",
+      "bigger",
+      "smaller",
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "draft",
+      "CJK",
+      "cjk",
+      "onlytextwidth",
+      "pgf={${1:pgf options}}",
+      "hyperref={${1:hyperref options}}",
+      "color={${1:color options}}",
+      "xcolor={${1:xcolor options}}",
+      "ucs",
+      "utf8x",
+      "utf8",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
     ]
   },
-  "macros": {
-    "Nr{}": {
-      "snippet": "Nr{${1:Nummer}}"
-    },
-    "theAufgabe": {},
-    "theTeilaufgabe": {},
-    "Aufgabenabstand": {},
-    "Teilaufgabenabstand": {},
-    "Kurs{}": {
-      "snippet": "Kurs{${1:Kursbezeichnung}}"
-    },
-    "Datum{}": {
-      "snippet": "Datum{${1:Datum}}"
-    },
-    "Aufgabe": {},
-    "Aufgabe[]": {
-      "snippet": "Aufgabe[${1:Thema}]"
-    },
-    "Aufgabe[][]": {
-      "snippet": "Aufgabe[${1:Thema}][${2:Bearbeitungszeit}]"
-    },
-    "Aufgabe*": {},
-    "Aufgabe*[]": {
-      "snippet": "Aufgabe*[${1:Thema}]"
-    },
-    "Aufgabe*[][]": {
-      "snippet": "Aufgabe*[${1:Thema}][${2:Bearbeitungszeit}]"
-    },
-    "schulmaalph{}": {
-      "snippet": "schulmaalph{${1:counter}}"
-    },
-    "Klausurtitel{}": {
-      "snippet": "Klausurtitel{${1:Titel}}"
-    },
-    "Klausuruntertitel{}": {
-      "snippet": "Klausuruntertitel{${1:Untertitel}}"
-    },
-    "Klausurteiltitel{}": {
-      "snippet": "Klausurteiltitel{${1:Teiltitel}}"
-    },
-    "Bearbeitungszeit{}": {
-      "snippet": "Bearbeitungszeit{${1:Zeit in Minuten}}"
-    },
-    "Hilfsmittel{}": {
-      "snippet": "Hilfsmittel{${1:Hilfsmittel}}"
-    },
-    "Loesungsdatum{}": {
-      "snippet": "Loesungsdatum{${1:Datum}}"
-    },
-    "Formeldokument{}": {
-      "snippet": "Formeldokument{${1:Seitenzahlen}}"
-    },
-    "Gruppen{}{}": {
-      "snippet": "Gruppen{${1:Text für GruppeA}}{${2:Text für GruppeB}}"
-    },
-    "Gruppen*{}{}": {
-      "snippet": "Gruppen*{${1:Text für GruppeA}}{${2:Text für GruppeB}}"
-    },
-    "Aufgabentitel{}": {
-      "snippet": "Aufgabentitel{${1:Bezeichnung}}"
-    },
-    "Notenspiegel{}": {
-      "snippet": "Notenspiegel{${1:kommaseparierte Notenliste}}"
-    },
-    "Notenpunktspiegel{}": {
-      "snippet": "Notenpunktspiegel{${1:kommaseparierte Notenliste}}"
-    },
-    "FarbeAufgabe": {},
-    "FarbeLoesung": {},
-    "NurAufgabe{}": {
-      "snippet": "NurAufgabe{${1:Teil der Aufgabe}}"
-    },
-    "NurLoesung{}": {
-      "snippet": "NurLoesung{${1:Teil der Aufgabe}}"
-    },
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "captionsnaustrian": {
-      "option": "AT"
-    },
-    "datenaustrian": {
-      "option": "AT"
-    },
-    "extrasnaustrian": {
-      "option": "AT"
-    },
-    "noextrasnaustrian": {
-      "option": "AT"
-    }
-  },
-  "envs": {
-    "Teilaufgaben": {},
-    "Lsg": {},
-    "Lsg*": {
-      "name": "Lsg",
-      "snippet": "*"
-    }
-  },
-  "options": [
-    "SLK",
-    "p-q-Formel",
-    "Differenzenquotient",
-    "Differentialquotient",
-    "A5quer",
-    "AT",
-    "GruppeA",
-    "GruppeB",
-    "Musterloesung",
-    "MusterloesungD",
-    "Seitenzahlen",
-    "Druck",
-    "Druck2",
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio="
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/schulma-klausur#c"
+  ]
 }

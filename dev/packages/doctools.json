@@ -1,87 +1,208 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "pdftexcmds": [],
-    "etoolbox": [],
-    "xstring": [],
-    "kvsetkeys": [],
-    "cmap": [],
-    "listings": [],
-    "xcolor": [],
-    "colortbl": [],
-    "xspace": [],
-    "url": []
-  },
-  "macros": {
-    "marg{}": {
-      "snippet": "marg{${1:abc}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "oarg{}": {
-      "snippet": "oarg{${1:arg}}"
+    {
+      "name": "pdftexcmds"
     },
-    "bs": {},
-    "command{}": {
-      "snippet": "command{${1:cmd}}"
+    {
+      "name": "etoolbox"
     },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
+    {
+      "name": "xstring"
     },
-    "arg{}": {
-      "snippet": "arg{${1:arg}}"
+    {
+      "name": "kvsetkeys"
     },
-    "environment{}": {
-      "snippet": "environment{${1:envname}}"
+    {
+      "name": "cmap"
     },
-    "env{}": {
-      "snippet": "env{${1:envname}}"
+    {
+      "name": "listings"
     },
-    "package{}": {
-      "snippet": "package{${1:package}}"
+    {
+      "name": "xcolor"
     },
-    "ltxclass{}": {
-      "snippet": "ltxclass{${1:class}}"
+    {
+      "name": "colortbl"
     },
-    "option{}": {
-      "snippet": "option{${1:option}}"
+    {
+      "name": "xspace"
     },
-    "parameter{}": {
-      "snippet": "parameter{${1:parameter}}"
+    {
+      "name": "url"
+    }
+  ],
+  "macros": [
+    {
+      "name": "marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "marg{${1:abc}}"
+      }
     },
-    "person{}": {
-      "snippet": "person{${1:person}}"
+    {
+      "name": "oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "oarg{${1:arg}}"
+      }
     },
-    "AfterLastParam": {},
-    "Default{}": {
-      "snippet": "Default{${1:arg}}"
+    {
+      "name": "bs"
     },
-    "Example{}": {
-      "snippet": "Example{${1:arg}}"
+    {
+      "name": "command",
+      "arg": {
+        "format": "{}",
+        "snippet": "command{${1:cmd}}"
+      }
     },
-    "latex": {},
-    "printCodeFromFile{}{}": {
-      "snippet": "printCodeFromFile{${1:last line}}{${2:file}}"
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:csname}}"
+      }
     },
-    "printCodeFromFile[]{}{}": {
-      "snippet": "printCodeFromFile[${3:first line}]{${1:last line}}{${2:file}}"
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "arg{${1:arg}}"
+      }
     },
-    "labelfile{}": {
-      "snippet": "labelfile{${1:file path/name}}"
+    {
+      "name": "environment",
+      "arg": {
+        "format": "{}",
+        "snippet": "environment{${1:envname}}"
+      }
     },
-    "file{}": {
-      "snippet": "file{${1:file path/name}}"
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "env{${1:envname}}"
+      }
     },
-    "thelstFirstLine": {},
-    "thelstLastLine": {},
-    "PrintFileName{}": {
-      "snippet": "PrintFileName{${1:file}}"
+    {
+      "name": "package",
+      "arg": {
+        "format": "{}",
+        "snippet": "package{${1:package}}"
+      }
     },
-    "thefile": {},
-    "theHfile": {}
-  },
-  "envs": {
-    "Optionlist": {},
-    "latexcode": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ltxclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "ltxclass{${1:class}}"
+      }
+    },
+    {
+      "name": "option",
+      "arg": {
+        "format": "{}",
+        "snippet": "option{${1:option}}"
+      }
+    },
+    {
+      "name": "parameter",
+      "arg": {
+        "format": "{}",
+        "snippet": "parameter{${1:parameter}}"
+      }
+    },
+    {
+      "name": "person",
+      "arg": {
+        "format": "{}",
+        "snippet": "person{${1:person}}"
+      }
+    },
+    {
+      "name": "AfterLastParam"
+    },
+    {
+      "name": "Default",
+      "arg": {
+        "format": "{}",
+        "snippet": "Default{${1:arg}}"
+      }
+    },
+    {
+      "name": "Example",
+      "arg": {
+        "format": "{}",
+        "snippet": "Example{${1:arg}}"
+      }
+    },
+    {
+      "name": "latex"
+    },
+    {
+      "name": "printCodeFromFile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printCodeFromFile{${1:last line}}{${2:file}}"
+      }
+    },
+    {
+      "name": "printCodeFromFile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "printCodeFromFile[${3:first line}]{${1:last line}}{${2:file}}"
+      }
+    },
+    {
+      "name": "labelfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "labelfile{${1:file path/name%file}}"
+      }
+    },
+    {
+      "name": "file",
+      "arg": {
+        "format": "{}",
+        "snippet": "file{${1:file path/name%file}}"
+      }
+    },
+    {
+      "name": "thelstFirstLine",
+      "unusual": true
+    },
+    {
+      "name": "thelstLastLine",
+      "unusual": true
+    },
+    {
+      "name": "PrintFileName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintFileName{${1:file}}"
+      }
+    },
+    {
+      "name": "thefile",
+      "unusual": true
+    },
+    {
+      "name": "theHfile",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Optionlist"
+    },
+    {
+      "name": "latexcode"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,36 +1,69 @@
 {
-  "includes": {
-    "projlib-logo": [],
-    "projlib-paper": [],
-    "tikz": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "TitlePage{}": {
-      "snippet": "TitlePage{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "projlib-logo"
     },
-    "TitlePage[]{}": {
-      "snippet": "TitlePage[${2:options}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "projlib-paper"
     },
-    "ProjLibTitlePage{}": {
-      "snippet": "ProjLibTitlePage{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "ProjLibTitlePage[]{}": {
-      "snippet": "ProjLibTitlePage[${2:options}]{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "TitlePage",
+      "arg": {
+        "format": "{}",
+        "snippet": "TitlePage{${1:keyvals}}",
+        "keys": [
+          "\\TitlePage,\\ProjLibTitlePage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TitlePage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TitlePage[${2:options}]{${1:keyvals}}",
+        "keys": [
+          "\\TitlePage,\\ProjLibTitlePage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProjLibTitlePage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProjLibTitlePage{${1:keyvals}}",
+        "keys": [
+          "\\TitlePage,\\ProjLibTitlePage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProjLibTitlePage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ProjLibTitlePage[${2:options}]{${1:keyvals}}",
+        "keys": [
+          "\\TitlePage,\\ProjLibTitlePage"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\TitlePage,\\ProjLibTitlePage": [
       "logo=${1:graphics}",
       "title=${1:text}",
       "subtitle=${1:text}",
@@ -43,5 +76,6 @@
       "style=${1:style}",
       "color="
     ]
-  ]
+  },
+  "args": []
 }

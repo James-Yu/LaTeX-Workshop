@@ -1,20 +1,49 @@
 {
-  "includes": {
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibraryintersections": []
-  },
-  "macros": {
-    "pgfmathsuperellipsex{}{}{}": {
-      "snippet": "pgfmathsuperellipsex{${1:t}}{${2:2/m}}{${3:r_x}}"
+  "deps": [
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "pgfmathsuperellipsey{}{}{}": {
-      "snippet": "pgfmathsuperellipsey{${1:t}}{${2:2/n}}{${3:r_y}}"
-    },
-    "pgfmathsuperellipseXY{}{}{}{}{}": {
-      "snippet": "pgfmathsuperellipseXY{${1:t}}{${2:2/m}}{${3:2/n}}{${4:a}}{${5:b}}"
+    {
+      "name": "tikzlibraryintersections"
     }
+  ],
+  "macros": [
+    {
+      "name": "pgfmathsuperellipsex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathsuperellipsex{${1:t}}{2/m}{${2:r_x}}"
+      }
+    },
+    {
+      "name": "pgfmathsuperellipsey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathsuperellipsey{${1:t}}{2/n}{${2:r_y}}"
+      }
+    },
+    {
+      "name": "pgfmathsuperellipseXY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfmathsuperellipseXY{${1:t}}{2/m}{2/n}{${2:a}}{${3:b}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "superellipse"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "superellipse x exponent=${1:exponent}",
+      "superellipse y exponent=${1:exponent}",
+      "superellipse step=${1:integer}",
+      "superellipse exponent=${1:exponent}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

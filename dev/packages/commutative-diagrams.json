@@ -1,0 +1,60 @@
+{
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycommutative-diagrams"
+    }
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "codi"
+    },
+    {
+      "name": "codi",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{codi}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{codi}#c": [
+      "prompter",
+      "expand=${1|none,once,full|}",
+      "replace character=${1:character1} with ${2:character2}",
+      "replace charcode=${1:charcode} with ${2:character}",
+      "remove characters=${1:characters}",
+      "remove character=${1:character}",
+      "remove charcode=${1:charcode}",
+      "overwrite=${1|false,alias,true|}",
+      "every diagram/.append style={${1:TikZ options}}",
+      "every layout/.append style={${1:TikZ options}}",
+      "every object/.append style={${1:TikZ options}}",
+      "every arrow/.append style={${1:TikZ options}}",
+      "every label/.append style={${1:TikZ options}}",
+      "tetragonal",
+      "tetragonal=base ${1:<length>} height ${2:<length>}",
+      "hexagonal",
+      "hexagonal=${1:<direction>} side ${2:<length>} angle ${3:<angle>}",
+      "square=",
+      "golden=",
+      "arrows/crossing over",
+      "arrows/crossing over/clearance=",
+      "arrows/crossing over/color=",
+      "arrows/slide=",
+      "arrows/shove=",
+      "%color",
+      "x=",
+      "y=",
+      "node distance="
+    ]
+  },
+  "args": []
+}

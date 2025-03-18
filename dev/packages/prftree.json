@@ -1,678 +1,1209 @@
 {
-  "includes": {},
-  "macros": {
-    "prfassumption{}": {
-      "snippet": "prfassumption{${1:formula}}"
-    },
-    "prfassumption<>{}": {
-      "snippet": "prfassumption<${2:label}>{${1:formula}}"
-    },
-    "prfboundedassumption{}": {
-      "snippet": "prfboundedassumption{${1:formula}}"
-    },
-    "prfboundedassumption<>{}": {
-      "snippet": "prfboundedassumption<${2:label}>{${1:formula}}"
-    },
-    "prfaxiom{}": {
-      "snippet": "prfaxiom{${1:axiom}}"
-    },
-    "prfbyaxiom{}{}": {
-      "snippet": "prfbyaxiom{${1:name}}{${2:axiom}}"
-    },
-    "prflinepadbefore": {},
-    "prflinepadafter": {},
-    "prflineextra": {},
-    "prflinethickness": {},
-    "prfemptylinethickness": {},
-    "prfrulenameskip": {},
-    "prflabelskip": {},
-    "prfinterspace": {},
-    "prfdoublelineinterspace": {},
-    "prffancyline": {},
-    "ifprfIMPOption": {},
-    "prfIMPOptiontrue": {},
-    "prfIMPOptionfalse": {},
-    "ifprfSTRUToption": {},
-    "prfSTRUToptiontrue": {},
-    "prfSTRUToptionfalse": {},
-    "ifprfSTRUTlabeloption": {},
-    "prfSTRUTlabeloptiontrue": {},
-    "prfSTRUTlabeloptionfalse": {},
-    "prfboundedstyle": {},
-    "prfdiscargedassumption": {},
-    "prfsummarystyle": {},
-    "prffancysummarybox": {},
-    "prfConclusionBox{}": {
-      "snippet": "prfConclusionBox{${1:arg}}"
-    },
-    "prfAssumptionBox{}": {
-      "snippet": "prfAssumptionBox{${1:arg}}"
-    },
-    "prfRuleNameBox{}": {
-      "snippet": "prfRuleNameBox{${1:arg}}"
-    },
-    "prfLabelBox{}": {
-      "snippet": "prfLabelBox{${1:arg}}"
-    },
-    "prfref<>": {
-      "snippet": "prfref<${1:label}>"
-    },
-    "theprfassumptioncounter": {},
-    "theprfsummarycounter": {},
-    "prflabelledassumptionbox{}{}": {
-      "snippet": "prflabelledassumptionbox{${1:arg1}}{${2:arg2}}"
-    },
-    "prflabelleddiscargedassumption{}{}": {
-      "snippet": "prflabelleddiscargedassumption{${1:arg1}}{${2:arg2}}"
-    },
-    "prfauxlabel{}{}": {
-      "snippet": "prfauxlabel{${1:arg1}}{${2:arg2}}"
-    },
-    "NDA{}": {
-      "snippet": "NDA{${1:formula}}",
-      "option": "ND"
-    },
-    "NDA<>{}": {
-      "snippet": "NDA<${2:label}>{${1:formula}}",
-      "option": "SEQ"
-    },
-    "NDAL{}{}": {
-      "snippet": "NDAL{${1:label}}{${2:formula}}",
-      "option": "ND"
-    },
-    "NDD{}": {
-      "snippet": "NDD{${1:formula}}",
-      "option": "ND"
-    },
-    "NDD<>{}": {
-      "snippet": "NDD<${2:label}>{${1:formula}}",
-      "option": "ND"
-    },
-    "NDDL{}{}": {
-      "snippet": "NDDL{${1:label}}{${2:formula}}",
-      "option": "ND"
-    },
-    "SEQA{}": {
-      "snippet": "SEQA{${1:formula}}",
-      "option": "SEQ"
-    },
-    "SEQD{}": {
-      "snippet": "SEQD{${1:formula}}",
-      "option": "SEQ"
-    },
-    "type": {
-      "option": "ML"
-    },
-    "universe": {
-      "option": "ML"
-    },
-    "judgementaldef": {
-      "option": "ML"
-    },
-    "propositionaldef": {
-      "option": "ML"
-    },
-    "emptytype": {
-      "option": "ML"
-    },
-    "unittype": {
-      "option": "ML"
-    },
-    "booleantype": {
-      "option": "ML"
-    },
-    "context": {
-      "option": "ML"
-    },
-    "identitytype": {
-      "option": "ML"
-    },
-    "refl": {
-      "option": "ML"
-    },
-    "axiomofchoice": {
-      "option": "ML"
-    },
-    "accessibility": {
-      "option": "ML"
-    },
-    "ap": {
-      "option": "ML"
-    },
-    "apd": {
-      "option": "ML"
-    },
-    "basepoint": {
-      "option": "ML"
-    },
-    "biinv": {
-      "option": "ML"
-    },
-    "cardtype": {
-      "option": "ML"
-    },
-    "cocone": {
-      "option": "ML"
-    },
-    "cons": {
-      "option": "ML"
-    },
-    "contr": {
-      "option": "ML"
-    },
-    "equivtype": {
-      "option": "ML"
-    },
-    "ext": {
-      "option": "ML"
-    },
-    "fiber": {
-      "option": "ML"
-    },
-    "funext": {
-      "option": "ML"
-    },
-    "glue": {
-      "option": "ML"
-    },
-    "happly": {
-      "option": "ML"
-    },
-    "hom": {
-      "option": "ML"
-    },
-    "id": {
-      "option": "ML"
-    },
-    "idtoeqv": {
-      "option": "ML"
-    },
-    "im": {
-      "option": "ML"
-    },
-    "idtoiso": {
-      "option": "ML"
-    },
-    "ind": {
-      "option": "ML"
-    },
-    "inj": {
-      "option": "ML",
-      "detail": "↣",
-      "documentation": "righ z notation total injection"
-    },
-    "inl": {
-      "option": "ML"
-    },
-    "inr": {
-      "option": "ML"
-    },
-    "iscontr": {
-      "option": "ML"
-    },
-    "isequiv": {
-      "option": "ML"
-    },
-    "ishae": {
-      "option": "ML"
-    },
-    "isotoid": {
-      "option": "ML"
-    },
-    "isntype{}": {
-      "snippet": "isntype{${1:arg}}",
-      "option": "ML"
-    },
-    "isprop": {
-      "option": "ML"
-    },
-    "isset": {
-      "option": "ML"
-    },
-    "ker": {
-      "option": "ML"
-    },
-    "LEM": {
-      "option": "ML"
-    },
-    "linv": {
-      "option": "ML"
-    },
-    "listtype": {
-      "option": "ML"
-    },
-    "loopcons": {
-      "option": "ML"
-    },
-    "Map": {
-      "option": "ML"
-    },
-    "merid": {
-      "option": "ML"
-    },
-    "nil": {
-      "option": "ML"
-    },
-    "ordtype": {
-      "option": "ML"
-    },
-    "pair": {
-      "option": "ML"
-    },
-    "pred": {
-      "option": "ML"
-    },
-    "pr": {
-      "option": "ML"
-    },
-    "Prop": {
-      "option": "ML"
-    },
-    "qinv": {
-      "option": "ML"
-    },
-    "rec": {
-      "option": "ML"
-    },
-    "rinv": {
-      "option": "ML"
-    },
-    "seg": {
-      "option": "ML"
-    },
-    "Set": {
-      "option": "ML"
-    },
-    "Succ": {
-      "option": "ML",
-      "detail": "⪼",
-      "documentation": "DOUBLE SUCCEEDS"
-    },
-    "sup": {
-      "option": "ML"
-    },
-    "total": {
-      "option": "ML"
-    },
-    "transport": {
-      "option": "ML"
-    },
-    "ua": {
-      "option": "ML"
-    },
-    "Wtype": {
-      "option": "ML"
-    },
-    "transportconst": {
-      "option": "ML"
-    },
-    "MLctxEMPrule": {
-      "option": "ML"
-    },
-    "MLctxEXTrule": {
-      "option": "ML"
-    },
-    "MLVblerule": {
-      "option": "ML"
-    },
-    "MLSubstrule": {
-      "option": "ML"
-    },
-    "MLWkgrule": {
-      "option": "ML"
-    },
-    "MLEQreflrule": {
-      "option": "ML"
-    },
-    "MLEQsymrule": {
-      "option": "ML"
-    },
-    "MLEQtransrule": {
-      "option": "ML"
-    },
-    "MLEQsubstrule": {
-      "option": "ML"
-    },
-    "MLEQsubsteqrule": {
-      "option": "ML"
-    },
-    "MLUintrorule": {
-      "option": "ML"
-    },
-    "MLUcumulrule": {
-      "option": "ML"
-    },
-    "MLUcumuleqrule": {
-      "option": "ML"
-    },
-    "MLpiformrule": {
-      "option": "ML"
-    },
-    "MLpiformeqrule": {
-      "option": "ML"
-    },
-    "MLpiintrorule": {
-      "option": "ML"
-    },
-    "MLpiintroeqrule": {
-      "option": "ML"
-    },
-    "MLpielimrule": {
-      "option": "ML"
-    },
-    "MLpielimeqrule": {
-      "option": "ML"
-    },
-    "MLpicomprule": {
-      "option": "ML"
-    },
-    "MLpiuniqrule": {
-      "option": "ML"
-    },
-    "MLKintrorule": {
-      "option": "ML"
-    },
-    "MLsigmaformrule": {
-      "option": "ML"
-    },
-    "MLsigmaintrorule": {
-      "option": "ML"
-    },
-    "MLsigmaelimrule": {
-      "option": "ML"
-    },
-    "MLsigmacomprule": {
-      "option": "ML"
-    },
-    "MLsigmauniqrule": {
-      "option": "ML"
-    },
-    "MLplusformrule": {
-      "option": "ML"
-    },
-    "MLplusintrolrule": {
-      "option": "ML"
-    },
-    "MLplusintrorrule": {
-      "option": "ML"
-    },
-    "MLpluselimrule": {
-      "option": "ML"
-    },
-    "MLpluscomplrule": {
-      "option": "ML"
-    },
-    "MLpluscomprrule": {
-      "option": "ML"
-    },
-    "MLplusuniqrule": {
-      "option": "ML"
-    },
-    "MLzeroformrule": {
-      "option": "ML"
-    },
-    "MLzeroelimrule": {
-      "option": "ML"
-    },
-    "MLzerouniqrule": {
-      "option": "ML"
-    },
-    "MLunitformrule": {
-      "option": "ML"
-    },
-    "MLunitintrorule": {
-      "option": "ML"
-    },
-    "MLunitelimrule": {
-      "option": "ML"
-    },
-    "MLunitcomprule": {
-      "option": "ML"
-    },
-    "MLunituniqrule": {
-      "option": "ML"
-    },
-    "MLnatformrule": {
-      "option": "ML"
-    },
-    "MLnatintrozerorule": {
-      "option": "ML"
-    },
-    "MLnatintrosuccrule": {
-      "option": "ML"
-    },
-    "MLnatelimrule": {
-      "option": "ML"
-    },
-    "MLnatcompzerorule": {
-      "option": "ML"
-    },
-    "MLnatcompsuccrule": {
-      "option": "ML"
-    },
-    "MLnatuniqrule": {
-      "option": "ML"
-    },
-    "MLidformrule": {
-      "option": "ML"
-    },
-    "MLidintrorule": {
-      "option": "ML"
-    },
-    "MLidelimrule": {
-      "option": "ML"
-    },
-    "MLidcomprule": {
-      "option": "ML"
-    },
-    "MLiduniqrule": {
-      "option": "ML"
-    },
-    "MLwformrule": {
-      "option": "ML"
-    },
-    "MLwintrorule": {
-      "option": "ML"
-    },
-    "MLwelimrule": {
-      "option": "ML"
-    },
-    "MLwcomprule": {
-      "option": "ML"
-    },
-    "MLwuniqrule": {
-      "option": "ML"
-    },
-    "MLListformrule": {
-      "option": "ML"
-    },
-    "MLListintronrule": {
-      "option": "ML"
-    },
-    "MLListintrocrule": {
-      "option": "ML"
-    },
-    "MLListelimrule": {
-      "option": "ML"
-    },
-    "MLListcompnrule": {
-      "option": "ML"
-    },
-    "MLListcompcrule": {
-      "option": "ML"
-    },
-    "MLListuniqrule": {
-      "option": "ML"
-    },
-    "MLfunextrule": {
-      "option": "ML"
-    },
-    "MLunivrule": {
-      "option": "ML"
-    },
-    "MLSformrule": {
-      "option": "ML"
-    },
-    "MLSintrorule": {
-      "option": "ML"
-    },
-    "MLSelimrule": {
-      "option": "ML"
-    },
-    "MLScomprule": {
-      "option": "ML"
-    },
-    "MLSuniqrule": {
-      "option": "ML"
-    },
-    "MLSpeqintrorule": {
-      "option": "ML"
-    },
-    "MLSpeqcomprule": {
-      "option": "ML"
-    },
-    "MLIformrule": {
-      "option": "ML"
-    },
-    "MLIintroarule": {
-      "option": "ML"
-    },
-    "MLIintrobrule": {
-      "option": "ML"
-    },
-    "MLIelimrule": {
-      "option": "ML"
-    },
-    "MLIcomparule": {
-      "option": "ML"
-    },
-    "MLIcompbrule": {
-      "option": "ML"
-    },
-    "MLIuniqrule": {
-      "option": "ML"
-    },
-    "MLIpeqintrorule": {
-      "option": "ML"
-    },
-    "MLIpeqcomprule": {
-      "option": "ML"
-    },
-    "MLsigmaintroarule": {
-      "option": "ML"
-    },
-    "MLsigmaintrobrule": {
-      "option": "ML"
-    },
-    "MLsigmacomparule": {
-      "option": "ML"
-    },
-    "MLsigmacompbrule": {
-      "option": "ML"
-    },
-    "MLsigmapeqintrorule": {
-      "option": "ML"
-    },
-    "MLsigmapeqcomprule": {
-      "option": "ML"
-    },
-    "MLPOformrule": {
-      "option": "ML"
-    },
-    "MLPOintroarule": {
-      "option": "ML"
-    },
-    "MLPOintrobrule": {
-      "option": "ML"
-    },
-    "MLPOelimrule": {
-      "option": "ML"
-    },
-    "MLPOcomparule": {
-      "option": "ML"
-    },
-    "MLPOcompbrule": {
-      "option": "ML"
-    },
-    "MLPOuniqrule": {
-      "option": "ML"
-    },
-    "MLPOpeqintrorule": {
-      "option": "ML"
-    },
-    "MLPOpeqcomprule": {
-      "option": "ML"
-    },
-    "MLTformrule": {
-      "option": "ML"
-    },
-    "MLTintrorule": {
-      "option": "ML"
-    },
-    "MLTelimrule": {
-      "option": "ML"
-    },
-    "MLTcomprule": {
-      "option": "ML"
-    },
-    "MLTuniqrule": {
-      "option": "ML"
-    },
-    "MLTpeqintrorule": {
-      "option": "ML"
-    },
-    "MLTpeqcomprule": {
-      "option": "ML"
-    },
-    "MLtorusformrule": {
-      "option": "ML"
-    },
-    "MLtorusintrorule": {
-      "option": "ML"
-    },
-    "MLtoruselimrule": {
-      "option": "ML"
-    },
-    "MLtoruscomprule": {
-      "option": "ML"
-    },
-    "MLtoruspeqintroarule": {
-      "option": "ML"
-    },
-    "MLtoruspeqintrobrule": {
-      "option": "ML"
-    },
-    "MLtoruspeqintrocrule": {
-      "option": "ML"
-    },
-    "MLtoruspeqcomparule": {
-      "option": "ML"
-    },
-    "MLtoruspeqcompbrule": {
-      "option": "ML"
-    },
-    "MLtoruspeqcompcrule": {
-      "option": "ML"
-    },
-    "prfMakeInferenceRule{}{}": {
-      "snippet": "prfMakeInferenceRule{${1:csname}}{${2:definition}}"
-    },
-    "prfMakeInferenceRuleRef{}{}": {
-      "snippet": "prfMakeInferenceRuleRef{${1:csname}}{${2:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "prfassumption",
+      "arg": {
+        "format": "{}",
+        "snippet": "prfassumption{${1:formula}}"
+      }
+    },
+    {
+      "name": "prfassumption<label>",
+      "arg": {
+        "format": "{}",
+        "snippet": "prfassumption<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "prfboundedassumption",
+      "arg": {
+        "format": "{}",
+        "snippet": "prfboundedassumption{${1:formula}}"
+      }
+    },
+    {
+      "name": "prfboundedassumption<label>",
+      "arg": {
+        "format": "{}",
+        "snippet": "prfboundedassumption<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "prfaxiom",
+      "arg": {
+        "format": "{}",
+        "snippet": "prfaxiom{${1:axiom%formula}}"
+      }
+    },
+    {
+      "name": "prfbyaxiom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prfbyaxiom{${1:name}}{${2:axiom%formula}}"
+      }
+    },
+    {
+      "name": "prflinepadbefore",
+      "unusual": true
+    },
+    {
+      "name": "prflinepadafter",
+      "unusual": true
+    },
+    {
+      "name": "prflineextra",
+      "unusual": true
+    },
+    {
+      "name": "prflinethickness",
+      "unusual": true
+    },
+    {
+      "name": "prfemptylinethickness",
+      "unusual": true
+    },
+    {
+      "name": "prfrulenameskip",
+      "unusual": true
+    },
+    {
+      "name": "prflabelskip",
+      "unusual": true
+    },
+    {
+      "name": "prfinterspace",
+      "unusual": true
+    },
+    {
+      "name": "prfdoublelineinterspace",
+      "unusual": true
+    },
+    {
+      "name": "prffancyline",
+      "unusual": true
+    },
+    {
+      "name": "ifprfIMPOption",
+      "unusual": true
+    },
+    {
+      "name": "prfIMPOptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "prfIMPOptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifprfSTRUToption",
+      "unusual": true
+    },
+    {
+      "name": "prfSTRUToptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "prfSTRUToptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifprfSTRUTlabeloption",
+      "unusual": true
+    },
+    {
+      "name": "prfSTRUTlabeloptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "prfSTRUTlabeloptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "prfboundedstyle",
+      "unusual": true
+    },
+    {
+      "name": "prfdiscargedassumption",
+      "unusual": true
+    },
+    {
+      "name": "prfsummarystyle",
+      "unusual": true
+    },
+    {
+      "name": "prffancysummarybox",
+      "unusual": true
+    },
+    {
+      "name": "prfConclusionBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prfConclusionBox{${1:arg}}"
+      }
+    },
+    {
+      "name": "prfAssumptionBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prfAssumptionBox{${1:arg}}"
+      }
+    },
+    {
+      "name": "prfRuleNameBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prfRuleNameBox{${1:arg}}"
+      }
+    },
+    {
+      "name": "prfLabelBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prfLabelBox{${1:arg}}"
+      }
+    },
+    {
+      "name": "prfref<label>"
+    },
+    {
+      "name": "theprfassumptioncounter",
+      "unusual": true
+    },
+    {
+      "name": "theprfsummarycounter",
+      "unusual": true
+    },
+    {
+      "name": "prflabelledassumptionbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prflabelledassumptionbox{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "prflabelleddiscargedassumption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prflabelleddiscargedassumption{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "prfauxlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prfauxlabel{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "NDA",
+      "if": "ND",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDA{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDA<label>",
+      "if": "ND",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDA<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDAL",
+      "if": "ND",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NDAL{${1:label}}{${2:formula}}"
+      }
+    },
+    {
+      "name": "NDD",
+      "if": "ND",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDD{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDD<label>",
+      "if": "ND",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDD<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDDL",
+      "if": "ND",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NDDL{${1:label}}{${2:formula}}"
+      }
+    },
+    {
+      "name": "SEQA",
+      "if": "SEQ",
+      "arg": {
+        "format": "{}",
+        "snippet": "SEQA{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDA<label>",
+      "if": "SEQ",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDA<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "SEQD",
+      "if": "SEQ",
+      "arg": {
+        "format": "{}",
+        "snippet": "SEQD{${1:formula}}"
+      }
+    },
+    {
+      "name": "NDA<label>",
+      "if": "SEQ",
+      "arg": {
+        "format": "{}",
+        "snippet": "NDA<label>{${1:formula}}"
+      }
+    },
+    {
+      "name": "type",
+      "if": "ML"
+    },
+    {
+      "name": "universe",
+      "if": "ML"
+    },
+    {
+      "name": "judgementaldef",
+      "if": "ML"
+    },
+    {
+      "name": "propositionaldef",
+      "if": "ML"
+    },
+    {
+      "name": "emptytype",
+      "if": "ML"
+    },
+    {
+      "name": "unittype",
+      "if": "ML"
+    },
+    {
+      "name": "booleantype",
+      "if": "ML"
+    },
+    {
+      "name": "context",
+      "if": "ML"
+    },
+    {
+      "name": "identitytype",
+      "if": "ML"
+    },
+    {
+      "name": "refl",
+      "if": "ML"
+    },
+    {
+      "name": "axiomofchoice",
+      "if": "ML"
+    },
+    {
+      "name": "accessibility",
+      "if": "ML"
+    },
+    {
+      "name": "ap",
+      "if": "ML"
+    },
+    {
+      "name": "apd",
+      "if": "ML"
+    },
+    {
+      "name": "basepoint",
+      "if": "ML"
+    },
+    {
+      "name": "biinv",
+      "if": "ML"
+    },
+    {
+      "name": "cardtype",
+      "if": "ML"
+    },
+    {
+      "name": "cocone",
+      "if": "ML"
+    },
+    {
+      "name": "cons",
+      "if": "ML"
+    },
+    {
+      "name": "contr",
+      "if": "ML"
+    },
+    {
+      "name": "equivtype",
+      "if": "ML"
+    },
+    {
+      "name": "ext",
+      "if": "ML"
+    },
+    {
+      "name": "fiber",
+      "if": "ML"
+    },
+    {
+      "name": "funext",
+      "if": "ML"
+    },
+    {
+      "name": "glue",
+      "if": "ML"
+    },
+    {
+      "name": "happly",
+      "if": "ML"
+    },
+    {
+      "name": "hom",
+      "if": "ML"
+    },
+    {
+      "name": "id",
+      "if": "ML"
+    },
+    {
+      "name": "idtoeqv",
+      "if": "ML"
+    },
+    {
+      "name": "im",
+      "if": "ML"
+    },
+    {
+      "name": "idtoiso",
+      "if": "ML"
+    },
+    {
+      "name": "ind",
+      "if": "ML"
+    },
+    {
+      "name": "inj",
+      "if": "ML"
+    },
+    {
+      "name": "inl",
+      "if": "ML"
+    },
+    {
+      "name": "inr",
+      "if": "ML"
+    },
+    {
+      "name": "iscontr",
+      "if": "ML"
+    },
+    {
+      "name": "isequiv",
+      "if": "ML"
+    },
+    {
+      "name": "ishae",
+      "if": "ML"
+    },
+    {
+      "name": "isotoid",
+      "if": "ML"
+    },
+    {
+      "name": "isntype",
+      "if": "ML",
+      "arg": {
+        "format": "{}",
+        "snippet": "isntype{${1:arg}}"
+      }
+    },
+    {
+      "name": "isprop",
+      "if": "ML"
+    },
+    {
+      "name": "isset",
+      "if": "ML"
+    },
+    {
+      "name": "ker",
+      "if": "ML"
+    },
+    {
+      "name": "LEM",
+      "if": "ML"
+    },
+    {
+      "name": "linv",
+      "if": "ML"
+    },
+    {
+      "name": "listtype",
+      "if": "ML"
+    },
+    {
+      "name": "loopcons",
+      "if": "ML"
+    },
+    {
+      "name": "Map",
+      "if": "ML"
+    },
+    {
+      "name": "merid",
+      "if": "ML"
+    },
+    {
+      "name": "nil",
+      "if": "ML"
+    },
+    {
+      "name": "ordtype",
+      "if": "ML"
+    },
+    {
+      "name": "pair",
+      "if": "ML"
+    },
+    {
+      "name": "pred",
+      "if": "ML"
+    },
+    {
+      "name": "pr",
+      "if": "ML"
+    },
+    {
+      "name": "Prop",
+      "if": "ML"
+    },
+    {
+      "name": "qinv",
+      "if": "ML"
+    },
+    {
+      "name": "rec",
+      "if": "ML"
+    },
+    {
+      "name": "rinv",
+      "if": "ML"
+    },
+    {
+      "name": "seg",
+      "if": "ML"
+    },
+    {
+      "name": "Set",
+      "if": "ML"
+    },
+    {
+      "name": "Succ",
+      "if": "ML",
+      "detail": "⪼ (\"mathabx\" command)",
+      "doc": "Double succeeds"
+    },
+    {
+      "name": "sup",
+      "if": "ML"
+    },
+    {
+      "name": "total",
+      "if": "ML"
+    },
+    {
+      "name": "transport",
+      "if": "ML"
+    },
+    {
+      "name": "ua",
+      "if": "ML"
+    },
+    {
+      "name": "Wtype",
+      "if": "ML"
+    },
+    {
+      "name": "transportconst",
+      "if": "ML"
+    },
+    {
+      "name": "MLctxEMPrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLctxEXTrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLVblerule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSubstrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLWkgrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLEQreflrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLEQsymrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLEQtransrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLEQsubstrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLEQsubsteqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLUintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLUcumulrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLUcumuleqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpiformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpiformeqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpiintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpiintroeqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpielimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpielimeqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpicomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpiuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLKintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmaformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmaintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmaelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmacomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmauniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLplusformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLplusintrolrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLplusintrorrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpluselimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpluscomplrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLpluscomprrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLplusuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLzeroformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLzeroelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLzerouniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunitformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunitintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunitelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunitcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunituniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatintrozerorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatintrosuccrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatcompzerorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatcompsuccrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLnatuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLidformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLidintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLidelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLidcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLiduniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLwformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLwintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLwelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLwcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLwuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListintronrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListintrocrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListcompnrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListcompcrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLListuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLfunextrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLunivrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLScomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSpeqintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLSpeqcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIintroarule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIintrobrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIcomparule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIcompbrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIpeqintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLIpeqcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmaintroarule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmaintrobrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmacomparule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmacompbrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmapeqintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLsigmapeqcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOintroarule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOintrobrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOcomparule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOcompbrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOpeqintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLPOpeqcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTelimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTuniqrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTpeqintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLTpeqcomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtorusformrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtorusintrorule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruselimrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruscomprule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqintroarule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqintrobrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqintrocrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqcomparule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqcompbrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "MLtoruspeqcompcrule",
+      "if": "ML",
+      "unusual": true
+    },
+    {
+      "name": "prfMakeInferenceRule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prfMakeInferenceRule{${1:csname}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "prfMakeInferenceRuleRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prfMakeInferenceRuleRef{${1:csname}}{${2:definition}}"
+      }
     }
-  },
-  "envs": {
-    "prfenv": {}
-  },
-  "options": [
-    "ND",
-    "SEQ",
-    "IMP",
-    "EQ",
-    "ML",
-    "MLnodef",
-    "Strut",
-    "StrutLabel"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "prfenv"
+    }
+  ],
+  "keys": {
+    "\\usepackage/prftree#c": [
+      "ND",
+      "SEQ",
+      "IMP",
+      "EQ",
+      "ML",
+      "MLnodef",
+      "Strut",
+      "StrutLabel"
+    ],
+    "\\prftree,\\NDP,\\SEQP": [
+      "r",
+      "rule",
+      "by rule",
+      "by",
+      "right",
+      "l",
+      "left",
+      "label",
+      "straight",
+      "straight line",
+      "straightline",
+      "dotted",
+      "dotted line",
+      "dottedline",
+      "dashed",
+      "dashed line",
+      "dashedline",
+      "f",
+      "fancy",
+      "fancy line",
+      "fancyline",
+      "s",
+      "single",
+      "single line",
+      "singleline",
+      "d",
+      "double",
+      "double line",
+      "doubleline",
+      "noline",
+      "summary"
+    ]
+  },
+  "args": [
+    "\\usepackage/prftree#c"
+  ]
 }

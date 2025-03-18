@@ -1,134 +1,268 @@
 {
-  "includes": {
-    "scrkbase": [],
-    "tocbasic": []
-  },
-  "macros": {
-    "contractSetup{}": {
-      "snippet": "contractSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "scrkbase"
     },
-    "Clause[]": {
-      "snippet": "Clause[${1:properties}]"
+    {
+      "name": "tocbasic"
+    }
+  ],
+  "macros": [
+    {
+      "name": "contractSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "contractSetup{${1:options%keyvals}}",
+        "keys": [
+          "\\contractSetup,\\usepackage/contract#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "SubClause[]": {
-      "snippet": "SubClause[${1:properties}]"
+    {
+      "name": "Clause",
+      "arg": {
+        "format": "[]",
+        "snippet": "Clause[${1:properties%keyvals}]",
+        "keys": [
+          "\\Clause,\\SubClause"
+        ],
+        "keyPos": 0
+      }
     },
-    "Clauseformat": {},
-    "thepar": {},
-    "theHpar": {},
-    "parformat": {},
-    "parformatseparation": {},
-    "withoutparnumber": {},
-    "ellipsispar": {},
-    "ellipsispar[]": {
-      "snippet": "ellipsispar[${1:number}]"
+    {
+      "name": "SubClause",
+      "arg": {
+        "format": "[]",
+        "snippet": "SubClause[${1:properties%keyvals}]",
+        "keys": [
+          "\\Clause,\\SubClause"
+        ],
+        "keyPos": 0
+      }
     },
-    "parellipsis": {},
-    "thesentence": {},
-    "theHsentence": {},
-    "sentencenumberformat": {},
-    "Sentence": {},
-    "refL{}": {
-      "snippet": "refL{${1:label}}"
+    {
+      "name": "Clauseformat",
+      "unusual": true
     },
-    "refS{}": {
-      "snippet": "refS{${1:label}}"
+    {
+      "name": "thepar",
+      "unusual": true
     },
-    "refN{}": {
-      "snippet": "refN{${1:label}}"
+    {
+      "name": "theHpar",
+      "unusual": true
     },
-    "refClause{}": {
-      "snippet": "refClause{${1:label}}"
+    {
+      "name": "parformat",
+      "unusual": true
     },
-    "refClauseN{}": {
-      "snippet": "refClauseN{${1:label}}"
+    {
+      "name": "parformatseparation",
+      "unusual": true
     },
-    "refPar{}": {
-      "snippet": "refPar{${1:label}}"
+    {
+      "name": "withoutparnumber",
+      "unusual": true
     },
-    "refParL{}": {
-      "snippet": "refParL{${1:label}}"
+    {
+      "name": "ellipsispar"
     },
-    "refParS{}": {
-      "snippet": "refParS{${1:label}}"
+    {
+      "name": "ellipsispar",
+      "arg": {
+        "format": "[]",
+        "snippet": "ellipsispar[${1:number}]"
+      }
     },
-    "refParN{}": {
-      "snippet": "refParN{${1:label}}"
+    {
+      "name": "parellipsis",
+      "unusual": true
     },
-    "refParN[]{}": {
-      "snippet": "refParN[${2:number format}]{${1:label}}"
+    {
+      "name": "thesentence",
+      "unusual": true
     },
-    "refSentence{}": {
-      "snippet": "refSentence{${1:label}}"
+    {
+      "name": "theHsentence",
+      "unusual": true
     },
-    "refSentenceL{}": {
-      "snippet": "refSentenceL{${1:label}}"
+    {
+      "name": "sentencenumberformat",
+      "unusual": true
     },
-    "refSentenceS{}": {
-      "snippet": "refSentenceS{${1:label}}"
+    {
+      "name": "Sentence"
     },
-    "refSentenceN{}": {
-      "snippet": "refSentenceN{${1:label}}"
+    {
+      "name": "refL",
+      "arg": {
+        "format": "{}",
+        "snippet": "refL{${1:label}}"
+      }
     },
-    "DeclareNewJuraEnvironment{}{}{}": {
-      "snippet": "DeclareNewJuraEnvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "refS",
+      "arg": {
+        "format": "{}",
+        "snippet": "refS{${1:label}}"
+      }
     },
-    "DeclareNewJuraEnvironment{}[]{}{}": {
-      "snippet": "DeclareNewJuraEnvironment{${1:envname}}[${2:properties}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "refN",
+      "arg": {
+        "format": "{}",
+        "snippet": "refN{${1:label}}"
+      }
     },
-    "parname": {},
-    "parshortname": {},
-    "sentencename": {},
-    "sentenceshortname": {},
-    "AutoPar": {},
-    "Clausemark": {},
-    "DeprecatedParagraph": {},
-    "getmaxpar{}{}{}": {
-      "snippet": "getmaxpar{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "refClause",
+      "arg": {
+        "format": "{}",
+        "snippet": "refClause{${1:label}}"
+      }
     },
-    "ifparnumber": {},
-    "ManualPar": {},
-    "newmaxpar{}{}{}": {
-      "snippet": "newmaxpar{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "refClauseN",
+      "arg": {
+        "format": "{}",
+        "snippet": "refClauseN{${1:label}}"
+      }
     },
-    "ParagraphCompatibilityHacks": {},
-    "parciteformat": {},
-    "parlongformat": {},
-    "parnumberfalse": {},
-    "parnumbertrue": {},
-    "parnumericformat": {},
-    "parshortformat": {},
-    "sentenceciteformat": {},
-    "sentencelongformat": {},
-    "sentencenumericformat": {},
-    "sentenceshortformat": {},
-    "thecontractAbsoluteClause": {},
-    "thecontractClause": {},
-    "thecontractSubClause": {},
-    "theHClause": {},
-    "theHSubClause": {},
-    "thisparnumber": {},
-    "Paragraph": {},
-    "refParagraph": {},
-    "refParagraphN": {},
-    "SubParagraph": {}
-  },
-  "envs": {
-    "contract": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "refPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "refPar{${1:label}}"
+      }
+    },
+    {
+      "name": "refParL",
+      "arg": {
+        "format": "{}",
+        "snippet": "refParL{${1:label}}"
+      }
+    },
+    {
+      "name": "refParS",
+      "arg": {
+        "format": "{}",
+        "snippet": "refParS{${1:label}}"
+      }
+    },
+    {
+      "name": "refParN",
+      "arg": {
+        "format": "{}",
+        "snippet": "refParN{${1:label}}"
+      }
+    },
+    {
+      "name": "refParN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "refParN[${2:number format}]{${1:label}}"
+      }
+    },
+    {
+      "name": "refSentence",
+      "arg": {
+        "format": "{}",
+        "snippet": "refSentence{${1:label}}"
+      }
+    },
+    {
+      "name": "refSentenceL",
+      "arg": {
+        "format": "{}",
+        "snippet": "refSentenceL{${1:label}}"
+      }
+    },
+    {
+      "name": "refSentenceS",
+      "arg": {
+        "format": "{}",
+        "snippet": "refSentenceS{${1:label}}"
+      }
+    },
+    {
+      "name": "refSentenceN",
+      "arg": {
+        "format": "{}",
+        "snippet": "refSentenceN{${1:label}}"
+      }
+    },
+    {
+      "name": "DeclareNewJuraEnvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareNewJuraEnvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "DeclareNewJuraEnvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "DeclareNewJuraEnvironment{${1:envname}}[${4:properties%keyvals}]{${2:begdef}}{${3:enddef}}",
+        "keys": [
+          "\\DeclareNewJuraEnvironment"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "parname",
+      "unusual": true
+    },
+    {
+      "name": "parshortname",
+      "unusual": true
+    },
+    {
+      "name": "sentencename",
+      "unusual": true
+    },
+    {
+      "name": "sentenceshortname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "contract"
+    }
+  ],
+  "keys": {
+    "\\contractSetup,\\usepackage/contract#c": [
       "juratotoc=${1:true|false|<integer>}",
       "juratocindent=",
       "juratocnumberwidth=",
       "contract",
       "juratitlepagebreak",
-      "clausemark=",
-      "parnumber=",
-      "ref="
+      "clausemark=${1|both,false,off,no,forceboth,forceright,right|}",
+      "parnumber=${1|auto,true,false,manual|}",
+      "ref=${1|long,numeric,clauseonly,onlyclause,ClauseOnly,OnlyClause,parlong,longpar,ParL,parnumeric,numericpar,ParN,paroff,nopar,parshort,shortpar,ParS,sentencelong,longsentence,SentenceL,sentencenumeric,numericsentence,SentenceN,sentenceoff,nosentence,sentenceshort,shortsentence,SentenceS,short|}"
+    ],
+    "\\Clause,\\SubClause": [
+      "dummy",
+      "head=${1:running head}",
+      "nohead",
+      "notocentry",
+      "number=${1:number}",
+      "preskip=",
+      "postskip=",
+      "title=${1:text}",
+      "tocentry=${1:entry}"
+    ],
+    "\\DeclareNewJuraEnvironment": [
+      "Clause=${1:command}",
+      "ClauseFont=${1:commands}",
+      "SubClause=${1:command}",
+      "Sentence=${1:command}",
+      "ClauseNumberFormat=${1:command}"
     ]
+  },
+  "args": [
+    "\\contractSetup,\\usepackage/contract#c"
   ]
 }

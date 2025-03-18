@@ -1,0 +1,61 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "QueryWorkingDirectory",
+      "arg": {
+        "format": "{}",
+        "snippet": "QueryWorkingDirectory{${1:result cmd%cmd}}"
+      }
+    },
+    {
+      "name": "QueryFiles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "QueryFiles{${1:spec}}{${2:function}}"
+      }
+    },
+    {
+      "name": "QueryFiles",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "QueryFiles[${3:options%keyvals}]{${1:spec}}{${2:function}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QueryFilesTF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "QueryFilesTF{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}"
+      }
+    },
+    {
+      "name": "QueryFilesTF",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "QueryFilesTF[${5:options%keyvals}]{${1:spec}}{${2:function}}{${3:pre code}}{${4:empty list code}}",
+        "keys": [
+          "\\QueryFiles,\\QueryFilesTF"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\QueryFiles,\\QueryFilesTF": [
+      "recursive",
+      "ignore-case",
+      "reverse",
+      "pattern",
+      "sort=${1|date,name|}",
+      "type=${1|d,f|}",
+      "exclude=${1:Lua pattern}"
+    ]
+  },
+  "args": []
+}

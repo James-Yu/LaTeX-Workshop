@@ -1,20 +1,38 @@
 {
-  "includes": {
-    "mdwtab": [],
-    "xcolor": []
-  },
-  "macros": {
-    "cellprops{}": {
-      "snippet": "cellprops{${1:CSS properties}}"
+  "deps": [
+    {
+      "name": "mdwtab"
     },
-    "cellpropsclass{}": {
-      "snippet": "cellpropsclass{${1:class1 class2 ...}}"
-    },
-    "cellpropsclass*{}": {
-      "snippet": "cellpropsclass*{${1:class1 class2 ...}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "cellprops",
+      "arg": {
+        "format": "{}",
+        "snippet": "cellprops{${1:CSS properties}}"
+      }
+    },
+    {
+      "name": "cellpropsclass",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cellpropsclass{${1:class1 class2 ...}}"
+      }
+    },
+    {
+      "name": "cellpropsclass*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cellpropsclass*{${1:class1 class2 ...}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

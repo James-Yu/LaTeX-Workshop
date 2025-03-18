@@ -1,35 +1,68 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "sufigures": {},
-    "supfigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=",
-    "scaled=",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "mainfont",
-    "bold",
-    "regular"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/Play#c": [
+      "scale=${2|${1:factor},MatchLowercase|}",
+      "scaled=${2|${1:factor},MatchLowercase|}",
+      "lining",
+      "oldstyle",
+      "tabular",
+      "proportional",
+      "mainfont",
+      "bold",
+      "regular"
+    ]
+  },
+  "args": [
+    "\\usepackage/Play#c"
+  ]
 }

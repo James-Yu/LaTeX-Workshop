@@ -1,87 +1,234 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "microtype": [],
-    "xstring": [],
-    "longtable": [],
-    "array": [],
-    "multicol": [],
-    "multirow": [],
-    "rotating": [],
-    "caption": [],
-    "fancyhdr": [],
-    "xcolor": [],
-    "bookmark": [],
-    "babel": [],
-    "ellipsis": [],
-    "pgf": [],
-    "pgfplots": [],
-    "pgfplotstable": [],
-    "pgfplotslibrarydateplot": [],
-    "pgfcalendar": [
-      "graph"
-    ],
-    "tikzlibrarycalendar": [
-      "graph"
-    ],
-    "tikzlibraryexternal": [
-      "graph"
-    ],
-    "colortbl": [],
-    "xspace": []
-  },
-  "macros": {
-    "row": {},
-    "dmlbsetdate{}{}{}": {
-      "snippet": "dmlbsetdate{${1:YYYY}}{${2:MM}}{${3:DD}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "dmlbsetdate{}{}{}[]": {
-      "snippet": "dmlbsetdate{${1:YYYY}}{${2:MM}}{${3:DD}}[${4:rel path}]"
+    {
+      "name": "microtype"
     },
-    "QQQ{}{}{}{}{}{}{}": {
-      "snippet": "QQQ{${1:time}}{${2:blood glucose}}{${3:insulin}}{${4:carbohydrates}}{${5:protein}}{${6:fat}}{${7:remarks}}"
+    {
+      "name": "xstring"
     },
-    "QQQ[]{}{}{}{}{}{}{}": {
-      "snippet": "QQQ[${8:date}]{${1:time}}{${2:blood glucose}}{${3:insulin}}{${4:carbohydrates}}{${5:protein}}{${6:fat}}{${7:remarks}}"
+    {
+      "name": "longtable"
     },
-    "autoFileInput{}": {
-      "snippet": "autoFileInput{${1:rel path}}"
+    {
+      "name": "array"
     },
-    "calcmaxrows": {},
-    "changestrut": {},
-    "Day": {},
-    "fixme": {},
-    "Month": {},
-    "rowstyle{}": {
-      "snippet": "rowstyle{${1:style commands}}"
+    {
+      "name": "multicol"
     },
-    "sYear": {},
-    "TwoDigits{}": {
-      "snippet": "TwoDigits{${1:num}}"
+    {
+      "name": "multirow"
     },
-    "writeperiods": {},
-    "Year": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {}
-  },
-  "envs": {},
-  "options": [
-    "graph"
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "ellipsis"
+    },
+    {
+      "name": "pgf"
+    },
+    {
+      "name": "pgfplots"
+    },
+    {
+      "name": "pgfplotstable"
+    },
+    {
+      "name": "pgfplotslibrarydateplot"
+    },
+    {
+      "name": "pgfcalendar",
+      "if": "graph"
+    },
+    {
+      "name": "tikzlibrarycalendar",
+      "if": "graph"
+    },
+    {
+      "name": "tikzlibraryexternal",
+      "if": "graph"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "xspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "row"
+    },
+    {
+      "name": "dmlbsetdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dmlbsetdate{${1:YYYY}}{${2:MM}}{${3:DD}}"
+      }
+    },
+    {
+      "name": "dmlbsetdate",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "dmlbsetdate{${1:YYYY}}{${2:MM}}{${3:DD}}[${4:rel path}]"
+      }
+    },
+    {
+      "name": "QQQ",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "QQQ{${1:time}}{${2:blood glucose}}{${3:insulin}}{${4:carbohydrates}}{${5:protein}}{${6:fat}}{${7:remarks%text}}"
+      }
+    },
+    {
+      "name": "QQQ",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "QQQ[${8:date}]{${1:time}}{${2:blood glucose}}{${3:insulin}}{${4:carbohydrates}}{${5:protein}}{${6:fat}}{${7:remarks%text}}"
+      }
+    },
+    {
+      "name": "autoFileInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "autoFileInput{${1:rel path}}"
+      }
+    },
+    {
+      "name": "calcmaxrows",
+      "unusual": true
+    },
+    {
+      "name": "changestrut",
+      "unusual": true
+    },
+    {
+      "name": "Day",
+      "unusual": true
+    },
+    {
+      "name": "Month",
+      "unusual": true
+    },
+    {
+      "name": "rowstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "rowstyle{${1:style commands}}"
+      }
+    },
+    {
+      "name": "TwoDigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TwoDigits{${1:num}}"
+      }
+    },
+    {
+      "name": "writeperiods",
+      "unusual": true
+    },
+    {
+      "name": "Year",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dmlb#c": [
+      "graph"
+    ]
+  },
+  "args": [
+    "\\usepackage/dmlb#c"
+  ]
 }

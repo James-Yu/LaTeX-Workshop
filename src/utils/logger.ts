@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
-const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop')
+const LOG_PANEL = vscode.window.createOutputChannel('LaTeX Workshop', 'latex_workshop_log')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
 const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
 const PLACEHOLDERS: {[placeholder: string]: string} = {}
@@ -19,7 +19,8 @@ export const log = {
     initStatusBarItem,
     logConfig,
     logConfigChange,
-    logDeprecatedConfig
+    logDeprecatedConfig,
+    applyPlaceholders
 }
 
 function resetCachedLog() {
@@ -126,6 +127,7 @@ function initStatusBarItem() {
 
 function clearCompilerMessage() {
     COMPILER_PANEL.clear()
+    CACHED_COMPILER.length = 0
 }
 
 function showLog() {

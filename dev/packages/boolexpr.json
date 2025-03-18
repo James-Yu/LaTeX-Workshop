@@ -1,23 +1,47 @@
 {
-  "includes": {},
-  "macros": {
-    "boolexpr{}": {
-      "snippet": "boolexpr{${1:expression}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "boolexpr",
+      "arg": {
+        "format": "{}",
+        "snippet": "boolexpr{${1:expression}}"
+      }
     },
-    "AND": {},
-    "OR": {},
-    "ifswitch": {},
-    "ifboolexpr{}{}{}": {
-      "snippet": "ifboolexpr{${1:expression}}{${2:true}}{${3:false}}"
+    {
+      "name": "AND"
     },
-    "switch": {},
-    "case{}": {
-      "snippet": "case{${1:expression}}"
+    {
+      "name": "OR"
     },
-    "otherwise": {},
-    "endswitch": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ifswitch"
+    },
+    {
+      "name": "ifboolexpr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifboolexpr{${1:expression}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "switch"
+    },
+    {
+      "name": "case",
+      "arg": {
+        "format": "{}",
+        "snippet": "case{${1:expression}}"
+      }
+    },
+    {
+      "name": "otherwise"
+    },
+    {
+      "name": "endswitch"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

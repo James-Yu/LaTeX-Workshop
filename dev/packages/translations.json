@@ -1,0 +1,367 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "pdftexcmds"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DeclareLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareLanguage{${1:lang}}"
+      }
+    },
+    {
+      "name": "DeclareLanguageAlias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareLanguageAlias{${1:lang2}}{${2:lang1}}"
+      }
+    },
+    {
+      "name": "DeclareLanguageDialect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareLanguageDialect{${1:dialect}}{${2:lang}}"
+      }
+    },
+    {
+      "name": "NewTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "NewTranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "NewTranslationFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewTranslationFallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "RenewTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "RenewTranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "RenewTranslationFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewTranslationFallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "ProvideTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ProvideTranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "ProvideTranslationFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ProvideTranslationFallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "DeclareTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareTranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "DeclareTranslationFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareTranslationFallback{${1:key%plain}}{${2:fallback}}"
+      }
+    },
+    {
+      "name": "definetranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definetranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "definetranslationfallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "definetranslationfallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "redefinetranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "redefinetranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "redefinetranslationfallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "redefinetranslationfallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "addtranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "addtranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "addtranslationfallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addtranslationfallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "declaretranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "declaretranslation{${1:lang}}{${2:key%plain}}{${3:translation}}"
+      }
+    },
+    {
+      "name": "declaretranslationfallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declaretranslationfallback{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "IfTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "IfTranslation{${1:lang}}{${2:key%plain}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "GetTranslationFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "GetTranslationFor{${1:lang}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "GetTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GetTranslation{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "GetLCTranslationFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "GetLCTranslationFor{${1:lang}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "GetLCTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GetLCTranslation{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "GetTranslationForWarn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "GetTranslationForWarn{${1:lang}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "GetTranslationWarn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GetTranslationWarn{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "GetLCTranslationForWarn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "GetLCTranslationForWarn{${1:lang}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "GetLCTranslationWarn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GetLCTranslationWarn{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "SaveTranslationFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SaveTranslationFor{${1:cmd}}{${2:lang}}{${3:key%plain}}"
+      }
+    },
+    {
+      "name": "SaveTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SaveTranslation{${1:cmd}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "LoadDictionary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LoadDictionary{${1:name}}"
+      }
+    },
+    {
+      "name": "LoadDictionaryFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LoadDictionaryFor{${1:lang}}{${2:name}}"
+      }
+    },
+    {
+      "name": "LoadDictionaryForDialect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LoadDictionaryForDialect{${1:lang}}{${2:name}}"
+      }
+    },
+    {
+      "name": "NewDictTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewDictTranslation{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "RenewDictTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewDictTranslation{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "ProvideDictTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ProvideDictTranslation{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "DeclareDictTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareDictTranslation{${1:key%plain}}{${2:translation}}"
+      }
+    },
+    {
+      "name": "ProvideDictionaryFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "ProvideDictionaryFor{${1:lang}}{${2:name}}[${3:date}]"
+      }
+    },
+    {
+      "name": "PrintDictionaryFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "PrintDictionaryFor{${1:lang}}{${2:name}}{${3:pre}}{${4:mid}}{${5:post}}"
+      }
+    },
+    {
+      "name": "baselanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "baselanguage{${1:lang}}"
+      }
+    },
+    {
+      "name": "ifcurrentlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifcurrentlanguage{${1:lang}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifcurrentlang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ifcurrentlang{${1:lang}}"
+      }
+    },
+    {
+      "name": "ifcurrentbaselanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifcurrentbaselanguage{${1:lang}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifcurrentbaselang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ifcurrentbaselang{${1:lang}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
+}

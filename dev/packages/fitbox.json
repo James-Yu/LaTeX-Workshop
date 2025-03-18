@@ -1,44 +1,85 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "fitbox{}": {
-      "snippet": "fitbox{${1:content}}"
-    },
-    "fitbox[]{}": {
-      "snippet": "fitbox[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fitbox*{}": {
-      "snippet": "fitbox*{${1:content}}"
-    },
-    "fitbox*[]{}": {
-      "snippet": "fitbox*[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fitboxset{}": {
-      "snippet": "fitboxset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fitboxnatwidth": {},
-    "fitboxnatheight": {},
-    "SetFitboxLayout{}{}": {
-      "snippet": "SetFitboxLayout{${1:rows}}{${2:columns}}"
-    },
-    "SetFitboxLayout[]{}{}": {
-      "snippet": "SetFitboxLayout[${3:options}]{${1:rows}}{${2:columns}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "fitbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "fitbox{${1:content%text}}"
+      }
+    },
+    {
+      "name": "fitbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fitbox[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\fitbox,\\fitbox*,\\fitboxset,\\SetFitboxLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fitbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fitbox*{${1:content%text}}"
+      }
+    },
+    {
+      "name": "fitbox*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fitbox*[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\fitbox,\\fitbox*,\\fitboxset,\\SetFitboxLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fitboxset",
+      "arg": {
+        "format": "{}",
+        "snippet": "fitboxset{${1:options%keyvals}}",
+        "keys": [
+          "\\fitbox,\\fitbox*,\\fitboxset,\\SetFitboxLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fitboxnatwidth"
+    },
+    {
+      "name": "fitboxnatheight"
+    },
+    {
+      "name": "SetFitboxLayout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetFitboxLayout{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "SetFitboxLayout",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "SetFitboxLayout[${3:options%keyvals}]{${1:rows}}{${2:columns}}",
+        "keys": [
+          "\\fitbox,\\fitbox*,\\fitboxset,\\SetFitboxLayout"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\fitbox,\\fitbox*,\\fitboxset,\\SetFitboxLayout": [
       "maxheight=",
       "maxwidth=",
       "minheight=",
@@ -52,5 +93,6 @@
       "subcapheight=",
       "subcaplines=${1:integer}"
     ]
-  ]
+  },
+  "args": []
 }

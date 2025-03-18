@@ -1,56 +1,113 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifluatex": [],
-    "cu-kinovar": []
-  },
-  "macros": {
-    "cuKruk{}{}": {
-      "snippet": "cuKruk{${1:neume}}{${2:text}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "cuKruk[]{}{}": {
-      "snippet": "cuKruk[${3:options}]{${1:neume}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifluatex"
     },
-    "cuKrukPara{}": {
-      "snippet": "cuKrukPara{${1:neumes \\\\ ... \\\\ lyrics}}"
-    },
-    "cuKrukPara[]{}": {
-      "snippet": "cuKrukPara[${2:options}]{${1:neumes \\\\ ... \\\\ lyrics}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "cuSup{}{}": {
-      "snippet": "cuSup{${1:sup text}}{${2:base text}}"
-    },
-    "cuSup[]{}{}": {
-      "snippet": "cuSup[${3:options}]{${1:sup text}}{${2:base text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "cuKrukFont": {},
-    "cuKrukSylSpace": {},
-    "cuKrukTopMargin": {},
-    "cuKrukSylRuleHeight": {},
-    "cuKrukRaise": {},
-    "cuSupRaise": {}
-  },
-  "envs": {},
-  "options": [
-    "autocolormarks",
-    "noautocolormarks"
+    {
+      "name": "cu-kinovar"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "cuKruk",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cuKruk{${1:neume}}{${2:text}}"
+      }
+    },
+    {
+      "name": "cuKruk",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "cuKruk[${3:options%keyvals}]{${1:neume}}{${2:text}}",
+        "keys": [
+          "\\cuKruk,\\cuKrukPara"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cuKrukPara",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuKrukPara{${1:neumes \\\\ ... \\\\ lyrics}}"
+      }
+    },
+    {
+      "name": "cuKrukPara",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cuKrukPara[${2:options%keyvals}]{${1:neumes \\\\ ... \\\\ lyrics}}",
+        "keys": [
+          "\\cuKruk,\\cuKrukPara"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cuSup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cuSup{${1:sup text}}{${2:base text%text}}"
+      }
+    },
+    {
+      "name": "cuSup",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "cuSup[${3:options%keyvals}]{${1:sup text}}{${2:base text%text}}",
+        "keys": [
+          "\\cuSup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cuKrukFont",
+      "unusual": true
+    },
+    {
+      "name": "cuKrukSylSpace",
+      "unusual": true
+    },
+    {
+      "name": "cuKrukTopMargin",
+      "unusual": true
+    },
+    {
+      "name": "cuKrukSylRuleHeight",
+      "unusual": true
+    },
+    {
+      "name": "cuKrukRaise",
+      "unusual": true
+    },
+    {
+      "name": "cuSupRaise",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cu-kruk#c": [
+      "autocolormarks",
+      "noautocolormarks"
+    ],
+    "\\cuKruk,\\cuKrukPara": [
       "krukFont=${1:font}",
       "sylSpace=",
       "topMargin=",
       "krukRaise=",
       "sylRuleHeight="
     ],
-    [
+    "\\cuSup": [
       "raise="
     ]
+  },
+  "args": [
+    "\\usepackage/cu-kruk#c"
   ]
 }

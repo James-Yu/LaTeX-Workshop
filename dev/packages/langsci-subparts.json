@@ -1,22 +1,47 @@
 {
-  "includes": {
-    "titlesec": [],
-    "titletoc": []
-  },
-  "macros": {
-    "subpart*{}": {
-      "snippet": "subpart*{${1:title}}"
+  "deps": [
+    {
+      "name": "titlesec"
     },
-    "subpart[]{}": {
-      "snippet": "subpart[${2:short title}]{${1:title}}"
+    {
+      "name": "titletoc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "subpart*",
+      "arg": {
+        "format": "{}",
+        "snippet": "subpart*{${1:title}}"
+      }
     },
-    "subpartname": {},
-    "subpart{}": {
-      "snippet": "subpart{${1:title}}"
+    {
+      "name": "subpart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subpart[${2:short title}]{${1:title}}"
+      }
     },
-    "thesubpart": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "subpartname"
+    },
+    {
+      "name": "subpart",
+      "arg": {
+        "format": "{}",
+        "snippet": "subpart{${1:title}}"
+      }
+    },
+    {
+      "name": "thesubpart",
+      "unusual": true
+    },
+    {
+      "name": "subpartname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

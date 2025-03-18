@@ -1,68 +1,36 @@
 {
-  "includes": {
-    "class-einfart": [],
-    "ProjLib": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymany": [],
-    "needspace": [],
-    "enumitem": []
-  },
-  "macros": {
-    "JWJournalSeperator": {},
-    "JWJournalEntry{}{}": {
-      "snippet": "JWJournalEntry{${1:date}}{${2:text}}"
+  "deps": [
+    {
+      "name": "class-einfart"
     },
-    "JWJournalItem{}{}": {
-      "snippet": "JWJournalItem{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "ProjLib"
     },
-    "JWJournalSkip<>": {
-      "snippet": "JWJournalSkip<${1:factor}>"
+    {
+      "name": "tcolorbox"
     },
-    "JWJournalBack<>": {
-      "snippet": "JWJournalBack<${1:factor}>"
+    {
+      "name": "tcolorboxlibrarymany"
     },
-    "JWJournalCompactCenterText{}": {
-      "snippet": "JWJournalCompactCenterText{${1:text}}"
+    {
+      "name": "needspace"
     },
-    "JWJournalShowImageCenter<><>": {
-      "snippet": "JWJournalShowImageCenter<${1:options}><${2:imagefile}>"
-    },
-    "JWJournalShowImageLeft<><>": {
-      "snippet": "JWJournalShowImageLeft<${1:options}><${2:imagefile}>"
-    },
-    "JWJournalShowImageRight<><>": {
-      "snippet": "JWJournalShowImageRight<${1:options}><${2:imagefile}>"
-    },
-    "JWJournalNote{}": {
-      "snippet": "JWJournalNote{${1:arg}}"
-    },
-    "JWJournalSepLine": {},
-    "JWJournalSepLine[]": {
-      "snippet": "JWJournalSepLine[${1:color}]"
-    },
-    "jwjournaltext{}": {
-      "snippet": "jwjournaltext{${1:text}}"
-    },
-    "InputJournal{}": {
-      "snippet": "InputJournal{${1:file}}"
-    },
-    "IncludeJournal{}": {
-      "snippet": "IncludeJournal{${1:file}}"
+    {
+      "name": "enumitem"
     }
-  },
-  "envs": {
-    "jwjournal": {},
-    "JWJournalCompactCenter": {},
-    "JWJournalCenter": {},
-    "JWJournalLeft": {},
-    "JWJournalRight": {}
-  },
-  "options": [
-    "month-day-year",
-    "day-month-year",
-    "paperstyle=",
-    "scroll",
-    "color entry"
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\documentclass/jwjournal#c": [
+      "month-day-year",
+      "day-month-year",
+      "paperstyle=${1|lightyellow,yellow,parchment,green,lightgray,gray,nord,dark|}",
+      "scroll",
+      "color entry"
+    ]
+  },
+  "args": [
+    "\\documentclass/jwjournal#c"
+  ]
 }

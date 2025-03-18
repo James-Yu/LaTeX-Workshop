@@ -1,0 +1,83 @@
+{
+  "deps": [
+    {
+      "name": "xcolor"
+    }
+  ],
+  "macros": [
+    {
+      "name": "qrcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "qrcode{${1:URL}}"
+      }
+    },
+    {
+      "name": "qrcode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "qrcode[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\qrcode,\\qrset,\\qrcode*",
+          "\\qrcode,\\qrset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "qrcode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "qrcode*{${1:URL}}"
+      }
+    },
+    {
+      "name": "qrcode*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "qrcode*[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\qrcode,\\qrset,\\qrcode*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "qrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "qrset{${1:options%keyvals}}",
+        "keys": [
+          "\\qrcode,\\qrset,\\qrcode*",
+          "\\qrcode,\\qrset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/qrcode#c": [
+      "nolinks",
+      "draft",
+      "final",
+      "forget"
+    ],
+    "\\qrcode,\\qrset,\\qrcode*": [
+      "height=",
+      "level=${1|L,M,Q,H|}",
+      "version=",
+      "tight",
+      "padding",
+      "draft"
+    ],
+    "\\qrcode,\\qrset": [
+      "link",
+      "nolink",
+      "hyperlink"
+    ]
+  },
+  "args": [
+    "\\usepackage/qrcode#c"
+  ]
+}

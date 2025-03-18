@@ -1,0 +1,104 @@
+{
+  "deps": [
+    {
+      "name": "luatex"
+    },
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setemojifont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setemojifont{${1:font}}"
+      }
+    },
+    {
+      "name": "setemojifont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setemojifont{${1:font}}[${2:font features%keyvals}]",
+        "keys": [
+          "\\setemojifont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "emoji",
+      "arg": {
+        "format": "{}",
+        "snippet": "emoji{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setemojifont": [
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,Lowercase,Lining,OldStyle,Proportional,Monospaced,SlashedZero,Arabic,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Script=${1:name}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Mapping=${1:xetex-only feature}",
+      "Renderer=${1:renderer}"
+    ]
+  },
+  "args": []
+}

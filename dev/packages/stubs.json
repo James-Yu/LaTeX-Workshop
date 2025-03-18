@@ -1,28 +1,61 @@
 {
-  "includes": {
-    "textpos": [],
-    "graphicx": []
-  },
-  "macros": {
-    "stubs{}{}": {
-      "snippet": "stubs{${1:width}}{${2:text front}}"
+  "deps": [
+    {
+      "name": "textpos"
     },
-    "stubs{}[]{}": {
-      "snippet": "stubs{${1:width}}[${2:text back}]{${3:text front}}"
-    },
-    "stubs[]{}{}": {
-      "snippet": "stubs[${3:number}]{${1:width}}{${2:text front}}"
-    },
-    "stubs[]{}[]{}": {
-      "snippet": "stubs[${3:number}]{${1:width}}[${4:text back}]{${2:text front}}"
-    },
-    "stublmargin": {},
-    "stubrmargin": {},
-    "stubbmargin": {}
-  },
-  "envs": {},
-  "options": [
-    "addmargin"
+    {
+      "name": "graphicx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "stubs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stubs{${1:width}}{${2:text front%text}}"
+      }
+    },
+    {
+      "name": "stubs",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "stubs{${1:width}}[${3:text back%text}]{${2:text front%text}}"
+      }
+    },
+    {
+      "name": "stubs",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stubs[${3:number}]{${1:width}}{${2:text front%text}}"
+      }
+    },
+    {
+      "name": "stubs",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "stubs[${3:number}]{${1:width}}[${4:text back%text}]{${2:text front%text}}"
+      }
+    },
+    {
+      "name": "stublmargin",
+      "unusual": true
+    },
+    {
+      "name": "stubrmargin",
+      "unusual": true
+    },
+    {
+      "name": "stubbmargin",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/stubs#c": [
+      "addmargin"
+    ]
+  },
+  "args": [
+    "\\usepackage/stubs#c"
+  ]
 }

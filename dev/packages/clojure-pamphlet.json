@@ -1,21 +1,30 @@
 {
-  "includes": {
-    "listings": [],
-    "hyperref": []
-  },
-  "macros": {
-    "getchunk{}": {
-      "snippet": "getchunk{${1:name}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "wbgroup": {},
-    "wegroup": {}
-  },
-  "envs": {
-    "chunk{}": {
-      "name": "chunk",
-      "snippet": "{${1:name}}"
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "getchunk",
+      "arg": {
+        "format": "{}",
+        "snippet": "getchunk{${1:name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "chunk",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

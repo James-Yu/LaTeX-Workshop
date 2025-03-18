@@ -1,19 +1,37 @@
 {
-  "includes": {
-    "endnotes": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "endnote*{}": {
-      "snippet": "endnote*{${1:text}}"
+  "deps": [
+    {
+      "name": "endnotes"
     },
-    "endnote*[]{}": {
-      "snippet": "endnote*[${2:number}]{${1:text}}"
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "endnote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "endnote*{${1:text}}"
+      }
     },
-    "phantomendnote": {},
-    "endnoteautorefname": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "endnote*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "endnote*[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "phantomendnote",
+      "unusual": true
+    },
+    {
+      "name": "endnoteautorefname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

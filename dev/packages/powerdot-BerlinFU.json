@@ -1,104 +1,224 @@
 {
-  "includes": {
-    "pifont": [],
-    "calc": [],
-    "graphicx": [],
-    "tabularx": [],
-    "ragged2e": [],
-    "helvet": []
-  },
-  "macros": {
-    "inst{}": {
-      "snippet": "inst{${1:text}}"
+  "deps": [
+    {
+      "name": "pifont"
     },
-    "framelogo{}": {
-      "snippet": "framelogo{${1:graphics code}}"
+    {
+      "name": "calc"
     },
-    "insertframelogo": {},
-    "titlelogo{}": {
-      "snippet": "titlelogo{${1:graphics code}}"
+    {
+      "name": "graphicx"
     },
-    "inserttitlelogo": {},
-    "fachbereich{}": {
-      "snippet": "fachbereich{${1:fachbereich}}"
+    {
+      "name": "tabularx"
     },
-    "insertfachbereich": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
+    {
+      "name": "ragged2e"
     },
-    "insertsubtitle": {},
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "helvet"
+    }
+  ],
+  "macros": [
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "inst{${1:text}}"
+      }
     },
-    "insertinstitute": {},
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:imagefile}}"
+    {
+      "name": "framelogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "framelogo{${1:graphics code}}"
+      }
     },
-    "titlegraphic[]{}": {
-      "snippet": "titlegraphic[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "insertframelogo",
+      "unusual": true
     },
-    "inserttitlegraphic": {},
-    "LaTeXcentering": {},
-    "LaTeXraggedleft": {},
-    "LaTeXraggedright": {}
-  },
-  "envs": {
-    "titleslide{}": {
+    {
+      "name": "titlelogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlelogo{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "inserttitlelogo",
+      "unusual": true
+    },
+    {
+      "name": "fachbereich",
+      "arg": {
+        "format": "{}",
+        "snippet": "fachbereich{${1:fachbereich}}"
+      }
+    },
+    {
+      "name": "insertfachbereich",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "insertsubtitle",
+      "unusual": true
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:institute}}"
+      }
+    },
+    {
+      "name": "insertinstitute",
+      "unusual": true
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "titlegraphic[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\titlegraphic"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inserttitlegraphic",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXcentering",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXraggedleft",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXraggedright",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
       "name": "titleslide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "titleslide[]{}": {
+    {
       "name": "titleslide",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "basic{}": {
+    {
       "name": "basic",
-      "snippet": "{${1:title}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "basic[]{}": {
+    {
       "name": "basic",
-      "snippet": "[${2:options}]{${1:title}}"
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "wideslide{}": {
+    {
       "name": "wideslide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "wideslide[]{}": {
+    {
       "name": "wideslide",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "slide{}": {
+    {
       "name": "slide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "slide[]{}": {
+    {
       "name": "slide",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "sectionslide{}": {
+    {
       "name": "sectionslide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "sectionslide[]{}": {
+    {
       "name": "sectionslide",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "sectionwideslide{}": {
+    {
       "name": "sectionwideslide",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
     },
-    "sectionwideslide[]{}": {
+    {
       "name": "sectionwideslide",
-      "snippet": "[${2:options}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title}}"
+      }
     },
-    "LaTeXflushleft": {},
-    "LaTeXcenter": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "LaTeXflushleft",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXflushleft",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXcenter",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\titlegraphic": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -108,7 +228,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -129,5 +249,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

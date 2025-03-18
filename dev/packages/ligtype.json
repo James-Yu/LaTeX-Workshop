@@ -1,29 +1,47 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luatexbase": []
-  },
-  "macros": {
-    "nolig{}{}": {
-      "snippet": "nolig{${1:string}}{${2:string with |}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "keeplig{}{}": {
-      "snippet": "keeplig{${1:string}}{${2:string with |}}"
-    },
-    "ligtypeon": {},
-    "ligtypeoff": {},
-    "noligs": {},
-    "ligs": {}
-  },
-  "envs": {},
-  "options": [
-    "noshortf",
-    "allshortf",
-    "makemarks",
-    "kerntest",
-    "nodefault",
-    "liglist",
-    "connotes"
+    {
+      "name": "luatexbase"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nolig",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nolig{${1:string}}{${2:string with |}}"
+      }
+    },
+    {
+      "name": "keeplig",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keeplig{${1:string}}{${2:string with |}}"
+      }
+    },
+    {
+      "name": "ligtypeon"
+    },
+    {
+      "name": "ligtypeoff"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ligtype#c": [
+      "noshortf",
+      "allshortf",
+      "makemarks",
+      "kerntest",
+      "nodefault",
+      "liglist",
+      "connotes"
+    ]
+  },
+  "args": [
+    "\\usepackage/ligtype#c"
+  ]
 }

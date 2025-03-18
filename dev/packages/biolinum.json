@@ -1,174 +1,429 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "biolinum": {},
-    "biolinumOsF": {},
-    "biolinumLF": {},
-    "biolinumkey": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "oldstylenumsf{}": {
-      "snippet": "oldstylenumsf{${1:text}}"
-    },
-    "liningnumsf{}": {
-      "snippet": "liningnumsf{${1:text}}"
-    },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
-    },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
-    },
-    "tabularnumsf{}": {
-      "snippet": "tabularnumsf{${1:text}}"
-    },
-    "proportionalnumsf{}": {
-      "snippet": "proportionalnumsf{${1:text}}"
-    },
-    "DeclareTextGlyphY{}{}{}": {
-      "snippet": "DeclareTextGlyphY{${1:type}}{${2:name}}{${3:number}}"
-    },
-    "biolinumGlyph{}": {
-      "snippet": "biolinumGlyph{${1:glyph name}}"
-    },
-    "biolinumKeyGlyph{}": {
-      "snippet": "biolinumKeyGlyph{${1:glyph name}}"
-    },
-    "LKey{}": {
-      "snippet": "LKey{${1:letter or digit}}"
-    },
-    "LKeyPad{}": {
-      "snippet": "LKeyPad{${1:digit}}"
-    },
-    "LKeyF{}": {
-      "snippet": "LKeyF{${1:digit}}"
-    },
-    "LKeyAltF{}": {
-      "snippet": "LKeyAltF{${1:digit}}"
-    },
-    "LKeyStrgAltF{}": {
-      "snippet": "LKeyStrgAltF{${1:digit}}"
-    },
-    "LKeyCtrlAltF{}": {
-      "snippet": "LKeyCtrlAltF{${1:digit}}"
-    },
-    "LKeyStrgX{}": {
-      "snippet": "LKeyStrgX{${1:letter or digit}}"
-    },
-    "LKeyCtrlX{}": {
-      "snippet": "LKeyCtrlX{${1:letter or digit}}"
-    },
-    "LKeyShiftX{}": {
-      "snippet": "LKeyShiftX{${1:letter or digit}}"
-    },
-    "LKeyAltX{}": {
-      "snippet": "LKeyAltX{${1:letter or digit}}"
-    },
-    "LKeyAltGrX{}": {
-      "snippet": "LKeyAltGrX{${1:letter or digit}}"
-    },
-    "LKeyShiftStrgX{}": {
-      "snippet": "LKeyShiftStrgX{${1:letter or digit}}"
-    },
-    "LKeyShiftCtrlX{}": {
-      "snippet": "LKeyShiftCtrlX{${1:letter or digit}}"
-    },
-    "LKeyShiftAltX{}": {
-      "snippet": "LKeyShiftAltX{${1:letter or digit}}"
-    },
-    "LKeyShiftAltGrX{}": {
-      "snippet": "LKeyShiftAltGrX{${1:letter or digit}}"
-    },
-    "LKeyStrgAltX{}": {
-      "snippet": "LKeyStrgAltX{${1:letter or digit}}"
-    },
-    "LKeyCtrlAltX{}": {
-      "snippet": "LKeyCtrlAltX{${1:letter or digit}}"
-    },
-    "LKeyStrgAltEnt": {},
-    "LKeyCtrlAltEnt": {},
-    "LKeyReset": {},
-    "LKeyTux": {},
-    "LKeyWin": {},
-    "LKeyMenu": {},
-    "LKeyStrg": {},
-    "LKeyCtrl": {},
-    "LKeyAlt": {},
-    "LKeyAltGr": {},
-    "LKeyShift": {},
-    "LKeyTab": {},
-    "LKeyEnter": {},
-    "LKeyCapsLock": {},
-    "LKeyPos": {},
-    "LKeyEntf": {},
-    "LKeyEinf": {},
-    "LKeyLeer": {},
-    "LKeyEsc": {},
-    "LKeyEnde": {},
-    "LKeyCommand": {},
-    "LKeyOptionKey": {},
-    "LKeyBack": {},
-    "LKeyUp": {},
-    "LKeyDown": {},
-    "LKeyLeft": {},
-    "LKeyRight": {},
-    "LKeyPgUp": {},
-    "LKeyPgDown": {},
-    "LKeyAt": {},
-    "LKeyFn": {},
-    "LKeyHome": {},
-    "LKeyDel": {},
-    "LKeySpace": {},
-    "LKeyScreenUp": {},
-    "LKeyScreenDown": {},
-    "LKeyIns": {},
-    "LKeyEnd": {},
-    "LKeyGNU": {},
-    "LKeyPageUp": {},
-    "LKeyPageDown": {},
-    "LMouseEmpty": {},
-    "LMouseN": {},
-    "LMouseL": {},
-    "LMouseM": {},
-    "LMouseR": {},
-    "LMouseLR": {},
-    "LMouseIIEmpty": {},
-    "LMouseIIN": {},
-    "LMouseIIL": {},
-    "LMouseIIR": {},
-    "LMouseIILR": {}
-  },
-  "envs": {},
-  "options": [
-    "sfdefault",
-    "type1",
-    "nofontspec",
-    "lining",
-    "oldstyle",
-    "sflining",
-    "sfoldstyle",
-    "tabular",
-    "sftabular",
-    "sfproportional",
-    "scaled=${1:factor}",
-    "defaultfeatures={${1:fontspec features}}"
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "biolinum"
+    },
+    {
+      "name": "biolinumOsF"
+    },
+    {
+      "name": "biolinumLF"
+    },
+    {
+      "name": "biolinumkey",
+      "unusual": true
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    },
+    {
+      "name": "liningnums",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "oldstylenumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "oldstylenumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "liningnumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnums{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnums{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "DeclareTextGlyphY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareTextGlyphY{${1:type}}{${2:name}}{${3:number}}"
+      }
+    },
+    {
+      "name": "biolinumGlyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "biolinumGlyph{${1:glyph name}}"
+      }
+    },
+    {
+      "name": "biolinumKeyGlyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "biolinumKeyGlyph{${1:glyph name}}"
+      }
+    },
+    {
+      "name": "LKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKey{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyPad",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyPad{${1:digit}}"
+      }
+    },
+    {
+      "name": "LKeyF",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyF{${1:digit}}"
+      }
+    },
+    {
+      "name": "LKeyAltF",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyAltF{${1:digit}}"
+      }
+    },
+    {
+      "name": "LKeyStrgAltF",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyStrgAltF{${1:digit}}"
+      }
+    },
+    {
+      "name": "LKeyCtrlAltF",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyCtrlAltF{${1:digit}}"
+      }
+    },
+    {
+      "name": "LKeyStrgX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyStrgX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyCtrlX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyCtrlX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyShiftX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyShiftX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyAltX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyAltGrX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyAltGrX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyShiftStrgX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyShiftStrgX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyShiftCtrlX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyShiftCtrlX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyShiftAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyShiftAltX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyShiftAltGrX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyShiftAltGrX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyStrgAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyStrgAltX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyCtrlAltX",
+      "arg": {
+        "format": "{}",
+        "snippet": "LKeyCtrlAltX{${1:letter or digit}}"
+      }
+    },
+    {
+      "name": "LKeyStrgAltEnt"
+    },
+    {
+      "name": "LKeyCtrlAltEnt"
+    },
+    {
+      "name": "LKeyReset"
+    },
+    {
+      "name": "LKeyTux"
+    },
+    {
+      "name": "LKeyWin"
+    },
+    {
+      "name": "LKeyMenu"
+    },
+    {
+      "name": "LKeyStrg"
+    },
+    {
+      "name": "LKeyCtrl"
+    },
+    {
+      "name": "LKeyAlt"
+    },
+    {
+      "name": "LKeyAltGr"
+    },
+    {
+      "name": "LKeyShift"
+    },
+    {
+      "name": "LKeyTab"
+    },
+    {
+      "name": "LKeyEnter"
+    },
+    {
+      "name": "LKeyCapsLock"
+    },
+    {
+      "name": "LKeyPos"
+    },
+    {
+      "name": "LKeyEntf"
+    },
+    {
+      "name": "LKeyEinf"
+    },
+    {
+      "name": "LKeyLeer"
+    },
+    {
+      "name": "LKeyEsc"
+    },
+    {
+      "name": "LKeyEnde"
+    },
+    {
+      "name": "LKeyCommand"
+    },
+    {
+      "name": "LKeyOptionKey"
+    },
+    {
+      "name": "LKeyBack"
+    },
+    {
+      "name": "LKeyUp"
+    },
+    {
+      "name": "LKeyDown"
+    },
+    {
+      "name": "LKeyLeft"
+    },
+    {
+      "name": "LKeyRight"
+    },
+    {
+      "name": "LKeyPgUp"
+    },
+    {
+      "name": "LKeyPgDown"
+    },
+    {
+      "name": "LKeyAt"
+    },
+    {
+      "name": "LKeyFn"
+    },
+    {
+      "name": "LKeyHome"
+    },
+    {
+      "name": "LKeyDel"
+    },
+    {
+      "name": "LKeySpace"
+    },
+    {
+      "name": "LKeyScreenUp"
+    },
+    {
+      "name": "LKeyScreenDown"
+    },
+    {
+      "name": "LKeyIns"
+    },
+    {
+      "name": "LKeyEnd"
+    },
+    {
+      "name": "LKeyGNU"
+    },
+    {
+      "name": "LKeyPageUp"
+    },
+    {
+      "name": "LKeyPageDown"
+    },
+    {
+      "name": "LMouseEmpty"
+    },
+    {
+      "name": "LMouseN"
+    },
+    {
+      "name": "LMouseL"
+    },
+    {
+      "name": "LMouseM"
+    },
+    {
+      "name": "LMouseR"
+    },
+    {
+      "name": "LMouseLR"
+    },
+    {
+      "name": "LMouseIIEmpty"
+    },
+    {
+      "name": "LMouseIIN"
+    },
+    {
+      "name": "LMouseIIL"
+    },
+    {
+      "name": "LMouseIIR"
+    },
+    {
+      "name": "LMouseIILR"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biolinum#c": [
+      "sfdefault",
+      "type1",
+      "nofontspec",
+      "lining",
+      "oldstyle",
+      "sflining",
+      "sfoldstyle",
+      "tabular",
+      "sftabular",
+      "sfproportional",
+      "scaled=${1:factor}",
+      "defaultfeatures={${1:fontspec features}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/biolinum#c"
+  ]
 }

@@ -1,60 +1,170 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarypatterns": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "duck": {},
-    "duck[]": {
-      "snippet": "duck[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "picduck": {},
-    "randuck": {},
-    "randuck[]": {
-      "snippet": "randuck[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns"
     },
-    "randomhead": {},
-    "randomaccessories": {},
-    "shuffleducks": {},
-    "duckpathbody": {},
-    "duckpathgrumpybill": {},
-    "duckpathbill": {},
-    "duckpathtshirt": {},
-    "duckpathjacket": {},
-    "duckpathcape": {},
-    "duckpathshorthair": {},
-    "duckpathlonghair": {},
-    "duckpathcrazyhair": {},
-    "duckpathrecedinghair": {},
-    "duckpathcrown": {},
-    "duckpathmohican": {},
-    "duckpathmullet": {},
-    "duckpathqueencrown": {},
-    "duckpathkingcrown": {},
-    "duckpathdarthvader": {},
-    "duckpathhorsetail": {},
-    "duckhookbackground": {},
-    "duckhookbody": {},
-    "duckhookclothing": {},
-    "duckhookhair": {},
-    "duckhookhat": {},
-    "duckhookforeground": {},
-    "stripes": {},
-    "stripes[]": {
-      "snippet": "stripes[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "duck"
+    },
+    {
+      "name": "duck",
+      "arg": {
+        "format": "[]",
+        "snippet": "duck[${1:options%keyvals}]",
+        "keys": [
+          "\\duck#c",
+          "\\duck#c,\\randuck#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "picduck"
+    },
+    {
+      "name": "randuck"
+    },
+    {
+      "name": "randuck",
+      "arg": {
+        "format": "[]",
+        "snippet": "randuck[${1:options%keyvals}]",
+        "keys": [
+          "\\duck#c,\\randuck#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "randomhead",
+      "unusual": true
+    },
+    {
+      "name": "randomaccessories",
+      "unusual": true
+    },
+    {
+      "name": "shuffleducks",
+      "unusual": true
+    },
+    {
+      "name": "duckpathbody",
+      "unusual": true
+    },
+    {
+      "name": "duckpathgrumpybill",
+      "unusual": true
+    },
+    {
+      "name": "duckpathbill",
+      "unusual": true
+    },
+    {
+      "name": "duckpathtshirt",
+      "unusual": true
+    },
+    {
+      "name": "duckpathjacket",
+      "unusual": true
+    },
+    {
+      "name": "duckpathcape",
+      "unusual": true
+    },
+    {
+      "name": "duckpathshorthair",
+      "unusual": true
+    },
+    {
+      "name": "duckpathlonghair",
+      "unusual": true
+    },
+    {
+      "name": "duckpathcrazyhair",
+      "unusual": true
+    },
+    {
+      "name": "duckpathrecedinghair",
+      "unusual": true
+    },
+    {
+      "name": "duckpathcrown",
+      "unusual": true
+    },
+    {
+      "name": "duckpathmohican",
+      "unusual": true
+    },
+    {
+      "name": "duckpathmullet",
+      "unusual": true
+    },
+    {
+      "name": "duckpathqueencrown",
+      "unusual": true
+    },
+    {
+      "name": "duckpathkingcrown",
+      "unusual": true
+    },
+    {
+      "name": "duckpathdarthvader",
+      "unusual": true
+    },
+    {
+      "name": "duckpathhorsetail",
+      "unusual": true
+    },
+    {
+      "name": "duckhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "duckhookbody",
+      "unusual": true
+    },
+    {
+      "name": "duckhookclothing",
+      "unusual": true
+    },
+    {
+      "name": "duckhookhair",
+      "unusual": true
+    },
+    {
+      "name": "duckhookhat",
+      "unusual": true
+    },
+    {
+      "name": "duckhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "stripes"
+    },
+    {
+      "name": "stripes",
+      "arg": {
+        "format": "[]",
+        "snippet": "stripes[${1:options%keyvals}]",
+        "keys": [
+          "\\stripes"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\duck#c": [
       "body=",
       "head=",
       "bill=",
@@ -263,17 +373,14 @@
       "stick",
       "stick=",
       "leaf",
-      "leaf=",
+      "leaf="
+    ],
+    "\\duck#c,\\randuck#c": [
       "scale=${1:factor}",
       "xshift=",
       "yshift="
     ],
-    [
-      "scale=${1:factor}",
-      "xshift=",
-      "yshift="
-    ],
-    [
+    "\\stripes": [
       "color=",
       "distance=${1:number}",
       "width=${1:number}",
@@ -283,5 +390,6 @@
       "rotate=${1:degrees}",
       "emblem="
     ]
-  ]
+  },
+  "args": []
 }

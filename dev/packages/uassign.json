@@ -1,46 +1,109 @@
 {
-  "includes": {
-    "ifthen": [],
-    "hyperref": [],
-    "bookmark": [],
-    "color": [],
-    "enumerate": [],
-    "amsmath": [],
-    "fancyhdr": [],
-    "titlesec": [],
-    "amsthm": []
-  },
-  "macros": {
-    "ebox{}": {
-      "snippet": "ebox{${1:}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ientry{}": {
-      "snippet": "ientry{${1:entry}}"
+    {
+      "name": "hyperref"
     },
-    "thequestioncounter": {},
-    "thesolutioncounter": {},
-    "trashcan": {},
-    "theexamplecounter": {},
-    "theexsolutioncounter": {},
-    "thedefcounter": {}
-  },
-  "envs": {
-    "question": {},
-    "solution": {},
-    "solution[]": {
-      "name": "solution",
-      "snippet": "[${1:length}]"
+    {
+      "name": "bookmark"
     },
-    "example": {},
-    "exsolution": {},
-    "definition": {}
-  },
-  "options": [
-    "hideanswers",
-    "hidequestions",
-    "assignheader",
-    "notesheader",
-    "links"
+    {
+      "name": "color"
+    },
+    {
+      "name": "enumerate"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "amsthm"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ebox{${1:}}"
+      }
+    },
+    {
+      "name": "ientry",
+      "arg": {
+        "format": "{}",
+        "snippet": "ientry{${1:entry%text}}"
+      }
+    },
+    {
+      "name": "thequestioncounter",
+      "unusual": true
+    },
+    {
+      "name": "thesolutioncounter",
+      "unusual": true
+    },
+    {
+      "name": "trashcan",
+      "unusual": true
+    },
+    {
+      "name": "theexamplecounter",
+      "unusual": true
+    },
+    {
+      "name": "theexsolutioncounter",
+      "unusual": true
+    },
+    {
+      "name": "thedefcounter",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "question"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:length}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "exsolution"
+    },
+    {
+      "name": "definition"
+    }
+  ],
+  "keys": {
+    "\\usepackage/uassign#c": [
+      "hideanswers",
+      "hidequestions",
+      "assignheader",
+      "notesheader",
+      "links"
+    ]
+  },
+  "args": [
+    "\\usepackage/uassign#c"
+  ]
 }

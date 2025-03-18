@@ -1,40 +1,91 @@
 {
-  "includes": {
-    "tikz": [],
-    "etoolbox": [],
-    "xstring": []
-  },
-  "macros": {
-    "smartdiagram[]{}": {
-      "snippet": "smartdiagram[${2:type}]{${1:list of items}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "smartdiagramanimated[]{}": {
-      "snippet": "smartdiagramanimated[${2:type}]{${1:list of items}}"
+    {
+      "name": "etoolbox"
     },
-    "usesmartdiagramlibrary{}": {
-      "snippet": "usesmartdiagramlibrary{${1:library}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "smartdiagramadd[]{}{}": {
-      "snippet": "smartdiagramadd[${3:type}]{${1:list of items}}{${2:list of additions}}"
-    },
-    "smartdiagramconnect{}{}": {
-      "snippet": "smartdiagramconnect{${1:arrow options}}{${2:start module/end module}}"
-    },
-    "smartdiagramset{}": {
-      "snippet": "smartdiagramset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "smartdiagram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "smartdiagram[${2:type%keyvals}]{${1:list of items}}",
+        "keys": [
+          "\\smartdiagram,\\smartdiagramanimated,\\smartdiagramadd"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "smartdiagramanimated",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "smartdiagramanimated[${2:type%keyvals}]{${1:list of items}}",
+        "keys": [
+          "\\smartdiagram,\\smartdiagramanimated,\\smartdiagramadd"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usesmartdiagramlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "usesmartdiagramlibrary{${1:library}}"
+      }
+    },
+    {
+      "name": "smartdiagramadd",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "smartdiagramadd[${3:type%keyvals}]{${1:list of items}}{${2:list of additions}}"
+      }
+    },
+    {
+      "name": "smartdiagramconnect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "smartdiagramconnect{${1:arrow options}}{${2:start module/end module}}"
+      }
+    },
+    {
+      "name": "smartdiagramset",
+      "arg": {
+        "format": "{}",
+        "snippet": "smartdiagramset{${1:options%keyvals}}",
+        "keys": [
+          "\\smartdiagramset#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\smartdiagram,\\smartdiagramanimated,\\smartdiagramadd": [
+      "circular diagram",
+      "circular diagram:clockwise",
+      "flow diagram",
+      "flow diagram:horizontal",
+      "descriptive diagram",
+      "priority descriptive diagram",
+      "bubble diagram",
+      "constellation diagram",
+      "connected constellation diagram",
+      "sequence diagram"
+    ],
+    "\\usesmartdiagramlibrary#c": [
       "additions"
     ],
-    [
+    "\\smartdiagramset#c": [
       "set color list={${1:color1,color2,...}}",
       "uniform color list=",
       "use predefined color list",
@@ -106,5 +157,6 @@
       "sequence item uniform color=",
       "additions={${1:specs}}"
     ]
-  ]
+  },
+  "args": []
 }

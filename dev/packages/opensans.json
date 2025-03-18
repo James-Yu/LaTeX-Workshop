@@ -1,25 +1,41 @@
 {
-  "includes": {
-    "fontaxes": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "opensans": {},
-    "opensansfamily": {},
-    "fosfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "defaultsans",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "type1"
+  "deps": [
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "opensans"
+    },
+    {
+      "name": "opensansfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/opensans#c": [
+      "scaled=${1:factor}",
+      "default",
+      "defaultsans",
+      "lining",
+      "oldstyle",
+      "tabular",
+      "proportional",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/opensans#c"
+  ]
 }

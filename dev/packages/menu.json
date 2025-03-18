@@ -1,0 +1,211 @@
+{
+  "deps": [
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "bbding",
+      "if": "hand"
+    },
+    {
+      "name": "fancybox",
+      "if": "framed"
+    },
+    {
+      "name": "fancybox",
+      "if": "grey"
+    },
+    {
+      "name": "color",
+      "if": "grey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "menu",
+      "arg": {
+        "format": "{}",
+        "snippet": "menu{${1:entry1!entry2!!...%text}}"
+      }
+    },
+    {
+      "name": "menuitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "menuitem{${1:item%text}}"
+      }
+    },
+    {
+      "name": "menuitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "menuitem[${2:length}]{${1:item%text}}"
+      }
+    },
+    {
+      "name": "menuitemactive",
+      "arg": {
+        "format": "{}",
+        "snippet": "menuitemactive{${1:item%text}}"
+      }
+    },
+    {
+      "name": "menuitemactive",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "menuitemactive[${2:length}]{${1:item%text}}"
+      }
+    },
+    {
+      "name": "menuseparator"
+    },
+    {
+      "name": "menuseparator",
+      "arg": {
+        "format": "[]",
+        "snippet": "menuseparator[${1:length}]"
+      }
+    },
+    {
+      "name": "menutext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "menutext{${1:text}}"
+      }
+    },
+    {
+      "name": "menumathsymbols",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "menumathsymbols{${1:symbol1%formula}}{${2:symbol2%formula}}"
+      }
+    },
+    {
+      "name": "menumathsymbols",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "menumathsymbols[${3:start%formula}]{${1:symbol1%formula}}{${2:symbol2%formula}}"
+      }
+    },
+    {
+      "name": "menusymbols",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "menusymbols{${1:symbol1}}{${2:symbol2}}"
+      }
+    },
+    {
+      "name": "menusymbols",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "menusymbols[${3:start}]{${1:symbol1}}{${2:symbol2}}"
+      }
+    },
+    {
+      "name": "menusymbols",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "menusymbols{${1:symbol1}}{${2:symbol2}}[${3:end}]"
+      }
+    },
+    {
+      "name": "menusymbols",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "menusymbols[${3:start}]{${1:symbol1}}{${2:symbol2}}[${4:end}]"
+      }
+    },
+    {
+      "name": "menufolderentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "menufolderentry{${1:title%text}}"
+      }
+    },
+    {
+      "name": "menufolderentry",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "menufolderentry[${2:length}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "menuitemactivesymbol",
+      "unusual": true
+    },
+    {
+      "name": "menuitemlength",
+      "unusual": true
+    },
+    {
+      "name": "menusep",
+      "unusual": true
+    },
+    {
+      "name": "ifmenuoptionhand",
+      "unusual": true
+    },
+    {
+      "name": "menuoptionhandtrue",
+      "unusual": true
+    },
+    {
+      "name": "menuoptionhandfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmenuoptionframed",
+      "unusual": true
+    },
+    {
+      "name": "menuoptionframedtrue",
+      "unusual": true
+    },
+    {
+      "name": "menuoptionframedfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmenuoptiongrey",
+      "unusual": true
+    },
+    {
+      "name": "menuoptiongreytrue",
+      "unusual": true
+    },
+    {
+      "name": "menuoptiongreyfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "menufolder",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "menufolder",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:length}]{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/menu#c": [
+      "hand",
+      "framed",
+      "grey"
+    ]
+  },
+  "args": [
+    "\\usepackage/menu#c"
+  ]
+}

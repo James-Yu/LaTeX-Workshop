@@ -1,41 +1,104 @@
 {
-  "includes": {
-    "scrbase": [],
-    "iftex": [],
-    "etoolbox": [],
-    "xpatch": [],
-    "letltxmacro": [],
-    "kvsetkeys": [],
-    "trimspaces": []
-  },
-  "macros": {
-    "TUDoptions{}": {
-      "snippet": "TUDoptions{${1:Optionenliste}}"
+  "deps": [
+    {
+      "name": "scrbase"
     },
-    "TUDoption{}{}": {
-      "snippet": "TUDoption{${1:Option}}{${2:Werteliste}}"
+    {
+      "name": "iftex"
     },
-    "iflanguageloaded{}{}{}": {
-      "snippet": "iflanguageloaded{${1:language}}{${2:true}}{${3:false}}"
+    {
+      "name": "etoolbox"
     },
-    "TUDProcessOptions": {},
-    "TUDProcessOptions[]": {
-      "snippet": "TUDProcessOptions[${1:member}]"
+    {
+      "name": "xpatch"
     },
-    "TUDExecuteOptions{}": {
-      "snippet": "TUDExecuteOptions{${1:options}}"
+    {
+      "name": "letltxmacro"
     },
-    "TUDExecuteOptions[]{}": {
-      "snippet": "TUDExecuteOptions[${2:member}]{${1:options}}"
+    {
+      "name": "kvsetkeys"
     },
-    "TUDScriptVersion": {},
-    "TUDScriptVersionNumber": {},
-    "TUDScript": {},
-    "TUDScriptContact": {},
-    "TUDScriptRepository": {},
-    "TUDScriptForum": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "trimspaces"
+    }
+  ],
+  "macros": [
+    {
+      "name": "TUDoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "TUDoptions{${1:Optionenliste%keyvals}}"
+      }
+    },
+    {
+      "name": "TUDoption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TUDoption{${1:Option%keyvals}}{${2:Werteliste}}"
+      }
+    },
+    {
+      "name": "iflanguageloaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iflanguageloaded{${1:language}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "TUDProcessOptions",
+      "unusual": true
+    },
+    {
+      "name": "TUDProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "TUDProcessOptions[${1:member}]"
+      }
+    },
+    {
+      "name": "TUDExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TUDExecuteOptions{${1:options}}"
+      }
+    },
+    {
+      "name": "TUDExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TUDExecuteOptions[${2:member}]{${1:options}}"
+      }
+    },
+    {
+      "name": "TUDScriptVersion",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptVersionNumber",
+      "unusual": true
+    },
+    {
+      "name": "TUDScript",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptContact",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptRepository",
+      "unusual": true
+    },
+    {
+      "name": "TUDScriptForum",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,151 +1,373 @@
 {
-  "includes": {
-    "listings": [],
-    "fancyvrb": [],
-    "hyperref": [],
-    "color": [],
-    "algorithmic": [],
-    "lgrind": [],
-    "nameref": [],
-    "url": []
-  },
-  "macros": {
-    "filedate": {},
-    "fileversion": {},
-    "iffancyvrb": {},
-    "fancyvrbtrue": {},
-    "fancyvrbfalse": {},
-    "ifcolor": {},
-    "colortrue": {},
-    "colorfalse": {},
-    "ifhyper": {},
-    "hypertrue": {},
-    "hyperfalse": {},
-    "ifalgorithmicpkg": {},
-    "algorithmicpkgtrue": {},
-    "algorithmicpkgfalse": {},
-    "iflgrind": {},
-    "lgrindtrue": {},
-    "lgrindfalse": {},
-    "advisespace": {},
-    "labeladvise": {},
-    "syntaxnewline": {},
-    "syntaxor": {},
-    "syntaxbreak": {},
-    "syntaxfill": {},
-    "alternative{}": {
-      "snippet": "alternative{${1:item1,item2,...}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "newdocenvironment{}{}{}{}": {
-      "snippet": "newdocenvironment{${1:envname}}{${2:typename}}{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "fancyvrb"
     },
-    "PrintAspectName{}": {
-      "snippet": "PrintAspectName{${1:aspect}}"
+    {
+      "name": "hyperref"
     },
-    "SpecialMainAspectIndex{}": {
-      "snippet": "SpecialMainAspectIndex{${1:aspect}}"
+    {
+      "name": "color"
     },
-    "PrintKeyName{}": {
-      "snippet": "PrintKeyName{${1:key}}"
+    {
+      "name": "algorithmic"
     },
-    "SpecialMainKeyIndex{}": {
-      "snippet": "SpecialMainKeyIndex{${1:key}}"
+    {
+      "name": "lgrind"
     },
-    "theargcount": {},
-    "labelargcount": {},
-    "lstref{}": {
-      "snippet": "lstref{${1:label}}"
+    {
+      "name": "nameref"
     },
-    "ikeyname{}": {
-      "snippet": "ikeyname{${1:key}}"
-    },
-    "rkeyname{}": {
-      "snippet": "rkeyname{${1:key}}"
-    },
-    "icmdname{}": {
-      "snippet": "icmdname{${1:cmd}}"
-    },
-    "rcmdname{}": {
-      "snippet": "rcmdname{${1:cmd}}"
-    },
-    "lstaspectindex{}{}": {
-      "snippet": "lstaspectindex{${1:item}}{${2:arg}}"
-    },
-    "lstkeyindex{}{}": {
-      "snippet": "lstkeyindex{${1:key}}{${2:arg}}"
-    },
-    "lstisaspect{}{}": {
-      "snippet": "lstisaspect{${1:aspect}}{${2:list}}"
-    },
-    "lstprintaspectkeysandcmds{}": {
-      "snippet": "lstprintaspectkeysandcmds{${1:aspect}}"
-    },
-    "lstcheckreference": {},
-    "lst": {},
-    "Cpp": {},
-    "keyname{}": {
-      "snippet": "keyname{${1:key}}"
-    },
-    "keyvalue{}": {
-      "snippet": "keyvalue{${1:value}}"
-    },
-    "hookname{}": {
-      "snippet": "hookname{${1:hook}}"
-    },
-    "aspectname{}": {
-      "snippet": "aspectname{${1:aspect}}"
-    },
-    "packagename{}": {
-      "snippet": "packagename{${1:package}}"
-    },
-    "switchfontfamily{}{}": {
-      "snippet": "switchfontfamily{${1:family1}}{${2:family2}}"
-    },
-    "rstyle": {},
-    "lstthanks{}{}": {
-      "snippet": "lstthanks{${1:name}}{${2:email}}"
-    },
-    "lsthelper{}{}{}": {
-      "snippet": "lsthelper{${1:name}}{${2:date}}{${3:contribution}}"
-    },
-    "pointstyle": {},
-    "lstscanlanguages{}{}{}": {
-      "snippet": "lstscanlanguages{${1:list macro}}{${2:input files}}{${3:don't input}}"
-    },
-    "lstprintlanguages{}": {
-      "snippet": "lstprintlanguages{${1:list macro}}"
+    {
+      "name": "xurl"
     }
-  },
-  "envs": {
-    "TODO": {},
-    "ALTERNATIVE": {},
-    "REMOVED": {},
-    "OLDDEF": {},
-    "advise": {},
-    "syntax": {},
-    "aspect{}": {
+  ],
+  "macros": [
+    {
+      "name": "iffancyvrb",
+      "unusual": true
+    },
+    {
+      "name": "fancyvrbtrue",
+      "unusual": true
+    },
+    {
+      "name": "fancyvrbfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcolor",
+      "unusual": true
+    },
+    {
+      "name": "colortrue",
+      "unusual": true
+    },
+    {
+      "name": "colorfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifhyper",
+      "unusual": true
+    },
+    {
+      "name": "hypertrue",
+      "unusual": true
+    },
+    {
+      "name": "hyperfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifalgorithmicpkg",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicpkgtrue",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicpkgfalse",
+      "unusual": true
+    },
+    {
+      "name": "iflgrind",
+      "unusual": true
+    },
+    {
+      "name": "lgrindtrue",
+      "unusual": true
+    },
+    {
+      "name": "lgrindfalse",
+      "unusual": true
+    },
+    {
+      "name": "advisespace",
+      "unusual": true
+    },
+    {
+      "name": "labeladvise",
+      "unusual": true
+    },
+    {
+      "name": "syntaxnewline"
+    },
+    {
+      "name": "syntaxor"
+    },
+    {
+      "name": "syntaxbreak"
+    },
+    {
+      "name": "syntaxfill"
+    },
+    {
+      "name": "alternative",
+      "arg": {
+        "format": "{}",
+        "snippet": "alternative{${1:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "newdocenvironment",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "newdocenvironment{${1:envname}}{${2:typename}}{${3:begdef}}{${4:enddef}}"
+      }
+    },
+    {
+      "name": "PrintAspectName",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintAspectName{${1:aspect}}"
+      }
+    },
+    {
+      "name": "SpecialMainAspectIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMainAspectIndex{${1:aspect}}"
+      }
+    },
+    {
+      "name": "PrintKeyName",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintKeyName{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "SpecialMainKeyIndex",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpecialMainKeyIndex{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "theargcount",
+      "unusual": true
+    },
+    {
+      "name": "labelargcount",
+      "unusual": true
+    },
+    {
+      "name": "lstref",
+      "arg": {
+        "format": "{}",
+        "snippet": "lstref{${1:label}}"
+      }
+    },
+    {
+      "name": "ikeyname",
+      "arg": {
+        "format": "{}",
+        "snippet": "ikeyname{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "rkeyname",
+      "arg": {
+        "format": "{}",
+        "snippet": "rkeyname{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "icmdname",
+      "arg": {
+        "format": "{}",
+        "snippet": "icmdname{${1:cmd}}"
+      }
+    },
+    {
+      "name": "rcmdname",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcmdname{${1:cmd}}"
+      }
+    },
+    {
+      "name": "lstaspectindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lstaspectindex{${1:item}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "lstkeyindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lstkeyindex{${1:key%plain}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "lstisaspect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lstisaspect{${1:aspect}}{${2:list}}"
+      }
+    },
+    {
+      "name": "lstprintaspectkeysandcmds",
+      "arg": {
+        "format": "{}",
+        "snippet": "lstprintaspectkeysandcmds{${1:aspect}}"
+      }
+    },
+    {
+      "name": "lstcheckreference"
+    },
+    {
+      "name": "lst"
+    },
+    {
+      "name": "Cpp"
+    },
+    {
+      "name": "keyname",
+      "arg": {
+        "format": "{}",
+        "snippet": "keyname{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "keyvalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "keyvalue{${1:value}}"
+      }
+    },
+    {
+      "name": "hookname",
+      "arg": {
+        "format": "{}",
+        "snippet": "hookname{${1:hook}}"
+      }
+    },
+    {
+      "name": "aspectname",
+      "arg": {
+        "format": "{}",
+        "snippet": "aspectname{${1:aspect}}"
+      }
+    },
+    {
+      "name": "packagename",
+      "arg": {
+        "format": "{}",
+        "snippet": "packagename{${1:package}}"
+      }
+    },
+    {
+      "name": "switchfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "switchfontfamily{${1:family1}}{${2:family2}}"
+      }
+    },
+    {
+      "name": "rstyle"
+    },
+    {
+      "name": "lstthanks",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lstthanks{${1:name}}{${2:email%URL}}"
+      }
+    },
+    {
+      "name": "lsthelper",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lsthelper{${1:name}}{${2:date}}{${3:contribution%text}}"
+      }
+    },
+    {
+      "name": "pointstyle",
+      "unusual": true
+    },
+    {
+      "name": "lstscanlanguages",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lstscanlanguages{${1:list macro%cmd}}{${2:input files}}{${3:don't input}}"
+      }
+    },
+    {
+      "name": "lstprintlanguages",
+      "arg": {
+        "format": "{}",
+        "snippet": "lstprintlanguages{${1:list macro}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "TODO"
+    },
+    {
+      "name": "ALTERNATIVE"
+    },
+    {
+      "name": "REMOVED"
+    },
+    {
+      "name": "OLDDEF"
+    },
+    {
+      "name": "advise"
+    },
+    {
+      "name": "syntax"
+    },
+    {
       "name": "aspect",
-      "snippet": "{${1:aspect}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:aspect}}"
+      }
     },
-    "lstkey{}": {
+    {
       "name": "lstkey",
-      "snippet": "{${1:key}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:key%plain}}"
+      }
     },
-    "macroargs": {},
-    "lstsample{}{}": {
+    {
+      "name": "macroargs"
+    },
+    {
       "name": "lstsample",
-      "snippet": "{${1:left}}{${2:right}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:left}}{${2:right}}"
+      }
     },
-    "lstsample[]{}{}": {
+    {
       "name": "lstsample",
-      "snippet": "[${3:point list}]{${1:left}}{${2:right}}"
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:point list}]{${1:left}}{${2:right}}"
+      }
     },
-    "lstxsample": {},
-    "lstxsample[]": {
+    {
+      "name": "lstxsample"
+    },
+    {
       "name": "lstxsample",
-      "snippet": "[${1:point list}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:point list}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

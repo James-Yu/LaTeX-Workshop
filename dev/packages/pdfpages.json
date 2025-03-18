@@ -1,46 +1,94 @@
 {
-  "includes": {
-    "eso-pic": [],
-    "atbegshi": [],
-    "pdflscape": [],
-    "graphicx": [],
-    "ifthen": [],
-    "calc": [],
-    "count1to": []
-  },
-  "macros": {
-    "includepdf[]{}": {
-      "snippet": "includepdf[${2:options}]{${1:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "eso-pic"
     },
-    "includepdf{}": {
-      "snippet": "includepdf{${1:filename}}"
+    {
+      "name": "atbegshi"
     },
-    "includepdfmerge[]{}": {
-      "snippet": "includepdfmerge[${2:options}]{${1:file-list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pdflscape"
     },
-    "includepdfmerge{}": {
-      "snippet": "includepdfmerge{${1:file-list}}"
+    {
+      "name": "graphicx"
     },
-    "includepdfset{}": {
-      "snippet": "includepdfset{${1:global options}}"
+    {
+      "name": "ifthen"
     },
-    "threadinfodict": {},
-    "AddToSurvey": {}
-  },
-  "envs": {},
-  "options": [
-    "final",
-    "draft",
-    "demo",
-    "nodemo",
-    "enable-survey"
+    {
+      "name": "calc"
+    },
+    {
+      "name": "count1to"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includepdf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includepdf[${2:options%keyvals}]{${1:filename%file}}",
+        "keys": [
+          "\\includepdf,includepdfmerge,\\includepdfset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includepdf",
+      "arg": {
+        "format": "{}",
+        "snippet": "includepdf{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "includepdfmerge",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includepdfmerge[${2:options%keyvals}]{${1:file-list%definition}}",
+        "keys": [
+          "\\includepdf,includepdfmerge,\\includepdfset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includepdfmerge",
+      "arg": {
+        "format": "{}",
+        "snippet": "includepdfmerge{${1:file-list%definition}}"
+      }
+    },
+    {
+      "name": "includepdfset",
+      "arg": {
+        "format": "{}",
+        "snippet": "includepdfset{${1:global options%keyvals}}",
+        "keys": [
+          "\\includepdf,includepdfmerge,\\includepdfset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "threadinfodict",
+      "unusual": true
+    },
+    {
+      "name": "AddToSurvey",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pdfpages#c": [
+      "final",
+      "draft",
+      "demo",
+      "nodemo",
+      "enable-survey"
+    ],
+    "\\includepdf,includepdfmerge,\\includepdfset": [
       "pages={${1:page range}}",
       "nup=${1:xnup}x${2:ynup}",
       "landscape",
@@ -79,7 +127,7 @@
       "thread",
       "threadname=${1:name}",
       "linktodoc",
-      "linkfit=",
+      "linkfit=${1|Fit,FitH,FitV,FitB,FitBH,FitBV,Region|}",
       "linktodocfit=",
       "newwindow",
       "linkfilename=${1:name}",
@@ -97,7 +145,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -118,5 +166,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/pdfpages#c"
   ]
 }

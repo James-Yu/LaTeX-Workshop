@@ -1,140 +1,390 @@
 {
-  "includes": {
-    "stackengine": [],
-    "graphicx": [],
-    "setspace": []
-  },
-  "macros": {
-    "ifLargeFont": {},
-    "LargeFonttrue": {},
-    "LargeFontfalse": {},
-    "musFont": {},
-    "musFontBig": {},
-    "musFontLarge": {},
-    "musNumFont": {},
-    "musSymbol{}{}{}{}": {
-      "snippet": "musSymbol{${1:kern before}}{${2:raise}}{${3:kern after}}{${4:symbol}}"
+  "deps": [
+    {
+      "name": "stackengine"
     },
-    "musSymbol[]{}{}{}{}": {
-      "snippet": "musSymbol[${5:font cmds}]{${1:kern before}}{${2:raise}}{${3:kern after}}{${4:symbol}}"
+    {
+      "name": "graphicx"
     },
-    "musAccidentalFont": {},
-    "musAccidental{}": {
-      "snippet": "musAccidental{${1:symbol code}}"
-    },
-    "musFlat": {},
-    "musDoubleFlat": {},
-    "musSharp": {},
-    "musDoubleSharp": {},
-    "musNatural": {},
-    "fl": {},
-    "sh": {},
-    "na": {},
-    "musStemmedNote{}": {
-      "snippet": "musStemmedNote{${1:symbol}}"
-    },
-    "musFlaggedNote{}{}": {
-      "snippet": "musFlaggedNote{${1:symbol1}}{${2:symbol2}}"
-    },
-    "musDottedNote{}": {
-      "snippet": "musDottedNote{${1:symbol}}"
-    },
-    "musStem": {},
-    "musSegno": {},
-    "musDot": {},
-    "musBreve": {},
-    "musWhole": {},
-    "musHalf": {},
-    "musQuarter": {},
-    "musEighth": {},
-    "musSixteenth": {},
-    "musThirtySecond": {},
-    "musSixtyFourth": {},
-    "musWholeDotted": {},
-    "musHalfDotted": {},
-    "musQuarterDotted": {},
-    "musEighthDotted": {},
-    "musSixteenthDotted": {},
-    "musThirtySecondDotted": {},
-    "musSixtyFourthDotted": {},
-    "musStack{}": {
-      "snippet": "musStack{${1:arg}}"
-    },
-    "musStack{}[]": {
-      "snippet": "musStack{${1:arg}}[${2:align}]"
-    },
-    "musStack[]{}": {
-      "snippet": "musStack[${2:font cmd}]{${1:arg}}"
-    },
-    "musStack[]{}[]": {
-      "snippet": "musStack[${2:font cmd}]{${1:arg}}[${3:align}]"
-    },
-    "musSymbolMeter{}": {
-      "snippet": "musSymbolMeter{${1:symbol}}"
-    },
-    "meterPlus{}{}": {
-      "snippet": "meterPlus{${1:meter}}{${2:symbol}}"
-    },
-    "meterThree": {},
-    "meterThreeTwo": {},
-    "meterCplus{}": {
-      "snippet": "meterCplus{${1:symbol}}"
-    },
-    "meterCutCplus{}": {
-      "snippet": "meterCutCplus{${1:symbol}}"
-    },
-    "meterCutCThree": {},
-    "meterCutCThreeTwo": {},
-    "musMeter{}{}": {
-      "snippet": "musMeter{${1:upper}}{${2:lower}}"
-    },
-    "musMeter[]{}{}": {
-      "snippet": "musMeter[${3:font cmd}]{${1:upper}}{${2:lower}}"
-    },
-    "musFigFont": {},
-    "musFigSize": {},
-    "musFig{}": {
-      "snippet": "musFig{${1:content}}"
-    },
-    "musFig[]{}": {
-      "snippet": "musFig[${2:align}]{${1:content}}"
-    },
-    "noFig": {},
-    "noFig[]": {
-      "snippet": "noFig[${1:text}]"
-    },
-    "meterC": {},
-    "meterCutC": {},
-    "meterCThree": {},
-    "meterCThreeTwo": {},
-    "meterZfont": {},
-    "meterZsymbol": {},
-    "meterCZ": {},
-    "meterO": {},
-    "musDegree{}": {
-      "snippet": "musDegree{${1:numeral}}"
-    },
-    "musPitch{}{}": {
-      "snippet": "musPitch{${1:pitch}}{${2:octave}}"
-    },
-    "symbolList{}{}": {
-      "snippet": "symbolList{${1:font cmd}}{${2:number}}"
-    },
-    "musixSymbolList": {},
-    "musSemibreve": {},
-    "musMinim": {},
-    "musSemiminim": {},
-    "musCorchea": {},
-    "musFusa": {},
-    "musSemibreveDotted": {},
-    "musMinimDotted": {},
-    "musSeminiminimDotted": {},
-    "musCorcheaDotted": {},
-    "musFusaDotted": {}
-  },
-  "envs": {},
-  "options": [
-    "bigger"
+    {
+      "name": "setspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ifLargeFont",
+      "unusual": true
+    },
+    {
+      "name": "LargeFonttrue",
+      "unusual": true
+    },
+    {
+      "name": "LargeFontfalse",
+      "unusual": true
+    },
+    {
+      "name": "musFont",
+      "unusual": true
+    },
+    {
+      "name": "musFontBig",
+      "unusual": true
+    },
+    {
+      "name": "musFontLarge",
+      "unusual": true
+    },
+    {
+      "name": "musNumFont",
+      "unusual": true
+    },
+    {
+      "name": "musSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "musSymbol{${1:kern before}}{${2:raise}}{${3:kern after}}{${4:symbol}}"
+      }
+    },
+    {
+      "name": "musSymbol",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "musSymbol[${5:font cmds}]{${1:kern before}}{${2:raise}}{${3:kern after}}{${4:symbol}}"
+      }
+    },
+    {
+      "name": "musAccidentalFont",
+      "unusual": true
+    },
+    {
+      "name": "musAccidental",
+      "arg": {
+        "format": "{}",
+        "snippet": "musAccidental{${1:symbol code}}"
+      }
+    },
+    {
+      "name": "musFlat"
+    },
+    {
+      "name": "musDoubleFlat"
+    },
+    {
+      "name": "musSharp"
+    },
+    {
+      "name": "musDoubleSharp"
+    },
+    {
+      "name": "musNatural"
+    },
+    {
+      "name": "fl"
+    },
+    {
+      "name": "sh"
+    },
+    {
+      "name": "na"
+    },
+    {
+      "name": "musStemmedNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "musStemmedNote{${1:symbol}}"
+      }
+    },
+    {
+      "name": "musFlaggedNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "musFlaggedNote{${1:symbol1}}{${2:symbol2}}"
+      }
+    },
+    {
+      "name": "musDottedNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "musDottedNote{${1:symbol}}"
+      }
+    },
+    {
+      "name": "musStem",
+      "unusual": true
+    },
+    {
+      "name": "musSegno",
+      "unusual": true
+    },
+    {
+      "name": "musDot",
+      "unusual": true
+    },
+    {
+      "name": "musBreve"
+    },
+    {
+      "name": "musWhole"
+    },
+    {
+      "name": "musHalf"
+    },
+    {
+      "name": "musQuarter"
+    },
+    {
+      "name": "musEighth"
+    },
+    {
+      "name": "musSixteenth"
+    },
+    {
+      "name": "musThirtySecond"
+    },
+    {
+      "name": "musSixtyFourth"
+    },
+    {
+      "name": "musWholeDotted"
+    },
+    {
+      "name": "musHalfDotted"
+    },
+    {
+      "name": "musQuarterDotted"
+    },
+    {
+      "name": "musEighthDotted"
+    },
+    {
+      "name": "musSixteenthDotted"
+    },
+    {
+      "name": "musThirtySecondDotted"
+    },
+    {
+      "name": "musSixtyFourthDotted"
+    },
+    {
+      "name": "musStack",
+      "arg": {
+        "format": "{}",
+        "snippet": "musStack{${1:arg}}"
+      }
+    },
+    {
+      "name": "musStack",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "musStack{${1:arg}}[${2:align}]"
+      }
+    },
+    {
+      "name": "musStack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "musStack[${2:font cmd}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "musStack",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "musStack[${2:font cmd}]{${1:arg}}[${3:align}]"
+      }
+    },
+    {
+      "name": "musSymbolMeter",
+      "arg": {
+        "format": "{}",
+        "snippet": "musSymbolMeter{${1:symbol}}"
+      }
+    },
+    {
+      "name": "meterPlus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "meterPlus{${1:meter}}{${2:symbol}}"
+      }
+    },
+    {
+      "name": "meterThree"
+    },
+    {
+      "name": "meterThreeTwo"
+    },
+    {
+      "name": "meterCplus",
+      "arg": {
+        "format": "{}",
+        "snippet": "meterCplus{${1:symbol}}"
+      }
+    },
+    {
+      "name": "meterCutCplus",
+      "arg": {
+        "format": "{}",
+        "snippet": "meterCutCplus{${1:symbol}}"
+      }
+    },
+    {
+      "name": "meterCutCThree"
+    },
+    {
+      "name": "meterCutCThreeTwo"
+    },
+    {
+      "name": "musMeter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "musMeter{${1:upper}}{${2:lower}}"
+      }
+    },
+    {
+      "name": "musMeter",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "musMeter[${3:font cmd}]{${1:upper}}{${2:lower}}"
+      }
+    },
+    {
+      "name": "musFigFont",
+      "unusual": true
+    },
+    {
+      "name": "musFigSize",
+      "unusual": true
+    },
+    {
+      "name": "musFig",
+      "arg": {
+        "format": "{}",
+        "snippet": "musFig{${1:content}}"
+      }
+    },
+    {
+      "name": "musFig",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "musFig[${2:align}]{${1:content}}"
+      }
+    },
+    {
+      "name": "noFig"
+    },
+    {
+      "name": "noFig",
+      "arg": {
+        "format": "[]",
+        "snippet": "noFig[${1:text%plain}]"
+      }
+    },
+    {
+      "name": "meterC"
+    },
+    {
+      "name": "meterCutC"
+    },
+    {
+      "name": "meterCThree"
+    },
+    {
+      "name": "meterCThreeTwo"
+    },
+    {
+      "name": "meterZfont",
+      "unusual": true
+    },
+    {
+      "name": "meterZsymbol",
+      "unusual": true
+    },
+    {
+      "name": "meterCZ"
+    },
+    {
+      "name": "meterO"
+    },
+    {
+      "name": "musDegree",
+      "arg": {
+        "format": "{}",
+        "snippet": "musDegree{${1:numeral}}"
+      }
+    },
+    {
+      "name": "musPitch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "musPitch{${1:pitch}}{${2:octave}}"
+      }
+    },
+    {
+      "name": "symbolList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "symbolList{${1:font cmd}}{${2:number}}"
+      }
+    },
+    {
+      "name": "musixSymbolList",
+      "unusual": true
+    },
+    {
+      "name": "musSemibreve",
+      "unusual": true
+    },
+    {
+      "name": "musMinim",
+      "unusual": true
+    },
+    {
+      "name": "musSemiminim",
+      "unusual": true
+    },
+    {
+      "name": "musCorchea",
+      "unusual": true
+    },
+    {
+      "name": "musFusa",
+      "unusual": true
+    },
+    {
+      "name": "musSemibreveDotted",
+      "unusual": true
+    },
+    {
+      "name": "musMinimDotted",
+      "unusual": true
+    },
+    {
+      "name": "musSeminiminimDotted",
+      "unusual": true
+    },
+    {
+      "name": "musCorcheaDotted",
+      "unusual": true
+    },
+    {
+      "name": "musFusaDotted",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/musicography#c": [
+      "bigger"
+    ]
+  },
+  "args": [
+    "\\usepackage/musicography#c"
+  ]
 }

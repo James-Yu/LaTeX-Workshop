@@ -1,35 +1,178 @@
 {
-  "includes": {
-    "numerica": [],
-    "booktabs": []
-  },
-  "macros": {
-    "tabulate[]{}[]": {
-      "snippet": "tabulate[${2:settings}]{${1:expression}}[${3:vv-list}]"
+  "deps": [
+    {
+      "name": "numerica"
     },
-    "tabulate[]{}[][]": {
-      "snippet": "tabulate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "tabulate*[]{}[]": {
-      "snippet": "tabulate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "tabulate*[]{}[][]": {
-      "snippet": "tabulate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcTabulate[]{}[]": {
-      "snippet": "nmcTabulate[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcTabulate[]{}[][]": {
-      "snippet": "nmcTabulate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcTabulate*[]{}[]": {
-      "snippet": "nmcTabulate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcTabulate*[]{}[][]": {
-      "snippet": "nmcTabulate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
+    {
+      "name": "booktabs"
     }
+  ],
+  "macros": [
+    {
+      "name": "tabulate",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "tabulate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tabulate",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "tabulate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tabulate*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "tabulate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tabulate*",
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "tabulate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcTabulate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcTabulate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcTabulate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "nmcTabulate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcTabulate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcTabulate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcTabulate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "nmcTabulate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tabulate,\\tabulate*,\\nmcTabulate,\\nmcTabulate*": [
+      "dbg=${1|0,1,2,3,5,7,11|}",
+      "view",
+      "^=${1:char}",
+      "xx=${1|0,1|}",
+      "ff=${1:char}",
+      "1s2=${1|0,1|}",
+      "/min=${1:integer}",
+      "/max=${1:integer}",
+      "vv@=${1|0,1|}",
+      "vvmode=${1|0,1|}",
+      "o=${1|0,1|}",
+      "log=${1:number}",
+      "S+=${1:integer}",
+      "S?=${1:integer}",
+      "P+=${1:integer}",
+      "P?=${1:integer}",
+      "f=${1|0,1|}",
+      "p=${1:punctuation}",
+      "pp=${1:punctuation}",
+      "env=${1:envname}",
+      "arg=${1:arg}",
+      "eq=${1:symbol}",
+      "vv=${1:spec}",
+      "sep=${1:separator}",
+      "\\}=${1:<space><r-delim>}",
+      "rvar=${1:tokens}",
+      "rstep=${1:real number}",
+      "rstop=${1:real number}",
+      "rows=${1:integer}",
+      "rspec={${1:csv list}}",
+      "rdata={${1:csv list}}",
+      "rfile=${1:file}",
+      "rverb=${1|0,1|}",
+      "rfunc=${1:function}",
+      "rround=${1:integer}",
+      "ralign=${1|r,c,l|}",
+      "rfont=${1|bf,it,sf,tt,frak,rm|}",
+      "rhead=${1:tokens}",
+      "rhnudge=${1:integer}",
+      "rpos=${1|0,1,2,3,4|}",
+      "rvar'=${1:tokens}",
+      "rhead'=${1:tokens}",
+      "rhnudge'=${1:integer}",
+      "rfrac=${1|0,1,2,3,4,5|}",
+      "cvar=${1:tokens}",
+      "cstep=${1:real number}",
+      "cstop=${1:real number}",
+      "cols=${1:integer}",
+      "cspec={${1:csv list}}",
+      "chstyle=${1|0,1,2,3,4|}",
+      "ctitle=${1:tokens}",
+      "csubttl=${1:tokens}",
+      "chead=${1:tokens}",
+      "calign=${1|r,c,l|}",
+      "chnudge=${1:integer}",
+      "chround=${1:integer}",
+      "headless=${1|0,1|}",
+      "rules=${1:chars}",
+      "foot=${1:tokens}",
+      "rbloc={${1:csv list}}",
+      "rblocsep=",
+      "(pad)=${1:integer}",
+      "signs=${1|-2,-1,0,1,2|}",
+      "diffs=${1:integer}",
+      "round=${1:function}",
+      "Q?=${1:tokens}",
+      "A!=${1:tokens}",
+      "valign=${1|t,m,b|}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

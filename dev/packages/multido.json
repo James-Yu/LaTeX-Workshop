@@ -1,39 +1,65 @@
 {
-  "includes": {},
-  "macros": {
-    "multido{}{}{}": {
-      "snippet": "multido{${1:variables}}{${2:repetitions}}{${3:actions}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "multido",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "multido{${1:variables%cmd}}{${2:repetitions}}{${3:actions}}"
+      }
     },
-    "MultidoCheckNames": {},
-    "mmultido{}{}{}": {
-      "snippet": "mmultido{${1:variables}}{${2:repetitions}}{${3:actions}}"
+    {
+      "name": "MultidoCheckNames",
+      "unusual": true
     },
-    "Multido{}{}{}": {
-      "snippet": "Multido{${1:variables}}{${2:repetitions}}{${3:actions}}"
+    {
+      "name": "mmultido",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mmultido{${1:variables%cmd}}{${2:repetitions}}{${3:actions}}"
+      }
     },
-    "MMultido{}{}{}": {
-      "snippet": "MMultido{${1:variables}}{${2:repetitions}}{${3:actions}}"
+    {
+      "name": "Multido",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Multido{${1:variables%cmd}}{${2:repetitions}}{${3:actions}}"
+      }
     },
-    "multidocount": {},
-    "multidostop": {},
-    "fpAdd{}{}{}": {
-      "snippet": "fpAdd{${1:num1}}{${2:num2}}{${3:cmd}}"
+    {
+      "name": "MMultido",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MMultido{${1:variables%cmd}}{${2:repetitions}}{${3:actions}}"
+      }
     },
-    "fpSub{}{}{}": {
-      "snippet": "fpSub{${1:num1}}{${2:num2}}{${3:cmd}}"
+    {
+      "name": "multidocount",
+      "unusual": true
     },
-    "MultidoLoaded": {},
-    "TheAtCode": {},
-    "fileversion": {},
-    "filedate": {},
-    "FPadd{}{}{}": {
-      "snippet": "FPadd{${1:num1}}{${2:num2}}{${3:cmd}}"
+    {
+      "name": "multidostop",
+      "unusual": true
     },
-    "FPsub{}{}{}": {
-      "snippet": "FPsub{${1:num1}}{${2:num2}}{${3:cmd}}"
+    {
+      "name": "fpAdd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fpAdd{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "fpSub",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fpSub{${1:num1}}{${2:num2}}{${3:cmd}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

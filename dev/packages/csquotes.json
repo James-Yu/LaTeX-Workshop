@@ -1,496 +1,1249 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "keyval": []
-  },
-  "macros": {
-    "enquote{}": {
-      "snippet": "enquote{${1:text}}"
-    },
-    "enquote*{}": {
-      "snippet": "enquote*{${1:text}}"
-    },
-    "foreignquote{}{}": {
-      "snippet": "foreignquote{${1:language}}{${2:text}}"
-    },
-    "foreignquote*{}{}": {
-      "snippet": "foreignquote*{${1:language}}{${2:text}}"
-    },
-    "hyphenquote{}{}": {
-      "snippet": "hyphenquote{${1:language}}{${2:text}}"
-    },
-    "hyphenquote*{}{}": {
-      "snippet": "hyphenquote*{${1:language}}{${2:text}}"
-    },
-    "textquote{}": {
-      "snippet": "textquote{${1:text}}"
-    },
-    "textquote*{}": {
-      "snippet": "textquote*{${1:text}}"
-    },
-    "textquote[]{}": {
-      "snippet": "textquote[${2:manual citation}]{${1:text}}"
-    },
-    "textquote*[]{}": {
-      "snippet": "textquote*[${2:manual citation}]{${1:text}}"
-    },
-    "textquote[][]{}": {
-      "snippet": "textquote[${2:manual citation}][${3:punct}]{${1:text}}"
-    },
-    "textquote*[][]{}": {
-      "snippet": "textquote*[${2:manual citation}][${3:punct}]{${1:text}}"
-    },
-    "foreigntextquote{}{}": {
-      "snippet": "foreigntextquote{${1:language}}{${2:text}}"
-    },
-    "foreigntextquote*{}{}": {
-      "snippet": "foreigntextquote*{${1:language}}{${2:text}}"
-    },
-    "foreigntextquote{}[]{}": {
-      "snippet": "foreigntextquote{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "foreigntextquote*{}[]{}": {
-      "snippet": "foreigntextquote*{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "foreigntextquote{}[][]{}": {
-      "snippet": "foreigntextquote{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "foreigntextquote*{}[][]{}": {
-      "snippet": "foreigntextquote*{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hyphentextquote{}{}": {
-      "snippet": "hyphentextquote{${1:language}}{${2:text}}"
-    },
-    "hyphentextquote*{}{}": {
-      "snippet": "hyphentextquote*{${1:language}}{${2:text}}"
-    },
-    "hyphentextquote{}[]{}": {
-      "snippet": "hyphentextquote{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hyphentextquote*{}[]{}": {
-      "snippet": "hyphentextquote*{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hyphentextquote{}[][]{}": {
-      "snippet": "hyphentextquote{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hyphentextquote*{}[][]{}": {
-      "snippet": "hyphentextquote*{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "blockquote{}": {
-      "snippet": "blockquote{${1:text}}"
-    },
-    "blockquote[]{}": {
-      "snippet": "blockquote[${2:manual citation}]{${1:text}}"
-    },
-    "blockquote[][]{}": {
-      "snippet": "blockquote[${2:manual citation}][${3:punct}]{${1:text}}"
-    },
-    "foreignblockquote{}{}": {
-      "snippet": "foreignblockquote{${1:language}}{${2:text}}"
-    },
-    "foreignblockquote*{}{}": {
-      "snippet": "foreignblockquote*{${1:language}}{${2:text}}"
-    },
-    "foreignblockquote{}[]{}": {
-      "snippet": "foreignblockquote{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "foreignblockquote*{}[]{}": {
-      "snippet": "foreignblockquote*{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "foreignblockquote{}[][]{}": {
-      "snippet": "foreignblockquote{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "foreignblockquote*{}[][]{}": {
-      "snippet": "foreignblockquote*{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hyphenblockquote{}{}": {
-      "snippet": "hyphenblockquote{${1:language}}{${2:text}}"
-    },
-    "hyphenblockquote*{}{}": {
-      "snippet": "hyphenblockquote*{${1:language}}{${2:text}}"
-    },
-    "hyphenblockquote{}[]{}": {
-      "snippet": "hyphenblockquote{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hyphenblockquote*{}[]{}": {
-      "snippet": "hyphenblockquote*{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hyphenblockquote{}[][]{}": {
-      "snippet": "hyphenblockquote{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hyphenblockquote*{}[][]{}": {
-      "snippet": "hyphenblockquote*{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hybridblockquote{}{}": {
-      "snippet": "hybridblockquote{${1:language}}{${2:text}}"
-    },
-    "hybridblockquote*{}{}": {
-      "snippet": "hybridblockquote*{${1:language}}{${2:text}}"
-    },
-    "hybridblockquote{}[]{}": {
-      "snippet": "hybridblockquote{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hybridblockquote*{}[]{}": {
-      "snippet": "hybridblockquote*{${1:language}}[${2:manual citation}]{${3:text}}"
-    },
-    "hybridblockquote{}[][]{}": {
-      "snippet": "hybridblockquote{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "hybridblockquote*{}[][]{}": {
-      "snippet": "hybridblockquote*{${1:language}}[${2:manual citation}][${3:punct}]{${4:text}}"
-    },
-    "setquotestyle{}": {
-      "snippet": "setquotestyle{${1:alias}}"
-    },
-    "setquotestyle[]{}": {
-      "snippet": "setquotestyle[${2:variant}]{${1:style}}"
-    },
-    "setquotestyle*": {},
-    "MakeOuterQuote{}": {
-      "snippet": "MakeOuterQuote{${1:character}}"
-    },
-    "MakeInnerQuote{}": {
-      "snippet": "MakeInnerQuote{${1:character}}"
-    },
-    "MakeAutoQuote{}{}": {
-      "snippet": "MakeAutoQuote{${1:character 1}}{${2:character 2}}"
-    },
-    "MakeAutoQuote*{}{}": {
-      "snippet": "MakeAutoQuote*{${1:character 1}}{${2:character 2}}"
-    },
-    "MakeForeignQuote{}{}{}": {
-      "snippet": "MakeForeignQuote{${1:language}}{${2:character 1}}{${3:character 2}}"
-    },
-    "MakeForeignQuote*{}{}{}": {
-      "snippet": "MakeForeignQuote*{${1:language}}{${2:character 1}}{${3:character 2}}"
-    },
-    "MakeHyphenQuote{}{}{}": {
-      "snippet": "MakeHyphenQuote{${1:language}}{${2:character 1}}{${3:character 2}}"
-    },
-    "MakeHyphenQuote*{}{}{}": {
-      "snippet": "MakeHyphenQuote*{${1:language}}{${2:character 1}}{${3:character 2}}"
-    },
-    "MakeBlockQuote{}{}{}": {
-      "snippet": "MakeBlockQuote{${1:character 1}}{${2:delimiter}}{${3:character 2}}"
-    },
-    "MakeForeignBlockQuote{}{}{}{}": {
-      "snippet": "MakeForeignBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
-    },
-    "MakeHyphenBlockQuote{}{}{}{}": {
-      "snippet": "MakeHyphenBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
-    },
-    "MakeHybridBlockQuote{}{}{}{}": {
-      "snippet": "MakeHybridBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
-    },
-    "EnableQuotes": {},
-    "DisableQuotes": {},
-    "VerbatimQuotes": {},
-    "DeleteQuotes": {},
-    "textcquote{}{}": {
-      "snippet": "textcquote{${1:bibid}}{${2:text}}"
-    },
-    "textcquote[]{}{}": {
-      "snippet": "textcquote[${3:prenote}]{${1:bibid}}{${2:text}}"
-    },
-    "textcquote*{}{}": {
-      "snippet": "textcquote*{${1:bibid}}{${2:text}}"
-    },
-    "textcquote*[]{}{}": {
-      "snippet": "textcquote*[${3:prenote}]{${1:bibid}}{${2:text}}"
-    },
-    "foreigntextcquote{}{}{}": {
-      "snippet": "foreigntextcquote{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "foreigntextcquote{}[]{}{}": {
-      "snippet": "foreigntextcquote{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "foreigntextcquote*{}{}{}": {
-      "snippet": "foreigntextcquote*{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "foreigntextcquote*{}[]{}{}": {
-      "snippet": "foreigntextcquote*{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "hyphentextcquote{}{}{}": {
-      "snippet": "hyphentextcquote{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "hyphentextcquote{}[]{}{}": {
-      "snippet": "hyphentextcquote{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "hyphentextcquote*{}{}{}": {
-      "snippet": "hyphentextcquote*{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "hyphentextcquote*{}[]{}{}": {
-      "snippet": "hyphentextcquote*{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "blockcquote{}{}": {
-      "snippet": "blockcquote{${1:bibid}}{${2:text}}"
-    },
-    "blockcquote[]{}{}": {
-      "snippet": "blockcquote[${3:prenote}]{${1:bibid}}{${2:text}}"
-    },
-    "foreignblockcquote{}{}{}": {
-      "snippet": "foreignblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "foreignblockcquote{}[]{}{}": {
-      "snippet": "foreignblockcquote{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "hyphenblockcquote{}{}{}": {
-      "snippet": "hyphenblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "hyphenblockcquote{}[]{}{}": {
-      "snippet": "hyphenblockcquote{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "hybridblockcquote{}{}{}": {
-      "snippet": "hybridblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
-    },
-    "hybridblockcquote{}[]{}{}": {
-      "snippet": "hybridblockcquote{${1:language}}[${2:prenote}]{${3:bibid}}{${4:text}}"
-    },
-    "textelp{}": {
-      "snippet": "textelp{${1:text}}"
-    },
-    "textelp*{}": {
-      "snippet": "textelp*{${1:text}}"
-    },
-    "textins{}": {
-      "snippet": "textins{${1:text}}"
-    },
-    "textins*{}": {
-      "snippet": "textins*{${1:text}}"
-    },
-    "textdel{}": {
-      "snippet": "textdel{${1:text}}"
-    },
-    "DeclareQuoteStyle{}{}{}{}{}": {
-      "snippet": "DeclareQuoteStyle{${1:style}}{${2:openoutermark}}{${3:closeoutermark}}{${4:openinnermark}}{${5:closeinnermark}}"
-    },
-    "DeclareQuoteStyle[]{}[][]{}[]{}{}[]{}": {
-      "snippet": "DeclareQuoteStyle[${6:variant}]{${1:style}}[${7:outerinit}][${8:innerinit}]{${2:openouter}}[${9:midouter}]{${3:closeouter}}{${4:openinner}}[${10:midinner}]{${5:closeinner}}"
-    },
-    "DeclareQuoteAlias{}{}": {
-      "snippet": "DeclareQuoteAlias{${1:first-level alias}}{${2:second-level alias}}"
-    },
-    "DeclareQuoteAlias[]{}{}": {
-      "snippet": "DeclareQuoteAlias[${3:variant}]{${1:style}}{${2:alias}}"
-    },
-    "DeclareQuoteOption{}": {
-      "snippet": "DeclareQuoteOption{${1:style}}"
-    },
-    "ExecuteQuoteOptions{}": {
-      "snippet": "ExecuteQuoteOptions{${1:options}}"
-    },
-    "DeclarePlainStyle{}{}{}{}": {
-      "snippet": "DeclarePlainStyle{${1:openoutermark}}{${2:closeoutermark}}{${3:openinnermark}}{${4:closeinnermark}}"
-    },
-    "SetBlockThreshold{}": {
-      "snippet": "SetBlockThreshold{${1:integer}}"
-    },
-    "SetBlockEnvironment{}": {
-      "snippet": "SetBlockEnvironment{${1:envname}}"
-    },
-    "SetCiteCommand{}": {
-      "snippet": "SetCiteCommand{${1:command}}"
-    },
-    "mkcitation{}": {
-      "snippet": "mkcitation{${1:cite}}"
-    },
-    "mkccitation{}": {
-      "snippet": "mkccitation{${1:cite code}}"
-    },
-    "mktextquote{}{}{}{}{}{}": {
-      "snippet": "mktextquote{${1:open}}{${2:text}}{${3:close}}{${4:punct}}{${5:tpunct}}{${6:cite}}"
-    },
-    "mkblockquote{}{}{}{}": {
-      "snippet": "mkblockquote{${1:text}}{${2:punct}}{${3:tpunct}}{${4:cite}}"
-    },
-    "mkbegdispquote{}{}": {
-      "snippet": "mkbegdispquote{${1:punct}}{${2:cite}}"
-    },
-    "mkenddispquote{}{}": {
-      "snippet": "mkenddispquote{${1:punct}}{${2:cite}}"
-    },
-    "ifpunctmark{}{}{}": {
-      "snippet": "ifpunctmark{${1:character}}{${2:true}}{${3:false}}"
-    },
-    "ifpunct{}{}": {
-      "snippet": "ifpunct{${1:true}}{${2:false}}"
-    },
-    "ifterm{}{}": {
-      "snippet": "ifterm{${1:true}}{${2:false}}"
-    },
-    "iftextpunctmark{}{}{}{}": {
-      "snippet": "iftextpunctmark{${1:text}}{${2:character}}{${3:true}}{${4:false}}"
-    },
-    "iftextpunct{}{}{}": {
-      "snippet": "iftextpunct{${1:text}}{${2:true}}{${3:false}}"
-    },
-    "iftextterm{}{}{}": {
-      "snippet": "iftextterm{${1:text}}{${2:true}}{${3:false}}"
-    },
-    "ifblockquote{}{}": {
-      "snippet": "ifblockquote{${1:true}}{${2:false}}"
-    },
-    "ifblank{}{}{}": {
-      "snippet": "ifblank{${1:string}}{${2:true}}{${3:false}}"
-    },
-    "unspace": {},
-    "DeclareAutoPunct{}": {
-      "snippet": "DeclareAutoPunct{${1:characters}}"
-    },
-    "mktextelp": {},
-    "mktextelpins{}": {
-      "snippet": "mktextelpins{${1:text}}"
-    },
-    "mktextinselp{}": {
-      "snippet": "mktextinselp{${1:text}}"
-    },
-    "mktextins{}": {
-      "snippet": "mktextins{${1:text}}"
-    },
-    "mktextmod{}": {
-      "snippet": "mktextmod{${1:text}}"
-    },
-    "mktextdel{}": {
-      "snippet": "mktextdel{${1:text}}"
-    },
-    "BlockquoteDisable{}": {
-      "snippet": "BlockquoteDisable{${1:code}}"
-    },
-    "DeclareQuoteGlyph{}{}": {
-      "snippet": "DeclareQuoteGlyph{${1:encoding}}{${2:position}}"
-    },
-    "openautoquote": {},
-    "closeautoquote": {},
-    "openinnerquote": {},
-    "closeinnerquote": {},
-    "textooquote": {},
-    "textcoquote": {},
-    "textmoquote": {},
-    "textoiquote": {},
-    "textciquote": {},
-    "textmiquote": {},
-    "initoquote": {},
-    "initiquote": {},
-    "csqQQ{}": {
-      "snippet": "csqQQ{${1:arg}}"
-    },
-    "csqBQbeg{}": {
-      "snippet": "csqBQbeg{${1:arg}}"
-    },
-    "csqBQend{}": {
-      "snippet": "csqBQend{${1:arg}}"
-    },
-    "csqBQsep{}": {
-      "snippet": "csqBQsep{${1:arg}}"
-    },
-    "csqBQ{}": {
-      "snippet": "csqBQ{${1:arg}}"
-    },
-    "initfrenchquotes": {},
-    "mkfrenchopenquote{}": {
-      "snippet": "mkfrenchopenquote{${1:text}}"
-    },
-    "mkfrenchclosequote{}": {
-      "snippet": "mkfrenchclosequote{${1:text}}"
-    },
-    "fixligatures": {}
-  },
-  "envs": {
-    "displayquote": {},
-    "displayquote[]": {
-      "name": "displayquote",
-      "snippet": "[${1:manual citation}]"
-    },
-    "displayquote[][]": {
-      "name": "displayquote",
-      "snippet": "[${1:manual citation}][${2:punct}]"
-    },
-    "foreigndisplayquote{}": {
-      "name": "foreigndisplayquote",
-      "snippet": "{${1:language}}"
-    },
-    "foreigndisplayquote{}[]": {
-      "name": "foreigndisplayquote",
-      "snippet": "{${1:language}}[${2:manual citation}]"
-    },
-    "foreigndisplayquote{}[][]": {
-      "name": "foreigndisplayquote",
-      "snippet": "{${1:language}}[${2:manual citation}][${3:punct}]"
-    },
-    "hyphendisplayquote{}": {
-      "name": "hyphendisplayquote",
-      "snippet": "{${1:language}}"
-    },
-    "hyphendisplayquote{}[]": {
-      "name": "hyphendisplayquote",
-      "snippet": "{${1:language}}[${2:manual citation}]"
-    },
-    "hyphendisplayquote{}[][]": {
-      "name": "hyphendisplayquote",
-      "snippet": "{${1:language}}[${2:manual citation}][${3:punct}]"
-    },
-    "displaycquote{}": {
-      "name": "displaycquote",
-      "snippet": "{${1:bibid}}"
-    },
-    "displaycquote[]{}": {
-      "name": "displaycquote",
-      "snippet": "[${2:prenote}]{${1:bibid}}"
-    },
-    "foreigndisplaycquote{}": {
-      "name": "foreigndisplaycquote",
-      "snippet": "{${1:bibid}}"
-    },
-    "foreigndisplaycquote[]{}": {
-      "name": "foreigndisplaycquote",
-      "snippet": "[${2:prenote}]{${1:bibid}}"
-    },
-    "hyphendisplaycquote{}": {
-      "name": "hyphendisplaycquote",
-      "snippet": "{${1:bibid}}"
-    },
-    "hyphendisplaycquote[]{}": {
-      "name": "hyphendisplaycquote",
-      "snippet": "[${2:prenote}]{${1:bibid}}"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "keyval"
     }
-  },
-  "options": [
-    "strict",
-    "style=${1:style}",
-    "autostyle=",
-    "maxlevel=${1:integer}",
-    "autopunct",
-    "threshold=${1:integer}",
-    "thresholdtype=",
-    "parthreshold",
-    "splitcomp",
-    "csdisplay",
-    "debug",
-    "version=${1:version}",
-    "austrian=",
-    "croatian=",
-    "czech=",
-    "danish=",
-    "english=",
-    "estonian",
-    "french=",
-    "galician=",
-    "german=",
-    "hungarian",
-    "italian=",
-    "latin=",
-    "japanese",
-    "latvian",
-    "norwegian=",
-    "polish=",
-    "portuguese=",
-    "romanian",
-    "serbian=",
-    "slovenian=",
-    "spanish=",
-    "swedish=",
-    "turkish=",
-    "ukrainian"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "enquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "enquote{${1:text}}"
+      }
+    },
+    {
+      "name": "enquote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "enquote*{${1:text}}"
+      }
+    },
+    {
+      "name": "foreignquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreignquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignquote*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreignquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphenquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphenquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "textquote{${1:text}}"
+      }
+    },
+    {
+      "name": "textquote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textquote*{${1:text}}"
+      }
+    },
+    {
+      "name": "textquote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textquote[${2:manual citation}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textquote*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textquote*[${2:manual citation}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textquote",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "textquote[${2:manual citation}][${3:punct}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textquote*",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "textquote*[${2:manual citation}][${3:punct}]{${1:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreigntextquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreigntextquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "foreigntextquote{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "foreigntextquote*{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreigntextquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreigntextquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreigntextquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreigntextquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphentextquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphentextquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hyphentextquote{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hyphentextquote*{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphentextquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphentextquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphentextquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphentextquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphentextquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "blockquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "blockquote{${1:text}}"
+      }
+    },
+    {
+      "name": "blockquote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "blockquote[${2:manual citation}]{${1:text}}"
+      }
+    },
+    {
+      "name": "blockquote",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "blockquote[${2:manual citation}][${3:punct}]{${1:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreignblockquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "foreignblockquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "foreignblockquote{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "foreignblockquote*{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreignblockquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "foreignblockquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphenblockquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyphenblockquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hyphenblockquote{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hyphenblockquote*{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphenblockquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hyphenblockquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hybridblockquote{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hybridblockquote*{${1:language}}{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hybridblockquote{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "hybridblockquote*{${1:language}}[${3:manual citation}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hybridblockquote{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "hybridblockquote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "hybridblockquote*{${1:language}}[${3:manual citation}][${4:punct}]{${2:text}}"
+      }
+    },
+    {
+      "name": "setquotestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setquotestyle{${1:style}}"
+      }
+    },
+    {
+      "name": "setquotestyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setquotestyle[${2:variant}]{${1:style}}"
+      }
+    },
+    {
+      "name": "setquotestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setquotestyle{${1:alias}}"
+      }
+    },
+    {
+      "name": "setquotestyle*",
+      "unusual": true
+    },
+    {
+      "name": "MakeOuterQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeOuterQuote{${1:character}}"
+      }
+    },
+    {
+      "name": "MakeInnerQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeInnerQuote{${1:character}}"
+      }
+    },
+    {
+      "name": "MakeAutoQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MakeAutoQuote{${1:character 1}}{${2:character 2}}"
+      }
+    },
+    {
+      "name": "MakeAutoQuote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MakeAutoQuote*{${1:character 1}}{${2:character 2}}"
+      }
+    },
+    {
+      "name": "MakeForeignQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MakeForeignQuote{${1:language}}{${2:character 1}}{${3:character 2}}"
+      }
+    },
+    {
+      "name": "MakeForeignQuote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MakeForeignQuote*{${1:language}}{${2:character 1}}{${3:character 2}}"
+      }
+    },
+    {
+      "name": "MakeHyphenQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MakeHyphenQuote{${1:language}}{${2:character 1}}{${3:character 2}}"
+      }
+    },
+    {
+      "name": "MakeHyphenQuote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MakeHyphenQuote*{${1:language}}{${2:character 1}}{${3:character 2}}"
+      }
+    },
+    {
+      "name": "MakeBlockQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MakeBlockQuote{${1:character 1}}{${2:delimiter}}{${3:character 2}}"
+      }
+    },
+    {
+      "name": "MakeForeignBlockQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "MakeForeignBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
+      }
+    },
+    {
+      "name": "MakeHyphenBlockQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "MakeHyphenBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
+      }
+    },
+    {
+      "name": "MakeHybridBlockQuote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "MakeHybridBlockQuote{${1:language}}{${2:character 1}}{${3:delimiter}}{${4:character 2}}"
+      }
+    },
+    {
+      "name": "EnableQuotes",
+      "unusual": true
+    },
+    {
+      "name": "DisableQuotes",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimQuotes",
+      "unusual": true
+    },
+    {
+      "name": "DeleteQuotes",
+      "unusual": true
+    },
+    {
+      "name": "textcquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textcquote{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textcquote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "textcquote[${3:prenote}]{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textcquote*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textcquote*{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "textcquote*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "textcquote*[${3:prenote}]{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreigntextcquote",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "foreigntextcquote{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "foreigntextcquote",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "foreigntextcquote{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "foreigntextcquote*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "foreigntextcquote*{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "foreigntextcquote*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "foreigntextcquote*{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphentextcquote",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hyphentextcquote{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphentextcquote",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "hyphentextcquote{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphentextcquote*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hyphentextcquote*{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphentextcquote*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "hyphentextcquote*{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "blockcquote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "blockcquote{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "blockcquote",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "blockcquote[${3:prenote}]{${1:bibid}}{${2:text}}"
+      }
+    },
+    {
+      "name": "foreignblockcquote",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "foreignblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "foreignblockcquote",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "foreignblockcquote{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockcquote",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hyphenblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hyphenblockcquote",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "hyphenblockcquote{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hybridblockcquote",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hybridblockcquote{${1:language}}{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "hybridblockcquote",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "hybridblockcquote{${1:language}}[${4:prenote}]{${2:bibid}}{${3:text}}"
+      }
+    },
+    {
+      "name": "textelp",
+      "arg": {
+        "format": "{}",
+        "snippet": "textelp{${1:}}"
+      }
+    },
+    {
+      "name": "textelp",
+      "arg": {
+        "format": "{}",
+        "snippet": "textelp{${1:text}}"
+      }
+    },
+    {
+      "name": "textelp*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textelp*{${1:text}}"
+      }
+    },
+    {
+      "name": "textins",
+      "arg": {
+        "format": "{}",
+        "snippet": "textins{${1:text}}"
+      }
+    },
+    {
+      "name": "textins*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textins*{${1:text}}"
+      }
+    },
+    {
+      "name": "textdel",
+      "arg": {
+        "format": "{}",
+        "snippet": "textdel{${1:text}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "DeclareQuoteStyle{${1:style}}{${2:openoutermark}}{${3:closeoutermark}}{${4:openinnermark}}{${5:closeinnermark}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteStyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}[]{}{}[]{}",
+        "snippet": "DeclareQuoteStyle[${6:variant}]{${1:style}}[${7:outerinit}][${8:innerinit}]{${2:openouter}}[${9:midouter}]{${3:closeouter}}{${4:openinner}}[${10:midinner}]{${5:closeinner}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteAlias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareQuoteAlias{${1:style}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteAlias",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DeclareQuoteAlias[${3:variant}]{${1:style}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteAlias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareQuoteAlias{${1:first-level alias}}{${2:second-level alias}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareQuoteOption{${1:style}}"
+      }
+    },
+    {
+      "name": "ExecuteQuoteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ExecuteQuoteOptions{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/csquotes#c,\\ExecuteQuoteOptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclarePlainStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "DeclarePlainStyle{${1:openoutermark}}{${2:closeoutermark}}{${3:openinnermark}}{${4:closeinnermark}}"
+      }
+    },
+    {
+      "name": "SetBlockThreshold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetBlockThreshold{${1:integer}}"
+      }
+    },
+    {
+      "name": "SetBlockEnvironment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetBlockEnvironment{${1:envname}}"
+      }
+    },
+    {
+      "name": "SetCiteCommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetCiteCommand{${1:command}}"
+      }
+    },
+    {
+      "name": "mkcitation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkcitation{${1:cite}}"
+      }
+    },
+    {
+      "name": "mkccitation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkccitation{${1:cite code}}"
+      }
+    },
+    {
+      "name": "mktextquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "mktextquote{${1:open}}{${2:text}}{${3:close}}{${4:punct}}{${5:tpunct}}{${6:cite}}"
+      }
+    },
+    {
+      "name": "mkblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mkblockquote{${1:text}}{${2:punct}}{${3:tpunct}}{${4:cite}}"
+      }
+    },
+    {
+      "name": "mkbegdispquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mkbegdispquote{${1:punct}}{${2:cite}}"
+      }
+    },
+    {
+      "name": "mkenddispquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mkenddispquote{${1:punct}}{${2:cite}}"
+      }
+    },
+    {
+      "name": "ifpunctmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifpunctmark{${1:character}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifpunct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifpunct{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifterm",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifterm{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "iftextpunctmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "iftextpunctmark{${1:text}}{${2:character}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "iftextpunct",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iftextpunct{${1:text}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "iftextterm",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iftextterm{${1:text}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifblockquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifblockquote{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ifblank",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifblank{${1:string}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "unspace",
+      "unusual": true
+    },
+    {
+      "name": "DeclareAutoPunct",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareAutoPunct{${1:characters}}"
+      }
+    },
+    {
+      "name": "mktextelp",
+      "unusual": true
+    },
+    {
+      "name": "mktextelpins",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mktextelpins{${1:text}}"
+      }
+    },
+    {
+      "name": "mktextinselp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mktextinselp{${1:text}}"
+      }
+    },
+    {
+      "name": "mktextins",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mktextins{${1:text}}"
+      }
+    },
+    {
+      "name": "mktextmod",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mktextmod{${1:text}}"
+      }
+    },
+    {
+      "name": "mktextdel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mktextdel{${1:text}}"
+      }
+    },
+    {
+      "name": "BlockquoteDisable",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BlockquoteDisable{${1:code}}"
+      }
+    },
+    {
+      "name": "DeclareQuoteGlyph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareQuoteGlyph{${1:encoding}}{${2:position}}"
+      }
+    },
+    {
+      "name": "openautoquote",
+      "unusual": true
+    },
+    {
+      "name": "closeautoquote",
+      "unusual": true
+    },
+    {
+      "name": "openinnerquote",
+      "unusual": true
+    },
+    {
+      "name": "closeinnerquote",
+      "unusual": true
+    },
+    {
+      "name": "textooquote",
+      "unusual": true
+    },
+    {
+      "name": "textcoquote",
+      "unusual": true
+    },
+    {
+      "name": "textmoquote",
+      "unusual": true
+    },
+    {
+      "name": "textoiquote",
+      "unusual": true
+    },
+    {
+      "name": "textciquote",
+      "unusual": true
+    },
+    {
+      "name": "textmiquote",
+      "unusual": true
+    },
+    {
+      "name": "initoquote",
+      "unusual": true
+    },
+    {
+      "name": "initiquote",
+      "unusual": true
+    },
+    {
+      "name": "csqQQ",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "csqQQ{${1:arg}}"
+      }
+    },
+    {
+      "name": "csqBQbeg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "csqBQbeg{${1:arg}}"
+      }
+    },
+    {
+      "name": "csqBQend",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "csqBQend{${1:arg}}"
+      }
+    },
+    {
+      "name": "csqBQsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "csqBQsep{${1:arg}}"
+      }
+    },
+    {
+      "name": "csqBQ",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "csqBQ{${1:arg}}"
+      }
+    },
+    {
+      "name": "initfrenchquotes",
+      "unusual": true
+    },
+    {
+      "name": "mkfrenchopenquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkfrenchopenquote{${1:text}}"
+      }
+    },
+    {
+      "name": "mkfrenchclosequote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkfrenchclosequote{${1:text}}"
+      }
+    },
+    {
+      "name": "fixligatures",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "displayquote"
+    },
+    {
+      "name": "displayquote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:manual citation}]"
+      }
+    },
+    {
+      "name": "displayquote",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:manual citation}][${2:punct}]"
+      }
+    },
+    {
+      "name": "foreigndisplayquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "foreigndisplayquote",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:language}}[${2:manual citation}]"
+      }
+    },
+    {
+      "name": "foreigndisplayquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:language}}[${2:manual citation}][${3:punct}]"
+      }
+    },
+    {
+      "name": "hyphendisplayquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    },
+    {
+      "name": "hyphendisplayquote",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:language}}[${2:manual citation}]"
+      }
+    },
+    {
+      "name": "hyphendisplayquote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "{${1:language}}[${2:manual citation}][${3:punct}]"
+      }
+    },
+    {
+      "name": "displaycquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "displaycquote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prenote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "foreigndisplaycquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "foreigndisplaycquote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prenote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "hyphendisplaycquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bibid}}"
+      }
+    },
+    {
+      "name": "hyphendisplaycquote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:prenote}]{${1:bibid}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/csquotes#c,\\ExecuteQuoteOptions#c": [
+      "strict",
+      "style=${1:style}",
+      "autostyle=${1|true,false,try,once,tryonce|}",
+      "maxlevel=${1:integer}",
+      "autopunct",
+      "threshold=${1:integer}",
+      "thresholdtype=${1|lines,words|}",
+      "parthreshold",
+      "splitcomp",
+      "csdisplay",
+      "debug",
+      "version=${1:version}",
+      "austrian=${1|quotes,guillemets|}",
+      "croatian=${1|quotes,guillemets|}",
+      "czech=${1|quotes,guillemets|}",
+      "danish=${1|quotes,guillemets,topquotes|}",
+      "english=${1|american,british|}",
+      "estonian",
+      "french=${1|quotes,quotes*,guillemets,guillemets*|}",
+      "galician=${1|quotes,guillemets|}",
+      "german=${1|quotes,guillemets,swiss|}",
+      "hungarian",
+      "italian=${1|guillemets,quotes|}",
+      "latin=${1|italianguillemets,germanquotes,germanguillemets,britishquotes,americanquotes|}",
+      "japanese",
+      "latvian",
+      "norwegian=${1|guillemets,quotes|}",
+      "polish=${1|guillemets,guillemets*|}",
+      "portuguese=${1|portuguese,brazilian|}",
+      "romanian",
+      "serbian=${1|quotes,guillemets,german|}",
+      "slovenian=${1|quotes,guillemets|}",
+      "spanish=${1|spanish,mexican|}",
+      "swedish=${1|quotes,guillemets,guillemets*|}",
+      "turkish=${1|quotes,guillemets|}",
+      "ukrainian"
+    ]
+  },
+  "args": [
+    "\\usepackage/csquotes#c,\\ExecuteQuoteOptions#c"
+  ]
 }

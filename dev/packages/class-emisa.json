@@ -1,750 +1,1969 @@
 {
-  "includes": {
-    "inputenc": [],
-    "fontenc": [],
-    "microtype": [],
-    "babel": [],
-    "float": [],
-    "caption": [],
-    "graphicx": [],
-    "xcolor": [],
-    "etoolbox": [],
-    "biblatex": [],
-    "csquotes": [],
-    "twoopt": [],
-    "environ": [],
-    "paralist": [],
-    "afterpage": [],
-    "xspace": [],
-    "calc": [],
-    "geometry": [],
-    "eso-pic": [],
-    "placeins": [],
-    "newtxtext": [],
-    "amsmath": [],
-    "amssymb": [],
-    "newtxmath": [],
-    "newtxtt": [],
-    "booktabs": [],
-    "listings": [],
-    "ntheorem": [],
-    "url": [],
-    "hyperref": [],
-    "cleveref": [],
-    "doclicense": [],
-    "colortbl": []
-  },
-  "macros": {
-    "captionsbritish": {
-      "option": "british"
-    },
-    "datebritish": {
-      "option": "british"
-    },
-    "extrasbritish": {
-      "option": "british"
+  "deps": [
+    {
+      "name": "inputenc"
     },
-    "noextrasbritish": {
-      "option": "british"
+    {
+      "name": "fontenc"
     },
-    "englishhyphenmins": {
-      "option": "USenglish"
+    {
+      "name": "microtype"
     },
-    "britishhyphenmins": {
-      "option": "USenglish"
+    {
+      "name": "babel"
     },
-    "americanhyphenmins": {
-      "option": "USenglish"
+    {
+      "name": "float"
     },
-    "prefacename": {
-      "option": "USenglish"
+    {
+      "name": "caption"
     },
-    "bibname": {
-      "option": "USenglish"
+    {
+      "name": "graphicx"
     },
-    "chaptername": {
-      "option": "USenglish"
+    {
+      "name": "xcolor"
     },
-    "enclname": {
-      "option": "USenglish"
+    {
+      "name": "etoolbox"
     },
-    "ccname": {
-      "option": "USenglish"
+    {
+      "name": "biblatex"
     },
-    "headtoname": {
-      "option": "USenglish"
+    {
+      "name": "csquotes"
     },
-    "seename": {
-      "option": "USenglish"
+    {
+      "name": "twoopt"
     },
-    "alsoname": {
-      "option": "USenglish"
+    {
+      "name": "environ"
     },
-    "proofname": {
-      "option": "USenglish"
+    {
+      "name": "paralist"
     },
-    "glossaryname": {
-      "option": "USenglish"
+    {
+      "name": "afterpage"
     },
-    "captionsUKenglish": {
-      "option": "UKenglish"
+    {
+      "name": "xspace"
     },
-    "dateUKenglish": {
-      "option": "UKenglish"
+    {
+      "name": "calc"
     },
-    "extrasUKenglish": {
-      "option": "UKenglish"
+    {
+      "name": "geometry"
     },
-    "noextrasUKenglish": {
-      "option": "UKenglish"
+    {
+      "name": "eso-pic"
     },
-    "captionsamerican": {
-      "option": "american"
+    {
+      "name": "placeins"
     },
-    "dateamerican": {
-      "option": "american"
+    {
+      "name": "newtxtext"
     },
-    "extrasamerican": {
-      "option": "american"
+    {
+      "name": "amsmath"
     },
-    "noextrasamerican": {
-      "option": "american"
+    {
+      "name": "amssymb"
     },
-    "captionsUSenglish": {
-      "option": "USenglish"
+    {
+      "name": "newtxmath"
     },
-    "dateUSenglish": {
-      "option": "USenglish"
+    {
+      "name": "newtxtt"
     },
-    "extrasUSenglish": {
-      "option": "USenglish"
+    {
+      "name": "booktabs"
     },
-    "noextrasUSenglish": {
-      "option": "USenglish"
+    {
+      "name": "listings"
     },
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
+    {
+      "name": "ntheorem"
     },
-    "title[][]{}": {
-      "snippet": "title[${2:short title}][${3:ToC title}]{${1:text}}"
+    {
+      "name": "url"
     },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "subtitle[]{}": {
-      "snippet": "subtitle[${2:short subtitle}]{${1:text}}"
+    {
+      "name": "cleveref"
     },
-    "subtitle[][]{}": {
-      "snippet": "subtitle[${2:short subtitle}][${3:ToC subtitle}]{${1:text}}"
+    {
+      "name": "doclicense"
     },
-    "author[]{}": {
-      "snippet": "author[${2:short author}]{${1:name}}"
-    },
-    "author[][]{}": {
-      "snippet": "author[${2:short author}][${3:ToC author}]{${1:name}}"
-    },
-    "address{}": {
-      "snippet": "address{${1:address}}"
-    },
-    "address[]{}": {
-      "snippet": "address[${2:letter of address}]{${1:}}"
-    },
-    "author*{}{}": {
-      "snippet": "author*{${1:name}}{${2:email}}"
-    },
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:word1 \\and word2 \\and ...}}"
-    },
-    "acknowledgements{}": {
-      "snippet": "acknowledgements{${1:text}}"
-    },
-    "authornote{}": {
-      "snippet": "authornote{${1:text}}"
-    },
-    "meta{}": {
-      "snippet": "meta{${1:metatype}}"
-    },
-    "type{}": {
-      "snippet": "type{${1:type}}"
-    },
-    "eg": {},
-    "ie": {},
-    "cf": {},
-    "etal": {},
-    "emisaabbrv{}{}": {
-      "snippet": "emisaabbrv{${1:cmd}}{${2:text}}"
-    },
-    "OMG": {},
-    "BPM": {},
-    "BPMN": {},
-    "UML": {},
-    "emisainitialism{}{}": {
-      "snippet": "emisainitialism{${1:cmd}}{${2:text}}"
-    },
-    "editor{}": {
-      "snippet": "editor{${1:name}}"
-    },
-    "received{}": {
-      "snippet": "received{${1:date}}"
-    },
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
-    },
-    "volume{}": {
-      "snippet": "volume{${1:number}}"
-    },
-    "issue{}{}": {
-      "snippet": "issue{${1:number}}{${2:year}}"
-    },
-    "specialissuetitle{}": {
-      "snippet": "specialissuetitle{${1:text}}"
-    },
-    "CCBYNCSAFour": {},
-    "CCBYNCSAThree": {},
-    "license{}": {
-      "snippet": "license{${1:text}}"
-    },
-    "licence{}": {
-      "snippet": "licence{${1:text}}"
-    },
-    "AtPageDeadCenter{}": {
-      "snippet": "AtPageDeadCenter{${1:code}}"
-    },
-    "abstractfont": {},
-    "addtocentry[]{}{}{}": {
-      "snippet": "addtocentry[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "addtocentry{}{}{}": {
-      "snippet": "addtocentry{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "affiliationaddressfont": {},
-    "affiliationauthorfont": {},
-    "affiliationemailfont": {},
-    "affiliationfont": {},
-    "authorfont": {},
-    "basecoverfont": {},
-    "bleed": {},
-    "cfpname": {},
-    "copyrightholder{}": {
-      "snippet": "copyrightholder{${1:name}}"
-    },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
-    },
-    "coverIII{}": {
-      "snippet": "coverIII{${1:code}}"
-    },
-    "coverII{}": {
-      "snippet": "coverII{${1:code}}"
-    },
-    "coverIVbgname": {},
-    "coverIV{}": {
-      "snippet": "coverIV{${1:code}}"
-    },
-    "coverIbgname": {},
-    "coverI{}": {
-      "snippet": "coverI{${1:code}}"
-    },
-    "coveroff": {},
-    "coveron": {},
-    "coverpage{}": {
-      "snippet": "coverpage{${1:code}}"
-    },
-    "coverpage[]{}": {
-      "snippet": "coverpage[${2:pagenum}]{${1:code}}"
-    },
-    "covertitlefont": {},
-    "covervolumefont": {},
-    "displayskipstretch": {},
-    "doitext": {},
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
-    },
-    "editorialboardbody{}": {
-      "snippet": "editorialboardbody{${1:arg}}"
-    },
-    "editorialboardname{}": {
-      "snippet": "editorialboardname{${1:arg}}"
-    },
-    "editorialboxmaxheight": {},
-    "editorialname": {},
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "footruleoff": {},
-    "footruleon": {},
-    "footrulewidth": {},
-    "footrule{}": {
-      "snippet": "footrule{${1:arg}}"
-    },
-    "gislogoname": {},
-    "guidelinesbody{}": {
-      "snippet": "guidelinesbody{${1:arg}}"
-    },
-    "guidelinesname{}": {
-      "snippet": "guidelinesname{${1:arg}}"
-    },
-    "headbox{}{}{}{}{}{}{}{}": {
-      "snippet": "headbox{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "headfootruleheight": {},
-    "headmargin": {},
-    "headmarkstyle{}": {
-      "snippet": "headmarkstyle{${1:arg}}"
-    },
-    "headpageoffset": {},
-    "headwidth": {},
-    "imprintbody{}": {
-      "snippet": "imprintbody{${1:arg}}"
-    },
-    "imprintname{}": {
-      "snippet": "imprintname{${1:arg}}"
-    },
-    "issn{}": {
-      "snippet": "issn{${1:ISSN}}"
-    },
-    "journalname{}": {
-      "snippet": "journalname{${1:text}}"
-    },
-    "journalsubtitle{}": {
-      "snippet": "journalsubtitle{${1:text}}"
-    },
-    "markarticle": {},
-    "markeditorial": {},
-    "markhead{}{}": {
-      "snippet": "markhead{${1:arg1}}{${2:arg2}}"
-    },
-    "outdoi": {},
-    "outputarticleappendix": {},
-    "pagebg{}": {
-      "snippet": "pagebg{${1:color}}"
-    },
-    "pagefootfont": {},
-    "pageheadfont": {},
-    "pagenumfont": {},
-    "picturepage[]{}": {
-      "snippet": "picturepage[${2:pagestyle}]{${1:code}}"
-    },
-    "picturepage{}": {
-      "snippet": "picturepage{${1:code}}"
-    },
-    "sectionfont": {},
-    "setstretch{}": {
-      "snippet": "setstretch{${1:arg}}"
-    },
-    "sigEMISAlogoname": {},
-    "sigmobislogoname": {},
-    "sigmobispage": {},
-    "sigmobispagefoot": {},
-    "sigmobispagehead": {},
-    "sigmobispagerule{}": {
-      "snippet": "sigmobispagerule{${1:text}}"
-    },
-    "specialissuetitleprefix{}": {
-      "snippet": "specialissuetitleprefix{${1:prefix}}"
-    },
-    "subtitlefont": {},
-    "theaddresses": {},
-    "thearticle": {},
-    "thecovertitle": {},
-    "thecovervolumeline": {},
-    "theevenheadpage": {},
-    "theheadvolume": {},
-    "theoddheadpage": {},
-    "thispagebackground{}": {
-      "snippet": "thispagebackground{${1:code}}"
-    },
-    "thispagebackground[]{}": {
-      "snippet": "thispagebackground[${2:pagestyle}]{${1:code}}"
-    },
-    "titlefont": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "bibitemlabel{}": {
-      "snippet": "bibitemlabel{${1:text}}"
-    },
-    "mkbibdateiso{}{}{}": {
-      "snippet": "mkbibdateiso{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "colortbl"
     }
-  },
-  "envs": {
-    "article{}": {
-      "name": "article",
-      "snippet": "{${1:title elements}}"
-    },
-    "sourcecode": {},
-    "sourcecode[]": {
-      "name": "sourcecode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sourcecode*": {},
-    "sourcecode*[]": {
-      "name": "sourcecode*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "java": {},
-    "java[]": {
-      "name": "java",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "java*": {},
-    "java*[]": {
-      "name": "java*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "articleappendix": {},
-    "articleappendix*": {},
-    "cfp": {},
-    "editorialcontent{}": {
-      "name": "editorialcontent",
-      "snippet": "{${1:arg}}"
-    },
-    "editorial": {},
-    "editorial[]": {
-      "name": "editorial",
-      "snippet": "[${1:heading}]"
-    },
-    "asparablank": {},
-    "inparablank": {},
-    "Theorem": {},
-    "Theorem[]": {
-      "name": "Theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "Lemma": {},
-    "Lemma[]": {
-      "name": "Lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma": {},
-    "lemma[]": {
-      "name": "lemma",
-      "snippet": "[${1:heading}]"
-    },
-    "Proposition": {},
-    "Proposition[]": {
-      "name": "Proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "Corollary": {},
-    "Corollary[]": {
-      "name": "Corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    },
-    "Satz": {},
-    "Satz[]": {
-      "name": "Satz",
-      "snippet": "[${1:heading}]"
-    },
-    "satz": {},
-    "satz[]": {
-      "name": "satz",
-      "snippet": "[${1:heading}]"
-    },
-    "Korollar": {},
-    "Korollar[]": {
-      "name": "Korollar",
-      "snippet": "[${1:heading}]"
-    },
-    "korollar": {},
-    "korollar[]": {
-      "name": "korollar",
-      "snippet": "[${1:heading}]"
-    },
-    "Definition": {},
-    "Definition[]": {
-      "name": "Definition",
-      "snippet": "[${1:heading}]"
-    },
-    "definition": {},
-    "definition[]": {
-      "name": "definition",
-      "snippet": "[${1:heading}]"
-    },
-    "Example": {},
-    "Example[]": {
-      "name": "Example",
-      "snippet": "[${1:heading}]"
-    },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
-    },
-    "Beispiel": {},
-    "Beispiel[]": {
-      "name": "Beispiel",
-      "snippet": "[${1:heading}]"
-    },
-    "beispiel": {},
-    "beispiel[]": {
-      "name": "beispiel",
-      "snippet": "[${1:heading}]"
-    },
-    "Anmerkung": {},
-    "Anmerkung[]": {
-      "name": "Anmerkung",
-      "snippet": "[${1:heading}]"
-    },
-    "anmerkung": {},
-    "anmerkung[]": {
-      "name": "anmerkung",
-      "snippet": "[${1:heading}]"
-    },
-    "Bemerkung": {},
-    "Bemerkung[]": {
-      "name": "Bemerkung",
-      "snippet": "[${1:heading}]"
-    },
-    "bemerkung": {},
-    "bemerkung[]": {
-      "name": "bemerkung",
-      "snippet": "[${1:heading}]"
-    },
-    "Remark": {},
-    "Remark[]": {
-      "name": "Remark",
-      "snippet": "[${1:heading}]"
-    },
-    "remark": {},
-    "remark[]": {
-      "name": "remark",
-      "snippet": "[${1:heading}]"
-    },
-    "Proof": {},
-    "Proof[]": {
-      "name": "Proof",
-      "snippet": "[${1:heading}]"
-    },
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
-    },
-    "Beweis": {},
-    "Beweis[]": {
-      "name": "Beweis",
-      "snippet": "[${1:heading}]"
-    },
-    "beweis": {},
-    "beweis[]": {
-      "name": "beweis",
-      "snippet": "[${1:heading}]"
-    },
-    "Theorem*": {},
-    "Theorem*[]": {
-      "name": "Theorem*",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem*": {},
-    "theorem*[]": {
-      "name": "theorem*",
-      "snippet": "[${1:heading}]"
-    },
-    "Lemma*": {},
-    "Lemma*[]": {
-      "name": "Lemma*",
-      "snippet": "[${1:heading}]"
-    },
-    "lemma*": {},
-    "lemma*[]": {
-      "name": "lemma*",
-      "snippet": "[${1:heading}]"
-    },
-    "Proposition*": {},
-    "Proposition*[]": {
-      "name": "Proposition*",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition*": {},
-    "proposition*[]": {
-      "name": "proposition*",
-      "snippet": "[${1:heading}]"
-    },
-    "Corollary*": {},
-    "Corollary*[]": {
-      "name": "Corollary*",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary*": {},
-    "corollary*[]": {
-      "name": "corollary*",
-      "snippet": "[${1:heading}]"
-    },
-    "Satz*": {},
-    "Satz*[]": {
-      "name": "Satz*",
-      "snippet": "[${1:heading}]"
-    },
-    "satz*": {},
-    "satz*[]": {
-      "name": "satz*",
-      "snippet": "[${1:heading}]"
-    },
-    "Korollar*": {},
-    "Korollar*[]": {
-      "name": "Korollar*",
-      "snippet": "[${1:heading}]"
-    },
-    "korollar*": {},
-    "korollar*[]": {
-      "name": "korollar*",
-      "snippet": "[${1:heading}]"
-    },
-    "Definition*": {},
-    "Definition*[]": {
-      "name": "Definition*",
-      "snippet": "[${1:heading}]"
-    },
-    "definition*": {},
-    "definition*[]": {
-      "name": "definition*",
-      "snippet": "[${1:heading}]"
-    },
-    "Example*": {},
-    "Example*[]": {
-      "name": "Example*",
-      "snippet": "[${1:heading}]"
-    },
-    "example*": {},
-    "example*[]": {
-      "name": "example*",
-      "snippet": "[${1:heading}]"
-    },
-    "Beispiel*": {},
-    "Beispiel*[]": {
-      "name": "Beispiel*",
-      "snippet": "[${1:heading}]"
-    },
-    "beispiel*": {},
-    "beispiel*[]": {
-      "name": "beispiel*",
-      "snippet": "[${1:heading}]"
-    },
-    "Anmerkung*": {},
-    "Anmerkung*[]": {
-      "name": "Anmerkung*",
-      "snippet": "[${1:heading}]"
-    },
-    "anmerkung*": {},
-    "anmerkung*[]": {
-      "name": "anmerkung*",
-      "snippet": "[${1:heading}]"
-    },
-    "Bemerkung*": {},
-    "Bemerkung*[]": {
-      "name": "Bemerkung*",
-      "snippet": "[${1:heading}]"
-    },
-    "bemerkung*": {},
-    "bemerkung*[]": {
-      "name": "bemerkung*",
-      "snippet": "[${1:heading}]"
-    },
-    "Remark*": {},
-    "Remark*[]": {
-      "name": "Remark*",
-      "snippet": "[${1:heading}]"
-    },
-    "remark*": {},
-    "remark*[]": {
-      "name": "remark*",
-      "snippet": "[${1:heading}]"
-    },
-    "Proof*": {},
-    "Proof*[]": {
-      "name": "Proof*",
-      "snippet": "[${1:heading}]"
-    },
-    "proof*": {},
-    "proof*[]": {
-      "name": "proof*",
-      "snippet": "[${1:heading}]"
-    },
-    "Beweis*": {},
-    "Beweis*[]": {
-      "name": "Beweis*",
-      "snippet": "[${1:heading}]"
-    },
-    "beweis*": {},
-    "beweis*[]": {
-      "name": "beweis*",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "british",
-    "UKenglish",
-    "american",
-    "USenglish",
-    "draft",
-    "final",
-    "referee",
-    "noreferee",
-    "review",
-    "noreview",
-    "cleveref",
-    "nocleveref",
-    "cover",
-    "nocover",
-    "nomicrotype"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "captionsbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "datebritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "extrasbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "captionsUKenglish",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateUKenglish",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasUKenglish",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasUKenglish",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "UKenglish",
+      "unusual": true
+    },
+    {
+      "name": "captionsamerican",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "dateamerican",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "extrasamerican",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "noextrasamerican",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "american",
+      "unusual": true
+    },
+    {
+      "name": "captionsUSenglish",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateUSenglish",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasUSenglish",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasUSenglish",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "if": "USenglish",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "title[${2:short title%text}][${3:ToC title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subtitle[${2:short subtitle%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "subtitle[${2:short subtitle%text}][${3:ToC subtitle%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:short author}]{${1:name}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "author[${2:short author}][${3:ToC author}]{${1:name}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "address{${1:address}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "address[${2:letter of address}]{${1:}}"
+      }
+    },
+    {
+      "name": "author*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "author*{${1:name}}{${2:email%URL}}"
+      }
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "abstract{${1:text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:word1 \\and word2 \\and ...%text}}"
+      }
+    },
+    {
+      "name": "acknowledgements",
+      "arg": {
+        "format": "{}",
+        "snippet": "acknowledgements{${1:text}}"
+      }
+    },
+    {
+      "name": "authornote",
+      "arg": {
+        "format": "{}",
+        "snippet": "authornote{${1:text}}"
+      }
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "meta{${1:metatype}}"
+      }
+    },
+    {
+      "name": "type",
+      "arg": {
+        "format": "{}",
+        "snippet": "type{${1:type}}"
+      }
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "ie"
+    },
+    {
+      "name": "cf"
+    },
+    {
+      "name": "etal"
+    },
+    {
+      "name": "emisaabbrv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "emisaabbrv{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "OMG"
+    },
+    {
+      "name": "BPM"
+    },
+    {
+      "name": "BPMN"
+    },
+    {
+      "name": "UML"
+    },
+    {
+      "name": "emisainitialism",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "emisainitialism{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "editor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "editor{${1:name}}"
+      }
+    },
+    {
+      "name": "received",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "received{${1:date}}"
+      }
+    },
+    {
+      "name": "accepted",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "accepted{${1:date}}"
+      }
+    },
+    {
+      "name": "volume",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "volume{${1:number}}"
+      }
+    },
+    {
+      "name": "issue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "issue{${1:number}}{${2:year}}"
+      }
+    },
+    {
+      "name": "specialissuetitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "specialissuetitle{${1:text}}"
+      }
+    },
+    {
+      "name": "CCBYNCSAFour",
+      "unusual": true
+    },
+    {
+      "name": "CCBYNCSAThree",
+      "unusual": true
+    },
+    {
+      "name": "license",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "license{${1:text}}"
+      }
+    },
+    {
+      "name": "licence",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "licence{${1:text}}"
+      }
+    },
+    {
+      "name": "AtPageDeadCenter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtPageDeadCenter{${1:code}}"
+      }
+    },
+    {
+      "name": "abstractfont",
+      "unusual": true
+    },
+    {
+      "name": "addtocentry",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "addtocentry[${4:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "addtocentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "addtocentry{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "affiliationaddressfont",
+      "unusual": true
+    },
+    {
+      "name": "affiliationauthorfont",
+      "unusual": true
+    },
+    {
+      "name": "affiliationemailfont",
+      "unusual": true
+    },
+    {
+      "name": "affiliationfont",
+      "unusual": true
+    },
+    {
+      "name": "authorfont",
+      "unusual": true
+    },
+    {
+      "name": "basecoverfont",
+      "unusual": true
+    },
+    {
+      "name": "bleed",
+      "unusual": true
+    },
+    {
+      "name": "cfpname",
+      "unusual": true
+    },
+    {
+      "name": "copyrightholder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightholder{${1:name}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightyear{${1:year}}"
+      }
+    },
+    {
+      "name": "coverIII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "coverIII{${1:code}}"
+      }
+    },
+    {
+      "name": "coverII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "coverII{${1:code}}"
+      }
+    },
+    {
+      "name": "coverIVbgname",
+      "unusual": true
+    },
+    {
+      "name": "coverIV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "coverIV{${1:code}}"
+      }
+    },
+    {
+      "name": "coverIbgname",
+      "unusual": true
+    },
+    {
+      "name": "coverI",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "coverI{${1:code}}"
+      }
+    },
+    {
+      "name": "coveroff",
+      "unusual": true
+    },
+    {
+      "name": "coveron",
+      "unusual": true
+    },
+    {
+      "name": "coverpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "coverpage{${1:code}}"
+      }
+    },
+    {
+      "name": "coverpage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverpage[${2:pagenum}]{${1:code}}"
+      }
+    },
+    {
+      "name": "covertitlefont",
+      "unusual": true
+    },
+    {
+      "name": "covervolumefont",
+      "unusual": true
+    },
+    {
+      "name": "displayskipstretch",
+      "unusual": true
+    },
+    {
+      "name": "doitext",
+      "unusual": true
+    },
+    {
+      "name": "doi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "doi{${1:DOI}}"
+      }
+    },
+    {
+      "name": "editorialboardbody",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "editorialboardbody{${1:arg}}"
+      }
+    },
+    {
+      "name": "editorialboardname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "editorialboardname{${1:arg}}"
+      }
+    },
+    {
+      "name": "editorialboxmaxheight",
+      "unusual": true
+    },
+    {
+      "name": "editorialname",
+      "unusual": true
+    },
+    {
+      "name": "email",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "footruleoff",
+      "unusual": true
+    },
+    {
+      "name": "footruleon",
+      "unusual": true
+    },
+    {
+      "name": "footrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "footrule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "footrule{${1:arg}}"
+      }
+    },
+    {
+      "name": "gislogoname",
+      "unusual": true
+    },
+    {
+      "name": "guidelinesbody",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "guidelinesbody{${1:arg}}"
+      }
+    },
+    {
+      "name": "guidelinesname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "guidelinesname{${1:arg}}"
+      }
+    },
+    {
+      "name": "headbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "headbox{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
+      }
+    },
+    {
+      "name": "headfootruleheight",
+      "unusual": true
+    },
+    {
+      "name": "headmargin",
+      "unusual": true
+    },
+    {
+      "name": "headmarkstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "headmarkstyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "headpageoffset",
+      "unusual": true
+    },
+    {
+      "name": "headwidth",
+      "unusual": true
+    },
+    {
+      "name": "imprintbody",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "imprintbody{${1:arg}}"
+      }
+    },
+    {
+      "name": "imprintname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "imprintname{${1:arg}}"
+      }
+    },
+    {
+      "name": "issn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "issn{${1:ISSN}}"
+      }
+    },
+    {
+      "name": "journalname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "journalname{${1:text}}"
+      }
+    },
+    {
+      "name": "journalsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "journalsubtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "markarticle",
+      "unusual": true
+    },
+    {
+      "name": "markeditorial",
+      "unusual": true
+    },
+    {
+      "name": "markhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "markhead{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "outdoi",
+      "unusual": true
+    },
+    {
+      "name": "outputarticleappendix",
+      "unusual": true
+    },
+    {
+      "name": "pagebg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pagebg{${1:color}}"
+      }
+    },
+    {
+      "name": "pagefootfont",
+      "unusual": true
+    },
+    {
+      "name": "pageheadfont",
+      "unusual": true
+    },
+    {
+      "name": "pagenumfont",
+      "unusual": true
+    },
+    {
+      "name": "picturepage",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "picturepage[${2:pagestyle}]{${1:code}}"
+      }
+    },
+    {
+      "name": "picturepage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "picturepage{${1:code}}"
+      }
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    },
+    {
+      "name": "setstretch",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setstretch{${1:arg}}"
+      }
+    },
+    {
+      "name": "sigEMISAlogoname",
+      "unusual": true
+    },
+    {
+      "name": "sigmobislogoname",
+      "unusual": true
+    },
+    {
+      "name": "sigmobispage",
+      "unusual": true
+    },
+    {
+      "name": "sigmobispagefoot",
+      "unusual": true
+    },
+    {
+      "name": "sigmobispagehead",
+      "unusual": true
+    },
+    {
+      "name": "sigmobispagerule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sigmobispagerule{${1:text}}"
+      }
+    },
+    {
+      "name": "specialissuetitleprefix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "specialissuetitleprefix{${1:prefix}}"
+      }
+    },
+    {
+      "name": "subtitlefont",
+      "unusual": true
+    },
+    {
+      "name": "theaddresses",
+      "unusual": true
+    },
+    {
+      "name": "thearticle",
+      "unusual": true
+    },
+    {
+      "name": "thecovertitle",
+      "unusual": true
+    },
+    {
+      "name": "thecovervolumeline",
+      "unusual": true
+    },
+    {
+      "name": "theevenheadpage",
+      "unusual": true
+    },
+    {
+      "name": "theheadvolume",
+      "unusual": true
+    },
+    {
+      "name": "theoddheadpage",
+      "unusual": true
+    },
+    {
+      "name": "thispagebackground",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thispagebackground{${1:code}}"
+      }
+    },
+    {
+      "name": "thispagebackground",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "thispagebackground[${2:pagestyle}]{${1:code}}"
+      }
+    },
+    {
+      "name": "titlefont",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "bibitemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bibitemlabel{${1:text}}"
+      }
+    },
+    {
+      "name": "mkbibdateiso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mkbibdateiso{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "article",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title elements}}"
+      }
+    },
+    {
+      "name": "sourcecode"
+    },
+    {
+      "name": "sourcecode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourcecode},\\begin{sourcecode*},\\begin{java},\\begin{java*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sourcecode*"
+    },
+    {
+      "name": "sourcecode*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourcecode},\\begin{sourcecode*},\\begin{java},\\begin{java*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "java"
+    },
+    {
+      "name": "java",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourcecode},\\begin{sourcecode*},\\begin{java},\\begin{java*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "java*"
+    },
+    {
+      "name": "java*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sourcecode},\\begin{sourcecode*},\\begin{java},\\begin{java*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "articleappendix",
+      "unusual": true
+    },
+    {
+      "name": "articleappendix*",
+      "unusual": true
+    },
+    {
+      "name": "cfp",
+      "unusual": true
+    },
+    {
+      "name": "editorialcontent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:arg}}"
+      }
+    },
+    {
+      "name": "editorial",
+      "unusual": true
+    },
+    {
+      "name": "editorial",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "asparablank"
+    },
+    {
+      "name": "inparablank"
+    },
+    {
+      "name": "Theorem"
+    },
+    {
+      "name": "Theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem",
+      "unusual": true
+    },
+    {
+      "name": "theorem",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Lemma"
+    },
+    {
+      "name": "Lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma",
+      "unusual": true
+    },
+    {
+      "name": "lemma",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Proposition"
+    },
+    {
+      "name": "Proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition",
+      "unusual": true
+    },
+    {
+      "name": "proposition",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Corollary"
+    },
+    {
+      "name": "Corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary",
+      "unusual": true
+    },
+    {
+      "name": "corollary",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Satz"
+    },
+    {
+      "name": "Satz",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "satz",
+      "unusual": true
+    },
+    {
+      "name": "satz",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Korollar"
+    },
+    {
+      "name": "Korollar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "korollar",
+      "unusual": true
+    },
+    {
+      "name": "korollar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Definition"
+    },
+    {
+      "name": "Definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition",
+      "unusual": true
+    },
+    {
+      "name": "definition",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Example"
+    },
+    {
+      "name": "Example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "example",
+      "unusual": true
+    },
+    {
+      "name": "example",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Beispiel"
+    },
+    {
+      "name": "Beispiel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "beispiel",
+      "unusual": true
+    },
+    {
+      "name": "beispiel",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Anmerkung"
+    },
+    {
+      "name": "Anmerkung",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "anmerkung",
+      "unusual": true
+    },
+    {
+      "name": "anmerkung",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Bemerkung"
+    },
+    {
+      "name": "Bemerkung",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "bemerkung",
+      "unusual": true
+    },
+    {
+      "name": "bemerkung",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Remark"
+    },
+    {
+      "name": "Remark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark",
+      "unusual": true
+    },
+    {
+      "name": "remark",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Proof"
+    },
+    {
+      "name": "Proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proof",
+      "unusual": true
+    },
+    {
+      "name": "proof",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Beweis"
+    },
+    {
+      "name": "Beweis",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "beweis",
+      "unusual": true
+    },
+    {
+      "name": "beweis",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Theorem*"
+    },
+    {
+      "name": "Theorem*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem*",
+      "unusual": true
+    },
+    {
+      "name": "theorem*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Lemma*"
+    },
+    {
+      "name": "Lemma*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "lemma*",
+      "unusual": true
+    },
+    {
+      "name": "lemma*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Proposition*"
+    },
+    {
+      "name": "Proposition*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proposition*",
+      "unusual": true
+    },
+    {
+      "name": "proposition*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Corollary*"
+    },
+    {
+      "name": "Corollary*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "corollary*",
+      "unusual": true
+    },
+    {
+      "name": "corollary*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Satz*"
+    },
+    {
+      "name": "Satz*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "satz*",
+      "unusual": true
+    },
+    {
+      "name": "satz*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Korollar*"
+    },
+    {
+      "name": "Korollar*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "korollar*",
+      "unusual": true
+    },
+    {
+      "name": "korollar*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Definition*"
+    },
+    {
+      "name": "Definition*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "definition*",
+      "unusual": true
+    },
+    {
+      "name": "definition*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Example*"
+    },
+    {
+      "name": "Example*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "example*",
+      "unusual": true
+    },
+    {
+      "name": "example*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Beispiel*"
+    },
+    {
+      "name": "Beispiel*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "beispiel*",
+      "unusual": true
+    },
+    {
+      "name": "beispiel*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Anmerkung*"
+    },
+    {
+      "name": "Anmerkung*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "anmerkung*",
+      "unusual": true
+    },
+    {
+      "name": "anmerkung*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Bemerkung*"
+    },
+    {
+      "name": "Bemerkung*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "bemerkung*",
+      "unusual": true
+    },
+    {
+      "name": "bemerkung*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Remark*"
+    },
+    {
+      "name": "Remark*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remark*",
+      "unusual": true
+    },
+    {
+      "name": "remark*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Proof*"
+    },
+    {
+      "name": "Proof*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "proof*",
+      "unusual": true
+    },
+    {
+      "name": "proof*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Beweis*"
+    },
+    {
+      "name": "Beweis*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "beweis*",
+      "unusual": true
+    },
+    {
+      "name": "beweis*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/emisa#c": [
+      "british",
+      "UKenglish",
+      "american",
+      "USenglish",
+      "draft",
+      "final",
+      "referee",
+      "noreferee",
+      "review",
+      "noreview",
+      "cleveref",
+      "nocleveref",
+      "cover",
+      "nocover",
+      "nomicrotype"
+    ],
+    "\\begin{sourcecode},\\begin{sourcecode*},\\begin{java},\\begin{java*}": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
       "lineskip=",
-      "boxpos=",
+      "boxpos=${1|b,c,t|}",
       "print",
       "showlines",
       "emptylines=${1:number}",
@@ -800,7 +2019,7 @@
       "showspaces",
       "showstringspaces",
       "formfeed=${1:tokens}",
-      "numbers=",
+      "numbers=${1|none,left,right|}",
       "stepnumber=${1:number}",
       "numberfirstline",
       "numberstyle=${1:style}",
@@ -928,5 +2147,8 @@
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
     ]
+  },
+  "args": [
+    "\\documentclass/emisa#c"
   ]
 }

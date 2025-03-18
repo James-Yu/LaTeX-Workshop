@@ -1,46 +1,84 @@
 {
-  "includes": {
-    "qrcode": [],
-    "xcolor": [],
-    "marginnote": [],
-    "url": []
-  },
-  "macros": {
-    "hvqrset{}": {
-      "snippet": "hvqrset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "qrcode"
     },
-    "hvqrurl{}": {
-      "snippet": "hvqrurl{${1:URL}}"
+    {
+      "name": "xcolor"
     },
-    "hvqrurl[]{}": {
-      "snippet": "hvqrurl[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "marginnote"
     },
-    "hvqrurl*{}": {
-      "snippet": "hvqrurl*{${1:URL}}"
-    },
-    "hvqrurl*[]{}": {
-      "snippet": "hvqrurl*[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "url"
     }
-  },
-  "envs": {},
-  "options": [
-    "nohyperref"
   ],
-  "keyvals": [
-    [
-      "qrlink=",
+  "macros": [
+    {
+      "name": "hvqrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "hvqrset{${1:options%keyvals}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hvqrurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "hvqrurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "hvqrurl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hvqrurl[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hvqrurl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "hvqrurl*{${1:URL}}"
+      }
+    },
+    {
+      "name": "hvqrurl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hvqrurl*[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\hvqrset,\\hvqrurl,\\hvqrurl*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hvqrurl#c": [
+      "nohyperref",
+      "forget"
+    ],
+    "\\hvqrset,\\hvqrurl,\\hvqrurl*": [
+      "qrlink=${1|nolink,link|}",
       "qrcolor=",
       "qradjust=",
       "qrheight=",
-      "qrlevel=",
+      "qrlevel=${1|L,M,Q,H|}",
       "qrreverse",
       "linktext=${1:text}"
     ]
+  },
+  "args": [
+    "\\usepackage/hvqrurl#c"
   ]
 }

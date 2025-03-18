@@ -1,74 +1,108 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tikz": [],
-    "tikzlibraryintersections": [],
-    "tikzlibraryshadings": [],
-    "tikzlibrarypatterns.meta": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibraryshapes.symbols": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibraryfadings": [
-      "glows"
-    ]
-  },
-  "macros": {
-    "pingu": {},
-    "pingu[]": {
-      "snippet": "pingu[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "pingudefaults{}": {
-      "snippet": "pingudefaults{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "pingudefaultsappend{}": {
-      "snippet": "pingudefaultsappend{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     },
-    "pinguloadlibrary{}": {
-      "snippet": "pinguloadlibrary{${1:library1,library2,...}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshadings"
     },
-    "pinguloadlibraries{}": {
-      "snippet": "pinguloadlibraries{${1:library1,library2,...}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns.meta"
     },
-    "basew": {},
-    "basicfeetbend": {},
-    "eyebaseang": {},
-    "pengu[]": {
-      "snippet": "pengu[${1:options}]"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "pinguanglehl": {},
-    "pinguanglehr": {},
-    "pingulightsaberfactor": {},
-    "pingupathxbowtieknot": {},
-    "pingupathxbowtieleft": {},
-    "pingupathxbowtieright": {},
-    "pingupathxtie": {},
-    "pingupathxtieknot": {},
-    "pingupathwitchhatupper": {},
-    "pingulibpathprefix": {}
-  },
-  "envs": {},
-  "options": [
-    "glows",
-    "manual-layers",
-    "bare"
+    {
+      "name": "tikzlibraryshapes.symbols"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    },
+    {
+      "name": "tikzlibraryfadings",
+      "if": "glows"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pingu"
+    },
+    {
+      "name": "pingu",
+      "arg": {
+        "format": "[]",
+        "snippet": "pingu[${1:options%keyvals}]",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pingudefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "pingudefaults{${1:options%keyvals}}",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pingudefaultsappend",
+      "arg": {
+        "format": "{}",
+        "snippet": "pingudefaultsappend{${1:options%keyvals}}",
+        "keys": [
+          "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pinguloadlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "pinguloadlibrary{${1:library1,library2,...%keyvals}}",
+        "keys": [
+          "\\pinguloadlibrary#c,\\pinguloadlibraries#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pinguloadlibraries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pinguloadlibraries{${1:library1,library2,...%keyvals}}",
+        "keys": [
+          "\\pinguloadlibrary#c,\\pinguloadlibraries#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzpingus#c": [
+      "glows",
+      "manual-layers",
+      "bare"
+    ],
+    "\\pingu#c,\\pingudefaults#c,\\pingudefaultsappend#c": [
       "random from={{${1:keyvals1}}{${2:keyvals2}}${3:...}}",
       "name=${1:text}",
       "scale=${1:factor}",
       "meta-dots",
-      "left foot=",
+      "left foot=${1|none,normal,sit,simple,back,chubby,!random|}",
       "left foot color=",
       "left foot none=",
       "left foot normal=",
@@ -76,7 +110,7 @@
       "left foot simple=",
       "left foot back=",
       "left foot chubby=",
-      "right foot=",
+      "right foot=${1|none,normal,sit,simple,back,chubby,!random|}",
       "right foot color=",
       "right foot none=",
       "right foot normal=",
@@ -84,7 +118,7 @@
       "right foot simple=",
       "right foot back=",
       "right foot chubby=",
-      "feet=",
+      "feet=${1|none,normal,sit,simple,back,chubby,!random|}",
       "feet color=",
       "feet none=",
       "feet normal=",
@@ -96,12 +130,12 @@
       "body head=",
       "body=",
       "body front=",
-      "body type=",
+      "body type=${1|none,normal,chubby,legacy,tilt-right,tilt-left,!random|}",
       "height=",
       "small size",
       "normal size",
       "large size",
-      "left eye=",
+      "left eye=${1|none,normal,vertical,shiny,wink,shock,devil,sad,angry,hearts,!random|}",
       "left eye color=",
       "left eye second color=",
       "left eye none=",
@@ -114,7 +148,7 @@
       "left eye sad=",
       "left eye angry=",
       "left eye hearts=",
-      "right eye=",
+      "right eye=${1|none,normal,vertical,shiny,wink,shock,devil,sad,angry,hearts,!random|}",
       "right eye color=",
       "right eye second color=",
       "right eye none=",
@@ -127,7 +161,7 @@
       "right eye sad=",
       "right eye angry=",
       "right eye hearts=",
-      "eyes=",
+      "eyes=${1|none,normal,vertical,shiny,wink,shock,devil,sad,angry,hearts,critical,!random|}",
       "eyes color=",
       "eyes second color=",
       "eyes none=",
@@ -141,7 +175,7 @@
       "eyes angry=",
       "eyes hearts=",
       "eyes critical=",
-      "left wing=",
+      "left wing=${1|none,normal,wave,raise,grab,shock,hug|}",
       "left wing color=",
       "left wing none=",
       "left wing normal=",
@@ -150,7 +184,7 @@
       "left wing grab=",
       "left wing shock=",
       "left wing hug=",
-      "right wing=",
+      "right wing=${1|none,normal,wave,raise,grab,shock,hug|}",
       "right wing color=",
       "right wing none=",
       "right wing normal=",
@@ -159,7 +193,7 @@
       "right wing grab=",
       "right wing shock=",
       "right wing hug=",
-      "wings=",
+      "wings=${1|none,normal,wave,raise,grab,shock,hug,!random|}",
       "wings color=",
       "wings none=",
       "wings normal=",
@@ -174,10 +208,10 @@
       "hair 4 color=",
       "hair 5 color=",
       "hairs color=",
-      "hairstyle=",
+      "hairstyle=${1|none,normal,!random|}",
       "hairstyle none=",
       "hairstyle normal=",
-      "bill=",
+      "bill=${1|none,normal,foreground,flat,angry,!random|}",
       "bill color=",
       "bill none=",
       "bill normal=",
@@ -878,7 +912,7 @@
       "xshift=",
       "yshift="
     ],
-    [
+    "\\pinguloadlibrary#c,\\pinguloadlibraries#c": [
       "shirts",
       "glasses",
       "medieval",
@@ -899,5 +933,8 @@
       "emotions",
       "horse"
     ]
+  },
+  "args": [
+    "\\usepackage/tikzpingus#c"
   ]
 }

@@ -1,21 +1,35 @@
 {
-  "includes": {
-    "metalogo": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "adjustlogos{}": {
-      "snippet": "adjustlogos{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "metalogo"
     },
-    "autoadjustlogos": {},
-    "autoadjustlogos*": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "adjustlogos",
+      "arg": {
+        "format": "{}",
+        "snippet": "adjustlogos{${1:options%keyvals}}",
+        "keys": [
+          "\\adjustlogos,\\usepackage/metalogox#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autoadjustlogos"
+    },
+    {
+      "name": "autoadjustlogos*",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\adjustlogos,\\usepackage/metalogox#c": [
       "default",
       "accanthis",
       "alegreya",
@@ -77,5 +91,8 @@
       "roboto",
       "romande"
     ]
+  },
+  "args": [
+    "\\adjustlogos,\\usepackage/metalogox#c"
   ]
 }

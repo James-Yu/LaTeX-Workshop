@@ -1,49 +1,147 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-grad": [],
-    "pstricks-add": []
-  },
-  "macros": {
-    "psCircleTS{}": {
-      "snippet": "psCircleTS{${1:radius}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psCircleTS[]{}": {
-      "snippet": "psCircleTS[${2:options}]{${1:radius}}"
+    {
+      "name": "pst-grad"
     },
-    "psCircleTSX{}": {
-      "snippet": "psCircleTSX{${1:radius}}"
+    {
+      "name": "pstricks-add"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pstransTS",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstransTS(${3:x},${4:y}){${1:A}}{${2:A'}}"
+      }
     },
-    "psCircleTSX[]{}": {
-      "snippet": "psCircleTSX[${2:options}]{${1:radius}}"
+    {
+      "name": "pstransTS",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstransTS[${3:options%keyvals}](${4:x},${5:y}){${1:A}}{${2:A'}}"
+      }
     },
-    "psArcTS{}{}{}": {
-      "snippet": "psArcTS{${1:radius}}{${2:start angle}}{${3:end angle}}"
+    {
+      "name": "pstransTSX",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstransTSX(${3:x},${4:y}){${1:A}}{${2:A'}}"
+      }
     },
-    "psArcTS[]{}{}{}": {
-      "snippet": "psArcTS[${4:options}]{${1:radius}}{${2:start angle}}{${3:end angle}}"
+    {
+      "name": "pstransTSX",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstransTSX[${3:options%keyvals}](${4:x},${5:y}){${1:A}}{${2:A'}}"
+      }
     },
-    "psArcTSX{}{}{}": {
-      "snippet": "psArcTSX{${1:radius}}{${2:start angle}}{${3:end angle}}"
+    {
+      "name": "pstransTSK",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstransTSK(${4:x},${5:y}){${1:length}}{${2:A}}{${3:A'}}"
+      }
     },
-    "psArcTSX[]{}{}{}": {
-      "snippet": "psArcTSX[${4:options}]{${1:radius}}{${2:start angle}}{${3:end angle}}"
+    {
+      "name": "pstransTSK",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstransTSK[${4:options%keyvals}](${5:x},${6:y}){${1:length}}{${2:A}}{${3:A'}}"
+      }
     },
-    "psZylinderTS{}{}": {
-      "snippet": "psZylinderTS{${1:radius}}{${2:height}}"
+    {
+      "name": "psboxTS",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "psboxTS(${5:x},${6:y},${7:z}){${1:x length}}{${2:y width}}{${3:z height}}{${4:color}}"
+      }
     },
-    "psZylinderTS[]{}{}": {
-      "snippet": "psZylinderTS[${3:options}]{${1:radius}}{${2:height}}"
+    {
+      "name": "psboxTS",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "psboxTS[${5:options%keyvals}](${6:x},${7:y},${8:z}){${1:x length}}{${2:y width}}{${3:z height}}{${4:color}}"
+      }
     },
-    "ba": {},
-    "punkte": {},
-    "punkteA": {},
-    "punkteB": {},
-    "punkteC": {},
-    "punkteD": {},
-    "PSTperspectiveLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psCircleTS",
+      "arg": {
+        "format": "{}",
+        "snippet": "psCircleTS{${1:radius}}"
+      }
+    },
+    {
+      "name": "psCircleTS",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psCircleTS[${2:options%keyvals}]{${1:radius}}"
+      }
+    },
+    {
+      "name": "psCircleTSX",
+      "arg": {
+        "format": "{}",
+        "snippet": "psCircleTSX{${1:radius}}"
+      }
+    },
+    {
+      "name": "psCircleTSX",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psCircleTSX[${2:options%keyvals}]{${1:radius}}"
+      }
+    },
+    {
+      "name": "psArcTS",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psArcTS{${1:radius}}{${2:start angle}}{${3:end angle}}"
+      }
+    },
+    {
+      "name": "psArcTS",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psArcTS[${4:options%keyvals}]{${1:radius}}{${2:start angle}}{${3:end angle}}"
+      }
+    },
+    {
+      "name": "psArcTSX",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psArcTSX{${1:radius}}{${2:start angle}}{${3:end angle}}"
+      }
+    },
+    {
+      "name": "psArcTSX",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psArcTSX[${4:options%keyvals}]{${1:radius}}{${2:start angle}}{${3:end angle}}"
+      }
+    },
+    {
+      "name": "psZylinderTS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psZylinderTS{${1:radius}}{${2:height}}"
+      }
+    },
+    {
+      "name": "psZylinderTS",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psZylinderTS[${3:options%keyvals}]{${1:radius}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ba"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

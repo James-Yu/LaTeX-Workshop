@@ -1,43 +1,113 @@
 {
-  "includes": {
-    "intcalc": [],
-    "cu-num": []
+  "deps": [
+    {
+      "name": "intcalc"
+    },
+    {
+      "name": "cu-num"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cuDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuDate{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "cuDateJulian",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuDateJulian{${1:date}}"
+      }
+    },
+    {
+      "name": "cuDefineDateFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cuDefineDateFormat{${1:name%specialDef}}{${2:format}}"
+      }
+    },
+    {
+      "name": "cuYEAR",
+      "unusual": true
+    },
+    {
+      "name": "cuYEARAM",
+      "unusual": true
+    },
+    {
+      "name": "cuMONTH",
+      "unusual": true
+    },
+    {
+      "name": "cuDAY",
+      "unusual": true
+    },
+    {
+      "name": "cuDOW",
+      "unusual": true
+    },
+    {
+      "name": "cuINDICTION",
+      "unusual": true
+    },
+    {
+      "name": "cuDISPLAYDATE",
+      "unusual": true
+    },
+    {
+      "name": "cuUseDateFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuUseDateFormat{${1:format name%keyvals}}",
+        "keys": [
+          "\\cuUseDateFormat#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cuMonthName",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuMonthName{${1:number}}"
+      }
+    },
+    {
+      "name": "cuDayName",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuDayName{${1:number}}"
+      }
+    },
+    {
+      "name": "cuDayNameAccusative",
+      "arg": {
+        "format": "{}",
+        "snippet": "cuDayNameAccusative{${1:number}}"
+      }
+    },
+    {
+      "name": "cuToday"
+    },
+    {
+      "name": "cuTodayJulian"
+    },
+    {
+      "name": "cuAsJulian"
+    },
+    {
+      "name": "cuAsGregorian"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\cuUseDateFormat#c": [
+      "default",
+      "%cudateformat"
+    ]
   },
-  "macros": {
-    "cuDate{}": {
-      "snippet": "cuDate{${1:YYYY-MM-DD}}"
-    },
-    "cuDateJulian{}": {
-      "snippet": "cuDateJulian{${1:date}}"
-    },
-    "cuDefineDateFormat{}{}": {
-      "snippet": "cuDefineDateFormat{${1:name}}{${2:format}}"
-    },
-    "cuYEAR": {},
-    "cuYEARAM": {},
-    "cuMONTH": {},
-    "cuDAY": {},
-    "cuDOW": {},
-    "cuINDICTION": {},
-    "cuDISPLAYDATE": {},
-    "cuUseDateFormat{}": {
-      "snippet": "cuUseDateFormat{${1:format name}}"
-    },
-    "cuMonthName{}": {
-      "snippet": "cuMonthName{${1:number}}"
-    },
-    "cuDayName{}": {
-      "snippet": "cuDayName{${1:number}}"
-    },
-    "cuDayNameAccusative{}": {
-      "snippet": "cuDayNameAccusative{${1:number}}"
-    },
-    "cuToday": {},
-    "cuTodayJulian": {},
-    "cuAsJulian": {},
-    "cuAsGregorian": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

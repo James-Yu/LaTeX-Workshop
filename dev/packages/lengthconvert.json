@@ -1,27 +1,44 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "Convert{}": {
-      "snippet": "Convert{${1:length}}"
-    },
-    "Convert[]{}": {
-      "snippet": "Convert[${2:options}]{${1:length}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Convertsetup{}": {
-      "snippet": "Convertsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "unit=",
+  ],
+  "macros": [
+    {
+      "name": "Convert",
+      "arg": {
+        "format": "{}",
+        "snippet": "Convert{${1:length}}"
+      }
+    },
+    {
+      "name": "Convert",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Convert[${2:options%keyvals}]{${1:length}}",
+        "keys": [
+          "\\Convert,\\Convertsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Convertsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "Convertsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\Convert,\\Convertsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Convert,\\Convertsetup": [
+      "unit=${1|pt,pc,in,bp,cm,mm,dd,cc,sp|}",
       "pt",
       "pc",
       "in",
@@ -44,5 +61,6 @@
       "precision=${1:integer}",
       "number-only"
     ]
-  ]
+  },
+  "args": []
 }

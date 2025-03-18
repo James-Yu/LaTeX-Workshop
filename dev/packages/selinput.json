@@ -1,26 +1,51 @@
 {
-  "includes": {
-    "inputenc": [],
-    "kvsetkeys": [],
-    "stringenc": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "SelectInputEncodingList{}": {
-      "snippet": "SelectInputEncodingList{${1:encoding list}}"
+  "deps": [
+    {
+      "name": "inputenc"
     },
-    "SelectInputMappings{}": {
-      "snippet": "SelectInputMappings{${1:mapping pairs}}"
+    {
+      "name": "kvsetkeys"
     },
-    "SelectInputDefineMapping{}": {
-      "snippet": "SelectInputDefineMapping{${1:arg}}"
+    {
+      "name": "stringenc"
+    },
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "warning",
-    "ucs",
-    "utf8=${1:file name}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "SelectInputEncodingList",
+      "arg": {
+        "format": "{}",
+        "snippet": "SelectInputEncodingList{${1:encoding list}}"
+      }
+    },
+    {
+      "name": "SelectInputMappings",
+      "arg": {
+        "format": "{}",
+        "snippet": "SelectInputMappings{${1:mapping pairs}}"
+      }
+    },
+    {
+      "name": "SelectInputDefineMapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SelectInputDefineMapping{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/selinput#c": [
+      "warning",
+      "ucs",
+      "utf8=${1:file name}"
+    ]
+  },
+  "args": [
+    "\\usepackage/selinput#c"
+  ]
 }

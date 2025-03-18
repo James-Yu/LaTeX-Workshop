@@ -1,34 +1,74 @@
 {
-  "includes": {
-    "mboxfill": []
-  },
-  "macros": {
-    "dashrule{}{}": {
-      "snippet": "dashrule{${1:h-pattern}}{${2:v-pattern}}"
-    },
-    "dashrule[]{}{}": {
-      "snippet": "dashrule[${3:raise}]{${1:h-pattern}}{${2:v-pattern}}"
-    },
-    "dashrulefill{}{}": {
-      "snippet": "dashrulefill{${1:h-pattern}}{${2:v-pattern}}"
-    },
-    "dashrulefill[]{}{}": {
-      "snippet": "dashrulefill[${3:raise}]{${1:h-pattern}}{${2:v-pattern}}"
-    },
-    "newfootnoterule{}{}": {
-      "snippet": "newfootnoterule{${1:prefix}}{${2:rule code}}"
-    },
-    "newfootnoterule{}[]{}": {
-      "snippet": "newfootnoterule{${1:prefix}}[${2:width}]{${3:rule code}}"
-    },
-    "newfootnotedashrule{}{}{}": {
-      "snippet": "newfootnotedashrule{${1:prefix}}{${2:h-pattern}}{${3:v-pattern}}"
-    },
-    "newfootnotedashrule{}[]{}{}": {
-      "snippet": "newfootnotedashrule{${1:prefix}}[${2:width}]{${3:h-pattern}}{${4:v-pattern}}"
+  "deps": [
+    {
+      "name": "mboxfill"
     }
+  ],
+  "macros": [
+    {
+      "name": "dashrule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dashrule{${1:h-pattern}}{${2:v-pattern}}"
+      }
+    },
+    {
+      "name": "dashrule",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dashrule[${3:raise%l}]{${1:h-pattern}}{${2:v-pattern}}"
+      }
+    },
+    {
+      "name": "dashrulefill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dashrulefill{${1:h-pattern}}{${2:v-pattern}}"
+      }
+    },
+    {
+      "name": "dashrulefill",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dashrulefill[${3:raise%l}]{${1:h-pattern}}{${2:v-pattern}}"
+      }
+    },
+    {
+      "name": "newfootnoterule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfootnoterule{${1:prefix}}{${2:rule code}}"
+      }
+    },
+    {
+      "name": "newfootnoterule",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newfootnoterule{${1:prefix}}[${3:width}]{${2:rule code}}"
+      }
+    },
+    {
+      "name": "newfootnotedashrule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newfootnotedashrule{${1:prefix}}{${2:h-pattern}}{${3:v-pattern}}"
+      }
+    },
+    {
+      "name": "newfootnotedashrule",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "newfootnotedashrule{${1:prefix}}[${4:width}]{${2:h-pattern}}{${3:v-pattern}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\dashrulefill": [
+      "c",
+      "x",
+      "s"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

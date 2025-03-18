@@ -1,89 +1,216 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.misc": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryfit": [],
-    "tikzlibraryshadows": []
-  },
-  "macros": {
-    "bStart{}": {
-      "snippet": "bStart{${1:text}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "bPlusDown{}": {
-      "snippet": "bPlusDown{${1:text}}"
+    {
+      "name": "tikzlibraryshapes.misc"
     },
-    "bPlusUp{}": {
-      "snippet": "bPlusUp{${1:text}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "bMinusDown{}": {
-      "snippet": "bMinusDown{${1:text}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "bMinusUp{}": {
-      "snippet": "bMinusUp{${1:text}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "bEnd{}": {
-      "snippet": "bEnd{${1:text}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "bGain{}": {
-      "snippet": "bGain{${1:text}}"
+    {
+      "name": "tikzlibraryshadows"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bStart",
+      "arg": {
+        "format": "{}",
+        "snippet": "bStart{${1:text}}"
+      }
     },
-    "bGainPlus{}{}": {
-      "snippet": "bGainPlus{${1:text1}}{${2:text2}}"
+    {
+      "name": "bPlusDown",
+      "arg": {
+        "format": "{}",
+        "snippet": "bPlusDown{${1:text}}"
+      }
     },
-    "bGainMinus{}{}": {
-      "snippet": "bGainMinus{${1:text1}}{${2:text2}}"
+    {
+      "name": "bPlusUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "bPlusUp{${1:text}}"
+      }
     },
-    "bMinusF{}": {
-      "snippet": "bMinusF{${1:node name}}"
+    {
+      "name": "bMinusDown",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMinusDown{${1:text}}"
+      }
     },
-    "bPlusF{}": {
-      "snippet": "bPlusF{${1:node name}}"
+    {
+      "name": "bMinusUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMinusUp{${1:text}}"
+      }
     },
-    "bFeedBack{}{}": {
-      "snippet": "bFeedBack{${1:text}}{${2:node name}}"
+    {
+      "name": "bEnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "bEnd{${1:text}}"
+      }
     },
-    "bCrossGain{}{}{}": {
-      "snippet": "bCrossGain{${1:text}}{${2:node name1}}{${3:node name2}}"
+    {
+      "name": "bGain",
+      "arg": {
+        "format": "{}",
+        "snippet": "bGain{${1:text}}"
+      }
     },
-    "bNewStart{}{}": {
-      "snippet": "bNewStart{${1:text}}{${2:position}}"
+    {
+      "name": "bGainPlus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bGainPlus{${1:text1%text}}{${2:text2%text}}"
+      }
     },
-    "bMarkNode{}": {
-      "snippet": "bMarkNode{${1:node name}}"
+    {
+      "name": "bGainMinus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bGainMinus{${1:text1%text}}{${2:text2%text}}"
+      }
     },
-    "bMarkNodeUp{}": {
-      "snippet": "bMarkNodeUp{${1:node name}}"
+    {
+      "name": "bMinusF",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMinusF{${1:node name}}"
+      }
     },
-    "bMarkNodeDown{}": {
-      "snippet": "bMarkNodeDown{${1:node name}}"
+    {
+      "name": "bPlusF",
+      "arg": {
+        "format": "{}",
+        "snippet": "bPlusF{${1:node name}}"
+      }
     },
-    "bShadow": {},
-    "bColorB{}": {
-      "snippet": "bColorB{${1:color}}"
+    {
+      "name": "bFeedBack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bFeedBack{${1:text}}{${2:node name}}"
+      }
     },
-    "bColorT{}": {
-      "snippet": "bColorT{${1:color}}"
+    {
+      "name": "bCrossGain",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bCrossGain{${1:text}}{${2:node name1}}{${3:node name2}}"
+      }
     },
-    "bColorL{}": {
-      "snippet": "bColorL{${1:color}}"
+    {
+      "name": "bNewStart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bNewStart{${1:text}}{${2:position}}"
+      }
     },
-    "ydistance{}": {
-      "snippet": "ydistance{${1:number}}"
+    {
+      "name": "bMarkNode",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMarkNode{${1:node name}}"
+      }
     },
-    "xdistancia": {},
-    "ydistancia": {},
-    "minaltura": {},
-    "tamano": {},
-    "colorfondo": {},
-    "colortexto": {},
-    "colorlinea": {},
-    "sombra": {},
-    "ancholinea": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "bMarkNodeUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMarkNodeUp{${1:node name}}"
+      }
+    },
+    {
+      "name": "bMarkNodeDown",
+      "arg": {
+        "format": "{}",
+        "snippet": "bMarkNodeDown{${1:node name}}"
+      }
+    },
+    {
+      "name": "bShadow"
+    },
+    {
+      "name": "bColorB",
+      "arg": {
+        "format": "{}",
+        "snippet": "bColorB{${1:color}}"
+      }
+    },
+    {
+      "name": "bColorT",
+      "arg": {
+        "format": "{}",
+        "snippet": "bColorT{${1:color}}"
+      }
+    },
+    {
+      "name": "bColorL",
+      "arg": {
+        "format": "{}",
+        "snippet": "bColorL{${1:color}}"
+      }
+    },
+    {
+      "name": "ydistance",
+      "arg": {
+        "format": "{}",
+        "snippet": "ydistance{${1:number}}"
+      }
+    },
+    {
+      "name": "xdistancia",
+      "unusual": true
+    },
+    {
+      "name": "ydistancia",
+      "unusual": true
+    },
+    {
+      "name": "minaltura",
+      "unusual": true
+    },
+    {
+      "name": "tamano",
+      "unusual": true
+    },
+    {
+      "name": "colorfondo",
+      "unusual": true
+    },
+    {
+      "name": "colortexto",
+      "unusual": true
+    },
+    {
+      "name": "colorlinea",
+      "unusual": true
+    },
+    {
+      "name": "sombra",
+      "unusual": true
+    },
+    {
+      "name": "ancholinea",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

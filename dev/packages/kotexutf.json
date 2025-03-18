@@ -1,95 +1,231 @@
 {
-  "includes": {
-    "inputenc": [],
-    "kolabels-utf": [],
-    "kosections-utf": [
-      "hangul"
+  "deps": [
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "kolabels-utf"
+    },
+    {
+      "name": "kosections-utf",
+      "if": "hangul"
+    }
+  ],
+  "macros": [
+    {
+      "name": "dotemph",
+      "arg": {
+        "format": "{}",
+        "snippet": "dotemph{${1:text}}"
+      }
+    },
+    {
+      "name": "jong"
+    },
+    {
+      "name": "jung"
+    },
+    {
+      "name": "rieul"
+    },
+    {
+      "name": "SetAdhocFonts",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetAdhocFonts{${1:hangul font}}{${2:hanja font}}"
+      }
+    },
+    {
+      "name": "SetHangulFonts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SetHangulFonts{${1:serif font}}{${2:sans font}}{${3:mono font}}"
+      }
+    },
+    {
+      "name": "SetHanjaFonts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SetHanjaFonts{${1:serif font}}{${2:sans font}}{${3:mono font}}"
+      }
+    },
+    {
+      "name": "setInterHangulSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setInterHangulSkip{${1:skip%l}}"
+      }
+    },
+    {
+      "name": "SetSansFonts",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetSansFonts{${1:hangul font}}{${2:hanja font}}"
+      }
+    },
+    {
+      "name": "SetSerifFonts",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetSerifFonts{${1:hangul font}}{${2:hanja font}}"
+      }
+    },
+    {
+      "name": "usehangulfontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "usehangulfontspec{${1:font}}"
+      }
+    },
+    {
+      "name": "asciiexclamationafterhangul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "asciiexclamationafterhangul{${1:arg}}"
+      }
+    },
+    {
+      "name": "asciifullstopafterhangul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "asciifullstopafterhangul{${1:arg}}"
+      }
+    },
+    {
+      "name": "asciiquestionafterhangul",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "asciiquestionafterhangul{${1:arg}}"
+      }
+    },
+    {
+      "name": "breakafterasciichar",
+      "unusual": true
+    },
+    {
+      "name": "breakafterinlinemath",
+      "unusual": true
+    },
+    {
+      "name": "breakbeforeasciichar",
+      "unusual": true
+    },
+    {
+      "name": "breakbetweenhangul",
+      "unusual": true
+    },
+    {
+      "name": "breakbetweenhanja",
+      "unusual": true
+    },
+    {
+      "name": "cjksymbolextraspace",
+      "unusual": true
+    },
+    {
+      "name": "cjksymbolskip",
+      "unusual": true
+    },
+    {
+      "name": "cjksymbolunskip",
+      "unusual": true
+    },
+    {
+      "name": "declarehangulspacefactor",
+      "unusual": true
+    },
+    {
+      "name": "declarehanjaspacefactor",
+      "unusual": true
+    },
+    {
+      "name": "declarenobreakspacefactor",
+      "unusual": true
+    },
+    {
+      "name": "disablehangulfontspec",
+      "unusual": true
+    },
+    {
+      "name": "disablehangullinebreak",
+      "unusual": true
+    },
+    {
+      "name": "josatoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "josatoks{${1:arg}}"
+      }
+    },
+    {
+      "name": "kernbeforeasciichar",
+      "unusual": true
+    },
+    {
+      "name": "kernbeforelatinquoteclose",
+      "unusual": true
+    },
+    {
+      "name": "makejosa",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "makejosa{${1:jung}}{${2:jong}}"
+      }
+    },
+    {
+      "name": "nobreakafterasciichar",
+      "unusual": true
+    },
+    {
+      "name": "nobreakafterinlinemath",
+      "unusual": true
+    },
+    {
+      "name": "nobreakbetweenhangul",
+      "unusual": true
+    },
+    {
+      "name": "nobreakbetweenhanja",
+      "unusual": true
+    },
+    {
+      "name": "postcjksymbol",
+      "unusual": true
+    },
+    {
+      "name": "postcjksymnobreak",
+      "unusual": true
+    },
+    {
+      "name": "postcjksymskip",
+      "unusual": true
+    },
+    {
+      "name": "unihangulchar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "unihangulchar{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/kotexutf#c": [
+      "nonfrench",
+      "hangul",
+      "hanja",
+      "nojosa",
+      "finemath",
+      "strictcharcheck"
     ]
   },
-  "macros": {
-    "finemath": {
-      "option": "finemath"
-    },
-    "strictcharcheck": {
-      "option": "strictcharcheck"
-    },
-    "dotemph{}": {
-      "snippet": "dotemph{${1:text}}"
-    },
-    "jong": {},
-    "jung": {},
-    "rieul": {},
-    "SetAdhocFonts{}{}": {
-      "snippet": "SetAdhocFonts{${1:hangul font}}{${2:hanja font}}"
-    },
-    "SetHangulFonts{}{}{}": {
-      "snippet": "SetHangulFonts{${1:serif font}}{${2:sans font}}{${3:mono font}}"
-    },
-    "SetHanjaFonts{}{}{}": {
-      "snippet": "SetHanjaFonts{${1:serif font}}{${2:sans font}}{${3:mono font}}"
-    },
-    "setInterHangulSkip{}": {
-      "snippet": "setInterHangulSkip{${1:skip}}"
-    },
-    "SetSansFonts{}{}": {
-      "snippet": "SetSansFonts{${1:hangul font}}{${2:hanja font}}"
-    },
-    "SetSerifFonts{}{}": {
-      "snippet": "SetSerifFonts{${1:hangul font}}{${2:hanja font}}"
-    },
-    "usehangulfontspec{}": {
-      "snippet": "usehangulfontspec{${1:font}}"
-    },
-    "asciiexclamationafterhangul{}": {
-      "snippet": "asciiexclamationafterhangul{${1:arg}}"
-    },
-    "asciifullstopafterhangul{}": {
-      "snippet": "asciifullstopafterhangul{${1:arg}}"
-    },
-    "asciiquestionafterhangul{}": {
-      "snippet": "asciiquestionafterhangul{${1:arg}}"
-    },
-    "breakafterasciichar": {},
-    "breakafterinlinemath": {},
-    "breakbeforeasciichar": {},
-    "breakbetweenhangul": {},
-    "breakbetweenhanja": {},
-    "cjksymbolextraspace": {},
-    "cjksymbolskip": {},
-    "cjksymbolunskip": {},
-    "declarehangulspacefactor": {},
-    "declarehanjaspacefactor": {},
-    "declarenobreakspacefactor": {},
-    "disablehangulfontspec": {},
-    "disablehangullinebreak": {},
-    "josatoks{}": {
-      "snippet": "josatoks{${1:arg}}"
-    },
-    "kernbeforeasciichar": {},
-    "kernbeforelatinquoteclose": {},
-    "makejosa{}{}": {
-      "snippet": "makejosa{${1:jung}}{${2:jong}}"
-    },
-    "nobreakafterasciichar": {},
-    "nobreakafterinlinemath": {},
-    "nobreakbetweenhangul": {},
-    "nobreakbetweenhanja": {},
-    "pdfstringdefPreHook": {},
-    "postcjksymbol": {},
-    "postcjksymnobreak": {},
-    "postcjksymskip": {},
-    "unihangulchar{}": {
-      "snippet": "unihangulchar{${1:arg}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "nonfrench",
-    "hangul",
-    "hanja",
-    "nojosa",
-    "finemath",
-    "strictcharcheck"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/kotexutf#c"
+  ]
 }

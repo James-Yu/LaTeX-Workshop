@@ -1,138 +1,182 @@
 {
-  "includes": {
-    "geometry": [],
-    "tabularx": [],
-    "colortbl": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "tikzlibrarycalc": [],
-    "microtype": [],
-    "ifthen": []
-  },
-  "macros": {
-    "setLundiRentree{}{}{}": {
-      "snippet": "setLundiRentree{${1:JJ}}{${2:MM}}{${3:YYYY}}"
+  "deps": [
+    {
+      "name": "geometry"
     },
-    "EmploiDuTemps{}": {
-      "snippet": "EmploiDuTemps{${1:tableau}}"
+    {
+      "name": "tabularx"
     },
-    "setNombreSemaines{}": {
-      "snippet": "setNombreSemaines{${1:nombre}}"
+    {
+      "name": "colortbl"
     },
-    "setSamedi": {},
-    "sem{}{}": {
-      "snippet": "sem{${1:semaine impair}}{${2:semaine pair}}"
+    {
+      "name": "tikz"
     },
-    "setDebutToussaint{}{}": {
-      "snippet": "setDebutToussaint{${1:JJ}}{${2:MM}}"
+    {
+      "name": "tikzlibrarymath"
     },
-    "setDebutNoel{}{}": {
-      "snippet": "setDebutNoel{${1:JJ}}{${2:MM}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "setDebutHiver{}{}": {
-      "snippet": "setDebutHiver{${1:JJ}}{${2:MM}}"
+    {
+      "name": "microtype"
     },
-    "setDebutPrintemps{}{}": {
-      "snippet": "setDebutPrintemps{${1:JJ}}{${2:MM}}"
-    },
-    "setFinToussaint{}{}": {
-      "snippet": "setFinToussaint{${1:JJ}}{${2:MM}}"
-    },
-    "setFinNoel{}{}": {
-      "snippet": "setFinNoel{${1:JJ}}{${2:MM}}"
-    },
-    "setFinHiver{}{}": {
-      "snippet": "setFinHiver{${1:JJ}}{${2:MM}}"
-    },
-    "setFinPrintemps{}{}": {
-      "snippet": "setFinPrintemps{${1:JJ}}{${2:MM}}"
-    },
-    "setDNB{}{}{}": {
-      "snippet": "setDNB{${1:JD}}{${2:JF}}{${3:YY}}"
-    },
-    "setBac{}{}{}": {
-      "snippet": "setBac{${1:JD}}{${2:JF}}{${3:YY}}"
-    },
-    "setBacPhilo{}{}": {
-      "snippet": "setBacPhilo{${1:JJ}}{${2:MM}}"
-    },
-    "setBacfrancais{}{}": {
-      "snippet": "setBacfrancais{${1:JJ}}{${2:MM}}"
-    },
-    "setGO{}{}{}": {
-      "snippet": "setGO{${1:JD}}{${2:JF}}{${3:YY}}"
-    },
-    "setLundiPaques{}{}": {
-      "snippet": "setLundiPaques{${1:JJ}}{${2:MM}}"
-    },
-    "Classe{}{}{}": {
-      "snippet": "Classe{${1:nom}}{${2:nombre}}{${3:liste des élèves}}"
-    },
-    "ListeEleves{}": {
-      "snippet": "ListeEleves{${1:file}}"
-    },
-    "theday": {},
-    "themonth": {},
-    "theyear": {},
-    "thelundiRentree": {},
-    "themonthRentree": {},
-    "theyearRentree": {},
-    "thedayToussaint": {},
-    "themonthToussaint": {},
-    "thedayToussaintFin": {},
-    "themonthToussaintFin": {},
-    "thedayNoel": {},
-    "themonthNoel": {},
-    "thedayNoelFin": {},
-    "themonthNoelFin": {},
-    "thedayHiver": {},
-    "themonthHiver": {},
-    "thedayHiverFin": {},
-    "themonthHiverFin": {},
-    "thedayPrintemps": {},
-    "themonthPrintemps": {},
-    "thedayPrintempsFin": {},
-    "themonthPrintempsFin": {},
-    "thedayPaques": {},
-    "themonthPaques": {},
-    "thedayAscension": {},
-    "thedayAscensionPont": {},
-    "themonthAscension": {},
-    "thedayPentecote": {},
-    "themonthPentecote": {},
-    "thedayDNBDebut": {},
-    "thedayDNBFin": {},
-    "themonthDNB": {},
-    "thedayBacDebut": {},
-    "thedayBacFin": {},
-    "themonthBac": {},
-    "thedayBacPhilo": {},
-    "themonthBacPhilo": {},
-    "thedayBacFrancais": {},
-    "themonthBacFrancais": {},
-    "thedayGODebut": {},
-    "thedayGOFin": {},
-    "themonthGO": {},
-    "thedayRemember": {},
-    "themonthRemember": {},
-    "theyearRemember": {},
-    "nextday": {},
-    "weekend": {},
-    "getDate": {},
-    "getWeek": {},
-    "setJoursFeries": {},
-    "Semaine": {},
-    "thenombreSemaines": {},
-    "TableauClasse{}{}": {
-      "snippet": "TableauClasse{${1:arg1}}{${2:arg2}}"
-    },
-    "theFinFevrier": {},
-    "isFerie": {},
-    "isExamen": {}
-  },
-  "envs": {},
-  "options": [
-    "samedi"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setLundiRentree",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setLundiRentree{${1:JJ}}{${2:MM}}{${3:YYYY}}"
+      }
+    },
+    {
+      "name": "EmploiDuTemps",
+      "arg": {
+        "format": "{}",
+        "snippet": "EmploiDuTemps{${1:tableau%text}}"
+      }
+    },
+    {
+      "name": "setNombreSemaines",
+      "arg": {
+        "format": "{}",
+        "snippet": "setNombreSemaines{${1:nombre}}"
+      }
+    },
+    {
+      "name": "setSamedi"
+    },
+    {
+      "name": "sem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sem{${1:semaine impair%text}}{${2:semaine pair%text}}"
+      }
+    },
+    {
+      "name": "setDebutToussaint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setDebutToussaint{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setDebutNoel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setDebutNoel{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setDebutHiver",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setDebutHiver{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setDebutPrintemps",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setDebutPrintemps{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setFinToussaint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setFinToussaint{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setFinNoel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setFinNoel{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setFinHiver",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setFinHiver{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setFinPrintemps",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setFinPrintemps{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setDNB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setDNB{${1:JD}}{${2:JF}}{${3:YY}}"
+      }
+    },
+    {
+      "name": "setBac",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setBac{${1:JD}}{${2:JF}}{${3:YY}}"
+      }
+    },
+    {
+      "name": "setBacPhilo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setBacPhilo{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setBacfrancais",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setBacfrancais{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "setGO",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setGO{${1:JD}}{${2:JF}}{${3:YY}}"
+      }
+    },
+    {
+      "name": "setLundiPaques",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setLundiPaques{${1:JJ}}{${2:MM}}"
+      }
+    },
+    {
+      "name": "Classe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Classe{${1:nom%text}}{${2:nombre}}{${3:liste des élèves%text}}"
+      }
+    },
+    {
+      "name": "ListeEleves",
+      "arg": {
+        "format": "{}",
+        "snippet": "ListeEleves{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cahierprof#c": [
+      "samedi"
+    ]
+  },
+  "args": [
+    "\\usepackage/cahierprof#c"
+  ]
 }

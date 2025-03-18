@@ -1,24 +1,49 @@
 {
-  "includes": {
-    "import": []
-  },
-  "macros": {
-    "subfile{}": {
-      "snippet": "subfile{${1:file}}"
-    },
-    "subfileinclude{}": {
-      "snippet": "subfileinclude{${1:file}}"
-    },
-    "subfix{}": {
-      "snippet": "subfix{${1:file}}"
-    },
-    "ifSubfilesClassLoaded{}{}": {
-      "snippet": "ifSubfilesClassLoaded{${1:then}}{${2:else}}"
+  "deps": [
+    {
+      "name": "import"
     }
-  },
-  "envs": {},
-  "options": [
-    "v1"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "subfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "subfile{${1:file}}"
+      }
+    },
+    {
+      "name": "subfileinclude",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subfileinclude{${1:file}}"
+      }
+    },
+    {
+      "name": "subfix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subfix{${1:file}}"
+      }
+    },
+    {
+      "name": "ifSubfilesClassLoaded",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifSubfilesClassLoaded{${1:then}}{${2:else}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/subfiles#c": [
+      "v1"
+    ]
+  },
+  "args": [
+    "\\usepackage/subfiles#c"
+  ]
 }

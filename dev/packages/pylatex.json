@@ -1,0 +1,53 @@
+{
+  "deps": [
+    {
+      "name": "comment"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "pymacros"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pyverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyverb{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "PySetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "PySetup{${1:keyvals}}",
+        "keys": [
+          "\\PySetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "python"
+    }
+  ],
+  "keys": {
+    "\\PySetup": [
+      "action=${1|show,hide,verbatim|}"
+    ]
+  },
+  "args": []
+}

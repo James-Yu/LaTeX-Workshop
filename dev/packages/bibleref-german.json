@@ -1,54 +1,136 @@
 {
-  "includes": {
-    "bibleref": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "biblerefformat{}": {
-      "snippet": "biblerefformat{${1:format name}}"
+  "deps": [
+    {
+      "name": "bibleref"
     },
-    "BRbook": {},
-    "BRbooksuffix": {},
-    "BRprophet": {},
-    "BRepistle": {},
-    "BRPaulustothe": {},
-    "BRPaulusto": {},
-    "BRdas": {},
-    "BRder": {},
-    "BRdie": {},
-    "BRHoheslied": {},
-    "BROffbJoh": {},
-    "BRApgLuk": {},
-    "BRKlgl": {},
-    "BRJeremias": {},
-    "BRSalomo": {},
-    "BRSalomos": {},
-    "BRprimus": {},
-    "BRsecundus": {},
-    "BRtertius": {},
-    "BRquartus": {}
-  },
-  "envs": {},
-  "options": [
-    "Einheitsuebersetzung",
-    "Lutherbibel",
-    "LThK",
-    "RGG",
-    "TRE",
-    "Vulgata",
-    "default",
-    "jerusalem",
-    "anglosaxon",
-    "JEH",
-    "MHRA",
-    "NTG",
-    "MLA",
-    "chicago",
-    "text",
-    "kurz",
-    "lang",
-    "Terminus",
-    "Zahlwort"
+    {
+      "name": "etoolbox"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "biblerefformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "biblerefformat{${1:format name%keyvals}}",
+        "keys": [
+          "\\usepackage/bibleref-german#c,\\biblerefformat"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BRbook",
+      "unusual": true
+    },
+    {
+      "name": "BRbooksuffix",
+      "unusual": true
+    },
+    {
+      "name": "BRprophet",
+      "unusual": true
+    },
+    {
+      "name": "BRepistle",
+      "unusual": true
+    },
+    {
+      "name": "BRPaulustothe",
+      "unusual": true
+    },
+    {
+      "name": "BRPaulusto",
+      "unusual": true
+    },
+    {
+      "name": "BRdas",
+      "unusual": true
+    },
+    {
+      "name": "BRder",
+      "unusual": true
+    },
+    {
+      "name": "BRdie",
+      "unusual": true
+    },
+    {
+      "name": "BRHoheslied",
+      "unusual": true
+    },
+    {
+      "name": "BROffbJoh",
+      "unusual": true
+    },
+    {
+      "name": "BRApgLuk",
+      "unusual": true
+    },
+    {
+      "name": "BRKlgl",
+      "unusual": true
+    },
+    {
+      "name": "BRJeremias",
+      "unusual": true
+    },
+    {
+      "name": "BRSalomo",
+      "unusual": true
+    },
+    {
+      "name": "BRSalomos",
+      "unusual": true
+    },
+    {
+      "name": "BRprimus",
+      "unusual": true
+    },
+    {
+      "name": "BRsecundus",
+      "unusual": true
+    },
+    {
+      "name": "BRtertius",
+      "unusual": true
+    },
+    {
+      "name": "BRquartus",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bibleref-german#c,\\biblerefstyle": [
+      "Einheitsuebersetzung",
+      "Lutherbibel",
+      "LThK",
+      "RGG",
+      "TRE",
+      "Vulgata"
+    ],
+    "\\usepackage/bibleref-german#c": [
+      "default",
+      "jerusalem",
+      "anglosaxon",
+      "JEH",
+      "MHRA",
+      "NTG",
+      "MLA",
+      "chicago",
+      "text"
+    ],
+    "\\usepackage/bibleref-german#c,\\biblerefformat": [
+      "kurz",
+      "lang",
+      "Terminus",
+      "Zahlwort"
+    ]
+  },
+  "args": [
+    "\\usepackage/bibleref-german#c,\\biblerefstyle",
+    "\\usepackage/bibleref-german#c",
+    "\\usepackage/bibleref-german#c,\\biblerefformat"
+  ]
 }

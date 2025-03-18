@@ -1,214 +1,570 @@
 {
-  "includes": {
-    "xpunctuate": [],
-    "xspace": []
-  },
-  "macros": {
-    "defasforeign{}": {
-      "snippet": "defasforeign{${1:phrase}}"
+  "deps": [
+    {
+      "name": "xpunctuate"
     },
-    "defasforeign[]{}": {
-      "snippet": "defasforeign[${2:csname}]{${1:phrase}}"
-    },
-    "defnotforeign{}": {
-      "snippet": "defnotforeign{${1:phrase}}"
-    },
-    "defnotforeign[]{}": {
-      "snippet": "defnotforeign[${2:csname}]{${1:phrase}}"
-    },
-    "redefasforeign{}": {
-      "snippet": "redefasforeign{${1:phrase}}"
-    },
-    "redefasforeign[]{}": {
-      "snippet": "redefasforeign[${2:csname}]{${1:phrase}}"
-    },
-    "redefnotforeign{}": {
-      "snippet": "redefnotforeign{${1:phrase}}"
-    },
-    "redefnotforeign[]{}": {
-      "snippet": "redefnotforeign[${2:csname}]{${1:phrase}}"
-    },
-    "foreign{}": {
-      "snippet": "foreign{${1:text}}"
-    },
-    "notforeign{}": {
-      "snippet": "notforeign{${1:text}}"
-    },
-    "foreignfullfont": {},
-    "foreignabbrfont": {},
-    "addendum": {
-      "option": "all"
-    },
-    "Addendum": {
-      "option": "all"
-    },
-    "adhoc": {
-      "option": "all"
-    },
-    "Adhoc": {
-      "option": "all"
-    },
-    "aposteriori": {
-      "option": "all"
-    },
-    "Aposteriori": {
-      "option": "all"
-    },
-    "apriori": {
-      "option": "all"
-    },
-    "Apriori": {
-      "option": "all"
-    },
-    "caveat": {
-      "option": "all"
-    },
-    "Caveat": {
-      "option": "all"
-    },
-    "circa": {
-      "option": "all"
-    },
-    "Circa": {
-      "option": "all"
-    },
-    "curriculum": {
-      "option": "all"
-    },
-    "Curriculum": {
-      "option": "all"
-    },
-    "erratum": {
-      "option": "all"
-    },
-    "Erratum": {
-      "option": "all"
-    },
-    "ibidem": {
-      "option": "all"
-    },
-    "Ibidem": {
-      "option": "all"
-    },
-    "idem": {
-      "option": "all"
-    },
-    "Idem": {
-      "option": "all"
-    },
-    "sic": {
-      "option": "all"
-    },
-    "Sic": {
-      "option": "all"
-    },
-    "viceversa": {
-      "option": "all"
-    },
-    "Viceversa": {
-      "option": "all"
-    },
-    "vitae": {
-      "option": "all"
-    },
-    "Vitae": {
-      "option": "all"
-    },
-    "ala": {
-      "option": "all"
-    },
-    "Ala": {
-      "option": "all"
-    },
-    "visavis": {
-      "option": "all"
-    },
-    "Visavis": {
-      "option": "all"
-    },
-    "ansatz": {
-      "option": "all"
-    },
-    "Ansatz": {
-      "option": "all"
-    },
-    "gedanken": {
-      "option": "all"
-    },
-    "Gedanken": {
-      "option": "all"
-    },
-    "cf": {
-      "option": "all"
-    },
-    "eg": {
-      "option": "all"
-    },
-    "etal": {
-      "option": "all"
-    },
-    "etc": {
-      "option": "all"
-    },
-    "etseq": {
-      "option": "all"
-    },
-    "ibid": {
-      "option": "all"
-    },
-    "ie": {
-      "option": "all"
-    },
-    "loccit": {
-      "option": "all"
-    },
-    "opcit": {
-      "option": "all"
-    },
-    "viz": {
-      "option": "all"
-    },
-    "Cf": {
-      "option": "all"
-    },
-    "Eg": {
-      "option": "all"
-    },
-    "Etal": {
-      "option": "all"
-    },
-    "Etc": {
-      "option": "all"
-    },
-    "Etseq": {
-      "option": "all"
-    },
-    "Ibid": {
-      "option": "all"
-    },
-    "Ie": {
-      "option": "all"
-    },
-    "Loccit": {
-      "option": "all"
-    },
-    "Opcit": {
-      "option": "all"
-    },
-    "Viz": {
-      "option": "all"
+    {
+      "name": "xspace"
     }
-  },
-  "envs": {},
-  "options": [
-    "abbreviations",
-    "xfrench",
-    "xgerman",
-    "xlatin",
-    "phrases",
-    "all",
-    "UKenglish",
-    "british"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "defasforeign",
+      "arg": {
+        "format": "{}",
+        "snippet": "defasforeign{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "defasforeign",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "defasforeign[${2:csname}]{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "defnotforeign",
+      "arg": {
+        "format": "{}",
+        "snippet": "defnotforeign{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "defnotforeign",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "defnotforeign[${2:csname}]{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "redefasforeign",
+      "arg": {
+        "format": "{}",
+        "snippet": "redefasforeign{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "redefasforeign",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "redefasforeign[${2:csname}]{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "redefnotforeign",
+      "arg": {
+        "format": "{}",
+        "snippet": "redefnotforeign{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "redefnotforeign",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "redefnotforeign[${2:csname}]{${1:phrase%text}}"
+      }
+    },
+    {
+      "name": "foreign",
+      "arg": {
+        "format": "{}",
+        "snippet": "foreign{${1:text}}"
+      }
+    },
+    {
+      "name": "notforeign",
+      "arg": {
+        "format": "{}",
+        "snippet": "notforeign{${1:text}}"
+      }
+    },
+    {
+      "name": "foreignfullfont",
+      "unusual": true
+    },
+    {
+      "name": "foreignabbrfont",
+      "unusual": true
+    },
+    {
+      "name": "addendum",
+      "if": "xlatin"
+    },
+    {
+      "name": "Addendum",
+      "if": "xlatin"
+    },
+    {
+      "name": "adhoc",
+      "if": "xlatin"
+    },
+    {
+      "name": "Adhoc",
+      "if": "xlatin"
+    },
+    {
+      "name": "aposteriori",
+      "if": "xlatin"
+    },
+    {
+      "name": "Aposteriori",
+      "if": "xlatin"
+    },
+    {
+      "name": "apriori",
+      "if": "xlatin"
+    },
+    {
+      "name": "Apriori",
+      "if": "xlatin"
+    },
+    {
+      "name": "caveat",
+      "if": "xlatin"
+    },
+    {
+      "name": "Caveat",
+      "if": "xlatin"
+    },
+    {
+      "name": "circa",
+      "if": "xlatin"
+    },
+    {
+      "name": "Circa",
+      "if": "xlatin"
+    },
+    {
+      "name": "curriculum",
+      "if": "xlatin"
+    },
+    {
+      "name": "Curriculum",
+      "if": "xlatin"
+    },
+    {
+      "name": "erratum",
+      "if": "xlatin"
+    },
+    {
+      "name": "Erratum",
+      "if": "xlatin"
+    },
+    {
+      "name": "ibidem",
+      "if": "xlatin"
+    },
+    {
+      "name": "Ibidem",
+      "if": "xlatin"
+    },
+    {
+      "name": "idem",
+      "if": "xlatin"
+    },
+    {
+      "name": "Idem",
+      "if": "xlatin"
+    },
+    {
+      "name": "sic",
+      "if": "xlatin"
+    },
+    {
+      "name": "Sic",
+      "if": "xlatin"
+    },
+    {
+      "name": "viceversa",
+      "if": "xlatin"
+    },
+    {
+      "name": "Viceversa",
+      "if": "xlatin"
+    },
+    {
+      "name": "vitae",
+      "if": "xlatin"
+    },
+    {
+      "name": "Vitae",
+      "if": "xlatin"
+    },
+    {
+      "name": "ala",
+      "if": "xfrench"
+    },
+    {
+      "name": "Ala",
+      "if": "xfrench"
+    },
+    {
+      "name": "visavis",
+      "if": "xfrench"
+    },
+    {
+      "name": "Visavis",
+      "if": "xfrench"
+    },
+    {
+      "name": "ansatz",
+      "if": "xgerman"
+    },
+    {
+      "name": "Ansatz",
+      "if": "xgerman"
+    },
+    {
+      "name": "gedanken",
+      "if": "xgerman"
+    },
+    {
+      "name": "Gedanken",
+      "if": "xgerman"
+    },
+    {
+      "name": "cf",
+      "if": "abbreviations"
+    },
+    {
+      "name": "eg",
+      "if": "abbreviations"
+    },
+    {
+      "name": "etal",
+      "if": "abbreviations"
+    },
+    {
+      "name": "etc",
+      "if": "abbreviations"
+    },
+    {
+      "name": "etseq",
+      "if": "abbreviations"
+    },
+    {
+      "name": "ibid",
+      "if": "abbreviations"
+    },
+    {
+      "name": "ie",
+      "if": "abbreviations"
+    },
+    {
+      "name": "loccit",
+      "if": "abbreviations"
+    },
+    {
+      "name": "opcit",
+      "if": "abbreviations"
+    },
+    {
+      "name": "viz",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Cf",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Eg",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Etal",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Etc",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Etseq",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Ibid",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Ie",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Loccit",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Opcit",
+      "if": "abbreviations"
+    },
+    {
+      "name": "Viz",
+      "if": "abbreviations"
+    },
+    {
+      "name": "ala",
+      "if": "phrases"
+    },
+    {
+      "name": "Ala",
+      "if": "phrases"
+    },
+    {
+      "name": "visavis",
+      "if": "phrases"
+    },
+    {
+      "name": "Visavis",
+      "if": "phrases"
+    },
+    {
+      "name": "ansatz",
+      "if": "phrases"
+    },
+    {
+      "name": "Ansatz",
+      "if": "phrases"
+    },
+    {
+      "name": "gedanken",
+      "if": "phrases"
+    },
+    {
+      "name": "Gedanken",
+      "if": "phrases"
+    },
+    {
+      "name": "addendum",
+      "if": "all"
+    },
+    {
+      "name": "Addendum",
+      "if": "all"
+    },
+    {
+      "name": "adhoc",
+      "if": "all"
+    },
+    {
+      "name": "Adhoc",
+      "if": "all"
+    },
+    {
+      "name": "aposteriori",
+      "if": "all"
+    },
+    {
+      "name": "Aposteriori",
+      "if": "all"
+    },
+    {
+      "name": "apriori",
+      "if": "all"
+    },
+    {
+      "name": "Apriori",
+      "if": "all"
+    },
+    {
+      "name": "caveat",
+      "if": "all"
+    },
+    {
+      "name": "Caveat",
+      "if": "all"
+    },
+    {
+      "name": "circa",
+      "if": "all"
+    },
+    {
+      "name": "Circa",
+      "if": "all"
+    },
+    {
+      "name": "curriculum",
+      "if": "all"
+    },
+    {
+      "name": "Curriculum",
+      "if": "all"
+    },
+    {
+      "name": "erratum",
+      "if": "all"
+    },
+    {
+      "name": "Erratum",
+      "if": "all"
+    },
+    {
+      "name": "ibidem",
+      "if": "all"
+    },
+    {
+      "name": "Ibidem",
+      "if": "all"
+    },
+    {
+      "name": "idem",
+      "if": "all"
+    },
+    {
+      "name": "Idem",
+      "if": "all"
+    },
+    {
+      "name": "sic",
+      "if": "all"
+    },
+    {
+      "name": "Sic",
+      "if": "all"
+    },
+    {
+      "name": "viceversa",
+      "if": "all"
+    },
+    {
+      "name": "Viceversa",
+      "if": "all"
+    },
+    {
+      "name": "vitae",
+      "if": "all"
+    },
+    {
+      "name": "Vitae",
+      "if": "all"
+    },
+    {
+      "name": "ala",
+      "if": "all"
+    },
+    {
+      "name": "Ala",
+      "if": "all"
+    },
+    {
+      "name": "visavis",
+      "if": "all"
+    },
+    {
+      "name": "Visavis",
+      "if": "all"
+    },
+    {
+      "name": "ansatz",
+      "if": "all"
+    },
+    {
+      "name": "Ansatz",
+      "if": "all"
+    },
+    {
+      "name": "gedanken",
+      "if": "all"
+    },
+    {
+      "name": "Gedanken",
+      "if": "all"
+    },
+    {
+      "name": "cf",
+      "if": "all"
+    },
+    {
+      "name": "eg",
+      "if": "all"
+    },
+    {
+      "name": "etal",
+      "if": "all"
+    },
+    {
+      "name": "etc",
+      "if": "all"
+    },
+    {
+      "name": "etseq",
+      "if": "all"
+    },
+    {
+      "name": "ibid",
+      "if": "all"
+    },
+    {
+      "name": "ie",
+      "if": "all"
+    },
+    {
+      "name": "loccit",
+      "if": "all"
+    },
+    {
+      "name": "opcit",
+      "if": "all"
+    },
+    {
+      "name": "viz",
+      "if": "all"
+    },
+    {
+      "name": "Cf",
+      "if": "all"
+    },
+    {
+      "name": "Eg",
+      "if": "all"
+    },
+    {
+      "name": "Etal",
+      "if": "all"
+    },
+    {
+      "name": "Etc",
+      "if": "all"
+    },
+    {
+      "name": "Etseq",
+      "if": "all"
+    },
+    {
+      "name": "Ibid",
+      "if": "all"
+    },
+    {
+      "name": "Ie",
+      "if": "all"
+    },
+    {
+      "name": "Loccit",
+      "if": "all"
+    },
+    {
+      "name": "Opcit",
+      "if": "all"
+    },
+    {
+      "name": "Viz",
+      "if": "all"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/foreign#c": [
+      "abbreviations",
+      "xfrench",
+      "xgerman",
+      "xlatin",
+      "phrases",
+      "all",
+      "UKenglish",
+      "british"
+    ]
+  },
+  "args": [
+    "\\usepackage/foreign#c"
+  ]
 }

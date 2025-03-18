@@ -1,494 +1,1409 @@
 {
-  "includes": {
-    "chemstr": [],
-    "hetarom": []
-  },
-  "macros": {
-    "aziridineh{}": {
-      "snippet": "aziridineh{${1:subslist}}"
-    },
-    "aziridineh[]{}": {
-      "snippet": "aziridineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "aziridinehi{}": {
-      "snippet": "aziridinehi{${1:subslist}}"
-    },
-    "benzofuraneh{}": {
-      "snippet": "benzofuraneh{${1:subslist}}"
-    },
-    "benzofuraneh[]{}": {
-      "snippet": "benzofuraneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "benzofuranehi{}": {
-      "snippet": "benzofuranehi{${1:subslist}}"
-    },
-    "benzofuranehi[]{}": {
-      "snippet": "benzofuranehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "benzoxazoleh{}": {
-      "snippet": "benzoxazoleh{${1:subslist}}"
-    },
-    "benzoxazoleh[]{}": {
-      "snippet": "benzoxazoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "benzoxazolehi{}": {
-      "snippet": "benzoxazolehi{${1:subslist}}"
-    },
-    "benzoxazolehi[]{}": {
-      "snippet": "benzoxazolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "cinnolineh{}": {
-      "snippet": "cinnolineh{${1:subslist}}"
-    },
-    "cinnolineh[]{}": {
-      "snippet": "cinnolineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "cinnolinehi{}": {
-      "snippet": "cinnolinehi{${1:subslist}}"
-    },
-    "cinnolinehi[]{}": {
-      "snippet": "cinnolinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "decaheteroh{}{}": {
-      "snippet": "decaheteroh{${1:atomlist}}{${2:subslist}}"
-    },
-    "decaheteroh{}{}[]": {
-      "snippet": "decaheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "decaheteroh[]{}{}": {
-      "snippet": "decaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "decaheteroh[]{}{}[]": {
-      "snippet": "decaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "decaheterohi{}{}": {
-      "snippet": "decaheterohi{${1:atomlist}}{${2:subslist}}"
-    },
-    "decaheterohi{}{}[]": {
-      "snippet": "decaheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "decaheterohi[]{}{}": {
-      "snippet": "decaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "decaheterohi[]{}{}[]": {
-      "snippet": "decaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "fiveheteroh{}{}": {
-      "snippet": "fiveheteroh{${1:atomlist}}{${2:subslist}}"
-    },
-    "fiveheteroh{}{}[]": {
-      "snippet": "fiveheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "fiveheteroh[]{}{}": {
-      "snippet": "fiveheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "fiveheteroh[]{}{}[]": {
-      "snippet": "fiveheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "fiveheterohi{}{}": {
-      "snippet": "fiveheterohi{${1:atomlist}}{${2:subslist}}"
-    },
-    "fiveheterohi{}{}[]": {
-      "snippet": "fiveheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "fiveheterohi[]{}{}": {
-      "snippet": "fiveheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "fiveheterohi[]{}{}[]": {
-      "snippet": "fiveheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "furanh{}": {
-      "snippet": "furanh{${1:subslist}}"
-    },
-    "furanh[]{}": {
-      "snippet": "furanh[${2:bondlist}]{${1:subslist}}"
-    },
-    "furanhi{}": {
-      "snippet": "furanhi{${1:subslist}}"
-    },
-    "furanhi[]{}": {
-      "snippet": "furanhi[${2:bondlist}]{${1:subslist}}"
-    },
-    "imidazoleh{}": {
-      "snippet": "imidazoleh{${1:subslist}}"
-    },
-    "imidazoleh[]{}": {
-      "snippet": "imidazoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "imidazolehi{}": {
-      "snippet": "imidazolehi{${1:subslist}}"
-    },
-    "imidazolehi[]{}": {
-      "snippet": "imidazolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "indoleh{}": {
-      "snippet": "indoleh{${1:subslist}}"
-    },
-    "indoleh[]{}": {
-      "snippet": "indoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "indolehi{}": {
-      "snippet": "indolehi{${1:subslist}}"
-    },
-    "indolehi[]{}": {
-      "snippet": "indolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "indolizineh{}": {
-      "snippet": "indolizineh{${1:subslist}}"
-    },
-    "indolizineh[]{}": {
-      "snippet": "indolizineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "indolizinehi{}": {
-      "snippet": "indolizinehi{${1:subslist}}"
-    },
-    "indolizinehi[]{}": {
-      "snippet": "indolizinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "isobenzofuraneh{}": {
-      "snippet": "isobenzofuraneh{${1:subslist}}"
-    },
-    "isobenzofuraneh[]{}": {
-      "snippet": "isobenzofuraneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "isobenzofuranehi{}": {
-      "snippet": "isobenzofuranehi{${1:subslist}}"
-    },
-    "isobenzofuranehi[]{}": {
-      "snippet": "isobenzofuranehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoindoleh{}": {
-      "snippet": "isoindoleh{${1:subslist}}"
-    },
-    "isoindoleh[]{}": {
-      "snippet": "isoindoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoindolehi{}": {
-      "snippet": "isoindolehi{${1:subslist}}"
-    },
-    "isoindolehi[]{}": {
-      "snippet": "isoindolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoquinolineh{}": {
-      "snippet": "isoquinolineh{${1:subslist}}"
-    },
-    "isoquinolineh[]{}": {
-      "snippet": "isoquinolineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoquinolinehi{}": {
-      "snippet": "isoquinolinehi{${1:subslist}}"
-    },
-    "isoquinolinehi[]{}": {
-      "snippet": "isoquinolinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoxazoleh{}": {
-      "snippet": "isoxazoleh{${1:subslist}}"
-    },
-    "isoxazoleh[]{}": {
-      "snippet": "isoxazoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "isoxazolehi{}": {
-      "snippet": "isoxazolehi{${1:subslist}}"
-    },
-    "isoxazolehi[]{}": {
-      "snippet": "isoxazolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "nonaheteroh{}{}": {
-      "snippet": "nonaheteroh{${1:atomlist}}{${2:subslist}}"
-    },
-    "nonaheteroh{}{}[]": {
-      "snippet": "nonaheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "nonaheteroh[]{}{}": {
-      "snippet": "nonaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "nonaheteroh[]{}{}[]": {
-      "snippet": "nonaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "nonaheterohi{}{}": {
-      "snippet": "nonaheterohi{${1:atomlist}}{${2:subslist}}"
-    },
-    "nonaheterohi{}{}[]": {
-      "snippet": "nonaheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "nonaheterohi[]{}{}": {
-      "snippet": "nonaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "nonaheterohi[]{}{}[]": {
-      "snippet": "nonaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "oxazoleh{}": {
-      "snippet": "oxazoleh{${1:subslist}}"
-    },
-    "oxazoleh[]{}": {
-      "snippet": "oxazoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "oxazolehi{}": {
-      "snippet": "oxazolehi{${1:subslist}}"
-    },
-    "oxazolehi[]{}": {
-      "snippet": "oxazolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "oxiraneh{}": {
-      "snippet": "oxiraneh{${1:subslist}}"
-    },
-    "oxiraneh[]{}": {
-      "snippet": "oxiraneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "oxiranehi{}": {
-      "snippet": "oxiranehi{${1:subslist}}"
-    },
-    "oxiranehi[]{}": {
-      "snippet": "oxiranehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pteridineh{}": {
-      "snippet": "pteridineh{${1:subslist}}"
-    },
-    "pteridineh[]{}": {
-      "snippet": "pteridineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pteridinehi{}": {
-      "snippet": "pteridinehi{${1:subslist}}"
-    },
-    "pteridinehi[]{}": {
-      "snippet": "pteridinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "purineh{}": {
-      "snippet": "purineh{${1:subslist}}"
-    },
-    "purineh[]{}": {
-      "snippet": "purineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "purinehi{}": {
-      "snippet": "purinehi{${1:subslist}}"
-    },
-    "purinehi[]{}": {
-      "snippet": "purinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrazineh{}": {
-      "snippet": "pyrazineh{${1:subslist}}"
-    },
-    "pyrazineh[]{}": {
-      "snippet": "pyrazineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrazinehi{}": {
-      "snippet": "pyrazinehi{${1:subslist}}"
-    },
-    "pyrazinehi[]{}": {
-      "snippet": "pyrazinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrazoleh{}": {
-      "snippet": "pyrazoleh{${1:subslist}}"
-    },
-    "pyrazoleh[]{}": {
-      "snippet": "pyrazoleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrazolehi{}": {
-      "snippet": "pyrazolehi{${1:subslist}}"
-    },
-    "pyrazolehi[]{}": {
-      "snippet": "pyrazolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyridazineh{}": {
-      "snippet": "pyridazineh{${1:subslist}}"
-    },
-    "pyridazineh[]{}": {
-      "snippet": "pyridazineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyridazinehi{}": {
-      "snippet": "pyridazinehi{${1:subslist}}"
-    },
-    "pyridazinehi[]{}": {
-      "snippet": "pyridazinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyridineh{}": {
-      "snippet": "pyridineh{${1:subslist}}"
-    },
-    "pyridineh[]{}": {
-      "snippet": "pyridineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyridinehi{}": {
-      "snippet": "pyridinehi{${1:subslist}}"
-    },
-    "pyridinehi[]{}": {
-      "snippet": "pyridinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrimidineh{}": {
-      "snippet": "pyrimidineh{${1:subslist}}"
-    },
-    "pyrimidineh[]{}": {
-      "snippet": "pyrimidineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrimidinehi{}": {
-      "snippet": "pyrimidinehi{${1:subslist}}"
-    },
-    "pyrimidinehi[]{}": {
-      "snippet": "pyrimidinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrroleh{}": {
-      "snippet": "pyrroleh{${1:subslist}}"
-    },
-    "pyrroleh[]{}": {
-      "snippet": "pyrroleh[${2:bondlist}]{${1:subslist}}"
-    },
-    "pyrrolehi{}": {
-      "snippet": "pyrrolehi{${1:subslist}}"
-    },
-    "pyrrolehi[]{}": {
-      "snippet": "pyrrolehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinazolineh{}": {
-      "snippet": "quinazolineh{${1:subslist}}"
-    },
-    "quinazolineh[]{}": {
-      "snippet": "quinazolineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinazolinehi{}": {
-      "snippet": "quinazolinehi{${1:subslist}}"
-    },
-    "quinazolinehi[]{}": {
-      "snippet": "quinazolinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinolineh{}": {
-      "snippet": "quinolineh{${1:subslist}}"
-    },
-    "quinolineh[]{}": {
-      "snippet": "quinolineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinolinehi{}": {
-      "snippet": "quinolinehi{${1:subslist}}"
-    },
-    "quinolinehi[]{}": {
-      "snippet": "quinolinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinoxalineh{}": {
-      "snippet": "quinoxalineh{${1:subslist}}"
-    },
-    "quinoxalineh[]{}": {
-      "snippet": "quinoxalineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "quinoxalinehi{}": {
-      "snippet": "quinoxalinehi{${1:subslist}}"
-    },
-    "quinoxalinehi[]{}": {
-      "snippet": "quinoxalinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "sixheteroh{}{}": {
-      "snippet": "sixheteroh{${1:atomlist}}{${2:subslist}}"
-    },
-    "sixheteroh{}{}[]": {
-      "snippet": "sixheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "sixheteroh[]{}{}": {
-      "snippet": "sixheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "sixheteroh[]{}{}[]": {
-      "snippet": "sixheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "sixheterohi{}{}": {
-      "snippet": "sixheterohi{${1:atomlist}}{${2:subslist}}"
-    },
-    "sixheterohi{}{}[]": {
-      "snippet": "sixheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "sixheterohi[]{}{}": {
-      "snippet": "sixheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "sixheterohi[]{}{}[]": {
-      "snippet": "sixheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "thiiraneh{}": {
-      "snippet": "thiiraneh{${1:subslist}}"
-    },
-    "thiiraneh[]{}": {
-      "snippet": "thiiraneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "thiiranehi{}": {
-      "snippet": "thiiranehi{${1:subslist}}"
-    },
-    "thiiranehi[]{}": {
-      "snippet": "thiiranehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "thiopheneh{}": {
-      "snippet": "thiopheneh{${1:subslist}}"
-    },
-    "thiopheneh[]{}": {
-      "snippet": "thiopheneh[${2:bondlist}]{${1:subslist}}"
-    },
-    "thiophenehi{}": {
-      "snippet": "thiophenehi{${1:subslist}}"
-    },
-    "thiophenehi[]{}": {
-      "snippet": "thiophenehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "threeheteroh{}{}": {
-      "snippet": "threeheteroh{${1:atomlist}}{${2:subslist}}"
-    },
-    "threeheteroh{}{}[]": {
-      "snippet": "threeheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "threeheteroh[]{}{}": {
-      "snippet": "threeheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "threeheteroh[]{}{}[]": {
-      "snippet": "threeheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "threeheterohi{}{}": {
-      "snippet": "threeheterohi{${1:atomlist}}{${2:subslist}}"
-    },
-    "threeheterohi{}{}[]": {
-      "snippet": "threeheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
-    },
-    "threeheterohi[]{}{}": {
-      "snippet": "threeheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
-    },
-    "threeheterohi[]{}{}[]": {
-      "snippet": "threeheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
-    },
-    "triazineh{}": {
-      "snippet": "triazineh{${1:subslist}}"
-    },
-    "triazineh[]{}": {
-      "snippet": "triazineh[${2:bondlist}]{${1:subslist}}"
-    },
-    "triazinehi{}": {
-      "snippet": "triazinehi{${1:subslist}}"
-    },
-    "triazinehi[]{}": {
-      "snippet": "triazinehi[${2:bondlist}]{${1:subslist}}"
-    },
-    "dothskbonda": {},
-    "dothskbondb": {},
-    "dothskbondc": {},
-    "dothskbondd": {},
-    "dothskbonde": {},
-    "dothskbondf": {},
-    "dothskbondvert": {},
-    "dothskbondverti": {},
-    "fiveunith": {},
-    "fiveunithi": {},
-    "hbonda": {},
-    "hbondb": {},
-    "hbondc": {},
-    "hbondd": {},
-    "hbonde": {},
-    "hbondf": {},
-    "hbondvert": {},
-    "hbondverti": {},
-    "hskbonda": {},
-    "hskbondb": {},
-    "hskbondc": {},
-    "hskbondd": {},
-    "hskbonde": {},
-    "hskbondf": {},
-    "hskbondvert": {},
-    "hskbondverti": {},
-    "sixunith": {},
-    "ylhetpositionh{}{}{}{}{}": {
-      "snippet": "ylhetpositionh{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+  "deps": [
+    {
+      "name": "chemstr"
+    },
+    {
+      "name": "hetarom"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "aziridineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "aziridineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "aziridineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "aziridineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "aziridinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "aziridinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "aziridineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "aziridineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzofuraneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "benzofuraneh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzofuraneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "benzofuraneh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzofuranehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "benzofuranehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzofuranehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "benzofuranehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzoxazoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "benzoxazoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzoxazoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "benzoxazoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzoxazolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "benzoxazolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "benzoxazolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "benzoxazolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cinnolineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "cinnolineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cinnolineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cinnolineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cinnolinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "cinnolinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "cinnolinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cinnolinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "decaheteroh{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "decaheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "decaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "decaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "decaheteroh(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "decaheteroh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "decaheteroh(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheteroh",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "decaheteroh(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "decaheterohi{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "decaheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "decaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "decaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "decaheterohi(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "decaheterohi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "decaheterohi(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "decaheterohi",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "decaheterohi(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fiveheteroh{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "fiveheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fiveheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "fiveheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "fiveheteroh(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "fiveheteroh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "fiveheteroh(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheteroh",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "fiveheteroh(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fiveheterohi{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "fiveheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fiveheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "fiveheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "fiveheterohi(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "fiveheterohi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "fiveheterohi(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "fiveheterohi",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "fiveheterohi(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "furanh",
+      "arg": {
+        "format": "{}",
+        "snippet": "furanh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "furanh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "furanh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "furanhi",
+      "arg": {
+        "format": "{}",
+        "snippet": "furanhi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "furanhi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "furanhi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "imidazoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "imidazoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "imidazoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "imidazoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "imidazolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "imidazolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "imidazolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "imidazolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "indoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "indoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "indolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "indolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolizineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "indolizineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolizineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "indolizineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolizinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "indolizinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "indolizinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "indolizinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isobenzofuraneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "isobenzofuraneh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isobenzofuraneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isobenzofuraneh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isobenzofuranehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "isobenzofuranehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isobenzofuranehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isobenzofuranehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoindoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoindoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoindoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoindoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoindolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoindolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoindolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoindolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoquinolineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoquinolineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoquinolineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoquinolineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoquinolinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoquinolinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoquinolinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoquinolinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoxazoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoxazoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoxazoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoxazoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoxazolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "isoxazolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "isoxazolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isoxazolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nonaheteroh{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "nonaheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nonaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "nonaheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "nonaheteroh(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "nonaheteroh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "nonaheteroh(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheteroh",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "nonaheteroh(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nonaheterohi{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "nonaheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nonaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "nonaheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "nonaheterohi(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "nonaheterohi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "nonaheterohi(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "nonaheterohi",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "nonaheterohi(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "oxazoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "oxazoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxazoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "oxazoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxazolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "oxazolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxazolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "oxazolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxiraneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "oxiraneh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxiraneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "oxiraneh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxiranehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "oxiranehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "oxiranehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "oxiranehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pteridineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pteridineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pteridineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pteridineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pteridinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pteridinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pteridinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pteridinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "purineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "purineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "purineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "purineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "purinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "purinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "purinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "purinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrazineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrazineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrazinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrazinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazoleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrazoleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazoleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrazoleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrazolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrazolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrazolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridazineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyridazineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridazineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyridazineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridazinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyridazinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridazinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyridazinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyridineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyridineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyridinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyridinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyridinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrimidineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrimidineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrimidineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrimidineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrimidinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrimidinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrimidinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrimidinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrroleh",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrroleh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrroleh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrroleh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrrolehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "pyrrolehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "pyrrolehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pyrrolehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinazolineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinazolineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinazolineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinazolineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinazolinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinazolinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinazolinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinazolinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinolineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinolineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinolineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinolineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinolinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinolinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinolinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinolinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinoxalineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinoxalineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinoxalineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinoxalineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinoxalinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "quinoxalinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "quinoxalinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "quinoxalinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sixheteroh{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sixheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "sixheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "sixheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "sixheteroh(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "sixheteroh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "sixheteroh(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheteroh",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "sixheteroh(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sixheterohi{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sixheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "sixheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "sixheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "sixheterohi(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "sixheterohi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "sixheterohi(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "sixheterohi",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "sixheterohi(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "thiiraneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "thiiraneh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiiraneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "thiiraneh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiiranehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "thiiranehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiiranehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "thiiranehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiopheneh",
+      "arg": {
+        "format": "{}",
+        "snippet": "thiopheneh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiopheneh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "thiopheneh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiophenehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "thiophenehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "thiophenehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "thiophenehi[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "threeheteroh{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "threeheteroh{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "threeheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "threeheteroh[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "threeheteroh(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "threeheteroh(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "threeheteroh(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheteroh",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "threeheteroh(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "threeheterohi{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "threeheterohi{${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "threeheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "threeheterohi[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "threeheterohi(${3:skelbdlist}){${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}[]",
+        "snippet": "threeheterohi(${4:skelbdlist}){${1:atomlist}}{${2:subslist}}[${3:delbdlist}]"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}{}",
+        "snippet": "threeheterohi(${4:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}"
+      }
+    },
+    {
+      "name": "threeheterohi",
+      "arg": {
+        "format": "()[]{}{}[]",
+        "snippet": "threeheterohi(${5:skelbdlist})[${3:bondlist}]{${1:atomlist}}{${2:subslist}}[${4:delbdlist}]"
+      }
+    },
+    {
+      "name": "triazineh",
+      "arg": {
+        "format": "{}",
+        "snippet": "triazineh{${1:subslist}}"
+      }
+    },
+    {
+      "name": "triazineh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "triazineh[${2:bondlist}]{${1:subslist}}"
+      }
+    },
+    {
+      "name": "triazinehi",
+      "arg": {
+        "format": "{}",
+        "snippet": "triazinehi{${1:subslist}}"
+      }
+    },
+    {
+      "name": "triazinehi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "triazinehi[${2:bondlist}]{${1:subslist}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

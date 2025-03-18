@@ -1,0 +1,582 @@
+{
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "tasks"
+    },
+    {
+      "name": "versions"
+    },
+    {
+      "name": "fancybox"
+    },
+    {
+      "name": "translations"
+    },
+    {
+      "name": "ragged2e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "exesheetset",
+      "arg": {
+        "format": "{}",
+        "snippet": "exesheetset{${1:options%keyvals}}",
+        "keys": [
+          "\\exesheetset,\\usepackage/exesheet#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "exercise[${1:text}]"
+      }
+    },
+    {
+      "name": "exercisename",
+      "unusual": true
+    },
+    {
+      "name": "labelexercise",
+      "unusual": true
+    },
+    {
+      "name": "theexercise",
+      "unusual": true
+    },
+    {
+      "name": "labelexercisestyle",
+      "unusual": true
+    },
+    {
+      "name": "exercise*",
+      "arg": {
+        "format": "{}",
+        "snippet": "exercise*{${1:label%text}}"
+      }
+    },
+    {
+      "name": "exercise*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "exercise*[${2:text}]{${1:label%text}}"
+      }
+    },
+    {
+      "name": "subpart"
+    },
+    {
+      "name": "subpart",
+      "arg": {
+        "format": "[]",
+        "snippet": "subpart[${1:text}]"
+      }
+    },
+    {
+      "name": "thesubpart",
+      "unusual": true
+    },
+    {
+      "name": "subpartname",
+      "unusual": true
+    },
+    {
+      "name": "labelsubpart",
+      "unusual": true
+    },
+    {
+      "name": "labelsubpartstyle",
+      "unusual": true
+    },
+    {
+      "name": "subpart*",
+      "arg": {
+        "format": "{}",
+        "snippet": "subpart*{${1:label%text}}"
+      }
+    },
+    {
+      "name": "subpart*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subpart*[${2:text}]{${1:label%text}}"
+      }
+    },
+    {
+      "name": "annex"
+    },
+    {
+      "name": "annex",
+      "arg": {
+        "format": "[]",
+        "snippet": "annex[${1:text}]"
+      }
+    },
+    {
+      "name": "annexname",
+      "unusual": true
+    },
+    {
+      "name": "annexstyle",
+      "unusual": true
+    },
+    {
+      "name": "exe"
+    },
+    {
+      "name": "exname",
+      "unusual": true
+    },
+    {
+      "name": "exlabel",
+      "unusual": true
+    },
+    {
+      "name": "exsepmark",
+      "unusual": true
+    },
+    {
+      "name": "exe*"
+    },
+    {
+      "name": "labelenumone",
+      "unusual": true
+    },
+    {
+      "name": "labelenuma",
+      "unusual": true
+    },
+    {
+      "name": "enumfont",
+      "unusual": true
+    },
+    {
+      "name": "correctionstyle",
+      "unusual": true
+    },
+    {
+      "name": "correctionname",
+      "unusual": true
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "question{${1:question%text}}"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question*",
+      "arg": {
+        "format": "{}",
+        "snippet": "question*{${1:question%text}}"
+      }
+    },
+    {
+      "name": "answer",
+      "arg": {
+        "format": "{}",
+        "snippet": "answer{${1:answer%text}}"
+      }
+    },
+    {
+      "name": "answer*",
+      "arg": {
+        "format": "{}",
+        "snippet": "answer*{${1:answer%text}}"
+      }
+    },
+    {
+      "name": "answerspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "answerspace{${1:height}}"
+      }
+    },
+    {
+      "name": "points",
+      "arg": {
+        "format": "{}",
+        "snippet": "points{${1:number}}"
+      }
+    },
+    {
+      "name": "pointsname",
+      "unusual": true
+    },
+    {
+      "name": "pointname",
+      "unusual": true
+    },
+    {
+      "name": "pointsstyle",
+      "unusual": true
+    },
+    {
+      "name": "pts",
+      "arg": {
+        "format": "{}",
+        "snippet": "pts{${1:number}}"
+      }
+    },
+    {
+      "name": "ptsname",
+      "unusual": true
+    },
+    {
+      "name": "ptname",
+      "unusual": true
+    },
+    {
+      "name": "ptsstyle",
+      "unusual": true
+    },
+    {
+      "name": "totalexe",
+      "arg": {
+        "format": "{}",
+        "snippet": "totalexe{${1:number}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "note{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "note[${2:points}]{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "note*",
+      "arg": {
+        "format": "{}",
+        "snippet": "note*{${1:points}}"
+      }
+    },
+    {
+      "name": "markingstyle",
+      "unusual": true
+    },
+    {
+      "name": "ptsboxlength",
+      "unusual": true
+    },
+    {
+      "name": "notestyle",
+      "unusual": true
+    },
+    {
+      "name": "totalpoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "totalpoints{${1:number}}"
+      }
+    },
+    {
+      "name": "totalsheet",
+      "arg": {
+        "format": "{}",
+        "snippet": "totalsheet{${1:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "exenumerate"
+    },
+    {
+      "name": "exenumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colsenum",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "colsenum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:cols}}",
+        "keys": [
+          "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colsenum*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "colsenum*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:cols}}",
+        "keys": [
+          "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c",
+          "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colsitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "colsitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:cols}}",
+        "keys": [
+          "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colsitem*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "colsitem*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:cols}}",
+        "keys": [
+          "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablenum1"
+    },
+    {
+      "name": "tablenum1",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cols})"
+      }
+    },
+    {
+      "name": "tablenum1",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:cols})",
+        "keys": [
+          "\\begin{tablenum1},\\begin{tablenuma},\\begin{tablitem}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablenuma"
+    },
+    {
+      "name": "tablenuma",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cols})"
+      }
+    },
+    {
+      "name": "tablenuma",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:cols})",
+        "keys": [
+          "\\begin{tablenum1},\\begin{tablenuma},\\begin{tablitem}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablenuma*"
+    },
+    {
+      "name": "tablitem"
+    },
+    {
+      "name": "tablitem",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:cols})"
+      }
+    },
+    {
+      "name": "tablitem",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:cols})",
+        "keys": [
+          "\\begin{tablenum1},\\begin{tablenuma},\\begin{tablitem}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablitem*"
+    },
+    {
+      "name": "questions"
+    },
+    {
+      "name": "answers"
+    },
+    {
+      "name": "answers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:level}]"
+      }
+    },
+    {
+      "name": "answers*"
+    }
+  ],
+  "keys": {
+    "\\exesheetset,\\usepackage/exesheet#c": [
+      "exetoc",
+      "setlist",
+      "output=${1|questions,answers,both|}",
+      "display=${1|none,pts,notes|}",
+      "answerspace",
+      "marginpos=${1|left,right,inner,outer|}",
+      "marginwidth=${1|standard,expand,unset|}",
+      "noteragged=${1|left,right,center,justify,twoside|}",
+      "checkpts",
+      "correct=${1|true,false,conditional|}"
+    ],
+    "\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c,\\begin{colsitem}#c,\\begin{colsitem*}#c": [
+      "topsep=",
+      "partopsep=",
+      "parsep=",
+      "itemsep=",
+      "leftmargin=",
+      "rightmargin=",
+      "listparindent=",
+      "labelwidth=",
+      "labelsep=",
+      "itemindent=",
+      "label=${1:commands}",
+      "label*=${1:commands}",
+      "ref=${1:commands}",
+      "font=${1:commands}",
+      "format=${1:commands}",
+      "align=${1|left,right,parleft|}",
+      "labelindent=",
+      "left=${1:labelindent}",
+      "left=${1:labelindent} .. ${2:leftmargin}",
+      "widest",
+      "widest=${1:string}",
+      "widest*=${1:integer}",
+      "labelsep*=",
+      "labelindent*=",
+      "start=${1:integer}",
+      "resume",
+      "resume=${1:series name}",
+      "resume*",
+      "resume*=${1:series name}",
+      "series=${1:series name}",
+      "beginpenalty=${1:integer}",
+      "midpenalty=${1:integer}",
+      "endpenalty=${1:integer}",
+      "before=${1:code}",
+      "before*=${1:code}",
+      "after=${1:code}",
+      "after*=${1:code}",
+      "first=${1:code}",
+      "first*=${1:code}",
+      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
+      "noitemsep",
+      "nosep",
+      "wide",
+      "wide=${1:parindent}",
+      "itemjoin=${1:string}",
+      "itemjoin*=${1:string}",
+      "afterlabel=${1:string}",
+      "mode=${1|unboxed,boxed|}",
+      "%enumitemkey"
+    ],
+    "\\begin{tablenum1},\\begin{tablenuma},\\begin{tablitem}": [
+      "style=${1|itemize,enumerate|}",
+      "label-format=${1:code}",
+      "label=${1:code}",
+      "ref=${1:code}",
+      "label-width=",
+      "label-offset=",
+      "item-format=${1:code}",
+      "item-indent=",
+      "column-sep=",
+      "label-align=${1|left,right,center|}",
+      "before-skip=",
+      "after-skip=",
+      "after-item-skip=",
+      "resume",
+      "start=${1:integer}",
+      "counter=${1:counter}",
+      "debug"
+    ],
+    "\\begin{enumerate}#c,\\begin{itemize}#c,\\begin{description}#c,\\begin{enumerate*}#c,\\begin{itemize*}#c,\\begin{description*}#c,\\begin{exenumerate}#c,\\begin{colsenum}#c,\\begin{colsenum*}#c": [
+      "A",
+      "a",
+      "I",
+      "i",
+      "1"
+    ]
+  },
+  "args": [
+    "\\exesheetset,\\usepackage/exesheet#c"
+  ]
+}

@@ -1,36 +1,65 @@
 {
-  "includes": {},
-  "macros": {
-    "ResolveAffiliations{}": {
-      "snippet": "ResolveAffiliations{${1:author}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ResolveAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "ResolveAffiliations{${1:author}}"
+      }
     },
-    "ResolveAffiliations[]{}": {
-      "snippet": "ResolveAffiliations[${2:options}]{${1:author}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ResolveAffiliations",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ResolveAffiliations[${2:options%keyvals}]{${1:author}}",
+        "keys": [
+          "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations"
+        ],
+        "keyPos": 0
+      }
     },
-    "LinkToORCIDinAffiliations{}": {
-      "snippet": "LinkToORCIDinAffiliations{${1:arg}}"
+    {
+      "name": "LinkToORCIDinAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "LinkToORCIDinAffiliations{${1:arg}}"
+      }
     },
-    "CountAuthorsFromAffiliations{}": {
-      "snippet": "CountAuthorsFromAffiliations{${1:author}}"
+    {
+      "name": "CountAuthorsFromAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "CountAuthorsFromAffiliations{${1:author}}"
+      }
     },
-    "CountAuthorsFromAffiliations[]{}": {
-      "snippet": "CountAuthorsFromAffiliations[${2:options}]{${1:author}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "CountAuthorsFromAffiliations",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CountAuthorsFromAffiliations[${2:options%keyvals}]{${1:author}}",
+        "keys": [
+          "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations"
+        ],
+        "keyPos": 0
+      }
     },
-    "SetupAffiliations{}": {
-      "snippet": "SetupAffiliations{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "SetupAffiliations",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetupAffiliations{${1:options%keyvals}}",
+        "keys": [
+          "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "mark style=",
+  ],
+  "envs": [],
+  "keys": {
+    "\\ResolveAffiliations,\\CountAuthorsFromAffiliations,\\SetupAffiliations": [
+      "mark style=${1|alphabetic,numeric,circled,none|}",
       "output affiliation",
       "orcid placement=",
       "output in groups",
@@ -44,5 +73,6 @@
       "input names separator=${1:separator}",
       "input affiliation separator=${1:separator}"
     ]
-  ]
+  },
+  "args": []
 }

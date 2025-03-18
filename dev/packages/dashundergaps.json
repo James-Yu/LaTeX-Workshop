@@ -1,44 +1,97 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "ulem": [],
-    "underscore": []
-  },
-  "macros": {
-    "gap{}": {
-      "snippet": "gap{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "gap[]{}": {
-      "snippet": "gap[${2:style}]{${1:text}}"
+    {
+      "name": "ulem"
     },
-    "gap*{}": {
-      "snippet": "gap*{${1:text}}"
+    {
+      "name": "underscore"
+    }
+  ],
+  "macros": [
+    {
+      "name": "gap",
+      "arg": {
+        "format": "{}",
+        "snippet": "gap{${1:text}}"
+      }
     },
-    "gap*[]{}": {
-      "snippet": "gap*[${2:style}]{${1:text}}"
+    {
+      "name": "gap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gap[${2:style%keyvals}]{${1:text}}",
+        "keys": [
+          "\\gap,\\gap*"
+        ],
+        "keyPos": 0
+      }
     },
-    "TeacherModeOn": {},
-    "TeacherModeOff": {},
-    "dashundergapssetup{}": {
-      "snippet": "dashundergapssetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "gap*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gap*{${1:text}}"
+      }
     },
-    "thegapnumber": {},
-    "thetotalgapnumber": {},
-    "dashundergapsdate": {},
-    "dashundergapsversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "gap*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gap*[${2:style%keyvals}]{${1:text}}",
+        "keys": [
+          "\\gap,\\gap*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TeacherModeOn",
+      "unusual": true
+    },
+    {
+      "name": "TeacherModeOff",
+      "unusual": true
+    },
+    {
+      "name": "dashundergapssetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "dashundergapssetup{${1:options%keyvals}}",
+        "keys": [
+          "\\dashundergapssetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thegapnumber",
+      "unusual": true
+    },
+    {
+      "name": "thetotalgapnumber",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\gap,\\gap*": [
+      "u",
+      "d",
+      "w",
+      "b",
+      "-",
+      "."
+    ],
+    "\\dashundergapssetup": [
       "teacher-mode",
       "gap-mode",
       "teachermode",
-      "gap-format=",
+      "gap-format=${1|underline,double-underline,dash,dot,wave,blank|}",
       "gap-format-adjust",
-      "teacher-gap-format=",
+      "teacher-gap-format=${1|underline,double-underline,dash,dot,wave,blank|}",
       "gap-font=",
       "dash",
       "dot",
@@ -52,5 +105,6 @@
       "gap-extend-percent=",
       "widen"
     ]
-  ]
+  },
+  "args": []
 }

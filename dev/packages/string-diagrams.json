@@ -1,16 +1,36 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "wires{}{}": {
-      "snippet": "wires{${1:connectivity}}{${2:loose ends}}"
-    },
-    "wires[]{}{}": {
-      "snippet": "wires[${3:TikZ keys}]{${1:connectivity}}{${2:loose ends}}"
+  "deps": [
+    {
+      "name": "tikz"
     }
+  ],
+  "macros": [
+    {
+      "name": "wires",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "wires{${1:connectivity}}{${2:loose ends}}"
+      }
+    },
+    {
+      "name": "wires",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "wires[${3:TikZ keys}]{${1:connectivity}}{${2:loose ends}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\node#c": [
+      "box",
+      "box ports north=${1:integer}",
+      "box ports east=${1:integer}",
+      "box ports south=${1:integer}",
+      "box ports west=${1:integer}",
+      "box ports=${1:integer1}/${2:integer2}/${3:integer3}/${4:integer4}",
+      "dot"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,42 +1,86 @@
 {
-  "includes": {
-    "afterpage": [],
-    "changepage": []
-  },
-  "macros": {
-    "addlines": {},
-    "addlines[]": {
-      "snippet": "addlines[${1:lines}]"
+  "deps": [
+    {
+      "name": "afterpage"
     },
-    "addlines*": {},
-    "addlines*[]": {
-      "snippet": "addlines*[${1:lines}]"
-    },
-    "addline": {},
-    "addline[]": {
-      "snippet": "addline[${1:lines}]"
-    },
-    "addline*": {},
-    "addline*[]": {
-      "snippet": "addline*[${1:lines}]"
-    },
-    "squeezepage": {},
-    "squeezepage[]": {
-      "snippet": "squeezepage[${1:lines}]"
-    },
-    "removelines": {},
-    "removelines[]": {
-      "snippet": "removelines[${1:lines}]"
-    },
-    "removeline": {},
-    "removeline[]": {
-      "snippet": "removeline[${1:lines}]"
+    {
+      "name": "changepage"
     }
-  },
-  "envs": {},
-  "options": [
-    "final",
-    "draft"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "addlines"
+    },
+    {
+      "name": "addlines",
+      "arg": {
+        "format": "[]",
+        "snippet": "addlines[${1:lines}]"
+      }
+    },
+    {
+      "name": "addlines*"
+    },
+    {
+      "name": "addlines*",
+      "arg": {
+        "format": "[]",
+        "snippet": "addlines*[${1:lines}]"
+      }
+    },
+    {
+      "name": "addline",
+      "unusual": true
+    },
+    {
+      "name": "addline",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "addline[${1:lines}]"
+      }
+    },
+    {
+      "name": "addline*",
+      "unusual": true
+    },
+    {
+      "name": "addline*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "addline*[${1:lines}]"
+      }
+    },
+    {
+      "name": "squeezepage"
+    },
+    {
+      "name": "squeezepage",
+      "arg": {
+        "format": "[]",
+        "snippet": "squeezepage[${1:lines}]"
+      }
+    },
+    {
+      "name": "removelines"
+    },
+    {
+      "name": "removelines",
+      "arg": {
+        "format": "[]",
+        "snippet": "removelines[${1:lines}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/addlines#c": [
+      "final",
+      "draft"
+    ]
+  },
+  "args": [
+    "\\usepackage/addlines#c"
+  ]
 }

@@ -1,79 +1,157 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-scrartcl": [],
-    "scrlayer": [],
-    "scrlayer-notecolumn": [],
-    "tudafonts": [],
-    "tudarules": [],
-    "tudacolors": [],
-    "qrcode": [],
-    "tikz": [],
-    "geometry": []
-  },
-  "macros": {
-    "contentwidth": {},
-    "contentheight": {},
-    "SetMarginpar{}": {
-      "snippet": "SetMarginpar{${1:content}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "SetMarginpar[]{}": {
-      "snippet": "SetMarginpar[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "class-scrartcl"
     },
-    "titleinfo{}": {
-      "snippet": "titleinfo{${1:text}}"
+    {
+      "name": "scrlayer"
     },
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:graphics code}}"
+    {
+      "name": "scrlayer-notecolumn"
     },
-    "addTitleBox{}": {
-      "snippet": "addTitleBox{${1:text}}"
+    {
+      "name": "tudafonts"
     },
-    "addTitleBoxLogo{}": {
-      "snippet": "addTitleBoxLogo{${1:imagefile}}"
+    {
+      "name": "tudarules"
     },
-    "addTitleBoxLogo*{}": {
-      "snippet": "addTitleBoxLogo*{${1:graphics code}}"
+    {
+      "name": "tudacolors"
     },
-    "footer{}": {
-      "snippet": "footer{${1:text}}"
+    {
+      "name": "qrcode"
     },
-    "footerqrcode{}": {
-      "snippet": "footerqrcode{${1:URL}}"
+    {
+      "name": "tikz"
     },
-    "footerqrcodeimg{}": {
-      "snippet": "footerqrcodeimg{${1:graphics code}}"
-    },
-    "infofont": {},
-    "infotext{}": {
-      "snippet": "infotext{${1:text}}"
-    },
-    "authorandname": {}
-  },
-  "envs": {},
-  "options": [
-    "color=",
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "logo=",
-    "footer",
-    "paper=",
-    "fontsize=",
-    "logofile=${1:Dateipfad}",
-    "type=announcement",
-    "indenttext",
-    "marginpar",
-    "title=",
-    "colorback",
-    "colorsubtitle"
+    {
+      "name": "geometry"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "contentwidth"
+    },
+    {
+      "name": "contentheight"
+    },
+    {
+      "name": "SetMarginpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetMarginpar{${1:content%text}}"
+      }
+    },
+    {
+      "name": "SetMarginpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "SetMarginpar[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\SetMarginpar"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titleinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleinfo{${1:text}}"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "addTitleBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBox{${1:text}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBoxLogo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBoxLogo*{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "footer",
+      "arg": {
+        "format": "{}",
+        "snippet": "footer{${1:text}}"
+      }
+    },
+    {
+      "name": "footerqrcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "footerqrcode{${1:URL}}"
+      }
+    },
+    {
+      "name": "footerqrcodeimg",
+      "arg": {
+        "format": "{}",
+        "snippet": "footerqrcodeimg{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "infofont"
+    },
+    {
+      "name": "infotext",
+      "arg": {
+        "format": "{}",
+        "snippet": "infotext{${1:text}}"
+      }
+    },
+    {
+      "name": "authorandname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/tudaposter#c": [
+      "color=",
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "logo=${1|head,body|}",
+      "footer",
+      "paper=${1|a0,a1,a2,a3,a4|}",
+      "fontsize=",
+      "logofile=${1:Dateipfad}",
+      "type=announcement",
+      "indenttext",
+      "marginpar",
+      "title=${1|default,large,small|}",
+      "colorback",
+      "colorsubtitle"
+    ],
+    "\\SetMarginpar": [
       "valign=",
       "overlap"
     ]
+  },
+  "args": [
+    "\\documentclass/tudaposter#c"
   ]
 }

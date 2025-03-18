@@ -1,167 +1,430 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "shellesc": [],
-    "xkeyval": [],
-    "class-beamer": [
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "class-beamer",
+      "if": "beamer"
+    },
+    {
+      "name": "class-beamer",
+      "if": "beamer=true"
+    },
+    {
+      "name": "multido",
+      "if": "multido"
+    },
+    {
+      "name": "multido",
+      "if": "multido=true"
+    },
+    {
+      "name": "preview",
+      "if": "preview"
+    },
+    {
+      "name": "preview",
+      "if": "preview=true"
+    },
+    {
+      "name": "pstricks",
+      "if": "pstricks"
+    },
+    {
+      "name": "pstricks",
+      "if": "pstricks=true"
+    },
+    {
+      "name": "tikz",
+      "if": "tikz"
+    },
+    {
+      "name": "tikz",
+      "if": "tikz=true"
+    },
+    {
+      "name": "varwidth",
+      "if": "varwidth"
+    },
+    {
+      "name": "varwidth",
+      "if": "varwidth=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "multimathsep",
+      "if": "math",
+      "unusual": true
+    },
+    {
+      "name": "multidisplaymathsep",
+      "if": "math",
+      "unusual": true
+    },
+    {
+      "name": "multimathsep",
+      "if": "math=true",
+      "unusual": true
+    },
+    {
+      "name": "multidisplaymathsep",
+      "if": "math=true",
+      "unusual": true
+    },
+    {
+      "name": "standaloneconfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "standaloneconfig{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "standaloneenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "standaloneenv{${1:envname1,envname2,...}}"
+      }
+    },
+    {
+      "name": "standaloneignore",
+      "unusual": true
+    },
+    {
+      "name": "thesapage",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalone",
+      "unusual": true
+    },
+    {
+      "name": "standalonetrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalonebeamer",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamertrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamerfalse",
+      "unusual": true
+    },
+    {
+      "name": "IfStandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfStandalone{${1:code for standalone}}{${2:code for main document}}"
+      }
+    },
+    {
+      "name": "onlyifstandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyifstandalone{${1:code}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "standaloneframe",
+      "if": "beamer"
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay spec}>"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:overlay spec}>[${1:<default overlay spec>}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "<>[][]",
+        "snippet": "<${3:overlay spec}>[${1:<default overlay spec>}][${2:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "<>[][]{}",
+        "snippet": "<${4:overlay spec}>[${2:<default overlay spec>}][${3:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "<>[][]{}{}",
+        "snippet": "<${5:overlay spec}>[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:<default overlay spec>}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:<default overlay spec>}][${2:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:<default overlay spec>}][${3:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true"
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay spec}>"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "<>[]",
+        "snippet": "<${2:overlay spec}>[${1:<default overlay spec>}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "<>[][]",
+        "snippet": "<${3:overlay spec}>[${1:<default overlay spec>}][${2:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "<>[][]{}",
+        "snippet": "<${4:overlay spec}>[${2:<default overlay spec>}][${3:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "<>[][]{}{}",
+        "snippet": "<${5:overlay spec}>[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:<default overlay spec>}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:<default overlay spec>}][${2:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:<default overlay spec>}][${3:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:title}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options}]{${1:title}}{${2:subtitle%text}}"
+      }
+    },
+    {
+      "name": "standaloneframe",
+      "if": "beamer=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "multimath",
+      "if": "math"
+    },
+    {
+      "name": "multidisplaymath",
+      "if": "math"
+    },
+    {
+      "name": "multimath",
+      "if": "math=true"
+    },
+    {
+      "name": "multidisplaymath",
+      "if": "math=true"
+    },
+    {
+      "name": "standalone",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/standalone,\\standaloneconfig": [
       "beamer",
-      "beamer=true"
-    ],
-    "multido": [
+      "border=",
+      "border={${1:<l/r> <t/b>}}",
+      "border={${1:<l> <b> <r> <t>}}",
+      "class=${1:class name}",
+      "convert",
+      "convert={${1:conversion options}}",
+      "crop",
+      "float",
+      "float",
+      "gif",
+      "gif={${1:conversion options}}",
+      "ignoreempty",
+      "ignorerest",
+      "jpg",
+      "jpg={${1:conversion options}}",
+      "margin=",
+      "math",
+      "multi",
+      "multi={${1:envname1,envname2,...}}",
       "multido",
-      "multido=true"
-    ],
-    "preview": [
+      "png",
+      "png={${1:conversion options}}",
       "preview",
-      "preview=true"
-    ],
-    "pstricks": [
       "pstricks",
-      "pstricks=true"
-    ],
-    "tikz": [
       "tikz",
-      "tikz=true"
-    ],
-    "varwidth": [
       "varwidth",
-      "varwidth=true"
+      "varwidth="
+    ],
+    "\\documentclass/standalone": [
+      "10pt",
+      "11pt",
+      "12pt"
     ]
   },
-  "macros": {
-    "multimathsep": {
-      "option": "math=true"
-    },
-    "multidisplaymathsep": {
-      "option": "math=true"
-    },
-    "standaloneconfig{}": {
-      "snippet": "standaloneconfig{${1:options}}"
-    },
-    "standaloneenv{}": {
-      "snippet": "standaloneenv{${1:envname1,envname2,...}}"
-    },
-    "standaloneignore": {},
-    "thesapage": {},
-    "ifstandalone": {},
-    "standalonetrue": {},
-    "standalonefalse": {},
-    "ifstandalonebeamer": {},
-    "standalonebeamertrue": {},
-    "standalonebeamerfalse": {},
-    "IfStandalone{}{}": {
-      "snippet": "IfStandalone{${1:code for standalone}}{${2:code for main document}}"
-    },
-    "onlyifstandalone{}": {
-      "snippet": "onlyifstandalone{${1:code}}"
-    }
-  },
-  "envs": {
-    "standaloneframe": {
-      "option": "beamer=true"
-    },
-    "standaloneframe<>": {
-      "name": "standaloneframe",
-      "snippet": "<${1:overlay spec}>",
-      "option": "beamer=true"
-    },
-    "standaloneframe<>[]": {
-      "name": "standaloneframe",
-      "snippet": "<${2:overlay spec}>[${1:<default overlay spec>}]",
-      "option": "beamer=true"
-    },
-    "standaloneframe<>[][]": {
-      "name": "standaloneframe",
-      "snippet": "<${3:overlay spec}>[${1:<default overlay spec>}][${2:options}]",
-      "option": "beamer=true"
-    },
-    "standaloneframe<>[][]{}": {
-      "name": "standaloneframe",
-      "snippet": "<${4:overlay spec}>[${2:<default overlay spec>}][${3:options}]{${1:title}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe<>[][]{}{}": {
-      "name": "standaloneframe",
-      "snippet": "<${5:overlay spec}>[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe[]": {
-      "name": "standaloneframe",
-      "snippet": "[${1:options}]",
-      "option": "beamer=true"
-    },
-    "standaloneframe[][]": {
-      "name": "standaloneframe",
-      "snippet": "[${1:<default overlay spec>}][${2:options}]",
-      "option": "beamer=true"
-    },
-    "standaloneframe[][]{}": {
-      "name": "standaloneframe",
-      "snippet": "[${2:<default overlay spec>}][${3:options}]{${1:title}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe[][]{}{}": {
-      "name": "standaloneframe",
-      "snippet": "[${3:<default overlay spec>}][${4:options}]{${1:title}}{${2:subtitle}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe[]{}": {
-      "name": "standaloneframe",
-      "snippet": "[${2:options}]{${1:title}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe[]{}{}": {
-      "name": "standaloneframe",
-      "snippet": "[${3:options}]{${1:title}}{${2:subtitle}}",
-      "option": "beamer=true"
-    },
-    "standaloneframe{}": {
-      "name": "standaloneframe",
-      "snippet": "{${1:title}}",
-      "option": "beamer=true"
-    },
-    "multimath": {
-      "option": "math=true"
-    },
-    "multidisplaymath": {
-      "option": "math=true"
-    },
-    "standalone": {}
-  },
-  "options": [
-    "beamer",
-    "border=",
-    "border={${1:<l/r> <t/b>}}",
-    "border={${1:<l> <b> <r> <t>}}",
-    "class=${1:class name}",
-    "convert",
-    "convert={${1:conversion options}}",
-    "crop",
-    "float",
-    "float",
-    "gif",
-    "gif={${1:conversion options}}",
-    "ignoreempty",
-    "ignorerest",
-    "jpg",
-    "jpg={${1:conversion options}}",
-    "margin=",
-    "math",
-    "multi",
-    "multi={${1:envname1,envname2,...}}",
-    "multido",
-    "png",
-    "png={${1:conversion options}}",
-    "preview",
-    "pstricks",
-    "tikz",
-    "varwidth",
-    "varwidth=",
-    "10pt",
-    "11pt",
-    "12pt"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/standalone,\\standaloneconfig",
+    "\\documentclass/standalone"
+  ]
 }

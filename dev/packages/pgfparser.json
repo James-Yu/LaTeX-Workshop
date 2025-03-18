@@ -1,52 +1,120 @@
 {
-  "includes": {
-    "pgfrcs": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "pgfparserparse{}": {
-      "snippet": "pgfparserparse{${1:parser name}}"
+  "deps": [
+    {
+      "name": "pgfrcs"
     },
-    "pgfparserdef{}{}{}{}": {
-      "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}{${4:action}}"
-    },
-    "pgfparserdef{}{}{}[]{}": {
-      "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}[${4:args}]{${5:action}}"
-    },
-    "pgfparserlet{}{}{}{}": {
-      "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}{${4:meaning2}}"
-    },
-    "pgfparserlet{}{}{}[][]{}": {
-      "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}[${4:opt1}][${5:opt2}]{${6:meaning2}}"
-    },
-    "pgfparserdefunknown{}{}{}": {
-      "snippet": "pgfparserdefunknown{${1:parser name}}{${2:state}}{${3:action}}"
-    },
-    "pgfparserdeffinal{}{}": {
-      "snippet": "pgfparserdeffinal{${1:parser name}}{${2:action}}"
-    },
-    "pgfparserswitch{}": {
-      "snippet": "pgfparserswitch{${1:state}}"
-    },
-    "pgfparserifmark{}{}{}": {
-      "snippet": "pgfparserifmark{${1:arg}}{${2:true}}{${3:false}}"
-    },
-    "pgfparserreinsert": {},
-    "pgfparserstate": {},
-    "pgfparsertoken": {},
-    "pgfparserletter": {},
-    "pgfparserset{}": {
-      "snippet": "pgfparserset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pgfparserparse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfparserparse{${1:parser name}}"
+      }
+    },
+    {
+      "name": "pgfparserdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}{${4:action}}"
+      }
+    },
+    {
+      "name": "pgfparserdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]{}",
+        "snippet": "pgfparserdef{${1:parser name}}{${2:state}}{${3:symbol meaning}}[${5:args}]{${4:action}}"
+      }
+    },
+    {
+      "name": "pgfparserlet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}{${4:meaning2}}"
+      }
+    },
+    {
+      "name": "pgfparserlet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[][]{}",
+        "snippet": "pgfparserlet{${1:parser1}}{${2:state1}}{${3:meaning1}}[${5:opt1}][${6:opt2}]{${4:meaning2}}"
+      }
+    },
+    {
+      "name": "pgfparserdefunknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfparserdefunknown{${1:parser name}}{${2:state}}{${3:action}}"
+      }
+    },
+    {
+      "name": "pgfparserdeffinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfparserdeffinal{${1:parser name}}{${2:action}}"
+      }
+    },
+    {
+      "name": "pgfparserswitch",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfparserswitch{${1:state}}"
+      }
+    },
+    {
+      "name": "pgfparserifmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfparserifmark{${1:arg}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfparserreinsert",
+      "unusual": true
+    },
+    {
+      "name": "pgfparserstate",
+      "unusual": true
+    },
+    {
+      "name": "pgfparsertoken",
+      "unusual": true
+    },
+    {
+      "name": "pgfparserletter",
+      "unusual": true
+    },
+    {
+      "name": "pgfparserset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfparserset{${1:options%keyvals}}",
+        "keys": [
+          "\\pgfparserset#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfparserset#c": [
       "silent",
       "status"
     ]
-  ]
+  },
+  "args": []
 }

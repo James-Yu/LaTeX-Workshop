@@ -1,271 +1,687 @@
 {
-  "includes": {
-    "graphicx": [],
-    "pdftexcmds": [],
-    "siunitx": [],
-    "tikz": [],
-    "tikzlibraryshadings": []
-  },
-  "macros": {
-    "mermapset{}": {
-      "snippet": "mermapset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "mrcdefinemap{}": {
-      "snippet": "mrcdefinemap{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "siunitx"
     },
-    "mrcmapeast": {},
-    "mrcmapnorth": {},
-    "mrcmapsouth": {},
-    "mrcmapwest": {},
-    "mrcmapattribution": {},
-    "mrcmapattributionprint": {},
-    "mrcpixelheight": {},
-    "mrcpixelwidth": {},
-    "mrcpgfpoint{}{}": {
-      "snippet": "mrcpgfpoint{${1:latitude}}{${2:longitude}}"
+    {
+      "name": "tikz"
     },
-    "mrcNPdef{}{}{}": {
-      "snippet": "mrcNPdef{${1:name}}{${2:latitude}}{${3:longitude}}"
-    },
-    "mrcNPfrompoint{}{}": {
-      "snippet": "mrcNPfrompoint{${1:name}}{${2:TiKZ point}}"
-    },
-    "mrcNPcs{}": {
-      "snippet": "mrcNPcs{${1:name}}"
-    },
-    "mrcNPlat{}": {
-      "snippet": "mrcNPlat{${1:name}}"
-    },
-    "mrcNPlon{}": {
-      "snippet": "mrcNPlon{${1:name}}"
-    },
-    "ifmrcinmap{}{}{}{}": {
-      "snippet": "ifmrcinmap{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
-    },
-    "ifmrcNPinmap{}{}{}": {
-      "snippet": "ifmrcNPinmap{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "ifmrcinvicinity{}{}{}{}": {
-      "snippet": "ifmrcinvicinity{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
-    },
-    "ifmrcNPinvicinity{}{}{}": {
-      "snippet": "ifmrcNPinvicinity{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "mrcformlat{}": {
-      "snippet": "mrcformlat{${1:latitude}}"
-    },
-    "mrcformlat[]{}": {
-      "snippet": "mrcformlat[${2:options}]{${1:latitude}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "mrcformlon{}": {
-      "snippet": "mrcformlon{${1:longitude}}"
-    },
-    "mrcformlon[]{}": {
-      "snippet": "mrcformlon[${2:options}]{${1:longitude}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "mrcactivatescript": {},
-    "mrcsupplymap{}": {
-      "snippet": "mrcsupplymap{${1:definition}}"
-    },
-    "mrcsupplymap[]{}": {
-      "snippet": "mrcsupplymap[${2:options}]{${1:definition}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "mermapsetsupply{}": {
-      "snippet": "mermapsetsupply{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "mrcsetapikey{}{}": {
-      "snippet": "mrcsetapikey{${1:name}}{${2:value}}"
-    },
-    "mrcumlaut{}": {
-      "snippet": "mrcumlaut{${1:char}}"
-    },
-    "mrcapplymap{}": {
-      "snippet": "mrcapplymap{${1:definition}}"
-    },
-    "mrcmap{}": {
-      "snippet": "mrcmap{${1:definition}}"
-    },
-    "mrcmap[]{}": {
-      "snippet": "mrcmap[${2:options}]{${1:definition}}"
-    },
-    "mrcnewsupplysource{}{}": {
-      "snippet": "mrcnewsupplysource{${1:source}}{${2:options}}"
-    },
-    "mrcdrawmap": {},
-    "mrcdrawmap[]": {
-      "snippet": "mrcdrawmap[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "mrcclipmap": {},
-    "mrcboundmap": {},
-    "mrcdrawnetwork": {},
-    "mrcdrawnetwork[]": {
-      "snippet": "mrcdrawnetwork[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "mrcdrawinfo": {},
-    "mrctexwidth": {},
-    "mrctexheight": {},
-    "mrcscale": {},
-    "mrctextokm{}": {
-      "snippet": "mrctextokm{${1:length}}"
-    },
-    "mrctextomile{}": {
-      "snippet": "mrctextomile{${1:length}}"
-    },
-    "mrckmtotex{}": {
-      "snippet": "mrckmtotex{${1:number}}"
-    },
-    "mrcmiletotex{}": {
-      "snippet": "mrcmiletotex{${1:number}}"
-    },
-    "mrcmapscaledenominator": {},
-    "mrcprettymapscale": {},
-    "mrcprettymapwidth": {},
-    "mrcprettymapheight": {},
-    "mrcprettymapresolution": {},
-    "mrcprettytilesize": {},
-    "mrcdrawscalebar": {},
-    "mrcdrawscalebar[]": {
-      "snippet": "mrcdrawscalebar[${1:options}]",
-      "keyvalindex": 6,
-      "keyvalpos": 0
-    },
-    "mrcmarker{}": {
-      "snippet": "mrcmarker{${1:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "mermapsetmarker{}": {
-      "snippet": "mermapsetmarker{${1:options}}",
-      "keyvalindex": 7,
-      "keyvalpos": 0
-    },
-    "mrcmarkerangle": {},
-    "mrcmarkercategory": {},
-    "mrcmarkercontents": {},
-    "mrcmarkerdistance": {},
-    "mrcmarkerfont": {},
-    "mrcmarkergeneric": {},
-    "mrcmarkerinnerradius": {},
-    "mrcmarkerlatitude": {},
-    "mrcmarkerlongitude": {},
-    "mrcmarkerpictocontents": {},
-    "mrcmarkerradius": {},
-    "mrcmarkershift": {},
-    "mrcmarkeruuid": {},
-    "mrcnewmarkertype{}{}": {
-      "snippet": "mrcnewmarkertype{${1:type name}}{${2:TikZ code}}"
-    },
-    "mrcnewmarkerstyle{}{}": {
-      "snippet": "mrcnewmarkerstyle{${1:style name}}{${2:options}}"
-    },
-    "mrcrouteinput{}": {
-      "snippet": "mrcrouteinput{${1:file}}"
-    },
-    "mrcrouteinput[]{}": {
-      "snippet": "mrcrouteinput[${2:TikZ options}]{${1:file}}"
-    },
-    "mrcrouteinput*{}": {
-      "snippet": "mrcrouteinput*{${1:file}}"
-    },
-    "mrcrouteinput*[]{}": {
-      "snippet": "mrcrouteinput*[${2:TikZ options}]{${1:file}}"
-    },
-    "mrcpoint{}{}": {
-      "snippet": "mrcpoint{${1:latitude}}{${2:longitude}}"
-    },
-    "mrcdraworthodrome{}{}{}{}": {
-      "snippet": "mrcdraworthodrome{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
-    },
-    "mrcdraworthodrome[]{}{}{}{}": {
-      "snippet": "mrcdraworthodrome[${5:TikZ options}]{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
-    },
-    "mrcNPdraworthodrome{}{}": {
-      "snippet": "mrcNPdraworthodrome{${1:name1}}{${2:name2}}"
-    },
-    "mrcNPdraworthodrome[]{}{}": {
-      "snippet": "mrcNPdraworthodrome[${3:TikZ options}]{${1:name1}}{${2:name2}}"
-    },
-    "mrcprettyorthodistance{}{}{}{}": {
-      "snippet": "mrcprettyorthodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
-    },
-    "mrcNPprettyorthodistance{}{}": {
-      "snippet": "mrcNPprettyorthodistance{${1:name1}}{${2:name2}}"
-    },
-    "mrcstoreorthodistance{}{}{}{}{}": {
-      "snippet": "mrcstoreorthodistance{${1:macro}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
-    },
-    "mrcprettyloxodistance{}{}{}{}": {
-      "snippet": "mrcprettyloxodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
-    },
-    "mrcNPprettyloxodistance{}{}": {
-      "snippet": "mrcNPprettyloxodistance{${1:name1}}{${2:name2}}"
-    },
-    "mrcstoreloxodistance{}{}{}{}{}": {
-      "snippet": "mrcstoreloxodistance{${1:macro}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
-    },
-    "mermaplastfivesum{}": {
-      "snippet": "mermaplastfivesum{${1:arg}}"
-    },
-    "mrcpkgprefix": {}
-  },
-  "envs": {
-    "mrcroute": {},
-    "mrcroute[]": {
-      "name": "mrcroute",
-      "snippet": "[${1:TikZ options}]"
-    },
-    "mrcroute*": {},
-    "mrcroute*[]": {
-      "name": "mrcroute*",
-      "snippet": "[${1:TikZ options}]"
+    {
+      "name": "tikzlibraryshadings"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "mermapset",
+      "arg": {
+        "format": "{}",
+        "snippet": "mermapset{${1:options%keyvals}}",
+        "keys": [
+          "\\mermapset#c",
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c",
+          "\\mermapset#c,\\mrcdrawmap#c",
+          "\\mermapset#c,\\mrcdrawnetwork#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcdefinemap",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcdefinemap{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcdefinemap#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcmapeast"
+    },
+    {
+      "name": "mrcmapnorth"
+    },
+    {
+      "name": "mrcmapsouth"
+    },
+    {
+      "name": "mrcmapwest"
+    },
+    {
+      "name": "mrcmapattribution"
+    },
+    {
+      "name": "mrcmapattributionprint"
+    },
+    {
+      "name": "mrcpixelheight"
+    },
+    {
+      "name": "mrcpixelwidth"
+    },
+    {
+      "name": "mrcpgfpoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcpgfpoint{${1:latitude}}{${2:longitude}}"
+      }
+    },
+    {
+      "name": "mrcNPdef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mrcNPdef{${1:name}}{${2:latitude}}{${3:longitude}}"
+      }
+    },
+    {
+      "name": "mrcNPfrompoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcNPfrompoint{${1:name}}{${2:TiKZ point}}"
+      }
+    },
+    {
+      "name": "mrcNPcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcNPcs{${1:name}}"
+      }
+    },
+    {
+      "name": "mrcNPlat",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcNPlat{${1:name}}"
+      }
+    },
+    {
+      "name": "mrcNPlon",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcNPlon{${1:name}}"
+      }
+    },
+    {
+      "name": "ifmrcNPexists",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifmrcNPexists{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifmrcinmap",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ifmrcinmap{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifmrcNPinmap",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifmrcNPinmap{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifmrcinvicinity",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ifmrcinvicinity{${1:latitude}}{${2:longitude}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ifmrcNPinvicinity",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifmrcNPinvicinity{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "mrcformlat",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcformlat{${1:latitude}}"
+      }
+    },
+    {
+      "name": "mrcformlat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcformlat[${2:options%keyvals}]{${1:latitude}}",
+        "keys": [
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcformlon",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcformlon{${1:longitude}}"
+      }
+    },
+    {
+      "name": "mrcformlon",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcformlon[${2:options%keyvals}]{${1:longitude}}",
+        "keys": [
+          "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcactivatescript"
+    },
+    {
+      "name": "mrcsupplymap",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcsupplymap{${1:definition}}"
+      }
+    },
+    {
+      "name": "mrcsupplymap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcsupplymap[${2:options%keyvals}]{${1:definition}}",
+        "keys": [
+          "\\mrcsupplymap#c,\\mermapsetsupply#c,\\mrcmap#c,\\mrcnewsupplysource#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mermapsetsupply",
+      "arg": {
+        "format": "{}",
+        "snippet": "mermapsetsupply{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcsupplymap#c,\\mermapsetsupply#c,\\mrcmap#c,\\mrcnewsupplysource#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcsetapikey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcsetapikey{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "mrcumlaut",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcumlaut{${1:char}}"
+      }
+    },
+    {
+      "name": "mrcapplymap",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcapplymap{${1:definition}}"
+      }
+    },
+    {
+      "name": "mrcmap",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcmap{${1:definition}}"
+      }
+    },
+    {
+      "name": "mrcmap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcmap[${2:options%keyvals}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "mrcnewsupplysource",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcnewsupplysource{${1:source}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "mrcdrawmap"
+    },
+    {
+      "name": "mrcdrawmap",
+      "arg": {
+        "format": "[]",
+        "snippet": "mrcdrawmap[${1:options%keyvals}]",
+        "keys": [
+          "\\mermapset#c,\\mrcdrawmap#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcclipmap"
+    },
+    {
+      "name": "mrcboundmap"
+    },
+    {
+      "name": "mrcdrawnetwork"
+    },
+    {
+      "name": "mrcdrawnetwork",
+      "arg": {
+        "format": "[]",
+        "snippet": "mrcdrawnetwork[${1:options%keyvals}]",
+        "keys": [
+          "\\mermapset#c,\\mrcdrawnetwork#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcdrawinfo"
+    },
+    {
+      "name": "mrctexwidth"
+    },
+    {
+      "name": "mrctexheight"
+    },
+    {
+      "name": "mrcscale"
+    },
+    {
+      "name": "mrctextokm",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrctextokm{${1:length}}"
+      }
+    },
+    {
+      "name": "mrctextomile",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrctextomile{${1:length}}"
+      }
+    },
+    {
+      "name": "mrckmtotex",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrckmtotex{${1:number}}"
+      }
+    },
+    {
+      "name": "mrcmiletotex",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcmiletotex{${1:number}}"
+      }
+    },
+    {
+      "name": "mrcmapscaledenominator"
+    },
+    {
+      "name": "mrcprettymapscale"
+    },
+    {
+      "name": "mrcprettymapwidth"
+    },
+    {
+      "name": "mrcprettymapheight"
+    },
+    {
+      "name": "mrcprettymapresolution"
+    },
+    {
+      "name": "mrcprettytilesize"
+    },
+    {
+      "name": "mrcdrawscalebar"
+    },
+    {
+      "name": "mrcdrawscalebar",
+      "arg": {
+        "format": "[]",
+        "snippet": "mrcdrawscalebar[${1:options%keyvals}]",
+        "keys": [
+          "\\mrcdrawscalebar#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcmarker",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcmarker{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcmarker#c,\\mermapsetmarker#c,\\mrcnewmarkerstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mermapsetmarker",
+      "arg": {
+        "format": "{}",
+        "snippet": "mermapsetmarker{${1:options%keyvals}}",
+        "keys": [
+          "\\mrcmarker#c,\\mermapsetmarker#c,\\mrcnewmarkerstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mrcmarkerangle"
+    },
+    {
+      "name": "mrcmarkercategory"
+    },
+    {
+      "name": "mrcmarkercontents"
+    },
+    {
+      "name": "mrcmarkerdistance"
+    },
+    {
+      "name": "mrcmarkerfont"
+    },
+    {
+      "name": "mrcmarkergeneric"
+    },
+    {
+      "name": "mrcmarkerinnerradius"
+    },
+    {
+      "name": "mrcmarkerlatitude"
+    },
+    {
+      "name": "mrcmarkerlongitude"
+    },
+    {
+      "name": "mrcmarkerpictocontents"
+    },
+    {
+      "name": "mrcmarkerradius"
+    },
+    {
+      "name": "mrcmarkershift"
+    },
+    {
+      "name": "mrcmarkeruuid"
+    },
+    {
+      "name": "mrcnewmarkertype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcnewmarkertype{${1:type name}}{${2:TikZ code}}"
+      }
+    },
+    {
+      "name": "mrcnewmarkerstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcnewmarkerstyle{${1:style name}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "mrcrouteinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcrouteinput{${1:file}}"
+      }
+    },
+    {
+      "name": "mrcrouteinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcrouteinput[${2:TikZ options}]{${1:file}}"
+      }
+    },
+    {
+      "name": "mrcrouteinput*",
+      "arg": {
+        "format": "{}",
+        "snippet": "mrcrouteinput*{${1:file}}"
+      }
+    },
+    {
+      "name": "mrcrouteinput*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mrcrouteinput*[${2:TikZ options}]{${1:file}}"
+      }
+    },
+    {
+      "name": "mrcpoint",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcpoint{${1:latitude}}{${2:longitude}}"
+      }
+    },
+    {
+      "name": "mrcdraworthodrome",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcdraworthodrome{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+      }
+    },
+    {
+      "name": "mrcdraworthodrome",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "mrcdraworthodrome[${5:TikZ options}]{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+      }
+    },
+    {
+      "name": "mrcNPdraworthodrome",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcNPdraworthodrome{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "mrcNPdraworthodrome",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mrcNPdraworthodrome[${3:TikZ options}]{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFraction",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFraction{${1:name}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFraction",
+      "arg": {
+        "format": "{}[]{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFraction{${1:name}}[${7:\\angle}]{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFractionNamed",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFractionNamed{${1:name}}{${2:name1}}{${3:name2}}{${4:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFractionNamed",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "mrcNPfromOrthoFractionNamed{${1:name}}[${5:\\angle}]{${2:name1}}{${3:name2}}{${4:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistance",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistance{${1:name}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistance",
+      "arg": {
+        "format": "{}[]{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistance{${1:name}}[${7:\\angle}]{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistanceNamed",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistanceNamed{${1:name}}{${2:name1}}{${3:name2}}{${4:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistanceNamed",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "mrcNPfromOrthoDistanceNamed{${1:name}}[${5:\\angle}]{${2:name1}}{${3:name2}}{${4:distance}}"
+      }
+    },
+    {
+      "name": "mrcprettyorthodistance",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcprettyorthodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+      }
+    },
+    {
+      "name": "mrcNPprettyorthodistance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcNPprettyorthodistance{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "mrcstoreorthodistance",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "mrcstoreorthodistance{${1:macro%cmd}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
+      }
+    },
+    {
+      "name": "mrcprettyloxodistance",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcprettyloxodistance{${1:lat1}}{${2:lon1}}{${3:lat2}}{${4:lon2}}"
+      }
+    },
+    {
+      "name": "mrcNPprettyloxodistance",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mrcNPprettyloxodistance{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "mrcstoreloxodistance",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "mrcstoreloxodistance{${1:macro%cmd}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}"
+      }
+    },
+    {
+      "name": "mrcTimewarpIdentity",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowStart",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowFinal",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowStartFinal",
+      "unusual": true
+    },
+    {
+      "name": "mrcAnimFrame"
+    },
+    {
+      "name": "mrcAnimTime"
+    },
+    {
+      "name": "mrcAnimScaleDenom"
+    },
+    {
+      "name": "mrcAnimLatitude"
+    },
+    {
+      "name": "mrcAnimLongitude"
+    },
+    {
+      "name": "mrcAnimAngle"
+    },
+    {
+      "name": "mermaplastfivesum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mermaplastfivesum{${1:arg}}"
+      }
+    },
+    {
+      "name": "mrcpkgprefix",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "mrcroute"
+    },
+    {
+      "name": "mrcroute",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:TikZ options}]"
+      }
+    },
+    {
+      "name": "mrcroute*"
+    },
+    {
+      "name": "mrcroute*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:TikZ options}]"
+      }
+    },
+    {
+      "name": "mrcAnimation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{mrcAnimation}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\mermapset#c": [
       "vicinity=",
       "python=${1:python}",
       "definition prefix=${1:prefix}",
       "fail on missing resource",
       "every route={${1:TikZ options}}",
-      "samples=${1:number}",
-      "format angle=",
-      "format south=${1:code}",
-      "format north=${1:code}",
-      "format east=${1:code}",
-      "format west=${1:code}",
-      "format NEWS numeric",
-      "format NEWS absolute",
-      "draw=",
-      "map path={${1:TikZ options}}",
-      "map clip=${1:code}",
-      "map scope={${1:TikZ options}}",
-      "tile size=",
-      "flex tile size=",
-      "flex zoom=${1:pseudo zoom}",
-      "flex scale=${1:scale denominator}:${2:latitude}",
-      "named flex scale=${1:scale denominator}:${2:name}",
-      "network pieces=${1:number}",
-      "network distance=",
-      "network font=${1:font commands}"
+      "samples=${1:number}"
     ],
-    [
+    "\\mrcdefinemap#c": [
       "north=${1:latitude}",
       "south=${1:latitude}",
       "west=${1:longitude}",
@@ -283,11 +699,11 @@
       "basename=${1:tile base name}",
       "attribution=${1:text}",
       "attribution print=${1:text}",
-      "resource=",
+      "resource=${1|none,tiles,mergedmap,wmsmap|}",
       "tile size="
     ],
-    [
-      "format angle=",
+    "\\mermapset#c,\\mrcformlat#c,\\mrcformlon#c": [
+      "format angle=${1|decimal,decimal-0,decimal-1,decimal-2,decimal-3,decimal-4,degree,minute,second|}",
       "format south=${1:code}",
       "format north=${1:code}",
       "format east=${1:code}",
@@ -295,8 +711,8 @@
       "format NEWS numeric",
       "format NEWS absolute"
     ],
-    [
-      "type=",
+    "\\mrcsupplymap#c,\\mermapsetsupply#c,\\mrcmap#c,\\mrcnewsupplysource#c": [
+      "type=${1|reference,areafit,boundaries|}",
       "zoom=${1:zoom}",
       "north=${1:latitude}",
       "south=${1:latitude}",
@@ -315,8 +731,8 @@
       "tex width=",
       "height=${1:height in tiles}",
       "tex height=",
-      "align=",
-      "target=",
+      "align=${1|northwest,north,northeast,west,center,east,southwest,south,southeast|}",
+      "target=${1|none,tiles,mergedmap,wmsmap|}",
       "url=${1:URL}",
       "url with api key={${1:prefix}}{${2:name}}{${3:postfix}}",
       "attribution=${1:text}",
@@ -328,10 +744,10 @@
       "flex area fit=",
       "pixel=${1:pixel size}",
       "dpi=${1:dpi value}",
-      "source="
+      "source=${1|dummy,opentopomap,thunderforest opencyclemap,thunderforest transport,thunderforest landscape,thunderforest outdoors,thunderforest atlas,thunderforest transport-dark,thunderforest spinal-map,thunderforest pioneer,thunderforest mobile-atlas,thunderforest neighbourhood,topplusopen web,topplusopen web grau,topplusopen web light,topplusopen web light grau,topplusopen p5,topplusopen p5 grau,topplusopen p10,topplusopen p10 grau,topplusopen p17.5,topplusopen p17.5 grau,topplusopen p25,topplusopen p25 grau,topplusopen p50,topplusopen p50 grau,topplusopen p100,topplusopen p100 grau,topplusopen p250,topplusopen p250 grau|}"
     ],
-    [
-      "draw=",
+    "\\mermapset#c,\\mrcdrawmap#c": [
+      "draw=${1|auto,path,tiles,mergedmap,wmsmap|}",
       "map path={${1:TikZ options}}",
       "map clip=${1:code}",
       "map scope={${1:TikZ options}}",
@@ -341,12 +757,12 @@
       "flex scale=${1:scale denominator}:${2:latitude}",
       "named flex scale=${1:scale denominator}:${2:name}"
     ],
-    [
+    "\\mermapset#c,\\mrcdrawnetwork#c": [
       "network pieces=${1:number}",
       "network distance=",
       "network font=${1:font commands}"
     ],
-    [
+    "\\mrcdrawscalebar#c": [
       "width-in-km=${1:number}",
       "width-in-kilometer=${1:number}",
       "width-in-meter=${1:number}",
@@ -380,7 +796,7 @@
       "solid",
       "scale=${1:scale denominator}"
     ],
-    [
+    "\\mrcmarker#c,\\mermapsetmarker#c,\\mrcnewmarkerstyle#c": [
       "first options={${1:options}}",
       "last options={${1:options}}",
       "latitude=${1:latitude}",
@@ -389,7 +805,7 @@
       "lon=${1:longitude}",
       "position=${1:latitude}:${2:longitude}",
       "named position=${1:name}",
-      "use inside=",
+      "use inside=${1|map,vicinity|}",
       "contents=${1:text}",
       "pictocontents=${1:code}",
       "alias=${1:text}",
@@ -408,7 +824,7 @@
       "ignore urls",
       "use links",
       "ignore links",
-      "type=",
+      "type=${1|classic,pin,pinflip,drop,pictodrop,pictodropring,knob,pictoknob,pictoknobring,ringx,markx|}",
       "font=${1:font commands}",
       "text=",
       "draw=",
@@ -420,6 +836,29 @@
       "inner radius=",
       "path style={${1:TikZ options}}",
       "node style={${1:TikZ options}}"
+    ],
+    "\\begin{mrcAnimation}#c": [
+      "start-position=${1:latitude}/${2:longitude}",
+      "named-start-position=${1:name}",
+      "final-position=${1:latitude}/${2:longitude}",
+      "named-final-position=${1:name}",
+      "position=${1:latitude}/${2:longitude}",
+      "named-position=${1:name}",
+      "frames=${1:integer}",
+      "drop-first-frame",
+      "drop-last-frame",
+      "drop-no-frame",
+      "scale-denominators=${1:time and scale sequence}",
+      "common-scale-denominator=${1:scale denominator}",
+      "timewarp=${1:macro}",
+      "timewarp-identity",
+      "timewarp-slow-start",
+      "timewarp-slow-start=${1:exponent}",
+      "timewarp-slow-final",
+      "timewarp-slow-final=${1:exponent}",
+      "timewarp-slow-start-final",
+      "timewarp-slow-start-final=${1:exponent}"
     ]
-  ]
+  },
+  "args": []
 }

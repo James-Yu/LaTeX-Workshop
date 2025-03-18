@@ -1,22 +1,40 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "thing[]": {
-      "snippet": "thing[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "scalingfactor": {},
-    "xscalefactor": {},
-    "yscalefactor": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlibrarypatterns"
+    }
+  ],
+  "macros": [
+    {
+      "name": "thing",
+      "arg": {
+        "format": "[]",
+        "snippet": "thing[${1:options%keyvals}]",
+        "keys": [
+          "\\thing#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "scalingfactor",
+      "unusual": true
+    },
+    {
+      "name": "xscalefactor",
+      "unusual": true
+    },
+    {
+      "name": "yscalefactor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\thing#c": [
       "hat",
       "hat=",
       "tophat",
@@ -131,5 +149,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

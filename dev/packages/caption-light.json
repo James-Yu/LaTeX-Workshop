@@ -1,118 +1,219 @@
 {
-  "includes": {
-    "caption3": [],
-    "setspace": [
-      "font=onehalfspacing",
-      "labelfont=onehalfspacing",
-      "textfont=onehalfspacing",
-      "font+=onehalfspacing",
-      "labelfont+=onehalfspacing",
-      "textfont+=onehalfspacing",
-      "font=doublespacing",
-      "labelfont=doublespacing",
-      "textfont=doublespacing",
-      "font+=doublespacing",
-      "labelfont+=doublespacing",
-      "textfont+=doublespacing"
+  "deps": [
+    {
+      "name": "caption3"
+    },
+    {
+      "name": "setspace",
+      "if": "font=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont+=onehalfspacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "font+=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "labelfont+=doublespacing"
+    },
+    {
+      "name": "setspace",
+      "if": "textfont+=doublespacing"
+    },
+    {
+      "name": "sansmath",
+      "if": "font=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "labelfont=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "textfont=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "font+=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "labelfont+=sansmath"
+    },
+    {
+      "name": "sansmath",
+      "if": "textfont+=sansmath"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedRight"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedLeft"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Justified"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=Centering"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedRight"
+    },
+    {
+      "name": "ragged2e",
+      "if": "justification=RaggedLeft"
+    }
+  ],
+  "macros": [
+    {
+      "name": "caption*",
+      "arg": {
+        "format": "{}",
+        "snippet": "caption*{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "captionof{${1:float type}}[${3:list entry}]{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "captionof{${1:float type}}{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "captionof*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "captionof*{${1:float type}}{${2:heading%text}}"
+      }
+    },
+    {
+      "name": "setcaptiontype",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcaptiontype{${1:float type}}"
+      }
+    },
+    {
+      "name": "setcaptiontype*",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcaptiontype*{${1:float type}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/caption-light#c": [
+      "aboveskip=",
+      "belowskip=",
+      "box=${1|empty,none,parbox,colorbox|}",
+      "boxcolor=",
+      "boxsep=",
+      "calcmargin*=",
+      "calcmargin=",
+      "calcwidth*=",
+      "calcwidth=",
+      "debug",
+      "figurename=${1:name}",
+      "figureposition=${1|top,above,bottom,below,auto|}",
+      "figurewithin=${1:counter}",
+      "figurewithout",
+      "font+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "font=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "format=${1|plain,hang|}",
+      "hangindent=",
+      "indention=",
+      "justification=${1|justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft|}",
+      "labelfont+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "labelfont=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "labelformat=${1|original,empty,simple,brace,parens,autodot,unnumbered|}",
+      "labelsep=${1|none,colon,period,space,quad,newline,endash,gobble,gobbletwo|}",
+      "list=${1|on,off,true,false|}",
+      "listfigurename=${1:name}",
+      "listformat=${1|empty,simple,parens,subsimple,subparens,period,subperiod|}",
+      "listtablename=${1:name}",
+      "listtype=${1:list type}",
+      "listtype+=${1:list type ext}",
+      "lofdepth=${1:integer}",
+      "lotdepth=${1:integer}",
+      "margin*=",
+      "margin=",
+      "maxmargin=",
+      "minmargin=",
+      "name=${1:name}",
+      "oneside",
+      "parbox=${1|empty,none,parbox,colorbox|}",
+      "parindent=",
+      "parskip=",
+      "position=${1|top,above,bottom,below,auto|}",
+      "singlelinecheck",
+      "skip=",
+      "strut=${1|on,off|}",
+      "style=",
+      "style*=",
+      "tablename=${1:name}",
+      "tableposition=${1|top,above,bottom,below,auto|}",
+      "tablewithin=${1:counter}",
+      "tablewithout",
+      "textfont+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "textfont=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "textformat=${1|empty,simple,period|}",
+      "twoside",
+      "width*=",
+      "width=",
+      "within=${1:counter}",
+      "without"
     ],
-    "sansmath": [
-      "font=sansmath",
-      "labelfont=sansmath",
-      "textfont=sansmath",
-      "font+=sansmath",
-      "labelfont+=sansmath",
-      "textfont+=sansmath"
-    ],
-    "ragged2e": [
-      "justification=RaggedRight",
-      "justification=RaggedLeft",
-      "justification=Justified",
-      "justification=Centering",
-      "justification=RaggedRight",
-      "justification=RaggedLeft"
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption-light#c,\\DeclareCaptionStyle#c": [
+      "type=${1:float type}",
+      "type*=${1:float type}"
     ]
   },
-  "macros": {
-    "caption*{}": {
-      "snippet": "caption*{${1:heading}}"
-    },
-    "captionof{}[]{}": {
-      "snippet": "captionof{${1:float type}}[${2:list entry}]{${3:heading}}"
-    },
-    "captionof{}{}": {
-      "snippet": "captionof{${1:float type}}{${2:heading}}"
-    },
-    "captionof*{}{}": {
-      "snippet": "captionof*{${1:float type}}{${2:heading}}"
-    },
-    "setcaptiontype{}": {
-      "snippet": "setcaptiontype{${1:float type}}"
-    },
-    "setcaptiontype*{}": {
-      "snippet": "setcaptiontype*{${1:float type}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "aboveskip=",
-    "belowskip=",
-    "box=",
-    "boxcolor=",
-    "boxsep=",
-    "calcmargin*=",
-    "calcmargin=",
-    "calcwidth*=",
-    "calcwidth=",
-    "debug",
-    "figurename=${1:name}",
-    "figureposition=",
-    "figurewithin=${1:counter}",
-    "figurewithout",
-    "font+=",
-    "font=",
-    "format=",
-    "hangindent=",
-    "indention=",
-    "justification=",
-    "labelfont+=",
-    "labelfont=",
-    "labelformat=",
-    "labelsep=",
-    "list=",
-    "listfigurename=${1:name}",
-    "listformat=",
-    "listtablename=${1:name}",
-    "listtype=${1:list type}",
-    "listtype+=${1:list type ext}",
-    "lofdepth=${1:integer}",
-    "lotdepth=${1:integer}",
-    "margin*=",
-    "margin=",
-    "maxmargin=",
-    "minmargin=",
-    "name=${1:name}",
-    "oneside",
-    "parbox=",
-    "parindent=",
-    "parskip=",
-    "position=",
-    "singlelinecheck",
-    "skip=",
-    "strut=",
-    "style=",
-    "style*=",
-    "tablename=${1:name}",
-    "tableposition=",
-    "tablewithin=${1:counter}",
-    "tablewithout",
-    "textfont+=",
-    "textfont=",
-    "textformat=",
-    "twoside",
-    "width*=",
-    "width=",
-    "within=${1:counter}",
-    "without"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/caption-light#c",
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption-light#c,\\DeclareCaptionStyle#c"
+  ]
 }

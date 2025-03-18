@@ -1,45 +1,93 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "etoolbox": [],
-    "leadsheets": [],
-    "scrlayer-scrpage": [],
-    "translations": [],
-    "zref-totpages": []
-  },
-  "macros": {
-    "instruction{}": {
-      "snippet": "instruction{${1:text}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "choir{}": {
-      "snippet": "choir{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "lsenparen{}": {
-      "snippet": "lsenparen{${1:text}}"
+    {
+      "name": "leadsheets"
     },
-    "mkinstruction{}": {
-      "snippet": "mkinstruction{${1:text}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "mkchoir{}": {
-      "snippet": "mkchoir{${1:text}}"
+    {
+      "name": "translations"
     },
-    "mklsenparens": {},
-    "mklsenparen{}{}{}": {
-      "snippet": "mklsenparen{${1:open paren}}{${2:closing paren}}{${3:text}}"
+    {
+      "name": "zref-totpages"
     }
-  },
-  "envs": {
-    "prechorus": {},
-    "prechorus[]": {
+  ],
+  "macros": [
+    {
+      "name": "instruction",
+      "arg": {
+        "format": "{}",
+        "snippet": "instruction{${1:text}}"
+      }
+    },
+    {
+      "name": "choir",
+      "arg": {
+        "format": "{}",
+        "snippet": "choir{${1:text}}"
+      }
+    },
+    {
+      "name": "lsenparen",
+      "arg": {
+        "format": "{}",
+        "snippet": "lsenparen{${1:text}}"
+      }
+    },
+    {
+      "name": "mkinstruction",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkinstruction{${1:text}}"
+      }
+    },
+    {
+      "name": "mkchoir",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkchoir{${1:text}}"
+      }
+    },
+    {
+      "name": "mklsenparens",
+      "unusual": true
+    },
+    {
+      "name": "mklsenparen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mklsenparen{${1:open paren}}{${2:closing paren}}{${3:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "prechorus"
+    },
+    {
       "name": "prechorus",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{prechorus}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{prechorus}": [
       "format={${1:code}}",
       "label-format={${1:code}}",
       "class={${1:class name}}",
@@ -53,5 +101,6 @@
       "verses-label-format={${1:code}}",
       "verses-after-label={${1:code}}"
     ]
-  ]
+  },
+  "args": []
 }

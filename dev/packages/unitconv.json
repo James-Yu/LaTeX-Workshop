@@ -1,41 +1,135 @@
 {
-  "includes": {
-    "iftex": [],
-    "luacode": []
-  },
-  "macros": {
-    "convTeXLength{}": {
-      "snippet": "convTeXLength{${1:TeX length}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "convTeXLength[]{}": {
-      "snippet": "convTeXLength[${2:unit}]{${1:TeX length}}"
-    },
-    "convTeXLength[][]{}": {
-      "snippet": "convTeXLength[${2:unit}][${3:digits}]{${1:TeX length}}"
-    },
-    "convTeXLength*{}": {
-      "snippet": "convTeXLength*{${1:TeX length}}"
-    },
-    "convTeXLength*[]{}": {
-      "snippet": "convTeXLength*[${2:unit}]{${1:TeX length}}"
-    },
-    "convTeXLength*[][]{}": {
-      "snippet": "convTeXLength*[${2:unit}][${3:digits}]{${1:TeX length}}"
-    },
-    "convLength[]{}[]": {
-      "snippet": "convLength[${2:unit1}]{${1:value}}[${3:unit2}]"
-    },
-    "convLength[][]{}[]": {
-      "snippet": "convLength[${2:unit1}][${3:digits}]{${1:value}}[${4:unit2}]"
-    },
-    "convLength*[]{}[]": {
-      "snippet": "convLength*[${2:unit1}]{${1:value}}[${3:unit2}]"
-    },
-    "convLength*[][]{}[]": {
-      "snippet": "convLength*[${2:unit1}][${3:digits}]{${1:value}}[${4:unit2}]"
+    {
+      "name": "luacode"
     }
+  ],
+  "macros": [
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "{}",
+        "snippet": "convTeXLength{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "convTeXLength[${2:unit%keyvals}]{${1:TeX length}}",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convTeXLength",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "convTeXLength[${2:unit%keyvals}][${3:digits}]{${1:TeX length}}",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "{}",
+        "snippet": "convTeXLength*{${1:TeX length}}"
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "convTeXLength*[${2:unit%keyvals}]{${1:TeX length}}",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convTeXLength*",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "convTeXLength*[${2:unit%keyvals}][${3:digits}]{${1:TeX length}}",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convLength",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "convLength[${2:unit1%keyvals}]{${1:value}}[${3:unit2}]",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convLength",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "convLength[${2:unit1%keyvals}][${3:digits}]{${1:value}}[${4:unit2}]",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convLength*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "convLength*[${2:unit1%keyvals}]{${1:value}}[${3:unit2}]",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "convLength*",
+      "arg": {
+        "format": "[][]{}[]",
+        "snippet": "convLength*[${2:unit1%keyvals}][${3:digits}]{${1:value}}[${4:unit2}]",
+        "keys": [
+          "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\convTeXLength,\\convTeXLength*,\\convLength,\\convLength*": [
+      "bp",
+      "cc",
+      "cm",
+      "dd",
+      "em",
+      "ex",
+      "in",
+      "km",
+      "m",
+      "mm",
+      "mu",
+      "pc",
+      "pt",
+      "px",
+      "sp"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

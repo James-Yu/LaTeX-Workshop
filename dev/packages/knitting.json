@@ -1,218 +1,574 @@
 {
-  "includes": {
-    "color": []
-  },
-  "macros": {
-    "chart{}": {
-      "snippet": "chart{${1:knitting-specs}}"
-    },
-    "chart[]{}": {
-      "snippet": "chart[${2:placement}]{${1:knitting-specs}}"
-    },
-    ">": {
-      "detail": ">",
-      "documentation": "GREATER-THAN SIGN r:"
-    },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    "textknit{}": {
-      "snippet": "textknit{${1:knitting-specs}}"
-    },
-    "wideincrease{}": {
-      "snippet": "wideincrease{${1:num-stitches}}"
-    },
-    "widedecrease{}": {
-      "snippet": "widedecrease{${1:num-stitches}}"
-    },
-    "bobble{}": {
-      "snippet": "bobble{${1:text}}"
-    },
-    "narrowincrease{}": {
-      "snippet": "narrowincrease{${1:text}}"
-    },
-    "narrowdecrease{}": {
-      "snippet": "narrowdecrease{${1:text}}"
-    },
-    "pnarrowincrease{}": {
-      "snippet": "pnarrowincrease{${1:text}}"
-    },
-    "pnarrowdecrease{}": {
-      "snippet": "pnarrowdecrease{${1:text}}"
-    },
-    "purlbackground{}": {
-      "snippet": "purlbackground{${1:knit-spec}}"
-    },
-    "widesymbol{}{}": {
-      "snippet": "widesymbol{${1:knit-spec}}{${2:num-stitches}}"
-    },
-    "cableleft{}{}": {
-      "snippet": "cableleft{${1:knit-spec1}}{${2:knit-spec2}}"
-    },
-    "cableright{}{}": {
-      "snippet": "cableright{${1:knit-spec1}}{${2:knit-spec2}}"
-    },
-    "cableforeground{}": {
-      "snippet": "cableforeground{${1:knit-spec}}"
-    },
-    "cablebackground{}": {
-      "snippet": "cablebackground{${1:knit-spec}}"
-    },
-    "knit{}": {
-      "snippet": "knit{${1:number}}"
-    },
-    "purl{}": {
-      "snippet": "purl{${1:number}}"
-    },
-    "Knit{}{}": {
-      "snippet": "Knit{${1:text}}{${2:num-stitches}}"
-    },
-    "Purl{}{}": {
-      "snippet": "Purl{${1:text}}{${2:num-stitches}}"
-    },
-    "knitbox{}{}": {
-      "snippet": "knitbox{${1:text}}{${2:num-stitches}}"
-    },
-    "purlbox{}{}": {
-      "snippet": "purlbox{${1:text}}{${2:num-stitches}}"
-    },
-    "knitboxforeground": {},
-    "purlboxforeground": {},
-    "knitboxbackground": {},
-    "purlboxbackground": {},
-    "knitgrid": {},
-    "knitwide": {},
-    "knitmixed": {},
-    "knitnogrid": {},
-    "overline*{}": {
-      "snippet": "overline*{${1:knit-spec}}"
-    },
-    "underline*{}": {
-      "snippet": "underline*{${1:knit-spec}}"
-    },
-    "purlpass{}": {
-      "snippet": "purlpass{${1:purl-pass-code}}"
-    },
-    "purlpass[]{}": {
-      "snippet": "purlpass[${2:other-code}]{${1:purl-pass-code}}"
-    },
-    "gridpass{}": {
-      "snippet": "gridpass{${1:grid-pass-code}}"
-    },
-    "gridpass[]{}": {
-      "snippet": "gridpass[${2:other-code}]{${1:grid-pass-code}}"
-    },
-    "mainpass{}": {
-      "snippet": "mainpass{${1:main-pass-code}}"
-    },
-    "mainpass[]{}": {
-      "snippet": "mainpass[${2:other-code}]{${1:main-pass-code}}"
-    },
-    "knitlinewd": {},
-    "gridwidth": {},
-    "stitchwd": {},
-    "stitchht": {},
-    "stitchdp": {},
-    "ifgrid": {},
-    "gridtrue": {},
-    "gridfalse": {},
-    "ifknitsymbol": {},
-    "knitsymboltrue": {},
-    "knitsymbolfalse": {},
-    "ifchartsonly": {},
-    "chartsonlytrue": {},
-    "chartsonlyfalse": {},
-    "rn": {},
-    "therownumber": {},
-    "rnleft": {},
-    "rnright": {},
-    "therownumberskip": {},
-    "ifresetrn": {},
-    "resetrntrue": {},
-    "resetrnfalse": {},
-    "rnoddonly": {},
-    "rnevenonly": {},
-    "rnnormal": {},
-    "printrightrownumber{}": {
-      "snippet": "printrightrownumber{${1:arg}}"
-    },
-    "printleftrownumber{}": {
-      "snippet": "printleftrownumber{${1:arg}}"
-    },
-    "printrownumber{}": {
-      "snippet": "printrownumber{${1:arg}}"
-    },
-    "rownumberwd": {},
-    "numberrow{}{}{}": {
-      "snippet": "numberrow{${1:first-num}}{${2:countdown}}{${3:last-num}}"
-    },
-    "rnbox{}": {
-      "snippet": "rnbox{${1:number}}"
-    },
-    "rnboxleft{}": {
-      "snippet": "rnboxleft{${1:number}}"
-    },
-    "rnboxright{}": {
-      "snippet": "rnboxright{${1:number}}"
-    },
-    "stitchcountchart{}": {
-      "snippet": "stitchcountchart{${1:knitting-specs}}"
-    },
-    "stitchcountchart[]{}": {
-      "snippet": "stitchcountchart[${2:placement}]{${1:knitting-specs}}"
-    },
-    "countstitches{}": {
-      "snippet": "countstitches{${1:knit-spec}}"
-    },
-    "thestitchcountout": {},
-    "thestitchcountin": {},
-    "adjuststitchcount{}": {
-      "snippet": "adjuststitchcount{${1:num-stitches}}"
-    },
-    "adjuststitchcount[]{}": {
-      "snippet": "adjuststitchcount[${2:num-incount-stitches}]{${1:num-stitches}}"
-    },
-    "stitchcountwarningbar": {},
-    "Knitstitchcount{}{}": {
-      "snippet": "Knitstitchcount{${1:arg1}}{${2:arg2}}"
-    },
-    "Purlstitchcount{}{}": {
-      "snippet": "Purlstitchcount{${1:arg1}}{${2:arg2}}"
-    },
-    "knitboxstitchcount{}{}": {
-      "snippet": "knitboxstitchcount{${1:arg1}}{${2:arg2}}"
-    },
-    "purlboxstitchcount{}{}": {
-      "snippet": "purlboxstitchcount{${1:arg1}}{${2:arg2}}"
-    },
-    "widesymbolspacer{}{}": {
-      "snippet": "widesymbolspacer{${1:arg1}}{${2:arg2}}"
-    },
-    "shortrows{}": {
-      "snippet": "shortrows{${1:knit-spec}}"
-    },
-    "nostitchcount": {},
-    "knitdebug": {},
-    "printleftstitchcount": {},
-    "printrightstitchcount": {},
-    "printstitchcountchart": {},
-    "countpass{}": {
-      "snippet": "countpass{${1:pass-code}}"
-    },
-    "countpass[]{}": {
-      "snippet": "countpass[${2:other-code}]{${1:pass-code}}"
-    },
-    "knitleftarrowhead": {},
-    "knitrightarrowhead": {},
-    "thestitchcountinprev": {}
-  },
-  "envs": {
-    "smallpage": {},
-    "fullpages": {}
-  },
-  "options": [
-    "chartsonly"
+  "deps": [
+    {
+      "name": "color"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "chart",
+      "arg": {
+        "format": "{}",
+        "snippet": "chart{${1:knitting-specs}}"
+      }
+    },
+    {
+      "name": "chart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "chart[${2:placement%keyvals}]{${1:knitting-specs}}",
+        "keys": [
+          "\\chart,\\stitchcountchart"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": ">"
+    },
+    {
+      "name": "<"
+    },
+    {
+      "name": "",
+      "arg": {
+        "format": "|",
+        "snippet": "|"
+      }
+    },
+    {
+      "name": "textknit",
+      "arg": {
+        "format": "{}",
+        "snippet": "textknit{${1:knitting-specs}}"
+      }
+    },
+    {
+      "name": "wideincrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "wideincrease{${1:num-stitches}}"
+      }
+    },
+    {
+      "name": "widedecrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "widedecrease{${1:num-stitches}}"
+      }
+    },
+    {
+      "name": "bobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "bobble{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "narrowincrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "narrowincrease{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "narrowdecrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "narrowdecrease{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pnarrowincrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "pnarrowincrease{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "pnarrowdecrease",
+      "arg": {
+        "format": "{}",
+        "snippet": "pnarrowdecrease{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "purlbackground",
+      "arg": {
+        "format": "{}",
+        "snippet": "purlbackground{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "widesymbol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "widesymbol{${1:knit-spec}}{${2:num-stitches}}"
+      }
+    },
+    {
+      "name": "cableleft",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cableleft{${1:knit-spec1}}{${2:knit-spec2}}"
+      }
+    },
+    {
+      "name": "cableright",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cableright{${1:knit-spec1}}{${2:knit-spec2}}"
+      }
+    },
+    {
+      "name": "cableforeground",
+      "arg": {
+        "format": "{}",
+        "snippet": "cableforeground{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "cablebackground",
+      "arg": {
+        "format": "{}",
+        "snippet": "cablebackground{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "knit",
+      "arg": {
+        "format": "{}",
+        "snippet": "knit{${1:number}}"
+      }
+    },
+    {
+      "name": "purl",
+      "arg": {
+        "format": "{}",
+        "snippet": "purl{${1:number}}"
+      }
+    },
+    {
+      "name": "Knit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Knit{${1:text%plain}}{${2:num-stitches}}"
+      }
+    },
+    {
+      "name": "Purl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Purl{${1:text%plain}}{${2:num-stitches}}"
+      }
+    },
+    {
+      "name": "knitbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "knitbox{${1:text%plain}}{${2:num-stitches}}"
+      }
+    },
+    {
+      "name": "purlbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "purlbox{${1:text%plain}}{${2:num-stitches}}"
+      }
+    },
+    {
+      "name": "knitboxforeground",
+      "unusual": true
+    },
+    {
+      "name": "purlboxforeground",
+      "unusual": true
+    },
+    {
+      "name": "knitboxbackground",
+      "unusual": true
+    },
+    {
+      "name": "purlboxbackground",
+      "unusual": true
+    },
+    {
+      "name": "knitgrid"
+    },
+    {
+      "name": "knitwide"
+    },
+    {
+      "name": "knitmixed"
+    },
+    {
+      "name": "knitnogrid"
+    },
+    {
+      "name": "overline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "overline*{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "underline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "underline*{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "purlpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "purlpass{${1:purl-pass-code}}"
+      }
+    },
+    {
+      "name": "purlpass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "purlpass[${2:other-code}]{${1:purl-pass-code}}"
+      }
+    },
+    {
+      "name": "gridpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "gridpass{${1:grid-pass-code}}"
+      }
+    },
+    {
+      "name": "gridpass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gridpass[${2:other-code}]{${1:grid-pass-code}}"
+      }
+    },
+    {
+      "name": "mainpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "mainpass{${1:main-pass-code}}"
+      }
+    },
+    {
+      "name": "mainpass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mainpass[${2:other-code}]{${1:main-pass-code}}"
+      }
+    },
+    {
+      "name": "knitlinewd"
+    },
+    {
+      "name": "gridwidth",
+      "unusual": true
+    },
+    {
+      "name": "stitchwd",
+      "unusual": true
+    },
+    {
+      "name": "stitchht",
+      "unusual": true
+    },
+    {
+      "name": "stitchdp",
+      "unusual": true
+    },
+    {
+      "name": "ifgrid"
+    },
+    {
+      "name": "gridtrue",
+      "unusual": true
+    },
+    {
+      "name": "gridfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifknitsymbol"
+    },
+    {
+      "name": "knitsymboltrue",
+      "unusual": true
+    },
+    {
+      "name": "knitsymbolfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifchartsonly"
+    },
+    {
+      "name": "chartsonlytrue",
+      "unusual": true
+    },
+    {
+      "name": "chartsonlyfalse",
+      "unusual": true
+    },
+    {
+      "name": "rn"
+    },
+    {
+      "name": "therownumber",
+      "unusual": true
+    },
+    {
+      "name": "rnleft"
+    },
+    {
+      "name": "rnright"
+    },
+    {
+      "name": "therownumberskip",
+      "unusual": true
+    },
+    {
+      "name": "ifresetrn",
+      "unusual": true
+    },
+    {
+      "name": "resetrntrue"
+    },
+    {
+      "name": "resetrnfalse"
+    },
+    {
+      "name": "rnoddonly"
+    },
+    {
+      "name": "rnevenonly"
+    },
+    {
+      "name": "rnnormal"
+    },
+    {
+      "name": "printrightrownumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printrightrownumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "printleftrownumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printleftrownumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "printrownumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printrownumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "rownumberwd",
+      "unusual": true
+    },
+    {
+      "name": "numberrow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "numberrow{${1:first-num}}{${2:countdown}}{${3:last-num}}"
+      }
+    },
+    {
+      "name": "rnbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "rnbox{${1:number}}"
+      }
+    },
+    {
+      "name": "rnboxleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "rnboxleft{${1:number}}"
+      }
+    },
+    {
+      "name": "rnboxright",
+      "arg": {
+        "format": "{}",
+        "snippet": "rnboxright{${1:number}}"
+      }
+    },
+    {
+      "name": "stitchcountchart",
+      "arg": {
+        "format": "{}",
+        "snippet": "stitchcountchart{${1:knitting-specs}}"
+      }
+    },
+    {
+      "name": "stitchcountchart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stitchcountchart[${2:placement%keyvals}]{${1:knitting-specs}}",
+        "keys": [
+          "\\chart,\\stitchcountchart"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "countstitches",
+      "arg": {
+        "format": "{}",
+        "snippet": "countstitches{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "thestitchcountout"
+    },
+    {
+      "name": "thestitchcountin"
+    },
+    {
+      "name": "adjuststitchcount",
+      "arg": {
+        "format": "{}",
+        "snippet": "adjuststitchcount{${1:num-stitches}}"
+      }
+    },
+    {
+      "name": "adjuststitchcount",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adjuststitchcount[${2:num-incount-stitches}]{${1:num-stitches}}"
+      }
+    },
+    {
+      "name": "stitchcountwarningbar"
+    },
+    {
+      "name": "Knitstitchcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Knitstitchcount{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "Purlstitchcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Purlstitchcount{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "knitboxstitchcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "knitboxstitchcount{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "purlboxstitchcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "purlboxstitchcount{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "widesymbolspacer",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "widesymbolspacer{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "shortrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "shortrows{${1:knit-spec}}"
+      }
+    },
+    {
+      "name": "nostitchcount"
+    },
+    {
+      "name": "knitdebug"
+    },
+    {
+      "name": "printleftstitchcount",
+      "unusual": true
+    },
+    {
+      "name": "printrightstitchcount",
+      "unusual": true
+    },
+    {
+      "name": "printstitchcountchart",
+      "unusual": true
+    },
+    {
+      "name": "countpass",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "countpass{${1:pass-code}}"
+      }
+    },
+    {
+      "name": "countpass",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "countpass[${2:other-code}]{${1:pass-code}}"
+      }
+    },
+    {
+      "name": "knitleftarrowhead",
+      "unusual": true
+    },
+    {
+      "name": "knitrightarrowhead",
+      "unusual": true
+    },
+    {
+      "name": "thestitchcountinprev",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "smallpage"
+    },
+    {
+      "name": "fullpages"
+    }
+  ],
+  "keys": {
+    "\\usepackage/knitting#c": [
+      "chartsonly"
+    ],
+    "\\chart,\\stitchcountchart": [
+      "left",
+      "right",
+      "oddleft",
+      "oddright",
+      "evenleft",
+      "evenright",
+      "both"
+    ]
+  },
+  "args": [
+    "\\usepackage/knitting#c"
+  ]
 }

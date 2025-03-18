@@ -1,165 +1,384 @@
 {
-  "includes": {
-    "fontenc": [],
-    "xcolor": [],
-    "xpatch": [],
-    "iftex": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "xstring": [],
-    "ifthen": [],
-    "scalefnt": [],
-    "mweight": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "defigures": {},
-    "destyle": {},
-    "infigures": {},
-    "infstyle": {},
-    "instyle": {},
-    "lfstyle": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "nufigures": {},
-    "nustyle": {},
-    "osfstyle": {},
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "realsuperscript{}": {
-      "snippet": "realsuperscript{${1:text}}"
+    {
+      "name": "xpatch"
     },
-    "sufigures": {},
-    "supstyle": {},
-    "sustyle": {},
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "iftex"
     },
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "textdenominator{}": {
-      "snippet": "textdenominator{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "xstring"
     },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "ifthen"
     },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
+    {
+      "name": "scalefnt"
     },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
+    {
+      "name": "mweight"
     },
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
-    },
-    "textnu{}": {
-      "snippet": "textnu{${1:text}}"
-    },
-    "textnum{}": {
-      "snippet": "textnum{${1:text}}"
-    },
-    "textnumerator{}": {
-      "snippet": "textnumerator{${1:text}}"
-    },
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
-    },
-    "textsfrac[]{}{}": {
-      "snippet": "textsfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
-    },
-    "textsfrac{}{}": {
-      "snippet": "textsfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
-    },
-    "textsub{}": {
-      "snippet": "textsub{${1:text}}"
-    },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
-    },
-    "textsups{}": {
-      "snippet": "textsups{${1:text}}"
-    },
-    "textth{}": {
-      "snippet": "textth{${1:text}}"
-    },
-    "textthit{}": {
-      "snippet": "textthit{${1:text}}"
-    },
-    "texttlf{}": {
-      "snippet": "texttlf{${1:text}}"
-    },
-    "texttosf{}": {
-      "snippet": "texttosf{${1:text}}"
-    },
-    "thfamily": {},
-    "tlfstyle": {},
-    "tosfstyle": {},
-    "useosf": {},
-    "useproportional": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "no-math",
-    "lining",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "scaled=${1:factor}",
-    "defaultsups",
-    "largesc",
-    "nohelv",
-    "helvratio=${1:factor}",
-    "spcfactor=${1:factor}",
-    "spacing=",
-    "stretch=",
-    "shrink=",
-    "oldSS",
-    "notextnu",
-    "slashedzero",
-    "theoremfont",
-    "thmlining",
-    "trueslanted",
-    "scosf",
-    "tighter",
-    "looser"
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "defigures",
+      "unusual": true
+    },
+    {
+      "name": "destyle"
+    },
+    {
+      "name": "infigures",
+      "unusual": true
+    },
+    {
+      "name": "infstyle",
+      "unusual": true
+    },
+    {
+      "name": "instyle"
+    },
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "nufigures",
+      "unusual": true
+    },
+    {
+      "name": "nustyle"
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnums{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures",
+      "unusual": true
+    },
+    {
+      "name": "supstyle",
+      "unusual": true
+    },
+    {
+      "name": "sustyle"
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnums{${1:text}}"
+      }
+    },
+    {
+      "name": "textde",
+      "arg": {
+        "format": "{}",
+        "snippet": "textde{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textdenominator{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinf{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textinferior{${1:text}}"
+      }
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textlf{${1:text}}"
+      }
+    },
+    {
+      "name": "textnu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textnu{${1:text}}"
+      }
+    },
+    {
+      "name": "textnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "textnum{${1:text}}"
+      }
+    },
+    {
+      "name": "textnumerator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textnumerator{${1:text}}"
+      }
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textosf{${1:text}}"
+      }
+    },
+    {
+      "name": "textsfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "textsfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textsfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textsfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textsu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsub",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsub{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsups",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsups{${1:text}}"
+      }
+    },
+    {
+      "name": "textth",
+      "arg": {
+        "format": "{}",
+        "snippet": "textth{${1:text}}"
+      }
+    },
+    {
+      "name": "textthit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textthit{${1:text}}"
+      }
+    },
+    {
+      "name": "texttlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "texttlf{${1:text}}"
+      }
+    },
+    {
+      "name": "texttosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "texttosf{${1:text}}"
+      }
+    },
+    {
+      "name": "thfamily"
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "useosf",
+      "unusual": true
+    },
+    {
+      "name": "useproportional",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/newpxtext#c": [
+      "no-math",
+      "lining",
+      "lf",
+      "oldstyle",
+      "osf",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "scaled=${1:factor}",
+      "defaultsups",
+      "largesc",
+      "nohelv",
+      "helvratio=${1:factor}",
+      "spcfactor=${1:factor}",
+      "spacing=",
+      "stretch=",
+      "shrink=",
+      "oldSS",
+      "notextnu",
+      "slashedzero",
+      "theoremfont",
+      "thmlining",
+      "trueslanted",
+      "scosf",
+      "tighter",
+      "looser"
+    ]
+  },
+  "args": [
+    "\\usepackage/newpxtext#c"
+  ]
 }

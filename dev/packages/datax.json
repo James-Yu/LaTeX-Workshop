@@ -1,17 +1,32 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "pgfopts": []
-  },
-  "macros": {
-    "datax{}": {
-      "snippet": "datax{${1:tag}}"
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "dataxfile": {}
-  },
-  "envs": {},
-  "options": [
-    "dataxfile=${1:file}"
+    {
+      "name": "pgfopts"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "datax",
+      "arg": {
+        "format": "{}",
+        "snippet": "datax{${1:tag}}"
+      }
+    },
+    {
+      "name": "dataxfile",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/datax#c": [
+      "dataxfile=${1:file}"
+    ]
+  },
+  "args": [
+    "\\usepackage/datax#c"
+  ]
 }

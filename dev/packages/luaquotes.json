@@ -1,102 +1,327 @@
 {
-  "includes": {
-    "iftex": [],
-    "luacode": [],
-    "fontspec": []
-  },
-  "macros": {
-    "dumbquotes": {},
-    "frdumbquotes": {},
-    "dedumbquotes": {},
-    "degmdumbquotes": {},
-    "dechdumbquotes": {},
-    "smartquotes": {},
-    "frsmartquotes": {},
-    "desmartquotes": {},
-    "degmsmartquotes": {},
-    "dechsmartquotes": {},
-    "desingle": {},
-    "dedouble": {},
-    "degmsingle": {},
-    "degmdouble": {},
-    "dqone": {},
-    "dqtwo": {},
-    "sqoneleft": {},
-    "sqoneright": {},
-    "apost": {},
-    "sqtwoleft": {},
-    "sqtworight": {},
-    "glmtl": {},
-    "glmtr": {},
-    "degmtl": {},
-    "degmtr": {},
-    "sglmtl": {},
-    "sglmtr": {},
-    "desgmtl": {},
-    "desgmtr": {},
-    "bcktck": {},
-    "lqprime": {},
-    "lqdoubleprime": {},
-    "okina": {},
-    "abbrevsingleoff": {},
-    "abbrevsingleon": {},
-    "dechdoublequotesoff": {},
-    "dechdoublequoteson": {},
-    "dechsinglequotelinestartoff": {},
-    "dechsinglequotelinestarton": {},
-    "dechsinglequotescloseoff": {},
-    "dechsinglequotescloseon": {},
-    "dechsinglequotespcloseoff": {},
-    "dechsinglequotespcloseon": {},
-    "dechsinglequotespoff": {},
-    "dechsinglequotespon": {},
-    "dedoublequotesoff": {},
-    "dedoublequoteson": {},
-    "degmdoublequotesoff": {},
-    "degmdoublequoteson": {},
-    "degmsinglequotelinestartoff": {},
-    "degmsinglequotelinestarton": {},
-    "degmsinglequotescloseoff": {},
-    "degmsinglequotescloseon": {},
-    "desinglequotelinestartoff": {},
-    "desinglequotelinestarton": {},
-    "desinglequotescloseoff": {},
-    "desinglequotescloseon": {},
-    "desinglequotespcloseoff": {},
-    "desinglequotespcloseon": {},
-    "desinglequotespoff": {},
-    "desinglequotespon": {},
-    "doublequotesoff": {},
-    "doublequoteson": {},
-    "frdoublequotesoff": {},
-    "frdoublequoteson": {},
-    "frsinglequotelinestartoff": {},
-    "frsinglequotelinestarton": {},
-    "frsinglequotescloseoff": {},
-    "frsinglequotescloseon": {},
-    "frsinglequotespcloseoff": {},
-    "frsinglequotespcloseon": {},
-    "frsinglequotespoff": {},
-    "frsinglequotespon": {},
-    "sglmtlp": {},
-    "sglmtlpdech": {},
-    "sglmtrp": {},
-    "sglmtrpdech": {},
-    "singlequotelinestartoff": {},
-    "singlequotelinestarton": {},
-    "singlequotesoff": {},
-    "singlequoteson": {},
-    "singlequotespoff": {},
-    "singlequotespon": {},
-    "luaquotesversionnumber": {}
-  },
-  "envs": {},
-  "options": [
-    "en",
-    "fr",
-    "de",
-    "degm",
-    "dech"
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "luacode"
+    },
+    {
+      "name": "fontspec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "dumbquotes"
+    },
+    {
+      "name": "frdumbquotes"
+    },
+    {
+      "name": "dedumbquotes"
+    },
+    {
+      "name": "degmdumbquotes"
+    },
+    {
+      "name": "dechdumbquotes"
+    },
+    {
+      "name": "smartquotes"
+    },
+    {
+      "name": "frsmartquotes"
+    },
+    {
+      "name": "desmartquotes"
+    },
+    {
+      "name": "degmsmartquotes"
+    },
+    {
+      "name": "dechsmartquotes"
+    },
+    {
+      "name": "desingle"
+    },
+    {
+      "name": "dedouble"
+    },
+    {
+      "name": "degmsingle"
+    },
+    {
+      "name": "degmdouble"
+    },
+    {
+      "name": "dqone"
+    },
+    {
+      "name": "dqtwo"
+    },
+    {
+      "name": "sqoneleft"
+    },
+    {
+      "name": "sqoneright"
+    },
+    {
+      "name": "apost"
+    },
+    {
+      "name": "sqtwoleft"
+    },
+    {
+      "name": "sqtworight"
+    },
+    {
+      "name": "glmtl"
+    },
+    {
+      "name": "glmtr"
+    },
+    {
+      "name": "degmtl"
+    },
+    {
+      "name": "degmtr"
+    },
+    {
+      "name": "sglmtl"
+    },
+    {
+      "name": "sglmtr"
+    },
+    {
+      "name": "desgmtl"
+    },
+    {
+      "name": "desgmtr"
+    },
+    {
+      "name": "bcktck"
+    },
+    {
+      "name": "lqprime"
+    },
+    {
+      "name": "lqdoubleprime"
+    },
+    {
+      "name": "okina"
+    },
+    {
+      "name": "abbrevsingleoff",
+      "unusual": true
+    },
+    {
+      "name": "abbrevsingleon",
+      "unusual": true
+    },
+    {
+      "name": "dechdoublequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "dechdoublequoteson",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotelinestartoff",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotelinestarton",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotescloseoff",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotescloseon",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotespcloseoff",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotespcloseon",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotespoff",
+      "unusual": true
+    },
+    {
+      "name": "dechsinglequotespon",
+      "unusual": true
+    },
+    {
+      "name": "dedoublequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "dedoublequoteson",
+      "unusual": true
+    },
+    {
+      "name": "degmdoublequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "degmdoublequoteson",
+      "unusual": true
+    },
+    {
+      "name": "degmsinglequotelinestartoff",
+      "unusual": true
+    },
+    {
+      "name": "degmsinglequotelinestarton",
+      "unusual": true
+    },
+    {
+      "name": "degmsinglequotescloseoff",
+      "unusual": true
+    },
+    {
+      "name": "degmsinglequotescloseon",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotelinestartoff",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotelinestarton",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotescloseoff",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotescloseon",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotespcloseoff",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotespcloseon",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotespoff",
+      "unusual": true
+    },
+    {
+      "name": "desinglequotespon",
+      "unusual": true
+    },
+    {
+      "name": "doublequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "doublequoteson",
+      "unusual": true
+    },
+    {
+      "name": "frdoublequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "frdoublequoteson",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotelinestartoff",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotelinestarton",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotescloseoff",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotescloseon",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotespcloseoff",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotespcloseon",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotespoff",
+      "unusual": true
+    },
+    {
+      "name": "frsinglequotespon",
+      "unusual": true
+    },
+    {
+      "name": "sglmtlp",
+      "unusual": true
+    },
+    {
+      "name": "sglmtlpdech",
+      "unusual": true
+    },
+    {
+      "name": "sglmtrp",
+      "unusual": true
+    },
+    {
+      "name": "sglmtrpdech",
+      "unusual": true
+    },
+    {
+      "name": "singlequotelinestartoff",
+      "unusual": true
+    },
+    {
+      "name": "singlequotelinestarton",
+      "unusual": true
+    },
+    {
+      "name": "singlequotesoff",
+      "unusual": true
+    },
+    {
+      "name": "singlequoteson",
+      "unusual": true
+    },
+    {
+      "name": "singlequotespoff",
+      "unusual": true
+    },
+    {
+      "name": "singlequotespon",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/luaquotes#c": [
+      "en",
+      "fr",
+      "de",
+      "degm",
+      "dech"
+    ]
+  },
+  "args": [
+    "\\usepackage/luaquotes#c"
+  ]
 }

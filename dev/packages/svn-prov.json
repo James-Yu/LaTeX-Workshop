@@ -1,26 +1,161 @@
 {
-  "includes": {},
-  "macros": {
-    "rev": {},
-    "Rev": {},
-    "revinfo": {},
-    "filebase": {},
-    "fileext": {},
-    "filename": {},
-    "filedate": {},
-    "filerev": {},
-    "fileversion": {},
-    "filetoday": {},
-    "GetFileInfoSVN{}": {
-      "snippet": "GetFileInfoSVN{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ProvidesPackageSVN",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesPackageSVN{$Id: %<name%> %<revision%> %<date%> %<time%> %<author%>$}"
+      }
     },
-    "GetFileInfoSVN*": {},
-    "DefineFileInfoSVN": {},
-    "DefineFileInfoSVN[]": {
-      "snippet": "DefineFileInfoSVN[${1:name}]"
+    {
+      "name": "ProvidesPackageSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ProvidesPackageSVN[${1:filename}]{$Id: %<keywords%>$}"
+      }
+    },
+    {
+      "name": "ProvidesPackageSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ProvidesPackageSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}]"
+      }
+    },
+    {
+      "name": "ProvidesPackageSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "ProvidesPackageSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}][${3:description}]"
+      }
+    },
+    {
+      "name": "ProvidesClassSVN",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesClassSVN{$Id: %<name%> %<revision%> %<date%> %<time%> %<author%>$}"
+      }
+    },
+    {
+      "name": "ProvidesClassSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ProvidesClassSVN[${1:filename}]{$Id: %<keywords%>$}"
+      }
+    },
+    {
+      "name": "ProvidesClassSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ProvidesClassSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}]"
+      }
+    },
+    {
+      "name": "ProvidesClassSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "ProvidesClassSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}][${3:description}]"
+      }
+    },
+    {
+      "name": "ProvidesFileSVN",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesFileSVN{$Id: %<name%> %<revision%> %<date%> %<time%> %<author%>$}"
+      }
+    },
+    {
+      "name": "ProvidesFileSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ProvidesFileSVN[${1:filename}]{$Id: %<keywords%>$}"
+      }
+    },
+    {
+      "name": "ProvidesFileSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ProvidesFileSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}]"
+      }
+    },
+    {
+      "name": "ProvidesFileSVN",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "ProvidesFileSVN[${1:filename}]{$Id: %<keywords%>$}[${2:version}][${3:description}]"
+      }
+    },
+    {
+      "name": "rev",
+      "unusual": true
+    },
+    {
+      "name": "Rev",
+      "unusual": true
+    },
+    {
+      "name": "revinfo",
+      "unusual": true
+    },
+    {
+      "name": "filebase",
+      "unusual": true
+    },
+    {
+      "name": "fileext",
+      "unusual": true
+    },
+    {
+      "name": "filename",
+      "unusual": true
+    },
+    {
+      "name": "filedate",
+      "unusual": true
+    },
+    {
+      "name": "filerev",
+      "unusual": true
+    },
+    {
+      "name": "fileversion",
+      "unusual": true
+    },
+    {
+      "name": "filetoday",
+      "unusual": true
+    },
+    {
+      "name": "GetFileInfoSVN",
+      "arg": {
+        "format": "{}",
+        "snippet": "GetFileInfoSVN{${1:name}}"
+      }
+    },
+    {
+      "name": "GetFileInfoSVN*"
+    },
+    {
+      "name": "DefineFileInfoSVN"
+    },
+    {
+      "name": "DefineFileInfoSVN",
+      "arg": {
+        "format": "[]",
+        "snippet": "DefineFileInfoSVN[${1:name}]"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

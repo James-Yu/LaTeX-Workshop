@@ -1,61 +1,150 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "colophon": {},
-    "endcolophon": {},
-    "colophontitle{}": {
-      "snippet": "colophontitle{${1:title}}"
-    },
-    "colophontitlestyle{}": {
-      "snippet": "colophontitlestyle{${1:style cmds}}"
-    },
-    "colophontitlesize{}": {
-      "snippet": "colophontitlesize{${1:size}}"
-    },
-    "colophonmidspace{}": {
-      "snippet": "colophonmidspace{${1:length}}"
-    },
-    "colophonpagestyle{}": {
-      "snippet": "colophonpagestyle{${1:style}}"
-    },
-    "colophontitlealign{}": {
-      "snippet": "colophontitlealign{${1:alignment}}"
-    },
-    "colophonpretitlehook": {},
-    "colophonposttitlehook": {},
-    "colophonparstyle": {},
-    "colophonparsize": {},
-    "colophonparlead": {},
-    "colophonnofirstindent": {},
-    "colophonpreparhook": {},
-    "colophonpostparhook": {},
-    "colophonparalign": {},
-    "colophonnofullpage": {},
-    "colophonnoclrdblpg": {},
-    "colophonclrpg": {},
-    "colophontopspace": {},
-    "colophonbotspace": {}
-  },
-  "envs": {
-    "colophon": {}
-  },
-  "options": [
-    "title={${1:text}}",
-    "titlestyle=${1:font csname}",
-    "titlesize=",
-    "aftertitle=",
-    "titlealign=",
-    "parstyle=${1:font csname}",
-    "parsize=",
-    "parlead=",
-    "nofullpage",
-    "noclrdblpg",
-    "clrpg",
-    "topspace=",
-    "botspace=",
-    "nofirstindent"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "colophon",
+      "unusual": true
+    },
+    {
+      "name": "endcolophon",
+      "unusual": true
+    },
+    {
+      "name": "colophontitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophontitle{${1:title}}"
+      }
+    },
+    {
+      "name": "colophontitlestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophontitlestyle{${1:style cmds}}"
+      }
+    },
+    {
+      "name": "colophontitlesize",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophontitlesize{${1:size%l}}"
+      }
+    },
+    {
+      "name": "colophonmidspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophonmidspace{${1:length%l}}"
+      }
+    },
+    {
+      "name": "colophonpagestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophonpagestyle{${1:style}}"
+      }
+    },
+    {
+      "name": "colophontitlealign",
+      "arg": {
+        "format": "{}",
+        "snippet": "colophontitlealign{${1:alignment%keyvals}}",
+        "keys": [
+          "\\colophontitlealign"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "colophonpretitlehook",
+      "unusual": true
+    },
+    {
+      "name": "colophonposttitlehook",
+      "unusual": true
+    },
+    {
+      "name": "colophonparstyle",
+      "unusual": true
+    },
+    {
+      "name": "colophonparsize",
+      "unusual": true
+    },
+    {
+      "name": "colophonparlead",
+      "unusual": true
+    },
+    {
+      "name": "colophonnofirstindent",
+      "unusual": true
+    },
+    {
+      "name": "colophonpreparhook",
+      "unusual": true
+    },
+    {
+      "name": "colophonpostparhook",
+      "unusual": true
+    },
+    {
+      "name": "colophonparalign",
+      "unusual": true
+    },
+    {
+      "name": "colophonnofullpage",
+      "unusual": true
+    },
+    {
+      "name": "colophonnoclrdblpg",
+      "unusual": true
+    },
+    {
+      "name": "colophonclrpg",
+      "unusual": true
+    },
+    {
+      "name": "colophontopspace",
+      "unusual": true
+    },
+    {
+      "name": "colophonbotspace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "colophon"
+    }
+  ],
+  "keys": {
+    "\\usepackage/colophon#c": [
+      "title={${1:text}}",
+      "titlestyle=${1:font csname}",
+      "titlesize=",
+      "aftertitle=",
+      "titlealign=${1|l,c,r|}",
+      "parstyle=${1:font csname}",
+      "parsize=",
+      "parlead=",
+      "nofullpage",
+      "noclrdblpg",
+      "clrpg",
+      "topspace=",
+      "botspace=",
+      "nofirstindent"
+    ],
+    "\\colophontitlealign": [
+      "c",
+      "l",
+      "r"
+    ]
+  },
+  "args": [
+    "\\usepackage/colophon#c"
+  ]
 }

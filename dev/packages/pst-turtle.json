@@ -1,10 +1,29 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psTurtle",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psTurtle(${2:x},${3:y}){${1:turtle code}}"
+      }
+    },
+    {
+      "name": "psTurtle",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psTurtle[${2:options%keyvals}](${3:x},${4:y}){${1:turtle code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

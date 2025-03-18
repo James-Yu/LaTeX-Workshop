@@ -1,196 +1,584 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "graphicx": [],
-    "afterpage": [],
-    "wrapfig2": []
-  },
-  "macros": {
-    "DFimage[]{}{}": {
-      "snippet": "DFimage[${3:mode}]{${1:imagefile}}{${2:caption}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "DFimage[]{}[]{}": {
-      "snippet": "DFimage[${3:mode}]{${1:imagefile}}[${4:lof entry}]{${2:caption}}"
+    {
+      "name": "graphicx"
     },
-    "DFimage[]{}{}[]": {
-      "snippet": "DFimage[${3:mode}]{${1:imagefile}}{${2:caption}}[${4:label}]"
+    {
+      "name": "afterpage"
     },
-    "DFimage[]{}[]{}[]": {
-      "snippet": "DFimage[${3:mode}]{${1:imagefile}}[${4:lof entry}]{${2:caption}}[${5:label}]"
-    },
-    "cleartoeven{}": {
-      "snippet": "cleartoeven{${1:number}}"
-    },
-    "cleartopage": {},
-    "CompStrings{}{}": {
-      "snippet": "CompStrings{${1:string1}}{${2:string2}}"
-    },
-    "DFcaption[]{}": {
-      "snippet": "DFcaption[${2:lof entry}]{${1:caption}}"
-    },
-    "DFcaption[]{}[]": {
-      "snippet": "DFcaption[${2:lof entry}]{${1:caption}}[${3:label}]"
-    },
-    "DFcaption{}": {
-      "snippet": "DFcaption{${1:caption}}"
-    },
-    "DFcaption{}[]": {
-      "snippet": "DFcaption{${1:caption}}[${2:label}]"
-    },
-    "DFcaptionP[]{}": {
-      "snippet": "DFcaptionP[${2:lof entry}]{${1:caption}}"
-    },
-    "DFcaptionP[]{}[]": {
-      "snippet": "DFcaptionP[${2:lof entry}]{${1:caption}}[${3:label}]"
-    },
-    "DFcaptionP{}": {
-      "snippet": "DFcaptionP{${1:caption}}"
-    },
-    "DFcaptionP{}[]": {
-      "snippet": "DFcaptionP{${1:caption}}[${2:label}]"
-    },
-    "DFhalfheight": {},
-    "DFhalfwidth": {},
-    "DFheight": {},
-    "DFscalefactor": {},
-    "DFwarning{}{}": {
-      "snippet": "DFwarning{${1:arg1}}{${2:arg2}}"
-    },
-    "DFwidth": {},
-    "DisplayModeList": {},
-    "externalmargin": {},
-    "FigSpace": {},
-    "fptest{}{}{}": {
-      "snippet": "fptest{${1:test}}{${2:true}}{${3:false}}"
-    },
-    "FScaptionShift": {},
-    "FSfigure{}[]{}": {
-      "snippet": "FSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "FSfigure{}[]{}[]": {
-      "snippet": "FSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "FSfigure{}{}": {
-      "snippet": "FSfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "FSfigure{}{}[]": {
-      "snippet": "FSfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "HSfigure{}[]{}": {
-      "snippet": "HSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "HSfigure{}[]{}[]": {
-      "snippet": "HSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "HSfigure{}{}": {
-      "snippet": "HSfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "HSfigure{}{}[]": {
-      "snippet": "HSfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "internalmargin": {},
-    "NFfigure{}[]{}": {
-      "snippet": "NFfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "NFfigure{}[]{}[]": {
-      "snippet": "NFfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "NFfigure{}{}": {
-      "snippet": "NFfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "NFfigure{}{}[]": {
-      "snippet": "NFfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "RFfigure{}[]{}": {
-      "snippet": "RFfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "RFfigure{}[]{}[]": {
-      "snippet": "RFfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "RFfigure{}{}": {
-      "snippet": "RFfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "RFfigure{}{}[]": {
-      "snippet": "RFfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "RFx": {},
-    "RFy": {},
-    "SetList{}{}": {
-      "snippet": "SetList{${1:cmd}}{${2:item1,item2,...}}"
-    },
-    "spreadwidth": {},
-    "SWcaptionShift": {},
-    "SWfigure{}[]{}": {
-      "snippet": "SWfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "SWfigure{}[]{}[]": {
-      "snippet": "SWfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "SWfigure{}{}": {
-      "snippet": "SWfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "SWfigure{}{}[]": {
-      "snippet": "SWfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "TestList{}{}{}{}": {
-      "snippet": "TestList{${1:list}}{${2:string}}{${3:true}}{${4:false}}"
-    },
-    "THfigure{}[]{}": {
-      "snippet": "THfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "THfigure{}[]{}[]": {
-      "snippet": "THfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "THfigure{}{}": {
-      "snippet": "THfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "THfigure{}{}[]": {
-      "snippet": "THfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "TScaptionwidth": {},
-    "TWfigure{}[]{}": {
-      "snippet": "TWfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "TWfigure{}[]{}[]": {
-      "snippet": "TWfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "TWfigure{}{}": {
-      "snippet": "TWfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "TWfigure{}{}[]": {
-      "snippet": "TWfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
-    },
-    "VSfigure{}[]{}": {
-      "snippet": "VSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}"
-    },
-    "VSfigure{}[]{}[]": {
-      "snippet": "VSfigure{${1:imagefile}}[${2:lof entry}]{${3:caption}}[${4:label}]"
-    },
-    "VSfigure{}{}": {
-      "snippet": "VSfigure{${1:imagefile}}{${2:caption}}"
-    },
-    "VSfigure{}{}[]": {
-      "snippet": "VSfigure{${1:imagefile}}{${2:caption}}[${3:label}]"
+    {
+      "name": "wrapfig2"
     }
-  },
-  "envs": {
-    "DFimage[]{}{}": {
+  ],
+  "macros": [
+    {
       "name": "DFimage",
-      "snippet": "[${3:mode}]{${1:imagefile}}{${2:caption}}"
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DFimage[${3:mode}]{${1:imagefile}}{${2:caption%text}}"
+      }
     },
-    "DFimage[]{}[]{}": {
+    {
       "name": "DFimage",
-      "snippet": "[${3:mode}]{${1:imagefile}}[${4:lof entry}]{${2:caption}}"
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "DFimage[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}"
+      }
     },
-    "DFimage[]{}{}[]": {
+    {
       "name": "DFimage",
-      "snippet": "[${3:mode}]{${1:imagefile}}{${2:caption}}[${4:label}]"
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "DFimage[${3:mode}]{${1:imagefile}}{${2:caption%text}}[${4:label}]"
+      }
     },
-    "DFimage[]{}[]{}[]": {
+    {
       "name": "DFimage",
-      "snippet": "[${3:mode}]{${1:imagefile}}[${4:lof entry}]{${2:caption}}[${5:label}]"
+      "arg": {
+        "format": "[]{}[]{}[]",
+        "snippet": "DFimage[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}[${5:label}]"
+      }
+    },
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}[]{}[]()<>",
+        "snippet": "DFimage[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}[${5:label}](${7:height coor})<${6:line corr}>"
+      }
+    },
+    {
+      "name": "cleartoeven",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cleartoeven{${1:number}}"
+      }
+    },
+    {
+      "name": "cleartopage",
+      "unusual": true
+    },
+    {
+      "name": "CompStrings",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "CompStrings{${1:string1}}{${2:string2}}"
+      }
+    },
+    {
+      "name": "DFcaption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DFcaption[${2:lof entry%text}]{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "DFcaption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "DFcaption[${2:lof entry%text}]{${1:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "DFcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DFcaption{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "DFcaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "DFcaption{${1:caption%text}}[${2:label}]"
+      }
+    },
+    {
+      "name": "DFcaptionP",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DFcaptionP[${2:lof entry%text}]{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "DFcaptionP",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "DFcaptionP[${2:lof entry%text}]{${1:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "DFcaptionP",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DFcaptionP{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "DFcaptionP",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "DFcaptionP{${1:caption%text}}[${2:label}]"
+      }
+    },
+    {
+      "name": "DFhalfheight",
+      "unusual": true
+    },
+    {
+      "name": "DFhalfwidth",
+      "unusual": true
+    },
+    {
+      "name": "DFheight",
+      "unusual": true
+    },
+    {
+      "name": "DFheight",
+      "unusual": true
+    },
+    {
+      "name": "DFscalefactor",
+      "unusual": true
+    },
+    {
+      "name": "DFwidth",
+      "unusual": true
+    },
+    {
+      "name": "DisplayModeList",
+      "unusual": true
+    },
+    {
+      "name": "externalmargin",
+      "unusual": true
+    },
+    {
+      "name": "FigSpace",
+      "unusual": true
+    },
+    {
+      "name": "fptest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fptest{${1:test}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "FScaptionShift",
+      "unusual": true
+    },
+    {
+      "name": "FSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "FSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "FSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "FSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "FSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "FSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "FSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FSfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "FSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "FSfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "HSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "HSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "HSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "HSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "HSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "HSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "HSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "HSfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "HSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "HSfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "internalmargin",
+      "unusual": true
+    },
+    {
+      "name": "NFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "NFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "NFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "NFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "NFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "NFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "NFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NFfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "NFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "NFfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "RFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "RFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "RFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "RFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "RFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "RFfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "RFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RFfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "RFfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "RFfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "RFx",
+      "unusual": true
+    },
+    {
+      "name": "RFy",
+      "unusual": true
+    },
+    {
+      "name": "SetList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetList{${1:cmd}}{${2:item1,item2,...}}"
+      }
+    },
+    {
+      "name": "spreadwidth",
+      "unusual": true
+    },
+    {
+      "name": "SWcaptionShift",
+      "unusual": true
+    },
+    {
+      "name": "SWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "SWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "SWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "SWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "SWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "SWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "SWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SWfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "SWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "SWfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "TestList",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "TestList{${1:list}}{${2:string}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "THfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "THfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "THfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "THfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "THfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "THfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "THfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "THfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "THfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "THfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "TScaptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "TWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "TWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "TWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "TWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "TWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "TWfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "TWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TWfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "TWfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "TWfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
+    },
+    {
+      "name": "VSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "VSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "VSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "VSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "VSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]()<>",
+        "snippet": "VSfigure{${1:imagefile}}[${3:lof entry%text}]{${2:caption%text}}[${4:label}](${6:height coor})<${5:line corr}>"
+      }
+    },
+    {
+      "name": "VSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "VSfigure{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "VSfigure",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "VSfigure{${1:imagefile}}{${2:caption%text}}[${3:label}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:mode}]{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:mode}]{${1:imagefile}}{${2:caption%text}}[${4:label}]"
+      }
+    },
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}[]{}[]",
+        "snippet": "[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}[${5:label}]"
+      }
+    },
+    {
+      "name": "DFimage",
+      "arg": {
+        "format": "[]{}[]{}[]()<>",
+        "snippet": "[${3:mode}]{${1:imagefile}}[${4:lof entry%text}]{${2:caption%text}}[${5:label}](${7:height coor})<${6:line corr}>"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

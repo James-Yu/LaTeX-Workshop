@@ -1,64 +1,884 @@
 {
-  "includes": {
-    "calc": []
-  },
-  "macros": {
-    "Affine": {},
-    "Black": {},
-    "Blue": {},
-    "Closepath": {},
-    "Colval": {},
-    "Cyan": {},
-    "Dblue": {},
-    "Dcyan": {},
-    "Dgray": {},
-    "Dgreen": {},
-    "Dmagenta": {},
-    "Dred": {},
-    "Dyellow": {},
-    "Gray": {},
-    "Green": {},
-    "Grestore": {},
-    "Gsave": {},
-    "Lapdf": {},
-    "Magenta": {},
-    "Np{}": {
-      "snippet": "Np{${1:length}}"
-    },
-    "PDF{}": {
-      "snippet": "PDF{${1:pdf special}}"
-    },
-    "Red": {},
-    "Resetcol": {},
-    "Setclip": {},
-    "Sfill": {},
-    "Stroke": {},
-    "Thick": {},
-    "Thin": {},
-    "Ul": {},
-    "Whiledim{}{}": {
-      "snippet": "Whiledim{${1:dimen condition}}{${2:commands}}"
-    },
-    "Whilenum{}{}": {
-      "snippet": "Whilenum{${1:num condition}}{${2:commands}}"
-    },
-    "White": {},
-    "Yellow": {},
-    "col": {},
-    "nP{}": {
-      "snippet": "nP{${1:length}}"
-    },
-    "pdfTeX": {},
-    "endlapdf": {},
-    "pdf": {},
-    "endpdf": {}
-  },
-  "envs": {
-    "pdf": {}
-  },
-  "options": [
-    "black",
-    "color"
+  "deps": [
+    {
+      "name": "calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Abs",
+      "arg": {
+        "format": "()",
+        "snippet": "Abs(${1:num})"
+      }
+    },
+    {
+      "name": "Acos",
+      "arg": {
+        "format": "()",
+        "snippet": "Acos(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Acosh",
+      "arg": {
+        "format": "()",
+        "snippet": "Acosh(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Add",
+      "arg": {
+        "format": "()",
+        "snippet": "Add(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Affine"
+    },
+    {
+      "name": "Arc",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Arc(${1:n})(${2:x},${3:y})(${4:direction},${5:angle})(${6:radius})"
+      }
+    },
+    {
+      "name": "Arcto",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Arcto(${1:n})(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:radius})"
+      }
+    },
+    {
+      "name": "Asin",
+      "arg": {
+        "format": "()",
+        "snippet": "Asin(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Asinh",
+      "arg": {
+        "format": "()",
+        "snippet": "Asinh(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Atan",
+      "arg": {
+        "format": "()",
+        "snippet": "Atan(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Atanh",
+      "arg": {
+        "format": "()",
+        "snippet": "Atanh(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Bezier",
+      "arg": {
+        "format": "()",
+        "snippet": "Bezier(${1:val1},${2:val2},${3:val3},${4:val4},${5:val5},${6:val6})"
+      }
+    },
+    {
+      "name": "Black"
+    },
+    {
+      "name": "Blue"
+    },
+    {
+      "name": "Circle",
+      "arg": {
+        "format": "()()",
+        "snippet": "Circle(${1:n})(${2:x},${3:y},${4:radius})"
+      }
+    },
+    {
+      "name": "Closepath"
+    },
+    {
+      "name": "Colval"
+    },
+    {
+      "name": "Concat",
+      "arg": {
+        "format": "()",
+        "snippet": "Concat(${1:val1},${2:val2},${3:val3},${4:val4},${5:val5},${6:val6})"
+      }
+    },
+    {
+      "name": "Cos",
+      "arg": {
+        "format": "()",
+        "snippet": "Cos(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Cosh",
+      "arg": {
+        "format": "()",
+        "snippet": "Cosh(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Crnd",
+      "arg": {
+        "format": "()",
+        "snippet": "Crnd(${1:num})"
+      }
+    },
+    {
+      "name": "Cyan"
+    },
+    {
+      "name": "Dabs",
+      "arg": {
+        "format": "()",
+        "snippet": "Dabs(${1:dimen})"
+      }
+    },
+    {
+      "name": "Dadd",
+      "arg": {
+        "format": "()",
+        "snippet": "Dadd(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Dash",
+      "arg": {
+        "format": "()",
+        "snippet": "Dash(${1:n})"
+      }
+    },
+    {
+      "name": "Dblue"
+    },
+    {
+      "name": "Dcyan"
+    },
+    {
+      "name": "Ddiv",
+      "arg": {
+        "format": "()",
+        "snippet": "Ddiv(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Defdim",
+      "arg": {
+        "format": "()",
+        "snippet": "Defdim(${1:cmd},${2:val%cmd})"
+      }
+    },
+    {
+      "name": "Defnum",
+      "arg": {
+        "format": "()",
+        "snippet": "Defnum(${1:cmd},${2:val%cmd})"
+      }
+    },
+    {
+      "name": "Deg",
+      "arg": {
+        "format": "()",
+        "snippet": "Deg(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Df",
+      "arg": {
+        "format": "()",
+        "snippet": "Df(${1:x},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dgray"
+    },
+    {
+      "name": "Dgreen"
+    },
+    {
+      "name": "Dint",
+      "arg": {
+        "format": "()",
+        "snippet": "Dint(${1:dimen})"
+      }
+    },
+    {
+      "name": "Direc",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Direc(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:cmd})"
+      }
+    },
+    {
+      "name": "Div",
+      "arg": {
+        "format": "()",
+        "snippet": "Div(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Dmagenta"
+    },
+    {
+      "name": "Dmod",
+      "arg": {
+        "format": "()",
+        "snippet": "Dmod(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Dmul",
+      "arg": {
+        "format": "()",
+        "snippet": "Dmul(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Dpoly",
+      "arg": {
+        "format": "()",
+        "snippet": "Dpoly(${1:x},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dpx",
+      "arg": {
+        "format": "()",
+        "snippet": "Dpx(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dpy",
+      "arg": {
+        "format": "()",
+        "snippet": "Dpy(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dred"
+    },
+    {
+      "name": "Dset",
+      "arg": {
+        "format": "()",
+        "snippet": "Dset(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dsig",
+      "arg": {
+        "format": "()",
+        "snippet": "Dsig(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Dsub",
+      "arg": {
+        "format": "()",
+        "snippet": "Dsub(${1:dimen1},${2:dimen2})"
+      }
+    },
+    {
+      "name": "Dtp",
+      "arg": {
+        "format": "()",
+        "snippet": "Dtp(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dtt",
+      "arg": {
+        "format": "()",
+        "snippet": "Dtt(${1:t},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dtx",
+      "arg": {
+        "format": "()",
+        "snippet": "Dtx(${1:t},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dty",
+      "arg": {
+        "format": "()",
+        "snippet": "Dty(${1:t},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Dyellow"
+    },
+    {
+      "name": "Ellipse",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Ellipse(${1:n})(${2:x},${3:y})(${4:a},${5:b},${6:angle})"
+      }
+    },
+    {
+      "name": "Epolygon",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Epolygon(${1:n})(${2:x},${3:y})(${4:radius},${5:angle})"
+      }
+    },
+    {
+      "name": "Euclid",
+      "arg": {
+        "format": "()",
+        "snippet": "Euclid(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "Exp",
+      "arg": {
+        "format": "()",
+        "snippet": "Exp(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Fill",
+      "arg": {
+        "format": "()",
+        "snippet": "Fill(${1:r},${2:g},${3:b})"
+      }
+    },
+    {
+      "name": "Fplot",
+      "arg": {
+        "format": "()()",
+        "snippet": "Fplot(${1:n})(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "Fpoly",
+      "arg": {
+        "format": "()",
+        "snippet": "Fpoly(${1:x},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Gfill",
+      "arg": {
+        "format": "()",
+        "snippet": "Gfill(${1:gray val})"
+      }
+    },
+    {
+      "name": "Gray"
+    },
+    {
+      "name": "Green"
+    },
+    {
+      "name": "Grestore"
+    },
+    {
+      "name": "Gsave"
+    },
+    {
+      "name": "Homogen",
+      "arg": {
+        "format": "()",
+        "snippet": "Homogen(${1:px},${2:py},${3:w})"
+      }
+    },
+    {
+      "name": "Hypot",
+      "arg": {
+        "format": "()",
+        "snippet": "Hypot(${1:leg1},${2:leg2},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Lapdf"
+    },
+    {
+      "name": "Len",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Len(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:cmd})"
+      }
+    },
+    {
+      "name": "Line",
+      "arg": {
+        "format": "()()",
+        "snippet": "Line(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "Lineto",
+      "arg": {
+        "format": "()",
+        "snippet": "Lineto(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "Lingrid",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Lingrid(${1:n})(${2:g},${3:a})(${4:xmin},${5:xmax})(${6:ymin},${7:ymax})"
+      }
+    },
+    {
+      "name": "Ln",
+      "arg": {
+        "format": "()",
+        "snippet": "Ln(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Log",
+      "arg": {
+        "format": "()",
+        "snippet": "Log(${1:base},${2:num},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Logxgrid",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Logxgrid(${1:n})(${2:g},${3:a})(${4:xmin},${5:xmax})(${6:ymin},${7:ymax})"
+      }
+    },
+    {
+      "name": "Logxygrid",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Logxygrid(${1:n})(${2:g},${3:a})(${4:xmin},${5:xmax})(${6:ymin},${7:ymax})"
+      }
+    },
+    {
+      "name": "Logygrid",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Logygrid(${1:n})(${2:g},${3:a})(${4:xmin},${5:xmax})(${6:ymin},${7:ymax})"
+      }
+    },
+    {
+      "name": "Magenta"
+    },
+    {
+      "name": "Mod",
+      "arg": {
+        "format": "()",
+        "snippet": "Mod(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Moveto",
+      "arg": {
+        "format": "()",
+        "snippet": "Moveto(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "Mul",
+      "arg": {
+        "format": "()",
+        "snippet": "Mul(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Nextcol",
+      "arg": {
+        "format": "()",
+        "snippet": "Nextcol(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Np",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Np{${1:length}}"
+      }
+    },
+    {
+      "name": "PDF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PDF{${1:pdf special}}"
+      }
+    },
+    {
+      "name": "Point",
+      "arg": {
+        "format": "()()",
+        "snippet": "Point(${1:gray val})(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "Polgrid",
+      "arg": {
+        "format": "()()",
+        "snippet": "Polgrid(${1:g},${2:a})(${3:radius})"
+      }
+    },
+    {
+      "name": "Polynom",
+      "arg": {
+        "format": "()()",
+        "snippet": "Polynom(${1:x},${2:y})(${3:a},${4:b},${5:c},${6:d})"
+      }
+    },
+    {
+      "name": "Pot",
+      "arg": {
+        "format": "()",
+        "snippet": "Pot(${1:base},${2:power},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Pow",
+      "arg": {
+        "format": "()",
+        "snippet": "Pow(${1:base},${2:power},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Pplot",
+      "arg": {
+        "format": "()()",
+        "snippet": "Pplot(${1:n})(${2:angle1},${3:angle2})"
+      }
+    },
+    {
+      "name": "Pxy",
+      "arg": {
+        "format": "()",
+        "snippet": "Pxy(${1:angle},${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "Rad",
+      "arg": {
+        "format": "()",
+        "snippet": "Rad(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Rect",
+      "arg": {
+        "format": "()",
+        "snippet": "Rect(${1:val1},${2:val2},${3:val3},${4:val4})"
+      }
+    },
+    {
+      "name": "Rectangle",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Rectangle(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:angle})"
+      }
+    },
+    {
+      "name": "Red"
+    },
+    {
+      "name": "Resetcol"
+    },
+    {
+      "name": "Rmoveto",
+      "arg": {
+        "format": "()",
+        "snippet": "Rmoveto(${1:x},${2:y},${3:z})"
+      }
+    },
+    {
+      "name": "Root",
+      "arg": {
+        "format": "()",
+        "snippet": "Root(${1:num},${2:root},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Rotate",
+      "arg": {
+        "format": "()",
+        "snippet": "Rotate(${1:angle})"
+      }
+    },
+    {
+      "name": "Rotpoint",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Rotpoint(${1:angle})(${2:xy},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "Scale",
+      "arg": {
+        "format": "()",
+        "snippet": "Scale(${1:val1},${2:val2})"
+      }
+    },
+    {
+      "name": "Sector",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Sector(${1:n})(${2:x},${3:y})(${4:direction},${5:angle})(${6:radius})"
+      }
+    },
+    {
+      "name": "Set",
+      "arg": {
+        "format": "()",
+        "snippet": "Set(${1:dimen},${2:val})"
+      }
+    },
+    {
+      "name": "Setcap",
+      "arg": {
+        "format": "()",
+        "snippet": "Setcap(${1:value})"
+      }
+    },
+    {
+      "name": "Setclip"
+    },
+    {
+      "name": "Setcol",
+      "arg": {
+        "format": "()",
+        "snippet": "Setcol(${1:r},${2:g},${3:b})"
+      }
+    },
+    {
+      "name": "Setdash",
+      "arg": {
+        "format": "()",
+        "snippet": "Setdash(${1:value})"
+      }
+    },
+    {
+      "name": "Setflat",
+      "arg": {
+        "format": "()",
+        "snippet": "Setflat(${1:value})"
+      }
+    },
+    {
+      "name": "Setgray",
+      "arg": {
+        "format": "()",
+        "snippet": "Setgray(${1:gray val})"
+      }
+    },
+    {
+      "name": "Setjoin",
+      "arg": {
+        "format": "()",
+        "snippet": "Setjoin(${1:value})"
+      }
+    },
+    {
+      "name": "Setmiter",
+      "arg": {
+        "format": "()",
+        "snippet": "Setmiter(${1:value})"
+      }
+    },
+    {
+      "name": "Setwidth",
+      "arg": {
+        "format": "()",
+        "snippet": "Setwidth(${1:value})"
+      }
+    },
+    {
+      "name": "Sfill"
+    },
+    {
+      "name": "Sig",
+      "arg": {
+        "format": "()",
+        "snippet": "Sig(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Sin",
+      "arg": {
+        "format": "()",
+        "snippet": "Sin(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Sinh",
+      "arg": {
+        "format": "()",
+        "snippet": "Sinh(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Sqrt",
+      "arg": {
+        "format": "()",
+        "snippet": "Sqrt(${1:num},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Stepcol",
+      "arg": {
+        "format": "()",
+        "snippet": "Stepcol(${1:num1},${2:num2},${3:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Stroke"
+    },
+    {
+      "name": "Sub",
+      "arg": {
+        "format": "()",
+        "snippet": "Sub(${1:num1},${2:num2})"
+      }
+    },
+    {
+      "name": "Tan",
+      "arg": {
+        "format": "()",
+        "snippet": "Tan(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Tangent",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Tangent(${1:x})(${2:x1},${3:x2})(${4:a},${5:b},${6:c},${7:d})"
+      }
+    },
+    {
+      "name": "Tanh",
+      "arg": {
+        "format": "()",
+        "snippet": "Tanh(${1:angle},${2:cmd%cmd})"
+      }
+    },
+    {
+      "name": "Text",
+      "arg": {
+        "format": "(){}",
+        "snippet": "Text(${2:x},${3:y},${4:pos}){${1:text}}"
+      }
+    },
+    {
+      "name": "Thick"
+    },
+    {
+      "name": "Thin"
+    },
+    {
+      "name": "Tplot",
+      "arg": {
+        "format": "()()",
+        "snippet": "Tplot(${1:n})(${2:t1},${3:t2})"
+      }
+    },
+    {
+      "name": "Translate",
+      "arg": {
+        "format": "()",
+        "snippet": "Translate(${1:val1},${2:val2})"
+      }
+    },
+    {
+      "name": "Triangle",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Triangle(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:angle})"
+      }
+    },
+    {
+      "name": "Ul"
+    },
+    {
+      "name": "Varc",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Varc(${1:n})(${2:x},${3:y})(${4:direction},${5:angle})(${6:radius})"
+      }
+    },
+    {
+      "name": "Vect",
+      "arg": {
+        "format": "()()",
+        "snippet": "Vect(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "Vecto",
+      "arg": {
+        "format": "()",
+        "snippet": "Vecto(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "Whiledim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Whiledim{${1:dimen condition%definition}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "Whilenum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Whilenum{${1:num condition%definition}}{${2:commands}}"
+      }
+    },
+    {
+      "name": "White"
+    },
+    {
+      "name": "Yellow"
+    },
+    {
+      "name": "col",
+      "unusual": true
+    },
+    {
+      "name": "nP",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nP{${1:length}}"
+      }
+    },
+    {
+      "name": "pdfTeX"
+    }
+  ],
+  "envs": [
+    {
+      "name": "lapdf",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "pdf",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/lapdf#c": [
+      "black",
+      "color"
+    ]
+  },
+  "args": [
+    "\\usepackage/lapdf#c"
+  ]
 }

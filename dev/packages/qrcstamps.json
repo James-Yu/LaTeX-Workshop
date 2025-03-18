@@ -1,43 +1,60 @@
 {
-  "includes": {
-    "annot_pro": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "qrCode{}": {
-      "snippet": "qrCode{${1:URL}}"
+  "deps": [
+    {
+      "name": "annot_pro"
     },
-    "qrCode[]{}": {
-      "snippet": "qrCode[${2:options}]{${1:URL}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "QRBase": {}
-  },
-  "envs": {},
-  "options": [
-    "scandoc",
-    "!scandoc",
-    "basename=${1:basename}",
-    "dvipsone",
-    "dvips",
-    "textures",
-    "pdftex",
-    "luatex",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "nodljs",
-    "debug",
-    "execJS",
-    "nopro",
-    "reqjs",
-    "!reqjs",
-    "usealtadobe"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": [
-    [
-      "name=",
+  "macros": [
+    {
+      "name": "qrCode",
+      "arg": {
+        "format": "{}",
+        "snippet": "qrCode{${1:URL}}"
+      }
+    },
+    {
+      "name": "qrCode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "qrCode[${2:options%keyvals}]{${1:URL}}",
+        "keys": [
+          "\\qrCode"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QRBase",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/qrcstamps#c": [
+      "scandoc",
+      "!scandoc",
+      "basename=${1:basename}",
+      "dvipsone",
+      "dvips",
+      "textures",
+      "pdftex",
+      "luatex",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "nodljs",
+      "debug",
+      "execJS",
+      "nopro",
+      "reqjs",
+      "!reqjs",
+      "usealtadobe"
+    ],
+    "\\qrCode": [
+      "name=${1|Approved,AsIs,Confidential,Departmental,Draft,Experimental,Expired,Final,ForComment,ForPublicRelease,NotApproved,NotForPublicRelease,Sold,TopSecret|}",
       "width=",
       "height=",
       "rotate=${1:degrees}",
@@ -46,10 +63,13 @@
       "heightTo=",
       "customStamp=",
       "ap=",
-      "size=",
+      "size=${1|small,medium,large|}",
       "allowresize",
       "basename=${1:basename}",
       "contents=${1:text}"
     ]
+  },
+  "args": [
+    "\\usepackage/qrcstamps#c"
   ]
 }

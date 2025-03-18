@@ -58,7 +58,7 @@ async function formatDocument(document: vscode.TextDocument, sort: boolean, alig
     const columnOffset = range ? range.start.character : 0
 
     logger.log('Parse active BibTeX document for AST.')
-    const ast = await lw.parser.parse.bib(document.getText(range))
+    const ast = await lw.parser.parse.bib(document.uri, document.getText(range))
     if (ast === undefined) {
         return []
     }

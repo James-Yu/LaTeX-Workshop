@@ -1,65 +1,91 @@
 {
-  "includes": {},
-  "macros": {
-    "mathbold{}": {
-      "snippet": "mathbold{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbold{${1:text%plain}}"
+      }
     },
-    "PazoBB{}": {
-      "snippet": "PazoBB{${1:text}}"
+    {
+      "name": "PazoBB",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PazoBB{${1:text%plain}}"
+      }
     },
-    "upGamma": {
+    {
+      "name": "upGamma",
       "detail": "Γ",
-      "documentation": "capital gamma, greek"
+      "doc": "\\gamma (-slantedgreek), \\mathrm{\\gamma}, capital gamma, greek"
     },
-    "upDelta": {
+    {
+      "name": "upDelta",
       "detail": "Δ",
-      "documentation": "capital del greek"
+      "doc": "\\delta (-slantedgreek), \\mathrm{\\delta}, capital delta, greek"
     },
-    "upTheta": {
+    {
+      "name": "upTheta",
       "detail": "Θ",
-      "documentation": "capital greek"
+      "doc": "\\theta (-slantedgreek), \\mathrm{\\theta}, capital theta, greek"
     },
-    "upLambda": {
+    {
+      "name": "upLambda",
       "detail": "Λ",
-      "documentation": "capital lambda, greek"
+      "doc": "\\lambda (-slantedgreek), \\mathrm{\\lambda}, capital lambda, greek"
     },
-    "upXi": {
+    {
+      "name": "upXi",
       "detail": "Ξ",
-      "documentation": "capital greek"
+      "doc": "\\xi (-slantedgreek), \\mathrm{\\xi}, capital xi, greek"
     },
-    "upPi": {
+    {
+      "name": "upPi",
       "detail": "Π",
-      "documentation": "capital pi, greek"
+      "doc": "\\pi (-slantedgreek), \\mathrm{\\pi}, capital pi, greek"
     },
-    "upSigma": {
+    {
+      "name": "upSigma",
       "detail": "Σ",
-      "documentation": "capital sigma, greek"
+      "doc": "\\sigma (-slantedgreek), \\mathrm{\\sigma}, capital sigma, greek"
     },
-    "upUpsilon": {
+    {
+      "name": "upUpsilon",
       "detail": "ϒ",
-      "documentation": "GREEK UPSILON WITH HOOK SYMBOL"
+      "doc": "\\mathrm{\\upsilon}, greek upsilon with hook symbol"
     },
-    "upPhi": {
+    {
+      "name": "upPhi",
       "detail": "Φ",
-      "documentation": "capital phi, greek"
+      "doc": "\\phi (-slantedgreek), \\mathrm{\\phi}, capital phi, greek"
     },
-    "upPsi": {
+    {
+      "name": "upPsi",
       "detail": "Ψ",
-      "documentation": "capital psi, greek"
+      "doc": "\\psi (-slantedgreek), \\mathrm{\\psi}, capital psi, greek"
     },
-    "upOmega": {
+    {
+      "name": "upOmega",
       "detail": "Ω",
-      "documentation": "capital omega, greek"
+      "doc": "\\omega (-slantedgreek), \\mathrm{\\omega}, capital omega, greek"
     },
-    "ppleuro": {}
-  },
-  "envs": {},
-  "options": [
-    "osf",
-    "sc",
-    "slantedGreek",
-    "noBBpl",
-    "osfeqnnum"
+    {
+      "name": "ppleuro"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathpazo#c": [
+      "osf",
+      "sc",
+      "slantedGreek",
+      "noBBpl",
+      "osfeqnnum"
+    ]
+  },
+  "args": [
+    "\\usepackage/mathpazo#c"
+  ]
 }

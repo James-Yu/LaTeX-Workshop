@@ -1,36 +1,58 @@
 {
-  "includes": {
-    "rule-D": []
-  },
-  "macros": {
-    "EANControlDigit{}": {
-      "snippet": "EANControlDigit{${1:string}}"
-    },
-    "EANBarcode{}": {
-      "snippet": "EANBarcode{${1:string}}"
-    },
-    "EANBarcode[]{}": {
-      "snippet": "EANBarcode[${2:options}]{${1:string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "GSSetup{}": {
-      "snippet": "GSSetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "rule-D"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "EANControlDigit",
+      "arg": {
+        "format": "{}",
+        "snippet": "EANControlDigit{${1:string}}"
+      }
+    },
+    {
+      "name": "EANBarcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "EANBarcode{${1:string}}"
+      }
+    },
+    {
+      "name": "EANBarcode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "EANBarcode[${2:options%keyvals}]{${1:string}}",
+        "keys": [
+          "\\EANBarcode,\\GSSetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GSSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "GSSetup{${1:options%keyvals}}",
+        "keys": [
+          "\\EANBarcode,\\GSSetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\EANBarcode,\\GSSetup": [
       "ocrb",
       "module_width=",
       "module_height=",
-      "code=",
+      "code=${1|EAN-8,EAN-13|}",
       "scale=${1:factor}",
       "scale_to_font",
       "add_control"
     ]
-  ]
+  },
+  "args": []
 }

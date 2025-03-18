@@ -1,45 +1,103 @@
 {
-  "includes": {
-    "amsmath": [],
-    "amssymb": [],
-    "mathtools": []
-  },
-  "macros": {
-    "shortleftarrow": {},
-    "shortrightarrow": {},
-    "xlongequal[]{}": {
-      "snippet": "xlongequal[${2:sub}]{${1:sup}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "xtwoheadleftarrow[]{}": {
-      "snippet": "xtwoheadleftarrow[${2:sub}]{${1:sup}}"
+    {
+      "name": "amssymb"
     },
-    "xtwoheadrightarrow[]{}": {
-      "snippet": "xtwoheadrightarrow[${2:sub}]{${1:sup}}"
-    },
-    "xtofrom[]{}": {
-      "snippet": "xtofrom[${2:sub}]{${1:sup}}"
-    },
-    "newextarrow{}{}{}": {
-      "snippet": "newextarrow{${1:cmd}}{${2:space}}{${3:arrow}}"
-    },
-    "twoarrowsleft{}{}": {
-      "snippet": "twoarrowsleft{${1:arrow1}}{${2:arrow2}}"
-    },
-    "twoarrowsright{}{}": {
-      "snippet": "twoarrowsright{${1:arrow1}}{${2:arrow2}}"
-    },
-    "bigtwoarrowsleft{}{}": {
-      "snippet": "bigtwoarrowsleft{${1:arrow1}}{${2:arrow2}}"
-    },
-    "bigtwoarrowsright{}{}": {
-      "snippet": "bigtwoarrowsright{${1:arrow1}}{${2:arrow2}}"
-    },
-    "bigRelbar": {},
-    "bigRelbar[]": {
-      "snippet": "bigRelbar[${1:dimen}]"
+    {
+      "name": "mathtools"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "shortleftarrow"
+    },
+    {
+      "name": "shortrightarrow"
+    },
+    {
+      "name": "xlongequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xlongequal[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadleftarrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xtwoheadleftarrow[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadrightarrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xtwoheadrightarrow[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtofrom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xtofrom[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "newextarrow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newextarrow{${1:cmd}}{${2:space}}{${3:arrow}}"
+      }
+    },
+    {
+      "name": "twoarrowsleft",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "twoarrowsleft{${1:arrow1}}{${2:arrow2}}"
+      }
+    },
+    {
+      "name": "twoarrowsright",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "twoarrowsright{${1:arrow1}}{${2:arrow2}}"
+      }
+    },
+    {
+      "name": "bigtwoarrowsleft",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bigtwoarrowsleft{${1:arrow1}}{${2:arrow2}}"
+      }
+    },
+    {
+      "name": "bigtwoarrowsright",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bigtwoarrowsright{${1:arrow1}}{${2:arrow2}}"
+      }
+    },
+    {
+      "name": "bigRelbar",
+      "unusual": true
+    },
+    {
+      "name": "bigRelbar",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "bigRelbar[${1:dimen%l}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

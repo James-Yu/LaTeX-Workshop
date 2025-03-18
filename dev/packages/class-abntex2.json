@@ -1,381 +1,896 @@
 {
-  "includes": {
-    "ifthen": [],
-    "class-memoir": [],
-    "textcase": [],
-    "hyperref": [],
-    "bookmark": [],
-    "babel": [],
-    "enumitem": [],
-    "calc": []
-  },
-  "macros": {
-    "ABNTEXfontereduzida": {},
-    "pretextualchapter{}": {
-      "snippet": "pretextualchapter{${1:title}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "titulo{}": {
-      "snippet": "titulo{${1:texto do título}}"
+    {
+      "name": "class-memoir"
     },
-    "imprimirtitulo": {},
-    "tituloestrangeiro{}": {
-      "snippet": "tituloestrangeiro{${1:exto do título}}"
+    {
+      "name": "textcase"
     },
-    "imprimirtituloestrangeiro": {},
-    "autor{}": {
-      "snippet": "autor{${1:nome do(s) autor(${2:es})}}"
+    {
+      "name": "hyperref"
     },
-    "imprimirautor": {},
-    "data{}": {
-      "snippet": "data{${1:mês e ano ou data em português}}"
+    {
+      "name": "bookmark"
     },
-    "imprimirdata": {},
-    "instituicao{}": {
-      "snippet": "instituicao{${1:nome da instituição}}"
+    {
+      "name": "babel"
     },
-    "imprimirinstituicao": {},
-    "local{}": {
-      "snippet": "local{${1:localidade de apresentação do documento}}"
+    {
+      "name": "enumitem"
     },
-    "imprimirlocal": {},
-    "preambulo{}": {
-      "snippet": "preambulo{${1:preâmbulo do documento}}"
-    },
-    "imprimirpreambulo": {},
-    "tipotrabalho{}": {
-      "snippet": "tipotrabalho{${1:tipo do trabalho}}"
-    },
-    "imprimirtipotrabalho": {},
-    "orientador{}": {
-      "snippet": "orientador{${1:nome do(s) orientador(${2:es})}}"
-    },
-    "orientador[]{}": {
-      "snippet": "orientador[${2:rótulo}]{${1:nome do(s) orientador(${3:es})}}"
-    },
-    "imprimirorientador": {},
-    "imprimirorientadorRotulo": {},
-    "coorientador{}": {
-      "snippet": "coorientador{${1:nome do(s) coorientador(${2:es})}}"
-    },
-    "coorientador[]{}": {
-      "snippet": "coorientador[${2:rótulo}]{${1:nome do(s) coorientador(${3:es})}}"
-    },
-    "imprimircoorientador": {},
-    "imprimircoorientadorRotulo": {},
-    "phantompart": {},
-    "pretextual": {},
-    "imprimircapa": {},
-    "imprimirfolhaderosto": {},
-    "imprimirfolhaderosto[]": {
-      "snippet": "imprimirfolhaderosto[${1:nome da folha de rosto}]"
-    },
-    "imprimirfolhaderosto*": {},
-    "imprimirfolhaderosto*[]": {
-      "snippet": "imprimirfolhaderosto*[${1:nome da folha de rosto}]"
-    },
-    "folhaderostoname": {},
-    "folhaderostocontent": {},
-    "errataname": {},
-    "folhadeaprovacaoname": {},
-    "assinatura{}": {
-      "snippet": "assinatura{${1:texto a ser impresso}}"
-    },
-    "ABNTEXsignwidth": {},
-    "ABNTEXsignthickness": {},
-    "ABNTEXsignskip": {},
-    "dedicatorianame": {},
-    "agradecimentosname": {},
-    "epigraphname": {},
-    "resumoname": {},
-    "listadesiglasname": {},
-    "listadesimbolosname": {},
-    "subsubsubsection{}": {
-      "snippet": "subsubsubsection{${1:title}}"
-    },
-    "subsubsubsection[]{}": {
-      "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
-    },
-    "subsubsubsection*{}": {
-      "snippet": "subsubsubsection*{${1:title}}"
-    },
-    "textual": {},
-    "ABNTEXchapterfont": {},
-    "ABNTEXchapterfontsize": {},
-    "ABNTEXpartfont": {},
-    "ABNTEXpartfontsize": {},
-    "ABNTEXsectionfont": {},
-    "ABNTEXsectionfontsize": {},
-    "ABNTEXsubsectionfont": {},
-    "ABNTEXsubsectionfontsize": {},
-    "ABNTEXsubsubsectionfont": {},
-    "ABNTEXsubsubsectionfontsize": {},
-    "ABNTEXsubsubsubsectionfont": {},
-    "ABNTEXsubsubsubsectionfontsize": {},
-    "ABNTEXcitacaorecuo": {},
-    "ABNTEXcaptiondelim": {},
-    "IBGEtab{}{}{}": {
-      "snippet": "IBGEtab{${1:Nome e rótulo}}{${2:Conteúdo da tabela}}{${3:Conteúdo da legenda}}"
-    },
-    "ibgetab{}{}{}": {
-      "snippet": "ibgetab{${1:Nome e rótulo}}{${2:Conteúdo da tabela}}{${3:Conteúdo da legenda}}"
-    },
-    "fonte{}": {
-      "snippet": "fonte{${1:Descrição}}"
-    },
-    "fonte[]{}": {
-      "snippet": "fonte[${2:Rótulo}]{${1:Descrição}}"
-    },
-    "nota{}": {
-      "snippet": "nota{${1:Nota}}"
-    },
-    "nota[]{}": {
-      "snippet": "nota[${2:Rótulo}]{${1:Nota}}"
-    },
-    "IBGEtabfontsize": {},
-    "postextual": {},
-    "apendices": {},
-    "apendicename": {},
-    "apendicesname": {},
-    "partpage": {},
-    "partapendices": {},
-    "anexos": {},
-    "anexoname": {},
-    "anexosname": {},
-    "partanexos": {},
-    "abnTeX": {},
-    "coorientadorname": {},
-    "fontename": {},
-    "notaname": {},
-    "orientadorname": {},
-    "captionsbrazil": {},
-    "datebrazil": {},
-    "extrasbrazil": {},
-    "noextrasbrazil": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "ord": {},
-    "orda": {},
-    "ro": {},
-    "ra": {},
-    "ABNTEXcaptionfontedelim": {},
-    "ABNTEXchapterupperifneeded{}": {
-      "snippet": "ABNTEXchapterupperifneeded{${1:text}}"
-    },
-    "ABNTEXcsign{}": {
-      "snippet": "ABNTEXcsign{${1:arg}}"
-    },
-    "ABNTEXisarticle": {},
-    "ABNTEXistwocolumn": {},
-    "ABNTEXsectionupperifneeded{}": {
-      "snippet": "ABNTEXsectionupperifneeded{${1:text}}"
-    },
-    "ABNTEXsign{}": {
-      "snippet": "ABNTEXsign{${1:arg}}"
-    },
-    "ABNTEXsubsectionupperifneeded{}": {
-      "snippet": "ABNTEXsubsectionupperifneeded{${1:text}}"
-    },
-    "ABNTEXsubsubsectionupperifneeded{}": {
-      "snippet": "ABNTEXsubsubsectionupperifneeded{${1:text}}"
-    },
-    "ABNTEXsubsubsubsectionupperifneeded{}": {
-      "snippet": "ABNTEXsubsubsubsectionupperifneeded{${1:text}}"
-    },
-    "cftbeforesubsubsubsectionskip": {},
-    "cftlastnumwidth": {},
-    "cftsubsubsubsectionfont": {},
-    "chapternamenumlength": {},
-    "configurecaptions": {},
-    "configureseparator": {},
-    "imprimirfolhaderostonostar{}": {
-      "snippet": "imprimirfolhaderostonostar{${1:title}}"
-    },
-    "imprimirfolhaderostostar{}": {
-      "snippet": "imprimirfolhaderostostar{${1:title}}"
-    },
-    "myptabbox": {},
-    "myptabboxwidth": {},
-    "olddate": {},
-    "PRIVATEapendiceconfig{}{}": {
-      "snippet": "PRIVATEapendiceconfig{${1:arg1}}{${2:arg2}}"
-    },
-    "PRIVATEbookmarkthis{}": {
-      "snippet": "PRIVATEbookmarkthis{${1:arg1}}"
-    },
-    "PRIVATEclearpageifneeded": {},
-    "setsubsubsubsecheadstyle": {},
-    "switchchapname{}": {
-      "snippet": "switchchapname{${1:arg}}"
-    },
-    "theforeigntitle": {},
-    "tocinnonumchapter": {},
-    "tocpartanexos": {},
-    "tocpartapendices": {},
-    "tocprintchapter": {},
-    "tocprintchapternonum": {}
-  },
-  "envs": {
-    "capa": {},
-    "fichacatalografica": {},
-    "errata": {},
-    "errata[]": {
-      "name": "errata",
-      "snippet": "[${1:nome da errata}]"
-    },
-    "folhadeaprovacao": {},
-    "folhadeaprovacao[]": {
-      "name": "folhadeaprovacao",
-      "snippet": "[${1:nome da folha de aprovação}]"
-    },
-    "dedicatoria": {},
-    "dedicatoria[]": {
-      "name": "dedicatoria",
-      "snippet": "[${1:nome da dedicatória}]"
-    },
-    "agradecimentos": {},
-    "agradecimentos[]": {
-      "name": "agradecimentos",
-      "snippet": "[${1:nome dos agradecimentos}]"
-    },
-    "epigrafe": {},
-    "epigrafe[]": {
-      "name": "epigrafe",
-      "snippet": "[${1:nome da epígrafe}]"
-    },
-    "resumo": {},
-    "resumo[]": {
-      "name": "resumo",
-      "snippet": "[${1:nome do resumo}]"
-    },
-    "resumoumacoluna": {},
-    "resumoumacoluna[]": {
-      "name": "resumoumacoluna",
-      "snippet": "[${1:nome do resumo}]"
-    },
-    "siglas": {},
-    "simbolos": {},
-    "citacao": {},
-    "citacao[]": {
-      "name": "citacao",
-      "snippet": "[${1:language}]"
-    },
-    "alineas": {},
-    "alineas[]": {
-      "name": "alineas",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "subalineas": {},
-    "subalineas[]": {
-      "name": "subalineas",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "incisos": {},
-    "incisos[]": {
-      "name": "incisos",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "apendicesenv": {},
-    "anexosenv": {},
-    "folhaderosto*": {},
-    "folhaderosto*[]": {
-      "name": "folhaderosto*",
-      "snippet": "[${1:title}]"
-    },
-    "folhaderosto": {},
-    "folhaderosto[]": {
-      "name": "folhaderosto",
-      "snippet": "[${1:title}]"
+    {
+      "name": "calc"
     }
-  },
-  "options": [
-    "article",
-    "twocolumn",
-    "chapter=TITLE",
-    "section=TITLE",
-    "subsection=TITLE",
-    "subsubsection=TITLE",
-    "subsubsubsection=TITLE",
-    "sumario=",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "25pt",
-    "30pt",
-    "36pt",
-    "48pt",
-    "60pt",
-    "9pt",
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "b3paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "broadsheetpaper",
-    "crownvopaper",
-    "dbillpaper",
-    "demyvopaper",
-    "draft",
-    "ebook",
-    "executivepaper",
-    "extrafontsizes",
-    "final",
-    "fleqn",
-    "foolscapvopaper",
-    "fullptlayout",
-    "imperialvopaper",
-    "landscape",
-    "largecrownvopaper",
-    "largepostvopaper",
-    "ledgerpaper",
-    "legalpaper",
-    "leqno",
-    "letterpaper",
-    "mcrownvopaper",
-    "mdemyvopaper",
-    "mediumvopaper",
-    "mlargecrownvopaper",
-    "ms",
-    "msmallroyalvopaper",
-    "oldfontcommands",
-    "oldpaper",
-    "onecolumn",
-    "oneside",
-    "openany",
-    "openbib",
-    "openleft",
-    "openright",
-    "postvopaper",
-    "pottvopaper",
-    "royalvopaper",
-    "showtrims",
-    "smalldemyvopaper",
-    "smallroyalvopaper",
-    "statementpaper",
-    "superroyalvopaper",
-    "twoside"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "ABNTEXfontereduzida",
+      "unusual": true
+    },
+    {
+      "name": "pretextualchapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "pretextualchapter{${1:title}}"
+      }
+    },
+    {
+      "name": "titulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "titulo{${1:texto do título%text}}"
+      }
+    },
+    {
+      "name": "imprimirtitulo"
+    },
+    {
+      "name": "tituloestrangeiro",
+      "arg": {
+        "format": "{}",
+        "snippet": "tituloestrangeiro{${1:exto do título%text}}"
+      }
+    },
+    {
+      "name": "imprimirtituloestrangeiro"
+    },
+    {
+      "name": "autor",
+      "arg": {
+        "format": "{}",
+        "snippet": "autor{${1:nome do(${2:s}) autor(${3:es})}}"
+      }
+    },
+    {
+      "name": "imprimirautor"
+    },
+    {
+      "name": "data",
+      "arg": {
+        "format": "{}",
+        "snippet": "data{${1:mês e ano ou data em português}}"
+      }
+    },
+    {
+      "name": "imprimirdata"
+    },
+    {
+      "name": "instituicao",
+      "arg": {
+        "format": "{}",
+        "snippet": "instituicao{${1:nome da instituição%text}}"
+      }
+    },
+    {
+      "name": "imprimirinstituicao"
+    },
+    {
+      "name": "local",
+      "arg": {
+        "format": "{}",
+        "snippet": "local{${1:localidade de apresentação do documento%text}}"
+      }
+    },
+    {
+      "name": "imprimirlocal"
+    },
+    {
+      "name": "preambulo",
+      "arg": {
+        "format": "{}",
+        "snippet": "preambulo{${1:preâmbulo do documento%text}}"
+      }
+    },
+    {
+      "name": "imprimirpreambulo"
+    },
+    {
+      "name": "tipotrabalho",
+      "arg": {
+        "format": "{}",
+        "snippet": "tipotrabalho{${1:tipo do trabalho%text}}"
+      }
+    },
+    {
+      "name": "imprimirtipotrabalho"
+    },
+    {
+      "name": "orientador",
+      "arg": {
+        "format": "{}",
+        "snippet": "orientador{${1:nome do(${2:s}) orientador(${3:es})}}"
+      }
+    },
+    {
+      "name": "orientador",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "orientador[${2:rótulo}]{${1:nome do(${3:s}) orientador(${4:es})}}"
+      }
+    },
+    {
+      "name": "imprimirorientador"
+    },
+    {
+      "name": "imprimirorientadorRotulo"
+    },
+    {
+      "name": "coorientador",
+      "arg": {
+        "format": "{}",
+        "snippet": "coorientador{${1:nome do(${2:s}) coorientador(${3:es})}}"
+      }
+    },
+    {
+      "name": "coorientador",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coorientador[${2:rótulo}]{${1:nome do(${3:s}) coorientador(${4:es})}}"
+      }
+    },
+    {
+      "name": "imprimircoorientador"
+    },
+    {
+      "name": "imprimircoorientadorRotulo"
+    },
+    {
+      "name": "phantompart"
+    },
+    {
+      "name": "pretextual"
+    },
+    {
+      "name": "imprimircapa"
+    },
+    {
+      "name": "imprimirfolhaderosto"
+    },
+    {
+      "name": "imprimirfolhaderosto",
+      "arg": {
+        "format": "[]",
+        "snippet": "imprimirfolhaderosto[${1:nome da folha de rosto%text}]"
+      }
+    },
+    {
+      "name": "imprimirfolhaderosto*"
+    },
+    {
+      "name": "imprimirfolhaderosto*",
+      "arg": {
+        "format": "[]",
+        "snippet": "imprimirfolhaderosto*[${1:nome da folha de rosto%text}]"
+      }
+    },
+    {
+      "name": "folhaderostoname"
+    },
+    {
+      "name": "folhaderostocontent",
+      "unusual": true
+    },
+    {
+      "name": "errataname"
+    },
+    {
+      "name": "folhadeaprovacaoname"
+    },
+    {
+      "name": "assinatura",
+      "arg": {
+        "format": "{}",
+        "snippet": "assinatura{${1:texto a ser impresso%text}}"
+      }
+    },
+    {
+      "name": "ABNTEXsignwidth",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsignthickness",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsignskip",
+      "unusual": true
+    },
+    {
+      "name": "dedicatorianame"
+    },
+    {
+      "name": "agradecimentosname"
+    },
+    {
+      "name": "epigraphname"
+    },
+    {
+      "name": "resumoname"
+    },
+    {
+      "name": "listadesiglasname"
+    },
+    {
+      "name": "listadesimbolosname"
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsubsection{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsubsection*",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsubsection*{${1:title}}"
+      }
+    },
+    {
+      "name": "textual"
+    },
+    {
+      "name": "ABNTEXchapterfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXchapterfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXpartfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXpartfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsectionfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsectionfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsubsectionfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsubsubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsubsubsubsectionfontsize",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXcitacaorecuo",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXcaptiondelim",
+      "unusual": true
+    },
+    {
+      "name": "IBGEtab",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "IBGEtab{${1:Nome e rótulo%text}}{${2:Conteúdo da tabela%text}}{${3:Conteúdo da legenda%text}}"
+      }
+    },
+    {
+      "name": "ibgetab",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ibgetab{${1:Nome e rótulo%text}}{${2:Conteúdo da tabela%text}}{${3:Conteúdo da legenda%text}}"
+      }
+    },
+    {
+      "name": "fonte",
+      "arg": {
+        "format": "{}",
+        "snippet": "fonte{${1:Descrição%text}}"
+      }
+    },
+    {
+      "name": "fonte",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fonte[${2:Rótulo%text}]{${1:Descrição%text}}"
+      }
+    },
+    {
+      "name": "nota",
+      "arg": {
+        "format": "{}",
+        "snippet": "nota{${1:Nota%text}}"
+      }
+    },
+    {
+      "name": "nota",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nota[${2:Rótulo%text}]{${1:Nota%text}}"
+      }
+    },
+    {
+      "name": "IBGEtabfontsize",
+      "unusual": true
+    },
+    {
+      "name": "postextual"
+    },
+    {
+      "name": "apendices"
+    },
+    {
+      "name": "apendicename"
+    },
+    {
+      "name": "apendicesname"
+    },
+    {
+      "name": "partpage"
+    },
+    {
+      "name": "partapendices"
+    },
+    {
+      "name": "anexos"
+    },
+    {
+      "name": "anexoname"
+    },
+    {
+      "name": "anexosname"
+    },
+    {
+      "name": "partanexos"
+    },
+    {
+      "name": "abnTeX"
+    },
+    {
+      "name": "coorientadorname"
+    },
+    {
+      "name": "fontename"
+    },
+    {
+      "name": "notaname"
+    },
+    {
+      "name": "orientadorname"
+    },
+    {
+      "name": "captionsbrazil",
+      "unusual": true
+    },
+    {
+      "name": "datebrazil",
+      "unusual": true
+    },
+    {
+      "name": "extrasbrazil",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbrazil",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "ord"
+    },
+    {
+      "name": "orda"
+    },
+    {
+      "name": "ro",
+      "unusual": true
+    },
+    {
+      "name": "ra",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXcaptionfontedelim"
+    },
+    {
+      "name": "ABNTEXchapterupperifneeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXchapterupperifneeded{${1:text}}"
+      }
+    },
+    {
+      "name": "ABNTEXcsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXcsign{${1:arg}}"
+      }
+    },
+    {
+      "name": "ABNTEXisarticle",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXistwocolumn",
+      "unusual": true
+    },
+    {
+      "name": "ABNTEXsectionupperifneeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXsectionupperifneeded{${1:text}}"
+      }
+    },
+    {
+      "name": "ABNTEXsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXsign{${1:arg}}"
+      }
+    },
+    {
+      "name": "ABNTEXsubsectionupperifneeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXsubsectionupperifneeded{${1:text}}"
+      }
+    },
+    {
+      "name": "ABNTEXsubsubsectionupperifneeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXsubsubsectionupperifneeded{${1:text}}"
+      }
+    },
+    {
+      "name": "ABNTEXsubsubsubsectionupperifneeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ABNTEXsubsubsubsectionupperifneeded{${1:text}}"
+      }
+    },
+    {
+      "name": "cftbeforesubsubsubsectionskip",
+      "unusual": true
+    },
+    {
+      "name": "cftlastnumwidth",
+      "unusual": true
+    },
+    {
+      "name": "cftsubsubsubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "chapternamenumlength",
+      "unusual": true
+    },
+    {
+      "name": "configurecaptions",
+      "unusual": true
+    },
+    {
+      "name": "configureseparator",
+      "unusual": true
+    },
+    {
+      "name": "imprimirfolhaderostonostar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "imprimirfolhaderostonostar{${1:title%text}}"
+      }
+    },
+    {
+      "name": "imprimirfolhaderostostar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "imprimirfolhaderostostar{${1:title%text}}"
+      }
+    },
+    {
+      "name": "myptabbox",
+      "unusual": true
+    },
+    {
+      "name": "myptabboxwidth",
+      "unusual": true
+    },
+    {
+      "name": "PRIVATEapendiceconfig",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRIVATEapendiceconfig{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "PRIVATEbookmarkthis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRIVATEbookmarkthis{${1:arg1}}"
+      }
+    },
+    {
+      "name": "PRIVATEclearpageifneeded",
+      "unusual": true
+    },
+    {
+      "name": "setsubsubsubsecheadstyle",
+      "unusual": true
+    },
+    {
+      "name": "switchchapname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "switchchapname{${1:arg}}"
+      }
+    },
+    {
+      "name": "theforeigntitle",
+      "unusual": true
+    },
+    {
+      "name": "tocinnonumchapter",
+      "unusual": true
+    },
+    {
+      "name": "tocpartanexos",
+      "unusual": true
+    },
+    {
+      "name": "tocpartapendices",
+      "unusual": true
+    },
+    {
+      "name": "tocprintchapter",
+      "unusual": true
+    },
+    {
+      "name": "tocprintchapternonum",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "capa"
+    },
+    {
+      "name": "fichacatalografica"
+    },
+    {
+      "name": "errata"
+    },
+    {
+      "name": "errata",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome da errata%text}]"
+      }
+    },
+    {
+      "name": "folhadeaprovacao"
+    },
+    {
+      "name": "folhadeaprovacao",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome da folha de aprovação%text}]"
+      }
+    },
+    {
+      "name": "dedicatoria"
+    },
+    {
+      "name": "dedicatoria",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome da dedicatória%text}]"
+      }
+    },
+    {
+      "name": "agradecimentos"
+    },
+    {
+      "name": "agradecimentos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome dos agradecimentos%text}]"
+      }
+    },
+    {
+      "name": "epigrafe"
+    },
+    {
+      "name": "epigrafe",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome da epígrafe%text}]"
+      }
+    },
+    {
+      "name": "resumo"
+    },
+    {
+      "name": "resumo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome do resumo%text}]"
+      }
+    },
+    {
+      "name": "resumoumacoluna"
+    },
+    {
+      "name": "resumoumacoluna",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:nome do resumo%text}]"
+      }
+    },
+    {
+      "name": "siglas"
+    },
+    {
+      "name": "simbolos"
+    },
+    {
+      "name": "citacao"
+    },
+    {
+      "name": "citacao",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    },
+    {
+      "name": "alineas"
+    },
+    {
+      "name": "alineas",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{alineas}#c,\\begin{subalineas}#c,\\begin{incisos}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subalineas"
+    },
+    {
+      "name": "subalineas",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{alineas}#c,\\begin{subalineas}#c,\\begin{incisos}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "incisos"
+    },
+    {
+      "name": "incisos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{alineas}#c,\\begin{subalineas}#c,\\begin{incisos}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "apendicesenv"
+    },
+    {
+      "name": "anexosenv"
+    },
+    {
+      "name": "folhaderosto*",
+      "unusual": true
+    },
+    {
+      "name": "folhaderosto*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "folhaderosto",
+      "unusual": true
+    },
+    {
+      "name": "folhaderosto",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/abntex2#c": [
+      "article",
+      "twocolumn",
+      "chapter=TITLE",
+      "section=TITLE",
+      "subsection=TITLE",
+      "subsubsection=TITLE",
+      "subsubsubsection=TITLE",
+      "sumario=${1|abnt-6027-2012,tradicional|}",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "25pt",
+      "30pt",
+      "36pt",
+      "48pt",
+      "60pt",
+      "9pt",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "b3paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "broadsheetpaper",
+      "crownvopaper",
+      "dbillpaper",
+      "demyvopaper",
+      "draft",
+      "ebook",
+      "executivepaper",
+      "extrafontsizes",
+      "final",
+      "fleqn",
+      "foolscapvopaper",
+      "fullptlayout",
+      "imperialvopaper",
+      "landscape",
+      "largecrownvopaper",
+      "largepostvopaper",
+      "ledgerpaper",
+      "legalpaper",
+      "leqno",
+      "letterpaper",
+      "mcrownvopaper",
+      "mdemyvopaper",
+      "mediumvopaper",
+      "mlargecrownvopaper",
+      "ms",
+      "msmallroyalvopaper",
+      "oldfontcommands",
+      "oldpaper",
+      "onecolumn",
+      "oneside",
+      "openany",
+      "openbib",
+      "openleft",
+      "openright",
+      "postvopaper",
+      "pottvopaper",
+      "royalvopaper",
+      "showtrims",
+      "smalldemyvopaper",
+      "smallroyalvopaper",
+      "statementpaper",
+      "superroyalvopaper",
+      "twoside"
+    ],
+    "\\begin{alineas}#c,\\begin{subalineas}#c,\\begin{incisos}#c": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -391,7 +906,7 @@
       "ref=${1:commands}",
       "font=${1:commands}",
       "format=${1:commands}",
-      "align=",
+      "align=${1|left,right,parleft|}",
       "labelindent=",
       "left=${1:labelindent}",
       "left=${1:labelindent} .. ${2:leftmargin}",
@@ -415,7 +930,7 @@
       "after*=${1:code}",
       "first=${1:code}",
       "first*=${1:code}",
-      "style=",
+      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
       "noitemsep",
       "nosep",
       "wide",
@@ -423,7 +938,10 @@
       "itemjoin=${1:string}",
       "itemjoin*=${1:string}",
       "afterlabel=${1:string}",
-      "mode="
+      "mode=${1|unboxed,boxed|}"
     ]
+  },
+  "args": [
+    "\\documentclass/abntex2#c"
   ]
 }

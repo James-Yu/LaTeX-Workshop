@@ -1,165 +1,320 @@
 {
-  "includes": {
-    "amsmath": [],
-    "class-ctexbook": [],
-    "xeCJK": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "keyval": [],
-    "graphicx": [],
-    "geometry": [],
-    "fancyhdr": [],
-    "ulem": [],
-    "hyperref": [],
-    "unicode-math": [],
-    "amssymb": [],
-    "tikz": [],
-    "scrextend": [],
-    "tocloft": [],
-    "caption": [],
-    "subcaption": [],
-    "setspace": [],
-    "enumitem": []
-  },
-  "macros": {
-    "setpdfproperties": {
-      "option": "pdfprop"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "ctitle{}": {
-      "snippet": "ctitle{${1:中文标题}}"
+    {
+      "name": "class-ctexbook"
     },
-    "etitle{}": {
-      "snippet": "etitle{${1:English title}}"
+    {
+      "name": "xeCJK"
     },
-    "cauthor{}": {
-      "snippet": "cauthor{${1:中文名}}"
+    {
+      "name": "ifpdf"
     },
-    "eauthor{}": {
-      "snippet": "eauthor{${1:English name}}"
+    {
+      "name": "ifxetex"
     },
-    "date{}": {
-      "snippet": "date{${1:date}}"
+    {
+      "name": "keyval"
     },
-    "studentid{}": {
-      "snippet": "studentid{${1:number}}"
+    {
+      "name": "graphicx"
     },
-    "school{}": {
-      "snippet": "school{${1:school}}"
+    {
+      "name": "geometry"
     },
-    "cmajor{}": {
-      "snippet": "cmajor{${1:中文专业}}"
+    {
+      "name": "fancyhdr"
     },
-    "emajor{}": {
-      "snippet": "emajor{${1:English major}}"
+    {
+      "name": "ulem"
     },
-    "direction{}": {
-      "snippet": "direction{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "cmentor{}": {
-      "snippet": "cmentor{${1:中文导师}}"
+    {
+      "name": "unicode-math"
     },
-    "ementor{}": {
-      "snippet": "ementor{${1:English mentor}}"
+    {
+      "name": "amssymb"
     },
-    "ckeywords{}": {
-      "snippet": "ckeywords{${1:中文关键词}}"
+    {
+      "name": "tikz"
     },
-    "ekeywords{}": {
-      "snippet": "ekeywords{${1:English keywords}}"
+    {
+      "name": "scrextend"
     },
-    "degreetype{}": {
-      "snippet": "degreetype{${1:type}}"
+    {
+      "name": "tocloft"
     },
-    "blindid{}": {
-      "snippet": "blindid{${1:number}}"
+    {
+      "name": "caption"
     },
-    "discipline{}": {
-      "snippet": "discipline{${1:discipline}}"
+    {
+      "name": "subcaption"
     },
-    "makeblind": {},
-    "cuniversity": {},
-    "euniversity": {},
-    "cthesisname": {},
-    "ethesisname": {},
-    "thesiscover": {},
-    "mentorlines": {},
-    "cabstractname": {},
-    "eabstractname": {},
-    "pkuthssinfo{}": {
-      "snippet": "pkuthssinfo{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "setspace"
     },
-    "specialchap{}": {
-      "snippet": "specialchap{${1:title}}"
-    },
-    "thssnl": {},
-    "prodop": {},
-    "sumop": {},
-    "blacksquare": {
-      "detail": "⬛",
-      "documentation": "BLACK LARGE SQUARE"
-    },
-    "titlepagename": {}
-  },
-  "envs": {
-    "cabstract": {},
-    "eabstract": {},
-    "beabstract": {}
-  },
-  "options": [
-    "uppermark",
-    "nouppermark",
-    "pkufont",
-    "nopkufont",
-    "pkufoot",
-    "nopkufoot",
-    "pkuspace",
-    "nopkuspace",
-    "spacing",
-    "nospacing",
-    "spechap",
-    "nospechap",
-    "pdftoc",
-    "nopdftoc",
-    "pdfprop",
-    "nopdfprop",
-    "GBK",
-    "UTF8",
-    "zhmap=",
-    "zihao=",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=",
-    "linespread=${1:number}",
-    "punct=",
-    "space=",
-    "autoindent=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "enumitem"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setpdfproperties",
+      "if": "pdfprop"
+    },
+    {
+      "name": "ctitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctitle{${1:中文标题%text}}"
+      }
+    },
+    {
+      "name": "etitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "etitle{${1:English title%text}}"
+      }
+    },
+    {
+      "name": "cauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "cauthor{${1:中文名}}"
+      }
+    },
+    {
+      "name": "eauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "eauthor{${1:English name}}"
+      }
+    },
+    {
+      "name": "studentid",
+      "arg": {
+        "format": "{}",
+        "snippet": "studentid{${1:number}}"
+      }
+    },
+    {
+      "name": "school",
+      "arg": {
+        "format": "{}",
+        "snippet": "school{${1:school%text}}"
+      }
+    },
+    {
+      "name": "cmajor",
+      "arg": {
+        "format": "{}",
+        "snippet": "cmajor{${1:中文专业%text}}"
+      }
+    },
+    {
+      "name": "emajor",
+      "arg": {
+        "format": "{}",
+        "snippet": "emajor{${1:English major%text}}"
+      }
+    },
+    {
+      "name": "direction",
+      "arg": {
+        "format": "{}",
+        "snippet": "direction{${1:text}}"
+      }
+    },
+    {
+      "name": "cmentor",
+      "arg": {
+        "format": "{}",
+        "snippet": "cmentor{${1:中文导师}}"
+      }
+    },
+    {
+      "name": "ementor",
+      "arg": {
+        "format": "{}",
+        "snippet": "ementor{${1:English mentor}}"
+      }
+    },
+    {
+      "name": "ckeywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "ckeywords{${1:中文关键词%text}}"
+      }
+    },
+    {
+      "name": "ekeywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "ekeywords{${1:English keywords%text}}"
+      }
+    },
+    {
+      "name": "degreetype",
+      "arg": {
+        "format": "{}",
+        "snippet": "degreetype{${1:type}}"
+      }
+    },
+    {
+      "name": "blindid",
+      "arg": {
+        "format": "{}",
+        "snippet": "blindid{${1:number}}"
+      }
+    },
+    {
+      "name": "discipline",
+      "arg": {
+        "format": "{}",
+        "snippet": "discipline{${1:discipline%text}}"
+      }
+    },
+    {
+      "name": "makeblind"
+    },
+    {
+      "name": "cuniversity",
+      "unusual": true
+    },
+    {
+      "name": "euniversity",
+      "unusual": true
+    },
+    {
+      "name": "cthesisname",
+      "unusual": true
+    },
+    {
+      "name": "ethesisname",
+      "unusual": true
+    },
+    {
+      "name": "thesiscover",
+      "unusual": true
+    },
+    {
+      "name": "mentorlines",
+      "unusual": true
+    },
+    {
+      "name": "cabstractname",
+      "unusual": true
+    },
+    {
+      "name": "eabstractname",
+      "unusual": true
+    },
+    {
+      "name": "pkuthssinfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "pkuthssinfo{${1:options%keyvals}}",
+        "keys": [
+          "\\pkuthssinfo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "specialchap",
+      "arg": {
+        "format": "{}",
+        "snippet": "specialchap{${1:title}}"
+      }
+    },
+    {
+      "name": "thssnl"
+    },
+    {
+      "name": "prodop",
+      "unusual": true
+    },
+    {
+      "name": "sumop",
+      "unusual": true
+    },
+    {
+      "name": "blacksquare",
+      "unusual": true
+    },
+    {
+      "name": "titlepagename",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "cabstract"
+    },
+    {
+      "name": "eabstract"
+    },
+    {
+      "name": "beabstract"
+    }
+  ],
+  "keys": {
+    "\\documentclass/pkuthss#c": [
+      "uppermark",
+      "nouppermark",
+      "pkufont",
+      "nopkufont",
+      "pkufoot",
+      "nopkufoot",
+      "pkuspace",
+      "nopkuspace",
+      "spacing",
+      "nospacing",
+      "spechap",
+      "nospechap",
+      "pdftoc",
+      "nopdftoc",
+      "pdfprop",
+      "nopdfprop",
+      "GBK",
+      "UTF8",
+      "zhmap=${1|true,false,zhmCJK|}",
+      "zihao=${1|-4,5,false|}",
+      "heading",
+      "sub3section",
+      "sub4section",
+      "scheme=${1|chinese,plain|}",
+      "linespread=${1:number}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+      "space=${1|true,false,auto|}",
+      "autoindent=",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ],
+    "\\pkuthssinfo": [
       "ctitle={${1:中文标题}}",
       "etitle={${1:English title}}",
       "cauthor={${1:中文名}}",
@@ -186,5 +341,8 @@
       "cabstractname={${1:text}}",
       "eabstractname={${1:text}}"
     ]
+  },
+  "args": [
+    "\\documentclass/pkuthss#c"
   ]
 }

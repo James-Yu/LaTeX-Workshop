@@ -1,0 +1,1356 @@
+{
+  "deps": [
+    {
+      "name": "pgfrcs"
+    },
+    {
+      "name": "pgfkeys"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfmathsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsetlength{${1:length register}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathaddtolength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathaddtolength{${1:length register}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathsetcount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsetcount{${1:count register}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathaddtocount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathaddtocount{${1:count register}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathsetcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsetcounter{${1:counter}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathaddtocounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathaddtocounter{${1:counter}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathsetmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsetmacro{${1:cmd}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathsetlengthmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsetlengthmacro{${1:cmd}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathtruncatemacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathtruncatemacro{${1:cmd}}{${2:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathnewcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathnewcounter{${1:counter}}"
+      }
+    },
+    {
+      "name": "pgfmathmakecounterglobal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathmakecounterglobal{${1:counter}}"
+      }
+    },
+    {
+      "name": "pgfmathanglebetweenpoints",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathanglebetweenpoints{${1:point 1}}{${2:point 2}}"
+      }
+    },
+    {
+      "name": "pgfmathanglebetweenlines",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathanglebetweenlines{${1:line 1 start}}{${2:line 1 end}}{${3:line 2 start}}{${4:line 2 end}}"
+      }
+    },
+    {
+      "name": "pgfmathrotatepointaround",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathrotatepointaround{${1:point}}{${2:rotate center}}{${3:degree}}"
+      }
+    },
+    {
+      "name": "pgfmathreflectpointalongaxis",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathreflectpointalongaxis{${1:point}}{${2:point on axis}}{${3:axis angle}}"
+      }
+    },
+    {
+      "name": "pgfmathpointintersectionoflineandarc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pgfmathpointintersectionoflineandarc{${1:point 1}}{${2:point 2}}{${3:arc center}}{${4:start angle}}{${5:end angle}}{${6:radii}}"
+      }
+    },
+    {
+      "name": "pgfmathangleonellipse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathangleonellipse{${1:point on ellipse}}{${2:radii}}"
+      }
+    },
+    {
+      "name": "pgfmathincluded",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathcontinueloop",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathcontinuelooptrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathcontinueloopfalse",
+      "unusual": true
+    },
+    {
+      "name": "repeatpgfmathloop",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathbreakloop",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathreturn",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathcounter",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathfloat",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloattrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathunitsdeclared",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathunitsdeclaredtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathunitsdeclaredfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathmathunitsdeclared",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathmathunitsdeclaredtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathmathunitsdeclaredfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathignoreunitscale",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathignoreunitscaletrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathignoreunitscalefalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathprint{${1:real number}}"
+      }
+    },
+    {
+      "name": "pgfmathparse",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathparse{${1:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathqparse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathqparse{${1:math expression}}"
+      }
+    },
+    {
+      "name": "pgfmathpostparse",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathscaleresult",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathsetresultunitscale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsetresultunitscale{${1:scale value}}"
+      }
+    },
+    {
+      "name": "pgfmathresultunitscale",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathifexpression",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathifexpression{${1:math expression}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfmathdeclareoperator",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfmathdeclareoperator{${1:op}}{${2:op name}}{${3:arity}}{${4:type}}{${5:precedence}}"
+      }
+    },
+    {
+      "name": "pgfmathdeclarefunction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathdeclarefunction{${1:name}}{${2:num of args}}{${3:code}}"
+      }
+    },
+    {
+      "name": "pgfmathdeclarefunction*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathdeclarefunction*{${1:name}}{${2:num of args}}{${3:code}}"
+      }
+    },
+    {
+      "name": "pgfmathredeclarefunction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathredeclarefunction{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfmathnotifynewdeclarefunction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathnotifynewdeclarefunction{${1:name}}{${2:num of args}}{${3:code}}"
+      }
+    },
+    {
+      "name": "pgfmathdeclarepseudoconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathdeclarepseudoconstant{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfmathredeclarepseudoconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathredeclarepseudoconstant{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfmathadd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathadd{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathsubtract",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathsubtract{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathneg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathneg{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathmultiply",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathmultiply{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathdivide",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathdivide{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathreciprocal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathreciprocal{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathdiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathdiv{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathmod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathmod{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathMod",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathMod{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathabs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathabs{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsign{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathe",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathln",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathln{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathlogten",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathlogten{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathlogtwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathlogtwo{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathexp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathexp{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathsqrt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsqrt{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathpow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathpow{${1:x}}{${2:power}}"
+      }
+    },
+    {
+      "name": "pgfmathfactorial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfactorial{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathpi",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathiftrigonometricusesdeg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathiftrigonometricusesdeg{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "pgfmathradians",
+      "unusual": true,
+      "arg": {
+        "format": "{} ",
+        "snippet": "pgfmathradians{${1:x in radians}} "
+      }
+    },
+    {
+      "name": "pgfmathdeg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathdeg{${1:x in radians}}"
+      }
+    },
+    {
+      "name": "pgfmathrad",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathrad{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathsin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsin{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathcos",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathcos{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathsincos",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsincos{${1:num in degress}}"
+      }
+    },
+    {
+      "name": "pgfmathtan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathtan{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathcosec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathcosec{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathsec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsec{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathcot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathcot{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathasin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathasin{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathacos",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathacos{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathatan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathatan{${1:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathatantwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathatantwo{${1:y in degrees}}{${2:x in degrees}}"
+      }
+    },
+    {
+      "name": "pgfmathsetseed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsetseed{${1:integer}}"
+      }
+    },
+    {
+      "name": "pgfmathgeneratepseudorandomnumber",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathrnd",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathrand",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathrandom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathrandom{${1:[[${2:min int,}] max int]}}"
+      }
+    },
+    {
+      "name": "pgfmathrandominteger",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathrandominteger{${1:cmd}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pgfmathdeclarerandomlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathdeclarerandomlist{${1:list name}}{${2:list of items}}"
+      }
+    },
+    {
+      "name": "pgfmathrandomitem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathrandomitem{${1:cmd}}{${2:list name}}"
+      }
+    },
+    {
+      "name": "pgfmathgreater",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathgreater{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathgreaterthan",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathgreaterthan{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathless",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathless{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathlessthan",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathlessthan{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathequal{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathequalto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathequalto{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "ifpgfmathcomparison",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathcomparisontrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathcomparisonfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathapproxequalto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathapproxequalto{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathifthenelse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathifthenelse{${1:x}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfmathnotequal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathnotequal{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathnotless",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathnotless{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathnotgreater",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathnotgreater{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathand{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathor{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathnot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathnot{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathbin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathbin{${1:x in base 10}}"
+      }
+    },
+    {
+      "name": "pgfmathhex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathhex{${1:x in base 10}}"
+      }
+    },
+    {
+      "name": "pgfmathHex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathHex{${1:x in base 10}}"
+      }
+    },
+    {
+      "name": "pgfmathoct",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathoct{${1:x in base 10}}"
+      }
+    },
+    {
+      "name": "pgfmathbasetodec",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathbasetodec{${1:cmd}}{${2:number}}{${3:base}}"
+      }
+    },
+    {
+      "name": "pgfmathdectobase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathdectobase{${1:cmd}}{${2:number}}{${3:base}}"
+      }
+    },
+    {
+      "name": "pgfmathdectoBase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathdectoBase{${1:cmd}}{${2:number}}{${3:base}}"
+      }
+    },
+    {
+      "name": "pgfmathbasetobase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathbasetobase{${1:cmd}}{${2:number}}{${3:base1}}{${4:base2}}"
+      }
+    },
+    {
+      "name": "pgfmathbasetoBase",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathbasetoBase{${1:cmd}}{${2:number}}{${3:base1}}{${4:base2}}"
+      }
+    },
+    {
+      "name": "pgfmathsetbasenumberlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsetbasenumberlength{${1:integer}}"
+      }
+    },
+    {
+      "name": "pgfmathtodigitlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathtodigitlist{${1:cmd}}{${2:number}}"
+      }
+    },
+    {
+      "name": "pgfmathround",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathround{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathfloor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloor{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathceil",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathceil{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathint{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfrac{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathreal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathreal{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathveclen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathveclen{${1:x coordinate}}{${2:y coordinate}}"
+      }
+    },
+    {
+      "name": "pgfmathcosh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathcosh{${1:x in degree}}"
+      }
+    },
+    {
+      "name": "pgfmathsinh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathsinh{${1:x in degree}}"
+      }
+    },
+    {
+      "name": "pgfmathtanh",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathtanh{${1:x in degree}}"
+      }
+    },
+    {
+      "name": "pgfmathscientific",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathscientific{${1:mantissa}}{${2:exponent}}"
+      }
+    },
+    {
+      "name": "pgfmathwidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathwidth{${1:\"text\"}}"
+      }
+    },
+    {
+      "name": "pgfmathheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathheight{${1:\"text\"}}"
+      }
+    },
+    {
+      "name": "pgfmathdepth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathdepth{${1:\"text\"}}"
+      }
+    },
+    {
+      "name": "pgfmatharray",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmatharray{${1:array}}{${2:index}}"
+      }
+    },
+    {
+      "name": "pgfmathdim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathdim{${1:array}}"
+      }
+    },
+    {
+      "name": "pgfmathmax",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathmax{${1:num list}}{${2:num list}}"
+      }
+    },
+    {
+      "name": "pgfmathmin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathmin{${1:num list}}{${2:num list}}"
+      }
+    },
+    {
+      "name": "pgfmathscalar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathscalar{${1:value}}"
+      }
+    },
+    {
+      "name": "pgfmathgcd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathgcd{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "pgfmathisprime",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathisprime{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathisodd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathisodd{${1:x}}"
+      }
+    },
+    {
+      "name": "pgfmathiseven",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathiseven{${1:x}}"
+      }
+    },
+    {
+      "name": "ifpgfmathfloatcomparison",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatcomparisontrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatcomparisonfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathfloatroundhasperiod",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatroundhasperiodtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatroundhasperiodfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathprintnumberskipzeroperiod",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathprintnumberskipzeroperiodtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathprintnumberskipzeroperiodfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfmathfloatroundmayneedrenormalize",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatroundmayneedrenormalizetrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatroundmayneedrenormalizefalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatparsenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatparsenumber{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatqparsenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatqparsenumber{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattomacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathfloattomacro{${1:number}}{${2:flags macro%cmd}}{${3:mantissa macro%cmd}}{${4:exponent macro%cmd}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattoregisters",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathfloattoregisters{${1:number}}{${2:flags count}}{${3:mantissa dimen}}{${4:exponent count}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattoregisterstok",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmathfloattoregisterstok{${1:number}}{${2:flags count}}{${3:mantissa toks}}{${4:exponent count}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetflags",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetflags{${1:number}}{${2:flags count}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetflagstomacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetflagstomacro{${1:number}}{${2:flags macro%cmd}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetmantissa",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetmantissa{${1:number}}{${2:mantissa dimen}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetmantisse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetmantisse{${1:number}}{${2:mantissa dimen}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetmantissatok",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetmantissatok{${1:number}}{${2:mantissa toks}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetmantissetok",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetmantissetok{${1:number}}{${2:mantissa toks}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetexponent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathfloatgetexponent{${1:number}}{${2:exponent count}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatcreate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathfloatcreate{${1:flags}}{${2:mantissa}}{${3:exponent}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattofixed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloattofixed{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloattoint{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathfloattosci",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloattosci{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatvalueof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatvalueof{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathroundto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathroundto{${1:fixed point number}}"
+      }
+    },
+    {
+      "name": "pgfmathroundtozerofill",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathroundtozerofill{${1:fixed point number}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatround",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatround{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatroundzerofill",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatroundzerofill{${1:float}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatrounddisplaystyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathfloatrounddisplaystyle{${1:flags}}{${2:mantissa}}{${3:exponent}}"
+      }
+    },
+    {
+      "name": "pgfmathfloatgetfrac",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathfloatgetfrac{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfmathgreatestcommondivisor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathgreatestcommondivisor{${1:int 1}}{${2:int 2}}"
+      }
+    },
+    {
+      "name": "pgfmathifisint",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfmathifisint{${1:number constant}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfmathprintnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfmathprintnumber{${1:number}}"
+      }
+    },
+    {
+      "name": "pgfmathprintnumberto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfmathprintnumberto{${1:number}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ifpgfmathfloatparsenumberpendingperiod",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatparsenumberpendingperiodtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathfloatparsenumberpendingperiodfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfretval",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathresult"
+    },
+    {
+      "name": "pgfmathresulty",
+      "unusual": true
+    },
+    {
+      "name": "pgfmathresultx",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
+}

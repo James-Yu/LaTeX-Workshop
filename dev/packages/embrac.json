@@ -1,81 +1,204 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "emph*{}": {
-      "snippet": "emph*{${1:text}}"
-    },
-    "textit*{}": {
-      "snippet": "textit*{${1:text}}"
-    },
-    "textsl*{}": {
-      "snippet": "textsl*{${1:text}}"
-    },
-    "textsi*{}": {
-      "snippet": "textsi*{${1:text}}"
-    },
-    "AddEmph{}{}": {
-      "snippet": "AddEmph{${1:o}}{${2:c}}"
-    },
-    "AddEmph{}[]{}[]": {
-      "snippet": "AddEmph{${1:o}}[${2:io-kern,oo-kern}]{${3:c}}[${4:ic-kern,oc-kern}]"
-    },
-    "ChangeEmph{}{}": {
-      "snippet": "ChangeEmph{${1:o}}{${2:c}}"
-    },
-    "ChangeEmph{}[]{}[]": {
-      "snippet": "ChangeEmph{${1:o}}[${2:io-kern,oo-kern}]{${3:c}}[${4:ic-kern,oc-kern}]"
-    },
-    "RenewEmph{}{}": {
-      "snippet": "RenewEmph{${1:o}}{${2:c}}"
-    },
-    "RenewEmph{}[]{}[]": {
-      "snippet": "RenewEmph{${1:o}}[${2:io-kern,oo-kern}]{${3:c}}[${4:ic-kern,oc-kern}]"
-    },
-    "DeleteEmph{}{}": {
-      "snippet": "DeleteEmph{${1:o}}{${2:c}}"
-    },
-    "AddOpEmph{}[]": {
-      "snippet": "AddOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
-    },
-    "AddClEmph{}[]": {
-      "snippet": "AddClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
-    },
-    "ChangeOpEmph{}[]": {
-      "snippet": "ChangeOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
-    },
-    "ChangeClEmph{}[]": {
-      "snippet": "ChangeClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
-    },
-    "RenewOpEmph{}[]": {
-      "snippet": "RenewOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
-    },
-    "RenewClEmph{}[]": {
-      "snippet": "RenewClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
-    },
-    "DeleteOpEmph{}": {
-      "snippet": "DeleteOpEmph{${1:o}}"
-    },
-    "DeleteClEmph{}": {
-      "snippet": "DeleteClEmph{${1:c}}"
-    },
-    "EmbracMakeKnown{}": {
-      "snippet": "EmbracMakeKnown{${1:cmd}}"
-    },
-    "EmbracOff": {},
-    "EmbracOn": {},
-    "emb{}{}{}": {
-      "snippet": "emb{${1:open}}{${2:close}}{${3:text}}"
-    },
-    "embparen{}": {
-      "snippet": "embparen{${1:text}}"
-    },
-    "embbracket{}": {
-      "snippet": "embbracket{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "emph*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "emph*{${1:text}}"
+      }
+    },
+    {
+      "name": "textit*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textit*{${1:text}}"
+      }
+    },
+    {
+      "name": "textsl*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsl*{${1:text}}"
+      }
+    },
+    {
+      "name": "textsi*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsi*{${1:text}}"
+      }
+    },
+    {
+      "name": "AddEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddEmph{${1:o}}{${2:c}}"
+      }
+    },
+    {
+      "name": "AddEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "AddEmph{${1:o}}[${3:io-kern,oo-kern}]{${2:c}}[${4:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "ChangeEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ChangeEmph{${1:o}}{${2:c}}"
+      }
+    },
+    {
+      "name": "ChangeEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "ChangeEmph{${1:o}}[${3:io-kern,oo-kern}]{${2:c}}[${4:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "RenewEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewEmph{${1:o}}{${2:c}}"
+      }
+    },
+    {
+      "name": "RenewEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "RenewEmph{${1:o}}[${3:io-kern,oo-kern}]{${2:c}}[${4:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "DeleteEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeleteEmph{${1:o}}{${2:c}}"
+      }
+    },
+    {
+      "name": "AddOpEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "AddOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
+      }
+    },
+    {
+      "name": "AddClEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "AddClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "ChangeOpEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ChangeOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
+      }
+    },
+    {
+      "name": "ChangeClEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ChangeClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "RenewOpEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "RenewOpEmph{${1:o}}[${2:io-kern,oo-kern}]"
+      }
+    },
+    {
+      "name": "RenewClEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "RenewClEmph{${1:c}}[${2:ic-kern,oc-kern}]"
+      }
+    },
+    {
+      "name": "DeleteOpEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeleteOpEmph{${1:o}}"
+      }
+    },
+    {
+      "name": "DeleteClEmph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeleteClEmph{${1:c}}"
+      }
+    },
+    {
+      "name": "EmbracMakeKnown",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "EmbracMakeKnown{${1:cmd}}"
+      }
+    },
+    {
+      "name": "EmbracOff",
+      "unusual": true
+    },
+    {
+      "name": "EmbracOn",
+      "unusual": true
+    },
+    {
+      "name": "emb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "emb{${1:open}}{${2:close}}{${3:text}}"
+      }
+    },
+    {
+      "name": "embparen",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "embparen{${1:text}}"
+      }
+    },
+    {
+      "name": "embbracket",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "embbracket{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

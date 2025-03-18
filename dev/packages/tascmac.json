@@ -1,45 +1,113 @@
 {
-  "includes": {},
-  "macros": {
-    "mask{}{}": {
-      "snippet": "mask{${1:text}}{${2:pattern}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mask",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mask{${1:text}}{${2:pattern%keyvals}}",
+        "keys": [
+          "\\mask,\\maskbox,\\Maskbox"
+        ],
+        "keyPos": 1
+      }
     },
-    "maskbox{}{}{}{}{}": {
-      "snippet": "maskbox{${1:width}}{${2:height}}{${3:pattern}}{${4:pos}}{${5:text}}"
+    {
+      "name": "maskbox",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "maskbox{${1:width}}{${2:height}}{${3:pattern%keyvals}}{${4:pos}}{${5:text}}",
+        "keys": [
+          "\\mask,\\maskbox,\\Maskbox"
+        ],
+        "keyPos": 2
+      }
     },
-    "Maskbox{}{}{}{}{}{}": {
-      "snippet": "Maskbox{${1:width}}{${2:height}}{${3:pattern}}{${4:pos}}{${5:thickness}}{${6:text}}"
+    {
+      "name": "Maskbox",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "Maskbox{${1:width}}{${2:height}}{${3:pattern%keyvals}}{${4:pos}}{${5:thickness%l}}{${6:text}}",
+        "keys": [
+          "\\mask,\\maskbox,\\Maskbox"
+        ],
+        "keyPos": 2
+      }
     },
-    "keytop{}": {
-      "snippet": "keytop{${1:text}}"
+    {
+      "name": "keytop",
+      "arg": {
+        "format": "{}",
+        "snippet": "keytop{${1:text}}"
+      }
     },
-    "yen": {
-      "detail": "¥",
-      "documentation": "YEN SIGN"
+    {
+      "name": "yen",
+      "detail": "¥ (\"amsfonts\" command)",
+      "doc": "Yen sign"
     },
-    "return": {},
-    "Return": {},
-    "ascii": {},
-    "Ascii": {},
-    "ASCII": {}
-  },
-  "envs": {
-    "boxnote": {},
-    "screen": {},
-    "screen[]": {
+    {
+      "name": "return"
+    },
+    {
+      "name": "Return"
+    },
+    {
+      "name": "ascii"
+    },
+    {
+      "name": "Ascii"
+    },
+    {
+      "name": "ASCII"
+    }
+  ],
+  "envs": [
+    {
+      "name": "boxnote"
+    },
+    {
+      "name": "screen"
+    },
+    {
       "name": "screen",
-      "snippet": "[${1:roundness}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:roundness}]"
+      }
     },
-    "itembox{}": {
+    {
       "name": "itembox",
-      "snippet": "{${1:title}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
     },
-    "itembox[]{}": {
+    {
       "name": "itembox",
-      "snippet": "[${2:roundness}]{${1:title}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:roundness}]{${1:title%text}}"
+      }
     },
-    "shadebox": {}
+    {
+      "name": "shadebox"
+    }
+  ],
+  "keys": {
+    "\\mask,\\maskbox,\\Maskbox": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

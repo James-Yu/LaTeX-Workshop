@@ -1,88 +1,196 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "keyval": []
-  },
-  "macros": {
-    "binary{}": {
-      "snippet": "binary{${1:package}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "cmdline{}": {
-      "snippet": "cmdline{${1:specs}}"
-    },
-    "DeclareLogreqAttribute{}[]{}{}": {
-      "snippet": "DeclareLogreqAttribute{${1:element}}[${2:default}]{${3:attribute}}{${4:dtd specs}}"
-    },
-    "DeclareLogreqAttribute{}{}{}": {
-      "snippet": "DeclareLogreqAttribute{${1:element}}{${2:attribute}}{${3:dtd specs}}"
-    },
-    "DeclareLogreqContainer{}{}": {
-      "snippet": "DeclareLogreqContainer{${1:element}}{${2:dtd specs}}"
-    },
-    "DeclareLogreqElement{}{}": {
-      "snippet": "DeclareLogreqElement{${1:element}}{${2:dtd specs}}"
-    },
-    "external[]{}": {
-      "snippet": "external[${2:keyvals}]{${1:specs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "file{}": {
-      "snippet": "file{${1:file}}"
-    },
-    "generic{}": {
-      "snippet": "generic{${1:package}}"
-    },
-    "infile{}": {
-      "snippet": "infile{${1:file}}"
-    },
-    "internal[]{}": {
-      "snippet": "internal[${2:keyvals}]{${1:specs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "LogreqDTDVersion": {},
-    "logrequest[]{}": {
-      "snippet": "logrequest[${2:options}]{${1:request}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "logrequest{}": {
-      "snippet": "logrequest{${1:request}}"
-    },
-    "ltxrequest{}{}{}": {
-      "snippet": "ltxrequest{${1:package}}{${2:active}}{${3:request}}"
-    },
-    "option{}": {
-      "snippet": "option{${1:option}}"
-    },
-    "outfile{}": {
-      "snippet": "outfile{${1:file}}"
-    },
-    "provides[]{}": {
-      "snippet": "provides[${2:keyvals}]{${1:file specs}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "requests[]{}": {
-      "snippet": "requests[${2:keyvals}]{${1:specs}}"
-    },
-    "requires[]{}": {
-      "snippet": "requires[${2:keyvals}]{${1:file specs}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "binary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "binary{${1:package}}"
+      }
+    },
+    {
+      "name": "cmdline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cmdline{${1:specs}}"
+      }
+    },
+    {
+      "name": "DeclareLogreqAttribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "DeclareLogreqAttribute{${1:element}}[${4:default}]{${2:attribute}}{${3:dtd specs}}"
+      }
+    },
+    {
+      "name": "DeclareLogreqAttribute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareLogreqAttribute{${1:element}}{${2:attribute}}{${3:dtd specs}}"
+      }
+    },
+    {
+      "name": "DeclareLogreqContainer",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareLogreqContainer{${1:element}}{${2:dtd specs}}"
+      }
+    },
+    {
+      "name": "DeclareLogreqElement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareLogreqElement{${1:element}}{${2:dtd specs}}"
+      }
+    },
+    {
+      "name": "external",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "external[${2:keyvals}]{${1:specs}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "file",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "file{${1:file}}"
+      }
+    },
+    {
+      "name": "generic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "generic{${1:package}}"
+      }
+    },
+    {
+      "name": "infile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "infile{${1:file}}"
+      }
+    },
+    {
+      "name": "internal",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "internal[${2:keyvals}]{${1:specs}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "logrequest",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "logrequest[${2:options%keyvals}]{${1:request}}",
+        "keys": [
+          "\\external,\\internal,\\logrequest"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "logrequest",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "logrequest{${1:request}}"
+      }
+    },
+    {
+      "name": "ltxrequest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ltxrequest{${1:package}}{${2:active}}{${3:request}}"
+      }
+    },
+    {
+      "name": "option",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "option{${1:option}}"
+      }
+    },
+    {
+      "name": "outfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "outfile{${1:file}}"
+      }
+    },
+    {
+      "name": "provides",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "provides[${2:keyvals}]{${1:file specs}}",
+        "keys": [
+          "\\provides,\\requires"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "requests",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "requests[${2:keyvals}]{${1:specs}}"
+      }
+    },
+    {
+      "name": "requires",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "requires[${2:keyvals}]{${1:file specs}}",
+        "keys": [
+          "\\provides,\\requires"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\external,\\internal,\\logrequest": [
       "package=${1:package}",
       "priority=${1:priority}",
-      "active="
+      "active=${1|0,1|}"
     ],
-    [
-      "type="
+    "\\provides,\\requires": [
+      "type=${1|static,dynamic,editable|}"
     ]
-  ]
+  },
+  "args": []
 }

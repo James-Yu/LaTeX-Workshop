@@ -1,154 +1,421 @@
 {
-  "includes": {
-    "ifthen": [],
-    "ifpdf": [],
-    "multido": [],
-    "datetime": [],
-    "multicol": [],
-    "fancyhdr": [],
-    "fancybox": [],
-    "geometry": [],
-    "graphicx": [],
-    "color": [],
-    "hyperref": [],
-    "textpos": [],
-    "hyphenat": [],
-    "wrapfig": [],
-    "lastpage": [],
-    "setspace": [],
-    "ragged2e": []
-  },
-  "macros": {
-    "authorandplace{}{}": {
-      "snippet": "authorandplace{${1:author}}{${2:place}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "columntitle{}{}": {
-      "snippet": "columntitle{${1:type}}{${2:text}}"
+    {
+      "name": "ifpdf"
     },
-    "edition{}": {
-      "snippet": "edition{${1:text}}"
+    {
+      "name": "multido"
     },
-    "expandedtitle{}{}": {
-      "snippet": "expandedtitle{${1:type}}{${2:text}}"
+    {
+      "name": "datetime"
     },
-    "firstimage{}{}": {
-      "snippet": "firstimage{${1:imagefile}}{${2:caption}}"
+    {
+      "name": "multicol"
     },
-    "firstnews{}{}{}": {
-      "snippet": "firstnews{${1:heading}}{${2:text}}{${3:time}}"
+    {
+      "name": "fancyhdr"
     },
-    "foot{}{}{}": {
-      "snippet": "foot{${1:left}}{${2:center}}{${3:right}}"
+    {
+      "name": "fancybox"
     },
-    "heading{}{}{}": {
-      "snippet": "heading{${1:left}}{${2:center}}{${3:right}}"
+    {
+      "name": "geometry"
     },
-    "image{}{}": {
-      "snippet": "image{${1:imagefile}}{${2:caption}}"
+    {
+      "name": "graphicx"
     },
-    "indexitem{}{}": {
-      "snippet": "indexitem{${1:text}}{${2:reference}}"
+    {
+      "name": "color"
     },
-    "newsection{}": {
-      "snippet": "newsection{${1:name}}"
+    {
+      "name": "hyperref"
     },
-    "newssep": {},
-    "secondnews{}{}{}{}{}": {
-      "snippet": "secondnews{${1:heading}}{${2:subheading}}{${3:text}}{${4:pages of}}{${5:time}}"
+    {
+      "name": "textpos"
     },
-    "shortnewsitem{}{}": {
-      "snippet": "shortnewsitem{${1:heading}}{${2:text}}"
+    {
+      "name": "hyphenat"
     },
-    "thirdnews{}{}{}{}{}": {
-      "snippet": "thirdnews{${1:heading}}{${2:subheading}}{${3:text}}{${4:pages of}}{${5:time}}"
+    {
+      "name": "wrapfig"
     },
-    "timestamp{}": {
-      "snippet": "timestamp{${1:time}}"
+    {
+      "name": "lastpage"
     },
-    "weatheritem{}{}{}{}{}": {
-      "snippet": "weatheritem{${1:imagefile}}{${2:day}}{${3:max}}{${4:min}}{${5:short desc}}"
+    {
+      "name": "setspace"
     },
-    "columnlines": {},
-    "editionFormat": {},
-    "editorialAuthorFormat": {},
-    "editorialTitleFormat": {},
-    "firstTextFormat": {},
-    "firstTitleFormat": {},
-    "grid[]{}{}": {
-      "snippet": "grid[${3:show}]{${1:rows}}{${2:columns}}"
-    },
-    "grid{}{}": {
-      "snippet": "grid{${1:rows}}{${2:columns}}"
-    },
-    "headDateTimeFormat": {},
-    "indexEntryFormat": {},
-    "indexEntryPageFormat": {},
-    "indexEntryPageTxt": {},
-    "indexEntrySeparator": {},
-    "indexFormat": {},
-    "innerAuthorFormat": {},
-    "innerPlaceFormat": {},
-    "innerSubtitleFormat": {},
-    "innerTextFinalMark": {},
-    "innerTitleFormat": {},
-    "logo": {},
-    "minilogo": {},
-    "mylogo{}": {
-      "snippet": "mylogo{${1:imagefile}}"
-    },
-    "pagesFormat": {},
-    "papertexInit": {},
-    "pictureCaptionFormat": {},
-    "raggedFormat": {},
-    "secondSubtitleFormat": {},
-    "secondTextFormat": {},
-    "secondTitleFormat": {},
-    "shortnewsItemTitleFormat": {},
-    "shortnewsSubtitleFormat": {},
-    "shortnewsTitleFormat": {},
-    "thirdSubtitleFormat": {},
-    "thirdTextFormat": {},
-    "thirdTitleFormat": {},
-    "timestampFormat": {},
-    "timestampSeparator": {},
-    "timestampTxt": {},
-    "weatherFormat": {},
-    "weatherTempFormat": {},
-    "weatherUnits": {}
-  },
-  "envs": {
-    "authorblock": {},
-    "editorial{}{}{}{}": {
-      "name": "editorial",
-      "snippet": "{${1:n}}{${2:heading}}{${3:author}}{${4:label}}"
-    },
-    "frontpage": {},
-    "indexblock{}": {
-      "name": "indexblock",
-      "snippet": "{${1:title}}"
-    },
-    "news{}{}{}{}{}": {
-      "name": "news",
-      "snippet": "{${1:n}}{${2:heading}}{${3:subheading}}{${4:pages of}}{${5:label}}"
-    },
-    "shortnews{}{}{}{}": {
-      "name": "shortnews",
-      "snippet": "{${1:n}}{${2:title}}{${3:subtitle}}{${4:label}}"
-    },
-    "weatherblock{}": {
-      "name": "weatherblock",
-      "snippet": "{${1:title}}"
+    {
+      "name": "ragged2e"
     }
-  },
-  "options": [
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "a3paper",
-    "columnlines",
-    "hyphenatedtitles",
-    "showgrid"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "authorandplace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "authorandplace{${1:author}}{${2:place}}"
+      }
+    },
+    {
+      "name": "columntitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "columntitle{${1:type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\columntitle,\\expandedtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "edition",
+      "arg": {
+        "format": "{}",
+        "snippet": "edition{${1:text}}"
+      }
+    },
+    {
+      "name": "expandedtitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "expandedtitle{${1:type%keyvals}}{${2:text}}",
+        "keys": [
+          "\\columntitle,\\expandedtitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "firstimage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "firstimage{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "firstnews",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "firstnews{${1:heading%text}}{${2:text}}{${3:time}}"
+      }
+    },
+    {
+      "name": "foot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "foot{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "heading",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "heading{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "image",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "image{${1:imagefile}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "indexitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "indexitem{${1:text}}{${2:reference}}"
+      }
+    },
+    {
+      "name": "newsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "newsection{${1:name}}"
+      }
+    },
+    {
+      "name": "newssep"
+    },
+    {
+      "name": "secondnews",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "secondnews{${1:heading%text}}{${2:subheading%text}}{${3:text}}{${4:pages of}}{${5:time}}"
+      }
+    },
+    {
+      "name": "shortnewsitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "shortnewsitem{${1:heading%text}}{${2:text}}"
+      }
+    },
+    {
+      "name": "thirdnews",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "thirdnews{${1:heading%text}}{${2:subheading%text}}{${3:text}}{${4:pages of}}{${5:time}}"
+      }
+    },
+    {
+      "name": "timestamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "timestamp{${1:time}}"
+      }
+    },
+    {
+      "name": "weatheritem",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "weatheritem{${1:imagefile}}{${2:day}}{${3:max}}{${4:min}}{${5:short desc%text}}"
+      }
+    },
+    {
+      "name": "columnlines",
+      "unusual": true
+    },
+    {
+      "name": "editionFormat",
+      "unusual": true
+    },
+    {
+      "name": "editorialAuthorFormat",
+      "unusual": true
+    },
+    {
+      "name": "editorialTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "firstTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "firstTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "grid",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "grid[${3:show}]{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "grid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "grid{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "headDateTimeFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryPageFormat",
+      "unusual": true
+    },
+    {
+      "name": "indexEntryPageTxt",
+      "unusual": true
+    },
+    {
+      "name": "indexEntrySeparator",
+      "unusual": true
+    },
+    {
+      "name": "indexFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerAuthorFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerPlaceFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "innerTextFinalMark",
+      "unusual": true
+    },
+    {
+      "name": "innerTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "logo",
+      "unusual": true
+    },
+    {
+      "name": "minilogo",
+      "unusual": true
+    },
+    {
+      "name": "mylogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mylogo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "pagesFormat",
+      "unusual": true
+    },
+    {
+      "name": "papertexInit",
+      "unusual": true
+    },
+    {
+      "name": "pictureCaptionFormat",
+      "unusual": true
+    },
+    {
+      "name": "raggedFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "secondTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "shortnewsItemTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "shortnewsSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "shortnewsTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdSubtitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdTextFormat",
+      "unusual": true
+    },
+    {
+      "name": "thirdTitleFormat",
+      "unusual": true
+    },
+    {
+      "name": "timestampFormat",
+      "unusual": true
+    },
+    {
+      "name": "timestampSeparator",
+      "unusual": true
+    },
+    {
+      "name": "timestampTxt",
+      "unusual": true
+    },
+    {
+      "name": "weatherFormat",
+      "unusual": true
+    },
+    {
+      "name": "weatherTempFormat",
+      "unusual": true
+    },
+    {
+      "name": "weatherUnits",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "authorblock"
+    },
+    {
+      "name": "editorial",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:n}}{${2:heading%text}}{${3:author}}{${4:label}}"
+      }
+    },
+    {
+      "name": "frontpage"
+    },
+    {
+      "name": "indexblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "news",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:n}}{${2:heading%text}}{${3:subheading%text}}{${4:pages of}}{${5:label}}"
+      }
+    },
+    {
+      "name": "shortnews",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:n}}{${2:title%text}}{${3:subtitle%text}}{${4:label}}"
+      }
+    },
+    {
+      "name": "weatherblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/papertex#c": [
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "a3paper",
+      "columnlines",
+      "hyphenatedtitles",
+      "showgrid"
+    ],
+    "\\columntitle,\\expandedtitle": [
+      "shadowbox",
+      "doublebox",
+      "ovalbox",
+      "Ovalbox",
+      "lines"
+    ]
+  },
+  "args": [
+    "\\documentclass/papertex#c"
+  ]
 }

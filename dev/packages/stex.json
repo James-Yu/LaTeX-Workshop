@@ -1,0 +1,1697 @@
+{
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "stex-logo"
+    },
+    {
+      "name": "standalone"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "stex-tikzinput"
+    }
+  ],
+  "macros": [
+    {
+      "name": "libinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "libinput{${1:file}}"
+      }
+    },
+    {
+      "name": "libusepackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "libusepackage{${1:package}}"
+      }
+    },
+    {
+      "name": "libusepackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "libusepackage[${2:options}]{${1:package}}"
+      }
+    },
+    {
+      "name": "addmhbibresource",
+      "arg": {
+        "format": "{}",
+        "snippet": "addmhbibresource{${1:bib file}}"
+      }
+    },
+    {
+      "name": "addmhbibresource",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addmhbibresource[${2:archive}]{${1:bib file}}"
+      }
+    },
+    {
+      "name": "libusetikzlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "libusetikzlibrary{${1:library}}"
+      }
+    },
+    {
+      "name": "ifstexhtml"
+    },
+    {
+      "name": "STEXinvisible",
+      "arg": {
+        "format": "{}",
+        "snippet": "STEXinvisible{${1:code}}"
+      }
+    },
+    {
+      "name": "skipfragment"
+    },
+    {
+      "name": "setsectionlevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsectionlevel{${1:level}}"
+      }
+    },
+    {
+      "name": "currentsectionlevel"
+    },
+    {
+      "name": "Currentsectionlevel"
+    },
+    {
+      "name": "inputref",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputref{${1:file}}"
+      }
+    },
+    {
+      "name": "inputref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inputref[${2:archive}]{${1:file}}"
+      }
+    },
+    {
+      "name": "mhinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "mhinput{${1:file}}"
+      }
+    },
+    {
+      "name": "mhinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mhinput[${2:archive}]{${1:file}}"
+      }
+    },
+    {
+      "name": "ifinputref"
+    },
+    {
+      "name": "IfInputref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfInputref{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "mhgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "mhgraphics{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "mhgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mhgraphics[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\mhgraphics,\\cmhgraphics"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cmhgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "cmhgraphics{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "cmhgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cmhgraphics[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\mhgraphics,\\cmhgraphics"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lstinputmhlisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "lstinputmhlisting{${1:file}}"
+      }
+    },
+    {
+      "name": "lstinputmhlisting",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lstinputmhlisting[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\lstinputmhlisting,\\clstinputmhlisting"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clstinputmhlisting",
+      "arg": {
+        "format": "{}",
+        "snippet": "clstinputmhlisting{${1:file}}"
+      }
+    },
+    {
+      "name": "clstinputmhlisting",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "clstinputmhlisting[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\lstinputmhlisting,\\clstinputmhlisting"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sref",
+      "arg": {
+        "format": "{}",
+        "snippet": "sref{${1:label}}"
+      }
+    },
+    {
+      "name": "sref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sref[${2:options}]{${1:label}}"
+      }
+    },
+    {
+      "name": "sref",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "sref[${2:options1}]{${1:label}}[${3:options2}]"
+      }
+    },
+    {
+      "name": "srefsetin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "srefsetin{${1:file}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "srefsetin",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "srefsetin[${3:archive}]{${1:file}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "sreflabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "sreflabel{${1:label}}"
+      }
+    },
+    {
+      "name": "extref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "extref{${1:label}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "extref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "extref[${3:options}]{${1:label}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "STEXexport",
+      "arg": {
+        "format": "{}",
+        "snippet": "STEXexport{${1:code}}"
+      }
+    },
+    {
+      "name": "symdecl",
+      "arg": {
+        "format": "{}",
+        "snippet": "symdecl{${1:name}}"
+      }
+    },
+    {
+      "name": "symdecl",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "symdecl{${1:name}}[${2:options}]"
+      }
+    },
+    {
+      "name": "symdecl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "symdecl*{${1:name}}"
+      }
+    },
+    {
+      "name": "symdecl*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "symdecl*{${1:name}}[${2:options}]"
+      }
+    },
+    {
+      "name": "textsymdecl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textsymdecl{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "textsymdecl",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "textsymdecl{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "symdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "symdef{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "symdef",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "symdef{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "symref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "symref{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "sr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sr{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "symname",
+      "arg": {
+        "format": "{}",
+        "snippet": "symname{${1:name}}"
+      }
+    },
+    {
+      "name": "symname",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "symname[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\symname,\\sn,\\Symname,\\Sn"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sn",
+      "arg": {
+        "format": "{}",
+        "snippet": "sn{${1:name}}"
+      }
+    },
+    {
+      "name": "sn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sn[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\symname,\\sn,\\Symname,\\Sn"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Symname",
+      "arg": {
+        "format": "{}",
+        "snippet": "Symname{${1:name}}"
+      }
+    },
+    {
+      "name": "Symname",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Symname[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\symname,\\sn,\\Symname,\\Sn"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Sn",
+      "arg": {
+        "format": "{}",
+        "snippet": "Sn{${1:name}}"
+      }
+    },
+    {
+      "name": "Sn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Sn[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\symname,\\sn,\\Symname,\\Sn"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sns",
+      "arg": {
+        "format": "{}",
+        "snippet": "sns{${1:name}}"
+      }
+    },
+    {
+      "name": "Sns",
+      "arg": {
+        "format": "{}",
+        "snippet": "Sns{${1:name}}"
+      }
+    },
+    {
+      "name": "srefsym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "srefsym{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "srefsymuri",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "srefsymuri{${1:URI}}{${2:text}}"
+      }
+    },
+    {
+      "name": "symuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "symuse{${1:name}}"
+      }
+    },
+    {
+      "name": "notation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "notation{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "notation",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "notation{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "notation*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "notation*{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "notation*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "notation*{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "comp",
+      "arg": {
+        "format": "{}",
+        "snippet": "comp{${1:component}}"
+      }
+    },
+    {
+      "name": "maincomp",
+      "arg": {
+        "format": "{}",
+        "snippet": "maincomp{${1:component}}"
+      }
+    },
+    {
+      "name": "setnotation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setnotation{${1:name}}{${2:id}}"
+      }
+    },
+    {
+      "name": "infprec"
+    },
+    {
+      "name": "neginfprec"
+    },
+    {
+      "name": "dobrackets",
+      "arg": {
+        "format": "{}",
+        "snippet": "dobrackets{${1:code}}"
+      }
+    },
+    {
+      "name": "withbrackets",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "withbrackets{${1:left}}{${2:right}}{${3:code}}"
+      }
+    },
+    {
+      "name": "argsep",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "argsep{${1:parameter token}}{${2:separator}}"
+      }
+    },
+    {
+      "name": "argmap",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "argmap{${1:parameter token}}{${2:code}}{${3:separator}}"
+      }
+    },
+    {
+      "name": "argarraymap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "argarraymap{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "arg{${1:code}}"
+      }
+    },
+    {
+      "name": "arg",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "arg[${2:i}]{${1:code}}"
+      }
+    },
+    {
+      "name": "arg*",
+      "arg": {
+        "format": "{}",
+        "snippet": "arg*{${1:code}}"
+      }
+    },
+    {
+      "name": "arg*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "arg*[${2:i}]{${1:code}}"
+      }
+    },
+    {
+      "name": "usemodule",
+      "arg": {
+        "format": "{}",
+        "snippet": "usemodule{${1:module}}"
+      }
+    },
+    {
+      "name": "usemodule",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usemodule[${2:archive}]{${1:module}}"
+      }
+    },
+    {
+      "name": "requiremodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "requiremodule{${1:module}}"
+      }
+    },
+    {
+      "name": "requiremodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "requiremodule[${2:archive}]{${1:module}}"
+      }
+    },
+    {
+      "name": "importmodule",
+      "arg": {
+        "format": "{}",
+        "snippet": "importmodule{${1:module}}"
+      }
+    },
+    {
+      "name": "importmodule",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "importmodule[${2:archive}]{${1:module}}"
+      }
+    },
+    {
+      "name": "vardef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vardef{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "vardef",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "vardef{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "varnotation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "varnotation{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "varnotation",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "varnotation{${1:name}}[${3:options}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "svar",
+      "arg": {
+        "format": "{}",
+        "snippet": "svar{${1:text}}"
+      }
+    },
+    {
+      "name": "svar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "svar[${2:name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "varseq",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "varseq{${1:name}}{${2:range}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "varseq",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "varseq{${1:name}}[${4:options}]{${2:range}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "ellipses"
+    },
+    {
+      "name": "seqmap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seqmap{${1:code}}{${2:sequence}}"
+      }
+    },
+    {
+      "name": "this"
+    },
+    {
+      "name": "usestructure",
+      "arg": {
+        "format": "{}",
+        "snippet": "usestructure{${1:struct}}"
+      }
+    },
+    {
+      "name": "inlineass",
+      "arg": {
+        "format": "{}",
+        "snippet": "inlineass{${1:text}}"
+      }
+    },
+    {
+      "name": "inlineass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inlineass[${2:options}]{${1:text}}"
+      }
+    },
+    {
+      "name": "inlinedef",
+      "arg": {
+        "format": "{}",
+        "snippet": "inlinedef{${1:text}}"
+      }
+    },
+    {
+      "name": "inlinedef",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inlinedef[${2:options}]{${1:text}}"
+      }
+    },
+    {
+      "name": "inlineex",
+      "arg": {
+        "format": "{}",
+        "snippet": "inlineex{${1:text}}"
+      }
+    },
+    {
+      "name": "inlineex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inlineex[${2:options}]{${1:text}}"
+      }
+    },
+    {
+      "name": "varbind",
+      "arg": {
+        "format": "{}",
+        "snippet": "varbind{${1:cls}}"
+      }
+    },
+    {
+      "name": "definiendum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "definiendum{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "definame",
+      "arg": {
+        "format": "{}",
+        "snippet": "definame{${1:name}}"
+      }
+    },
+    {
+      "name": "definame",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "definame[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "Definame",
+      "arg": {
+        "format": "{}",
+        "snippet": "Definame{${1:name}}"
+      }
+    },
+    {
+      "name": "Definame",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Definame[${2:options}]{${1:name}}"
+      }
+    },
+    {
+      "name": "defnotation",
+      "arg": {
+        "format": "{}",
+        "snippet": "defnotation{${1:code}}"
+      }
+    },
+    {
+      "name": "definiens",
+      "arg": {
+        "format": "{}",
+        "snippet": "definiens{${1:code}}"
+      }
+    },
+    {
+      "name": "definiens",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "definiens[${2:name}]{${1:code}}"
+      }
+    },
+    {
+      "name": "premise",
+      "arg": {
+        "format": "{}",
+        "snippet": "premise{${1:text}}"
+      }
+    },
+    {
+      "name": "conclusion",
+      "arg": {
+        "format": "{}",
+        "snippet": "conclusion{${1:text}}"
+      }
+    },
+    {
+      "name": "conclusion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "conclusion[${2:symbol}]{${1:text}}"
+      }
+    },
+    {
+      "name": "symrefemph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "symrefemph{${1:text}}"
+      }
+    },
+    {
+      "name": "compemph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "compemph{${1:text}}"
+      }
+    },
+    {
+      "name": "defemph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "defemph{${1:text}}"
+      }
+    },
+    {
+      "name": "varemph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "varemph{${1:text}}"
+      }
+    },
+    {
+      "name": "stexstylemodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylemodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylemodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylemodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylecopymodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylecopymodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylecopymodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylecopymodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleinterpretmodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleinterpretmodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleinterpretmodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleinterpretmodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerealization",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylerealization{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerealization",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylerealization[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylemathstructure",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylemathstructure{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylemathstructure",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylemathstructure[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleextstructure",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleextstructure{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleextstructure",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleextstructure[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyledefinition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyledefinition{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyledefinition",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyledefinition[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassertion",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleassertion{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassertion",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleassertion[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleexample",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleexample{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleexample",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleexample[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleparagraph{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleparagraph",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleparagraph[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleproof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleproof{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleproof",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleproof[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesubproof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylesubproof{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesubproof",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylesubproof[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleusemodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleusemodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleusemodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleusemodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleimportmodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleimportmodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleimportmodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleimportmodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerequiremodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylerequiremodule{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerequiremodule",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylerequiremodule[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleassign{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassign",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleassign[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerenamedecl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylerenamedecl{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerenamedecl",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylerenamedecl[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassignMorphism",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleassignMorphism{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleassignMorphism",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleassignMorphism[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylecopymod",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylecopymod{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylecopymod",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylecopymod[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleinterpretmod",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleinterpretmod{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleinterpretmod",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleinterpretmod[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerealize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylerealize{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylerealize",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylerealize[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesymdecl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylesymdecl{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesymdecl",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylesymdecl[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyletextsymdecl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyletextsymdecl{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyletextsymdecl",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyletextsymdecl[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylenotation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylenotation{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylenotation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylenotation[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevarnotation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylevarnotation{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevarnotation",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylevarnotation[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesymdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylesymdef{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylesymdef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylesymdef[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevardef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylevardef{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevardef",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylevardef[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevarseq",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylevarseq{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylevarseq",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylevarseq[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylespfsketch",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstylespfsketch{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstylespfsketch",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstylespfsketch[${2:style}]{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleMMTinclude",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stexstyleMMTinclude{${1:definition}}"
+      }
+    },
+    {
+      "name": "stexstyleMMTinclude",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stexstyleMMTinclude[${2:style}]{${1:definition}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "sfragment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sfragment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:title}}",
+        "keys": [
+          "\\begin{sfragment}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "blindfragment"
+    },
+    {
+      "name": "smodule",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:module}}"
+      }
+    },
+    {
+      "name": "smodule",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:module}}",
+        "keys": [
+          "\\begin{smodule}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mathstructure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "mathstructure",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options}]"
+      }
+    },
+    {
+      "name": "extstructure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:structs}}"
+      }
+    },
+    {
+      "name": "extstructure",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:name}}[${3:options}]{${2:structs}}"
+      }
+    },
+    {
+      "name": "extstructure*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:struct}}"
+      }
+    },
+    {
+      "name": "sdefinition"
+    },
+    {
+      "name": "sdefinition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "sassertion"
+    },
+    {
+      "name": "sassertion",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "sexample"
+    },
+    {
+      "name": "sexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "sparagraph"
+    },
+    {
+      "name": "sparagraph",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    },
+    {
+      "name": "sproof"
+    },
+    {
+      "name": "sproof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/stex#c": [
+      "lang=${1:language}",
+      "mathhub=${1:directory}",
+      "writesms",
+      "usems",
+      "image",
+      "nofrontmatter",
+      "debug=${1:log-prefix}",
+      "checkterms"
+    ],
+    "\\begin{sfragment}": [
+      "id=",
+      "short=${1:short title}"
+    ],
+    "\\mhgraphics,\\cmhgraphics": [
+      "archive=${1:file path}",
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ],
+    "\\lstinputmhlisting,\\clstinputmhlisting": [
+      "inputpath=${1:path}",
+      "aboveskip=",
+      "belowskip=",
+      "lineskip=",
+      "boxpos=${1|b,c,t|}",
+      "print",
+      "showlines",
+      "emptylines=${1:number}",
+      "emptylines=*${1:number}",
+      "gobble=${1:number}",
+      "style=${1:style name}",
+      "language=${1:language}",
+      "language=[${1:dialect}]${2:language}",
+      "alsolanguage=${1:language}",
+      "alsolanguage=[${1:dialect}]${2:language}",
+      "defaultdialect=[${1:dialect}]${2:language}",
+      "printpod",
+      "usekeywordsintag",
+      "tagstyle=${1:style}",
+      "markfirstintag=${1:style}",
+      "makemacrouse",
+      "basicstyle=${1:style}",
+      "identifierstyle=${1:style}",
+      "commentstyle=${1:style}",
+      "stringstyle=${1:style}",
+      "keywordstyle=${1:style}",
+      "keywordstyle=[${1:number}]${2:style}",
+      "keywordstyle=[${1:number}]*${2:style}",
+      "ndkeywordstyle=${1:style}",
+      "classoffset=${1:number}",
+      "texcsstyle=${1:style}",
+      "texcsstyle=[${1:class number}]${2:style}",
+      "texcsstyle=*[${1:class number}]${2:style}",
+      "directivestyle=${1:style}",
+      "emph={${1:identifier list}}",
+      "emph=[${1:number}]{${2:identifier list}}",
+      "moreemph={${1:identifier list}}",
+      "moreemph=[${1:number}]{${2:identifier list}}",
+      "deleteemph={${1:identifier list}}",
+      "deleteemph=[${1:number}]{${2:identifier list}}",
+      "emphstyle={${1:style}}",
+      "emphstyle=[${1:number}]{${2:style}}",
+      "delim=[${1:type}][${2:style}]${3:delimiters}",
+      "delim=*[${1:type}][${2:style}]${3:delimiters}",
+      "delim=**[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=*[${1:type}][${2:style}]${3:delimiters}",
+      "moredelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=*[${1:type}][${2:style}]${3:delimiters}",
+      "deletedelim=**[${1:type}][${2:style}]${3:delimiters}",
+      "extendedchars",
+      "inputencoding=${1:encoding}",
+      "upquote",
+      "tabsize=${1:number}",
+      "showtabs",
+      "tab=${1:tokens}",
+      "showspaces",
+      "showstringspaces",
+      "formfeed=${1:tokens}",
+      "numbers=${1|none,left,right|}",
+      "stepnumber=${1:number}",
+      "numberfirstline",
+      "numberstyle=${1:style}",
+      "numbersep=",
+      "numberblanklines",
+      "firstnumber=${1:auto|last|<number>}",
+      "name=${1:name}",
+      "title=${1:title text}",
+      "caption={${1:caption text}}",
+      "caption={[${1:short}]${2:caption text}}",
+      "label=",
+      "nolol",
+      "numberbychapter",
+      "captionpos=${1:subset of tb}",
+      "abovecaptionskip=",
+      "belowcaptionskip=",
+      "linewidth=",
+      "xleftmargin=",
+      "xrightmargin=",
+      "resetmargins",
+      "breaklines",
+      "breakatwhitespace",
+      "prebreak=${1:tokens}",
+      "postbreak=${1:tokens}",
+      "breakindent=",
+      "breakautoindent",
+      "frame=${1:type}",
+      "frameround=",
+      "framesep=",
+      "rulesep=",
+      "framerule=",
+      "framexleftmargin=",
+      "framexrightmargin=",
+      "framextopmargin=",
+      "framexbottommargin=",
+      "backgroundcolor=",
+      "rulecolor=",
+      "fillcolor=",
+      "rulesepcolor=",
+      "frameshape={${1:top shape}}{${2:left shape}}{${3:right shape}}{${4:bottom shape}}",
+      "index={${1:identifiers}}",
+      "index=[${1:number}]{${2:identifiers}}",
+      "index=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "moreindex={${1:identifiers}}",
+      "moreindex=[${1:number}]{${2:identifiers}}",
+      "moreindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "deleteindex={${1:identifiers}}",
+      "deleteindex=[${1:number}]{${2:identifiers}}",
+      "deleteindex=[${1:number}][${2:keyword classes}]{${3:identifiers}}",
+      "indexstyle=${1:one-parameter macro}",
+      "indexstyle=[${1:number}]${2:one-parameter macro}",
+      "columns=${1:alignment}",
+      "columns=[${1:c|l|r}]${2:alignment}",
+      "flexiblecolumns",
+      "keepspaces",
+      "basewidth=",
+      "fontadjust",
+      "texcl",
+      "mathescape",
+      "escapechar=${1:character}",
+      "escapeinside=${1:<char1><char2>}",
+      "escapebegin=${1:tokens}",
+      "escapeend=${1:tokens}",
+      "fancyvrb",
+      "fvcmdparams=${1:<cmd1> <num1> ...}",
+      "morefvcmdparams=${1:<cmd1> <num1> ...}",
+      "literate={${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
+      "literate=*{${1:replace}}{${2:replacement text}}{${3:length}}${4:...}",
+      "rangebeginprefix=${1:prefix}",
+      "rangebeginsuffix=${1:suffix}",
+      "rangeendprefix=${1:prefix}",
+      "rangeendsuffix=${1:suffix}",
+      "rangeprefix=${1:prefix}",
+      "rangesuffix=${1:suffix}",
+      "includerangemarker",
+      "multicols=${1:number}",
+      "float",
+      "float=${1:subset of tbph}",
+      "float=*${1:subset of tbph}",
+      "floatplacement=${1:place specifiers}",
+      "firstline=${1:number}",
+      "lastline=${1:number}",
+      "linerange={${1:first1-last1,first2-last2,...}}",
+      "consecutivenumbers",
+      "keywordsprefix=${1:prefix}",
+      "keywords={${1:list of keywords}}",
+      "keywords=[${1:number}]{${2:list of keywords}}",
+      "morekeywords={${1:list of keywords}}",
+      "morekeywords=[${1:number}]{${2:list of keywords}}",
+      "deletekeywords={${1:list of keywords}}",
+      "deletekeywords=[${1:number}]{${2:list of keywords}}",
+      "ndkeywords={${1:list of keywords}}",
+      "moreendkeywords={${1:list of keywords}}",
+      "deleteendkeywords={${1:list of keywords}}",
+      "texcs={${1:list of csnames}}",
+      "texcs=[${1:class number}]{${2:list of csnames}}",
+      "moretexcs={${1:list of csnames}}",
+      "moretexcs=[${1:class number}]{${2:list of csnames}}",
+      "deletetexcs={${1:list of csnames}}",
+      "deletetexcs=[${1:class number}]{${2:list of csnames}}",
+      "directives={${1:list of compiler directives}}",
+      "moredirectives={${1:list of compiler directives}}",
+      "deletedirectives={${1:list of compiler directives}}",
+      "sensitive",
+      "alsoletter={${1:character sequence}}",
+      "alsodigit={${1:character sequence}}",
+      "alsoother={${1:character sequence}}",
+      "otherkeywords={${1:keywords}}",
+      "tag=${1:<char1><char2>}",
+      "string=${1:delimiter}",
+      "string=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "morestring=${1:delimiter}",
+      "morestring=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "deletestring=${1:delimiter}",
+      "deletestring=[${1:b|d|m|bd|s}]${2:delimiter}",
+      "comment=${1:delimiter(s)}",
+      "comment=[${1:type}]${2:delimiter(s)}",
+      "morecomment=${1:delimiter(s)}",
+      "morecomment=[${1:type}]${2:delimiter(s)}",
+      "deletecomment=${1:delimiter(s)}",
+      "deletecomment=[${1:type}]${2:delimiter(s)}",
+      "keywordcomment={${1:keywords}}",
+      "morekeywordcomment={${1:keywords}}",
+      "deletekeywordcomment={${1:keywords}}",
+      "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
+      "podcomment"
+    ],
+    "\\begin{smodule}": [
+      "title={${1:text}}",
+      "style=",
+      "id=",
+      "ns=${1:URI}",
+      "lang=${1:language}",
+      "sig=${1:language}"
+    ],
+    "\\symname,\\sn,\\Symname,\\Sn": [
+      "pre=",
+      "post="
+    ]
+  },
+  "args": [
+    "\\usepackage/stex#c"
+  ]
+}

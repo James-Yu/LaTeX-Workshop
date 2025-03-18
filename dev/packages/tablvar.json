@@ -1,197 +1,539 @@
 {
-  "includes": {
-    "array": [],
-    "ifpdf": [],
-    "ifthen": [],
-    "multido": [],
-    "pst-node": [],
-    "xkeyval": [],
-    "tikz": [
-      "tikz"
-    ],
-    "tikzlibrarypatterns": [
-      "tikz"
-    ],
-    "tikzlibrarypatterns.meta": [
-      "tikz"
-    ]
-  },
-  "macros": {
-    "barre": {},
-    "barre[]": {
-      "snippet": "barre[${1:label}]"
+  "deps": [
+    {
+      "name": "array"
     },
-    "bas{}": {
-      "snippet": "bas{${1:label}}"
+    {
+      "name": "iftex"
     },
-    "bb": {},
-    "bblim{}{}{}{}": {
-      "snippet": "bblim{${1:ligne1}}{${2:label1}}{${3:ligne2}}{${4:label2}}"
+    {
+      "name": "ifthen"
     },
-    "discont": {},
-    "hachure{}{}": {
-      "snippet": "hachure{${1:llx,lly}}{${2:urx,ury}}"
+    {
+      "name": "multido"
     },
-    "haut{}": {
-      "snippet": "haut{${1:label}}"
+    {
+      "name": "pst-node"
     },
-    "limd[]{}{}": {
-      "snippet": "limd[${3:pos}]{${1:ligne}}{${2:valeur}}"
+    {
+      "name": "xkeyval"
     },
-    "limd{}{}": {
-      "snippet": "limd{${1:ligne}}{${2:valeur}}"
+    {
+      "name": "tikz",
+      "if": "tikz"
     },
-    "limg[]{}{}": {
-      "snippet": "limg[${3:pos}]{${1:ligne}}{${2:valeur}}"
+    {
+      "name": "tikzlibrarypatterns",
+      "if": "tikz"
     },
-    "limg{}{}": {
-      "snippet": "limg{${1:ligne}}{${2:valeur}}"
-    },
-    "mil{}": {
-      "snippet": "mil{${1:label}}"
-    },
-    "pos*{}{}": {
-      "snippet": "pos*{${1:ligne}}{${2:valeur}}"
-    },
-    "pos[]{}{}": {
-      "snippet": "pos[${3:align}]{${1:ligne}}{${2:valeur}}"
-    },
-    "pos{}{}": {
-      "snippet": "pos{${1:ligne}}{${2:valeur}}"
-    },
-    "posvr[]{}{}": {
-      "snippet": "posvr[${3:pos}]{${1:ligne}}{${2:valeur}}"
-    },
-    "posvr{}{}": {
-      "snippet": "posvr{${1:ligne}}{${2:valeur}}"
-    },
-    "tablvarset{}": {
-      "snippet": "tablvarset{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "variations[]{}": {
-      "snippet": "variations[${2:nblignes}]{${1:nodes}}"
-    },
-    "variations{}": {
-      "snippet": "variations{${1:nodes}}"
-    },
-    "vr[]{}": {
-      "snippet": "vr[${2:ligne}]{${1:label}}"
-    },
-    "vr{}": {
-      "snippet": "vr{${1:label}}"
-    },
-    "vrconnect{}{}": {
-      "snippet": "vrconnect{${1:node1}}{${2:node2}}"
-    },
-    "bbrulewidth": {},
-    "bordercolsep": {},
-    "colvalwidth": {},
-    "firstcolsep": {},
-    "fleche{}{}": {
-      "snippet": "fleche{${1:node1}}{${2:node2}}"
-    },
-    "innercolsep": {},
-    "intervalwidth": {},
-    "limsep": {},
-    "noeud{}{}": {
-      "snippet": "noeud{${1:name}}{${2:label}}"
-    },
-    "tablvarinit{}": {
-      "snippet": "tablvarinit{${1:number}}"
-    },
-    "tablvarstretch": {},
-    "themaxdiscont": {},
-    "themaxZI": {},
-    "thenbvarlignes": {},
-    "thenbZI": {},
-    "thenumdiscont": {},
-    "thenumvr": {},
-    "thenumZI": {},
-    "tvbarrewidth": {},
-    "tvcoltypes": {},
-    "tvrulewidth": {},
-    "valpos[]{}{}": {
-      "snippet": "valpos[${3:pos}]{${1:ligne}}{${2:valeur}}"
-    },
-    "valpos{}{}": {
-      "snippet": "valpos{${1:ligne}}{${2:valeur}}"
-    },
-    "varloop{}{}": {
-      "snippet": "varloop{${1:iter}}{${2:code}}"
-    },
-    "vdecal{}{}": {
-      "snippet": "vdecal{${1:decal}}{${2:contenu}}"
-    },
-    "zbox[]{}": {
-      "snippet": "zbox[${2:pos}]{${1:contenu}}"
-    },
-    "zbox{}": {
-      "snippet": "zbox{${1:contenu}}"
-    },
-    "ZIaddheight{}": {
-      "snippet": "ZIaddheight{${1:arg}}"
-    },
-    "ZIaddwidth": {},
-    "ZIc": {},
-    "ZIc[]": {
-      "snippet": "ZIc[${1:opt}]"
-    },
-    "ZIcouleur{}{}": {
-      "snippet": "ZIcouleur{${1:arg1}}{${2:arg2}}"
-    },
-    "ZIdepth": {},
-    "ZIfind": {},
-    "ZIgetheight{}": {
-      "snippet": "ZIgetheight{${1:arg}}"
-    },
-    "ZIh": {},
-    "ZIh*": {},
-    "ZIh[]": {
-      "snippet": "ZIh[${1:hauteur}]"
-    },
-    "ZIheight": {},
-    "ZIheighti": {},
-    "ZIheightii": {},
-    "ZIheightiii": {},
-    "ZIheightiv": {},
-    "ZIinit": {},
-    "ZInew": {},
-    "ZIreset{}": {
-      "snippet": "ZIreset{${1:arg}}"
-    },
-    "ZItype": {},
-    "ZIwidth": {}
-  },
-  "envs": {
-    "tablvar{}": {
-      "name": "tablvar",
-      "snippet": "{${1:nombre}}"
-    },
-    "tablvar[]{}": {
-      "name": "tablvar",
-      "snippet": "[${2:keyvals}]{${1:nombre}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tablvar*{}": {
-      "name": "tablvar*",
-      "snippet": "{${1:nombre}}"
-    },
-    "tablvar*[]{}": {
-      "name": "tablvar*",
-      "snippet": "[${2:keyvals}]{${1:nombre}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns.meta",
+      "if": "tikz"
     }
-  },
-  "options": [
-    "pstricks",
-    "tikz"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "barre"
+    },
+    {
+      "name": "barre",
+      "arg": {
+        "format": "[]",
+        "snippet": "barre[${1:label}]"
+      }
+    },
+    {
+      "name": "bas",
+      "arg": {
+        "format": "{}",
+        "snippet": "bas{${1:label}}"
+      }
+    },
+    {
+      "name": "bb"
+    },
+    {
+      "name": "bblim",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "bblim{${1:ligne1}}{${2:label1}}{${3:ligne2}}{${4:label2}}"
+      }
+    },
+    {
+      "name": "bblim*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bblim*{${1:label1}}{${2:label2}}"
+      }
+    },
+    {
+      "name": "discont"
+    },
+    {
+      "name": "hachure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hachure{${1:llx,lly}}{${2:urx,ury}}"
+      }
+    },
+    {
+      "name": "haut",
+      "arg": {
+        "format": "{}",
+        "snippet": "haut{${1:label}}"
+      }
+    },
+    {
+      "name": "limd",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "limd[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "limd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "limd{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "limd*",
+      "arg": {
+        "format": "{}",
+        "snippet": "limd*{${1:valeur}}"
+      }
+    },
+    {
+      "name": "limg",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "limg[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "limg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "limg{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "limg*",
+      "arg": {
+        "format": "{}",
+        "snippet": "limg*{${1:valeur}}"
+      }
+    },
+    {
+      "name": "mil",
+      "arg": {
+        "format": "{}",
+        "snippet": "mil{${1:label}}"
+      }
+    },
+    {
+      "name": "pos*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pos*{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "pos",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pos[${3:align%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pos",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pos{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "posvr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "posvr[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}",
+        "keys": [
+          "\\limd,\\limg,\\pos,\\posvr,\\valpos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "posvr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "posvr{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "tablvarset",
+      "arg": {
+        "format": "{}",
+        "snippet": "tablvarset{${1:keyvals}}",
+        "keys": [
+          "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "variations",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "variations[${2:nblignes}]{${1:nodes}}"
+      }
+    },
+    {
+      "name": "variations",
+      "arg": {
+        "format": "{}",
+        "snippet": "variations{${1:nodes}}"
+      }
+    },
+    {
+      "name": "vr",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "vr[${2:ligne}]{${1:label}}"
+      }
+    },
+    {
+      "name": "vr",
+      "arg": {
+        "format": "{}",
+        "snippet": "vr{${1:label}}"
+      }
+    },
+    {
+      "name": "vrconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vrconnect{${1:node1}}{${2:node2}}"
+      }
+    },
+    {
+      "name": "bbrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "bordercolsep",
+      "unusual": true
+    },
+    {
+      "name": "colvalwidth",
+      "unusual": true
+    },
+    {
+      "name": "firstcolsep",
+      "unusual": true
+    },
+    {
+      "name": "fleche",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fleche{${1:node1}}{${2:node2}}"
+      }
+    },
+    {
+      "name": "innercolsep",
+      "unusual": true
+    },
+    {
+      "name": "intervalwidth",
+      "unusual": true
+    },
+    {
+      "name": "limsep",
+      "unusual": true
+    },
+    {
+      "name": "noeud",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "noeud{${1:name}}{${2:label}}"
+      }
+    },
+    {
+      "name": "rowbottomsep",
+      "unusual": true
+    },
+    {
+      "name": "rowtopsep",
+      "unusual": true
+    },
+    {
+      "name": "tablvarinit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tablvarinit{${1:number}}"
+      }
+    },
+    {
+      "name": "tablvarstretch",
+      "unusual": true
+    },
+    {
+      "name": "themaxdiscont",
+      "unusual": true
+    },
+    {
+      "name": "themaxZI",
+      "unusual": true
+    },
+    {
+      "name": "thenbvarlignes",
+      "unusual": true
+    },
+    {
+      "name": "thenbZI",
+      "unusual": true
+    },
+    {
+      "name": "thenumdiscont",
+      "unusual": true
+    },
+    {
+      "name": "thenumvr",
+      "unusual": true
+    },
+    {
+      "name": "thenumZI",
+      "unusual": true
+    },
+    {
+      "name": "tvbarrewidth",
+      "unusual": true
+    },
+    {
+      "name": "tvcoltypes",
+      "unusual": true
+    },
+    {
+      "name": "tvrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "valpos",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "valpos[${3:pos%keyvals}]{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "valpos",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "valpos{${1:ligne}}{${2:valeur}}"
+      }
+    },
+    {
+      "name": "varloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "varloop{${1:iter}}{${2:code}}"
+      }
+    },
+    {
+      "name": "vdecal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vdecal{${1:decal%l}}{${2:contenu}}"
+      }
+    },
+    {
+      "name": "zbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zbox[${2:pos%keyvals}]{${1:contenu}}"
+      }
+    },
+    {
+      "name": "zbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zbox{${1:contenu}}"
+      }
+    },
+    {
+      "name": "ZIaddheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ZIaddheight{${1:arg}}"
+      }
+    },
+    {
+      "name": "ZIaddwidth",
+      "unusual": true
+    },
+    {
+      "name": "ZIc",
+      "unusual": true
+    },
+    {
+      "name": "ZIc",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ZIc[${1:opt}]"
+      }
+    },
+    {
+      "name": "ZIcouleur",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ZIcouleur{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ZIdepth",
+      "unusual": true
+    },
+    {
+      "name": "ZIfind",
+      "unusual": true
+    },
+    {
+      "name": "ZIgetheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ZIgetheight{${1:arg}}"
+      }
+    },
+    {
+      "name": "ZIh",
+      "unusual": true
+    },
+    {
+      "name": "ZIh*",
+      "unusual": true
+    },
+    {
+      "name": "ZIh",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ZIh[${1:hauteur%l}]"
+      }
+    },
+    {
+      "name": "ZIheight",
+      "unusual": true
+    },
+    {
+      "name": "ZIheighti",
+      "unusual": true
+    },
+    {
+      "name": "ZIheightii",
+      "unusual": true
+    },
+    {
+      "name": "ZIheightiii",
+      "unusual": true
+    },
+    {
+      "name": "ZIheightiv",
+      "unusual": true
+    },
+    {
+      "name": "ZIinit",
+      "unusual": true
+    },
+    {
+      "name": "ZInew",
+      "unusual": true
+    },
+    {
+      "name": "ZIreset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ZIreset{${1:arg}}"
+      }
+    },
+    {
+      "name": "ZItype",
+      "unusual": true
+    },
+    {
+      "name": "ZIwidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "tablvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "tablvar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablvar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nombre}}"
+      }
+    },
+    {
+      "name": "tablvar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tablvars#c": [
+      "pstricks",
+      "tikz"
+    ],
+    "\\begin{tablvar}#c,\\begin{tablvar*}#c,\\tablvarset": [
       "intervalwidth=",
       "colvalwidth=",
       "firstcolsep=",
@@ -200,9 +542,22 @@
       "stretch=${1:factor}",
       "extleft",
       "extright",
-      "ZItype=",
+      "ZItype=${1|h,c|}",
       "ZIcolor=",
       "ZIaddwidth="
+    ],
+    "\\limd,\\limg,\\pos,\\posvr,\\valpos": [
+      "c",
+      "b",
+      "t"
+    ],
+    "\\zbox": [
+      "c",
+      "l",
+      "r"
     ]
+  },
+  "args": [
+    "\\usepackage/tablvars#c"
   ]
 }

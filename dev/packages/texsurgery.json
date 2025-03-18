@@ -1,46 +1,92 @@
 {
-  "includes": {
-    "verbatim": [],
-    "listings": [],
-    "xcolor": [],
-    "environ": [],
-    "hyperref": []
-  },
-  "macros": {
-    "theTSeval": {},
-    "theTSrun": {},
-    "theTSrunsilent": {},
-    "lstinlinesafe": {
-      "snippet": "lstinlinesafe|${1:code}|"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "lstinlinesafe{}": {
-      "snippet": "lstinlinesafe{${1:verbatimSymbol}}"
+    {
+      "name": "listings"
     },
-    "eval{}": {
-      "snippet": "eval{${1:code}}"
+    {
+      "name": "xcolor"
     },
-    "eval[]{}": {
-      "snippet": "eval[${2:language}]{${1:code}}"
+    {
+      "name": "environ"
     },
-    "sage{}": {
-      "snippet": "sage{${1:code}}"
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "run": {},
-    "run[]": {
-      "name": "run",
-      "snippet": "[${1:language}]"
-    },
-    "runsilent": {},
-    "runsilent[]": {
-      "name": "runsilent",
-      "snippet": "[${1:language}]"
-    }
-  },
-  "options": [
-    "showcode",
-    "noinstructions"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "theTSeval",
+      "unusual": true
+    },
+    {
+      "name": "theTSrun",
+      "unusual": true
+    },
+    {
+      "name": "theTSrunsilent",
+      "unusual": true
+    },
+    {
+      "name": "lstinlinesafe",
+      "arg": {
+        "format": "||",
+        "snippet": "lstinlinesafe|${1:code}|"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}",
+        "snippet": "eval{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eval[${2:language}]{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "sage",
+      "arg": {
+        "format": "{}",
+        "snippet": "sage{${1:code%definition}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "run"
+    },
+    {
+      "name": "run",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    },
+    {
+      "name": "runsilent"
+    },
+    {
+      "name": "runsilent",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/texsurgery#c": [
+      "showcode",
+      "noinstructions"
+    ]
+  },
+  "args": [
+    "\\usepackage/texsurgery#c"
+  ]
 }

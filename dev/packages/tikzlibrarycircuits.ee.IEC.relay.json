@@ -1,10 +1,21 @@
 {
-  "includes": {
-    "tikzlibrarycircuits.ee.IEC": [],
-    "tikzlibraryshapes.geometric": []
+  "deps": [
+    {
+      "name": "tikzlibrarycircuits.ee.IEC"
+    },
+    {
+      "name": "tikzlibraryshapes.geometric"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "circuit ee IEC relay",
+      "every term/.style={${1:TikZ keys}}",
+      "every term'/.style={${1:TikZ keys}}",
+      "every term''/.style={${1:TikZ keys}}"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

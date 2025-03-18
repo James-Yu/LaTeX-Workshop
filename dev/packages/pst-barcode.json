@@ -1,36 +1,66 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "marginnote": []
-  },
-  "macros": {
-    "psbarcode{}{}{}": {
-      "snippet": "psbarcode{${1:text or filename}}{${2:PS options}}{${3:barcode type}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psbarcode[]{}{}{}": {
-      "snippet": "psbarcode[${4:options}]{${1:text or filename}}{${2:PS options}}{${3:barcode type}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     },
-    "QR{}": {
-      "snippet": "QR{${1:URL}}"
+    {
+      "name": "marginnote"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psbarcode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psbarcode{${1:text or filename%file}}{${2:PS options}}{${3:barcode type}}"
+      }
     },
-    "QR<>{}": {
-      "snippet": "QR<${2:label}>{${1:URL}}"
+    {
+      "name": "psbarcode",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psbarcode[${4:options%keyvals}]{${1:text or filename%file}}{${2:PS options}}{${3:barcode type}}",
+        "keys": [
+          "\\psbarcode#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "QR[]{}": {
-      "snippet": "QR[${2:scale}]{${1:URL}}"
+    {
+      "name": "QR",
+      "arg": {
+        "format": "{}",
+        "snippet": "QR{${1:URL}}"
+      }
     },
-    "QR[]<>{}": {
-      "snippet": "QR[${2:scale}]<${3:label}>{${1:URL}}"
+    {
+      "name": "QR<label>",
+      "arg": {
+        "format": "{}",
+        "snippet": "QR<label>{${1:URL}}"
+      }
     },
-    "PSTBarcodeLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "QR",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "QR[${2:scale}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "QR",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "QR[${2:scale}]<${3:label}>{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psbarcode#c": [
       "fontstyle=${1:font commands}",
       "transx=${1:number}",
       "transy=${1:number}",
@@ -40,5 +70,6 @@
       "file",
       "linecolor="
     ]
-  ]
+  },
+  "args": []
 }

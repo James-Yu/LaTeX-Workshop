@@ -1,29 +1,66 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": [],
-    "tikzlibrarydecorations.pathmorphing": []
-  },
-  "macros": {
-    "wolf": {},
-    "wolf[]": {
-      "snippet": "wolf[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "wolfhookbackground": {},
-    "wolfhookbelly": {},
-    "wolfhookbody": {},
-    "wolfhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    }
+  ],
+  "macros": [
+    {
+      "name": "wolf"
+    },
+    {
+      "name": "wolf",
+      "arg": {
+        "format": "[]",
+        "snippet": "wolf[${1:options%keyvals}]",
+        "keys": [
+          "\\wolf#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "wolfhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "wolfhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "wolfhookbody",
+      "unusual": true
+    },
+    {
+      "name": "wolfhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\wolf#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -148,5 +185,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

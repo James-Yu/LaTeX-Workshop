@@ -1,8 +1,8 @@
 import * as utils from './utils.js'
-import { setTrimValue } from './trimming.js'
+import { getTrimValue, setTrimValue } from './trimming.js'
 import { sendLog } from './connection.js'
-import type { PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './interface'
-import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index.js'
+import { viewerState, viewerStatePromise } from './state.js'
+import { type PDFViewerApplicationType, type PDFViewerApplicationOptionsType, RenderingStates } from './interface.js'
 
 declare const pdfjsLib: any
 declare const PDFViewerApplication: PDFViewerApplicationType
@@ -18,6 +18,9 @@ export function toggleAutoRefresh() {
 }
 
 let prevState: {
+    page: number,
+    trim: number,
+    scale: string,
     scrollMode: number,
     sidebarView: number,
     spreadMode: number,
@@ -55,6 +58,9 @@ export async function refresh() {
 
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
+        page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
+        trim: getTrimValue(),
+        scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
@@ -72,6 +78,16 @@ export async function refresh() {
     if (typeof prevState.spreadMode === 'number') {
         PDFViewerApplicationOptions.set('spreadModeOnLoad', prevState.spreadMode)
     }
+
+    const masks = addMasks()
+    const cb = () => {
+        if (!allPagesRendered()) {
+            return
+        }
+        removeMasks(masks)
+        PDFViewerApplication.eventBus.off('pagerendered', cb)
+    }
+    PDFViewerApplication.eventBus.on('pagerendered', cb)
 
     const { encodedPath, docTitle } = utils.parseURL()
     /* eslint-disable */
@@ -91,6 +107,15 @@ export async function restoreState() {
         return
     }
 
+    if (prevState.page !== undefined) {
+        PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
+    }
+    if (prevState.trim !== undefined) {
+        setTrimValue(prevState.trim)
+    }
+    if (prevState.scale !== undefined) {
+        PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
+    }
     if (prevState.sidebarView) {
         PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
     }
@@ -111,7 +136,7 @@ export async function restoreState() {
 }
 
 async function restoreDefault() {
-    const params = await (await fetch('config.json')).json() as PdfViewerParams
+    const params = await utils.getParams()
 
     if (params.trim !== undefined) {
         setTrimValue(params.trim)
@@ -127,43 +152,74 @@ async function restoreDefault() {
     if (params.spreadMode !== undefined) {
         PDFViewerApplication.pdfViewer.spreadMode = params.spreadMode
     }
+
+    if (!utils.isEmbedded()) {
+        return
+    }
+
+    await viewerStatePromise
+    const viewerContainer = document.getElementById('viewerContainer')!
+    if (typeof viewerState.scrollTop === 'number' && viewerContainer.scrollTop !== viewerState.scrollTop) {
+        viewerContainer.scrollTop = viewerState.scrollTop
+    }
+    if (typeof viewerState.scrollLeft === 'number' && viewerContainer.scrollLeft !== viewerState.scrollLeft) {
+        viewerContainer.scrollLeft = viewerState.scrollLeft
+    }
 }
 
-let oldVisiblePages: number[]
-let oldScrollHeight: number
-let oldPageCount: number
-export function patchViewerRefresh() {
-    /* eslint-disable */
-    ;(globalThis as any).lwRecordRender = (pdfViewer: any) => {
-        oldVisiblePages = pdfViewer._getVisiblePages().ids
-        oldPageCount = pdfViewer.pdfDocument?.numPages ?? 0
-        let oldScale = pdfViewer.currentScale
-        oldScrollHeight = pdfViewer.pdfDocument ? document.getElementById('viewerContainer')!.scrollHeight : 0
-        return oldScale
+function addMasks() {
+    const viewerDom = document.getElementById('viewer')!
+    const viewerContainer = document.getElementById('viewerContainer')!
+    const masks: HTMLDivElement[] = []
+    if (!viewerContainer || !viewerDom) {
+        return masks
     }
-    ;(globalThis as any).lwRenderSync = async (pdfViewer: any, pdfDocument: any, pagesCount: number) => {
-        await Array.from(oldVisiblePages)
-            .filter(pageNum => pageNum <= pagesCount)
-            .map(pageNum => pdfDocument.getPage(pageNum)
-                .then((pdfPage: [number, any]) => [pageNum, pdfPage])
-            )
-            .reduce((accPromise, currPromise) => accPromise.then(() =>
-                // This forces all visible pages to be rendered synchronously rather than asynchronously to avoid race condition involving this.renderingQueue.highestPriorityPage
-                currPromise.then(([pageNum, pdfPage]: [number, any]) => {
-                    const pageView = pdfViewer._pages[pageNum - 1]
-                    if (!pageView.pdfPage) {
-                        pageView.setPdfPage(pdfPage)
-                    }
-                    pdfViewer.renderingQueue.highestPriorityPage = pageView.renderingId
-                    return pdfViewer._pages[pageNum - 1].draw().finally(() => {
-                        pdfViewer.renderingQueue.renderHighestPriority()
-                    })
-                })), Promise.resolve()
-            )
-        document.getElementById('viewerContainer')!.scrollTop += oldScrollHeight
-        for (let i = 1; i <= oldPageCount; i++) {
-            pdfViewer.viewer.removeChild(pdfViewer.viewer.firstChild)
+
+    const visiblePages = PDFViewerApplication.pdfViewer._getVisiblePages()
+    for (const visiblePage of visiblePages.views) {
+        const canvas = visiblePage.view.canvas
+        if (!canvas) {
+            continue
         }
+
+        const viewerBound = viewerDom.getBoundingClientRect()
+        const pageBound = visiblePage.view.div.getBoundingClientRect()
+        const canvasBound = canvas.getBoundingClientRect()
+
+        const div = document.createElement('div')
+        div.className = 'page-loading-mask'
+        masks.push(div)
+        div.style.display = 'none'
+        div.style.left = pageBound.x - viewerBound.x + 'px'
+        div.style.top = pageBound.y - viewerBound.y + 'px'
+        div.style.width = pageBound.width + 'px'
+        div.style.height = pageBound.height + 'px'
+
+        const img = new Image()
+        img.src = canvas.toDataURL() ?? ''
+        img.style.left = canvasBound.x - pageBound.x + 'px'
+        img.style.top = canvasBound.y - pageBound.y + 'px'
+        img.style.width = canvasBound.width + 'px'
+        img.style.height = canvasBound.height + 'px'
+
+        div.appendChild(img)
+        viewerContainer.appendChild(div)
+        div.style.display = 'inherit'
     }
-    /* eslint-enable */
+    return masks
+}
+
+function allPagesRendered() {
+    return PDFViewerApplication.pdfViewer._getVisiblePages().views.every(view => view.view.renderingState === RenderingStates.FINISHED)
+}
+
+function removeMasks(masks: HTMLDivElement[]) {
+    for (const mask of masks) {
+        mask.classList.add('remove')
+    }
+    setTimeout(() => {
+        for (const mask of masks) {
+            mask.remove()
+        }
+    }, 250)
 }

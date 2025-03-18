@@ -1,213 +1,450 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "URspecialopts": [],
-    "class-scrartcl": [],
-    "tudarules": [],
-    "tudafonts": [],
-    "scrlayer-scrpage": [],
-    "geometry": [],
-    "tudacolors": [],
-    "trimclip": [],
-    "graphicx": [],
-    "hyperref": [],
-    "class-scrreprt": [
-      "class=report",
-      "class=scrreprt"
-    ],
-    "class-scrbook": [
-      "class=book",
-      "class=scrbook"
-    ],
-    "pdfx": [
-      "pdfa",
-      "pdfa=true"
-    ],
-    "pgf": [
-      "department=mecheng"
-    ]
-  },
-  "macros": {
-    "MechEngArrow{}": {
-      "snippet": "MechEngArrow{${1:Länge}}",
-      "option": "department=mecheng"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "MechEngArrow*{}": {
-      "snippet": "MechEngArrow*{${1:Länge}}",
-      "option": "department=mecheng"
+    {
+      "name": "URspecialopts"
     },
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:graphics code}}"
+    {
+      "name": "class-scrartcl"
     },
-    "titlegraphic*{}": {
-      "snippet": "titlegraphic*{${1:graphics code}}"
+    {
+      "name": "tudarules"
     },
-    "addTitleBox{}": {
-      "snippet": "addTitleBox{${1:text}}"
+    {
+      "name": "tudafonts"
     },
-    "addTitleBoxLogo{}": {
-      "snippet": "addTitleBoxLogo{${1:imagefile}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "addTitleBoxLogo*{}": {
-      "snippet": "addTitleBoxLogo*{${1:graphics code}}"
+    {
+      "name": "geometry"
     },
-    "AddSponsor{}": {
-      "snippet": "AddSponsor{${1:logo}}"
+    {
+      "name": "tudacolors"
     },
-    "sponsors{}": {
-      "snippet": "sponsors{${1:logo code}}"
+    {
+      "name": "trimclip"
     },
-    "Metadata{}": {
-      "snippet": "Metadata{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
     },
-    "sep": {},
-    "IMRADlabel{}": {
-      "snippet": "IMRADlabel{${1:label}}"
+    {
+      "name": "hyperref"
     },
-    "frontmatter": {},
-    "mainmatter": {},
-    "backmatter": {},
-    "SetPaperID{}{}": {
-      "snippet": "SetPaperID{${1:Buchstabe}}{${2:tiefgestelle Nummer}}"
+    {
+      "name": "class-scrreprt",
+      "if": "class=report"
     },
-    "institution{}": {
-      "snippet": "institution{${1:Einrichtung}}"
+    {
+      "name": "class-scrreprt",
+      "if": "class=scrreprt"
     },
-    "titleimage{}": {
-      "snippet": "titleimage{${1:graphics code}}"
+    {
+      "name": "class-scrbook",
+      "if": "class=book"
     },
-    "authorandname": {},
-    "departmentname": {},
-    "departmentfullname": {},
-    "drtext{}": {
-      "snippet": "drtext{${1:text}}"
+    {
+      "name": "class-scrbook",
+      "if": "class=scrbook"
     },
-    "titleintro{}": {
-      "snippet": "titleintro{${1:text}}"
+    {
+      "name": "pdfx",
+      "if": "pdfa"
     },
-    "titleaddendum{}": {
-      "snippet": "titleaddendum{${1:text}}"
+    {
+      "name": "pdfx",
+      "if": "pdfa=true"
     },
-    "author[]{}": {
-      "snippet": "author[${2:short name}]{${1:name}}"
-    },
-    "studentID{}": {
-      "snippet": "studentID{${1:Matrikelnummer}}"
-    },
-    "department{}": {
-      "snippet": "department{${1:Kürzel/Bezeichnung}}"
-    },
-    "department[]{}": {
-      "snippet": "department[${2:Ersatztext}]{${1:Kürzel/Bezeichnung}}"
-    },
-    "department*{}": {
-      "snippet": "department*{${1:Text zwischen Typ und Autor}}"
-    },
-    "department*[]{}": {
-      "snippet": "department*[${2:Text für die Box}]{${1:Text zwischen Typ und Autor}}"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:Einrichtung}}"
-    },
-    "group{}": {
-      "snippet": "group{${1:Arbeitsgruppe}}"
-    },
-    "birthplace{}": {
-      "snippet": "birthplace{${1:Geburtsort}}"
-    },
-    "reviewer{}": {
-      "snippet": "reviewer{${1:Name1 \\and Name2}}"
-    },
-    "reviewer[]{}": {
-      "snippet": "reviewer[${2:Ersatzbezeichner}]{${1:Name1 \\and Name2}}"
-    },
-    "reviewer*{}": {
-      "snippet": "reviewer*{${1:Name1 \\and Name2}}"
-    },
-    "reviewer*[]{}": {
-      "snippet": "reviewer*[${2:Bezeichner1,Bezeichner2}]{${1:Name1 \\and Name2}}"
-    },
-    "examdate{}": {
-      "snippet": "examdate{${1:Datum}}"
-    },
-    "submissiondate{}": {
-      "snippet": "submissiondate{${1:Datum}}"
-    },
-    "tuprints{}": {
-      "snippet": "tuprints{${1:keyvals}}"
-    },
-    "affidavit": {},
-    "affidavit[]": {
-      "snippet": "affidavit[${1:keyvals}]"
-    },
-    "AffidavitSignature": {},
-    "AffidavitSignature[]": {
-      "snippet": "AffidavitSignature[${1:keyvals}]"
-    },
-    "SignatureBox{}": {
-      "snippet": "SignatureBox{${1:text}}"
-    },
-    "SignatureBox[]{}": {
-      "snippet": "SignatureBox[${2:width}]{${1:text}}"
-    },
-    "setupReviewName{}": {
-      "snippet": "setupReviewName{${1:Ersatzwort für „Gutachten“}}"
-    },
-    "setupReviewName[]{}": {
-      "snippet": "setupReviewName[${2:num}]{${1:Referent}}"
-    },
-    "setupReviewName*{}": {
-      "snippet": "setupReviewName*{${1:Bezeicher1,Bezeicher2,...}}"
+    {
+      "name": "pgf",
+      "if": "department=mecheng"
     }
-  },
-  "envs": {
-    "abstract[]": {
-      "name": "abstract",
-      "snippet": "[${1:language}]"
-    },
-    "affidavit*{}": {
-      "name": "affidavit*",
-      "snippet": "{${1:Überschrift}}"
-    },
-    "affidavit*[]{}": {
-      "name": "affidavit*",
-      "snippet": "[${2:Babel-Sprachoption}]{${1:Überschrift}}"
-    }
-  },
-  "options": [
-    "class=",
-    "color=",
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "marginpar",
-    "custommargins=",
-    "fontsize=",
-    "ruledheaders=",
-    "type=",
-    "headline=",
-    "colorback=",
-    "pdfa",
-    "twocolumn",
-    "BCOR=${1:Länge}",
-    "logo=",
-    "paper=",
-    "IMRAD",
-    "logofile=${1:Dateipfad}",
-    "title=",
-    "department=mecheng",
-    "departmentlogofile=${1:Dateipfad}",
-    "BCORtitlepage"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "MechEngArrow",
+      "if": "department=mecheng",
+      "arg": {
+        "format": "{}",
+        "snippet": "MechEngArrow{${1:Länge}}"
+      }
+    },
+    {
+      "name": "MechEngArrow*",
+      "if": "department=mecheng",
+      "arg": {
+        "format": "{}",
+        "snippet": "MechEngArrow*{${1:Länge}}"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "titlegraphic*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic*{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "addTitleBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBox{${1:text}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBoxLogo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "addTitleBoxLogo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "addTitleBoxLogo*{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "AddSponsor",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddSponsor{${1:logo}}"
+      }
+    },
+    {
+      "name": "sponsors",
+      "arg": {
+        "format": "{}",
+        "snippet": "sponsors{${1:logo code}}"
+      }
+    },
+    {
+      "name": "Metadata",
+      "arg": {
+        "format": "{}",
+        "snippet": "Metadata{${1:keyvals}}",
+        "keys": [
+          "\\Metadata#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sep"
+    },
+    {
+      "name": "IMRADlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "IMRADlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "SetPaperID",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetPaperID{${1:Buchstabe}}{${2:tiefgestelle Nummer}}"
+      }
+    },
+    {
+      "name": "institution",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "institution{${1:Einrichtung}}"
+      }
+    },
+    {
+      "name": "titleimage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "titleimage{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "authorandname",
+      "unusual": true
+    },
+    {
+      "name": "departmentname",
+      "unusual": true
+    },
+    {
+      "name": "departmentfullname",
+      "unusual": true
+    },
+    {
+      "name": "drtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "drtext{${1:text}}"
+      }
+    },
+    {
+      "name": "titleintro",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleintro{${1:text}}"
+      }
+    },
+    {
+      "name": "titleaddendum",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleaddendum{${1:text}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:short name}]{${1:name}}"
+      }
+    },
+    {
+      "name": "studentID",
+      "arg": {
+        "format": "{}",
+        "snippet": "studentID{${1:Matrikelnummer}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:Kürzel/Bezeichnung}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "department[${2:Ersatztext}]{${1:Kürzel/Bezeichnung}}"
+      }
+    },
+    {
+      "name": "department*",
+      "arg": {
+        "format": "{}",
+        "snippet": "department*{${1:Text zwischen Typ und Autor}}"
+      }
+    },
+    {
+      "name": "department*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "department*[${2:Text für die Box}]{${1:Text zwischen Typ und Autor}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:Einrichtung}}"
+      }
+    },
+    {
+      "name": "group",
+      "arg": {
+        "format": "{}",
+        "snippet": "group{${1:Arbeitsgruppe}}"
+      }
+    },
+    {
+      "name": "birthplace",
+      "arg": {
+        "format": "{}",
+        "snippet": "birthplace{${1:Geburtsort}}"
+      }
+    },
+    {
+      "name": "reviewer",
+      "arg": {
+        "format": "{}",
+        "snippet": "reviewer{${1:Name1 \\and Name2}}"
+      }
+    },
+    {
+      "name": "reviewer",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "reviewer[${2:Ersatzbezeichner}]{${1:Name1 \\and Name2}}"
+      }
+    },
+    {
+      "name": "reviewer*",
+      "arg": {
+        "format": "{}",
+        "snippet": "reviewer*{${1:Name1 \\and Name2}}"
+      }
+    },
+    {
+      "name": "reviewer*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "reviewer*[${2:Bezeichner1,Bezeichner2}]{${1:Name1 \\and Name2}}"
+      }
+    },
+    {
+      "name": "examdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "examdate{${1:Datum}}"
+      }
+    },
+    {
+      "name": "submissiondate",
+      "arg": {
+        "format": "{}",
+        "snippet": "submissiondate{${1:Datum}}"
+      }
+    },
+    {
+      "name": "tuprints",
+      "arg": {
+        "format": "{}",
+        "snippet": "tuprints{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "affidavit"
+    },
+    {
+      "name": "affidavit",
+      "arg": {
+        "format": "[]",
+        "snippet": "affidavit[${1:keyvals}]"
+      }
+    },
+    {
+      "name": "AffidavitSignature"
+    },
+    {
+      "name": "AffidavitSignature",
+      "arg": {
+        "format": "[]",
+        "snippet": "AffidavitSignature[${1:keyvals}]"
+      }
+    },
+    {
+      "name": "SignatureBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SignatureBox{${1:text}}"
+      }
+    },
+    {
+      "name": "SignatureBox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "SignatureBox[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "setupReviewName",
+      "arg": {
+        "format": "{}",
+        "snippet": "setupReviewName{${1:Ersatzwort für „Gutachten“}}"
+      }
+    },
+    {
+      "name": "setupReviewName",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setupReviewName[${2:num}]{${1:Referent}}"
+      }
+    },
+    {
+      "name": "setupReviewName*",
+      "arg": {
+        "format": "{}",
+        "snippet": "setupReviewName*{${1:Bezeicher1,Bezeicher2,...}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    },
+    {
+      "name": "affidavit*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Überschrift%text}}"
+      }
+    },
+    {
+      "name": "affidavit*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:Babel-Sprachoption}]{${1:Überschrift%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/tudapub#c": [
+      "class=${1|article,report,book|}",
+      "color=",
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "marginpar",
+      "custommargins=${1|true,false,geometry|}",
+      "fontsize=",
+      "ruledheaders=${1|false,none,chapter,section,true,all|}",
+      "type=${1|publication,thesis,intern|}",
+      "headline=${1|true,false,automark|}",
+      "colorback=${1|true,false,title,body,head|}",
+      "pdfa",
+      "twocolumn",
+      "BCOR=${1:Länge}",
+      "logo=${1|head,body,top,bottom|}",
+      "paper=${1|a0,a1,a2,a3,a4,a5,a6|}",
+      "IMRAD",
+      "logofile=${1:Dateipfad}",
+      "title=${1|default,small,large|}",
+      "department=mecheng",
+      "departmentlogofile=${1:Dateipfad}",
+      "BCORtitlepage"
+    ],
+    "\\Metadata#c": [
       "author=${1:name}",
       "title=${1:text}",
       "subject=${1:text}",
       "date=${1:YYYY-MM-DD}",
       "keywords=${1:word1 \\sep word2 \\sep ...}"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "TUDa.headings"
     ]
+  },
+  "args": [
+    "\\documentclass/tudapub#c"
   ]
 }

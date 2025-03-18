@@ -1,63 +1,136 @@
 {
-  "includes": {},
-  "macros": {
-    "H{}": {
-      "snippet": "H{${1:sup}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "H",
+      "arg": {
+        "format": "{}",
+        "snippet": "H{${1:sup%formula}}"
+      }
     },
-    "H{}[]": {
-      "snippet": "H{${1:sup}}[${2:sub}]"
+    {
+      "name": "H",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "H{${1:sup%formula}}[${2:sub%formula}]"
+      }
     },
-    "Hdiv": {},
-    "Hdiv[]": {
-      "snippet": "Hdiv[${1:sub}]"
+    {
+      "name": "Hdiv"
     },
-    "L{}": {
-      "snippet": "L{${1:sup}}"
+    {
+      "name": "Hdiv",
+      "arg": {
+        "format": "[]",
+        "snippet": "Hdiv[${1:sub%formula}]"
+      }
     },
-    "W{}{}": {
-      "snippet": "W{${1:sup1}}{${2:sup2}}"
+    {
+      "name": "L",
+      "arg": {
+        "format": "{}",
+        "snippet": "L{${1:sup%formula}}"
+      }
     },
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
+    {
+      "name": "W",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "W{${1:sup1%formula}}{${2:sup2%formula}}"
+      }
     },
-    "Norm{}": {
-      "snippet": "Norm{${1:arg}}"
+    {
+      "name": "D"
     },
-    "Norm{}[]": {
-      "snippet": "Norm{${1:arg}}[${2:sub}]"
+    {
+      "name": "Norm",
+      "arg": {
+        "format": "{}",
+        "snippet": "Norm{${1:arg%formula}}"
+      }
     },
-    "SemiNorm{}": {
-      "snippet": "SemiNorm{${1:arg}}"
+    {
+      "name": "Norm",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Norm{${1:arg%formula}}[${2:sub%formula}]"
+      }
     },
-    "SemiNorm{}[]": {
-      "snippet": "SemiNorm{${1:arg}}[${2:sub}]"
+    {
+      "name": "SemiNorm",
+      "arg": {
+        "format": "{}",
+        "snippet": "SemiNorm{${1:arg%formula}}"
+      }
     },
-    "Scalar{}{}": {
-      "snippet": "Scalar{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "SemiNorm",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "SemiNorm{${1:arg%formula}}[${2:sub%formula}]"
+      }
     },
-    "Scalar{}{}[]": {
-      "snippet": "Scalar{${1:arg1}}{${2:arg2}}[${3:sub}]"
+    {
+      "name": "Scalar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Scalar{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
     },
-    "Crochet{}{}": {
-      "snippet": "Crochet{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Scalar",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "Scalar{${1:arg1%formula}}{${2:arg2%formula}}[${3:sub%formula}]"
+      }
     },
-    "Crochet{}{}[]": {
-      "snippet": "Crochet{${1:arg1}}{${2:arg2}}[${3:sub}]"
+    {
+      "name": "Crochet",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Crochet{${1:arg1%formula}}{${2:arg2%formula}}"
+      }
     },
-    "DefaultSet{}": {
-      "snippet": "DefaultSet{${1:symbol}}"
+    {
+      "name": "Crochet",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "Crochet{${1:arg1%formula}}{${2:arg2%formula}}[${3:sub%formula}]"
+      }
     },
-    "NoDefaultSet": {},
-    "HAccent{}": {
-      "snippet": "HAccent{${1:arg}}"
+    {
+      "name": "DefaultSet",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DefaultSet{${1:symbol%formula}}"
+      }
     },
-    "Lbar": {}
-  },
-  "envs": {},
-  "options": [
-    "DivAsExponent",
-    "DivInBrackets"
+    {
+      "name": "NoDefaultSet",
+      "unusual": true
+    },
+    {
+      "name": "HAccent",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "HAccent{${1:arg}}"
+      }
+    },
+    {
+      "name": "Lbar",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/sobolev#c": [
+      "DivAsExponent",
+      "DivInBrackets"
+    ]
+  },
+  "args": [
+    "\\usepackage/sobolev#c"
+  ]
 }

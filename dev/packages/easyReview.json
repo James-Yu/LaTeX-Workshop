@@ -1,41 +1,98 @@
 {
-  "includes": {
-    "soul": [],
-    "todonotes": [],
-    "xcolor": []
-  },
-  "macros": {
-    "addColor": {},
-    "add{}": {
-      "snippet": "add{${1:text}}"
+  "deps": [
+    {
+      "name": "soul"
     },
-    "alertColor": {},
-    "alert{}": {
-      "snippet": "alert{${1:text}}"
+    {
+      "name": "todonotes"
     },
-    "comment{}{}": {
-      "snippet": "comment{${1:text}}{${2:comment}}"
+    {
+      "name": "xcolor"
+    }
+  ],
+  "macros": [
+    {
+      "name": "addColor",
+      "unusual": true
     },
-    "highlight{}": {
-      "snippet": "highlight{${1:text}}"
+    {
+      "name": "add",
+      "arg": {
+        "format": "{}",
+        "snippet": "add{${1:text}}"
+      }
     },
-    "removeColor": {},
-    "remove{}": {
-      "snippet": "remove{${1:text}}"
+    {
+      "name": "alertColor",
+      "unusual": true
     },
-    "replace{}{}": {
-      "snippet": "replace{${1:text}}{${2:replacement}}"
+    {
+      "name": "alert",
+      "arg": {
+        "format": "{}",
+        "snippet": "alert{${1:text}}"
+      }
     },
-    "setreviewsoff": {},
-    "setreviewson": {},
-    "substitute{}{}": {
-      "snippet": "substitute{${1:text}}{${2:replacement}}"
+    {
+      "name": "comment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "comment{${1:text}}{${2:comment%text}}"
+      }
     },
-    "ifistoreview": {},
-    "istoreviewfalse": {},
-    "istoreviewtrue": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "highlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "highlight{${1:text}}"
+      }
+    },
+    {
+      "name": "removeColor",
+      "unusual": true
+    },
+    {
+      "name": "remove",
+      "arg": {
+        "format": "{}",
+        "snippet": "remove{${1:text}}"
+      }
+    },
+    {
+      "name": "replace",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "replace{${1:text}}{${2:replacement%text}}"
+      }
+    },
+    {
+      "name": "setreviewsoff"
+    },
+    {
+      "name": "setreviewson"
+    },
+    {
+      "name": "substitute",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "substitute{${1:text}}{${2:replacement%text}}"
+      }
+    },
+    {
+      "name": "ifistoreview",
+      "unusual": true
+    },
+    {
+      "name": "istoreviewfalse",
+      "unusual": true
+    },
+    {
+      "name": "istoreviewtrue",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

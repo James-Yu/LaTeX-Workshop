@@ -1,74 +1,177 @@
 {
-  "includes": {
-    "ifthen": [],
-    "array": [],
-    "longtable": []
-  },
-  "macros": {
-    "introduce{}{}{}": {
-      "snippet": "introduce{${1:label}}{${2:formula}}{${3:comment}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "assume{}{}{}": {
-      "snippet": "assume{${1:label}}{${2:formula}}{${3:comment}}"
+    {
+      "name": "array"
     },
-    "step{}{}{}": {
-      "snippet": "step{${1:label}}{${2:formula}}{${3:comment}}"
-    },
-    "conclude{}{}{}": {
-      "snippet": "conclude{${1:label}}{${2:formula}}{${3:comment}}"
-    },
-    "conclude[]{}{}{}": {
-      "snippet": "conclude[${4:number}]{${1:label}}{${2:formula}}{${3:comment}}"
-    },
-    "introduce*{}{}{}": {
-      "snippet": "introduce*{${1:custom label}}{${2:formula}}{${3:comment}}"
-    },
-    "assume*{}{}{}": {
-      "snippet": "assume*{${1:custom label}}{${2:formula}}{${3:comment}}"
-    },
-    "step*{}{}{}": {
-      "snippet": "step*{${1:custom label}}{${2:formula}}{${3:comment}}"
-    },
-    "conclude*{}{}{}": {
-      "snippet": "conclude*{${1:custom label}}{${2:formula}}{${3:comment}}"
-    },
-    "conclude*[]{}{}{}": {
-      "snippet": "conclude*[${4:number}]{${1:custom label}}{${2:formula}}{${3:comment}}"
-    },
-    "skipsteps{}{}{}": {
-      "snippet": "skipsteps{${1:number}}{${2:formula}}{${3:comment}}"
-    },
-    "skipsteps*{}{}": {
-      "snippet": "skipsteps*{${1:formula}}{${2:comment}}"
-    },
-    "done": {},
-    "done[]": {
-      "snippet": "done[${1:number}]"
-    },
-    "derivskip": {},
-    "introsymb": {},
-    "thestepcount": {},
-    "thesteplabel": {},
-    "inlcmnts": {},
-    "noinlcmnts": {},
-    "theinlcmnt": {},
-    "tablehead": {},
-    "tablefirsthead": {},
-    "endfoot": {},
-    "endlastfoot": {}
-  },
-  "envs": {
-    "flagderiv": {},
-    "flagderiv[]": {
-      "name": "flagderiv",
-      "snippet": "[${1:label prefix}]"
-    },
-    "flagderiv*": {},
-    "flagderiv*[]": {
-      "name": "flagderiv*",
-      "snippet": "[${1:label prefix}]"
+    {
+      "name": "longtable"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "introduce",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "introduce{${1:label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "assume",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "assume{${1:label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "step",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "step{${1:label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "conclude",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "conclude{${1:label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "conclude",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "conclude[${4:number}]{${1:label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "introduce*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "introduce*{${1:custom label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "assume*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "assume*{${1:custom label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "step*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "step*{${1:custom label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "conclude*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "conclude*{${1:custom label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "conclude*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "conclude*[${4:number}]{${1:custom label}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "skipsteps",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "skipsteps{${1:number}}{${2:formula}}{${3:comment%text}}"
+      }
+    },
+    {
+      "name": "skipsteps*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "skipsteps*{${1:formula}}{${2:comment%text}}"
+      }
+    },
+    {
+      "name": "done"
+    },
+    {
+      "name": "done",
+      "arg": {
+        "format": "[]",
+        "snippet": "done[${1:number}]"
+      }
+    },
+    {
+      "name": "derivskip",
+      "unusual": true
+    },
+    {
+      "name": "introsymb",
+      "unusual": true
+    },
+    {
+      "name": "thestepcount",
+      "unusual": true
+    },
+    {
+      "name": "thesteplabel",
+      "unusual": true
+    },
+    {
+      "name": "inlcmnts",
+      "unusual": true
+    },
+    {
+      "name": "noinlcmnts",
+      "unusual": true
+    },
+    {
+      "name": "theinlcmnt",
+      "unusual": true
+    },
+    {
+      "name": "tablehead",
+      "unusual": true
+    },
+    {
+      "name": "tablefirsthead",
+      "unusual": true
+    },
+    {
+      "name": "endfoot",
+      "unusual": true
+    },
+    {
+      "name": "endlastfoot",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "flagderiv"
+    },
+    {
+      "name": "flagderiv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label prefix}]"
+      }
+    },
+    {
+      "name": "flagderiv*"
+    },
+    {
+      "name": "flagderiv*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label prefix}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,65 +1,151 @@
 {
-  "includes": {
-    "ifthen": [],
-    "calc": [],
-    "fancybox": [],
-    "color": []
-  },
-  "macros": {
-    "framesectionbox": {},
-    "doublesectionbox": {},
-    "shadowsectionbox": {},
-    "framesubsectionbox": {},
-    "doublesubsectionbox": {},
-    "shadowsubsectionbox": {},
-    "framesubsubsectionbox": {},
-    "doublesubsubsectionbox": {},
-    "shadowsubsubsectionbox": {},
-    "colboxsep": {},
-    "makesectionbox{}": {
-      "snippet": "makesectionbox{${1:text}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "makesubsectionbox{}": {
-      "snippet": "makesubsectionbox{${1:text}}"
+    {
+      "name": "calc"
     },
-    "makesubsubsectionbox{}": {
-      "snippet": "makesubsubsectionbox{${1:text}}"
+    {
+      "name": "fancybox"
     },
-    "sectboxskip": {},
-    "sectsavebox": {},
-    "subsectboxskip": {},
-    "subsectmargin": {},
-    "subsectsavebox": {},
-    "subsubsectboxskip": {},
-    "subsubsectmargin": {},
-    "subsubsectsavebox": {}
-  },
-  "envs": {
-    "sectionbox{}": {
-      "name": "sectionbox",
-      "snippet": "{${1:title}}"
-    },
-    "sectionbox[]{}": {
-      "name": "sectionbox",
-      "snippet": "[${2:width}]{${1:title}}"
-    },
-    "subsectionbox{}": {
-      "name": "subsectionbox",
-      "snippet": "{${1:title}}"
-    },
-    "subsectionbox[]{}": {
-      "name": "subsectionbox",
-      "snippet": "[${2:width}]{${1:title}}"
-    },
-    "subsubsectionbox{}": {
-      "name": "subsubsectionbox",
-      "snippet": "{${1:title}}"
-    },
-    "subsubsectionbox[]{}": {
-      "name": "subsubsectionbox",
-      "snippet": "[${2:width}]{${1:title}}"
+    {
+      "name": "color"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "framesectionbox"
+    },
+    {
+      "name": "doublesectionbox"
+    },
+    {
+      "name": "shadowsectionbox"
+    },
+    {
+      "name": "framesubsectionbox"
+    },
+    {
+      "name": "doublesubsectionbox"
+    },
+    {
+      "name": "shadowsubsectionbox"
+    },
+    {
+      "name": "framesubsubsectionbox"
+    },
+    {
+      "name": "doublesubsubsectionbox"
+    },
+    {
+      "name": "shadowsubsubsectionbox"
+    },
+    {
+      "name": "colboxsep",
+      "unusual": true
+    },
+    {
+      "name": "makesectionbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makesectionbox{${1:text}}"
+      }
+    },
+    {
+      "name": "makesubsectionbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makesubsectionbox{${1:text}}"
+      }
+    },
+    {
+      "name": "makesubsubsectionbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makesubsubsectionbox{${1:text}}"
+      }
+    },
+    {
+      "name": "sectboxskip",
+      "unusual": true
+    },
+    {
+      "name": "sectsavebox",
+      "unusual": true
+    },
+    {
+      "name": "subsectboxskip",
+      "unusual": true
+    },
+    {
+      "name": "subsectmargin",
+      "unusual": true
+    },
+    {
+      "name": "subsectsavebox",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectboxskip",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectmargin",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectsavebox",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sectionbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "sectionbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectionbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsectionbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectionbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsectionbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width}]{${1:title}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

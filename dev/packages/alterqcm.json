@@ -1,77 +1,163 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "calc": [],
-    "ifthen": [],
-    "array": [],
-    "multirow": [],
-    "pifont": []
-  },
-  "macros": {
-    "AQmessage{}": {
-      "snippet": "AQmessage{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "InputQuestionList{}{}{}": {
-      "snippet": "InputQuestionList{${1:filepath}}{${2:prefix}}{${3:num1,num2,...}}"
+    {
+      "name": "calc"
     },
-    "AQannexe{}{}{}": {
-      "snippet": "AQannexe{${1:start}}{${2:end}}{${3:number of props}}"
+    {
+      "name": "ifthen"
     },
-    "AQannexe[]{}{}{}": {
-      "snippet": "AQannexe[${4:options}]{${1:start}}{${2:end}}{${3:number of props}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "array"
     },
-    "AQpoints{}": {
-      "snippet": "AQpoints{${1:number}}"
+    {
+      "name": "multirow"
     },
-    "dingsquare": {},
-    "dingchecksquare": {},
-    "aqlabelforquest": {},
-    "aqlabelforrep": {},
-    "aqfoottext": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:register}}{${2:min}}{${3:max}}"
-    },
-    "points{}": {
-      "snippet": "points{${1:points}}"
-    },
-    "aqheightadvance": {},
-    "aqdepthadvance": {},
-    "aqpretxt": {},
-    "aqpretxtVF": {},
-    "aqtextfortrue": {},
-    "aqtextforfalse": {},
-    "to{}": {
-      "snippet": "to{${1:arg}}"
+    {
+      "name": "pifont"
     }
-  },
-  "envs": {
-    "alterqcm": {},
-    "alterqcm[]": {
-      "name": "alterqcm",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "french",
-    "english",
-    "german",
-    "greek",
-    "russian",
-    "italian",
-    "chinese",
-    "unknown"
   ],
-  "keyvals": [
-    [
-      "VF",
-      "propstyle="
+  "macros": [
+    {
+      "name": "AQmessage",
+      "arg": {
+        "format": "{}",
+        "snippet": "AQmessage{${1:text}}"
+      }
+    },
+    {
+      "name": "AQms",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "AQms(${1:height},${2:depth})"
+      }
+    },
+    {
+      "name": "InputQuestionList",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "InputQuestionList{${1:filepath%file}}{${2:prefix}}{${3:num1,num2,...}}"
+      }
+    },
+    {
+      "name": "AQannexe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "AQannexe{${1:start}}{${2:end}}{${3:number of props}}"
+      }
+    },
+    {
+      "name": "AQannexe",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "AQannexe[${4:options%keyvals}]{${1:start}}{${2:end}}{${3:number of props}}",
+        "keys": [
+          "\\AQannexe"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AQpoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "AQpoints{${1:number}}"
+      }
+    },
+    {
+      "name": "dingsquare"
+    },
+    {
+      "name": "dingchecksquare"
+    },
+    {
+      "name": "aqlabelforquest",
+      "unusual": true
+    },
+    {
+      "name": "aqlabelforrep",
+      "unusual": true
+    },
+    {
+      "name": "aqfoottext",
+      "unusual": true
+    },
+    {
+      "name": "nextrandom",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setrannum{${1:register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "points",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "points{${1:points}}"
+      }
+    },
+    {
+      "name": "aqheightadvance",
+      "unusual": true
+    },
+    {
+      "name": "aqdepthadvance",
+      "unusual": true
+    },
+    {
+      "name": "aqpretxt",
+      "unusual": true
+    },
+    {
+      "name": "aqpretxtVF",
+      "unusual": true
+    },
+    {
+      "name": "aqtextfortrue",
+      "unusual": true
+    },
+    {
+      "name": "aqtextforfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "alterqcm"
+    },
+    {
+      "name": "alterqcm",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{alterqcm}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/alterqcm#c": [
+      "french",
+      "english",
+      "german",
+      "greek",
+      "russian",
+      "italian",
+      "chinese",
+      "unknown"
     ],
-    [
+    "\\begin{alterqcm}": [
       "lq=",
       "pq=",
       "bonus=",
@@ -96,8 +182,19 @@
       "alea",
       "tone=${1:text}",
       "ttwo=${1:text}",
-      "language=",
+      "language=${1|english,german,greek,italian,russian,chinese,unknown|}",
       "transparent"
+    ],
+    "\\AQquestion": [
+      "pq=",
+      "br="
+    ],
+    "\\AQannexe": [
+      "VF",
+      "propstyle="
     ]
+  },
+  "args": [
+    "\\usepackage/alterqcm#c"
   ]
 }

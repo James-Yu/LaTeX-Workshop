@@ -1,19 +1,27 @@
 {
-  "includes": {
-    "titlesec": [],
-    "titletoc": [],
-    "xifthen": [],
-    "biditools": []
-  },
-  "macros": {
-    "bidituftetocError{}{}": {
-      "snippet": "bidituftetocError{${1:error text}}{${2:info text}}"
+  "deps": [
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "biditools"
     }
-  },
-  "envs": {},
-  "options": [
-    "notoc",
-    "toc"
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bidituftetoc#c": [
+      "notoc",
+      "toc"
+    ]
+  },
+  "args": [
+    "\\usepackage/bidituftetoc#c"
+  ]
 }

@@ -1,43 +1,73 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "notoserif": {},
-    "notoseriflgr": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "notoseriffamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "lf",
-    "tabular",
-    "tf",
-    "proportional",
-    "pf",
-    "oldstyle",
-    "osf",
-    "thin",
-    "extralight",
-    "light",
-    "regular",
-    "medium",
-    "semibold",
-    "extrabold",
-    "black",
-    "bold"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "notoserif"
+    },
+    {
+      "name": "notoseriflgr",
+      "unusual": true
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "notoseriffamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/noto-serif#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "type1",
+      "lining",
+      "lf",
+      "tabular",
+      "tf",
+      "proportional",
+      "pf",
+      "oldstyle",
+      "osf",
+      "thin",
+      "extralight",
+      "light",
+      "regular",
+      "medium",
+      "semibold",
+      "extrabold",
+      "black",
+      "bold"
+    ]
+  },
+  "args": [
+    "\\usepackage/noto-serif#c"
+  ]
 }

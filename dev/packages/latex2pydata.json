@@ -1,74 +1,191 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "fvextra": [],
-    "pdftexcmds": []
-  },
-  "macros": {
-    "pydatasetfilehandle{}": {
-      "snippet": "pydatasetfilehandle{${1:filehandle}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "pydatareleasefilehandle{}": {
-      "snippet": "pydatareleasefilehandle{${1:filehandle}}"
+    {
+      "name": "fvextra"
     },
-    "pydatasetfilename{}": {
-      "snippet": "pydatasetfilename{${1:file}}"
+    {
+      "name": "pdftexcmds"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pydatasetfilehandle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatasetfilehandle{${1:filehandle}}"
+      }
     },
-    "pydataclosefilename{}": {
-      "snippet": "pydataclosefilename{${1:file}}"
+    {
+      "name": "pydatareleasefilehandle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatareleasefilehandle{${1:filehandle}}"
+      }
     },
-    "pydatasetschemamissing{}": {
-      "snippet": "pydatasetschemamissing{${1:missing behavior}}"
+    {
+      "name": "pydatasetfilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatasetfilename{${1:file}}"
+      }
     },
-    "pydatasetschemakeytype{}{}": {
-      "snippet": "pydatasetschemakeytype{${1:key}}{${2:value type}}"
+    {
+      "name": "pydataclosefilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydataclosefilename{${1:file}}"
+      }
     },
-    "pydataclearschema": {},
-    "pydatawritemeta": {},
-    "pydataclearmeta": {},
-    "pydatawritedictopen": {},
-    "pydatawritedictclose": {},
-    "pydatawritelistopen": {},
-    "pydatawritelistclose": {},
-    "pydatawritekey{}": {
-      "snippet": "pydatawritekey{${1:key}}"
+    {
+      "name": "pydatasetschemamissing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatasetschemamissing{${1:missing behavior}}"
+      }
     },
-    "pydatawritevalue{}": {
-      "snippet": "pydatawritevalue{${1:value}}"
+    {
+      "name": "pydatasetschemakeytype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pydatasetschemakeytype{${1:key%plain}}{${2:value type}}"
+      }
     },
-    "pydatawritekeyvalue{}{}": {
-      "snippet": "pydatawritekeyvalue{${1:key}}{${2:value}}"
+    {
+      "name": "pydataclearschema",
+      "unusual": true
     },
-    "pydatasetbuffername{}": {
-      "snippet": "pydatasetbuffername{${1:buffername}}"
+    {
+      "name": "pydatawritemeta",
+      "unusual": true
     },
-    "pydataclearbuffername{}": {
-      "snippet": "pydataclearbuffername{${1:buffername}}"
+    {
+      "name": "pydataclearmeta",
+      "unusual": true
     },
-    "pydatabuffermdfivesum": {},
-    "pydatawritebuffer": {},
-    "pydatabufferkey{}": {
-      "snippet": "pydatabufferkey{${1:key}}"
+    {
+      "name": "pydatawritedictopen",
+      "unusual": true
     },
-    "pydatabuffervalue{}": {
-      "snippet": "pydatabuffervalue{${1:value}}"
+    {
+      "name": "pydatawritedictclose",
+      "unusual": true
     },
-    "pydatabufferkeyvalue{}{}": {
-      "snippet": "pydatabufferkeyvalue{${1:key}}{${2:value}}"
+    {
+      "name": "pydatawritelistopen",
+      "unusual": true
     },
-    "pydatawritemlvaluestart": {},
-    "pydatawritemlvalueline": {},
-    "pydatawritemlvalueend": {},
-    "pydatabuffermlvaluestart": {},
-    "pydatabuffermlvalueline{}": {
-      "snippet": "pydatabuffermlvalueline{${1:arg}}"
+    {
+      "name": "pydatawritelistclose",
+      "unusual": true
     },
-    "pydatabuffermlvalueend": {}
-  },
-  "envs": {
-    "pydatawritemlvalue": {},
-    "pydatabuffermlvalue": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pydatawritekey",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatawritekey{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "pydatawritevalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatawritevalue{${1:value}}"
+      }
+    },
+    {
+      "name": "pydatawritekeyedefvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pydatawritekeyedefvalue{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pydatawritekeyvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pydatawritekeyvalue{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pydatasetbuffername",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatasetbuffername{${1:buffername}}"
+      }
+    },
+    {
+      "name": "pydataclearbuffername",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydataclearbuffername{${1:buffername}}"
+      }
+    },
+    {
+      "name": "pydatabuffermdfivesum",
+      "unusual": true
+    },
+    {
+      "name": "pydatawritebuffer",
+      "unusual": true
+    },
+    {
+      "name": "pydatabufferkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatabufferkey{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "pydatabuffervalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pydatabuffervalue{${1:value}}"
+      }
+    },
+    {
+      "name": "pydatabufferkeyedefvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pydatabufferkeyedefvalue{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "pydatabufferkeyvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pydatabufferkeyvalue{${1:key%plain}}{${2:value}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pydatawritemlvalue",
+      "unusual": true
+    },
+    {
+      "name": "pydatabuffermlvalue",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

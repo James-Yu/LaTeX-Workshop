@@ -1,20 +1,34 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "ifxetex": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "droidserif": {},
-    "droidseriffamily": {},
-    "fdrfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "default",
-    "type1"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "droidserif"
+    },
+    {
+      "name": "droidseriffamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/droidserif#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "default",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/droidserif#c"
+  ]
 }

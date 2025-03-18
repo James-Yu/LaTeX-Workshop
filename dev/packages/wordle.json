@@ -1,42 +1,56 @@
 {
-  "includes": {
-    "tikz": [],
-    "simplekv": [],
-    "xstring": []
-  },
-  "macros": {
-    "SutomCouleurs": {},
-    "SutomRounded": {},
-    "SutomUnit": {},
-    "SutomFonte": {},
-    "SutomFonteColor": {},
-    "SutomStyle": {},
-    "SutomWidth": {},
-    "SutomBorder": {}
-  },
-  "envs": {
-    "WordleGrid{}": {
-      "name": "WordleGrid",
-      "snippet": "{${1:word}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "WordleGrid[]{}": {
-      "name": "WordleGrid",
-      "snippet": "[${2:keyvals}]{${1:word}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "simplekv"
     },
-    "GrilleSutom{}": {
-      "name": "GrilleSutom",
-      "snippet": "{${1:mot}}"
-    },
-    "GrilleSutom[]{}": {
-      "name": "GrilleSutom",
-      "snippet": "[${2:clés}]{${1:mot}}"
+    {
+      "name": "xstring"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "WordleGrid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:word%text}}"
+      }
+    },
+    {
+      "name": "WordleGrid",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:keyvals}]{${1:word%text}}",
+        "keys": [
+          "\\begin{WordleGrid}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GrilleSutom",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:mot%text}}"
+      }
+    },
+    {
+      "name": "GrilleSutom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:mot%text}}",
+        "keys": [
+          "\\begin{GrilleSutom}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{WordleGrid}": [
       "Colors={${1:back,misplaced,good}}",
       "Rounded=${1:number}",
       "Unit=${1:number}",
@@ -46,6 +60,18 @@
       "Letters",
       "Style=",
       "Thickness=${1:number}"
+    ],
+    "\\begin{GrilleSutom}": [
+      "Couleurs={${1:fond,mal placée,bien placée}}",
+      "Arrondi=${1:nombre}",
+      "Unite=${1:nombre}",
+      "Police=${1:font commands}",
+      "CouleurLettres=",
+      "CouleurBordure=",
+      "Lettres",
+      "Style=",
+      "Epaisseur=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

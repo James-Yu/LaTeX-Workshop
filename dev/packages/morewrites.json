@@ -1,21 +1,29 @@
 {
-  "includes": {
-    "primargs": []
-  },
-  "macros": {
-    "morewritessetup{}": {
-      "snippet": "morewritessetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "primargs"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "morewritessetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "morewritessetup{${1:options%keyvals}}",
+        "keys": [
+          "\\morewritessetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\morewritessetup": [
       "allocate=${1:integer}",
       "file=${1:file name}",
       "verbose"
     ]
-  ]
+  },
+  "args": []
 }

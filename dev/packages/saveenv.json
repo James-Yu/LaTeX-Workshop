@@ -1,30 +1,47 @@
 {
-  "includes": {
-    "precattl": []
-  },
-  "macros": {},
-  "envs": {
-    "saveenv{}": {
-      "name": "saveenv",
-      "snippet": "{${1:macro}}"
-    },
-    "saveenvghost{}": {
-      "name": "saveenvghost",
-      "snippet": "{${1:macro}}"
-    },
-    "saveenvkeeplast{}": {
-      "name": "saveenvkeeplast",
-      "snippet": "{${1:macro}}"
-    },
-    "saveenvreinsert{}{}": {
-      "name": "saveenvreinsert",
-      "snippet": "{${1:macro}}{${2:code}}"
-    },
-    "saveenvkeeplastreinsert{}{}": {
-      "name": "saveenvkeeplastreinsert",
-      "snippet": "{${1:macro}}{${2:code}}"
+  "deps": [
+    {
+      "name": "precattl"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [],
+  "envs": [
+    {
+      "name": "saveenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "saveenvghost",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "saveenvkeeplast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "saveenvreinsert",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro%cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "saveenvkeeplastreinsert",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:macro%cmd}}{${2:code}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

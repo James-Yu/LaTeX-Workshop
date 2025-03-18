@@ -1,2092 +1,6897 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "pgfopts": [],
-    "etoolbox": [],
-    "stringstrings": [],
-    "csvsimple": []
-  },
-  "macros": {
-    "agl{}": {
-      "snippet": "agl{${1:char name or code}}",
-      "option": "AGL"
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "agl*{}": {
-      "snippet": "agl*{${1:char name or code}}",
-      "option": "AGL"
+    {
+      "name": "pgfopts"
     },
-    "entity": {
-      "option": "LINCUA"
+    {
+      "name": "etoolbox"
     },
-    "dotlessj": {
-      "option": "LINCUA"
+    {
+      "name": "stringstrings"
     },
-    "LL": {
-      "option": "LINCUA"
-    },
-    "ll": {
-      "option": "LINCUA",
-      "detail": "≪",
-      "documentation": "much less type 2"
-    },
-    "commaaccent": {
-      "option": "LINCUA"
-    },
-    "Acute": {
-      "option": "LINCUA"
-    },
-    "Caron": {
-      "option": "LINCUA"
-    },
-    "Dieresis": {
-      "option": "LINCUA"
-    },
-    "DieresisAcute": {
-      "option": "LINCUA"
-    },
-    "DieresisGrave": {
-      "option": "LINCUA"
-    },
-    "Grave": {
-      "option": "LINCUA"
-    },
-    "Hungarumlaut": {
-      "option": "LINCUA"
-    },
-    "Macron": {
-      "option": "LINCUA"
-    },
-    "cyrBreve": {
-      "option": "LINCUA"
-    },
-    "cyrFlex": {
-      "option": "LINCUA"
-    },
-    "dblGrave": {
-      "option": "LINCUA"
-    },
-    "cyrbreve": {
-      "option": "LINCUA"
-    },
-    "cyrflex": {
-      "option": "LINCUA"
-    },
-    "dblgrave": {
-      "option": "LINCUA"
-    },
-    "dieresisacute": {
-      "option": "LINCUA"
-    },
-    "dieresisgrave": {
-      "option": "LINCUA"
-    },
-    "copyrightserif": {
-      "option": "LINCUA"
-    },
-    "registerserif": {
-      "option": "LINCUA"
-    },
-    "trademarkserif": {
-      "option": "LINCUA"
-    },
-    "onefitted": {
-      "option": "LINCUA"
-    },
-    "rupiah": {
-      "option": "LINCUA"
-    },
-    "threequartersemdash": {
-      "option": "LINCUA"
-    },
-    "centinferior": {
-      "option": "LINCUA"
-    },
-    "centsuperior": {
-      "option": "LINCUA"
-    },
-    "commainferior": {
-      "option": "LINCUA"
-    },
-    "commasuperior": {
-      "option": "LINCUA"
-    },
-    "dollarinferior": {
-      "option": "LINCUA"
-    },
-    "dollarsuperior": {
-      "option": "LINCUA"
-    },
-    "hypheninferior": {
-      "option": "LINCUA"
-    },
-    "hyphensuperior": {
-      "option": "LINCUA"
-    },
-    "periodinferior": {
-      "option": "LINCUA"
-    },
-    "periodsuperior": {
-      "option": "LINCUA"
-    },
-    "asuperior": {
-      "option": "LINCUA"
-    },
-    "bsuperior": {
-      "option": "LINCUA"
-    },
-    "dsuperior": {
-      "option": "LINCUA"
-    },
-    "esuperior": {
-      "option": "LINCUA"
-    },
-    "isuperior": {
-      "option": "LINCUA"
-    },
-    "lsuperior": {
-      "option": "LINCUA"
-    },
-    "msuperior": {
-      "option": "LINCUA"
-    },
-    "osuperior": {
-      "option": "LINCUA"
-    },
-    "rsuperior": {
-      "option": "LINCUA"
-    },
-    "ssuperior": {
-      "option": "LINCUA"
-    },
-    "tsuperior": {
-      "option": "LINCUA"
-    },
-    "Brevesmall": {
-      "option": "LINCUA"
-    },
-    "Caronsmall": {
-      "option": "LINCUA"
-    },
-    "Circumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Dotaccentsmall": {
-      "option": "LINCUA"
-    },
-    "Hungarumlautsmall": {
-      "option": "LINCUA"
-    },
-    "Lslashsmall": {
-      "option": "LINCUA"
-    },
-    "OEsmall": {
-      "option": "LINCUA"
-    },
-    "Ogoneksmall": {
-      "option": "LINCUA"
-    },
-    "Ringsmall": {
-      "option": "LINCUA"
-    },
-    "Scaronsmall": {
-      "option": "LINCUA"
-    },
-    "Tildesmall": {
-      "option": "LINCUA"
-    },
-    "Zcaronsmall": {
-      "option": "LINCUA"
-    },
-    "exclamsmall": {
-      "option": "LINCUA"
-    },
-    "dollaroldstyle": {
-      "option": "LINCUA"
-    },
-    "ampersandsmall": {
-      "option": "LINCUA"
-    },
-    "zerooldstyle": {
-      "option": "LINCUA"
-    },
-    "oneoldstyle": {
-      "option": "LINCUA"
-    },
-    "twooldstyle": {
-      "option": "LINCUA"
-    },
-    "threeoldstyle": {
-      "option": "LINCUA"
-    },
-    "fouroldstyle": {
-      "option": "LINCUA"
-    },
-    "fiveoldstyle": {
-      "option": "LINCUA"
-    },
-    "sixoldstyle": {
-      "option": "LINCUA"
-    },
-    "sevenoldstyle": {
-      "option": "LINCUA"
-    },
-    "eightoldstyle": {
-      "option": "LINCUA"
-    },
-    "nineoldstyle": {
-      "option": "LINCUA"
-    },
-    "questionsmall": {
-      "option": "LINCUA"
-    },
-    "Gravesmall": {
-      "option": "LINCUA"
-    },
-    "Asmall": {
-      "option": "LINCUA"
-    },
-    "Bsmall": {
-      "option": "LINCUA"
-    },
-    "Csmall": {
-      "option": "LINCUA"
-    },
-    "Dsmall": {
-      "option": "LINCUA"
-    },
-    "Esmall": {
-      "option": "LINCUA"
-    },
-    "Fsmall": {
-      "option": "LINCUA"
-    },
-    "Gsmall": {
-      "option": "LINCUA"
-    },
-    "Hsmall": {
-      "option": "LINCUA"
-    },
-    "Ismall": {
-      "option": "LINCUA"
-    },
-    "Jsmall": {
-      "option": "LINCUA"
-    },
-    "Ksmall": {
-      "option": "LINCUA"
-    },
-    "Lsmall": {
-      "option": "LINCUA"
-    },
-    "Msmall": {
-      "option": "LINCUA"
-    },
-    "Nsmall": {
-      "option": "LINCUA"
-    },
-    "Osmall": {
-      "option": "LINCUA"
-    },
-    "Psmall": {
-      "option": "LINCUA"
-    },
-    "Qsmall": {
-      "option": "LINCUA"
-    },
-    "Rsmall": {
-      "option": "LINCUA"
-    },
-    "Ssmall": {
-      "option": "LINCUA"
-    },
-    "Tsmall": {
-      "option": "LINCUA"
-    },
-    "Usmall": {
-      "option": "LINCUA"
-    },
-    "Vsmall": {
-      "option": "LINCUA"
-    },
-    "Wsmall": {
-      "option": "LINCUA"
-    },
-    "Xsmall": {
-      "option": "LINCUA"
-    },
-    "Ysmall": {
-      "option": "LINCUA"
-    },
-    "Zsmall": {
-      "option": "LINCUA"
-    },
-    "exclamdownsmall": {
-      "option": "LINCUA"
-    },
-    "centoldstyle": {
-      "option": "LINCUA"
-    },
-    "Dieresissmall": {
-      "option": "LINCUA"
-    },
-    "Macronsmall": {
-      "option": "LINCUA"
-    },
-    "Acutesmall": {
-      "option": "LINCUA"
-    },
-    "Cedillasmall": {
-      "option": "LINCUA"
-    },
-    "questiondownsmall": {
-      "option": "LINCUA"
-    },
-    "Agravesmall": {
-      "option": "LINCUA"
-    },
-    "Aacutesmall": {
-      "option": "LINCUA"
-    },
-    "Acircumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Atildesmall": {
-      "option": "LINCUA"
-    },
-    "Adieresissmall": {
-      "option": "LINCUA"
-    },
-    "Aringsmall": {
-      "option": "LINCUA"
-    },
-    "AEsmall": {
-      "option": "LINCUA"
-    },
-    "Ccedillasmall": {
-      "option": "LINCUA"
-    },
-    "Egravesmall": {
-      "option": "LINCUA"
-    },
-    "Eacutesmall": {
-      "option": "LINCUA"
-    },
-    "Ecircumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Edieresissmall": {
-      "option": "LINCUA"
-    },
-    "Igravesmall": {
-      "option": "LINCUA"
-    },
-    "Iacutesmall": {
-      "option": "LINCUA"
-    },
-    "Icircumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Idieresissmall": {
-      "option": "LINCUA"
-    },
-    "Ethsmall": {
-      "option": "LINCUA"
-    },
-    "Ntildesmall": {
-      "option": "LINCUA"
-    },
-    "Ogravesmall": {
-      "option": "LINCUA"
-    },
-    "Oacutesmall": {
-      "option": "LINCUA"
-    },
-    "Ocircumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Otildesmall": {
-      "option": "LINCUA"
-    },
-    "Odieresissmall": {
-      "option": "LINCUA"
-    },
-    "Oslashsmall": {
-      "option": "LINCUA"
-    },
-    "Ugravesmall": {
-      "option": "LINCUA"
-    },
-    "Uacutesmall": {
-      "option": "LINCUA"
-    },
-    "Ucircumflexsmall": {
-      "option": "LINCUA"
-    },
-    "Udieresissmall": {
-      "option": "LINCUA"
-    },
-    "Yacutesmall": {
-      "option": "LINCUA"
-    },
-    "Thornsmall": {
-      "option": "LINCUA"
-    },
-    "Ydieresissmall": {
-      "option": "LINCUA"
-    },
-    "maihanakatleftthai": {
-      "option": "LINCUA"
-    },
-    "saraileftthai": {
-      "option": "LINCUA"
-    },
-    "saraiileftthai": {
-      "option": "LINCUA"
-    },
-    "saraueleftthai": {
-      "option": "LINCUA"
-    },
-    "saraueeleftthai": {
-      "option": "LINCUA"
-    },
-    "maitaikhuleftthai": {
-      "option": "LINCUA"
-    },
-    "maiekupperleftthai": {
-      "option": "LINCUA"
-    },
-    "maieklowrightthai": {
-      "option": "LINCUA"
-    },
-    "maieklowleftthai": {
-      "option": "LINCUA"
-    },
-    "maithoupperleftthai": {
-      "option": "LINCUA"
-    },
-    "maitholowrightthai": {
-      "option": "LINCUA"
-    },
-    "maitholowleftthai": {
-      "option": "LINCUA"
-    },
-    "maitriupperleftthai": {
-      "option": "LINCUA"
-    },
-    "maitrilowrightthai": {
-      "option": "LINCUA"
-    },
-    "maitrilowleftthai": {
-      "option": "LINCUA"
-    },
-    "maichattawaupperleftthai": {
-      "option": "LINCUA"
-    },
-    "maichattawalowrightthai": {
-      "option": "LINCUA"
-    },
-    "maichattawalowleftthai": {
-      "option": "LINCUA"
-    },
-    "thanthakhatupperleftthai": {
-      "option": "LINCUA"
-    },
-    "thanthakhatlowrightthai": {
-      "option": "LINCUA"
-    },
-    "thanthakhatlowleftthai": {
-      "option": "LINCUA"
-    },
-    "nikhahitleftthai": {
-      "option": "LINCUA"
-    },
-    "radicalex": {
-      "option": "LINCUA"
-    },
-    "arrowvertex": {
-      "option": "LINCUA"
-    },
-    "arrowhorizex": {
-      "option": "LINCUA"
-    },
-    "registersans": {
-      "option": "LINCUA"
-    },
-    "copyrightsans": {
-      "option": "LINCUA"
-    },
-    "trademarksans": {
-      "option": "LINCUA"
-    },
-    "parenlefttp": {
-      "option": "LINCUA"
-    },
-    "parenleftex": {
-      "option": "LINCUA"
-    },
-    "parenleftbt": {
-      "option": "LINCUA"
-    },
-    "bracketlefttp": {
-      "option": "LINCUA"
-    },
-    "bracketleftex": {
-      "option": "LINCUA"
-    },
-    "bracketleftbt": {
-      "option": "LINCUA"
-    },
-    "bracelefttp": {
-      "option": "LINCUA"
-    },
-    "braceleftmid": {
-      "option": "LINCUA"
-    },
-    "braceleftbt": {
-      "option": "LINCUA"
-    },
-    "braceex": {
-      "option": "LINCUA"
-    },
-    "integralex": {
-      "option": "LINCUA"
-    },
-    "parenrighttp": {
-      "option": "LINCUA"
-    },
-    "parenrightex": {
-      "option": "LINCUA"
-    },
-    "parenrightbt": {
-      "option": "LINCUA"
-    },
-    "bracketrighttp": {
-      "option": "LINCUA"
-    },
-    "bracketrightex": {
-      "option": "LINCUA"
-    },
-    "bracketrightbt": {
-      "option": "LINCUA"
-    },
-    "bracerighttp": {
-      "option": "LINCUA"
-    },
-    "bracerightmid": {
-      "option": "LINCUA"
-    },
-    "bracerightbt": {
-      "option": "LINCUA"
-    },
-    "apple": {
-      "option": "LINCUA"
-    },
-    "cyfi{}": {
-      "snippet": "cyfi{${1:char name or code}}",
-      "option": "LINCUA"
-    },
-    "cyfi*{}": {
-      "snippet": "cyfi*{${1:char name or code}}",
-      "option": "LINCUA"
-    },
-    "mufi{}": {
-      "snippet": "mufi{${1:char name or code}}",
-      "option": "MUFI"
-    },
-    "mufi*{}": {
-      "snippet": "mufi*{${1:char name or code}}",
-      "option": "MUFI"
-    },
-    "titus{}": {
-      "snippet": "titus{${1:char name or code}}",
-      "option": "TITUS"
-    },
-    "titus*{}": {
-      "snippet": "titus*{${1:char name or code}}",
-      "option": "TITUS"
-    },
-    "OEligogon": {
-      "option": "MUFI"
-    },
-    "Pdblac": {
-      "option": "MUFI"
-    },
-    "Vvertline": {
-      "option": "MUFI"
-    },
-    "oeligogon": {
-      "option": "MUFI"
-    },
-    "pdblac": {
-      "option": "MUFI"
-    },
-    "vvertline": {
-      "option": "MUFI"
-    },
-    "idblstrok": {
-      "option": "MUFI"
-    },
-    "jdblstrok": {
-      "option": "MUFI"
-    },
-    "autem": {
-      "option": "MUFI"
-    },
-    "vslashura": {
-      "option": "MUFI"
-    },
-    "vslashuradbl": {
-      "option": "MUFI"
-    },
-    "thornrarmlig": {
-      "option": "MUFI"
-    },
-    "Hrarmlig": {
-      "option": "MUFI"
-    },
-    "hrarmlig": {
-      "option": "MUFI"
-    },
-    "krarmlig": {
-      "option": "MUFI"
-    },
-    "UUlig": {
-      "option": "MUFI"
-    },
-    "uulig": {
-      "option": "MUFI"
-    },
-    "UElig": {
-      "option": "MUFI"
-    },
-    "uelig": {
-      "option": "MUFI"
-    },
-    "xslashlradbl": {
-      "option": "MUFI"
-    },
-    "aeligring": {
-      "option": "MUFI"
-    },
-    "aeligogonacute": {
-      "option": "MUFI"
-    },
-    "adiaguml": {
-      "option": "MUFI"
-    },
-    "odiaguml": {
-      "option": "MUFI"
-    },
-    "inodotogon": {
-      "option": "MUFI"
-    },
-    "orrotlig": {
-      "option": "MUFI"
-    },
-    "slonglbarlig": {
-      "option": "MUFI"
-    },
-    "iesup": {
-      "option": "MUFI"
-    },
-    "ausup": {
-      "option": "MUFI"
-    },
-    "eesup": {
-      "option": "MUFI"
-    },
-    "eosup": {
-      "option": "MUFI"
-    },
-    "iasup": {
-      "option": "MUFI"
-    },
-    "iosup": {
-      "option": "MUFI"
-    },
-    "iusup": {
-      "option": "MUFI"
-    },
-    "jesup": {
-      "option": "MUFI"
-    },
-    "mesup": {
-      "option": "MUFI"
-    },
-    "oosup": {
-      "option": "MUFI"
-    },
-    "resup": {
-      "option": "MUFI"
-    },
-    "uasup": {
-      "option": "MUFI"
-    },
-    "uvsup": {
-      "option": "MUFI"
-    },
-    "uwsup": {
-      "option": "MUFI"
-    },
-    "wasup": {
-      "option": "MUFI"
-    },
-    "wisup": {
-      "option": "MUFI"
-    },
-    "wusup": {
-      "option": "MUFI"
-    },
-    "wvsup": {
-      "option": "MUFI"
-    },
-    "grlig": {
-      "option": "MUFI"
-    },
-    "qvinslig": {
-      "option": "MUFI"
-    },
-    "gplig": {
-      "option": "MUFI"
-    },
-    "slongdestlig": {
-      "option": "MUFI"
-    },
-    "aenlacute": {
-      "option": "MUFI"
-    },
-    "aeligenl": {
-      "option": "MUFI"
-    },
-    "aenlosmalllig": {
-      "option": "MUFI"
-    },
-    "eogonenl": {
-      "option": "MUFI"
-    },
-    "slongaumllig": {
-      "option": "MUFI"
-    },
-    "slonghlig": {
-      "option": "MUFI"
-    },
-    "slongilig": {
-      "option": "MUFI"
-    },
-    "slongllig": {
-      "option": "MUFI"
-    },
-    "slongoumllig": {
-      "option": "MUFI"
-    },
-    "slongplig": {
-      "option": "MUFI"
-    },
-    "slongslonglig": {
-      "option": "MUFI"
-    },
-    "slongslongilig": {
-      "option": "MUFI"
-    },
-    "slongslongllig": {
-      "option": "MUFI"
-    },
-    "slongtilig": {
-      "option": "MUFI"
-    },
-    "slongtrlig": {
-      "option": "MUFI"
-    },
-    "slonguumllig": {
-      "option": "MUFI"
-    },
-    "slongvinslig": {
-      "option": "MUFI"
-    },
-    "hslonglig": {
-      "option": "MUFI"
-    },
-    "kslonglig": {
-      "option": "MUFI"
-    },
-    "slongacute": {
-      "option": "MUFI"
-    },
-    "AVligslashacute": {
-      "option": "MUFI"
-    },
-    "avligslashacute": {
-      "option": "MUFI"
-    },
-    "drotacute": {
-      "option": "MUFI"
-    },
-    "Finsacute": {
-      "option": "MUFI"
-    },
-    "finsacute": {
-      "option": "MUFI"
-    },
-    "Muncacute": {
-      "option": "MUFI"
-    },
-    "muncacute": {
-      "option": "MUFI"
-    },
-    "Ocurlacute": {
-      "option": "MUFI"
-    },
-    "ocurlacute": {
-      "option": "MUFI"
-    },
-    "rrotacute": {
-      "option": "MUFI"
-    },
-    "Vinsacute": {
-      "option": "MUFI"
-    },
-    "vinsacute": {
-      "option": "MUFI"
-    },
-    "eacombcirc": {
-      "option": "MUFI"
-    },
-    "eucombcirc": {
-      "option": "MUFI"
-    },
-    "ucurlbar": {
-      "option": "MUFI"
-    },
-    "AOligdblac": {
-      "option": "MUFI"
-    },
-    "aoligdblac": {
-      "option": "MUFI"
-    },
-    "AVligdblac": {
-      "option": "MUFI"
-    },
-    "avligdblac": {
-      "option": "MUFI"
-    },
-    "Oogondblac": {
-      "option": "MUFI"
-    },
-    "oogondblac": {
-      "option": "MUFI"
-    },
-    "Oslashdblac": {
-      "option": "MUFI"
-    },
-    "oslashdblac": {
-      "option": "MUFI"
-    },
-    "OEligdblac": {
-      "option": "MUFI"
-    },
-    "oeligdblac": {
-      "option": "MUFI"
-    },
-    "YYligdblac": {
-      "option": "MUFI"
-    },
-    "yyligdblac": {
-      "option": "MUFI"
-    },
-    "Oslashdot": {
-      "option": "MUFI"
-    },
-    "oslashdot": {
-      "option": "MUFI"
-    },
-    "pscapdot": {
-      "option": "MUFI"
-    },
-    "bscapdot": {
-      "option": "MUFI"
-    },
-    "drotdot": {
-      "option": "MUFI"
-    },
-    "dscapdot": {
-      "option": "MUFI"
-    },
-    "Finsdot": {
-      "option": "MUFI"
-    },
-    "finsdot": {
-      "option": "MUFI"
-    },
-    "finssemiclosedot": {
-      "option": "MUFI"
-    },
-    "finsclosedot": {
-      "option": "MUFI"
-    },
-    "fscapdot": {
-      "option": "MUFI"
-    },
-    "hscapdot": {
-      "option": "MUFI"
-    },
-    "kscapdot": {
-      "option": "MUFI"
-    },
-    "lscapdot": {
-      "option": "MUFI"
-    },
-    "mscapdot": {
-      "option": "MUFI"
-    },
-    "Oogondot": {
-      "option": "MUFI"
-    },
-    "oogondot": {
-      "option": "MUFI"
-    },
-    "Oslashdotbl": {
-      "option": "MUFI"
-    },
-    "oslashdotbl": {
-      "option": "MUFI"
-    },
-    "Juml": {
-      "option": "MUFI"
-    },
-    "juml": {
-      "option": "MUFI"
-    },
-    "OOliguml": {
-      "option": "MUFI"
-    },
-    "ooliguml": {
-      "option": "MUFI"
-    },
-    "PPliguml": {
-      "option": "MUFI"
-    },
-    "ppliguml": {
-      "option": "MUFI"
-    },
-    "YYliguml": {
-      "option": "MUFI"
-    },
-    "yyliguml": {
-      "option": "MUFI"
-    },
-    "AEligcurl": {
-      "option": "MUFI"
-    },
-    "aeligcurl": {
-      "option": "MUFI"
-    },
-    "Oslashmacracute": {
-      "option": "MUFI"
-    },
-    "oslashmacracute": {
-      "option": "MUFI"
-    },
-    "Oslashbreve": {
-      "option": "MUFI"
-    },
-    "oslashbreve": {
-      "option": "MUFI"
-    },
-    "AVligogon": {
-      "option": "MUFI"
-    },
-    "avligogon": {
-      "option": "MUFI"
-    },
-    "Eogoncurl": {
-      "option": "MUFI"
-    },
-    "eogoncurl": {
-      "option": "MUFI"
-    },
-    "Adotacute": {
-      "option": "MUFI"
-    },
-    "adotacute": {
-      "option": "MUFI"
-    },
-    "Idotacute": {
-      "option": "MUFI"
-    },
-    "idotacute": {
-      "option": "MUFI"
-    },
-    "Odotacute": {
-      "option": "MUFI"
-    },
-    "odotacute": {
-      "option": "MUFI"
-    },
-    "Oogondotacute": {
-      "option": "MUFI"
-    },
-    "oogondotacute": {
-      "option": "MUFI"
-    },
-    "Oslashdotacute": {
-      "option": "MUFI"
-    },
-    "oslashdotacute": {
-      "option": "MUFI"
-    },
-    "Udotacute": {
-      "option": "MUFI"
-    },
-    "udotacute": {
-      "option": "MUFI"
-    },
-    "bblig": {
-      "option": "MUFI"
-    },
-    "bglig": {
-      "option": "MUFI"
-    },
-    "cklig": {
-      "option": "MUFI"
-    },
-    "ctlig": {
-      "option": "MUFI"
-    },
-    "drotdrotlig": {
-      "option": "MUFI"
-    },
-    "eylig": {
-      "option": "MUFI"
-    },
-    "faumllig": {
-      "option": "MUFI"
-    },
-    "fjlig": {
-      "option": "MUFI"
-    },
-    "frlig": {
-      "option": "MUFI"
-    },
-    "ftlig": {
-      "option": "MUFI"
-    },
-    "fuumllig": {
-      "option": "MUFI"
-    },
-    "fylig": {
-      "option": "MUFI"
-    },
-    "fftlig": {
-      "option": "MUFI"
-    },
-    "ffylig": {
-      "option": "MUFI"
-    },
-    "ftylig": {
-      "option": "MUFI"
-    },
-    "gglig": {
-      "option": "MUFI"
-    },
-    "gdlig": {
-      "option": "MUFI"
-    },
-    "gdrotlig": {
-      "option": "MUFI"
-    },
-    "gethlig": {
-      "option": "MUFI"
-    },
-    "nscapslonglig": {
-      "option": "MUFI"
-    },
-    "pplig": {
-      "option": "MUFI"
-    },
-    "ppflourlig": {
-      "option": "MUFI"
-    },
-    "trlig": {
-      "option": "MUFI"
-    },
-    "ttlig": {
-      "option": "MUFI"
-    },
-    "trottrotlig": {
-      "option": "MUFI"
-    },
-    "tylig": {
-      "option": "MUFI"
-    },
-    "tzlig": {
-      "option": "MUFI"
-    },
-    "PPlig": {
-      "option": "MUFI"
-    },
-    "golig": {
-      "option": "MUFI"
-    },
-    "slongenl": {
-      "option": "MUFI"
-    },
-    "aenl": {
-      "option": "MUFI"
-    },
-    "benl": {
-      "option": "MUFI"
-    },
-    "cenl": {
-      "option": "MUFI"
-    },
-    "denl": {
-      "option": "MUFI"
-    },
-    "drotenl": {
-      "option": "MUFI"
-    },
-    "ethenl": {
-      "option": "MUFI"
-    },
-    "eenl": {
-      "option": "MUFI"
-    },
-    "fenl": {
-      "option": "MUFI"
-    },
-    "genl": {
-      "option": "MUFI"
-    },
-    "henl": {
-      "option": "MUFI"
-    },
-    "ienl": {
-      "option": "MUFI"
-    },
-    "jenl": {
-      "option": "MUFI"
-    },
-    "kenl": {
-      "option": "MUFI"
-    },
-    "lenl": {
-      "option": "MUFI"
-    },
-    "menl": {
-      "option": "MUFI"
-    },
-    "nenl": {
-      "option": "MUFI"
-    },
-    "oenl": {
-      "option": "MUFI"
-    },
-    "penl": {
-      "option": "MUFI"
-    },
-    "qenl": {
-      "option": "MUFI"
-    },
-    "renl": {
-      "option": "MUFI"
-    },
-    "senl": {
-      "option": "MUFI"
-    },
-    "tenl": {
-      "option": "MUFI"
-    },
-    "thornenl": {
-      "option": "MUFI"
-    },
-    "uenl": {
-      "option": "MUFI"
-    },
-    "venl": {
-      "option": "MUFI"
-    },
-    "wenl": {
-      "option": "MUFI"
-    },
-    "xenl": {
-      "option": "MUFI"
-    },
-    "yenl": {
-      "option": "MUFI"
-    },
-    "zenl": {
-      "option": "MUFI"
-    },
-    "inodotenl": {
-      "option": "MUFI"
-    },
-    "jnodotenl": {
-      "option": "MUFI"
-    },
-    "finsenl": {
-      "option": "MUFI"
-    },
-    "qscap": {
-      "option": "MUFI"
-    },
-    "xscap": {
-      "option": "MUFI"
-    },
-    "thornscap": {
-      "option": "MUFI"
-    },
-    "gscapdot": {
-      "option": "MUFI"
-    },
-    "nscapdot": {
-      "option": "MUFI"
-    },
-    "rscapdot": {
-      "option": "MUFI"
-    },
-    "sscapdot": {
-      "option": "MUFI"
-    },
-    "tscapdot": {
-      "option": "MUFI"
-    },
-    "bscapdotbl": {
-      "option": "MUFI"
-    },
-    "dscapdotbl": {
-      "option": "MUFI"
-    },
-    "gscapdotbl": {
-      "option": "MUFI"
-    },
-    "lscapdotbl": {
-      "option": "MUFI"
-    },
-    "mscapdotbl": {
-      "option": "MUFI"
-    },
-    "nscapdotbl": {
-      "option": "MUFI"
-    },
-    "rscapdotbl": {
-      "option": "MUFI"
-    },
-    "sscapdotbl": {
-      "option": "MUFI"
-    },
-    "tscapdotbl": {
-      "option": "MUFI"
-    },
-    "aacloselig": {
-      "option": "MUFI"
-    },
-    "anecklesselig": {
-      "option": "MUFI"
-    },
-    "anecklessvlig": {
-      "option": "MUFI"
-    },
-    "aflig": {
-      "option": "MUFI"
-    },
-    "afinslig": {
-      "option": "MUFI"
-    },
-    "aglig": {
-      "option": "MUFI"
-    },
-    "allig": {
-      "option": "MUFI"
-    },
-    "anlig": {
-      "option": "MUFI"
-    },
-    "anscaplig": {
-      "option": "MUFI"
-    },
-    "aplig": {
-      "option": "MUFI"
-    },
-    "arlig": {
-      "option": "MUFI"
-    },
-    "arscaplig": {
-      "option": "MUFI"
-    },
-    "athornlig": {
-      "option": "MUFI"
-    },
-    "oclig": {
-      "option": "MUFI"
-    },
-    "AnecklessElig": {
-      "option": "MUFI"
-    },
-    "uuligdblac": {
-      "option": "MUFI"
-    },
-    "UUligdblac": {
-      "option": "MUFI"
-    },
-    "AEligdotacute": {
-      "option": "MUFI"
-    },
-    "aeligdotacute": {
-      "option": "MUFI"
-    },
-    "oeligenl": {
-      "option": "MUFI"
-    },
-    "aoligenl": {
-      "option": "MUFI"
-    },
-    "aaligenl": {
-      "option": "MUFI"
-    },
-    "AAligacute": {
-      "option": "MUFI"
-    },
-    "aaligacute": {
-      "option": "MUFI"
-    },
-    "AOligacute": {
-      "option": "MUFI"
-    },
-    "aoligacute": {
-      "option": "MUFI"
-    },
-    "AUligacute": {
-      "option": "MUFI"
-    },
-    "auligacute": {
-      "option": "MUFI"
-    },
-    "AVligacute": {
-      "option": "MUFI"
-    },
-    "avligacute": {
-      "option": "MUFI"
-    },
-    "OOligacute": {
-      "option": "MUFI"
-    },
-    "ooligacute": {
-      "option": "MUFI"
-    },
-    "AAligdblac": {
-      "option": "MUFI"
-    },
-    "aaligdblac": {
-      "option": "MUFI"
-    },
-    "OOligdblac": {
-      "option": "MUFI"
-    },
-    "ooligdblac": {
-      "option": "MUFI"
-    },
-    "AAligdot": {
-      "option": "MUFI"
-    },
-    "aaligdot": {
-      "option": "MUFI"
-    },
-    "AYligdot": {
-      "option": "MUFI"
-    },
-    "ayligdot": {
-      "option": "MUFI"
-    },
-    "AAligdotbl": {
-      "option": "MUFI"
-    },
-    "aaligdotbl": {
-      "option": "MUFI"
-    },
-    "AOligdotbl": {
-      "option": "MUFI"
-    },
-    "aoligdotbl": {
-      "option": "MUFI"
-    },
-    "AUligdotbl": {
-      "option": "MUFI"
-    },
-    "auligdotbl": {
-      "option": "MUFI"
-    },
-    "AVligdotbl": {
-      "option": "MUFI"
-    },
-    "avligdotbl": {
-      "option": "MUFI"
-    },
-    "AYligdotbl": {
-      "option": "MUFI"
-    },
-    "ayligdotbl": {
-      "option": "MUFI"
-    },
-    "OOligdotbl": {
-      "option": "MUFI"
-    },
-    "ooligdotbl": {
-      "option": "MUFI"
-    },
-    "AAliguml": {
-      "option": "MUFI"
-    },
-    "aaliguml": {
-      "option": "MUFI"
-    },
-    "macrhigh": {
-      "option": "MUFI"
-    },
-    "macrmed": {
-      "option": "MUFI"
-    },
-    "ovlhigh": {
-      "option": "MUFI"
-    },
-    "ovlmed": {
-      "option": "MUFI"
-    },
-    "bsup": {
-      "option": "MUFI"
-    },
-    "bscapsup": {
-      "option": "MUFI"
-    },
-    "dscapsup": {
-      "option": "MUFI"
-    },
-    "fsup": {
-      "option": "MUFI"
-    },
-    "kscapsup": {
-      "option": "MUFI"
-    },
-    "psup": {
-      "option": "MUFI"
-    },
-    "tscapsup": {
-      "option": "MUFI"
-    },
-    "ysup": {
-      "option": "MUFI"
-    },
-    "inodotsup": {
-      "option": "MUFI"
-    },
-    "jsup": {
-      "option": "MUFI"
-    },
-    "jnodotsup": {
-      "option": "MUFI"
-    },
-    "oslashsup": {
-      "option": "MUFI"
-    },
-    "qsup": {
-      "option": "MUFI"
-    },
-    "anligsup": {
-      "option": "MUFI"
-    },
-    "arligsup": {
-      "option": "MUFI"
-    },
-    "anscapligsup": {
-      "option": "MUFI"
-    },
-    "trotsup": {
-      "option": "MUFI"
-    },
-    "wsup": {
-      "option": "MUFI"
-    },
-    "thornsup": {
-      "option": "MUFI"
-    },
-    "orrotsup": {
-      "option": "MUFI"
-    },
-    "orumsup": {
-      "option": "MUFI"
-    },
-    "rumsup": {
-      "option": "MUFI"
-    },
-    "Csqu": {
-      "option": "MUFI"
-    },
-    "Eunc": {
-      "option": "MUFI"
-    },
-    "Gsqu": {
-      "option": "MUFI"
-    },
-    "Hunc": {
-      "option": "MUFI"
-    },
-    "Munc": {
-      "option": "MUFI"
-    },
-    "Sclose": {
-      "option": "MUFI"
-    },
-    "slongdes": {
-      "option": "MUFI"
-    },
-    "sclose": {
-      "option": "MUFI"
-    },
-    "arscapligsup": {
-      "option": "MUFI"
-    },
-    "eogonsup": {
-      "option": "MUFI"
-    },
-    "emacrsup": {
-      "option": "MUFI"
-    },
-    "Asqu": {
-      "option": "MUFI"
-    },
-    "oogonsup": {
-      "option": "MUFI"
-    },
-    "omacrsup": {
-      "option": "MUFI"
-    },
-    "ET": {
-      "option": "MUFI"
-    },
-    "thornbarslash": {
-      "option": "MUFI"
-    },
-    "urrot": {
-      "option": "MUFI"
-    },
-    "etslash": {
-      "option": "MUFI"
-    },
-    "de": {
-      "option": "MUFI"
-    },
-    "punctinter": {
-      "option": "MUFI"
-    },
-    "punctelev": {
-      "option": "MUFI"
-    },
-    "dcurl": {
-      "option": "MUFI"
-    },
-    "fcurl": {
-      "option": "MUFI"
-    },
-    "kcurl": {
-      "option": "MUFI"
-    },
-    "gcurl": {
-      "option": "MUFI"
-    },
-    "ccurl": {
-      "option": "MUFI"
-    },
-    "tcurl": {
-      "option": "MUFI"
-    },
-    "nflour": {
-      "option": "MUFI"
-    },
-    "rflour": {
-      "option": "MUFI"
-    },
-    "USbase": {
-      "option": "MUFI"
-    },
-    "usbase": {
-      "option": "MUFI"
-    },
-    "ETslash": {
-      "option": "MUFI"
-    },
-    "sem": {
-      "option": "MUFI"
-    },
-    "chlig": {
-      "option": "MUFI"
-    },
-    "foumllig": {
-      "option": "MUFI"
-    },
-    "smallzero": {
-      "option": "MUFI"
-    },
-    "Vmod": {
-      "option": "MUFI"
-    },
-    "Xmod": {
-      "option": "MUFI"
-    },
-    "arbar": {
-      "option": "MUFI"
-    },
-    "rabar": {
-      "option": "MUFI"
-    },
-    "urlemn": {
-      "option": "MUFI"
-    },
-    "combcurlhigh": {
-      "option": "MUFI"
-    },
-    "erang": {
-      "option": "MUFI"
-    },
-    "ercurl": {
-      "option": "MUFI"
-    },
-    "combdothigh": {
-      "option": "MUFI"
-    },
-    "combcurlbar": {
-      "option": "MUFI"
-    },
-    "tridagger": {
-      "option": "MUFI"
-    },
-    "midring": {
-      "option": "MUFI"
-    },
-    "ramus": {
-      "option": "MUFI"
-    },
-    "medcom": {
-      "option": "MUFI"
-    },
-    "parag": {
-      "option": "MUFI"
-    },
-    "posit": {
-      "option": "MUFI"
-    },
-    "ductsimpl": {
-      "option": "MUFI"
-    },
-    "punctposit": {
-      "option": "MUFI"
-    },
-    "colmidcomposit": {
-      "option": "MUFI"
-    },
-    "tridotscomposit": {
-      "option": "MUFI"
-    },
-    "punctexclam": {
-      "option": "MUFI"
-    },
-    "punctintertilde": {
-      "option": "MUFI"
-    },
-    "punctvers": {
-      "option": "MUFI"
-    },
-    "renvoi": {
-      "option": "MUFI"
-    },
-    "punctelevdiag": {
-      "option": "MUFI"
-    },
-    "punctinterlemn": {
-      "option": "MUFI"
-    },
-    "bidotscomposit": {
-      "option": "MUFI"
-    },
-    "virgsusp": {
-      "option": "MUFI"
-    },
-    "punctflex": {
-      "option": "MUFI"
-    },
-    "virgmin": {
-      "option": "MUFI"
-    },
-    "hidot": {
-      "option": "MUFI"
-    },
-    "wavylin": {
-      "option": "MUFI"
-    },
-    "punctelevhiback": {
-      "option": "MUFI"
-    },
-    "punctelevhack": {
-      "option": "MUFI"
-    },
-    "combtripbrevebl": {
-      "option": "MUFI"
-    },
-    "ains": {
-      "option": "MUFI"
-    },
-    "Ains": {
-      "option": "MUFI"
-    },
-    "aopen": {
-      "option": "MUFI"
-    },
-    "aclose": {
-      "option": "MUFI"
-    },
-    "aeligred": {
-      "option": "MUFI"
-    },
-    "AOligred": {
-      "option": "MUFI"
-    },
-    "aoligred": {
-      "option": "MUFI"
-    },
-    "finsclose": {
-      "option": "MUFI"
-    },
-    "kunc": {
-      "option": "MUFI"
-    },
-    "kclose": {
-      "option": "MUFI"
-    },
-    "aunc": {
-      "option": "MUFI"
-    },
-    "aneckless": {
-      "option": "MUFI"
-    },
-    "Euncclose": {
-      "option": "MUFI"
-    },
-    "eunc": {
-      "option": "MUFI"
-    },
-    "eext": {
-      "option": "MUFI"
-    },
-    "etall": {
-      "option": "MUFI"
-    },
-    "finssemiclose": {
-      "option": "MUFI"
-    },
-    "finsdothook": {
-      "option": "MUFI"
-    },
-    "gdivloop": {
-      "option": "MUFI"
-    },
-    "glglowloop": {
-      "option": "MUFI"
-    },
-    "gsmlowloop": {
-      "option": "MUFI"
-    },
-    "ilong": {
-      "option": "MUFI"
-    },
-    "ksemiclose": {
-      "option": "MUFI"
-    },
-    "ldes": {
-      "option": "MUFI"
-    },
-    "mrdes": {
-      "option": "MUFI"
-    },
-    "Muncdes": {
-      "option": "MUFI"
-    },
-    "munc": {
-      "option": "MUFI"
-    },
-    "muncdes": {
-      "option": "MUFI"
-    },
-    "nrdes": {
-      "option": "MUFI"
-    },
-    "Nrdes": {
-      "option": "MUFI"
-    },
-    "nscaprdes": {
-      "option": "MUFI"
-    },
-    "nscapldes": {
-      "option": "MUFI"
-    },
-    "Qstem": {
-      "option": "MUFI"
-    },
-    "xldes": {
-      "option": "MUFI"
-    },
-    "yrgmainstrok": {
-      "option": "MUFI"
-    },
-    "hrdes": {
-      "option": "MUFI"
-    },
-    "muncrdes": {
-      "option": "MUFI"
-    },
-    "romnumCrevovl": {
-      "option": "MUFI"
-    },
-    "romaslibr": {
-      "option": "MUFI"
-    },
-    "romscapxbar": {
-      "option": "MUFI"
-    },
-    "romscapybar": {
-      "option": "MUFI"
-    },
-    "romscapdslash": {
-      "option": "MUFI"
-    },
-    "dram": {
-      "option": "MUFI"
-    },
-    "ecu": {
-      "option": "MUFI"
-    },
-    "florloop": {
-      "option": "MUFI"
-    },
-    "grosch": {
-      "option": "MUFI"
-    },
-    "libradut": {
-      "option": "MUFI"
-    },
-    "librafren": {
-      "option": "MUFI"
-    },
-    "libraital": {
-      "option": "MUFI"
-    },
-    "libraflem": {
-      "option": "MUFI"
-    },
-    "liranuov": {
-      "option": "MUFI"
-    },
-    "lirasterl": {
-      "option": "MUFI"
-    },
-    "markold": {
-      "option": "MUFI"
-    },
-    "markflour": {
-      "option": "MUFI"
-    },
-    "msign": {
-      "option": "MUFI"
-    },
-    "msignflour": {
-      "option": "MUFI"
-    },
-    "obol": {
-      "option": "MUFI"
-    },
-    "penningar": {
-      "option": "MUFI"
-    },
-    "reichtalold": {
-      "option": "MUFI"
-    },
-    "schillgerm": {
-      "option": "MUFI"
-    },
-    "schillgermscript": {
-      "option": "MUFI"
-    },
-    "scudi": {
-      "option": "MUFI"
-    },
-    "krone": {
-      "option": "MUFI"
-    },
-    "helbing": {
-      "option": "MUFI"
-    },
-    "ouncescript": {
-      "option": "MUFI"
-    },
-    "Cnumbar": {
-      "option": "MUFI"
-    },
-    "cnumbar": {
-      "option": "MUFI"
-    },
-    "lllig": {
-      "option": "MUFI"
-    },
-    "slongchlig": {
-      "option": "MUFI"
-    },
-    "slongjlig": {
-      "option": "MUFI"
-    },
-    "slongklig": {
-      "option": "MUFI"
-    },
-    "slongslig": {
-      "option": "MUFI"
-    },
-    "slongslongklig": {
-      "option": "MUFI"
-    },
-    "slongslongtlig": {
-      "option": "MUFI"
-    },
-    "metrmacr": {
-      "option": "MUFI"
-    },
-    "metrbreve": {
-      "option": "MUFI"
-    },
-    "metrmacrbreve": {
-      "option": "MUFI"
-    },
-    "metrbrevemacr": {
-      "option": "MUFI"
-    },
-    "metrmacracute": {
-      "option": "MUFI"
-    },
-    "metrmacrgrave": {
-      "option": "MUFI"
-    },
-    "metrbreveacute": {
-      "option": "MUFI"
-    },
-    "metrbrevegrave": {
-      "option": "MUFI"
-    },
-    "metrmacrbreveacute": {
-      "option": "MUFI"
-    },
-    "metrmacrbrevegrave": {
-      "option": "MUFI"
-    },
-    "metranc": {
-      "option": "MUFI"
-    },
-    "metrancacute": {
-      "option": "MUFI"
-    },
-    "metrancgrave": {
-      "option": "MUFI"
-    },
-    "metrpause": {
-      "option": "MUFI"
-    },
-    "metrmacrdblac": {
-      "option": "MUFI"
-    },
-    "metrmacrdblgrave": {
-      "option": "MUFI"
-    },
-    "metrbrevedblac": {
-      "option": "MUFI"
-    },
-    "metrbrevedblgrave": {
-      "option": "MUFI"
-    },
-    "metrancdblac": {
-      "option": "MUFI"
-    },
-    "metrancdblgrave": {
-      "option": "MUFI"
-    },
-    "metrdblbrevemacracute": {
-      "option": "MUFI"
-    },
-    "metrdblbrevemacrdblac": {
-      "option": "MUFI"
-    },
-    "metrdblbrevemacr": {
-      "option": "MUFI"
-    },
-    "Vovlhigh": {
-      "option": "MUFI"
-    },
-    "Xovlhigh": {
-      "option": "MUFI"
-    },
-    "Lovlhigh": {
-      "option": "MUFI"
-    },
-    "Covlhigh": {
-      "option": "MUFI"
-    },
-    "Dovlhigh": {
-      "option": "MUFI"
-    },
-    "sil{}": {
-      "snippet": "sil{${1:char name or code}}",
-      "option": "SIL"
-    },
-    "sil*{}": {
-      "snippet": "sil*{${1:char name or code}}",
-      "option": "SIL"
-    },
-    "ucsur{}": {
-      "snippet": "ucsur{${1:char name or code}}",
-      "option": "UCSUR"
-    },
-    "ucsur*{}": {
-      "snippet": "ucsur*{${1:char name or code}}",
-      "option": "UCSUR"
-    },
-    "unz{}": {
-      "snippet": "unz{${1:char name or code}}",
-      "option": "UNZ"
-    },
-    "unz*{}": {
-      "snippet": "unz*{${1:char name or code}}",
-      "option": "UNZ"
-    },
-    "roundr": {
-      "option": "UNZ"
-    },
-    "longs": {
-      "option": "UNZ"
-    },
-    "germandbls": {
-      "option": "UNZ"
-    },
-    "germandblS": {
-      "option": "UNZ"
-    },
-    "prestroke": {
-      "option": "UNZ"
+    {
+      "name": "csvsimple"
     }
-  },
-  "envs": {},
-  "options": [
-    "AGL",
-    "CYFI",
-    "LINCUA",
-    "MUFI",
-    "SIL",
-    "TITUS",
-    "UCSUR",
-    "UNZ",
-    "fonts={${1:set1=\\fontcmd1,...}}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "agl",
+      "if": "AGL",
+      "arg": {
+        "format": "{}",
+        "snippet": "agl{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "agl*",
+      "if": "AGL",
+      "arg": {
+        "format": "{}",
+        "snippet": "agl*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "entity",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dotlessj",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "LL",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "ll",
+      "if": "AGL",
+      "unusual": true,
+      "detail": "≪",
+      "doc": "Much less than, type 2"
+    },
+    {
+      "name": "commaaccent",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Acute",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Caron",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Dieresis",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "DieresisAcute",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "DieresisGrave",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Grave",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Hungarumlaut",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Macron",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "cyrBreve",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "cyrFlex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dblGrave",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "cyrbreve",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "cyrflex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dblgrave",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dieresisacute",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dieresisgrave",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "copyrightserif",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "registerserif",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "trademarkserif",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "onefitted",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "rupiah",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "threequartersemdash",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "centinferior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "centsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "commainferior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "commasuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dollarinferior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dollarsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "hypheninferior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "hyphensuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "periodinferior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "periodsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "asuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "esuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "isuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "lsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "msuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "osuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "rsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "ssuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "tsuperior",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Brevesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Caronsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Circumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Dotaccentsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Hungarumlautsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Lslashsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "OEsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ogoneksmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ringsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Scaronsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Tildesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Zcaronsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "exclamsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "dollaroldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "ampersandsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "zerooldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "oneoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "twooldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "threeoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "fouroldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "fiveoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "sixoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "sevenoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "eightoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "nineoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "questionsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Gravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Asmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Bsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Csmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Dsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Esmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Fsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Gsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Hsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ismall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Jsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ksmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Lsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Msmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Nsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Osmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Psmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Qsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Rsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ssmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Tsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Usmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Vsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Wsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Xsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ysmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Zsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "exclamdownsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "centoldstyle",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Dieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Macronsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Acutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Cedillasmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "questiondownsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Agravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Aacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Acircumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Atildesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Adieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Aringsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "AEsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ccedillasmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Egravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Eacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ecircumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Edieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Igravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Iacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Icircumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Idieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ethsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ntildesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ogravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Oacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ocircumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Otildesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Odieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Oslashsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ugravesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Uacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ucircumflexsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Udieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Yacutesmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Thornsmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "Ydieresissmall",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maihanakatleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "saraileftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "saraiileftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "saraueleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "saraueeleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitaikhuleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maiekupperleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maieklowrightthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maieklowleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maithoupperleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitholowrightthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitholowleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitriupperleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitrilowrightthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maitrilowleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maichattawaupperleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maichattawalowrightthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "maichattawalowleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatupperleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatlowrightthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatlowleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "nikhahitleftthai",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "radicalex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "arrowvertex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "arrowhorizex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "registersans",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "copyrightsans",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "trademarksans",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenlefttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenleftex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenleftbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketlefttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketleftex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketleftbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracelefttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "braceleftmid",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "braceleftbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "braceex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "integralex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenrighttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenrightex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "parenrightbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketrighttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketrightex",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracketrightbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracerighttp",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracerightmid",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "bracerightbt",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "apple",
+      "if": "AGL",
+      "unusual": true
+    },
+    {
+      "name": "cyfi",
+      "if": "CYFI",
+      "arg": {
+        "format": "{}",
+        "snippet": "cyfi{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "cyfi*",
+      "if": "CYFI",
+      "arg": {
+        "format": "{}",
+        "snippet": "cyfi*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "cyfi",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "cyfi{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "cyfi*",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "cyfi*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "mufi",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "mufi{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "mufi*",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "mufi*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "titus",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "titus{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "titus*",
+      "if": "LINCUA",
+      "arg": {
+        "format": "{}",
+        "snippet": "titus*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "entity",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dotlessj",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "LL",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ll",
+      "if": "LINCUA",
+      "unusual": true,
+      "detail": "≪",
+      "doc": "Much less than, type 2"
+    },
+    {
+      "name": "commaaccent",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Acute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Caron",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Dieresis",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "DieresisAcute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "DieresisGrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Grave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Hungarumlaut",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Macron",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cyrBreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cyrFlex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dblGrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cyrbreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cyrflex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dblgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dieresisacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dieresisgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "copyrightserif",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "registerserif",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "trademarkserif",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "onefitted",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rupiah",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "threequartersemdash",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "centinferior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "centsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "commainferior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "commasuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dollarinferior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dollarsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hypheninferior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hyphensuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "periodinferior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "periodsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "asuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "esuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "isuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "msuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "osuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ssuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tsuperior",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Brevesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Caronsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Circumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Dotaccentsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Hungarumlautsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Lslashsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OEsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ogoneksmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ringsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Scaronsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Tildesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Zcaronsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "exclamsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dollaroldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ampersandsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "zerooldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oneoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "twooldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "threeoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fouroldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fiveoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sixoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sevenoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eightoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nineoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "questionsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Gravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Asmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Bsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Csmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Dsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Esmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Fsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Gsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Hsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ismall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Jsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ksmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Lsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Msmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Nsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Osmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Psmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Qsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Rsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ssmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Tsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Usmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Vsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Wsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Xsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ysmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Zsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "exclamdownsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "centoldstyle",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Dieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Macronsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Acutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Cedillasmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "questiondownsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Agravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Aacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Acircumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Atildesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Adieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Aringsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AEsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ccedillasmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Egravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Eacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ecircumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Edieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Igravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Iacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Icircumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Idieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ethsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ntildesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ogravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ocircumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Otildesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Odieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ugravesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Uacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ucircumflexsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Udieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Yacutesmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Thornsmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ydieresissmall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maihanakatleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "saraileftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "saraiileftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "saraueleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "saraueeleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitaikhuleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maiekupperleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maieklowrightthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maieklowleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maithoupperleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitholowrightthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitholowleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitriupperleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitrilowrightthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maitrilowleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maichattawaupperleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maichattawalowrightthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "maichattawalowleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatupperleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatlowrightthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thanthakhatlowleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nikhahitleftthai",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "radicalex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arrowvertex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arrowhorizex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "registersans",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "copyrightsans",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "trademarksans",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenlefttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenleftex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenleftbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketlefttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketleftex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketleftbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracelefttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "braceleftmid",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "braceleftbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "braceex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "integralex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenrighttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenrightex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parenrightbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketrighttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketrightex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracketrightbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracerighttp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracerightmid",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bracerightbt",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "apple",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OEligogon",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Pdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Vvertline",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oeligogon",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "pdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "vvertline",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "idblstrok",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jdblstrok",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "autem",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "vslashura",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "vslashuradbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thornrarmlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Hrarmlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hrarmlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "krarmlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "UUlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uulig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "UElig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uelig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "xslashlradbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligring",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligogonacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "adiaguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "odiaguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "inodotogon",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "orrotlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slonglbarlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "iesup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ausup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eesup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eosup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "iasup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "iosup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "iusup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jesup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "mesup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oosup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "resup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uasup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uvsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uwsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wasup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wisup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wusup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wvsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "grlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "qvinslig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongdestlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aenlacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aenlosmalllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eogonenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongaumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slonghlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongilig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongoumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslonglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslongilig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslongllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongtilig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongtrlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slonguumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongvinslig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hslonglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kslonglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AVligslashacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "avligslashacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "drotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Finsacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Muncacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "muncacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ocurlacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ocurlacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rrotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Vinsacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "vinsacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eacombcirc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eucombcirc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ucurlbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AOligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aoligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AVligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "avligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oogondblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oogondblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OEligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oeligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "YYligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "yyligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "pscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "drotdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Finsdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finssemiclosedot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsclosedot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "mscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oogondot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oogondot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Juml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "juml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OOliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ooliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "PPliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ppliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "YYliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "yyliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AEligcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashmacracute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashmacracute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashbreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashbreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AVligogon",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "avligogon",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Eogoncurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eogoncurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Adotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "adotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Idotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "idotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Odotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "odotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oogondotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oogondotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashdotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Udotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "udotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bblig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cklig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ctlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "drotdrotlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eylig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "faumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fjlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "frlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ftlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fuumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fylig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fftlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ffylig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ftylig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gdlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gdrotlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gethlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nscapslonglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "pplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ppflourlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "trlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ttlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "trottrotlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tylig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tzlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "PPlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "golig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "benl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "denl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "drotenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ethenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "genl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "henl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ienl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "menl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "penl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "qenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "renl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "senl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thornenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "venl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "xenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "yenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "zenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "inodotenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jnodotenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "qscap",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "xscap",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thornscap",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tscapdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "mscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tscapdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aacloselig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anecklesselig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anecklessvlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aflig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "afinslig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aglig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "allig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anscaplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arscaplig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "athornlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oclig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AnecklessElig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "uuligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "UUligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AEligdotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligdotacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oeligenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aoligenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaligenl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AAligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AOligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aoligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AUligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "auligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AVligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "avligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OOligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ooligacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AAligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OOligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ooligdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AAligdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaligdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AYligdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ayligdot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AAligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AOligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aoligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AUligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "auligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AVligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "avligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AYligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ayligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "OOligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ooligdotbl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AAliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aaliguml",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "macrhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "macrmed",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ovlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ovlmed",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bscapsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dscapsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kscapsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "psup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tscapsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ysup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "inodotsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "jnodotsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oslashsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "qsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anligsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arligsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "anscapligsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "trotsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thornsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "orrotsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "orumsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rumsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Csqu",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Eunc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Gsqu",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Hunc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Munc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Sclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arscapligsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eogonsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "emacrsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Asqu",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "oogonsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "omacrsup",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ET",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "thornbarslash",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "urrot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "etslash",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "de",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctinter",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctelev",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "fcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ccurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tcurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nflour",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rflour",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "USbase",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "usbase",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ETslash",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "sem",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "chlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "foumllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "smallzero",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Vmod",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Xmod",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "arbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "rabar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "urlemn",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "combcurlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "erang",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ercurl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "combdothigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "combcurlbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tridagger",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "midring",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ramus",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "medcom",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "parag",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "posit",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ductsimpl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctposit",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "colmidcomposit",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "tridotscomposit",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctexclam",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctintertilde",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctvers",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "renvoi",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctelevdiag",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctinterlemn",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "bidotscomposit",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "virgsusp",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctflex",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "virgmin",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hidot",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "wavylin",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctelevhiback",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "punctelevhack",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "combtripbrevebl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ains",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Ains",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aopen",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aeligred",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "AOligred",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aoligred",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kunc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "kclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aunc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "aneckless",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Euncclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eunc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "eext",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "etall",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finssemiclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "finsdothook",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gdivloop",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "glglowloop",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "gsmlowloop",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ilong",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ksemiclose",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ldes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "mrdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Muncdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "munc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "muncdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nrdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Nrdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nscaprdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "nscapldes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Qstem",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "xldes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "yrgmainstrok",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "hrdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "munc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "muncrdes",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "muncacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "romnumCrevovl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "romaslibr",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "romscapxbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "romscapybar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "romscapdslash",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "dram",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ecu",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "florloop",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "grosch",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "libradut",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "librafren",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "libraital",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "libraflem",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "liranuov",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lirasterl",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "markold",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "markflour",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "msign",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "msignflour",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "obol",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "penningar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "reichtalold",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "schillgerm",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "schillgermscript",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "scudi",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "krone",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "helbing",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "ouncescript",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Cnumbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "cnumbar",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "lllig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongchlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongjlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongklig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslongklig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "slongslongtlig",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacr",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbreve",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevemacr",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacracute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbreveacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevegrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbreveacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbrevegrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metranc",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrancacute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrancgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrpause",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrdblgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevedblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevedblgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrancdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrancdblgrave",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacracute",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacrdblac",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacr",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Vovlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Xovlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Lovlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Covlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "Dovlhigh",
+      "if": "LINCUA",
+      "unusual": true
+    },
+    {
+      "name": "mufi",
+      "if": "MUFI",
+      "arg": {
+        "format": "{}",
+        "snippet": "mufi{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "mufi*",
+      "if": "MUFI",
+      "arg": {
+        "format": "{}",
+        "snippet": "mufi*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "OEligogon",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Pdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Vvertline",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oeligogon",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "pdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "vvertline",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "idblstrok",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jdblstrok",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "autem",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "vslashura",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "vslashuradbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "thornrarmlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Hrarmlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "hrarmlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "krarmlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "UUlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uulig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "UElig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uelig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "xslashlradbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligring",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligogonacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "adiaguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "odiaguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "inodotogon",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "orrotlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slonglbarlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "iesup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ausup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eesup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eosup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "iasup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "iosup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "iusup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jesup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "mesup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oosup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "resup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uasup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uvsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uwsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wasup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wisup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wusup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wvsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "grlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "qvinslig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongdestlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aenlacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aenlosmalllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eogonenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongaumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slonghlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongilig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongoumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslonglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslongilig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslongllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongtilig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongtrlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slonguumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongvinslig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "hslonglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kslonglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AVligslashacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "avligslashacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "drotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Finsacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Muncacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "muncacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Ocurlacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ocurlacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rrotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Vinsacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "vinsacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eacombcirc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eucombcirc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ucurlbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AOligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aoligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AVligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "avligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oogondblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oogondblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "OEligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oeligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "YYligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "yyligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "pscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "drotdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "dscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Finsdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finssemiclosedot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsclosedot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "hscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "lscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "mscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oogondot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oogondot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Juml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "juml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "OOliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ooliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "PPliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ppliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "YYliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "yyliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AEligcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashmacracute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashmacracute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashbreve",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashbreve",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AVligogon",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "avligogon",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Eogoncurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eogoncurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Adotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "adotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Idotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "idotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Odotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "odotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oogondotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oogondotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Oslashdotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashdotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Udotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "udotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bblig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "cklig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ctlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "drotdrotlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eylig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "faumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fjlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "frlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ftlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fuumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fylig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fftlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ffylig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ftylig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gdlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gdrotlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gethlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nscapslonglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "pplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ppflourlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "trlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ttlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "trottrotlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tylig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tzlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "PPlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "golig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "benl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "cenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "denl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "drotenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ethenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "genl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "henl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ienl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "lenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "menl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "penl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "qenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "renl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "senl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "thornenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "venl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "xenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "yenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "zenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "inodotenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jnodotenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "qscap",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "xscap",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "thornscap",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "sscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tscapdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "dscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "lscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "mscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "sscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tscapdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aacloselig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anecklesselig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anecklessvlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aflig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "afinslig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aglig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "allig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anscaplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "arlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "arscaplig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "athornlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oclig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AnecklessElig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "uuligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "UUligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AEligdotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligdotacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oeligenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aoligenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaligenl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AAligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AOligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aoligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AUligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "auligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AVligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "avligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "OOligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ooligacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AAligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "OOligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ooligdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AAligdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaligdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AYligdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ayligdot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AAligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AOligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aoligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AUligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "auligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AVligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "avligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AYligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ayligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "OOligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ooligdotbl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AAliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aaliguml",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "macrhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "macrmed",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ovlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ovlmed",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bscapsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "dscapsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kscapsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "psup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tscapsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ysup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "inodotsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "jnodotsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oslashsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "qsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anligsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "arligsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "anscapligsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "trotsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "thornsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "orrotsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "orumsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rumsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Csqu",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Eunc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Gsqu",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Hunc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Munc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Sclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "sclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "arscapligsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eogonsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "emacrsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Asqu",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "oogonsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "omacrsup",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ET",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "thornbarslash",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "urrot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "etslash",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "de",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctinter",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctelev",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "dcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "fcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ccurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tcurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nflour",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rflour",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "USbase",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "usbase",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ETslash",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "sem",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "chlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "foumllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "smallzero",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Vmod",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Xmod",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "arbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "rabar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "urlemn",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "combcurlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "erang",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ercurl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "combdothigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "combcurlbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tridagger",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "midring",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ramus",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "medcom",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "parag",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "posit",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ductsimpl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctposit",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "colmidcomposit",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "tridotscomposit",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctexclam",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctintertilde",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctvers",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "renvoi",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctelevdiag",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctinterlemn",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "bidotscomposit",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "virgsusp",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctflex",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "virgmin",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "hidot",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "wavylin",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctelevhiback",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "punctelevhack",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "combtripbrevebl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ains",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Ains",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aopen",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aeligred",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "AOligred",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aoligred",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kunc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "kclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aunc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "aneckless",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Euncclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eunc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "eext",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "etall",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finssemiclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "finsdothook",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gdivloop",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "glglowloop",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "gsmlowloop",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ilong",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ksemiclose",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ldes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "mrdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Muncdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "munc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "muncdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nrdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Nrdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nscaprdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "nscapldes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Qstem",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "xldes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "yrgmainstrok",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "hrdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "munc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "muncrdes",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "muncacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "romnumCrevovl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "romaslibr",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "romscapxbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "romscapybar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "romscapdslash",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "dram",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ecu",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "florloop",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "grosch",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "libradut",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "librafren",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "libraital",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "libraflem",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "liranuov",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "lirasterl",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "markold",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "markflour",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "msign",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "msignflour",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "obol",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "penningar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "reichtalold",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "schillgerm",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "schillgermscript",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "scudi",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "krone",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "helbing",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "ouncescript",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Cnumbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "cnumbar",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "lllig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongchlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongjlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongklig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslongklig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "slongslongtlig",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacr",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbreve",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbreve",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevemacr",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacracute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrgrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbreveacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevegrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbreveacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrbrevegrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metranc",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrancacute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrancgrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrpause",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrmacrdblgrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevedblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrbrevedblgrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrancdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrancdblgrave",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacracute",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacrdblac",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "metrdblbrevemacr",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Vovlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Xovlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Lovlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Covlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "Dovlhigh",
+      "if": "MUFI",
+      "unusual": true
+    },
+    {
+      "name": "sil",
+      "if": "SIL",
+      "arg": {
+        "format": "{}",
+        "snippet": "sil{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "sil*",
+      "if": "SIL",
+      "arg": {
+        "format": "{}",
+        "snippet": "sil*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "titus",
+      "if": "TITUS",
+      "arg": {
+        "format": "{}",
+        "snippet": "titus{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "titus*",
+      "if": "TITUS",
+      "arg": {
+        "format": "{}",
+        "snippet": "titus*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "ucsur",
+      "if": "UCSUR",
+      "arg": {
+        "format": "{}",
+        "snippet": "ucsur{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "ucsur*",
+      "if": "UCSUR",
+      "arg": {
+        "format": "{}",
+        "snippet": "ucsur*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "unz",
+      "if": "UNZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "unz{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "unz*",
+      "if": "UNZ",
+      "arg": {
+        "format": "{}",
+        "snippet": "unz*{${1:char name or code}}"
+      }
+    },
+    {
+      "name": "roundr",
+      "if": "UNZ",
+      "unusual": true
+    },
+    {
+      "name": "longs",
+      "if": "UNZ",
+      "unusual": true
+    },
+    {
+      "name": "germandbls",
+      "if": "UNZ",
+      "unusual": true
+    },
+    {
+      "name": "germandblS",
+      "if": "UNZ",
+      "unusual": true
+    },
+    {
+      "name": "prestroke",
+      "if": "UNZ",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/unicode-alphabets#c": [
+      "AGL",
+      "CYFI",
+      "LINCUA",
+      "MUFI",
+      "SIL",
+      "TITUS",
+      "UCSUR",
+      "UNZ",
+      "fonts={${1:set1=\\fontcmd1,...}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/unicode-alphabets#c"
+  ]
 }

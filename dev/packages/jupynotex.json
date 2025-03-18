@@ -1,16 +1,35 @@
 {
-  "includes": {
-    "tcolorbox": []
-  },
-  "macros": {
-    "jupynotex{}": {
-      "snippet": "jupynotex{${1:file}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "jupynotex[]{}": {
-      "snippet": "jupynotex[${2:cells}]{${1:file}}"
+    {
+      "name": "pgfopts"
     }
+  ],
+  "macros": [
+    {
+      "name": "jupynotex",
+      "arg": {
+        "format": "{}",
+        "snippet": "jupynotex{${1:file}}"
+      }
+    },
+    {
+      "name": "jupynotex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "jupynotex[${2:cells}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/jupynotex#c": [
+      "output-text-limit=${1:integer}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": [
+    "\\usepackage/jupynotex#c"
+  ]
 }

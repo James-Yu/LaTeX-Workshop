@@ -1,268 +1,620 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "fcprefix": [],
-    "amsgen": []
-  },
-  "macros": {
-    "ordinal{}": {
-      "snippet": "ordinal{${1:counter}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "ordinal{}[]": {
-      "snippet": "ordinal{${1:counter}}[${2:gender}]"
+    {
+      "name": "xkeyval"
     },
-    "FCordinal{}": {
-      "snippet": "FCordinal{${1:counter}}"
+    {
+      "name": "etoolbox"
     },
-    "FCordinal{}[]": {
-      "snippet": "FCordinal{${1:counter}}[${2:gender}]"
+    {
+      "name": "fcprefix"
     },
-    "fmtord{}": {
-      "snippet": "fmtord{${1:text}}"
-    },
-    "ordinalnum{}": {
-      "snippet": "ordinalnum{${1:number}}"
-    },
-    "ordinalnum{}[]": {
-      "snippet": "ordinalnum{${1:number}}[${2:gender}]"
-    },
-    "numberstring{}": {
-      "snippet": "numberstring{${1:counter}}"
-    },
-    "numberstring{}[]": {
-      "snippet": "numberstring{${1:counter}}[${2:gender}]"
-    },
-    "Numberstring{}": {
-      "snippet": "Numberstring{${1:counter}}"
-    },
-    "Numberstring{}[]": {
-      "snippet": "Numberstring{${1:counter}}[${2:gender}]"
-    },
-    "NUMBERstring{}": {
-      "snippet": "NUMBERstring{${1:counter}}"
-    },
-    "NUMBERstring{}[]": {
-      "snippet": "NUMBERstring{${1:counter}}[${2:gender}]"
-    },
-    "numberstringnum{}": {
-      "snippet": "numberstringnum{${1:number}}"
-    },
-    "numberstringnum{}[]": {
-      "snippet": "numberstringnum{${1:number}}[${2:gender}]"
-    },
-    "Numberstringnum{}": {
-      "snippet": "Numberstringnum{${1:number}}"
-    },
-    "Numberstringnum{}[]": {
-      "snippet": "Numberstringnum{${1:number}}[${2:gender}]"
-    },
-    "NUMBERstringnum{}": {
-      "snippet": "NUMBERstringnum{${1:number}}"
-    },
-    "NUMBERstringnum{}[]": {
-      "snippet": "NUMBERstringnum{${1:number}}[${2:gender}]"
-    },
-    "ordinalstring{}": {
-      "snippet": "ordinalstring{${1:counter}}"
-    },
-    "ordinalstring{}[]": {
-      "snippet": "ordinalstring{${1:counter}}[${2:gender}]"
-    },
-    "Ordinalstring{}": {
-      "snippet": "Ordinalstring{${1:counter}}"
-    },
-    "Ordinalstring{}[]": {
-      "snippet": "Ordinalstring{${1:counter}}[${2:gender}]"
-    },
-    "ORDINALstring{}": {
-      "snippet": "ORDINALstring{${1:counter}}"
-    },
-    "ORDINALstring{}[]": {
-      "snippet": "ORDINALstring{${1:counter}}[${2:gender}]"
-    },
-    "ordinalstringnum{}": {
-      "snippet": "ordinalstringnum{${1:number}}"
-    },
-    "ordinalstringnum{}[]": {
-      "snippet": "ordinalstringnum{${1:number}}[${2:gender}]"
-    },
-    "Ordinalstringnum{}": {
-      "snippet": "Ordinalstringnum{${1:number}}"
-    },
-    "Ordinalstringnum{}[]": {
-      "snippet": "Ordinalstringnum{${1:number}}[${2:gender}]"
-    },
-    "ORDINALstringnum{}": {
-      "snippet": "ORDINALstringnum{${1:number}}"
-    },
-    "ORDINALstringnum{}[]": {
-      "snippet": "ORDINALstringnum{${1:number}}[${2:gender}]"
-    },
-    "FMCuse{}": {
-      "snippet": "FMCuse{${1:label}}"
-    },
-    "storeordinal{}{}": {
-      "snippet": "storeordinal{${1:label}}{${2:counter}}"
-    },
-    "storeordinal{}{}[]": {
-      "snippet": "storeordinal{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeordinalstring{}{}": {
-      "snippet": "storeordinalstring{${1:label}}{${2:counter}}"
-    },
-    "storeordinalstring{}{}[]": {
-      "snippet": "storeordinalstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeOrdinalstring{}{}": {
-      "snippet": "storeOrdinalstring{${1:label}}{${2:counter}}"
-    },
-    "storeOrdinalstring{}{}[]": {
-      "snippet": "storeOrdinalstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeORDINALstring{}{}": {
-      "snippet": "storeORDINALstring{${1:label}}{${2:counter}}"
-    },
-    "storeORDINALstring{}{}[]": {
-      "snippet": "storeORDINALstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storenumberstring{}{}": {
-      "snippet": "storenumberstring{${1:label}}{${2:number}}"
-    },
-    "storenumberstring{}{}[]": {
-      "snippet": "storenumberstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeNumberstring{}{}": {
-      "snippet": "storeNumberstring{${1:label}}{${2:counter}}"
-    },
-    "storeNumberstring{}{}[]": {
-      "snippet": "storeNumberstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeNUMBERstring{}{}": {
-      "snippet": "storeNUMBERstring{${1:label}}{${2:counter}}"
-    },
-    "storeNUMBERstring{}{}[]": {
-      "snippet": "storeNUMBERstring{${1:label}}{${2:counter}}[${3:gender}]"
-    },
-    "storeordinalnum{}{}": {
-      "snippet": "storeordinalnum{${1:label}}{${2:number}}"
-    },
-    "storeordinalnum{}{}[]": {
-      "snippet": "storeordinalnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storeordinalstringnum{}{}": {
-      "snippet": "storeordinalstringnum{${1:label}}{${2:number}}"
-    },
-    "storeordinalstringnum{}{}[]": {
-      "snippet": "storeordinalstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storeOrdinalstringnum{}{}": {
-      "snippet": "storeOrdinalstringnum{${1:label}}{${2:number}}"
-    },
-    "storeOrdinalstringnum{}{}[]": {
-      "snippet": "storeOrdinalstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storeORDINALstringnum{}{}": {
-      "snippet": "storeORDINALstringnum{${1:label}}{${2:number}}"
-    },
-    "storeORDINALstringnum{}{}[]": {
-      "snippet": "storeORDINALstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storenumberstringnum{}{}[]": {
-      "snippet": "storenumberstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storeNumberstringnum{}{}": {
-      "snippet": "storeNumberstringnum{${1:label}}{${2:number}}"
-    },
-    "storeNumberstringnum{}{}[]": {
-      "snippet": "storeNumberstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "storeNUMBERstringnum{}{}": {
-      "snippet": "storeNUMBERstringnum{${1:label}}{${2:number}}"
-    },
-    "storeNUMBERstringnum{}{}[]": {
-      "snippet": "storeNUMBERstringnum{${1:label}}{${2:number}}[${3:gender}]"
-    },
-    "binary{}": {
-      "snippet": "binary{${1:counter}}"
-    },
-    "padzeroes": {},
-    "padzeroes[]": {
-      "snippet": "padzeroes[${1:number}]"
-    },
-    "binarynum{}": {
-      "snippet": "binarynum{${1:number}}"
-    },
-    "octal{}": {
-      "snippet": "octal{${1:counter}}"
-    },
-    "octalnum{}": {
-      "snippet": "octalnum{${1:number}}"
-    },
-    "hexadecimal{}": {
-      "snippet": "hexadecimal{${1:counter}}"
-    },
-    "HEXADecimal{}": {
-      "snippet": "HEXADecimal{${1:counter}}"
-    },
-    "hexadecimalnum{}": {
-      "snippet": "hexadecimalnum{${1:number}}"
-    },
-    "HEXADecimalnum{}": {
-      "snippet": "HEXADecimalnum{${1:number}}"
-    },
-    "decimal{}": {
-      "snippet": "decimal{${1:counter}}"
-    },
-    "decimalnum{}": {
-      "snippet": "decimalnum{${1:number}}"
-    },
-    "aaalph{}": {
-      "snippet": "aaalph{${1:counter}}"
-    },
-    "AAAlph{}": {
-      "snippet": "AAAlph{${1:counter}}"
-    },
-    "aaalphnum{}": {
-      "snippet": "aaalphnum{${1:number}}"
-    },
-    "AAAlphnum{}": {
-      "snippet": "AAAlphnum{${1:number}}"
-    },
-    "abalph{}": {
-      "snippet": "abalph{${1:counter}}"
-    },
-    "ABAlph{}": {
-      "snippet": "ABAlph{${1:counter}}"
-    },
-    "abalphnum{}": {
-      "snippet": "abalphnum{${1:number}}"
-    },
-    "ABAlphnum{}": {
-      "snippet": "ABAlphnum{${1:number}}"
-    },
-    "fmtcountsetoptions{}": {
-      "snippet": "fmtcountsetoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "FCloadlang{}": {
-      "snippet": "FCloadlang{${1:language}}"
-    },
-    "ProvidesFCLanguage{}": {
-      "snippet": "ProvidesFCLanguage{${1:language}}"
+    {
+      "name": "amsgen"
     }
-  },
-  "envs": {},
-  "options": [
-    "${1:dialect}",
-    "raise",
-    "level"
   ],
-  "keyvals": [
-    [
-      "fmtord=",
+  "macros": [
+    {
+      "name": "ordinal",
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinal{${1:counter}}"
+      }
+    },
+    {
+      "name": "ordinal",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ordinal{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "FCordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FCordinal{${1:counter}}"
+      }
+    },
+    {
+      "name": "FCordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "FCordinal{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "fmtord",
+      "arg": {
+        "format": "{}",
+        "snippet": "fmtord{${1:text}}"
+      }
+    },
+    {
+      "name": "ordinalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinalnum{${1:number}}"
+      }
+    },
+    {
+      "name": "ordinalnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ordinalnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "numberstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "numberstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "numberstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "numberstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "Numberstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "Numberstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "Numberstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Numberstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "NUMBERstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "NUMBERstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "NUMBERstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "NUMBERstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "numberstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "numberstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "numberstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "numberstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "Numberstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Numberstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "Numberstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Numberstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "NUMBERstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "NUMBERstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "NUMBERstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "NUMBERstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "ordinalstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinalstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "ordinalstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ordinalstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "Ordinalstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ordinalstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "Ordinalstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Ordinalstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "ORDINALstring",
+      "arg": {
+        "format": "{}",
+        "snippet": "ORDINALstring{${1:counter}}"
+      }
+    },
+    {
+      "name": "ORDINALstring",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ORDINALstring{${1:counter}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "ordinalstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinalstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "ordinalstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ordinalstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "Ordinalstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ordinalstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "Ordinalstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "Ordinalstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "ORDINALstringnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "ORDINALstringnum{${1:number}}"
+      }
+    },
+    {
+      "name": "ORDINALstringnum",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ORDINALstringnum{${1:number}}[${2:gender}]"
+      }
+    },
+    {
+      "name": "FMCuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "FMCuse{${1:label}}"
+      }
+    },
+    {
+      "name": "storeordinal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeordinal{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeordinal",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeordinal{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeordinalstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeordinalstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeordinalstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeordinalstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeOrdinalstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeOrdinalstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeOrdinalstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeOrdinalstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeORDINALstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeORDINALstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeORDINALstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeORDINALstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storenumberstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storenumberstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storenumberstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storenumberstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeNumberstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeNumberstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeNumberstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeNumberstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeNUMBERstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeNUMBERstring{${1:label}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "storeNUMBERstring",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeNUMBERstring{${1:label}}{${2:counter}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeordinalnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeordinalnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeordinalnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeordinalnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeordinalstringnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeordinalstringnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeordinalstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeordinalstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeOrdinalstringnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeOrdinalstringnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeOrdinalstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeOrdinalstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeORDINALstringnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeORDINALstringnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeORDINALstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeORDINALstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storenumberstring",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storenumberstring{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storenumberstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storenumberstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeNumberstringnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeNumberstringnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeNumberstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeNumberstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "storeNUMBERstringnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storeNUMBERstringnum{${1:label}}{${2:number}}"
+      }
+    },
+    {
+      "name": "storeNUMBERstringnum",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "storeNUMBERstringnum{${1:label}}{${2:number}}[${3:gender}]"
+      }
+    },
+    {
+      "name": "binary",
+      "arg": {
+        "format": "{}",
+        "snippet": "binary{${1:counter}}"
+      }
+    },
+    {
+      "name": "padzeroes"
+    },
+    {
+      "name": "padzeroes",
+      "arg": {
+        "format": "[]",
+        "snippet": "padzeroes[${1:number}]"
+      }
+    },
+    {
+      "name": "binarynum",
+      "arg": {
+        "format": "{}",
+        "snippet": "binarynum{${1:number}}"
+      }
+    },
+    {
+      "name": "octal",
+      "arg": {
+        "format": "{}",
+        "snippet": "octal{${1:counter}}"
+      }
+    },
+    {
+      "name": "octalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "octalnum{${1:number}}"
+      }
+    },
+    {
+      "name": "hexadecimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "hexadecimal{${1:counter}}"
+      }
+    },
+    {
+      "name": "HEXADecimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "HEXADecimal{${1:counter}}"
+      }
+    },
+    {
+      "name": "hexadecimalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "hexadecimalnum{${1:number}}"
+      }
+    },
+    {
+      "name": "HEXADecimalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "HEXADecimalnum{${1:number}}"
+      }
+    },
+    {
+      "name": "decimal",
+      "arg": {
+        "format": "{}",
+        "snippet": "decimal{${1:counter}}"
+      }
+    },
+    {
+      "name": "decimalnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "decimalnum{${1:number}}"
+      }
+    },
+    {
+      "name": "aaalph",
+      "arg": {
+        "format": "{}",
+        "snippet": "aaalph{${1:counter}}"
+      }
+    },
+    {
+      "name": "AAAlph",
+      "arg": {
+        "format": "{}",
+        "snippet": "AAAlph{${1:counter}}"
+      }
+    },
+    {
+      "name": "aaalphnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "aaalphnum{${1:number}}"
+      }
+    },
+    {
+      "name": "AAAlphnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "AAAlphnum{${1:number}}"
+      }
+    },
+    {
+      "name": "abalph",
+      "arg": {
+        "format": "{}",
+        "snippet": "abalph{${1:counter}}"
+      }
+    },
+    {
+      "name": "ABAlph",
+      "arg": {
+        "format": "{}",
+        "snippet": "ABAlph{${1:counter}}"
+      }
+    },
+    {
+      "name": "abalphnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "abalphnum{${1:number}}"
+      }
+    },
+    {
+      "name": "ABAlphnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "ABAlphnum{${1:number}}"
+      }
+    },
+    {
+      "name": "fmtcountsetoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "fmtcountsetoptions{${1:options%keyvals}}",
+        "keys": [
+          "\\fmtcountsetoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FCloadlang",
+      "arg": {
+        "format": "{}",
+        "snippet": "FCloadlang{${1:language%keyvals}}",
+        "keys": [
+          "\\FCloadlang#c,\\usepackage/fmtcount#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProvidesFCLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesFCLanguage{${1:language}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fmtcount#c": [
+      "${1:dialect}",
+      "raise",
+      "level"
+    ],
+    "\\fmtcountsetoptions#c": [
+      "fmtord=${1|level,raise|}",
       "english={${1:options}}",
       "UKenglish={${1:options}}",
       "brazilian={${1:options}}",
@@ -281,6 +633,29 @@
       "ngermanb={${1:options}}",
       "italian={${1:options}}",
       "abbr"
+    ],
+    "\\FCloadlang#c,\\usepackage/fmtcount#c": [
+      "english",
+      "UKenglish",
+      "brazilian",
+      "british",
+      "USenglish",
+      "american",
+      "spanish",
+      "portuges",
+      "portuguese",
+      "french",
+      "frenchb",
+      "francais",
+      "german",
+      "germanb",
+      "ngerman",
+      "ngermanb",
+      "italian"
     ]
+  },
+  "args": [
+    "\\usepackage/fmtcount#c",
+    "\\FCloadlang#c,\\usepackage/fmtcount#c"
   ]
 }

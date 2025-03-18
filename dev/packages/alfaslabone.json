@@ -1,25 +1,54 @@
 {
-  "includes": {
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "sufigures": {},
-    "supfigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "alfaslabonetabular": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "fontaxes"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    },
+    {
+      "name": "alfaslabonetabular"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

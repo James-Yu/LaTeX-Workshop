@@ -1,45 +1,87 @@
 {
-  "includes": {
-    "verbatim": [],
-    "graphicx": [],
-    "makecmds": [],
-    "ifpdf": [],
-    "ifthen": []
-  },
-  "macros": {
-    "sympy{}": {
-      "snippet": "sympy{${1:Sympy code}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "percent": {
-      "detail": "%",
-      "documentation": "PERCENT SIGN"
+    {
+      "name": "graphicx"
     },
-    "sympyplot{}": {
-      "snippet": "sympyplot{${1:graphics obj, keyword args}}"
+    {
+      "name": "makecmds"
     },
-    "sympyplot[]{}": {
-      "snippet": "sympyplot[${2:options}]{${1:graphics obj, keyword args}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "sympyplot[][]{}": {
-      "snippet": "sympyplot[${2:options}][${3:fmt}]{${1:graphics obj, keyword args}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sympytexindent": {}
-  },
-  "envs": {
-    "sympyblock": {},
-    "sympysilent": {},
-    "sympyverbatim": {},
-    "comment": {}
-  },
-  "options": [
-    "imagemagick"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "sympy",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympy{${1:Sympy code%definition}}"
+      }
+    },
+    {
+      "name": "percent",
+      "detail": "%",
+      "doc": "Percent sign"
+    },
+    {
+      "name": "sympyplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyplot{${1:graphics obj, keyword args%definition}}"
+      }
+    },
+    {
+      "name": "sympyplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sympyplot[${2:options%keyvals}]{${1:graphics obj, keyword args%definition}}",
+        "keys": [
+          "\\sympyplot"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sympyplot",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "sympyplot[${2:options%keyvals}][${3:fmt}]{${1:graphics obj, keyword args%definition}}",
+        "keys": [
+          "\\sympyplot"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sympytexindent",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sympyblock"
+    },
+    {
+      "name": "sympysilent"
+    },
+    {
+      "name": "sympyverbatim"
+    },
+    {
+      "name": "comment"
+    }
+  ],
+  "keys": {
+    "\\usepackage/sympytex#c": [
+      "imagemagick"
+    ],
+    "\\sympyplot": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -49,7 +91,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -70,5 +112,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/sympytex#c"
   ]
 }

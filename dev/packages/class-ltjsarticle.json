@@ -1,114 +1,234 @@
 {
-  "includes": {
-    "luatexja": [],
-    "jslogo": [],
-    "stfloats": []
-  },
-  "macros": {
-    "stockheight": {
-      "option": "mentuke"
+  "deps": [
+    {
+      "name": "luatexja"
     },
-    "stockwidth": {
-      "option": "mentuke"
+    {
+      "name": "jslogo"
     },
-    "maybeblue": {
-      "option": "slide"
-    },
-    "alsoname": {},
-    "bibname": {},
-    "Cjascale": {},
-    "fullwidth": {},
-    "headfont": {},
-    "heisei": {},
-    "HUGE": {},
-    "ifjisfont": {},
-    "ifmingoth": {},
-    "ifnarrowbaselines": {},
-    "ifptexjis": {},
-    "ifptexmin": {},
-    "jisfontfalse": {},
-    "jisfonttrue": {},
-    "jsParagraphMark": {},
-    "jsTocLine": {},
-    "mingothfalse": {},
-    "mingothtrue": {},
-    "narrowbaselines": {},
-    "narrowbaselinesfalse": {},
-    "narrowbaselinestrue": {},
-    "plainifnotempty": {},
-    "postpartname": {},
-    "postsectionname": {},
-    "prepartname": {},
-    "presectionname": {},
-    "ptexjisfalse": {},
-    "ptexjistrue": {},
-    "ptexminfalse": {},
-    "ptexmintrue": {},
-    "seename": {},
-    "widebaselines": {}
-  },
-  "envs": {},
-  "options": [
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "a4j",
-    "a5j",
-    "b4j",
-    "b5j",
-    "a4var",
-    "b5var",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "slide",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "21pt",
-    "25pt",
-    "30pt",
-    "36pt",
-    "43pt",
-    "12Q",
-    "14Q",
-    "10ptj",
-    "10.5ptj",
-    "11ptj",
-    "12ptj",
-    "nomag",
-    "nomag",
-    "tombow",
-    "tombo",
-    "mentuke",
-    "oneside",
-    "twoside",
-    "vartwoside",
-    "onecolumn",
-    "twocolumn",
-    "titlepage",
-    "notitlepage",
-    "leqno",
-    "fleqn",
-    "disablejfam",
-    "draft",
-    "final",
-    "mingoth",
-    "ptexjis",
-    "jis",
-    "english",
-    "jslogo",
-    "nojslogo"
+    {
+      "name": "stfloats"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "stockheight",
+      "if": "tombow"
+    },
+    {
+      "name": "stockwidth",
+      "if": "tombow"
+    },
+    {
+      "name": "stockheight",
+      "if": "tombo"
+    },
+    {
+      "name": "stockwidth",
+      "if": "tombo"
+    },
+    {
+      "name": "stockheight",
+      "if": "mentuke"
+    },
+    {
+      "name": "stockwidth",
+      "if": "mentuke"
+    },
+    {
+      "name": "maybeblue",
+      "if": "slide",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "bibname"
+    },
+    {
+      "name": "Cjascale"
+    },
+    {
+      "name": "fullwidth"
+    },
+    {
+      "name": "headfont",
+      "unusual": true
+    },
+    {
+      "name": "heisei",
+      "unusual": true
+    },
+    {
+      "name": "HUGE"
+    },
+    {
+      "name": "ifjisfont",
+      "unusual": true
+    },
+    {
+      "name": "ifmingoth",
+      "unusual": true
+    },
+    {
+      "name": "ifnarrowbaselines",
+      "unusual": true
+    },
+    {
+      "name": "ifptexjis",
+      "unusual": true
+    },
+    {
+      "name": "ifptexmin",
+      "unusual": true
+    },
+    {
+      "name": "jisfontfalse",
+      "unusual": true
+    },
+    {
+      "name": "jisfonttrue",
+      "unusual": true
+    },
+    {
+      "name": "jsParagraphMark",
+      "unusual": true
+    },
+    {
+      "name": "jsTocLine",
+      "unusual": true
+    },
+    {
+      "name": "mingothfalse",
+      "unusual": true
+    },
+    {
+      "name": "mingothtrue",
+      "unusual": true
+    },
+    {
+      "name": "narrowbaselines"
+    },
+    {
+      "name": "narrowbaselinesfalse",
+      "unusual": true
+    },
+    {
+      "name": "narrowbaselinestrue",
+      "unusual": true
+    },
+    {
+      "name": "plainifnotempty",
+      "unusual": true
+    },
+    {
+      "name": "postpartname",
+      "unusual": true
+    },
+    {
+      "name": "postsectionname",
+      "unusual": true
+    },
+    {
+      "name": "prepartname",
+      "unusual": true
+    },
+    {
+      "name": "presectionname",
+      "unusual": true
+    },
+    {
+      "name": "ptexjisfalse",
+      "unusual": true
+    },
+    {
+      "name": "ptexjistrue",
+      "unusual": true
+    },
+    {
+      "name": "ptexminfalse",
+      "unusual": true
+    },
+    {
+      "name": "ptexmintrue",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "widebaselines"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/ltjsarticle#c": [
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "a4j",
+      "a5j",
+      "b4j",
+      "b5j",
+      "a4var",
+      "b5var",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "slide",
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "21pt",
+      "25pt",
+      "30pt",
+      "36pt",
+      "43pt",
+      "12Q",
+      "14Q",
+      "10ptj",
+      "10.5ptj",
+      "11ptj",
+      "12ptj",
+      "nomag",
+      "nomag",
+      "tombow",
+      "tombo",
+      "mentuke",
+      "oneside",
+      "twoside",
+      "vartwoside",
+      "onecolumn",
+      "twocolumn",
+      "titlepage",
+      "notitlepage",
+      "leqno",
+      "fleqn",
+      "disablejfam",
+      "draft",
+      "final",
+      "mingoth",
+      "ptexjis",
+      "jis",
+      "english",
+      "jslogo",
+      "nojslogo"
+    ]
+  },
+  "args": [
+    "\\documentclass/ltjsarticle#c"
+  ]
 }

@@ -21,13 +21,14 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
         environment = result[2].match(/{(.*?)}/)?.[1]
     }
     for (const packageName of Object.keys(packages)) {
+        lw.completion.usepackage.load(packageName)
         if (environment) {
             const environments = lw.completion.environment.getEnvFromPkg(packageName, EnvSnippetType.AsMacro) || []
             for (const env of environments) {
                 if (environment !== env.signature.name) {
                     continue
                 }
-                if (index !== env.keyvalpos + 1) { // Start from one.
+                if (index !== env.keyPos + 1) { // Start from one.
                     continue
                 }
                 candidate = env
@@ -38,7 +39,7 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
                 if (result[1] !== macro.signature.name) {
                     continue
                 }
-                if (index !== macro.keyvalpos) {
+                if (index !== macro.keyPos) {
                     continue
                 }
                 candidate = macro
@@ -49,9 +50,15 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
             break
         }
     }
-    const suggestions = candidate?.keyvals?.map(option => {
-        const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
-        item.insertText = new vscode.SnippetString(option)
+
+    if (candidate === undefined) {
+        return []
+    }
+
+    const keys = (candidate?.keys || []).map(key => lw.completion.usepackage.getKeys(candidate?.packageName, key)).flat()
+    const suggestions = keys.map(key => {
+        const item = new vscode.CompletionItem(key, vscode.CompletionItemKind.Constant)
+        item.insertText = new vscode.SnippetString(key)
         return item
     }) || []
 
@@ -67,7 +74,7 @@ function providePackageOptions(line: string): vscode.CompletionItem[] {
         return []
     }
     lw.completion.usepackage.load(match[1])
-    const suggestions = lw.completion.usepackage.getOpts(match[1])
+    const suggestions = lw.completion.usepackage.getArgs(match[1])
         .map(option => {
             const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
             item.insertText = new vscode.SnippetString(option)
@@ -87,7 +94,7 @@ function provideClassOptions(line: string): vscode.CompletionItem[] {
     }
     const isDefaultClass = ['article', 'report', 'book'].includes(match[1])
     lw.completion.usepackage.load(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
-    const suggestions = lw.completion.usepackage.getOpts(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
+    const suggestions = lw.completion.usepackage.getArgs(isDefaultClass ? 'latex-document' : `class-${match[1]}`)
         .map(option => {
             const item = new vscode.CompletionItem(option, vscode.CompletionItemKind.Constant)
             item.insertText = new vscode.SnippetString(option)

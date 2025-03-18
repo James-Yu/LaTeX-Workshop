@@ -1,0 +1,794 @@
+{
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "shipoutAnswer",
+      "unusual": true
+    },
+    {
+      "name": "shipoutExercise",
+      "unusual": true
+    },
+    {
+      "name": "Exercise"
+    },
+    {
+      "name": "Exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "Exercise[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Exercise},\\begin{Exercise*},\\Exercise,\\Exercise*,\\ExerciseSelect,\\ExerciseSelect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Exercise*"
+    },
+    {
+      "name": "Exercise*",
+      "arg": {
+        "format": "[]",
+        "snippet": "Exercise*[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Exercise},\\begin{Exercise*},\\Exercise,\\Exercise*,\\ExerciseSelect,\\ExerciseSelect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Answer"
+    },
+    {
+      "name": "Answer",
+      "arg": {
+        "format": "[]",
+        "snippet": "Answer[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Answer},\\Answer"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ExePart"
+    },
+    {
+      "name": "ExePart",
+      "arg": {
+        "format": "[]",
+        "snippet": "ExePart[${1:options%keyvals}]",
+        "keys": [
+          "\\ExePart,\\ExePart*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ExePart*"
+    },
+    {
+      "name": "ExePart*",
+      "arg": {
+        "format": "[]",
+        "snippet": "ExePart*[${1:options%keyvals}]",
+        "keys": [
+          "\\ExePart,\\ExePart*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Question",
+      "detail": "⁇",
+      "doc": "??, double question mark"
+    },
+    {
+      "name": "Question",
+      "arg": {
+        "format": "[]",
+        "snippet": "Question[${1:options%keyvals}]",
+        "keys": [
+          "\\Question,\\subQuestion,\\subsubQuestion"
+        ],
+        "keyPos": 0
+      },
+      "detail": "⁇",
+      "doc": "??, double question mark"
+    },
+    {
+      "name": "subQuestion"
+    },
+    {
+      "name": "subQuestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "subQuestion[${1:options%keyvals}]",
+        "keys": [
+          "\\Question,\\subQuestion,\\subsubQuestion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subsubQuestion"
+    },
+    {
+      "name": "subsubQuestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "subsubQuestion[${1:options%keyvals}]",
+        "keys": [
+          "\\Question,\\subQuestion,\\subsubQuestion"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ExeText"
+    },
+    {
+      "name": "ExerciseSelect"
+    },
+    {
+      "name": "ExerciseSelect",
+      "arg": {
+        "format": "[]",
+        "snippet": "ExerciseSelect[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ExerciseSelect*"
+    },
+    {
+      "name": "ExerciseSelect*",
+      "arg": {
+        "format": "[]",
+        "snippet": "ExerciseSelect*[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ExerciseStopSelect"
+    },
+    {
+      "name": "refAnswer",
+      "arg": {
+        "format": "{}",
+        "snippet": "refAnswer{${1:label}}"
+      }
+    },
+    {
+      "name": "ExerciseLabel"
+    },
+    {
+      "name": "marker",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "marker{${1:symbol}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DifficultyMarker",
+      "unusual": true
+    },
+    {
+      "name": "listofexercises"
+    },
+    {
+      "name": "ListOfExerciseInToc"
+    },
+    {
+      "name": "ExerciseLevelInToc",
+      "arg": {
+        "format": "{}",
+        "snippet": "ExerciseLevelInToc{${1:level}}"
+      }
+    },
+    {
+      "name": "ExerciseTitle",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseName",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseListName",
+      "unusual": true
+    },
+    {
+      "name": "AnswerName",
+      "unusual": true
+    },
+    {
+      "name": "AnswerListName",
+      "unusual": true
+    },
+    {
+      "name": "ExePartName",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderTitle",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderOrigin",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderNB",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeader",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseListHeader",
+      "unusual": true
+    },
+    {
+      "name": "AnswerHeader",
+      "unusual": true
+    },
+    {
+      "name": "AnswerListHeader",
+      "unusual": true
+    },
+    {
+      "name": "ExePartHeaderTitle",
+      "unusual": true
+    },
+    {
+      "name": "ExePartHeaderDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "ExePartHeaderNB",
+      "unusual": true
+    },
+    {
+      "name": "ExePartHeader",
+      "unusual": true
+    },
+    {
+      "name": "ExePartListHeader",
+      "unusual": true
+    },
+    {
+      "name": "ExePartTitle",
+      "unusual": true
+    },
+    {
+      "name": "ExePartDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "theExePart",
+      "unusual": true
+    },
+    {
+      "name": "AtBeginExercise",
+      "unusual": true
+    },
+    {
+      "name": "AtBeginAnswer",
+      "unusual": true
+    },
+    {
+      "name": "QuestionHeaderTitle",
+      "unusual": true
+    },
+    {
+      "name": "QuestionHeaderDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "QuestionHeaderNB",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionHeaderTitle",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionHeaderDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionHeaderNB",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionHeaderTitle",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionHeaderDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionHeaderNB",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSkipBefore",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSkipAfter",
+      "unusual": true
+    },
+    {
+      "name": "AnswerSkipBefore",
+      "unusual": true
+    },
+    {
+      "name": "AnswerSkipAfter",
+      "unusual": true
+    },
+    {
+      "name": "Exesep",
+      "unusual": true
+    },
+    {
+      "name": "Exetopsep",
+      "unusual": true
+    },
+    {
+      "name": "Exeparsep",
+      "unusual": true
+    },
+    {
+      "name": "Exepartopsep",
+      "unusual": true
+    },
+    {
+      "name": "Exeleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "Exerightmargin",
+      "unusual": true
+    },
+    {
+      "name": "Exelabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "Exelabelsep",
+      "unusual": true
+    },
+    {
+      "name": "QuestionBefore",
+      "unusual": true
+    },
+    {
+      "name": "QuestionIndent",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionBefore",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionIndent",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionBefore",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionIndent",
+      "unusual": true
+    },
+    {
+      "name": "renewcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "renewcounter{${1:name}}"
+      }
+    },
+    {
+      "name": "renewcounter",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "renewcounter{${1:name}}[${2:counter}]"
+      }
+    },
+    {
+      "name": "EndCurrentQuestion"
+    },
+    {
+      "name": "EndCurrentsubQuestion"
+    },
+    {
+      "name": "EndCurrentsubsubQuestion"
+    },
+    {
+      "name": "AnswerCmd",
+      "unusual": true
+    },
+    {
+      "name": "AnswerHeaderRef",
+      "unusual": true
+    },
+    {
+      "name": "AnswerListHeaderRef",
+      "unusual": true
+    },
+    {
+      "name": "AnswerNB",
+      "unusual": true
+    },
+    {
+      "name": "AnswerRef",
+      "unusual": true
+    },
+    {
+      "name": "ArticleOf",
+      "unusual": true
+    },
+    {
+      "name": "beginAnswerEnv",
+      "unusual": true
+    },
+    {
+      "name": "beginExerciseEnv",
+      "unusual": true
+    },
+    {
+      "name": "beginExerciseListEnv",
+      "unusual": true
+    },
+    {
+      "name": "colonnesLevel",
+      "unusual": true
+    },
+    {
+      "name": "defineAnswerCmd",
+      "unusual": true
+    },
+    {
+      "name": "defineAnswerEnv",
+      "unusual": true
+    },
+    {
+      "name": "defineExePartInEnv",
+      "unusual": true
+    },
+    {
+      "name": "defineExePartInList",
+      "unusual": true
+    },
+    {
+      "name": "defineExerciseCmd",
+      "unusual": true
+    },
+    {
+      "name": "defineExerciseEnv",
+      "unusual": true
+    },
+    {
+      "name": "deuxcolonnes",
+      "unusual": true
+    },
+    {
+      "name": "endAnswerEnv",
+      "unusual": true
+    },
+    {
+      "name": "endExerciseEnv",
+      "unusual": true
+    },
+    {
+      "name": "endExerciseListEnv",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseBefore",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseClass",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseCmd",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseExam",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderExam",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderLabel",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderType",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseHeaderYear",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseLocalNB",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseOrigin",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectClass",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectExam",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectLabel",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectOrigin",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectType",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseSelectYear",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseTrueLabel",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseType",
+      "unusual": true
+    },
+    {
+      "name": "ExerciseYear",
+      "unusual": true
+    },
+    {
+      "name": "listexercisename",
+      "unusual": true
+    },
+    {
+      "name": "QuestionDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "QuestionNB",
+      "unusual": true
+    },
+    {
+      "name": "QuestionTitle",
+      "unusual": true
+    },
+    {
+      "name": "recordExerciseLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "recordExerciseLabel{${1:label}}"
+      }
+    },
+    {
+      "name": "refstepExecounter",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionHeader",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionNB",
+      "unusual": true
+    },
+    {
+      "name": "subQuestionTitle",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionHeader",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionNB",
+      "unusual": true
+    },
+    {
+      "name": "subsubQuestionTitle",
+      "unusual": true
+    },
+    {
+      "name": "termineliste",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "termineliste{${1:number}}"
+      }
+    },
+    {
+      "name": "theAnswer",
+      "unusual": true
+    },
+    {
+      "name": "theExePartDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "theExercise",
+      "unusual": true
+    },
+    {
+      "name": "theExerciseDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "theQuestion",
+      "unusual": true
+    },
+    {
+      "name": "theQuestionDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "thesavedQuestion",
+      "unusual": true
+    },
+    {
+      "name": "thesavedsubQuestion",
+      "unusual": true
+    },
+    {
+      "name": "thesavedsubsubQuestion",
+      "unusual": true
+    },
+    {
+      "name": "thesubQuestion",
+      "unusual": true
+    },
+    {
+      "name": "thesubQuestionDifficulty",
+      "unusual": true
+    },
+    {
+      "name": "thesubsubQuestion",
+      "unusual": true
+    },
+    {
+      "name": "thesubsubQuestionDifficulty",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Exercise"
+    },
+    {
+      "name": "Exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Exercise},\\begin{Exercise*},\\Exercise,\\Exercise*,\\ExerciseSelect,\\ExerciseSelect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Exercise*"
+    },
+    {
+      "name": "Exercise*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Exercise},\\begin{Exercise*},\\Exercise,\\Exercise*,\\ExerciseSelect,\\ExerciseSelect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Answer"
+    },
+    {
+      "name": "Answer",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{Answer},\\Answer"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ExerciseList"
+    }
+  ],
+  "keys": {
+    "\\usepackage/exercise#c": [
+      "noanswer",
+      "answeronly",
+      "noexercise",
+      "exerciseonly",
+      "outputnothing",
+      "exercisedelayed",
+      "answerdelayed",
+      "lastexercise",
+      "showlabel"
+    ],
+    "\\begin{Exercise},\\begin{Exercise*},\\Exercise,\\Exercise*,\\ExerciseSelect,\\ExerciseSelect*": [
+      "label=",
+      "title={${1:text}}",
+      "difficulty=${1:number}",
+      "origin={${1:text}}",
+      "name={${1:text}}",
+      "counter=${1:counter}",
+      "number={${1:string}}",
+      "exam={${1:text}}",
+      "year=${1:year}"
+    ],
+    "\\begin{Answer},\\Answer": [
+      "ref=${1:label}",
+      "number={${1:string}}"
+    ],
+    "\\ExePart,\\ExePart*": [
+      "title={${1:text}}",
+      "difficulty=${1:number}",
+      "name={${1:text}}"
+    ],
+    "\\Question,\\subQuestion,\\subsubQuestion": [
+      "title={${1:text}}",
+      "difficulty=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/exercise#c"
+  ]
+}

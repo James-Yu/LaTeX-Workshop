@@ -1,30 +1,75 @@
 {
-  "includes": {
-    "verbatim": [],
-    "verbatimbox": []
-  },
-  "macros": {
-    "numblock{}": {
-      "snippet": "numblock{${1:code lines}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "nblabel{}": {
-      "snippet": "nblabel{${1:label}}"
-    },
-    "nbVlabel{}": {
-      "snippet": "nbVlabel{${1:label}}"
-    },
-    "theblocknum": {},
-    "maxblocklabelsize": {},
-    "blockindent": {},
-    "codeblockwidth": {},
-    "parindentsave": {},
-    "blocklabel{}": {
-      "snippet": "blocklabel{${1:text}}"
+    {
+      "name": "verbatimbox"
     }
-  },
-  "envs": {
-    "numVblock": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "numblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "numblock{${1:code lines}}"
+      }
+    },
+    {
+      "name": "nblabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "nblabel{${1:label}}"
+      }
+    },
+    {
+      "name": "nbVlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "nbVlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "theblocknum",
+      "unusual": true
+    },
+    {
+      "name": "maxblocklabelsize",
+      "unusual": true
+    },
+    {
+      "name": "blockindent",
+      "unusual": true
+    },
+    {
+      "name": "codeblockwidth",
+      "unusual": true
+    },
+    {
+      "name": "parindentsave",
+      "unusual": true
+    },
+    {
+      "name": "blocklabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "blocklabel{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "numVblock"
+    },
+    {
+      "name": "numVblock",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${2:\\nbVlabel{${1:label}}}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,37 +1,77 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": [],
-    "multicol": [],
-    "ragged2e": []
-  },
-  "macros": {
-    "idxlayout{}": {
-      "snippet": "idxlayout{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "setindexprenote{}": {
-      "snippet": "setindexprenote{${1:text}}"
+    {
+      "name": "kvoptions"
     },
-    "noindexprenote": {},
-    "indexfont": {},
-    "indexjustific": {},
-    "indexsubsdelim": {},
-    "indexstheadcase": {},
-    "theidxcols": {},
-    "indexcolsep": {},
-    "indexrule": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "ragged2e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "idxlayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "idxlayout{${1:options%keyvals}}",
+        "keys": [
+          "\\idxlayout,\\usepackage/idxlayout#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setindexprenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "setindexprenote{${1:text}}"
+      }
+    },
+    {
+      "name": "noindexprenote"
+    },
+    {
+      "name": "indexfont",
+      "unusual": true
+    },
+    {
+      "name": "indexjustific",
+      "unusual": true
+    },
+    {
+      "name": "indexsubsdelim",
+      "unusual": true
+    },
+    {
+      "name": "indexstheadcase",
+      "unusual": true
+    },
+    {
+      "name": "theidxcols",
+      "unusual": true
+    },
+    {
+      "name": "indexcolsep",
+      "unusual": true
+    },
+    {
+      "name": "indexrule",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\idxlayout,\\usepackage/idxlayout#c": [
       "columns=${1:integer}",
       "unbalanced",
       "columnsep=",
       "rule=",
-      "itemlayout=",
+      "itemlayout=${1|abshang,relhang,singlepar|}",
       "indentunit=",
       "hangindent=",
       "subindent=",
@@ -41,8 +81,11 @@
       "columnnote",
       "minspace=",
       "font=${1:format csnames}",
-      "justific=",
+      "justific=${1|standard,raggedright,RaggedRight|}",
       "totoc"
     ]
+  },
+  "args": [
+    "\\idxlayout,\\usepackage/idxlayout#c"
   ]
 }

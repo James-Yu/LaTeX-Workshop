@@ -1,17 +1,29 @@
 {
-  "includes": {},
-  "macros": {
-    "makeindex{}": {
-      "snippet": "makeindex{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "makeindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "makeindex{${1:name}}"
+      }
     },
-    "printindex{}{}": {
-      "snippet": "printindex{${1:name}}{${2:title}}"
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printindex{${1:name}}{${2:title}}"
+      }
     },
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page number}}"
+    {
+      "name": "see",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "see{${1:text}}{${2:page number}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

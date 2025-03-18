@@ -1,35 +1,57 @@
 {
-  "includes": {
-    "etoolbox": []
-  },
-  "macros": {
-    "bubblesort{}{}": {
-      "snippet": "bubblesort{${1:list}}{${2:macro}}"
-    },
-    "bubblesort[]{}{}": {
-      "snippet": "bubblesort[${3:comparator cmd}]{${1:list}}{${2:macro}}"
-    },
-    "doublebubblesort{}{}{}{}": {
-      "snippet": "doublebubblesort{${1:list1}}{${2:macro1}}{${3:list2}}{${4:macro2}}"
-    },
-    "doublebubblesort[]{}{}{}{}": {
-      "snippet": "doublebubblesort[${5:comparator cmd}]{${1:list1}}{${2:macro1}}{${3:list2}}{${4:macro2}}"
-    },
-    "bubblesortflag": {},
-    "realSort{}{}": {
-      "snippet": "realSort{${1:arg1}}{${2:arg2}}"
-    },
-    "alphSort{}{}": {
-      "snippet": "alphSort{${1:arg1}}{${2:arg2}}"
-    },
-    "ta": {},
-    "tb": {},
-    "to": {
-      "detail": "→",
-      "documentation": "rightward arrow, z notation total function"
+  "deps": [
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "bubblesort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bubblesort{${1:list}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "bubblesort",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bubblesort[${3:comparator cmd}]{${1:list}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "doublebubblesort",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "doublebubblesort{${1:list1}}{${2:macro1%cmd}}{${3:list2}}{${4:macro2%cmd}}"
+      }
+    },
+    {
+      "name": "doublebubblesort",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "doublebubblesort[${5:comparator cmd}]{${1:list1}}{${2:macro1%cmd}}{${3:list2}}{${4:macro2%cmd}}"
+      }
+    },
+    {
+      "name": "bubblesortflag"
+    },
+    {
+      "name": "realSort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "realSort{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "alphSort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alphSort{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

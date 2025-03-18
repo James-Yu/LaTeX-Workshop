@@ -1,0 +1,62 @@
+{
+  "deps": [
+    {
+      "name": "color"
+    }
+  ],
+  "macros": [
+    {
+      "name": "contour",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "contour{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "contour*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "contour*{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "contour",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "contour[${3:number}]{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "contourlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "contourlength{${1:length}}"
+      }
+    },
+    {
+      "name": "contournumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "contournumber{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/contour#c": [
+      "auto",
+      "dvips",
+      "xdvi",
+      "pdftex",
+      "vtex",
+      "dvipsone",
+      "outline",
+      "copies"
+    ]
+  },
+  "args": [
+    "\\usepackage/contour#c"
+  ]
+}

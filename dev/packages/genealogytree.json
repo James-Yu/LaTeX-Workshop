@@ -1,894 +1,968 @@
 {
-  "includes": {
-    "tcolorbox": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibraryfitting": [],
-    "tcolorboxlibraryexternal": [],
-    "tikzlibraryfit": [],
-    "array": [
-      "debug"
-    ],
-    "tabularx": [
-      "debug"
-    ],
-    "tcolorboxlibrarybreakable": [
-      "debug"
-    ]
-  },
-  "macros": {
-    "gtruselibrary{}": {
-      "snippet": "gtruselibrary{${1:library list}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "genealogytree{}": {
-      "snippet": "genealogytree{${1:tree contents}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "genealogytree[]{}": {
-      "snippet": "genealogytree[${2:options}]{${1:tree contents}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibraryfitting"
     },
-    "genealogytreeinput{}": {
-      "snippet": "genealogytreeinput{${1:file}}"
+    {
+      "name": "tcolorboxlibraryexternal"
     },
-    "genealogytreeinput[]{}": {
-      "snippet": "genealogytreeinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryfit"
     },
-    "gtrset{}": {
-      "snippet": "gtrset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "array",
+      "if": "debug"
     },
-    "gtrkeysappto{}{}": {
-      "snippet": "gtrkeysappto{${1:hook}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "tabularx",
+      "if": "debug"
     },
-    "gtrkeysgappto{}{}": {
-      "snippet": "gtrkeysgappto{${1:hook}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "gtrnodetype": {},
-    "gtrnodeid": {},
-    "gtrnodenumber": {},
-    "gtrnodefamily": {},
-    "gtrnodelevel": {},
-    "gtrifnodeid{}{}": {
-      "snippet": "gtrifnodeid{${1:true}}{${2:false}}"
-    },
-    "gtrifgnode{}{}": {
-      "snippet": "gtrifgnode{${1:true}}{${2:false}}"
-    },
-    "gtrifcnode{}{}": {
-      "snippet": "gtrifcnode{${1:true}}{${2:false}}"
-    },
-    "gtrifpnode{}{}": {
-      "snippet": "gtrifpnode{${1:true}}{${2:false}}"
-    },
-    "gtrifroot{}{}": {
-      "snippet": "gtrifroot{${1:true}}{${2:false}}"
-    },
-    "gtrifleaf{}{}": {
-      "snippet": "gtrifleaf{${1:true}}{${2:false}}"
-    },
-    "gtrifchild{}{}": {
-      "snippet": "gtrifchild{${1:true}}{${2:false}}"
-    },
-    "gtrifparent{}{}": {
-      "snippet": "gtrifparent{${1:true}}{${2:false}}"
-    },
-    "gtrifleafchild{}{}": {
-      "snippet": "gtrifleafchild{${1:true}}{${2:false}}"
-    },
-    "gtrifleafparent{}{}": {
-      "snippet": "gtrifleafparent{${1:true}}{${2:false}}"
-    },
-    "gtrautosizebox{}{}{}": {
-      "snippet": "gtrautosizebox{${1:width}}{${2:height}}{${3:contents}}"
-    },
-    "gtrautosizebox*{}{}{}": {
-      "snippet": "gtrautosizebox*{${1:width}}{${2:height}}{${3:contents}}"
-    },
-    "gtrsetoptionsfornode{}{}": {
-      "snippet": "gtrsetoptionsfornode{${1:id list}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "gtrsetoptionsforfamily{}{}": {
-      "snippet": "gtrsetoptionsforfamily{${1:id list}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "gtrsetoptionsforsubtree{}{}": {
-      "snippet": "gtrsetoptionsforsubtree{${1:id list}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "gtrignorenode{}": {
-      "snippet": "gtrignorenode{${1:id list}}"
-    },
-    "gtrignoresubtree{}": {
-      "snippet": "gtrignoresubtree{${1:id list}}"
-    },
-    "gtrBoxContent": {},
-    "gtrNodeMinWidth": {},
-    "gtrNodeMaxWidth": {},
-    "gtrNodeMinHeight": {},
-    "gtrNodeMaxHeight": {},
-    "gtrNodeBoxOptions": {},
-    "gtrDBname": {},
-    "gtrDBshortname": {},
-    "gtrDBsex": {},
-    "gtrDBcomment": {},
-    "gtrDBprofession": {},
-    "gtrDBimage": {},
-    "gtrDBimageopt": {},
-    "gtrDBviewport": {},
-    "gtrDBuuid": {},
-    "gtrDBkekule": {},
-    "gtrDBrelation": {},
-    "gtrDBrelationship": {},
-    "gtrDBage": {},
-    "gtrParseDate{}{}": {
-      "snippet": "gtrParseDate{${1:name}}{${2:date}}"
-    },
-    "gtrDeclareDatabaseFormat{}{}{}": {
-      "snippet": "gtrDeclareDatabaseFormat{${1:format}}{${2:option code}}{${3:content code}}"
-    },
-    "gtrPrintDatabase": {},
-    "gtrPrintName": {},
-    "pref{}": {
-      "snippet": "pref{${1:given name}}"
-    },
-    "surn{}": {
-      "snippet": "surn{${1:surname}}"
-    },
-    "nick{}": {
-      "snippet": "nick{${1:nickname}}"
-    },
-    "gtrPrintDate{}": {
-      "snippet": "gtrPrintDate{${1:name}}"
-    },
-    "gtrifdatedefined{}{}{}": {
-      "snippet": "gtrifdatedefined{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "gtrPrintPlace{}": {
-      "snippet": "gtrPrintPlace{${1:name}}"
-    },
-    "gtrifplacedefined{}{}{}": {
-      "snippet": "gtrifplacedefined{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "gtrPrintEvent{}": {
-      "snippet": "gtrPrintEvent{${1:name}}"
-    },
-    "gtrifeventdefined{}{}{}": {
-      "snippet": "gtrifeventdefined{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "gtrPrintEventPrefix{}": {
-      "snippet": "gtrPrintEventPrefix{${1:name}}"
-    },
-    "gtrlistseparator": {},
-    "gtrPrintComment": {},
-    "gtrifcommentdefined{}{}": {
-      "snippet": "gtrifcommentdefined{${1:true}}{${2:false}}"
-    },
-    "gtrPrintProfession": {},
-    "gtrifprofessiondefined{}{}": {
-      "snippet": "gtrifprofessiondefined{${1:true}}{${2:false}}"
-    },
-    "gtrPrintSex": {},
-    "gtriffemale{}{}": {
-      "snippet": "gtriffemale{${1:true}}{${2:false}}"
-    },
-    "gtrifmale{}{}": {
-      "snippet": "gtrifmale{${1:true}}{${2:false}}"
-    },
-    "gtrifimagedefined{}{}": {
-      "snippet": "gtrifimagedefined{${1:true}}{${2:false}}"
-    },
-    "gtrincludeDBimage{}": {
-      "snippet": "gtrincludeDBimage{${1:options}}"
-    },
-    "gtrPrintAge": {},
-    "gtrifagedefined{}{}": {
-      "snippet": "gtrifagedefined{${1:true}}{${2:false}}"
-    },
-    "gtredgeset{}": {
-      "snippet": "gtredgeset{${1:edge options}}"
-    },
-    "gtrSymbolsSetCreate{}": {
-      "snippet": "gtrSymbolsSetCreate{${1:color}}"
-    },
-    "gtrSymbolsSetCreateSelected{}{}": {
-      "snippet": "gtrSymbolsSetCreateSelected{${1:color}}{${2:list}}"
-    },
-    "gtrSymbolsSetDraw{}": {
-      "snippet": "gtrSymbolsSetDraw{${1:color}}"
-    },
-    "gtrsymBorn": {},
-    "gtrsymBornoutofwedlock": {},
-    "gtrsymStillborn": {},
-    "gtrsymDiedonbirthday": {},
-    "gtrsymBaptized": {},
-    "gtrsymEngaged": {},
-    "gtrsymMarried": {},
-    "gtrsymDivorced": {},
-    "gtrsymPartnership": {},
-    "gtrsymDied": {},
-    "gtrsymKilled": {},
-    "gtrsymBuried": {},
-    "gtrsymFuneralurn": {},
-    "gtrsymFloruit": {},
-    "gtrsymFemale": {},
-    "gtrsymMale": {},
-    "gtrsymNeuter": {},
-    "gtrSymbolsRecordReset": {},
-    "gtrSymbolsFullLegend": {},
-    "gtrSymbolsFullLegend[]": {
-      "snippet": "gtrSymbolsFullLegend[${1:language}]"
-    },
-    "gtrSymbolsLegend": {},
-    "gtrSymbolsLegend[]": {
-      "snippet": "gtrSymbolsLegend[${1:language}]"
-    },
-    "gtrlanguagename": {},
-    "gtrloadlanguage{}": {
-      "snippet": "gtrloadlanguage{${1:list of languages}}"
-    },
-    "gtrparserdebug{}": {
-      "snippet": "gtrparserdebug{${1:graph content}}"
-    },
-    "gtrparserdebug[]{}": {
-      "snippet": "gtrparserdebug[${2:options}]{${1:graph content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gtrparserdebuginput{}": {
-      "snippet": "gtrparserdebuginput{${1:file}}"
-    },
-    "gtrparserdebuginput[]{}": {
-      "snippet": "gtrparserdebuginput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gtrprocessordebug{}": {
-      "snippet": "gtrprocessordebug{${1:graph content}}"
-    },
-    "gtrprocessordebug[]{}": {
-      "snippet": "gtrprocessordebug[${2:options}]{${1:graph content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gtrprocessordebuginput{}": {
-      "snippet": "gtrprocessordebuginput{${1:file}}"
-    },
-    "gtrprocessordebuginput[]{}": {
-      "snippet": "gtrprocessordebuginput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gtrdebugdrawcontour{}{}": {
-      "snippet": "gtrdebugdrawcontour{${1:options}}{${2:path options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "gtrDrawSymbolicPortrait": {},
-    "gtrfanchart{}": {
-      "snippet": "gtrfanchart{${1:tree contents}}"
-    },
-    "gtrfanchart[]{}": {
-      "snippet": "gtrfanchart[${2:options}]{${1:tree contents}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gtrfanchartinput{}": {
-      "snippet": "gtrfanchartinput{${1:file}}"
-    },
-    "gtrfanchartinput[]{}": {
-      "snippet": "gtrfanchartinput[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gtrcomplemented": {},
-    "gtrnewstack{}": {
-      "snippet": "gtrnewstack{${1:name}}"
-    },
-    "gtrstacksize{}": {
-      "snippet": "gtrstacksize{${1:name}}"
-    },
-    "gtrstackpush{}{}": {
-      "snippet": "gtrstackpush{${1:name}}{${2:content}}"
-    },
-    "gtrstackpop{}": {
-      "snippet": "gtrstackpop{${1:name}}"
-    },
-    "gtrstackpopto{}{}": {
-      "snippet": "gtrstackpopto{${1:name}}{${2:macro}}"
-    },
-    "gtrstackpeek{}": {
-      "snippet": "gtrstackpeek{${1:name}}"
-    },
-    "gtrstackpeekto{}{}": {
-      "snippet": "gtrstackpeekto{${1:name}}{${2:macro}}"
-    },
-    "gtrmakestack{}": {
-      "snippet": "gtrmakestack{${1:name}}"
-    },
-    "gtrpkgprefix": {}
-  },
-  "envs": {
-    "genealogypicture": {},
-    "genealogypicture[]": {
-      "name": "genealogypicture",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "exgenealogypicture{}": {
-      "name": "exgenealogypicture",
-      "snippet": "{${1:name}}"
-    },
-    "exgenealogypicture{}[]": {
-      "name": "exgenealogypicture",
-      "snippet": "{${1:name}}[${2:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "exgenealogypicture[]{}": {
-      "name": "exgenealogypicture",
-      "snippet": "[${2:externalization options}]{${1:name}}"
-    },
-    "exgenealogypicture[]{}[]": {
-      "name": "exgenealogypicture",
-      "snippet": "[${2:externalization options}]{${1:name}}[${3:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 2
-    },
-    "autosizetikzpicture{}{}": {
-      "name": "autosizetikzpicture",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "autosizetikzpicture[]{}{}": {
-      "name": "autosizetikzpicture",
-      "snippet": "[${3:options}]{${1:width}}{${2:height}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "autosizetikzpicture*{}{}": {
-      "name": "autosizetikzpicture*",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "autosizetikzpicture*[]{}{}": {
-      "name": "autosizetikzpicture*",
-      "snippet": "[${3:options}]{${1:width}}{${2:height}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "gtrprintlist{}{}{}{}": {
-      "name": "gtrprintlist",
-      "snippet": "{${1:first}}{${2:middle}}{${3:last}}{${4:empty}}"
-    },
-    "gtreventlist": {},
-    "gtrinfolist": {}
-  },
-  "options": [
-    "debug",
-    "templates",
-    "fanchart",
-    "all"
+    {
+      "name": "tcolorboxlibrarybreakable",
+      "if": "debug"
+    }
   ],
-  "keyvals": [
-    [
-      "timeflow=",
-      "level distance=",
-      "level size=",
-      "node size=",
-      "node size from=${1:<minlength>} to ${2:<maxlength>}",
-      "child distance in parent graph=",
-      "child distance in child graph=",
-      "child distance=",
-      "parent distance in parent graph=",
-      "parent distance in child graph=",
-      "parent distance=",
-      "further distance=",
-      "id=${1:name}",
-      "id prefix=${1:text}",
-      "id suffix=${1:text}",
-      "options for node={${1:id list}}{${2:options}}",
-      "node={${1:options}}",
-      "distance=",
-      "pivot",
-      "pivot=",
-      "box={${1:options}}",
-      "box clear",
-      "node box={${1:options}}",
-      "family box={${1:options}}",
-      "subtree box={${1:options}}",
-      "turn",
-      "turn=",
-      "male",
-      "female",
-      "neuter",
-      "tikz={${1:TikZ options}}",
-      "options for family={${1:id list}}{${2:options}}",
-      "family={${1:options}}",
-      "pivot shift=",
-      "options for subtree={${1:id list}}{${2:options}}",
-      "subtree={${1:options}}",
-      "level=${1:number}",
-      "level ${1:n}/.style={${2:options}}",
-      "proband level=${1:number}",
-      "tree offset=",
-      "after parser={${1:code}}",
-      "set position=${1:<node>} at ${2:<position>}",
-      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>}",
-      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>} shift ${4:<shift>}",
-      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>}",
-      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>} shift ${4:<shift>}",
-      "tikzpicture={${1:TikZ options}}",
-      "tikzset={${1:TikZ options}}",
-      "after tree={${1:TikZ code}}",
-      "tcbset={${1:tcolorbox options}}",
-      "fit to family=${1:id}",
-      "fit to subtree=${1:id}",
-      "ignore",
-      "ignore node={${1:id list}}",
-      "ignore subtree={${1:id list}}",
-      "ignore level=${1:number}",
-      "ignore parent childs",
-      "insert after node={${1:id}}{${2:input data}}",
-      "insert after family={${1:id}}{${2:input data}}",
-      "insert at begin family={${1:id}}{${2:input data}}",
-      "insert at end family={${1:id}}{${2:input data}}",
-      "phantom",
-      "phantom=",
-      "phantom*",
-      "phantom*=",
-      "insert for childless families={${1:input data}}",
-      "insert phantom for childless families",
-      "insert for childless families level limit=${1:level}",
-      "autofill parents unspecific",
-      "autofill parents unspecific=${1:level}",
-      "autofill parents unspecific*",
-      "autofill parents unspecific*=${1:level}",
-      "complemented/.style={${1:options}}",
-      "complemented family/.style={${1:options}}",
-      "complemented phantom",
-      "autofill parents male female",
-      "autofill parents male female=${1:level}",
-      "autofill parents male female*",
-      "autofill parents male female*=${1:level}",
-      "autofill parents female male",
-      "autofill parents female male=${1:level}",
-      "autofill parents female male*",
-      "autofill parents female male*=${1:level}",
-      "autofill parents none",
-      "reset",
-      "code={${1:code}}",
-      "keysfrom=${1:macro}",
-      "node processor=${1:macro}",
-      "processing=",
-      "content interpreter=${1:macro}",
-      "content interpreter code={${1:code}}",
-      "content interpreter content={${1:code}}",
-      "no content interpreter",
-      "deletion content interpreter",
-      "database content interpreter",
-      "id content interpreter",
-      "content interpreter id and content={${1:id}}{${2:code}}",
-      "database format=",
-      "pref code={${1:code}}",
-      "surn code={${1:code}}",
-      "nick code={${1:code}}",
-      "name=",
-      "name font={${1:code}}",
-      "empty name text={${1:text}}",
-      "name code={${1:code}}",
-      "date format=",
-      "date code={${1:code}}",
-      "calendar text for=${1:<calendar>} is %<{${2:prefix}}{${3:postfix}}",
-      "calendar print=",
-      "date range full={${1:pre}}{${2:mid}}{${3:app}}",
-      "date range before={${1:pre}}{${2:app}}",
-      "date range after={${1:pre}}{${2:app}}",
-      "date range separator={${1:text}}",
-      "place text={${1:pre}}{${2:app}}",
-      "event prefix/birth=${1:text}",
-      "event prefix/birth/out of wedlock=${1:text}",
-      "event prefix/birth/stillborn=${1:text}",
-      "event prefix/birth/died=${1:text}",
-      "event prefix/baptism=${1:text}",
-      "event prefix/engagement=${1:text}",
-      "event prefix/marriage=${1:text}",
-      "event prefix/marriage/other=${1:text}",
-      "event prefix/divorce=${1:text}",
-      "event prefix/floruit=${1:text}",
-      "event prefix/death=${1:text}",
-      "event prefix/death/killed=${1:text}",
-      "event prefix/burial=${1:text}",
-      "event prefix/burial/cremated=${1:text}",
-      "event format=",
-      "event text={${1:pre}}{${2:sep date}}{${3:sep place}}{${4:app}}",
-      "event code={${1:code}}",
-      "list separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
-      "list separators hang",
-      "list separators hang=",
-      "comment code={${1:code}}",
-      "profession code={${1:code}}",
-      "info separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
-      "if image defined={${1:true}}{${2:false}}",
-      "image prefix=${1:text}",
-      "fill zoom DBimage",
-      "fill overzoom DBimage",
-      "age code={${1:code}}",
-      "edges={${1:edge options}}",
-      "family edges={${1:edge options}}",
-      "edges for family={${1:family}}{${2:edge options}}",
-      "subtree edges={${1:edge options}}",
-      "edges for subtree={${1:subtree}}{${2:edge options}}",
-      "edge/perpendicular",
-      "edge/rounded",
-      "edge/rounded=",
-      "edge/swing",
-      "edge/swing=",
-      "edge/mesh",
-      "edge/mesh={${1:options}}",
-      "edge/custom={${1:down}}{${2:up}}{${3:left}}{${4:right}}",
-      "edge/none",
-      "edge/foreground={${1:TikZ options}}",
-      "edge/no foreground",
-      "edge/background={${1:TikZ options}}",
-      "edge/no background",
-      "edge/anchoring=",
-      "edge/hide single leg",
-      "edge/xshift=",
-      "edge/yshift=",
-      "label={${1:text}}",
-      "label options={${1:TikZ options}}",
-      "family label={${1:text}}",
-      "subtree label={${1:text}}",
-      "family database={${1:data keys}}",
-      "label database options={${1:options}}",
-      "ignore family database",
-      "use family database",
-      "add child=${1:<child>} to ${2:<family>}",
-      "add parent=${1:<parent>} to ${2:<family>}",
-      "remove child=${1:<child>} from ${2:<family>}",
-      "remove parent=${1:<parent>} from ${2:<family>}",
-      "disconnect",
-      "disconnect=",
-      "extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
-      "family extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
-      "extra edges for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
-      "extra edges for families={${1:family list}}{${2:edge options}}",
-      "extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
-      "family extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
-      "extra edges prepend for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
-      "extra edges prepend for families={${1:family list}}{${2:edge options}}",
-      "edges shift=",
-      "edges up by=${1:<number>} of ${2:<parts>}",
-      "edges down by=${1:<number>} of ${2:<parts>}",
-      "edges up",
-      "edges down",
-      "reset edge level shift",
-      "switch edge level shift",
-      "nullify edge level shift",
-      "symbols record reset",
-      "symlang/Born=${1:text}",
-      "symlang/Bornoutofwedlock=${1:text}",
-      "symlang/Stillborn=${1:text}",
-      "symlang/Diedonbirthday=${1:text}",
-      "symlang/Baptized=${1:text}",
-      "symlang/Engaged=${1:text}",
-      "symlang/Married=${1:text}",
-      "symlang/Divorced=${1:text}",
-      "symlang/Partnership=${1:text}",
-      "symlang/Died=${1:text}",
-      "symlang/Killed=${1:text}",
-      "symlang/Buried=${1:text}",
-      "symlang/Funeralurn=${1:text}",
-      "symlang/Floruit=${1:text}",
-      "symlang/Female=${1:text}",
-      "symlang/Male=${1:text}",
-      "symlang/Neuter=${1:text}",
-      "language=",
-      "show=${1:text}",
-      "show id",
-      "show level",
-      "show number",
-      "show family",
-      "show type",
-      "template=",
-      "template horizontal border=",
-      "template vertical border="
+  "macros": [
+    {
+      "name": "gtruselibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtruselibrary{${1:library list%keyvals}}",
+        "keys": [
+          "\\usepackage/genealogytree#c,\\gtruselibrary#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "genealogytree",
+      "arg": {
+        "format": "{}",
+        "snippet": "genealogytree{${1:tree contents}}"
+      }
+    },
+    {
+      "name": "genealogytree",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "genealogytree[${2:options%keyvals}]{${1:tree contents}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "genealogytreeinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "genealogytreeinput{${1:file}}"
+      }
+    },
+    {
+      "name": "genealogytreeinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "genealogytreeinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrset",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrset{${1:options%keyvals}}",
+        "keys": [
+          "\\gtrfanchart#c,\\gtrfanchartinput#c,\\gtrset#c",
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrkeysappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrkeysappto{${1:hook}}{${2:options%keyvals}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gtrkeysgappto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrkeysgappto{${1:hook}}{${2:options%keyvals}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gtrnodetype",
+      "unusual": true
+    },
+    {
+      "name": "gtrnodeid",
+      "unusual": true
+    },
+    {
+      "name": "gtrnodenumber",
+      "unusual": true
+    },
+    {
+      "name": "gtrnodefamily",
+      "unusual": true
+    },
+    {
+      "name": "gtrnodelevel",
+      "unusual": true
+    },
+    {
+      "name": "gtrifnodeid",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifnodeid{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifgnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifgnode{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifcnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifcnode{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifpnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifpnode{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifroot",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifroot{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifleaf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifleaf{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifchild",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifchild{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifparent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifparent{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifleafchild",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifleafchild{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifleafparent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifleafparent{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrautosizebox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrautosizebox{${1:width}}{${2:height}}{${3:contents}}"
+      }
+    },
+    {
+      "name": "gtrautosizebox*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrautosizebox*{${1:width}}{${2:height}}{${3:contents}}"
+      }
+    },
+    {
+      "name": "gtrsetoptionsfornode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrsetoptionsfornode{${1:id list}}{${2:options%keyvals}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gtrsetoptionsforfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrsetoptionsforfamily{${1:id list}}{${2:options%keyvals}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gtrsetoptionsforsubtree",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrsetoptionsforsubtree{${1:id list}}{${2:options%keyvals}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gtrignorenode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrignorenode{${1:id list}}"
+      }
+    },
+    {
+      "name": "gtrignoresubtree",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrignoresubtree{${1:id list}}"
+      }
+    },
+    {
+      "name": "gtrBoxContent",
+      "unusual": true
+    },
+    {
+      "name": "gtrNodeMinWidth",
+      "unusual": true
+    },
+    {
+      "name": "gtrNodeMaxWidth",
+      "unusual": true
+    },
+    {
+      "name": "gtrNodeMinHeight",
+      "unusual": true
+    },
+    {
+      "name": "gtrNodeMaxHeight",
+      "unusual": true
+    },
+    {
+      "name": "gtrNodeBoxOptions",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBname",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBshortname",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBsex",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBcomment",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBprofession",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBimage",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBimageopt",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBviewport",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBuuid",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBkekule",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBrelation",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBrelationship",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBage",
+      "unusual": true
+    },
+    {
+      "name": "gtrParseDate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrParseDate{${1:name}}{${2:date}}"
+      }
+    },
+    {
+      "name": "gtrDeclareDatabaseFormat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrDeclareDatabaseFormat{${1:format}}{${2:option code}}{${3:content code}}"
+      }
+    },
+    {
+      "name": "gtrPrintDatabase"
+    },
+    {
+      "name": "gtrPrintName"
+    },
+    {
+      "name": "pref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pref{${1:given name}}"
+      }
+    },
+    {
+      "name": "surn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "surn{${1:surname}}"
+      }
+    },
+    {
+      "name": "nick",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nick{${1:nickname}}"
+      }
+    },
+    {
+      "name": "gtrPrintDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrPrintDate{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrifdatedefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrifdatedefined{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintPlace",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrPrintPlace{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrifplacedefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrifplacedefined{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintEvent",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrPrintEvent{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrifeventdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gtrifeventdefined{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintEventPrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrPrintEventPrefix{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrlistseparator"
+    },
+    {
+      "name": "gtrPrintComment"
+    },
+    {
+      "name": "gtrifcommentdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifcommentdefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintProfession"
+    },
+    {
+      "name": "gtrifprofessiondefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifprofessiondefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintSex"
+    },
+    {
+      "name": "gtriffemale",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtriffemale{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifmale",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifmale{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrifimagedefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifimagedefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrincludeDBimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrincludeDBimage{${1:options}}"
+      }
+    },
+    {
+      "name": "gtrPrintAge"
+    },
+    {
+      "name": "gtrifagedefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifagedefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtredgeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtredgeset{${1:edge options%keyvals}}",
+        "keys": [
+          "\\gtredgeset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrSymbolsSetCreate",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrSymbolsSetCreate{${1:color}}"
+      }
+    },
+    {
+      "name": "gtrSymbolsSetCreateSelected",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrSymbolsSetCreateSelected{${1:color}}{${2:list}}"
+      }
+    },
+    {
+      "name": "gtrSymbolsSetDraw",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrSymbolsSetDraw{${1:color}}"
+      }
+    },
+    {
+      "name": "gtrsymBorn"
+    },
+    {
+      "name": "gtrsymBornoutofwedlock"
+    },
+    {
+      "name": "gtrsymStillborn"
+    },
+    {
+      "name": "gtrsymDiedonbirthday"
+    },
+    {
+      "name": "gtrsymBaptized"
+    },
+    {
+      "name": "gtrsymEngaged"
+    },
+    {
+      "name": "gtrsymMarried"
+    },
+    {
+      "name": "gtrsymDivorced"
+    },
+    {
+      "name": "gtrsymPartnership"
+    },
+    {
+      "name": "gtrsymDied"
+    },
+    {
+      "name": "gtrsymKilled"
+    },
+    {
+      "name": "gtrsymBuried"
+    },
+    {
+      "name": "gtrsymFuneralurn"
+    },
+    {
+      "name": "gtrsymFloruit"
+    },
+    {
+      "name": "gtrsymFemale"
+    },
+    {
+      "name": "gtrsymMale"
+    },
+    {
+      "name": "gtrsymNeuter"
+    },
+    {
+      "name": "gtrSymbolsRecordReset"
+    },
+    {
+      "name": "gtrSymbolsFullLegend"
+    },
+    {
+      "name": "gtrSymbolsFullLegend",
+      "arg": {
+        "format": "[]",
+        "snippet": "gtrSymbolsFullLegend[${1:language%keyvals}]",
+        "keys": [
+          "\\gtrSymbolsFullLegend#c,\\gtrSymbolsLegend#c,\\gtrloadlanguage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrSymbolsLegend"
+    },
+    {
+      "name": "gtrSymbolsLegend",
+      "arg": {
+        "format": "[]",
+        "snippet": "gtrSymbolsLegend[${1:language%keyvals}]",
+        "keys": [
+          "\\gtrSymbolsFullLegend#c,\\gtrSymbolsLegend#c,\\gtrloadlanguage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrlanguagename",
+      "unusual": true
+    },
+    {
+      "name": "gtrloadlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrloadlanguage{${1:list of languages%keyvals}}",
+        "keys": [
+          "\\gtrSymbolsFullLegend#c,\\gtrSymbolsLegend#c,\\gtrloadlanguage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrparserdebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrparserdebug{${1:graph content}}"
+      }
+    },
+    {
+      "name": "gtrparserdebug",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrparserdebug[${2:options%keyvals}]{${1:graph content}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrparserdebuginput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrparserdebuginput{${1:file}}"
+      }
+    },
+    {
+      "name": "gtrparserdebuginput",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrparserdebuginput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrprocessordebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrprocessordebug{${1:graph content}}"
+      }
+    },
+    {
+      "name": "gtrprocessordebug",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrprocessordebug[${2:options%keyvals}]{${1:graph content}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrprocessordebuginput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrprocessordebuginput{${1:file}}"
+      }
+    },
+    {
+      "name": "gtrprocessordebuginput",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrprocessordebuginput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrdebugdrawcontour",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrdebugdrawcontour{${1:options%keyvals}}{${2:path options}}",
+        "keys": [
+          "\\gtrdebugdrawcontour#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrDrawSymbolicPortrait",
+      "unusual": true
+    },
+    {
+      "name": "gtrfanchart",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrfanchart{${1:tree contents}}"
+      }
+    },
+    {
+      "name": "gtrfanchart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrfanchart[${2:options%keyvals}]{${1:tree contents}}",
+        "keys": [
+          "\\gtrfanchart#c,\\gtrfanchartinput#c,\\gtrset#c",
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrfanchartinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrfanchartinput{${1:file}}"
+      }
+    },
+    {
+      "name": "gtrfanchartinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gtrfanchartinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\gtrfanchart#c,\\gtrfanchartinput#c,\\gtrset#c",
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrcomplemented",
+      "unusual": true
+    },
+    {
+      "name": "gtrnewstack",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrnewstack{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrstacksize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrstacksize{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrstackpush",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrstackpush{${1:name}}{${2:content}}"
+      }
+    },
+    {
+      "name": "gtrstackpop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrstackpop{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrstackpopto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrstackpopto{${1:name}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "gtrstackpeek",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrstackpeek{${1:name}}"
+      }
+    },
+    {
+      "name": "gtrstackpeekto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrstackpeekto{${1:name}}{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "gtrmakestack",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrmakestack{${1:name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "genealogypicture"
+    },
+    {
+      "name": "genealogypicture",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exgenealogypicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "exgenealogypicture",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options}]",
+        "keys": [
+          "\\begin{exgenealogypicture}#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "exgenealogypicture",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:externalization options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\begin{exgenealogypicture}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exgenealogypicture",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:externalization options%keyvals}]{${1:name}}[${3:options}]",
+        "keys": [
+          "\\begin{exgenealogypicture}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autosizetikzpicture",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "autosizetikzpicture",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:width}}{${2:height}}",
+        "keys": [
+          "\\begin{autosizetikzpicture}#c,\\begin{autosizetikzpicture*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autosizetikzpicture*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "autosizetikzpicture*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:width}}{${2:height}}",
+        "keys": [
+          "\\begin{autosizetikzpicture}#c,\\begin{autosizetikzpicture*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gtrprintlist",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:first}}{${2:middle}}{${3:last}}{${4:empty}}"
+      }
+    },
+    {
+      "name": "gtreventlist"
+    },
+    {
+      "name": "gtrinfolist"
+    }
+  ],
+  "keys": {
+    "\\usepackage/genealogytree#c,\\gtruselibrary#c": [
+      "debug",
+      "templates",
+      "fanchart",
+      "all"
     ],
-    [
-      "fanchart radii={${1:radius1,radius2,...}}",
-      "fanchart inner offset={${1:offset1,offset2,...}}",
-      "fanchart outer offset={${1:offset1,offset2,...}}",
-      "fanchart minor angle=${1:angle}",
-      "fanchart major angle=${1:angle}",
-      "fanchart angles=${1:minor angle}:${2:major angle}",
-      "fanchart open full",
-      "fanchart open up",
-      "fanchart open up=${1:angle}",
-      "fanchart open down",
-      "fanchart open down=${1:angle}",
-      "fanchart open left",
-      "fanchart open left=${1:angle}",
-      "fanchart open right",
-      "fanchart open right=${1:angle}",
-      "fanchart open for=${1:width} x ${2:height}",
-      "fanchart reset bounds",
-      "fanchart bounds border=",
-      "fanchart landscape from level=${1:number}",
-      "fanchart text portrait=",
-      "fanchart text landscape=",
-      "fanchart boundary color=",
-      "fanchart boundary width=",
-      "fanchart root style={${1:TikZ options}}",
-      "fanchart root malefemale",
-      "fanchart segment style={${1:TikZ options}}",
-      "fanchart segment malefemale",
-      "fanchart segment relation",
-      "fanchart segment wave",
-      "fanchart segment colorwheel",
-      "fanchart segment radial",
-      "fanchart marker style={${1:TikZ options}}",
-      "fanchart marker malefemale",
-      "fanchart marker relation",
-      "fanchart marker wave",
-      "fanchart marker colorwheel",
-      "fanchart marker radial",
-      "fanchart complemented segment style={${1:TikZ options}}",
-      "fanchart complemented marker style={${1:TikZ options}}",
-      "fanchart segment style for levels={${1:level list}}{${2:TikZ options}}",
-      "fanchart marker style for levels={${1:level list}}{${2:TikZ options}}",
-      "fanchart segment style for ids={${1:id list}}{${2:TikZ options}}",
-      "fanchart marker style for ids={${1:id list}}{${2:TikZ options}}",
-      "fanchart male style={${1:TikZ options}}",
-      "fanchart female style={${1:TikZ options}}",
-      "fanchart neuter style={${1:TikZ options}}",
-      "fanchart ancestor style={${1:TikZ options}}",
-      "fanchart descendant style={${1:TikZ options}}",
-      "fanchart sibling style={${1:TikZ options}}",
-      "fanchart unrelated style={${1:TikZ options}}",
-      "fanchart template=",
-      "fanchart-segment-definition={${1:code}}",
-      "fanchart-marker-definition={${1:code}}",
-      "fanchart-segment-code={${1:code}}",
-      "fanchart-root-code={${1:code}}",
-      "timeflow=",
-      "level distance=",
-      "level size=",
-      "node size=",
-      "node size from=${1:<minlength>} to ${2:<maxlength>}",
-      "child distance in parent graph=",
-      "child distance in child graph=",
-      "child distance=",
-      "parent distance in parent graph=",
-      "parent distance in child graph=",
-      "parent distance=",
-      "further distance=",
-      "id=${1:name}",
-      "id prefix=${1:text}",
-      "id suffix=${1:text}",
-      "options for node={${1:id list}}{${2:options}}",
-      "node={${1:options}}",
-      "distance=",
-      "pivot",
-      "pivot=",
-      "box={${1:options}}",
-      "box clear",
-      "node box={${1:options}}",
-      "family box={${1:options}}",
-      "subtree box={${1:options}}",
-      "turn",
-      "turn=",
-      "male",
-      "female",
-      "neuter",
-      "tikz={${1:TikZ options}}",
-      "options for family={${1:id list}}{${2:options}}",
-      "family={${1:options}}",
-      "pivot shift=",
-      "options for subtree={${1:id list}}{${2:options}}",
-      "subtree={${1:options}}",
-      "level=${1:number}",
-      "level ${1:n}/.style={${2:options}}",
-      "proband level=${1:number}",
-      "tree offset=",
-      "after parser={${1:code}}",
-      "set position=${1:<node>} at ${2:<position>}",
-      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>}",
-      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>} shift ${4:<shift>}",
-      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>}",
-      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>} shift ${4:<shift>}",
-      "tikzpicture={${1:TikZ options}}",
-      "tikzset={${1:TikZ options}}",
-      "after tree={${1:TikZ code}}",
-      "tcbset={${1:tcolorbox options}}",
-      "fit to family=${1:id}",
-      "fit to subtree=${1:id}",
-      "ignore",
-      "ignore node={${1:id list}}",
-      "ignore subtree={${1:id list}}",
-      "ignore level=${1:number}",
-      "ignore parent childs",
-      "insert after node={${1:id}}{${2:input data}}",
-      "insert after family={${1:id}}{${2:input data}}",
-      "insert at begin family={${1:id}}{${2:input data}}",
-      "insert at end family={${1:id}}{${2:input data}}",
-      "phantom",
-      "phantom=",
-      "phantom*",
-      "phantom*=",
-      "insert for childless families={${1:input data}}",
-      "insert phantom for childless families",
-      "insert for childless families level limit=${1:level}",
-      "autofill parents unspecific",
-      "autofill parents unspecific=${1:level}",
-      "autofill parents unspecific*",
-      "autofill parents unspecific*=${1:level}",
-      "complemented/.style={${1:options}}",
-      "complemented family/.style={${1:options}}",
-      "complemented phantom",
-      "autofill parents male female",
-      "autofill parents male female=${1:level}",
-      "autofill parents male female*",
-      "autofill parents male female*=${1:level}",
-      "autofill parents female male",
-      "autofill parents female male=${1:level}",
-      "autofill parents female male*",
-      "autofill parents female male*=${1:level}",
-      "autofill parents none",
-      "reset",
-      "code={${1:code}}",
-      "keysfrom=${1:macro}",
-      "node processor=${1:macro}",
-      "processing=",
-      "content interpreter=${1:macro}",
-      "content interpreter code={${1:code}}",
-      "content interpreter content={${1:code}}",
-      "no content interpreter",
-      "deletion content interpreter",
-      "database content interpreter",
-      "id content interpreter",
-      "content interpreter id and content={${1:id}}{${2:code}}",
-      "database format=",
-      "pref code={${1:code}}",
-      "surn code={${1:code}}",
-      "nick code={${1:code}}",
-      "name=",
-      "name font={${1:code}}",
-      "empty name text={${1:text}}",
-      "name code={${1:code}}",
-      "date format=",
-      "date code={${1:code}}",
-      "calendar text for=${1:<calendar>} is %<{${2:prefix}}{${3:postfix}}",
-      "calendar print=",
-      "date range full={${1:pre}}{${2:mid}}{${3:app}}",
-      "date range before={${1:pre}}{${2:app}}",
-      "date range after={${1:pre}}{${2:app}}",
-      "date range separator={${1:text}}",
-      "place text={${1:pre}}{${2:app}}",
-      "event prefix/birth=${1:text}",
-      "event prefix/birth/out of wedlock=${1:text}",
-      "event prefix/birth/stillborn=${1:text}",
-      "event prefix/birth/died=${1:text}",
-      "event prefix/baptism=${1:text}",
-      "event prefix/engagement=${1:text}",
-      "event prefix/marriage=${1:text}",
-      "event prefix/marriage/other=${1:text}",
-      "event prefix/divorce=${1:text}",
-      "event prefix/floruit=${1:text}",
-      "event prefix/death=${1:text}",
-      "event prefix/death/killed=${1:text}",
-      "event prefix/burial=${1:text}",
-      "event prefix/burial/cremated=${1:text}",
-      "event format=",
-      "event text={${1:pre}}{${2:sep date}}{${3:sep place}}{${4:app}}",
-      "event code={${1:code}}",
-      "list separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
-      "list separators hang",
-      "list separators hang=",
-      "comment code={${1:code}}",
-      "profession code={${1:code}}",
-      "info separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
-      "if image defined={${1:true}}{${2:false}}",
-      "image prefix=${1:text}",
-      "fill zoom DBimage",
-      "fill overzoom DBimage",
-      "age code={${1:code}}",
-      "edges={${1:edge options}}",
-      "family edges={${1:edge options}}",
-      "edges for family={${1:family}}{${2:edge options}}",
-      "subtree edges={${1:edge options}}",
-      "edges for subtree={${1:subtree}}{${2:edge options}}",
-      "edge/perpendicular",
-      "edge/rounded",
-      "edge/rounded=",
-      "edge/swing",
-      "edge/swing=",
-      "edge/mesh",
-      "edge/mesh={${1:options}}",
-      "edge/custom={${1:down}}{${2:up}}{${3:left}}{${4:right}}",
-      "edge/none",
-      "edge/foreground={${1:TikZ options}}",
-      "edge/no foreground",
-      "edge/background={${1:TikZ options}}",
-      "edge/no background",
-      "edge/anchoring=",
-      "edge/hide single leg",
-      "edge/xshift=",
-      "edge/yshift=",
-      "label={${1:text}}",
-      "label options={${1:TikZ options}}",
-      "family label={${1:text}}",
-      "subtree label={${1:text}}",
-      "family database={${1:data keys}}",
-      "label database options={${1:options}}",
-      "ignore family database",
-      "use family database",
-      "add child=${1:<child>} to ${2:<family>}",
-      "add parent=${1:<parent>} to ${2:<family>}",
-      "remove child=${1:<child>} from ${2:<family>}",
-      "remove parent=${1:<parent>} from ${2:<family>}",
-      "disconnect",
-      "disconnect=",
-      "extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
-      "family extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
-      "extra edges for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
-      "extra edges for families={${1:family list}}{${2:edge options}}",
-      "extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
-      "family extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
-      "extra edges prepend for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
-      "extra edges prepend for families={${1:family list}}{${2:edge options}}",
-      "edges shift=",
-      "edges up by=${1:<number>} of ${2:<parts>}",
-      "edges down by=${1:<number>} of ${2:<parts>}",
-      "edges up",
-      "edges down",
-      "reset edge level shift",
-      "switch edge level shift",
-      "nullify edge level shift",
-      "symbols record reset",
-      "symlang/Born=${1:text}",
-      "symlang/Bornoutofwedlock=${1:text}",
-      "symlang/Stillborn=${1:text}",
-      "symlang/Diedonbirthday=${1:text}",
-      "symlang/Baptized=${1:text}",
-      "symlang/Engaged=${1:text}",
-      "symlang/Married=${1:text}",
-      "symlang/Divorced=${1:text}",
-      "symlang/Partnership=${1:text}",
-      "symlang/Died=${1:text}",
-      "symlang/Killed=${1:text}",
-      "symlang/Buried=${1:text}",
-      "symlang/Funeralurn=${1:text}",
-      "symlang/Floruit=${1:text}",
-      "symlang/Female=${1:text}",
-      "symlang/Male=${1:text}",
-      "symlang/Neuter=${1:text}",
-      "language=",
-      "show=${1:text}",
-      "show id",
-      "show level",
-      "show number",
-      "show family",
-      "show type",
-      "template=",
-      "template horizontal border=",
-      "template vertical border="
-    ],
-    [
-      "family number=${1:number}",
-      "family id=${1:id}",
-      "contour="
-    ],
-    [
+    "\\begin{exgenealogypicture}#c": [
       "runner=${1:file name}",
       "prefix=${1:text}",
       "externalize",
@@ -913,7 +987,7 @@
       "preamble tcbset={${1:tcolorbox options}}",
       "clear preamble"
     ],
-    [
+    "\\begin{autosizetikzpicture}#c,\\begin{autosizetikzpicture*}#c": [
       "x=${1:<dimen> or <coord>}",
       "y=${1:<dimen> or <coord>}",
       "z=${1:<dimen> or <coord>}",
@@ -959,8 +1033,8 @@
       "thick",
       "very thick",
       "ultra thick",
-      "line cap=",
-      "line join=",
+      "line cap=${1|round,rect,butt|}",
+      "line join=${1|round,bevel,miter|}",
       "miter limit=${1:factor}",
       "dash pattern=${1:dash pattern}",
       "dash phase=${1:dash phase}",
@@ -992,14 +1066,14 @@
       "nonzero rule",
       "even odd rule",
       "shade",
-      "shading=",
+      "shading=${1|axis,radial,ball|}",
       "shading angle=${1:degrees}",
       "arrows=${1:start spec}-${2:end spec}",
       "->",
       "<-",
       "<->",
       "tips",
-      "tips=",
+      "tips=${1|true,proper,on draw,on proper draw,never,false|}",
       ">=${1:end arrow spec}",
       "shorten <=",
       "shorten >=",
@@ -1019,10 +1093,10 @@
       "node font=${1:font commands}",
       "font=${1:font commands}",
       "text width=",
-      "align=",
+      "align=${1|left,flush left,right,flush right,center,flush center,justify|}",
       "text height=",
       "text depth=",
-      "anchor=",
+      "anchor=${1|north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text|}",
       "above",
       "above=",
       "below",
@@ -1050,7 +1124,7 @@
       "transform shape nonlinear",
       "pos=${1:fraction}",
       "auto",
-      "auto=",
+      "auto=${1|left,right,false|}",
       "swap",
       "sloped",
       "allow upside down",
@@ -1080,7 +1154,7 @@
       "every new -!-",
       "new set=${1:set name}",
       "set=${1:set name}",
-      "growth parent anchor=",
+      "growth parent anchor=${1|north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text|}",
       "growth function=${1:macro}",
       "edge from parent path=${1:path}",
       "draw opacity=${1:value}",
@@ -1251,8 +1325,8 @@
       "ybar interval",
       "xbar interval",
       "only marks",
-      "blend mode=",
-      "blend group=",
+      "blend mode=${1|normal,multiply,screen,overlay,darken,lighten,color dodge,color burn,hard light,soft light,difference,exclusion,hue,saturation,color,luminosity|}",
+      "blend group=${1|normal,multiply,screen,overlay,darken,lighten,color dodge,color burn,hard light,soft light,difference,exclusion,hue,saturation,color,luminosity|}",
       "bar width=",
       "bar shift=",
       "bar interval shift=${1:factor}",
@@ -1264,6 +1338,344 @@
       "pics/background code=${1:code}",
       "pic text=${1:text}",
       "pic text options={${1:options}}"
+    ],
+    "\\gtredgeset#c": [
+      "perpendicular",
+      "rounded",
+      "rounded=",
+      "swing",
+      "swing=",
+      "mesh",
+      "mesh={${1:options}}",
+      "custom={${1:down}}{${2:up}}{${3:left}}{${4:right}}",
+      "none",
+      "foreground={${1:TikZ options}}",
+      "no foreground",
+      "background={${1:TikZ options}}",
+      "no background",
+      "anchoring=${1|periphery,center|}",
+      "hide single leg",
+      "xshift=",
+      "yshift="
+    ],
+    "\\gtrSymbolsFullLegend#c,\\gtrSymbolsLegend#c,\\gtrloadlanguage#c": [
+      "catalan",
+      "chinese",
+      "danish",
+      "dutch",
+      "english",
+      "french",
+      "german",
+      "german-german",
+      "german-austrian",
+      "italian",
+      "portuguese",
+      "spanish",
+      "swedish"
+    ],
+    "\\gtrdebugdrawcontour#c": [
+      "family number=${1:number}",
+      "family id=${1:id}",
+      "contour=${1|west,east,both,none|}"
+    ],
+    "\\gtrfanchart#c,\\gtrfanchartinput#c,\\gtrset#c": [
+      "fanchart radii={${1:radius1,radius2,...}}",
+      "fanchart inner offset={${1:offset1,offset2,...}}",
+      "fanchart outer offset={${1:offset1,offset2,...}}",
+      "fanchart minor angle=${1:angle}",
+      "fanchart major angle=${1:angle}",
+      "fanchart angles=${1:minor angle}:${2:major angle}",
+      "fanchart open full",
+      "fanchart open up",
+      "fanchart open up=${1:angle}",
+      "fanchart open down",
+      "fanchart open down=${1:angle}",
+      "fanchart open left",
+      "fanchart open left=${1:angle}",
+      "fanchart open right",
+      "fanchart open right=${1:angle}",
+      "fanchart open for=${1:width} x ${2:height}",
+      "fanchart reset bounds",
+      "fanchart bounds border=",
+      "fanchart landscape from level=${1:number}",
+      "fanchart text portrait=${1|inwards,outwards,auto|}",
+      "fanchart text landscape=${1|clockwise,counterclockwise,auto|}",
+      "fanchart boundary color=",
+      "fanchart boundary width=",
+      "fanchart root style={${1:TikZ options}}",
+      "fanchart root malefemale",
+      "fanchart segment style={${1:TikZ options}}",
+      "fanchart segment malefemale",
+      "fanchart segment relation",
+      "fanchart segment wave",
+      "fanchart segment colorwheel",
+      "fanchart segment radial",
+      "fanchart marker style={${1:TikZ options}}",
+      "fanchart marker malefemale",
+      "fanchart marker relation",
+      "fanchart marker wave",
+      "fanchart marker colorwheel",
+      "fanchart marker radial",
+      "fanchart complemented segment style={${1:TikZ options}}",
+      "fanchart complemented marker style={${1:TikZ options}}",
+      "fanchart segment style for levels={${1:level list}}{${2:TikZ options}}",
+      "fanchart marker style for levels={${1:level list}}{${2:TikZ options}}",
+      "fanchart segment style for ids={${1:id list}}{${2:TikZ options}}",
+      "fanchart marker style for ids={${1:id list}}{${2:TikZ options}}",
+      "fanchart male style={${1:TikZ options}}",
+      "fanchart female style={${1:TikZ options}}",
+      "fanchart neuter style={${1:TikZ options}}",
+      "fanchart ancestor style={${1:TikZ options}}",
+      "fanchart descendant style={${1:TikZ options}}",
+      "fanchart sibling style={${1:TikZ options}}",
+      "fanchart unrelated style={${1:TikZ options}}",
+      "fanchart template=${1|spartan,malefemale sober,malefemale relation,colorwheel sober,colorwheel serious,colorwheel malefemale,colorwheel rich,colorwheel opulent,wave sober,wave serious,wave malefemale,wave rich,wave opulent,radial sober,radial serious,radial malefemale,radial rich,radial opulent|}",
+      "fanchart-segment-definition={${1:code}}",
+      "fanchart-marker-definition={${1:code}}",
+      "fanchart-segment-code={${1:code}}",
+      "fanchart-root-code={${1:code}}"
+    ],
+    "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c": [
+      "timeflow=${1|down,up,left,right|}",
+      "level distance=",
+      "level size=",
+      "node size=",
+      "node size from=${1:<minlength>} to ${2:<maxlength>}",
+      "child distance in parent graph=",
+      "child distance in child graph=",
+      "child distance=",
+      "parent distance in parent graph=",
+      "parent distance in child graph=",
+      "parent distance=",
+      "further distance=",
+      "id=${1:name}",
+      "id prefix=${1:text}",
+      "id suffix=${1:text}",
+      "options for node={${1:id list}}{${2:options}}",
+      "node={${1:options}}",
+      "distance=",
+      "pivot",
+      "pivot=${1|none,child,parent,both|}",
+      "box={${1:options}}",
+      "box clear",
+      "node box={${1:options}}",
+      "family box={${1:options}}",
+      "subtree box={${1:options}}",
+      "turn",
+      "turn=${1|off,right,upsidedown,left|}",
+      "male",
+      "female",
+      "neuter",
+      "tikz={${1:TikZ options}}",
+      "options for family={${1:id list}}{${2:options}}",
+      "family={${1:options}}",
+      "pivot shift=",
+      "options for subtree={${1:id list}}{${2:options}}",
+      "subtree={${1:options}}",
+      "level=${1:number}",
+      "level ${1:n}/.style={${2:options}}",
+      "proband level=${1:number}",
+      "tree offset=",
+      "after parser={${1:code}}",
+      "set position=${1:<node>} at ${2:<position>}",
+      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>}",
+      "adjust position=${1:<node> <direction>} of ${2:<position>} distance ${3:<distance>} shift ${4:<shift>}",
+      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>}",
+      "adjust node=${1:<node> <direction>} of ${2:<ref node>} distance ${3:<distance>} shift ${4:<shift>}",
+      "tikzpicture={${1:TikZ options}}",
+      "tikzset={${1:TikZ options}}",
+      "after tree={${1:TikZ code}}",
+      "tcbset={${1:tcolorbox options}}",
+      "fit to family=${1:id}",
+      "fit to subtree=${1:id}",
+      "ignore",
+      "ignore node={${1:id list}}",
+      "ignore subtree={${1:id list}}",
+      "ignore level=${1:number}",
+      "ignore parent childs",
+      "insert after node={${1:id}}{${2:input data}}",
+      "insert after family={${1:id}}{${2:input data}}",
+      "insert at begin family={${1:id}}{${2:input data}}",
+      "insert at end family={${1:id}}{${2:input data}}",
+      "phantom",
+      "phantom=",
+      "phantom*",
+      "phantom*=",
+      "insert for childless families={${1:input data}}",
+      "insert phantom for childless families",
+      "insert for childless families level limit=${1:level}",
+      "autofill parents unspecific",
+      "autofill parents unspecific=${1:level}",
+      "autofill parents unspecific*",
+      "autofill parents unspecific*=${1:level}",
+      "complemented/.style={${1:options}}",
+      "complemented family/.style={${1:options}}",
+      "complemented phantom",
+      "autofill parents male female",
+      "autofill parents male female=${1:level}",
+      "autofill parents male female*",
+      "autofill parents male female*=${1:level}",
+      "autofill parents female male",
+      "autofill parents female male=${1:level}",
+      "autofill parents female male*",
+      "autofill parents female male*=${1:level}",
+      "autofill parents none",
+      "reset",
+      "code={${1:code}}",
+      "keysfrom=${1:macro}",
+      "",
+      "node processor=${1:macro}",
+      "processing=${1|fit,tcolorbox,tcbox,tcbox*,tikznode,database|}",
+      "content interpreter=${1:macro}",
+      "content interpreter code={${1:code}}",
+      "content interpreter content={${1:code}}",
+      "no content interpreter",
+      "deletion content interpreter",
+      "database content interpreter",
+      "id content interpreter",
+      "content interpreter id and content={${1:id}}{${2:code}}",
+      "database format=${1|full,full marriage above,full marriage below,full no marriage,medium,medium marriage above,medium marriage below,medium no marriage,short,short marriage above,short marriage below,short no marriage,name,symbol,empty,marriage|}",
+      "pref code={${1:code}}",
+      "surn code={${1:code}}",
+      "nick code={${1:code}}",
+      "name=${1|full,short|}",
+      "name font={${1:code}}",
+      "empty name text={${1:text}}",
+      "name code={${1:code}}",
+      "date format=${1|typical,dd.mm.yyyy,d.m.yyyy,d.M.yyyy,d.month yyyy,dd.mon.yyyy,d.mon.yyyy,dd mon.yyyy,d mon.yyyy,dd/mm/yyyy,d/m/yyyy,d/m yyyy,d/M/yyyy,dd/month/yyyy,d/month/yyyy,dd/mon/yyyy,d/mon/yyyy,dd/mm yyyy,dd mm yyyy,d M yyyy,d month yyyy,dd mon yyyy,d mon yyyy,dd-mm-yyyy,d-m-yyyy,d-M-yyyy,dd-month-yyyy,d-month-yyyy,dd-mon-yyyy,d-mon-yyyy,ddmonyyyy,yyyy.mm.dd,yyyy.m.d,yyyy.m.d.,yyyy.M.d.,yyyy.month d.,yyyy.mon.d.,yyyy/mm/dd,yyyy/m/d,yyyy d/m,yyyy mm dd,yyyy month d,yyyy mon dd,yyyy-mm-dd,yyyy-mon-dd,yyyy-mon-d,yyyymondd,yyyymmdd,mm.dd.yyyy,m.d.yyyy,mm/dd/yyyy,m/d/yyyy,mm-dd-yyyy,m-d-yyyy,month d yyyy,mon.d yyyy,mon d yyyy,yyyy|}",
+      "date code={${1:code}}",
+      "calendar text for=${1:<calendar>} is %<{${2:prefix}}{${3:postfix}}",
+      "calendar print=${1|all,none,all but AD|}",
+      "date range full={${1:pre}}{${2:mid}}{${3:app}}",
+      "date range before={${1:pre}}{${2:app}}",
+      "date range after={${1:pre}}{${2:app}}",
+      "date range separator={${1:text}}",
+      "place text={${1:pre}}{${2:app}}",
+      "event prefix/birth=${1:text}",
+      "event prefix/birth/out of wedlock=${1:text}",
+      "event prefix/birth/stillborn=${1:text}",
+      "event prefix/birth/died=${1:text}",
+      "event prefix/baptism=${1:text}",
+      "event prefix/engagement=${1:text}",
+      "event prefix/marriage=${1:text}",
+      "event prefix/marriage/other=${1:text}",
+      "event prefix/divorce=${1:text}",
+      "event prefix/floruit=${1:text}",
+      "event prefix/death=${1:text}",
+      "event prefix/death/killed=${1:text}",
+      "event prefix/burial=${1:text}",
+      "event prefix/burial/cremated=${1:text}",
+      "event format=${1|prefix date place,prefix date,date|}",
+      "event text={${1:pre}}{${2:sep date}}{${3:sep place}}{${4:app}}",
+      "event code={${1:code}}",
+      "list separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
+      "list separators hang",
+      "list separators hang=",
+      "comment code={${1:code}}",
+      "profession code={${1:code}}",
+      "info separators={${1:first}}{${2:middle}}{${3:last}}{${4:empty}}",
+      "if image defined={${1:true}}{${2:false}}",
+      "image prefix=${1:text}",
+      "fill zoom DBimage",
+      "fill overzoom DBimage",
+      "age code={${1:code}}",
+      "",
+      "edges={${1:edge options}}",
+      "family edges={${1:edge options}}",
+      "edges for family={${1:family}}{${2:edge options}}",
+      "subtree edges={${1:edge options}}",
+      "edges for subtree={${1:subtree}}{${2:edge options}}",
+      "edge/perpendicular",
+      "edge/rounded",
+      "edge/rounded=",
+      "edge/swing",
+      "edge/swing=",
+      "edge/mesh",
+      "edge/mesh={${1:options}}",
+      "edge/custom={${1:down}}{${2:up}}{${3:left}}{${4:right}}",
+      "edge/none",
+      "edge/foreground={${1:TikZ options}}",
+      "edge/no foreground",
+      "edge/background={${1:TikZ options}}",
+      "edge/no background",
+      "edge/anchoring=${1|periphery,center|}",
+      "edge/hide single leg",
+      "edge/xshift=",
+      "edge/yshift=",
+      "label={${1:text}}",
+      "label options={${1:TikZ options}}",
+      "family label={${1:text}}",
+      "subtree label={${1:text}}",
+      "family database={${1:data keys}}",
+      "label database options={${1:options}}",
+      "ignore family database",
+      "use family database",
+      "add child=${1:<child>} to ${2:<family>}",
+      "add parent=${1:<parent>} to ${2:<family>}",
+      "remove child=${1:<child>} from ${2:<family>}",
+      "remove parent=${1:<parent>} from ${2:<family>}",
+      "disconnect",
+      "disconnect=${1|child,parent,both|}",
+      "extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
+      "family extra edges={${1:parents}}{${2:children}}{${3:edge options}}",
+      "extra edges for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
+      "extra edges for families={${1:family list}}{${2:edge options}}",
+      "extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
+      "family extra edges prepend={${1:parents}}{${2:children}}{${3:edge options}}",
+      "extra edges prepend for family={${1:family}}{${2:parents}}{${3:children}}{${4:edge options}}",
+      "extra edges prepend for families={${1:family list}}{${2:edge options}}",
+      "edges shift=",
+      "edges up by=${1:<number>} of ${2:<parts>}",
+      "edges down by=${1:<number>} of ${2:<parts>}",
+      "edges up",
+      "edges down",
+      "reset edge level shift",
+      "switch edge level shift",
+      "nullify edge level shift",
+      "",
+      "symbols record reset",
+      "symlang/Born=${1:text}",
+      "symlang/Bornoutofwedlock=${1:text}",
+      "symlang/Stillborn=${1:text}",
+      "symlang/Diedonbirthday=${1:text}",
+      "symlang/Baptized=${1:text}",
+      "symlang/Engaged=${1:text}",
+      "symlang/Married=${1:text}",
+      "symlang/Divorced=${1:text}",
+      "symlang/Partnership=${1:text}",
+      "symlang/Died=${1:text}",
+      "symlang/Killed=${1:text}",
+      "symlang/Buried=${1:text}",
+      "symlang/Funeralurn=${1:text}",
+      "symlang/Floruit=${1:text}",
+      "symlang/Female=${1:text}",
+      "symlang/Male=${1:text}",
+      "symlang/Neuter=${1:text}",
+      "",
+      "language=${1|catalan,chinese,danish,dutch,english,french,german,german-german,german-austrian,italian,portuguese,spanish,swedish|}",
+      "",
+      "show=${1:text}",
+      "show id",
+      "show level",
+      "show number",
+      "show family",
+      "show type",
+      "",
+      "template=${1|formal graph,signpost,symbol nodes,tiny boxes,tiny circles,directory,database pole,database pole reduced,database poleportrait,database poleportrait reduced,database portrait,database portrait reduced,database traditional,database traditional reduced,database sideways,database sideways reduced,database sidewaysportrait,database sidewaysportrait reduced,database relationship,ahnentafel 3,ahnentafel 4,ahnentafel 5,a4paper 3,a4paper 4,a3paper 5,letterpaper 3,letterpaper 4,display 16:9 3,display 16:9 4,display 16:9 5,display 16:10 3,display 16:10 4,display 16:10 5|}",
+      "template horizontal border=",
+      "template vertical border="
+    ],
+    "\\tcbset": [
+      "male/.style={${1:options}}",
+      "female/.style={${1:options}}",
+      "neuter/.style={${1:options}}"
+    ],
+    "\\tikzset#c": [
+      "genealogytree edges scope/.style={${1:options}}",
+      "genealogytree extra edges scope/.style={${1:options}}"
     ]
+  },
+  "args": [
+    "\\usepackage/genealogytree#c,\\gtruselibrary#c"
   ]
 }

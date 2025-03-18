@@ -1,191 +1,540 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "mathtools": [],
-    "pgf": [
-      "pgf"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "pgf",
+      "if": "pgf"
+    }
+  ],
+  "macros": [
+    {
+      "name": "arrowoverset",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrowoverset{${1:arg}}"
+      }
+    },
+    {
+      "name": "arrowoverset",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "arrowoverset[${2:xoffset}][${3:xscale}][${4:yoffset}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "arrowoverset*",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrowoverset*{${1:arg}}"
+      }
+    },
+    {
+      "name": "arrowoverset*",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "arrowoverset*[${2:xoffset}][${3:xscale}][${4:yoffset}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "vA"
+    },
+    {
+      "name": "vB"
+    },
+    {
+      "name": "vC"
+    },
+    {
+      "name": "vD"
+    },
+    {
+      "name": "vE"
+    },
+    {
+      "name": "vF"
+    },
+    {
+      "name": "vG"
+    },
+    {
+      "name": "vH"
+    },
+    {
+      "name": "vI"
+    },
+    {
+      "name": "vJ"
+    },
+    {
+      "name": "vK"
+    },
+    {
+      "name": "vL"
+    },
+    {
+      "name": "vM"
+    },
+    {
+      "name": "vN"
+    },
+    {
+      "name": "vO"
+    },
+    {
+      "name": "vP"
+    },
+    {
+      "name": "vQ"
+    },
+    {
+      "name": "vR"
+    },
+    {
+      "name": "vS"
+    },
+    {
+      "name": "vT"
+    },
+    {
+      "name": "vU"
+    },
+    {
+      "name": "vV"
+    },
+    {
+      "name": "vW"
+    },
+    {
+      "name": "vX"
+    },
+    {
+      "name": "vY"
+    },
+    {
+      "name": "vZ"
+    },
+    {
+      "name": "va"
+    },
+    {
+      "name": "vb"
+    },
+    {
+      "name": "vc"
+    },
+    {
+      "name": "vd"
+    },
+    {
+      "name": "ve"
+    },
+    {
+      "name": "vf"
+    },
+    {
+      "name": "vg"
+    },
+    {
+      "name": "vh"
+    },
+    {
+      "name": "vi"
+    },
+    {
+      "name": "vj"
+    },
+    {
+      "name": "vk"
+    },
+    {
+      "name": "vl"
+    },
+    {
+      "name": "vm"
+    },
+    {
+      "name": "vn"
+    },
+    {
+      "name": "vo"
+    },
+    {
+      "name": "vp"
+    },
+    {
+      "name": "vq"
+    },
+    {
+      "name": "vr"
+    },
+    {
+      "name": "vs"
+    },
+    {
+      "name": "vt"
+    },
+    {
+      "name": "vu"
+    },
+    {
+      "name": "vright"
+    },
+    {
+      "name": "vw"
+    },
+    {
+      "name": "vx"
+    },
+    {
+      "name": "vy"
+    },
+    {
+      "name": "vz"
+    },
+    {
+      "name": "Av"
+    },
+    {
+      "name": "Bv"
+    },
+    {
+      "name": "Cv"
+    },
+    {
+      "name": "Dv"
+    },
+    {
+      "name": "Ev"
+    },
+    {
+      "name": "Fv"
+    },
+    {
+      "name": "Gv"
+    },
+    {
+      "name": "Hv"
+    },
+    {
+      "name": "Iv"
+    },
+    {
+      "name": "Jv"
+    },
+    {
+      "name": "Kv"
+    },
+    {
+      "name": "Lv"
+    },
+    {
+      "name": "Mv"
+    },
+    {
+      "name": "Nv"
+    },
+    {
+      "name": "Ov"
+    },
+    {
+      "name": "Pv"
+    },
+    {
+      "name": "Qv"
+    },
+    {
+      "name": "Rv"
+    },
+    {
+      "name": "Sv"
+    },
+    {
+      "name": "Tv"
+    },
+    {
+      "name": "Uv"
+    },
+    {
+      "name": "Vv"
+    },
+    {
+      "name": "Wv"
+    },
+    {
+      "name": "Xv"
+    },
+    {
+      "name": "Yv"
+    },
+    {
+      "name": "Zv"
+    },
+    {
+      "name": "av"
+    },
+    {
+      "name": "bv"
+    },
+    {
+      "name": "cv"
+    },
+    {
+      "name": "dv"
+    },
+    {
+      "name": "ev"
+    },
+    {
+      "name": "fv"
+    },
+    {
+      "name": "gv"
+    },
+    {
+      "name": "hv"
+    },
+    {
+      "name": "iv"
+    },
+    {
+      "name": "jv"
+    },
+    {
+      "name": "kv"
+    },
+    {
+      "name": "lv"
+    },
+    {
+      "name": "mv"
+    },
+    {
+      "name": "nv"
+    },
+    {
+      "name": "ov"
+    },
+    {
+      "name": "pv"
+    },
+    {
+      "name": "qv"
+    },
+    {
+      "name": "rv"
+    },
+    {
+      "name": "sv"
+    },
+    {
+      "name": "tv"
+    },
+    {
+      "name": "uv"
+    },
+    {
+      "name": "vleft"
+    },
+    {
+      "name": "wv"
+    },
+    {
+      "name": "xv"
+    },
+    {
+      "name": "yv"
+    },
+    {
+      "name": "zv"
+    },
+    {
+      "name": "vcA"
+    },
+    {
+      "name": "vcB"
+    },
+    {
+      "name": "vcC"
+    },
+    {
+      "name": "vcD"
+    },
+    {
+      "name": "vcE"
+    },
+    {
+      "name": "vcF"
+    },
+    {
+      "name": "vcG"
+    },
+    {
+      "name": "vcH"
+    },
+    {
+      "name": "vcI"
+    },
+    {
+      "name": "vcJ"
+    },
+    {
+      "name": "vcK"
+    },
+    {
+      "name": "vcL"
+    },
+    {
+      "name": "vcM"
+    },
+    {
+      "name": "vcN"
+    },
+    {
+      "name": "vcO"
+    },
+    {
+      "name": "vcP"
+    },
+    {
+      "name": "vcQ"
+    },
+    {
+      "name": "vcR"
+    },
+    {
+      "name": "vcS"
+    },
+    {
+      "name": "vcT"
+    },
+    {
+      "name": "vcU"
+    },
+    {
+      "name": "vcV"
+    },
+    {
+      "name": "vcW"
+    },
+    {
+      "name": "vcX"
+    },
+    {
+      "name": "vcY"
+    },
+    {
+      "name": "vcZ"
+    },
+    {
+      "name": "cAv"
+    },
+    {
+      "name": "cBv"
+    },
+    {
+      "name": "cCv"
+    },
+    {
+      "name": "cDv"
+    },
+    {
+      "name": "cEv"
+    },
+    {
+      "name": "cFv"
+    },
+    {
+      "name": "cGv"
+    },
+    {
+      "name": "cHv"
+    },
+    {
+      "name": "cIv"
+    },
+    {
+      "name": "cJv"
+    },
+    {
+      "name": "cKv"
+    },
+    {
+      "name": "cLv"
+    },
+    {
+      "name": "cMv"
+    },
+    {
+      "name": "cNv"
+    },
+    {
+      "name": "cOv"
+    },
+    {
+      "name": "cPv"
+    },
+    {
+      "name": "cQv"
+    },
+    {
+      "name": "cRv"
+    },
+    {
+      "name": "cSv"
+    },
+    {
+      "name": "cTv"
+    },
+    {
+      "name": "cUv"
+    },
+    {
+      "name": "cVv"
+    },
+    {
+      "name": "cWv"
+    },
+    {
+      "name": "cXv"
+    },
+    {
+      "name": "cYv"
+    },
+    {
+      "name": "cZv"
+    },
+    {
+      "name": "cev",
+      "if": "presets=vec-cev",
+      "arg": {
+        "format": "{}",
+        "snippet": "cev{${1:arg}}"
+      }
+    },
+    {
+      "name": "cev",
+      "if": "presets={vec-cev}",
+      "arg": {
+        "format": "{}",
+        "snippet": "cev{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/letterswitharrows#c": [
+      "presets={${1:set1,set2,...}}",
+      "pgf",
+      "tweaks",
+      "linewidth=${1:number}"
     ]
   },
-  "macros": {
-    "arrowoverset{}": {
-      "snippet": "arrowoverset{${1:arg}}"
-    },
-    "arrowoverset[][][]{}": {
-      "snippet": "arrowoverset[${2:xoffset}][${3:xscale}][${4:yoffset}]{${1:arg}}"
-    },
-    "arrowoverset*{}": {
-      "snippet": "arrowoverset*{${1:arg}}"
-    },
-    "arrowoverset*[][][]{}": {
-      "snippet": "arrowoverset*[${2:xoffset}][${3:xscale}][${4:yoffset}]{${1:arg}}"
-    },
-    "vA": {},
-    "vB": {},
-    "vC": {},
-    "vD": {},
-    "vE": {},
-    "vF": {},
-    "vG": {},
-    "vH": {},
-    "vI": {},
-    "vJ": {},
-    "vK": {},
-    "vL": {},
-    "vM": {},
-    "vN": {},
-    "vO": {},
-    "vP": {},
-    "vQ": {},
-    "vR": {},
-    "vS": {},
-    "vT": {},
-    "vU": {},
-    "vV": {},
-    "vW": {},
-    "vX": {},
-    "vY": {},
-    "vZ": {},
-    "va": {},
-    "vb": {},
-    "vc": {},
-    "vd": {},
-    "ve": {},
-    "vf": {},
-    "vg": {},
-    "vh": {},
-    "vi": {},
-    "vj": {},
-    "vk": {},
-    "vl": {},
-    "vm": {},
-    "vn": {},
-    "vo": {},
-    "vp": {},
-    "vq": {},
-    "vr": {},
-    "vs": {},
-    "vt": {},
-    "vu": {},
-    "vright": {},
-    "vw": {},
-    "vx": {},
-    "vy": {},
-    "vz": {},
-    "Av": {},
-    "Bv": {},
-    "Cv": {},
-    "Dv": {},
-    "Ev": {},
-    "Fv": {},
-    "Gv": {},
-    "Hv": {},
-    "Iv": {},
-    "Jv": {},
-    "Kv": {},
-    "Lv": {},
-    "Mv": {},
-    "Nv": {},
-    "Ov": {},
-    "Pv": {},
-    "Qv": {},
-    "Rv": {},
-    "Sv": {},
-    "Tv": {},
-    "Uv": {},
-    "Vv": {},
-    "Wv": {},
-    "Xv": {},
-    "Yv": {},
-    "Zv": {},
-    "av": {},
-    "bv": {},
-    "cv": {},
-    "dv": {},
-    "ev": {},
-    "fv": {},
-    "gv": {},
-    "hv": {},
-    "iv": {},
-    "jv": {},
-    "kv": {},
-    "lv": {},
-    "mv": {},
-    "nv": {},
-    "ov": {},
-    "pv": {},
-    "qv": {},
-    "rv": {},
-    "sv": {},
-    "tv": {},
-    "uv": {},
-    "vleft": {},
-    "wv": {},
-    "xv": {},
-    "yv": {},
-    "zv": {},
-    "vcA": {},
-    "vcB": {},
-    "vcC": {},
-    "vcD": {},
-    "vcE": {},
-    "vcF": {},
-    "vcG": {},
-    "vcH": {},
-    "vcI": {},
-    "vcJ": {},
-    "vcK": {},
-    "vcL": {},
-    "vcM": {},
-    "vcN": {},
-    "vcO": {},
-    "vcP": {},
-    "vcQ": {},
-    "vcR": {},
-    "vcS": {},
-    "vcT": {},
-    "vcU": {},
-    "vcV": {},
-    "vcW": {},
-    "vcX": {},
-    "vcY": {},
-    "vcZ": {},
-    "cAv": {},
-    "cBv": {},
-    "cCv": {},
-    "cDv": {},
-    "cEv": {},
-    "cFv": {},
-    "cGv": {},
-    "cHv": {},
-    "cIv": {},
-    "cJv": {},
-    "cKv": {},
-    "cLv": {},
-    "cMv": {},
-    "cNv": {},
-    "cOv": {},
-    "cPv": {},
-    "cQv": {},
-    "cRv": {},
-    "cSv": {},
-    "cTv": {},
-    "cUv": {},
-    "cVv": {},
-    "cWv": {},
-    "cXv": {},
-    "cYv": {},
-    "cZv": {},
-    "cev{}": {
-      "snippet": "cev{${1:arg}}",
-      "option": "presets={vec-cev}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "presets={${1:set1,set2,...}}",
-    "pgf",
-    "tweaks",
-    "linewidth=${1:number}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/letterswitharrows#c"
+  ]
 }

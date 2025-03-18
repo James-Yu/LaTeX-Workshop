@@ -1,47 +1,121 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "nfssext-cfr": []
-  },
-  "macros": {
-    "altstyle": {},
-    "textalt{}": {
-      "snippet": "textalt{${1:text}}"
+  "deps": [
+    {
+      "name": "svn-prov"
     },
-    "swashstyle": {},
-    "textswash{}": {
-      "snippet": "textswash{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "alt"
+    {
+      "name": "nfssext-cfr"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "altstyle"
+    },
+    {
+      "name": "textalt",
+      "arg": {
+        "format": "{}",
+        "snippet": "textalt{${1:text}}"
+      }
+    },
+    {
+      "name": "swashstyle"
+    },
+    {
+      "name": "textswash",
+      "arg": {
+        "format": "{}",
+        "snippet": "textswash{${1:text}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/romande#c": [
+      "alt",
+      "scale=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/romande#c"
+  ]
 }

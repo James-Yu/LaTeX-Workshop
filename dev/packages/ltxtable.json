@@ -1,14 +1,22 @@
 {
-  "includes": {
-    "longtable": [],
-    "tabularx": []
-  },
-  "macros": {
-    "LTXtable{}{}": {
-      "snippet": "LTXtable{${1:width}}{${2:file}}"
+  "deps": [
+    {
+      "name": "longtable"
+    },
+    {
+      "name": "tabularx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "LTXtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LTXtable{${1:width}}{${2:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,28 +1,57 @@
 {
-  "includes": {
-    "url": []
-  },
-  "macros": {
-    "doi{}": {
-      "snippet": "doi{${1:ref number}}"
-    },
-    "pubmed{}": {
-      "snippet": "pubmed{${1:ref number}}"
-    },
-    "citeurl{}": {
-      "snippet": "citeurl{${1:URL}}"
-    },
-    "href{}{}": {
-      "snippet": "href{${1:URL}}{${2:text}}"
-    },
-    "doitext{}": {
-      "snippet": "doitext{${1:doi ref}}"
-    },
-    "pubmedtext{}": {
-      "snippet": "pubmedtext{${1:pub med code}}"
+  "deps": [
+    {
+      "name": "url"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "doi{${1:ref number}}"
+      }
+    },
+    {
+      "name": "pubmed",
+      "arg": {
+        "format": "{}",
+        "snippet": "pubmed{${1:ref number}}"
+      }
+    },
+    {
+      "name": "citeurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "citeurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "href",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "href{${1:URL}}{${2:text}}"
+      }
+    },
+    {
+      "name": "doitext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "doitext{${1:doi ref}}"
+      }
+    },
+    {
+      "name": "pubmedtext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pubmedtext{${1:pub med code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

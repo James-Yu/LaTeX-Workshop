@@ -1,41 +1,109 @@
 {
-  "includes": {},
-  "macros": {
-    "headcommand{}": {
-      "snippet": "headcommand{${1:code}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "headcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "headcommand{${1:code}}"
+      }
     },
-    "dohead": {},
-    "inserttotalframenumber": {},
-    "insertmainframenumber": {},
-    "partentry{}{}": {
-      "snippet": "partentry{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "dohead",
+      "unusual": true
     },
-    "slideentry{}{}{}{}{}{}": {
-      "snippet": "slideentry{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+    {
+      "name": "inserttotalframenumber",
+      "unusual": true
     },
-    "sectionentry{}{}{}{}{}": {
-      "snippet": "sectionentry{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    {
+      "name": "insertmainframenumber",
+      "unusual": true
     },
-    "bibname": {},
-    "algorithmname": {},
-    "chaptername": {},
-    "includegraphics<>{}": {
-      "snippet": "includegraphics<${2:overlay specification}>{${1:imagefile}}"
+    {
+      "name": "partentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "partentry{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "includegraphics<>[]{}": {
-      "snippet": "includegraphics<${3:overlay specification}>[${2:options}]{${1:imagefile}}"
+    {
+      "name": "slideentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "slideentry{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
+      }
     },
-    "pgfuseimage<>{}": {
-      "snippet": "pgfuseimage<${2:overlay specification}>{${1:image name}}"
+    {
+      "name": "sectionentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "sectionentry{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
     },
-    "pgfimage<>[]{}": {
-      "snippet": "pgfimage<${3:overlay specification}>[${2:options}]{${1:imagefile}}"
+    {
+      "name": "bibname",
+      "unusual": true
     },
-    "pgfimage<>{}": {
-      "snippet": "pgfimage<${2:overlay specification}>{${1:imagefile}}"
+    {
+      "name": "algorithmname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "includegraphics<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "includegraphics<overlay specification>{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphics<overlay specification>",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includegraphics<overlay specification>[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "pgfuseimage<overlay specification>",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfuseimage<overlay specification>{${1:image name}}"
+      }
+    },
+    {
+      "name": "pgfimage<overlay specification>",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfimage<overlay specification>[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "pgfimage<overlay specification>",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfimage<overlay specification>{${1:imagefile}}"
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\insertshortauthor,\\insertshortdate,\\insertshortinstitute,\\insertshortpart,\\insertshorttitle,\\insertshortsubtitle,\\insertshortframetitle": [
+      "respectlinebreaks",
+      "width=",
+      "center",
+      "spill"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,33 +1,52 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "kvoptions": [],
-    "xcolor": [],
-    "luatexbase": [],
-    "luacode": []
-  },
-  "macros": {
-    "usecolor{}": {
-      "snippet": "usecolor{${1:color}}"
+  "deps": [
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "luatexbase"
+    },
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "frenchchapters",
-    "hyphenation",
-    "nosingleletter",
-    "parindent",
-    "lastparline",
-    "homeoarchy",
-    "rivers",
-    "homeoarchywordcolor=",
-    "homeoarchycharcolor=",
-    "nosinglelettercolor=",
-    "lastparlinecolor=",
-    "riverscolor=",
-    "homeoarchymaxwords=${1:integer}",
-    "homeoarchymaxchars=${1:integer}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "usecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usecolor{${1:color}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/impnattypo#c": [
+      "draft",
+      "frenchchapters",
+      "hyphenation",
+      "nosingleletter",
+      "parindent",
+      "lastparline",
+      "homeoarchy",
+      "rivers",
+      "homeoarchywordcolor=",
+      "homeoarchycharcolor=",
+      "nosinglelettercolor=",
+      "lastparlinecolor=",
+      "riverscolor=",
+      "homeoarchymaxwords=${1:integer}",
+      "homeoarchymaxchars=${1:integer}"
+    ]
+  },
+  "args": [
+    "\\usepackage/impnattypo#c"
+  ]
 }

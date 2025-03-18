@@ -1,23 +1,43 @@
 {
-  "includes": {
-    "fp-basic": []
-  },
-  "macros": {
-    "FPe": {},
-    "FPexp{}{}": {
-      "snippet": "FPexp{${1:variable}}{${2:value}}"
-    },
-    "FPln{}{}": {
-      "snippet": "FPln{${1:variable}}{${2:value}}"
-    },
-    "FPpow{}{}{}": {
-      "snippet": "FPpow{${1:variable}}{${2:value1}}{${3:value2}}"
-    },
-    "FProot{}{}{}": {
-      "snippet": "FProot{${1:variable}}{${2:value1}}{${3:value2}}"
+  "deps": [
+    {
+      "name": "fp-basic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "FPe"
+    },
+    {
+      "name": "FPexp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPexp{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPln",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPln{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPpow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FPpow{${1:variable%cmd}}{${2:value1}}{${3:value2}}"
+      }
+    },
+    {
+      "name": "FProot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FProot{${1:variable%cmd}}{${2:value1}}{${3:value2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

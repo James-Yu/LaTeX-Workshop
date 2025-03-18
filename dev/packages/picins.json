@@ -1,78 +1,276 @@
 {
-  "includes": {},
-  "macros": {
-    "parpic{}": {
-      "snippet": "parpic{${1:graphics}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "parpic{${1:graphics}}"
+      }
     },
-    "hpic{}": {
-      "snippet": "hpic{${1:graphics}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "(){}",
+        "snippet": "parpic(${2:width},${3:height}){${1:graphics}}"
+      }
     },
-    "picskip{}": {
-      "snippet": "picskip{${1:n}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "parpic(${3:width},${4:height})[${2:opts}]{${1:graphics}}"
+      }
     },
-    "pichskip{}": {
-      "snippet": "pichskip{${1:length}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "()[][]{}",
+        "snippet": "parpic(${4:width},${5:height})[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "shadowthickness{}": {
-      "snippet": "shadowthickness{${1:length}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "parpic(${2:width},${3:height})(${4:xoffset},${5:yoffset}){${1:graphics}}"
+      }
     },
-    "dashlength{}": {
-      "snippet": "dashlength{${1:length}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "parpic(${3:width},${4:height})(${5:xoffset},${6:yoffset})[${2:opts}]{${1:graphics}}"
+      }
     },
-    "boxlength{}": {
-      "snippet": "boxlength{${1:length}}"
+    {
+      "name": "parpic",
+      "arg": {
+        "format": "()()[][]{}",
+        "snippet": "parpic(${4:width},${5:height})(${6:xoffset},${7:yoffset})[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "piccaption{}": {
-      "snippet": "piccaption{${1:text}}"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "hpic{${1:graphics}}"
+      }
     },
-    "piccaption[]{}": {
-      "snippet": "piccaption[${2:short text}]{${1:text}}"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "(){}",
+        "snippet": "hpic(${2:width},${3:height}){${1:graphics}}"
+      }
     },
-    "newcaption{}": {
-      "snippet": "newcaption{${1:text}}"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "hpic(${3:width},${4:height})[${2:opts}]{${1:graphics}}"
+      }
     },
-    "newcaption[]{}": {
-      "snippet": "newcaption[${2:short text}]{${1:text}}"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "()[][]{}",
+        "snippet": "hpic(${4:width},${5:height})[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "piccaptionoutside": {},
-    "piccaptioninside": {},
-    "piccaptionside": {},
-    "piccaptiontopside": {},
-    "picchangemode": {},
-    "nopicchangemode": {},
-    "ptoti": {},
-    "ptotii": {},
-    "iparpic": {},
-    "iiparpic": {},
-    "iiiparpic": {},
-    "ivparpic": {},
-    "ihpic": {},
-    "iihpic": {},
-    "iiihpic": {},
-    "ivhpic": {}
-  },
-  "envs": {
-    "frameenv": {},
-    "frameenv[]": {
-      "name": "frameenv",
-      "snippet": "[${1:width}]"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "hpic(${2:width},${3:height})(${4:xoffset},${5:yoffset}){${1:graphics}}"
+      }
     },
-    "dashenv": {},
-    "dashenv[]": {
-      "name": "dashenv",
-      "snippet": "[${1:width}]"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "hpic(${3:width},${4:height})(${5:xoffset},${6:yoffset})[${2:opts}]{${1:graphics}}"
+      }
     },
-    "ovalenv": {},
-    "ovalenv[]": {
-      "name": "ovalenv",
-      "snippet": "[${1:width}]"
+    {
+      "name": "hpic",
+      "arg": {
+        "format": "()()[][]{}",
+        "snippet": "hpic(${4:width},${5:height})(${6:xoffset},${7:yoffset})[${2:opts}][${3:pos}]{${1:graphics}}"
+      }
     },
-    "shadowenv": {},
-    "shadowenv[]": {
-      "name": "shadowenv",
-      "snippet": "[${1:width}]"
+    {
+      "name": "picskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "picskip{${1:n}}"
+      }
+    },
+    {
+      "name": "pichskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "pichskip{${1:length}}"
+      }
+    },
+    {
+      "name": "shadowthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowthickness{${1:length}}"
+      }
+    },
+    {
+      "name": "dashlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "dashlength{${1:length}}"
+      }
+    },
+    {
+      "name": "boxlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "boxlength{${1:length}}"
+      }
+    },
+    {
+      "name": "piccaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "piccaption{${1:text}}"
+      }
+    },
+    {
+      "name": "piccaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "piccaption[${2:short text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "newcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "newcaption{${1:text}}"
+      }
+    },
+    {
+      "name": "newcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newcaption[${2:short text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "piccaptionoutside"
+    },
+    {
+      "name": "piccaptioninside"
+    },
+    {
+      "name": "piccaptionside"
+    },
+    {
+      "name": "piccaptiontopside"
+    },
+    {
+      "name": "picchangemode"
+    },
+    {
+      "name": "nopicchangemode"
+    },
+    {
+      "name": "ptoti",
+      "unusual": true
+    },
+    {
+      "name": "ptotii",
+      "unusual": true
+    },
+    {
+      "name": "Rahmen",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "Rahmen(${2:x},${3:y}){${1:arg}}"
+      }
+    },
+    {
+      "name": "Schatten",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "Schatten(${2:x},${3:y}){${1:arg}}"
+      }
+    },
+    {
+      "name": "Oval",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "Oval(${2:x},${3:y}){${1:arg}}"
+      }
+    },
+    {
+      "name": "Strich",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "Strich(${2:x},${3:y}){${1:arg}}"
+      }
+    },
+    {
+      "name": "Kasten",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "Kasten(${2:x},${3:y}){${1:arg}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "frameenv"
+    },
+    {
+      "name": "frameenv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "dashenv"
+    },
+    {
+      "name": "dashenv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "ovalenv"
+    },
+    {
+      "name": "ovalenv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    },
+    {
+      "name": "shadowenv"
+    },
+    {
+      "name": "shadowenv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

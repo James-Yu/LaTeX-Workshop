@@ -1,855 +1,2187 @@
 {
-  "includes": {
-    "fontenc": [],
-    "amsmath": [],
-    "units": [],
-    "xspace": []
-  },
-  "macros": {
-    "Micro": {
-      "option": "OHM",
-      "detail": "µ",
-      "documentation": "MICRO SIGN"
-    },
-    "Ohm": {
-      "option": "OHM"
-    },
-    "Ohm[]": {
-      "snippet": "Ohm[${1:value}]",
-      "option": "OHM"
-    },
-    "Celsius": {
-      "option": "OHM"
-    },
-    "Celsius[]": {
-      "snippet": "Celsius[${1:value}]",
-      "option": "OHM"
-    },
-    "Degree": {
-      "option": "OHM"
-    },
-    "Degree[]": {
-      "snippet": "Degree[${1:value}]",
-      "option": "OHM"
-    },
-    "gensymbohm": {
-      "option": "redef-gensymb"
-    },
-    "gensymbcelsius": {
-      "option": "redef-gensymb"
-    },
-    "gensymbmicro": {
-      "option": "redef-gensymb"
-    },
-    "unitvaluesep": {},
-    "unitsignonly{}": {
-      "snippet": "unitsignonly{${1:\\unitmacro}}"
-    },
-    "ilu{}": {
-      "snippet": "ilu{${1:unit}}"
-    },
-    "ilu[]{}": {
-      "snippet": "ilu[${2:value}]{${1:unit}}"
-    },
-    "arc{}": {
-      "snippet": "arc{${1:degree;min;sec}}"
-    },
-    "SI{}{}": {
-      "snippet": "SI{${1:value}}{${2:unit}}"
-    },
-    "unitSIdef": {},
-    "newunit{}{}": {
-      "snippet": "newunit{${1:\\unitmacro}}{${2:unitsign}}"
-    },
-    "renewunit{}{}": {
-      "snippet": "renewunit{${1:\\unitmacro}}{${2:unitsign}}"
-    },
-    "newnosepunit{}{}": {
-      "snippet": "newnosepunit{${1:\\unitmacro}}{${2:unitsign}}"
-    },
-    "renewnosepunit{}{}": {
-      "snippet": "renewnosepunit{${1:\\unitmacro}}{${2:unitsign}}"
-    },
-    "per{}{}": {
-      "snippet": "per{${1:numerator}}{${2:denominator}}"
-    },
-    "unittimes": {},
-    "unitsep": {},
-    "unitsuperscript{}": {
-      "snippet": "unitsuperscript{${1:sup}}"
-    },
-    "setTextOmega{}{}": {
-      "snippet": "setTextOmega{${1:serif-def}}{${2:sans-serif-def}}"
-    },
-    "setMathOmega{}": {
-      "snippet": "setMathOmega{${1:def}}"
-    },
-    "setTextmu{}{}": {
-      "snippet": "setTextmu{${1:serif-def}}{${2:sans-serif-def}}"
-    },
-    "setMathmu{}": {
-      "snippet": "setMathmu{${1:def}}"
-    },
-    "setTextCelsius{}{}": {
-      "snippet": "setTextCelsius{${1:serif-def}}{${2:sans-serif-def}}"
-    },
-    "setMathCelsius{}": {
-      "snippet": "setMathCelsius{${1:def}}"
-    },
-    "setTextDegree{}{}": {
-      "snippet": "setTextDegree{${1:serif-def}}{${2:sans-serif-def}}"
-    },
-    "setMathDegree{}": {
-      "snippet": "setMathDegree{${1:def}}"
-    },
-    "yocto": {},
-    "zepto": {},
-    "atto": {},
-    "femto": {},
-    "pico": {},
-    "nano": {},
-    "micro": {},
-    "milli": {},
-    "centi": {},
-    "deci": {},
-    "deca": {},
-    "hecto": {},
-    "kilo": {},
-    "mega": {},
-    "giga": {},
-    "tera": {},
-    "peta": {},
-    "exa": {},
-    "zetta": {},
-    "yotta": {},
-    "meter": {},
-    "meter[]": {
-      "snippet": "meter[${1:value}]"
-    },
-    "gram": {},
-    "gram[]": {
-      "snippet": "gram[${1:value}]"
-    },
-    "kilogram": {},
-    "kilogram[]": {
-      "snippet": "kilogram[${1:value}]"
-    },
-    "mole": {},
-    "mole[]": {
-      "snippet": "mole[${1:value}]"
-    },
-    "second": {
-      "detail": "″",
-      "documentation": "DOUBLE PRIME or second, not superscripted"
-    },
-    "second[]": {
-      "snippet": "second[${1:value}]"
-    },
-    "ampere": {},
-    "ampere[]": {
-      "snippet": "ampere[${1:value}]"
-    },
-    "kelvin": {},
-    "kelvin[]": {
-      "snippet": "kelvin[${1:value}]"
-    },
-    "candela": {},
-    "candela[]": {
-      "snippet": "candela[${1:value}]"
-    },
-    "picometer": {},
-    "picometer[]": {
-      "snippet": "picometer[${1:value}]"
-    },
-    "nanometer": {},
-    "nanometer[]": {
-      "snippet": "nanometer[${1:value}]"
-    },
-    "micrometer": {},
-    "micrometer[]": {
-      "snippet": "micrometer[${1:value}]"
-    },
-    "millimeter": {},
-    "millimeter[]": {
-      "snippet": "millimeter[${1:value}]"
-    },
-    "centimeter": {},
-    "centimeter[]": {
-      "snippet": "centimeter[${1:value}]"
-    },
-    "decimeter": {},
-    "decimeter[]": {
-      "snippet": "decimeter[${1:value}]"
-    },
-    "kilometer": {},
-    "kilometer[]": {
-      "snippet": "kilometer[${1:value}]"
-    },
-    "femtogram": {},
-    "femtogram[]": {
-      "snippet": "femtogram[${1:value}]"
-    },
-    "picogram": {},
-    "picogram[]": {
-      "snippet": "picogram[${1:value}]"
-    },
-    "nanogram": {},
-    "nanogram[]": {
-      "snippet": "nanogram[${1:value}]"
-    },
-    "microgram": {},
-    "microgram[]": {
-      "snippet": "microgram[${1:value}]"
-    },
-    "milligram": {},
-    "milligram[]": {
-      "snippet": "milligram[${1:value}]"
-    },
-    "femtomole": {},
-    "femtomole[]": {
-      "snippet": "femtomole[${1:value}]"
-    },
-    "picomole": {},
-    "picomole[]": {
-      "snippet": "picomole[${1:value}]"
-    },
-    "nanomole": {},
-    "nanomole[]": {
-      "snippet": "nanomole[${1:value}]"
-    },
-    "micromole": {},
-    "micromole[]": {
-      "snippet": "micromole[${1:value}]"
-    },
-    "millimole": {},
-    "millimole[]": {
-      "snippet": "millimole[${1:value}]"
-    },
-    "attosecond": {},
-    "attosecond[]": {
-      "snippet": "attosecond[${1:value}]"
-    },
-    "femtosecond": {},
-    "femtosecond[]": {
-      "snippet": "femtosecond[${1:value}]"
-    },
-    "picosecond": {},
-    "picosecond[]": {
-      "snippet": "picosecond[${1:value}]"
-    },
-    "nanosecond": {},
-    "nanosecond[]": {
-      "snippet": "nanosecond[${1:value}]"
-    },
-    "microsecond": {},
-    "microsecond[]": {
-      "snippet": "microsecond[${1:value}]"
-    },
-    "millisecond": {},
-    "millisecond[]": {
-      "snippet": "millisecond[${1:value}]"
-    },
-    "picoampere": {},
-    "picoampere[]": {
-      "snippet": "picoampere[${1:value}]"
-    },
-    "nanoampere": {},
-    "nanoampere[]": {
-      "snippet": "nanoampere[${1:value}]"
-    },
-    "microampere": {},
-    "microampere[]": {
-      "snippet": "microampere[${1:value}]"
-    },
-    "milliampere": {},
-    "milliampere[]": {
-      "snippet": "milliampere[${1:value}]"
-    },
-    "kiloampere": {},
-    "kiloampere[]": {
-      "snippet": "kiloampere[${1:value}]"
-    },
-    "percent": {
-      "detail": "%",
-      "documentation": "PERCENT SIGN"
-    },
-    "percent[]": {
-      "snippet": "percent[${1:value}]"
-    },
-    "liter": {},
-    "liter[]": {
-      "snippet": "liter[${1:value}]"
-    },
-    "femtoliter": {},
-    "femtoliter[]": {
-      "snippet": "femtoliter[${1:value}]"
-    },
-    "picoliter": {},
-    "picoliter[]": {
-      "snippet": "picoliter[${1:value}]"
-    },
-    "nanoliter": {},
-    "nanoliter[]": {
-      "snippet": "nanoliter[${1:value}]"
-    },
-    "microliter": {},
-    "microliter[]": {
-      "snippet": "microliter[${1:value}]"
-    },
-    "milliliter": {},
-    "milliliter[]": {
-      "snippet": "milliliter[${1:value}]"
-    },
-    "centiliter": {},
-    "centiliter[]": {
-      "snippet": "centiliter[${1:value}]"
-    },
-    "deciliter": {},
-    "deciliter[]": {
-      "snippet": "deciliter[${1:value}]"
-    },
-    "hectoliter": {},
-    "hectoliter[]": {
-      "snippet": "hectoliter[${1:value}]"
-    },
-    "cubicmeter": {},
-    "cubicmeter[]": {
-      "snippet": "cubicmeter[${1:value}]"
-    },
-    "cubicmicrometer": {},
-    "cubicmicrometer[]": {
-      "snippet": "cubicmicrometer[${1:value}]"
-    },
-    "cubicmillimeter": {},
-    "cubicmillimeter[]": {
-      "snippet": "cubicmillimeter[${1:value}]"
-    },
-    "squaremeter": {},
-    "squaremeter[]": {
-      "snippet": "squaremeter[${1:value}]"
-    },
-    "ar": {},
-    "ar[]": {
-      "snippet": "ar[${1:value}]"
-    },
-    "hektar": {},
-    "hektar[]": {
-      "snippet": "hektar[${1:value}]"
-    },
-    "squarecentimeter": {},
-    "squarecentimeter[]": {
-      "snippet": "squarecentimeter[${1:value}]"
-    },
-    "squaremillimeter": {},
-    "squaremillimeter[]": {
-      "snippet": "squaremillimeter[${1:value}]"
-    },
-    "squarekilometer": {},
-    "squarekilometer[]": {
-      "snippet": "squarekilometer[${1:value}]"
-    },
-    "ton": {},
-    "ton[]": {
-      "snippet": "ton[${1:value}]"
-    },
-    "volt": {},
-    "volt[]": {
-      "snippet": "volt[${1:value}]"
-    },
-    "millivolt": {},
-    "millivolt[]": {
-      "snippet": "millivolt[${1:value}]"
-    },
-    "kilovolt": {},
-    "kilovolt[]": {
-      "snippet": "kilovolt[${1:value}]"
-    },
-    "watt": {},
-    "watt[]": {
-      "snippet": "watt[${1:value}]"
-    },
-    "milliwatt": {},
-    "milliwatt[]": {
-      "snippet": "milliwatt[${1:value}]"
-    },
-    "kilowatt": {},
-    "kilowatt[]": {
-      "snippet": "kilowatt[${1:value}]"
-    },
-    "megawatt": {},
-    "megawatt[]": {
-      "snippet": "megawatt[${1:value}]"
-    },
-    "coulomb": {},
-    "coulomb[]": {
-      "snippet": "coulomb[${1:value}]"
-    },
-    "ohm": {},
-    "ohm[]": {
-      "snippet": "ohm[${1:value}]"
-    },
-    "kiloohm": {},
-    "kiloohm[]": {
-      "snippet": "kiloohm[${1:value}]"
-    },
-    "megaohm": {},
-    "megaohm[]": {
-      "snippet": "megaohm[${1:value}]"
-    },
-    "gigaohm": {},
-    "gigaohm[]": {
-      "snippet": "gigaohm[${1:value}]"
-    },
-    "siemens": {},
-    "siemens[]": {
-      "snippet": "siemens[${1:value}]"
-    },
-    "millisiemens": {},
-    "millisiemens[]": {
-      "snippet": "millisiemens[${1:value}]"
-    },
-    "farad": {},
-    "farad[]": {
-      "snippet": "farad[${1:value}]"
-    },
-    "femtofarad": {},
-    "femtofarad[]": {
-      "snippet": "femtofarad[${1:value}]"
-    },
-    "picofarad": {},
-    "picofarad[]": {
-      "snippet": "picofarad[${1:value}]"
-    },
-    "nanofarad": {},
-    "nanofarad[]": {
-      "snippet": "nanofarad[${1:value}]"
-    },
-    "microfarad": {},
-    "microfarad[]": {
-      "snippet": "microfarad[${1:value}]"
-    },
-    "millifarad": {},
-    "millifarad[]": {
-      "snippet": "millifarad[${1:value}]"
-    },
-    "joule": {},
-    "joule[]": {
-      "snippet": "joule[${1:value}]"
-    },
-    "millijoule": {},
-    "millijoule[]": {
-      "snippet": "millijoule[${1:value}]"
-    },
-    "kilojoule": {},
-    "kilojoule[]": {
-      "snippet": "kilojoule[${1:value}]"
-    },
-    "megajoule": {},
-    "megajoule[]": {
-      "snippet": "megajoule[${1:value}]"
-    },
-    "calory": {},
-    "calory[]": {
-      "snippet": "calory[${1:value}]"
-    },
-    "kilocalory": {},
-    "kilocalory[]": {
-      "snippet": "kilocalory[${1:value}]"
-    },
-    "electronvolt": {},
-    "electronvolt[]": {
-      "snippet": "electronvolt[${1:value}]"
-    },
-    "millielectronvolt": {},
-    "millielectronvolt[]": {
-      "snippet": "millielectronvolt[${1:value}]"
-    },
-    "kiloelectronvolt": {},
-    "kiloelectronvolt[]": {
-      "snippet": "kiloelectronvolt[${1:value}]"
-    },
-    "megaelectronvolt": {},
-    "megaelectronvolt[]": {
-      "snippet": "megaelectronvolt[${1:value}]"
-    },
-    "gigaelectronvolt": {},
-    "gigaelectronvolt[]": {
-      "snippet": "gigaelectronvolt[${1:value}]"
-    },
-    "teraelectronvolt": {},
-    "teraelectronvolt[]": {
-      "snippet": "teraelectronvolt[${1:value}]"
-    },
-    "minute": {},
-    "minute[]": {
-      "snippet": "minute[${1:value}]"
-    },
-    "hour": {},
-    "hour[]": {
-      "snippet": "hour[${1:value}]"
-    },
-    "days": {},
-    "days[]": {
-      "snippet": "days[${1:value}]"
-    },
-    "celsius": {},
-    "celsius[]": {
-      "snippet": "celsius[${1:value}]"
-    },
-    "radian": {},
-    "radian[]": {
-      "snippet": "radian[${1:value}]"
-    },
-    "steradian": {},
-    "steradian[]": {
-      "snippet": "steradian[${1:value}]"
-    },
-    "degree": {},
-    "degree[]": {
-      "snippet": "degree[${1:value}]"
-    },
-    "arcmin": {},
-    "arcmin[]": {
-      "snippet": "arcmin[${1:value}]"
-    },
-    "arcsec": {},
-    "arcsec[]": {
-      "snippet": "arcsec[${1:value}]"
-    },
-    "hertz": {},
-    "hertz[]": {
-      "snippet": "hertz[${1:value}]"
-    },
-    "kilohertz": {},
-    "kilohertz[]": {
-      "snippet": "kilohertz[${1:value}]"
-    },
-    "megahertz": {},
-    "megahertz[]": {
-      "snippet": "megahertz[${1:value}]"
-    },
-    "gigahertz": {},
-    "gigahertz[]": {
-      "snippet": "gigahertz[${1:value}]"
-    },
-    "newton": {},
-    "newton[]": {
-      "snippet": "newton[${1:value}]"
-    },
-    "millinewton": {},
-    "millinewton[]": {
-      "snippet": "millinewton[${1:value}]"
-    },
-    "kilonewton": {},
-    "kilonewton[]": {
-      "snippet": "kilonewton[${1:value}]"
-    },
-    "pascal": {},
-    "pascal[]": {
-      "snippet": "pascal[${1:value}]"
-    },
-    "hectopascal": {},
-    "hectopascal[]": {
-      "snippet": "hectopascal[${1:value}]"
-    },
-    "uBar": {},
-    "uBar[]": {
-      "snippet": "uBar[${1:value}]"
-    },
-    "millibar": {},
-    "millibar[]": {
-      "snippet": "millibar[${1:value}]"
-    },
-    "weber": {},
-    "weber[]": {
-      "snippet": "weber[${1:value}]"
-    },
-    "tesla": {},
-    "tesla[]": {
-      "snippet": "tesla[${1:value}]"
-    },
-    "henry": {},
-    "henry[]": {
-      "snippet": "henry[${1:value}]"
-    },
-    "lumen": {},
-    "lumen[]": {
-      "snippet": "lumen[${1:value}]"
-    },
-    "lux": {},
-    "lux[]": {
-      "snippet": "lux[${1:value}]"
-    },
-    "becquerel": {},
-    "becquerel[]": {
-      "snippet": "becquerel[${1:value}]"
-    },
-    "megabecquerel": {},
-    "megabecquerel[]": {
-      "snippet": "megabecquerel[${1:value}]"
-    },
-    "curie": {},
-    "curie[]": {
-      "snippet": "curie[${1:value}]"
-    },
-    "sievert": {},
-    "sievert[]": {
-      "snippet": "sievert[${1:value}]"
-    },
-    "millisievert": {},
-    "millisievert[]": {
-      "snippet": "millisievert[${1:value}]"
-    },
-    "unitCelsius": {},
-    "unitDegree": {},
-    "unitMathCelsius": {},
-    "unitMathDegree": {},
-    "unitMathOmega": {},
-    "unitMathmu": {},
-    "unitOmega": {},
-    "unitTextCelsius": {},
-    "unitTextDegree": {},
-    "unitTextOmega": {},
-    "unitTextmu": {},
-    "unitmu": {},
-    "pA": {},
-    "pA[]": {
-      "snippet": "pA[${1:value}]"
-    },
-    "nA": {},
-    "nA[]": {
-      "snippet": "nA[${1:value}]"
-    },
-    "micA": {},
-    "micA[]": {
-      "snippet": "micA[${1:value}]"
-    },
-    "mA": {},
-    "mA[]": {
-      "snippet": "mA[${1:value}]"
-    },
-    "kA": {},
-    "kA[]": {
-      "snippet": "kA[${1:value}]"
-    },
-    "kJ": {},
-    "kJ[]": {
-      "snippet": "kJ[${1:value}]"
-    },
-    "eV": {},
-    "eV[]": {
-      "snippet": "eV[${1:value}]"
-    },
-    "meV": {},
-    "meV[]": {
-      "snippet": "meV[${1:value}]"
-    },
-    "keV": {},
-    "keV[]": {
-      "snippet": "keV[${1:value}]"
-    },
-    "MeV": {},
-    "MeV[]": {
-      "snippet": "MeV[${1:value}]"
-    },
-    "GeV": {},
-    "GeV[]": {
-      "snippet": "GeV[${1:value}]"
-    },
-    "TeV": {},
-    "TeV[]": {
-      "snippet": "TeV[${1:value}]"
-    },
-    "kHz": {},
-    "kHz[]": {
-      "snippet": "kHz[${1:value}]"
-    },
-    "MHz": {},
-    "MHz[]": {
-      "snippet": "MHz[${1:value}]"
-    },
-    "GHz": {},
-    "GHz[]": {
-      "snippet": "GHz[${1:value}]"
-    },
-    "picom": {},
-    "picom[]": {
-      "snippet": "picom[${1:value}]"
-    },
-    "nm": {},
-    "nm[]": {
-      "snippet": "nm[${1:value}]"
-    },
-    "micm": {},
-    "micm[]": {
-      "snippet": "micm[${1:value}]"
-    },
-    "mm": {},
-    "mm[]": {
-      "snippet": "mm[${1:value}]"
-    },
-    "cm": {},
-    "cm[]": {
-      "snippet": "cm[${1:value}]"
-    },
-    "dm": {},
-    "dm[]": {
-      "snippet": "dm[${1:value}]"
-    },
-    "km": {},
-    "km[]": {
-      "snippet": "km[${1:value}]"
-    },
-    "fmol": {},
-    "fmol[]": {
-      "snippet": "fmol[${1:value}]"
-    },
-    "pmol": {},
-    "pmol[]": {
-      "snippet": "pmol[${1:value}]"
-    },
-    "nmol": {},
-    "nmol[]": {
-      "snippet": "nmol[${1:value}]"
-    },
-    "micmol": {},
-    "micmol[]": {
-      "snippet": "micmol[${1:value}]"
-    },
-    "mmol": {},
-    "mmol[]": {
-      "snippet": "mmol[${1:value}]"
-    },
-    "sek": {},
-    "sek[]": {
-      "snippet": "sek[${1:value}]"
-    },
-    "fs": {},
-    "fs[]": {
-      "snippet": "fs[${1:value}]"
-    },
-    "ps": {},
-    "ps[]": {
-      "snippet": "ps[${1:value}]"
-    },
-    "ns": {},
-    "ns[]": {
-      "snippet": "ns[${1:value}]"
-    },
-    "mics": {},
-    "mics[]": {
-      "snippet": "mics[${1:value}]"
-    },
-    "ms": {},
-    "ms[]": {
-      "snippet": "ms[${1:value}]"
-    },
-    "kg": {},
-    "kg[]": {
-      "snippet": "kg[${1:value}]"
-    },
-    "fg": {},
-    "fg[]": {
-      "snippet": "fg[${1:value}]"
-    },
-    "pg": {},
-    "pg[]": {
-      "snippet": "pg[${1:value}]"
-    },
-    "nanog": {},
-    "nanog[]": {
-      "snippet": "nanog[${1:value}]"
-    },
-    "micg": {},
-    "micg[]": {
-      "snippet": "micg[${1:value}]"
-    },
-    "mg": {},
-    "mg[]": {
-      "snippet": "mg[${1:value}]"
-    },
-    "kv": {},
-    "kv[]": {
-      "snippet": "kv[${1:value}]"
-    },
-    "mv": {},
-    "mv[]": {
-      "snippet": "mv[${1:value}]"
-    },
-    "fl": {},
-    "fl[]": {
-      "snippet": "fl[${1:value}]"
-    },
-    "pl": {},
-    "pl[]": {
-      "snippet": "pl[${1:value}]"
-    },
-    "nl": {},
-    "nl[]": {
-      "snippet": "nl[${1:value}]"
-    },
-    "micl": {},
-    "micl[]": {
-      "snippet": "micl[${1:value}]"
-    },
-    "ml": {},
-    "ml[]": {
-      "snippet": "ml[${1:value}]"
-    },
-    "cl": {},
-    "cl[]": {
-      "snippet": "cl[${1:value}]"
-    },
-    "dl": {},
-    "dl[]": {
-      "snippet": "dl[${1:value}]"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {},
-  "options": [
-    "OHM",
-    "ohm",
-    "redef-gensymb",
-    "liter",
-    "LITER",
-    "noxspace",
-    "noabbrv",
-    "ugly",
-    "noamperageabbr",
-    "nofrequncyabbr",
-    "nomolabbr",
-    "novoltageabbr",
-    "novolumeabbr",
-    "noweightabbr",
-    "noenergyabbr",
-    "nolengthabbr",
-    "notimeabbr",
-    "noconfig"
+  "deps": [
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "units"
+    },
+    {
+      "name": "xspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Micro",
+      "if": "OHM"
+    },
+    {
+      "name": "Ohm",
+      "if": "OHM"
+    },
+    {
+      "name": "Ohm",
+      "if": "OHM",
+      "arg": {
+        "format": "[]",
+        "snippet": "Ohm[${1:value}]"
+      }
+    },
+    {
+      "name": "Celsius",
+      "if": "OHM"
+    },
+    {
+      "name": "Celsius",
+      "if": "OHM",
+      "arg": {
+        "format": "[]",
+        "snippet": "Celsius[${1:value}]"
+      }
+    },
+    {
+      "name": "Degree",
+      "if": "OHM"
+    },
+    {
+      "name": "Degree",
+      "if": "OHM",
+      "arg": {
+        "format": "[]",
+        "snippet": "Degree[${1:value}]"
+      }
+    },
+    {
+      "name": "gensymbohm",
+      "if": "redef-gensymb",
+      "unusual": true
+    },
+    {
+      "name": "gensymbcelsius",
+      "if": "redef-gensymb",
+      "unusual": true
+    },
+    {
+      "name": "gensymbmicro",
+      "if": "redef-gensymb",
+      "unusual": true
+    },
+    {
+      "name": "unitvaluesep",
+      "unusual": true
+    },
+    {
+      "name": "unitsignonly",
+      "arg": {
+        "format": "{}",
+        "snippet": "unitsignonly{${1:\\unitmacro}}"
+      }
+    },
+    {
+      "name": "ilu",
+      "arg": {
+        "format": "{}",
+        "snippet": "ilu{${1:unit}}"
+      }
+    },
+    {
+      "name": "ilu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ilu[${2:value}]{${1:unit}}"
+      }
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "{}",
+        "snippet": "arc{${1:degree;min;sec}}"
+      }
+    },
+    {
+      "name": "SI",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SI{${1:value}}{${2:unit}}"
+      }
+    },
+    {
+      "name": "unitSIdef",
+      "unusual": true
+    },
+    {
+      "name": "newunit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newunit{${1:\\unitmacro%cmd}}{${2:unitsign}}"
+      }
+    },
+    {
+      "name": "renewunit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewunit{${1:\\unitmacro%cmd}}{${2:unitsign}}"
+      }
+    },
+    {
+      "name": "newnosepunit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newnosepunit{${1:\\unitmacro%cmd}}{${2:unitsign}}"
+      }
+    },
+    {
+      "name": "renewnosepunit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewnosepunit{${1:\\unitmacro%cmd}}{${2:unitsign}}"
+      }
+    },
+    {
+      "name": "per",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "per{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "unittimes"
+    },
+    {
+      "name": "unitsep"
+    },
+    {
+      "name": "unitsuperscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "unitsuperscript{${1:sup}}"
+      }
+    },
+    {
+      "name": "setTextOmega",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setTextOmega{${1:serif-def}}{${2:sans-serif-def}}"
+      }
+    },
+    {
+      "name": "setMathOmega",
+      "arg": {
+        "format": "{}",
+        "snippet": "setMathOmega{${1:def}}"
+      }
+    },
+    {
+      "name": "setTextmu",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setTextmu{${1:serif-def}}{${2:sans-serif-def}}"
+      }
+    },
+    {
+      "name": "setMathmu",
+      "arg": {
+        "format": "{}",
+        "snippet": "setMathmu{${1:def}}"
+      }
+    },
+    {
+      "name": "setTextCelsius",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setTextCelsius{${1:serif-def}}{${2:sans-serif-def}}"
+      }
+    },
+    {
+      "name": "setMathCelsius",
+      "arg": {
+        "format": "{}",
+        "snippet": "setMathCelsius{${1:def}}"
+      }
+    },
+    {
+      "name": "setTextDegree",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setTextDegree{${1:serif-def}}{${2:sans-serif-def}}"
+      }
+    },
+    {
+      "name": "setMathDegree",
+      "arg": {
+        "format": "{}",
+        "snippet": "setMathDegree{${1:def}}"
+      }
+    },
+    {
+      "name": "yocto"
+    },
+    {
+      "name": "zepto"
+    },
+    {
+      "name": "atto"
+    },
+    {
+      "name": "femto"
+    },
+    {
+      "name": "pico"
+    },
+    {
+      "name": "nano"
+    },
+    {
+      "name": "micro"
+    },
+    {
+      "name": "milli"
+    },
+    {
+      "name": "centi"
+    },
+    {
+      "name": "deci"
+    },
+    {
+      "name": "deca"
+    },
+    {
+      "name": "hecto"
+    },
+    {
+      "name": "kilo"
+    },
+    {
+      "name": "mega"
+    },
+    {
+      "name": "giga"
+    },
+    {
+      "name": "tera"
+    },
+    {
+      "name": "peta"
+    },
+    {
+      "name": "exa"
+    },
+    {
+      "name": "zetta"
+    },
+    {
+      "name": "yotta"
+    },
+    {
+      "name": "meter"
+    },
+    {
+      "name": "meter",
+      "arg": {
+        "format": "[]",
+        "snippet": "meter[${1:value}]"
+      }
+    },
+    {
+      "name": "gram"
+    },
+    {
+      "name": "gram",
+      "arg": {
+        "format": "[]",
+        "snippet": "gram[${1:value}]"
+      }
+    },
+    {
+      "name": "kilogram"
+    },
+    {
+      "name": "kilogram",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilogram[${1:value}]"
+      }
+    },
+    {
+      "name": "mole"
+    },
+    {
+      "name": "mole",
+      "arg": {
+        "format": "[]",
+        "snippet": "mole[${1:value}]"
+      }
+    },
+    {
+      "name": "second"
+    },
+    {
+      "name": "second",
+      "arg": {
+        "format": "[]",
+        "snippet": "second[${1:value}]"
+      }
+    },
+    {
+      "name": "ampere"
+    },
+    {
+      "name": "ampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "ampere[${1:value}]"
+      }
+    },
+    {
+      "name": "kelvin"
+    },
+    {
+      "name": "kelvin",
+      "arg": {
+        "format": "[]",
+        "snippet": "kelvin[${1:value}]"
+      }
+    },
+    {
+      "name": "candela"
+    },
+    {
+      "name": "candela",
+      "arg": {
+        "format": "[]",
+        "snippet": "candela[${1:value}]"
+      }
+    },
+    {
+      "name": "picometer"
+    },
+    {
+      "name": "picometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "picometer[${1:value}]"
+      }
+    },
+    {
+      "name": "nanometer"
+    },
+    {
+      "name": "nanometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanometer[${1:value}]"
+      }
+    },
+    {
+      "name": "micrometer"
+    },
+    {
+      "name": "micrometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "micrometer[${1:value}]"
+      }
+    },
+    {
+      "name": "millimeter"
+    },
+    {
+      "name": "millimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "millimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "centimeter"
+    },
+    {
+      "name": "centimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "centimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "decimeter"
+    },
+    {
+      "name": "decimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "decimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "kilometer"
+    },
+    {
+      "name": "kilometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilometer[${1:value}]"
+      }
+    },
+    {
+      "name": "femtogram"
+    },
+    {
+      "name": "femtogram",
+      "arg": {
+        "format": "[]",
+        "snippet": "femtogram[${1:value}]"
+      }
+    },
+    {
+      "name": "picogram"
+    },
+    {
+      "name": "picogram",
+      "arg": {
+        "format": "[]",
+        "snippet": "picogram[${1:value}]"
+      }
+    },
+    {
+      "name": "nanogram"
+    },
+    {
+      "name": "nanogram",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanogram[${1:value}]"
+      }
+    },
+    {
+      "name": "microgram"
+    },
+    {
+      "name": "microgram",
+      "arg": {
+        "format": "[]",
+        "snippet": "microgram[${1:value}]"
+      }
+    },
+    {
+      "name": "milligram"
+    },
+    {
+      "name": "milligram",
+      "arg": {
+        "format": "[]",
+        "snippet": "milligram[${1:value}]"
+      }
+    },
+    {
+      "name": "femtomole"
+    },
+    {
+      "name": "femtomole",
+      "arg": {
+        "format": "[]",
+        "snippet": "femtomole[${1:value}]"
+      }
+    },
+    {
+      "name": "picomole"
+    },
+    {
+      "name": "picomole",
+      "arg": {
+        "format": "[]",
+        "snippet": "picomole[${1:value}]"
+      }
+    },
+    {
+      "name": "nanomole"
+    },
+    {
+      "name": "nanomole",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanomole[${1:value}]"
+      }
+    },
+    {
+      "name": "micromole"
+    },
+    {
+      "name": "micromole",
+      "arg": {
+        "format": "[]",
+        "snippet": "micromole[${1:value}]"
+      }
+    },
+    {
+      "name": "millimole"
+    },
+    {
+      "name": "millimole",
+      "arg": {
+        "format": "[]",
+        "snippet": "millimole[${1:value}]"
+      }
+    },
+    {
+      "name": "attosecond"
+    },
+    {
+      "name": "attosecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "attosecond[${1:value}]"
+      }
+    },
+    {
+      "name": "femtosecond"
+    },
+    {
+      "name": "femtosecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "femtosecond[${1:value}]"
+      }
+    },
+    {
+      "name": "picosecond"
+    },
+    {
+      "name": "picosecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "picosecond[${1:value}]"
+      }
+    },
+    {
+      "name": "nanosecond"
+    },
+    {
+      "name": "nanosecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanosecond[${1:value}]"
+      }
+    },
+    {
+      "name": "microsecond"
+    },
+    {
+      "name": "microsecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "microsecond[${1:value}]"
+      }
+    },
+    {
+      "name": "millisecond"
+    },
+    {
+      "name": "millisecond",
+      "arg": {
+        "format": "[]",
+        "snippet": "millisecond[${1:value}]"
+      }
+    },
+    {
+      "name": "picoampere"
+    },
+    {
+      "name": "picoampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "picoampere[${1:value}]"
+      }
+    },
+    {
+      "name": "nanoampere"
+    },
+    {
+      "name": "nanoampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanoampere[${1:value}]"
+      }
+    },
+    {
+      "name": "microampere"
+    },
+    {
+      "name": "microampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "microampere[${1:value}]"
+      }
+    },
+    {
+      "name": "milliampere"
+    },
+    {
+      "name": "milliampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "milliampere[${1:value}]"
+      }
+    },
+    {
+      "name": "kiloampere"
+    },
+    {
+      "name": "kiloampere",
+      "arg": {
+        "format": "[]",
+        "snippet": "kiloampere[${1:value}]"
+      }
+    },
+    {
+      "name": "percent",
+      "detail": "%",
+      "doc": "Percent sign"
+    },
+    {
+      "name": "percent",
+      "arg": {
+        "format": "[]",
+        "snippet": "percent[${1:value}]"
+      },
+      "detail": "%",
+      "doc": "Percent sign"
+    },
+    {
+      "name": "liter"
+    },
+    {
+      "name": "liter",
+      "arg": {
+        "format": "[]",
+        "snippet": "liter[${1:value}]"
+      }
+    },
+    {
+      "name": "femtoliter"
+    },
+    {
+      "name": "femtoliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "femtoliter[${1:value}]"
+      }
+    },
+    {
+      "name": "picoliter"
+    },
+    {
+      "name": "picoliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "picoliter[${1:value}]"
+      }
+    },
+    {
+      "name": "nanoliter"
+    },
+    {
+      "name": "nanoliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanoliter[${1:value}]"
+      }
+    },
+    {
+      "name": "microliter"
+    },
+    {
+      "name": "microliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "microliter[${1:value}]"
+      }
+    },
+    {
+      "name": "milliliter"
+    },
+    {
+      "name": "milliliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "milliliter[${1:value}]"
+      }
+    },
+    {
+      "name": "centiliter"
+    },
+    {
+      "name": "centiliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "centiliter[${1:value}]"
+      }
+    },
+    {
+      "name": "deciliter"
+    },
+    {
+      "name": "deciliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "deciliter[${1:value}]"
+      }
+    },
+    {
+      "name": "hectoliter"
+    },
+    {
+      "name": "hectoliter",
+      "arg": {
+        "format": "[]",
+        "snippet": "hectoliter[${1:value}]"
+      }
+    },
+    {
+      "name": "cubicmeter"
+    },
+    {
+      "name": "cubicmeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "cubicmeter[${1:value}]"
+      }
+    },
+    {
+      "name": "cubicmicrometer"
+    },
+    {
+      "name": "cubicmicrometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "cubicmicrometer[${1:value}]"
+      }
+    },
+    {
+      "name": "cubicmillimeter"
+    },
+    {
+      "name": "cubicmillimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "cubicmillimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "squaremeter"
+    },
+    {
+      "name": "squaremeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "squaremeter[${1:value}]"
+      }
+    },
+    {
+      "name": "ar"
+    },
+    {
+      "name": "ar",
+      "arg": {
+        "format": "[]",
+        "snippet": "ar[${1:value}]"
+      }
+    },
+    {
+      "name": "hektar"
+    },
+    {
+      "name": "hektar",
+      "arg": {
+        "format": "[]",
+        "snippet": "hektar[${1:value}]"
+      }
+    },
+    {
+      "name": "squarecentimeter"
+    },
+    {
+      "name": "squarecentimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "squarecentimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "squaremillimeter"
+    },
+    {
+      "name": "squaremillimeter",
+      "arg": {
+        "format": "[]",
+        "snippet": "squaremillimeter[${1:value}]"
+      }
+    },
+    {
+      "name": "squarekilometer"
+    },
+    {
+      "name": "squarekilometer",
+      "arg": {
+        "format": "[]",
+        "snippet": "squarekilometer[${1:value}]"
+      }
+    },
+    {
+      "name": "ton"
+    },
+    {
+      "name": "ton",
+      "arg": {
+        "format": "[]",
+        "snippet": "ton[${1:value}]"
+      }
+    },
+    {
+      "name": "volt"
+    },
+    {
+      "name": "volt",
+      "arg": {
+        "format": "[]",
+        "snippet": "volt[${1:value}]"
+      }
+    },
+    {
+      "name": "millivolt"
+    },
+    {
+      "name": "millivolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "millivolt[${1:value}]"
+      }
+    },
+    {
+      "name": "kilovolt"
+    },
+    {
+      "name": "kilovolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilovolt[${1:value}]"
+      }
+    },
+    {
+      "name": "watt"
+    },
+    {
+      "name": "watt",
+      "arg": {
+        "format": "[]",
+        "snippet": "watt[${1:value}]"
+      }
+    },
+    {
+      "name": "milliwatt"
+    },
+    {
+      "name": "milliwatt",
+      "arg": {
+        "format": "[]",
+        "snippet": "milliwatt[${1:value}]"
+      }
+    },
+    {
+      "name": "kilowatt"
+    },
+    {
+      "name": "kilowatt",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilowatt[${1:value}]"
+      }
+    },
+    {
+      "name": "megawatt"
+    },
+    {
+      "name": "megawatt",
+      "arg": {
+        "format": "[]",
+        "snippet": "megawatt[${1:value}]"
+      }
+    },
+    {
+      "name": "coulomb"
+    },
+    {
+      "name": "coulomb",
+      "arg": {
+        "format": "[]",
+        "snippet": "coulomb[${1:value}]"
+      }
+    },
+    {
+      "name": "ohm"
+    },
+    {
+      "name": "ohm",
+      "arg": {
+        "format": "[]",
+        "snippet": "ohm[${1:value}]"
+      }
+    },
+    {
+      "name": "kiloohm"
+    },
+    {
+      "name": "kiloohm",
+      "arg": {
+        "format": "[]",
+        "snippet": "kiloohm[${1:value}]"
+      }
+    },
+    {
+      "name": "megaohm"
+    },
+    {
+      "name": "megaohm",
+      "arg": {
+        "format": "[]",
+        "snippet": "megaohm[${1:value}]"
+      }
+    },
+    {
+      "name": "gigaohm"
+    },
+    {
+      "name": "gigaohm",
+      "arg": {
+        "format": "[]",
+        "snippet": "gigaohm[${1:value}]"
+      }
+    },
+    {
+      "name": "siemens"
+    },
+    {
+      "name": "siemens",
+      "arg": {
+        "format": "[]",
+        "snippet": "siemens[${1:value}]"
+      }
+    },
+    {
+      "name": "millisiemens"
+    },
+    {
+      "name": "millisiemens",
+      "arg": {
+        "format": "[]",
+        "snippet": "millisiemens[${1:value}]"
+      }
+    },
+    {
+      "name": "farad"
+    },
+    {
+      "name": "farad",
+      "arg": {
+        "format": "[]",
+        "snippet": "farad[${1:value}]"
+      }
+    },
+    {
+      "name": "femtofarad"
+    },
+    {
+      "name": "femtofarad",
+      "arg": {
+        "format": "[]",
+        "snippet": "femtofarad[${1:value}]"
+      }
+    },
+    {
+      "name": "picofarad"
+    },
+    {
+      "name": "picofarad",
+      "arg": {
+        "format": "[]",
+        "snippet": "picofarad[${1:value}]"
+      }
+    },
+    {
+      "name": "nanofarad"
+    },
+    {
+      "name": "nanofarad",
+      "arg": {
+        "format": "[]",
+        "snippet": "nanofarad[${1:value}]"
+      }
+    },
+    {
+      "name": "microfarad"
+    },
+    {
+      "name": "microfarad",
+      "arg": {
+        "format": "[]",
+        "snippet": "microfarad[${1:value}]"
+      }
+    },
+    {
+      "name": "millifarad"
+    },
+    {
+      "name": "millifarad",
+      "arg": {
+        "format": "[]",
+        "snippet": "millifarad[${1:value}]"
+      }
+    },
+    {
+      "name": "joule"
+    },
+    {
+      "name": "joule",
+      "arg": {
+        "format": "[]",
+        "snippet": "joule[${1:value}]"
+      }
+    },
+    {
+      "name": "millijoule"
+    },
+    {
+      "name": "millijoule",
+      "arg": {
+        "format": "[]",
+        "snippet": "millijoule[${1:value}]"
+      }
+    },
+    {
+      "name": "kilojoule"
+    },
+    {
+      "name": "kilojoule",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilojoule[${1:value}]"
+      }
+    },
+    {
+      "name": "megajoule"
+    },
+    {
+      "name": "megajoule",
+      "arg": {
+        "format": "[]",
+        "snippet": "megajoule[${1:value}]"
+      }
+    },
+    {
+      "name": "calory"
+    },
+    {
+      "name": "calory",
+      "arg": {
+        "format": "[]",
+        "snippet": "calory[${1:value}]"
+      }
+    },
+    {
+      "name": "kilocalory"
+    },
+    {
+      "name": "kilocalory",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilocalory[${1:value}]"
+      }
+    },
+    {
+      "name": "electronvolt"
+    },
+    {
+      "name": "electronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "electronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "millielectronvolt"
+    },
+    {
+      "name": "millielectronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "millielectronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "kiloelectronvolt"
+    },
+    {
+      "name": "kiloelectronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "kiloelectronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "megaelectronvolt"
+    },
+    {
+      "name": "megaelectronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "megaelectronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "gigaelectronvolt"
+    },
+    {
+      "name": "gigaelectronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "gigaelectronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "teraelectronvolt"
+    },
+    {
+      "name": "teraelectronvolt",
+      "arg": {
+        "format": "[]",
+        "snippet": "teraelectronvolt[${1:value}]"
+      }
+    },
+    {
+      "name": "minute"
+    },
+    {
+      "name": "minute",
+      "arg": {
+        "format": "[]",
+        "snippet": "minute[${1:value}]"
+      }
+    },
+    {
+      "name": "hour"
+    },
+    {
+      "name": "hour",
+      "arg": {
+        "format": "[]",
+        "snippet": "hour[${1:value}]"
+      }
+    },
+    {
+      "name": "days"
+    },
+    {
+      "name": "days",
+      "arg": {
+        "format": "[]",
+        "snippet": "days[${1:value}]"
+      }
+    },
+    {
+      "name": "celsius"
+    },
+    {
+      "name": "celsius",
+      "arg": {
+        "format": "[]",
+        "snippet": "celsius[${1:value}]"
+      }
+    },
+    {
+      "name": "radian"
+    },
+    {
+      "name": "radian",
+      "arg": {
+        "format": "[]",
+        "snippet": "radian[${1:value}]"
+      }
+    },
+    {
+      "name": "steradian"
+    },
+    {
+      "name": "steradian",
+      "arg": {
+        "format": "[]",
+        "snippet": "steradian[${1:value}]"
+      }
+    },
+    {
+      "name": "degree"
+    },
+    {
+      "name": "degree",
+      "arg": {
+        "format": "[]",
+        "snippet": "degree[${1:value}]"
+      }
+    },
+    {
+      "name": "arcmin"
+    },
+    {
+      "name": "arcmin",
+      "arg": {
+        "format": "[]",
+        "snippet": "arcmin[${1:value}]"
+      }
+    },
+    {
+      "name": "arcsec"
+    },
+    {
+      "name": "arcsec",
+      "arg": {
+        "format": "[]",
+        "snippet": "arcsec[${1:value}]"
+      }
+    },
+    {
+      "name": "hertz"
+    },
+    {
+      "name": "hertz",
+      "arg": {
+        "format": "[]",
+        "snippet": "hertz[${1:value}]"
+      }
+    },
+    {
+      "name": "kilohertz"
+    },
+    {
+      "name": "kilohertz",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilohertz[${1:value}]"
+      }
+    },
+    {
+      "name": "megahertz"
+    },
+    {
+      "name": "megahertz",
+      "arg": {
+        "format": "[]",
+        "snippet": "megahertz[${1:value}]"
+      }
+    },
+    {
+      "name": "gigahertz"
+    },
+    {
+      "name": "gigahertz",
+      "arg": {
+        "format": "[]",
+        "snippet": "gigahertz[${1:value}]"
+      }
+    },
+    {
+      "name": "newton"
+    },
+    {
+      "name": "newton",
+      "arg": {
+        "format": "[]",
+        "snippet": "newton[${1:value}]"
+      }
+    },
+    {
+      "name": "millinewton"
+    },
+    {
+      "name": "millinewton",
+      "arg": {
+        "format": "[]",
+        "snippet": "millinewton[${1:value}]"
+      }
+    },
+    {
+      "name": "kilonewton"
+    },
+    {
+      "name": "kilonewton",
+      "arg": {
+        "format": "[]",
+        "snippet": "kilonewton[${1:value}]"
+      }
+    },
+    {
+      "name": "pascal"
+    },
+    {
+      "name": "pascal",
+      "arg": {
+        "format": "[]",
+        "snippet": "pascal[${1:value}]"
+      }
+    },
+    {
+      "name": "hectopascal"
+    },
+    {
+      "name": "hectopascal",
+      "arg": {
+        "format": "[]",
+        "snippet": "hectopascal[${1:value}]"
+      }
+    },
+    {
+      "name": "uBar"
+    },
+    {
+      "name": "uBar",
+      "arg": {
+        "format": "[]",
+        "snippet": "uBar[${1:value}]"
+      }
+    },
+    {
+      "name": "millibar"
+    },
+    {
+      "name": "millibar",
+      "arg": {
+        "format": "[]",
+        "snippet": "millibar[${1:value}]"
+      }
+    },
+    {
+      "name": "weber"
+    },
+    {
+      "name": "weber",
+      "arg": {
+        "format": "[]",
+        "snippet": "weber[${1:value}]"
+      }
+    },
+    {
+      "name": "tesla"
+    },
+    {
+      "name": "tesla",
+      "arg": {
+        "format": "[]",
+        "snippet": "tesla[${1:value}]"
+      }
+    },
+    {
+      "name": "henry"
+    },
+    {
+      "name": "henry",
+      "arg": {
+        "format": "[]",
+        "snippet": "henry[${1:value}]"
+      }
+    },
+    {
+      "name": "lumen"
+    },
+    {
+      "name": "lumen",
+      "arg": {
+        "format": "[]",
+        "snippet": "lumen[${1:value}]"
+      }
+    },
+    {
+      "name": "lux"
+    },
+    {
+      "name": "lux",
+      "arg": {
+        "format": "[]",
+        "snippet": "lux[${1:value}]"
+      }
+    },
+    {
+      "name": "becquerel"
+    },
+    {
+      "name": "becquerel",
+      "arg": {
+        "format": "[]",
+        "snippet": "becquerel[${1:value}]"
+      }
+    },
+    {
+      "name": "megabecquerel"
+    },
+    {
+      "name": "megabecquerel",
+      "arg": {
+        "format": "[]",
+        "snippet": "megabecquerel[${1:value}]"
+      }
+    },
+    {
+      "name": "curie"
+    },
+    {
+      "name": "curie",
+      "arg": {
+        "format": "[]",
+        "snippet": "curie[${1:value}]"
+      }
+    },
+    {
+      "name": "sievert"
+    },
+    {
+      "name": "sievert",
+      "arg": {
+        "format": "[]",
+        "snippet": "sievert[${1:value}]"
+      }
+    },
+    {
+      "name": "millisievert"
+    },
+    {
+      "name": "millisievert",
+      "arg": {
+        "format": "[]",
+        "snippet": "millisievert[${1:value}]"
+      }
+    },
+    {
+      "name": "unitCelsius",
+      "unusual": true
+    },
+    {
+      "name": "unitDegree",
+      "unusual": true
+    },
+    {
+      "name": "unitMathCelsius",
+      "unusual": true
+    },
+    {
+      "name": "unitMathDegree",
+      "unusual": true
+    },
+    {
+      "name": "unitMathOmega",
+      "unusual": true
+    },
+    {
+      "name": "unitMathmu",
+      "unusual": true
+    },
+    {
+      "name": "unitOmega",
+      "unusual": true
+    },
+    {
+      "name": "unitTextCelsius",
+      "unusual": true
+    },
+    {
+      "name": "unitTextDegree",
+      "unusual": true
+    },
+    {
+      "name": "unitTextOmega",
+      "unusual": true
+    },
+    {
+      "name": "unitTextmu",
+      "unusual": true
+    },
+    {
+      "name": "unitmu",
+      "unusual": true
+    },
+    {
+      "name": "pA",
+      "unusual": true
+    },
+    {
+      "name": "pA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pA[${1:value}]"
+      }
+    },
+    {
+      "name": "nA",
+      "unusual": true
+    },
+    {
+      "name": "nA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "nA[${1:value}]"
+      }
+    },
+    {
+      "name": "micA",
+      "unusual": true
+    },
+    {
+      "name": "micA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "micA[${1:value}]"
+      }
+    },
+    {
+      "name": "mA",
+      "unusual": true
+    },
+    {
+      "name": "mA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mA[${1:value}]"
+      }
+    },
+    {
+      "name": "kA",
+      "unusual": true
+    },
+    {
+      "name": "kA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kA[${1:value}]"
+      }
+    },
+    {
+      "name": "kJ",
+      "unusual": true
+    },
+    {
+      "name": "kJ",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kJ[${1:value}]"
+      }
+    },
+    {
+      "name": "eV",
+      "unusual": true
+    },
+    {
+      "name": "eV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "eV[${1:value}]"
+      }
+    },
+    {
+      "name": "meV",
+      "unusual": true
+    },
+    {
+      "name": "meV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "meV[${1:value}]"
+      }
+    },
+    {
+      "name": "keV",
+      "unusual": true
+    },
+    {
+      "name": "keV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "keV[${1:value}]"
+      }
+    },
+    {
+      "name": "MeV",
+      "unusual": true
+    },
+    {
+      "name": "MeV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "MeV[${1:value}]"
+      }
+    },
+    {
+      "name": "GeV",
+      "unusual": true
+    },
+    {
+      "name": "GeV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "GeV[${1:value}]"
+      }
+    },
+    {
+      "name": "TeV",
+      "unusual": true
+    },
+    {
+      "name": "TeV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "TeV[${1:value}]"
+      }
+    },
+    {
+      "name": "kHz",
+      "unusual": true
+    },
+    {
+      "name": "kHz",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kHz[${1:value}]"
+      }
+    },
+    {
+      "name": "MHz",
+      "unusual": true
+    },
+    {
+      "name": "MHz",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "MHz[${1:value}]"
+      }
+    },
+    {
+      "name": "GHz",
+      "unusual": true
+    },
+    {
+      "name": "GHz",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "GHz[${1:value}]"
+      }
+    },
+    {
+      "name": "picom",
+      "unusual": true
+    },
+    {
+      "name": "picom",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "picom[${1:value}]"
+      }
+    },
+    {
+      "name": "nm",
+      "unusual": true
+    },
+    {
+      "name": "nm",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "nm[${1:value}]"
+      }
+    },
+    {
+      "name": "micm",
+      "unusual": true
+    },
+    {
+      "name": "micm",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "micm[${1:value}]"
+      }
+    },
+    {
+      "name": "mm",
+      "unusual": true
+    },
+    {
+      "name": "mm",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mm[${1:value}]"
+      }
+    },
+    {
+      "name": "cm",
+      "unusual": true
+    },
+    {
+      "name": "cm",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "cm[${1:value}]"
+      }
+    },
+    {
+      "name": "dm",
+      "unusual": true
+    },
+    {
+      "name": "dm",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "dm[${1:value}]"
+      }
+    },
+    {
+      "name": "km",
+      "unusual": true
+    },
+    {
+      "name": "km",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "km[${1:value}]"
+      }
+    },
+    {
+      "name": "fmol",
+      "unusual": true
+    },
+    {
+      "name": "fmol",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "fmol[${1:value}]"
+      }
+    },
+    {
+      "name": "pmol",
+      "unusual": true
+    },
+    {
+      "name": "pmol",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pmol[${1:value}]"
+      }
+    },
+    {
+      "name": "nmol",
+      "unusual": true
+    },
+    {
+      "name": "nmol",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "nmol[${1:value}]"
+      }
+    },
+    {
+      "name": "micmol",
+      "unusual": true
+    },
+    {
+      "name": "micmol",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "micmol[${1:value}]"
+      }
+    },
+    {
+      "name": "mmol",
+      "unusual": true
+    },
+    {
+      "name": "mmol",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mmol[${1:value}]"
+      }
+    },
+    {
+      "name": "sek",
+      "unusual": true
+    },
+    {
+      "name": "sek",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "sek[${1:value}]"
+      }
+    },
+    {
+      "name": "fs",
+      "unusual": true
+    },
+    {
+      "name": "fs",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "fs[${1:value}]"
+      }
+    },
+    {
+      "name": "ps",
+      "unusual": true
+    },
+    {
+      "name": "ps",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ps[${1:value}]"
+      }
+    },
+    {
+      "name": "ns",
+      "unusual": true
+    },
+    {
+      "name": "ns",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ns[${1:value}]"
+      }
+    },
+    {
+      "name": "mics",
+      "unusual": true
+    },
+    {
+      "name": "mics",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mics[${1:value}]"
+      }
+    },
+    {
+      "name": "ms",
+      "unusual": true
+    },
+    {
+      "name": "ms",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ms[${1:value}]"
+      }
+    },
+    {
+      "name": "kg",
+      "unusual": true
+    },
+    {
+      "name": "kg",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kg[${1:value}]"
+      }
+    },
+    {
+      "name": "fg",
+      "unusual": true
+    },
+    {
+      "name": "fg",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "fg[${1:value}]"
+      }
+    },
+    {
+      "name": "pg",
+      "unusual": true
+    },
+    {
+      "name": "pg",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pg[${1:value}]"
+      }
+    },
+    {
+      "name": "nanog",
+      "unusual": true
+    },
+    {
+      "name": "nanog",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "nanog[${1:value}]"
+      }
+    },
+    {
+      "name": "micg",
+      "unusual": true
+    },
+    {
+      "name": "micg",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "micg[${1:value}]"
+      }
+    },
+    {
+      "name": "mg",
+      "unusual": true
+    },
+    {
+      "name": "mg",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mg[${1:value}]"
+      }
+    },
+    {
+      "name": "kv",
+      "unusual": true
+    },
+    {
+      "name": "kv",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kv[${1:value}]"
+      }
+    },
+    {
+      "name": "mv",
+      "unusual": true
+    },
+    {
+      "name": "mv",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mv[${1:value}]"
+      }
+    },
+    {
+      "name": "fl",
+      "unusual": true
+    },
+    {
+      "name": "fl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "fl[${1:value}]"
+      }
+    },
+    {
+      "name": "pl",
+      "unusual": true
+    },
+    {
+      "name": "pl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pl[${1:value}]"
+      }
+    },
+    {
+      "name": "nl",
+      "unusual": true
+    },
+    {
+      "name": "nl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "nl[${1:value}]"
+      }
+    },
+    {
+      "name": "micl",
+      "unusual": true
+    },
+    {
+      "name": "micl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "micl[${1:value}]"
+      }
+    },
+    {
+      "name": "ml",
+      "unusual": true
+    },
+    {
+      "name": "ml",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ml[${1:value}]"
+      }
+    },
+    {
+      "name": "cl",
+      "unusual": true
+    },
+    {
+      "name": "cl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "cl[${1:value}]"
+      }
+    },
+    {
+      "name": "dl",
+      "unusual": true
+    },
+    {
+      "name": "dl",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "dl[${1:value}]"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/unitsdef#c": [
+      "OHM",
+      "ohm",
+      "redef-gensymb",
+      "liter",
+      "LITER",
+      "noxspace",
+      "noabbrv",
+      "ugly",
+      "noamperageabbr",
+      "nofrequncyabbr",
+      "nomolabbr",
+      "novoltageabbr",
+      "novolumeabbr",
+      "noweightabbr",
+      "noenergyabbr",
+      "nolengthabbr",
+      "notimeabbr",
+      "noconfig"
+    ]
+  },
+  "args": [
+    "\\usepackage/unitsdef#c"
+  ]
 }

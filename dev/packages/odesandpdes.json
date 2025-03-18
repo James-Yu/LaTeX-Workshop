@@ -1,102 +1,246 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "setDE{}": {
-      "snippet": "setDE{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setDE",
+      "arg": {
+        "format": "{}",
+        "snippet": "setDE{${1:options%keyvals}}",
+        "keys": [
+          "\\setDE,\\usepackage/odesandpdes#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ode{}": {
-      "snippet": "ode{${1:function}}"
+    {
+      "name": "ode",
+      "arg": {
+        "format": "{}",
+        "snippet": "ode{${1:function}}"
+      }
     },
-    "ode[]{}": {
-      "snippet": "ode[${2:variable}]{${1:function}}"
+    {
+      "name": "ode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ode[${2:variable}]{${1:function}}"
+      }
     },
-    "ode*": {},
-    "ode*[]": {
-      "snippet": "ode*[${1:variable}]"
+    {
+      "name": "ode*"
     },
-    "pde{}": {
-      "snippet": "pde{${1:function}}"
+    {
+      "name": "ode*",
+      "arg": {
+        "format": "[]",
+        "snippet": "ode*[${1:variable}]"
+      }
     },
-    "pde[]{}": {
-      "snippet": "pde[${2:variable}]{${1:function}}"
+    {
+      "name": "pde",
+      "arg": {
+        "format": "{}",
+        "snippet": "pde{${1:function}}"
+      }
     },
-    "pde*": {},
-    "pde*[]": {
-      "snippet": "pde*[${1:variable}]"
+    {
+      "name": "pde",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pde[${2:variable}]{${1:function}}"
+      }
     },
-    "LagrODE{}": {
-      "snippet": "LagrODE{${1:function}}"
+    {
+      "name": "pde*"
     },
-    "LagrODE[]{}": {
-      "snippet": "LagrODE[${2:variable}]{${1:function}}"
+    {
+      "name": "pde*",
+      "arg": {
+        "format": "[]",
+        "snippet": "pde*[${1:variable}]"
+      }
     },
-    "LagrODE*": {},
-    "LagrODE*[]": {
-      "snippet": "LagrODE*[${1:variable}]"
+    {
+      "name": "LagrODE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LagrODE{${1:function}}"
+      }
     },
-    "LeibODE{}": {
-      "snippet": "LeibODE{${1:function}}"
+    {
+      "name": "LagrODE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LagrODE[${2:variable}]{${1:function}}"
+      }
     },
-    "LeibODE[]{}": {
-      "snippet": "LeibODE[${2:variable}]{${1:function}}"
+    {
+      "name": "LagrODE*",
+      "unusual": true
     },
-    "LeibODE*": {},
-    "LeibODE*[]": {
-      "snippet": "LeibODE*[${1:variable}]"
+    {
+      "name": "LagrODE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "LagrODE*[${1:variable}]"
+      }
     },
-    "NewtODE{}": {
-      "snippet": "NewtODE{${1:function}}"
+    {
+      "name": "LeibODE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LeibODE{${1:function}}"
+      }
     },
-    "NewtODE[]{}": {
-      "snippet": "NewtODE[${2:variable}]{${1:function}}"
+    {
+      "name": "LeibODE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LeibODE[${2:variable}]{${1:function}}"
+      }
     },
-    "NewtODE*": {},
-    "NewtODE*[]": {
-      "snippet": "NewtODE*[${1:variable}]"
+    {
+      "name": "LeibODE*",
+      "unusual": true
     },
-    "LagrPDE{}": {
-      "snippet": "LagrPDE{${1:function}}"
+    {
+      "name": "LeibODE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "LeibODE*[${1:variable}]"
+      }
     },
-    "LagrPDE[]{}": {
-      "snippet": "LagrPDE[${2:variable}]{${1:function}}"
+    {
+      "name": "NewtODE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NewtODE{${1:function}}"
+      }
     },
-    "LagrPDE*": {},
-    "LagrPDE*[]": {
-      "snippet": "LagrPDE*[${1:variable}]"
+    {
+      "name": "NewtODE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NewtODE[${2:variable}]{${1:function}}"
+      }
     },
-    "LeibPDE{}": {
-      "snippet": "LeibPDE{${1:function}}"
+    {
+      "name": "NewtODE*",
+      "unusual": true
     },
-    "LeibPDE[]{}": {
-      "snippet": "LeibPDE[${2:variable}]{${1:function}}"
+    {
+      "name": "NewtODE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "NewtODE*[${1:variable}]"
+      }
     },
-    "LeibPDE*": {},
-    "LeibPDE*[]": {
-      "snippet": "LeibPDE*[${1:variable}]"
+    {
+      "name": "LagrPDE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LagrPDE{${1:function}}"
+      }
     },
-    "NewtPDE{}": {
-      "snippet": "NewtPDE{${1:function}}"
+    {
+      "name": "LagrPDE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LagrPDE[${2:variable}]{${1:function}}"
+      }
     },
-    "NewtPDE[]{}": {
-      "snippet": "NewtPDE[${2:variable}]{${1:function}}"
+    {
+      "name": "LagrPDE*",
+      "unusual": true
     },
-    "NewtPDE*": {},
-    "NewtPDE*[]": {
-      "snippet": "NewtPDE*[${1:variable}]"
+    {
+      "name": "LagrPDE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "LagrPDE*[${1:variable}]"
+      }
     },
-    "beginnext": {},
-    "endnext": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "notation=",
+    {
+      "name": "LeibPDE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LeibPDE{${1:function}}"
+      }
+    },
+    {
+      "name": "LeibPDE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LeibPDE[${2:variable}]{${1:function}}"
+      }
+    },
+    {
+      "name": "LeibPDE*",
+      "unusual": true
+    },
+    {
+      "name": "LeibPDE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "LeibPDE*[${1:variable}]"
+      }
+    },
+    {
+      "name": "NewtPDE",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NewtPDE{${1:function}}"
+      }
+    },
+    {
+      "name": "NewtPDE",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NewtPDE[${2:variable}]{${1:function}}"
+      }
+    },
+    {
+      "name": "NewtPDE*",
+      "unusual": true
+    },
+    {
+      "name": "NewtPDE*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "NewtPDE*[${1:variable}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setDE,\\usepackage/odesandpdes#c": [
+      "notation=${1|default,Lagrange,Leibniz,Newton|}",
       "maxprimes=${1:integer}"
     ]
+  },
+  "args": [
+    "\\setDE,\\usepackage/odesandpdes#c"
   ]
 }

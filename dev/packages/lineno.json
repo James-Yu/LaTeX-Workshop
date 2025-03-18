@@ -1,0 +1,593 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "vplref",
+      "if": "addpageno"
+    },
+    {
+      "name": "ednmath0",
+      "if": "mathrefs"
+    },
+    {
+      "name": "edtable",
+      "if": "edtable"
+    },
+    {
+      "name": "edtable",
+      "if": "longtable"
+    },
+    {
+      "name": "longtable",
+      "if": "longtable"
+    },
+    {
+      "name": "ltabptch",
+      "if": "longtable"
+    },
+    {
+      "name": "edtable",
+      "if": "nolongtablepatch"
+    },
+    {
+      "name": "longtable",
+      "if": "nolongtablepatch"
+    }
+  ],
+  "macros": [
+    {
+      "name": "linenumbers"
+    },
+    {
+      "name": "linenumbers*"
+    },
+    {
+      "name": "linenumbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "linenumbers[${1:number}]"
+      }
+    },
+    {
+      "name": "nolinenumbers"
+    },
+    {
+      "name": "resetlinenumber"
+    },
+    {
+      "name": "resetlinenumber",
+      "arg": {
+        "format": "[]",
+        "snippet": "resetlinenumber[${1:number}]"
+      }
+    },
+    {
+      "name": "setrunninglinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "runninglinenumbers"
+    },
+    {
+      "name": "runninglinenumbers*"
+    },
+    {
+      "name": "runninglinenumbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "runninglinenumbers[${1:number}]"
+      }
+    },
+    {
+      "name": "setpagewiselinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "pagewiselinenumbers"
+    },
+    {
+      "name": "switchlinenumbers"
+    },
+    {
+      "name": "switchlinenumbers*"
+    },
+    {
+      "name": "runningpagewiselinenumbers"
+    },
+    {
+      "name": "realpagewiselinenumbers"
+    },
+    {
+      "name": "leftlinenumbers"
+    },
+    {
+      "name": "rightlinenumbers"
+    },
+    {
+      "name": "leftlinenumbers*"
+    },
+    {
+      "name": "rightlinenumbers*"
+    },
+    {
+      "name": "modulolinenumbers"
+    },
+    {
+      "name": "modulolinenumbers*"
+    },
+    {
+      "name": "modulolinenumbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "modulolinenumbers[${1:n}]"
+      }
+    },
+    {
+      "name": "linenumberfont",
+      "unusual": true
+    },
+    {
+      "name": "linenumbersep",
+      "unusual": true
+    },
+    {
+      "name": "linenumberwidth",
+      "unusual": true
+    },
+    {
+      "name": "thelinenumber",
+      "unusual": true
+    },
+    {
+      "name": "makeLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "LineNumber"
+    },
+    {
+      "name": "makeLineNumberRunning",
+      "unusual": true
+    },
+    {
+      "name": "makeLineNumberOdd",
+      "unusual": true
+    },
+    {
+      "name": "makeLineNumberEven",
+      "unusual": true
+    },
+    {
+      "name": "makeLineNumberLeft",
+      "unusual": true
+    },
+    {
+      "name": "makeLineNumberRight",
+      "unusual": true
+    },
+    {
+      "name": "linelabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "linelabel{${1:label}}"
+      }
+    },
+    {
+      "name": "lineref",
+      "arg": {
+        "format": "{}",
+        "snippet": "lineref{${1:label}}"
+      }
+    },
+    {
+      "name": "lineref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lineref[${2:offset}]{${1:label}}"
+      }
+    },
+    {
+      "name": "linerefr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "linerefr{${1:label}}"
+      }
+    },
+    {
+      "name": "linerefr",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "linerefr[${2:offset}]{${1:label}}"
+      }
+    },
+    {
+      "name": "linerefp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "linerefp{${1:label}}"
+      }
+    },
+    {
+      "name": "linerefp",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "linerefp[${2:offset}]{${1:label}}"
+      }
+    },
+    {
+      "name": "quotelinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "quotelinenumbersep",
+      "unusual": true
+    },
+    {
+      "name": "quotelinenumberfont",
+      "unusual": true
+    },
+    {
+      "name": "numquotelist",
+      "unusual": true
+    },
+    {
+      "name": "internallinenumbers"
+    },
+    {
+      "name": "bframesep",
+      "unusual": true
+    },
+    {
+      "name": "bframerule",
+      "unusual": true
+    },
+    {
+      "name": "bframebox",
+      "unusual": true
+    },
+    {
+      "name": "stepLineNumber"
+    },
+    {
+      "name": "linenopenalty",
+      "unusual": true
+    },
+    {
+      "name": "linenopenaltypar",
+      "unusual": true
+    },
+    {
+      "name": "LineNoTest",
+      "unusual": true
+    },
+    {
+      "name": "LineNoLaTeXOutput",
+      "unusual": true
+    },
+    {
+      "name": "MakeLineNo",
+      "unusual": true
+    },
+    {
+      "name": "WriteLineNo",
+      "unusual": true
+    },
+    {
+      "name": "PassVadjustList",
+      "unusual": true
+    },
+    {
+      "name": "linenoprevgraf",
+      "unusual": true
+    },
+    {
+      "name": "linenumberpar",
+      "unusual": true
+    },
+    {
+      "name": "ifLineNumbers",
+      "unusual": true
+    },
+    {
+      "name": "LineNumbersfalse",
+      "unusual": true
+    },
+    {
+      "name": "LineNumberstrue",
+      "unusual": true
+    },
+    {
+      "name": "endrunninglinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "endpagewiselinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "endnolinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "linenomath",
+      "unusual": true
+    },
+    {
+      "name": "linenomathNonumbers",
+      "unusual": true
+    },
+    {
+      "name": "linenomathWithnumbers",
+      "unusual": true
+    },
+    {
+      "name": "linenumberdisplaymath",
+      "unusual": true
+    },
+    {
+      "name": "nolinenumberdisplaymath",
+      "unusual": true
+    },
+    {
+      "name": "endlinenomath",
+      "unusual": true
+    },
+    {
+      "name": "theLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "setmakelinenumbers",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setmakelinenumbers{${1:arg}}"
+      }
+    },
+    {
+      "name": "logtheLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "LastNumberedPage",
+      "unusual": true
+    },
+    {
+      "name": "lastLN",
+      "unusual": true
+    },
+    {
+      "name": "firstLN",
+      "unusual": true
+    },
+    {
+      "name": "pageLN",
+      "unusual": true
+    },
+    {
+      "name": "nextLN",
+      "unusual": true
+    },
+    {
+      "name": "NumberedPageCache",
+      "unusual": true
+    },
+    {
+      "name": "testLastNumberedPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "testLastNumberedPage{${1:arg}}"
+      }
+    },
+    {
+      "name": "testFirstNumberedPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "testFirstNumberedPage{${1:arg}}"
+      }
+    },
+    {
+      "name": "testNumberedPage",
+      "unusual": true
+    },
+    {
+      "name": "testNextNumberedPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "testNextNumberedPage{${1:arg}}"
+      }
+    },
+    {
+      "name": "getLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "ifoddNumberedPage",
+      "unusual": true
+    },
+    {
+      "name": "oddNumberedPagetrue",
+      "unusual": true
+    },
+    {
+      "name": "oddNumberedPagefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcolumnwiselinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "columnwiselinenumberstrue",
+      "unusual": true
+    },
+    {
+      "name": "columnwiselinenumbersfalse",
+      "unusual": true
+    },
+    {
+      "name": "gotNumberedPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "gotNumberedPage{${1:first line in col}}{${2:page num}}{${3:col num}}{${4:first line in page}}"
+      }
+    },
+    {
+      "name": "subtractlinenumberoffset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subtractlinenumberoffset{${1:arg}}"
+      }
+    },
+    {
+      "name": "thePagewiseLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "makePagewiseLineNumber",
+      "unusual": true
+    },
+    {
+      "name": "getpagewiselinenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "getpagewiselinenumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "themodulolinenumber",
+      "unusual": true
+    },
+    {
+      "name": "firstlinenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "firstlinenumber{${1:number}}"
+      }
+    },
+    {
+      "name": "endinternallinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "internallinenumberpar",
+      "unusual": true
+    },
+    {
+      "name": "makeinternalLinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "PostponeVadjust",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PostponeVadjust{${1:arg}}"
+      }
+    },
+    {
+      "name": "PassVadjustList",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "linenumbers"
+    },
+    {
+      "name": "linenumbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "linenumbers*"
+    },
+    {
+      "name": "runninglinenumbers"
+    },
+    {
+      "name": "runninglinenumbers",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "runninglinenumbers*"
+    },
+    {
+      "name": "pagewiselinenumbers"
+    },
+    {
+      "name": "linenomath"
+    },
+    {
+      "name": "linenomath*"
+    },
+    {
+      "name": "numquote"
+    },
+    {
+      "name": "numquote*"
+    },
+    {
+      "name": "numquotation"
+    },
+    {
+      "name": "numquotation*"
+    },
+    {
+      "name": "bframe"
+    },
+    {
+      "name": "internallinenumbers",
+      "unusual": true
+    },
+    {
+      "name": "internallinenumbers*",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/lineno#c": [
+      "addpageno",
+      "mathrefs",
+      "edtable",
+      "longtable",
+      "nolongtablepatch",
+      "left",
+      "right",
+      "switch",
+      "switch*",
+      "columnwise",
+      "pagewise",
+      "running",
+      "modulo",
+      "modulo*",
+      "mathlines",
+      "sep=",
+      "width="
+    ]
+  },
+  "args": [
+    "\\usepackage/lineno#c"
+  ]
+}

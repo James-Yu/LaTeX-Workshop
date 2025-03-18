@@ -1,57 +1,126 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "translations": []
-  },
-  "macros": {
-    "footnote*[]{}": {
-      "snippet": "footnote*[${2:number}]{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "footnote*{}": {
-      "snippet": "footnote*{${1:text}}"
-    },
-    "footnotemark*": {},
-    "footnotemark*[]": {
-      "snippet": "footnotemark*[${1:number}]"
-    },
-    "setfnpct{}": {
-      "snippet": "setfnpct{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "multfootsep": {},
-    "multfootrange": {},
-    "multfootnote{}": {
-      "snippet": "multfootnote{${1:fn1;fn2;...}}",
-      "option": "multiple"
-    },
-    "multfootnote*{}": {
-      "snippet": "multfootnote*{${1:fn1;fn2;...}}",
-      "option": "multiple"
-    },
-    "AdaptNote{}{}{}": {
-      "snippet": "AdaptNote{${1:cmd}}{${2:args}}{${3:code}}"
-    },
-    "AdaptNote{}{}[]{}": {
-      "snippet": "AdaptNote{${1:cmd}}{${2:args}}[${3:counter}]{${4:code}}"
-    },
-    "AdaptNoteName{}{}{}": {
-      "snippet": "AdaptNoteName{${1:csname}}{${2:args}}{${3:code}}"
-    },
-    "AdaptNoteName{}{}[]{}": {
-      "snippet": "AdaptNoteName{${1:csname}}{${2:args}}[${3:counter}]{${4:code}}"
-    },
-    "MultVariant{}": {
-      "snippet": "MultVariant{${1:cmd}}"
-    },
-    "MultVariantName{}": {
-      "snippet": "MultVariantName{${1:csname}}"
+    {
+      "name": "translations"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "footnote*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "footnote*[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "footnote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "footnote*{${1:text}}"
+      }
+    },
+    {
+      "name": "footnotemark*",
+      "unusual": true
+    },
+    {
+      "name": "footnotemark*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "footnotemark*[${1:number}]"
+      }
+    },
+    {
+      "name": "setfnpct",
+      "arg": {
+        "format": "{}",
+        "snippet": "setfnpct{${1:options%keyvals}}",
+        "keys": [
+          "\\setfnpct"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "multfootsep",
+      "unusual": true
+    },
+    {
+      "name": "multfootrange",
+      "unusual": true
+    },
+    {
+      "name": "multfootnote",
+      "if": "multiple",
+      "arg": {
+        "format": "{}",
+        "snippet": "multfootnote{${1:fn1;fn2;...}}"
+      }
+    },
+    {
+      "name": "multfootnote*",
+      "if": "multiple",
+      "arg": {
+        "format": "{}",
+        "snippet": "multfootnote*{${1:fn1;fn2;...}}"
+      }
+    },
+    {
+      "name": "AdaptNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "AdaptNote{${1:cmd}}{${2:args}}{${3:code}}"
+      }
+    },
+    {
+      "name": "AdaptNote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "AdaptNote{${1:cmd}}{${2:args}}[${4:counter}]{${3:code}}"
+      }
+    },
+    {
+      "name": "AdaptNoteName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "AdaptNoteName{${1:csname}}{${2:args}}{${3:code}}"
+      }
+    },
+    {
+      "name": "AdaptNoteName",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "AdaptNoteName{${1:csname}}{${2:args}}[${4:counter}]{${3:code}}"
+      }
+    },
+    {
+      "name": "MultVariant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MultVariant{${1:cmd}}"
+      }
+    },
+    {
+      "name": "MultVariantName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MultVariantName{${1:csname}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setfnpct": [
       "dont-mess-around",
       "reverse",
       "unspace",
@@ -75,5 +144,6 @@
       "print-range={${1:code}}",
       "keep-ranges"
     ]
-  ]
+  },
+  "args": []
 }

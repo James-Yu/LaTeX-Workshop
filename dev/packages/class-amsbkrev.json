@@ -1,134 +1,284 @@
 {
-  "includes": {
-    "class-amsart": []
-  },
-  "macros": {
-    "reviewer{}": {
-      "snippet": "reviewer{${1:name}}"
-    },
-    "publisher{}": {
-      "snippet": "publisher{${1:name}}"
-    },
-    "publaddr{}": {
-      "snippet": "publaddr{${1:address}}"
-    },
-    "yr{}": {
-      "snippet": "yr{${1:year}}"
-    },
-    "pages{}": {
-      "snippet": "pages{${1:pages}}"
-    },
-    "binding{}": {
-      "snippet": "binding{${1:hardcover|softcover}}"
-    },
-    "price{}": {
-      "snippet": "price{${1:price}}"
-    },
-    "isbn{}": {
-      "snippet": "isbn{${1:ISBN}}"
-    },
-    "revtransl{}": {
-      "snippet": "revtransl{${1:review translator}}"
-    },
-    "msc{}": {
-      "snippet": "msc{${1:msc}}"
-    },
-    "editor{}": {
-      "snippet": "editor{${1:name}}"
-    },
-    "bktransl{}": {
-      "snippet": "bktransl{${1:book translator}}"
-    },
-    "bkcontrib{}": {
-      "snippet": "bkcontrib{${1:name}}"
-    },
-    "bkcontrib[]{}": {
-      "snippet": "bkcontrib[${2:prefix text}]{${1:name}}"
-    },
-    "edition{}": {
-      "snippet": "edition{${1:edition}}"
-    },
-    "series{}": {
-      "snippet": "series{${1:series}}"
-    },
-    "serieseditor{}": {
-      "snippet": "serieseditor{${1:name}}"
-    },
-    "volume{}": {
-      "snippet": "volume{${1:volume}}"
-    },
-    "journal{}": {
-      "snippet": "journal{${1:journal}}"
-    },
-    "cmheight{}": {
-      "snippet": "cmheight{${1:number}}"
-    },
-    "note{}": {
-      "snippet": "note{${1:text}}"
-    },
-    "lang{}": {
-      "snippet": "lang{${1:language}}"
-    },
-    "altpages{}": {
-      "snippet": "altpages{${1:pages}}"
-    },
-    "brtitle": {},
-    "cpubl": {},
-    "ctitle": {},
-    "ednote{}": {
-      "snippet": "ednote{${1:text}}"
-    },
-    "loosen": {},
-    "num{}": {
-      "snippet": "num{${1:arg}}"
-    },
-    "originfo{}{}{}{}": {
-      "snippet": "originfo{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "Review": {},
-    "reviewersep": {},
-    "Reviews": {},
-    "reviewsep": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "theauthor": {},
-    "thebookinfo": {},
-    "therevcount": {},
-    "tocauthors": {},
-    "tocbkcontribs": {}
-  },
-  "envs": {
-    "bookinfo": {},
-    "review": {},
-    "revinfo": {}
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "8pt",
-    "9pt",
-    "a4paper",
-    "centertags",
-    "draft",
-    "e-only",
-    "final",
-    "fleqn",
-    "landscape",
-    "leqno",
-    "letterpaper",
-    "noamsfonts",
-    "nomath",
-    "notitlepage",
-    "onecolumn",
-    "oneside",
-    "portrait",
-    "reqno",
-    "tbtags",
-    "titlepage",
-    "twocolumn",
-    "twoside"
+  "deps": [
+    {
+      "name": "class-amsart"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "reviewer",
+      "arg": {
+        "format": "{}",
+        "snippet": "reviewer{${1:name}}"
+      }
+    },
+    {
+      "name": "publisher",
+      "arg": {
+        "format": "{}",
+        "snippet": "publisher{${1:name}}"
+      }
+    },
+    {
+      "name": "publaddr",
+      "arg": {
+        "format": "{}",
+        "snippet": "publaddr{${1:address%text}}"
+      }
+    },
+    {
+      "name": "yr",
+      "arg": {
+        "format": "{}",
+        "snippet": "yr{${1:year}}"
+      }
+    },
+    {
+      "name": "pages",
+      "arg": {
+        "format": "{}",
+        "snippet": "pages{${1:pages}}"
+      }
+    },
+    {
+      "name": "binding",
+      "arg": {
+        "format": "{}",
+        "snippet": "binding{${1:hardcover|softcover}}"
+      }
+    },
+    {
+      "name": "price",
+      "arg": {
+        "format": "{}",
+        "snippet": "price{${1:price}}"
+      }
+    },
+    {
+      "name": "isbn",
+      "arg": {
+        "format": "{}",
+        "snippet": "isbn{${1:ISBN}}"
+      }
+    },
+    {
+      "name": "revtransl",
+      "arg": {
+        "format": "{}",
+        "snippet": "revtransl{${1:review translator}}"
+      }
+    },
+    {
+      "name": "msc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "msc{${1:msc}}"
+      }
+    },
+    {
+      "name": "editor",
+      "arg": {
+        "format": "{}",
+        "snippet": "editor{${1:name}}"
+      }
+    },
+    {
+      "name": "bktransl",
+      "arg": {
+        "format": "{}",
+        "snippet": "bktransl{${1:book translator}}"
+      }
+    },
+    {
+      "name": "bkcontrib",
+      "arg": {
+        "format": "{}",
+        "snippet": "bkcontrib{${1:name}}"
+      }
+    },
+    {
+      "name": "bkcontrib",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bkcontrib[${2:prefix text%text}]{${1:name}}"
+      }
+    },
+    {
+      "name": "edition",
+      "arg": {
+        "format": "{}",
+        "snippet": "edition{${1:edition}}"
+      }
+    },
+    {
+      "name": "series",
+      "arg": {
+        "format": "{}",
+        "snippet": "series{${1:series}}"
+      }
+    },
+    {
+      "name": "serieseditor",
+      "arg": {
+        "format": "{}",
+        "snippet": "serieseditor{${1:name}}"
+      }
+    },
+    {
+      "name": "volume",
+      "arg": {
+        "format": "{}",
+        "snippet": "volume{${1:volume}}"
+      }
+    },
+    {
+      "name": "journal",
+      "arg": {
+        "format": "{}",
+        "snippet": "journal{${1:journal}}"
+      }
+    },
+    {
+      "name": "cmheight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cmheight{${1:number}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}",
+        "snippet": "note{${1:text}}"
+      }
+    },
+    {
+      "name": "lang",
+      "arg": {
+        "format": "{}",
+        "snippet": "lang{${1:language}}"
+      }
+    },
+    {
+      "name": "altpages",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "altpages{${1:pages}}"
+      }
+    },
+    {
+      "name": "brtitle",
+      "unusual": true
+    },
+    {
+      "name": "ednote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ednote{${1:text}}"
+      }
+    },
+    {
+      "name": "loosen",
+      "unusual": true
+    },
+    {
+      "name": "num",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "num{${1:arg}}"
+      }
+    },
+    {
+      "name": "Review",
+      "unusual": true
+    },
+    {
+      "name": "reviewersep",
+      "unusual": true
+    },
+    {
+      "name": "Reviews",
+      "unusual": true
+    },
+    {
+      "name": "reviewsep",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "theauthor",
+      "unusual": true
+    },
+    {
+      "name": "thebookinfo",
+      "unusual": true
+    },
+    {
+      "name": "therevcount",
+      "unusual": true
+    },
+    {
+      "name": "tocauthors",
+      "unusual": true
+    },
+    {
+      "name": "tocbkcontribs",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "bookinfo"
+    },
+    {
+      "name": "review"
+    },
+    {
+      "name": "revinfo"
+    }
+  ],
+  "keys": {
+    "\\documentclass/amsbkrev#c": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "8pt",
+      "9pt",
+      "a4paper",
+      "centertags",
+      "draft",
+      "e-only",
+      "final",
+      "fleqn",
+      "landscape",
+      "leqno",
+      "letterpaper",
+      "noamsfonts",
+      "nomath",
+      "notitlepage",
+      "onecolumn",
+      "oneside",
+      "portrait",
+      "reqno",
+      "tbtags",
+      "titlepage",
+      "twocolumn",
+      "twoside"
+    ]
+  },
+  "args": [
+    "\\documentclass/amsbkrev#c"
+  ]
 }

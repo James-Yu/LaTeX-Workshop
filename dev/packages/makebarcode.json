@@ -1,49 +1,82 @@
 {
-  "includes": {
-    "kvoptions": []
-  },
-  "macros": {
-    "barcode{}": {
-      "snippet": "barcode{${1:code}}"
-    },
-    "barcode[]{}": {
-      "snippet": "barcode[${2:options}]{${1:code}}"
-    },
-    "HPlabel{}": {
-      "snippet": "HPlabel{${1:code}}"
-    },
-    "ITFbarcode{}": {
-      "snippet": "ITFbarcode{${1:code}}"
-    },
-    "ITFbarcode[]{}": {
-      "snippet": "ITFbarcode[${2:options}]{${1:code}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "BarcodeSanitize": {}
-  },
-  "envs": {},
-  "options": [
-    "help",
-    "X=",
-    "H=",
-    "bcorr=",
-    "ratio=${1:ratio}",
-    "K=${1:number}",
-    "MtoXratio=${1:ratio}",
-    "code=",
-    "S1.2",
-    "S1.1",
-    "S1",
-    "S.9",
-    "S.8",
-    "S.7",
-    "S.6",
-    "lines",
-    "frame"
+  "deps": [
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "barcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "barcode{${1:code}}"
+      }
+    },
+    {
+      "name": "barcode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "barcode[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\usepackage/makebarcode#c,\\barcode"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HPlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "HPlabel{${1:code}}"
+      }
+    },
+    {
+      "name": "ITFbarcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "ITFbarcode{${1:code}}"
+      }
+    },
+    {
+      "name": "ITFbarcode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ITFbarcode[${2:options%keyvals}]{${1:code}}",
+        "keys": [
+          "\\ITFbarcode"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BarcodeSanitize",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/makebarcode#c": [
+      "help"
+    ],
+    "\\usepackage/makebarcode#c,\\barcode": [
+      "X=",
+      "H=",
+      "bcorr=",
+      "ratio=${1:ratio}",
+      "K=${1:number}",
+      "MtoXratio=${1:ratio}",
+      "code=${1|2/5-Industrial,2/5-IATA,2/5-Matrix,2/5-Datalogic,2/5-Inverted,2/5-Interleaved,Code39|}",
+      "S1.2",
+      "S1.1",
+      "S1",
+      "S.9",
+      "S.8",
+      "S.7",
+      "S.6",
+      "lines",
+      "frame"
+    ],
+    "\\ITFbarcode": [
       "lines",
       "frame",
       "S1.2",
@@ -54,5 +87,9 @@
       "S.7",
       "S.6"
     ]
+  },
+  "args": [
+    "\\usepackage/makebarcode#c",
+    "\\usepackage/makebarcode#c,\\barcode"
   ]
 }

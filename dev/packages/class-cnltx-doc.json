@@ -1,314 +1,1022 @@
 {
-  "includes": {
-    "cnltx-tools": [],
-    "cnltx-names": [],
-    "cnltx-example": [],
-    "class-scrartcl": [],
-    "scrlayer-scrpage": [],
-    "multicol": [],
-    "ragged2e": [],
-    "marginnote": [],
-    "hyperref": [],
-    "ifxetex": [
+  "deps": [
+    {
+      "name": "cnltx-tools"
+    },
+    {
+      "name": "cnltx-names"
+    },
+    {
+      "name": "cnltx-example"
+    },
+    {
+      "name": "class-scrartcl"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "ragged2e"
+    },
+    {
+      "name": "marginnote"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble"
+    },
+    {
+      "name": "fontenc",
+      "if": "load-preamble"
+    },
+    {
+      "name": "libertine",
+      "if": "load-preamble"
+    },
+    {
+      "name": "libertinehologopatch",
+      "if": "load-preamble"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "libertine",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "libertinehologopatch",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble-"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble-"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble-"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble-"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble-"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble-=true"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble-=true"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble-=true"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble-=true"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble-=true"
+    },
+    {
+      "name": "imakeidx",
+      "if": "add-index"
+    },
+    {
+      "name": "imakeidx",
+      "if": "add-index=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "add-bib"
+    },
+    {
+      "name": "biblatex",
+      "if": "add-bib=true"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "fontenc",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "libertine",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "libertinehologopatch",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "imakeidx",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "biblatex",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "ifxetex",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "ifluatex",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "fontenc",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "libertine",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "libertinehologopatch",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "microtype",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "fnpct",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "babel",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "imakeidx",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "biblatex",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "microtype",
+      "if": "load-microtype"
+    },
+    {
+      "name": "microtype",
+      "if": "load-microtype=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sinceversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "sinceversion{${1:version}}"
+      }
+    },
+    {
+      "name": "changedversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "changedversion{${1:version}}"
+      }
+    },
+    {
+      "name": "newnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newnote{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newnote",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newnote{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newnote{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newnote*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newnote*{${1:cmd}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newnote*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newnote*{${1:cmd}}[${3:args}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newnote*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newnote*{${1:cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
+    },
+    {
+      "name": "newpackagename",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newpackagename{${1:cmd}}{${2:name}}"
+      }
+    },
+    {
+      "name": "lppl"
+    },
+    {
+      "name": "LPPL"
+    },
+    {
+      "name": "license",
+      "arg": {
+        "format": "[]",
+        "snippet": "license[${1:maintenance status}]"
+      }
+    },
+    {
+      "name": "license*",
+      "arg": {
+        "format": "[]",
+        "snippet": "license*[${1:maintenance status}]"
+      }
+    },
+    {
+      "name": "ctan"
+    },
+    {
+      "name": "CTAN"
+    },
+    {
+      "name": "CTANurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "CTANurl{${1:name}}"
+      }
+    },
+    {
+      "name": "CTANurl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CTANurl[${2:directory}]{${1:name}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email address}}"
+      }
+    },
+    {
+      "name": "website",
+      "arg": {
+        "format": "{}",
+        "snippet": "website{${1:web address%URL}}"
+      }
+    },
+    {
+      "name": "securewebsite",
+      "arg": {
+        "format": "{}",
+        "snippet": "securewebsite{${1:web address%URL}}"
+      }
+    },
+    {
+      "name": "needpackage",
+      "arg": {
+        "format": "{}",
+        "snippet": "needpackage{${1:name}}"
+      }
+    },
+    {
+      "name": "needpackage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "needpackage[${2:directory}]{${1:name}}"
+      }
+    },
+    {
+      "name": "needclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "needclass{${1:name}}"
+      }
+    },
+    {
+      "name": "needclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "needclass[${2:directory}]{${1:name}}"
+      }
+    },
+    {
+      "name": "command",
+      "arg": {
+        "format": "{}",
+        "snippet": "command{${1:name}}"
+      }
+    },
+    {
+      "name": "command",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "command{${1:name}}[${2:after}]"
+      }
+    },
+    {
+      "name": "command*",
+      "arg": {
+        "format": "{}",
+        "snippet": "command*{${1:name}}"
+      }
+    },
+    {
+      "name": "command*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "command*{${1:name}}[${2:after}]"
+      }
+    },
+    {
+      "name": "Default",
+      "arg": {
+        "format": "{}",
+        "snippet": "Default{${1:code}}"
+      }
+    },
+    {
+      "name": "Default*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Default*{${1:code}}"
+      }
+    },
+    {
+      "name": "expandable"
+    },
+    {
+      "name": "unexpandable"
+    },
+    {
+      "name": "expandablesign",
+      "unusual": true
+    },
+    {
+      "name": "expandablesymbol",
+      "unusual": true
+    },
+    {
+      "name": "unexpandablesymbol",
+      "unusual": true
+    },
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "opt{${1:name}}"
+      }
+    },
+    {
+      "name": "opt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "opt*{${1:name}}"
+      }
+    },
+    {
+      "name": "keyval",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keyval{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keyval*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keyval*{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keylit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keylit{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keylit*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keylit*{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keychoice",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keychoice{${1:name}}{${2:list of choices}}"
+      }
+    },
+    {
+      "name": "keychoice*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keychoice*{${1:name}}{${2:list of choices}}"
+      }
+    },
+    {
+      "name": "keybool",
+      "arg": {
+        "format": "{}",
+        "snippet": "keybool{${1:name}}"
+      }
+    },
+    {
+      "name": "keybool*",
+      "arg": {
+        "format": "{}",
+        "snippet": "keybool*{${1:name}}"
+      }
+    },
+    {
+      "name": "Module",
+      "arg": {
+        "format": "{}",
+        "snippet": "Module{${1:name}}"
+      }
+    },
+    {
+      "name": "Module*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Module*{${1:name}}"
+      }
+    },
+    {
+      "name": "environment",
+      "arg": {
+        "format": "{}",
+        "snippet": "environment{${1:name}}"
+      }
+    },
+    {
+      "name": "environment*",
+      "arg": {
+        "format": "{}",
+        "snippet": "environment*{${1:name}}"
+      }
+    },
+    {
+      "name": "environment",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "environment{${1:name}}[${2:after}]"
+      }
+    },
+    {
+      "name": "environment*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "environment*{${1:name}}[${2:after}]"
+      }
+    },
+    {
+      "name": "DH",
+      "if": "load-preamble"
+    },
+    {
+      "name": "dh",
+      "if": "load-preamble"
+    },
+    {
+      "name": "dj",
+      "if": "load-preamble"
+    },
+    {
+      "name": "DJ",
+      "if": "load-preamble"
+    },
+    {
+      "name": "guillemetleft",
+      "if": "load-preamble"
+    },
+    {
+      "name": "guillemetright",
+      "if": "load-preamble"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "load-preamble",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "load-preamble",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "load-preamble"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "load-preamble"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "load-preamble"
+    },
+    {
+      "name": "hwithstroke",
+      "if": "load-preamble"
+    },
+    {
+      "name": "k",
+      "if": "load-preamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG",
+      "if": "load-preamble"
+    },
+    {
+      "name": "ng",
+      "if": "load-preamble"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "load-preamble"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "load-preamble"
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "load-preamble",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl",
+      "if": "load-preamble"
+    },
+    {
+      "name": "th",
+      "if": "load-preamble"
+    },
+    {
+      "name": "TH",
+      "if": "load-preamble"
+    },
+    {
+      "name": "DH",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "dh",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "dj",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "DJ",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "guillemetleft",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "guillemetright",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "load-preamble=true",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "load-preamble=true",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "hwithstroke",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "k",
+      "if": "load-preamble=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "ng",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "load-preamble=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "th",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "TH",
+      "if": "load-preamble=true"
+    },
+    {
+      "name": "DH",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "dh",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "dj",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "DJ",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "guillemetleft",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "guillemetright",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "load-preamble+",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "load-preamble+",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "hwithstroke",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "k",
+      "if": "load-preamble+",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "ng",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "load-preamble+",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "th",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "TH",
+      "if": "load-preamble+"
+    },
+    {
+      "name": "DH",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "dh",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "dj",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "DJ",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "guillemetleft",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "guillemetright",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "guillemotleft",
+      "if": "load-preamble+=true",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "if": "load-preamble+=true",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "guilsinglright",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "Hwithstroke",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "hwithstroke",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "k",
+      "if": "load-preamble+=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "ng",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "quotedblbase",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "quotesinglbase",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "textogonekcentered",
+      "if": "load-preamble+=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "th",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "TH",
+      "if": "load-preamble+=true"
+    },
+    {
+      "name": "cnltxpackagenameformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cnltxpackagenameformat{${1:text}}"
+      }
+    },
+    {
+      "name": "visualizespaces",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "visualizespaces{${1:text}}"
+      }
+    },
+    {
+      "name": "visiblespace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "commands"
+    },
+    {
+      "name": "options"
+    },
+    {
+      "name": "environments"
+    },
+    {
+      "name": "cnltxquote"
+    },
+    {
+      "name": "cnltxquote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:author/reference}]"
+      }
+    },
+    {
+      "name": "cnltxlist",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/cnltx-doc#c": [
       "load-preamble",
-      "load-preamble=true",
       "load-preamble-",
-      "load-preamble-=true",
       "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "ifluatex": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble-",
-      "load-preamble-=true",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "fontenc": [
-      "load-preamble",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "libertine": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "libertinehologopatch": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "microtype": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble-",
-      "load-preamble-=true",
-      "load-preamble+",
-      "load-preamble+=true",
-      "load-microtype",
-      "load-microtype=true"
-    ],
-    "fnpct": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble-",
-      "load-preamble-=true",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "babel": [
-      "load-preamble",
-      "load-preamble=true",
-      "load-preamble-",
-      "load-preamble-=true",
-      "load-preamble+",
-      "load-preamble+=true"
-    ],
-    "imakeidx": [
       "add-index",
-      "add-index=true",
-      "load-preamble+",
-      "load-preamble+=true"
+      "adapt-layout",
+      "babel-options={${1:options}}",
+      "scrartcl={${1:options}}"
     ],
-    "biblatex": [
-      "add-bib",
-      "add-bib=true",
-      "load-preamble+",
-      "load-preamble+=true"
+    "\\setcnltx#c": [
+      "list-setup={${1:definitions}}",
+      "expandable-sign={${1:definitions}}",
+      "package={${1:package}}",
+      "class={${1:class}}",
+      "name={${1:name}}",
+      "title={${1:title}}",
+      "authors={${1:author list}}",
+      "version=${1:number}",
+      "date=",
+      "info={${1:package/class info}}",
+      "subtitle={${1:subtitle}}",
+      "url={${1:url}}",
+      "email={${1:email address}}",
+      "abstract={${1:abstract}}",
+      "build-title",
+      "quote-format={${1:definitions}}",
+      "quote-author-format={${1:definitions}}",
+      "index-prologue={${1:text}}",
+      "index-space=",
+      "index-setup={${1:options}}",
+      "makeindex-setup={${1:options}}",
+      "index-style={${1:style file}}"
     ]
   },
-  "macros": {
-    "sinceversion{}": {
-      "snippet": "sinceversion{${1:version}}"
-    },
-    "changedversion{}": {
-      "snippet": "changedversion{${1:version}}"
-    },
-    "newnote{}{}": {
-      "snippet": "newnote{${1:cmd}}{${2:definition}}"
-    },
-    "newnote{}[]{}": {
-      "snippet": "newnote{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "newnote{}[][]{}": {
-      "snippet": "newnote{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "newnote*{}{}": {
-      "snippet": "newnote*{${1:cmd}}{${2:definition}}"
-    },
-    "newnote*{}[]{}": {
-      "snippet": "newnote*{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "newnote*{}[][]{}": {
-      "snippet": "newnote*{${1:cmd}}[${2:args}][${3:default}]{${4:definition}}"
-    },
-    "newpackagename{}{}": {
-      "snippet": "newpackagename{${1:cmd}}{${2:name}}"
-    },
-    "lppl": {},
-    "LPPL": {},
-    "license[]": {
-      "snippet": "license[${1:maintenance status}]"
-    },
-    "license*[]": {
-      "snippet": "license*[${1:maintenance status}]"
-    },
-    "ctan": {},
-    "CTAN": {},
-    "CTANurl{}": {
-      "snippet": "CTANurl{${1:name}}"
-    },
-    "CTANurl[]{}": {
-      "snippet": "CTANurl[${2:directory}]{${1:name}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email address}}"
-    },
-    "website{}": {
-      "snippet": "website{${1:web address}}"
-    },
-    "securewebsite{}": {
-      "snippet": "securewebsite{${1:web address}}"
-    },
-    "needpackage{}": {
-      "snippet": "needpackage{${1:name}}"
-    },
-    "needpackage[]{}": {
-      "snippet": "needpackage[${2:directory}]{${1:name}}"
-    },
-    "needclass{}": {
-      "snippet": "needclass{${1:name}}"
-    },
-    "needclass[]{}": {
-      "snippet": "needclass[${2:directory}]{${1:name}}"
-    },
-    "command{}": {
-      "snippet": "command{${1:name}}"
-    },
-    "command{}[]": {
-      "snippet": "command{${1:name}}[${2:after}]"
-    },
-    "command*{}": {
-      "snippet": "command*{${1:name}}"
-    },
-    "command*{}[]": {
-      "snippet": "command*{${1:name}}[${2:after}]"
-    },
-    "Default{}": {
-      "snippet": "Default{${1:code}}"
-    },
-    "Default*{}": {
-      "snippet": "Default*{${1:code}}"
-    },
-    "expandable": {},
-    "unexpandable": {},
-    "expandablesign": {},
-    "expandablesymbol": {},
-    "unexpandablesymbol": {},
-    "opt{}": {
-      "snippet": "opt{${1:name}}"
-    },
-    "opt*{}": {
-      "snippet": "opt*{${1:name}}"
-    },
-    "keyval{}{}": {
-      "snippet": "keyval{${1:name}}{${2:value}}"
-    },
-    "keyval*{}{}": {
-      "snippet": "keyval*{${1:name}}{${2:value}}"
-    },
-    "keylit{}{}": {
-      "snippet": "keylit{${1:name}}{${2:value}}"
-    },
-    "keylit*{}{}": {
-      "snippet": "keylit*{${1:name}}{${2:value}}"
-    },
-    "keychoice{}{}": {
-      "snippet": "keychoice{${1:name}}{${2:list of choices}}"
-    },
-    "keychoice*{}{}": {
-      "snippet": "keychoice*{${1:name}}{${2:list of choices}}"
-    },
-    "keybool{}": {
-      "snippet": "keybool{${1:name}}"
-    },
-    "keybool*{}": {
-      "snippet": "keybool*{${1:name}}"
-    },
-    "Module{}": {
-      "snippet": "Module{${1:name}}"
-    },
-    "Module*{}": {
-      "snippet": "Module*{${1:name}}"
-    },
-    "environment{}": {
-      "snippet": "environment{${1:name}}"
-    },
-    "environment*{}": {
-      "snippet": "environment*{${1:name}}"
-    },
-    "environment{}[]": {
-      "snippet": "environment{${1:name}}[${2:after}]"
-    },
-    "environment*{}[]": {
-      "snippet": "environment*{${1:name}}[${2:after}]"
-    },
-    "DH": {
-      "option": "load-preamble+=true"
-    },
-    "dh": {
-      "option": "load-preamble+=true"
-    },
-    "dj": {
-      "option": "load-preamble+=true"
-    },
-    "DJ": {
-      "option": "load-preamble+=true"
-    },
-    "guillemetleft": {
-      "option": "load-preamble+=true"
-    },
-    "guillemetright": {
-      "option": "load-preamble+=true"
-    },
-    "guillemotleft": {
-      "option": "load-preamble+=true"
-    },
-    "guillemotright": {
-      "option": "load-preamble+=true"
-    },
-    "guilsinglleft": {
-      "option": "load-preamble+=true"
-    },
-    "guilsinglright": {
-      "option": "load-preamble+=true"
-    },
-    "Hwithstroke": {
-      "option": "load-preamble+=true"
-    },
-    "hwithstroke": {
-      "option": "load-preamble+=true"
-    },
-    "k{}": {
-      "snippet": "k{${1:arg}}",
-      "option": "load-preamble+=true"
-    },
-    "NG": {
-      "option": "load-preamble+=true"
-    },
-    "ng": {
-      "option": "load-preamble+=true"
-    },
-    "quotedblbase": {
-      "option": "load-preamble+=true"
-    },
-    "quotesinglbase": {
-      "option": "load-preamble+=true"
-    },
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}",
-      "option": "load-preamble+=true"
-    },
-    "textquotedbl": {
-      "option": "load-preamble+=true"
-    },
-    "th": {
-      "option": "load-preamble+=true"
-    },
-    "TH": {
-      "option": "load-preamble+=true"
-    },
-    "cnltxpackagenameformat{}": {
-      "snippet": "cnltxpackagenameformat{${1:text}}"
-    },
-    "visualizespaces{}": {
-      "snippet": "visualizespaces{${1:text}}"
-    },
-    "visiblespace": {}
-  },
-  "envs": {
-    "commands": {},
-    "options": {},
-    "environments": {},
-    "cnltxquote": {},
-    "cnltxquote[]": {
-      "name": "cnltxquote",
-      "snippet": "[${1:author/reference}]"
-    },
-    "cnltxlist": {}
-  },
-  "options": [
-    "load-preamble",
-    "load-preamble-",
-    "load-preamble+",
-    "add-index",
-    "adapt-layout",
-    "babel-options={${1:options}}",
-    "scrartcl={${1:options}}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/cnltx-doc#c"
+  ]
 }

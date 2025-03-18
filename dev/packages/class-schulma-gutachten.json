@@ -1,75 +1,181 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "babel": [],
-    "datetime2": [],
-    "siunitx": []
-  },
-  "macros": {
-    "Schule{}": {
-      "snippet": "Schule{${1:Schulname}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "Ort{}": {
-      "snippet": "Ort{${1:Schulort}}"
+    {
+      "name": "babel"
     },
-    "Datum{}": {
-      "snippet": "Datum{${1:Datum}}"
+    {
+      "name": "datetime2"
     },
-    "Fach{}": {
-      "snippet": "Fach{${1:Unterrichtsfach}}"
-    },
-    "Gesamtpunktzahl{}": {
-      "snippet": "Gesamtpunktzahl{${1:Punktzahl}}"
-    },
-    "Name": {},
-    "NameDativ": {},
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "captionsnaustrian": {
-      "option": "AT"
-    },
-    "datenaustrian": {
-      "option": "AT"
-    },
-    "extrasnaustrian": {
-      "option": "AT"
-    },
-    "noextrasnaustrian": {
-      "option": "AT"
+    {
+      "name": "siunitx"
     }
-  },
-  "envs": {
-    "Gutachten{}{}{}{}": {
-      "name": "Gutachten",
-      "snippet": "{${1:Vorname}}{${2:Nachname}}{${3:Geschlecht}}{${4:Punktzahl}}"
-    },
-    "Gutachten{}{}{}{}[]": {
-      "name": "Gutachten",
-      "snippet": "{${1:Vorname}}{${2:Nachname}}{${3:Geschlecht}}{${4:Punktzahl}}[${5:Abwertung}]"
-    }
-  },
-  "options": [
-    "BELL",
-    "AT",
-    "Referentin",
-    "Korreferentin"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Schule",
+      "arg": {
+        "format": "{}",
+        "snippet": "Schule{${1:Schulname}}"
+      }
+    },
+    {
+      "name": "Ort",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ort{${1:Schulort}}"
+      }
+    },
+    {
+      "name": "Datum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Datum{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Fach",
+      "arg": {
+        "format": "{}",
+        "snippet": "Fach{${1:Unterrichtsfach%text}}"
+      }
+    },
+    {
+      "name": "Gesamtpunktzahl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Gesamtpunktzahl{${1:Punktzahl}}"
+      }
+    },
+    {
+      "name": "Name"
+    },
+    {
+      "name": "NameDativ"
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "captionsnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "datenaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "extrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "noextrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Gutachten",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:Vorname}}{${2:Nachname}}{${3:Geschlecht}}{${4:Punktzahl}}"
+      }
+    },
+    {
+      "name": "Gutachten",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "{${1:Vorname}}{${2:Nachname}}{${3:Geschlecht}}{${4:Punktzahl}}[${5:Abwertung}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/schulma-gutachten#c": [
+      "BELL",
+      "AT",
+      "Referentin",
+      "Korreferentin"
+    ]
+  },
+  "args": [
+    "\\documentclass/schulma-gutachten#c"
+  ]
 }

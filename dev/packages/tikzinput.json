@@ -1,0 +1,94 @@
+{
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "standalone"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "tikzinput{${1:file}}"
+      }
+    },
+    {
+      "name": "tikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tikzinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\tikzinput,\\ctikzinput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctikzinput{${1:file}}"
+      }
+    },
+    {
+      "name": "ctikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ctikzinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\tikzinput,\\ctikzinput"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzinput#c": [
+      "image"
+    ],
+    "\\tikzinput,\\ctikzinput": [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/tikzinput#c"
+  ]
+}

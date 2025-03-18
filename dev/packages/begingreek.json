@@ -1,38 +1,58 @@
 {
-  "includes": {
-    "iftex": []
-  },
-  "macros": {
-    "greekfontfamily": {},
-    "greektxt{}": {
-      "snippet": "greektxt{${1:greek text}}"
-    },
-    "greektxt[]{}": {
-      "snippet": "greektxt[${2:font family}]{${1:greek text}}"
-    },
-    "CBverifyandselectfont": {},
-    "Greekfontfamily": {}
-  },
-  "envs": {
-    "greek": {},
-    "greek[]": {
-      "name": "greek",
-      "snippet": "[${1:font family}]"
+  "deps": [
+    {
+      "name": "iftex"
     }
-  },
-  "options": [
-    "artemisia",
-    "gfsbaskerville",
-    "bodoni",
-    "complutum",
-    "udidot",
-    "neohellenic",
-    "porson",
-    "solomos",
-    "txr",
-    "mak",
-    "llcmss",
-    "lmr"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "greekfontfamily",
+      "unusual": true
+    },
+    {
+      "name": "greektxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "greektxt{${1:greek text}}"
+      }
+    },
+    {
+      "name": "greektxt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "greektxt[${2:font family}]{${1:greek text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "greek"
+    },
+    {
+      "name": "greek",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:font family}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/begingreek#c": [
+      "artemisia",
+      "gfsbaskerville",
+      "bodoni",
+      "complutum",
+      "udidot",
+      "neohellenic",
+      "porson",
+      "solomos",
+      "txr",
+      "mak",
+      "llcmss",
+      "lmr"
+    ]
+  },
+  "args": [
+    "\\usepackage/begingreek#c"
+  ]
 }

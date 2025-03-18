@@ -1,192 +1,632 @@
 {
-  "includes": {
-    "class-memoir": [],
-    "xcolor": [],
-    "tabularx": [],
-    "graphicx": [],
-    "xstring": [],
-    "calc": [],
-    "forarray": [],
-    "longtable": [],
-    "textpos": [],
-    "fancyhdr": [],
-    "hyperref": [],
-    "memhfixc": []
-  },
-  "macros": {
-    "showkeys": {},
-    "setupdocument{}": {
-      "snippet": "setupdocument{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "class-memoir"
     },
-    "letter{}": {
-      "snippet": "letter{${1:content}}"
+    {
+      "name": "xcolor"
     },
-    "letter[]{}": {
-      "snippet": "letter[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tabularx"
     },
-    "invoice{}": {
-      "snippet": "invoice{${1:content}}"
+    {
+      "name": "graphicx"
     },
-    "invoice[]{}": {
-      "snippet": "invoice[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xstring"
     },
-    "itable{}": {
-      "snippet": "itable{${1:table contents}}"
+    {
+      "name": "calc"
     },
-    "iitem{}{}": {
-      "snippet": "iitem{${1:item}}{${2:amount}}"
+    {
+      "name": "forarray"
     },
-    "itotal{}": {
-      "snippet": "itotal{${1:amount}}"
+    {
+      "name": "longtable"
     },
-    "itotal[]{}": {
-      "snippet": "itotal[${2:text}]{${1:amount}}"
+    {
+      "name": "textpos"
     },
-    "paymentdata": {},
-    "autograph{}{}{}{}{}{}": {
-      "snippet": "autograph{${1:number}}{${2:height}}{${3:v-pos-closing}}{${4:v-pos-sig}}{${5:margin-pos}}{${6:image}}"
+    {
+      "name": "fancyhdr"
     },
-    "logo": {},
-    "LetterSymbol": {},
-    "EuroSymbol": {},
-    "EUR": {},
-    "EmailSymbol": {},
-    "PhoneSymbol": {},
-    "MobileSymbol": {},
-    "headfont": {},
-    "EUROSymbol": {},
-    "Undefined{}": {
-      "snippet": "Undefined{${1:arg}}"
+    {
+      "name": "hyperref"
     },
-    "accept": {},
-    "acceptaccount": {},
-    "acceptaddress": {},
-    "acceptcents": {},
-    "acceptdesc": {},
-    "acceptdescription": {},
-    "accepteuros": {},
-    "acceptreference": {},
-    "accepttype": {},
-    "accountdata": {},
-    "accountname": {},
-    "accountnametext": {},
-    "accountno": {},
-    "accountnotext": {},
-    "amounttext": {},
-    "areacode": {},
-    "autographversion": {},
-    "bankname": {},
-    "banknametext": {},
-    "bic": {},
-    "bictext": {},
-    "cellphone": {},
-    "cellphonetext": {},
-    "chamber": {},
-    "chambertext": {},
-    "city": {},
-    "closing": {},
-    "company": {},
-    "copyto": {},
-    "copytotext": {},
-    "country": {},
-    "countrycode": {},
-    "creditorid": {},
-    "creditoridtext": {},
-    "currency": {},
-    "datetext": {},
-    "daystext": {},
-    "descriptiontext": {},
-    "email": {},
-    "emailtext": {},
-    "enclosures": {},
-    "enclosurestext": {},
-    "enclosuretext": {},
-    "fax": {},
-    "faxtext": {},
-    "iban": {},
-    "ibantext": {},
-    "invoicetext": {},
-    "isodocFootFields": {},
-    "logoaddress": {},
-    "mandateid": {},
-    "mandateidtext": {},
-    "oftext": {},
-    "opening": {},
-    "openingcomma": {},
-    "ourref": {},
-    "ourreftext": {},
-    "pagetext": {},
-    "paymentdatatext": {},
-    "payref": {},
-    "payreftext": {},
-    "phone": {},
-    "phoneprefix": {},
-    "phonetext": {},
-    "prezip": {},
-    "processto{}": {
-      "snippet": "processto{${1:arg1}}"
+    {
+      "name": "memhfixc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "showkeys"
     },
-    "returnaddress": {},
-    "routingno": {},
-    "routingnotext": {},
-    "signature": {},
-    "street": {},
-    "subject": {},
-    "subjecttext": {},
-    "temp": {},
-    "term": {},
-    "termtext": {},
-    "thelettercount": {},
-    "toaddress": {},
-    "toname": {},
-    "totaltext": {},
-    "totext": {},
-    "vatno": {},
-    "vatnotext": {},
-    "vattext": {},
-    "wacceptaccount": {},
-    "wacceptaddress": {},
-    "wacceptcents": {},
-    "wacceptct": {},
-    "wacceptdescription": {},
-    "website": {},
-    "websitetext": {},
-    "who": {},
-    "xacceptaccount": {},
-    "xacceptaddress": {},
-    "xacceptcents": {},
-    "xacceptct": {},
-    "xacceptdescription": {},
-    "xaddress": {},
-    "xproc{}": {
-      "snippet": "xproc{${1:arg}}"
+    {
+      "name": "setupdocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "setupdocument{${1:options%keyvals}}",
+        "keys": [
+          "\\setupdocument#c,\\letter#c,\\invoice#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "yacceptaccount": {},
-    "yacceptaddress": {},
-    "yacceptcents": {},
-    "yacceptct": {},
-    "yacceptdescription": {},
-    "yourletter": {},
-    "yourlettertext": {},
-    "yourref": {},
-    "yourreftext": {},
-    "yproc{}": {
-      "snippet": "yproc{${1:arg}}"
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "letter{${1:content%text}}"
+      }
     },
-    "zip": {},
-    "zippedcity": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "language=",
+    {
+      "name": "letter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "letter[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\setupdocument#c,\\letter#c,\\invoice#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "invoice",
+      "arg": {
+        "format": "{}",
+        "snippet": "invoice{${1:content%text}}"
+      }
+    },
+    {
+      "name": "invoice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "invoice[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\setupdocument#c,\\letter#c,\\invoice#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "itable",
+      "arg": {
+        "format": "{}",
+        "snippet": "itable{${1:table contents%text}}"
+      }
+    },
+    {
+      "name": "iitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "iitem{${1:item}}{${2:amount}}"
+      }
+    },
+    {
+      "name": "itotal",
+      "arg": {
+        "format": "{}",
+        "snippet": "itotal{${1:amount}}"
+      }
+    },
+    {
+      "name": "itotal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "itotal[${2:text}]{${1:amount}}"
+      }
+    },
+    {
+      "name": "paymentdata"
+    },
+    {
+      "name": "autograph",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "autograph{${1:number}}{${2:height}}{${3:v-pos-closing}}{${4:v-pos-sig}}{${5:margin-pos}}{${6:image}}"
+      }
+    },
+    {
+      "name": "logo"
+    },
+    {
+      "name": "LetterSymbol"
+    },
+    {
+      "name": "EuroSymbol"
+    },
+    {
+      "name": "EUR"
+    },
+    {
+      "name": "EmailSymbol"
+    },
+    {
+      "name": "PhoneSymbol"
+    },
+    {
+      "name": "MobileSymbol"
+    },
+    {
+      "name": "headfont",
+      "unusual": true
+    },
+    {
+      "name": "EUROSymbol",
+      "unusual": true
+    },
+    {
+      "name": "Undefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Undefined{${1:arg}}"
+      }
+    },
+    {
+      "name": "accept",
+      "unusual": true
+    },
+    {
+      "name": "acceptaccount",
+      "unusual": true
+    },
+    {
+      "name": "acceptaddress",
+      "unusual": true
+    },
+    {
+      "name": "acceptcents",
+      "unusual": true
+    },
+    {
+      "name": "acceptdesc",
+      "unusual": true
+    },
+    {
+      "name": "acceptdescription",
+      "unusual": true
+    },
+    {
+      "name": "accepteuros",
+      "unusual": true
+    },
+    {
+      "name": "acceptreference",
+      "unusual": true
+    },
+    {
+      "name": "accepttype",
+      "unusual": true
+    },
+    {
+      "name": "accountdata",
+      "unusual": true
+    },
+    {
+      "name": "accountname",
+      "unusual": true
+    },
+    {
+      "name": "accountnametext",
+      "unusual": true
+    },
+    {
+      "name": "accountno",
+      "unusual": true
+    },
+    {
+      "name": "accountnotext",
+      "unusual": true
+    },
+    {
+      "name": "amounttext",
+      "unusual": true
+    },
+    {
+      "name": "areacode",
+      "unusual": true
+    },
+    {
+      "name": "autographversion",
+      "unusual": true
+    },
+    {
+      "name": "bankname",
+      "unusual": true
+    },
+    {
+      "name": "banknametext",
+      "unusual": true
+    },
+    {
+      "name": "bic",
+      "unusual": true
+    },
+    {
+      "name": "bictext",
+      "unusual": true
+    },
+    {
+      "name": "cellphone",
+      "unusual": true
+    },
+    {
+      "name": "cellphonetext",
+      "unusual": true
+    },
+    {
+      "name": "chamber",
+      "unusual": true
+    },
+    {
+      "name": "chambertext",
+      "unusual": true
+    },
+    {
+      "name": "city",
+      "unusual": true
+    },
+    {
+      "name": "closing",
+      "unusual": true
+    },
+    {
+      "name": "company",
+      "unusual": true
+    },
+    {
+      "name": "copyto",
+      "unusual": true
+    },
+    {
+      "name": "copytotext",
+      "unusual": true
+    },
+    {
+      "name": "country",
+      "unusual": true
+    },
+    {
+      "name": "countrycode",
+      "unusual": true
+    },
+    {
+      "name": "creditorid",
+      "unusual": true
+    },
+    {
+      "name": "creditoridtext",
+      "unusual": true
+    },
+    {
+      "name": "currency",
+      "unusual": true
+    },
+    {
+      "name": "datetext",
+      "unusual": true
+    },
+    {
+      "name": "daystext",
+      "unusual": true
+    },
+    {
+      "name": "descriptiontext",
+      "unusual": true
+    },
+    {
+      "name": "email",
+      "unusual": true
+    },
+    {
+      "name": "emailtext",
+      "unusual": true
+    },
+    {
+      "name": "enclosures",
+      "unusual": true
+    },
+    {
+      "name": "enclosurestext",
+      "unusual": true
+    },
+    {
+      "name": "enclosuretext",
+      "unusual": true
+    },
+    {
+      "name": "fax",
+      "unusual": true
+    },
+    {
+      "name": "faxtext",
+      "unusual": true
+    },
+    {
+      "name": "headfont",
+      "unusual": true
+    },
+    {
+      "name": "iban",
+      "unusual": true
+    },
+    {
+      "name": "ibantext",
+      "unusual": true
+    },
+    {
+      "name": "invoicetext",
+      "unusual": true
+    },
+    {
+      "name": "isodocFootFields",
+      "unusual": true
+    },
+    {
+      "name": "logoaddress",
+      "unusual": true
+    },
+    {
+      "name": "mandateid",
+      "unusual": true
+    },
+    {
+      "name": "mandateidtext",
+      "unusual": true
+    },
+    {
+      "name": "oftext",
+      "unusual": true
+    },
+    {
+      "name": "opening",
+      "unusual": true
+    },
+    {
+      "name": "openingcomma",
+      "unusual": true
+    },
+    {
+      "name": "ourref",
+      "unusual": true
+    },
+    {
+      "name": "ourreftext",
+      "unusual": true
+    },
+    {
+      "name": "pagetext",
+      "unusual": true
+    },
+    {
+      "name": "paymentdatatext",
+      "unusual": true
+    },
+    {
+      "name": "payref",
+      "unusual": true
+    },
+    {
+      "name": "payreftext",
+      "unusual": true
+    },
+    {
+      "name": "phone",
+      "unusual": true
+    },
+    {
+      "name": "phoneprefix",
+      "unusual": true
+    },
+    {
+      "name": "phonetext",
+      "unusual": true
+    },
+    {
+      "name": "prezip",
+      "unusual": true
+    },
+    {
+      "name": "processto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "processto{${1:arg1}}"
+      }
+    },
+    {
+      "name": "returnaddress",
+      "unusual": true
+    },
+    {
+      "name": "routingno",
+      "unusual": true
+    },
+    {
+      "name": "routingnotext",
+      "unusual": true
+    },
+    {
+      "name": "signature",
+      "unusual": true
+    },
+    {
+      "name": "street",
+      "unusual": true
+    },
+    {
+      "name": "subject",
+      "unusual": true
+    },
+    {
+      "name": "subjecttext",
+      "unusual": true
+    },
+    {
+      "name": "temp",
+      "unusual": true
+    },
+    {
+      "name": "term",
+      "unusual": true
+    },
+    {
+      "name": "termtext",
+      "unusual": true
+    },
+    {
+      "name": "thelettercount"
+    },
+    {
+      "name": "toaddress",
+      "unusual": true
+    },
+    {
+      "name": "toname",
+      "unusual": true
+    },
+    {
+      "name": "totaltext",
+      "unusual": true
+    },
+    {
+      "name": "totext",
+      "unusual": true
+    },
+    {
+      "name": "vatno",
+      "unusual": true
+    },
+    {
+      "name": "vatnotext",
+      "unusual": true
+    },
+    {
+      "name": "vattext",
+      "unusual": true
+    },
+    {
+      "name": "wacceptaccount",
+      "unusual": true
+    },
+    {
+      "name": "wacceptaddress",
+      "unusual": true
+    },
+    {
+      "name": "wacceptcents",
+      "unusual": true
+    },
+    {
+      "name": "wacceptct",
+      "unusual": true
+    },
+    {
+      "name": "wacceptdescription",
+      "unusual": true
+    },
+    {
+      "name": "website",
+      "unusual": true
+    },
+    {
+      "name": "websitetext",
+      "unusual": true
+    },
+    {
+      "name": "who",
+      "unusual": true
+    },
+    {
+      "name": "xacceptaccount",
+      "unusual": true
+    },
+    {
+      "name": "xacceptaddress",
+      "unusual": true
+    },
+    {
+      "name": "xacceptcents",
+      "unusual": true
+    },
+    {
+      "name": "xacceptct",
+      "unusual": true
+    },
+    {
+      "name": "xacceptdescription",
+      "unusual": true
+    },
+    {
+      "name": "xaddress",
+      "unusual": true
+    },
+    {
+      "name": "xproc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "xproc{${1:arg}}"
+      }
+    },
+    {
+      "name": "yacceptaccount",
+      "unusual": true
+    },
+    {
+      "name": "yacceptaddress",
+      "unusual": true
+    },
+    {
+      "name": "yacceptcents",
+      "unusual": true
+    },
+    {
+      "name": "yacceptct",
+      "unusual": true
+    },
+    {
+      "name": "yacceptdescription",
+      "unusual": true
+    },
+    {
+      "name": "yourletter",
+      "unusual": true
+    },
+    {
+      "name": "yourlettertext",
+      "unusual": true
+    },
+    {
+      "name": "yourref",
+      "unusual": true
+    },
+    {
+      "name": "yourreftext",
+      "unusual": true
+    },
+    {
+      "name": "yproc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "yproc{${1:arg}}"
+      }
+    },
+    {
+      "name": "zip",
+      "unusual": true
+    },
+    {
+      "name": "zippedcity",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setupdocument#c,\\letter#c,\\invoice#c": [
+      "language=${1|en-GB,en-US,fr-FR,de-DE,nl-NL,nl-BE,it-IT,es-ES,ca-ES,nb-NO,sr-RS|}",
       "ordinalss",
       "logo",
       "nologo",
@@ -268,5 +708,6 @@
       "vertical",
       "novertical"
     ]
-  ]
+  },
+  "args": []
 }

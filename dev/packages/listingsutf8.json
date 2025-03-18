@@ -1,0 +1,63 @@
+{
+  "deps": [
+    {
+      "name": "listings"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "stringenc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "lstlgrindeffile",
+      "if": "lgrind"
+    },
+    {
+      "name": "lstdefineformat",
+      "if": "formats",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lstdefineformat{${1:name}}{${2:format}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/listingsutf8#c": [
+      "draft",
+      "final",
+      "savemem",
+      "noaspects",
+      "lgrind",
+      "procnames",
+      "hyper",
+      "formats",
+      "0.21"
+    ],
+    "\\lstinputlisting": [
+      "inputencoding=utf8/${1:one-byte-encoding}"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle": [
+      "procnamekeys={${1:keywords}}",
+      "moreprocnamekeys={${1:keywords}}",
+      "deleteprocnamekeys={${1:keywords}}",
+      "procnamestyle=${1:style}",
+      "indexprocnames",
+      "hyperref={${1:identifiers}}",
+      "morehyperref={${1:identifiers}}",
+      "deletehyperref={${1:identifiers}}",
+      "hyperanchor=${1:two-parameter macro}",
+      "hyperlink=${1:two-parameter macro}",
+      "lgrindef=${1:language}"
+    ]
+  },
+  "args": [
+    "\\usepackage/listingsutf8#c"
+  ]
+}

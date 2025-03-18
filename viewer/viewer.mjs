@@ -2,7 +2,7 @@
  * @licstart The following is the entire license notice for the
  * JavaScript code in this page
  *
- * Copyright 2023 Mozilla Foundation
+ * Copyright 2024 Mozilla Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ __webpack_require__.d(__webpack_exports__, {
   PDFViewerApplicationOptions: () => (/* reexport */ AppOptions)
 });
 
-;// CONCATENATED MODULE: ./web/ui_utils.js
+;// ./web/ui_utils.js
 const DEFAULT_SCALE_VALUE = "auto";
 const DEFAULT_SCALE = 1.0;
 const DEFAULT_SCALE_DELTA = 1.1;
@@ -105,16 +105,6 @@ const CursorTool = {
   ZOOM: 2
 };
 const AutoPrintRegExp = /\bprint\s*\(/;
-class OutputScale {
-  constructor() {
-    const pixelRatio = window.devicePixelRatio || 1;
-    this.sx = pixelRatio;
-    this.sy = pixelRatio;
-  }
-  get scaled() {
-    return this.sx !== 1 || this.sy !== 1;
-  }
-}
 function scrollIntoView(element, spot, scrollMatches = false) {
   let parent = element.offsetParent;
   if (!parent) {
@@ -142,7 +132,7 @@ function scrollIntoView(element, spot, scrollMatches = false) {
   }
   parent.scrollTop = offsetY;
 }
-function watchScroll(viewAreaElement, callback) {
+function watchScroll(viewAreaElement, callback, abortSignal = undefined) {
   const debounceScroll = function (evt) {
     if (rAF) {
       return;
@@ -172,7 +162,13 @@ function watchScroll(viewAreaElement, callback) {
     _eventHandler: debounceScroll
   };
   let rAF = null;
-  viewAreaElement.addEventListener("scroll", debounceScroll, true);
+  viewAreaElement.addEventListener("scroll", debounceScroll, {
+    useCapture: true,
+    signal: abortSignal
+  });
+  abortSignal?.addEventListener("abort", () => window.cancelAnimationFrame(rAF), {
+    once: true
+  });
   return state;
 }
 function parseQueryString(query) {
@@ -250,9 +246,8 @@ function approximateFraction(x) {
   }
   return result;
 }
-function roundToDivide(x, div) {
-  const r = x % div;
-  return r === 0 ? x : Math.round(x - r + div);
+function floorToDivide(x, div) {
+  return x - x % div;
 }
 function getPageSizeInches({
   view,
@@ -441,7 +436,7 @@ class ProgressBar {
     }
   }
   setDisableAutoFetch(delay = 5000) {
-    if (isNaN(this.#percent)) {
+    if (this.#percent === 100 || isNaN(this.#percent)) {
       return;
     }
     if (this.#disableAutoFetchTimeout) {
@@ -527,18 +522,28 @@ function toggleExpandedBtn(button, toggle, view = null) {
   button.setAttribute("aria-expanded", toggle);
   view?.classList.toggle("hidden", !toggle);
 }
+const calcRound = function () {
+  const e = document.createElement("div");
+  e.style.width = "round(down, calc(1.6666666666666665 * 792px), 1px)";
+  return e.style.width === "calc(1320px)" ? Math.fround : x => x;
+}();
 
-;// CONCATENATED MODULE: ./web/app_options.js
+;// ./web/app_options.js
 {
-  var compatibilityParams = Object.create(null);
+  var compatParams = new Map();
   const userAgent = navigator.userAgent || "";
   const platform = navigator.platform || "";
   const maxTouchPoints = navigator.maxTouchPoints || 1;
   const isAndroid = /Android/.test(userAgent);
   const isIOS = /\b(iPad|iPhone|iPod)(?=;)/.test(userAgent) || platform === "MacIntel" && maxTouchPoints > 1;
-  (function checkCanvasSizeLimitation() {
+  (function () {
     if (isIOS || isAndroid) {
-      compatibilityParams.maxCanvasPixels = 5242880;
+      compatParams.set("maxCanvasPixels", 5242880);
+    }
+  })();
+  (function () {
+    if (isAndroid) {
+      compatParams.set("useSystemFonts", false);
     }
   })();
 }
@@ -547,15 +552,37 @@ const OptionKind = {
   VIEWER: 0x02,
   API: 0x04,
   WORKER: 0x08,
+  EVENT_DISPATCH: 0x10,
   PREFERENCE: 0x80
 };
+const Type = {
+  BOOLEAN: 0x01,
+  NUMBER: 0x02,
+  OBJECT: 0x04,
+  STRING: 0x08,
+  UNDEFINED: 0x10
+};
 const defaultOptions = {
+  allowedGlobalEvents: {
+    value: null,
+    kind: OptionKind.BROWSER
+  },
   canvasMaxAreaInBytes: {
     value: -1,
     kind: OptionKind.BROWSER + OptionKind.API
   },
   isInAutomation: {
     value: false,
+    kind: OptionKind.BROWSER
+  },
+  localeProperties: {
+    value: {
+      lang: navigator.language || "en-US"
+    },
+    kind: OptionKind.BROWSER
+  },
+  nimbusDataStr: {
+    value: "",
     kind: OptionKind.BROWSER
   },
   supportsCaretBrowsingMode: {
@@ -581,6 +608,14 @@ const defaultOptions = {
   supportsPinchToZoom: {
     value: true,
     kind: OptionKind.BROWSER
+  },
+  toolbarDensity: {
+    value: 0,
+    kind: OptionKind.BROWSER + OptionKind.EVENT_DISPATCH
+  },
+  altTextLearnMoreUrl: {
+    value: "",
+    kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   annotationEditorMode: {
     value: 0,
@@ -614,16 +649,24 @@ const defaultOptions = {
     value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
-  enableHighlightEditor: {
+  enableAltText: {
     value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
+  },
+  enableAltTextModelDownload: {
+    value: true,
+    kind: OptionKind.VIEWER + OptionKind.PREFERENCE + OptionKind.EVENT_DISPATCH
+  },
+  enableGuessAltText: {
+    value: true,
+    kind: OptionKind.VIEWER + OptionKind.PREFERENCE + OptionKind.EVENT_DISPATCH
   },
   enableHighlightFloatingButton: {
     value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
-  enableML: {
-    value: false,
+  enableNewAltTextWhenAddingImage: {
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enablePermissions: {
@@ -638,8 +681,8 @@ const defaultOptions = {
     value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
-  enableStampEditor: {
-    value: true,
+  enableUpdatedAddImage: {
+    value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   externalLinkRel: {
@@ -738,6 +781,10 @@ const defaultOptions = {
     value: "",
     kind: OptionKind.API
   },
+  enableHWA: {
+    value: true,
+    kind: OptionKind.API + OptionKind.VIEWER + OptionKind.PREFERENCE
+  },
   enableXfa: {
     value: true,
     kind: OptionKind.API + OptionKind.PREFERENCE
@@ -766,6 +813,11 @@ const defaultOptions = {
     value: "../standard_fonts/",
     kind: OptionKind.API
   },
+  useSystemFonts: {
+    value: undefined,
+    kind: OptionKind.API,
+    type: Type.BOOLEAN + Type.UNDEFINED
+  },
   verbosity: {
     value: 1,
     kind: OptionKind.API
@@ -792,71 +844,89 @@ const defaultOptions = {
     value: 0,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   };
+  defaultOptions.enableFakeMLManager = {
+    value: true,
+    kind: OptionKind.VIEWER
+  };
 }
 {
   defaultOptions.disablePreferences = {
     value: false,
     kind: OptionKind.VIEWER
   };
-  defaultOptions.locale = {
-    value: navigator.language || "en-US",
-    kind: OptionKind.VIEWER
-  };
-}
-const userOptions = Object.create(null);
-{
-  for (const name in compatibilityParams) {
-    userOptions[name] = compatibilityParams[name];
-  }
 }
 class AppOptions {
-  constructor() {
-    throw new Error("Cannot initialize AppOptions.");
+  static eventBus;
+  static #opts = new Map();
+  static {
+    for (const name in defaultOptions) {
+      this.#opts.set(name, defaultOptions[name].value);
+    }
+    for (const [name, value] of compatParams) {
+      this.#opts.set(name, value);
+    }
+    this._hasInvokedSet = false;
+    this._checkDisablePreferences = () => {
+      if (this.get("disablePreferences")) {
+        return true;
+      }
+      if (this._hasInvokedSet) {
+        console.warn("The Preferences may override manually set AppOptions; " + 'please use the "disablePreferences"-option to prevent that.');
+      }
+      return false;
+    };
   }
   static get(name) {
-    return userOptions[name] ?? defaultOptions[name]?.value ?? undefined;
+    return this.#opts.get(name);
   }
   static getAll(kind = null, defaultOnly = false) {
     const options = Object.create(null);
     for (const name in defaultOptions) {
-      const defaultOption = defaultOptions[name];
-      if (kind && !(kind & defaultOption.kind)) {
+      const defaultOpt = defaultOptions[name];
+      if (kind && !(kind & defaultOpt.kind)) {
         continue;
       }
-      options[name] = defaultOnly ? defaultOption.value : userOptions[name] ?? defaultOption.value;
+      options[name] = !defaultOnly ? this.#opts.get(name) : defaultOpt.value;
     }
     return options;
   }
   static set(name, value) {
-    userOptions[name] = value;
+    this.setAll({
+      [name]: value
+    });
   }
-  static setAll(options, init = false) {
-    if (init) {
-      if (this.get("disablePreferences")) {
-        return;
-      }
-      for (const name in userOptions) {
-        if (compatibilityParams[name] !== undefined) {
-          continue;
-        }
-        console.warn("setAll: The Preferences may override manually set AppOptions; " + 'please use the "disablePreferences"-option in order to prevent that.');
-        break;
-      }
-    }
+  static setAll(options, prefs = false) {
+    this._hasInvokedSet ||= true;
+    let events;
     for (const name in options) {
-      userOptions[name] = options[name];
+      const defaultOpt = defaultOptions[name],
+        userOpt = options[name];
+      if (!defaultOpt || !(typeof userOpt === typeof defaultOpt.value || Type[(typeof userOpt).toUpperCase()] & defaultOpt.type)) {
+        continue;
+      }
+      const {
+        kind
+      } = defaultOpt;
+      if (prefs && !(kind & OptionKind.BROWSER || kind & OptionKind.PREFERENCE)) {
+        continue;
+      }
+      if (this.eventBus && kind & OptionKind.EVENT_DISPATCH) {
+        (events ||= new Map()).set(name, userOpt);
+      }
+      this.#opts.set(name, userOpt);
     }
-  }
-  static remove(name) {
-    delete userOptions[name];
-    const val = compatibilityParams[name];
-    if (val !== undefined) {
-      userOptions[name] = val;
+    if (events) {
+      for (const [name, value] of events) {
+        this.eventBus.dispatch(name.toLowerCase(), {
+          source: this,
+          value
+        });
+      }
     }
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_link_service.js
+;// ./web/pdf_link_service.js
 
 const DEFAULT_LINK_REL = "noopener noreferrer nofollow";
 const LinkTarget = {
@@ -1162,26 +1232,27 @@ class PDFLinkService {
     if (!(typeof zoom === "object" && typeof zoom?.name === "string")) {
       return false;
     }
+    const argsLen = args.length;
     let allowNull = true;
     switch (zoom.name) {
       case "XYZ":
-        if (args.length !== 3) {
+        if (argsLen < 2 || argsLen > 3) {
           return false;
         }
         break;
       case "Fit":
       case "FitB":
-        return args.length === 0;
+        return argsLen === 0;
       case "FitH":
       case "FitBH":
       case "FitV":
       case "FitBV":
-        if (args.length !== 1) {
+        if (argsLen > 1) {
           return false;
         }
         break;
       case "FitR":
-        if (args.length !== 4) {
+        if (argsLen !== 4) {
           return false;
         }
         allowNull = false;
@@ -1201,7 +1272,7 @@ class SimpleLinkService extends PDFLinkService {
   setDocument(pdfDocument, baseUrl = null) {}
 }
 
-;// CONCATENATED MODULE: ./web/pdfjs.js
+;// ./web/pdfjs.js
 const {
   AbortException,
   AnnotationEditorLayer,
@@ -1211,7 +1282,6 @@ const {
   AnnotationLayer,
   AnnotationMode,
   build,
-  CMapCompressionType,
   ColorPicker,
   createValidAbsoluteUrl,
   DOMSVGFactory,
@@ -1231,7 +1301,7 @@ const {
   noContextMenu,
   normalizeUnicode,
   OPS,
-  Outliner,
+  OutputScale,
   PasswordResponses,
   PDFDataRangeTransport,
   PDFDateString,
@@ -1239,19 +1309,19 @@ const {
   PermissionFlag,
   PixelsPerInch,
   RenderingCancelledException,
-  renderTextLayer,
   setLayerDimensions,
   shadow,
+  stopEvent,
   TextLayer,
+  TouchManager,
   UnexpectedResponseException,
-  updateTextLayer,
   Util,
   VerbosityLevel,
   version,
   XfaLayer
 } = globalThis.pdfjsLib;
 
-;// CONCATENATED MODULE: ./web/event_utils.js
+;// ./web/event_utils.js
 const WaitOnType = {
   EVENT: "event",
   TIMEOUT: "timeout"
@@ -1357,19 +1427,23 @@ class EventBus {
     }
   }
 }
-class AutomationEventBus extends EventBus {
+class FirefoxEventBus extends EventBus {
+  #externalServices;
+  #globalEventNames;
+  #isInAutomation;
+  constructor(globalEventNames, externalServices, isInAutomation) {
+    super();
+    this.#globalEventNames = globalEventNames;
+    this.#externalServices = externalServices;
+    this.#isInAutomation = isInAutomation;
+  }
   dispatch(eventName, data) {
-    throw new Error("Not implemented: AutomationEventBus.dispatch");
+    throw new Error("Not implemented: FirefoxEventBus.dispatch");
   }
 }
 
-;// CONCATENATED MODULE: ./web/external_services.js
+;// ./web/external_services.js
 class BaseExternalServices {
-  constructor() {
-    if (this.constructor === BaseExternalServices) {
-      throw new Error("Cannot initialize BaseExternalServices.");
-    }
-  }
   updateFindControlState(data) {}
   updateFindMatchesCount(data) {}
   initPassiveLoading() {}
@@ -1383,36 +1457,29 @@ class BaseExternalServices {
   updateEditorStates(data) {
     throw new Error("Not implemented: updateEditorStates");
   }
-  async getNimbusExperimentData() {}
+  dispatchGlobalEvent(_event) {}
 }
 
-;// CONCATENATED MODULE: ./web/preferences.js
+;// ./web/preferences.js
 
 class BasePreferences {
-  #browserDefaults = Object.freeze({
-    canvasMaxAreaInBytes: -1,
-    isInAutomation: false,
-    supportsCaretBrowsingMode: false,
-    supportsDocumentFonts: true,
-    supportsIntegratedFind: false,
-    supportsMouseWheelZoomCtrlKey: true,
-    supportsMouseWheelZoomMetaKey: true,
-    supportsPinchToZoom: true
-  });
   #defaults = Object.freeze({
+    altTextLearnMoreUrl: "",
     annotationEditorMode: 0,
     annotationMode: 2,
     cursorToolOnLoad: 0,
     defaultZoomDelay: 400,
     defaultZoomValue: "",
     disablePageLabels: false,
-    enableHighlightEditor: false,
+    enableAltText: false,
+    enableAltTextModelDownload: true,
+    enableGuessAltText: true,
     enableHighlightFloatingButton: false,
-    enableML: false,
+    enableNewAltTextWhenAddingImage: true,
     enablePermissions: false,
     enablePrintAutoRotate: true,
     enableScripting: true,
-    enableStampEditor: true,
+    enableUpdatedAddImage: false,
     externalLinkTarget: 0,
     highlightEditorColors: "yellow=#FFFF98,green=#53FFBC,blue=#80EBFF,pink=#FFCBE6,red=#FF4F5F",
     historyUpdateUrl: false,
@@ -1430,29 +1497,23 @@ class BasePreferences {
     disableFontFace: false,
     disableRange: false,
     disableStream: false,
+    enableHWA: true,
     enableXfa: true,
     viewerCssTheme: 0
   });
-  #prefs = Object.create(null);
   #initializedPromise = null;
   constructor() {
-    if (this.constructor === BasePreferences) {
-      throw new Error("Cannot initialize BasePreferences.");
-    }
     this.#initializedPromise = this._readFromStorage(this.#defaults).then(({
       browserPrefs,
       prefs
     }) => {
-      const options = Object.create(null);
-      for (const [name, val] of Object.entries(this.#browserDefaults)) {
-        const prefVal = browserPrefs?.[name];
-        options[name] = typeof prefVal === typeof val ? prefVal : val;
+      if (AppOptions._checkDisablePreferences()) {
+        return;
       }
-      for (const [name, val] of Object.entries(this.#defaults)) {
-        const prefVal = prefs?.[name];
-        options[name] = this.#prefs[name] = typeof prefVal === typeof val ? prefVal : val;
-      }
-      AppOptions.setAll(options, true);
+      AppOptions.setAll({
+        ...browserPrefs,
+        ...prefs
+      }, true);
     });
   }
   async _writeToStorage(prefObj) {
@@ -1461,65 +1522,28 @@ class BasePreferences {
   async _readFromStorage(prefObj) {
     throw new Error("Not implemented: _readFromStorage");
   }
-  #updatePref({
-    name,
-    value
-  }) {
-    throw new Error("Not implemented: #updatePref");
-  }
   async reset() {
     await this.#initializedPromise;
-    const oldPrefs = structuredClone(this.#prefs);
-    this.#prefs = Object.create(null);
-    try {
-      await this._writeToStorage(this.#defaults);
-    } catch (reason) {
-      this.#prefs = oldPrefs;
-      throw reason;
-    }
+    AppOptions.setAll(this.#defaults, true);
+    await this._writeToStorage(this.#defaults);
   }
   async set(name, value) {
     await this.#initializedPromise;
-    const defaultValue = this.#defaults[name],
-      oldPrefs = structuredClone(this.#prefs);
-    if (defaultValue === undefined) {
-      throw new Error(`Set preference: "${name}" is undefined.`);
-    } else if (value === undefined) {
-      throw new Error("Set preference: no value is specified.");
-    }
-    const valueType = typeof value,
-      defaultType = typeof defaultValue;
-    if (valueType !== defaultType) {
-      if (valueType === "number" && defaultType === "string") {
-        value = value.toString();
-      } else {
-        throw new Error(`Set preference: "${value}" is a ${valueType}, expected a ${defaultType}.`);
-      }
-    } else if (valueType === "number" && !Number.isInteger(value)) {
-      throw new Error(`Set preference: "${value}" must be an integer.`);
-    }
-    this.#prefs[name] = value;
-    try {
-      await this._writeToStorage(this.#prefs);
-    } catch (reason) {
-      this.#prefs = oldPrefs;
-      throw reason;
-    }
+    AppOptions.setAll({
+      [name]: value
+    }, true);
+    await this._writeToStorage(AppOptions.getAll(OptionKind.PREFERENCE));
   }
   async get(name) {
     await this.#initializedPromise;
-    const defaultValue = this.#defaults[name];
-    if (defaultValue === undefined) {
-      throw new Error(`Get preference: "${name}" is undefined.`);
-    }
-    return this.#prefs[name] ?? defaultValue;
+    return AppOptions.get(name);
   }
   get initializedPromise() {
     return this.#initializedPromise;
   }
 }
 
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/types.js
+;// ./node_modules/@fluent/bundle/esm/types.js
 class FluentType {
   constructor(value) {
     this.value = value;
@@ -1566,7 +1590,7 @@ class FluentDateTime extends FluentType {
     }
   }
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/resolver.js
+;// ./node_modules/@fluent/bundle/esm/resolver.js
 
 const MAX_PLACEABLES = 100;
 const FSI = "\u2068";
@@ -1786,7 +1810,7 @@ function resolvePattern(scope, value) {
   }
   return resolveComplexPattern(scope, value);
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/scope.js
+;// ./node_modules/@fluent/bundle/esm/scope.js
 class Scope {
   constructor(bundle, errors, args) {
     this.dirty = new WeakSet();
@@ -1815,7 +1839,7 @@ class Scope {
     return cache[id];
   }
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/builtins.js
+;// ./node_modules/@fluent/bundle/esm/builtins.js
 
 function values(opts, allowed) {
   const unwrapped = Object.create(null);
@@ -1864,7 +1888,7 @@ function DATETIME(args, opts) {
   }
   throw new TypeError("Invalid argument to DATETIME");
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/memoizer.js
+;// ./node_modules/@fluent/bundle/esm/memoizer.js
 const cache = new Map();
 function getMemoizerForLocale(locales) {
   const stringLocale = Array.isArray(locales) ? locales.join(" ") : locales;
@@ -1875,7 +1899,7 @@ function getMemoizerForLocale(locales) {
   }
   return memoizer;
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/bundle.js
+;// ./node_modules/@fluent/bundle/esm/bundle.js
 
 
 
@@ -1944,7 +1968,7 @@ class FluentBundle {
     }
   }
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/resource.js
+;// ./node_modules/@fluent/bundle/esm/resource.js
 const RE_MESSAGE_START = /^(-?[a-zA-Z][\w-]*) *= */gm;
 const RE_ATTRIBUTE_START = /\.([a-zA-Z][\w-]*) *= */y;
 const RE_VARIANT_START = /\*?\[/y;
@@ -2323,11 +2347,11 @@ class Indent {
     this.length = length;
   }
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/bundle/esm/index.js
+;// ./node_modules/@fluent/bundle/esm/index.js
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@fluent/dom/esm/overlay.js
+;// ./node_modules/@fluent/dom/esm/overlay.js
 const reOverlay = /<|&#?\w+;/;
 const TEXT_LEVEL_ELEMENTS = {
   "http://www.w3.org/1999/xhtml": ["em", "strong", "small", "s", "cite", "q", "dfn", "abbr", "data", "time", "code", "var", "samp", "kbd", "sub", "sup", "i", "b", "u", "mark", "bdi", "bdo", "span", "br", "wbr"]
@@ -2478,7 +2502,7 @@ function shallowPopulateUsing(fromElement, toElement) {
   overlayAttributes(fromElement, toElement);
   return toElement;
 }
-;// CONCATENATED MODULE: ./node_modules/cached-iterable/src/cached_iterable.mjs
+;// ./node_modules/cached-iterable/src/cached_iterable.mjs
 class CachedIterable extends Array {
   static from(iterable) {
     if (iterable instanceof this) {
@@ -2487,7 +2511,7 @@ class CachedIterable extends Array {
     return new this(iterable);
   }
 }
-;// CONCATENATED MODULE: ./node_modules/cached-iterable/src/cached_sync_iterable.mjs
+;// ./node_modules/cached-iterable/src/cached_sync_iterable.mjs
 
 class CachedSyncIterable extends CachedIterable {
   constructor(iterable) {
@@ -2522,7 +2546,7 @@ class CachedSyncIterable extends CachedIterable {
     return this[this.length - 1];
   }
 }
-;// CONCATENATED MODULE: ./node_modules/cached-iterable/src/cached_async_iterable.mjs
+;// ./node_modules/cached-iterable/src/cached_async_iterable.mjs
 
 class CachedAsyncIterable extends CachedIterable {
   constructor(iterable) {
@@ -2559,10 +2583,10 @@ class CachedAsyncIterable extends CachedIterable {
     return this[this.length - 1];
   }
 }
-;// CONCATENATED MODULE: ./node_modules/cached-iterable/src/index.mjs
+;// ./node_modules/cached-iterable/src/index.mjs
 
 
-;// CONCATENATED MODULE: ./node_modules/@fluent/dom/esm/localization.js
+;// ./node_modules/@fluent/dom/esm/localization.js
 
 class Localization {
   constructor(resourceIds = [], generateBundles) {
@@ -2677,7 +2701,7 @@ function keysFromBundle(method, bundle, keys, translations) {
   });
   return missingIds;
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/dom/esm/dom_localization.js
+;// ./node_modules/@fluent/dom/esm/dom_localization.js
 
 
 const L10NID_ATTR_NAME = "data-l10n-id";
@@ -2743,6 +2767,9 @@ class DOMLocalization extends Localization {
     this.pauseObserving();
     if (this.roots.size === 0) {
       this.mutationObserver = null;
+      if (this.windowElement && this.pendingrAF) {
+        this.windowElement.cancelAnimationFrame(this.pendingrAF);
+      }
       this.windowElement = null;
       this.pendingrAF = null;
       this.pendingElements.clear();
@@ -2837,12 +2864,13 @@ class DOMLocalization extends Localization {
     };
   }
 }
-;// CONCATENATED MODULE: ./node_modules/@fluent/dom/esm/index.js
+;// ./node_modules/@fluent/dom/esm/index.js
 
 
-;// CONCATENATED MODULE: ./web/l10n.js
+;// ./web/l10n.js
 class L10n {
   #dir;
+  #elements;
   #lang;
   #l10n;
   constructor({
@@ -2874,13 +2902,31 @@ class L10n {
       id: ids,
       args
     }]);
-    return messages?.[0].value || fallback;
+    return messages[0]?.value || fallback;
   }
   async translate(element) {
+    (this.#elements ||= new Set()).add(element);
     try {
       this.#l10n.connectRoot(element);
       await this.#l10n.translateRoots();
     } catch {}
+  }
+  async translateOnce(element) {
+    try {
+      await this.#l10n.translateElements([element]);
+    } catch (ex) {
+      console.error("translateOnce:", ex);
+    }
+  }
+  async destroy() {
+    if (this.#elements) {
+      for (const element of this.#elements) {
+        this.#l10n.disconnectRoot(element);
+      }
+      this.#elements.clear();
+      this.#elements = null;
+    }
+    this.#l10n.pauseObserving();
   }
   pause() {
     this.#l10n.pauseObserving();
@@ -2915,7 +2961,7 @@ class L10n {
 }
 const GenericL10n = null;
 
-;// CONCATENATED MODULE: ./web/genericl10n.js
+;// ./web/genericl10n.js
 
 
 
@@ -2954,8 +3000,7 @@ class genericl10n_GenericL10n extends L10n {
       const bundle = await this.#createBundle(lang, baseURL, paths);
       if (bundle) {
         yield bundle;
-      }
-      if (lang === "en-us") {
+      } else if (lang === "en-us") {
         yield this.#createBundleFallback(lang);
       }
     }
@@ -2989,12 +3034,12 @@ class genericl10n_GenericL10n extends L10n {
     yield this.#createBundleFallback(lang);
   }
   static async #createBundleFallback(lang) {
-    const text = "pdfjs-previous-button =\n    .title = Previous Page\npdfjs-previous-button-label = Previous\npdfjs-next-button =\n    .title = Next Page\npdfjs-next-button-label = Next\npdfjs-page-input =\n    .title = Page\npdfjs-of-pages = of { $pagesCount }\npdfjs-page-of-pages = ({ $pageNumber } of { $pagesCount })\npdfjs-zoom-out-button =\n    .title = Zoom Out\npdfjs-zoom-out-button-label = Zoom Out\npdfjs-zoom-in-button =\n    .title = Zoom In\npdfjs-zoom-in-button-label = Zoom In\npdfjs-zoom-select =\n    .title = Zoom\npdfjs-presentation-mode-button =\n    .title = Switch to Presentation Mode\npdfjs-presentation-mode-button-label = Presentation Mode\npdfjs-open-file-button =\n    .title = Open File\npdfjs-open-file-button-label = Open\npdfjs-print-button =\n    .title = Print\npdfjs-print-button-label = Print\npdfjs-save-button =\n    .title = Save\npdfjs-save-button-label = Save\npdfjs-download-button =\n    .title = Download\npdfjs-download-button-label = Download\npdfjs-bookmark-button =\n    .title = Current Page (View URL from Current Page)\npdfjs-bookmark-button-label = Current Page\npdfjs-tools-button =\n    .title = Tools\npdfjs-tools-button-label = Tools\npdfjs-first-page-button =\n    .title = Go to First Page\npdfjs-first-page-button-label = Go to First Page\npdfjs-last-page-button =\n    .title = Go to Last Page\npdfjs-last-page-button-label = Go to Last Page\npdfjs-page-rotate-cw-button =\n    .title = Rotate Clockwise\npdfjs-page-rotate-cw-button-label = Rotate Clockwise\npdfjs-page-rotate-ccw-button =\n    .title = Rotate Counterclockwise\npdfjs-page-rotate-ccw-button-label = Rotate Counterclockwise\npdfjs-cursor-text-select-tool-button =\n    .title = Enable Text Selection Tool\npdfjs-cursor-text-select-tool-button-label = Text Selection Tool\npdfjs-cursor-hand-tool-button =\n    .title = Enable Hand Tool\npdfjs-cursor-hand-tool-button-label = Hand Tool\npdfjs-scroll-page-button =\n    .title = Use Page Scrolling\npdfjs-scroll-page-button-label = Page Scrolling\npdfjs-scroll-vertical-button =\n    .title = Use Vertical Scrolling\npdfjs-scroll-vertical-button-label = Vertical Scrolling\npdfjs-scroll-horizontal-button =\n    .title = Use Horizontal Scrolling\npdfjs-scroll-horizontal-button-label = Horizontal Scrolling\npdfjs-scroll-wrapped-button =\n    .title = Use Wrapped Scrolling\npdfjs-scroll-wrapped-button-label = Wrapped Scrolling\npdfjs-spread-none-button =\n    .title = Do not join page spreads\npdfjs-spread-none-button-label = No Spreads\npdfjs-spread-odd-button =\n    .title = Join page spreads starting with odd-numbered pages\npdfjs-spread-odd-button-label = Odd Spreads\npdfjs-spread-even-button =\n    .title = Join page spreads starting with even-numbered pages\npdfjs-spread-even-button-label = Even Spreads\npdfjs-document-properties-button =\n    .title = Document Properties\u2026\npdfjs-document-properties-button-label = Document Properties\u2026\npdfjs-document-properties-file-name = File name:\npdfjs-document-properties-file-size = File size:\npdfjs-document-properties-kb = { $size_kb } KB ({ $size_b } bytes)\npdfjs-document-properties-mb = { $size_mb } MB ({ $size_b } bytes)\npdfjs-document-properties-title = Title:\npdfjs-document-properties-author = Author:\npdfjs-document-properties-subject = Subject:\npdfjs-document-properties-keywords = Keywords:\npdfjs-document-properties-creation-date = Creation Date:\npdfjs-document-properties-modification-date = Modification Date:\npdfjs-document-properties-date-string = { $date }, { $time }\npdfjs-document-properties-creator = Creator:\npdfjs-document-properties-producer = PDF Producer:\npdfjs-document-properties-version = PDF Version:\npdfjs-document-properties-page-count = Page Count:\npdfjs-document-properties-page-size = Page Size:\npdfjs-document-properties-page-size-unit-inches = in\npdfjs-document-properties-page-size-unit-millimeters = mm\npdfjs-document-properties-page-size-orientation-portrait = portrait\npdfjs-document-properties-page-size-orientation-landscape = landscape\npdfjs-document-properties-page-size-name-a-three = A3\npdfjs-document-properties-page-size-name-a-four = A4\npdfjs-document-properties-page-size-name-letter = Letter\npdfjs-document-properties-page-size-name-legal = Legal\npdfjs-document-properties-page-size-dimension-string = { $width } \xD7 { $height } { $unit } ({ $orientation })\npdfjs-document-properties-page-size-dimension-name-string = { $width } \xD7 { $height } { $unit } ({ $name }, { $orientation })\npdfjs-document-properties-linearized = Fast Web View:\npdfjs-document-properties-linearized-yes = Yes\npdfjs-document-properties-linearized-no = No\npdfjs-document-properties-close-button = Close\npdfjs-print-progress-message = Preparing document for printing\u2026\npdfjs-print-progress-percent = { $progress }%\npdfjs-print-progress-close-button = Cancel\npdfjs-printing-not-supported = Warning: Printing is not fully supported by this browser.\npdfjs-printing-not-ready = Warning: The PDF is not fully loaded for printing.\npdfjs-toggle-sidebar-button =\n    .title = Toggle Sidebar\npdfjs-toggle-sidebar-notification-button =\n    .title = Toggle Sidebar (document contains outline/attachments/layers)\npdfjs-toggle-sidebar-button-label = Toggle Sidebar\npdfjs-document-outline-button =\n    .title = Show Document Outline (double-click to expand/collapse all items)\npdfjs-document-outline-button-label = Document Outline\npdfjs-attachments-button =\n    .title = Show Attachments\npdfjs-attachments-button-label = Attachments\npdfjs-layers-button =\n    .title = Show Layers (double-click to reset all layers to the default state)\npdfjs-layers-button-label = Layers\npdfjs-thumbs-button =\n    .title = Show Thumbnails\npdfjs-thumbs-button-label = Thumbnails\npdfjs-current-outline-item-button =\n    .title = Find Current Outline Item\npdfjs-current-outline-item-button-label = Current Outline Item\npdfjs-findbar-button =\n    .title = Find in Document\npdfjs-findbar-button-label = Find\npdfjs-additional-layers = Additional Layers\npdfjs-thumb-page-title =\n    .title = Page { $page }\npdfjs-thumb-page-canvas =\n    .aria-label = Thumbnail of Page { $page }\npdfjs-find-input =\n    .title = Find\n    .placeholder = Find in document\u2026\npdfjs-find-previous-button =\n    .title = Find the previous occurrence of the phrase\npdfjs-find-previous-button-label = Previous\npdfjs-find-next-button =\n    .title = Find the next occurrence of the phrase\npdfjs-find-next-button-label = Next\npdfjs-find-highlight-checkbox = Highlight All\npdfjs-find-match-case-checkbox-label = Match Case\npdfjs-find-match-diacritics-checkbox-label = Match Diacritics\npdfjs-find-entire-word-checkbox-label = Whole Words\npdfjs-find-reached-top = Reached top of document, continued from bottom\npdfjs-find-reached-bottom = Reached end of document, continued from top\npdfjs-find-match-count =\n    { $total ->\n        [one] { $current } of { $total } match\n       *[other] { $current } of { $total } matches\n    }\npdfjs-find-match-count-limit =\n    { $limit ->\n        [one] More than { $limit } match\n       *[other] More than { $limit } matches\n    }\npdfjs-find-not-found = Phrase not found\npdfjs-page-scale-width = Page Width\npdfjs-page-scale-fit = Page Fit\npdfjs-page-scale-auto = Automatic Zoom\npdfjs-page-scale-actual = Actual Size\npdfjs-page-scale-percent = { $scale }%\npdfjs-page-landmark =\n    .aria-label = Page { $page }\npdfjs-loading-error = An error occurred while loading the PDF.\npdfjs-invalid-file-error = Invalid or corrupted PDF file.\npdfjs-missing-file-error = Missing PDF file.\npdfjs-unexpected-response-error = Unexpected server response.\npdfjs-rendering-error = An error occurred while rendering the page.\npdfjs-annotation-date-string = { $date }, { $time }\npdfjs-text-annotation-type =\n    .alt = [{ $type } Annotation]\npdfjs-password-label = Enter the password to open this PDF file.\npdfjs-password-invalid = Invalid password. Please try again.\npdfjs-password-ok-button = OK\npdfjs-password-cancel-button = Cancel\npdfjs-web-fonts-disabled = Web fonts are disabled: unable to use embedded PDF fonts.\npdfjs-editor-free-text-button =\n    .title = Text\npdfjs-editor-free-text-button-label = Text\npdfjs-editor-ink-button =\n    .title = Draw\npdfjs-editor-ink-button-label = Draw\npdfjs-editor-stamp-button =\n    .title = Add or edit images\npdfjs-editor-stamp-button-label = Add or edit images\npdfjs-editor-highlight-button =\n    .title = Highlight\npdfjs-editor-highlight-button-label = Highlight\npdfjs-highlight-floating-button1 =\n    .title = Highlight\n    .aria-label = Highlight\npdfjs-highlight-floating-button-label = Highlight\npdfjs-editor-remove-ink-button =\n    .title = Remove drawing\npdfjs-editor-remove-freetext-button =\n    .title = Remove text\npdfjs-editor-remove-stamp-button =\n    .title = Remove image\npdfjs-editor-remove-highlight-button =\n    .title = Remove highlight\npdfjs-editor-free-text-color-input = Color\npdfjs-editor-free-text-size-input = Size\npdfjs-editor-ink-color-input = Color\npdfjs-editor-ink-thickness-input = Thickness\npdfjs-editor-ink-opacity-input = Opacity\npdfjs-editor-stamp-add-image-button =\n    .title = Add image\npdfjs-editor-stamp-add-image-button-label = Add image\npdfjs-editor-free-highlight-thickness-input = Thickness\npdfjs-editor-free-highlight-thickness-title =\n    .title = Change thickness when highlighting items other than text\npdfjs-free-text =\n    .aria-label = Text Editor\npdfjs-free-text-default-content = Start typing\u2026\npdfjs-ink =\n    .aria-label = Draw Editor\npdfjs-ink-canvas =\n    .aria-label = User-created image\npdfjs-editor-alt-text-button-label = Alt text\npdfjs-editor-alt-text-edit-button-label = Edit alt text\npdfjs-editor-alt-text-dialog-label = Choose an option\npdfjs-editor-alt-text-dialog-description = Alt text (alternative text) helps when people can\u2019t see the image or when it doesn\u2019t load.\npdfjs-editor-alt-text-add-description-label = Add a description\npdfjs-editor-alt-text-add-description-description = Aim for 1-2 sentences that describe the subject, setting, or actions.\npdfjs-editor-alt-text-mark-decorative-label = Mark as decorative\npdfjs-editor-alt-text-mark-decorative-description = This is used for ornamental images, like borders or watermarks.\npdfjs-editor-alt-text-cancel-button = Cancel\npdfjs-editor-alt-text-save-button = Save\npdfjs-editor-alt-text-decorative-tooltip = Marked as decorative\npdfjs-editor-alt-text-textarea =\n    .placeholder = For example, \u201CA young man sits down at a table to eat a meal\u201D\npdfjs-editor-resizer-label-top-left = Top left corner \u2014 resize\npdfjs-editor-resizer-label-top-middle = Top middle \u2014 resize\npdfjs-editor-resizer-label-top-right = Top right corner \u2014 resize\npdfjs-editor-resizer-label-middle-right = Middle right \u2014 resize\npdfjs-editor-resizer-label-bottom-right = Bottom right corner \u2014 resize\npdfjs-editor-resizer-label-bottom-middle = Bottom middle \u2014 resize\npdfjs-editor-resizer-label-bottom-left = Bottom left corner \u2014 resize\npdfjs-editor-resizer-label-middle-left = Middle left \u2014 resize\npdfjs-editor-highlight-colorpicker-label = Highlight color\npdfjs-editor-colorpicker-button =\n    .title = Change color\npdfjs-editor-colorpicker-dropdown =\n    .aria-label = Color choices\npdfjs-editor-colorpicker-yellow =\n    .title = Yellow\npdfjs-editor-colorpicker-green =\n    .title = Green\npdfjs-editor-colorpicker-blue =\n    .title = Blue\npdfjs-editor-colorpicker-pink =\n    .title = Pink\npdfjs-editor-colorpicker-red =\n    .title = Red\npdfjs-editor-highlight-show-all-button-label = Show all\npdfjs-editor-highlight-show-all-button =\n    .title = Show all";
+    const text = "pdfjs-previous-button =\n    .title = Previous Page\npdfjs-previous-button-label = Previous\npdfjs-next-button =\n    .title = Next Page\npdfjs-next-button-label = Next\npdfjs-page-input =\n    .title = Page\npdfjs-of-pages = of { $pagesCount }\npdfjs-page-of-pages = ({ $pageNumber } of { $pagesCount })\npdfjs-zoom-out-button =\n    .title = Zoom Out\npdfjs-zoom-out-button-label = Zoom Out\npdfjs-zoom-in-button =\n    .title = Zoom In\npdfjs-zoom-in-button-label = Zoom In\npdfjs-zoom-select =\n    .title = Zoom\npdfjs-presentation-mode-button =\n    .title = Switch to Presentation Mode\npdfjs-presentation-mode-button-label = Presentation Mode\npdfjs-open-file-button =\n    .title = Open File\npdfjs-open-file-button-label = Open\npdfjs-print-button =\n    .title = Print\npdfjs-print-button-label = Print\npdfjs-save-button =\n    .title = Save\npdfjs-save-button-label = Save\npdfjs-download-button =\n    .title = Download\npdfjs-download-button-label = Download\npdfjs-bookmark-button =\n    .title = Current Page (View URL from Current Page)\npdfjs-bookmark-button-label = Current Page\npdfjs-tools-button =\n    .title = Tools\npdfjs-tools-button-label = Tools\npdfjs-first-page-button =\n    .title = Go to First Page\npdfjs-first-page-button-label = Go to First Page\npdfjs-last-page-button =\n    .title = Go to Last Page\npdfjs-last-page-button-label = Go to Last Page\npdfjs-page-rotate-cw-button =\n    .title = Rotate Clockwise\npdfjs-page-rotate-cw-button-label = Rotate Clockwise\npdfjs-page-rotate-ccw-button =\n    .title = Rotate Counterclockwise\npdfjs-page-rotate-ccw-button-label = Rotate Counterclockwise\npdfjs-cursor-text-select-tool-button =\n    .title = Enable Text Selection Tool\npdfjs-cursor-text-select-tool-button-label = Text Selection Tool\npdfjs-cursor-hand-tool-button =\n    .title = Enable Hand Tool\npdfjs-cursor-hand-tool-button-label = Hand Tool\npdfjs-scroll-page-button =\n    .title = Use Page Scrolling\npdfjs-scroll-page-button-label = Page Scrolling\npdfjs-scroll-vertical-button =\n    .title = Use Vertical Scrolling\npdfjs-scroll-vertical-button-label = Vertical Scrolling\npdfjs-scroll-horizontal-button =\n    .title = Use Horizontal Scrolling\npdfjs-scroll-horizontal-button-label = Horizontal Scrolling\npdfjs-scroll-wrapped-button =\n    .title = Use Wrapped Scrolling\npdfjs-scroll-wrapped-button-label = Wrapped Scrolling\npdfjs-spread-none-button =\n    .title = Do not join page spreads\npdfjs-spread-none-button-label = No Spreads\npdfjs-spread-odd-button =\n    .title = Join page spreads starting with odd-numbered pages\npdfjs-spread-odd-button-label = Odd Spreads\npdfjs-spread-even-button =\n    .title = Join page spreads starting with even-numbered pages\npdfjs-spread-even-button-label = Even Spreads\npdfjs-document-properties-button =\n    .title = Document Properties\u2026\npdfjs-document-properties-button-label = Document Properties\u2026\npdfjs-document-properties-file-name = File name:\npdfjs-document-properties-file-size = File size:\npdfjs-document-properties-size-kb = { NUMBER($kb, maximumSignificantDigits: 3) } KB ({ $b } bytes)\npdfjs-document-properties-size-mb = { NUMBER($mb, maximumSignificantDigits: 3) } MB ({ $b } bytes)\npdfjs-document-properties-title = Title:\npdfjs-document-properties-author = Author:\npdfjs-document-properties-subject = Subject:\npdfjs-document-properties-keywords = Keywords:\npdfjs-document-properties-creation-date = Creation Date:\npdfjs-document-properties-modification-date = Modification Date:\npdfjs-document-properties-date-time-string = { DATETIME($dateObj, dateStyle: \"short\", timeStyle: \"medium\") }\npdfjs-document-properties-creator = Creator:\npdfjs-document-properties-producer = PDF Producer:\npdfjs-document-properties-version = PDF Version:\npdfjs-document-properties-page-count = Page Count:\npdfjs-document-properties-page-size = Page Size:\npdfjs-document-properties-page-size-unit-inches = in\npdfjs-document-properties-page-size-unit-millimeters = mm\npdfjs-document-properties-page-size-orientation-portrait = portrait\npdfjs-document-properties-page-size-orientation-landscape = landscape\npdfjs-document-properties-page-size-name-a-three = A3\npdfjs-document-properties-page-size-name-a-four = A4\npdfjs-document-properties-page-size-name-letter = Letter\npdfjs-document-properties-page-size-name-legal = Legal\npdfjs-document-properties-page-size-dimension-string = { $width } \xD7 { $height } { $unit } ({ $orientation })\npdfjs-document-properties-page-size-dimension-name-string = { $width } \xD7 { $height } { $unit } ({ $name }, { $orientation })\npdfjs-document-properties-linearized = Fast Web View:\npdfjs-document-properties-linearized-yes = Yes\npdfjs-document-properties-linearized-no = No\npdfjs-document-properties-close-button = Close\npdfjs-print-progress-message = Preparing document for printing\u2026\npdfjs-print-progress-percent = { $progress }%\npdfjs-print-progress-close-button = Cancel\npdfjs-printing-not-supported = Warning: Printing is not fully supported by this browser.\npdfjs-printing-not-ready = Warning: The PDF is not fully loaded for printing.\npdfjs-toggle-sidebar-button =\n    .title = Toggle Sidebar\npdfjs-toggle-sidebar-notification-button =\n    .title = Toggle Sidebar (document contains outline/attachments/layers)\npdfjs-toggle-sidebar-button-label = Toggle Sidebar\npdfjs-document-outline-button =\n    .title = Show Document Outline (double-click to expand/collapse all items)\npdfjs-document-outline-button-label = Document Outline\npdfjs-attachments-button =\n    .title = Show Attachments\npdfjs-attachments-button-label = Attachments\npdfjs-layers-button =\n    .title = Show Layers (double-click to reset all layers to the default state)\npdfjs-layers-button-label = Layers\npdfjs-thumbs-button =\n    .title = Show Thumbnails\npdfjs-thumbs-button-label = Thumbnails\npdfjs-current-outline-item-button =\n    .title = Find Current Outline Item\npdfjs-current-outline-item-button-label = Current Outline Item\npdfjs-findbar-button =\n    .title = Find in Document\npdfjs-findbar-button-label = Find\npdfjs-additional-layers = Additional Layers\npdfjs-thumb-page-title =\n    .title = Page { $page }\npdfjs-thumb-page-canvas =\n    .aria-label = Thumbnail of Page { $page }\npdfjs-find-input =\n    .title = Find\n    .placeholder = Find in document\u2026\npdfjs-find-previous-button =\n    .title = Find the previous occurrence of the phrase\npdfjs-find-previous-button-label = Previous\npdfjs-find-next-button =\n    .title = Find the next occurrence of the phrase\npdfjs-find-next-button-label = Next\npdfjs-find-highlight-checkbox = Highlight All\npdfjs-find-match-case-checkbox-label = Match Case\npdfjs-find-match-diacritics-checkbox-label = Match Diacritics\npdfjs-find-entire-word-checkbox-label = Whole Words\npdfjs-find-reached-top = Reached top of document, continued from bottom\npdfjs-find-reached-bottom = Reached end of document, continued from top\npdfjs-find-match-count =\n    { $total ->\n        [one] { $current } of { $total } match\n       *[other] { $current } of { $total } matches\n    }\npdfjs-find-match-count-limit =\n    { $limit ->\n        [one] More than { $limit } match\n       *[other] More than { $limit } matches\n    }\npdfjs-find-not-found = Phrase not found\npdfjs-page-scale-width = Page Width\npdfjs-page-scale-fit = Page Fit\npdfjs-page-scale-auto = Automatic Zoom\npdfjs-page-scale-actual = Actual Size\npdfjs-page-scale-percent = { $scale }%\npdfjs-page-landmark =\n    .aria-label = Page { $page }\npdfjs-loading-error = An error occurred while loading the PDF.\npdfjs-invalid-file-error = Invalid or corrupted PDF file.\npdfjs-missing-file-error = Missing PDF file.\npdfjs-unexpected-response-error = Unexpected server response.\npdfjs-rendering-error = An error occurred while rendering the page.\npdfjs-annotation-date-time-string = { DATETIME($dateObj, dateStyle: \"short\", timeStyle: \"medium\") }\npdfjs-text-annotation-type =\n    .alt = [{ $type } Annotation]\npdfjs-password-label = Enter the password to open this PDF file.\npdfjs-password-invalid = Invalid password. Please try again.\npdfjs-password-ok-button = OK\npdfjs-password-cancel-button = Cancel\npdfjs-web-fonts-disabled = Web fonts are disabled: unable to use embedded PDF fonts.\npdfjs-editor-free-text-button =\n    .title = Text\npdfjs-editor-free-text-button-label = Text\npdfjs-editor-ink-button =\n    .title = Draw\npdfjs-editor-ink-button-label = Draw\npdfjs-editor-stamp-button =\n    .title = Add or edit images\npdfjs-editor-stamp-button-label = Add or edit images\npdfjs-editor-highlight-button =\n    .title = Highlight\npdfjs-editor-highlight-button-label = Highlight\npdfjs-highlight-floating-button1 =\n    .title = Highlight\n    .aria-label = Highlight\npdfjs-highlight-floating-button-label = Highlight\npdfjs-editor-remove-ink-button =\n    .title = Remove drawing\npdfjs-editor-remove-freetext-button =\n    .title = Remove text\npdfjs-editor-remove-stamp-button =\n    .title = Remove image\npdfjs-editor-remove-highlight-button =\n    .title = Remove highlight\npdfjs-editor-free-text-color-input = Color\npdfjs-editor-free-text-size-input = Size\npdfjs-editor-ink-color-input = Color\npdfjs-editor-ink-thickness-input = Thickness\npdfjs-editor-ink-opacity-input = Opacity\npdfjs-editor-stamp-add-image-button =\n    .title = Add image\npdfjs-editor-stamp-add-image-button-label = Add image\npdfjs-editor-free-highlight-thickness-input = Thickness\npdfjs-editor-free-highlight-thickness-title =\n    .title = Change thickness when highlighting items other than text\npdfjs-free-text2 =\n    .aria-label = Text Editor\n    .default-content = Start typing\u2026\npdfjs-ink =\n    .aria-label = Draw Editor\npdfjs-ink-canvas =\n    .aria-label = User-created image\npdfjs-editor-alt-text-button =\n    .aria-label = Alt text\npdfjs-editor-alt-text-button-label = Alt text\npdfjs-editor-alt-text-edit-button =\n    .aria-label = Edit alt text\npdfjs-editor-alt-text-dialog-label = Choose an option\npdfjs-editor-alt-text-dialog-description = Alt text (alternative text) helps when people can\u2019t see the image or when it doesn\u2019t load.\npdfjs-editor-alt-text-add-description-label = Add a description\npdfjs-editor-alt-text-add-description-description = Aim for 1-2 sentences that describe the subject, setting, or actions.\npdfjs-editor-alt-text-mark-decorative-label = Mark as decorative\npdfjs-editor-alt-text-mark-decorative-description = This is used for ornamental images, like borders or watermarks.\npdfjs-editor-alt-text-cancel-button = Cancel\npdfjs-editor-alt-text-save-button = Save\npdfjs-editor-alt-text-decorative-tooltip = Marked as decorative\npdfjs-editor-alt-text-textarea =\n    .placeholder = For example, \u201CA young man sits down at a table to eat a meal\u201D\npdfjs-editor-resizer-top-left =\n    .aria-label = Top left corner \u2014 resize\npdfjs-editor-resizer-top-middle =\n    .aria-label = Top middle \u2014 resize\npdfjs-editor-resizer-top-right =\n    .aria-label = Top right corner \u2014 resize\npdfjs-editor-resizer-middle-right =\n    .aria-label = Middle right \u2014 resize\npdfjs-editor-resizer-bottom-right =\n    .aria-label = Bottom right corner \u2014 resize\npdfjs-editor-resizer-bottom-middle =\n    .aria-label = Bottom middle \u2014 resize\npdfjs-editor-resizer-bottom-left =\n    .aria-label = Bottom left corner \u2014 resize\npdfjs-editor-resizer-middle-left =\n    .aria-label = Middle left \u2014 resize\npdfjs-editor-highlight-colorpicker-label = Highlight color\npdfjs-editor-colorpicker-button =\n    .title = Change color\npdfjs-editor-colorpicker-dropdown =\n    .aria-label = Color choices\npdfjs-editor-colorpicker-yellow =\n    .title = Yellow\npdfjs-editor-colorpicker-green =\n    .title = Green\npdfjs-editor-colorpicker-blue =\n    .title = Blue\npdfjs-editor-colorpicker-pink =\n    .title = Pink\npdfjs-editor-colorpicker-red =\n    .title = Red\npdfjs-editor-highlight-show-all-button-label = Show all\npdfjs-editor-highlight-show-all-button =\n    .title = Show all\npdfjs-editor-new-alt-text-dialog-edit-label = Edit alt text (image description)\npdfjs-editor-new-alt-text-dialog-add-label = Add alt text (image description)\npdfjs-editor-new-alt-text-textarea =\n    .placeholder = Write your description here\u2026\npdfjs-editor-new-alt-text-description = Short description for people who can\u2019t see the image or when the image doesn\u2019t load.\npdfjs-editor-new-alt-text-disclaimer1 = This alt text was created automatically and may be inaccurate.\npdfjs-editor-new-alt-text-disclaimer-learn-more-url = Learn more\npdfjs-editor-new-alt-text-create-automatically-button-label = Create alt text automatically\npdfjs-editor-new-alt-text-not-now-button = Not now\npdfjs-editor-new-alt-text-error-title = Couldn\u2019t create alt text automatically\npdfjs-editor-new-alt-text-error-description = Please write your own alt text or try again later.\npdfjs-editor-new-alt-text-error-close-button = Close\npdfjs-editor-new-alt-text-ai-model-downloading-progress = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)\n    .aria-valuetext = Downloading alt text AI model ({ $downloadedSize } of { $totalSize } MB)\npdfjs-editor-new-alt-text-added-button =\n    .aria-label = Alt text added\npdfjs-editor-new-alt-text-added-button-label = Alt text added\npdfjs-editor-new-alt-text-missing-button =\n    .aria-label = Missing alt text\npdfjs-editor-new-alt-text-missing-button-label = Missing alt text\npdfjs-editor-new-alt-text-to-review-button =\n    .aria-label = Review alt text\npdfjs-editor-new-alt-text-to-review-button-label = Review alt text\npdfjs-editor-new-alt-text-generated-alt-text-with-disclaimer = Created automatically: { $generatedAltText }\npdfjs-image-alt-text-settings-button =\n    .title = Image alt text settings\npdfjs-image-alt-text-settings-button-label = Image alt text settings\npdfjs-editor-alt-text-settings-dialog-label = Image alt text settings\npdfjs-editor-alt-text-settings-automatic-title = Automatic alt text\npdfjs-editor-alt-text-settings-create-model-button-label = Create alt text automatically\npdfjs-editor-alt-text-settings-create-model-description = Suggests descriptions to help people who can\u2019t see the image or when the image doesn\u2019t load.\npdfjs-editor-alt-text-settings-download-model-label = Alt text AI model ({ $totalSize } MB)\npdfjs-editor-alt-text-settings-ai-model-description = Runs locally on your device so your data stays private. Required for automatic alt text.\npdfjs-editor-alt-text-settings-delete-model-button = Delete\npdfjs-editor-alt-text-settings-download-model-button = Download\npdfjs-editor-alt-text-settings-downloading-model-button = Downloading\u2026\npdfjs-editor-alt-text-settings-editor-title = Alt text editor\npdfjs-editor-alt-text-settings-show-dialog-button-label = Show alt text editor right away when adding an image\npdfjs-editor-alt-text-settings-show-dialog-description = Helps you make sure all your images have alt text.\npdfjs-editor-alt-text-settings-close-button = Close\npdfjs-editor-undo-bar-message-highlight = Highlight removed\npdfjs-editor-undo-bar-message-freetext = Text removed\npdfjs-editor-undo-bar-message-ink = Drawing removed\npdfjs-editor-undo-bar-message-stamp = Image removed\npdfjs-editor-undo-bar-message-multiple =\n    { $count ->\n        [one] { $count } annotation removed\n       *[other] { $count } annotations removed\n    }\npdfjs-editor-undo-bar-undo-button =\n    .title = Undo\npdfjs-editor-undo-bar-undo-button-label = Undo\npdfjs-editor-undo-bar-close-button =\n    .title = Close\npdfjs-editor-undo-bar-close-button-label = Close";
     return createBundle(lang, text);
   }
 }
 
-;// CONCATENATED MODULE: ./web/generic_scripting.js
+;// ./web/generic_scripting.js
 
 async function docProperties(pdfDocument) {
   const url = "",
@@ -3025,7 +3070,7 @@ async function docProperties(pdfDocument) {
 class GenericScripting {
   constructor(sandboxBundleSrc) {
     this._ready = new Promise((resolve, reject) => {
-      const sandbox = import( /*webpackIgnore: true*/sandboxBundleSrc);
+      const sandbox = import(/*webpackIgnore: true*/sandboxBundleSrc);
       sandbox.then(pdfjsSandbox => {
         resolve(pdfjsSandbox.QuickJSSandbox());
       }).catch(reject);
@@ -3045,7 +3090,7 @@ class GenericScripting {
   }
 }
 
-;// CONCATENATED MODULE: ./web/genericcom.js
+;// ./web/genericcom.js
 
 
 
@@ -3064,24 +3109,654 @@ class Preferences extends BasePreferences {
 }
 class ExternalServices extends BaseExternalServices {
   async createL10n() {
-    return new genericl10n_GenericL10n(AppOptions.get("locale"));
+    return new genericl10n_GenericL10n(AppOptions.get("localeProperties")?.lang);
   }
   createScripting() {
     return new GenericScripting(AppOptions.get("sandboxBundleSrc"));
   }
 }
 class MLManager {
-  async guess() {
+  async isEnabledFor(_name) {
+    return false;
+  }
+  async deleteModel(_service) {
     return null;
+  }
+  isReady(_name) {
+    return false;
+  }
+  guess(_data) {}
+  toggleService(_name, _enabled) {}
+  static getFakeMLManager(options) {
+    return new FakeMLManager(options);
+  }
+}
+class FakeMLManager {
+  eventBus = null;
+  hasProgress = false;
+  constructor({
+    enableGuessAltText,
+    enableAltTextModelDownload
+  }) {
+    this.enableGuessAltText = enableGuessAltText;
+    this.enableAltTextModelDownload = enableAltTextModelDownload;
+  }
+  setEventBus(eventBus, abortSignal) {
+    this.eventBus = eventBus;
+  }
+  async isEnabledFor(_name) {
+    return this.enableGuessAltText;
+  }
+  async deleteModel(_name) {
+    this.enableAltTextModelDownload = false;
+    return null;
+  }
+  async loadModel(_name) {}
+  async downloadModel(_name) {
+    this.hasProgress = true;
+    const {
+      promise,
+      resolve
+    } = Promise.withResolvers();
+    const total = 1e8;
+    const end = 1.5 * total;
+    const increment = 5e6;
+    let loaded = 0;
+    const id = setInterval(() => {
+      loaded += increment;
+      if (loaded <= end) {
+        this.eventBus.dispatch("loadaiengineprogress", {
+          source: this,
+          detail: {
+            total,
+            totalLoaded: loaded,
+            finished: loaded + increment >= end
+          }
+        });
+        return;
+      }
+      clearInterval(id);
+      this.hasProgress = false;
+      this.enableAltTextModelDownload = true;
+      resolve(true);
+    }, 900);
+    return promise;
+  }
+  isReady(_name) {
+    return this.enableAltTextModelDownload;
+  }
+  guess({
+    request: {
+      data
+    }
+  }) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(data ? {
+          output: "Fake alt text."
+        } : {
+          error: true
+        });
+      }, 3000);
+    });
+  }
+  toggleService(_name, enabled) {
+    this.enableGuessAltText = enabled;
   }
 }
 
-;// CONCATENATED MODULE: ./web/alt_text_manager.js
+;// ./web/new_alt_text_manager.js
+
+class NewAltTextManager {
+  #boundCancel = this.#cancel.bind(this);
+  #createAutomaticallyButton;
+  #currentEditor = null;
+  #cancelButton;
+  #descriptionContainer;
+  #dialog;
+  #disclaimer;
+  #downloadModel;
+  #downloadModelDescription;
+  #eventBus;
+  #firstTime = false;
+  #guessedAltText;
+  #hasAI = null;
+  #isEditing = null;
+  #imagePreview;
+  #imageData;
+  #isAILoading = false;
+  #wasAILoading = false;
+  #learnMore;
+  #notNowButton;
+  #overlayManager;
+  #textarea;
+  #title;
+  #uiManager;
+  #previousAltText = null;
+  constructor({
+    descriptionContainer,
+    dialog,
+    imagePreview,
+    cancelButton,
+    disclaimer,
+    notNowButton,
+    saveButton,
+    textarea,
+    learnMore,
+    errorCloseButton,
+    createAutomaticallyButton,
+    downloadModel,
+    downloadModelDescription,
+    title
+  }, overlayManager, eventBus) {
+    this.#cancelButton = cancelButton;
+    this.#createAutomaticallyButton = createAutomaticallyButton;
+    this.#descriptionContainer = descriptionContainer;
+    this.#dialog = dialog;
+    this.#disclaimer = disclaimer;
+    this.#notNowButton = notNowButton;
+    this.#imagePreview = imagePreview;
+    this.#textarea = textarea;
+    this.#learnMore = learnMore;
+    this.#title = title;
+    this.#downloadModel = downloadModel;
+    this.#downloadModelDescription = downloadModelDescription;
+    this.#overlayManager = overlayManager;
+    this.#eventBus = eventBus;
+    dialog.addEventListener("close", this.#close.bind(this));
+    dialog.addEventListener("contextmenu", event => {
+      if (event.target !== this.#textarea) {
+        event.preventDefault();
+      }
+    });
+    cancelButton.addEventListener("click", this.#boundCancel);
+    notNowButton.addEventListener("click", this.#boundCancel);
+    saveButton.addEventListener("click", this.#save.bind(this));
+    errorCloseButton.addEventListener("click", () => {
+      this.#toggleError(false);
+    });
+    createAutomaticallyButton.addEventListener("click", async () => {
+      const checked = createAutomaticallyButton.getAttribute("aria-pressed") !== "true";
+      this.#currentEditor._reportTelemetry({
+        action: "pdfjs.image.alt_text.ai_generation_check",
+        data: {
+          status: checked
+        }
+      });
+      if (this.#uiManager) {
+        this.#uiManager.setPreference("enableGuessAltText", checked);
+        await this.#uiManager.mlManager.toggleService("altText", checked);
+      }
+      this.#toggleGuessAltText(checked, false);
+    });
+    textarea.addEventListener("focus", () => {
+      this.#wasAILoading = this.#isAILoading;
+      this.#toggleLoading(false);
+      this.#toggleTitleAndDisclaimer();
+    });
+    textarea.addEventListener("blur", () => {
+      if (!textarea.value) {
+        this.#toggleLoading(this.#wasAILoading);
+      }
+      this.#toggleTitleAndDisclaimer();
+    });
+    textarea.addEventListener("input", () => {
+      this.#toggleTitleAndDisclaimer();
+    });
+    eventBus._on("enableguessalttext", ({
+      value
+    }) => {
+      this.#toggleGuessAltText(value, false);
+    });
+    this.#overlayManager.register(dialog);
+    this.#learnMore.addEventListener("click", () => {
+      this.#currentEditor._reportTelemetry({
+        action: "pdfjs.image.alt_text.info",
+        data: {
+          topic: "alt_text"
+        }
+      });
+    });
+  }
+  #toggleLoading(value) {
+    if (!this.#uiManager || this.#isAILoading === value) {
+      return;
+    }
+    this.#isAILoading = value;
+    this.#descriptionContainer.classList.toggle("loading", value);
+  }
+  #toggleError(value) {
+    if (!this.#uiManager) {
+      return;
+    }
+    this.#dialog.classList.toggle("error", value);
+  }
+  async #toggleGuessAltText(value, isInitial = false) {
+    if (!this.#uiManager) {
+      return;
+    }
+    this.#dialog.classList.toggle("aiDisabled", !value);
+    this.#createAutomaticallyButton.setAttribute("aria-pressed", value);
+    if (value) {
+      const {
+        altTextLearnMoreUrl
+      } = this.#uiManager.mlManager;
+      if (altTextLearnMoreUrl) {
+        this.#learnMore.href = altTextLearnMoreUrl;
+      }
+      this.#mlGuessAltText(isInitial);
+    } else {
+      this.#toggleLoading(false);
+      this.#isAILoading = false;
+      this.#toggleTitleAndDisclaimer();
+    }
+  }
+  #toggleNotNow() {
+    this.#notNowButton.classList.toggle("hidden", !this.#firstTime);
+    this.#cancelButton.classList.toggle("hidden", this.#firstTime);
+  }
+  #toggleAI(value) {
+    if (!this.#uiManager || this.#hasAI === value) {
+      return;
+    }
+    this.#hasAI = value;
+    this.#dialog.classList.toggle("noAi", !value);
+    this.#toggleTitleAndDisclaimer();
+  }
+  #toggleTitleAndDisclaimer() {
+    const visible = this.#isAILoading || this.#guessedAltText && this.#guessedAltText === this.#textarea.value;
+    this.#disclaimer.hidden = !visible;
+    const isEditing = this.#isAILoading || !!this.#textarea.value;
+    if (this.#isEditing === isEditing) {
+      return;
+    }
+    this.#isEditing = isEditing;
+    this.#title.setAttribute("data-l10n-id", isEditing ? "pdfjs-editor-new-alt-text-dialog-edit-label" : "pdfjs-editor-new-alt-text-dialog-add-label");
+  }
+  async #mlGuessAltText(isInitial) {
+    if (this.#isAILoading) {
+      return;
+    }
+    if (this.#textarea.value) {
+      return;
+    }
+    if (isInitial && this.#previousAltText !== null) {
+      return;
+    }
+    this.#guessedAltText = this.#currentEditor.guessedAltText;
+    if (this.#previousAltText === null && this.#guessedAltText) {
+      this.#addAltText(this.#guessedAltText);
+      return;
+    }
+    this.#toggleLoading(true);
+    this.#toggleTitleAndDisclaimer();
+    let hasError = false;
+    try {
+      const altText = await this.#currentEditor.mlGuessAltText(this.#imageData, false);
+      if (altText) {
+        this.#guessedAltText = altText;
+        this.#wasAILoading = this.#isAILoading;
+        if (this.#isAILoading) {
+          this.#addAltText(altText);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      hasError = true;
+    }
+    this.#toggleLoading(false);
+    this.#toggleTitleAndDisclaimer();
+    if (hasError && this.#uiManager) {
+      this.#toggleError(true);
+    }
+  }
+  #addAltText(altText) {
+    if (!this.#uiManager || this.#textarea.value) {
+      return;
+    }
+    this.#textarea.value = altText;
+    this.#toggleTitleAndDisclaimer();
+  }
+  #setProgress() {
+    this.#downloadModel.classList.toggle("hidden", false);
+    const callback = async ({
+      detail: {
+        finished,
+        total,
+        totalLoaded
+      }
+    }) => {
+      const ONE_MEGA_BYTES = 1e6;
+      totalLoaded = Math.min(0.99 * total, totalLoaded);
+      const totalSize = this.#downloadModelDescription.ariaValueMax = Math.round(total / ONE_MEGA_BYTES);
+      const downloadedSize = this.#downloadModelDescription.ariaValueNow = Math.round(totalLoaded / ONE_MEGA_BYTES);
+      this.#downloadModelDescription.setAttribute("data-l10n-args", JSON.stringify({
+        totalSize,
+        downloadedSize
+      }));
+      if (!finished) {
+        return;
+      }
+      this.#eventBus._off("loadaiengineprogress", callback);
+      this.#downloadModel.classList.toggle("hidden", true);
+      this.#toggleAI(true);
+      if (!this.#uiManager) {
+        return;
+      }
+      const {
+        mlManager
+      } = this.#uiManager;
+      mlManager.toggleService("altText", true);
+      this.#toggleGuessAltText(await mlManager.isEnabledFor("altText"), true);
+    };
+    this.#eventBus._on("loadaiengineprogress", callback);
+  }
+  async editAltText(uiManager, editor, firstTime) {
+    if (this.#currentEditor || !editor) {
+      return;
+    }
+    if (firstTime && editor.hasAltTextData()) {
+      editor.altTextFinish();
+      return;
+    }
+    this.#firstTime = firstTime;
+    let {
+      mlManager
+    } = uiManager;
+    let hasAI = !!mlManager;
+    this.#toggleTitleAndDisclaimer();
+    if (mlManager && !mlManager.isReady("altText")) {
+      hasAI = false;
+      if (mlManager.hasProgress) {
+        this.#setProgress();
+      } else {
+        mlManager = null;
+      }
+    } else {
+      this.#downloadModel.classList.toggle("hidden", true);
+    }
+    const isAltTextEnabledPromise = mlManager?.isEnabledFor("altText");
+    this.#currentEditor = editor;
+    this.#uiManager = uiManager;
+    this.#uiManager.removeEditListeners();
+    ({
+      altText: this.#previousAltText
+    } = editor.altTextData);
+    this.#textarea.value = this.#previousAltText ?? "";
+    const AI_MAX_IMAGE_DIMENSION = 224;
+    const MAX_PREVIEW_DIMENSION = 180;
+    let canvas, width, height;
+    if (mlManager) {
+      ({
+        canvas,
+        width,
+        height,
+        imageData: this.#imageData
+      } = editor.copyCanvas(AI_MAX_IMAGE_DIMENSION, MAX_PREVIEW_DIMENSION, true));
+      if (hasAI) {
+        this.#toggleGuessAltText(await isAltTextEnabledPromise, true);
+      }
+    } else {
+      ({
+        canvas,
+        width,
+        height
+      } = editor.copyCanvas(AI_MAX_IMAGE_DIMENSION, MAX_PREVIEW_DIMENSION, false));
+    }
+    canvas.setAttribute("role", "presentation");
+    const {
+      style
+    } = canvas;
+    style.width = `${width}px`;
+    style.height = `${height}px`;
+    this.#imagePreview.append(canvas);
+    this.#toggleNotNow();
+    this.#toggleAI(hasAI);
+    this.#toggleError(false);
+    try {
+      await this.#overlayManager.open(this.#dialog);
+    } catch (ex) {
+      this.#close();
+      throw ex;
+    }
+  }
+  #cancel() {
+    this.#currentEditor.altTextData = {
+      cancel: true
+    };
+    const altText = this.#textarea.value.trim();
+    this.#currentEditor._reportTelemetry({
+      action: "pdfjs.image.alt_text.dismiss",
+      data: {
+        alt_text_type: altText ? "present" : "empty",
+        flow: this.#firstTime ? "image_add" : "alt_text_edit"
+      }
+    });
+    this.#currentEditor._reportTelemetry({
+      action: "pdfjs.image.image_added",
+      data: {
+        alt_text_modal: true,
+        alt_text_type: "skipped"
+      }
+    });
+    this.#finish();
+  }
+  #finish() {
+    if (this.#overlayManager.active === this.#dialog) {
+      this.#overlayManager.close(this.#dialog);
+    }
+  }
+  #close() {
+    const canvas = this.#imagePreview.firstChild;
+    canvas.remove();
+    canvas.width = canvas.height = 0;
+    this.#imageData = null;
+    this.#toggleLoading(false);
+    this.#uiManager?.addEditListeners();
+    this.#currentEditor.altTextFinish();
+    this.#uiManager?.setSelected(this.#currentEditor);
+    this.#currentEditor = null;
+    this.#uiManager = null;
+  }
+  #extractWords(text) {
+    return new Set(text.toLowerCase().split(/[^\p{L}\p{N}]+/gu).filter(x => !!x));
+  }
+  #save() {
+    const altText = this.#textarea.value.trim();
+    this.#currentEditor.altTextData = {
+      altText,
+      decorative: false
+    };
+    this.#currentEditor.altTextData.guessedAltText = this.#guessedAltText;
+    if (this.#guessedAltText && this.#guessedAltText !== altText) {
+      const guessedWords = this.#extractWords(this.#guessedAltText);
+      const words = this.#extractWords(altText);
+      this.#currentEditor._reportTelemetry({
+        action: "pdfjs.image.alt_text.user_edit",
+        data: {
+          total_words: guessedWords.size,
+          words_removed: guessedWords.difference(words).size,
+          words_added: words.difference(guessedWords).size
+        }
+      });
+    }
+    this.#currentEditor._reportTelemetry({
+      action: "pdfjs.image.image_added",
+      data: {
+        alt_text_modal: true,
+        alt_text_type: altText ? "present" : "empty"
+      }
+    });
+    this.#currentEditor._reportTelemetry({
+      action: "pdfjs.image.alt_text.save",
+      data: {
+        alt_text_type: altText ? "present" : "empty",
+        flow: this.#firstTime ? "image_add" : "alt_text_edit"
+      }
+    });
+    this.#finish();
+  }
+  destroy() {
+    this.#uiManager = null;
+    this.#finish();
+  }
+}
+class ImageAltTextSettings {
+  #aiModelSettings;
+  #createModelButton;
+  #downloadModelButton;
+  #dialog;
+  #eventBus;
+  #mlManager;
+  #overlayManager;
+  #showAltTextDialogButton;
+  constructor({
+    dialog,
+    createModelButton,
+    aiModelSettings,
+    learnMore,
+    closeButton,
+    deleteModelButton,
+    downloadModelButton,
+    showAltTextDialogButton
+  }, overlayManager, eventBus, mlManager) {
+    this.#dialog = dialog;
+    this.#aiModelSettings = aiModelSettings;
+    this.#createModelButton = createModelButton;
+    this.#downloadModelButton = downloadModelButton;
+    this.#showAltTextDialogButton = showAltTextDialogButton;
+    this.#overlayManager = overlayManager;
+    this.#eventBus = eventBus;
+    this.#mlManager = mlManager;
+    const {
+      altTextLearnMoreUrl
+    } = mlManager;
+    if (altTextLearnMoreUrl) {
+      learnMore.href = altTextLearnMoreUrl;
+    }
+    dialog.addEventListener("contextmenu", noContextMenu);
+    createModelButton.addEventListener("click", async e => {
+      const checked = this.#togglePref("enableGuessAltText", e);
+      await mlManager.toggleService("altText", checked);
+      this.#reportTelemetry({
+        type: "stamp",
+        action: "pdfjs.image.alt_text.settings_ai_generation_check",
+        data: {
+          status: checked
+        }
+      });
+    });
+    showAltTextDialogButton.addEventListener("click", e => {
+      const checked = this.#togglePref("enableNewAltTextWhenAddingImage", e);
+      this.#reportTelemetry({
+        type: "stamp",
+        action: "pdfjs.image.alt_text.settings_edit_alt_text_check",
+        data: {
+          status: checked
+        }
+      });
+    });
+    deleteModelButton.addEventListener("click", this.#delete.bind(this, true));
+    downloadModelButton.addEventListener("click", this.#download.bind(this, true));
+    closeButton.addEventListener("click", this.#finish.bind(this));
+    learnMore.addEventListener("click", () => {
+      this.#reportTelemetry({
+        type: "stamp",
+        action: "pdfjs.image.alt_text.info",
+        data: {
+          topic: "ai_generation"
+        }
+      });
+    });
+    eventBus._on("enablealttextmodeldownload", ({
+      value
+    }) => {
+      if (value) {
+        this.#download(false);
+      } else {
+        this.#delete(false);
+      }
+    });
+    this.#overlayManager.register(dialog);
+  }
+  #reportTelemetry(data) {
+    this.#eventBus.dispatch("reporttelemetry", {
+      source: this,
+      details: {
+        type: "editing",
+        data
+      }
+    });
+  }
+  async #download(isFromUI = false) {
+    if (isFromUI) {
+      this.#downloadModelButton.disabled = true;
+      const span = this.#downloadModelButton.firstChild;
+      span.setAttribute("data-l10n-id", "pdfjs-editor-alt-text-settings-downloading-model-button");
+      await this.#mlManager.downloadModel("altText");
+      span.setAttribute("data-l10n-id", "pdfjs-editor-alt-text-settings-download-model-button");
+      this.#createModelButton.disabled = false;
+      this.#setPref("enableGuessAltText", true);
+      this.#mlManager.toggleService("altText", true);
+      this.#setPref("enableAltTextModelDownload", true);
+      this.#downloadModelButton.disabled = false;
+    }
+    this.#aiModelSettings.classList.toggle("download", false);
+    this.#createModelButton.setAttribute("aria-pressed", true);
+  }
+  async #delete(isFromUI = false) {
+    if (isFromUI) {
+      await this.#mlManager.deleteModel("altText");
+      this.#setPref("enableGuessAltText", false);
+      this.#setPref("enableAltTextModelDownload", false);
+    }
+    this.#aiModelSettings.classList.toggle("download", true);
+    this.#createModelButton.disabled = true;
+    this.#createModelButton.setAttribute("aria-pressed", false);
+  }
+  async open({
+    enableGuessAltText,
+    enableNewAltTextWhenAddingImage
+  }) {
+    const {
+      enableAltTextModelDownload
+    } = this.#mlManager;
+    this.#createModelButton.disabled = !enableAltTextModelDownload;
+    this.#createModelButton.setAttribute("aria-pressed", enableAltTextModelDownload && enableGuessAltText);
+    this.#showAltTextDialogButton.setAttribute("aria-pressed", enableNewAltTextWhenAddingImage);
+    this.#aiModelSettings.classList.toggle("download", !enableAltTextModelDownload);
+    await this.#overlayManager.open(this.#dialog);
+    this.#reportTelemetry({
+      type: "stamp",
+      action: "pdfjs.image.alt_text.settings_displayed"
+    });
+  }
+  #togglePref(name, {
+    target
+  }) {
+    const checked = target.getAttribute("aria-pressed") !== "true";
+    this.#setPref(name, checked);
+    target.setAttribute("aria-pressed", checked);
+    return checked;
+  }
+  #setPref(name, value) {
+    this.#eventBus.dispatch("setpreference", {
+      source: this,
+      name,
+      value
+    });
+  }
+  #finish() {
+    if (this.#overlayManager.active === this.#dialog) {
+      this.#overlayManager.close(this.#dialog);
+    }
+  }
+}
+
+;// ./web/alt_text_manager.js
 
 class AltTextManager {
-  #boundUpdateUIState = this.#updateUIState.bind(this);
-  #boundSetPosition = this.#setPosition.bind(this);
-  #boundOnClick = this.#onClick.bind(this);
+  #clickAC = null;
   #currentEditor = null;
   #cancelButton;
   #dialog;
@@ -3094,6 +3769,7 @@ class AltTextManager {
   #textarea;
   #uiManager;
   #previousAltText = null;
+  #resizeAC = null;
   #svgElement = null;
   #rectElement = null;
   #container;
@@ -3115,6 +3791,7 @@ class AltTextManager {
     this.#overlayManager = overlayManager;
     this.#eventBus = eventBus;
     this.#container = container;
+    const onUpdateUIState = this.#updateUIState.bind(this);
     dialog.addEventListener("close", this.#close.bind(this));
     dialog.addEventListener("contextmenu", event => {
       if (event.target !== this.#textarea) {
@@ -3123,12 +3800,9 @@ class AltTextManager {
     });
     cancelButton.addEventListener("click", this.#finish.bind(this));
     saveButton.addEventListener("click", this.#save.bind(this));
-    optionDescription.addEventListener("change", this.#boundUpdateUIState);
-    optionDecorative.addEventListener("change", this.#boundUpdateUIState);
+    optionDescription.addEventListener("change", onUpdateUIState);
+    optionDecorative.addEventListener("change", onUpdateUIState);
     this.#overlayManager.register(dialog);
-  }
-  get _elements() {
-    return shadow(this, "_elements", [this.#optionDescription, this.#optionDecorative, this.#textarea, this.#saveButton, this.#cancelButton]);
   }
   #createSVGElement() {
     if (this.#svgElement) {
@@ -3162,8 +3836,13 @@ class AltTextManager {
     }
     this.#createSVGElement();
     this.#hasUsedPointer = false;
-    for (const element of this._elements) {
-      element.addEventListener("click", this.#boundOnClick);
+    this.#clickAC = new AbortController();
+    const clickOpts = {
+        signal: this.#clickAC.signal
+      },
+      onClick = this.#onClick.bind(this);
+    for (const element of [this.#optionDescription, this.#optionDecorative, this.#textarea, this.#saveButton, this.#cancelButton]) {
+      element.addEventListener("click", onClick, clickOpts);
     }
     const {
       altText,
@@ -3181,7 +3860,10 @@ class AltTextManager {
     this.#currentEditor = editor;
     this.#uiManager = uiManager;
     this.#uiManager.removeEditListeners();
-    this.#eventBus._on("resize", this.#boundSetPosition);
+    this.#resizeAC = new AbortController();
+    this.#eventBus._on("resize", this.#setPosition.bind(this), {
+      signal: this.#resizeAC.signal
+    });
     try {
       await this.#overlayManager.open(this.#dialog);
       this.#setPosition();
@@ -3279,7 +3961,8 @@ class AltTextManager {
     this.#telemetryData = null;
     this.#removeOnClickListeners();
     this.#uiManager?.addEditListeners();
-    this.#eventBus._off("resize", this.#boundSetPosition);
+    this.#resizeAC?.abort();
+    this.#resizeAC = null;
     this.#currentEditor.altTextFinish();
     this.#currentEditor = null;
     this.#uiManager = null;
@@ -3311,9 +3994,8 @@ class AltTextManager {
     this.#removeOnClickListeners();
   }
   #removeOnClickListeners() {
-    for (const element of this._elements) {
-      element.removeEventListener("click", this.#boundOnClick);
-    }
+    this.#clickAC?.abort();
+    this.#clickAC = null;
   }
   destroy() {
     this.#uiManager = null;
@@ -3323,7 +4005,7 @@ class AltTextManager {
   }
 }
 
-;// CONCATENATED MODULE: ./web/annotation_editor_params.js
+;// ./web/annotation_editor_params.js
 
 class AnnotationEditorParams {
   constructor(options, eventBus) {
@@ -3363,6 +4045,15 @@ class AnnotationEditorParams {
       dispatchEvent("INK_OPACITY", this.valueAsNumber);
     });
     editorStampAddImage.addEventListener("click", () => {
+      this.eventBus.dispatch("reporttelemetry", {
+        source: this,
+        details: {
+          type: "editing",
+          data: {
+            action: "pdfjs.image.add_image_click"
+          }
+        }
+      });
       dispatchEvent("CREATE");
     });
     editorFreeHighlightThickness.addEventListener("input", function () {
@@ -3406,16 +4097,31 @@ class AnnotationEditorParams {
   }
 }
 
-;// CONCATENATED MODULE: ./web/caret_browsing.js
+;// ./web/caret_browsing.js
 const PRECISION = 1e-1;
 class CaretBrowsingMode {
   #mainContainer;
-  #toolBarHeight;
+  #toolBarHeight = 0;
   #viewerContainer;
-  constructor(mainContainer, viewerContainer, toolbarContainer) {
+  constructor(abortSignal, mainContainer, viewerContainer, toolbarContainer) {
     this.#mainContainer = mainContainer;
     this.#viewerContainer = viewerContainer;
-    this.#toolBarHeight = toolbarContainer?.getBoundingClientRect().height ?? 0;
+    if (!toolbarContainer) {
+      return;
+    }
+    this.#toolBarHeight = toolbarContainer.getBoundingClientRect().height;
+    const toolbarObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        if (entry.target === toolbarContainer) {
+          this.#toolBarHeight = Math.floor(entry.borderBoxSize[0].blockSize);
+          break;
+        }
+      }
+    });
+    toolbarObserver.observe(toolbarContainer);
+    abortSignal.addEventListener("abort", () => toolbarObserver.disconnect(), {
+      once: true
+    });
   }
   #isOnSameLine(rect1, rect2) {
     const top1 = rect1.y;
@@ -3607,7 +4313,7 @@ class CaretBrowsingMode {
   }
 }
 
-;// CONCATENATED MODULE: ./web/download_manager.js
+;// ./web/download_manager.js
 
 function download(blobUrl, filename) {
   const a = document.createElement("a");
@@ -3625,13 +4331,6 @@ function download(blobUrl, filename) {
 }
 class DownloadManager {
   #openBlobUrls = new WeakMap();
-  downloadUrl(url, filename, _options) {
-    if (!createValidAbsoluteUrl(url, "http://example.com")) {
-      console.error(`downloadUrl - not a valid URL: ${url}`);
-      return;
-    }
-    download(url + "#pdfjs.action=download", filename);
-  }
   downloadData(data, filename, contentType) {
     const blobUrl = URL.createObjectURL(new Blob([data], {
       type: contentType
@@ -3658,7 +4357,7 @@ class DownloadManager {
         window.open(viewerUrl);
         return true;
       } catch (ex) {
-        console.error(`openOrDownloadData: ${ex}`);
+        console.error("openOrDownloadData:", ex);
         URL.revokeObjectURL(blobUrl);
         this.#openBlobUrls.delete(data);
       }
@@ -3666,13 +4365,110 @@ class DownloadManager {
     this.downloadData(data, filename, contentType);
     return false;
   }
-  download(blob, url, filename, _options) {
-    const blobUrl = URL.createObjectURL(blob);
+  download(data, url, filename) {
+    let blobUrl;
+    if (data) {
+      blobUrl = URL.createObjectURL(new Blob([data], {
+        type: "application/pdf"
+      }));
+    } else {
+      if (!createValidAbsoluteUrl(url, "http://example.com")) {
+        console.error(`download - not a valid URL: ${url}`);
+        return;
+      }
+      blobUrl = url + "#pdfjs.action=download";
+    }
     download(blobUrl, filename);
   }
 }
 
-;// CONCATENATED MODULE: ./web/overlay_manager.js
+;// ./web/editor_undo_bar.js
+
+class EditorUndoBar {
+  #closeButton = null;
+  #container;
+  #eventBus = null;
+  #focusTimeout = null;
+  #initController = null;
+  isOpen = false;
+  #message;
+  #showController = null;
+  #undoButton;
+  static #l10nMessages = Object.freeze({
+    highlight: "pdfjs-editor-undo-bar-message-highlight",
+    freetext: "pdfjs-editor-undo-bar-message-freetext",
+    stamp: "pdfjs-editor-undo-bar-message-stamp",
+    ink: "pdfjs-editor-undo-bar-message-ink",
+    _multiple: "pdfjs-editor-undo-bar-message-multiple"
+  });
+  constructor({
+    container,
+    message,
+    undoButton,
+    closeButton
+  }, eventBus) {
+    this.#container = container;
+    this.#message = message;
+    this.#undoButton = undoButton;
+    this.#closeButton = closeButton;
+    this.#eventBus = eventBus;
+  }
+  destroy() {
+    this.#initController?.abort();
+    this.#initController = null;
+    this.hide();
+  }
+  show(undoAction, messageData) {
+    if (!this.#initController) {
+      this.#initController = new AbortController();
+      const opts = {
+        signal: this.#initController.signal
+      };
+      const boundHide = this.hide.bind(this);
+      this.#container.addEventListener("contextmenu", noContextMenu, opts);
+      this.#closeButton.addEventListener("click", boundHide, opts);
+      this.#eventBus._on("beforeprint", boundHide, opts);
+      this.#eventBus._on("download", boundHide, opts);
+    }
+    this.hide();
+    if (typeof messageData === "string") {
+      this.#message.setAttribute("data-l10n-id", EditorUndoBar.#l10nMessages[messageData]);
+    } else {
+      this.#message.setAttribute("data-l10n-id", EditorUndoBar.#l10nMessages._multiple);
+      this.#message.setAttribute("data-l10n-args", JSON.stringify({
+        count: messageData
+      }));
+    }
+    this.isOpen = true;
+    this.#container.hidden = false;
+    this.#showController = new AbortController();
+    this.#undoButton.addEventListener("click", () => {
+      undoAction();
+      this.hide();
+    }, {
+      signal: this.#showController.signal
+    });
+    this.#focusTimeout = setTimeout(() => {
+      this.#container.focus();
+      this.#focusTimeout = null;
+    }, 100);
+  }
+  hide() {
+    if (!this.isOpen) {
+      return;
+    }
+    this.isOpen = false;
+    this.#container.hidden = true;
+    this.#showController?.abort();
+    this.#showController = null;
+    if (this.#focusTimeout) {
+      clearTimeout(this.#focusTimeout);
+      this.#focusTimeout = null;
+    }
+  }
+}
+
+;// ./web/overlay_manager.js
 class OverlayManager {
   #overlays = new WeakMap();
   #active = null;
@@ -3720,7 +4516,7 @@ class OverlayManager {
   }
 }
 
-;// CONCATENATED MODULE: ./web/password_prompt.js
+;// ./web/password_prompt.js
 
 class PasswordPrompt {
   #activeCapability = null;
@@ -3757,7 +4553,7 @@ class PasswordPrompt {
     if (!this._isViewerEmbedded || passwordIncorrect) {
       this.input.focus();
     }
-    this.label.setAttribute("data-l10n-id", `pdfjs-password-${passwordIncorrect ? "invalid" : "label"}`);
+    this.label.setAttribute("data-l10n-id", passwordIncorrect ? "pdfjs-password-invalid" : "pdfjs-password-label");
   }
   async close() {
     if (this.overlayManager.active === this.dialog) {
@@ -3792,15 +4588,12 @@ class PasswordPrompt {
   }
 }
 
-;// CONCATENATED MODULE: ./web/base_tree_viewer.js
+;// ./web/base_tree_viewer.js
 
 const TREEITEM_OFFSET_TOP = -100;
 const TREEITEM_SELECTED_CLASS = "selected";
 class BaseTreeViewer {
   constructor(options) {
-    if (this.constructor === BaseTreeViewer) {
-      throw new Error("Cannot initialize BaseTreeViewer.");
-    }
     this.container = options.container;
     this.eventBus = options.eventBus;
     this._l10n = options.l10n;
@@ -3891,7 +4684,7 @@ class BaseTreeViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_attachment_viewer.js
+;// ./web/pdf_attachment_viewer.js
 
 
 class PDFAttachmentViewer extends BaseTreeViewer {
@@ -3988,40 +4781,41 @@ class PDFAttachmentViewer extends BaseTreeViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/grab_to_pan.js
+;// ./web/grab_to_pan.js
+
 const CSS_CLASS_GRAB = "grab-to-pan-grab";
 class GrabToPan {
+  #activateAC = null;
+  #mouseDownAC = null;
+  #scrollAC = null;
   constructor({
     element
   }) {
     this.element = element;
     this.document = element.ownerDocument;
-    this.activate = this.activate.bind(this);
-    this.deactivate = this.deactivate.bind(this);
-    this.toggle = this.toggle.bind(this);
-    this._onMouseDown = this.#onMouseDown.bind(this);
-    this._onMouseMove = this.#onMouseMove.bind(this);
-    this._endPan = this.#endPan.bind(this);
     const overlay = this.overlay = document.createElement("div");
     overlay.className = "grab-to-pan-grabbing";
   }
   activate() {
-    if (!this.active) {
-      this.active = true;
-      this.element.addEventListener("mousedown", this._onMouseDown, true);
+    if (!this.#activateAC) {
+      this.#activateAC = new AbortController();
+      this.element.addEventListener("mousedown", this.#onMouseDown.bind(this), {
+        capture: true,
+        signal: this.#activateAC.signal
+      });
       this.element.classList.add(CSS_CLASS_GRAB);
     }
   }
   deactivate() {
-    if (this.active) {
-      this.active = false;
-      this.element.removeEventListener("mousedown", this._onMouseDown, true);
-      this._endPan();
+    if (this.#activateAC) {
+      this.#activateAC.abort();
+      this.#activateAC = null;
+      this.#endPan();
       this.element.classList.remove(CSS_CLASS_GRAB);
     }
   }
   toggle() {
-    if (this.active) {
+    if (this.#activateAC) {
       this.deactivate();
     } else {
       this.activate();
@@ -4045,20 +4839,30 @@ class GrabToPan {
     this.scrollTopStart = this.element.scrollTop;
     this.clientXStart = event.clientX;
     this.clientYStart = event.clientY;
-    this.document.addEventListener("mousemove", this._onMouseMove, true);
-    this.document.addEventListener("mouseup", this._endPan, true);
-    this.element.addEventListener("scroll", this._endPan, true);
-    event.preventDefault();
-    event.stopPropagation();
+    this.#mouseDownAC = new AbortController();
+    const boundEndPan = this.#endPan.bind(this),
+      mouseOpts = {
+        capture: true,
+        signal: this.#mouseDownAC.signal
+      };
+    this.document.addEventListener("mousemove", this.#onMouseMove.bind(this), mouseOpts);
+    this.document.addEventListener("mouseup", boundEndPan, mouseOpts);
+    this.#scrollAC = new AbortController();
+    this.element.addEventListener("scroll", boundEndPan, {
+      capture: true,
+      signal: this.#scrollAC.signal
+    });
+    stopEvent(event);
     const focusedElement = document.activeElement;
     if (focusedElement && !focusedElement.contains(event.target)) {
       focusedElement.blur();
     }
   }
   #onMouseMove(event) {
-    this.element.removeEventListener("scroll", this._endPan, true);
+    this.#scrollAC?.abort();
+    this.#scrollAC = null;
     if (!(event.buttons & 1)) {
-      this._endPan();
+      this.#endPan();
       return;
     }
     const xDiff = event.clientX - this.clientXStart;
@@ -4073,14 +4877,15 @@ class GrabToPan {
     }
   }
   #endPan() {
-    this.element.removeEventListener("scroll", this._endPan, true);
-    this.document.removeEventListener("mousemove", this._onMouseMove, true);
-    this.document.removeEventListener("mouseup", this._endPan, true);
+    this.#mouseDownAC?.abort();
+    this.#mouseDownAC = null;
+    this.#scrollAC?.abort();
+    this.#scrollAC = null;
     this.overlay.remove();
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_cursor_tools.js
+;// ./web/pdf_cursor_tools.js
 
 
 
@@ -4106,7 +4911,17 @@ class PDFCursorTools {
     if (this.#prevActive !== null) {
       return;
     }
+    this.#switchTool(tool);
+  }
+  #switchTool(tool, disabled = false) {
     if (tool === this.#active) {
+      if (this.#prevActive !== null) {
+        this.eventBus.dispatch("cursortoolchanged", {
+          source: this,
+          tool,
+          disabled
+        });
+      }
       return;
     }
     const disableActiveTool = () => {
@@ -4135,7 +4950,8 @@ class PDFCursorTools {
     this.#active = tool;
     this.eventBus.dispatch("cursortoolchanged", {
       source: this,
-      tool
+      tool,
+      disabled
     });
   }
   #addEventListeners() {
@@ -4151,15 +4967,13 @@ class PDFCursorTools {
     let annotationEditorMode = AnnotationEditorType.NONE,
       presentationModeState = PresentationModeState.NORMAL;
     const disableActive = () => {
-      const prevActive = this.#active;
-      this.switchTool(CursorTool.SELECT);
-      this.#prevActive ??= prevActive;
+      this.#prevActive ??= this.#active;
+      this.#switchTool(CursorTool.SELECT, true);
     };
     const enableActive = () => {
-      const prevActive = this.#prevActive;
-      if (prevActive !== null && annotationEditorMode === AnnotationEditorType.NONE && presentationModeState === PresentationModeState.NORMAL) {
+      if (this.#prevActive !== null && annotationEditorMode === AnnotationEditorType.NONE && presentationModeState === PresentationModeState.NORMAL) {
+        this.#switchTool(this.#prevActive);
         this.#prevActive = null;
-        this.switchTool(prevActive);
       }
     };
     this.eventBus._on("annotationeditormodechanged", ({
@@ -4190,18 +5004,17 @@ class PDFCursorTools {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_document_properties.js
+;// ./web/pdf_document_properties.js
 
 
-const DEFAULT_FIELD_CONTENT = "-";
 const NON_METRIC_LOCALES = ["en-us", "en-lr", "my"];
 const US_PAGE_NAMES = {
-  "8.5x11": "letter",
-  "8.5x14": "legal"
+  "8.5x11": "pdfjs-document-properties-page-size-name-letter",
+  "8.5x14": "pdfjs-document-properties-page-size-name-legal"
 };
 const METRIC_PAGE_NAMES = {
-  "297x420": "a-three",
-  "210x297": "a-four"
+  "297x420": "pdfjs-document-properties-page-size-name-a-three",
+  "210x297": "pdfjs-document-properties-page-size-name-a-four"
 };
 function getPageName(size, isPortrait, pageNames) {
   const width = isPortrait ? size.width : size.height;
@@ -4229,7 +5042,6 @@ class PDFDocumentProperties {
     eventBus._on("rotationchanging", evt => {
       this._pagesRotation = evt.pagesRotation;
     });
-    this._isNonMetricLocale = NON_METRIC_LOCALES.includes(l10n.getLanguage());
   }
   async open() {
     await Promise.all([this.overlayManager.open(this.dialog), this._dataAvailableCapability.promise]);
@@ -4239,13 +5051,11 @@ class PDFDocumentProperties {
       this.#updateUI();
       return;
     }
-    const {
+    const [{
       info,
       contentLength
-    } = await this.pdfDocument.getMetadata();
-    const [fileName, fileSize, creationDate, modificationDate, pageSize, isLinearized] = await Promise.all([this._fileNameLookup(), this.#parseFileSize(contentLength), this.#parseDate(info.CreationDate), this.#parseDate(info.ModDate), this.pdfDocument.getPage(currentPageNumber).then(pdfPage => {
-      return this.#parsePageSize(getPageSizeInches(pdfPage), pagesRotation);
-    }), this.#parseLinearization(info.IsLinearized)]);
+    }, pdfPage] = await Promise.all([this.pdfDocument.getMetadata(), this.pdfDocument.getPage(currentPageNumber)]);
+    const [fileName, fileSize, creationDate, modificationDate, pageSize, isLinearized] = await Promise.all([this._fileNameLookup(), this.#parseFileSize(contentLength), this.#parseDate(info.CreationDate), this.#parseDate(info.ModDate), this.#parsePageSize(getPageSizeInches(pdfPage), pagesRotation), this.#parseLinearization(info.IsLinearized)]);
     this.#fieldData = Object.freeze({
       fileName,
       fileSize,
@@ -4282,7 +5092,7 @@ class PDFDocumentProperties {
   setDocument(pdfDocument) {
     if (this.pdfDocument) {
       this.#reset();
-      this.#updateUI(true);
+      this.#updateUI();
     }
     if (!pdfDocument) {
       return;
@@ -4297,32 +5107,23 @@ class PDFDocumentProperties {
     this._currentPageNumber = 1;
     this._pagesRotation = 0;
   }
-  #updateUI(reset = false) {
-    if (reset || !this.#fieldData) {
-      for (const id in this.fields) {
-        this.fields[id].textContent = DEFAULT_FIELD_CONTENT;
-      }
-      return;
-    }
-    if (this.overlayManager.active !== this.dialog) {
+  #updateUI() {
+    if (this.#fieldData && this.overlayManager.active !== this.dialog) {
       return;
     }
     for (const id in this.fields) {
-      const content = this.#fieldData[id];
-      this.fields[id].textContent = content || content === 0 ? content : DEFAULT_FIELD_CONTENT;
+      const content = this.#fieldData?.[id];
+      this.fields[id].textContent = content || content === 0 ? content : "-";
     }
   }
-  async #parseFileSize(fileSize = 0) {
-    const kb = fileSize / 1024,
+  async #parseFileSize(b = 0) {
+    const kb = b / 1024,
       mb = kb / 1024;
-    if (!kb) {
-      return undefined;
-    }
-    return this.l10n.get(`pdfjs-document-properties-${mb >= 1 ? "mb" : "kb"}`, {
-      size_mb: mb >= 1 && (+mb.toPrecision(3)).toLocaleString(),
-      size_kb: mb < 1 && (+kb.toPrecision(3)).toLocaleString(),
-      size_b: fileSize.toLocaleString()
-    });
+    return kb ? this.l10n.get(mb >= 1 ? "pdfjs-document-properties-size-mb" : "pdfjs-document-properties-size-kb", {
+      mb,
+      kb,
+      b
+    }) : undefined;
   }
   async #parsePageSize(pageSizeInches, pagesRotation) {
     if (!pageSizeInches) {
@@ -4334,7 +5135,8 @@ class PDFDocumentProperties {
         height: pageSizeInches.width
       };
     }
-    const isPortrait = isPortraitOrientation(pageSizeInches);
+    const isPortrait = isPortraitOrientation(pageSizeInches),
+      nonMetric = NON_METRIC_LOCALES.includes(this.l10n.getLanguage());
     let sizeInches = {
       width: Math.round(pageSizeInches.width * 100) / 100,
       height: Math.round(pageSizeInches.height * 100) / 100
@@ -4343,8 +5145,8 @@ class PDFDocumentProperties {
       width: Math.round(pageSizeInches.width * 25.4 * 10) / 10,
       height: Math.round(pageSizeInches.height * 25.4 * 10) / 10
     };
-    let rawName = getPageName(sizeInches, isPortrait, US_PAGE_NAMES) || getPageName(sizeMillimeters, isPortrait, METRIC_PAGE_NAMES);
-    if (!rawName && !(Number.isInteger(sizeMillimeters.width) && Number.isInteger(sizeMillimeters.height))) {
+    let nameId = getPageName(sizeInches, isPortrait, US_PAGE_NAMES) || getPageName(sizeMillimeters, isPortrait, METRIC_PAGE_NAMES);
+    if (!nameId && !(Number.isInteger(sizeMillimeters.width) && Number.isInteger(sizeMillimeters.height))) {
       const exactMillimeters = {
         width: pageSizeInches.width * 25.4,
         height: pageSizeInches.height * 25.4
@@ -4354,8 +5156,8 @@ class PDFDocumentProperties {
         height: Math.round(sizeMillimeters.height)
       };
       if (Math.abs(exactMillimeters.width - intMillimeters.width) < 0.1 && Math.abs(exactMillimeters.height - intMillimeters.height) < 0.1) {
-        rawName = getPageName(intMillimeters, isPortrait, METRIC_PAGE_NAMES);
-        if (rawName) {
+        nameId = getPageName(intMillimeters, isPortrait, METRIC_PAGE_NAMES);
+        if (nameId) {
           sizeInches = {
             width: Math.round(intMillimeters.width / 25.4 * 100) / 100,
             height: Math.round(intMillimeters.height / 25.4 * 100) / 100
@@ -4367,31 +5169,27 @@ class PDFDocumentProperties {
     const [{
       width,
       height
-    }, unit, name, orientation] = await Promise.all([this._isNonMetricLocale ? sizeInches : sizeMillimeters, this.l10n.get(`pdfjs-document-properties-page-size-unit-${this._isNonMetricLocale ? "inches" : "millimeters"}`), rawName && this.l10n.get(`pdfjs-document-properties-page-size-name-${rawName}`), this.l10n.get(`pdfjs-document-properties-page-size-orientation-${isPortrait ? "portrait" : "landscape"}`)]);
-    return this.l10n.get(`pdfjs-document-properties-page-size-dimension-${name ? "name-" : ""}string`, {
-      width: width.toLocaleString(),
-      height: height.toLocaleString(),
+    }, unit, name, orientation] = await Promise.all([nonMetric ? sizeInches : sizeMillimeters, this.l10n.get(nonMetric ? "pdfjs-document-properties-page-size-unit-inches" : "pdfjs-document-properties-page-size-unit-millimeters"), nameId && this.l10n.get(nameId), this.l10n.get(isPortrait ? "pdfjs-document-properties-page-size-orientation-portrait" : "pdfjs-document-properties-page-size-orientation-landscape")]);
+    return this.l10n.get(name ? "pdfjs-document-properties-page-size-dimension-name-string" : "pdfjs-document-properties-page-size-dimension-string", {
+      width,
+      height,
       unit,
       name,
       orientation
     });
   }
   async #parseDate(inputDate) {
-    const dateObject = PDFDateString.toDateObject(inputDate);
-    if (!dateObject) {
-      return undefined;
-    }
-    return this.l10n.get("pdfjs-document-properties-date-string", {
-      date: dateObject.toLocaleDateString(),
-      time: dateObject.toLocaleTimeString()
-    });
+    const dateObj = PDFDateString.toDateObject(inputDate);
+    return dateObj ? this.l10n.get("pdfjs-document-properties-date-time-string", {
+      dateObj: dateObj.valueOf()
+    }) : undefined;
   }
   #parseLinearization(isLinearized) {
-    return this.l10n.get(`pdfjs-document-properties-linearized-${isLinearized ? "yes" : "no"}`);
+    return this.l10n.get(isLinearized ? "pdfjs-document-properties-linearized-yes" : "pdfjs-document-properties-linearized-no");
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_find_utils.js
+;// ./web/pdf_find_utils.js
 const CharacterType = {
   SPACE: 0,
   ALPHA_LETTER: 1,
@@ -4465,7 +5263,7 @@ function getNormalizeWithNFKC() {
   return NormalizeWithNFKC;
 }
 
-;// CONCATENATED MODULE: ./web/pdf_find_controller.js
+;// ./web/pdf_find_controller.js
 
 
 const FindState = {
@@ -4529,7 +5327,8 @@ function normalize(text) {
     const toNormalizeWithNFKC = getNormalizeWithNFKC();
     const CJK = "(?:\\p{Ideographic}|[\u3040-\u30FF])";
     const HKDiacritics = "(?:\u3099|\u309A)";
-    const regexp = `([${replace}])|([${toNormalizeWithNFKC}])|(${HKDiacritics}\\n)|(\\p{M}+(?:-\\n)?)|(\\S-\\n)|(${CJK}\\n)|(\\n)`;
+    const CompoundWord = "\\p{Ll}-\\n\\p{Lu}";
+    const regexp = `([${replace}])|([${toNormalizeWithNFKC}])|(${HKDiacritics}\\n)|(\\p{M}+(?:-\\n)?)|(${CompoundWord})|(\\S-\\n)|(${CJK}\\n)|(\\n)`;
     if (syllablePositions.length === 0) {
       normalizationRegex = noSyllablesRegExp = new RegExp(regexp + "|(\\u0000)", "gum");
     } else {
@@ -4541,20 +5340,20 @@ function normalize(text) {
     rawDiacriticsPositions.push([m[0].length, m.index]);
   }
   let normalized = text.normalize("NFD");
-  const positions = [[0, 0]];
+  const positions = [0, 0];
   let rawDiacriticsIndex = 0;
   let syllableIndex = 0;
   let shift = 0;
   let shiftOrigin = 0;
   let eol = 0;
   let hasDiacritics = false;
-  normalized = normalized.replace(normalizationRegex, (match, p1, p2, p3, p4, p5, p6, p7, p8, i) => {
+  normalized = normalized.replace(normalizationRegex, (match, p1, p2, p3, p4, p5, p6, p7, p8, p9, i) => {
     i -= shiftOrigin;
     if (p1) {
       const replacement = CHARACTERS_TO_NORMALIZE[p1];
       const jj = replacement.length;
       for (let j = 1; j < jj; j++) {
-        positions.push([i - shift + j, shift - j]);
+        positions.push(i - shift + j, shift - j);
       }
       shift -= jj - 1;
       return replacement;
@@ -4567,7 +5366,7 @@ function normalize(text) {
       }
       const jj = replacement.length;
       for (let j = 1; j < jj; j++) {
-        positions.push([i - shift + j, shift - j]);
+        positions.push(i - shift + j, shift - j);
       }
       shift -= jj - 1;
       return replacement;
@@ -4577,11 +5376,11 @@ function normalize(text) {
       if (i + eol === rawDiacriticsPositions[rawDiacriticsIndex]?.[1]) {
         ++rawDiacriticsIndex;
       } else {
-        positions.push([i - 1 - shift + 1, shift - 1]);
+        positions.push(i - 1 - shift + 1, shift - 1);
         shift -= 1;
         shiftOrigin += 1;
       }
-      positions.push([i - shift + 1, shift]);
+      positions.push(i - shift + 1, shift);
       shiftOrigin += 1;
       eol += 1;
       return p3.charAt(0);
@@ -4596,13 +5395,13 @@ function normalize(text) {
         ++rawDiacriticsIndex;
       }
       for (let j = 1; j <= jj; j++) {
-        positions.push([i - 1 - shift + j, shift - j]);
+        positions.push(i - 1 - shift + j, shift - j);
       }
       shift -= jj;
       shiftOrigin += jj;
       if (hasTrailingDashEOL) {
         i += len - 1;
-        positions.push([i - shift + 1, 1 + shift]);
+        positions.push(i - shift + 1, 1 + shift);
         shift += 1;
         shiftOrigin += 1;
         eol += 1;
@@ -4611,22 +5410,27 @@ function normalize(text) {
       return p4;
     }
     if (p5) {
-      const len = p5.length - 2;
-      positions.push([i - shift + len, 1 + shift]);
+      shiftOrigin += 1;
+      eol += 1;
+      return p5.replace("\n", "");
+    }
+    if (p6) {
+      const len = p6.length - 2;
+      positions.push(i - shift + len, 1 + shift);
       shift += 1;
       shiftOrigin += 1;
       eol += 1;
-      return p5.slice(0, -2);
-    }
-    if (p6) {
-      const len = p6.length - 1;
-      positions.push([i - shift + len, shift]);
-      shiftOrigin += 1;
-      eol += 1;
-      return p6.slice(0, -1);
+      return p6.slice(0, -2);
     }
     if (p7) {
-      positions.push([i - shift + 1, shift - 1]);
+      const len = p7.length - 1;
+      positions.push(i - shift + len, shift);
+      shiftOrigin += 1;
+      eol += 1;
+      return p7.slice(0, -1);
+    }
+    if (p8) {
+      positions.push(i - shift + 1, shift - 1);
       shift -= 1;
       shiftOrigin += 1;
       eol += 1;
@@ -4636,32 +5440,39 @@ function normalize(text) {
       const newCharLen = syllablePositions[syllableIndex][0] - 1;
       ++syllableIndex;
       for (let j = 1; j <= newCharLen; j++) {
-        positions.push([i - (shift - j), shift - j]);
+        positions.push(i - (shift - j), shift - j);
       }
       shift -= newCharLen;
       shiftOrigin += newCharLen;
     }
-    return p8;
+    return p9;
   });
-  positions.push([normalized.length, shift]);
-  return [normalized, positions, hasDiacritics];
+  positions.push(normalized.length, shift);
+  const starts = new Uint32Array(positions.length >> 1);
+  const shifts = new Int32Array(positions.length >> 1);
+  for (let i = 0, ii = positions.length; i < ii; i += 2) {
+    starts[i >> 1] = positions[i];
+    shifts[i >> 1] = positions[i + 1];
+  }
+  return [normalized, [starts, shifts], hasDiacritics];
 }
 function getOriginalIndex(diffs, pos, len) {
   if (!diffs) {
     return [pos, len];
   }
+  const [starts, shifts] = diffs;
   const start = pos;
   const end = pos + len - 1;
-  let i = binarySearchFirstItem(diffs, x => x[0] >= start);
-  if (diffs[i][0] > start) {
+  let i = binarySearchFirstItem(starts, x => x >= start);
+  if (starts[i] > start) {
     --i;
   }
-  let j = binarySearchFirstItem(diffs, x => x[0] >= end, i);
-  if (diffs[j][0] > end) {
+  let j = binarySearchFirstItem(starts, x => x >= end, i);
+  if (starts[j] > end) {
     --j;
   }
-  const oldStart = start + diffs[i][1];
-  const oldEnd = end + diffs[j][1];
+  const oldStart = start + shifts[i];
+  const oldEnd = end + shifts[j];
   const oldLen = oldEnd + 1 - oldStart;
   return [oldStart, oldLen];
 }
@@ -4864,25 +5675,6 @@ class PDFFindController {
     }
     return true;
   }
-  #calculateRegExpMatch(query, entireWord, pageIndex, pageContent) {
-    const matches = this._pageMatches[pageIndex] = [];
-    const matchesLength = this._pageMatchesLength[pageIndex] = [];
-    if (!query) {
-      return;
-    }
-    const diffs = this._pageDiffs[pageIndex];
-    let match;
-    while ((match = query.exec(pageContent)) !== null) {
-      if (entireWord && !this.#isEntireWord(pageContent, match.index, match[0].length)) {
-        continue;
-      }
-      const [matchPos, matchLen] = getOriginalIndex(diffs, match.index, match[0].length);
-      if (matchLen) {
-        matches.push(matchPos);
-        matchesLength.push(matchLen);
-      }
-    }
-  }
   #convertToRegExpString(query, hasDiacritics) {
     const {
       matchDiacritics
@@ -4924,15 +5716,43 @@ class PDFFindController {
     return [isUnicode, query];
   }
   #calculateMatch(pageIndex) {
-    let query = this.#query;
+    const query = this.#query;
     if (query.length === 0) {
       return;
     }
-    const {
-      caseSensitive,
-      entireWord
-    } = this.#state;
     const pageContent = this._pageContents[pageIndex];
+    const matcherResult = this.match(query, pageContent, pageIndex);
+    const matches = this._pageMatches[pageIndex] = [];
+    const matchesLength = this._pageMatchesLength[pageIndex] = [];
+    const diffs = this._pageDiffs[pageIndex];
+    matcherResult?.forEach(({
+      index,
+      length
+    }) => {
+      const [matchPos, matchLen] = getOriginalIndex(diffs, index, length);
+      if (matchLen) {
+        matches.push(matchPos);
+        matchesLength.push(matchLen);
+      }
+    });
+    if (this.#state.highlightAll) {
+      this.#updatePage(pageIndex);
+    }
+    if (this._resumePageIdx === pageIndex) {
+      this._resumePageIdx = null;
+      this.#nextPageMatch();
+    }
+    const pageMatchesCount = matches.length;
+    this._matchesCountTotal += pageMatchesCount;
+    if (this.#updateMatchesCountOnProgress) {
+      if (pageMatchesCount > 0) {
+        this.#updateUIResultsCount();
+      }
+    } else if (++this.#visitedPagesCount === this._linkService.pagesCount) {
+      this.#updateUIResultsCount();
+    }
+  }
+  match(query, pageContent, pageIndex) {
     const hasDiacritics = this._hasDiacritics[pageIndex];
     let isUnicode = false;
     if (typeof query === "string") {
@@ -4944,25 +5764,27 @@ class PDFFindController {
         return `(${queryPart})`;
       }).join("|");
     }
+    if (!query) {
+      return undefined;
+    }
+    const {
+      caseSensitive,
+      entireWord
+    } = this.#state;
     const flags = `g${isUnicode ? "u" : ""}${caseSensitive ? "" : "i"}`;
-    query = query ? new RegExp(query, flags) : null;
-    this.#calculateRegExpMatch(query, entireWord, pageIndex, pageContent);
-    if (this.#state.highlightAll) {
-      this.#updatePage(pageIndex);
-    }
-    if (this._resumePageIdx === pageIndex) {
-      this._resumePageIdx = null;
-      this.#nextPageMatch();
-    }
-    const pageMatchesCount = this._pageMatches[pageIndex].length;
-    this._matchesCountTotal += pageMatchesCount;
-    if (this.#updateMatchesCountOnProgress) {
-      if (pageMatchesCount > 0) {
-        this.#updateUIResultsCount();
+    query = new RegExp(query, flags);
+    const matches = [];
+    let match;
+    while ((match = query.exec(pageContent)) !== null) {
+      if (entireWord && !this.#isEntireWord(pageContent, match.index, match[0].length)) {
+        continue;
       }
-    } else if (++this.#visitedPagesCount === this._linkService.pagesCount) {
-      this.#updateUIResultsCount();
+      matches.push({
+        index: match.index,
+        length: match[0].length
+      });
     }
+    return matches;
   }
   #extractText() {
     if (this._extractTextPromises.length > 0) {
@@ -5180,19 +6002,21 @@ class PDFFindController {
       source: this,
       state,
       previous,
+      entireWord: this.#state?.entireWord ?? null,
       matchesCount: this.#requestMatchesCount(),
       rawQuery: this.#state?.query ?? null
     });
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_find_bar.js
+;// ./web/pdf_find_bar.js
 
 
 const MATCHES_COUNT_LIMIT = 1000;
 class PDFFindBar {
+  #mainContainer;
   #resizeObserver = new ResizeObserver(this.#resizeObserverCallback.bind(this));
-  constructor(options, eventBus) {
+  constructor(options, mainContainer, eventBus) {
     this.opened = false;
     this.bar = options.bar;
     this.toggleButton = options.toggleButton;
@@ -5206,17 +6030,26 @@ class PDFFindBar {
     this.findPreviousButton = options.findPreviousButton;
     this.findNextButton = options.findNextButton;
     this.eventBus = eventBus;
+    this.#mainContainer = mainContainer;
+    const checkedInputs = new Map([[this.highlightAll, "highlightallchange"], [this.caseSensitive, "casesensitivitychange"], [this.entireWord, "entirewordchange"], [this.matchDiacritics, "diacriticmatchingchange"]]);
     this.toggleButton.addEventListener("click", () => {
       this.toggle();
     });
     this.findField.addEventListener("input", () => {
       this.dispatchEvent("");
     });
-    this.bar.addEventListener("keydown", e => {
-      switch (e.keyCode) {
+    this.bar.addEventListener("keydown", ({
+      keyCode,
+      shiftKey,
+      target
+    }) => {
+      switch (keyCode) {
         case 13:
-          if (e.target === this.findField) {
-            this.dispatchEvent("again", e.shiftKey);
+          if (target === this.findField) {
+            this.dispatchEvent("again", shiftKey);
+          } else if (checkedInputs.has(target)) {
+            target.checked = !target.checked;
+            this.dispatchEvent(checkedInputs.get(target));
           }
           break;
         case 27:
@@ -5230,18 +6063,11 @@ class PDFFindBar {
     this.findNextButton.addEventListener("click", () => {
       this.dispatchEvent("again", false);
     });
-    this.highlightAll.addEventListener("click", () => {
-      this.dispatchEvent("highlightallchange");
-    });
-    this.caseSensitive.addEventListener("click", () => {
-      this.dispatchEvent("casesensitivitychange");
-    });
-    this.entireWord.addEventListener("click", () => {
-      this.dispatchEvent("entirewordchange");
-    });
-    this.matchDiacritics.addEventListener("click", () => {
-      this.dispatchEvent("diacriticmatchingchange");
-    });
+    for (const [elem, evtName] of checkedInputs) {
+      elem.addEventListener("click", () => {
+        this.dispatchEvent(evtName);
+      });
+    }
   }
   reset() {
     this.updateUIState();
@@ -5276,7 +6102,7 @@ class PDFFindBar {
         status = "notFound";
         break;
       case FindState.WRAPPED:
-        findMsgId = `pdfjs-find-reached-${previous ? "top" : "bottom"}`;
+        findMsgId = previous ? "pdfjs-find-reached-top" : "pdfjs-find-reached-bottom";
         break;
     }
     findField.setAttribute("data-status", status);
@@ -5299,7 +6125,7 @@ class PDFFindBar {
     } = this;
     if (total > 0) {
       const limit = MATCHES_COUNT_LIMIT;
-      findResultsCount.setAttribute("data-l10n-id", `pdfjs-find-match-count${total > limit ? "-limit" : ""}`);
+      findResultsCount.setAttribute("data-l10n-id", total > limit ? "pdfjs-find-match-count-limit" : "pdfjs-find-match-count");
       findResultsCount.setAttribute("data-l10n-args", JSON.stringify({
         limit,
         current,
@@ -5312,7 +6138,7 @@ class PDFFindBar {
   }
   open() {
     if (!this.opened) {
-      this.#resizeObserver.observe(this.bar.parentNode);
+      this.#resizeObserver.observe(this.#mainContainer);
       this.#resizeObserver.observe(this.bar);
       this.opened = true;
       toggleExpandedBtn(this.toggleButton, true, this.bar);
@@ -5338,7 +6164,7 @@ class PDFFindBar {
       this.open();
     }
   }
-  #resizeObserverCallback(entries) {
+  #resizeObserverCallback() {
     const {
       bar
     } = this;
@@ -5351,7 +6177,7 @@ class PDFFindBar {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_history.js
+;// ./web/pdf_history.js
 
 
 const HASH_CHANGE_TIMEOUT = 1000;
@@ -5818,7 +6644,7 @@ function isDestArraysEqual(firstDest, secondDest) {
   return true;
 }
 
-;// CONCATENATED MODULE: ./web/pdf_layer_viewer.js
+;// ./web/pdf_layer_viewer.js
 
 class PDFLayerViewer extends BaseTreeViewer {
   constructor(options) {
@@ -5834,7 +6660,8 @@ class PDFLayerViewer extends BaseTreeViewer {
   reset() {
     super.reset();
     this._optionalContentConfig = null;
-    this._optionalContentHash = null;
+    this._optionalContentVisibility?.clear();
+    this._optionalContentVisibility = null;
   }
   _dispatchEvent(layersCount) {
     this.eventBus.dispatch("layersloaded", {
@@ -5847,8 +6674,12 @@ class PDFLayerViewer extends BaseTreeViewer {
     input
   }) {
     const setVisibility = () => {
-      this._optionalContentConfig.setVisibility(groupId, input.checked);
-      this._optionalContentHash = this._optionalContentConfig.getHash();
+      const visible = input.checked;
+      this._optionalContentConfig.setVisibility(groupId, visible);
+      const cached = this._optionalContentVisibility.get(groupId);
+      if (cached) {
+        cached.visible = visible;
+      }
       this.eventBus.dispatch("optionalcontentconfig", {
         source: this,
         promise: Promise.resolve(this._optionalContentConfig)
@@ -5866,15 +6697,16 @@ class PDFLayerViewer extends BaseTreeViewer {
       return false;
     };
   }
-  async _setNestedName(element, {
+  _setNestedName(element, {
     name = null
   }) {
     if (typeof name === "string") {
       element.textContent = this._normalizeTextContent(name);
       return;
     }
-    element.textContent = await this._l10n.get("pdfjs-additional-layers");
+    element.setAttribute("data-l10n-id", "pdfjs-additional-layers");
     element.style.fontStyle = "italic";
+    this._l10n.translateOnce(element);
   }
   _addToggleButton(div, {
     name = null
@@ -5901,7 +6733,7 @@ class PDFLayerViewer extends BaseTreeViewer {
       this._dispatchEvent(0);
       return;
     }
-    this._optionalContentHash = optionalContentConfig.getHash();
+    this._optionalContentVisibility = new Map();
     const fragment = document.createDocumentFragment(),
       queue = [{
         parent: fragment,
@@ -5936,6 +6768,10 @@ class PDFLayerViewer extends BaseTreeViewer {
           });
           input.type = "checkbox";
           input.checked = group.visible;
+          this._optionalContentVisibility.set(groupId, {
+            input,
+            visible: input.checked
+          });
           const label = document.createElement("label");
           label.textContent = this._normalizeTextContent(group.name);
           label.append(input);
@@ -5959,15 +6795,18 @@ class PDFLayerViewer extends BaseTreeViewer {
       return;
     }
     if (promise) {
-      if (optionalContentConfig.getHash() === this._optionalContentHash) {
-        return;
+      for (const [groupId, cached] of this._optionalContentVisibility) {
+        const group = optionalContentConfig.getGroup(groupId);
+        if (group && cached.visible !== group.visible) {
+          cached.input.checked = cached.visible = !cached.visible;
+        }
       }
-    } else {
-      this.eventBus.dispatch("optionalcontentconfig", {
-        source: this,
-        promise: Promise.resolve(optionalContentConfig)
-      });
+      return;
     }
+    this.eventBus.dispatch("optionalcontentconfig", {
+      source: this,
+      promise: Promise.resolve(optionalContentConfig)
+    });
     this.render({
       optionalContentConfig,
       pdfDocument: this._pdfDocument
@@ -5975,7 +6814,7 @@ class PDFLayerViewer extends BaseTreeViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_outline_viewer.js
+;// ./web/pdf_outline_viewer.js
 
 
 class PDFOutlineViewer extends BaseTreeViewer {
@@ -6237,7 +7076,7 @@ class PDFOutlineViewer extends BaseTreeViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_presentation_mode.js
+;// ./web/pdf_presentation_mode.js
 
 
 const DELAY_BEFORE_HIDING_CONTROLS = 3000;
@@ -6530,7 +7369,7 @@ class PDFPresentationMode {
   }
 }
 
-;// CONCATENATED MODULE: ./web/xfa_layer_builder.js
+;// ./web/xfa_layer_builder.js
 
 class XfaLayerBuilder {
   constructor({
@@ -6596,7 +7435,7 @@ class XfaLayerBuilder {
   }
 }
 
-;// CONCATENATED MODULE: ./web/print_utils.js
+;// ./web/print_utils.js
 
 
 
@@ -6622,7 +7461,7 @@ function getXfaHtmlForPrinting(printContainer, pdfDocument) {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_print_service.js
+;// ./web/pdf_print_service.js
 
 
 let activeService = null;
@@ -6742,22 +7581,24 @@ class PDFPrintService {
   useRenderedPage() {
     this.throwIfInactive();
     const img = document.createElement("img");
-    const scratchCanvas = this.scratchCanvas;
-    if ("toBlob" in scratchCanvas) {
-      scratchCanvas.toBlob(function (blob) {
-        img.src = URL.createObjectURL(blob);
-      });
-    } else {
-      img.src = scratchCanvas.toDataURL();
-    }
+    this.scratchCanvas.toBlob(blob => {
+      img.src = URL.createObjectURL(blob);
+    });
     const wrapper = document.createElement("div");
     wrapper.className = "printedPage";
     wrapper.append(img);
     this.printContainer.append(wrapper);
-    return new Promise(function (resolve, reject) {
-      img.onload = resolve;
-      img.onerror = reject;
+    const {
+      promise,
+      resolve,
+      reject
+    } = Promise.withResolvers();
+    img.onload = resolve;
+    img.onerror = reject;
+    promise.catch(() => {}).then(() => {
+      URL.revokeObjectURL(img.src);
     });
+    return promise;
   }
   performPrint() {
     this.throwIfInactive();
@@ -6886,7 +7727,7 @@ class PDFPrintServiceFactory {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_rendering_queue.js
+;// ./web/pdf_rendering_queue.js
 
 
 const CLEANUP_TIMEOUT = 30000;
@@ -6993,7 +7834,7 @@ class PDFRenderingQueue {
           if (reason instanceof RenderingCancelledException) {
             return;
           }
-          console.error(`renderView: "${reason}"`);
+          console.error("renderView:", reason);
         });
         break;
     }
@@ -7001,7 +7842,7 @@ class PDFRenderingQueue {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_scripting_manager.js
+;// ./web/pdf_scripting_manager.js
 
 
 class PDFScriptingManager {
@@ -7047,7 +7888,7 @@ class PDFScriptingManager {
     try {
       this.#scripting = this.#initScripting();
     } catch (error) {
-      console.error(`setDocument: "${error.message}".`);
+      console.error("setDocument:", error);
       await this.#destroyScripting();
       return;
     }
@@ -7124,7 +7965,7 @@ class PDFScriptingManager {
         source: this
       });
     } catch (error) {
-      console.error(`setDocument: "${error.message}".`);
+      console.error("setDocument:", error);
       await this.#destroyScripting();
       return;
     }
@@ -7366,7 +8207,7 @@ class PDFScriptingManager {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_sidebar.js
+;// ./web/pdf_sidebar.js
 
 const SIDEBAR_WIDTH_VAR = "--sidebar-width";
 const SIDEBAR_MIN_WIDTH = 200;
@@ -7374,8 +8215,7 @@ const SIDEBAR_RESIZING_CLASS = "sidebarResizing";
 const UI_NOTIFICATION_CLASS = "pdfSidebarNotification";
 class PDFSidebar {
   #isRTL = false;
-  #mouseMoveBound = this.#mouseMove.bind(this);
-  #mouseUpBound = this.#mouseUp.bind(this);
+  #mouseAC = null;
   #outerContainerWidth = null;
   #width = null;
   constructor({
@@ -7542,10 +8382,14 @@ class PDFSidebar {
     }
   }
   #addEventListeners() {
+    const {
+      eventBus,
+      outerContainer
+    } = this;
     this.sidebarContainer.addEventListener("transitionend", evt => {
       if (evt.target === this.sidebarContainer) {
-        this.outerContainer.classList.remove("sidebarMoving");
-        this.eventBus.dispatch("resize", {
+        outerContainer.classList.remove("sidebarMoving");
+        eventBus.dispatch("resize", {
           source: this
         });
       }
@@ -7560,7 +8404,7 @@ class PDFSidebar {
       this.switchView(SidebarView.OUTLINE);
     });
     this.outlineButton.addEventListener("dblclick", () => {
-      this.eventBus.dispatch("toggleoutlinetree", {
+      eventBus.dispatch("toggleoutlinetree", {
         source: this
       });
     });
@@ -7571,12 +8415,12 @@ class PDFSidebar {
       this.switchView(SidebarView.LAYERS);
     });
     this.layersButton.addEventListener("dblclick", () => {
-      this.eventBus.dispatch("resetlayers", {
+      eventBus.dispatch("resetlayers", {
         source: this
       });
     });
     this._currentOutlineItemButton.addEventListener("click", () => {
-      this.eventBus.dispatch("currentoutlineitem", {
+      eventBus.dispatch("currentoutlineitem", {
         source: this
       });
     });
@@ -7588,7 +8432,7 @@ class PDFSidebar {
         this.switchView(SidebarView.THUMBS);
       }
     };
-    this.eventBus._on("outlineloaded", evt => {
+    eventBus._on("outlineloaded", evt => {
       onTreeLoaded(evt.outlineCount, this.outlineButton, SidebarView.OUTLINE);
       evt.currentOutlineItemPromise.then(enabled => {
         if (!this.isInitialViewSet) {
@@ -7597,13 +8441,13 @@ class PDFSidebar {
         this._currentOutlineItemButton.disabled = !enabled;
       });
     });
-    this.eventBus._on("attachmentsloaded", evt => {
+    eventBus._on("attachmentsloaded", evt => {
       onTreeLoaded(evt.attachmentsCount, this.attachmentsButton, SidebarView.ATTACHMENTS);
     });
-    this.eventBus._on("layersloaded", evt => {
+    eventBus._on("layersloaded", evt => {
       onTreeLoaded(evt.layersCount, this.layersButton, SidebarView.LAYERS);
     });
-    this.eventBus._on("presentationmodechanged", evt => {
+    eventBus._on("presentationmodechanged", evt => {
       if (evt.state === PresentationModeState.NORMAL && this.visibleView === SidebarView.THUMBS) {
         this.onUpdateThumbnails();
       }
@@ -7612,11 +8456,16 @@ class PDFSidebar {
       if (evt.button !== 0) {
         return;
       }
-      this.outerContainer.classList.add(SIDEBAR_RESIZING_CLASS);
-      window.addEventListener("mousemove", this.#mouseMoveBound);
-      window.addEventListener("mouseup", this.#mouseUpBound);
+      outerContainer.classList.add(SIDEBAR_RESIZING_CLASS);
+      this.#mouseAC = new AbortController();
+      const opts = {
+        signal: this.#mouseAC.signal
+      };
+      window.addEventListener("mousemove", this.#mouseMove.bind(this), opts);
+      window.addEventListener("mouseup", this.#mouseUp.bind(this), opts);
+      window.addEventListener("blur", this.#mouseUp.bind(this), opts);
     });
-    this.eventBus._on("resize", evt => {
+    eventBus._on("resize", evt => {
       if (evt.source !== window) {
         return;
       }
@@ -7628,12 +8477,12 @@ class PDFSidebar {
         this.#updateWidth(this.#width);
         return;
       }
-      this.outerContainer.classList.add(SIDEBAR_RESIZING_CLASS);
+      outerContainer.classList.add(SIDEBAR_RESIZING_CLASS);
       const updated = this.#updateWidth(this.#width);
       Promise.resolve().then(() => {
-        this.outerContainer.classList.remove(SIDEBAR_RESIZING_CLASS);
+        outerContainer.classList.remove(SIDEBAR_RESIZING_CLASS);
         if (updated) {
-          this.eventBus.dispatch("resize", {
+          eventBus.dispatch("resize", {
             source: this
           });
         }
@@ -7670,12 +8519,12 @@ class PDFSidebar {
     this.eventBus.dispatch("resize", {
       source: this
     });
-    window.removeEventListener("mousemove", this.#mouseMoveBound);
-    window.removeEventListener("mouseup", this.#mouseUpBound);
+    this.#mouseAC?.abort();
+    this.#mouseAC = null;
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_thumbnail_view.js
+;// ./web/pdf_thumbnail_view.js
 
 
 const DRAW_UPSCALE_FACTOR = 2;
@@ -7714,7 +8563,8 @@ class PDFThumbnailView {
     optionalContentConfigPromise,
     linkService,
     renderingQueue,
-    pageColors
+    pageColors,
+    enableHWA
   }) {
     this.id = id;
     this.renderingId = "thumbnail" + id;
@@ -7725,6 +8575,7 @@ class PDFThumbnailView {
     this.pdfPageRotate = defaultViewport.rotation;
     this._optionalContentConfigPromise = optionalContentConfigPromise || null;
     this.pageColors = pageColors || null;
+    this.enableHWA = enableHWA || false;
     this.eventBus = eventBus;
     this.linkService = linkService;
     this.renderingQueue = renderingQueue;
@@ -7808,10 +8659,11 @@ class PDFThumbnailView {
     }
     this.resume = null;
   }
-  #getPageDrawContext(upscaleFactor = 1) {
+  #getPageDrawContext(upscaleFactor = 1, enableHWA = this.enableHWA) {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d", {
-      alpha: false
+      alpha: false,
+      willReadFrequently: !enableHWA
     });
     const outputScale = new OutputScale();
     canvas.width = upscaleFactor * this.canvasWidth * outputScale.sx | 0;
@@ -7930,7 +8782,7 @@ class PDFThumbnailView {
     const {
       ctx,
       canvas
-    } = this.#getPageDrawContext();
+    } = this.#getPageDrawContext(1, true);
     if (img.width <= 2 * canvas.width) {
       ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
       return canvas;
@@ -7966,7 +8818,7 @@ class PDFThumbnailView {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_thumbnail_viewer.js
+;// ./web/pdf_thumbnail_viewer.js
 
 
 const THUMBNAIL_SCROLL_MARGIN = -19;
@@ -7977,14 +8829,17 @@ class PDFThumbnailViewer {
     eventBus,
     linkService,
     renderingQueue,
-    pageColors
+    pageColors,
+    abortSignal,
+    enableHWA
   }) {
     this.container = container;
     this.eventBus = eventBus;
     this.linkService = linkService;
     this.renderingQueue = renderingQueue;
     this.pageColors = pageColors || null;
-    this.scroll = watchScroll(this.container, this.#scrollUpdated.bind(this));
+    this.enableHWA = enableHWA || false;
+    this.scroll = watchScroll(this.container, this.#scrollUpdated.bind(this), abortSignal);
     this.#resetView();
   }
   #scrollUpdated() {
@@ -8105,7 +8960,8 @@ class PDFThumbnailViewer {
           optionalContentConfigPromise,
           linkService: this.linkService,
           renderingQueue: this.renderingQueue,
-          pageColors: this.pageColors
+          pageColors: this.pageColors,
+          enableHWA: this.enableHWA
         });
         this._thumbnails.push(thumbnail);
       }
@@ -8174,13 +9030,14 @@ class PDFThumbnailViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/annotation_editor_layer_builder.js
+;// ./web/annotation_editor_layer_builder.js
 
 
 class AnnotationEditorLayerBuilder {
   #annotationLayer = null;
   #drawLayer = null;
   #onAppend = null;
+  #structTreeLayer = null;
   #textLayer = null;
   #uiManager;
   constructor(options) {
@@ -8196,6 +9053,7 @@ class AnnotationEditorLayerBuilder {
     this.#textLayer = options.textLayer || null;
     this.#drawLayer = options.drawLayer || null;
     this.#onAppend = options.onAppend || null;
+    this.#structTreeLayer = options.structTreeLayer || null;
   }
   async render(viewport, intent = "display") {
     if (intent !== "display") {
@@ -8222,6 +9080,7 @@ class AnnotationEditorLayerBuilder {
     this.annotationEditorLayer = new AnnotationEditorLayer({
       uiManager: this.#uiManager,
       div,
+      structTreeLayer: this.#structTreeLayer,
       accessibilityManager: this.accessibilityManager,
       pageIndex: this.pdfPage.pageNumber - 1,
       l10n: this.l10n,
@@ -8250,6 +9109,7 @@ class AnnotationEditorLayerBuilder {
     if (!this.div) {
       return;
     }
+    this.annotationEditorLayer.pause(true);
     this.div.hidden = true;
   }
   show() {
@@ -8257,10 +9117,11 @@ class AnnotationEditorLayerBuilder {
       return;
     }
     this.div.hidden = false;
+    this.annotationEditorLayer.pause(false);
   }
 }
 
-;// CONCATENATED MODULE: ./web/annotation_layer_builder.js
+;// ./web/annotation_layer_builder.js
 
 
 class AnnotationLayerBuilder {
@@ -8299,7 +9160,7 @@ class AnnotationLayerBuilder {
     this._cancelled = false;
     this._eventBus = linkService.eventBus;
   }
-  async render(viewport, intent = "display") {
+  async render(viewport, options, intent = "display") {
     if (this.div) {
       if (this._cancelled || !this.annotationLayer) {
         return;
@@ -8332,7 +9193,8 @@ class AnnotationLayerBuilder {
       page: this.pdfPage,
       viewport: viewport.clone({
         dontFlip: true
-      })
+      }),
+      structTreeLayer: options?.structTreeLayer || null
     });
     await this.annotationLayer.render({
       annotations,
@@ -8368,6 +9230,9 @@ class AnnotationLayerBuilder {
     }
     this.div.hidden = true;
   }
+  hasEditableAnnotations() {
+    return !!this.annotationLayer?.hasEditableAnnotations();
+  }
   #updatePresentationModeState(state) {
     if (!this.div) {
       return;
@@ -8391,7 +9256,7 @@ class AnnotationLayerBuilder {
   }
 }
 
-;// CONCATENATED MODULE: ./web/draw_layer_builder.js
+;// ./web/draw_layer_builder.js
 
 class DrawLayerBuilder {
   #drawLayer = null;
@@ -8422,7 +9287,7 @@ class DrawLayerBuilder {
   }
 }
 
-;// CONCATENATED MODULE: ./web/struct_tree_layer_builder.js
+;// ./web/struct_tree_layer_builder.js
 
 const PDF_ROLE_TO_HTML_ROLE = {
   Document: null,
@@ -8468,17 +9333,42 @@ const PDF_ROLE_TO_HTML_ROLE = {
 };
 const HEADING_PATTERN = /^H(\d+)$/;
 class StructTreeLayerBuilder {
-  #treeDom = undefined;
-  get renderingDone() {
-    return this.#treeDom !== undefined;
+  #promise;
+  #treeDom = null;
+  #treePromise;
+  #elementAttributes = new Map();
+  #rawDims;
+  #elementsToAddToTextLayer = null;
+  constructor(pdfPage, rawDims) {
+    this.#promise = pdfPage.getStructTree();
+    this.#rawDims = rawDims;
   }
-  render(structTree) {
-    if (this.#treeDom !== undefined) {
-      return this.#treeDom;
+  async render() {
+    if (this.#treePromise) {
+      return this.#treePromise;
     }
-    const treeDom = this.#walk(structTree);
-    treeDom?.classList.add("structTree");
-    return this.#treeDom = treeDom;
+    const {
+      promise,
+      resolve,
+      reject
+    } = Promise.withResolvers();
+    this.#treePromise = promise;
+    try {
+      this.#treeDom = this.#walk(await this.#promise);
+    } catch (ex) {
+      reject(ex);
+    }
+    this.#promise = null;
+    this.#treeDom?.classList.add("structTree");
+    resolve(this.#treeDom);
+    return promise;
+  }
+  async getAriaAttributes(annotationId) {
+    try {
+      await this.render();
+      return this.#elementAttributes.get(annotationId);
+    } catch {}
+    return null;
   }
   hide() {
     if (this.#treeDom && !this.#treeDom.hidden) {
@@ -8497,7 +9387,22 @@ class StructTreeLayerBuilder {
       lang
     } = structElement;
     if (alt !== undefined) {
-      htmlElement.setAttribute("aria-label", removeNullCharacters(alt));
+      let added = false;
+      const label = removeNullCharacters(alt);
+      for (const child of structElement.children) {
+        if (child.type === "annotation") {
+          let attrs = this.#elementAttributes.get(child.id);
+          if (!attrs) {
+            attrs = new Map();
+            this.#elementAttributes.set(child.id, attrs);
+          }
+          attrs.set("aria-label", label);
+          added = true;
+        }
+      }
+      if (!added) {
+        htmlElement.setAttribute("aria-label", label);
+      }
     }
     if (id !== undefined) {
       htmlElement.setAttribute("aria-owns", id);
@@ -8505,6 +9410,52 @@ class StructTreeLayerBuilder {
     if (lang !== undefined) {
       htmlElement.setAttribute("lang", removeNullCharacters(lang, true));
     }
+  }
+  #addImageInTextLayer(node, element) {
+    const {
+      alt,
+      bbox,
+      children
+    } = node;
+    const child = children?.[0];
+    if (!this.#rawDims || !alt || !bbox || child?.type !== "content") {
+      return false;
+    }
+    const {
+      id
+    } = child;
+    if (!id) {
+      return false;
+    }
+    element.setAttribute("aria-owns", id);
+    const img = document.createElement("span");
+    (this.#elementsToAddToTextLayer ||= new Map()).set(id, img);
+    img.setAttribute("role", "img");
+    img.setAttribute("aria-label", removeNullCharacters(alt));
+    const {
+      pageHeight,
+      pageX,
+      pageY
+    } = this.#rawDims;
+    const calc = "calc(var(--scale-factor)*";
+    const {
+      style
+    } = img;
+    style.width = `${calc}${bbox[2] - bbox[0]}px)`;
+    style.height = `${calc}${bbox[3] - bbox[1]}px)`;
+    style.left = `${calc}${bbox[0] - pageX}px)`;
+    style.top = `${calc}${pageHeight - bbox[3] + pageY}px)`;
+    return true;
+  }
+  addElementsToTextLayer() {
+    if (!this.#elementsToAddToTextLayer) {
+      return;
+    }
+    for (const [id, img] of this.#elementsToAddToTextLayer) {
+      document.getElementById(id)?.append(img);
+    }
+    this.#elementsToAddToTextLayer.clear();
+    this.#elementsToAddToTextLayer = null;
   }
   #walk(node) {
     if (!node) {
@@ -8522,6 +9473,9 @@ class StructTreeLayerBuilder {
       } else if (PDF_ROLE_TO_HTML_ROLE[role]) {
         element.setAttribute("role", PDF_ROLE_TO_HTML_ROLE[role]);
       }
+      if (role === "Figure" && this.#addImageInTextLayer(node, element)) {
+        return element;
+      }
     }
     this.#setAttributes(node, element);
     if (node.children) {
@@ -8537,7 +9491,7 @@ class StructTreeLayerBuilder {
   }
 }
 
-;// CONCATENATED MODULE: ./web/text_accessibility.js
+;// ./web/text_accessibility.js
 
 class TextAccessibilityManager {
   #enabled = false;
@@ -8689,7 +9643,7 @@ class TextAccessibilityManager {
   }
 }
 
-;// CONCATENATED MODULE: ./web/text_highlighter.js
+;// ./web/text_highlighter.js
 class TextHighlighter {
   #eventAbortController = null;
   constructor({
@@ -8818,7 +9772,14 @@ class TextHighlighter {
         span.className = `${className} appended`;
         span.append(node);
         div.append(span);
-        return className.includes("selected") ? span.offsetLeft : 0;
+        if (className.includes("selected")) {
+          const {
+            left
+          } = span.getClientRects()[0];
+          const parentLeft = div.getBoundingClientRect().left;
+          return left - parentLeft;
+        }
+        return 0;
       }
       div.append(node);
       return 0;
@@ -8909,7 +9870,7 @@ class TextHighlighter {
   }
 }
 
-;// CONCATENATED MODULE: ./web/text_layer_builder.js
+;// ./web/text_layer_builder.js
 
 
 class TextLayerBuilder {
@@ -8934,13 +9895,6 @@ class TextLayerBuilder {
     this.div = document.createElement("div");
     this.div.tabIndex = 0;
     this.div.className = "textLayer";
-  }
-  #finishRendering() {
-    this.#renderingDone = true;
-    const endOfContent = document.createElement("div");
-    endOfContent.className = "endOfContent";
-    this.div.append(endOfContent);
-    this.#bindMouse(endOfContent);
   }
   async render(viewport, textContentParams = null) {
     if (this.#renderingDone && this.#textLayer) {
@@ -8967,7 +9921,11 @@ class TextLayerBuilder {
     this.highlighter?.setTextMapping(textDivs, textContentItemsStr);
     this.accessibilityManager?.setTextMapping(textDivs);
     await this.#textLayer.render();
-    this.#finishRendering();
+    this.#renderingDone = true;
+    const endOfContent = document.createElement("div");
+    endOfContent.className = "endOfContent";
+    this.div.append(endOfContent);
+    this.#bindMouse(endOfContent);
     this.#onAppend?.(this.div);
     this.highlighter?.enable();
     this.accessibilityManager?.enable();
@@ -8995,16 +9953,15 @@ class TextLayerBuilder {
     const {
       div
     } = this;
-    div.addEventListener("mousedown", evt => {
-      end.classList.add("active");
+    div.addEventListener("mousedown", () => {
+      div.classList.add("selecting");
     });
     div.addEventListener("copy", event => {
       if (!this.#enablePermissions) {
         const selection = document.getSelection();
         event.clipboardData.setData("text/plain", removeNullCharacters(normalizeUnicode(selection.toString())));
       }
-      event.preventDefault();
-      event.stopPropagation();
+      stopEvent(event);
     });
     TextLayerBuilder.#textLayers.set(div, end);
     TextLayerBuilder.#enableGlobalSelectionListener();
@@ -9028,10 +9985,30 @@ class TextLayerBuilder {
       textLayer.append(end);
       end.style.width = "";
       end.style.height = "";
-      end.classList.remove("active");
+      textLayer.classList.remove("selecting");
     };
+    let isPointerDown = false;
+    document.addEventListener("pointerdown", () => {
+      isPointerDown = true;
+    }, {
+      signal
+    });
     document.addEventListener("pointerup", () => {
+      isPointerDown = false;
       this.#textLayers.forEach(reset);
+    }, {
+      signal
+    });
+    window.addEventListener("blur", () => {
+      isPointerDown = false;
+      this.#textLayers.forEach(reset);
+    }, {
+      signal
+    });
+    document.addEventListener("keyup", () => {
+      if (!isPointerDown) {
+        this.#textLayers.forEach(reset);
+      }
     }, {
       signal
     });
@@ -9053,7 +10030,7 @@ class TextLayerBuilder {
       }
       for (const [textLayerDiv, endDiv] of this.#textLayers) {
         if (activeTextLayers.has(textLayerDiv)) {
-          endDiv.classList.add("active");
+          textLayerDiv.classList.add("selecting");
         } else {
           reset(endDiv, textLayerDiv);
         }
@@ -9068,7 +10045,7 @@ class TextLayerBuilder {
       if (anchor.nodeType === Node.TEXT_NODE) {
         anchor = anchor.parentNode;
       }
-      const parentTextLayer = anchor.parentElement.closest(".textLayer");
+      const parentTextLayer = anchor.parentElement?.closest(".textLayer");
       const endDiv = this.#textLayers.get(parentTextLayer);
       if (endDiv) {
         endDiv.style.width = parentTextLayer.style.width;
@@ -9082,7 +10059,7 @@ class TextLayerBuilder {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_page_view.js
+;// ./web/pdf_page_view.js
 
 
 
@@ -9100,10 +10077,16 @@ const DEFAULT_LAYER_PROPERTIES = null;
 const LAYERS_ORDER = new Map([["canvasWrapper", 0], ["textLayer", 1], ["annotationLayer", 2], ["annotationEditorLayer", 3], ["xfaLayer", 3]]);
 class PDFPageView {
   #annotationMode = AnnotationMode.ENABLE_FORMS;
+  #canvasWrapper = null;
+  #enableHWA = false;
   #hasRestrictedScaling = false;
+  #isEditing = false;
   #layerProperties = null;
   #loadingId = null;
+  #originalViewport = null;
   #previousRotation = null;
+  #scaleRoundX = 1;
+  #scaleRoundY = 1;
   #renderError = null;
   #renderingState = RenderingStates.INITIAL;
   #textLayerMode = TextLayerMode.ENABLE;
@@ -9112,7 +10095,6 @@ class PDFPageView {
     initialOptionalContent: true,
     regularAnnotations: true
   };
-  #viewportMap = new WeakMap();
   #layers = [null, null, null, null];
   constructor(options) {
     const container = options.container;
@@ -9132,6 +10114,7 @@ class PDFPageView {
     this.imageResourcesPath = options.imageResourcesPath || "";
     this.maxCanvasPixels = options.maxCanvasPixels ?? AppOptions.get("maxCanvasPixels");
     this.pageColors = options.pageColors || null;
+    this.#enableHWA = options.enableHWA || false;
     this.eventBus = options.eventBus;
     this.renderingQueue = options.renderingQueue;
     this.l10n = options.l10n;
@@ -9144,7 +10127,6 @@ class PDFPageView {
     this.annotationLayer = null;
     this.annotationEditorLayer = null;
     this.textLayer = null;
-    this.zoomLayer = null;
     this.xfaLayer = null;
     this.structTreeLayer = null;
     this.drawLayer = null;
@@ -9161,6 +10143,9 @@ class PDFPageView {
     container?.append(div);
     if (this._isStandalone) {
       container?.style.setProperty("--scale-factor", this.scale * PixelsPerInch.PDF_TO_CSS_UNITS);
+      if (this.pageColors?.background) {
+        container?.style.setProperty("--page-bg-color", this.pageColors.background);
+      }
       const {
         optionalContentConfigPromise
       } = options;
@@ -9254,6 +10239,9 @@ class PDFPageView {
     this.reset();
     this.pdfPage?.cleanup();
   }
+  hasEditableAnnotations() {
+    return !!this.annotationLayer?.hasEditableAnnotations();
+  }
   get _textHighlighter() {
     return shadow(this, "_textHighlighter", new TextHighlighter({
       pageIndex: this.id - 1,
@@ -9271,9 +10259,11 @@ class PDFPageView {
   async #renderAnnotationLayer() {
     let error = null;
     try {
-      await this.annotationLayer.render(this.viewport, "display");
+      await this.annotationLayer.render(this.viewport, {
+        structTreeLayer: this.structTreeLayer
+      }, "display");
     } catch (ex) {
-      console.error(`#renderAnnotationLayer: "${ex}".`);
+      console.error("#renderAnnotationLayer:", ex);
       error = ex;
     } finally {
       this.#dispatchLayerRendered("annotationlayerrendered", error);
@@ -9284,7 +10274,7 @@ class PDFPageView {
     try {
       await this.annotationEditorLayer.render(this.viewport, "display");
     } catch (ex) {
-      console.error(`#renderAnnotationEditorLayer: "${ex}".`);
+      console.error("#renderAnnotationEditorLayer:", ex);
       error = ex;
     } finally {
       this.#dispatchLayerRendered("annotationeditorlayerrendered", error);
@@ -9294,7 +10284,7 @@ class PDFPageView {
     try {
       await this.drawLayer.render("display");
     } catch (ex) {
-      console.error(`#renderDrawLayer: "${ex}".`);
+      console.error("#renderDrawLayer:", ex);
     }
   }
   async #renderXfaLayer() {
@@ -9305,7 +10295,7 @@ class PDFPageView {
         this.#buildXfaTextContentItems(result.textDivs);
       }
     } catch (ex) {
-      console.error(`#renderXfaLayer: "${ex}".`);
+      console.error("#renderXfaLayer:", ex);
       error = ex;
     } finally {
       if (this.xfaLayer?.div) {
@@ -9327,7 +10317,7 @@ class PDFPageView {
       if (ex instanceof AbortException) {
         return;
       }
-      console.error(`#renderTextLayer: "${ex}".`);
+      console.error("#renderTextLayer:", ex);
       error = ex;
     }
     this.#dispatchLayerRendered("textlayerrendered", error);
@@ -9337,12 +10327,13 @@ class PDFPageView {
     if (!this.textLayer) {
       return;
     }
-    this.structTreeLayer ||= new StructTreeLayerBuilder();
-    const tree = await (!this.structTreeLayer.renderingDone ? this.pdfPage.getStructTree() : null);
-    const treeDom = this.structTreeLayer?.render(tree);
+    const treeDom = await this.structTreeLayer?.render();
     if (treeDom) {
       this.l10n.pause();
-      this.canvas?.append(treeDom);
+      this.structTreeLayer?.addElementsToTextLayer();
+      if (this.canvas && treeDom.parentNode !== this.canvas) {
+        this.canvas.append(treeDom);
+      }
       this.l10n.resume();
     }
     this.structTreeLayer?.show();
@@ -9356,25 +10347,24 @@ class PDFPageView {
     this._textHighlighter.setTextMapping(textDivs, items);
     this._textHighlighter.enable();
   }
-  _resetZoomLayer(removeFromDOM = false) {
-    if (!this.zoomLayer) {
+  #resetCanvas() {
+    const {
+      canvas
+    } = this;
+    if (!canvas) {
       return;
     }
-    const zoomLayerCanvas = this.zoomLayer.firstChild;
-    this.#viewportMap.delete(zoomLayerCanvas);
-    zoomLayerCanvas.width = 0;
-    zoomLayerCanvas.height = 0;
-    if (removeFromDOM) {
-      this.zoomLayer.remove();
-    }
-    this.zoomLayer = null;
+    canvas.remove();
+    canvas.width = canvas.height = 0;
+    this.canvas = null;
+    this.#originalViewport = null;
   }
   reset({
-    keepZoomLayer = false,
     keepAnnotationLayer = false,
     keepAnnotationEditorLayer = false,
     keepXfaLayer = false,
-    keepTextLayer = false
+    keepTextLayer = false,
+    keepCanvasWrapper = false
   } = {}) {
     this.cancelRendering({
       keepAnnotationLayer,
@@ -9385,19 +10375,19 @@ class PDFPageView {
     this.renderingState = RenderingStates.INITIAL;
     const div = this.div;
     const childNodes = div.childNodes,
-      zoomLayerNode = keepZoomLayer && this.zoomLayer || null,
       annotationLayerNode = keepAnnotationLayer && this.annotationLayer?.div || null,
       annotationEditorLayerNode = keepAnnotationEditorLayer && this.annotationEditorLayer?.div || null,
       xfaLayerNode = keepXfaLayer && this.xfaLayer?.div || null,
-      textLayerNode = keepTextLayer && this.textLayer?.div || null;
+      textLayerNode = keepTextLayer && this.textLayer?.div || null,
+      canvasWrapperNode = keepCanvasWrapper && this.#canvasWrapper || null;
     for (let i = childNodes.length - 1; i >= 0; i--) {
       const node = childNodes[i];
       switch (node) {
-        case zoomLayerNode:
         case annotationLayerNode:
         case annotationEditorLayerNode:
         case xfaLayerNode:
         case textLayerNode:
+        case canvasWrapperNode:
           continue;
       }
       node.remove();
@@ -9420,15 +10410,23 @@ class PDFPageView {
       this.textLayer.hide();
     }
     this.structTreeLayer?.hide();
-    if (!zoomLayerNode) {
-      if (this.canvas) {
-        this.#viewportMap.delete(this.canvas);
-        this.canvas.width = 0;
-        this.canvas.height = 0;
-        delete this.canvas;
-      }
-      this._resetZoomLayer();
+    if (!keepCanvasWrapper && this.#canvasWrapper) {
+      this.#canvasWrapper = null;
+      this.#resetCanvas();
     }
+  }
+  toggleEditingMode(isEditing) {
+    if (!this.hasEditableAnnotations()) {
+      return;
+    }
+    this.#isEditing = isEditing;
+    this.reset({
+      keepAnnotationLayer: true,
+      keepAnnotationEditorLayer: true,
+      keepXfaLayer: true,
+      keepTextLayer: true,
+      keepCanvasWrapper: true
+    });
   }
   update({
     scale = 0,
@@ -9480,7 +10478,6 @@ class PDFPageView {
       if (postponeDrawing || onlyCssZoom) {
         if (postponeDrawing && !onlyCssZoom && this.renderingState !== RenderingStates.FINISHED) {
           this.cancelRendering({
-            keepZoomLayer: true,
             keepAnnotationLayer: true,
             keepAnnotationEditorLayer: true,
             keepXfaLayer: true,
@@ -9491,7 +10488,6 @@ class PDFPageView {
           this.#useThumbnailCanvas.directDrawing = false;
         }
         this.cssTransform({
-          target: this.canvas,
           redrawAnnotationLayer: true,
           redrawAnnotationEditorLayer: true,
           redrawXfaLayer: true,
@@ -9510,22 +10506,14 @@ class PDFPageView {
         });
         return;
       }
-      if (!this.zoomLayer && !this.canvas.hidden) {
-        this.zoomLayer = this.canvas.parentNode;
-        this.zoomLayer.style.position = "absolute";
-      }
     }
-    if (this.zoomLayer) {
-      this.cssTransform({
-        target: this.zoomLayer.firstChild
-      });
-    }
+    this.cssTransform({});
     this.reset({
-      keepZoomLayer: true,
       keepAnnotationLayer: true,
       keepAnnotationEditorLayer: true,
       keepXfaLayer: true,
-      keepTextLayer: true
+      keepTextLayer: true,
+      keepCanvasWrapper: true
     });
   }
   cancelRendering({
@@ -9544,13 +10532,13 @@ class PDFPageView {
       this.textLayer.cancel();
       this.textLayer = null;
     }
-    if (this.structTreeLayer && !this.textLayer) {
-      this.structTreeLayer = null;
-    }
     if (this.annotationLayer && (!keepAnnotationLayer || !this.annotationLayer.div)) {
       this.annotationLayer.cancel();
       this.annotationLayer = null;
       this._annotationCanvasMap = null;
+    }
+    if (this.structTreeLayer && !this.textLayer) {
+      this.structTreeLayer = null;
     }
     if (this.annotationEditorLayer && (!keepAnnotationEditorLayer || !this.annotationEditorLayer.div)) {
       if (this.drawLayer) {
@@ -9567,35 +10555,32 @@ class PDFPageView {
     }
   }
   cssTransform({
-    target,
     redrawAnnotationLayer = false,
     redrawAnnotationEditorLayer = false,
     redrawXfaLayer = false,
     redrawTextLayer = false,
     hideTextLayer = false
   }) {
-    if (!target.hasAttribute("zooming")) {
-      target.setAttribute("zooming", true);
-      const {
-        style
-      } = target;
-      style.width = style.height = "";
+    const {
+      canvas
+    } = this;
+    if (!canvas) {
+      return;
     }
-    const originalViewport = this.#viewportMap.get(target);
+    const originalViewport = this.#originalViewport;
     if (this.viewport !== originalViewport) {
-      const relativeRotation = this.viewport.rotation - originalViewport.rotation;
-      const absRotation = Math.abs(relativeRotation);
-      let scaleX = 1,
-        scaleY = 1;
-      if (absRotation === 90 || absRotation === 270) {
+      const relativeRotation = (360 + this.viewport.rotation - originalViewport.rotation) % 360;
+      if (relativeRotation === 90 || relativeRotation === 270) {
         const {
           width,
           height
         } = this.viewport;
-        scaleX = height / width;
-        scaleY = width / height;
+        const scaleX = height / width;
+        const scaleY = width / height;
+        canvas.style.transform = `rotate(${relativeRotation}deg) scale(${scaleX},${scaleY})`;
+      } else {
+        canvas.style.transform = relativeRotation === 0 ? "" : `rotate(${relativeRotation}deg)`;
       }
-      target.style.transform = `rotate(${relativeRotation}deg) scale(${scaleX}, ${scaleY})`;
     }
     if (redrawAnnotationLayer && this.annotationLayer) {
       this.#renderAnnotationLayer();
@@ -9637,7 +10622,6 @@ class PDFPageView {
     }
     this.#renderError = error;
     this.renderingState = RenderingStates.FINISHED;
-    this._resetZoomLayer(true);
     this.#useThumbnailCanvas.regularAnnotations = !renderTask.separateAnnots;
     this.eventBus.dispatch("pagerendered", {
       source: this,
@@ -9667,9 +10651,12 @@ class PDFPageView {
       throw new Error("pdfPage is not loaded");
     }
     this.renderingState = RenderingStates.RUNNING;
-    const canvasWrapper = document.createElement("div");
-    canvasWrapper.classList.add("canvasWrapper");
-    this.#addLayer(canvasWrapper, "canvasWrapper");
+    let canvasWrapper = this.#canvasWrapper;
+    if (!canvasWrapper) {
+      canvasWrapper = this.#canvasWrapper = document.createElement("div");
+      canvasWrapper.classList.add("canvasWrapper");
+      this.#addLayer(canvasWrapper, "canvasWrapper");
+    }
     if (!this.textLayer && this.#textLayerMode !== TextLayerMode.DISABLE && !pdfPage.isPureXfa) {
       this._accessibilityManager ||= new TextAccessibilityManager();
       this.textLayer = new TextLayerBuilder({
@@ -9731,18 +10718,31 @@ class PDFPageView {
     } = viewport;
     const canvas = document.createElement("canvas");
     canvas.setAttribute("role", "presentation");
-    canvas.hidden = true;
     const hasHCM = !!(pageColors?.background && pageColors?.foreground);
-    let showCanvas = isLastShow => {
-      if (!hasHCM || isLastShow) {
-        canvas.hidden = false;
-        showCanvas = null;
-      }
-    };
-    canvasWrapper.append(canvas);
+    const prevCanvas = this.canvas;
+    const updateOnFirstShow = !prevCanvas && !hasHCM;
     this.canvas = canvas;
+    this.#originalViewport = viewport;
+    let showCanvas = isLastShow => {
+      if (updateOnFirstShow) {
+        canvasWrapper.prepend(canvas);
+        showCanvas = null;
+        return;
+      }
+      if (!isLastShow) {
+        return;
+      }
+      if (prevCanvas) {
+        prevCanvas.replaceWith(canvas);
+        prevCanvas.width = prevCanvas.height = 0;
+      } else {
+        canvasWrapper.prepend(canvas);
+      }
+      showCanvas = null;
+    };
     const ctx = canvas.getContext("2d", {
-      alpha: false
+      alpha: false,
+      willReadFrequently: !this.#enableHWA
     });
     const outputScale = this.outputScale = new OutputScale();
     if (this.maxCanvasPixels === 0) {
@@ -9763,14 +10763,20 @@ class PDFPageView {
     }
     const sfx = approximateFraction(outputScale.sx);
     const sfy = approximateFraction(outputScale.sy);
-    canvas.width = roundToDivide(width * outputScale.sx, sfx[0]);
-    canvas.height = roundToDivide(height * outputScale.sy, sfy[0]);
-    const {
-      style
-    } = canvas;
-    style.width = roundToDivide(width, sfx[1]) + "px";
-    style.height = roundToDivide(height, sfy[1]) + "px";
-    this.#viewportMap.set(canvas, viewport);
+    const canvasWidth = canvas.width = floorToDivide(calcRound(width * outputScale.sx), sfx[0]);
+    const canvasHeight = canvas.height = floorToDivide(calcRound(height * outputScale.sy), sfy[0]);
+    const pageWidth = floorToDivide(calcRound(width), sfx[1]);
+    const pageHeight = floorToDivide(calcRound(height), sfy[1]);
+    outputScale.sx = canvasWidth / pageWidth;
+    outputScale.sy = canvasHeight / pageHeight;
+    if (this.#scaleRoundX !== sfx[1]) {
+      div.style.setProperty("--scale-round-x", `${sfx[1]}px`);
+      this.#scaleRoundX = sfx[1];
+    }
+    if (this.#scaleRoundY !== sfy[1]) {
+      div.style.setProperty("--scale-round-y", `${sfy[1]}px`);
+      this.#scaleRoundY = sfy[1];
+    }
     const transform = outputScale.scaled ? [outputScale.sx, 0, 0, outputScale.sy, 0, 0] : null;
     const renderContext = {
       canvasContext: ctx,
@@ -9779,13 +10785,15 @@ class PDFPageView {
       annotationMode: this.#annotationMode,
       optionalContentConfigPromise: this._optionalContentConfigPromise,
       annotationCanvasMap: this._annotationCanvasMap,
-      pageColors
+      pageColors,
+      isEditing: this.#isEditing
     };
     const renderTask = this.renderTask = pdfPage.render(renderContext);
     renderTask.onContinue = renderContinueCallback;
     const resultPromise = renderTask.promise.then(async () => {
       showCanvas?.(true);
       await this.#finishRenderTask(renderTask);
+      this.structTreeLayer ||= new StructTreeLayerBuilder(pdfPage, viewport.rawDims);
       this.#renderTextLayer();
       if (this.annotationLayer) {
         await this.#renderAnnotationLayer();
@@ -9801,24 +10809,26 @@ class PDFPageView {
       });
       await this.#renderDrawLayer();
       this.drawLayer.setParent(canvasWrapper);
-      if (!this.annotationEditorLayer) {
-        this.annotationEditorLayer = new AnnotationEditorLayerBuilder({
-          uiManager: annotationEditorUIManager,
-          pdfPage,
-          l10n,
-          accessibilityManager: this._accessibilityManager,
-          annotationLayer: this.annotationLayer?.annotationLayer,
-          textLayer: this.textLayer,
-          drawLayer: this.drawLayer.getDrawLayer(),
-          onAppend: annotationEditorLayerDiv => {
-            this.#addLayer(annotationEditorLayerDiv, "annotationEditorLayer");
-          }
-        });
-      }
+      this.annotationEditorLayer ||= new AnnotationEditorLayerBuilder({
+        uiManager: annotationEditorUIManager,
+        pdfPage,
+        l10n,
+        structTreeLayer: this.structTreeLayer,
+        accessibilityManager: this._accessibilityManager,
+        annotationLayer: this.annotationLayer?.annotationLayer,
+        textLayer: this.textLayer,
+        drawLayer: this.drawLayer.getDrawLayer(),
+        onAppend: annotationEditorLayerDiv => {
+          this.#addLayer(annotationEditorLayerDiv, "annotationEditorLayer");
+        }
+      });
       this.#renderAnnotationEditorLayer();
     }, error => {
       if (!(error instanceof RenderingCancelledException)) {
         showCanvas?.(true);
+      } else {
+        prevCanvas?.remove();
+        this.#resetCanvas();
       }
       return this.#finishRenderTask(renderTask, error);
     });
@@ -9864,7 +10874,7 @@ class PDFPageView {
   }
 }
 
-;// CONCATENATED MODULE: ./web/pdf_viewer.js
+;// ./web/pdf_viewer.js
 
 
 
@@ -9873,8 +10883,8 @@ class PDFPageView {
 
 const DEFAULT_CACHE_SIZE = 10;
 const PagesCountLimit = {
-  FORCE_SCROLL_MODE_PAGE: 15000,
-  FORCE_LAZY_PAGE_INIT: 7500,
+  FORCE_SCROLL_MODE_PAGE: 10000,
+  FORCE_LAZY_PAGE_INIT: 5000,
   PAUSE_EAGER_PAGE_INIT: 250
 };
 function isValidAnnotationEditorMode(mode) {
@@ -9936,10 +10946,16 @@ class PDFViewer {
   #annotationEditorUIManager = null;
   #annotationMode = AnnotationMode.ENABLE_FORMS;
   #containerTopLeft = null;
+  #editorUndoBar = null;
+  #enableHWA = false;
   #enableHighlightFloatingButton = false;
   #enablePermissions = false;
+  #enableUpdatedAddImage = false;
+  #enableNewAltTextWhenAddingImage = false;
   #eventAbortController = null;
   #mlManager = null;
+  #switchAnnotationEditorModeAC = null;
+  #switchAnnotationEditorModeTimeoutId = null;
   #getAllTextInProgress = false;
   #hiddenCopyElement = null;
   #interruptCopyCondition = false;
@@ -9947,9 +10963,10 @@ class PDFViewer {
   #resizeObserver = new ResizeObserver(this.#resizeObserverCallback.bind(this));
   #scrollModePageState = null;
   #scaleTimeoutId = null;
+  #supportsPinchToZoom = true;
   #textLayerMode = TextLayerMode.ENABLE;
   constructor(options) {
-    const viewerVersion = "4.3.136";
+    const viewerVersion = "4.10.38";
     if (version !== viewerVersion) {
       throw new Error(`The API version "${version}" does not match the Viewer version "${viewerVersion}".`);
     }
@@ -9967,6 +10984,7 @@ class PDFViewer {
     this.downloadManager = options.downloadManager || null;
     this.findController = options.findController || null;
     this.#altTextManager = options.altTextManager || null;
+    this.#editorUndoBar = options.editorUndoBar || null;
     if (this.findController) {
       this.findController.onIsPageVisible = pageNumber => this._getVisiblePages().ids.has(pageNumber);
     }
@@ -9976,6 +10994,8 @@ class PDFViewer {
     this.#annotationEditorMode = options.annotationEditorMode ?? AnnotationEditorType.NONE;
     this.#annotationEditorHighlightColors = options.annotationEditorHighlightColors || null;
     this.#enableHighlightFloatingButton = options.enableHighlightFloatingButton === true;
+    this.#enableUpdatedAddImage = options.enableUpdatedAddImage === true;
+    this.#enableNewAltTextWhenAddingImage = options.enableNewAltTextWhenAddingImage === true;
     this.imageResourcesPath = options.imageResourcesPath || "";
     this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
     this.removePageBorders = options.removePageBorders || true;
@@ -9985,6 +11005,8 @@ class PDFViewer {
     this.#enablePermissions = options.enablePermissions || false;
     this.pageColors = options.pageColors || null;
     this.#mlManager = options.mlManager || null;
+    this.#enableHWA = options.enableHWA || false;
+    this.#supportsPinchToZoom = options.supportsPinchToZoom !== false;
     this.defaultRenderingQueue = !options.renderingQueue;
     if (this.defaultRenderingQueue) {
       this.renderingQueue = new PDFRenderingQueue();
@@ -9992,7 +11014,16 @@ class PDFViewer {
     } else {
       this.renderingQueue = options.renderingQueue;
     }
-    this.scroll = watchScroll(this.container, this._scrollUpdate.bind(this));
+    const {
+      abortSignal
+    } = options;
+    abortSignal?.addEventListener("abort", () => {
+      this.#resizeObserver.disconnect();
+      this.#resizeObserver = null;
+    }, {
+      once: true
+    });
+    this.scroll = watchScroll(this.container, this._scrollUpdate.bind(this), abortSignal);
     this.presentationModeState = PresentationModeState.UNKNOWN;
     this._resetView();
     if (this.removePageBorders) {
@@ -10208,17 +11239,17 @@ class PDFViewer {
     if (document.visibilityState === "hidden" || !this.container.offsetParent || this._getVisiblePages().views.length === 0) {
       return;
     }
-    const hiddenCapability = Promise.withResolvers();
-    function onVisibilityChange() {
+    const hiddenCapability = Promise.withResolvers(),
+      ac = new AbortController();
+    document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "hidden") {
         hiddenCapability.resolve();
       }
-    }
-    document.addEventListener("visibilitychange", onVisibilityChange, {
-      signal
+    }, {
+      signal: typeof AbortSignal.any === "function" ? AbortSignal.any([signal, ac.signal]) : signal
     });
     await Promise.race([this._onePageRenderedCapability.promise, hiddenCapability.promise]);
-    document.removeEventListener("visibilitychange", onVisibilityChange);
+    ac.abort();
   }
   async getAllText() {
     const texts = [];
@@ -10252,15 +11283,18 @@ class PDFViewer {
     } = selection;
     if (anchorNode && focusNode && selection.containsNode(this.#hiddenCopyElement)) {
       if (this.#getAllTextInProgress || textLayerMode === TextLayerMode.ENABLE_PERMISSIONS) {
-        event.preventDefault();
-        event.stopPropagation();
+        stopEvent(event);
         return;
       }
       this.#getAllTextInProgress = true;
-      const savedCursor = this.container.style.cursor;
-      this.container.style.cursor = "wait";
-      const interruptCopy = ev => this.#interruptCopyCondition = ev.key === "Escape";
-      window.addEventListener("keydown", interruptCopy);
+      const {
+        classList
+      } = this.viewer;
+      classList.add("copyAll");
+      const ac = new AbortController();
+      window.addEventListener("keydown", ev => this.#interruptCopyCondition = ev.key === "Escape", {
+        signal: ac.signal
+      });
       this.getAllText().then(async text => {
         if (text !== null) {
           await navigator.clipboard.writeText(text);
@@ -10270,15 +11304,13 @@ class PDFViewer {
       }).finally(() => {
         this.#getAllTextInProgress = false;
         this.#interruptCopyCondition = false;
-        window.removeEventListener("keydown", interruptCopy);
-        this.container.style.cursor = savedCursor;
+        ac.abort();
+        classList.remove("copyAll");
       });
-      event.preventDefault();
-      event.stopPropagation();
+      stopEvent(event);
     }
   }
   setDocument(pdfDocument) {
-    const oldScale = lwRecordRender(this);
     if (this.pdfDocument) {
       this.eventBus.dispatch("pagesdestroy", {
         source: this
@@ -10287,10 +11319,8 @@ class PDFViewer {
       this._resetView();
       this.findController?.setDocument(null);
       this._scriptingManager?.setDocument(null);
-      if (this.#annotationEditorUIManager) {
-        this.#annotationEditorUIManager.destroy();
-        this.#annotationEditorUIManager = null;
-      }
+      this.#annotationEditorUIManager?.destroy();
+      this.#annotationEditorUIManager = null;
     }
     this.pdfDocument = pdfDocument;
     if (!pdfDocument) {
@@ -10347,7 +11377,7 @@ class PDFViewer {
     eventBus._on("pagerendered", onAfterDraw, {
       signal
     });
-    Promise.all([firstPagePromise, permissionsPromise]).then(async ([firstPdfPage, permissions]) => {
+    Promise.all([firstPagePromise, permissionsPromise]).then(([firstPdfPage, permissions]) => {
       if (pdfDocument !== this.pdfDocument) {
         return;
       }
@@ -10363,17 +11393,20 @@ class PDFViewer {
         element.id = "hiddenCopyElement";
         viewer.before(element);
       }
-      if (annotationEditorMode !== AnnotationEditorType.DISABLE) {
+      if (typeof AbortSignal.any === "function" && annotationEditorMode !== AnnotationEditorType.DISABLE) {
         const mode = annotationEditorMode;
         if (pdfDocument.isPureXfa) {
           console.warn("Warning: XFA-editing is not implemented.");
         } else if (isValidAnnotationEditorMode(mode)) {
-          this.#annotationEditorUIManager = new AnnotationEditorUIManager(this.container, viewer, this.#altTextManager, eventBus, pdfDocument, pageColors, this.#annotationEditorHighlightColors, this.#enableHighlightFloatingButton, this.#mlManager);
+          this.#annotationEditorUIManager = new AnnotationEditorUIManager(this.container, viewer, this.#altTextManager, eventBus, pdfDocument, pageColors, this.#annotationEditorHighlightColors, this.#enableHighlightFloatingButton, this.#enableUpdatedAddImage, this.#enableNewAltTextWhenAddingImage, this.#mlManager, this.#editorUndoBar, this.#supportsPinchToZoom);
           eventBus.dispatch("annotationeditoruimanager", {
             source: this,
             uiManager: this.#annotationEditorUIManager
           });
           if (mode !== AnnotationEditorType.NONE) {
+            if (mode === AnnotationEditorType.STAMP) {
+              this.#mlManager?.loadModel("altText");
+            }
             this.#annotationEditorUIManager.updateMode(mode);
           }
         } else {
@@ -10381,11 +11414,14 @@ class PDFViewer {
         }
       }
       const viewerElement = this._scrollMode === ScrollMode.PAGE ? null : viewer;
-      this._currentScale = oldScale; const scale = oldScale ? oldScale : this.currentScale;
+      const scale = this.currentScale;
       const viewport = firstPdfPage.getViewport({
         scale: scale * PixelsPerInch.PDF_TO_CSS_UNITS
       });
       viewer.style.setProperty("--scale-factor", viewport.scale);
+      if (pageColors?.background) {
+        viewer.style.setProperty("--page-bg-color", pageColors.background);
+      }
       if (pageColors?.foreground === "CanvasText" || pageColors?.background === "Canvas") {
         viewer.style.setProperty("--hcm-highlight-filter", pdfDocument.filterFactory.addHighlightHCMFilter("highlight", "CanvasText", "Canvas", "HighlightText", "Highlight"));
         viewer.style.setProperty("--hcm-highlight-selected-filter", pdfDocument.filterFactory.addHighlightHCMFilter("highlight_selected", "CanvasText", "Canvas", "HighlightText", "ButtonText"));
@@ -10405,12 +11441,12 @@ class PDFViewer {
           maxCanvasPixels: this.maxCanvasPixels,
           pageColors,
           l10n: this.l10n,
-          layerProperties: this._layerProperties
+          layerProperties: this._layerProperties,
+          enableHWA: this.#enableHWA
         });
         this._pages.push(pageView);
       }
       this._pages[0]?.setPdfPage(firstPdfPage);
-      await lwRenderSync(this, pdfDocument, pagesCount);
       if (this._scrollMode === ScrollMode.PAGE) {
         this.#ensurePageViewVisible();
       } else if (this._spreadMode !== SpreadMode.NONE) {
@@ -10503,7 +11539,7 @@ class PDFViewer {
     this._pages = [];
     this._currentPageNumber = 1;
     this._currentScale = UNKNOWN_SCALE;
-    // this._currentScaleValue = null;
+    this._currentScaleValue = null;
     this._pageLabels = null;
     this.#buffer = new PDFPageViewBuffer(DEFAULT_CACHE_SIZE);
     this._location = null;
@@ -10522,11 +11558,12 @@ class PDFViewer {
     };
     this.#eventAbortController?.abort();
     this.#eventAbortController = null;
-    // this.viewer.textContent = "";
+    this.viewer.textContent = "";
     this._updateScrollMode();
     this.viewer.removeAttribute("lang");
     this.#hiddenCopyElement?.remove();
     this.#hiddenCopyElement = null;
+    this.#cleanupSwitchAnnotationEditorMode();
   }
   #ensurePageViewVisible() {
     if (this._scrollMode !== ScrollMode.PAGE) {
@@ -10698,7 +11735,7 @@ class PDFViewer {
           hPadding *= 2;
         }
       } else if (this.removePageBorders) {
-        hPadding = vPadding = 0;
+        if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }
       } else if (this._scrollMode === ScrollMode.HORIZONTAL) {
         [hPadding, vPadding] = [vPadding, hPadding];
       }
@@ -10814,7 +11851,7 @@ class PDFViewer {
         let hPadding = SCROLLBAR_PADDING,
           vPadding = VERTICAL_PADDING;
         if (this.removePageBorders) {
-          hPadding = vPadding = 0;
+          if (this._scrollMode === ScrollMode.HORIZONTAL || this._spreadMode === SpreadMode.NONE) { hPadding = vPadding = 0; } else { hPadding = 10; vPadding = 0; }
         }
         widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
         heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;
@@ -10898,6 +11935,34 @@ class PDFViewer {
       source: this,
       location: this._location
     });
+  }
+  #switchToEditAnnotationMode() {
+    const visible = this._getVisiblePages();
+    const pagesToRefresh = [];
+    const {
+      ids,
+      views
+    } = visible;
+    for (const page of views) {
+      const {
+        view
+      } = page;
+      if (!view.hasEditableAnnotations()) {
+        ids.delete(view.id);
+        continue;
+      }
+      pagesToRefresh.push(page);
+    }
+    if (pagesToRefresh.length === 0) {
+      return null;
+    }
+    this.renderingQueue.renderHighestPriority({
+      first: pagesToRefresh[0],
+      last: pagesToRefresh.at(-1),
+      views: pagesToRefresh,
+      ids
+    });
+    return ids;
   }
   containsElement(element) {
     return this.container.contains(element);
@@ -11331,6 +12396,14 @@ class PDFViewer {
   get containerTopLeft() {
     return this.#containerTopLeft ||= [this.container.offsetTop, this.container.offsetLeft];
   }
+  #cleanupSwitchAnnotationEditorMode() {
+    this.#switchAnnotationEditorModeAC?.abort();
+    this.#switchAnnotationEditorModeAC = null;
+    if (this.#switchAnnotationEditorModeTimeoutId !== null) {
+      clearTimeout(this.#switchAnnotationEditorModeTimeoutId);
+      this.#switchAnnotationEditorModeTimeoutId = null;
+    }
+  }
   get annotationEditorMode() {
     return this.#annotationEditorUIManager ? this.#annotationEditorMode : AnnotationEditorType.DISABLE;
   }
@@ -11351,21 +12424,48 @@ class PDFViewer {
     if (!this.pdfDocument) {
       return;
     }
-    this.#annotationEditorMode = mode;
-    this.eventBus.dispatch("annotationeditormodechanged", {
-      source: this,
-      mode
-    });
-    this.#annotationEditorUIManager.updateMode(mode, editId, isFromKeyboard);
-  }
-  set annotationEditorParams({
-    type,
-    value
-  }) {
-    if (!this.#annotationEditorUIManager) {
-      throw new Error(`The AnnotationEditor is not enabled.`);
+    if (mode === AnnotationEditorType.STAMP) {
+      this.#mlManager?.loadModel("altText");
     }
-    this.#annotationEditorUIManager.updateParams(type, value);
+    const {
+      eventBus
+    } = this;
+    const updater = () => {
+      this.#cleanupSwitchAnnotationEditorMode();
+      this.#annotationEditorMode = mode;
+      this.#annotationEditorUIManager.updateMode(mode, editId, isFromKeyboard);
+      eventBus.dispatch("annotationeditormodechanged", {
+        source: this,
+        mode
+      });
+    };
+    if (mode === AnnotationEditorType.NONE || this.#annotationEditorMode === AnnotationEditorType.NONE) {
+      const isEditing = mode !== AnnotationEditorType.NONE;
+      if (!isEditing) {
+        this.pdfDocument.annotationStorage.resetModifiedIds();
+      }
+      for (const pageView of this._pages) {
+        pageView.toggleEditingMode(isEditing);
+      }
+      const idsToRefresh = this.#switchToEditAnnotationMode();
+      if (isEditing && idsToRefresh) {
+        this.#cleanupSwitchAnnotationEditorMode();
+        this.#switchAnnotationEditorModeAC = new AbortController();
+        const signal = AbortSignal.any([this.#eventAbortController.signal, this.#switchAnnotationEditorModeAC.signal]);
+        eventBus._on("pagerendered", ({
+          pageNumber
+        }) => {
+          idsToRefresh.delete(pageNumber);
+          if (idsToRefresh.size === 0) {
+            this.#switchAnnotationEditorModeTimeoutId = setTimeout(updater, 0);
+          }
+        }, {
+          signal
+        });
+        return;
+      }
+    }
+    updater();
   }
   refresh(noUpdate = false, updateArgs = Object.create(null)) {
     if (!this.pdfDocument) {
@@ -11384,7 +12484,7 @@ class PDFViewer {
   }
 }
 
-;// CONCATENATED MODULE: ./web/secondary_toolbar.js
+;// ./web/secondary_toolbar.js
 
 
 class SecondaryToolbar {
@@ -11487,6 +12587,10 @@ class SecondaryToolbar {
       },
       close: true
     }, {
+      element: options.imageAltTextSettingsButton,
+      eventName: "imagealttextsettings",
+      close: true
+    }, {
       element: options.documentPropertiesButton,
       eventName: "documentproperties",
       close: true
@@ -11579,7 +12683,8 @@ class SecondaryToolbar {
     eventBus._on("spreadmodechanged", this.#spreadModeChanged.bind(this));
   }
   #cursorToolChanged({
-    tool
+    tool,
+    disabled
   }) {
     const {
       cursorSelectToolButton,
@@ -11587,6 +12692,8 @@ class SecondaryToolbar {
     } = this.#opts;
     toggleCheckedBtn(cursorSelectToolButton, tool === CursorTool.SELECT);
     toggleCheckedBtn(cursorHandToolButton, tool === CursorTool.HAND);
+    cursorSelectToolButton.disabled = disabled;
+    cursorHandToolButton.disabled = disabled;
   }
   #scrollModeChanged({
     mode
@@ -11657,12 +12764,12 @@ class SecondaryToolbar {
   }
 }
 
-;// CONCATENATED MODULE: ./web/toolbar.js
+;// ./web/toolbar.js
 
 
 class Toolbar {
   #opts;
-  constructor(options, eventBus) {
+  constructor(options, eventBus, toolbarDensity = 0) {
     this.#opts = options;
     this.eventBus = eventBus;
     const buttons = [{
@@ -11726,28 +12833,33 @@ class Toolbar {
           } = options.editorStampButton;
           return classList.contains("toggled") ? AnnotationEditorType.NONE : AnnotationEditorType.STAMP;
         }
+      },
+      telemetry: {
+        type: "editing",
+        data: {
+          action: "pdfjs.image.icon_click"
+        }
       }
     }];
     this.#bindListeners(buttons);
-    if (options.editorHighlightColorPicker) {
-      eventBus._on("annotationeditoruimanager", ({
-        uiManager
-      }) => {
-        this.#setAnnotationEditorUIManager(uiManager, options.editorHighlightColorPicker);
-      }, {
-        once: true
-      });
-    }
-    eventBus._on("showannotationeditorui", ({
-      mode
-    }) => {
-      switch (mode) {
-        case AnnotationEditorType.HIGHLIGHT:
-          options.editorHighlightButton.click();
-          break;
-      }
+    this.#updateToolbarDensity({
+      value: toolbarDensity
     });
     this.reset();
+  }
+  #updateToolbarDensity({
+    value
+  }) {
+    let name = "normal";
+    switch (value) {
+      case 1:
+        name = "compact";
+        break;
+      case 2:
+        name = "touch";
+        break;
+    }
+    document.documentElement.setAttribute("data-toolbar-density", name);
   }
   #setAnnotationEditorUIManager(uiManager, parentContainer) {
     const colorPicker = new ColorPicker({
@@ -11789,6 +12901,8 @@ class Toolbar {
       eventBus
     } = this;
     const {
+      editorHighlightColorPicker,
+      editorHighlightButton,
       pageNumber,
       scaleSelect
     } = this.#opts;
@@ -11796,7 +12910,8 @@ class Toolbar {
     for (const {
       element,
       eventName,
-      eventDetails
+      eventDetails,
+      telemetry
     } of buttons) {
       element.addEventListener("click", evt => {
         if (eventName !== null) {
@@ -11804,6 +12919,12 @@ class Toolbar {
             source: this,
             ...eventDetails,
             isFromKeyboard: evt.detail === 0
+          });
+        }
+        if (telemetry) {
+          eventBus.dispatch("reporttelemetry", {
+            source: this,
+            details: telemetry
           });
         }
       });
@@ -11835,6 +12956,25 @@ class Toolbar {
     });
     scaleSelect.oncontextmenu = noContextMenu;
     eventBus._on("annotationeditormodechanged", this.#editorModeChanged.bind(this));
+    eventBus._on("showannotationeditorui", ({
+      mode
+    }) => {
+      switch (mode) {
+        case AnnotationEditorType.HIGHLIGHT:
+          editorHighlightButton.click();
+          break;
+      }
+    });
+    eventBus._on("toolbardensity", this.#updateToolbarDensity.bind(this));
+    if (editorHighlightColorPicker) {
+      eventBus._on("annotationeditoruimanager", ({
+        uiManager
+      }) => {
+        this.#setAnnotationEditorUIManager(uiManager, editorHighlightColorPicker);
+      }, {
+        once: true
+      });
+    }
   }
   #editorModeChanged({
     mode
@@ -11849,10 +12989,10 @@ class Toolbar {
       editorStampButton,
       editorStampParamsToolbar
     } = this.#opts;
-    toggleCheckedBtn(editorFreeTextButton, mode === AnnotationEditorType.FREETEXT, editorFreeTextParamsToolbar);
-    toggleCheckedBtn(editorHighlightButton, mode === AnnotationEditorType.HIGHLIGHT, editorHighlightParamsToolbar);
-    toggleCheckedBtn(editorInkButton, mode === AnnotationEditorType.INK, editorInkParamsToolbar);
-    toggleCheckedBtn(editorStampButton, mode === AnnotationEditorType.STAMP, editorStampParamsToolbar);
+    toggleExpandedBtn(editorFreeTextButton, mode === AnnotationEditorType.FREETEXT, editorFreeTextParamsToolbar);
+    toggleExpandedBtn(editorHighlightButton, mode === AnnotationEditorType.HIGHLIGHT, editorHighlightParamsToolbar);
+    toggleExpandedBtn(editorInkButton, mode === AnnotationEditorType.INK, editorInkParamsToolbar);
+    toggleExpandedBtn(editorStampButton, mode === AnnotationEditorType.STAMP, editorStampParamsToolbar);
     const isDisable = mode === AnnotationEditorType.DISABLE;
     editorFreeTextButton.disabled = isDisable;
     editorHighlightButton.disabled = isDisable;
@@ -11917,7 +13057,7 @@ class Toolbar {
   }
 }
 
-;// CONCATENATED MODULE: ./web/view_history.js
+;// ./web/view_history.js
 const DEFAULT_VIEW_HISTORY_CACHE_SIZE = 20;
 class ViewHistory {
   constructor(fingerprint, cacheSize = DEFAULT_VIEW_HISTORY_CACHE_SIZE) {
@@ -11984,7 +13124,9 @@ class ViewHistory {
   }
 }
 
-;// CONCATENATED MODULE: ./web/app.js
+;// ./web/app.js
+
+
 
 
 
@@ -12017,7 +13159,6 @@ class ViewHistory {
 
 
 const FORCE_PAGES_LOADED_TIMEOUT = 10000;
-const WHEEL_ZOOM_DISABLED_TIMEOUT = 1000;
 const ViewOnLoad = {
   UNKNOWN: -1,
   PREVIOUS: 0,
@@ -12049,20 +13190,22 @@ const PDFViewerApplication = {
   store: null,
   downloadManager: null,
   overlayManager: null,
-  preferences: null,
+  preferences: new Preferences(),
   toolbar: null,
   secondaryToolbar: null,
   eventBus: null,
   l10n: null,
   annotationEditorParams: null,
+  imageAltTextSettings: null,
   isInitialViewSet: false,
-  downloadComplete: false,
   isViewerEmbedded: window.parent !== window,
   url: "",
   baseUrl: "",
+  mlManager: null,
   _downloadUrl: "",
   _eventBusAbortController: null,
   _windowAbortController: null,
+  _globalAbortController: new AbortController(),
   documentInfo: null,
   metadata: null,
   _contentDispositionFilename: null,
@@ -12070,24 +13213,23 @@ const PDFViewerApplication = {
   _saveInProgress: false,
   _wheelUnusedTicks: 0,
   _wheelUnusedFactor: 1,
+  _touchManager: null,
   _touchUnusedTicks: 0,
   _touchUnusedFactor: 1,
   _PDFBug: null,
   _hasAnnotationEditors: false,
   _title: document.title,
   _printAnnotationStoragePromise: null,
-  _touchInfo: null,
   _isCtrlKeyDown: false,
-  _nimbusDataPromise: null,
   _caretBrowsing: null,
   _isScrolling: false,
+  editorUndoBar: null,
   async initialize(appConfig) {
-    let l10nPromise;
     this.appConfig = appConfig;
     try {
       await this.preferences.initializedPromise;
     } catch (ex) {
-      console.error(`initialize: "${ex.message}".`);
+      console.error("initialize:", ex);
     }
     if (AppOptions.get("pdfBugEnabled")) {
       await this._parseHashParams();
@@ -12104,8 +13246,7 @@ const PDFViewerApplication = {
     if (mode) {
       document.documentElement.classList.add(mode);
     }
-    l10nPromise = this.externalServices.createL10n();
-    this.l10n = await l10nPromise;
+    this.l10n = await this.externalServices.createL10n();
     document.getElementsByTagName("html")[0].dir = this.l10n.getDirection();
     this.l10n.translate(appConfig.appContainer || document.documentElement);
     if (this.isViewerEmbedded && AppOptions.get("externalLinkTarget") === LinkTarget.NONE) {
@@ -12133,34 +13274,16 @@ const PDFViewerApplication = {
       }
       const {
         PDFBug
-      } = await import( /*webpackIgnore: true*/AppOptions.get("debuggerSrc"));
+      } = await import(/*webpackIgnore: true*/AppOptions.get("debuggerSrc"));
       this._PDFBug = PDFBug;
     };
     if (params.get("disableworker") === "true") {
       try {
         GlobalWorkerOptions.workerSrc ||= AppOptions.get("workerSrc");
-        await import( /*webpackIgnore: true*/PDFWorker.workerSrc);
+        await import(/*webpackIgnore: true*/PDFWorker.workerSrc);
       } catch (ex) {
-        console.error(`_parseHashParams: "${ex.message}".`);
+        console.error("_parseHashParams:", ex);
       }
-    }
-    if (params.has("disablerange")) {
-      AppOptions.set("disableRange", params.get("disablerange") === "true");
-    }
-    if (params.has("disablestream")) {
-      AppOptions.set("disableStream", params.get("disablestream") === "true");
-    }
-    if (params.has("disableautofetch")) {
-      AppOptions.set("disableAutoFetch", params.get("disableautofetch") === "true");
-    }
-    if (params.has("disablefontface")) {
-      AppOptions.set("disableFontFace", params.get("disablefontface") === "true");
-    }
-    if (params.has("disablehistory")) {
-      AppOptions.set("disableHistory", params.get("disablehistory") === "true");
-    }
-    if (params.has("verbosity")) {
-      AppOptions.set("verbosity", params.get("verbosity") | 0);
     }
     if (params.has("textlayer")) {
       switch (params.get("textlayer")) {
@@ -12175,7 +13298,7 @@ const PDFViewerApplication = {
             await loadPDFBug();
             this._PDFBug.loadCSS();
           } catch (ex) {
-            console.error(`_parseHashParams: "${ex.message}".`);
+            console.error("_parseHashParams:", ex);
           }
           break;
       }
@@ -12190,11 +13313,28 @@ const PDFViewerApplication = {
         await loadPDFBug();
         this._PDFBug.init(mainContainer, enabled);
       } catch (ex) {
-        console.error(`_parseHashParams: "${ex.message}".`);
+        console.error("_parseHashParams:", ex);
       }
     }
     if (params.has("locale")) {
-      AppOptions.set("locale", params.get("locale"));
+      AppOptions.set("localeProperties", {
+        lang: params.get("locale")
+      });
+    }
+    const opts = {
+      disableAutoFetch: x => x === "true",
+      disableFontFace: x => x === "true",
+      disableHistory: x => x === "true",
+      disableRange: x => x === "true",
+      disableStream: x => x === "true",
+      verbosity: x => x | 0
+    };
+    for (const name in opts) {
+      const check = opts[name],
+        key = name.toLowerCase();
+      if (params.has(key)) {
+        AppOptions.set(name, check(params.get(key)));
+      }
     }
   },
   async _initializeViewerComponents() {
@@ -12203,8 +13343,9 @@ const PDFViewerApplication = {
       externalServices,
       l10n
     } = this;
-    const eventBus = AppOptions.get("isInAutomation") ? new AutomationEventBus() : new EventBus();
-    this.eventBus = eventBus;
+    const eventBus = new EventBus();
+    this.eventBus = AppOptions.eventBus = eventBus;
+    this.mlManager?.setEventBus(eventBus, this._globalAbortController.signal);
     this.overlayManager = new OverlayManager();
     const pdfRenderingQueue = new PDFRenderingQueue();
     pdfRenderingQueue.onIdle = this._cleanup.bind(this);
@@ -12236,7 +13377,16 @@ const PDFViewerApplication = {
       background: AppOptions.get("pageColorsBackground"),
       foreground: AppOptions.get("pageColorsForeground")
     } : null;
-    const altTextManager = appConfig.altTextDialog ? new AltTextManager(appConfig.altTextDialog, container, this.overlayManager, eventBus) : null;
+    let altTextManager;
+    if (AppOptions.get("enableUpdatedAddImage")) {
+      altTextManager = appConfig.newAltTextDialog ? new NewAltTextManager(appConfig.newAltTextDialog, this.overlayManager, eventBus) : null;
+    } else {
+      altTextManager = appConfig.altTextDialog ? new AltTextManager(appConfig.altTextDialog, container, this.overlayManager, eventBus) : null;
+    }
+    if (appConfig.editorUndoBar) {
+      this.editorUndoBar = new EditorUndoBar(appConfig.editorUndoBar, eventBus);
+    }
+    const enableHWA = AppOptions.get("enableHWA");
     const pdfViewer = new PDFViewer({
       container,
       viewer,
@@ -12245,6 +13395,7 @@ const PDFViewerApplication = {
       linkService: pdfLinkService,
       downloadManager,
       altTextManager,
+      editorUndoBar: this.editorUndoBar,
       findController,
       scriptingManager: AppOptions.get("enableScripting") && pdfScriptingManager,
       l10n,
@@ -12253,12 +13404,17 @@ const PDFViewerApplication = {
       annotationEditorMode,
       annotationEditorHighlightColors: AppOptions.get("highlightEditorColors"),
       enableHighlightFloatingButton: AppOptions.get("enableHighlightFloatingButton"),
+      enableUpdatedAddImage: AppOptions.get("enableUpdatedAddImage"),
+      enableNewAltTextWhenAddingImage: AppOptions.get("enableNewAltTextWhenAddingImage"),
       imageResourcesPath: AppOptions.get("imageResourcesPath"),
       enablePrintAutoRotate: AppOptions.get("enablePrintAutoRotate"),
       maxCanvasPixels: AppOptions.get("maxCanvasPixels"),
       enablePermissions: AppOptions.get("enablePermissions"),
       pageColors,
-      mlManager: this.mlManager
+      mlManager: this.mlManager,
+      abortSignal: this._globalAbortController.signal,
+      enableHWA,
+      supportsPinchToZoom: this.supportsPinchToZoom
     });
     this.pdfViewer = pdfViewer;
     pdfRenderingQueue.setViewer(pdfViewer);
@@ -12270,7 +13426,9 @@ const PDFViewerApplication = {
         eventBus,
         renderingQueue: pdfRenderingQueue,
         linkService: pdfLinkService,
-        pageColors
+        pageColors,
+        abortSignal: this._globalAbortController.signal,
+        enableHWA
       });
       pdfRenderingQueue.setThumbnailViewer(this.pdfThumbnailViewer);
     }
@@ -12282,23 +13440,19 @@ const PDFViewerApplication = {
       pdfLinkService.setHistory(this.pdfHistory);
     }
     if (!this.supportsIntegratedFind && appConfig.findBar) {
-      this.findBar = new PDFFindBar(appConfig.findBar, eventBus);
+      this.findBar = new PDFFindBar(appConfig.findBar, appConfig.principalContainer, eventBus);
     }
     if (appConfig.annotationEditorParams) {
-      if (annotationEditorMode !== AnnotationEditorType.DISABLE) {
-        if (AppOptions.get("enableStampEditor")) {
-          appConfig.toolbar?.editorStampButton?.classList.remove("hidden");
-        }
-        const editorHighlightButton = appConfig.toolbar?.editorHighlightButton;
-        if (editorHighlightButton && AppOptions.get("enableHighlightEditor")) {
-          editorHighlightButton.hidden = false;
-        }
+      if (typeof AbortSignal.any === "function" && annotationEditorMode !== AnnotationEditorType.DISABLE) {
         this.annotationEditorParams = new AnnotationEditorParams(appConfig.annotationEditorParams, eventBus);
       } else {
         for (const id of ["editorModeButtons", "editorModeSeparator"]) {
           document.getElementById(id)?.classList.add("hidden");
         }
       }
+    }
+    if (this.mlManager && appConfig.secondaryToolbar?.imageAltTextSettingsButton) {
+      this.imageAltTextSettings = new ImageAltTextSettings(appConfig.altTextSettingsDialog, this.overlayManager, eventBus, this.mlManager);
     }
     if (appConfig.documentProperties) {
       this.pdfDocumentProperties = new PDFDocumentProperties(appConfig.documentProperties, this.overlayManager, eventBus, l10n, () => this._docFilename);
@@ -12311,9 +13465,13 @@ const PDFViewerApplication = {
       });
     }
     if (appConfig.toolbar) {
-      this.toolbar = new Toolbar(appConfig.toolbar, eventBus);
+      this.toolbar = new Toolbar(appConfig.toolbar, eventBus, AppOptions.get("toolbarDensity"));
     }
     if (appConfig.secondaryToolbar) {
+      if (AppOptions.get("enableAltText")) {
+        appConfig.secondaryToolbar.imageAltTextSettingsButton?.classList.remove("hidden");
+        appConfig.secondaryToolbar.imageAltTextSettingsSeparator?.classList.remove("hidden");
+      }
       this.secondaryToolbar = new SecondaryToolbar(appConfig.secondaryToolbar, eventBus);
     }
     if (this.supportsFullscreen && appConfig.secondaryToolbar?.presentationModeButton) {
@@ -12368,7 +13526,6 @@ const PDFViewerApplication = {
     }
   },
   async run(config) {
-    this.preferences = new Preferences();
     await this.initialize(config);
     const {
       appConfig,
@@ -12398,17 +13555,19 @@ const PDFViewerApplication = {
       });
     });
     appConfig.mainContainer.addEventListener("dragover", function (evt) {
-      evt.preventDefault();
-      evt.dataTransfer.dropEffect = evt.dataTransfer.effectAllowed === "copy" ? "copy" : "move";
+      for (const item of evt.dataTransfer.items) {
+        if (item.type === "application/pdf") {
+          evt.dataTransfer.dropEffect = evt.dataTransfer.effectAllowed === "copy" ? "copy" : "move";
+          stopEvent(evt);
+          return;
+        }
+      }
     });
     appConfig.mainContainer.addEventListener("drop", function (evt) {
-      evt.preventDefault();
-      const {
-        files
-      } = evt.dataTransfer;
-      if (!files || files.length === 0) {
+      if (evt.dataTransfer.files?.[0].type !== "application/pdf") {
         return;
       }
+      stopEvent(evt);
       eventBus.dispatch("fileinputchange", {
         source: this,
         fileInput: evt.dataTransfer
@@ -12428,7 +13587,7 @@ const PDFViewerApplication = {
       appConfig.secondaryToolbar?.presentationModeButton.classList.add("hidden");
     }
     if (this.supportsIntegratedFind) {
-      appConfig.toolbar?.viewFind?.classList.add("hidden");
+      appConfig.findBar?.toggleButton?.classList.add("hidden");
     }
     if (file) {
       this.open({
@@ -12440,9 +13599,6 @@ const PDFViewerApplication = {
   },
   get externalServices() {
     return shadow(this, "externalServices", new ExternalServices());
-  },
-  get mlManager() {
-    return shadow(this, "mlManager", AppOptions.get("enableML") === true ? new MLManager() : null);
   },
   get initialized() {
     return this._initializedCapability.settled;
@@ -12472,6 +13628,20 @@ const PDFViewerApplication = {
       return;
     }
     this.pdfViewer.currentScaleValue = DEFAULT_SCALE_VALUE;
+  },
+  touchPinchCallback(origin, prevDistance, distance) {
+    if (this.supportsPinchToZoom) {
+      const newScaleFactor = this._accumulateFactor(this.pdfViewer.currentScale, distance / prevDistance, "_touchUnusedFactor");
+      this.updateZoom(null, newScaleFactor, origin);
+    } else {
+      const PIXELS_PER_LINE_SCALE = 30;
+      const ticks = this._accumulateTicks((distance - prevDistance) / PIXELS_PER_LINE_SCALE, "_touchUnusedTicks");
+      this.updateZoom(ticks, null, origin);
+    }
+  },
+  touchPinchEndCallback() {
+    this._touchUnusedTicks = 0;
+    this._touchUnusedFactor = 1;
   },
   get pagesCount() {
     return this.pdfDocument ? this.pdfDocument.numPages : 0;
@@ -12509,7 +13679,7 @@ const PDFViewerApplication = {
     return AppOptions.get("supportsCaretBrowsingMode");
   },
   moveCaret(isUp, select) {
-    this._caretBrowsing ||= new CaretBrowsingMode(this.appConfig.mainContainer, this.appConfig.viewerContainer, this.appConfig.toolbar?.container);
+    this._caretBrowsing ||= new CaretBrowsingMode(this._globalAbortController.signal, this.appConfig.mainContainer, this.appConfig.viewerContainer, this.appConfig.toolbar?.container);
     this._caretBrowsing.moveCaret(isUp, select);
   },
   setTitleUsingUrl(url = "", downloadUrl = null) {
@@ -12524,12 +13694,10 @@ const PDFViewerApplication = {
     let title = pdfjs_getPdfFilenameFromUrl(url, "");
     if (!title) {
       try {
-        title = decodeURIComponent(getFilenameFromUrl(url)) || url;
-      } catch {
-        title = url;
-      }
+        title = decodeURIComponent(getFilenameFromUrl(url));
+      } catch {}
     }
-    // this.setTitle(title);
+    // this.setTitle(title || url);
   },
   setTitle(title = this._title) {
     this._title = title;
@@ -12575,7 +13743,6 @@ const PDFViewerApplication = {
     this.pdfLinkService.externalLinkEnabled = true;
     this.store = null;
     this.isInitialViewSet = false;
-    this.downloadComplete = false;
     this.url = "";
     this.baseUrl = "";
     this._downloadUrl = "";
@@ -12648,44 +13815,25 @@ const PDFViewerApplication = {
       });
     });
   },
-  _ensureDownloadComplete() {
-    if (this.pdfDocument && this.downloadComplete) {
-      return;
-    }
-    throw new Error("PDF document not downloaded.");
-  },
-  async download(options = {}) {
-    const url = this._downloadUrl,
-      filename = this._docFilename;
+  async download() {
+    let data;
     try {
-      this._ensureDownloadComplete();
-      const data = await this.pdfDocument.getData();
-      const blob = new Blob([data], {
-        type: "application/pdf"
-      });
-      await this.downloadManager.download(blob, url, filename, options);
-    } catch {
-      await this.downloadManager.downloadUrl(url, filename, options);
-    }
+      data = await this.pdfDocument.getData();
+    } catch {}
+    this.downloadManager.download(data, this._downloadUrl, this._docFilename);
   },
-  async save(options = {}) {
+  async save() {
     if (this._saveInProgress) {
       return;
     }
     this._saveInProgress = true;
     await this.pdfScriptingManager.dispatchWillSave();
-    const url = this._downloadUrl,
-      filename = this._docFilename;
     try {
-      this._ensureDownloadComplete();
       const data = await this.pdfDocument.saveDocument();
-      const blob = new Blob([data], {
-        type: "application/pdf"
-      });
-      await this.downloadManager.download(blob, url, filename, options);
+      this.downloadManager.download(data, this._downloadUrl, this._docFilename);
     } catch (reason) {
-      console.error(`Error when saving the document: ${reason.message}`);
-      await this.download(options);
+      console.error(`Error when saving the document:`, reason);
+      await this.download();
     } finally {
       await this.pdfScriptingManager.dispatchDidSave();
       this._saveInProgress = false;
@@ -12700,12 +13848,13 @@ const PDFViewerApplication = {
       });
     }
   },
-  downloadOrSave(options = {}) {
-    if (this.pdfDocument?.annotationStorage.size > 0) {
-      this.save(options);
-    } else {
-      this.download(options);
-    }
+  async downloadOrSave() {
+    const {
+      classList
+    } = this.appConfig.appContainer;
+    classList.add("wait");
+    await (this.pdfDocument?.annotationStorage.size > 0 ? this.save() : this.download());
+    classList.remove("wait");
   },
   async _documentError(key, moreInfo = null) {
     this._unblockDocumentLoadEvent();
@@ -12736,11 +13885,8 @@ const PDFViewerApplication = {
     return message;
   },
   progress(level) {
-    if (!this.loadingBar || this.downloadComplete) {
-      return;
-    }
     const percent = Math.round(level * 100);
-    if (percent <= this.loadingBar.percent) {
+    if (!this.loadingBar || percent <= this.loadingBar.percent) {
       return;
     }
     this.loadingBar.percent = percent;
@@ -12754,7 +13900,6 @@ const PDFViewerApplication = {
       length
     }) => {
       this._contentLength = length;
-      this.downloadComplete = true;
       this.loadingBar?.hide();
       firstPagePromise.then(() => {
         this.eventBus.dispatch("documentloaded", {
@@ -13191,145 +14336,66 @@ const PDFViewerApplication = {
     this.pdfPresentationMode?.request();
   },
   triggerPrinting() {
-    if (!this.supportsPrinting) {
-      return;
+    if (this.supportsPrinting) {
+      window.print();
     }
-    window.print();
   },
   bindEvents() {
     if (this._eventBusAbortController) {
       return;
     }
-    this._eventBusAbortController = new AbortController();
+    const ac = this._eventBusAbortController = new AbortController();
+    const opts = {
+      signal: ac.signal
+    };
     const {
       eventBus,
-      _eventBusAbortController: {
-        signal
-      }
+      externalServices,
+      pdfDocumentProperties,
+      pdfViewer,
+      preferences
     } = this;
-    eventBus._on("resize", webViewerResize, {
-      signal
-    });
-    eventBus._on("hashchange", webViewerHashchange, {
-      signal
-    });
-    eventBus._on("beforeprint", this.beforePrint.bind(this), {
-      signal
-    });
-    eventBus._on("afterprint", this.afterPrint.bind(this), {
-      signal
-    });
-    eventBus._on("pagerender", webViewerPageRender, {
-      signal
-    });
-    eventBus._on("pagerendered", webViewerPageRendered, {
-      signal
-    });
-    eventBus._on("updateviewarea", webViewerUpdateViewarea, {
-      signal
-    });
-    eventBus._on("pagechanging", webViewerPageChanging, {
-      signal
-    });
-    eventBus._on("scalechanging", webViewerScaleChanging, {
-      signal
-    });
-    eventBus._on("rotationchanging", webViewerRotationChanging, {
-      signal
-    });
-    eventBus._on("sidebarviewchanged", webViewerSidebarViewChanged, {
-      signal
-    });
-    eventBus._on("pagemode", webViewerPageMode, {
-      signal
-    });
-    eventBus._on("namedaction", webViewerNamedAction, {
-      signal
-    });
-    eventBus._on("presentationmodechanged", webViewerPresentationModeChanged, {
-      signal
-    });
-    eventBus._on("presentationmode", webViewerPresentationMode, {
-      signal
-    });
-    eventBus._on("switchannotationeditormode", webViewerSwitchAnnotationEditorMode, {
-      signal
-    });
-    eventBus._on("switchannotationeditorparams", webViewerSwitchAnnotationEditorParams, {
-      signal
-    });
-    eventBus._on("print", webViewerPrint, {
-      signal
-    });
-    eventBus._on("download", webViewerDownload, {
-      signal
-    });
-    eventBus._on("firstpage", webViewerFirstPage, {
-      signal
-    });
-    eventBus._on("lastpage", webViewerLastPage, {
-      signal
-    });
-    eventBus._on("nextpage", webViewerNextPage, {
-      signal
-    });
-    eventBus._on("previouspage", webViewerPreviousPage, {
-      signal
-    });
-    eventBus._on("zoomin", webViewerZoomIn, {
-      signal
-    });
-    eventBus._on("zoomout", webViewerZoomOut, {
-      signal
-    });
-    eventBus._on("zoomreset", webViewerZoomReset, {
-      signal
-    });
-    eventBus._on("pagenumberchanged", webViewerPageNumberChanged, {
-      signal
-    });
-    eventBus._on("scalechanged", webViewerScaleChanged, {
-      signal
-    });
-    eventBus._on("rotatecw", webViewerRotateCw, {
-      signal
-    });
-    eventBus._on("rotateccw", webViewerRotateCcw, {
-      signal
-    });
-    eventBus._on("optionalcontentconfig", webViewerOptionalContentConfig, {
-      signal
-    });
-    eventBus._on("switchscrollmode", webViewerSwitchScrollMode, {
-      signal
-    });
-    eventBus._on("scrollmodechanged", webViewerScrollModeChanged, {
-      signal
-    });
-    eventBus._on("switchspreadmode", webViewerSwitchSpreadMode, {
-      signal
-    });
-    eventBus._on("spreadmodechanged", webViewerSpreadModeChanged, {
-      signal
-    });
-    eventBus._on("documentproperties", webViewerDocumentProperties, {
-      signal
-    });
-    eventBus._on("findfromurlhash", webViewerFindFromUrlHash, {
-      signal
-    });
-    eventBus._on("updatefindmatchescount", webViewerUpdateFindMatchesCount, {
-      signal
-    });
-    eventBus._on("updatefindcontrolstate", webViewerUpdateFindControlState, {
-      signal
-    });
-    eventBus._on("fileinputchange", webViewerFileInputChange, {
-      signal
-    });
-    eventBus._on("openfile", webViewerOpenFile, {
-      signal
-    });
+    eventBus._on("resize", onResize.bind(this), opts);
+    eventBus._on("hashchange", onHashchange.bind(this), opts);
+    eventBus._on("beforeprint", this.beforePrint.bind(this), opts);
+    eventBus._on("afterprint", this.afterPrint.bind(this), opts);
+    eventBus._on("pagerender", onPageRender.bind(this), opts);
+    eventBus._on("pagerendered", onPageRendered.bind(this), opts);
+    eventBus._on("updateviewarea", onUpdateViewarea.bind(this), opts);
+    eventBus._on("pagechanging", onPageChanging.bind(this), opts);
+    eventBus._on("scalechanging", onScaleChanging.bind(this), opts);
+    eventBus._on("rotationchanging", onRotationChanging.bind(this), opts);
+    eventBus._on("sidebarviewchanged", onSidebarViewChanged.bind(this), opts);
+    eventBus._on("pagemode", onPageMode.bind(this), opts);
+    eventBus._on("namedaction", onNamedAction.bind(this), opts);
+    eventBus._on("presentationmodechanged", evt => pdfViewer.presentationModeState = evt.state, opts);
+    eventBus._on("presentationmode", this.requestPresentationMode.bind(this), opts);
+    eventBus._on("switchannotationeditormode", evt => pdfViewer.annotationEditorMode = evt, opts);
+    // eventBus._on("print", this.triggerPrinting.bind(this), opts);
+    // eventBus._on("download", this.downloadOrSave.bind(this), opts);
+    eventBus._on("firstpage", () => this.page = 1, opts);
+    eventBus._on("lastpage", () => this.page = this.pagesCount, opts);
+    eventBus._on("nextpage", () => pdfViewer.nextPage(), opts);
+    eventBus._on("previouspage", () => pdfViewer.previousPage(), opts);
+    eventBus._on("zoomin", this.zoomIn.bind(this), opts);
+    eventBus._on("zoomout", this.zoomOut.bind(this), opts);
+    eventBus._on("zoomreset", this.zoomReset.bind(this), opts);
+    eventBus._on("pagenumberchanged", onPageNumberChanged.bind(this), opts);
+    eventBus._on("scalechanged", evt => pdfViewer.currentScaleValue = evt.value, opts);
+    eventBus._on("rotatecw", this.rotatePages.bind(this, 90), opts);
+    eventBus._on("rotateccw", this.rotatePages.bind(this, -90), opts);
+    eventBus._on("optionalcontentconfig", evt => pdfViewer.optionalContentConfigPromise = evt.promise, opts);
+    eventBus._on("switchscrollmode", evt => pdfViewer.scrollMode = evt.mode, opts);
+    eventBus._on("scrollmodechanged", onViewerModesChanged.bind(this, "scrollMode"), opts);
+    eventBus._on("switchspreadmode", evt => pdfViewer.spreadMode = evt.mode, opts);
+    eventBus._on("spreadmodechanged", onViewerModesChanged.bind(this, "spreadMode"), opts);
+    eventBus._on("imagealttextsettings", onImageAltTextSettings.bind(this), opts);
+    eventBus._on("documentproperties", () => pdfDocumentProperties?.open(), opts);
+    eventBus._on("findfromurlhash", onFindFromUrlHash.bind(this), opts);
+    eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
+    eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
+    eventBus._on("fileinputchange", onFileInputChange.bind(this), opts);
+    // eventBus._on("openfile", onOpenFile.bind(this), opts);
   },
   bindWindowEvents() {
     if (this._windowAbortController) {
@@ -13341,13 +14407,24 @@ const PDFViewerApplication = {
       appConfig: {
         mainContainer
       },
+      pdfViewer,
       _windowAbortController: {
         signal
       }
     } = this;
+    if (typeof AbortSignal.any === "function") {
+      this._touchManager = new TouchManager({
+        container: window,
+        isPinchingDisabled: () => pdfViewer.isInPresentationMode,
+        isPinchingStopped: () => this.overlayManager?.active,
+        onPinching: this.touchPinchCallback.bind(this),
+        onPinchEnd: this.touchPinchEndCallback.bind(this),
+        signal
+      });
+    }
     function addWindowResolutionChange(evt = null) {
       if (evt) {
-        webViewerResolutionChange(evt);
+        pdfViewer.refresh();
       }
       const mediaQueryList = window.matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
       mediaQueryList.addEventListener("change", addWindowResolutionChange, {
@@ -13356,39 +14433,22 @@ const PDFViewerApplication = {
       });
     }
     addWindowResolutionChange();
-    window.addEventListener("visibilitychange", webViewerVisibilityChange, {
-      signal
-    });
-    window.addEventListener("wheel", webViewerWheel, {
+    window.addEventListener("wheel", onWheel.bind(this), {
       passive: false,
       signal
     });
-    window.addEventListener("touchstart", webViewerTouchStart, {
-      passive: false,
+    window.addEventListener("click", onClick.bind(this), {
       signal
     });
-    window.addEventListener("touchmove", webViewerTouchMove, {
-      passive: false,
+    window.addEventListener("keydown", onKeyDown.bind(this), {
       signal
     });
-    window.addEventListener("touchend", webViewerTouchEnd, {
-      passive: false,
+    window.addEventListener("keyup", onKeyUp.bind(this), {
       signal
     });
-    window.addEventListener("click", webViewerClick, {
-      signal
-    });
-    window.addEventListener("keydown", webViewerKeyDown, {
-      signal
-    });
-    window.addEventListener("keyup", webViewerKeyUp, {
-      signal
-    });
-    window.addEventListener("resize", () => {
-      eventBus.dispatch("resize", {
-        source: window
-      });
-    }, {
+    window.addEventListener("resize", () => eventBus.dispatch("resize", {
+      source: window
+    }), {
       signal
     });
     window.addEventListener("hashchange", () => {
@@ -13399,24 +14459,20 @@ const PDFViewerApplication = {
     }, {
       signal
     });
-    window.addEventListener("beforeprint", () => {
-      eventBus.dispatch("beforeprint", {
-        source: window
-      });
-    }, {
+    window.addEventListener("beforeprint", () => eventBus.dispatch("beforeprint", {
+      source: window
+    }), {
       signal
     });
-    window.addEventListener("afterprint", () => {
-      eventBus.dispatch("afterprint", {
-        source: window
-      });
-    }, {
+    window.addEventListener("afterprint", () => eventBus.dispatch("afterprint", {
+      source: window
+    }), {
       signal
     });
-    window.addEventListener("updatefromsandbox", event => {
+    window.addEventListener("updatefromsandbox", evt => {
       eventBus.dispatch("updatefromsandbox", {
         source: window,
-        detail: event.detail
+        detail: evt.detail
       });
     }, {
       signal
@@ -13448,9 +14504,7 @@ const PDFViewerApplication = {
       if (this._lastScrollTop === mainContainer.scrollTop && this._lastScrollLeft === mainContainer.scrollLeft) {
         return;
       }
-      mainContainer.removeEventListener("scroll", scroll, {
-        passive: true
-      });
+      mainContainer.removeEventListener("scroll", scroll);
       this._isScrolling = true;
       mainContainer.addEventListener("scrollend", scrollend, {
         signal
@@ -13471,6 +14525,15 @@ const PDFViewerApplication = {
   unbindWindowEvents() {
     this._windowAbortController?.abort();
     this._windowAbortController = null;
+    this._touchManager = null;
+  },
+  async testingClose() {
+    this.unbindEvents();
+    this.unbindWindowEvents();
+    this._globalAbortController?.abort();
+    this._globalAbortController = null;
+    this.findBar?.close();
+    await Promise.all([this.l10n?.destroy(), this.close()]);
   },
   _accumulateTicks(ticks, prop) {
     if (this[prop] > 0 && ticks < 0 || this[prop] < 0 && ticks > 0) {
@@ -13526,33 +14589,46 @@ initCom(PDFViewerApplication);
       throw ex;
     }
   };
+  var onFileInputChange = function (evt) {
+    if (this.pdfViewer?.isInPresentationMode) {
+      return;
+    }
+    const file = evt.fileInput.files[0];
+    this.open({
+      url: URL.createObjectURL(file),
+      originalUrl: file.name
+    });
+  };
+  var onOpenFile = function (evt) {
+    this._openFileInput?.click();
+  };
 }
-function webViewerPageRender({
+function onPageRender({
   pageNumber
 }) {
-  if (pageNumber === PDFViewerApplication.page) {
-    PDFViewerApplication.toolbar?.updateLoadingIndicatorState(true);
+  if (pageNumber === this.page) {
+    this.toolbar?.updateLoadingIndicatorState(true);
   }
 }
-function webViewerPageRendered({
+function onPageRendered({
   pageNumber,
   error
 }) {
-  if (pageNumber === PDFViewerApplication.page) {
-    PDFViewerApplication.toolbar?.updateLoadingIndicatorState(false);
+  if (pageNumber === this.page) {
+    this.toolbar?.updateLoadingIndicatorState(false);
   }
-  if (PDFViewerApplication.pdfSidebar?.visibleView === SidebarView.THUMBS) {
-    const pageView = PDFViewerApplication.pdfViewer.getPageView(pageNumber - 1);
-    const thumbnailView = PDFViewerApplication.pdfThumbnailViewer?.getThumbnail(pageNumber - 1);
+  if (this.pdfSidebar?.visibleView === SidebarView.THUMBS) {
+    const pageView = this.pdfViewer.getPageView(pageNumber - 1);
+    const thumbnailView = this.pdfThumbnailViewer?.getThumbnail(pageNumber - 1);
     if (pageView) {
       thumbnailView?.setImage(pageView);
     }
   }
   if (error) {
-    PDFViewerApplication._otherError("pdfjs-rendering-error", error);
+    this._otherError("pdfjs-rendering-error", error);
   }
 }
-function webViewerPageMode({
+function onPageMode({
   mode
 }) {
   let view;
@@ -13577,42 +14653,39 @@ function webViewerPageMode({
       console.error('Invalid "pagemode" hash parameter: ' + mode);
       return;
   }
-  PDFViewerApplication.pdfSidebar?.switchView(view, true);
+  this.pdfSidebar?.switchView(view, true);
 }
-function webViewerNamedAction(evt) {
+function onNamedAction(evt) {
   switch (evt.action) {
     case "GoToPage":
-      PDFViewerApplication.appConfig.toolbar?.pageNumber.select();
+      this.appConfig.toolbar?.pageNumber.select();
       break;
     case "Find":
-      if (!PDFViewerApplication.supportsIntegratedFind) {
-        PDFViewerApplication.findBar?.toggle();
+      if (!this.supportsIntegratedFind) {
+        this.findBar?.toggle();
       }
       break;
     case "Print":
-      PDFViewerApplication.triggerPrinting();
+      this.triggerPrinting();
       break;
     case "SaveAs":
-      PDFViewerApplication.downloadOrSave();
+      this.downloadOrSave();
       break;
   }
 }
-function webViewerPresentationModeChanged(evt) {
-  PDFViewerApplication.pdfViewer.presentationModeState = evt.state;
-}
-function webViewerSidebarViewChanged({
+function onSidebarViewChanged({
   view
 }) {
-  PDFViewerApplication.pdfRenderingQueue.isThumbnailViewEnabled = view === SidebarView.THUMBS;
-  if (PDFViewerApplication.isInitialViewSet) {
-    PDFViewerApplication.store?.set("sidebarView", view).catch(() => {});
+  this.pdfRenderingQueue.isThumbnailViewEnabled = view === SidebarView.THUMBS;
+  if (this.isInitialViewSet) {
+    this.store?.set("sidebarView", view).catch(() => {});
   }
 }
-function webViewerUpdateViewarea({
+function onUpdateViewarea({
   location
 }) {
-  if (PDFViewerApplication.isInitialViewSet) {
-    PDFViewerApplication.store?.setMultiple({
+  if (this.isInitialViewSet) {
+    this.store?.setMultiple({
       page: location.pageNumber,
       zoom: location.scale,
       scrollLeft: location.left,
@@ -13620,27 +14693,21 @@ function webViewerUpdateViewarea({
       rotation: location.rotation
     }).catch(() => {});
   }
-  if (PDFViewerApplication.appConfig.secondaryToolbar) {
-    const href = PDFViewerApplication.pdfLinkService.getAnchorUrl(location.pdfOpenParams);
-    PDFViewerApplication.appConfig.secondaryToolbar.viewBookmarkButton.href = href;
+  if (this.appConfig.secondaryToolbar) {
+    this.appConfig.secondaryToolbar.viewBookmarkButton.href = this.pdfLinkService.getAnchorUrl(location.pdfOpenParams);
   }
 }
-function webViewerScrollModeChanged(evt) {
-  if (PDFViewerApplication.isInitialViewSet && !PDFViewerApplication.pdfViewer.isInPresentationMode) {
-    PDFViewerApplication.store?.set("scrollMode", evt.mode).catch(() => {});
+function onViewerModesChanged(name, evt) {
+  if (this.isInitialViewSet && !this.pdfViewer.isInPresentationMode) {
+    this.store?.set(name, evt.mode).catch(() => {});
   }
 }
-function webViewerSpreadModeChanged(evt) {
-  if (PDFViewerApplication.isInitialViewSet && !PDFViewerApplication.pdfViewer.isInPresentationMode) {
-    PDFViewerApplication.store?.set("spreadMode", evt.mode).catch(() => {});
-  }
-}
-function webViewerResize() {
+function onResize() {
   const {
     pdfDocument,
     pdfViewer,
     pdfRenderingQueue
-  } = PDFViewerApplication;
+  } = this;
   if (pdfRenderingQueue.printing && window.matchMedia("print").matches) {
     return;
   }
@@ -13653,100 +14720,36 @@ function webViewerResize() {
   }
   pdfViewer.update();
 }
-function webViewerHashchange(evt) {
+function onHashchange(evt) {
   const hash = evt.hash;
   if (!hash) {
     return;
   }
-  if (!PDFViewerApplication.isInitialViewSet) {
-    PDFViewerApplication.initialBookmark = hash;
-  } else if (!PDFViewerApplication.pdfHistory?.popStateInProgress) {
-    PDFViewerApplication.pdfLinkService.setHash(hash);
+  if (!this.isInitialViewSet) {
+    this.initialBookmark = hash;
+  } else if (!this.pdfHistory?.popStateInProgress) {
+    this.pdfLinkService.setHash(hash);
   }
 }
-{
-  var webViewerFileInputChange = function (evt) {
-    if (PDFViewerApplication.pdfViewer?.isInPresentationMode) {
-      return;
-    }
-    const file = evt.fileInput.files[0];
-    PDFViewerApplication.open({
-      url: URL.createObjectURL(file),
-      originalUrl: file.name
-    });
-  };
-  var webViewerOpenFile = function (evt) {
-    PDFViewerApplication._openFileInput?.click();
-  };
-}
-function webViewerPresentationMode() {
-  PDFViewerApplication.requestPresentationMode();
-}
-function webViewerSwitchAnnotationEditorMode(evt) {
-  PDFViewerApplication.pdfViewer.annotationEditorMode = evt;
-}
-function webViewerSwitchAnnotationEditorParams(evt) {
-  PDFViewerApplication.pdfViewer.annotationEditorParams = evt;
-}
-function webViewerPrint() {
-  PDFViewerApplication.triggerPrinting();
-}
-function webViewerDownload() {
-  PDFViewerApplication.downloadOrSave();
-}
-function webViewerFirstPage() {
-  PDFViewerApplication.page = 1;
-}
-function webViewerLastPage() {
-  PDFViewerApplication.page = PDFViewerApplication.pagesCount;
-}
-function webViewerNextPage() {
-  PDFViewerApplication.pdfViewer.nextPage();
-}
-function webViewerPreviousPage() {
-  PDFViewerApplication.pdfViewer.previousPage();
-}
-function webViewerZoomIn() {
-  PDFViewerApplication.zoomIn();
-}
-function webViewerZoomOut() {
-  PDFViewerApplication.zoomOut();
-}
-function webViewerZoomReset() {
-  PDFViewerApplication.zoomReset();
-}
-function webViewerPageNumberChanged(evt) {
-  const pdfViewer = PDFViewerApplication.pdfViewer;
+function onPageNumberChanged(evt) {
+  const {
+    pdfViewer
+  } = this;
   if (evt.value !== "") {
-    PDFViewerApplication.pdfLinkService.goToPage(evt.value);
+    this.pdfLinkService.goToPage(evt.value);
   }
   if (evt.value !== pdfViewer.currentPageNumber.toString() && evt.value !== pdfViewer.currentPageLabel) {
-    PDFViewerApplication.toolbar?.setPageNumber(pdfViewer.currentPageNumber, pdfViewer.currentPageLabel);
+    this.toolbar?.setPageNumber(pdfViewer.currentPageNumber, pdfViewer.currentPageLabel);
   }
 }
-function webViewerScaleChanged(evt) {
-  PDFViewerApplication.pdfViewer.currentScaleValue = evt.value;
+function onImageAltTextSettings() {
+  this.imageAltTextSettings?.open({
+    enableGuessAltText: AppOptions.get("enableGuessAltText"),
+    enableNewAltTextWhenAddingImage: AppOptions.get("enableNewAltTextWhenAddingImage")
+  });
 }
-function webViewerRotateCw() {
-  PDFViewerApplication.rotatePages(90);
-}
-function webViewerRotateCcw() {
-  PDFViewerApplication.rotatePages(-90);
-}
-function webViewerOptionalContentConfig(evt) {
-  PDFViewerApplication.pdfViewer.optionalContentConfigPromise = evt.promise;
-}
-function webViewerSwitchScrollMode(evt) {
-  PDFViewerApplication.pdfViewer.scrollMode = evt.mode;
-}
-function webViewerSwitchSpreadMode(evt) {
-  PDFViewerApplication.pdfViewer.spreadMode = evt.mode;
-}
-function webViewerDocumentProperties() {
-  PDFViewerApplication.pdfDocumentProperties?.open();
-}
-function webViewerFindFromUrlHash(evt) {
-  PDFViewerApplication.eventBus.dispatch("find", {
+function onFindFromUrlHash(evt) {
+  this.eventBus.dispatch("find", {
     source: evt.source,
     type: "",
     query: evt.query,
@@ -13757,239 +14760,131 @@ function webViewerFindFromUrlHash(evt) {
     matchDiacritics: true
   });
 }
-function webViewerUpdateFindMatchesCount({
+function onUpdateFindMatchesCount({
   matchesCount
 }) {
-  if (PDFViewerApplication.supportsIntegratedFind) {
-    PDFViewerApplication.externalServices.updateFindMatchesCount(matchesCount);
+  if (this.supportsIntegratedFind) {
+    this.externalServices.updateFindMatchesCount(matchesCount);
   } else {
-    PDFViewerApplication.findBar?.updateResultsCount(matchesCount);
+    this.findBar?.updateResultsCount(matchesCount);
   }
 }
-function webViewerUpdateFindControlState({
+function onUpdateFindControlState({
   state,
   previous,
+  entireWord,
   matchesCount,
   rawQuery
 }) {
-  if (PDFViewerApplication.supportsIntegratedFind) {
-    PDFViewerApplication.externalServices.updateFindControlState({
+  if (this.supportsIntegratedFind) {
+    this.externalServices.updateFindControlState({
       result: state,
       findPrevious: previous,
+      entireWord,
       matchesCount,
       rawQuery
     });
   } else {
-    PDFViewerApplication.findBar?.updateUIState(state, previous, matchesCount);
+    this.findBar?.updateUIState(state, previous, matchesCount);
   }
 }
-function webViewerScaleChanging(evt) {
-  PDFViewerApplication.toolbar?.setPageScale(evt.presetValue, evt.scale);
-  PDFViewerApplication.pdfViewer.update();
+function onScaleChanging(evt) {
+  this.toolbar?.setPageScale(evt.presetValue, evt.scale);
+  this.pdfViewer.update();
 }
-function webViewerRotationChanging(evt) {
-  if (PDFViewerApplication.pdfThumbnailViewer) {
-    PDFViewerApplication.pdfThumbnailViewer.pagesRotation = evt.pagesRotation;
+function onRotationChanging(evt) {
+  if (this.pdfThumbnailViewer) {
+    this.pdfThumbnailViewer.pagesRotation = evt.pagesRotation;
   }
-  PDFViewerApplication.forceRendering();
-  PDFViewerApplication.pdfViewer.currentPageNumber = evt.pageNumber;
+  this.forceRendering();
+  this.pdfViewer.currentPageNumber = evt.pageNumber;
 }
-function webViewerPageChanging({
+function onPageChanging({
   pageNumber,
   pageLabel
 }) {
-  PDFViewerApplication.toolbar?.setPageNumber(pageNumber, pageLabel);
-  PDFViewerApplication.secondaryToolbar?.setPageNumber(pageNumber);
-  if (PDFViewerApplication.pdfSidebar?.visibleView === SidebarView.THUMBS) {
-    PDFViewerApplication.pdfThumbnailViewer?.scrollThumbnailIntoView(pageNumber);
+  this.toolbar?.setPageNumber(pageNumber, pageLabel);
+  this.secondaryToolbar?.setPageNumber(pageNumber);
+  if (this.pdfSidebar?.visibleView === SidebarView.THUMBS) {
+    this.pdfThumbnailViewer?.scrollThumbnailIntoView(pageNumber);
   }
-  const currentPage = PDFViewerApplication.pdfViewer.getPageView(pageNumber - 1);
-  PDFViewerApplication.toolbar?.updateLoadingIndicatorState(currentPage?.renderingState === RenderingStates.RUNNING);
+  const currentPage = this.pdfViewer.getPageView(pageNumber - 1);
+  this.toolbar?.updateLoadingIndicatorState(currentPage?.renderingState === RenderingStates.RUNNING);
 }
-function webViewerResolutionChange(evt) {
-  PDFViewerApplication.pdfViewer.refresh();
-}
-function webViewerVisibilityChange(evt) {
-  if (document.visibilityState === "visible") {
-    setZoomDisabledTimeout();
-  }
-}
-let zoomDisabledTimeout = null;
-function setZoomDisabledTimeout() {
-  if (zoomDisabledTimeout) {
-    clearTimeout(zoomDisabledTimeout);
-  }
-  zoomDisabledTimeout = setTimeout(function () {
-    zoomDisabledTimeout = null;
-  }, WHEEL_ZOOM_DISABLED_TIMEOUT);
-}
-function webViewerWheel(evt) {
+function onWheel(evt) {
   const {
     pdfViewer,
     supportsMouseWheelZoomCtrlKey,
     supportsMouseWheelZoomMetaKey,
     supportsPinchToZoom
-  } = PDFViewerApplication;
+  } = this;
   if (pdfViewer.isInPresentationMode) {
     return;
   }
   const deltaMode = evt.deltaMode;
   let scaleFactor = Math.exp(-evt.deltaY / 100);
   const isBuiltInMac = false;
-  const isPinchToZoom = evt.ctrlKey && !PDFViewerApplication._isCtrlKeyDown && deltaMode === WheelEvent.DOM_DELTA_PIXEL && evt.deltaX === 0 && (Math.abs(scaleFactor - 1) < 0.05 || isBuiltInMac) && evt.deltaZ === 0;
+  const isPinchToZoom = evt.ctrlKey && !this._isCtrlKeyDown && deltaMode === WheelEvent.DOM_DELTA_PIXEL && evt.deltaX === 0 && (Math.abs(scaleFactor - 1) < 0.05 || isBuiltInMac) && evt.deltaZ === 0;
   const origin = [evt.clientX, evt.clientY];
   if (isPinchToZoom || evt.ctrlKey && supportsMouseWheelZoomCtrlKey || evt.metaKey && supportsMouseWheelZoomMetaKey) {
     evt.preventDefault();
-    if (PDFViewerApplication._isScrolling || zoomDisabledTimeout || document.visibilityState === "hidden" || PDFViewerApplication.overlayManager.active) {
+    if (this._isScrolling || document.visibilityState === "hidden" || this.overlayManager.active) {
       return;
     }
     if (isPinchToZoom && supportsPinchToZoom) {
-      scaleFactor = PDFViewerApplication._accumulateFactor(pdfViewer.currentScale, scaleFactor, "_wheelUnusedFactor");
-      PDFViewerApplication.updateZoom(null, scaleFactor, origin);
+      scaleFactor = this._accumulateFactor(pdfViewer.currentScale, scaleFactor, "_wheelUnusedFactor");
+      this.updateZoom(null, scaleFactor, origin);
     } else {
       const delta = normalizeWheelEventDirection(evt);
       let ticks = 0;
       if (deltaMode === WheelEvent.DOM_DELTA_LINE || deltaMode === WheelEvent.DOM_DELTA_PAGE) {
-        if (Math.abs(delta) >= 1) {
-          ticks = Math.sign(delta);
-        } else {
-          ticks = PDFViewerApplication._accumulateTicks(delta, "_wheelUnusedTicks");
-        }
+        ticks = Math.abs(delta) >= 1 ? Math.sign(delta) : this._accumulateTicks(delta, "_wheelUnusedTicks");
       } else {
         const PIXELS_PER_LINE_SCALE = 30;
-        ticks = PDFViewerApplication._accumulateTicks(delta / PIXELS_PER_LINE_SCALE, "_wheelUnusedTicks");
+        ticks = this._accumulateTicks(delta / PIXELS_PER_LINE_SCALE, "_wheelUnusedTicks");
       }
-      PDFViewerApplication.updateZoom(ticks, null, origin);
+      this.updateZoom(ticks, null, origin);
     }
   }
 }
-function webViewerTouchStart(evt) {
-  if (PDFViewerApplication.pdfViewer.isInPresentationMode || evt.touches.length < 2) {
+function closeSecondaryToolbar(evt) {
+  if (!this.secondaryToolbar?.isOpen) {
     return;
   }
-  evt.preventDefault();
-  if (evt.touches.length !== 2 || PDFViewerApplication.overlayManager.active) {
-    PDFViewerApplication._touchInfo = null;
-    return;
-  }
-  let [touch0, touch1] = evt.touches;
-  if (touch0.identifier > touch1.identifier) {
-    [touch0, touch1] = [touch1, touch0];
-  }
-  PDFViewerApplication._touchInfo = {
-    touch0X: touch0.pageX,
-    touch0Y: touch0.pageY,
-    touch1X: touch1.pageX,
-    touch1Y: touch1.pageY
-  };
-}
-function webViewerTouchMove(evt) {
-  if (!PDFViewerApplication._touchInfo || evt.touches.length !== 2) {
-    return;
-  }
-  const {
-    pdfViewer,
-    _touchInfo,
-    supportsPinchToZoom
-  } = PDFViewerApplication;
-  let [touch0, touch1] = evt.touches;
-  if (touch0.identifier > touch1.identifier) {
-    [touch0, touch1] = [touch1, touch0];
-  }
-  const {
-    pageX: page0X,
-    pageY: page0Y
-  } = touch0;
-  const {
-    pageX: page1X,
-    pageY: page1Y
-  } = touch1;
-  const {
-    touch0X: pTouch0X,
-    touch0Y: pTouch0Y,
-    touch1X: pTouch1X,
-    touch1Y: pTouch1Y
-  } = _touchInfo;
-  if (Math.abs(pTouch0X - page0X) <= 1 && Math.abs(pTouch0Y - page0Y) <= 1 && Math.abs(pTouch1X - page1X) <= 1 && Math.abs(pTouch1Y - page1Y) <= 1) {
-    return;
-  }
-  _touchInfo.touch0X = page0X;
-  _touchInfo.touch0Y = page0Y;
-  _touchInfo.touch1X = page1X;
-  _touchInfo.touch1Y = page1Y;
-  if (pTouch0X === page0X && pTouch0Y === page0Y) {
-    const v1X = pTouch1X - page0X;
-    const v1Y = pTouch1Y - page0Y;
-    const v2X = page1X - page0X;
-    const v2Y = page1Y - page0Y;
-    const det = v1X * v2Y - v1Y * v2X;
-    if (Math.abs(det) > 0.02 * Math.hypot(v1X, v1Y) * Math.hypot(v2X, v2Y)) {
-      return;
-    }
-  } else if (pTouch1X === page1X && pTouch1Y === page1Y) {
-    const v1X = pTouch0X - page1X;
-    const v1Y = pTouch0Y - page1Y;
-    const v2X = page0X - page1X;
-    const v2Y = page0Y - page1Y;
-    const det = v1X * v2Y - v1Y * v2X;
-    if (Math.abs(det) > 0.02 * Math.hypot(v1X, v1Y) * Math.hypot(v2X, v2Y)) {
-      return;
-    }
-  } else {
-    const diff0X = page0X - pTouch0X;
-    const diff1X = page1X - pTouch1X;
-    const diff0Y = page0Y - pTouch0Y;
-    const diff1Y = page1Y - pTouch1Y;
-    const dotProduct = diff0X * diff1X + diff0Y * diff1Y;
-    if (dotProduct >= 0) {
-      return;
-    }
-  }
-  evt.preventDefault();
-  const origin = [(page0X + page1X) / 2, (page0Y + page1Y) / 2];
-  const distance = Math.hypot(page0X - page1X, page0Y - page1Y) || 1;
-  const pDistance = Math.hypot(pTouch0X - pTouch1X, pTouch0Y - pTouch1Y) || 1;
-  if (supportsPinchToZoom) {
-    const newScaleFactor = PDFViewerApplication._accumulateFactor(pdfViewer.currentScale, distance / pDistance, "_touchUnusedFactor");
-    PDFViewerApplication.updateZoom(null, newScaleFactor, origin);
-  } else {
-    const PIXELS_PER_LINE_SCALE = 30;
-    const ticks = PDFViewerApplication._accumulateTicks((distance - pDistance) / PIXELS_PER_LINE_SCALE, "_touchUnusedTicks");
-    PDFViewerApplication.updateZoom(ticks, null, origin);
+  const appConfig = this.appConfig;
+  if (this.pdfViewer.containsElement(evt.target) || appConfig.toolbar?.container.contains(evt.target) && !appConfig.secondaryToolbar?.toggleButton.contains(evt.target)) {
+    this.secondaryToolbar.close();
   }
 }
-function webViewerTouchEnd(evt) {
-  if (!PDFViewerApplication._touchInfo) {
+function closeEditorUndoBar(evt) {
+  if (!this.editorUndoBar?.isOpen) {
     return;
   }
-  evt.preventDefault();
-  PDFViewerApplication._touchInfo = null;
-  PDFViewerApplication._touchUnusedTicks = 0;
-  PDFViewerApplication._touchUnusedFactor = 1;
-}
-function webViewerClick(evt) {
-  if (!PDFViewerApplication.secondaryToolbar?.isOpen) {
-    return;
-  }
-  const appConfig = PDFViewerApplication.appConfig;
-  if (PDFViewerApplication.pdfViewer.containsElement(evt.target) || appConfig.toolbar?.container.contains(evt.target) && evt.target !== appConfig.secondaryToolbar?.toggleButton) {
-    PDFViewerApplication.secondaryToolbar.close();
+  if (this.appConfig.secondaryToolbar?.toolbar.contains(evt.target)) {
+    this.editorUndoBar.hide();
   }
 }
-function webViewerKeyUp(evt) {
+function onClick(evt) {
+  closeSecondaryToolbar.call(this, evt);
+  closeEditorUndoBar.call(this, evt);
+}
+function onKeyUp(evt) {
   if (evt.key === "Control") {
-    PDFViewerApplication._isCtrlKeyDown = false;
+    this._isCtrlKeyDown = false;
   }
 }
-function webViewerKeyDown(evt) {
-  PDFViewerApplication._isCtrlKeyDown = evt.key === "Control";
-  if (PDFViewerApplication.overlayManager.active) {
+function onKeyDown(evt) {
+  this._isCtrlKeyDown = evt.key === "Control";
+  if (this.editorUndoBar?.isOpen && evt.keyCode !== 9 && evt.keyCode !== 16 && !((evt.keyCode === 13 || evt.keyCode === 32) && getActiveOrFocusedElement() === this.appConfig.editorUndoBar.undoButton)) {
+    this.editorUndoBar.hide();
+  }
+  if (this.overlayManager.active) {
     return;
   }
   const {
     eventBus,
     pdfViewer
-  } = PDFViewerApplication;
+  } = this;
   const isViewerInPresentationMode = pdfViewer.isInPresentationMode;
   let handled = false,
     ensureViewerFocused = false;
@@ -13997,16 +14892,16 @@ function webViewerKeyDown(evt) {
   if (cmd === 1 || cmd === 8 || cmd === 5 || cmd === 12) {
     switch (evt.keyCode) {
       case 70:
-        if (!PDFViewerApplication.supportsIntegratedFind && !evt.shiftKey) {
-          PDFViewerApplication.findBar?.open();
+        if (!this.supportsIntegratedFind && !evt.shiftKey) {
+          this.findBar?.open();
           handled = true;
         }
         break;
       case 71:
-        if (!PDFViewerApplication.supportsIntegratedFind) {
+        if (!this.supportsIntegratedFind) {
           const {
             state
-          } = PDFViewerApplication.findController;
+          } = this.findController;
           if (state) {
             const newState = {
               source: window,
@@ -14025,34 +14920,34 @@ function webViewerKeyDown(evt) {
       case 107:
       case 187:
       case 171:
-        PDFViewerApplication.zoomIn();
+        this.zoomIn();
         handled = true;
         break;
       case 173:
       case 109:
       case 189:
-        PDFViewerApplication.zoomOut();
+        this.zoomOut();
         handled = true;
         break;
       case 48:
       case 96:
         if (!isViewerInPresentationMode) {
-          setTimeout(function () {
-            PDFViewerApplication.zoomReset();
+          setTimeout(() => {
+            this.zoomReset();
           });
           handled = false;
         }
         break;
       case 38:
-        if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
-          PDFViewerApplication.page = 1;
+        if (isViewerInPresentationMode || this.page > 1) {
+          this.page = 1;
           handled = true;
           ensureViewerFocused = true;
         }
         break;
       case 40:
-        if (isViewerInPresentationMode || PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
-          PDFViewerApplication.page = PDFViewerApplication.pagesCount;
+        if (isViewerInPresentationMode || this.page < this.pagesCount) {
+          this.page = this.pagesCount;
           handled = true;
           ensureViewerFocused = true;
         }
@@ -14080,9 +14975,9 @@ function webViewerKeyDown(evt) {
   if (cmd === 3 || cmd === 10) {
     switch (evt.keyCode) {
       case 80:
-        PDFViewerApplication.requestPresentationMode();
+        this.requestPresentationMode();
         handled = true;
-        PDFViewerApplication.externalServices.reportTelemetry({
+        this.externalServices.reportTelemetry({
           type: "buttons",
           data: {
             id: "presentationModeKeyboard"
@@ -14090,8 +14985,8 @@ function webViewerKeyDown(evt) {
         });
         break;
       case 71:
-        if (PDFViewerApplication.appConfig.toolbar) {
-          PDFViewerApplication.appConfig.toolbar.pageNumber.select();
+        if (this.appConfig.toolbar) {
+          this.appConfig.toolbar.pageNumber.select();
           handled = true;
         }
         break;
@@ -14116,8 +15011,8 @@ function webViewerKeyDown(evt) {
       turnOnlyIfPageFit = false;
     switch (evt.keyCode) {
       case 38:
-        if (PDFViewerApplication.supportsCaretBrowsingMode) {
-          PDFViewerApplication.moveCaret(true, false);
+        if (this.supportsCaretBrowsingMode) {
+          this.moveCaret(true, false);
           handled = true;
           break;
         }
@@ -14134,7 +15029,7 @@ function webViewerKeyDown(evt) {
         turnPage = -1;
         break;
       case 37:
-        if (PDFViewerApplication.supportsCaretBrowsingMode) {
+        if (this.supportsCaretBrowsingMode) {
           return;
         }
         if (pdfViewer.isHorizontalScrollbarEnabled) {
@@ -14145,18 +15040,18 @@ function webViewerKeyDown(evt) {
         turnPage = -1;
         break;
       case 27:
-        if (PDFViewerApplication.secondaryToolbar?.isOpen) {
-          PDFViewerApplication.secondaryToolbar.close();
+        if (this.secondaryToolbar?.isOpen) {
+          this.secondaryToolbar.close();
           handled = true;
         }
-        if (!PDFViewerApplication.supportsIntegratedFind && PDFViewerApplication.findBar?.opened) {
-          PDFViewerApplication.findBar.close();
+        if (!this.supportsIntegratedFind && this.findBar?.opened) {
+          this.findBar.close();
           handled = true;
         }
         break;
       case 40:
-        if (PDFViewerApplication.supportsCaretBrowsingMode) {
-          PDFViewerApplication.moveCaret(false, false);
+        if (this.supportsCaretBrowsingMode) {
+          this.moveCaret(false, false);
           handled = true;
           break;
         }
@@ -14174,7 +15069,7 @@ function webViewerKeyDown(evt) {
         turnPage = 1;
         break;
       case 39:
-        if (PDFViewerApplication.supportsCaretBrowsingMode) {
+        if (this.supportsCaretBrowsingMode) {
           return;
         }
         if (pdfViewer.isHorizontalScrollbarEnabled) {
@@ -14185,30 +15080,30 @@ function webViewerKeyDown(evt) {
         turnPage = 1;
         break;
       case 36:
-        if (isViewerInPresentationMode || PDFViewerApplication.page > 1) {
-          PDFViewerApplication.page = 1;
+        if (isViewerInPresentationMode || this.page > 1) {
+          this.page = 1;
           handled = true;
           ensureViewerFocused = true;
         }
         break;
       case 35:
-        if (isViewerInPresentationMode || PDFViewerApplication.page < PDFViewerApplication.pagesCount) {
-          PDFViewerApplication.page = PDFViewerApplication.pagesCount;
+        if (isViewerInPresentationMode || this.page < this.pagesCount) {
+          this.page = this.pagesCount;
           handled = true;
           ensureViewerFocused = true;
         }
         break;
       case 83:
-        PDFViewerApplication.pdfCursorTools?.switchTool(CursorTool.SELECT);
+        this.pdfCursorTools?.switchTool(CursorTool.SELECT);
         break;
       case 72:
-        PDFViewerApplication.pdfCursorTools?.switchTool(CursorTool.HAND);
+        this.pdfCursorTools?.switchTool(CursorTool.HAND);
         break;
       case 82:
-        PDFViewerApplication.rotatePages(90);
+        this.rotatePages(90);
         break;
       case 115:
-        PDFViewerApplication.pdfSidebar?.toggle();
+        this.pdfSidebar?.toggle();
         break;
     }
     if (turnPage !== 0 && (!turnOnlyIfPageFit || pdfViewer.currentScaleValue === "page-fit")) {
@@ -14231,15 +15126,15 @@ function webViewerKeyDown(evt) {
         handled = true;
         break;
       case 38:
-        PDFViewerApplication.moveCaret(true, true);
+        this.moveCaret(true, true);
         handled = true;
         break;
       case 40:
-        PDFViewerApplication.moveCaret(false, true);
+        this.moveCaret(false, true);
         handled = true;
         break;
       case 82:
-        PDFViewerApplication.rotatePages(-90);
+        this.rotatePages(-90);
         break;
     }
   }
@@ -14260,22 +15155,14 @@ function beforeUnload(evt) {
   evt.returnValue = "";
   return false;
 }
-function webViewerAnnotationEditorStatesChanged(data) {
-  PDFViewerApplication.externalServices.updateEditorStates(data);
-}
-function webViewerReportTelemetry({
-  details
-}) {
-  PDFViewerApplication.externalServices.reportTelemetry(details);
-}
 
-;// CONCATENATED MODULE: ./web/viewer.js
+;// ./web/viewer.js
 
 
 
 
-const pdfjsVersion = "4.3.136";
-const pdfjsBuild = "0cec64437";
+const pdfjsVersion = "4.10.38";
+const pdfjsBuild = "f9bea397f";
 const AppConstants = {
   LinkTarget: LinkTarget,
   RenderingStates: RenderingStates,
@@ -14288,34 +15175,34 @@ window.PDFViewerApplicationOptions = AppOptions;
 function getViewerConfiguration() {
   return {
     appContainer: document.body,
+    principalContainer: document.getElementById("mainContainer"),
     mainContainer: document.getElementById("viewerContainer"),
     viewerContainer: document.getElementById("viewer"),
     toolbar: {
-      container: document.getElementById("toolbarViewer"),
+      container: document.getElementById("toolbarContainer"),
       numPages: document.getElementById("numPages"),
       pageNumber: document.getElementById("pageNumber"),
       scaleSelect: document.getElementById("scaleSelect"),
       customScaleOption: document.getElementById("customScaleOption"),
       previous: document.getElementById("previous"),
       next: document.getElementById("next"),
-      zoomIn: document.getElementById("zoomIn"),
-      zoomOut: document.getElementById("zoomOut"),
-      viewFind: document.getElementById("viewFind"),
-      print: document.getElementById("print"),
-      editorFreeTextButton: document.getElementById("editorFreeText"),
+      zoomIn: document.getElementById("zoomInButton"),
+      zoomOut: document.getElementById("zoomOutButton"),
+      print: document.getElementById("printButton"),
+      editorFreeTextButton: document.getElementById("editorFreeTextButton"),
       editorFreeTextParamsToolbar: document.getElementById("editorFreeTextParamsToolbar"),
-      editorHighlightButton: document.getElementById("editorHighlight"),
+      editorHighlightButton: document.getElementById("editorHighlightButton"),
       editorHighlightParamsToolbar: document.getElementById("editorHighlightParamsToolbar"),
       editorHighlightColorPicker: document.getElementById("editorHighlightColorPicker"),
-      editorInkButton: document.getElementById("editorInk"),
+      editorInkButton: document.getElementById("editorInkButton"),
       editorInkParamsToolbar: document.getElementById("editorInkParamsToolbar"),
-      editorStampButton: document.getElementById("editorStamp"),
+      editorStampButton: document.getElementById("editorStampButton"),
       editorStampParamsToolbar: document.getElementById("editorStampParamsToolbar"),
-      download: document.getElementById("download")
+      download: document.getElementById("downloadButton")
     },
     secondaryToolbar: {
       toolbar: document.getElementById("secondaryToolbar"),
-      toggleButton: document.getElementById("secondaryToolbarToggle"),
+      toggleButton: document.getElementById("secondaryToolbarToggleButton"),
       presentationModeButton: document.getElementById("presentationMode"),
       openFileButton: document.getElementById("secondaryOpenFile"),
       printButton: document.getElementById("secondaryPrint"),
@@ -14334,12 +15221,14 @@ function getViewerConfiguration() {
       spreadNoneButton: document.getElementById("spreadNone"),
       spreadOddButton: document.getElementById("spreadOdd"),
       spreadEvenButton: document.getElementById("spreadEven"),
+      imageAltTextSettingsButton: document.getElementById("imageAltTextSettings"),
+      imageAltTextSettingsSeparator: document.getElementById("imageAltTextSettingsSeparator"),
       documentPropertiesButton: document.getElementById("documentProperties")
     },
     sidebar: {
       outerContainer: document.getElementById("outerContainer"),
       sidebarContainer: document.getElementById("sidebarContainer"),
-      toggleButton: document.getElementById("sidebarToggle"),
+      toggleButton: document.getElementById("sidebarToggleButton"),
       resizer: document.getElementById("sidebarResizer"),
       thumbnailButton: document.getElementById("viewThumbnail"),
       outlineButton: document.getElementById("viewOutline"),
@@ -14353,7 +15242,7 @@ function getViewerConfiguration() {
     },
     findBar: {
       bar: document.getElementById("findbar"),
-      toggleButton: document.getElementById("viewFind"),
+      toggleButton: document.getElementById("viewFindButton"),
       findField: document.getElementById("findInput"),
       highlightAllCheckbox: document.getElementById("findHighlightAll"),
       caseSensitiveCheckbox: document.getElementById("findMatchCase"),
@@ -14361,8 +15250,8 @@ function getViewerConfiguration() {
       entireWordCheckbox: document.getElementById("findEntireWord"),
       findMsg: document.getElementById("findMsg"),
       findResultsCount: document.getElementById("findResultsCount"),
-      findPreviousButton: document.getElementById("findPrevious"),
-      findNextButton: document.getElementById("findNext")
+      findPreviousButton: document.getElementById("findPreviousButton"),
+      findNextButton: document.getElementById("findNextButton")
     },
     passwordOverlay: {
       dialog: document.getElementById("passwordDialog"),
@@ -14399,6 +15288,35 @@ function getViewerConfiguration() {
       cancelButton: document.getElementById("altTextCancel"),
       saveButton: document.getElementById("altTextSave")
     },
+    newAltTextDialog: {
+      dialog: document.getElementById("newAltTextDialog"),
+      title: document.getElementById("newAltTextTitle"),
+      descriptionContainer: document.getElementById("newAltTextDescriptionContainer"),
+      textarea: document.getElementById("newAltTextDescriptionTextarea"),
+      disclaimer: document.getElementById("newAltTextDisclaimer"),
+      learnMore: document.getElementById("newAltTextLearnMore"),
+      imagePreview: document.getElementById("newAltTextImagePreview"),
+      createAutomatically: document.getElementById("newAltTextCreateAutomatically"),
+      createAutomaticallyButton: document.getElementById("newAltTextCreateAutomaticallyButton"),
+      downloadModel: document.getElementById("newAltTextDownloadModel"),
+      downloadModelDescription: document.getElementById("newAltTextDownloadModelDescription"),
+      error: document.getElementById("newAltTextError"),
+      errorCloseButton: document.getElementById("newAltTextCloseButton"),
+      cancelButton: document.getElementById("newAltTextCancel"),
+      notNowButton: document.getElementById("newAltTextNotNow"),
+      saveButton: document.getElementById("newAltTextSave")
+    },
+    altTextSettingsDialog: {
+      dialog: document.getElementById("altTextSettingsDialog"),
+      createModelButton: document.getElementById("createModelButton"),
+      aiModelSettings: document.getElementById("aiModelSettings"),
+      learnMore: document.getElementById("altTextSettingsLearnMore"),
+      deleteModelButton: document.getElementById("deleteModelButton"),
+      downloadModelButton: document.getElementById("downloadModelButton"),
+      showAltTextDialogButton: document.getElementById("showAltTextDialogButton"),
+      altTextSettingsCloseButton: document.getElementById("altTextSettingsCloseButton"),
+      closeButton: document.getElementById("altTextSettingsCloseButton")
+    },
     annotationEditorParams: {
       editorFreeTextFontSize: document.getElementById("editorFreeTextFontSize"),
       editorFreeTextColor: document.getElementById("editorFreeTextColor"),
@@ -14409,7 +15327,13 @@ function getViewerConfiguration() {
       editorFreeHighlightThickness: document.getElementById("editorFreeHighlightThickness"),
       editorHighlightShowAll: document.getElementById("editorHighlightShowAll")
     },
-    printContainer: document.getElementById("printContainer")
+    printContainer: document.getElementById("printContainer"),
+    editorUndoBar: {
+      container: document.getElementById("editorUndoBar"),
+      message: document.getElementById("editorUndoBarMessage"),
+      undoButton: document.getElementById("editorUndoBarUndoButton"),
+      closeButton: document.getElementById("editorUndoBarCloseButton")
+    }
   };
 }
 function webViewerLoad() {
@@ -14424,7 +15348,7 @@ function webViewerLoad() {
   try {
     parent.document.dispatchEvent(event);
   } catch (ex) {
-    // console.error(`webviewerloaded: ${ex}`);
+    // console.error("webviewerloaded:", ex);
     document.dispatchEvent(event);
   }
   PDFViewerApplication.run(config);

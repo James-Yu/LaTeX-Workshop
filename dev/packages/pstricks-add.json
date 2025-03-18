@@ -1,151 +1,855 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "pst-node": [],
-    "pst-3d": [],
-    "pst-math": [],
-    "multido": [],
-    "pst-calculate": [],
-    "pst-xkey": [],
-    "pst-arrow": []
-  },
-  "macros": {
-    "BeginSaveFinalState": {},
-    "defineTColor[]{}{}": {
-      "snippet": "defineTColor[${3:options}]{${1:name}}{${2:color}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "defineTColor{}{}": {
-      "snippet": "defineTColor{${1:name}}{${2:color}}"
+    {
+      "name": "pst-plot"
     },
-    "EndSaveFinalState": {},
-    "parseRP": {},
-    "psCancel*[]{}": {
-      "snippet": "psCancel*[${2:options}]{${1:stuff}}"
+    {
+      "name": "pst-node"
     },
-    "psCancel*{}": {
-      "snippet": "psCancel*{${1:stuff}}"
+    {
+      "name": "pst-3d"
     },
-    "psCancel[]{}": {
-      "snippet": "psCancel[${2:options}]{${1:stuff}}"
+    {
+      "name": "pst-math"
     },
-    "psCancel{}": {
-      "snippet": "psCancel{${1:stuff}}"
+    {
+      "name": "multido"
     },
-    "psChart[]{}{}{}": {
-      "snippet": "psChart[${4:options}]{${1:list1}}{${2:list2}}{${3:radius}}"
+    {
+      "name": "pst-calculate"
     },
-    "psChart{}{}{}": {
-      "snippet": "psChart{${1:list1}}{${2:list2}}{${3:radius}}"
+    {
+      "name": "pst-xkey"
     },
-    "pscurvepoints[]{}{}{}{}": {
-      "snippet": "pscurvepoints[${5:options}]{${1:tmin}}{${2:tmax}}{${3:function of t}}{${4:root}}"
+    {
+      "name": "pst-arrow"
+    }
+  ],
+  "macros": [
+    {
+      "name": "BeginSaveFinalState"
     },
-    "pscurvepoints{}{}{}{}": {
-      "snippet": "pscurvepoints{${1:tmin}}{${2:tmax}}{${3:function of t}}{${4:array root}}"
+    {
+      "name": "defineTColor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "defineTColor[${3:options%keyvals}]{${1:name}}{${2:color}}"
+      }
     },
-    "psdice[]{}": {
-      "snippet": "psdice[${2:options}]{${1:number}}"
+    {
+      "name": "defineTColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defineTColor{${1:name}}{${2:color}}"
+      }
     },
-    "psdice{}": {
-      "snippet": "psdice{${1:number}}"
+    {
+      "name": "EndSaveFinalState"
     },
-    "psDiffSumValue": {},
-    "psFormatInt[]{}": {
-      "snippet": "psFormatInt[${2:options}]{${1:integer}}"
+    {
+      "name": "parseRP",
+      "unusual": true
     },
-    "psFormatInt{}": {
-      "snippet": "psFormatInt{${1:integer}}"
+    {
+      "name": "psBrace",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "psBrace(${1:A})(${2:B})"
+      }
     },
-    "psKiviat[]{}{}": {
-      "snippet": "psKiviat[${3:options}]{${1:number of edges}}{${2:radius}}"
+    {
+      "name": "psbrace",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psbrace(${2:A})(${3:B}){${1:text}}"
+      }
     },
-    "psKiviat{}{}": {
-      "snippet": "psKiviat{${1:number of edges}}{${2:radius}}"
+    {
+      "name": "psBrace*",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "psBrace*(${1:A})(${2:B})"
+      }
     },
-    "psKiviatAxes[]{}{}": {
-      "snippet": "psKiviatAxes[${3:options}]{${1:number of edges}}{${2:radius}}"
+    {
+      "name": "psBrace*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psBrace*[${1:options%keyvals}](${2:A})(${3:B})"
+      }
     },
-    "psKiviatAxes{}{}": {
-      "snippet": "psKiviatAxes{${1:number of edges}}{${2:radius}}"
+    {
+      "name": "psBrace",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psBrace[${1:options%keyvals}](${2:A})(${3:B})"
+      }
     },
-    "psKiviatLine[]{}": {
-      "snippet": "psKiviatLine[${2:options}]{${1:list}}"
+    {
+      "name": "psbrace",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psbrace[${2:options%keyvals}](${3:A})(${4:B}){${1:text}}"
+      }
     },
-    "psKiviatLine{}": {
-      "snippet": "psKiviatLine{${1:list}}"
+    {
+      "name": "psCallout",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psCallout(${2:x},${3:y}){${1:text}}"
+      }
     },
-    "psKiviatTicklines{}{}": {
-      "snippet": "psKiviatTicklines{${1:n}}{${2:radius}}"
+    {
+      "name": "psCallout",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psCallout[${2:options%keyvals}](${3:x},${4:y}){${1:text}}"
+      }
     },
-    "psKiviatTicklines[]{}{}": {
-      "snippet": "psKiviatTicklines[${3:options}]{${1:n}}{${2:radius}}"
+    {
+      "name": "psCancel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psCancel*[${2:options%keyvals}]{${1:stuff}}"
+      }
     },
-    "psLeftSumValue": {},
-    "psMatrixPlot[]{}{}{}": {
-      "snippet": "psMatrixPlot[${4:options}]{${1:rows}}{${2:columns}}{${3:data file}}"
+    {
+      "name": "psCancel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "psCancel*{${1:stuff}}"
+      }
     },
-    "psMatrixPlot{}{}{}": {
-      "snippet": "psMatrixPlot{${1:rows}}{${2:columns}}{${3:data file}}"
+    {
+      "name": "psCancel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psCancel[${2:options%keyvals}]{${1:stuff}}"
+      }
     },
-    "psMiddleSumValue": {},
-    "psparallelogrambox[]{}": {
-      "snippet": "psparallelogrambox[${2:options}]{${1:stuff}}"
+    {
+      "name": "psCancel",
+      "arg": {
+        "format": "{}",
+        "snippet": "psCancel{${1:stuff}}"
+      }
     },
-    "psparallelogrambox{}": {
-      "snippet": "psparallelogrambox{${1:stuff}}"
+    {
+      "name": "psChart",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psChart[${4:options%keyvals}]{${1:list1}}{${2:list2}}{${3:radius}}"
+      }
     },
-    "psplotDiffEqn[]{}{}{}{}": {
-      "snippet": "psplotDiffEqn[${5:options}]{${1:x0}}{${2:x1}}{${3:y0}}{${4:f(${6:x,y,y',...})}}"
+    {
+      "name": "psChart",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psChart{${1:list1}}{${2:list2}}{${3:radius}}"
+      }
     },
-    "psplotDiffEqn{}{}{}{}": {
-      "snippet": "psplotDiffEqn{${1:x0}}{${2:x1}}{${3:y0}}{${4:f(${5:x,y,y',...})}}"
+    {
+      "name": "psCircleTangents",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psCircleTangents(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:radius}}"
+      }
     },
-    "psplotTangent*[]{}{}{}": {
-      "snippet": "psplotTangent*[${4:options}]{${1:x}}{${2:dx}}{${3:function}}"
+    {
+      "name": "psCircleTangents",
+      "arg": {
+        "format": "(){}(){}",
+        "snippet": "psCircleTangents(${3:x1},${4:y1}){${1:radius1}}(${5:x2},${6:y2}){${2:radius2}}"
+      }
     },
-    "psplotTangent*{}{}{}": {
-      "snippet": "psplotTangent*{${1:x}}{${2:dx}}{${3:function}}"
+    {
+      "name": "psComment",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psComment(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:text}}"
+      }
     },
-    "psplotTangent[]{}{}{}": {
-      "snippet": "psplotTangent[${4:options}]{${1:x}}{${2:dx}}{${3:function}}"
+    {
+      "name": "psComment",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}[][]",
+        "snippet": "psComment(${4:x0},${5:y0})(${6:x1},${7:y1}){${1:text}}[${2:line macro}][${3:put macro}]"
+      }
     },
-    "psplotTangent{}{}{}": {
-      "snippet": "psplotTangent{${1:x}}{${2:dx}}{${3:function}}"
+    {
+      "name": "psComment*",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psComment*(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:text}}"
+      }
     },
-    "pspolylineticks[]{}{}{}{}": {
-      "snippet": "pspolylineticks[${5:options}]{${1:root name}}{${2:function}}{${3:first tick}}{${4:tick count}}"
+    {
+      "name": "psComment*",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}[][]",
+        "snippet": "psComment*(${4:x0},${5:y0})(${6:x1},${7:y1}){${1:text}}[${2:line macro}][${3:put macro}]"
+      }
     },
-    "pspolylineticks{}{}{}{}": {
-      "snippet": "pspolylineticks{${1:root name}}{${2:function}}{${3:first tick}}{${4:tick count}}"
+    {
+      "name": "psComment*",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psComment*[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:text}}"
+      }
     },
-    "psRandom[]{}": {
-      "snippet": "psRandom[${2:options}]{${1:}}"
+    {
+      "name": "psComment*",
+      "arg": {
+        "format": "[]()(){}[][]",
+        "snippet": "psComment*[${2:options%keyvals}](${5:x0},${6:y0})(${7:x1},${8:y1}){${1:text}}[${3:line macro}][${4:put macro}]"
+      }
     },
-    "psRandom{}": {
-      "snippet": "psRandom{${1:}}"
+    {
+      "name": "psComment*",
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "psComment*[${3:options%keyvals}]{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1}){${2:text}}"
+      }
     },
-    "psRandomPointArea[]{}{}": {
-      "snippet": "psRandomPointArea[${3:options}]{${1:number}}{${2:function}}"
+    {
+      "name": "psComment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}[][]",
+        "snippet": "psComment*[${3:options%keyvals}]{${1:arrows}}(${6:x0},${7:y0})(${8:x1},${9:y1}){${2:text}}[${4:line macro}][${5:put macro}]"
+      }
     },
-    "psRandomPointArea{}{}": {
-      "snippet": "psRandomPointArea{${1:number}}{${2:function}}"
+    {
+      "name": "psComment*",
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "psComment*{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1}){${2:text}}"
+      }
     },
-    "psRightSumValue": {},
-    "pstContour[]{}": {
-      "snippet": "pstContour[${2:options}]{${1:data file}}"
+    {
+      "name": "psComment*",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}[][]",
+        "snippet": "psComment*{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1}){${2:text}}[${3:line macro}][${4:put macro}]"
+      }
     },
-    "pstContour{}": {
-      "snippet": "pstContour{${1:data file}}"
+    {
+      "name": "psComment",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psComment[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:text}}"
+      }
     },
-    "pstricksaddFV": {},
-    "PSTricksAddLoaded": {},
-    "psVectorName": {},
-    "pswavelengthToGRAY": {},
-    "pswavelengthToRGB": {},
-    "resetOptions": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psComment",
+      "arg": {
+        "format": "[]()(){}[][]",
+        "snippet": "psComment[${2:options%keyvals}](${5:x0},${6:y0})(${7:x1},${8:y1}){${1:text}}[${3:line macro}][${4:put macro}]"
+      }
+    },
+    {
+      "name": "psComment",
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "psComment[${3:options%keyvals}]{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1}){${2:text}}"
+      }
+    },
+    {
+      "name": "psComment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}[][]",
+        "snippet": "psComment[${3:options%keyvals}]{${1:arrows}}(${6:x0},${7:y0})(${8:x1},${9:y1}){${2:text}}[${4:line macro}][${5:put macro}]"
+      }
+    },
+    {
+      "name": "psComment",
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "psComment{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1}){${2:text}}"
+      }
+    },
+    {
+      "name": "psComment",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}[][]",
+        "snippet": "psComment{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1}){${2:text}}[${3:line macro}][${4:put macro}]"
+      }
+    },
+    {
+      "name": "pscurvepoints",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pscurvepoints[${5:options%keyvals}]{${1:tmin}}{${2:tmax}}{${3:function of t%definition}}{${4:root}}"
+      }
+    },
+    {
+      "name": "pscurvepoints",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pscurvepoints{${1:tmin}}{${2:tmax}}{${3:function of t%definition}}{${4:array root}}"
+      }
+    },
+    {
+      "name": "psdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psdice[${2:options%keyvals}]{${1:number}}"
+      }
+    },
+    {
+      "name": "psdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "psdice{${1:number}}"
+      }
+    },
+    {
+      "name": "psDiffSumValue"
+    },
+    {
+      "name": "psEllipseTangents",
+      "arg": {
+        "format": "()()()",
+        "snippet": "psEllipseTangents(${1:x0},${2:y0})(${3:a},${4:b})(${5:xp},${6:yp})"
+      }
+    },
+    {
+      "name": "psEllipseTangentsN",
+      "unusual": true,
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "psEllipseTangentsN(${2:x0},${3:y0})(${4:a},${5:b})(${6:xp},${7:yp}){${1:node name}}"
+      }
+    },
+    {
+      "name": "psFormatInt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psFormatInt[${2:options%keyvals}]{${1:integer}}"
+      }
+    },
+    {
+      "name": "psFormatInt",
+      "arg": {
+        "format": "{}",
+        "snippet": "psFormatInt{${1:integer}}"
+      }
+    },
+    {
+      "name": "psGetDistance",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psGetDistance(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "psGetDistance",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psGetDistance[${2:decimals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "psGetSlope",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psGetSlope(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "psGTriangle",
+      "arg": {
+        "format": "()()(){}{}{}",
+        "snippet": "psGTriangle(${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "psHomothetie",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psHomothetie(${3:x},${4:y}){${1:factor}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psHomothetie",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psHomothetie[${3:options%keyvals}](${4:x},${5:y}){${1:factor}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psIntersectionPoint",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "psIntersectionPoint(${2:x0},${3:y0})(${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:node name}}"
+      }
+    },
+    {
+      "name": "psKiviat",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psKiviat[${3:options%keyvals}]{${1:number of edges}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psKiviat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psKiviat{${1:number of edges}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psKiviatAxes",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psKiviatAxes[${3:options%keyvals}]{${1:number of edges}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psKiviatAxes",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psKiviatAxes{${1:number of edges}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psKiviatLine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psKiviatLine[${2:options%keyvals}]{${1:list}}"
+      }
+    },
+    {
+      "name": "psKiviatLine",
+      "arg": {
+        "format": "{}",
+        "snippet": "psKiviatLine{${1:list}}"
+      }
+    },
+    {
+      "name": "psKiviatTicklines",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psKiviatTicklines{${1:n}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psKiviatTicklines",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psKiviatTicklines[${3:options%keyvals}]{${1:n}}{${2:radius}}"
+      }
+    },
+    {
+      "name": "psLeftSumValue"
+    },
+    {
+      "name": "psMatrixPlot",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psMatrixPlot[${4:options%keyvals}]{${1:rows}}{${2:columns}}{${3:data file%file}}"
+      }
+    },
+    {
+      "name": "psMatrixPlot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psMatrixPlot{${1:rows}}{${2:columns}}{${3:data file%file}}"
+      }
+    },
+    {
+      "name": "psMiddleSumValue"
+    },
+    {
+      "name": "psOlympicRings",
+      "arg": {
+        "format": "()",
+        "snippet": "psOlympicRings(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psOlympicRings",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psOlympicRings[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psParallelLine",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "psParallelLine(${3:x0},${4:y0})(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:length}}{${2:end node name}}"
+      }
+    },
+    {
+      "name": "psParallelLine",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "psParallelLine[${3:options%keyvals}](${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${1:length}}{${2:end node name}}"
+      }
+    },
+    {
+      "name": "psParallelLine",
+      "arg": {
+        "format": "[]{}()()(){}{}",
+        "snippet": "psParallelLine[${4:options%keyvals}]{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1})(${9:x2},${10:y2}){${2:length}}{${3:end node name}}"
+      }
+    },
+    {
+      "name": "psParallelLine",
+      "arg": {
+        "format": "{}()()(){}{}",
+        "snippet": "psParallelLine{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1})(${8:x2},${9:y2}){${2:length}}{${3:end node name}}"
+      }
+    },
+    {
+      "name": "psColorLine",
+      "arg": {
+        "format": "()()",
+        "snippet": "psColorLine(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "psColorLine",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "psColorLine{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "psColorLine",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psColorLine[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "psColorLine",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "psColorLine[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
+    },
+    {
+      "name": "psparallelogrambox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psparallelogrambox[${2:options%keyvals}]{${1:stuff}}"
+      }
+    },
+    {
+      "name": "psparallelogrambox",
+      "arg": {
+        "format": "{}",
+        "snippet": "psparallelogrambox{${1:stuff}}"
+      }
+    },
+    {
+      "name": "psplotDiffEqn",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "psplotDiffEqn[${5:options}]{${1:x0}}{${2:x1}}{${3:y0}}{${4:f(${6:x},${7:y},${8:y'},${9:...})}}"
+      }
+    },
+    {
+      "name": "psplotDiffEqn",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "psplotDiffEqn{${1:x0}}{${2:x1}}{${3:y0}}{${4:f(${5:x},${6:y},${7:y'},${8:...})}}"
+      }
+    },
+    {
+      "name": "psplotTangent*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psplotTangent*[${4:options%keyvals}]{${1:x}}{${2:dx}}{${3:function%definition}}"
+      }
+    },
+    {
+      "name": "psplotTangent*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psplotTangent*{${1:x}}{${2:dx}}{${3:function%definition}}"
+      }
+    },
+    {
+      "name": "psplotTangent",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "psplotTangent[${4:options%keyvals}]{${1:x}}{${2:dx}}{${3:function%definition}}"
+      }
+    },
+    {
+      "name": "psplotTangent",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psplotTangent{${1:x}}{${2:dx}}{${3:function%definition}}"
+      }
+    },
+    {
+      "name": "pspolylineticks",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pspolylineticks[${5:options%keyvals}]{${1:root name}}{${2:function}}{${3:first tick}}{${4:tick count}}"
+      }
+    },
+    {
+      "name": "pspolylineticks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pspolylineticks{${1:root name}}{${2:function}}{${3:first tick}}{${4:tick count}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psRandom(${2:xmin},${3:ymin})(${4:xmax},${5:ymax}){${1:clip path}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psRandom(${2:xmin},${3:ymin}){${1:clip path}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psRandom[${2:options%keyvals}](${3:xmin},${4:ymin})(${5:xmax},${6:ymax}){${1:clip path}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psRandom[${2:options%keyvals}](${3:xmin},${4:ymin}){${1:clip path}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psRandom[${2:options%keyvals}]{${1:}}"
+      }
+    },
+    {
+      "name": "psRandom",
+      "arg": {
+        "format": "{}",
+        "snippet": "psRandom{${1:}}"
+      }
+    },
+    {
+      "name": "psRandomPointArea",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psRandomPointArea[${3:options%keyvals}]{${1:number}}{${2:function%definition}}"
+      }
+    },
+    {
+      "name": "psRandomPointArea",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psRandomPointArea{${1:number}}{${2:function%definition}}"
+      }
+    },
+    {
+      "name": "psRelLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "psRelLine(${3:x0},${4:y0})(${5:x1},${6:y1}){${1:length factor}}{${2:end node name}}"
+      }
+    },
+    {
+      "name": "psRelLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "psRelLine[${3:options%keyvals}](${4:x0},${5:y0})(${6:x1},${7:y1}){${1:length factor}}{${2:end node name}}"
+      }
+    },
+    {
+      "name": "psRelLine",
+      "arg": {
+        "format": "[]{}()(){}{}",
+        "snippet": "psRelLine[${4:options%keyvals}]{${1:arrows}}(${5:x0},${6:y0})(${7:x1},${8:y1}){${2:length factor}}{${3:end node name}}"
+      }
+    },
+    {
+      "name": "psRelLine",
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "psRelLine{${1:arrows}}(${4:x0},${5:y0})(${6:x1},${7:y1}){${2:length factor}}{${3:end node name}}"
+      }
+    },
+    {
+      "name": "psRiemannSum",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psRiemannSum(${3:x0},${4:x1}){${1:n}}{${2:function%definition}}"
+      }
+    },
+    {
+      "name": "psRightSumValue"
+    },
+    {
+      "name": "psrotate",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psrotate(${3:x},${4:y}){${1:angle}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psrotate",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psrotate[${3:options%keyvals}](${4:x},${5:y}){${1:angle}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "psStartPoint",
+      "arg": {
+        "format": "()",
+        "snippet": "psStartPoint(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psStartPoint",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psStartPoint[${1:node basename}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psStep",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psStep(${3:x},${4:y}){${1:n}}{${2:function%definition}}"
+      }
+    },
+    {
+      "name": "psStep",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psStep[${3:options%keyvals}](${4:x},${5:y}){${1:n}}{${2:function%definition}}"
+      }
+    },
+    {
+      "name": "psTangentLine",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "psTangentLine(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:x}}{${2:dx}}"
+      }
+    },
+    {
+      "name": "psTangentLine",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "psTangentLine[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:x}}{${2:dx}}"
+      }
+    },
+    {
+      "name": "pstContour",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pstContour[${2:options%keyvals}]{${1:data file%file}}"
+      }
+    },
+    {
+      "name": "pstContour",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstContour{${1:data file%file}}"
+      }
+    },
+    {
+      "name": "psVectorName",
+      "unusual": true
+    },
+    {
+      "name": "pswavelengthToGRAY",
+      "unusual": true
+    },
+    {
+      "name": "pswavelengthToRGB",
+      "unusual": true
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "(){}",
+        "snippet": "Put(${2:position}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "Put*(${2:position}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "Put*[${2:options%keyvals}](${3:position}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "Put*[${3:options%keyvals}]{${1:ref}}(${4:position}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "Put*",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "Put*{${1:ref}}(${3:position}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "Put[${2:options%keyvals}](${3:position}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "Put[${3:options%keyvals}]{${1:ref}}(${4:position}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "Put",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "Put{${1:ref}}(${3:position}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "resetOptions"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

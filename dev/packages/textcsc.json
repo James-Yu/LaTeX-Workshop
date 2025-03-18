@@ -1,20 +1,35 @@
 {
-  "includes": {
-    "iftex": [],
-    "fontspec": []
-  },
-  "macros": {
-    "cscshape": {},
-    "textcsc{}": {
-      "snippet": "textcsc{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "csconlyshape": {},
-    "csconly{}": {
-      "snippet": "csconly{${1:text}}"
+    {
+      "name": "fontspec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cscshape"
     },
-    "textcscversionnumber": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "textcsc",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcsc{${1:text}}"
+      }
+    },
+    {
+      "name": "csconlyshape"
+    },
+    {
+      "name": "csconly",
+      "arg": {
+        "format": "{}",
+        "snippet": "csconly{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,2947 +1,4783 @@
 {
-  "includes": {
-    "verbatim": [],
-    "mathtools": [],
-    "amssymb": [],
-    "siunitx": [],
-    "xcolor": [],
-    "xstring": [],
-    "simplekv": [],
-    "ifthen": [],
-    "modulus": [],
-    "xinttools": [],
-    "iftex": [],
-    "luamplib": [],
-    "luacas": [],
-    "gmp": [],
-    "xintexpr": [],
-    "listofitems": [],
-    "datatool": [],
-    "multido": [],
-    "xlop": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarybreakable": [],
-    "tcolorboxlibraryexternal": [],
-    "tcolorboxlibraryfitting": [],
-    "tcolorboxlibraryhooks": [],
-    "tcolorboxlibrarymagazine": [],
-    "tcolorboxlibraryposter": [],
-    "tcolorboxlibraryraster": [],
-    "tcolorboxlibraryskins": [],
-    "tcolorboxlibrarytheorems": [],
-    "tcolorboxlibrarylistings": [],
-    "tcolorboxlibrarylistingsutf8": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarytikzmark": [],
-    "tikzlibrarychains": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryshapes.symbols": [],
-    "tikzlibrarybabel": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarybackgrounds": [],
-    "suffix": [],
-    "multicol": [],
-    "hhline": [],
-    "stackengine": [],
-    "cancel": [],
-    "fontawesome5": [],
-    "pifont": [],
-    "nicematrix": [],
-    "multirow": [],
-    "longtable": [],
-    "fmtcount": [],
-    "environ": [],
-    "printlen": [],
-    "ifoddpage": [],
-    "colortbl": []
-  },
-  "macros": {
-    "Lg{}": {
-      "snippet": "Lg{${1:nombre}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "Lg[]{}": {
-      "snippet": "Lg[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "mathtools"
     },
-    "Lg*{}": {
-      "snippet": "Lg*{${1:nombre}}"
+    {
+      "name": "amssymb"
     },
-    "Lg*[]{}": {
-      "snippet": "Lg*[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "siunitx"
     },
-    "Aire{}": {
-      "snippet": "Aire{${1:nombre}}"
+    {
+      "name": "xcolor"
     },
-    "Aire[]{}": {
-      "snippet": "Aire[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "xstring"
     },
-    "Aire*{}": {
-      "snippet": "Aire*{${1:nombre}}"
+    {
+      "name": "simplekv"
     },
-    "Aire*[]{}": {
-      "snippet": "Aire*[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "ifthen"
     },
-    "Vol{}": {
-      "snippet": "Vol{${1:nombre}}"
+    {
+      "name": "modulus"
     },
-    "Vol[]{}": {
-      "snippet": "Vol[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "xinttools"
     },
-    "Vol*{}": {
-      "snippet": "Vol*{${1:nombre}}"
+    {
+      "name": "iftex"
     },
-    "Vol*[]{}": {
-      "snippet": "Vol*[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "luamplib"
     },
-    "Masse{}": {
-      "snippet": "Masse{${1:nombre}}"
+    {
+      "name": "luacas"
     },
-    "Masse[]{}": {
-      "snippet": "Masse[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "gmp"
     },
-    "Masse*{}": {
-      "snippet": "Masse*{${1:nombre}}"
+    {
+      "name": "xintexpr"
     },
-    "Masse*[]{}": {
-      "snippet": "Masse*[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "listofitems"
     },
-    "Capa{}": {
-      "snippet": "Capa{${1:nombre}}"
+    {
+      "name": "datatool"
     },
-    "Capa[]{}": {
-      "snippet": "Capa[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "multido"
     },
-    "Capa*{}": {
-      "snippet": "Capa*{${1:nombre}}"
+    {
+      "name": "xlop"
     },
-    "Capa*[]{}": {
-      "snippet": "Capa*[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorbox"
     },
-    "Temps{}": {
-      "snippet": "Temps{${1:nombre}}"
+    {
+      "name": "tcolorboxlibrarybreakable"
     },
-    "Temps[]{}": {
-      "snippet": "Temps[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryexternal"
     },
-    "MasseVol{}": {
-      "snippet": "MasseVol{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryfitting"
     },
-    "MasseVol[]{}": {
-      "snippet": "MasseVol[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryhooks"
     },
-    "Vitesse{}": {
-      "snippet": "Vitesse{${1:nombre}}"
+    {
+      "name": "tcolorboxlibrarymagazine"
     },
-    "Vitesse[]{}": {
-      "snippet": "Vitesse[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryposter"
     },
-    "Octet{}": {
-      "snippet": "Octet{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryraster"
     },
-    "Octet[]{}": {
-      "snippet": "Octet[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "Conso{}": {
-      "snippet": "Conso{${1:nombre}}"
+    {
+      "name": "tcolorboxlibrarytheorems"
     },
-    "Conso[]{}": {
-      "snippet": "Conso[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tcolorboxlibrarylistings"
     },
-    "Prix{}": {
-      "snippet": "Prix{${1:nombre}}"
+    {
+      "name": "tcolorboxlibrarylistingsutf8"
     },
-    "Prix[]{}": {
-      "snippet": "Prix[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tikz"
     },
-    "Temp{}": {
-      "snippet": "Temp{${1:nombre}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "Temp[]{}": {
-      "snippet": "Temp[${2:unité,clés}]{${1:nombre}}"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "RepresenterEntier{}": {
-      "snippet": "RepresenterEntier{${1:nombre}}"
+    {
+      "name": "tikzlibrarytikzmark"
     },
-    "RepresenterEntier[]{}": {
-      "snippet": "RepresenterEntier[${2:clés}]{${1:nombre}}"
+    {
+      "name": "tikzlibrarychains"
     },
-    "DecompositionDecimale{}": {
-      "snippet": "DecompositionDecimale{${1:nombre}}"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "DecompositionDecimale[]{}": {
-      "snippet": "DecompositionDecimale[${2:clés}]{${1:nombre}}"
+    {
+      "name": "tikzlibraryshapes.symbols"
     },
-    "Ecriture{}": {
-      "snippet": "Ecriture{${1:nombre}}"
+    {
+      "name": "tikzlibrarybabel"
     },
-    "Ecriture[]{}": {
-      "snippet": "Ecriture[${2:clés}]{${1:nombre}}"
+    {
+      "name": "tikzlibraryfit"
     },
-    "Frise{}": {
-      "snippet": "Frise{${1:1/A/a,2/B/b,3/C/c,...}}"
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "Frise[]{}": {
-      "snippet": "Frise[${2:clés}]{${1:1/A/a,2/B/b,3/C/c,...}}"
+    {
+      "name": "suffix"
     },
-    "Tables{}": {
-      "snippet": "Tables{${1:nombre}}"
+    {
+      "name": "multicol"
     },
-    "Tables[]{}": {
-      "snippet": "Tables[${2:clés}]{${1:nombre}}"
+    {
+      "name": "hhline"
     },
-    "Papiers": {},
-    "Papiers[]": {
-      "snippet": "Papiers[${1:clés}]"
+    {
+      "name": "stackengine"
     },
-    "Tableau{}": {
-      "snippet": "Tableau{${1:liste de nombres}}"
+    {
+      "name": "cancel"
     },
-    "Tableau[]{}": {
-      "snippet": "Tableau[${2:clés}]{${1:liste de nombres}}"
+    {
+      "name": "fontawesome5"
     },
-    "GlisseNombre{}": {
-      "snippet": "GlisseNombre{${1:}}"
+    {
+      "name": "pifont"
     },
-    "GlisseNombre[]{}": {
-      "snippet": "GlisseNombre[${2:clés}]{${1:}}"
+    {
+      "name": "nicematrix"
     },
-    "PfCCG": {},
-    "PfCDG": {},
-    "PfCUG": {},
-    "PfCCM": {},
-    "PfCDM": {},
-    "PfCUM": {},
-    "PfCCm": {},
-    "PfCDm": {},
-    "PfCUm": {},
-    "PfCC": {},
-    "PfCD": {},
-    "PfCU": {},
-    "PfCd": {},
-    "PfCc": {},
-    "PfCm": {},
-    "Relie{}": {
-      "snippet": "Relie{${1:Liste des éléments par ligne}}"
+    {
+      "name": "multirow"
     },
-    "Relie[]{}": {
-      "snippet": "Relie[${2:clés}]{${1:Liste des éléments par ligne}}"
+    {
+      "name": "longtable"
     },
-    "QCM{}": {
-      "snippet": "QCM{${1:questions}}"
+    {
+      "name": "fmtcount"
     },
-    "QCM[]{}": {
-      "snippet": "QCM[${2:clés}]{${1:questions}}"
+    {
+      "name": "environ"
     },
-    "QFlash{}": {
-      "snippet": "QFlash{${1:question/param1/param2/...}}"
+    {
+      "name": "printlen"
     },
-    "QFlash[]{}": {
-      "snippet": "QFlash[${2:clés}]{${1:question/param1/param2/...}}"
+    {
+      "name": "ifoddpage"
     },
-    "BoiteFlash{}": {
-      "snippet": "BoiteFlash{${1:contenu}}"
-    },
-    "BoiteFlash[]{}": {
-      "snippet": "BoiteFlash[${2:length}]{${1:contenu}}"
-    },
-    "Rapido{}": {
-      "snippet": "Rapido{${1:q1/r1§q2/r2§...}}"
-    },
-    "Rapido[]{}": {
-      "snippet": "Rapido[${2:clés}]{${1:q1/r1§q2/r2§...}}"
-    },
-    "BoiteRapido{}": {
-      "snippet": "BoiteRapido{${1:texte}}"
-    },
-    "Cible{}": {
-      "snippet": "Cible{${1:n1,n2,...}}"
-    },
-    "Cible[]{}": {
-      "snippet": "Cible[${2:clés}]{${1:n1,n2,...}}"
-    },
-    "Mentalo{}": {
-      "snippet": "Mentalo{${1:o1,o2,...}}"
-    },
-    "Mentalo[]{}": {
-      "snippet": "Mentalo[${2:clés}]{${1:o1,o2,...}}"
-    },
-    "Automatismes{}": {
-      "snippet": "Automatismes{${1:o1,o2,...}}"
-    },
-    "Automatismes[]{}": {
-      "snippet": "Automatismes[${2:clés}]{${1:o1,o2,...}}"
-    },
-    "PyraVoca{}": {
-      "snippet": "PyraVoca{${1:définition1/mot1/couleur1,...}}"
-    },
-    "PyraVoca[]{}": {
-      "snippet": "PyraVoca[${2:clés}]{${1:définition1/mot1/couleur1,...}}"
-    },
-    "CourseNombre{}": {
-      "snippet": "CourseNombre{${1:file}}"
-    },
-    "CourseNombre[]{}": {
-      "snippet": "CourseNombre[${2:clés}]{${1:file}}"
-    },
-    "ChoixAlea{}{}{}": {
-      "snippet": "ChoixAlea{${1:a}}{${2:b}}{${3:cmd}}"
-    },
-    "ChoixAlea[]{}{}{}": {
-      "snippet": "ChoixAlea[${4:p}]{${1:a}}{${2:b}}{${3:cmd}}"
-    },
-    "VariableAlea{}{}": {
-      "snippet": "VariableAlea{${1:cmd}}{${2:fp expression}}"
-    },
-    "MathAlea{}": {
-      "snippet": "MathAlea{${1:file}}"
-    },
-    "MathAlea[]{}": {
-      "snippet": "MathAlea[${2:clés}]{${1:file}}"
-    },
-    "CourseNombreTotalQuestions{}": {
-      "snippet": "CourseNombreTotalQuestions{${1:nombre}}"
-    },
-    "Autonomie{}{}": {
-      "snippet": "Autonomie{${1:q1/r1§q2/r2§...§q8/r8}}{${2:Q1/I1§Q2/I2§...§Q8/I8}}"
-    },
-    "Autonomie[]{}{}": {
-      "snippet": "Autonomie[${3:clés}]{${1:q1/r1§q2/r2§...§q8/r8}}{${2:Q1/I1§Q2/I2§...§Q8/I8}}"
-    },
-    "FicheMemo{}{}": {
-      "snippet": "FicheMemo{${1:l1/q1/r1§l2/q2/r2§...}}{${2:L1/Q1/R1§L2/Q2/I2§...}}"
-    },
-    "FicheMemo[]{}{}": {
-      "snippet": "FicheMemo[${3:clés}]{${1:l1/q1/r1§l2/q2/r2§...}}{${2:L1/Q1/R1§L2/Q2/I2§...}}"
-    },
-    "BonSortie{}{}{}{}": {
-      "snippet": "BonSortie{${1:énoncé1}}{${2:énoncé2}}{${3:énoncé3}}{${4:énoncé4}}"
-    },
-    "BonSortie[]{}{}{}{}": {
-      "snippet": "BonSortie[${5:clés}]{${1:énoncé1}}{${2:énoncé2}}{${3:énoncé3}}{${4:énoncé4}}"
-    },
-    "Solide": {},
-    "Solide[]": {
-      "snippet": "Solide[${1:clés}]"
-    },
-    "Patron{}": {
-      "snippet": "Patron{${1:description du patron}}"
-    },
-    "Patron[]{}": {
-      "snippet": "Patron[${2:clés}]{${1:description du patron}}"
-    },
-    "ProprieteDroites{}{}{}": {
-      "snippet": "ProprieteDroites{${1:a}}{${2:b}}{${3:c}}"
-    },
-    "ProprieteDroites[]{}{}{}": {
-      "snippet": "ProprieteDroites[${4:clés}]{${1:a}}{${2:b}}{${3:c}}"
-    },
-    "Reperage{}": {
-      "snippet": "Reperage{${1:Liste des éléments}}"
-    },
-    "Reperage[]{}": {
-      "snippet": "Reperage[${2:clés}]{${1:Liste des éléments}}"
-    },
-    "ReperageMulti{}": {
-      "snippet": "ReperageMulti{${1:Liste des éléments}}"
-    },
-    "ReperageMulti[]{}": {
-      "snippet": "ReperageMulti[${2:clés}]{${1:Liste des éléments}}"
-    },
-    "ReperageZoom{}": {
-      "snippet": "ReperageZoom{${1:élément}}"
-    },
-    "ReperageZoom[]{}": {
-      "snippet": "ReperageZoom[${2:clés}]{${1:élément}}"
-    },
-    "SommeAngles{}{}{}": {
-      "snippet": "SommeAngles{${1:Nom du triangle}}{${2:a}}{${3:b}}"
-    },
-    "SommeAngles[]{}{}{}": {
-      "snippet": "SommeAngles[${4:clés}]{${1:Nom du triangle}}{${2:a}}{${3:b}}"
-    },
-    "ResultatAngle": {},
-    "Pythagore{}{}{}{}": {
-      "snippet": "Pythagore{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
-    },
-    "Pythagore[]{}{}{}{}": {
-      "snippet": "Pythagore[${5:clés}]{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
-    },
-    "ResultatPytha": {},
-    "RedactionCalculsPythagore": {},
-    "RedactionCalculsReciPythagore": {},
-    "RedactionConclusionReciPythagore": {},
-    "RedactionPythagore": {},
-    "RedactionReciPythagore": {},
-    "Thales{}{}{}{}{}{}{}": {
-      "snippet": "Thales{${1:Nom des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}{${6:e}}{${7:f}}"
-    },
-    "Thales[]{}{}{}{}{}{}{}": {
-      "snippet": "Thales[${8:clés}]{${1:Nom des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}{${6:e}}{${7:f}}"
-    },
-    "ResultatThalesx": {},
-    "ResultatThalesy": {},
-    "ResultatThalesz": {},
-    "Trigo{}{}{}{}": {
-      "snippet": "Trigo{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
-    },
-    "Trigo[]{}{}{}{}": {
-      "snippet": "Trigo[${5:clés}]{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
-    },
-    "ResultatTrigo": {},
-    "Cartographie{}{}": {
-      "snippet": "Cartographie{${1:longitude}}{${2:latitude}}"
-    },
-    "Cartographie[]{}{}": {
-      "snippet": "Cartographie[${3:clés}]{${1:longitude}}{${2:latitude}}"
-    },
-    "Formule": {},
-    "Formule[]": {
-      "snippet": "Formule[${1:clés}]"
-    },
-    "VueCubes{}": {
-      "snippet": "VueCubes{${1:liste de hauteurs}}"
-    },
-    "VueCubes[]{}": {
-      "snippet": "VueCubes[${2:clés}]{${1:liste de hauteurs}}"
-    },
-    "Pavage": {},
-    "Pavage[]": {
-      "snippet": "Pavage[${1:clés}]"
-    },
-    "Addition{}{}": {
-      "snippet": "Addition{${1:n1}}{${2:n2}}"
-    },
-    "Addition[]{}{}": {
-      "snippet": "Addition[${3:clés}]{${1:n1}}{${2:n2}}"
-    },
-    "MultiAddition{{}{}": {
-      "snippet": "MultiAddition{{${1:n1}}{${2:n2}...}}"
-    },
-    "MultiAddition[]{{}{}": {
-      "snippet": "MultiAddition[${3:options}]{{${1:n1}}{${2:n2}...}}"
-    },
-    "Soustraction{}{}": {
-      "snippet": "Soustraction{${1:n1}}{${2:n2}}"
-    },
-    "Soustraction[]{}{}": {
-      "snippet": "Soustraction[${3:clés}]{${1:n1}}{${2:n2}}"
-    },
-    "Multiplication{}{}": {
-      "snippet": "Multiplication{${1:n1}}{${2:n2}}"
-    },
-    "Multiplication[]{}{}": {
-      "snippet": "Multiplication[${3:clés}]{${1:n1}}{${2:n2}}"
-    },
-    "Division{}{}": {
-      "snippet": "Division{${1:n1}}{${2:n2}}"
-    },
-    "Division[]{}{}": {
-      "snippet": "Division[${3:clés}]{${1:n1}}{${2:n2}}"
-    },
-    "DivisionD{}{}": {
-      "snippet": "DivisionD{${1:n1}}{${2:n2}}"
-    },
-    "DivisionD[]{}{}": {
-      "snippet": "DivisionD[${3:clés}]{${1:n1}}{${2:n2}}"
-    },
-    "PyramideNombre{}": {
-      "snippet": "PyramideNombre{${1:c1,c2,...}}"
-    },
-    "PyramideNombre[]{}": {
-      "snippet": "PyramideNombre[${2:clés}]{${1:c1,c2,...}}"
-    },
-    "ProgCalcul{}": {
-      "snippet": "ProgCalcul{${1:i1,i2,...}}"
-    },
-    "ProgCalcul[]{}": {
-      "snippet": "ProgCalcul[${2:clés}]{${1:i1,i2,...}}"
-    },
-    "Decomposition{}": {
-      "snippet": "Decomposition{${1:integer}}"
-    },
-    "Decomposition[]{}": {
-      "snippet": "Decomposition[${2:clés}]{${1:integer}}"
-    },
-    "Erathostene": {},
-    "Erathostene[]": {
-      "snippet": "Erathostene[${1:clés}]"
-    },
-    "Engrenages{}": {
-      "snippet": "Engrenages{${1:m1/z1,m2/z2,...}}"
-    },
-    "Engrenages[]{}": {
-      "snippet": "Engrenages[${2:clés}]{${1:m1/z1,m2/z2,...}}"
-    },
-    "Fraction{}": {
-      "snippet": "Fraction{${1:a/b}}"
-    },
-    "Fraction[]{}": {
-      "snippet": "Fraction[${2:clés}]{${1:a/b}}"
-    },
-    "FractionDecimale{}": {
-      "snippet": "FractionDecimale{${1:a/b}}"
-    },
-    "FractionDecimale[]{}": {
-      "snippet": "FractionDecimale[${2:clés}]{${1:a/b}}"
-    },
-    "Simplification{}{}": {
-      "snippet": "Simplification{${1:a}}{${2:b}}"
-    },
-    "Simplification[]{}{}": {
-      "snippet": "Simplification[${3:clés}]{${1:a}}{${2:b}}"
-    },
-    "AddFraction{}{}": {
-      "snippet": "AddFraction{${1:a/b}}{${2:c/d}}"
-    },
-    "AddFraction[]{}{}": {
-      "snippet": "AddFraction[${3:clés}]{${1:a/b}}{${2:c/d}}"
-    },
-    "AddFraction[][]{}{}": {
-      "snippet": "AddFraction[${3:clés}][${4:etape}]{${1:a/b}}{${2:c/d}}"
-    },
-    "SousFraction{}{}": {
-      "snippet": "SousFraction{${1:a/b}}{${2:c/d}}"
-    },
-    "SousFraction[]{}{}": {
-      "snippet": "SousFraction[${3:clés}]{${1:a/b}}{${2:c/d}}"
-    },
-    "SousFraction[][]{}{}": {
-      "snippet": "SousFraction[${3:clés}][${4:etape}]{${1:a/b}}{${2:c/d}}"
-    },
-    "MulFraction{}{}": {
-      "snippet": "MulFraction{${1:a/b}}{${2:c/d}}"
-    },
-    "MulFraction[]{}{}": {
-      "snippet": "MulFraction[${3:clés}]{${1:a/b}}{${2:c/d}}"
-    },
-    "MulFraction[][]{}{}": {
-      "snippet": "MulFraction[${3:clés}][${4:etape}]{${1:a/b}}{${2:c/d}}"
-    },
-    "DivFraction{}{}": {
-      "snippet": "DivFraction{${1:a/b}}{${2:c/d}}"
-    },
-    "DivFraction[]{}{}": {
-      "snippet": "DivFraction[${3:clés}]{${1:a/b}}{${2:c/d}}"
-    },
-    "DivFraction[][]{}{}": {
-      "snippet": "DivFraction[${3:clés}][${4:etape}]{${1:a/b}}{${2:c/d}}"
-    },
-    "Rangement{}": {
-      "snippet": "Rangement{${1:liste de nombres}}"
-    },
-    "Rangement[]{}": {
-      "snippet": "Rangement[${2:clés}]{${1:liste de nombres}}"
-    },
-    "Puissances{}{}": {
-      "snippet": "Puissances{${1:expr}}{${2:integer}}"
-    },
-    "Propor{}": {
-      "snippet": "Propor{${1:Liste des éléments par colonne}}"
-    },
-    "Propor[]{}": {
-      "snippet": "Propor[${2:clés}]{${1:Liste des éléments par colonne}}"
-    },
-    "FlechesPH{}{}{}": {
-      "snippet": "FlechesPH{${1:a}}{${2:b}}{${3:texte}}"
-    },
-    "FlechesPB{}{}{}": {
-      "snippet": "FlechesPB{${1:a}}{${2:b}}{${3:texte}}"
-    },
-    "FlechesPG{}{}{}": {
-      "snippet": "FlechesPG{${1:a}}{${2:b}}{${3:texte}}"
-    },
-    "FlechesPD{}{}{}": {
-      "snippet": "FlechesPD{${1:a}}{${2:b}}{${3:texte}}"
-    },
-    "FlecheCoef{}": {
-      "snippet": "FlecheCoef{${1:texte}}"
-    },
-    "FlecheCoefDebut{}": {
-      "snippet": "FlecheCoefDebut{${1:texte}}"
-    },
-    "FlecheLineaireH{}{}{}{}": {
-      "snippet": "FlecheLineaireH{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
-    },
-    "FlecheLineaireB{}{}{}{}": {
-      "snippet": "FlecheLineaireB{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
-    },
-    "FlecheLineaireG{}{}{}{}": {
-      "snippet": "FlecheLineaireG{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
-    },
-    "FlecheLineaireD{}{}{}{}": {
-      "snippet": "FlecheLineaireD{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
-    },
-    "FlechePCG{}{}": {
-      "snippet": "FlechePCG{${1:a}}{${2:b}}"
-    },
-    "FlechePCD{}{}": {
-      "snippet": "FlechePCD{${1:a}}{${2:b}}"
-    },
-    "FlechePCH{}{}": {
-      "snippet": "FlechePCH{${1:a}}{${2:b}}"
-    },
-    "FlechePCB{}{}": {
-      "snippet": "FlechePCB{${1:a}}{${2:b}}"
-    },
-    "Pourcentage{}{}": {
-      "snippet": "Pourcentage{${1:t}}{${2:q}}"
-    },
-    "Pourcentage[]{}{}": {
-      "snippet": "Pourcentage[${3:clés}]{${1:t}}{${2:q}}"
-    },
-    "ResultatPourcentage": {},
-    "Ratio{}": {
-      "snippet": "Ratio{${1:Liste des éléments du ratio}}"
-    },
-    "Ratio[]{}": {
-      "snippet": "Ratio[${2:clés}]{${1:Liste des éléments du ratio}}"
-    },
-    "FlecheRatio{}": {
-      "snippet": "FlecheRatio{${1:texte}}"
-    },
-    "FlecheInvRatio{}": {
-      "snippet": "FlecheInvRatio{${1:texte}}"
-    },
-    "Stat{}": {
-      "snippet": "Stat{${1:Données}}"
-    },
-    "Stat[]{}": {
-      "snippet": "Stat[${2:clés}]{${1:Données}}"
-    },
-    "EffectifTotal": {},
-    "Etendue": {},
-    "Moyenne": {},
-    "Mediane": {},
-    "QuartileUn": {},
-    "QuartileTrois": {},
-    "Proba{}": {
-      "snippet": "Proba{${1:Liste des évènements et probabilités}}"
-    },
-    "Proba[]{}": {
-      "snippet": "Proba[${2:clés}]{${1:Liste des évènements et probabilités}}"
-    },
-    "FonctionAffine{}{}{}{}{}": {
-      "snippet": "FonctionAffine{${1:Noms des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}"
-    },
-    "FonctionAffine[]{}{}{}{}{}": {
-      "snippet": "FonctionAffine[${6:clés}]{${1:Noms des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}"
-    },
-    "Fonction{}": {
-      "snippet": "Fonction{${1:Liste des valeurs}}"
-    },
-    "Fonction[]{}": {
-      "snippet": "Fonction[${2:clés}]{${1:Liste des valeurs}}"
-    },
-    "LectureGraphique": {},
-    "LectureGraphique[]": {
-      "snippet": "LectureGraphique[${1:clés}]"
-    },
-    "Distri{}{}{}{}": {
-      "snippet": "Distri{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
-    },
-    "Distri[]{}{}{}{}": {
-      "snippet": "Distri[${5:clés}]{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
-    },
-    "Resultat": {},
-    "Factorisation{}{}{}": {
-      "snippet": "Factorisation{${1:f1}}{${2:f2}}{${3:f3}}"
-    },
-    "Factorisation[]{}{}{}": {
-      "snippet": "Factorisation[${4:clés}]{${1:f1}}{${2:f2}}{${3:f3}}"
-    },
-    "Factorisation*{}{}{}": {
-      "snippet": "Factorisation*{${1:f1}}{${2:f2}}{${3:f3}}"
-    },
-    "Factorisation*[]{}{}{}": {
-      "snippet": "Factorisation*[${4:clés}]{${1:f1}}{${2:f2}}{${3:f3}}"
-    },
-    "ModeleBarre{}{}": {
-      "snippet": "ModeleBarre{${1:C1 N1 \"T1\" C2 N2 \"T2\"...}}{${2:c1 n1 \"t1\" c2 n2 \"t2\"...}}"
-    },
-    "ModeleBarre[]{}{}": {
-      "snippet": "ModeleBarre[${3:clés}]{${1:C1 N1 \"T1\" C2 N2 \"T2\"...}}{${2:c1 n1 \"t1\" c2 n2 \"t2\"...}}"
-    },
-    "ResolEquation{}{}{}{}": {
-      "snippet": "ResolEquation{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
-    },
-    "ResolEquation[]{}{}{}{}": {
-      "snippet": "ResolEquation[${5:clés}]{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
-    },
-    "leftcomment{}{}{}{}": {
-      "snippet": "leftcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "rightcomment{}{}{}{}": {
-      "snippet": "rightcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "Calculatrice{}": {
-      "snippet": "Calculatrice{${1:val1/val2/...}}"
-    },
-    "Calculatrice[]{}": {
-      "snippet": "Calculatrice[${2:clés}]{${1:val1/val2/...}}"
-    },
-    "CodageRLE{}": {
-      "snippet": "CodageRLE{${1:liste}}"
-    },
-    "CodageRLE[]{}": {
-      "snippet": "CodageRLE[${2:clés}]{${1:liste}}"
-    },
-    "Tortue{}": {
-      "snippet": "Tortue{${1:liste des commandes}}"
-    },
-    "Tortue[]{}": {
-      "snippet": "Tortue[${2:clés}]{${1:liste des commandes}}"
-    },
-    "RoseMul": {},
-    "RoseMul[]": {
-      "snippet": "RoseMul[${1:clés}]"
-    },
-    "DefiTable{}": {
-      "snippet": "DefiTable{${1:contenu}}"
-    },
-    "DefiTableTexte{}{}": {
-      "snippet": "DefiTableTexte{${1:liste}}{${2:phrase}}"
-    },
-    "DefiTableTexte[]{}{}": {
-      "snippet": "DefiTableTexte[${3:clés}]{${1:liste}}{${2:phrase}}"
-    },
-    "DefiRangement{}{}": {
-      "snippet": "DefiRangement{${1:phrase à décoder}}{${2:valeurs à ranger}}"
-    },
-    "DefiRangement[]{}{}": {
-      "snippet": "DefiRangement[${3:clés}]{${1:phrase à décoder}}{${2:valeurs à ranger}}"
-    },
-    "Billard{}": {
-      "snippet": "Billard{${1:\"mot\"}}"
-    },
-    "Billard[]{}": {
-      "snippet": "Billard[${2:clés}]{${1:\"mot\"}}"
-    },
-    "Labyrinthe{}{}": {
-      "snippet": "Labyrinthe{${1:Contenu1/Couleur1,Contenu2/Couleur2,...}}{${2:P1/P2/...}}"
-    },
-    "Labyrinthe[]{}{}": {
-      "snippet": "Labyrinthe[${3:clés}]{${1:Contenu1/Couleur1,Contenu2/Couleur2,...}}{${2:P1/P2/...}}"
-    },
-    "LabyNombre": {},
-    "LabyNombre[]": {
-      "snippet": "LabyNombre[${1:clés}]"
-    },
-    "Triomino{}": {
-      "snippet": "Triomino{${1:v1§v2§v3...}}"
-    },
-    "Triomino[]{}": {
-      "snippet": "Triomino[${2:clés}]{${1:v1§v2§v3...}}"
-    },
-    "DessinGradue{}{}{}": {
-      "snippet": "DessinGradue{${1:a1/a2/a3,...}}{${2:b1/b2/b3,...}}{${3:c1§c2§...}}"
-    },
-    "DessinGradue[]{}{}{}": {
-      "snippet": "DessinGradue[${4:clés}]{${1:a1/a2/a3,...}}{${2:b1/b2/b3,...}}{${3:c1§c2§...}}"
-    },
-    "Colorilude{}": {
-      "snippet": "Colorilude{${1:a11 b11 a12 b12\\\\a21 b21...}}"
-    },
-    "Colorilude[]{}": {
-      "snippet": "Colorilude[${2:clés}]{${1:a11 b11 a12 b12\\\\a21 b21...}}"
-    },
-    "ColoriludeEnonce": {},
-    "ColoriludeListeCouleur{}": {
-      "snippet": "ColoriludeListeCouleur{${1:abbrev1 couleur1 abbrev2 couleur2...}}"
-    },
-    "PixelArt{}": {
-      "snippet": "PixelArt{${1:.csv file}}"
-    },
-    "PixelArt[]{}": {
-      "snippet": "PixelArt[${2:clés}]{${1:.csv file}}"
-    },
-    "TableauMultiplicatif{}": {
-      "snippet": "TableauMultiplicatif{${1:description du pixel-art}}"
-    },
-    "TableauMultiplicatif[]{}": {
-      "snippet": "TableauMultiplicatif[${2:clés}]{${1:description du pixel-art}}"
-    },
-    "Quisuisje{}{}": {
-      "snippet": "Quisuisje{${1:c1§c2§...}}{${2:m o t à t r o u v e r}}"
-    },
-    "Quisuisje[]{}{}": {
-      "snippet": "Quisuisje[${3:clés}]{${1:c1§c2§...}}{${2:m o t à t r o u v e r}}"
-    },
-    "QuisuisjeEnonce": {},
-    "QuisuisjeTableau{}": {
-      "snippet": "QuisuisjeTableau{${1:l1/v1§l2/v2§...}}"
-    },
-    "QuisuisjeTableau[]{}": {
-      "snippet": "QuisuisjeTableau[Largeur=${1}]{l1/v1§l2/v2§...}"
-    },
-    "QuisuisjeCodePerso{}{}": {
-      "snippet": "QuisuisjeCodePerso{${1:n1 n2...}}{${2:l1 l2...}}"
-    },
-    "QuisuisjeCodePerso[]{}{}": {
-      "snippet": "QuisuisjeCodePerso[${3:Solution}]{${1:n1 n2...}}{${2:l1 l2...}}"
-    },
-    "MotsEmpiles{}": {
-      "snippet": "MotsEmpiles{${1:c1/mot1,c2/mot2,...}}"
-    },
-    "MotsEmpiles[]{}": {
-      "snippet": "MotsEmpiles[${2:clés}]{${1:c1/mot1,c2/mot2,...}}"
-    },
-    "MotsCroises{}": {
-      "snippet": "MotsCroises{${1:m11/q11,m12/q12...§m21/q21,m22/q22...}}"
-    },
-    "MotsCroises[]{}": {
-      "snippet": "MotsCroises[${2:clés}]{${1:m11/q11,m12/q12...§m21/q21,m22/q22...}}"
-    },
-    "MotsCodes{}": {
-      "snippet": "MotsCodes{${1:énoncé1/lettre1§énoncé2/lettre2§...}}"
-    },
-    "MotsCodes[]{}": {
-      "snippet": "MotsCodes[${2:clés}]{${1:énoncé1/lettre1§énoncé2/lettre2§...}}"
-    },
-    "MotsCodesTableau{}{}": {
-      "snippet": "MotsCodesTableau{${1:r11/r12...,r21/r22...}}{${2:texte à trouver}}"
-    },
-    "MotsCodesTableau[]{}{}": {
-      "snippet": "MotsCodesTableau[${3:clés}]{${1:r11/r12...,r21/r22...}}{${2:texte à trouver}}"
-    },
-    "Mosaique{}": {
-      "snippet": "Mosaique{${1:mosa1/rep1,mosa2/rep2,...}}"
-    },
-    "Mosaique[]{}": {
-      "snippet": "Mosaique[${2:clés}]{${1:mosa1/rep1,mosa2/rep2,...}}"
-    },
-    "DessineMosaique{}": {
-      "snippet": "DessineMosaique{${1:type}}"
-    },
-    "DessineMosaique[]{}": {
-      "snippet": "DessineMosaique[${2:clés}]{${1:type}}"
-    },
-    "Cartes{}": {
-      "snippet": "Cartes{${1:contenus du jeu}}"
-    },
-    "Cartes[]{}": {
-      "snippet": "Cartes[${2:clés}]{${1:contenus du jeu}}"
-    },
-    "BoiteCartes": {},
-    "BoiteCartes[]": {
-      "snippet": "BoiteCartes[${1:clés}]"
-    },
-    "SolutionCarte{}{}": {
-      "snippet": "SolutionCarte{${1:solution}}{${2:commentaires}}"
-    },
-    "PfCTexteJai": {},
-    "PfCTexteJesuis": {},
-    "PfCTexteQuia": {},
-    "PfCCardsEcartH": {},
-    "PfCCardsEcartV": {},
-    "Dominos{}": {
-      "snippet": "Dominos{${1:e q1/r1§q2/r2§...}}"
-    },
-    "Dominos[]{}": {
-      "snippet": "Dominos[${2:clés}]{${1:e q1/r1§q2/r2§...}}"
-    },
-    "Enquete[]": {
-      "snippet": "Enquete[${1:clés}]"
-    },
-    "ListePersonnages{}": {
-      "snippet": "ListePersonnages{${1:p1§p2§...}}"
-    },
-    "ListeObjets{}": {
-      "snippet": "ListeObjets{${1:o1§o2§...}}"
-    },
-    "ListeLieux{}": {
-      "snippet": "ListeLieux{${1:l1§l2§...}}"
-    },
-    "ListeQuestions{}": {
-      "snippet": "ListeQuestions{${1:e1/r1§e2/r2§...}}"
-    },
-    "AffichageQuestions": {},
-    "AffichageTableau": {},
-    "PQuatre{}": {
-      "snippet": "PQuatre{${1:éléments du tableau}}"
-    },
-    "PQuatre[]{}": {
-      "snippet": "PQuatre[${2:clés}]{${1:éléments du tableau}}"
-    },
-    "Yohaku{}": {
-      "snippet": "Yohaku{${1:a/b/c/d...,1/2/3/4...}}"
-    },
-    "Yohaku[]{}": {
-      "snippet": "Yohaku[${2:clés}]{${1:a/b/c/d...,1/2/3/4...}}"
-    },
-    "PfCYHKpremier": {},
-    "KenKen{}": {
-      "snippet": "KenKen{${1:description du jeu}}"
-    },
-    "KenKen[]{}": {
-      "snippet": "KenKen[${2:clés}]{${1:description du jeu}}"
-    },
-    "Kakuro{}": {
-      "snippet": "Kakuro{${1:description du jeu}}"
-    },
-    "Kakuro[]{}": {
-      "snippet": "Kakuro[${2:clés}]{${1:description du jeu}}"
-    },
-    "Shikaku{}": {
-      "snippet": "Shikaku{${1:description du jeu}}"
-    },
-    "Shikaku[]{}": {
-      "snippet": "Shikaku[${2:clés}]{${1:description du jeu}}"
-    },
-    "CalculsCroises{}": {
-      "snippet": "CalculsCroises{${1:description du jeu}}"
-    },
-    "CalculsCroises[]{}": {
-      "snippet": "CalculsCroises[${2:clés}]{${1:description du jeu}}"
-    },
-    "NombreAstral": {},
-    "NombreAstral[]": {
-      "snippet": "NombreAstral[${1:clés}]"
-    },
-    "CompteBon": {},
-    "CompteBon[]": {
-      "snippet": "CompteBon[${1:clés}]"
-    },
-    "BarresCalculs{}{}": {
-      "snippet": "BarresCalculs{${1:liste des calculs}}{${2:mot clé}}"
-    },
-    "BarresCalculs[]{}{}": {
-      "snippet": "BarresCalculs[${3:clés}]{${1:liste des calculs}}{${2:mot clé}}"
-    },
-    "EnigmeAire": {},
-    "EnigmeAire[]": {
-      "snippet": "EnigmeAire[${1:clés}]"
-    },
-    "Tectonic{}": {
-      "snippet": "Tectonic{${1:description du jeu}}"
-    },
-    "Tectonic[]{}": {
-      "snippet": "Tectonic[${2:clés}]{${1:description du jeu}}"
-    },
-    "Calisson{}": {
-      "snippet": "Calisson{${1:description du jeu}}"
-    },
-    "Calisson[]{}": {
-      "snippet": "Calisson[${2:clés}]{${1:description du jeu}}"
-    },
-    "PuzzlePyramide{}": {
-      "snippet": "PuzzlePyramide{${1:c1§c2§...}}"
-    },
-    "PuzzlePyramide[]{}": {
-      "snippet": "PuzzlePyramide[${2:clés}]{${1:c1§c2§...}}"
-    },
-    "MessageCache{}{}": {
-      "snippet": "MessageCache{${1:q1/r1§q2/r2§...}}{${2:message}}"
-    },
-    "MessageCache[]{}{}": {
-      "snippet": "MessageCache[${3:clés}]{${1:q1/r1§q2/r2§...}}{${2:message}}"
-    },
-    "RondeInfernale": {},
-    "RondeInfernale[]": {
-      "snippet": "RondeInfernale[${1:clés}]"
-    },
-    "Futoshiki{}": {
-      "snippet": "Futoshiki{${1:description de jeu}}"
-    },
-    "Futoshiki[]{}": {
-      "snippet": "Futoshiki[${2:clés}]{${1:description de jeu}}"
-    },
-    "Garam{}": {
-      "snippet": "Garam{${1:c11/o11/O11,c12/o12/O12,...}}"
-    },
-    "Garam[]{}": {
-      "snippet": "Garam[${2:clés}]{${1:c11/o11/O11,c12/o12/O12,...}}"
-    },
-    "SquarO": {},
-    "SquarO[]": {
-      "snippet": "SquarO[${1:clés}]"
-    },
-    "Grades": {},
-    "Grades[]": {
-      "snippet": "Grades[${1:clés}]"
-    },
-    "MidPoint": {},
-    "MidPoint[]": {
-      "snippet": "MidPoint[${1:clés}]"
-    },
-    "Kakurasu": {},
-    "Kakurasu[]": {
-      "snippet": "Kakurasu[${1:clés}]"
-    },
-    "Trio": {},
-    "Trio[]": {
-      "snippet": "Trio[${1:clés}]"
-    },
-    "TrioCourt": {},
-    "TrioCourt[]": {
-      "snippet": "TrioCourt[${1:clés}]"
-    },
-    "Nonogramme{}": {
-      "snippet": "Nonogramme{${1:liste de lignes}}"
-    },
-    "Nonogramme[]{}": {
-      "snippet": "Nonogramme[${2:clés}]{${1:liste de lignes}}"
-    },
-    "Dobble{}": {
-      "snippet": "Dobble{${1:liste des symboles}}"
-    },
-    "Dobble[]{}": {
-      "snippet": "Dobble[${2:clés}]{${1:liste des symboles}}"
-    },
-    "NumberHive": {},
-    "NumberHive[]": {
-      "snippet": "NumberHive[${1:clés}]"
-    },
-    "Grimuku{}": {
-      "snippet": "Grimuku{${1:description du jeu}}"
-    },
-    "Grimuku[]{}": {
-      "snippet": "Grimuku[${2:clés}]{${1:description du jeu}}"
-    },
-    "PuzzleMul{}": {
-      "snippet": "PuzzleMul{${1:liste des lignes}}"
-    },
-    "PuzzleMul[]{}": {
-      "snippet": "PuzzleMul[${2:clés}]{${1:liste des lignes}}"
-    },
-    "Horloge{}": {
-      "snippet": "Horloge{${1:horaire}}"
-    },
-    "Horloge[]{}": {
-      "snippet": "Horloge[${2:clés}]{${1:horaire}}"
-    },
-    "DefiCalculatrice{}": {
-      "snippet": "DefiCalculatrice{${1:nombre}}"
-    },
-    "DefiCalculatrice[]{}": {
-      "snippet": "DefiCalculatrice[${2:clés}]{${1:nombre}}"
-    },
-    "Radar{}": {
-      "snippet": "Radar{${1:Liste des éléments du diagramme en radar}}"
-    },
-    "Radar[]{}": {
-      "snippet": "Radar[${2:clés}]{${1:Liste des éléments du diagramme en radar}}"
-    },
-    "Jauge{}": {
-      "snippet": "Jauge{${1:Niveau atteint en pourcentage}}"
-    },
-    "Jauge[]{}": {
-      "snippet": "Jauge[${2:clés}]{${1:Niveau atteint en pourcentage}}"
-    },
-    "Demain": {},
-    "pointilles": {},
-    "pointilles[]": {
-      "snippet": "pointilles[${1:length}]"
-    },
-    "Lignespointilles{}": {
-      "snippet": "Lignespointilles{${1:n}}"
-    },
-    "MultiCol{}{}": {
-      "snippet": "MultiCol{${1:l1/l2/...}}{${2:contenu1§contenu2§...}}"
-    },
-    "MultiCol[]{}{}": {
-      "snippet": "MultiCol[${3:t|b}]{${1:l1/l2/...}}{${2:contenu1§contenu2§...}}"
-    },
-    "addtotok{}{}": {
-      "snippet": "addtotok{${1:arg1}}{${2:arg2}}"
-    },
-    "Affichage{}{}{}{}": {
-      "snippet": "Affichage{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "AffichageCoord": {},
-    "AffichageEchange{}{}{}{}": {
-      "snippet": "AffichageEchange{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "AffichageEqua{}{}{}{}": {
-      "snippet": "AffichageEqua{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "AffichageGrad": {},
-    "AffichageNom": {},
-    "AfficheCoord": {},
-    "AfficheGrad": {},
-    "AfficheNom": {},
-    "AjoutListEEaa{}": {
-      "snippet": "AjoutListEEaa{${1:arg1}}"
-    },
-    "AjoutListEEab{}": {
-      "snippet": "AjoutListEEab{${1:arg1}}"
-    },
-    "AjoutListEEb{}": {
-      "snippet": "AjoutListEEb{${1:arg1}}"
-    },
-    "AjoutListEEx{}": {
-      "snippet": "AjoutListEEx{${1:arg1}}"
-    },
-    "AjoutListEEy{}": {
-      "snippet": "AjoutListEEy{${1:arg1}}"
-    },
-    "Alea": {},
-    "annee": {},
-    "anp": {},
-    "anpdc": {},
-    "anpl": {},
-    "anpmv": {},
-    "anpT": {},
-    "anpv": {},
-    "anpvv": {},
-    "are": {},
-    "barre": {},
-    "barrewidth": {},
-    "bla": {},
-    "bnp": {},
-    "bnpdc": {},
-    "bnpl": {},
-    "bnpmv": {},
-    "bnpT": {},
-    "bnpv": {},
-    "bnpvv": {},
-    "BonSortieBandeau": {},
-    "BonSortieSmiley": {},
-    "Brouillon{}{}{}{}": {
-      "snippet": "Brouillon{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "buildarbreproba": {},
-    "BuildCalisson{}{}": {
-      "snippet": "BuildCalisson{${1:arg1}}{${2:arg2}}"
-    },
-    "BuildCalissonCode": {},
-    "builddemidroitenew": {},
-    "buildechelleproba": {},
-    "BuildEngrenages{}": {
-      "snippet": "BuildEngrenages{${1:arg}}"
-    },
-    "BuildEngrenagesCode": {},
-    "buildespace": {},
-    "buildgraph{}": {
-      "snippet": "buildgraph{${1:arg1}}"
-    },
-    "buildgraphbarhor": {},
-    "buildgraphcq{}": {
-      "snippet": "buildgraphcq{${1:arg1}}"
-    },
-    "buildgraphq{}": {
-      "snippet": "buildgraphq{${1:arg1}}"
-    },
-    "BuildNombreAstral{}{}": {
-      "snippet": "BuildNombreAstral{${1:arg}}{${2:arg}}"
-    },
-    "BuildNono{}{}": {
-      "snippet": "BuildNono{${1:arg1}}{${2:arg2}}"
-    },
-    "BuildPixelArt{}{}{}{}": {
-      "snippet": "BuildPixelArt{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "buildreperenew": {},
-    "BuildRLE{}": {
-      "snippet": "BuildRLE{${1:arg}}"
-    },
-    "BuildRLECode": {},
-    "BuildRondeInfernale{}{}": {
-      "snippet": "BuildRondeInfernale{${1:arg1}}{${2:arg2}}"
-    },
-    "buildtabfonction": {},
-    "buildtabpropor": {},
-    "Buildtabpropor": {},
-    "buildtabratio": {},
-    "buildtabrelie": {},
-    "buildtabrelieold": {},
-    "BuildtabStat": {},
-    "buildtabt": {},
-    "BuildVueCubes{}{}": {
-      "snippet": "BuildVueCubes{${1:arg1}}{${2:arg2}}"
-    },
-    "BuildVueCubesSolution": {},
-    "CalculAngle{}": {
-      "snippet": "CalculAngle{${1:arg1}}"
-    },
-    "CalculECC{}": {
-      "snippet": "CalculECC{${1:arg1}}"
-    },
-    "CalculFrequence{}": {
-      "snippet": "CalculFrequence{${1:arg1}}"
-    },
-    "CalculNombreComposants": {},
-    "CalculsPythagore{}{}{}{}": {
-      "snippet": "CalculsPythagore{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "CalculsPythagore[]{}{}{}{}": {
-      "snippet": "CalculsPythagore[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "CalculSemiAngle{}": {
-      "snippet": "CalculSemiAngle{${1:arg1}}"
-    },
-    "CANNew": {},
-    "CANSGFoo": {},
-    "ChiffreAAjouter": {},
-    "ChiffrePartieDecimale": {},
-    "cmptEE": {},
-    "cmxa": {},
-    "cmya": {},
-    "cmza": {},
-    "CNfoo": {},
-    "CNFOO": {},
-    "CNfooListe": {},
-    "CNFOOListePerso": {},
-    "CNFOOSSDossiers": {},
-    "cnp": {},
-    "cnpdc": {},
-    "cnpl": {},
-    "cnpmv": {},
-    "cnpT": {},
-    "cnpv": {},
-    "cnpvv": {},
-    "CNReponse": {},
-    "cntcol": {},
-    "CNTheme{}": {
-      "snippet": "CNTheme{${1:arg}}"
-    },
-    "cntlin": {},
-    "Coeffa": {},
-    "Coeffb": {},
-    "Coeffc": {},
-    "Coeffd": {},
-    "ColonneDomino": {},
-    "ColorFill": {},
-    "colorfill": {},
-    "Compteur": {},
-    "CompteurCalcul": {},
-    "compteurcnt": {},
-    "CompteurECC": {},
-    "CompteurECCTotal": {},
-    "CouleurBarre": {},
-    "CouleurDomino": {},
-    "CouleurF": {},
-    "CouleurFond": {},
-    "CouleurGrad": {},
-    "CouleurI": {},
-    "CouleurM": {},
-    "CouleurS": {},
-    "CouleurTrace": {},
-    "CountcolDeux": {},
-    "CountcolUn": {},
-    "dashblank": {},
-    "DecalageLigne": {},
-    "DecompositionFracDeciComplete": {},
-    "DefinirListeFichiers": {},
-    "DefiTableNombreLettreduCode{}": {
-      "snippet": "DefiTableNombreLettreduCode{${1:arg}}"
-    },
-    "demibarre": {},
-    "denominateur": {},
-    "DenominateurDiv": {},
-    "DenomSimp": {},
-    "DenomSimpa": {},
-    "DenomSimpaa": {},
-    "DessineMosaiqueComplet{}": {
-      "snippet": "DessineMosaiqueComplet{${1:arg1}}"
-    },
-    "DessinePyramideNombre{}": {
-      "snippet": "DessinePyramideNombre{${1:arg1}}"
-    },
-    "DessinePyramideNombreMul{}": {
-      "snippet": "DessinePyramideNombreMul{${1:arg}}"
-    },
-    "DessineRoseMul": {},
-    "DessineRoseMulSol": {},
-    "dispogpfc{}{}{}": {
-      "snippet": "dispogpfc{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "DistriEchange{}{}{}{}{}": {
-      "snippet": "DistriEchange{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "DistriTableau[]{}{}{}{}{}": {
-      "snippet": "DistriTableau[${6:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "DistriTableau{}{}{}{}{}": {
-      "snippet": "DistriTableau{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "DivCom": {},
-    "DiviseurCommun{}{}": {
-      "snippet": "DiviseurCommun{${1:arg1}}{${2:arg2}}"
-    },
-    "DiviseurNumero{}{}": {
-      "snippet": "DiviseurNumero{${1:arg1}}{${2:arg2}}"
-    },
-    "DivMax": {},
-    "dnp": {},
-    "dnpdc": {},
-    "dnpmv": {},
-    "dnpT": {},
-    "dnpvv": {},
-    "DonneeMax": {},
-    "DonneeMin": {},
-    "Dotfill": {},
-    "DrawArrow": {},
-    "DrawArrowSimple{}": {
-      "snippet": "DrawArrowSimple{${1:arg1}}"
-    },
-    "DrawArrowSimpleRenverse{}": {
-      "snippet": "DrawArrowSimpleRenverse{${1:arg1}}"
-    },
-    "EcartLargeur": {},
-    "EchelleLogo": {},
-    "EcrireSolutionEquation{}{}{}{}": {
-      "snippet": "EcrireSolutionEquation{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "EcritureCalculs": {},
-    "EcritureDecimale": {},
-    "EcriturePluriel{}": {
-      "snippet": "EcriturePluriel{${1:arg1}}"
-    },
-    "EcritureQuotients": {},
-    "EffectifMax": {},
-    "ElementsMelanges": {},
-    "emoticon[]{}": {
-      "snippet": "emoticon[${2:TikZ keys}]{${1:draw code}}"
-    },
-    "emoticon{}": {
-      "snippet": "emoticon{${1:draw code}}"
-    },
-    "EpaisseurLigne": {},
-    "Eqalign{}": {
-      "snippet": "Eqalign{${1:arg1}}"
-    },
-    "EquaBase{}{}{}{}{}": {
-      "snippet": "EquaBase{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaBaseL{}{}{}{}{}": {
-      "snippet": "EquaBaseL{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaBaseLaurent{}{}{}{}{}": {
-      "snippet": "EquaBaseLaurent{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaBaseSymbole{}{}{}{}{}": {
-      "snippet": "EquaBaseSymbole{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxComposition{}{}{}{}{}": {
-      "snippet": "EquaDeuxComposition{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxL{}{}{}{}{}": {
-      "snippet": "EquaDeuxL{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxLaurent{}{}{}{}{}": {
-      "snippet": "EquaDeuxLaurent{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxSoustraction{}{}{}{}{}": {
-      "snippet": "EquaDeuxSoustraction{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxSymbole{}{}{}{}{}": {
-      "snippet": "EquaDeuxSymbole{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaDeuxTerme{}{}{}{}{}": {
-      "snippet": "EquaDeuxTerme{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisComposition{}{}{}{}{}": {
-      "snippet": "EquaTroisComposition{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisL{}{}{}{}{}": {
-      "snippet": "EquaTroisL{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisLaurent{}{}{}{}{}": {
-      "snippet": "EquaTroisLaurent{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisSoustraction{}{}{}{}{}": {
-      "snippet": "EquaTroisSoustraction{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisSymbole{}{}{}{}{}": {
-      "snippet": "EquaTroisSymbole{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "EquaTroisTerme{}{}{}{}{}": {
-      "snippet": "EquaTroisTerme{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "Etape": {},
-    "EuRo": {},
-    "exposant": {},
-    "ExposantDivMax": {},
-    "ExtraitElements{}": {
-      "snippet": "ExtraitElements{${1:arg}}"
-    },
-    "ExtraitFruit{}": {
-      "snippet": "ExtraitFruit{${1:arg}}"
-    },
-    "ExtraitNom{}": {
-      "snippet": "ExtraitNom{${1:arg}}"
-    },
-    "ExtraitObjets{}": {
-      "snippet": "ExtraitObjets{${1:arg}}"
-    },
-    "ExtraitSommet{}": {
-      "snippet": "ExtraitSommet{${1:arg}}"
-    },
-    "ExtraitSymboles{}": {
-      "snippet": "ExtraitSymboles{${1:arg}}"
-    },
-    "faa": {},
-    "fahrenheit": {},
-    "FaireFigure{}{}{}{}": {
-      "snippet": "FaireFigure{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "Fdash{}": {
-      "snippet": "Fdash{${1:arg1}}"
-    },
-    "fdash{}": {
-      "snippet": "fdash{${1:arg1}}"
-    },
-    "fdashlength": {},
-    "fdashsep": {},
-    "fdashwidth": {},
-    "fii": {},
-    "FlecheCoefInv[]{}": {
-      "snippet": "FlecheCoefInv[${2:opt}]{${1:arg1}}"
-    },
-    "FlecheCoefInv{}": {
-      "snippet": "FlecheCoefInv{${1:arg1}}"
-    },
-    "foo": {},
-    "FooListeEntier": {},
-    "FooStat": {},
-    "FooStatCases": {},
-    "FractionDeciDeno": {},
-    "FractionDeciNum": {},
-    "FruitsMelanges": {},
-    "fuu": {},
-    "fuuu": {},
-    "getstrut{}": {
-      "snippet": "getstrut{${1:arg}}"
-    },
-    "GrandCote": {},
-    "hauteurcards": {},
-    "hauteurcarte": {},
-    "HauteurFlash": {},
-    "hauteurtitre": {},
-    "hdash": {},
-    "Intermed": {},
-    "jour": {},
-    "k": {
-      "detail": "𝑘",
-      "documentation": "MATHEMATICAL ITALIC SMALL K"
-    },
-    "kmh": {},
-    "KN": {},
-    "KY": {},
-    "KYm": {},
-    "LabyHaut": {},
-    "LabyLong": {},
-    "LabySlop": {},
-    "largeurcards": {},
-    "largeurcarte": {},
-    "LargeurQCM": {},
-    "largeurtitre": {},
-    "Leftcomment{}{}{}{}": {
-      "snippet": "Leftcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "LETTRE": {},
-    "LigneDomino": {},
-    "Liste": {},
-    "Listea": {},
-    "ListeAutoEn": {},
-    "ListeAutoQ": {},
-    "ListeAvantCouleurs": {},
-    "ListeAvantNombres": {},
-    "Listeb": {},
-    "ListeCalc": {},
-    "ListeCalculs": {},
-    "ListeCalculslen": {},
-    "ListeCaracteresUniques": {},
-    "ListeCards": {},
-    "ListeCasesAVider": {},
-    "ListeCasesCroises": {},
-    "ListeCasesKK": {},
-    "ListeCasesSKK": {},
-    "ListeCNQuestions": {},
-    "ListeColonnesAVider": {},
-    "ListeColorilude": {},
-    "ListeColoriludeCouleurs": {},
-    "ListeColoriludelen": {},
-    "ListeColoriludeMax": {},
-    "ListeComplete": {},
-    "ListeCompleteDiagHor": {},
-    "ListeCompletelen": {},
-    "ListeComposantStatCAN": {},
-    "ListeContenuCol": {},
-    "ListeCouleur": {},
-    "ListeCouleurEntier": {},
-    "ListeDefiTableCode": {},
-    "ListeDefiTableMax": {},
-    "ListeDefiTablePhrase": {},
-    "ListeDefiTableTableau": {},
-    "ListeDefLigne": {},
-    "ListeDesCaracteresAUtiliser": {},
-    "ListeDesCaracteresFoo": {},
-    "ListeDesChiffres": {},
-    "ListeDesLettres": {},
-    "ListeDesLettresUniques": {},
-    "ListeDesLettresUniqueslen": {},
-    "ListeDesProduits": {},
-    "ListeDesProduitsFoo": {},
-    "ListeDesSSDossiersPerso": {},
-    "Listedesvaleursaplacersurlademidroite": {},
-    "ListeDiviseur{}": {
-      "snippet": "ListeDiviseur{${1:arg1}}"
-    },
-    "ListeDiviseurT{}": {
-      "snippet": "ListeDiviseurT{${1:arg1}}"
-    },
-    "ListeDominos": {},
-    "listEE": {},
-    "listEEa": {},
-    "listEEb": {},
-    "ListeEcriture": {},
-    "ListeEcriturelen": {},
-    "ListeEtapes": {},
-    "ListeFichiers": {},
-    "ListeFichierslen": {},
-    "ListeFinaleDesCaracteres": {},
-    "ListeFlash": {},
-    "ListeFlashlen": {},
-    "ListeFonction": {},
-    "ListeFonctionlen": {},
-    "ListeFraction": {},
-    "ListeFractionDecimale": {},
-    "ListeFruitsCAN": {},
-    "ListefuuLieux": {},
-    "ListefuuObjets": {},
-    "ListefuuPerso": {},
-    "ListeInitiale": {},
-    "ListeInter": {},
-    "ListeInterlen": {},
-    "ListeKakuroNombres": {},
-    "ListeKakuroNombreslen": {},
-    "ListeLaby": {},
-    "ListeLabylen": {},
-    "ListeLabySol": {},
-    "ListeLegendesAEffacer": {},
-    "Listelen": {},
-    "ListeLettres": {},
-    "ListeLettreslen": {},
-    "ListeLieuxObjetsCAN": {},
-    "ListeMelangeeLieux": {},
-    "ListeMelangeeObjets": {},
-    "ListeMelangeePersonnages": {},
-    "ListeMelangeeQuestions": {},
-    "ListeModelBarreInf": {},
-    "ListeModelBarreSup": {},
-    "ListeMosaique": {},
-    "ListeMotsCAN": {},
-    "ListeMotsCodes": {},
-    "ListeMotsCodesMax": {},
-    "ListeMotsCodesPas": {},
-    "ListeMotsCodesPhrase": {},
-    "ListeMotsCodesTableau": {},
-    "ListeMotsEmpiles": {},
-    "ListeMotsEmpilesMax": {},
-    "ListeMulAstucieuxCAN": {},
-    "ListeNom": {},
-    "ListeNombreAPlacer": {},
-    "ListeNombreAPlacerlen": {},
-    "ListeNombreCol": {},
-    "ListeNombreCollen": {},
-    "ListeNomsCAN": {},
-    "ListeNomsMul": {},
-    "ListeNomSommet": {},
-    "ListeObjetsCAN": {},
-    "ListeObjetsSymbolesCAN": {},
-    "ListePANombre": {},
-    "ListePfCEngrenages": {},
-    "ListePG": {},
-    "ListePointDroite": {},
-    "ListePointEspace": {},
-    "ListePointRepere": {},
-    "ListePoints": {},
-    "ListePointsPlaces": {},
-    "ListeProba": {},
-    "ListeProg": {},
-    "ListePyramide": {},
-    "ListePyramidelen": {},
-    "ListeQCM": {},
-    "ListeQCMlen": {},
-    "ListeQuestionColonneDeux": {},
-    "ListeQuestionColonneDeuxlen": {},
-    "ListeQuestionColonneUn": {},
-    "ListeQuestionColonneUnlen": {},
-    "ListeQuisuisje": {},
-    "ListeQuisuisjeCode": {},
-    "ListeQuisuisjelen": {},
-    "ListeQuisuisjeLettres": {},
-    "ListeQuisuisjeLettreslen": {},
-    "ListeRadar": {},
-    "ListeRapido": {},
-    "ListeRapidolen": {},
-    "ListeRatio": {},
-    "ListeRatiolen": {},
-    "ListeRelie": {},
-    "ListeRelielen": {},
-    "ListeRestante": {},
-    "ListeRgt": {},
-    "ListeSansDoublonsEE": {},
-    "ListeSommetsCAN": {},
-    "ListeSSDossiers": {},
-    "ListeTempo": {},
-    "ListeTotale": {},
-    "ListeTotaleDesCaracteres": {},
-    "ListeTraces": {},
-    "ListeTriominos": {},
-    "ListeValeur": {},
-    "ListeValeurlen": {},
-    "Logo{}{}": {
-      "snippet": "Logo{${1:scale}}{${2:imagefile}}"
-    },
-    "logobox": {},
-    "LogoTW{}{}": {
-      "snippet": "LogoTW{${1:scale}}{${2:imagefile}}"
-    },
-    "longbarre": {},
-    "longbarredepth": {},
-    "longbarreheight": {},
-    "LongListe": {},
-    "LongueSimplification{}{}": {
-      "snippet": "LongueSimplification{${1:arg1}}{${2:arg2}}"
-    },
-    "LongueurDecimale": {},
-    "LongueurFracDeciDeno": {},
-    "LongueurFracDeciNum": {},
-    "LongueurMot": {},
-    "LongueurNombreEntier": {},
-    "LongueurPartieDecimale": {},
-    "LongueurPartieEntiere": {},
-    "margeh": {},
-    "margev": {},
-    "mathunderline{}{}": {
-      "snippet": "mathunderline{${1:color}}{${2:arg}}"
-    },
-    "med": {},
-    "meda": {},
-    "MelangeListe{}{}": {
-      "snippet": "MelangeListe{${1:arg1}}{${2:arg2}}"
-    },
-    "MelangeListeNew{}{}": {
-      "snippet": "MelangeListeNew{${1:arg1}}{${2:arg2}}"
-    },
-    "mois": {},
-    "MotifTexte": {},
-    "MotsCodesMaLettre": {},
-    "MoyenCote": {},
-    "MPAfficheur{}{}{}": {
-      "snippet": "MPAfficheur{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPArbre{}": {
-      "snippet": "MPArbre{${1:arg1}}"
-    },
-    "MPArbreComplet{}": {
-      "snippet": "MPArbreComplet{${1:arg1}}"
-    },
-    "MPArbreDessine{}{}": {
-      "snippet": "MPArbreDessine{${1:arg1}}{${2:arg2}}"
-    },
-    "MPArbreProba{}{}{}{}": {
-      "snippet": "MPArbreProba{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "MPArbreVide{}": {
-      "snippet": "MPArbreVide{${1:arg1}}"
-    },
-    "MPBillard{}{}{}": {
-      "snippet": "MPBillard{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPBillardSolution{}{}{}": {
-      "snippet": "MPBillardSolution{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPCalculatrice{}{}{}": {
-      "snippet": "MPCalculatrice{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPCatmull{}{}{}{}{}": {
-      "snippet": "MPCatmull{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPCinq": {},
-    "MPCourbe{}{}{}{}{}": {
-      "snippet": "MPCourbe{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPCourbeNew{}": {
-      "snippet": "MPCourbeNew{${1:arg}}"
-    },
-    "MPDessineFrise{}": {
-      "snippet": "MPDessineFrise{${1:arg}}"
-    },
-    "MPEchelleProbaUn{}{}{}{}": {
-      "snippet": "MPEchelleProbaUn{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "MPEnigmeAireA": {},
-    "MPEnigmeAireB": {},
-    "MPEnigmeAireC": {},
-    "MPEnigmeAireD": {},
-    "MPEnigmeAireE": {},
-    "MPEnigmeAireF": {},
-    "MPEspacePave{}{}{}{}{}": {
-      "snippet": "MPEspacePave{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPEspaceSphere{}{}": {
-      "snippet": "MPEspaceSphere{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFigReciThales{}{}{}{}{}": {
-      "snippet": "MPFigReciThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigReciThalesCroisee{}{}{}{}{}": {
-      "snippet": "MPFigReciThalesCroisee{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigThales{}{}{}{}{}": {
-      "snippet": "MPFigThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigThalesCroisee{}{}{}{}{}": {
-      "snippet": "MPFigThalesCroisee{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigTrigo{}{}{}{}{}": {
-      "snippet": "MPFigTrigo{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigTrigoAngle{}{}{}{}{}": {
-      "snippet": "MPFigTrigoAngle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigureCarre": {},
-    "MPFigureCarreCode": {},
-    "MPFigureCercle": {},
-    "MPFigureCone": {},
-    "MPFigureCube": {},
-    "MPFigureCylindre": {},
-    "MPFigureDisque": {},
-    "MPFigureDroite{}{}": {
-      "snippet": "MPFigureDroite{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFigureLosange": {},
-    "MPFigureLosangeAire": {},
-    "MPFigureParallelogramme": {},
-    "MPFigureParallelogrammeAire": {},
-    "MPFigurePave": {},
-    "MPFigurePolygone": {},
-    "MPFigurePrisme": {},
-    "MPFigurePyramide": {},
-    "MPFigurePytha{}{}{}{}{}{}": {
-      "snippet": "MPFigurePytha{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "MPFigurePythaSansMots{}{}{}{}{}{}": {
-      "snippet": "MPFigurePythaSansMots{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "MPFigureReciPytha{}{}{}{}{}{}{}": {
-      "snippet": "MPFigureReciPytha{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}"
-    },
-    "MPFigureRectangle": {},
-    "MPFigureSommeAngle{}{}{}{}{}": {
-      "snippet": "MPFigureSommeAngle{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFigureSphere": {},
-    "MPFigureTriangle": {},
-    "MPFigureTriangleAire": {},
-    "MPFonctionAffine{}{}{}{}{}": {
-      "snippet": "MPFonctionAffine{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPFractionDisque{}{}": {
-      "snippet": "MPFractionDisque{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFractionRectangle{}{}": {
-      "snippet": "MPFractionRectangle{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFractionSegment{}{}": {
-      "snippet": "MPFractionSegment{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFractionTriangle{}{}": {
-      "snippet": "MPFractionTriangle{${1:arg1}}{${2:arg2}}"
-    },
-    "MPGlobe{}{}": {
-      "snippet": "MPGlobe{${1:arg1}}{${2:arg2}}"
-    },
-    "MPGrille": {},
-    "MPGrilleCode": {},
-    "MPHorloge{}{}{}": {
-      "snippet": "MPHorloge{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPIsometrique": {},
-    "MPIsometriqueCode": {},
-    "MPIsometriquePointe": {},
-    "MPIsometriquePointeCode": {},
-    "MPMillimetre": {},
-    "MPMillimetreCode": {},
-    "MPNewDEMIGraduee{}{}": {
-      "snippet": "MPNewDEMIGraduee{${1:arg1}}{${2:arg2}}"
-    },
-    "MPNewDROITEGraduee{}{}": {
-      "snippet": "MPNewDROITEGraduee{${1:arg1}}{${2:arg2}}"
-    },
-    "MPNewDROITEGradueeMulti{}{}": {
-      "snippet": "MPNewDROITEGradueeMulti{${1:arg1}}{${2:arg2}}"
-    },
-    "MPPlacePoint{}{}": {
-      "snippet": "MPPlacePoint{${1:arg1}}{${2:arg2}}"
-    },
-    "MPPlannew{}{}{}{}{}": {
-      "snippet": "MPPlannew{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPPlanTrace{}{}{}{}{}": {
-      "snippet": "MPPlanTrace{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPRadar{}{}{}{}{}{}": {
-      "snippet": "MPRadar{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "MPSeyes": {},
-    "MPSeyesCode": {},
-    "MPSolideCone{}{}{}": {
-      "snippet": "MPSolideCone{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPSolideCylindre{}{}{}": {
-      "snippet": "MPSolideCylindre{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPSolidePave{}{}{}{}{}": {
-      "snippet": "MPSolidePave{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPSolidePyramide{}{}{}{}": {
-      "snippet": "MPSolidePyramide{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "MPSolideSphere{}{}{}": {
-      "snippet": "MPSolideSphere{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPStat{}{}{}{}{}{}{}{}": {
-      "snippet": "MPStat{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "MPStatCirculaireQ{}{}{}{}{}": {
-      "snippet": "MPStatCirculaireQ{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "MPStatNew{}{}{}": {
-      "snippet": "MPStatNew{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPStatNewCode": {},
-    "MPStatQ{}{}{}{}{}{}{}{}": {
-      "snippet": "MPStatQ{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "MPTest{}{}{}{}{}{}{}{}{}": {
-      "snippet": "MPTest{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
-    },
-    "MPTestCours{}{}{}{}{}{}{}{}{}": {
-      "snippet": "MPTestCours{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
-    },
-    "MPThermo{}{}": {
-      "snippet": "MPThermo{${1:arg1}}{${2:arg2}}"
-    },
-    "MPTraceFonction{}{}": {
-      "snippet": "MPTraceFonction{${1:arg1}}{${2:arg2}}"
-    },
-    "MPTriangulaire": {},
-    "MPTriangulaireCode": {},
-    "Multi": {},
-    "Multij": {},
-    "Multijo": {},
-    "Multik": {},
-    "Multiko": {},
-    "Multil": {},
-    "Multilo": {},
-    "Multim": {},
-    "Multimo": {},
-    "Multio": {},
-    "myoldmulticolumn": {},
-    "NBcases": {},
-    "NbColTabMul": {},
-    "NbDepart": {},
-    "NbDonnees": {},
-    "nbdonnees": {},
-    "NbHeures": {},
-    "NbMinutes": {},
-    "NbSecondes": {},
-    "NbTrois": {},
-    "NewMPDiagBarreHor{}{}{}{}": {
-      "snippet": "NewMPDiagBarreHor{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "NewMPDiagBarreHorCode": {},
-    "NewMPStatCirculaireQ{}{}{}{}": {
-      "snippet": "NewMPStatCirculaireQ{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "NewMPStatCirculaireCodeQ": {},
-    "nil": {},
-    "NomA": {},
-    "NomAngleDroit": {},
-    "NomB": {},
-    "NombreCentaines": {},
-    "NombreDizaines": {},
-    "NombreMilliers": {},
-    "NombrePremier{}": {
-      "snippet": "NombrePremier{${1:arg1}}"
-    },
-    "NombrePremierExposant{}": {
-      "snippet": "NombrePremierExposant{${1:arg1}}"
-    },
-    "NombrePremierImpose{}{}{}": {
-      "snippet": "NombrePremierImpose{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "NombrePremierPotence{}": {
-      "snippet": "NombrePremierPotence{${1:arg1}}"
-    },
-    "NombrePremierVertical{}": {
-      "snippet": "NombrePremierVertical{${1:arg1}}"
-    },
-    "NombrePremierVerticalVide{}": {
-      "snippet": "NombrePremierVerticalVide{${1:arg1}}"
-    },
-    "NombreUnites": {},
-    "NomC": {},
-    "NomComp": {},
-    "NomCouleurTab": {},
-    "NomFin": {},
-    "NomFonction": {},
-    "NomFonctionA": {},
-    "NomLargeurTab": {},
-    "NomLettre": {},
-    "NomM": {},
-    "NomN": {},
-    "NomNode": {},
-    "NomPointA": {},
-    "NomPointB": {},
-    "NomPointC": {},
-    "NomPointM": {},
-    "NomPointN": {},
-    "NomsMelanges": {},
-    "NomSommetA": {},
-    "NomSommetB": {},
-    "NomSommetC": {},
-    "NomStyle": {},
-    "NomTriangle": {},
-    "NomVariable": {},
-    "Nomx": {},
-    "Nomy": {},
-    "Nomz": {},
-    "NumA": {},
-    "NumB": {},
-    "NumC": {},
-    "NumD": {},
-    "numerateur": {},
-    "NumerateurDiv": {},
-    "Numerodelaquestionaposer": {},
-    "numeroDonnee": {},
-    "NumeroReponse": {},
-    "NumSimp": {},
-    "NumSimpa": {},
-    "ObjetsMelanges": {},
-    "octet": {},
-    "OrdOrigine": {},
-    "PapierBottom": {},
-    "PapierCouleur": {},
-    "PapierGrille": {},
-    "PapierGrillePointe": {},
-    "PapierHauteur": {},
-    "PapierLargeur": {},
-    "PapierLeft": {},
-    "PapierLeftCurrent": {},
-    "PartieDecimaleFractionDeci": {},
-    "PartieEntiereFractionDeci": {},
-    "PasNumEE": {},
-    "PetitCote": {},
-    "PfCAutreMoitieCase": {},
-    "PfCBstrut": {},
-    "PfCCalculsCroises": {},
-    "PfCCBAffiche": {},
-    "PfCCBAlea": {},
-    "PfCCBDecompositionEtapes": {},
-    "PfCCBListeCartes": {},
-    "PfCCBListeEntiers": {},
-    "PfCCBListeEntiersChoisis": {},
-    "PfCCBListeFinaleCartes": {},
-    "PfCCBListeMultiples": {},
-    "PfCCBListeMultiplesChoisis": {},
-    "PfCCBListeRappels": {},
-    "PfCCBListeTirage": {},
-    "PfCCBListeTirageAffiche": {},
-    "PfCCBListeTirageIntermediaire": {},
-    "PfCCBListeToutesCartes": {},
-    "PfCCBNbPlaqueEntiers": {},
-    "PfCCBNbPlaqueMultiples": {},
-    "PfCCBResultat": {},
-    "PfCCBResultatFinal": {},
-    "PfCCBTest": {},
-    "PfCCCFoo": {},
-    "PfCCCfoo": {},
-    "PfCchiffre{}{}": {
-      "snippet": "PfCchiffre{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCCoefConversion": {},
-    "PfCCompteBonOriginal": {},
-    "PfCCompteBonOriginal[]": {
-      "snippet": "PfCCompteBonOriginal[${1:opt}]"
-    },
-    "PfCCompteurMelange": {},
-    "PfCCountCutDeux": {},
-    "PfCCountCutUn": {},
-    "PfCDerniereColonne": {},
-    "PfCDerniereColonneEntiere": {},
-    "PfCdotover": {},
-    "PfCEcrireFacteur{}{}": {
-      "snippet": "PfCEcrireFacteur{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCentoure{}{}": {
-      "snippet": "PfCentoure{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCfiledate": {},
-    "PfCfileversion": {},
-    "PfCFooArrivee": {},
-    "PfCFooDepart": {},
-    "PfCFooRelatifYohaku": {},
-    "PfCfooStat": {},
-    "PfCfrac{}{}": {
-      "snippet": "PfCfrac{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCGraineAlea": {},
-    "PfCHiddenHeight": {},
-    "PfCHiddenWidth": {},
-    "PfCJeuRgtH": {},
-    "PfCKakuro": {},
-    "PfCKenKen": {},
-    "PfCLargeurJury": {},
-    "PfCLargeurQCM": {},
-    "PfCLargeurQuestion": {},
-    "PfCLargeurReponse": {},
-    "PfCListeATrier": {},
-    "PfCListeBarresCalculs": {},
-    "PfCListeCalculsBarre": {},
-    "PfCListeCCAide": {},
-    "PfCListeCCAidelen": {},
-    "PfCListeCCNb": {},
-    "PfCListeCCOp": {},
-    "PfCListeCmdTortue": {},
-    "PfCListeHauteursCubes": {},
-    "PfCListeResultats": {},
-    "PfCListeResultatsBarre": {},
-    "PfCListeRLE": {},
-    "PfCListeSymbolTrivial": {},
-    "PfCLongInter": {},
-    "PfCMentaloDeuxiemeTerme": {},
-    "PfCMentaloEtages": {},
-    "PfCMentaloListeOperations": {},
-    "PfCMentaloListeOperationslen": {},
-    "PfCMentaloPremierTerme": {},
-    "PfCMoitieCase": {},
-    "PfCMPDessineModelBarre{}{}": {
-      "snippet": "PfCMPDessineModelBarre{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCMPDessineModelBarreNonHomogene{}{}{}": {
-      "snippet": "PfCMPDessineModelBarreNonHomogene{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "PfCNACible": {},
-    "PfCNAListeAEffacer": {},
-    "PfCNAListeMelange": {},
-    "PfCNAListeNombres": {},
-    "PfCNAListeNombresBase": {},
-    "PfCNbRep": {},
-    "PfCNomLabyrinthe": {},
-    "PfCNomRose": {},
-    "PfCNomShikaku": {},
-    "PfCNum{}": {
-      "snippet": "PfCNum{${1:arg}}"
-    },
-    "PfCPCfaa": {},
-    "PfCPCfoo": {},
-    "PfCPremiereColonneDecimale": {},
-    "PfCPuzzleP": {},
-    "PfCPythaUnit": {},
-    "PfCQtroisk": {},
-    "PfCQuartileTrois": {},
-    "PfCQuartileUn": {},
-    "PfCQunk": {},
-    "PfCRappelImposeAll": {},
-    "PfCShikakuh": {},
-    "PfCShikakuv": {},
-    "PfCTabCouleur": {},
-    "PfCTableauDepart": {},
-    "PfCTableauIncline": {},
-    "PfCTableauPuissances": {},
-    "PfCTableauUnite": {},
-    "PfCTableurLargeur": {},
-    "PfCTableurLargeurUn": {},
-    "PfCTBstrut": {},
-    "PfCTectonic": {},
-    "PfCTestBlack": {},
-    "PfCTestEtoile": {},
-    "PfCTestMP": {},
-    "PfCThalesUnit": {},
-    "PfCTotal": {},
-    "PfCTrigoUnit": {},
-    "PfCTrioHauteur": {},
-    "PfCTstrut": {},
-    "PfCVueCubeNom": {},
-    "PfCYHKimpair": {},
-    "PfCYHKlast": {},
-    "PfCYHKListe": {},
-    "PfCYHKListeFoo": {},
-    "PfCYHKListeNA": {},
-    "PfCYHKListeP": {},
-    "PfCYHKListeProduit": {},
-    "PfCYHKnegatif": {},
-    "PfCYHKnombre": {},
-    "PfCYHKpair": {},
-    "PfCYHKTampon": {},
-    "PfCYohaku": {},
-    "PfCYohakuAlea": {},
-    "PfCYohakuInter": {},
-    "pgcd": {},
-    "PGCD{}{}": {
-      "snippet": "PGCD{${1:arg1}}{${2:arg2}}"
-    },
-    "pileb": {},
-    "Pointilles": {},
-    "PointillesClesProg": {},
-    "PotenceCases": {},
-    "ppcm": {},
-    "PPCM{}{}": {
-      "snippet": "PPCM{${1:arg1}}{${2:arg2}}"
-    },
-    "PQuatreGrille{}{}": {
-      "snippet": "PQuatreGrille{${1:arg1}}{${2:arg2}}"
-    },
-    "PQuatreListe": {},
-    "PQuatreListeH": {},
-    "PQuatreListes": {},
-    "PQuatreListeV": {},
-    "premier": {},
-    "premierdeux": {},
-    "PremierDiviseurVide{}{}": {
-      "snippet": "PremierDiviseurVide{${1:arg1}}{${2:arg2}}"
-    },
-    "PremierEtape{}{}": {
-      "snippet": "PremierEtape{${1:arg1}}{${2:arg2}}"
-    },
-    "PremierExposant{}": {
-      "snippet": "PremierExposant{${1:arg1}}"
-    },
-    "PremierLong{}": {
-      "snippet": "PremierLong{${1:arg1}}"
-    },
-    "PremierMultipleVide{}{}": {
-      "snippet": "PremierMultipleVide{${1:arg1}}{${2:arg2}}"
-    },
-    "premierun": {},
-    "PtAlea": {},
-    "pupils": {},
-    "PuzzlePyramideListeLettres": {},
-    "QCMPfC{}{}": {
-      "snippet": "QCMPfC{${1:arg1}}{${2:arg2}}"
-    },
-    "QFDaily": {},
-    "QFDecimal": {},
-    "QFExpression": {},
-    "QFHeure": {},
-    "QFMental": {},
-    "QFMesure": {},
-    "QFNumeration": {},
-    "QFVide": {},
-    "quintal": {},
-    "ratiodomino": {},
-    "RayonCoin": {},
-    "Recapk": {},
-    "Recapmed": {},
-    "Recapmeda": {},
-    "ReciproqueThales{}{}{}{}{}{}{}{}": {
-      "snippet": "ReciproqueThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "ReciThales{}{}{}{}{}{}": {
-      "snippet": "ReciThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "ReciThalesCalculs{}{}{}{}{}{}{}{}": {
-      "snippet": "ReciThalesCalculs{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "RecupererFichierTeXAllDossier{}": {
-      "snippet": "RecupererFichierTeXAllDossier{${1:arg}}"
-    },
-    "RecupererFichierTeXAllSSDossier{}": {
-      "snippet": "RecupererFichierTeXAllSSDossier{${1:arg}}"
-    },
-    "RecupererFichierTeXComplet{}": {
-      "snippet": "RecupererFichierTeXComplet{${1:arg}}"
-    },
-    "RecupererFichierTeXDossier{}": {
-      "snippet": "RecupererFichierTeXDossier{${1:arg}}"
-    },
-    "RecupererFichierTeXSSDossier{}{}": {
-      "snippet": "RecupererFichierTeXSSDossier{${1:arg1}}{${2:arg2}}"
-    },
-    "RecupererFichierTeXSSDossierPerso{}": {
-      "snippet": "RecupererFichierTeXSSDossierPerso{${1:arg}}"
-    },
-    "RecupererSousDossiers{}": {
-      "snippet": "RecupererSousDossiers{${1:arg}}"
-    },
-    "Recupk": {},
-    "Recupmed": {},
-    "Recupmeda": {},
-    "RecupNbFichiers": {},
-    "RecupSSDossiers": {},
-    "Redaction{}{}{}{}": {
-      "snippet": "Redaction{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "RedactionSom{}{}{}{}": {
-      "snippet": "RedactionSom{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "RedactionSomme": {},
-    "RedactionThales": {},
-    "RedactionTrigo": {},
-    "ResolEquationCarre{}{}": {
-      "snippet": "ResolEquationCarre{${1:arg1}}{${2:arg2}}"
-    },
-    "ResolEquationComposition{}{}{}{}{}": {
-      "snippet": "ResolEquationComposition{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationL{}{}{}{}{}": {
-      "snippet": "ResolEquationL{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationLaurent{}{}{}{}{}": {
-      "snippet": "ResolEquationLaurent{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationProduit{}{}{}{}{}": {
-      "snippet": "ResolEquationProduit{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationSoustraction{}{}{}{}{}": {
-      "snippet": "ResolEquationSoustraction{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationSymbole{}{}{}{}{}": {
-      "snippet": "ResolEquationSymbole{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ResolEquationTerme{}{}{}{}{}": {
-      "snippet": "ResolEquationTerme{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "RetiensListeLieux": {},
-    "RetiensListeLieuxlen": {},
-    "RetiensListeObjets": {},
-    "RetiensListeObjetslen": {},
-    "RetiensListePersonnages": {},
-    "RetiensListePersonnageslen": {},
-    "RetiensListeQuestions": {},
-    "RetiensListeQuestionslen": {},
-    "Rightcomment{}{}{}{}": {
-      "snippet": "Rightcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "RKalmostcrying": {},
-    "RKangry": {},
-    "RKbigsmile": {},
-    "RKblush": {},
-    "RKconfused": {},
-    "RKdevilish": {},
-    "RKlookdown": {},
-    "RKlookleft": {},
-    "RKlookright": {},
-    "RKlookup": {},
-    "RKmartian": {},
-    "RKneutral": {},
-    "RKsad": {},
-    "RKsexy": {},
-    "RKsmallsmile": {},
-    "RKsmile": {},
-    "RoundedBoxWidth": {},
-    "ShikakuCreation": {},
-    "ShikakuCreationSolution": {},
-    "SommeA": {},
-    "sommeangle": {},
-    "SommeB": {},
-    "SommeC": {},
-    "SommeDonnees": {},
-    "SommetsMelanges": {},
-    "Speed{}": {
-      "snippet": "Speed{${1:nombre}}"
-    },
-    "speed{}": {
-      "snippet": "speed{${1:nombre}}"
-    },
-    "SSimpli{}{}": {
-      "snippet": "SSimpli{${1:arg1}}{${2:arg2}}"
-    },
-    "SSimplifie{}{}": {
-      "snippet": "SSimplifie{${1:arg1}}{${2:arg2}}"
-    },
-    "SSimpliTest{}{}": {
-      "snippet": "SSimpliTest{${1:arg1}}{${2:arg2}}"
-    },
-    "SymbolesMelanges": {},
-    "TableAdditionComplete": {},
-    "TableAdditionSeule{}": {
-      "snippet": "TableAdditionSeule{${1:arg1}}"
-    },
-    "TableMultiplicationComplete": {},
-    "TableMultiplicationCompleteColore": {},
-    "TableMultiplicationSeule{}": {
-      "snippet": "TableMultiplicationSeule{${1:arg1}}"
-    },
-    "TabLongueurNombre": {},
-    "tabtoksa{}": {
-      "snippet": "tabtoksa{${1:arg}}"
-    },
-    "tabtoksb{}": {
-      "snippet": "tabtoksb{${1:arg}}"
-    },
-    "tabtoksc{}": {
-      "snippet": "tabtoksc{${1:arg}}"
-    },
-    "tabtoksEE{}": {
-      "snippet": "tabtoksEE{${1:arg}}"
-    },
-    "tabtoksEEa{}": {
-      "snippet": "tabtoksEEa{${1:arg}}"
-    },
-    "tabtoksEEb{}": {
-      "snippet": "tabtoksEEb{${1:arg}}"
-    },
-    "TailleFonte": {},
-    "Test": {},
-    "Testa": {},
-    "Testb": {},
-    "TestNombrePremier{}": {
-      "snippet": "TestNombrePremier{${1:arg}}"
-    },
-    "TexteOrigine": {},
-    "TexteReference": {},
-    "theaddxlop": {},
-    "theCNNumQ": {},
-    "theCompteurMotEmpile": {},
-    "thedivxlop": {},
-    "themulxlop": {},
-    "theNbCalculDistri": {},
-    "theNbDistri": {},
-    "theNbequa": {},
-    "theNbFrac": {},
-    "theNBprog": {},
-    "theNbPropor": {},
-    "theNbProporD": {},
-    "theNbProporG": {},
-    "theNbRelie": {},
-    "thePfCCompteLignes": {},
-    "thePfCnexo": {},
-    "thePfCPuzzlePavcpt": {},
-    "thePfCPuzzlePcpt": {},
-    "thePfCShikakuNom": {},
-    "thePfCTortue": {},
-    "thePfCTrioLettre": {},
-    "theQuestionQCM": {},
-    "thesubxlop": {},
-    "theTitreQCM": {},
-    "Tikzmark{}": {
-      "snippet": "Tikzmark{${1:arg1}}"
-    },
-    "TikzPB": {},
-    "TikzPBD": {},
-    "TikzPD": {},
-    "TikzPG": {},
-    "TikzPH": {},
-    "TikzPHD": {},
-    "TikzRB": {},
-    "TikzRH": {},
-    "tofrac{}": {
-      "snippet": "tofrac{${1:arg}}"
-    },
-    "tokcalissonlistetracesd": {},
-    "tokcalissonlistetracesg": {},
-    "toklisteaffhor{}": {
-      "snippet": "toklisteaffhor{${1:arg}}"
-    },
-    "toklistecaseM{}": {
-      "snippet": "toklistecaseM{${1:arg}}"
-    },
-    "toklistecaseP{}": {
-      "snippet": "toklistecaseP{${1:arg}}"
-    },
-    "toklistecouleur": {},
-    "toklistedefligne{}": {
-      "snippet": "toklistedefligne{${1:arg}}"
-    },
-    "toklistedonhor{}": {
-      "snippet": "toklistedonhor{${1:arg}}"
-    },
-    "toklistefrise{}": {
-      "snippet": "toklistefrise{${1:arg}}"
-    },
-    "toklistelegende": {},
-    "toklistemodelbarreinf": {},
-    "toklistemodelbarresup": {},
-    "toklisteNAMelange": {},
-    "toklisteNANombres": {},
-    "toklistenomhor{}": {
-      "snippet": "toklistenomhor{${1:arg}}"
-    },
-    "toklistenompointdemidroite{}": {
-      "snippet": "toklistenompointdemidroite{${1:arg}}"
-    },
-    "toklistenonoa": {},
-    "toklistenonob": {},
-    "toklistePANombre": {},
-    "toklistepoint{}": {
-      "snippet": "toklistepoint{${1:arg}}"
-    },
-    "toklistepointdemidroite{}": {
-      "snippet": "toklistepointdemidroite{${1:arg}}"
-    },
-    "toklistepointdroite{}": {
-      "snippet": "toklistepointdroite{${1:arg}}"
-    },
-    "toklistepointespace{}": {
-      "snippet": "toklistepointespace{${1:arg}}"
-    },
-    "toklistepointproba{}": {
-      "snippet": "toklistepointproba{${1:arg}}"
-    },
-    "toklistepointq{}": {
-      "snippet": "toklistepointq{${1:arg}}"
-    },
-    "toklistepointrepere{}": {
-      "snippet": "toklistepointrepere{${1:arg}}"
-    },
-    "toklistePQuatreh": {},
-    "toklistePQuatrev": {},
-    "toklistePtsFn{}": {
-      "snippet": "toklistePtsFn{${1:arg}}"
-    },
-    "toklisteptsgrad{}": {
-      "snippet": "toklisteptsgrad{${1:arg}}"
-    },
-    "toklisteradara{}": {
-      "snippet": "toklisteradara{${1:arg}}"
-    },
-    "toklisteradarb{}": {
-      "snippet": "toklisteradarb{${1:arg}}"
-    },
-    "toklisteradarc{}": {
-      "snippet": "toklisteradarc{${1:arg}}"
-    },
-    "toklisteratio{}": {
-      "snippet": "toklisteratio{${1:arg}}"
-    },
-    "toklisteremplissage{}": {
-      "snippet": "toklisteremplissage{${1:arg}}"
-    },
-    "toklisterle": {},
-    "toklistetracesgrad{}": {
-      "snippet": "toklistetracesgrad{${1:arg}}"
-    },
-    "toklisteTriomino{}": {
-      "snippet": "toklisteTriomino{${1:arg}}"
-    },
-    "toklisteVueCube": {},
-    "tokPfCCBRappels": {},
-    "tokPfCEngrenages": {},
-    "toksolidelistepointssections": {},
-    "toksolidelistesommets": {},
-    "TortueCreationFichier[]{}": {
-      "snippet": "TortueCreationFichier[${2:opt}]{${1:arg}}"
-    },
-    "TortueCreationFichier{}": {
-      "snippet": "TortueCreationFichier{${1:arg}}"
-    },
-    "TortueDessinFinal": {},
-    "totalangle": {},
-    "TotalECC": {},
-    "TotalLaby": {},
-    "TotalP": {},
-    "toto": {},
-    "TraceDessinGradueComplet{}{}{}": {
-      "snippet": "TraceDessinGradueComplet{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "TraceDessinGradueCompletCode": {},
-    "TraceDoubleSolution{}{}{}{}{}{}": {
-      "snippet": "TraceDoubleSolution{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "TraceEchiquierColoreColorilude": {},
-    "TraceEchiquierColorilude": {},
-    "TraceGraphique[]{}": {
-      "snippet": "TraceGraphique[${2:opt}]{${1:arg}}"
-    },
-    "TraceGraphique{}": {
-      "snippet": "TraceGraphique{${1:arg}}"
-    },
-    "TraceLabyFacto{}{}{}{}{}{}": {
-      "snippet": "TraceLabyFacto{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "TraceLabyFactoSolution{}{}{}{}{}{}": {
-      "snippet": "TraceLabyFactoSolution{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "TraceLabyNombreDouble{}{}{}{}{}{}": {
-      "snippet": "TraceLabyNombreDouble{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "TraceTriomino{}": {
-      "snippet": "TraceTriomino{${1:arg1}}"
-    },
-    "TraceTriominoHexa{}": {
-      "snippet": "TraceTriominoHexa{${1:arg1}}"
-    },
-    "TrigoCalculs{}{}{}{}{}": {
-      "snippet": "TrigoCalculs{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "TrioCalculs{}{}{}": {
-      "snippet": "TrioCalculs{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "TSimp": {},
-    "TThales{}{}{}{}{}{}{}{}": {
-      "snippet": "TThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "TThalesCalculsD{}{}{}{}{}{}{}{}": {
-      "snippet": "TThalesCalculsD{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "TThalesCalculsE{}{}{}{}{}{}{}{}": {
-      "snippet": "TThalesCalculsE{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "TTThales{}{}{}{}{}{}": {
-      "snippet": "TTThales{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}"
-    },
-    "Tuile{}{}{}{}": {
-      "snippet": "Tuile{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "untest": {},
-    "UpdateCoul{}": {
-      "snippet": "UpdateCoul{${1:arg1}}"
-    },
-    "UpdateDefLignes{}": {
-      "snippet": "UpdateDefLignes{${1:arg1}}"
-    },
-    "UpdateLegende{}": {
-      "snippet": "UpdateLegende{${1:arg}}"
-    },
-    "UpdateLignes{}": {
-      "snippet": "UpdateLignes{${1:arg1}}"
-    },
-    "UpdateListeModelBarreInf{}": {
-      "snippet": "UpdateListeModelBarreInf{${1:arg}}"
-    },
-    "UpdateListeModelBarreSup{}": {
-      "snippet": "UpdateListeModelBarreSup{${1:arg}}"
-    },
-    "UpdatePtsFN{}": {
-      "snippet": "UpdatePtsFN{${1:arg1}}"
-    },
-    "UpdatePtsFn{}": {
-      "snippet": "UpdatePtsFn{${1:arg1}}"
-    },
-    "UpdateRadara{}": {
-      "snippet": "UpdateRadara{${1:arg1}}"
-    },
-    "UpdateRadarb{}": {
-      "snippet": "UpdateRadarb{${1:arg1}}"
-    },
-    "UpdateRadarc{}": {
-      "snippet": "UpdateRadarc{${1:arg1}}"
-    },
-    "UpdateRatio{}": {
-      "snippet": "UpdateRatio{${1:arg1}}"
-    },
-    "updateratiotoks{}": {
-      "snippet": "updateratiotoks{${1:arg1}}"
-    },
-    "UpdateRemplissage{}": {
-      "snippet": "UpdateRemplissage{${1:arg1}}"
-    },
-    "Updatetoks{}": {
-      "snippet": "Updatetoks{${1:arg1}}"
-    },
-    "updatetoks{}": {
-      "snippet": "updatetoks{${1:arg1}}"
-    },
-    "UpdatetoksCalissond{}": {
-      "snippet": "UpdatetoksCalissond{${1:arg}}"
-    },
-    "UpdatetoksCalissondDepart{}": {
-      "snippet": "UpdatetoksCalissondDepart{${1:arg}}"
-    },
-    "UpdatetoksCalissong{}": {
-      "snippet": "UpdatetoksCalissong{${1:arg}}"
-    },
-    "UpdatetoksCalissongDepart{}": {
-      "snippet": "UpdatetoksCalissongDepart{${1:arg}}"
-    },
-    "UpdatetoksCB{}": {
-      "snippet": "UpdatetoksCB{${1:arg}}"
-    },
-    "Updatetoksdemidroite{}": {
-      "snippet": "Updatetoksdemidroite{${1:arg1}}"
-    },
-    "Updatetoksdroite{}": {
-      "snippet": "Updatetoksdroite{${1:arg1}}"
-    },
-    "UpdatetoksEngrenages": {},
-    "Updatetoksespace{}": {
-      "snippet": "Updatetoksespace{${1:arg1}}"
-    },
-    "UpdatetoksFrise": {},
-    "UpdatetoksHor": {},
-    "Updatetoksmath{}": {
-      "snippet": "Updatetoksmath{${1:arg1}}"
-    },
-    "UpdatetoksMosaique{}": {
-      "snippet": "UpdatetoksMosaique{${1:arg1}}"
-    },
-    "UpdatetoksNAMelange{}": {
-      "snippet": "UpdatetoksNAMelange{${1:arg}}"
-    },
-    "UpdatetoksNANombres{}": {
-      "snippet": "UpdatetoksNANombres{${1:arg}}"
-    },
-    "UpdatetoksNonoa{}": {
-      "snippet": "UpdatetoksNonoa{${1:arg}}"
-    },
-    "UpdatetoksNonob{}": {
-      "snippet": "UpdatetoksNonob{${1:arg}}"
-    },
-    "UpdatetoksPANombre{}": {
-      "snippet": "UpdatetoksPANombre{${1:arg}}"
-    },
-    "UpdatetoksPQuatreh{}": {
-      "snippet": "UpdatetoksPQuatreh{${1:arg}}"
-    },
-    "UpdatetoksPQuatrev{}": {
-      "snippet": "UpdatetoksPQuatrev{${1:arg}}"
-    },
-    "Updatetoksproba{}": {
-      "snippet": "Updatetoksproba{${1:arg1}}"
-    },
-    "Updatetoksprobaechelle{}": {
-      "snippet": "Updatetoksprobaechelle{${1:arg1}}"
-    },
-    "Updatetoksprobapdf{}": {
-      "snippet": "Updatetoksprobapdf{${1:arg}}"
-    },
-    "updatetokspropor": {},
-    "UpdatetoksPyramide{}": {
-      "snippet": "UpdatetoksPyramide{${1:arg1}}"
-    },
-    "UpdatetoksPyramideMul{}": {
-      "snippet": "UpdatetoksPyramideMul{${1:arg}}"
-    },
-    "Updatetoksq{}": {
-      "snippet": "Updatetoksq{${1:arg1}}"
-    },
-    "Updatetoksrepere{}": {
-      "snippet": "Updatetoksrepere{${1:arg1}}"
-    },
-    "UpdatetoksRLE{}": {
-      "snippet": "UpdatetoksRLE{${1:arg}}"
-    },
-    "UpdatetoksSolide{}": {
-      "snippet": "UpdatetoksSolide{${1:arg}}"
-    },
-    "UpdatetoksTriomino{}": {
-      "snippet": "UpdatetoksTriomino{${1:arg1}}"
-    },
-    "UpdatetoksVueCube{}": {
-      "snippet": "UpdatetoksVueCube{${1:arg}}"
-    },
-    "UpdateTraces{}": {
-      "snippet": "UpdateTraces{${1:arg1}}"
-    },
-    "valabsdeno": {},
-    "valabsnum": {},
-    "ValeurEchange": {},
-    "ValeurTest": {},
-    "Verification{}{}{}{}{}": {
-      "snippet": "Verification{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "WidthRapido": {},
-    "xcnt": {},
-    "xxx": {},
-    "yyy": {},
-    "zzpar": {},
-    "zzz": {},
-    "BuildKakurasu": {},
-    "BuildMidPoint": {},
-    "BuildGrades": {},
-    "BuildSquaro": {},
-    "PfCSquaroNom": {},
-    "BuildSquaroSolution": {},
-    "PfCGaramHeight": {},
-    "PfCListeGaram": {},
-    "PfCListeGaramlen": {},
-    "PfCFutoHeight": {},
-    "PfCTailleFuto": {},
-    "ListeFuto": {},
-    "PfCFutoStyleTexte": {},
-    "PfCLongueurP": {},
-    "LabyLongCM": {},
-    "MPFractionEprouvetteCode": {},
-    "MPFractionEprouvette{}{}": {
-      "snippet": "MPFractionEprouvette{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFractionRegulierCode": {},
-    "MPFractionRegulier{}{}": {
-      "snippet": "MPFractionRegulier{${1:arg1}}{${2:arg2}}"
-    },
-    "MPFractionTriangleCode": {},
-    "MPFractionRectangleCode": {},
-    "MPFractionDisqueCode": {},
-    "MPFractionSegmentCode": {},
-    "MPPavageBase": {},
-    "MPReseauRegulier": {},
-    "MPReseauCode": {},
-    "MPPeriodiqueCode": {},
-    "MPPavageEscherCode": {},
-    "MPPavageEscher": {},
-    "MPPeriodique": {},
-    "MPReseau": {},
-    "MPRegulier": {},
-    "MPPavage": {},
-    "PfCRayonArc": {},
-    "PfCPapierTest": {},
-    "Dollar": {},
-    "LivreSterling": {},
-    "PfCJury": {},
-    "PfCEnonce": {},
-    "PfCReponse": {},
-    "PfCCalculsReciPythagore{}{}{}{}": {
-      "snippet": "PfCCalculsReciPythagore{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "PfCCalculsReciPythagore[]{}{}{}{}": {
-      "snippet": "PfCCalculsReciPythagore[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "dobble{}": {
-      "snippet": "dobble{${1:arg}}"
-    },
-    "PfCListeSymboleDobble": {},
-    "PfCDobbleTotalSymboles": {},
-    "PfCDobbleNiveau": {},
-    "TestPremier{}": {
-      "snippet": "TestPremier{${1:arg}}"
-    },
-    "PfCEraHauteur": {},
-    "PfCEraMax": {},
-    "tokPfCListeDesFonctions": {},
-    "tokPfCListeDesNomsFonctions": {},
-    "UpdatePfCListeDesFonctions{}": {
-      "snippet": "UpdatePfCListeDesFonctions{${1:arg}}"
-    },
-    "UpdatePfCListeDesNomsFonctions{}": {
-      "snippet": "UpdatePfCListeDesNomsFonctions{${1:arg}}"
-    },
-    "PfCTraceMGCode": {},
-    "TraceMultiGraphique{}{}": {
-      "snippet": "TraceMultiGraphique{${1:arg1}}{${2:arg2}}"
-    },
-    "JeConstruisLesProduits{}{}": {
-      "snippet": "JeConstruisLesProduits{${1:arg1}}{${2:arg2}}"
-    },
-    "toklistemodelbarresep": {},
-    "UpdateListeModelBarreSep{}": {
-      "snippet": "UpdateListeModelBarreSep{${1:arg}}"
-    },
-    "PfCMPDessineModelBarreNHCode": {},
-    "PfCMPDessineModelBarreBriqueCode": {},
-    "PfCMPDessineModelBarreBriqueCodePDF": {},
-    "CartesClassique": {},
-    "CartesLoop": {},
-    "CartesJaiQuia": {},
-    "CartesTrivial": {},
-    "BuildBoiteCartesCCCode": {},
-    "BuildBoiteCartesCommerceC": {},
-    "toklistepatron": {},
-    "UpdatetoksPatron{}": {
-      "snippet": "UpdatetoksPatron{${1:arg}}"
-    },
-    "MPPatronCubeCode": {},
-    "MPPatronCube{}{}": {
-      "snippet": "MPPatronCube{${1:arg1}}{${2:arg2}}"
-    },
-    "MPPatronPaveCode": {},
-    "MPPatronPave{}{}": {
-      "snippet": "MPPatronPave{${1:arg1}}{${2:arg2}}"
-    },
-    "TableSoustractionSeule{}": {
-      "snippet": "TableSoustractionSeule{${1:arg}}"
-    },
-    "MPEinsteinHatCode": {},
-    "MPEinstein": {},
-    "RangementListe{}": {
-      "snippet": "RangementListe{${1:arg}}"
-    },
-    "PfCArticleMediane": {},
-    "UpdateHach{}": {
-      "snippet": "UpdateHach{${1:arg}}"
-    },
-    "toklisteanglehachure": {},
-    "CompteurECCC": {},
-    "CompteurECCCTotal": {},
-    "UpdatetoksHisto": {},
-    "UpdatetoksECC": {},
-    "buildgraphhisto": {},
-    "CalculFrequenceClasses{}": {
-      "snippet": "CalculFrequenceClasses{${1:arg}}"
-    },
-    "CalculECCClasses{}": {
-      "snippet": "CalculECCClasses{${1:arg}}"
-    },
-    "buildtabclasses": {},
-    "MPBuildHisto{}{}{}{}": {
-      "snippet": "MPBuildHisto{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "MPSplineCode": {},
-    "MPSpline{}{}{}{}{}": {
-      "snippet": "MPSpline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "toklistenumberhive": {},
-    "toklistecasescoloreesNH": {},
-    "UpdatetoksNHive{}": {
-      "snippet": "UpdatetoksNHive{${1:Arg}}"
-    },
-    "UpdatetoksCCNHive{}": {
-      "snippet": "UpdatetoksCCNHive{${1:arg}}"
-    },
-    "BuildNumberHiveAdditif{}{}{}{}{}": {
-      "snippet": "BuildNumberHiveAdditif{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "ChoixAleaMix{}{}{}{}": {
-      "snippet": "ChoixAleaMix{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "thePfCAutoNbcpt": {},
-    "ChoixNombreUn{}": {
-      "snippet": "ChoixNombreUn{${1:arg}}"
-    },
-    "ChoixNombreUn[]{}": {
-      "snippet": "ChoixNombreUn[${2:opt}]{${1:arg}}"
-    },
-    "ChoixNombreDeux{}": {
-      "snippet": "ChoixNombreDeux{${1:arg}}"
-    },
-    "ChoixNombreDeux[]{}": {
-      "snippet": "ChoixNombreDeux[${2:opt}]{${1:arg}}"
-    },
-    "SoustractionPositive{}{}": {
-      "snippet": "SoustractionPositive{${1:arg1}}{${2:arg2}}"
-    },
-    "SoustractionPositive[]{}{}": {
-      "snippet": "SoustractionPositive[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "PfCTabstrut": {},
-    "MPMultiZoom{}{}{}": {
-      "snippet": "MPMultiZoom{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "PfCPyraVocaHauteur": {},
-    "toklistegrimukupdt": {},
-    "toklistegrimukunb": {},
-    "UpdatetoksGrimCases": {},
-    "BuildGrimuku{}{}": {
-      "snippet": "BuildGrimuku{${1:arg1}}{${2:arg2}}"
-    },
-    "toklistepuzzlea": {},
-    "UpdatetoksPuzzleA": {},
-    "BuildPuzzleCode": {},
-    "BuildPuzzle{}": {
-      "snippet": "BuildPuzzle{${1:arg}}"
-    },
-    "Horlogeaux": {},
-    "timenow": {},
-    "MPAfficheurNew{}{}{}": {
-      "snippet": "MPAfficheurNew{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MPHorlogeNew{}{}{}": {
-      "snippet": "MPHorlogeNew{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "RondeInfernaleaux": {},
-    "TraceLabyMul{}{}{}{}{}": {
-      "snippet": "TraceLabyMul{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "toklistenombrecalculatrice": {},
-    "UpdatetoksCalculatrice": {},
-    "toklisteciblea": {},
-    "UpdatetoksCibleA": {},
-    "BuildCible{}": {
-      "snippet": "BuildCible{${1:arg}}"
-    },
-    "DessineRoseMulPersoCode": {},
-    "DessineRoseMulPerso{}{}": {
-      "snippet": "DessineRoseMulPerso{${1:arg1}}{${2:arg2}}"
-    },
-    "theCCRetiensAide": {},
-    "tokstabmul": {},
-    "tokstabmulpdts": {},
-    "tokstabmulnonpdts": {},
-    "tokstabmulpdtscible": {},
-    "UpdatetoksTabMul": {},
-    "UpdatetoksTabMulPdts": {},
-    "UpdatetoksTabMulNonPdts": {},
-    "UpdatetoksTabMulPdtsCible": {},
-    "PfCListeDiviseurs{}": {
-      "snippet": "PfCListeDiviseurs{${1:arg}}"
-    },
-    "TabMulCibleCode": {},
-    "BuildTabMulCible{}{}{}": {
-      "snippet": "BuildTabMulCible{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "TabMulCode": {},
-    "BuildTabMul{}": {
-      "snippet": "BuildTabMul{${1:arg}}"
-    },
-    "TabMulEnonceCode": {},
-    "BuildTabMulEnonce{}{}{}": {
-      "snippet": "BuildTabMulEnonce{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "colortbl"
     }
-  },
-  "envs": {
-    "Geometrie": {},
-    "Geometrie[]": {
-      "name": "Geometrie",
-      "snippet": "[${1:clés}]"
-    },
-    "Tableur": {},
-    "Tableur[]": {
-      "name": "Tableur",
-      "snippet": "[${1:clés}]"
-    },
-    "Scratch": {},
-    "Scratch[]": {
-      "name": "Scratch",
-      "snippet": "[${1:clés}]"
-    },
-    "Mind": {},
-    "Bulle": {},
-    "Bulle[]": {
-      "name": "Bulle",
-      "snippet": "[${1:clés}]"
-    },
-    "Twitter": {},
-    "Twitter[]": {
-      "name": "Twitter",
-      "snippet": "[${1:clés}]"
-    },
-    "Facebook": {},
-    "Facebook[]": {
-      "name": "Facebook",
-      "snippet": "[${1:clés}]"
-    },
-    "Snapchat": {},
-    "Snapchat[]": {
-      "name": "Snapchat",
-      "snippet": "[${1:clés}]"
-    },
-    "Instagram": {},
-    "Instagram[]": {
-      "name": "Instagram",
-      "snippet": "[${1:clés}]"
-    },
-    "CadreNombre": {},
-    "calc": {},
-    "Mybox{}{}{}": {
-      "name": "Mybox",
-      "snippet": "{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "MyboxJQ{}{}": {
-      "name": "MyboxJQ",
-      "snippet": "{${1:arg1}}{${2:arg2}}"
-    },
-    "MyboxSimpleAr{}": {
-      "name": "MyboxSimpleAr",
-      "snippet": "{${1:arg}}"
-    },
-    "MyboxSimpleAv{}": {
-      "name": "MyboxSimpleAv",
-      "snippet": "{${1:arg}}"
-    },
-    "MyboxTrivial": {},
-    "MyboxTrivial[]": {
-      "name": "MyboxTrivial",
-      "snippet": "[${1:options}]"
-    },
-    "MyDominoLogo": {},
-    "MyDominoMini": {},
-    "QuestionBox": {},
-    "QuestionReponse": {},
-    "RapidoBox": {},
-    "Sortie": {},
-    "Trame": {},
-    "TrameDomino": {},
-    "MyboxJQAr": {}
-  },
-  "options": [
-    "nonshellescape",
-    "nonamssymb"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Lg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Lg{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Lg",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Lg[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Lg*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Lg*{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Lg*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Lg*[${2:unité,clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Aire",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aire{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Aire",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Aire[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Aire*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aire*{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Aire*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Aire*[${2:unité,clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Vol",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vol{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Vol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Vol[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Vol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vol*{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Vol*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Vol*[${2:unité,clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Masse",
+      "arg": {
+        "format": "{}",
+        "snippet": "Masse{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Masse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Masse[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Masse*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Masse*{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Masse*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Masse*[${2:unité,clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Capa",
+      "arg": {
+        "format": "{}",
+        "snippet": "Capa{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Capa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Capa[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Capa*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Capa*{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Capa*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Capa*[${2:unité,clés%keyvals}]{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Temps",
+      "arg": {
+        "format": "{}",
+        "snippet": "Temps{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Temps",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Temps[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MasseVol",
+      "arg": {
+        "format": "{}",
+        "snippet": "MasseVol{${1:nombre}}"
+      }
+    },
+    {
+      "name": "MasseVol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MasseVol[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Vitesse",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vitesse{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Vitesse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Vitesse[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Octet",
+      "arg": {
+        "format": "{}",
+        "snippet": "Octet{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Octet",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Octet[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Conso",
+      "arg": {
+        "format": "{}",
+        "snippet": "Conso{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Conso",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Conso[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Prix",
+      "arg": {
+        "format": "{}",
+        "snippet": "Prix{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Prix",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Prix[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Temp",
+      "arg": {
+        "format": "{}",
+        "snippet": "Temp{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Temp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Temp[${2:unité,clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RepresenterEntier",
+      "arg": {
+        "format": "{}",
+        "snippet": "RepresenterEntier{${1:nombre}}"
+      }
+    },
+    {
+      "name": "RepresenterEntier",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "RepresenterEntier[${2:clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\RepresenterEntier"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DecompositionDecimale",
+      "arg": {
+        "format": "{}",
+        "snippet": "DecompositionDecimale{${1:nombre}}"
+      }
+    },
+    {
+      "name": "DecompositionDecimale",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DecompositionDecimale[${2:clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\DecompositionDecimale"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Ecriture",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ecriture{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Ecriture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Ecriture[${2:clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Ecriture"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Frise",
+      "arg": {
+        "format": "{}",
+        "snippet": "Frise{1/A/a,2/B/b,3/C/c,...}"
+      }
+    },
+    {
+      "name": "Frise",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Frise[${1:clés%keyvals}]{1/A/a,2/B/b,3/C/c,...}",
+        "keys": [
+          "\\Frise"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Tables",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tables{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Tables",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Tables[${2:clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\Tables"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Papiers"
+    },
+    {
+      "name": "Papiers",
+      "arg": {
+        "format": "[]",
+        "snippet": "Papiers[${1:clés%keyvals}]",
+        "keys": [
+          "\\Papiers"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Tableau",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tableau{${1:liste de nombres}}"
+      }
+    },
+    {
+      "name": "Tableau",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Tableau[${2:clés%keyvals}]{${1:liste de nombres}}",
+        "keys": [
+          "\\Tableau,\\GlisseNombre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GlisseNombre",
+      "arg": {
+        "format": "{}",
+        "snippet": "GlisseNombre{${1:}}"
+      }
+    },
+    {
+      "name": "GlisseNombre",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "GlisseNombre[${2:clés%keyvals}]{${1:}}",
+        "keys": [
+          "\\Tableau,\\GlisseNombre",
+          "\\GlisseNombre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PfCCG",
+      "unusual": true
+    },
+    {
+      "name": "PfCDG",
+      "unusual": true
+    },
+    {
+      "name": "PfCUG",
+      "unusual": true
+    },
+    {
+      "name": "PfCCM",
+      "unusual": true
+    },
+    {
+      "name": "PfCDM",
+      "unusual": true
+    },
+    {
+      "name": "PfCUM",
+      "unusual": true
+    },
+    {
+      "name": "PfCCm",
+      "unusual": true
+    },
+    {
+      "name": "PfCDm",
+      "unusual": true
+    },
+    {
+      "name": "PfCUm",
+      "unusual": true
+    },
+    {
+      "name": "PfCC",
+      "unusual": true
+    },
+    {
+      "name": "PfCD",
+      "unusual": true
+    },
+    {
+      "name": "PfCU",
+      "unusual": true
+    },
+    {
+      "name": "PfCd",
+      "unusual": true
+    },
+    {
+      "name": "PfCc",
+      "unusual": true
+    },
+    {
+      "name": "PfCm",
+      "unusual": true
+    },
+    {
+      "name": "Relie",
+      "arg": {
+        "format": "{}",
+        "snippet": "Relie{${1:Liste des éléments par ligne}}"
+      }
+    },
+    {
+      "name": "Relie",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Relie[${2:clés%keyvals}]{${1:Liste des éléments par ligne}}",
+        "keys": [
+          "\\Relie"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QCM",
+      "arg": {
+        "format": "{}",
+        "snippet": "QCM{${1:questions%text}}"
+      }
+    },
+    {
+      "name": "QCM",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "QCM[${2:clés%keyvals}]{${1:questions%text}}",
+        "keys": [
+          "\\QCM"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QFlash",
+      "arg": {
+        "format": "{}",
+        "snippet": "QFlash{${1:question/param1/param2/...%text}}"
+      }
+    },
+    {
+      "name": "QFlash",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "QFlash[${2:clés%keyvals}]{${1:question/param1/param2/...%text}}",
+        "keys": [
+          "\\QFlash"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BoiteFlash",
+      "arg": {
+        "format": "{}",
+        "snippet": "BoiteFlash{${1:contenu%text}}"
+      }
+    },
+    {
+      "name": "BoiteFlash",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "BoiteFlash[${2:length}]{${1:contenu%text}}"
+      }
+    },
+    {
+      "name": "Rapido",
+      "arg": {
+        "format": "{}",
+        "snippet": "Rapido{${1:q1/r1§q2/r2§...%text}}"
+      }
+    },
+    {
+      "name": "Rapido",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Rapido[${2:clés%keyvals}]{${1:q1/r1§q2/r2§...%text}}",
+        "keys": [
+          "\\Rapido"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BoiteRapido",
+      "arg": {
+        "format": "{}",
+        "snippet": "BoiteRapido{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "Cible",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cible{${1:n1,n2,...}}"
+      }
+    },
+    {
+      "name": "Cible",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Cible[${2:clés%keyvals}]{${1:n1,n2,...}}",
+        "keys": [
+          "\\Cible"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Mentalo",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mentalo{${1:o1,o2,...}}"
+      }
+    },
+    {
+      "name": "Mentalo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Mentalo[${2:clés%keyvals}]{${1:o1,o2,...}}",
+        "keys": [
+          "\\Mentalo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Automatismes",
+      "arg": {
+        "format": "{}",
+        "snippet": "Automatismes{${1:o1,o2,...}}"
+      }
+    },
+    {
+      "name": "Automatismes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Automatismes[${2:clés%keyvals}]{${1:o1,o2,...}}",
+        "keys": [
+          "\\Automatismes"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PyraVoca",
+      "arg": {
+        "format": "{}",
+        "snippet": "PyraVoca{${1:définition1/mot1/couleur1,...}}"
+      }
+    },
+    {
+      "name": "PyraVoca",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PyraVoca[${2:clés%keyvals}]{${1:définition1/mot1/couleur1,...}}",
+        "keys": [
+          "\\PyraVoca"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CourseNombre",
+      "arg": {
+        "format": "{}",
+        "snippet": "CourseNombre{${1:file}}"
+      }
+    },
+    {
+      "name": "CourseNombre",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CourseNombre[${2:clés%keyvals}]{${1:file}}",
+        "keys": [
+          "\\CourseNombre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ChoixAlea",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ChoixAlea{${1:a}}{${2:b}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "ChoixAlea",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ChoixAlea[${4:p}]{${1:a}}{${2:b}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "VariableAlea",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "VariableAlea{${1:cmd}}{${2:fp expression}}"
+      }
+    },
+    {
+      "name": "MathAlea",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MathAlea{${1:file}}"
+      }
+    },
+    {
+      "name": "MathAlea",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MathAlea[${2:clés%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "CourseNombreTotalQuestions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CourseNombreTotalQuestions{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Autonomie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Autonomie{${1:q1/r1§q2/r2§...§q8/r8%text}}{${2:Q1/I1§Q2/I2§...§Q8/I8%text}}"
+      }
+    },
+    {
+      "name": "Autonomie",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Autonomie[${3:clés%keyvals}]{${1:q1/r1§q2/r2§...§q8/r8%text}}{${2:Q1/I1§Q2/I2§...§Q8/I8%text}}",
+        "keys": [
+          "\\Autonomie"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FicheMemo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FicheMemo{${1:l1/q1/r1§l2/q2/r2§...%text}}{${2:L1/Q1/R1§L2/Q2/I2§...%text}}"
+      }
+    },
+    {
+      "name": "FicheMemo",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "FicheMemo[${3:clés%keyvals}]{${1:l1/q1/r1§l2/q2/r2§...%text}}{${2:L1/Q1/R1§L2/Q2/I2§...%text}}",
+        "keys": [
+          "\\FicheMemo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BonSortie",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "BonSortie{${1:énoncé1%text}}{${2:énoncé2%text}}{${3:énoncé3%text}}{${4:énoncé4%text}}"
+      }
+    },
+    {
+      "name": "BonSortie",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "BonSortie[${5:clés%keyvals}]{${1:énoncé1%text}}{${2:énoncé2%text}}{${3:énoncé3%text}}{${4:énoncé4%text}}",
+        "keys": [
+          "\\BonSortie"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Solide"
+    },
+    {
+      "name": "Solide",
+      "arg": {
+        "format": "[]",
+        "snippet": "Solide[${1:clés%keyvals}]",
+        "keys": [
+          "\\Solide"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Patron",
+      "arg": {
+        "format": "{}",
+        "snippet": "Patron{${1:description du patron}}"
+      }
+    },
+    {
+      "name": "Patron",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Patron[${2:clés%keyvals}]{${1:description du patron}}",
+        "keys": [
+          "\\Patron"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProprieteDroites",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ProprieteDroites{${1:a%formula}}{${2:b%formula}}{${3:c%formula}}"
+      }
+    },
+    {
+      "name": "ProprieteDroites",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ProprieteDroites[${4:clés%keyvals}]{${1:a%formula}}{${2:b%formula}}{${3:c%formula}}",
+        "keys": [
+          "\\ProprieteDroites"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Reperage",
+      "arg": {
+        "format": "{}",
+        "snippet": "Reperage{${1:Liste des éléments}}"
+      }
+    },
+    {
+      "name": "Reperage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Reperage[${2:clés%keyvals}]{${1:Liste des éléments}}",
+        "keys": [
+          "\\Reperage,\\ReperageMulti,\\ReperageZoom"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ReperageMulti",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ReperageMulti{${1:Liste des éléments}}"
+      }
+    },
+    {
+      "name": "ReperageMulti",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ReperageMulti[${2:clés%keyvals}]{${1:Liste des éléments}}",
+        "keys": [
+          "\\Reperage,\\ReperageMulti,\\ReperageZoom"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ReperageZoom",
+      "arg": {
+        "format": "{}",
+        "snippet": "ReperageZoom{${1:élément}}"
+      }
+    },
+    {
+      "name": "ReperageZoom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ReperageZoom[${2:clés%keyvals}]{${1:élément}}",
+        "keys": [
+          "\\Reperage,\\ReperageMulti,\\ReperageZoom"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SommeAngles",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SommeAngles{${1:Nom du triangle}}{${2:a}}{${3:b}}"
+      }
+    },
+    {
+      "name": "SommeAngles",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "SommeAngles[${4:clés%keyvals}]{${1:Nom du triangle}}{${2:a}}{${3:b}}",
+        "keys": [
+          "\\SommeAngles"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResultatAngle"
+    },
+    {
+      "name": "Pythagore",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Pythagore{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
+      }
+    },
+    {
+      "name": "Pythagore",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "Pythagore[${5:clés%keyvals}]{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}",
+        "keys": [
+          "\\Pythagore"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResultatPytha"
+    },
+    {
+      "name": "RedactionCalculsPythagore",
+      "unusual": true
+    },
+    {
+      "name": "RedactionCalculsReciPythagore",
+      "unusual": true
+    },
+    {
+      "name": "RedactionConclusionReciPythagore",
+      "unusual": true
+    },
+    {
+      "name": "RedactionPythagore",
+      "unusual": true
+    },
+    {
+      "name": "RedactionReciPythagore",
+      "unusual": true
+    },
+    {
+      "name": "Thales",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "Thales{${1:Nom des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}{${6:e}}{${7:f}}"
+      }
+    },
+    {
+      "name": "Thales",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "Thales[${8:clés%keyvals}]{${1:Nom des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}{${6:e}}{${7:f}}",
+        "keys": [
+          "\\Thales"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResultatThalesx"
+    },
+    {
+      "name": "ResultatThalesy"
+    },
+    {
+      "name": "ResultatThalesz"
+    },
+    {
+      "name": "Trigo",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Trigo{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}"
+      }
+    },
+    {
+      "name": "Trigo",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "Trigo[${5:clés%keyvals}]{${1:Nom du triangle}}{${2:a}}{${3:b}}{${4:c}}",
+        "keys": [
+          "\\Trigo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResultatTrigo"
+    },
+    {
+      "name": "Cartographie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Cartographie{${1:longitude}}{${2:latitude}}"
+      }
+    },
+    {
+      "name": "Cartographie",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Cartographie[${3:clés%keyvals}]{${1:longitude}}{${2:latitude}}",
+        "keys": [
+          "\\Cartographie"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Formule"
+    },
+    {
+      "name": "Formule",
+      "arg": {
+        "format": "[]",
+        "snippet": "Formule[${1:clés%keyvals}]",
+        "keys": [
+          "\\Formule"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "VueCubes",
+      "arg": {
+        "format": "{}",
+        "snippet": "VueCubes{${1:liste de hauteurs}}"
+      }
+    },
+    {
+      "name": "VueCubes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "VueCubes[${2:clés%keyvals}]{${1:liste de hauteurs}}",
+        "keys": [
+          "\\VueCubes"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Pavage"
+    },
+    {
+      "name": "Pavage",
+      "arg": {
+        "format": "[]",
+        "snippet": "Pavage[${1:clés%keyvals}]",
+        "keys": [
+          "\\Pavage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Addition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Addition{${1:n1}}{${2:n2}}"
+      }
+    },
+    {
+      "name": "Addition",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Addition[${3:clés%keyvals}]{${1:n1}}{${2:n2}}",
+        "keys": [
+          "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Soustraction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Soustraction{${1:n1}}{${2:n2}}"
+      }
+    },
+    {
+      "name": "Soustraction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Soustraction[${3:clés%keyvals}]{${1:n1}}{${2:n2}}",
+        "keys": [
+          "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Multiplication",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Multiplication{${1:n1}}{${2:n2}}"
+      }
+    },
+    {
+      "name": "Multiplication",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Multiplication[${3:clés%keyvals}]{${1:n1}}{${2:n2}}",
+        "keys": [
+          "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Division",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Division{${1:n1}}{${2:n2}}"
+      }
+    },
+    {
+      "name": "Division",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Division[${3:clés%keyvals}]{${1:n1}}{${2:n2}}",
+        "keys": [
+          "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DivisionD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DivisionD{${1:n1}}{${2:n2}}"
+      }
+    },
+    {
+      "name": "DivisionD",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DivisionD[${3:clés%keyvals}]{${1:n1}}{${2:n2}}",
+        "keys": [
+          "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PyramideNombre",
+      "arg": {
+        "format": "{}",
+        "snippet": "PyramideNombre{${1:c1,c2,...}}"
+      }
+    },
+    {
+      "name": "PyramideNombre",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PyramideNombre[${2:clés%keyvals}]{${1:c1,c2,...}}",
+        "keys": [
+          "\\PyramideNombre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProgCalcul",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProgCalcul{${1:i1,i2,...%formula}}"
+      }
+    },
+    {
+      "name": "ProgCalcul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ProgCalcul[${2:clés%keyvals}]{${1:i1,i2,...%formula}}",
+        "keys": [
+          "\\ProgCalcul"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Decomposition",
+      "arg": {
+        "format": "{}",
+        "snippet": "Decomposition{${1:integer}}"
+      }
+    },
+    {
+      "name": "Decomposition",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Decomposition[${2:clés%keyvals}]{${1:integer}}",
+        "keys": [
+          "\\Decomposition"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Erathostene"
+    },
+    {
+      "name": "Erathostene",
+      "arg": {
+        "format": "[]",
+        "snippet": "Erathostene[${1:clés%keyvals}]",
+        "keys": [
+          "\\Erathostene"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Engrenages",
+      "arg": {
+        "format": "{}",
+        "snippet": "Engrenages{${1:m1/z1,m2/z2,...}}"
+      }
+    },
+    {
+      "name": "Engrenages",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Engrenages[${2:clés%keyvals}]{${1:m1/z1,m2/z2,...}}",
+        "keys": [
+          "\\Engrenages"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Fraction",
+      "arg": {
+        "format": "{}",
+        "snippet": "Fraction{${1:a/b}}"
+      }
+    },
+    {
+      "name": "Fraction",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Fraction[${2:clés%keyvals}]{${1:a/b}}",
+        "keys": [
+          "\\Fraction"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FractionDecimale",
+      "arg": {
+        "format": "{}",
+        "snippet": "FractionDecimale{${1:a/b}}"
+      }
+    },
+    {
+      "name": "FractionDecimale",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "FractionDecimale[${2:clés%keyvals}]{${1:a/b}}",
+        "keys": [
+          "\\FractionDecimale"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Simplification",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Simplification{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "Simplification",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Simplification[${3:clés%keyvals}]{${1:a}}{${2:b}}",
+        "keys": [
+          "\\Simplification"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AddFraction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddFraction{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "AddFraction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "AddFraction[${3:clés%keyvals}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "AddFraction",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "AddFraction[${3:clés%keyvals}][${4:etape}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "SousFraction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SousFraction{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "SousFraction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "SousFraction[${3:clés%keyvals}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "SousFraction",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "SousFraction[${3:clés%keyvals}][${4:etape}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "MulFraction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MulFraction{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "MulFraction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MulFraction[${3:clés%keyvals}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "MulFraction",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "MulFraction[${3:clés%keyvals}][${4:etape}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "DivFraction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DivFraction{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "DivFraction",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DivFraction[${3:clés%keyvals}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "DivFraction",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "DivFraction[${3:clés%keyvals}][${4:etape}]{${1:a/b}}{${2:c/d}}"
+      }
+    },
+    {
+      "name": "Rangement",
+      "arg": {
+        "format": "{}",
+        "snippet": "Rangement{${1:liste de nombres}}"
+      }
+    },
+    {
+      "name": "Rangement",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Rangement[${2:clés%keyvals}]{${1:liste de nombres}}",
+        "keys": [
+          "\\Rangement"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Puissances",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Puissances{${1:expr%formula}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "Propor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Propor{${1:Liste des éléments par colonne}}"
+      }
+    },
+    {
+      "name": "Propor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Propor[${2:clés%keyvals}]{${1:Liste des éléments par colonne}}",
+        "keys": [
+          "\\Propor"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FlechesPH",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FlechesPH{${1:a}}{${2:b}}{${3:texte}}"
+      }
+    },
+    {
+      "name": "FlechesPB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FlechesPB{${1:a}}{${2:b}}{${3:texte}}"
+      }
+    },
+    {
+      "name": "FlechesPG",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FlechesPG{${1:a}}{${2:b}}{${3:texte}}"
+      }
+    },
+    {
+      "name": "FlechesPD",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FlechesPD{${1:a}}{${2:b}}{${3:texte}}"
+      }
+    },
+    {
+      "name": "FlecheCoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "FlecheCoef{${1:texte}}"
+      }
+    },
+    {
+      "name": "FlecheCoefDebut",
+      "arg": {
+        "format": "{}",
+        "snippet": "FlecheCoefDebut{${1:texte}}"
+      }
+    },
+    {
+      "name": "FlecheLineaireH",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FlecheLineaireH{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
+      }
+    },
+    {
+      "name": "FlecheLineaireB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FlecheLineaireB{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
+      }
+    },
+    {
+      "name": "FlecheLineaireG",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FlecheLineaireG{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
+      }
+    },
+    {
+      "name": "FlecheLineaireD",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FlecheLineaireD{${1:a}}{${2:b}}{${3:c}}{${4:opération}}"
+      }
+    },
+    {
+      "name": "FlechePCG",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FlechePCG{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "FlechePCD",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FlechePCD{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "FlechePCH",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FlechePCH{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "FlechePCB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FlechePCB{${1:a}}{${2:b}}"
+      }
+    },
+    {
+      "name": "Pourcentage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Pourcentage{${1:t}}{${2:q}}"
+      }
+    },
+    {
+      "name": "Pourcentage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Pourcentage[${3:clés%keyvals}]{${1:t}}{${2:q}}",
+        "keys": [
+          "\\Pourcentage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResultatPourcentage"
+    },
+    {
+      "name": "Ratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ratio{${1:Liste des éléments du ratio}}"
+      }
+    },
+    {
+      "name": "Ratio",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Ratio[${2:clés%keyvals}]{${1:Liste des éléments du ratio}}",
+        "keys": [
+          "\\Ratio"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FlecheRatio",
+      "arg": {
+        "format": "{}",
+        "snippet": "FlecheRatio{${1:texte%plain}}"
+      }
+    },
+    {
+      "name": "FlecheInvRatio",
+      "arg": {
+        "format": "{}",
+        "snippet": "FlecheInvRatio{${1:texte%plain}}"
+      }
+    },
+    {
+      "name": "Stat",
+      "arg": {
+        "format": "{}",
+        "snippet": "Stat{${1:Données}}"
+      }
+    },
+    {
+      "name": "Stat",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Stat[${2:clés%keyvals}]{${1:Données}}",
+        "keys": [
+          "\\Stat"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EffectifTotal"
+    },
+    {
+      "name": "Etendue"
+    },
+    {
+      "name": "Moyenne"
+    },
+    {
+      "name": "Mediane"
+    },
+    {
+      "name": "QuartileUn"
+    },
+    {
+      "name": "QuartileTrois"
+    },
+    {
+      "name": "Proba",
+      "arg": {
+        "format": "{}",
+        "snippet": "Proba{${1:Liste des évènements et probabilités}}"
+      }
+    },
+    {
+      "name": "Proba",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Proba[${2:clés%keyvals}]{${1:Liste des évènements et probabilités}}",
+        "keys": [
+          "\\Proba"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FonctionAffine",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "FonctionAffine{${1:Noms des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}"
+      }
+    },
+    {
+      "name": "FonctionAffine",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "FonctionAffine[${6:clés%keyvals}]{${1:Noms des points considérés}}{${2:a}}{${3:b}}{${4:c}}{${5:d}}",
+        "keys": [
+          "\\FonctionAffine"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Fonction",
+      "arg": {
+        "format": "{}",
+        "snippet": "Fonction{${1:Liste des valeurs}}"
+      }
+    },
+    {
+      "name": "Fonction",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Fonction[${2:clés%keyvals}]{${1:Liste des valeurs}}",
+        "keys": [
+          "\\Fonction"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LectureGraphique"
+    },
+    {
+      "name": "LectureGraphique",
+      "arg": {
+        "format": "[]",
+        "snippet": "LectureGraphique[${1:clés%keyvals}]",
+        "keys": [
+          "\\LectureGraphique"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Distri",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Distri{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
+      }
+    },
+    {
+      "name": "Distri",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "Distri[${5:clés%keyvals}]{${1:a}}{${2:b}}{${3:c}}{${4:d}}",
+        "keys": [
+          "\\Distri"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Resultat"
+    },
+    {
+      "name": "Factorisation",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Factorisation{${1:f1}}{${2:f2}}{${3:f3}}"
+      }
+    },
+    {
+      "name": "Factorisation",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "Factorisation[${4:clés%keyvals}]{${1:f1}}{${2:f2}}{${3:f3}}",
+        "keys": [
+          "\\Factorisation,\\Factorisation*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Factorisation*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Factorisation*{${1:f1}}{${2:f2}}{${3:f3}}"
+      }
+    },
+    {
+      "name": "Factorisation*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "Factorisation*[${4:clés%keyvals}]{${1:f1}}{${2:f2}}{${3:f3}}",
+        "keys": [
+          "\\Factorisation,\\Factorisation*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ModeleBarre",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ModeleBarre{${1:C1 N1 \"T1\" C2 N2 \"T2\"...}}{${2:c1 n1 \"t1\" c2 n2 \"t2\"...}}"
+      }
+    },
+    {
+      "name": "ModeleBarre",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ModeleBarre[${3:clés%keyvals}]{${1:C1 N1 \"T1\" C2 N2 \"T2\"...}}{${2:c1 n1 \"t1\" c2 n2 \"t2\"...}}",
+        "keys": [
+          "\\ModeleBarre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ResolEquation",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ResolEquation{${1:a}}{${2:b}}{${3:c}}{${4:d}}"
+      }
+    },
+    {
+      "name": "ResolEquation",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "ResolEquation[${5:clés%keyvals}]{${1:a}}{${2:b}}{${3:c}}{${4:d}}",
+        "keys": [
+          "\\ResolEquation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "leftcomment",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "leftcomment{${1:A-8}}{${2:B-8}}{${3:A-8}}{${4:\\dots}}"
+      }
+    },
+    {
+      "name": "rightcomment",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "rightcomment{${1:E-8}}{${2:F-8}}{${3:E-8}}{${4:\\dots}}"
+      }
+    },
+    {
+      "name": "Calculatrice",
+      "arg": {
+        "format": "{}",
+        "snippet": "Calculatrice{${1:val1/val2/...}}"
+      }
+    },
+    {
+      "name": "Calculatrice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Calculatrice[${2:clés%keyvals}]{${1:val1/val2/...}}",
+        "keys": [
+          "\\Calculatrice"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CodageRLE",
+      "arg": {
+        "format": "{}",
+        "snippet": "CodageRLE{${1:liste}}"
+      }
+    },
+    {
+      "name": "CodageRLE",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CodageRLE[${2:clés%keyvals}]{${1:liste}}",
+        "keys": [
+          "\\CodageRLE"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Tortue",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tortue{${1:liste des commandes}}"
+      }
+    },
+    {
+      "name": "Tortue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Tortue[${2:clés%keyvals}]{${1:liste des commandes}}",
+        "keys": [
+          "\\Tortue"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RoseMul"
+    },
+    {
+      "name": "RoseMul",
+      "arg": {
+        "format": "[]",
+        "snippet": "RoseMul[${1:clés%keyvals}]",
+        "keys": [
+          "\\RoseMul"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefiTable",
+      "arg": {
+        "format": "{}",
+        "snippet": "DefiTable{${1:contenu}}"
+      }
+    },
+    {
+      "name": "DefiTableTexte",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DefiTableTexte{${1:liste}}{${2:phrase}}"
+      }
+    },
+    {
+      "name": "DefiTableTexte",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DefiTableTexte[${3:clés%keyvals}]{${1:liste}}{${2:phrase}}",
+        "keys": [
+          "\\DefiTableTexte"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefiRangement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DefiRangement{${1:phrase à décoder}}{${2:valeurs à ranger}}"
+      }
+    },
+    {
+      "name": "DefiRangement",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DefiRangement[${3:clés%keyvals}]{${1:phrase à décoder}}{${2:valeurs à ranger}}",
+        "keys": [
+          "\\DefiRangement"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Billard",
+      "arg": {
+        "format": "{}",
+        "snippet": "Billard{${1:\"mot\"}}"
+      }
+    },
+    {
+      "name": "Billard",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Billard[${2:clés%keyvals}]{${1:\"mot\"}}",
+        "keys": [
+          "\\Billard"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Labyrinthe",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Labyrinthe{${1:Contenu1/Couleur1,Contenu2/Couleur2,...}}{${2:P1/P2/...}}"
+      }
+    },
+    {
+      "name": "Labyrinthe",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Labyrinthe[${3:clés%keyvals}]{${1:Contenu1/Couleur1,Contenu2/Couleur2,...}}{${2:P1/P2/...}}",
+        "keys": [
+          "\\Labyrinthe"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LabyNombre"
+    },
+    {
+      "name": "LabyNombre",
+      "arg": {
+        "format": "[]",
+        "snippet": "LabyNombre[${1:clés%keyvals}]",
+        "keys": [
+          "\\LabyNombre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Triomino",
+      "arg": {
+        "format": "{}",
+        "snippet": "Triomino{${1:v1§v2§v3...}}"
+      }
+    },
+    {
+      "name": "Triomino",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Triomino[${2:clés%keyvals}]{${1:v1§v2§v3...}}",
+        "keys": [
+          "\\Triomino"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DessinGradue",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DessinGradue{${1:a1/a2/a3,...}}{${2:b1/b2/b3,...}}{${3:c1§c2§...}}"
+      }
+    },
+    {
+      "name": "DessinGradue",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "DessinGradue[${4:clés%keyvals}]{${1:a1/a2/a3,...}}{${2:b1/b2/b3,...}}{${3:c1§c2§...}}",
+        "keys": [
+          "\\DessinGradue"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Colorilude",
+      "arg": {
+        "format": "{}",
+        "snippet": "Colorilude{${1:a11 b11 a12 b12\\\\a21 b21...%formula}}"
+      }
+    },
+    {
+      "name": "Colorilude",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Colorilude[${2:clés%keyvals}]{${1:a11 b11 a12 b12\\\\a21 b21...%formula}}",
+        "keys": [
+          "\\Colorilude"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ColoriludeEnonce"
+    },
+    {
+      "name": "ColoriludeListeCouleur",
+      "arg": {
+        "format": "{}",
+        "snippet": "ColoriludeListeCouleur{${1:abbrev1 couleur1 abbrev2 couleur2...}}"
+      }
+    },
+    {
+      "name": "PixelArt",
+      "arg": {
+        "format": "{}",
+        "snippet": "PixelArt{${1:.csv file%file}}"
+      }
+    },
+    {
+      "name": "PixelArt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PixelArt[${2:clés%keyvals}]{${1:.csv file%file}}",
+        "keys": [
+          "\\PixelArt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TableauMultiplicatif",
+      "arg": {
+        "format": "{}",
+        "snippet": "TableauMultiplicatif{${1:description du pixel-art}}"
+      }
+    },
+    {
+      "name": "TableauMultiplicatif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TableauMultiplicatif[${2:clés%keyvals}]{${1:description du pixel-art}}",
+        "keys": [
+          "\\TableauMultiplicatif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Quisuisje",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Quisuisje{${1:c1§c2§...}}{${2:m o t à t r o u v e r}}"
+      }
+    },
+    {
+      "name": "Quisuisje",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Quisuisje[${3:clés%keyvals}]{${1:c1§c2§...}}{${2:m o t à t r o u v e r}}",
+        "keys": [
+          "\\Quisuisje"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "QuisuisjeEnonce"
+    },
+    {
+      "name": "QuisuisjeTableau",
+      "arg": {
+        "format": "{}",
+        "snippet": "QuisuisjeTableau{${1:l1/v1§l2/v2§...}}"
+      }
+    },
+    {
+      "name": "QuisuisjeTableau",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "QuisuisjeTableau[${2:Largeur=${3}}]{${1:l1/v1§l2/v2§...}}"
+      }
+    },
+    {
+      "name": "QuisuisjeCodePerso",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "QuisuisjeCodePerso{${1:n1 n2...}}{${2:l1 l2...}}"
+      }
+    },
+    {
+      "name": "QuisuisjeCodePerso",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "QuisuisjeCodePerso[${3:Solution}]{${1:n1 n2...}}{${2:l1 l2...}}"
+      }
+    },
+    {
+      "name": "MotsEmpiles",
+      "arg": {
+        "format": "{}",
+        "snippet": "MotsEmpiles{${1:c1/mot1,c2/mot2,...}}"
+      }
+    },
+    {
+      "name": "MotsEmpiles",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MotsEmpiles[${2:clés%keyvals}]{${1:c1/mot1,c2/mot2,...}}",
+        "keys": [
+          "\\MotsEmpiles"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MotsCroises",
+      "arg": {
+        "format": "{}",
+        "snippet": "MotsCroises{${1:m11/q11,m12/q12...§m21/q21,m22/q22...}}"
+      }
+    },
+    {
+      "name": "MotsCroises",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MotsCroises[${2:clés%keyvals}]{${1:m11/q11,m12/q12...§m21/q21,m22/q22...}}",
+        "keys": [
+          "\\MotsCroises"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MotsCodes",
+      "arg": {
+        "format": "{}",
+        "snippet": "MotsCodes{${1:énoncé1/lettre1§énoncé2/lettre2§...}}"
+      }
+    },
+    {
+      "name": "MotsCodes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MotsCodes[${2:clés%keyvals}]{${1:énoncé1/lettre1§énoncé2/lettre2§...}}",
+        "keys": [
+          "\\MotsCodes"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MotsCodesTableau",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MotsCodesTableau{${1:r11/r12...,r21/r22...}}{${2:texte à trouver}}"
+      }
+    },
+    {
+      "name": "MotsCodesTableau",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MotsCodesTableau[${3:clés%keyvals}]{${1:r11/r12...,r21/r22...}}{${2:texte à trouver}}",
+        "keys": [
+          "\\MotsCodesTableau"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Mosaique",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mosaique{${1:mosa1/rep1,mosa2/rep2,...}}"
+      }
+    },
+    {
+      "name": "Mosaique",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Mosaique[${2:clés%keyvals}]{${1:mosa1/rep1,mosa2/rep2,...}}",
+        "keys": [
+          "\\Mosaique"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DessineMosaique",
+      "arg": {
+        "format": "{}",
+        "snippet": "DessineMosaique{${1:type}}"
+      }
+    },
+    {
+      "name": "DessineMosaique",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DessineMosaique[${2:clés%keyvals}]{${1:type}}",
+        "keys": [
+          "\\DessineMosaique"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Cartes",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cartes{${1:contenus du jeu%text}}"
+      }
+    },
+    {
+      "name": "Cartes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Cartes[${2:clés%keyvals}]{${1:contenus du jeu%text}}",
+        "keys": [
+          "\\Cartes,\\BoiteCartes"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BoiteCartes"
+    },
+    {
+      "name": "BoiteCartes",
+      "arg": {
+        "format": "[]",
+        "snippet": "BoiteCartes[${1:clés%keyvals}]",
+        "keys": [
+          "\\Cartes,\\BoiteCartes",
+          "\\BoiteCartes"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SolutionCarte",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SolutionCarte{${1:solution}}{${2:commentaires%text}}"
+      }
+    },
+    {
+      "name": "PfCTexteJai",
+      "unusual": true
+    },
+    {
+      "name": "PfCTexteJesuis",
+      "unusual": true
+    },
+    {
+      "name": "PfCTexteQuia",
+      "unusual": true
+    },
+    {
+      "name": "PfCCardsEcartH",
+      "unusual": true
+    },
+    {
+      "name": "PfCCardsEcartV",
+      "unusual": true
+    },
+    {
+      "name": "Dominos",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dominos{${1:e q1/r1§q2/r2§...}}"
+      }
+    },
+    {
+      "name": "Dominos",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Dominos[${2:clés%keyvals}]{${1:e q1/r1§q2/r2§...}}",
+        "keys": [
+          "\\Dominos"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Enquete",
+      "arg": {
+        "format": "[]",
+        "snippet": "Enquete[${1:clés%keyvals}]",
+        "keys": [
+          "\\Enquete"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ListePersonnages",
+      "arg": {
+        "format": "{}",
+        "snippet": "ListePersonnages{${1:p1§p2§...}}"
+      }
+    },
+    {
+      "name": "ListeObjets",
+      "arg": {
+        "format": "{}",
+        "snippet": "ListeObjets{${1:o1§o2§...}}"
+      }
+    },
+    {
+      "name": "ListeLieux",
+      "arg": {
+        "format": "{}",
+        "snippet": "ListeLieux{${1:l1§l2§...}}"
+      }
+    },
+    {
+      "name": "ListeQuestions",
+      "arg": {
+        "format": "{}",
+        "snippet": "ListeQuestions{${1:e1/r1§e2/r2§...}}"
+      }
+    },
+    {
+      "name": "AffichageQuestions"
+    },
+    {
+      "name": "AffichageTableau"
+    },
+    {
+      "name": "PQuatre",
+      "arg": {
+        "format": "{}",
+        "snippet": "PQuatre{${1:éléments du tableau}}"
+      }
+    },
+    {
+      "name": "PQuatre",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PQuatre[${2:clés%keyvals}]{${1:éléments du tableau}}",
+        "keys": [
+          "\\PQuatre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Yohaku",
+      "arg": {
+        "format": "{}",
+        "snippet": "Yohaku{${1:a/b/c/d...,1/2/3/4...}}"
+      }
+    },
+    {
+      "name": "Yohaku",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Yohaku[${2:clés%keyvals}]{${1:a/b/c/d...,1/2/3/4...}}",
+        "keys": [
+          "\\Yohaku"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PfCYHKpremier",
+      "unusual": true
+    },
+    {
+      "name": "KenKen",
+      "arg": {
+        "format": "{}",
+        "snippet": "KenKen{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "KenKen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "KenKen[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\KenKen"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Kakuro",
+      "arg": {
+        "format": "{}",
+        "snippet": "Kakuro{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "Kakuro",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Kakuro[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\Kakuro"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Shikaku",
+      "arg": {
+        "format": "{}",
+        "snippet": "Shikaku{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "Shikaku",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Shikaku[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\Shikaku"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CalculsCroises",
+      "arg": {
+        "format": "{}",
+        "snippet": "CalculsCroises{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "CalculsCroises",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CalculsCroises[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\CalculsCroises"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NombreAstral"
+    },
+    {
+      "name": "NombreAstral",
+      "arg": {
+        "format": "[]",
+        "snippet": "NombreAstral[${1:clés%keyvals}]",
+        "keys": [
+          "\\NombreAstral"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CompteBon"
+    },
+    {
+      "name": "CompteBon",
+      "arg": {
+        "format": "[]",
+        "snippet": "CompteBon[${1:clés%keyvals}]",
+        "keys": [
+          "\\CompteBon"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BarresCalculs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "BarresCalculs{${1:liste des calculs}}{${2:mot clé}}"
+      }
+    },
+    {
+      "name": "BarresCalculs",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "BarresCalculs[${3:clés%keyvals}]{${1:liste des calculs}}{${2:mot clé}}",
+        "keys": [
+          "\\BarresCalculs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EnigmeAire"
+    },
+    {
+      "name": "EnigmeAire",
+      "arg": {
+        "format": "[]",
+        "snippet": "EnigmeAire[${1:clés%keyvals}]",
+        "keys": [
+          "\\EnigmeAire"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Tectonic",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tectonic{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "Tectonic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Tectonic[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\Tectonic"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Calisson",
+      "arg": {
+        "format": "{}",
+        "snippet": "Calisson{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "Calisson",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Calisson[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\Calisson"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PuzzlePyramide",
+      "arg": {
+        "format": "{}",
+        "snippet": "PuzzlePyramide{${1:c1§c2§...}}"
+      }
+    },
+    {
+      "name": "PuzzlePyramide",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PuzzlePyramide[${2:clés%keyvals}]{${1:c1§c2§...}}",
+        "keys": [
+          "\\PuzzlePyramide"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MessageCache",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MessageCache{${1:q1/r1§q2/r2§...}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "MessageCache",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MessageCache[${3:clés%keyvals}]{${1:q1/r1§q2/r2§...}}{${2:message%text}}",
+        "keys": [
+          "\\MessageCache"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "RondeInfernale"
+    },
+    {
+      "name": "RondeInfernale",
+      "arg": {
+        "format": "[]",
+        "snippet": "RondeInfernale[${1:clés%keyvals}]",
+        "keys": [
+          "\\RondeInfernale"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Futoshiki",
+      "arg": {
+        "format": "{}",
+        "snippet": "Futoshiki{${1:description de jeu}}"
+      }
+    },
+    {
+      "name": "Futoshiki",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Futoshiki[${2:clés%keyvals}]{${1:description de jeu}}",
+        "keys": [
+          "\\Futoshiki"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Garam",
+      "arg": {
+        "format": "{}",
+        "snippet": "Garam{${1:c11/o11/O11,c12/o12/O12,...}}"
+      }
+    },
+    {
+      "name": "Garam",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Garam[${2:clés%keyvals}]{${1:c11/o11/O11,c12/o12/O12,...}}",
+        "keys": [
+          "\\Garam"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "SquarO"
+    },
+    {
+      "name": "SquarO",
+      "arg": {
+        "format": "[]",
+        "snippet": "SquarO[${1:clés%keyvals}]",
+        "keys": [
+          "\\SquarO"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Grades"
+    },
+    {
+      "name": "Grades",
+      "arg": {
+        "format": "[]",
+        "snippet": "Grades[${1:clés%keyvals}]",
+        "keys": [
+          "\\Grades"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MidPoint"
+    },
+    {
+      "name": "MidPoint",
+      "arg": {
+        "format": "[]",
+        "snippet": "MidPoint[${1:clés%keyvals}]",
+        "keys": [
+          "\\MidPoint"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Kakurasu"
+    },
+    {
+      "name": "Kakurasu",
+      "arg": {
+        "format": "[]",
+        "snippet": "Kakurasu[${1:clés%keyvals}]",
+        "keys": [
+          "\\Kakurasu"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Trio"
+    },
+    {
+      "name": "Trio",
+      "arg": {
+        "format": "[]",
+        "snippet": "Trio[${1:clés%keyvals}]",
+        "keys": [
+          "\\Trio,TrioCourt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TrioCourt"
+    },
+    {
+      "name": "TrioCourt",
+      "arg": {
+        "format": "[]",
+        "snippet": "TrioCourt[${1:clés%keyvals}]",
+        "keys": [
+          "\\Trio,TrioCourt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Nonogramme",
+      "arg": {
+        "format": "{}",
+        "snippet": "Nonogramme{${1:liste de lignes}}"
+      }
+    },
+    {
+      "name": "Nonogramme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Nonogramme[${2:clés%keyvals}]{${1:liste de lignes}}",
+        "keys": [
+          "\\Nonogramme"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Dobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dobble{${1:liste des symboles}}"
+      }
+    },
+    {
+      "name": "Dobble",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Dobble[${2:clés%keyvals}]{${1:liste des symboles}}",
+        "keys": [
+          "\\Dobble"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NumberHive"
+    },
+    {
+      "name": "NumberHive",
+      "arg": {
+        "format": "[]",
+        "snippet": "NumberHive[${1:clés%keyvals}]",
+        "keys": [
+          "\\NumberHive"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Grimuku",
+      "arg": {
+        "format": "{}",
+        "snippet": "Grimuku{${1:description du jeu}}"
+      }
+    },
+    {
+      "name": "Grimuku",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Grimuku[${2:clés%keyvals}]{${1:description du jeu}}",
+        "keys": [
+          "\\Grimuku"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PuzzleMul",
+      "arg": {
+        "format": "{}",
+        "snippet": "PuzzleMul{${1:liste des lignes}}"
+      }
+    },
+    {
+      "name": "PuzzleMul",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PuzzleMul[${2:clés%keyvals}]{${1:liste des lignes}}",
+        "keys": [
+          "\\PuzzleMul"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Horloge",
+      "arg": {
+        "format": "{}",
+        "snippet": "Horloge{${1:horaire}}"
+      }
+    },
+    {
+      "name": "Horloge",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Horloge[${2:clés%keyvals}]{${1:horaire}}",
+        "keys": [
+          "\\Horloge"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefiCalculatrice",
+      "arg": {
+        "format": "{}",
+        "snippet": "DefiCalculatrice{${1:nombre}}"
+      }
+    },
+    {
+      "name": "DefiCalculatrice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DefiCalculatrice[${2:clés%keyvals}]{${1:nombre}}",
+        "keys": [
+          "\\DefiCalculatrice"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Radar",
+      "arg": {
+        "format": "{}",
+        "snippet": "Radar{${1:Liste des éléments du diagramme en radar}}"
+      }
+    },
+    {
+      "name": "Radar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Radar[${2:clés%keyvals}]{${1:Liste des éléments du diagramme en radar}}",
+        "keys": [
+          "\\Radar"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Jauge",
+      "arg": {
+        "format": "{}",
+        "snippet": "Jauge{${1:Niveau atteint en pourcentage}}"
+      }
+    },
+    {
+      "name": "Jauge",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Jauge[${2:clés%keyvals}]{${1:Niveau atteint en pourcentage}}",
+        "keys": [
+          "\\Jauge"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Demain"
+    },
+    {
+      "name": "pointilles"
+    },
+    {
+      "name": "pointilles",
+      "arg": {
+        "format": "[]",
+        "snippet": "pointilles[${1:length}]"
+      }
+    },
+    {
+      "name": "Lignespointilles",
+      "arg": {
+        "format": "{}",
+        "snippet": "Lignespointilles{${1:n}}"
+      }
+    },
+    {
+      "name": "MultiCol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MultiCol{${1:l1/l2/...}}{${2:contenu1§contenu2§...%text}}"
+      }
+    },
+    {
+      "name": "MultiCol",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MultiCol[${3:t|b}]{${1:l1/l2/...}}{${2:contenu1§contenu2§...%text}}"
+      }
+    },
+    {
+      "name": "annee",
+      "unusual": true
+    },
+    {
+      "name": "are",
+      "unusual": true
+    },
+    {
+      "name": "BonSortieSmiley",
+      "unusual": true
+    },
+    {
+      "name": "emoticon",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "emoticon[${2:TikZ keys}]{${1:draw code}}"
+      }
+    },
+    {
+      "name": "emoticon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "emoticon{${1:draw code}}"
+      }
+    },
+    {
+      "name": "EuRo",
+      "unusual": true
+    },
+    {
+      "name": "fahrenheit",
+      "unusual": true
+    },
+    {
+      "name": "HauteurFlash"
+    },
+    {
+      "name": "jour",
+      "unusual": true
+    },
+    {
+      "name": "kmh",
+      "unusual": true
+    },
+    {
+      "name": "leftcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "leftcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "Logo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Logo{${1:scale}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "LogoTW",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LogoTW{${1:scale}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "mois",
+      "unusual": true
+    },
+    {
+      "name": "octet",
+      "unusual": true
+    },
+    {
+      "name": "pupils",
+      "unusual": true
+    },
+    {
+      "name": "quintal",
+      "unusual": true
+    },
+    {
+      "name": "rightcomment",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "rightcomment{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "RKalmostcrying",
+      "unusual": true
+    },
+    {
+      "name": "RKangry",
+      "unusual": true
+    },
+    {
+      "name": "RKbigsmile",
+      "unusual": true
+    },
+    {
+      "name": "RKblush",
+      "unusual": true
+    },
+    {
+      "name": "RKconfused",
+      "unusual": true
+    },
+    {
+      "name": "RKdevilish",
+      "unusual": true
+    },
+    {
+      "name": "RKlookdown",
+      "unusual": true
+    },
+    {
+      "name": "RKlookleft",
+      "unusual": true
+    },
+    {
+      "name": "RKlookright",
+      "unusual": true
+    },
+    {
+      "name": "RKlookup",
+      "unusual": true
+    },
+    {
+      "name": "RKmartian",
+      "unusual": true
+    },
+    {
+      "name": "RKneutral",
+      "unusual": true
+    },
+    {
+      "name": "RKsad",
+      "unusual": true
+    },
+    {
+      "name": "RKsexy",
+      "unusual": true
+    },
+    {
+      "name": "RKsmallsmile",
+      "unusual": true
+    },
+    {
+      "name": "RKsmile",
+      "unusual": true
+    },
+    {
+      "name": "Speed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Speed{${1:nombre}}"
+      }
+    },
+    {
+      "name": "speed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "speed{${1:nombre}}"
+      }
+    },
+    {
+      "name": "Dollar",
+      "unusual": true
+    },
+    {
+      "name": "LivreSterling",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Geometrie"
+    },
+    {
+      "name": "Geometrie",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Geometrie}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Tableur"
+    },
+    {
+      "name": "Tableur",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Tableur}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Scratch"
+    },
+    {
+      "name": "Scratch",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Scratch}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Mind"
+    },
+    {
+      "name": "Bulle"
+    },
+    {
+      "name": "Bulle",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Bulle}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Twitter"
+    },
+    {
+      "name": "Twitter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Twitter}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Facebook"
+    },
+    {
+      "name": "Facebook",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Facebook}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Snapchat"
+    },
+    {
+      "name": "Snapchat",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Snapchat}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Instagram"
+    },
+    {
+      "name": "Instagram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{Instagram}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/ProfCollege#c": [
+      "nonshellescape",
+      "nonamssymb"
+    ],
+    "\\Lg#c,\\Aire#c,\\Vol#c,\\Masse#c,\\Capa#c,\\Temps#c,\\MasseVol#c,\\Vitesse#c,\\Octet#c,\\Conso#c,\\Prix#c,\\Temp#c": [
+      "US",
+      "UK",
+      "Dots="
+    ],
+    "\\RepresenterEntier": [
+      "Echelle=${1:factor}",
+      "ListeCouleurs={${1:color1,color2,...}}",
+      "Impression",
+      "Compact",
+      "Unite"
+    ],
+    "\\DecompositionDecimale": [
+      "Parentheses",
+      "ResultatSeul",
+      "SansMul",
+      "Colore",
+      "CouleurU=",
+      "CouleurD=",
+      "CouleurC=",
+      "Fleches",
+      "Details"
+    ],
+    "\\Ecriture": [
+      "Majuscule",
+      "Tradition",
+      "Math",
+      "E",
+      "Zero"
+    ],
+    "\\Frise": [
+      "Longueur=",
+      "Fleches",
+      "Ecart=",
+      "Sup"
+    ],
+    "\\Tables": [
+      "Couleur=",
+      "Debut=${1:nombre}",
+      "Fin=${1:nombre}",
+      "Seul",
+      "Addition",
+      "Soustraction"
+    ],
+    "\\Papiers": [
+      "Largeur=${1:integer}",
+      "Hauteur=${1:integer}",
+      "Couleur=",
+      "Seyes",
+      "Echelle=${1:nombre}",
+      "Millimetre",
+      "Isometrique",
+      "IsometriquePointe",
+      "Triangle",
+      "Grille=${1:nombre}",
+      "GrillePointe=${1:nombre}",
+      "PageEntiere",
+      "ZoneTexte"
+    ],
+    "\\Tableau,\\GlisseNombre": [
+      "Metre",
+      "FlechesH",
+      "FlechesB",
+      "Fleches",
+      "NbLignes=${1:integer}",
+      "Carre",
+      "Colonnes",
+      "Are",
+      "Cube",
+      "Capacite",
+      "Gramme",
+      "Litre",
+      "Octet",
+      "Escalier",
+      "Entiers",
+      "Millions",
+      "Milliards",
+      "Classes",
+      "CouleurG=",
+      "CouleurM=",
+      "Couleurm=",
+      "Couleuru=",
+      "Nombres",
+      "Puissances",
+      "FlechesB",
+      "FlechesH",
+      "Decimaux",
+      "Partie",
+      "Virgule",
+      "Prefixes",
+      "Micro",
+      "Nano",
+      "Incline",
+      "Couleurd=",
+      "PuissancesSeules",
+      "Colonne=${1:integer}",
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Nom=${1:nom}",
+      "CodeAfter=${1:code}"
+    ],
+    "\\GlisseNombre": [
+      "Entiers",
+      "CouleurGN=",
+      "CadreGN="
+    ],
+    "\\Relie": [
+      "Solution",
+      "LargeurG=",
+      "LargeurD=",
+      "Ecart=",
+      "Stretch=${1:factor}",
+      "Couleur="
+    ],
+    "\\QCM": [
+      "Stretch=${1:factor}",
+      "Reponses",
+      "Largeur=",
+      "Titre",
+      "Nom=${1:nom}",
+      "AlphT",
+      "Alph",
+      "Alterne",
+      "Depart=${1:nombre}",
+      "Solution",
+      "Couleur=",
+      "VF",
+      "NomV=${1:nom}",
+      "NomF=${1:nom}",
+      "Multiple",
+      "Noms=${1:nom1/nom2/...}"
+    ],
+    "\\QFlash": [
+      "Simple",
+      "Kahout",
+      "Pause",
+      "Hauteur=",
+      "Couleur1=",
+      "Couleur2=",
+      "Couleur3=",
+      "Couleur4=",
+      "Intrus",
+      "Numeration",
+      "Decimal",
+      "Operation=${1|Multiplie,Divide|}",
+      "Mental",
+      "Expression",
+      "Mesure",
+      "Heure",
+      "Numerique",
+      "Daily",
+      "Seul",
+      "Evaluation"
+    ],
+    "\\Rapido": [
+      "Largeur=",
+      "Numero=${1:numero}"
+    ],
+    "\\Cible": [
+      "RayonBase=",
+      "Ecart=",
+      "TitreFlechettes",
+      "RayonF=",
+      "Impression"
+    ],
+    "\\Mentalo": [
+      "Questions=${1:nombre}",
+      "ValeurMin=${1:nombre}",
+      "ValeurMax=${1:nombre}"
+    ],
+    "\\Automatismes": [
+      "Relatifs",
+      "Questions=${1:nombre}",
+      "ValeurMin=${1:nombre}",
+      "ValeurMax=${1:nombre}",
+      "Fractions",
+      "Graine=${1:nombre}",
+      "Priorites"
+    ],
+    "\\PyraVoca": [
+      "Largeur=",
+      "Solution"
+    ],
+    "\\CourseNombre": [
+      "CoefQ=${1:nombre}",
+      "CoefR=${1:nombre}",
+      "CoefJ=${1:nombre}",
+      "Dossier=${1:dossier}",
+      "Liste={${1:liste de répertoires}}",
+      "Maitre",
+      "Debut=${1:nombre}",
+      "NbQ=${1:nombre}",
+      "Exercice",
+      "Ordre",
+      "Nom",
+      "CAN"
+    ],
+    "\\Autonomie": [
+      "AfficheMarge",
+      "TitreAtoi=${1:texte}",
+      "TexteCorrection=${1:texte}"
+    ],
+    "\\FicheMemo": [
+      "TexteReponses=${1:texte}",
+      "TexteQuestions=${1:texte}",
+      "Solution",
+      "Largeur="
+    ],
+    "\\BonSortie": [
+      "MemeEnonce"
+    ],
+    "\\begin{Geometrie}": [
+      "CoinBG={${1:(x,y)}}",
+      "CoinHD={${1:(x,y)}}",
+      "TypeTrace=\"${1:type}\""
+    ],
+    "\\Solide": [
+      "Phi=${1:degrés}",
+      "Theta=${1:degrés}",
+      "Distance=${1:nombre}",
+      "Aretes",
+      "Sommets",
+      "ListeSommets={${1:liste}}",
+      "Traces={${1:MP code}}",
+      "Nom=${1|pave,cylindre,cone,pyramide,sphere|}",
+      "Largeur=${1:nombre}",
+      "Hauteur=${1:nombre}",
+      "Profondeur=${1:nombre}",
+      "RayonCylindre=${1:nombre}",
+      "HauteurCylindre=${1:nombre}",
+      "Anglex=${1:degrés}",
+      "Reguliere",
+      "SommetsPyramide=${1:nombre}",
+      "DecalageSommet={(${1:x,y,z})}",
+      "RayonCone=${1:nombre}",
+      "HauteurCone=${1:nombre}",
+      "RayonSphere=${1:nombre}",
+      "Section",
+      "PointsSection={${1:liste}}",
+      "CouleurSection=",
+      "CoefSection=${1:coef}",
+      "ObjetSection="
+    ],
+    "\\Patron": [
+      "Pave",
+      "Largeur=",
+      "Profondeur=",
+      "Hauteur=",
+      "Arete=",
+      "Traces={${1:MP code}}",
+      "ListeCouleurs={${1:couleur1,couleur2,...}}"
+    ],
+    "\\ProprieteDroites": [
+      "Num=${1|1,2,3|}",
+      "CitePropriete",
+      "Brouillon",
+      "Figure",
+      "Remediation"
+    ],
+    "\\Reperage,\\ReperageMulti,\\ReperageZoom": [
+      "Unitex=${1:nombre}",
+      "AffichageGrad",
+      "AffichageNom",
+      "AffichageAbs=${1|1,2,3|}",
+      "AffichageCoord",
+      "Pasx=${1:nombre}",
+      "DemiDroite",
+      "ValeurOrigine=${1:valeur}",
+      "ValeurUnitex=${1:valeur}",
+      "Niveau=${1:nombre}",
+      "Thermometre",
+      "Kelvin",
+      "Farenheit",
+      "Mercure",
+      "CouleurMercure=",
+      "Plan",
+      "Unitey=${1:nombre}",
+      "Pasy=${1:nombre}",
+      "ValeurUnitey=${1:valeur}",
+      "LectureCoord",
+      "Trace",
+      "ListeSegment={${1:liste de segments}}",
+      "Espace",
+      "Unitez=${1:nombre}",
+      "Pasz=${1:nombre}",
+      "EchelleEspace=${1:nombre}",
+      "Sphere",
+      "AnglePhi=${1:degrees}",
+      "EchelleEspace=${1:nombre}",
+      "Globe",
+      "Theta=${1:degrees}",
+      "Phi=${1:degrees}",
+      "Axes",
+      "CouleurG=",
+      "CouleurE=",
+      "ValeurMin=${1:nombre}",
+      "ValeurMax=${1:nombre}",
+      "Etages=${1:nombre}"
+    ],
+    "\\SommeAngles": [
+      "Detail",
+      "Perso",
+      "Figure",
+      "Echelle=",
+      "Angle=${1:degrees}",
+      "FigureSeule",
+      "Isocele",
+      "Rectangle"
+    ],
+    "\\Pythagore": [
+      "Soustraction",
+      "Egalite",
+      "Entier",
+      "Racine",
+      "Precision=${1:integer}",
+      "Unite=${1:unité}",
+      "Reciproque",
+      "ReciColonnes",
+      "Faible",
+      "Figure",
+      "Angle=${1:degrees}",
+      "Echelle=",
+      "FigureSeule",
+      "EnchaineA",
+      "EnchaineB",
+      "EnchaineC",
+      "ValeurA=${1:valeur}",
+      "ValeurB=${1:valeur}",
+      "ValeurC=${1:valeur}",
+      "AvantRacine",
+      "SansMots",
+      "Perso",
+      "AllPerso"
+    ],
+    "\\Thales": [
+      "Droites",
+      "Segment",
+      "Propor",
+      "Perso",
+      "Precision=${1:integer}",
+      "IntroCalculs",
+      "Unite=${1:unité}",
+      "Entier",
+      "Figure",
+      "Echelle=",
+      "Angle=${1:degrees}",
+      "CouleurNum=",
+      "CouleurDen=",
+      "FigureSeule",
+      "Figurecroisee",
+      "FigurecroiseeSeule",
+      "ChoixCalcul=${1|0,1,2,3|}",
+      "Redaction",
+      "Remediation",
+      "Reciproque",
+      "Produit",
+      "Simplification"
+    ],
+    "\\Trigo": [
+      "Cosinus",
+      "Propor",
+      "Precision=${1:integer}",
+      "Unite=${1:unité}",
+      "Sinus",
+      "Tangente",
+      "Perso",
+      "Figure",
+      "Angle=${1:degrees}",
+      "Echelle=",
+      "FigureSeule"
+    ],
+    "\\Cartographie": [
+      "Arborescence=\"${1:path}\"",
+      "Carte",
+      "Fleuves",
+      "Capitales",
+      "CouleurFond=",
+      "Impression",
+      "Echelle=${1:nombre}",
+      "EchelleCarte=${1:nombre}",
+      "AfficheEchelle",
+      "Largeur=${1:nombre}",
+      "Hauteur=${1:nombre}",
+      "All",
+      "Europe",
+      "Asie",
+      "Amsud",
+      "Amnord",
+      "Amcentre",
+      "Afrique",
+      "Caraibes",
+      "Pays=\"${1:pays}\"",
+      "Villes=\"${1:.dat file}\"",
+      "Projection",
+      "TypeProjection=\"${1:type}\"",
+      "CouleurPays="
+    ],
+    "\\Formule": [
+      "Perimetre",
+      "Surface=${1|polygone,triangle,parallelogramme,losange,rectangle,carre,cercle,disque,sphere|}",
+      "Ancre={${1:(x,y)}}",
+      "Angle=${1:degrees}",
+      "Largeur=",
+      "Couleur=",
+      "Echelle=",
+      "Aire",
+      "Volume",
+      "Solide=${1|pave,cube,cylindre,prisme,cone,pyramide,boule|}"
+    ],
+    "\\VueCubes": [
+      "Largeur=${1:nombre}",
+      "Profondeur=${1:nombre}",
+      "Hauteur=${1:nombre}",
+      "Echelle=${1:nombre}",
+      "CouleurCube=",
+      "Angle=${1:degres}",
+      "Trou",
+      "Seul",
+      "Creation",
+      "Grilles",
+      "Face",
+      "CouleurFleche=",
+      "Solution",
+      "Nom=${1:nom}"
+    ],
+    "\\Pavage": [
+      "Epaisseur=${1:nombre}",
+      "Niveau=${1:integer}",
+      "Couleur=",
+      "Numerotation",
+      "Complete",
+      "ArrierePlan=",
+      "Traces={${1:MP code}}",
+      "Motif={${1:MP code}}",
+      "Quadrilatere",
+      "Lignes=${1:integer}",
+      "Colonnes=${1:integer}",
+      "Reseau",
+      "Basei={${1:MP code}}",
+      "Basej={${1:MP code}}",
+      "Regulier",
+      "Cote=${1:nombre}",
+      "Escher",
+      "Rayon=${1:nombre}",
+      "Position=${1:nombre}",
+      "Ecart=${1:nombre}",
+      "Einstein",
+      "Vampire"
+    ],
+    "\\Addition,\\MultiAddition,\\Soustraction,\\Multiplication,\\Division,\\DivisionD": [
+      "CouleurCadre=",
+      "CouleurFond=",
+      "CouleurVirgule=",
+      "Solution",
+      "CouleurSolution="
+    ],
+    "\\PyramideNombre": [
+      "Etages=${1:integer}",
+      "Largeur=",
+      "Hauteur=",
+      "Inverse",
+      "Couleur=",
+      "CouleurNombre="
+    ],
+    "\\ProgCalcul": [
+      "Direct",
+      "Ecart=",
+      "SansCalcul",
+      "Enonce",
+      "Nom=${1:nom}",
+      "CouleurCadre=",
+      "CouleurFond=",
+      "Largeur=",
+      "Epaisseur=",
+      "Pointilles=",
+      "ThemePerso",
+      "Application",
+      "Details"
+    ],
+    "\\Decomposition": [
+      "Tableau",
+      "TableauVide",
+      "TableauVertical",
+      "TableauVerticalVide",
+      "Dot=${1:dot code}",
+      "Potence",
+      "Exposant",
+      "Longue",
+      "All",
+      "Nombre=${1:nombre}",
+      "AllNombre=${1:nombre}",
+      "Arbre",
+      "ArbreComplet",
+      "Entoure",
+      "ArbreVide",
+      "ArbreDessine",
+      "Impression",
+      "ArbreDessineVide",
+      "Diviseurs",
+      "DiviseursT"
+    ],
+    "\\Erathostene": [
+      "Lignes=${1:nombre}",
+      "Colonnes=${1:nombre}",
+      "Hauteur=",
+      "Nombre=${1:nombre}",
+      "CouleurP=",
+      "CouleurNP="
+    ],
+    "\\Engrenages": [
+      "Unite=",
+      "Couleur="
+    ],
+    "\\Fraction": [
+      "Disque",
+      "Rayon=",
+      "Regulier",
+      "Cotes=${1:integer}",
+      "Segment",
+      "Longueur=",
+      "Triangle",
+      "Parts=${1:integer}",
+      "Rectangle",
+      "Largeur=",
+      "Multiple=${1:integer}",
+      "Reponse",
+      "Couleur=",
+      "Hachures",
+      "Epaisseur=${1:factor}"
+    ],
+    "\\FractionDecimale": [
+      "Complete",
+      "SansZero",
+      "Remediation",
+      "Longueur="
+    ],
+    "\\Simplification": [
+      "Details",
+      "All",
+      "Longue",
+      "Couleur=",
+      "Nombre=${1:nombre}",
+      "Contraire=${1:integer}",
+      "Fleches"
+    ],
+    "\\Rangement": [
+      "Decroissant",
+      "Strict",
+      "Fraction",
+      "Details",
+      "Seul"
+    ],
+    "\\Propor": [
+      "Vertical",
+      "GrandeurA=${1:texte}",
+      "GrandeurB=${1:texte}",
+      "Math",
+      "Stretch=${1:factor}",
+      "Largeur=",
+      "CouleurTab=",
+      "Simple"
+    ],
+    "\\Pourcentage": [
+      "Appliquer",
+      "Fractionnaire",
+      "Unite=${1:unité}",
+      "Augmenter",
+      "AideTableau",
+      "GrandeurA=${1:texte}",
+      "GrandeurB=${1:texte}",
+      "CouleurTab=",
+      "Formule",
+      "Reduire",
+      "MotReduction=${1:mot}",
+      "Calculer"
+    ],
+    "\\Ratio": [
+      "Figure",
+      "Longueur=",
+      "TexteTotal=${1:texte}",
+      "TextePart=${1:texte}",
+      "CouleurUn=",
+      "CouleurDeux=",
+      "CouleurTrois=",
+      "FigureCours",
+      "Tableau",
+      "GrandeurA=${1:texte}",
+      "GrandeurB=${1:texte}",
+      "Largeur=",
+      "Stretch=${1:factor}",
+      "CouleurTab=",
+      "Nom"
+    ],
+    "\\Stat": [
+      "Qualitatif",
+      "Liste",
+      "Sondage",
+      "Classes",
+      "Tableau",
+      "Stretch=${1:factor}",
+      "CouleurTab=",
+      "Largeur=",
+      "TableauVide",
+      "Donnee=${1:texte}",
+      "Effectif=${1:texte}",
+      "EffVide",
+      "Frequence",
+      "FreqVide",
+      "Angle",
+      "SemiAngle",
+      "AngVide",
+      "ECC",
+      "ECCVide",
+      "Total",
+      "ColVide=${1:integer}",
+      "CasesVides={${1:cases}}",
+      "Crochets",
+      "Centre",
+      "CentreVide",
+      "Graphique",
+      "Batons",
+      "Unitex=${1:nombre}",
+      "Unitey=${1:nombre}",
+      "Grille",
+      "Pasx=${1:nombre}",
+      "Pasy=${1:nombre}",
+      "EpaisseurBatons=${1:nombre}",
+      "Origine=${1:nombre}",
+      "AngleRotationAbscisse=${1:degrees}",
+      "Lecture",
+      "LectureFine",
+      "AideLecture",
+      "Tiret",
+      "Depart=${1:nombre}",
+      "Reponses",
+      "DonneesSup",
+      "CouleurDefaut=",
+      "ListeCouleursB={${1:liste des coleurs}}",
+      "Angle",
+      "SemiAngle",
+      "Rayon=",
+      "DebutAngle=${1:degrees}",
+      "AffichageAngle",
+      "AffichageDonnees",
+      "LectureInverse",
+      "Legende",
+      "LegendesVides={${1:liste de numéros}}",
+      "Hachures",
+      "ListeHachures=${1:degrees}",
+      "EcartHachures=${1:nombre}",
+      "EpaisseurHachures=${1:nombre}",
+      "ListeCouleurs={${1:liste des coleurs}}",
+      "Barre",
+      "Longueur=",
+      "Hauteur=",
+      "EcartBarre=",
+      "Bicolore",
+      "Histogramme",
+      "UniteAire=${1:nombre}",
+      "DepartHisto=${1:nombre}",
+      "Representation",
+      "Xmin=${1:nombre}",
+      "Xmax=${1:nombre}",
+      "Ymin=${1:nombre}",
+      "Ymax=${1:nombre}",
+      "Xstep=${1:nombre}",
+      "Ystep=${1:nombre}",
+      "LabelX=${1:texte}",
+      "LabelY=${1:texte}",
+      "PasGrilleX=${1:nombre}",
+      "PasGrilleY=${1:nombre}",
+      "Graduations",
+      "CouleurTrace=",
+      "Relie",
+      "RelieSegment",
+      "Invisible",
+      "CouleurPoint=",
+      "Marque=${1|dot,croix|}",
+      "EffectifTotal",
+      "Etendue",
+      "Concret",
+      "Unite=${1:unité}",
+      "Concret=${1:unité}",
+      "Mediane",
+      "Coupure=${1:integer}",
+      "Moyenne",
+      "Precision=${1:integer}",
+      "SET",
+      "Somme",
+      "MoyenneA",
+      "ValeurExacte",
+      "ACompleter",
+      "UneMediane"
+    ],
+    "\\Proba": [
+      "Echelle",
+      "LongueurEchelle=${1:nombre}",
+      "Grille=${1:nombre}",
+      "Affichage=${1|0,1,2,3,4|}",
+      "Arbre",
+      "Branche=${1:nombre}",
+      "Angle=${1:degrees}",
+      "Rayon=${1:nombre}",
+      "Incline"
+    ],
+    "\\FonctionAffine": [
+      "Definition",
+      "Nom=${1:nom}",
+      "Variable=${1:variable}",
+      "Ecriture",
+      "Image",
+      "Ligne",
+      "ProgCalcul",
+      "Antecedent",
+      "Retrouve",
+      "CoefDir=",
+      "OrdoOrig=",
+      "Redaction",
+      "Graphique",
+      "Unitex=${1:nombre}",
+      "Unitey=${1:nombre}",
+      "VoirCoef",
+      "ACoef=${1:nombre}"
+    ],
+    "\\Fonction": [
+      "Calcul=${1:fonction}",
+      "Tableau",
+      "Largeur=",
+      "Nom=${1:nom}",
+      "Variable=${1:variable}",
+      "Definition",
+      "Ecriture",
+      "Points",
+      "Tangentes",
+      "Catmull",
+      "Splines",
+      "PasX=${1:nombre}",
+      "PasY=${1:nombre}",
+      "UniteX=${1:nombre}",
+      "UniteY=${1:nombre}",
+      "Epaisseur=",
+      "Prolonge",
+      "Trace",
+      "Xmin=${1:nombre}",
+      "Xmax=${1:nombre}",
+      "Ymin=${1:nombre}",
+      "Ymax=${1:nombre}",
+      "Xstep=${1:nombre}",
+      "Ystep=${1:nombre}",
+      "LabelX=${1:texte}",
+      "LabelY=${1:texte}",
+      "Origine={${1:(x,y)}}",
+      "Grille",
+      "PasGrilleX=${1:nombre}",
+      "PasGrilleY=${1:nombre}",
+      "Graduations",
+      "PasGradX=${1:nombre}",
+      "PasGradY=${1:nombre}",
+      "Bornea=${1:nombre}",
+      "Borneb=${1:nombre}",
+      "CouleurTrace=",
+      "NomCourbe=${1:nom}",
+      "LabelC=${1:nombre}",
+      "Traces={${1:MP code}}",
+      "Vide"
+    ],
+    "\\LectureGraphique": [
+      "NbPoints=${1:nombre}",
+      "UniteX=${1:nombre}",
+      "UniteY=${1:nombre}",
+      "Points",
+      "CouleurTrace=",
+      "Epaisseur=${1:nombre}",
+      "Image",
+      "Antecedent",
+      "Graine="
+    ],
+    "\\Distri": [
+      "Numerique",
+      "Etape=${1|-1,0,1,2,3,4|}",
+      "All",
+      "NomExpression=${1:nom}",
+      "Fin=${1:valeur}",
+      "Lettre=${1:lettre}",
+      "Fleches",
+      "CouleurFH=",
+      "CouleurFB=",
+      "AideMul",
+      "Reduction",
+      "CouleurReduction=",
+      "AideAdda",
+      "AideAddb",
+      "CouleurAide=",
+      "Cours",
+      "Tuile",
+      "Vide",
+      "Reperes",
+      "Impression",
+      "RAZ",
+      "Somme",
+      "Difference",
+      "Oppose",
+      "Remarquable",
+      "Echange=${1|0,1,2,3|}",
+      "Tableau"
+    ],
+    "\\Factorisation,\\Factorisation*": [
+      "Litteral",
+      "AideMul",
+      "NomExpression=${1:nom}",
+      "Lettre=${1:lettre}",
+      "Aide",
+      "Couleur=",
+      "ParenthesesFin",
+      "Resultat"
+    ],
+    "\\ModeleBarre": [
+      "Largeur=",
+      "Separation=${1:nombre}"
+    ],
+    "\\ResolEquation": [
+      "Lettre=${1:lettre}",
+      "Solution",
+      "LettreSol",
+      "Entier",
+      "Simplification",
+      "Decimal",
+      "Verification",
+      "Nombre=${1:nombre}",
+      "Egalite",
+      "Decomposition",
+      "CouleurSous=",
+      "Fleches",
+      "Ecart=${1:nombre}",
+      "FlecheDiv",
+      "Pose",
+      "Laurent",
+      "Terme",
+      "CouleurTerme=",
+      "Composition",
+      "CouleurCompo=",
+      "Symbole",
+      "CouleurSymbole=",
+      "Bloc",
+      "Produit",
+      "Facteurs",
+      "Equivalence",
+      "Carre",
+      "Exact"
+    ],
+    "\\Calculatrice": [
+      "Ecran",
+      "NbLignes=${1:integer}",
+      "Largeur=${1:nombre}",
+      "Calcul"
+    ],
+    "\\begin{Tableur}": [
+      "Bandeau",
+      "Colonnes=${1:integer}",
+      "Largeur=",
+      "LargeurUn=",
+      "Formule=${1:formule}",
+      "Cellule=${1:cellule}",
+      "Ligne=${1:integer}",
+      "PasL=${1:integer}",
+      "Colonne=${1:integer}",
+      "PasC=${1:integer}",
+      "Couleur="
+    ],
+    "\\CodageRLE": [
+      "Enonce",
+      "Solution",
+      "Unite=",
+      "Taille=${1:nombre}"
+    ],
+    "\\Tortue": [
+      "Pas=",
+      "Epaisseur=${1:nombre}",
+      "TortueD",
+      "TortueF",
+      "Angle=${1:degrés}",
+      "Couleur=",
+      "Etape=${1:nombre}",
+      "Grille",
+      "LargeurG=${1:nombre}",
+      "HauteurG=${1:nombre}",
+      "Axes",
+      "Origine={(${1:x,y})}",
+      "Cases",
+      "Depart={(${1:x,y})}"
+    ],
+    "\\begin{Scratch}": [
+      "Echelle=${1:factor}",
+      "Impression",
+      "Numerotation",
+      "Naturel"
+    ],
+    "\\RoseMul": [
+      "Nom=${1:nom}",
+      "FacteurMin=${1:integer}",
+      "FacteurMax=${1:integer}",
+      "Rayon=",
+      "Petales=${1:integer}",
+      "Solution",
+      "Produits",
+      "Aide",
+      "Vide",
+      "Polygone",
+      "CaseVide",
+      "ProduitVide",
+      "Addition",
+      "LesNombres={${1:nombres}}",
+      "LesProduits={${1:produits}}",
+      "LesSommes={${1:sommes}}",
+      "Couleur="
+    ],
+    "\\DefiTableTexte": [
+      "LargeurT=",
+      "Creation",
+      "Solution",
+      "Graine=${1:nombre}",
+      "ValeurMin=${1:nombre}",
+      "ValeurMax=${1:nombre}"
+    ],
+    "\\DefiRangement": [
+      "Largeur=",
+      "Hauteur=",
+      "Solution",
+      "Graine=${1:integer}",
+      "Creation",
+      "Deno=${1:dénominateur}",
+      "Negatif",
+      "Decimaux"
+    ],
+    "\\Billard": [
+      "Longueur=",
+      "Largeur=",
+      "Solution",
+      "Vrai",
+      "Angle=${1:degrees}",
+      "Depart=${1:nombre}"
+    ],
+    "\\Labyrinthe": [
+      "Colonnes=${1:integer}",
+      "Lignes=${1:integer}",
+      "Hauteur=${1:nombre}",
+      "Longueur=${1:nombre}",
+      "EcartH=${1:nombre}",
+      "EcartV=${1:nombre}",
+      "CouleurF=",
+      "Texte=",
+      "Passages",
+      "SensImpose"
+    ],
+    "\\LabyNombre": [
+      "Nom=${1:nom}",
+      "Multiple=${1:integer}",
+      "Angle=${1:degrees}",
+      "Echelle=${1:factor}",
+      "Couleur=",
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "XDepart=${1:integer}",
+      "YDepart=${1:integer}",
+      "XArrivee=${1:integer}",
+      "YArrivee=${1:integer}",
+      "Solution",
+      "CouleurChemin=",
+      "Murs",
+      "EntreeSortie",
+      "Entree=\"${1:trouve}\"",
+      "Sortie=\"${1:trouve}\"",
+      "Multiplication",
+      "Graine=${1:nombre}"
+    ],
+    "\\Triomino": [
+      "Longueur=",
+      "Etages=${1:integer}",
+      "Piece=${1:integer}",
+      "Hexagone"
+    ],
+    "\\DessinGradue": [
+      "Lignes=${1:integer}",
+      "Longueur=${1:nombre}",
+      "Pas=${1:integer}",
+      "Debut=${1:integer}",
+      "Fin=${1:integer}",
+      "EcartVertical=${1:nombre}",
+      "Droites",
+      "DemiDroites",
+      "Traces={${1:code}}",
+      "Echelle=${1:factor}",
+      "Solution",
+      "LignesIdentiques",
+      "OrigineVariable"
+    ],
+    "\\Colorilude": [
+      "Lignes=${1:integer}",
+      "Largeur=${1:integer}",
+      "Coef=${1:nombre}",
+      "Solution",
+      "CartonReponse",
+      "Resultats"
+    ],
+    "\\PixelArt": [
+      "Largeur=${1:integer}",
+      "Hauteur=${1:integer}",
+      "Unite=",
+      "Lettres=${1:lettres}",
+      "ListeCouleurs={${1:color1,color2,...}}",
+      "Solution",
+      "ListeNombres{${1:nombre1,nombre2,...}}"
+    ],
+    "\\TableauMultiplicatif": [
+      "Largeur=",
+      "Couleur=",
+      "Graine=${1:nombre}",
+      "Multiple=${1:nombre}",
+      "Cible={${1:nombres}}",
+      "Operations",
+      "Enonce",
+      "SchemaEnonce"
+    ],
+    "\\Quisuisje": [
+      "Colonnes=${1:integer}",
+      "Solution",
+      "CodePerso"
+    ],
+    "\\MotsEmpiles": [
+      "Colonne=${1:integer}",
+      "Solution",
+      "Couleur="
+    ],
+    "\\MotsCroises": [
+      "Colonnes=${1:integer}",
+      "Lignes=${1:integer}",
+      "Largeur=",
+      "Croises",
+      "Couleur=",
+      "Solution"
+    ],
+    "\\MotsCodes": [
+      "Colonnes=${1:integer}",
+      "Largeur="
+    ],
+    "\\MotsCodesTableau": [
+      "Math",
+      "LargeurT=",
+      "Solution"
+    ],
+    "\\Mosaique": [
+      "Solution",
+      "Type=${1:nombre}",
+      "Label=",
+      "Largeur=${1:integer}",
+      "Hauteur=${1:integer}",
+      "Echelle="
+    ],
+    "\\DessineMosaique": [
+      "Type=${1:nombre}",
+      "Echelle="
+    ],
+    "\\Cartes,\\BoiteCartes": [
+      "Loop",
+      "Landscape",
+      "Largeur=${1:nombre}",
+      "Hauteur=${1:nombre}",
+      "Marge=${1:nombre}",
+      "Couleur=",
+      "RayonArc=",
+      "Theme=${1:texte}",
+      "HauteurTheme=${1:nombre}",
+      "Titre",
+      "NomTitre=${1:nom}",
+      "Trame",
+      "Jointes",
+      "TrameVisible",
+      "JaiQuia",
+      "ThemeJaiQuiA=${1:texte}",
+      "Eleve",
+      "BackgroundAv",
+      "ImageAv=${1:imagefile}",
+      "BackgroundAr",
+      "ImageAr=${1:imagefile}",
+      "ThemeSol=${1:texte}",
+      "Trivial",
+      "Symboles={${1:symbole1,symbole2,...}}"
+    ],
+    "\\BoiteCartes": [
+      "NbCartes=${1:nombre}",
+      "TypeJeu=${1:texte}",
+      "CouleurType=",
+      "Niveau=${1:texte}",
+      "CouleurNiveau=",
+      "Numero=${1:texte}",
+      "CouleurNumero="
+    ],
+    "\\Dominos": [
+      "Trame",
+      "Lignes=${1:integer}",
+      "Colonnes=${1:integer}",
+      "Logo",
+      "Image=${1:imagefile}",
+      "Couleur=",
+      "Ratio=${1:ratio}",
+      "Superieur"
+    ],
+    "\\Enquete": [
+      "Largeur=",
+      "Perso=${1:nom}",
+      "Objet=${1:nom}",
+      "Lieu=${1:nom}"
+    ],
+    "\\PQuatre": [
+      "Relatif",
+      "Puissance",
+      "Autre",
+      "Consignes=\"${1:texte}\"",
+      "LargeurUn=",
+      "Echelle=${1:nombre}",
+      "Addition",
+      "Couleur="
+    ],
+    "\\Yohaku": [
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Hauteur=",
+      "Bordure",
+      "CouleurResultat=",
+      "Multiplication",
+      "Limite=${1:nombre}",
+      "Pair",
+      "Impair",
+      "Premier",
+      "Perso",
+      "Case=${1:integer}",
+      "Ligne=${1:integer}",
+      "PasL=${1:integer}",
+      "Colonne=${1:integer}",
+      "PasC=${1:integer}",
+      "Solution",
+      "Addition",
+      "CouleurZone=",
+      "Relatif",
+      "Negatif"
+    ],
+    "\\KenKen": [
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Nombre=${1:nombre}",
+      "Solution"
+    ],
+    "\\Kakuro": [
+      "TLargeur=${1:nombre}",
+      "THauteur=${1:nombre}",
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "CouleurCase=",
+      "ListeNombres={${1:nombre1,nombre2,...}}",
+      "Solution",
+      "CouleurSolution="
+    ],
+    "\\Shikaku": [
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Solution",
+      "Couleur=",
+      "CodeAfter={${1:code}}",
+      "Creation",
+      "TailleHor=${1:nombre}",
+      "TailleVer=${1:nombre}",
+      "TailleHorMax=${1:nombre}",
+      "TailleVerMax=${1:nombre}",
+      "Nom=${1:nom}"
+    ],
+    "\\CalculsCroises": [
+      "Largeur=",
+      "Couleur=",
+      "Solution",
+      "CouleurS=",
+      "ListeNombres={${1:liste}}",
+      "Inverse",
+      "Vide",
+      "Creation",
+      "Negatifs",
+      "Graines"
+    ],
+    "\\NombreAstral": [
+      "Echelle=${1:échelle}",
+      "Solution",
+      "Graine=${1:integer}",
+      "Couleur="
+    ],
+    "\\CompteBon": [
+      "NombreCalculs=${1:nombre}",
+      "Solution",
+      "Graine=${1:integer}",
+      "Relatifs",
+      "Original",
+      "Plaques=${1:nombre}"
+    ],
+    "\\BarresCalculs": [
+      "Litteral",
+      "Perso",
+      "Decimaux"
+    ],
+    "\\EnigmeAire": [
+      "Modele=${1|A,B,C,D,E,F|}",
+      "Etape=${1:nombre}",
+      "Echelle=",
+      "Couleur=",
+      "Solution",
+      "Graine=${1:nombre}"
+    ],
+    "\\Tectonic": [
+      "TLargeur=${1:nombre}",
+      "THauteur=${1:nombre}",
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Solution",
+      "CouleurSolution="
+    ],
+    "\\Calisson": [
+      "Rayon=",
+      "Taille=${1:nombre}",
+      "Solution",
+      "Couleur="
+    ],
+    "\\PuzzlePyramide": [
+      "Etages=${1:integer}",
+      "Largeur=",
+      "NbLignes=${1:integer}",
+      "Solution",
+      "Graine=${1:nombre}",
+      "Questions"
+    ],
+    "\\MessageCache": [
+      "TLargeur=${1:nombre}",
+      "THauteur=${1:nombre}",
+      "Largeur=",
+      "Hauteur=",
+      "Plateau"
+    ],
+    "\\RondeInfernale": [
+      "Rectangle",
+      "Rayon=",
+      "Etapes=${1:nombre}",
+      "Relatifs",
+      "Vide",
+      "Cle=\"${1:valeur}\"",
+      "ListeOperations={${1:opérations}}",
+      "ListeNombres={${1:nombres}}"
+    ],
+    "\\Futoshiki": [
+      "Largeur=",
+      "Solution",
+      "CouleurSolution=",
+      "CouleurCase=",
+      "StyleTexte=${1:font commands}"
+    ],
+    "\\Garam": [
+      "Taille=${1:nombre}",
+      "Largeur=",
+      "Solution",
+      "CouleurSolution="
+    ],
+    "\\SquarO": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Echelle=",
+      "Solution",
+      "Nom=${1:nom}",
+      "Graine=${1:nombre}"
+    ],
+    "\\Grades": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Echelle=",
+      "Solution",
+      "Graine=${1:nombre}"
+    ],
+    "\\MidPoint": [
+      "Hard",
+      "Solution",
+      "Graine=${1:nombre}"
+    ],
+    "\\Kakurasu": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Echelle=",
+      "Solution",
+      "Graine=${1:nombre}"
+    ],
+    "\\Trio,TrioCourt": [
+      "Largeur=",
+      "Repere",
+      "Cible=${1:nombre}",
+      "Graine=${1:nombre}",
+      "Ligne=${1:integer}",
+      "Colonne=${1:integer}",
+      "Vide",
+      "VideRepere"
+    ],
+    "\\Nonogramme": [
+      "Enonce",
+      "Unite=",
+      "Taille=${1:nombre}",
+      "Solution"
+    ],
+    "\\Dobble": [
+      "Niveau=${1:nombre}",
+      "Cercle",
+      "CouleurCadre="
+    ],
+    "\\NumberHive": [
+      "UniteHexa=",
+      "Negatif",
+      "Produit",
+      "Niveau=${1:nombre}",
+      "Double",
+      "Graine=${1:nombre}",
+      "Jetons={${1:jetons}}",
+      "Cases={${1:cases}}",
+      "Aide",
+      "ListeCouleurs={${1:list des couleurs}}"
+    ],
+    "\\Grimuku": [
+      "TLargeur=${1:nombre}",
+      "Largeur=",
+      "CouleurCase=",
+      "CouleurSolution="
+    ],
+    "\\PuzzleMul": [
+      "Unite=",
+      "Solution",
+      "Couleur="
+    ],
+    "\\Horloge": [
+      "Aiguilles",
+      "Secondes",
+      "Cadre",
+      "Numerique",
+      "Impression",
+      "Secondes"
+    ],
+    "\\DefiCalculatrice": [
+      "Impression",
+      "ListeTouches={${1:touches}}"
+    ],
+    "\\begin{Bulle}": [
+      "Nom=${1:nom}",
+      "Largeur=",
+      "Pointilles",
+      "CTrace=",
+      "Epaisseur=",
+      "Rayon=${1:nombre}",
+      "CFond=",
+      "Ancre={${1:x,y}}"
+    ],
+    "\\begin{Twitter}": [
+      "Largeur=",
+      "Auteur=${1:auteur}",
+      "Date=${1:date}",
+      "Url=${1:URL}",
+      "Logo=${1:imagefile}",
+      "EchelleLogo=${1:factor}",
+      "Publie"
+    ],
+    "\\begin{Facebook}": [
+      "Largeur=",
+      "Auteur=${1:auteur}",
+      "Date=${1:date}",
+      "Logo=${1:imagefile}",
+      "EchelleLogo=${1:factor}",
+      "Publie",
+      "Heure=${1:heure}"
+    ],
+    "\\begin{Snapchat}": [
+      "Largeur=",
+      "Auteur=${1:auteur}",
+      "Date=${1:date}",
+      "Logo=${1:imagefile}",
+      "EchelleLogo=${1:factor}",
+      "Temps=${1:temps}",
+      "Texte=${1:texte}"
+    ],
+    "\\begin{Instagram}": [
+      "Largeur=",
+      "Auteur=${1:auteur}",
+      "Date=${1:date}",
+      "Logo=${1:imagefile}",
+      "EchelleLogo=${1:factor}",
+      "Temps=${1:temps}",
+      "Expediteur=${1:expéditeur}",
+      "LogoEx=${1:imagefile}",
+      "Texte=${1:texte}"
+    ],
+    "\\Radar": [
+      "Rayon=",
+      "Pas=${1:integer}",
+      "Reference=${1:integer}",
+      "MoyenneClasse",
+      "Disciplines"
+    ],
+    "\\Jauge": [
+      "TexteOrigine=${1:texte}",
+      "TexteReference=${1:texte}",
+      "Nom=${1:nom}",
+      "CouleurBarre=",
+      "CouleurFond=",
+      "Graduation",
+      "CouleurGraduation=",
+      "Niveau",
+      "LimiteI=${1:pourcentage}",
+      "LimiteF=${1:pourcentage}",
+      "LimiteS=${1:pourcentage}",
+      "CouleurI=",
+      "CouleurF=",
+      "CouleurS=",
+      "CouleurM="
+    ]
+  },
+  "args": [
+    "\\usepackage/ProfCollege#c"
+  ]
 }

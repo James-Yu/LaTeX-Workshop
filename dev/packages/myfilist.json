@@ -1,47 +1,103 @@
 {
-  "includes": {
-    "readprov": []
-  },
-  "macros": {
-    "EmptyFileList": {},
-    "EmptyFileList[]": {
-      "snippet": "EmptyFileList[${1:file list}]"
+  "deps": [
+    {
+      "name": "readprov"
+    }
+  ],
+  "macros": [
+    {
+      "name": "EmptyFileList"
     },
-    "ListInfos": {},
-    "ListInfos[]": {
-      "snippet": "ListInfos[${1:filename.txt}]"
+    {
+      "name": "EmptyFileList",
+      "arg": {
+        "format": "[]",
+        "snippet": "EmptyFileList[${1:file list}]"
+      }
     },
-    "ListGenerator": {},
-    "NoStopListInfos": {},
-    "VarListInfos": {},
-    "VarListInfos[]": {
-      "snippet": "VarListInfos[${1:filename.txt}]"
+    {
+      "name": "ListInfos"
     },
-    "WriteFileInfosTo{}": {
-      "snippet": "WriteFileInfosTo{${1:txt file}}"
+    {
+      "name": "ListInfos",
+      "arg": {
+        "format": "[]",
+        "snippet": "ListInfos[${1:filename.txt}]"
+      }
     },
-    "ReadListFileInfos{}": {
-      "snippet": "ReadListFileInfos{${1:tex file list}}"
+    {
+      "name": "ListGenerator"
     },
-    "ReadListFileInfos[]{}": {
-      "snippet": "ReadListFileInfos[${2:txt file}]{${1:tex file list}}"
+    {
+      "name": "NoStopListInfos"
     },
-    "UseFindUtility": {},
-    "FindReadListFileInfos{}": {
-      "snippet": "FindReadListFileInfos{${1:tex file list}}"
+    {
+      "name": "VarListInfos"
     },
-    "FindReadListFileInfos[]{}": {
-      "snippet": "FindReadListFileInfos[${2:txt file}]{${1:tex file list}}"
+    {
+      "name": "VarListInfos",
+      "arg": {
+        "format": "[]",
+        "snippet": "VarListInfos[${1:filename.txt}]"
+      }
     },
-    "FileListRemark{}": {
-      "snippet": "FileListRemark{${1:file}}"
+    {
+      "name": "WriteFileInfosTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "WriteFileInfosTo{${1:txt file}}"
+      }
     },
-    "FileListRemark[]{}": {
-      "snippet": "FileListRemark[${2:info}]{${1:file}}"
+    {
+      "name": "ReadListFileInfos",
+      "arg": {
+        "format": "{}",
+        "snippet": "ReadListFileInfos{${1:tex file list}}"
+      }
     },
-    "NoBottomLines": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "ReadListFileInfos",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ReadListFileInfos[${2:txt file}]{${1:tex file list}}"
+      }
+    },
+    {
+      "name": "UseFindUtility"
+    },
+    {
+      "name": "FindReadListFileInfos",
+      "arg": {
+        "format": "{}",
+        "snippet": "FindReadListFileInfos{${1:tex file list}}"
+      }
+    },
+    {
+      "name": "FindReadListFileInfos",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "FindReadListFileInfos[${2:txt file}]{${1:tex file list}}"
+      }
+    },
+    {
+      "name": "FileListRemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "FileListRemark{${1:file}}"
+      }
+    },
+    {
+      "name": "FileListRemark",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "FileListRemark[${2:info}]{${1:file}}"
+      }
+    },
+    {
+      "name": "NoBottomLines"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

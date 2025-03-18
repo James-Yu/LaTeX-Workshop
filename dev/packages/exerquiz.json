@@ -1,1734 +1,1924 @@
 {
-  "includes": {
-    "keyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "array": [],
-    "xcolor": [],
-    "aeb-comment": [],
-    "verbatim": [],
-    "hyperref": [],
-    "amssymb": [],
-    "eforms": [],
-    "colortbl": [
-      "table"
-    ],
-    "pdfcolmk": [
-      "fixpdftex"
-    ]
-  },
-  "macros": {
-    "ui{}": {
-      "snippet": "ui{${1:keyvals}}",
-      "option": "useui",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "InitSeedValue": {
-      "option": "allowrandomize"
+    {
+      "name": "ifpdf"
     },
-    "writeSeedToSolnFile": {
-      "option": "allowrandomize"
+    {
+      "name": "ifxetex"
     },
-    "saveRandomSeed": {
-      "option": "allowrandomize"
+    {
+      "name": "ifluatex"
     },
-    "inputRandomSeed": {
-      "option": "allowrandomize"
+    {
+      "name": "array"
     },
-    "useRandomSeed{}": {
-      "snippet": "useRandomSeed{${1:number}}",
-      "option": "allowrandomize"
+    {
+      "name": "xcolor"
     },
-    "ifsaveseed": {
-      "option": "allowrandomize"
+    {
+      "name": "aeb-comment"
     },
-    "saveseedtrue": {
-      "option": "allowrandomize"
+    {
+      "name": "verbatim"
     },
-    "saveseedfalse": {
-      "option": "allowrandomize"
+    {
+      "name": "hyperref"
     },
-    "saveseedinfo": {
-      "option": "allowrandomize"
+    {
+      "name": "amssymb"
     },
-    "readsavfile": {
-      "option": "allowrandomize"
+    {
+      "name": "eforms"
     },
-    "randomi": {
-      "option": "allowrandomize"
+    {
+      "name": "colortbl",
+      "if": "table"
     },
-    "nextrandom": {
-      "option": "allowrandomize"
-    },
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}",
-      "option": "allowrandomize"
-    },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}",
-      "option": "allowrandomize"
-    },
-    "pointless": {
-      "option": "allowrandomize"
-    },
-    "PoinTless": {
-      "option": "allowrandomize"
-    },
-    "ranval": {
-      "option": "allowrandomize"
-    },
-    "displaySumryTbl{}": {
-      "snippet": "displaySumryTbl{${1:quiz name}}",
-      "option": "usesumrytbls"
-    },
-    "displaySumryTbl[]{}": {
-      "snippet": "displaySumryTbl[${2:options}]{${1:quiz name}}",
-      "option": "usesumrytbls",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pbPopulateSumTable": {
-      "option": "usesumrytbls"
-    },
-    "pbDoNoCorrectSumryTbl": {
-      "option": "usesumrytbls"
-    },
-    "sumryTblQ": {
-      "option": "usesumrytbls"
-    },
-    "sumryTblR": {
-      "option": "usesumrytbls"
-    },
-    "sumryTblP": {
-      "option": "usesumrytbls"
-    },
-    "stfmtType": {
-      "option": "usesumrytbls"
-    },
-    "showOutOfinSmryTbl": {
-      "option": "usesumrytbls"
-    },
-    "stmarkupbox": {
-      "option": "usesumrytbls"
-    },
-    "oField": {
-      "option": "usesumrytbls"
-    },
-    "sthline": {
-      "option": "usesumrytbls"
-    },
-    "sumrytblCkMUsep": {
-      "option": "usesumrytbls"
-    },
-    "sumrytbllinkHook{}": {
-      "snippet": "sumrytbllinkHook{${1:code}}",
-      "option": "usesumrytbls"
-    },
-    "sumryTblProbFmt{}": {
-      "snippet": "sumryTblProbFmt{${1:text}}",
-      "option": "usesumrytbls"
-    },
-    "sumrytablesep": {
-      "option": "usesumrytbls"
-    },
-    "stmarkupWidth": {
-      "option": "usesumrytbls"
-    },
-    "stmarkupHeight": {
-      "option": "usesumrytbls"
-    },
-    "stmarkupTextSize": {
-      "option": "usesumrytbls"
-    },
-    "writeProListAux": {
-      "option": "usesumrytbls"
-    },
-    "setParamSumryTblAux": {
-      "option": "usesumrytbls"
-    },
-    "correctColor": {
-      "option": "usesumrytbls"
-    },
-    "wrongColor": {
-      "option": "usesumrytbls"
-    },
-    "partialColor": {
-      "option": "usesumrytbls"
-    },
-    "bMCFI": {
-      "option": "usemcfi"
-    },
-    "eMCFI": {
-      "option": "usemcfi"
-    },
-    "eqNA": {
-      "option": "usemcfi"
-    },
-    "mcfiMarkupfmt": {
-      "option": "usemcfi"
-    },
-    "mcfiMarkup": {
-      "option": "usemcfi"
-    },
-    "clickChkBxMCFI": {
-      "option": "usemcfi"
-    },
-    "intrCAns": {
-      "option": "userbmintrvl"
-    },
-    "intrPrec": {
-      "option": "userbmintrvl"
-    },
-    "rbmIntrvl{[}{}": {
-      "snippet": "rbmIntrvl{[${1:a,b]}}{${2:definition}}",
-      "option": "userbmintrvl"
-    },
-    "rbmIntrvl{[}[]{}": {
-      "snippet": "rbmIntrvl{[${1:a,b]}}[${2:opt}]{${3:definition}}",
-      "option": "userbmintrvl"
-    },
-    "RespBoxMath{}": {
-      "snippet": "RespBoxMath{${1:definition}}"
-    },
-    "RespBoxMath[]{}": {
-      "snippet": "RespBoxMath[${2:opt}]{${1:definition}}"
-    },
-    "everyRespBoxTxt{}": {
-      "snippet": "everyRespBoxTxt{${1:eforms params}}"
-    },
-    "aboveanswersSkip": {},
-    "AddAAFormat{}": {
-      "snippet": "AddAAFormat{${1:code}}"
-    },
-    "AddAAKeystroke{}": {
-      "snippet": "AddAAKeystroke{${1:code}}"
-    },
-    "AddAAMouseUpMC{}": {
-      "snippet": "AddAAMouseUpMC{${1:code}}"
-    },
-    "AddAAMouseUpMS{}": {
-      "snippet": "AddAAMouseUpMS{${1:code}}"
-    },
-    "addToAction*{}{}": {
-      "snippet": "addToAction*{${1:key}}{${2:code}}"
-    },
-    "addToAction{}{}": {
-      "snippet": "addToAction{${1:key}}{${2:code}}"
-    },
-    "adjDisplayBelow": {},
-    "aebshowgraylettersfalse": {},
-    "aebshowgrayletterstrue": {},
-    "aebTitleQuiz": {},
-    "afterSplChkActn{}": {
-      "snippet": "afterSplChkActn{${1:action}}"
-    },
-    "AllowPeeking": {},
-    "allowRandomizedChoices": {},
-    "Ans[]{}": {
-      "snippet": "Ans[${2:partial pts}]{${1:0 or 1}}"
-    },
-    "AnswerField[]{}": {
-      "snippet": "AnswerField[${2:eforms params}]{${1:base name}}"
-    },
-    "AnswerField{}": {
-      "snippet": "AnswerField{${1:base name}}"
-    },
-    "answersEndHook{}": {
-      "snippet": "answersEndHook{${1:content}}"
-    },
-    "autoAnsFldRaiseBox{}": {
-      "snippet": "autoAnsFldRaiseBox{${1:length}}"
-    },
-    "autoAnswerField": {},
-    "autoAnswerField[]": {
-      "snippet": "autoAnswerField[${1:eforms params}]"
-    },
-    "autotabOff": {},
-    "autotabOn": {},
-    "bChoices[]": {
-      "snippet": "bChoices[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "bInitAltAppr": {},
-    "bottomOfAnsfStack": {},
-    "bqlabel": {},
-    "CorrAnsButton{}": {
-      "snippet": "CorrAnsButton{${1:display answer}}"
-    },
-    "CorrAnsButton{}*{}": {
-      "snippet": "CorrAnsButton{${1:display answer}}*{${2:JS function}}"
-    },
-    "CorrAnsButtonGrp{}": {
-      "snippet": "CorrAnsButtonGrp{${1:n1,n2,...}}"
-    },
-    "CorrButton[]{}": {
-      "snippet": "CorrButton[${2:eforms params}]{${1:field}}"
-    },
-    "CorrButton{}": {
-      "snippet": "CorrButton{${1:field}}"
-    },
-    "CorrectionsOff": {},
-    "CorrectionsOn": {},
-    "currQuiz": {},
-    "databaseName{}": {
-      "snippet": "databaseName{${1:name}}"
-    },
-    "DeclareQuiz{}": {
-      "snippet": "DeclareQuiz{${1:name}}"
-    },
-    "defaultColorJSDef": {},
-    "defaultquiztype": {},
-    "defaultRDPrecision{}": {
-      "snippet": "defaultRDPrecision{${1:precision}}"
-    },
-    "dockQuiz": {},
-    "doNotRandomizeChoices": {},
-    "eAns": {},
-    "eChoices": {},
-    "eFreeze": {},
-    "eInitAltAppr": {},
-    "endQuizHere": {},
-    "eqButton[]{}": {
-      "snippet": "eqButton[${2:eforms params}]{${1:field}}"
-    },
-    "eqButton{}": {
-      "snippet": "eqButton{${1:field}}"
-    },
-    "eqCGI{}": {
-      "snippet": "eqCGI{${1:URL}}"
-    },
-    "eqforpaperfalse": {},
-    "eqforpapertrue": {},
-    "eqGradeScale": {},
-    "eqlabel": {},
-    "eqPTs": {},
-    "eqQuizType": {},
-    "eqsanitize": {},
-    "eqScore": {},
-    "eqSubmit{}{}{}": {
-      "snippet": "eqSubmit{${1:URL}}{${2:db name}}{${3:table name}}"
-    },
-    "everyAnswerField{}": {
-      "snippet": "everyAnswerField{${1:eforms params}}"
-    },
-    "everyBeginQuizButton{}": {
-      "snippet": "everyBeginQuizButton{${1:eforms params}}"
-    },
-    "everyCorrAnsButton{}": {
-      "snippet": "everyCorrAnsButton{${1:eforms params}}"
-    },
-    "everyCorrButton{}": {
-      "snippet": "everyCorrButton{${1:eforms params}}"
-    },
-    "everyEndQuizButton{}": {
-      "snippet": "everyEndQuizButton{${1:eforms params}}"
-    },
-    "everyeqButtonField{}": {
-      "snippet": "everyeqButtonField{${1:eforms params}}"
-    },
-    "everyeqTextField{}": {
-      "snippet": "everyeqTextField{${1:eforms params}}"
-    },
-    "everyGradeField{}": {
-      "snippet": "everyGradeField{${1:eforms params}}"
-    },
-    "everyPercentField{}": {
-      "snippet": "everyPercentField{${1:eforms params}}"
-    },
-    "everyPointsField{}": {
-      "snippet": "everyPointsField{${1:eforms params}}"
-    },
-    "everyqRadioButton{}": {
-      "snippet": "everyqRadioButton{${1:eforms params}}"
-    },
-    "everyRespBoxMath{}": {
-      "snippet": "everyRespBoxMath{${1:eforms params}}"
-    },
-    "everyScoreField{}": {
-      "snippet": "everyScoreField{${1:eforms params}}"
-    },
-    "everysqClearButton{}": {
-      "snippet": "everysqClearButton{${1:eforms params}}"
-    },
-    "everysqRadioButton{}": {
-      "snippet": "everysqRadioButton{${1:eforms params}}"
-    },
-    "everysqTallyBox{}": {
-      "snippet": "everysqTallyBox{${1:eforms params}}"
-    },
-    "everysqTallyTotal{}": {
-      "snippet": "everysqTallyTotal{${1:eforms params}}"
-    },
-    "exbookmarkfmt": {},
-    "exlabel": {},
-    "exlabelformat": {},
-    "exlabelsol": {},
-    "expdfbookmark{}": {
-      "snippet": "expdfbookmark{${1:bookmark title}}"
-    },
-    "exrtnlabelformat": {},
-    "exsecrunhead": {},
-    "exsectitle": {},
-    "exsllabelformat": {},
-    "exsolafter": {},
-    "fancyQuizHeaders": {},
-    "floatQuiz": {},
-    "formatAsSet": {},
-    "formatAsVector": {},
-    "formatInitAltApprs": {},
-    "GradeField[]{}": {
-      "snippet": "GradeField[${2:eforms params}]{${1:base name}}"
-    },
-    "GradeField{}": {
-      "snippet": "GradeField{${1:base name}}"
-    },
-    "graylettersOff": {},
-    "graylettersOn": {},
-    "hideCreditMarkup": {},
-    "holdDest": {},
-    "ifaebshowgrayletters": {},
-    "ifeqforpaper": {},
-    "ifQuizType{}{}": {
-      "snippet": "ifQuizType{${1:quiz code}}{${2:shortquiz code}}"
-    },
-    "ifstaroption{}{}": {
-      "snippet": "ifstaroption{${1:code if \\titlequiz*}}{${2:otherwise}}"
-    },
-    "includeexersolutions": {},
-    "includequizsolutions": {},
-    "insertGrayLetters": {},
-    "isQZ": {},
-    "isSQZ": {},
-    "makeExSolnsLocalOff": {},
-    "makeExSolnsLocalOn": {},
-    "makeQzSolnsLocalOff": {},
-    "makeQzSolnsLocalOn": {},
-    "manualAnswerField": {},
-    "manualAnswerField[]": {
-      "snippet": "manualAnswerField[${1:eforms params}]"
-    },
-    "minQuizResp": {},
-    "multipartquestion": {},
-    "natlinewidth": {},
-    "negPointsAllowed": {},
-    "NoPeeking": {},
-    "noResetAnsFieldOnClose": {},
-    "noSolnOpt": {},
-    "obeyLocalRandomize": {},
-    "oqpriorhook": {},
-    "partbookmarkfmt": {},
-    "partialColorJSDef": {},
-    "PercentField[]{}": {
-      "snippet": "PercentField[${2:eforms params}]{${1:base name}}"
-    },
-    "PercentField{}": {
-      "snippet": "PercentField{${1:base name}}"
-    },
-    "PointsField[]{}": {
-      "snippet": "PointsField[${2:eforms params}]{${1:base name}}"
-    },
-    "PointsField{}": {
-      "snippet": "PointsField{${1:base name}}"
-    },
-    "popquestions": {},
-    "promoteNewPageHere": {},
-    "promoteNewPageHere[]": {
-      "snippet": "promoteNewPageHere[${1:height}]"
-    },
-    "proofingsymbol": {},
-    "ptLabel{}": {
-      "snippet": "ptLabel{${1:text}}"
-    },
-    "PTs{}": {
-      "snippet": "PTs{${1:number}}"
-    },
-    "PTsHook{}": {
-      "snippet": "PTsHook{${1:code}}"
-    },
-    "ptsLabel{}": {
-      "snippet": "ptsLabel{${1:text}}"
-    },
-    "pushquestions": {},
-    "quesNumColor{}": {
-      "snippet": "quesNumColor{${1:color}}"
-    },
-    "quizpdfbookmark{}": {
-      "snippet": "quizpdfbookmark{${1:bookmark title}}"
-    },
-    "quiztype{}": {
-      "snippet": "quiztype{${1:f|l}}"
-    },
-    "qzbookmarkfmt": {},
-    "rbMarkup": {},
-    "rbMarkup[]": {
-      "snippet": "rbMarkup[${1:eforms params}]"
-    },
-    "REF*{}": {
-      "snippet": "REF*{${1:label}}"
-    },
-    "REF{}": {
-      "snippet": "REF{${1:label}}"
-    },
-    "renameSolnAfterTo{}": {
-      "snippet": "renameSolnAfterTo{${1:text}}"
-    },
-    "resetAnsFieldOnClose": {},
-    "resetMClabelsep": {},
-    "resetSolnAfterToDefault": {},
-    "RespBoxEssay*{}{}": {
-      "snippet": "RespBoxEssay*{${1:width}}{${2:height}}"
-    },
-    "RespBoxEssay{}{}": {
-      "snippet": "RespBoxEssay{${1:width}}{${2:height}}"
-    },
-    "restoreDefaultQuizHeaders": {},
-    "restoreFLTypeDefault": {},
-    "rghtColorJSDef": {},
-    "rowsep{}": {
-      "snippet": "rowsep{${1:length}}"
-    },
-    "rowsepDefault{}": {
-      "snippet": "rowsepDefault{${1:length}}"
-    },
-    "rpl{}": {
-      "snippet": "rpl{${1:text->symbol}}"
-    },
-    "saveDest{}": {
-      "snippet": "saveDest{${1:dest}}"
-    },
-    "ScoreField[]{}": {
-      "snippet": "ScoreField[${2:eforms params}]{${1:base name}}"
-    },
-    "ScoreField{}": {
-      "snippet": "ScoreField{${1:base name}}"
-    },
-    "setActionKeys{}": {
-      "snippet": "setActionKeys{${1:eforms params}}"
-    },
-    "setAnsEnvLinewidth{}": {
-      "snippet": "setAnsEnvLinewidth{${1:length}}"
-    },
-    "setMClabelsep{}": {
-      "snippet": "setMClabelsep{${1:space cmd}}"
-    },
-    "setsolnspace{}": {
-      "snippet": "setsolnspace{${1:space cmd}}"
-    },
-    "showCreditMarkup": {},
-    "SolutionsAfter": {},
-    "SolutionsAtEnd": {},
-    "SpellCheck": {},
-    "SpellCheck[]": {
-      "snippet": "SpellCheck[${1:eforms params}]"
-    },
-    "sqbookmarkfmt": {},
-    "sqClearButton": {},
-    "sqClearButton[]": {
-      "snippet": "sqClearButton[${1:eforms params}]"
-    },
-    "sqlabel": {},
-    "sqsllabel": {},
-    "sqslrtnlabel": {},
-    "sqslsectitle": {},
-    "sqSolnBtn": {},
-    "sqSolnBtn[]": {
-      "snippet": "sqSolnBtn[${1:eforms params}]"
-    },
-    "sqSolnMCMsg": {},
-    "sqSolnMSMsg": {},
-    "sqStrongMsg": {},
-    "sqTallyBox": {},
-    "sqTallyBox[]": {
-      "snippet": "sqTallyBox[${1:eforms params}]"
-    },
-    "sqTallyTotal": {},
-    "sqTallyTotal[]": {
-      "snippet": "sqTallyTotal[${1:eforms params}]"
-    },
-    "sqTurnOffAlerts": {},
-    "sqTurnOnAlerts": {},
-    "sqWeakMsg": {},
-    "startQuizHere": {},
-    "strongpass{}": {
-      "snippet": "strongpass{${1:n}}"
-    },
-    "symbolchoice{}": {
-      "snippet": "symbolchoice{${1:choice}}"
-    },
-    "tableName{}": {
-      "snippet": "tableName{${1:name}}"
-    },
-    "theeqexno": {},
-    "thepartno": {},
-    "thequestionno": {},
-    "titleQuiz*{}": {
-      "snippet": "titleQuiz*{${1:text}}"
-    },
-    "titleQuiz{}": {
-      "snippet": "titleQuiz{${1:text}}"
-    },
-    "titleQuizfmt": {},
-    "TUChoice{}": {
-      "snippet": "TUChoice{${1:text}}"
-    },
-    "turnOnRandomize": {},
-    "useBeginQuizButton": {},
-    "useBeginQuizButton[]": {
-      "snippet": "useBeginQuizButton[${1:eforms params}]"
-    },
-    "useBeginQuizLink": {},
-    "useDest": {},
-    "useEndQuizButton": {},
-    "useEndQuizButton[]": {
-      "snippet": "useEndQuizButton[${1:eforms params}]"
-    },
-    "useEndQuizLink": {},
-    "useForms": {},
-    "useLinks": {},
-    "useMCCircles": {},
-    "useMCCRects": {},
-    "weakpass{}": {
-      "snippet": "weakpass{${1:n}}"
-    },
-    "word{}": {
-      "snippet": "word{${1:text}}"
-    },
-    "wrngColorJSDef": {},
-    "altApprOff": {},
-    "altApprOn": {},
-    "corrChoiceFullyOff": {},
-    "corrChoiceFullyOn": {},
-    "corrLocalChoiceFullyOff": {},
-    "corrLocalChoiceFullyOn": {},
-    "eqCorrChoiceFully": {},
-    "eqCorrLocalChoiceFully": {},
-    "ifShowAppr": {},
-    "ifSubstVars": {},
-    "newNoPeekArgs": {},
-    "NoPeekAlert": {},
-    "noPeekArgs{}": {
-      "snippet": "noPeekArgs{${1:arg}}"
-    },
-    "reany": {},
-    "rebstr": {},
-    "rechrclass{}": {
-      "snippet": "rechrclass{${1:arg}}"
-    },
-    "redigit": {},
-    "rediv": {},
-    "redm": {},
-    "reestr": {},
-    "refac{}": {
-      "snippet": "refac{${1:arg}}"
-    },
-    "regrp{}": {
-      "snippet": "regrp{${1:arg}}"
-    },
-    "remul": {},
-    "replaceExclPt{}": {
-      "snippet": "replaceExclPt{${1:true|false}}"
-    },
-    "repow": {},
-    "resetLocalChoiceFully": {},
-    "ShowApprfalse": {},
-    "ShowApprtrue": {},
-    "SubstVarsfalse": {},
-    "SubstVarstrue": {},
-    "eqModelInfo{}{}": {
-      "snippet": "eqModelInfo{${1:arg1}}{${2:arg2}}"
-    },
-    "jsColor{}{}": {
-      "snippet": "jsColor{${1:arg1}}{${2:arg2}}"
-    },
-    "AAKqRespBoxMath": {},
-    "AAKqRespBoxTxt": {},
-    "AAKqRespBoxTxtPC": {},
-    "aboveexskip{}": {
-      "snippet": "aboveexskip{${1:arg1}}"
-    },
-    "abovepartshook": {},
-    "aboveqskip{}": {
-      "snippet": "aboveqskip{${1:space cmd}}"
-    },
-    "abovesqskip{}": {
-      "snippet": "abovesqskip{${1:space cmd}}"
-    },
-    "addHiddenTextField{}{}{}": {
-      "snippet": "addHiddenTextField{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "adjDisplayBelowPlus": {},
-    "aebChoiceAltFmt": {},
-    "aebtitleQuiz": {},
-    "afterlabelhskip": {},
-    "aftershortquizskip": {},
-    "allowNoAlertBox": {},
-    "alphaParts": {},
-    "AnsPromptBtnStr": {},
-    "AnswerFieldDefaults": {},
-    "answerkeyfalse": {},
-    "answerkeytrue": {},
-    "any": {},
-    "aPointType": {},
-    "argi": {},
-    "arrowDelimfalse": {},
-    "arrowDelimtrue": {},
-    "autoAFOpts": {},
-    "autotabnewline": {},
-    "autotabnewline[]": {
-      "snippet": "autotabnewline[${1:opt}]"
-    },
-    "bcheckboxused": {},
-    "bChoiceLabel": {},
-    "bChoiceNumCols": {},
-    "beginGrp": {},
-    "BeginQuizButtonDefaults": {},
-    "belowexskip{}": {
-      "snippet": "belowexskip{${1:arg1}}"
-    },
-    "belowexsolnskip": {},
-    "belowpartshook": {},
-    "belowqHooknSkip{}": {
-      "snippet": "belowqHooknSkip{${1:code}}"
-    },
-    "belowqskip": {},
-    "belowsqskip{}": {
-      "snippet": "belowsqskip{${1:space cmd}}"
-    },
-    "bHideSolnIn{}": {
-      "snippet": "bHideSolnIn{${1:arg1}}"
-    },
-    "bLeaveVspace": {},
-    "bqlabelFmt": {},
-    "bqlabelISO": {},
-    "buseckbx": {},
-    "bWebCustomize": {},
-    "cabGrpActn": {},
-    "catOfAt": {},
-    "chooseJSsymbol": {},
-    "chooseJSsymboli{}": {
-      "snippet": "chooseJSsymboli{${1:arg1}}"
-    },
-    "ckSolnOpt": {},
-    "cntVars{}": {
-      "snippet": "cntVars{${1:arg1}}"
-    },
-    "cntVarsi{}{}": {
-      "snippet": "cntVarsi{${1:arg1}}{${2:arg2}}"
-    },
-    "compareJSfunc": {},
-    "contsolnsErrorMsg": {},
-    "contsolnsInputMsg": {},
-    "corrAnsArray": {},
-    "CorrAnsButtonDefaults": {},
-    "CorrAnsButtonGrpActionHook": {},
-    "CorrAnsButtonGrpDefaults": {},
-    "corrAnsSymb": {},
-    "corrAnsSymbJS": {},
-    "corrAnsSymbJSLoc": {},
-    "corrAnsSymbJSLocDef": {},
-    "CorrBtnActionsJS": {},
-    "CorrectAns": {},
-    "cqCopiedQues": {},
-    "cqFmtPasteQues{}": {
-      "snippet": "cqFmtPasteQues{${1:arg1}}"
-    },
-    "cqIsActivefalse": {},
-    "cqIsActivetrue": {},
-    "cqQS": {},
-    "cqQSA{}{}": {
-      "snippet": "cqQSA{${1:arg1}}{${2:arg2}}"
-    },
-    "cqqsfalse": {},
-    "cqQStr": {},
-    "cqqstrue": {},
-    "cqQSV": {},
-    "cqSAfalse": {},
-    "cqSAtrue": {},
-    "cqSStr": {},
-    "currhideopt": {},
-    "currQuizStartPage": {},
-    "dclrFncyQzHdrsFmt{}": {
-      "snippet": "dclrFncyQzHdrsFmt{${1:arg1}}"
-    },
-    "dclrFncySqHdrsFmt{}": {
-      "snippet": "dclrFncySqHdrsFmt{${1:arg1}}"
-    },
-    "declCopyQues{}": {
-      "snippet": "declCopyQues{${1:arg1}}"
-    },
-    "declCQPost{}": {
-      "snippet": "declCQPost{${1:arg}}"
-    },
-    "declCQPre{}": {
-      "snippet": "declCQPre{${1:arg}}"
-    },
-    "declCQQuesStr{}": {
-      "snippet": "declCQQuesStr{${1:arg1}}"
-    },
-    "declCQSolStr{}": {
-      "snippet": "declCQSolStr{${1:arg1}}"
-    },
-    "decleqterminex{}": {
-      "snippet": "decleqterminex{${1:arg}}"
-    },
-    "defaultColorJS": {},
-    "defaultColorJSLoc": {},
-    "defaultColorJSLocDef": {},
-    "DefaultHeightOfWidget": {},
-    "defaultpartsformat": {},
-    "defaultReqFormMsg": {},
-    "defineEachAns{}": {
-      "snippet": "defineEachAns{${1:arg1}}"
-    },
-    "defineEachChoice{}": {
-      "snippet": "defineEachChoice{${1:arg1}}"
-    },
-    "dfltFncyQHdrsFmt": {},
-    "displayworkareafalse": {},
-    "displayworkareaOff": {},
-    "displayworkareaOn": {},
-    "displayworkareatrue": {},
-    "dlLibSpecRespJS": {},
-    "doNotShowAgainMsg": {},
-    "eHideSolnIn{}": {
-      "snippet": "eHideSolnIn{${1:arg1}}"
-    },
-    "endexerhook": {},
-    "endGrp": {},
-    "endqhook{}": {
-      "snippet": "endqhook{${1:arg1}}"
-    },
-    "EndQuizButtonDefaults": {},
-    "endsolnexerhook": {},
-    "endsolnexerhookaux": {},
-    "endsqhook{}": {
-      "snippet": "endsqhook{${1:arg1}}"
-    },
-    "eqAddAAFormat": {},
-    "eqAddAAKeystroke": {},
-    "eqAddAAMouseUpMC": {},
-    "eqAddAAMouseUpMS": {},
-    "eqAnd": {},
-    "eqAppAlert": {},
-    "eqarg": {},
-    "eqargii": {},
-    "eqBaseName": {},
-    "eqbmkmrkdepth": {},
-    "eqBraces": {},
-    "eqBrackets": {},
-    "eqButtonDefaults": {},
-    "eqCommonCmd": {},
-    "eqCorrectAnsTeX": {},
-    "eqCQDeclarations": {},
-    "eqeCurrProb": {},
-    "eqemargin": {},
-    "eqequesparsep{}": {
-      "snippet": "eqequesparsep{${1:length}}"
-    },
-    "eqerrABS": {},
-    "eqerrBadExp": {},
-    "eqerrDelimNotBal": {},
-    "eqerrUnfinishQuiz": {},
-    "eqexerskip": {},
-    "eqExerSolnHeader": {},
-    "eqExerSolnHeaderList": {},
-    "eqExerSolnHeaderSngl": {},
-    "eqExerSolnTrailer": {},
-    "eqexheader": {},
-    "eqexlisttabheader": {},
-    "eqexpdfentry": {},
-    "eqExSolFileName": {},
-    "eqExtArg": {},
-    "eqFilterArg": {},
-    "eqfititin": {},
-    "eqGenButton": {},
-    "eqGradeScaleLoc": {},
-    "eqgrii": {},
-    "eqgriii": {},
-    "eqi": {},
-    "eqIcon{}{}{}{}": {
-      "snippet": "eqIcon{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "eqIconDefaults": {},
-    "eqInitQuizMsg": {},
-    "eqlabelFmt": {},
-    "eqLBr": {},
-    "eqlimselTo": {},
-    "eqMadeChoice": {},
-    "eqMrkCpyArg": {},
-    "eqMrkSoln": {},
-    "eqObjAlert": {},
-    "eqObjAlertIfFalse": {},
-    "eqOutOf": {},
-    "eqParens": {},
-    "eqpartsitemsep": {},
-    "eqPriorVspace": {},
-    "eqptLabel": {},
-    "eqptScore": {},
-    "eqptsLabel": {},
-    "eqQT": {},
-    "eqQuizGradeMsg": {},
-    "eqQuizPercentMsg": {},
-    "eqQuizPointsMsg": {},
-    "eqQuizTotalMsg": {},
-    "eqQzQuesList": {},
-    "eqQzSolnTrailerHook": {},
-    "eqqzsolutionshook": {},
-    "eqRBr": {},
-    "eqretnSymb": {},
-    "eqshowmarkupfalse": {},
-    "eqshowmarkuptrue": {},
-    "eqshowOutOffalse": {},
-    "eqshowOutOftrue": {},
-    "eqSolnExCmds": {},
-    "eqSolnForEqexam{}": {
-      "snippet": "eqSolnForEqexam{${1:arg1}}"
-    },
-    "eqsolutionshook": {},
-    "eqSP": {},
-    "eqsqrtmsg": {},
-    "eqSqSolnTrailer": {},
-    "eqSqSolnTrailerHook": {},
-    "eqsqwgmsg": {},
-    "eqSubmiti{}": {
-      "snippet": "eqSubmiti{${1:arg1}}"
-    },
-    "eqSubmitii{}{}": {
-      "snippet": "eqSubmitii{${1:arg1}}{${2:arg2}}"
-    },
-    "eqSyntaxErrorUndefVar": {},
-    "eqterminex": {},
-    "eqterminexDEF": {},
-    "eqthisenv": {},
-    "eqtmp": {},
-    "eqtmpcnta": {},
-    "eqtmplength": {},
-    "eqTopOfQslPage": {},
-    "eqTopOfSolnPage": {},
-    "eqWriteLine": {},
-    "eQzBtnActns": {},
-    "everyeqButton{}": {
-      "snippet": "everyeqButton{${1:eforms params}}"
-    },
-    "everyeqGenButton": {},
-    "everyeqIcon{}": {
-      "snippet": "everyeqIcon{${1:eforms params}}"
-    },
-    "everyparShape": {},
-    "everyqCheckBox{}": {
-      "snippet": "everyqCheckBox{${1:eforms params}}"
-    },
-    "everyqckCheckBox{}": {
-      "snippet": "everyqckCheckBox{${1:eforms params}}"
-    },
-    "everyrbMarkup{}": {
-      "snippet": "everyrbMarkup{${1:eforms params}}"
-    },
-    "everysqCheckBox{}": {
-      "snippet": "everysqCheckBox{${1:eforms params}}"
-    },
-    "eWebCustomize": {},
-    "exclQt{}": {
-      "snippet": "exclQt{${1:arg1}}"
-    },
-    "exclSQt{}": {
-      "snippet": "exclSQt{${1:arg1}}"
-    },
-    "exerSolnHeader{}{}{}": {
-      "snippet": "exerSolnHeader{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "exersolnheadhook": {},
-    "exerSolnInput": {},
-    "exerSolnsHeadnToc": {},
-    "exerSolnsInExtFile{}{}": {
-      "snippet": "exerSolnsInExtFile{${1:arg1}}{${2:arg2}}"
-    },
-    "exerstar": {},
-    "exlabelformatwp": {},
-    "exlisttabheaderafterhook": {},
-    "exlisttabheaderpriorhook": {},
-    "expdfbookmarktitle": {},
-    "exPrtsep{}": {
-      "snippet": "exPrtsep{${1:length}}"
-    },
-    "exqtable": {},
-    "exrtnlabelformatwp": {},
-    "exsllabelformatwp": {},
-    "exSolafterDefault": {},
-    "exsolafterDefault{}": {
-      "snippet": "exsolafterDefault{${1:arg}}"
-    },
-    "exsolnonceonlytophook": {},
-    "ExSolutionsSetfalse": {},
-    "ExSolutionsSettrue": {},
-    "FALSEACTIONii": {},
-    "FALSEACTIONiia": {},
-    "filterFor{}": {
-      "snippet": "filterFor{${1:arg}}"
-    },
-    "fleqnOff": {},
-    "fleqnOn": {},
-    "FncyHdrsFmtNoTitleQuiz": {},
-    "FncyHdrsFmtQuestion": {},
-    "fncyQHdrsColor": {},
-    "fpAfterSolutionsSkip": {},
-    "frstIsrpl": {},
-    "gExCommonCmd{}": {
-      "snippet": "gExCommonCmd{${1:arg}}"
-    },
-    "GFW": {},
-    "GiiRpli{}": {
-      "snippet": "GiiRpli{${1:arg1}}"
-    },
-    "GiiRplii{}": {
-      "snippet": "GiiRplii{${1:arg1}}"
-    },
-    "gobbleMacro{}": {
-      "snippet": "gobbleMacro{${1:arg1}}"
-    },
-    "gobbleToEndEXt{}": {
-      "snippet": "gobbleToEndEXt{${1:arg1}}"
-    },
-    "gobbleToEndQt{}": {
-      "snippet": "gobbleToEndQt{${1:arg1}}"
-    },
-    "gobbleToEndSQt{}": {
-      "snippet": "gobbleToEndSQt{${1:arg1}}"
-    },
-    "gobbleTxt{}": {
-      "snippet": "gobbleTxt{${1:arg1}}"
-    },
-    "GradeFieldDefaults": {},
-    "graylettersColor": {},
-    "grpEvalFunction": {},
-    "grpPointValue": {},
-    "grpquestions": {},
-    "grpTotalWeight": {},
-    "halfWidth": {},
-    "Hidesymbol": {},
-    "hidesymbol": {},
-    "highThresholdMsg": {},
-    "ifanswerkey": {},
-    "ifarrowDelim": {},
-    "ifcqIsActive": {},
-    "ifcqqs": {},
-    "ifcqSA": {},
-    "ifdisplayworkarea": {},
-    "ifeqshowmarkup": {},
-    "ifeqshowOutOf": {},
-    "ifExSolutionsSet": {},
-    "ifIsRespBox": {},
-    "ifkeepdeclaredvspacing": {},
-    "ifmakeExSlLocal": {},
-    "ifmakeQzSlLocal": {},
-    "ifnocorrections": {},
-    "ifNoSolutions{}{}": {
-      "snippet": "ifNoSolutions{${1:arg1}}{${2:arg2}}"
-    },
-    "ifOKToWriteExamData": {},
-    "ifoxfordcomma": {},
-    "ifsolutionsafter": {},
-    "ifsolutionsAtEnd": {},
-    "ifsolutionsonly": {},
-    "ifterminexchanged": {},
-    "iftherearequizsolutions": {},
-    "iftherearesolutions": {},
-    "ifthereissolution": {},
-    "ifuseNumForParts": {},
-    "ifusesumrytbls": {},
-    "ifvspacewithsolns": {},
-    "ifwithinMCFI": {},
-    "ifwithinparts": {},
-    "ifwithinqsldoc": {},
-    "ifwithinsoldoc": {},
-    "inclEXtFilter{}{}": {
-      "snippet": "inclEXtFilter{${1:arg1}}{${2:arg2}}"
-    },
-    "inclQtFilter{}": {
-      "snippet": "inclQtFilter{${1:arg}}"
-    },
-    "inclSQtFilter{}": {
-      "snippet": "inclSQtFilter{${1:arg}}"
-    },
-    "includeexersolutionsi{}": {
-      "snippet": "includeexersolutionsi{${1:arg1}}"
-    },
-    "includeexersolutionsii": {},
-    "includequizsolutionsi{}": {
-      "snippet": "includequizsolutionsi{${1:arg1}}"
-    },
-    "includequizsolutionsii": {},
-    "indepVars": {},
-    "inittabMark": {},
-    "InputExrSolnsLevel": {},
-    "inputMCFICode": {},
-    "InputQzSolnsLevel": {},
-    "inputRandomizeChoices": {},
-    "inputRBMICode": {},
-    "inputSumryTblCode": {},
-    "insertAnsEndHookHere": {},
-    "insertAnsHookAt": {},
-    "insertAtMsg": {},
-    "intPrt": {},
-    "isAltApprSpec{}": {
-      "snippet": "isAltApprSpec{${1:arg1}}"
-    },
-    "isFrstrpl{}{}": {
-      "snippet": "isFrstrpl{${1:arg1}}{${2:arg2}}"
-    },
-    "isitleadin": {},
-    "isREFstar": {},
-    "IsRespBoxfalse": {},
-    "IsRespBoxtrue": {},
-    "istabularexer": {},
-    "itsExerParts": {},
-    "itsforleadinitem": {},
-    "jsLB": {},
-    "jsRB": {},
-    "jsRespBox": {},
-    "JST": {},
-    "jsTempArgs": {},
-    "keepdeclaredvspacingfalse": {},
-    "keepdeclaredvspacingtrue": {},
-    "labeleqquestionnoi": {},
-    "labeleqquestionnoii": {},
-    "labeleqquestionnoiii": {},
-    "LangRedefinitions": {},
-    "leadinitem": {},
-    "leavevspace": {},
-    "limitSelectionTo{}": {
-      "snippet": "limitSelectionTo{${1:arg1}}"
-    },
-    "limSelWarningMsg": {},
-    "linkContentFormat": {},
-    "linkContentWrapper": {},
-    "ListOfQuizNames": {},
-    "ListOfSQuizNames": {},
-    "makeExSlLocalfalse": {},
-    "makeExSlLocaltrue": {},
-    "makeQzSlLocalfalse": {},
-    "makeQzSlLocaltrue": {},
-    "makeStringArray{}": {
-      "snippet": "makeStringArray{${1:arg1}}"
-    },
-    "marginparafterhook": {},
-    "marginparpriorhook": {},
-    "markupHeight": {},
-    "markupTextSize": {},
-    "markupWidth": {},
-    "minVspacetabs{}": {
-      "snippet": "minVspacetabs{${1:arg1}}"
-    },
-    "moreRespBoxMathDefaults": {},
-    "moreRespBoxTxtDefaults": {},
-    "mrkForIns{}": {
-      "snippet": "mrkForIns{${1:arg}}"
-    },
-    "nC": {},
-    "negpointsallowed": {},
-    "negPointsMarkupAllowed": {},
-    "negpointsmarkupallowed": {},
-    "newsolnspace": {},
-    "nI": {},
-    "nocorrectionsfalse": {},
-    "nocorrectionstrue": {},
-    "nolinkcolor{}": {
-      "snippet": "nolinkcolor{${1:color}}"
-    },
-    "nopartquestion": {},
-    "noPeekAction{}{}": {
-      "snippet": "noPeekAction{${1:arg1}}{${2:arg2}}"
-    },
-    "noPeekMsg": {},
-    "normalCABtnBC": {},
-    "normalSolnWrites": {},
-    "noSolnWrites": {},
-    "NoSpaceToWork": {},
-    "numberParts": {},
-    "numShortCols": {},
-    "nV": {},
-    "OKToWriteExamDatafalse": {},
-    "OKToWriteExamDatatrue": {},
-    "oSolution{}": {
-      "snippet": "oSolution{${1:arg1}}"
-    },
-    "oxfordcommafalse": {},
-    "oxfordCommaOff": {},
-    "oxfordCommaOn": {},
-    "oxfordcommatrue": {},
-    "partialColorJS": {},
-    "partialColorJSLoc": {},
-    "partialColorJSLocDef": {},
-    "partnoFmt{}": {
-      "snippet": "partnoFmt{${1:text}}"
-    },
-    "parts": {},
-    "partsformat{}": {
-      "snippet": "partsformat{${1:arg}}"
-    },
-    "partshangamount": {},
-    "partsitemsep{}": {
-      "snippet": "partsitemsep{${1:arg1}}"
-    },
-    "partsparsep{}": {
-      "snippet": "partsparsep{${1:arg1}}"
-    },
-    "partstabcolsep{}": {
-      "snippet": "partstabcolsep{${1:length}}"
-    },
-    "partstabrowsep{}": {
-      "snippet": "partstabrowsep{${1:arg1}}"
-    },
-    "partstabtopsep{}": {
-      "snippet": "partstabtopsep{${1:length}}"
-    },
-    "partstopsep{}": {
-      "snippet": "partstopsep{${1:arg1}}"
-    },
-    "PBS{}": {
-      "snippet": "PBS{${1:arg}}"
-    },
-    "PcFW": {},
-    "pcMarkupColor": {},
-    "PercentFieldDefaults": {},
-    "pnphDflt": {},
-    "PointsFieldDefaults": {},
-    "pointValuesArray": {},
-    "popEnvir": {},
-    "popiiictm": {},
-    "populateHiddenField{}{}": {
-      "snippet": "populateHiddenField{${1:arg1}}{${2:arg2}}"
-    },
-    "postInitQuiz": {},
-    "postSubmitQuiz": {},
-    "prbPrtsep{}": {
-      "snippet": "prbPrtsep{${1:length}}"
-    },
-    "priorexlabelheader": {},
-    "priorexsectitle": {},
-    "priorexskip": {},
-    "priorexslinput": {},
-    "priorexsolafterList": {},
-    "priorexsolafterSngl": {},
-    "priorexsolafterTab": {},
-    "priorInitQuiz": {},
-    "priorqhook{}": {
-      "snippet": "priorqhook{${1:code}}"
-    },
-    "priorsqhook{}": {
-      "snippet": "priorsqhook{${1:code}}"
-    },
-    "priorsqslinput": {},
-    "priorsqslsectitle": {},
-    "priorSubmitQuiz": {},
-    "processJSfunc": {},
-    "processLabeledAns": {},
-    "PromptAns": {},
-    "PromptButton": {},
-    "PromptButtonActionCode": {},
-    "PromptButtonActionHook": {},
-    "PromptButtonDefaults": {},
-    "promptButtonMsg": {},
-    "proofingsymbolColor{}": {
-      "snippet": "proofingsymbolColor{${1:color}}"
-    },
-    "prtsIndntSep": {},
-    "PtFW": {},
-    "ptsValue": {},
-    "ptypeArray": {},
-    "pushEnvir": {},
-    "qChoiceColor{}": {
-      "snippet": "qChoiceColor{${1:arg1}}"
-    },
-    "qChoiceColorDef": {},
-    "qChoiceSymb{}": {
-      "snippet": "qChoiceSymb{${1:arg1}}"
-    },
-    "qChoiceSymbDef": {},
-    "qCorrAnsButtonActionHook": {},
-    "qhspace": {},
-    "qMark": {},
-    "qPostHeaderHook": {},
-    "qRadionActionsHook": {},
-    "qstar": {},
-    "QT{}": {
-      "snippet": "QT{${1:arg1}}"
-    },
-    "quessolSkip{}": {
-      "snippet": "quessolSkip{${1:arg1}}"
-    },
-    "quizpdfbookmarktitle": {},
-    "quizSolnHeader{}{}{}": {
-      "snippet": "quizSolnHeader{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "quizSolnInput": {},
-    "quizSolnsHeadnToc": {},
-    "qzIDFmt": {},
-    "qzPriorSolutionAfterHook": {},
-    "qzSolutionsAfterHook": {},
-    "qzTabPos{}": {
-      "snippet": "qzTabPos{${1:arg1}}"
-    },
-    "qztabsep{}": {
-      "snippet": "qztabsep{${1:length}}"
-    },
-    "RadioFieldSize": {},
-    "rbArgs": {},
-    "rbArgstmp": {},
-    "rbFlag": {},
-    "rbmAAKey": {},
-    "rbtAAKey": {},
-    "rbtPCAAKey": {},
-    "rbTxtAlt": {},
-    "RBW": {},
-    "recoverDisplayBelow": {},
-    "removelastparskip": {},
-    "replaceexclaim": {},
-    "requireAlertBox": {},
-    "resetEXsolns": {},
-    "resetGradeScaleLoc": {},
-    "resetQZtsolns": {},
-    "resettabMark": {},
-    "RespBox": {},
-    "RespBoxNT": {},
-    "RespBoxEssayDefaults": {},
-    "RespBoxMathDefaults": {},
-    "RespBoxTxtDefaults": {},
-    "RespBoxTxtNT": {},
-    "RespBoxTxtOnBlur": {},
-    "restoreBeginQuiz": {},
-    "restoreEndQuiz": {},
-    "restorejustify": {},
-    "restoreJustifyOff": {},
-    "restoreJustifyOn": {},
-    "restoreNormalEndQuiz": {},
-    "restoreNormalSolns": {},
-    "RestoreScoreField": {},
-    "ReturnTo{}{}": {
-      "snippet": "ReturnTo{${1:arg1}}{${2:arg2}}"
-    },
-    "rexpStr": {},
-    "rghtAnsSymb": {},
-    "rghtAnsSymbJS": {},
-    "rghtAnsSymbJSLoc": {},
-    "rghtAnsSymbJSLocDef": {},
-    "rghtColorJS": {},
-    "rghtColorJSLoc": {},
-    "rghtColorJSLocDef": {},
-    "rlspar": {},
-    "rmFracPrt{}": {
-      "snippet": "rmFracPrt{${1:arg1}}"
-    },
-    "RorRT": {},
-    "rplSofT{}{}": {
-      "snippet": "rplSofT{${1:arg1}}{${2:arg2}}"
-    },
-    "rtnURL": {},
-    "sameVspace": {},
-    "savedAltFmt{}": {
-      "snippet": "savedAltFmt{${1:arg1}}"
-    },
-    "ScoreFieldDefaults": {},
-    "setActionKeysi{}": {
-      "snippet": "setActionKeysi{${1:arg1}}"
-    },
-    "setCoreInitAltAppr": {},
-    "setCorrAnsSymb{}": {
-      "snippet": "setCorrAnsSymb{${1:arg1}}"
-    },
-    "setCorrAnsSymbLoc{}": {
-      "snippet": "setCorrAnsSymbLoc{${1:arg1}}"
-    },
-    "setDefQuizLabelName{}": {
-      "snippet": "setDefQuizLabelName{${1:arg1}}"
-    },
-    "setDefShortQuizLabelName{}": {
-      "snippet": "setDefShortQuizLabelName{${1:arg1}}"
-    },
-    "setENum": {},
-    "setMClabelsepDefault{}": {
-      "snippet": "setMClabelsepDefault{${1:arg1}}"
-    },
-    "setPartsWidth{}": {
-      "snippet": "setPartsWidth{${1:width}}"
-    },
-    "setPrbSolnAftrIndent{}": {
-      "snippet": "setPrbSolnAftrIndent{${1:arg1}}"
-    },
-    "setproofingsymbol": {},
-    "setRghtAnsSymb{}": {
-      "snippet": "setRghtAnsSymb{${1:arg1}}"
-    },
-    "setRghtAnsSymbLoc{}": {
-      "snippet": "setRghtAnsSymbLoc{${1:arg1}}"
-    },
-    "setTabulrSolnEnv": {},
-    "SETTEMPBOXi": {},
-    "SETTEMPBOXii": {},
-    "setWrngAnsSymb{}": {
-      "snippet": "setWrngAnsSymb{${1:arg1}}"
-    },
-    "setWrngAnsSymbLoc{}": {
-      "snippet": "setWrngAnsSymbLoc{${1:arg1}}"
-    },
-    "SFW": {},
-    "ShowApprSAVE": {},
-    "SHOWTEMPBOXi": {},
-    "solnhspace": {},
-    "solnItemMngt": {},
-    "solnsafterSkip{}": {
-      "snippet": "solnsafterSkip{${1:arg1}}"
-    },
-    "solnsafterSkipAmt": {},
-    "solnspace": {},
-    "solution": {},
-    "solutionafterExCmds{}": {
-      "snippet": "solutionafterExCmds{${1:arg1}}"
-    },
-    "solutionColor{}": {
-      "snippet": "solutionColor{${1:arg}}"
-    },
-    "solutionColorDef": {},
-    "solutionparshape": {},
-    "solutionsafterfalse": {},
-    "solutionsafterSkip": {},
-    "solutionsaftertrue": {},
-    "solutionsAtEndfalse": {},
-    "solutionsAtEndtrue": {},
-    "solutionsonlyfalse": {},
-    "solutionsonlytrue": {},
-    "SpaceToWork": {},
-    "splChkCA": {},
-    "splChkTU": {},
-    "sqClearButtonDefaults": {},
-    "sqCorrAnsButtonActionHook": {},
-    "sqCorrAnsCode": {},
-    "sqCorrections": {},
-    "sqCorrSolButtonActionHook": {},
-    "sqCorrSolCodeMC": {},
-    "sqCorrSolCodeMS": {},
-    "sqDefaultFmtTitle{}": {
-      "snippet": "sqDefaultFmtTitle{${1:arg1}}"
-    },
-    "sqForms": {},
-    "sqhspace": {},
-    "sqLinks": {},
-    "sqNoCorrections": {},
-    "sqPostHeaderHook": {},
-    "sqResetSymbToDef": {},
-    "sqRghtSymbChoice{}": {
-      "snippet": "sqRghtSymbChoice{${1:arg1}}"
-    },
-    "sqRghtSymbChoiceDef": {},
-    "sqRghtSymbColor{}": {
-      "snippet": "sqRghtSymbColor{${1:arg1}}"
-    },
-    "sqRghtSymbColorDef": {},
-    "sqRightRespJS": {},
-    "sqslsecrunhead": {},
-    "sqsolafter": {},
-    "sqsolafterhspace": {},
-    "sqstar": {},
-    "sqTabPos{}": {
-      "snippet": "sqTabPos{${1:arg1}}"
-    },
-    "sqtabsep{}": {
-      "snippet": "sqtabsep{${1:length}}"
-    },
-    "sqTallyBoxDefaults": {},
-    "sqTallyTotalDefaults": {},
-    "sqWrngSymbChoice{}": {
-      "snippet": "sqWrngSymbChoice{${1:arg1}}"
-    },
-    "sqWrngSymbChoiceDef": {},
-    "sqWrngSymbColor{}": {
-      "snippet": "sqWrngSymbColor{${1:arg1}}"
-    },
-    "sqWrngSymbColorDef": {},
-    "sqWrongRespJS": {},
-    "stOutOf": {},
-    "stringArray": {},
-    "tabControlOff": {},
-    "tabControlOn": {},
-    "tableadin": {},
-    "tablrIndent": {},
-    "tallywidth{}": {
-      "snippet": "tallywidth{${1:arg1}}"
-    },
-    "TBW": {},
-    "terminexchangedfalse": {},
-    "terminexchangedtrue": {},
-    "theeqpointvalue": {},
-    "theeqquestionnoi": {},
-    "theeqquestionnoii": {},
-    "theeqquestionnoiii": {},
-    "thegrpquestionno": {},
-    "theHpartno": {},
-    "theHquizno": {},
-    "theqMarkCnt": {},
-    "thequizno": {},
-    "therearequizsolutionsfalse": {},
-    "therearequizsolutionstrue": {},
-    "therearesolutionsfalse": {},
-    "therearesolutionstrue": {},
-    "thereissolutionfalse": {},
-    "thereissolutiontrue": {},
-    "thisQuiz": {},
-    "thisRtnURL": {},
-    "toAltApprCnt": {},
-    "toAltApprCntInc": {},
-    "toAltApprVar": {},
-    "topofpartshook": {},
-    "tqhspace": {},
-    "TRUEACTIONi": {},
-    "TRUEACTIONia": {},
-    "turnProofingOff": {},
-    "turnProofingOn": {},
-    "txtAltList": {},
-    "useCkBxAlertsOff": {},
-    "useCkBxAlertsOn": {},
-    "useEXtFilter": {},
-    "useMCRects": {},
-    "useNumForPartsfalse": {},
-    "useNumForPartstrue": {},
-    "useQtFilter": {},
-    "useSavedAlts": {},
-    "useSavedAltsAns": {},
-    "useSavedAns": {},
-    "useSavedNumAns{}": {
-      "snippet": "useSavedNumAns{${1:arg1}}"
-    },
-    "useSQtFilter": {},
-    "usesumrytblsfalse": {},
-    "usesumrytblstrue": {},
-    "viidna": {},
-    "vspaceFiller{}": {
-      "snippet": "vspaceFiller{${1:arg1}}"
-    },
-    "vspaceFillerDefault{}": {
-      "snippet": "vspaceFillerDefault{${1:arg1}}"
-    },
-    "vspaceFmt{}": {
-      "snippet": "vspaceFmt{${1:arg1}}"
-    },
-    "vspacewithsolnsfalse": {},
-    "vspacewithsolnstrue": {},
-    "webnewpage": {},
-    "webtempboxi": {},
-    "webtempboxii": {},
-    "widthOfParts": {},
-    "widthOfPartsBox": {},
-    "withinMCFIfalse": {},
-    "withinMCFItrue": {},
-    "withinpartsfalse": {},
-    "withinpartstrue": {},
-    "withinqsldocfalse": {},
-    "withinqsldoctrue": {},
-    "withinsoldocfalse": {},
-    "withinsoldoctrue": {},
-    "writecqQSfalse": {},
-    "writeToExSolns": {},
-    "writeTopOfQslPage": {},
-    "writeToQzSolns{}": {
-      "snippet": "writeToQzSolns{${1:arg1}}"
-    },
-    "wrngAnsSymb": {},
-    "wrngAnsSymbJS": {},
-    "wrngAnsSymbJSLoc": {},
-    "wrngAnsSymbJSLocDef": {},
-    "wrngColorJS": {},
-    "wrngColorJSLoc": {},
-    "wrngColorJSLocDef": {},
-    "xReturnTo{}{}": {
-      "snippet": "xReturnTo{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pdfcolmk",
+      "if": "fixpdftex"
     }
-  },
-  "envs": {
-    "sumryTblAux{}": {
-      "name": "sumryTblAux",
-      "snippet": "{${1:quiz name}}",
-      "option": "usesumrytbls"
-    },
-    "answers{}": {
-      "name": "answers",
-      "snippet": "{${1:nCols}}"
-    },
-    "answers*{}": {
-      "name": "answers",
-      "snippet": "*{${1:nCols}}"
-    },
-    "answers[]{}": {
-      "name": "answers",
-      "snippet": "[${2:dest}]{${1:nCols}}"
-    },
-    "exEnumerate": {},
-    "exEnumerate[]": {
-      "name": "exEnumerate",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "enumex": {},
-    "enumex*": {},
-    "exercise": {},
-    "exercise[]": {
-      "name": "exercise",
-      "snippet": "[${1:option}]"
-    },
-    "exercise*": {},
-    "manswers{}": {
-      "name": "manswers",
-      "snippet": "{${1:nCols}}"
-    },
-    "manswers*{}": {
-      "name": "manswers",
-      "snippet": "*{${1:nCols}}"
-    },
-    "manswers[]{}": {
-      "name": "manswers",
-      "snippet": "[${2:dest}]{${1:nCols}}"
-    },
-    "mathGrp": {},
-    "oQuestion{}": {
-      "name": "oQuestion",
-      "snippet": "{${1:base name}}"
-    },
-    "parts": {},
-    "parts[]": {
-      "name": "parts",
-      "snippet": "[${1:columns}]"
-    },
-    "questions": {},
-    "quiz{}": {
-      "name": "quiz",
-      "snippet": "{${1:base name}}"
-    },
-    "quiz*{}": {
-      "name": "quiz*",
-      "snippet": "{${1:base name}}"
-    },
-    "shortquiz": {},
-    "shortquiz[]": {
-      "name": "shortquiz",
-      "snippet": "[${1:base name}]"
-    },
-    "shortquiz*": {},
-    "shortquiz*[]": {
-      "name": "shortquiz*",
-      "snippet": "[${1:base name}]"
-    },
-    "solution": {},
-    "solution[]": {
-      "name": "solution",
-      "snippet": "[${1:vspace}]"
-    },
-    "cq*": {},
-    "cq": {},
-    "eqEXt": {},
-    "eqQt": {},
-    "eqSavedComment": {},
-    "eqSQt": {},
-    "procsoln": {}
-  },
-  "options": [
-    "noxcolor",
-    "forpaper",
-    "forcolorpaper",
-    "preview",
-    "nosolutions",
-    "noquizsolutions",
-    "allowanswers",
-    "online",
-    "nohiddensolutions",
-    "noHiddensolutions",
-    "solutionsafter",
-    "solutionsonly",
-    "contsolns",
-    "nocorrections",
-    "proofing",
-    "showgrayletters",
-    "vspacewithsolns",
-    "nodljs",
-    "execJS",
-    "usealtadobe",
-    "exercisesonly",
-    "debug",
-    "allowrandomize",
-    "usesumrytbls",
-    "usemcfi",
-    "userbmintrvl",
-    "dvipsone",
-    "dvips",
-    "pdftex",
-    "luatex",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "textures",
-    "dviwindo",
-    "unicode",
-    "useui",
-    "french",
-    "german",
-    "norsk",
-    "dutch",
-    "spanish",
-    "italian",
-    "russian",
-    "dansk",
-    "polish",
-    "finnish",
-    "catalan",
-    "czech",
-    "brazil",
-    "turkish",
-    "natural",
-    "rgb",
-    "cmy",
-    "cmyk",
-    "hsb",
-    "gray",
-    "RGB",
-    "HTML",
-    "HSB",
-    "Gray",
-    "monochrome",
-    "dvipsnames",
-    "dvipsnames*",
-    "svgnames",
-    "svgnames*",
-    "x11names",
-    "x11names*",
-    "table",
-    "fixpdftex",
-    "hyperref",
-    "prologue",
-    "kernelfbox",
-    "xcdraw",
-    "noxcdraw",
-    "fixinclude",
-    "showerrors",
-    "hideerrors"
   ],
-  "keyvals": [
-    [
-      "border=",
-      "linewidth=",
-      "highlight=",
+  "macros": [
+    {
+      "name": "ui",
+      "if": "useui",
+      "arg": {
+        "format": "{}",
+        "snippet": "ui{${1:keyvals}}",
+        "keys": [
+          "\\ui"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "InitSeedValue",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "writeSeedToSolnFile",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "saveRandomSeed",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "inputRandomSeed",
+      "if": "allowrandomize"
+    },
+    {
+      "name": "useRandomSeed",
+      "if": "allowrandomize",
+      "arg": {
+        "format": "{}",
+        "snippet": "useRandomSeed{${1:number}}"
+      }
+    },
+    {
+      "name": "ifsaveseed",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "saveseedtrue",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "saveseedfalse",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "randomi",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "nextrandom",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "if": "allowrandomize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "if": "allowrandomize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "ranval",
+      "if": "allowrandomize",
+      "unusual": true
+    },
+    {
+      "name": "displaySumryTbl",
+      "if": "usesumrytbls",
+      "arg": {
+        "format": "{}",
+        "snippet": "displaySumryTbl{${1:quiz name}}"
+      }
+    },
+    {
+      "name": "displaySumryTbl",
+      "if": "usesumrytbls",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "displaySumryTbl[${2:options%keyvals}]{${1:quiz name}}",
+        "keys": [
+          "\\displaySumryTbl"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ccatCurrQzWith",
+      "if": "usesumrytbls",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "ccatCurrQzWith(${1:arg})"
+      }
+    },
+    {
+      "name": "pbPopulateSumTable",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "pbDoNoCorrectSumryTbl",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sumryTblQ",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sumryTblR",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sumryTblP",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "showOutOfinSmryTbl",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "stmarkupbox",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sthline",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sumrytblCkMUsep",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "sumrytbllinkHook",
+      "if": "usesumrytbls",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sumrytbllinkHook{${1:code}}"
+      }
+    },
+    {
+      "name": "sumryTblProbFmt",
+      "if": "usesumrytbls",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sumryTblProbFmt{${1:text}}"
+      }
+    },
+    {
+      "name": "sumrytablesep",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "stmarkupWidth",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "stmarkupHeight",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "stmarkupTextSize",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "writeProListAux",
+      "if": "usesumrytbls"
+    },
+    {
+      "name": "setParamSumryTblAux",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "correctColor",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "wrongColor",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "partialColor",
+      "if": "usesumrytbls",
+      "unusual": true
+    },
+    {
+      "name": "bMCFI",
+      "if": "usemcfi"
+    },
+    {
+      "name": "eMCFI",
+      "if": "usemcfi"
+    },
+    {
+      "name": "mcfiMarkupfmt",
+      "if": "usemcfi",
+      "unusual": true
+    },
+    {
+      "name": "mcfiMarkup",
+      "if": "usemcfi",
+      "unusual": true
+    },
+    {
+      "name": "clickChkBxMCFI",
+      "if": "usemcfi",
+      "unusual": true
+    },
+    {
+      "name": "intrCAns",
+      "if": "userbmintrvl"
+    },
+    {
+      "name": "intrPrec",
+      "if": "userbmintrvl"
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}{}(){}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${9:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}{}()[]{}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${10:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}{}()[]{}{}{}[]",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}{${2:answer}}(${11:%<variables%>})[${7:dest}]{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}[${10:comp func}]"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}[]{}{}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}{${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}[]{}(){}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${10:%<variables%>}){${3:samples}}{${4:precision}}{${5:[${8:a1,b1}]x[${9:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}[]{}()[]{}{}{}",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${11:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "rbmIntrvl",
+      "if": "userbmintrvl",
+      "arg": {
+        "format": "{}[]{}()[]{}{}{}[]",
+        "snippet": "rbmIntrvl{${1:[${6:a,b}]}}[${7:eforms params}]{${2:answer}}(${12:%<variables%>})[${8:dest}]{${3:samples}}{${4:precision}}{${5:[${9:a1,b1}]x[${10:a2,b2}]x...}}[${11:comp func}]"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "RespBoxMath{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "{}(){}{}{}",
+        "snippet": "RespBoxMath{${1:answer}}(${7:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${5:a1,b1}]x[${6:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "{}()[]{}{}{}",
+        "snippet": "RespBoxMath{${1:answer}}(${8:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "{}()[]{}{}{}[]",
+        "snippet": "RespBoxMath{${1:answer}}(${9:%<variables%>})[${5:dest}]{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}[${8:comp func}]"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}{${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "[]{}(){}{}{}",
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${8:%<variables%>}){${2:samples}}{${3:precision}}{${4:[${6:a1,b1}]x[${7:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "[]{}()[]{}{}{}",
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${9:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}"
+      }
+    },
+    {
+      "name": "RespBoxMath",
+      "arg": {
+        "format": "[]{}()[]{}{}{}[]",
+        "snippet": "RespBoxMath[${5:eforms params}]{${1:answer}}(${10:%<variables%>})[${6:dest}]{${2:samples}}{${3:precision}}{${4:[${7:a1,b1}]x[${8:a2,b2}]x...}}[${9:comp func}]"
+      }
+    },
+    {
+      "name": "everyRespBoxTxt",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyRespBoxTxt{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "aboveanswersSkip",
+      "unusual": true
+    },
+    {
+      "name": "AddAAFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddAAFormat{${1:code}}"
+      }
+    },
+    {
+      "name": "AddAAKeystroke",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddAAKeystroke{${1:code}}"
+      }
+    },
+    {
+      "name": "AddAAMouseUpMC",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddAAMouseUpMC{${1:code}}"
+      }
+    },
+    {
+      "name": "AddAAMouseUpMS",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddAAMouseUpMS{${1:code}}"
+      }
+    },
+    {
+      "name": "addToAction*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addToAction*{${1:key%plain}}{${2:code}}"
+      }
+    },
+    {
+      "name": "addToAction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addToAction{${1:key%plain}}{${2:code}}"
+      }
+    },
+    {
+      "name": "adjDisplayBelow"
+    },
+    {
+      "name": "aebshowgraylettersfalse",
+      "unusual": true
+    },
+    {
+      "name": "aebshowgrayletterstrue",
+      "unusual": true
+    },
+    {
+      "name": "aebTitleQuiz",
+      "unusual": true
+    },
+    {
+      "name": "afterSplChkActn",
+      "arg": {
+        "format": "{}",
+        "snippet": "afterSplChkActn{${1:action}}"
+      }
+    },
+    {
+      "name": "AllowPeeking"
+    },
+    {
+      "name": "allowRandomizedChoices"
+    },
+    {
+      "name": "Ans",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Ans[${1:partial pts}]{0 or 1}"
+      }
+    },
+    {
+      "name": "AnswerField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "AnswerField[${2:eforms params}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "AnswerField",
+      "arg": {
+        "format": "{}",
+        "snippet": "AnswerField{${1:base name}}"
+      }
+    },
+    {
+      "name": "answersEndHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "answersEndHook{${1:content}}"
+      }
+    },
+    {
+      "name": "Array",
+      "arg": {
+        "format": "()",
+        "snippet": "Array(${1:JS funcs})"
+      }
+    },
+    {
+      "name": "autoAnsFldRaiseBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "autoAnsFldRaiseBox{${1:length}}"
+      }
+    },
+    {
+      "name": "autoAnswerField"
+    },
+    {
+      "name": "autoAnswerField",
+      "arg": {
+        "format": "[]",
+        "snippet": "autoAnswerField[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "autotabOff"
+    },
+    {
+      "name": "autotabOn"
+    },
+    {
+      "name": "bChoices",
+      "arg": {
+        "format": "[]",
+        "snippet": "bChoices[${1:options%keyvals}]",
+        "keys": [
+          "\\bChoices#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bInitAltAppr"
+    },
+    {
+      "name": "bottomOfAnsfStack"
+    },
+    {
+      "name": "bqlabel",
+      "unusual": true
+    },
+    {
+      "name": "CorrAnsButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "CorrAnsButton{${1:display answer%definition}}"
+      }
+    },
+    {
+      "name": "CorrAnsButton",
+      "arg": {
+        "format": "{}*{}",
+        "snippet": "CorrAnsButton{${1:display answer%definition}}*{${2:JS function}}"
+      }
+    },
+    {
+      "name": "CorrAnsButtonGrp",
+      "arg": {
+        "format": "{}",
+        "snippet": "CorrAnsButtonGrp{${1:n1,n2,...}}"
+      }
+    },
+    {
+      "name": "CorrButton",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CorrButton[${2:eforms params}]{${1:field}}"
+      }
+    },
+    {
+      "name": "CorrButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "CorrButton{${1:field}}"
+      }
+    },
+    {
+      "name": "CorrectionsOff"
+    },
+    {
+      "name": "CorrectionsOn"
+    },
+    {
+      "name": "currQuiz"
+    },
+    {
+      "name": "databaseName",
+      "arg": {
+        "format": "{}",
+        "snippet": "databaseName{${1:name}}"
+      }
+    },
+    {
+      "name": "DeclareQuiz",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareQuiz{${1:name}}"
+      }
+    },
+    {
+      "name": "defaultColorJSDef",
+      "unusual": true
+    },
+    {
+      "name": "defaultquiztype"
+    },
+    {
+      "name": "defaultRDPrecision",
+      "arg": {
+        "format": "{}",
+        "snippet": "defaultRDPrecision{${1:precision}}"
+      }
+    },
+    {
+      "name": "dockQuiz"
+    },
+    {
+      "name": "doNotRandomizeChoices"
+    },
+    {
+      "name": "eAns"
+    },
+    {
+      "name": "eChoices"
+    },
+    {
+      "name": "eFreeze"
+    },
+    {
+      "name": "eInitAltAppr"
+    },
+    {
+      "name": "endQuizHere"
+    },
+    {
+      "name": "eqButton",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eqButton[${2:eforms params}]{${1:field}}"
+      }
+    },
+    {
+      "name": "eqButton",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "eqButton{${1:field}}"
+      }
+    },
+    {
+      "name": "eqCGI",
+      "arg": {
+        "format": "{}",
+        "snippet": "eqCGI{${1:URL}}"
+      }
+    },
+    {
+      "name": "eqforpaperfalse",
+      "unusual": true
+    },
+    {
+      "name": "eqforpapertrue",
+      "unusual": true
+    },
+    {
+      "name": "eqGradeScale",
+      "unusual": true
+    },
+    {
+      "name": "eqlabel",
+      "unusual": true
+    },
+    {
+      "name": "eqPTs"
+    },
+    {
+      "name": "eqQuizType",
+      "unusual": true
+    },
+    {
+      "name": "eqsanitize"
+    },
+    {
+      "name": "eqScore"
+    },
+    {
+      "name": "eqSubmit",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "eqSubmit{${1:URL}}{${2:db name}}{${3:table name%text}}"
+      }
+    },
+    {
+      "name": "everyAnswerField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyAnswerField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyBeginQuizButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyBeginQuizButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyCorrAnsButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyCorrAnsButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyCorrButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyCorrButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyEndQuizButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyEndQuizButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyeqButtonField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyeqButtonField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyeqTextField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyeqTextField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyeqTextField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyeqTextField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyGradeField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyGradeField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyPercentField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyPercentField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyPointsField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyPointsField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyqRadioButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyqRadioButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyRespBoxMath",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyRespBoxMath{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everyScoreField",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyScoreField{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everysqClearButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everysqClearButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everysqRadioButton",
+      "arg": {
+        "format": "{}",
+        "snippet": "everysqRadioButton{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everysqTallyBox",
+      "arg": {
+        "format": "{}",
+        "snippet": "everysqTallyBox{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "everysqTallyTotal",
+      "arg": {
+        "format": "{}",
+        "snippet": "everysqTallyTotal{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "exbookmarkfmt",
+      "unusual": true
+    },
+    {
+      "name": "exlabel",
+      "unusual": true
+    },
+    {
+      "name": "exlabelformat",
+      "unusual": true
+    },
+    {
+      "name": "exlabelsol",
+      "unusual": true
+    },
+    {
+      "name": "expdfbookmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "expdfbookmark{${1:bookmark title%text}}"
+      }
+    },
+    {
+      "name": "exrtnlabelformat",
+      "unusual": true
+    },
+    {
+      "name": "exsecrunhead",
+      "unusual": true
+    },
+    {
+      "name": "exsectitle",
+      "unusual": true
+    },
+    {
+      "name": "exsllabelformat",
+      "unusual": true
+    },
+    {
+      "name": "exsolafter",
+      "unusual": true
+    },
+    {
+      "name": "fancyQuizHeaders"
+    },
+    {
+      "name": "floatQuiz"
+    },
+    {
+      "name": "formatAsSet"
+    },
+    {
+      "name": "formatAsVector"
+    },
+    {
+      "name": "formatInitAltApprs"
+    },
+    {
+      "name": "GradeField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "GradeField[${2:eforms params}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "GradeField",
+      "arg": {
+        "format": "{}",
+        "snippet": "GradeField{${1:base name}}"
+      }
+    },
+    {
+      "name": "graylettersOff"
+    },
+    {
+      "name": "graylettersOn"
+    },
+    {
+      "name": "hideCreditMarkup"
+    },
+    {
+      "name": "holdDest",
+      "unusual": true
+    },
+    {
+      "name": "ifaebshowgrayletters",
+      "unusual": true
+    },
+    {
+      "name": "ifeqforpaper",
+      "unusual": true
+    },
+    {
+      "name": "ifQuizType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifQuizType{${1:quiz code}}{${2:shortquiz code}}"
+      }
+    },
+    {
+      "name": "ifstaroption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifstaroption{${1:code if \\titlequiz*}}{${2:otherwise}}"
+      }
+    },
+    {
+      "name": "includeexersolutions"
+    },
+    {
+      "name": "includequizsolutions"
+    },
+    {
+      "name": "insertGrayLetters",
+      "unusual": true
+    },
+    {
+      "name": "isQZ",
+      "unusual": true
+    },
+    {
+      "name": "isSQZ",
+      "unusual": true
+    },
+    {
+      "name": "makeExSolnsLocalOff"
+    },
+    {
+      "name": "makeExSolnsLocalOn"
+    },
+    {
+      "name": "makeQzSolnsLocalOff"
+    },
+    {
+      "name": "makeQzSolnsLocalOn"
+    },
+    {
+      "name": "manualAnswerField"
+    },
+    {
+      "name": "manualAnswerField",
+      "arg": {
+        "format": "[]",
+        "snippet": "manualAnswerField[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "minQuizResp",
+      "unusual": true
+    },
+    {
+      "name": "multipartquestion"
+    },
+    {
+      "name": "natlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "negPointsAllowed"
+    },
+    {
+      "name": "NoPeeking"
+    },
+    {
+      "name": "noResetAnsFieldOnClose"
+    },
+    {
+      "name": "noSolnOpt"
+    },
+    {
+      "name": "obeyLocalRandomize"
+    },
+    {
+      "name": "oqpriorhook",
+      "unusual": true
+    },
+    {
+      "name": "partbookmarkfmt",
+      "unusual": true
+    },
+    {
+      "name": "partialColorJSDef",
+      "unusual": true
+    },
+    {
+      "name": "PercentField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PercentField[${2:eforms params}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "PercentField",
+      "arg": {
+        "format": "{}",
+        "snippet": "PercentField{${1:base name}}"
+      }
+    },
+    {
+      "name": "PointsField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PointsField[${2:eforms params}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "PointsField",
+      "arg": {
+        "format": "{}",
+        "snippet": "PointsField{${1:base name}}"
+      }
+    },
+    {
+      "name": "popquestions"
+    },
+    {
+      "name": "promoteNewPageHere"
+    },
+    {
+      "name": "promoteNewPageHere",
+      "arg": {
+        "format": "[]",
+        "snippet": "promoteNewPageHere[${1:height}]"
+      }
+    },
+    {
+      "name": "proofingsymbol",
+      "unusual": true
+    },
+    {
+      "name": "ptLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "ptLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "PTs",
+      "arg": {
+        "format": "{}",
+        "snippet": "PTs{${1:number}}"
+      }
+    },
+    {
+      "name": "PTsHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "PTsHook{${1:code}}"
+      }
+    },
+    {
+      "name": "ptsLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "ptsLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "pushquestions"
+    },
+    {
+      "name": "quesNumColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "quesNumColor{${1:color}}"
+      }
+    },
+    {
+      "name": "quizpdfbookmark",
+      "arg": {
+        "format": "{}",
+        "snippet": "quizpdfbookmark{${1:bookmark title%text}}"
+      }
+    },
+    {
+      "name": "quiztype",
+      "arg": {
+        "format": "{}",
+        "snippet": "quiztype{${1:f|l}}"
+      }
+    },
+    {
+      "name": "qzbookmarkfmt",
+      "unusual": true
+    },
+    {
+      "name": "rbMarkup"
+    },
+    {
+      "name": "rbMarkup",
+      "arg": {
+        "format": "[]",
+        "snippet": "rbMarkup[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "REF*",
+      "arg": {
+        "format": "{}",
+        "snippet": "REF*{${1:label}}"
+      }
+    },
+    {
+      "name": "REF",
+      "arg": {
+        "format": "{}",
+        "snippet": "REF{${1:label}}"
+      }
+    },
+    {
+      "name": "renameSolnAfterTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "renameSolnAfterTo{${1:text}}"
+      }
+    },
+    {
+      "name": "resetAnsFieldOnClose"
+    },
+    {
+      "name": "resetMClabelsep"
+    },
+    {
+      "name": "resetSolnAfterToDefault"
+    },
+    {
+      "name": "RespBoxEssay*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RespBoxEssay*{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "RespBoxEssay",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RespBoxEssay{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "restoreDefaultQuizHeaders"
+    },
+    {
+      "name": "restoreFLTypeDefault"
+    },
+    {
+      "name": "rghtColorJSDef",
+      "unusual": true
+    },
+    {
+      "name": "rowsep",
+      "arg": {
+        "format": "{}",
+        "snippet": "rowsep{${1:length}}"
+      }
+    },
+    {
+      "name": "rowsepDefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "rowsepDefault{${1:length}}"
+      }
+    },
+    {
+      "name": "rpl",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpl{${1:text->symbol}}"
+      }
+    },
+    {
+      "name": "saveDest",
+      "arg": {
+        "format": "{}",
+        "snippet": "saveDest{${1:dest}}"
+      }
+    },
+    {
+      "name": "ScoreField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ScoreField[${2:eforms params}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "ScoreField",
+      "arg": {
+        "format": "{}",
+        "snippet": "ScoreField{${1:base name}}"
+      }
+    },
+    {
+      "name": "setActionKeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "setActionKeys{${1:eforms params}}"
+      }
+    },
+    {
+      "name": "setAnsEnvLinewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "setAnsEnvLinewidth{${1:length}}"
+      }
+    },
+    {
+      "name": "setMClabelsep",
+      "arg": {
+        "format": "{}",
+        "snippet": "setMClabelsep{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "setsolnspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsolnspace{${1:space cmd}}"
+      }
+    },
+    {
+      "name": "showCreditMarkup"
+    },
+    {
+      "name": "SolutionsAfter"
+    },
+    {
+      "name": "SolutionsAtEnd"
+    },
+    {
+      "name": "SpellCheck"
+    },
+    {
+      "name": "SpellCheck",
+      "arg": {
+        "format": "[]",
+        "snippet": "SpellCheck[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "sqbookmarkfmt",
+      "unusual": true
+    },
+    {
+      "name": "sqClearButton"
+    },
+    {
+      "name": "sqClearButton",
+      "arg": {
+        "format": "[]",
+        "snippet": "sqClearButton[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "sqlabel",
+      "unusual": true
+    },
+    {
+      "name": "sqsllabel",
+      "unusual": true
+    },
+    {
+      "name": "sqslrtnlabel",
+      "unusual": true
+    },
+    {
+      "name": "sqslsectitle",
+      "unusual": true
+    },
+    {
+      "name": "sqSolnBtn"
+    },
+    {
+      "name": "sqSolnBtn",
+      "arg": {
+        "format": "[]",
+        "snippet": "sqSolnBtn[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "sqSolnMCMsg",
+      "unusual": true
+    },
+    {
+      "name": "sqSolnMSMsg",
+      "unusual": true
+    },
+    {
+      "name": "sqStrongMsg",
+      "unusual": true
+    },
+    {
+      "name": "sqTallyBox"
+    },
+    {
+      "name": "sqTallyBox",
+      "arg": {
+        "format": "[]",
+        "snippet": "sqTallyBox[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "sqTallyTotal"
+    },
+    {
+      "name": "sqTallyTotal",
+      "arg": {
+        "format": "[]",
+        "snippet": "sqTallyTotal[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "sqTurnOffAlerts"
+    },
+    {
+      "name": "sqTurnOnAlerts"
+    },
+    {
+      "name": "sqWeakMsg",
+      "unusual": true
+    },
+    {
+      "name": "startQuizHere"
+    },
+    {
+      "name": "strongpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "strongpass{${1:n}}"
+      }
+    },
+    {
+      "name": "symbolchoice",
+      "arg": {
+        "format": "{}",
+        "snippet": "symbolchoice{${1:choice%keyvals}}",
+        "keys": [
+          "\\symbolchoice"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tableName",
+      "arg": {
+        "format": "{}",
+        "snippet": "tableName{${1:name}}"
+      }
+    },
+    {
+      "name": "theeqexno",
+      "unusual": true
+    },
+    {
+      "name": "thepartno",
+      "unusual": true
+    },
+    {
+      "name": "thequestionno",
+      "unusual": true
+    },
+    {
+      "name": "titleQuiz*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleQuiz*{${1:text}}"
+      }
+    },
+    {
+      "name": "titleQuiz",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleQuiz{${1:text}}"
+      }
+    },
+    {
+      "name": "titleQuizfmt",
+      "unusual": true
+    },
+    {
+      "name": "TUChoice",
+      "arg": {
+        "format": "{}",
+        "snippet": "TUChoice{${1:text}}"
+      }
+    },
+    {
+      "name": "turnOnRandomize"
+    },
+    {
+      "name": "useBeginQuizButton"
+    },
+    {
+      "name": "useBeginQuizButton",
+      "arg": {
+        "format": "[]",
+        "snippet": "useBeginQuizButton[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "useBeginQuizLink"
+    },
+    {
+      "name": "useDest"
+    },
+    {
+      "name": "useEndQuizButton"
+    },
+    {
+      "name": "useEndQuizButton",
+      "arg": {
+        "format": "[]",
+        "snippet": "useEndQuizButton[${1:eforms params}]"
+      }
+    },
+    {
+      "name": "useEndQuizLink"
+    },
+    {
+      "name": "useForms"
+    },
+    {
+      "name": "useLinks"
+    },
+    {
+      "name": "useMCCircles"
+    },
+    {
+      "name": "useMCCRects"
+    },
+    {
+      "name": "weakpass",
+      "arg": {
+        "format": "{}",
+        "snippet": "weakpass{${1:n}}"
+      }
+    },
+    {
+      "name": "word",
+      "arg": {
+        "format": "{}",
+        "snippet": "word{${1:text}}"
+      }
+    },
+    {
+      "name": "wrngColorJSDef",
+      "unusual": true
+    },
+    {
+      "name": "altApprOff"
+    },
+    {
+      "name": "altApprOn"
+    },
+    {
+      "name": "corrChoiceFullyOff"
+    },
+    {
+      "name": "corrChoiceFullyOn"
+    },
+    {
+      "name": "corrLocalChoiceFullyOff"
+    },
+    {
+      "name": "corrLocalChoiceFullyOn"
+    },
+    {
+      "name": "eqCorrChoiceFully",
+      "unusual": true
+    },
+    {
+      "name": "eqCorrLocalChoiceFully",
+      "unusual": true
+    },
+    {
+      "name": "ifShowAppr",
+      "unusual": true
+    },
+    {
+      "name": "ifSubstVars",
+      "unusual": true
+    },
+    {
+      "name": "newNoPeekArgs",
+      "unusual": true
+    },
+    {
+      "name": "NoPeekAlert",
+      "unusual": true
+    },
+    {
+      "name": "noPeekArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "noPeekArgs{${1:arg}}"
+      }
+    },
+    {
+      "name": "postDenyForm",
+      "arg": {
+        "format": "()",
+        "snippet": "postDenyForm(${1:regexp})"
+      }
+    },
+    {
+      "name": "preDenyForm",
+      "arg": {
+        "format": "()",
+        "snippet": "preDenyForm(${1:regexp},${2:cMsg})"
+      }
+    },
+    {
+      "name": "preReqForm",
+      "arg": {
+        "format": "()",
+        "snippet": "preReqForm(${1:regexp},${2:cMsg})"
+      }
+    },
+    {
+      "name": "reany"
+    },
+    {
+      "name": "rebstr"
+    },
+    {
+      "name": "rechrclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "rechrclass{${1:arg}}"
+      }
+    },
+    {
+      "name": "redigit"
+    },
+    {
+      "name": "rediv"
+    },
+    {
+      "name": "redm"
+    },
+    {
+      "name": "reestr"
+    },
+    {
+      "name": "refac",
+      "arg": {
+        "format": "{}",
+        "snippet": "refac{${1:arg}}"
+      }
+    },
+    {
+      "name": "regrp",
+      "arg": {
+        "format": "{}",
+        "snippet": "regrp{${1:arg}}"
+      }
+    },
+    {
+      "name": "remul"
+    },
+    {
+      "name": "replaceExclPt",
+      "arg": {
+        "format": "{}",
+        "snippet": "replaceExclPt{${1:true|false}}"
+      }
+    },
+    {
+      "name": "repow"
+    },
+    {
+      "name": "resetLocalChoiceFully"
+    },
+    {
+      "name": "ShowApprfalse",
+      "unusual": true
+    },
+    {
+      "name": "ShowApprtrue",
+      "unusual": true
+    },
+    {
+      "name": "SubstVarsfalse",
+      "unusual": true
+    },
+    {
+      "name": "SubstVarstrue",
+      "unusual": true
+    },
+    {
+      "name": "eqModelInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "eqModelInfo{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "jsColor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "jsColor{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "sumryTblAux",
+      "if": "usesumrytbls",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:quiz name}}"
+      }
+    },
+    {
+      "name": "answers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nCols}}"
+      }
+    },
+    {
+      "name": "answers",
+      "arg": {
+        "format": "*{}",
+        "snippet": "*{${1:nCols}}"
+      }
+    },
+    {
+      "name": "answers",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dest}]{${1:nCols}}"
+      }
+    },
+    {
+      "name": "exEnumerate"
+    },
+    {
+      "name": "exEnumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{exEnumerate}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enumex"
+    },
+    {
+      "name": "enumex*"
+    },
+    {
+      "name": "exercise"
+    },
+    {
+      "name": "exercise",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:option%keyvals}]",
+        "keys": [
+          "\\begin{exercise}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "exercise*"
+    },
+    {
+      "name": "manswers",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:nCols}}"
+      }
+    },
+    {
+      "name": "manswers",
+      "arg": {
+        "format": "*{}",
+        "snippet": "*{${1:nCols}}"
+      }
+    },
+    {
+      "name": "manswers",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:dest}]{${1:nCols}}"
+      }
+    },
+    {
+      "name": "mathGrp"
+    },
+    {
+      "name": "oQuestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base name}}"
+      }
+    },
+    {
+      "name": "parts"
+    },
+    {
+      "name": "parts",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:columns}]"
+      }
+    },
+    {
+      "name": "questions"
+    },
+    {
+      "name": "quiz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base name}}"
+      }
+    },
+    {
+      "name": "quiz*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base name}}"
+      }
+    },
+    {
+      "name": "shortquiz"
+    },
+    {
+      "name": "shortquiz",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:base name}]"
+      }
+    },
+    {
+      "name": "shortquiz*"
+    },
+    {
+      "name": "shortquiz*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:base name}]"
+      }
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:vspace%l}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/exerquiz#c": [
+      "noxcolor",
+      "forpaper",
+      "forcolorpaper",
+      "preview",
+      "nosolutions",
+      "noquizsolutions",
+      "allowanswers",
+      "online",
+      "nohiddensolutions",
+      "noHiddensolutions",
+      "solutionsafter",
+      "solutionsonly",
+      "contsolns",
+      "nocorrections",
+      "proofing",
+      "showgrayletters",
+      "vspacewithsolns",
+      "nodljs",
+      "execJS",
+      "usealtadobe",
+      "exercisesonly",
+      "debug",
+      "allowrandomize",
+      "usesumrytbls",
+      "usemcfi",
+      "userbmintrvl",
+      "dvipsone",
+      "dvips",
+      "pdftex",
+      "luatex",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "textures",
+      "dviwindo",
+      "unicode",
+      "useui",
+      "french",
+      "german",
+      "norsk",
+      "dutch",
+      "spanish",
+      "italian",
+      "russian",
+      "dansk",
+      "polish",
+      "finnish",
+      "catalan",
+      "czech",
+      "brazil",
+      "turkish",
+      "natural",
+      "rgb",
+      "cmy",
+      "cmyk",
+      "hsb",
+      "gray",
+      "RGB",
+      "HTML",
+      "HSB",
+      "Gray",
+      "monochrome",
+      "dvipsnames",
+      "dvipsnames*",
+      "svgnames",
+      "svgnames*",
+      "x11names",
+      "x11names*",
+      "table",
+      "fixpdftex",
+      "hyperref",
+      "prologue",
+      "kernelfbox",
+      "xcdraw",
+      "noxcdraw",
+      "fixinclude",
+      "showerrors",
+      "hideerrors"
+    ],
+    "\\ui": [
+      "border=${1|visible,invisible|}",
+      "linewidth=${1|thin,medium,thick|}",
+      "highlight=${1|none,invert,outline,inset,push|}",
       "bordercolor={${1:R G B}}",
-      "linestyle=",
+      "linestyle=${1|solid,dashed,underlined,beveled,inset|}",
       "dasharray=${1:number}",
       "linktxtcolor=",
-      "annotflags=",
-      "fieldflags=",
+      "annotflags=${1|hidden,print,-print,noview,lock|}",
+      "fieldflags=${1|readonly,required,noexport,multiline,password,notoggleoff,radio,pushbutton,combo,edit,sort,fileselect,multiselect,nospellcheck,noscrolling,comb,radiosinunison,commitonchange,richtext|}",
       "maxlength=${1:number}",
       "tooltip={${1:text}}",
       "default=${1:text}",
       "value=${1:text}",
-      "rotate=",
+      "rotate=${1|0,90,180,270|}",
       "bgcolor={${1:R G B}}",
       "uptxt={${1:text}}",
       "downtxt={${1:text}}",
@@ -1736,21 +1926,21 @@
       "normappr=${1:string}",
       "rollappr=${1:string}",
       "downappr=${1:string}",
-      "importicons=",
-      "layout=",
-      "scalewhen=",
-      "scale=",
+      "importicons=${1|yes,no|}",
+      "layout=${1|labelonly,icononly,icontop,iconbottom,iconleft,iconright,labelover|}",
+      "scalewhen=${1|always,never,iconbig,iconsmall|}",
+      "scale=${1|proportional,nonproportional|}",
       "position={${1:x y}}",
       "fitbounds",
       "appr={${1:specs}}",
-      "align=",
+      "align=${1|left,centered,right|}",
       "textfont=${1:font name}",
       "textsize=${1:number}",
       "textcolor=${1:number}",
-      "autocenter=",
-      "inline=",
+      "autocenter=${1|yes,no|}",
+      "inline=${1|yes,no|}",
       "presets=${1:\\cmd}",
-      "symbolchoice=",
+      "symbolchoice=${1|check,circle,cross,diamond,square,star|}",
       "rectW=",
       "rectH=",
       "width=",
@@ -1774,20 +1964,13 @@
       "pageinvisible={${1:script}}",
       "lock={${1:KV-pairs}}"
     ],
-    [
-      "ntables=",
+    "\\displaySumryTbl": [
+      "ntables=${1|1,2|}",
       "showmarkup",
       "nocorrections",
       "showOutOf"
     ],
-    [
-      "${1:⟨n⟩}",
-      "nCols=${1:n}",
-      "random",
-      "insertAt=${1:n}",
-      "label="
-    ],
-    [
+    "\\begin{exEnumerate}": [
       "labelwidthTo=${1:font commands}",
       "labelwidth=",
       "topsep=",
@@ -1795,6 +1978,30 @@
       "itemsep=",
       "labelsep=",
       "continue"
+    ],
+    "\\begin{exercise}#c": [
+      "${1:⟨counter⟩}",
+      "h",
+      "H",
+      "0"
+    ],
+    "\\bChoices#c": [
+      "${1:⟨n⟩}",
+      "nCols=${1:n}",
+      "random",
+      "insertAt=${1:n}",
+      "label="
+    ],
+    "\\symbolchoice": [
+      "check",
+      "circle",
+      "cross",
+      "diamond",
+      "square",
+      "star"
     ]
+  },
+  "args": [
+    "\\usepackage/exerquiz#c"
   ]
 }

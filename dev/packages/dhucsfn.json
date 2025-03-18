@@ -1,27 +1,36 @@
 {
-  "includes": {
-    "fnpara": [
+  "deps": [
+    {
+      "name": "fnpara",
+      "if": "multipara"
+    },
+    {
+      "name": "fnpara",
+      "if": "para"
+    }
+  ],
+  "macros": [
+    {
+      "name": "footnumbersep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dhucsfn#c": [
+      "superscript",
+      "parenthesis",
+      "hang",
       "multipara",
-      "para"
+      "para",
+      "leftflush",
+      "indent",
+      "leftflushindent",
+      "hangpar",
+      "varhangpar"
     ]
   },
-  "macros": {
-    "footnumbersep": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "superscript",
-    "parenthesis",
-    "hang",
-    "multipara",
-    "para",
-    "leftflush",
-    "indent",
-    "leftflushindent",
-    "hangpar",
-    "varhangpar"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/dhucsfn#c"
+  ]
 }

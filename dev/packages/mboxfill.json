@@ -1,17 +1,39 @@
 {
-  "includes": {},
-  "macros": {
-    "mboxfill{}": {
-      "snippet": "mboxfill{${1:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mboxfill",
+      "arg": {
+        "format": "{}",
+        "snippet": "mboxfill{${1:content}}"
+      }
     },
-    "mboxfill[]{}": {
-      "snippet": "mboxfill[${2:width}]{${1:content}}"
+    {
+      "name": "mboxfill",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mboxfill[${2:width}]{${1:content}}"
+      }
     },
-    "mboxfill[][]{}": {
-      "snippet": "mboxfill[${2:width}][${3:leader type}]{${1:content}}"
+    {
+      "name": "mboxfill",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "mboxfill[${2:width}][${3:leader type%keyvals}]{${1:content}}",
+        "keys": [
+          "\\mboxfill"
+        ],
+        "keyPos": 1
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\mboxfill": [
+      "x",
+      "c",
+      "s"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

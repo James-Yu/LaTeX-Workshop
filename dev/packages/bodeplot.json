@@ -1,194 +1,454 @@
 {
-  "includes": {
-    "tikz": [],
-    "pdftexcmds": [],
-    "ifplatform": [],
-    "pgfplots": [],
-    "pgfplotslibrarygroupplots": []
-  },
-  "macros": {
-    "addBodeComponentPlot{}": {
-      "snippet": "addBodeComponentPlot{${1:plot-command}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "addBodeComponentPlot[]{}": {
-      "snippet": "addBodeComponentPlot[${2:plot-options}]{${1:plot-command}}"
+    {
+      "name": "pdftexcmds"
     },
-    "MagK{}{}": {
-      "snippet": "MagK{${1:real-part}}{${2:imaginary-part}}"
+    {
+      "name": "ifplatform"
     },
-    "MagKAsymp{}{}": {
-      "snippet": "MagKAsymp{${1:real-part}}{${2:imaginary-part}}"
+    {
+      "name": "pgfplots"
     },
-    "MagKLin{}{}": {
-      "snippet": "MagKLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhK{}{}": {
-      "snippet": "PhK{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhKAsymp{}{}": {
-      "snippet": "PhKAsymp{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhKLin{}{}": {
-      "snippet": "PhKLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagDel{}{}": {
-      "snippet": "MagDel{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhDel{}{}": {
-      "snippet": "PhDel{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagPole{}{}": {
-      "snippet": "MagPole{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagPoleLin{}{}": {
-      "snippet": "MagPoleLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagPoleAsymp{}{}": {
-      "snippet": "MagPoleAsymp{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhPole{}{}": {
-      "snippet": "PhPole{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhPoleLin{}{}": {
-      "snippet": "PhPoleLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhPoleAsymp{}{}": {
-      "snippet": "PhPoleAsymp{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagZero{}{}": {
-      "snippet": "MagZero{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagZeroLin{}{}": {
-      "snippet": "MagZeroLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagZeroAsymp{}{}": {
-      "snippet": "MagZeroAsymp{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhZero{}{}": {
-      "snippet": "PhZero{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhZeroLin{}{}": {
-      "snippet": "PhZeroLin{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "PhZeroAsymp{}{}": {
-      "snippet": "PhZeroAsymp{${1:real-part}}{${2:imaginary-part}}"
-    },
-    "MagCSPoles{}{}": {
-      "snippet": "MagCSPoles{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSPolesLin{}{}": {
-      "snippet": "MagCSPolesLin{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSPolesAsymp{}{}": {
-      "snippet": "MagCSPolesAsymp{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSPoles{}{}": {
-      "snippet": "PhCSPoles{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSPolesLin{}{}": {
-      "snippet": "PhCSPolesLin{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSPolesAsymp{}{}": {
-      "snippet": "PhCSPolesAsymp{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSZeros{}{}": {
-      "snippet": "MagCSZeros{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSZerosLin{}{}": {
-      "snippet": "MagCSZerosLin{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSZerosAsymp{}{}": {
-      "snippet": "MagCSZerosAsymp{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSZeros{}{}": {
-      "snippet": "PhCSZeros{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSZerosLin{}{}": {
-      "snippet": "PhCSZerosLin{${1:zeta}}{${2:omega-n}}"
-    },
-    "PhCSZerosAsymp{}{}": {
-      "snippet": "PhCSZerosAsymp{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSPolesPeak{}{}": {
-      "snippet": "MagCSPolesPeak{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSPolesPeak[]{}{}": {
-      "snippet": "MagCSPolesPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSZerosPeak{}{}": {
-      "snippet": "MagCSZerosPeak{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagCSZerosPeak[]{}{}": {
-      "snippet": "MagCSZerosPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}"
-    },
-    "MagSOPoles{}{}": {
-      "snippet": "MagSOPoles{${1:a1}}{${2:a0}}"
-    },
-    "MagSOPolesLin{}{}": {
-      "snippet": "MagSOPolesLin{${1:a1}}{${2:a0}}"
-    },
-    "MagSOPolesAsymp{}{}": {
-      "snippet": "MagSOPolesAsymp{${1:a1}}{${2:a0}}"
-    },
-    "PhSOPoles{}{}": {
-      "snippet": "PhSOPoles{${1:a1}}{${2:a0}}"
-    },
-    "PhSOPolesLin{}{}": {
-      "snippet": "PhSOPolesLin{${1:a1}}{${2:a0}}"
-    },
-    "PhSOPolesAsymp{}{}": {
-      "snippet": "PhSOPolesAsymp{${1:a1}}{${2:a0}}"
-    },
-    "MagSOZeros{}{}": {
-      "snippet": "MagSOZeros{${1:a1}}{${2:a0}}"
-    },
-    "MagSOZerosLin{}{}": {
-      "snippet": "MagSOZerosLin{${1:a1}}{${2:a0}}"
-    },
-    "MagSOZerosAsymp{}{}": {
-      "snippet": "MagSOZerosAsymp{${1:a1}}{${2:a0}}"
-    },
-    "PhSOZeros{}{}": {
-      "snippet": "PhSOZeros{${1:a1}}{${2:a0}}"
-    },
-    "PhSOZerosLin{}{}": {
-      "snippet": "PhSOZerosLin{${1:a1}}{${2:a0}}"
-    },
-    "PhSOZerosAsymp{}{}": {
-      "snippet": "PhSOZerosAsymp{${1:a1}}{${2:a0}}"
-    },
-    "MagSOPolesPeak{}{}": {
-      "snippet": "MagSOPolesPeak{${1:a1}}{${2:a0}}"
-    },
-    "MagSOPolesPeak[]{}{}": {
-      "snippet": "MagSOPolesPeak[${3:draw-options}]{${1:a1}}{${2:a0}}"
-    },
-    "MagSOZerosPeak{}{}": {
-      "snippet": "MagSOZerosPeak{${1:a1}}{${2:a0}}"
-    },
-    "MagSOZerosPeak[]{}{}": {
-      "snippet": "MagSOZerosPeak[${3:draw-options}]{${1:a1}}{${2:a0}}"
+    {
+      "name": "pgfplotslibrarygroupplots"
     }
-  },
-  "envs": {
-    "BodePlot{}{}": {
-      "name": "BodePlot",
-      "snippet": "{${1:min-freq}}{${2:max-freq}}"
-    },
-    "NyquistPlot{}{}": {
-      "name": "NyquistPlot",
-      "snippet": "{${1:min-freq}}{${2:max-freq}}"
-    },
-    "NicholsChart{}{}": {
-      "name": "NicholsChart",
-      "snippet": "{${1:min-freq}}{${2:max-freq}}"
-    }
-  },
-  "options": [
-    "pgf",
-    "declutter",
-    "rad",
-    "Hz"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "addBodeComponentPlot",
+      "arg": {
+        "format": "{}",
+        "snippet": "addBodeComponentPlot{${1:plot-command}}"
+      }
+    },
+    {
+      "name": "addBodeComponentPlot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addBodeComponentPlot[${2:plot-options}]{${1:plot-command}}"
+      }
+    },
+    {
+      "name": "MagK",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagK{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagKAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagKAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagKLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagKLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhK",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhK{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhKAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhKAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhKLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhKLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagDel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagDel{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhDel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhDel{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagPole",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagPole{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagPoleLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagPoleLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagPoleAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagPoleAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhPole",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhPole{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhPoleLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhPoleLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhPoleAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhPoleAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagZero",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagZero{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagZeroLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagZeroLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagZeroAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagZeroAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhZero",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhZero{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhZeroLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhZeroLin{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "PhZeroAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhZeroAsymp{${1:real-part}}{${2:imaginary-part}}"
+      }
+    },
+    {
+      "name": "MagCSPoles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSPoles{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSPolesLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSPolesLin{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSPolesAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSPolesAsymp{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSPoles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSPoles{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSPolesLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSPolesLin{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSPolesAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSPolesAsymp{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSZeros",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSZeros{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSZerosLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSZerosLin{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSZerosAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSZerosAsymp{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSZeros",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSZeros{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSZerosLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSZerosLin{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "PhCSZerosAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhCSZerosAsymp{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSPolesPeak",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSPolesPeak{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSPolesPeak",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MagCSPolesPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSZerosPeak",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagCSZerosPeak{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagCSZerosPeak",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MagCSZerosPeak[${3:draw-options}]{${1:zeta}}{${2:omega-n}}"
+      }
+    },
+    {
+      "name": "MagSOPoles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOPoles{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOPolesLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOPolesLin{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOPolesAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOPolesAsymp{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOPoles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOPoles{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOPolesLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOPolesLin{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOPolesAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOPolesAsymp{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOZeros",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOZeros{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOZerosLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOZerosLin{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOZerosAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOZerosAsymp{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOZeros",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOZeros{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOZerosLin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOZerosLin{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "PhSOZerosAsymp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PhSOZerosAsymp{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOPolesPeak",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOPolesPeak{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOPolesPeak",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MagSOPolesPeak[${3:draw-options}]{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOZerosPeak",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MagSOZerosPeak{${1:a1}}{${2:a0}}"
+      }
+    },
+    {
+      "name": "MagSOZerosPeak",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "MagSOZerosPeak[${3:draw-options}]{${1:a1}}{${2:a0}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "BodePlot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:min-freq}}{${2:max-freq}}"
+      }
+    },
+    {
+      "name": "BodePlot",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${4:obj1/{${1:opt1}},...}]{${2:min-freq}}{${3:max-freq}}"
+      }
+    },
+    {
+      "name": "NyquistPlot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:min-freq}}{${2:max-freq}}"
+      }
+    },
+    {
+      "name": "NyquistPlot",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${4:obj1/{${1:opt1}},...}]{${2:min-freq}}{${3:max-freq}}"
+      }
+    },
+    {
+      "name": "NicholsChart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:min-freq}}{${2:max-freq}}"
+      }
+    },
+    {
+      "name": "NicholsChart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${4:obj1/{${1:opt1}},...}]{${2:min-freq}}{${3:max-freq}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/bodeplot#c": [
+      "pgf",
+      "declutter",
+      "rad",
+      "Hz"
+    ]
+  },
+  "args": [
+    "\\usepackage/bodeplot#c"
+  ]
 }

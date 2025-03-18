@@ -1,49 +1,93 @@
 {
-  "includes": {
-    "graphicx": [],
-    "nccboxes": []
-  },
-  "macros": {
-    "ipic{}": {
-      "snippet": "ipic{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "draftgraphics": {},
-    "finalgraphics": {}
-  },
-  "envs": {},
-  "options": [
-    "unknownkeysallowed",
-    "draft",
-    "final",
-    "hiresbb",
-    "demo",
-    "setpagesize",
-    "nosetpagesize",
-    "dvips",
-    "xdvi",
-    "dvipdf",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "pdftex",
-    "luatex",
-    "dvisvgm",
-    "dvipsone",
-    "dviwindo",
-    "emtex",
-    "dviwin",
-    "oztex",
-    "textures",
-    "pctexps",
-    "pctexwin",
-    "pctexhp",
-    "pctex32",
-    "truetex",
-    "tcidvi",
-    "vtex",
-    "debugshow",
-    "hiderotate",
-    "hidescale"
+    {
+      "name": "nccboxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ipic",
+      "arg": {
+        "format": "{}",
+        "snippet": "ipic{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "draftgraphics"
+    },
+    {
+      "name": "finalgraphics"
+    },
+    {
+      "name": "putimage",
+      "arg": {
+        "format": "(){}",
+        "snippet": "putimage(${2:x},${3:y}){${1:imagefile}}"
+      }
+    },
+    {
+      "name": "putimage",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "putimage(${3:x},${4:y})[${2:width,height}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "putimage",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "putimage(${2:x},${3:y})(${4:xshift},${5:yshift}){${1:imagefile}}"
+      }
+    },
+    {
+      "name": "putimage",
+      "arg": {
+        "format": "()[](){}",
+        "snippet": "putimage(${3:x},${4:y})[${2:width,height}](${5:xshift},${6:yshift}){${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nccpic#c": [
+      "unknownkeysallowed",
+      "draft",
+      "final",
+      "hiresbb",
+      "demo",
+      "setpagesize",
+      "nosetpagesize",
+      "dvips",
+      "xdvi",
+      "dvipdf",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "pdftex",
+      "luatex",
+      "dvisvgm",
+      "dvipsone",
+      "dviwindo",
+      "emtex",
+      "dviwin",
+      "oztex",
+      "textures",
+      "pctexps",
+      "pctexwin",
+      "pctexhp",
+      "pctex32",
+      "truetex",
+      "tcidvi",
+      "vtex",
+      "debugshow",
+      "hiderotate",
+      "hidescale"
+    ]
+  },
+  "args": [
+    "\\usepackage/nccpic#c"
+  ]
 }

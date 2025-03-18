@@ -1,36 +1,79 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "calc": []
-  },
-  "macros": {
-    "selectmanualcolour{}": {
-      "snippet": "selectmanualcolour{${1:color}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "selectmanualcolor{}": {
-      "snippet": "selectmanualcolor{${1:color}}"
-    },
-    "selectcolourchanges{}{}": {
-      "snippet": "selectcolourchanges{${1:color}}{${2:color}}"
-    },
-    "selectcolorchanges{}{}": {
-      "snippet": "selectcolorchanges{${1:color}}{${2:color}}"
-    },
-    "setcolours": {},
-    "fractionate": {},
-    "setstruccol{}": {
-      "snippet": "setstruccol{${1:number}}"
-    },
-    "setstruccolx": {},
-    "inserttotalslidenumber": {}
-  },
-  "envs": {},
-  "options": [
-    "defaultstyle",
-    "slidechange",
-    "framechange",
-    "draft",
-    "final"
+    {
+      "name": "calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "selectmanualcolour",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectmanualcolour{${1:color}}"
+      }
+    },
+    {
+      "name": "selectmanualcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "selectmanualcolor{${1:color}}"
+      }
+    },
+    {
+      "name": "selectcolourchanges",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "selectcolourchanges{${1:first color}}{${2:second color}}"
+      }
+    },
+    {
+      "name": "selectcolorchanges",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "selectcolorchanges{${1:first color}}{${2:second color}}"
+      }
+    },
+    {
+      "name": "setcolours",
+      "unusual": true
+    },
+    {
+      "name": "fractionate",
+      "unusual": true
+    },
+    {
+      "name": "setstruccol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setstruccol{${1:number}}"
+      }
+    },
+    {
+      "name": "setstruccolx",
+      "unusual": true
+    },
+    {
+      "name": "inserttotalslidenumber",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/colourchange#c": [
+      "defaultstyle",
+      "slidechange",
+      "framechange",
+      "draft",
+      "final"
+    ]
+  },
+  "args": [
+    "\\usepackage/colourchange#c"
+  ]
 }

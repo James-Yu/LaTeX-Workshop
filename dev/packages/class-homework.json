@@ -1,55 +1,56 @@
 {
-  "includes": {
-    "class-einfart": [],
-    "ProjLib": [],
-    "lastpage": [],
-    "verbatim": []
-  },
-  "macros": {
-    "pretitle{}": {
-      "snippet": "pretitle{${1:text}}"
+  "deps": [
+    {
+      "name": "class-einfart"
     },
-    "ManualNumbering{}{}": {
-      "snippet": "ManualNumbering{${1:envname}}{${2:number}}"
+    {
+      "name": "ProjLib"
     },
-    "soluline": {},
-    "thehomework": {},
-    "IfSolutionT{}": {
-      "snippet": "IfSolutionT{${1:true}}"
+    {
+      "name": "lastpage"
     },
-    "IfSolutionF{}": {
-      "snippet": "IfSolutionF{${1:false}}"
-    },
-    "IfSolutionTF{}{}": {
-      "snippet": "IfSolutionTF{${1:true}}{${2:false}}"
-    },
-    "IfAnswerT{}": {
-      "snippet": "IfAnswerT{${1:true}}"
-    },
-    "IfAnswerF{}": {
-      "snippet": "IfAnswerF{${1:false}}"
-    },
-    "IfAnswerTF{}{}": {
-      "snippet": "IfAnswerTF{${1:true}}{${2:false}}"
+    {
+      "name": "verbatim"
     }
-  },
-  "envs": {
-    "answer": {},
-    "answer[]": {
+  ],
+  "macros": [
+    {
+      "name": "pretitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "pretitle{${1:text}}"
+      }
+    },
+    {
+      "name": "ManualNumbering",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ManualNumbering{${1:envname}}{${2:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "answer"
+    },
+    {
       "name": "answer",
-      "snippet": "[${1:heading}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     },
-    "solution": {},
-    "solution[]": {
+    {
+      "name": "solution"
+    },
+    {
       "name": "solution",
-      "snippet": "[${1:heading}]"
-    },
-    "soluenumerate": {},
-    "soluenumerate[]": {
-      "name": "soluenumerate",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

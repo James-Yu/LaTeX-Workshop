@@ -1,90 +1,392 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-func": [],
-    "pstricks-add": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psCantor": {},
-    "psCantor[]": {
-      "snippet": "psCantor[${1:options}]"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psSier[]": {
-      "snippet": "psSier[${1:options}]"
+    {
+      "name": "pst-func"
     },
-    "psSierCarpet": {},
-    "psSierCarpet[]": {
-      "snippet": "psSierCarpet[${1:options}]"
+    {
+      "name": "pstricks-add"
     },
-    "psfractal": {},
-    "psfractal[]": {
-      "snippet": "psfractal[${1:options}]"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psCantor"
     },
-    "psPhyllotaxis": {},
-    "psPhyllotaxis[]": {
-      "snippet": "psPhyllotaxis[${1:options}]"
+    {
+      "name": "psCantor",
+      "arg": {
+        "format": "[]",
+        "snippet": "psCantor[${1:options%keyvals}]"
+      }
     },
-    "psFern": {},
-    "psFern[]": {
-      "snippet": "psFern[${1:options}]"
+    {
+      "name": "psSier",
+      "arg": {
+        "format": "()()()",
+        "snippet": "psSier(${1:x0},${2:y0})(${3:x1},${4:y1})(${5:x2},${6:y2})"
+      }
     },
-    "psKochflake": {},
-    "psKochflake[]": {
-      "snippet": "psKochflake[${1:options}]"
+    {
+      "name": "psSier",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "psSier(${3:x0},${4:y0}){${1:base}}{${2:recursion}}"
+      }
     },
-    "psAppolonius": {},
-    "psAppolonius[]": {
-      "snippet": "psAppolonius[${1:options}]"
+    {
+      "name": "psSier",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSier[${1:options%keyvals}]"
+      }
     },
-    "psPTree": {},
-    "psPTree[]": {
-      "snippet": "psPTree[${1:options}]"
+    {
+      "name": "psSier",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "psSier[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})(${6:x2},${7:y2})"
+      }
     },
-    "psFArrow{}": {
-      "snippet": "psFArrow{${1:fraction}}"
+    {
+      "name": "psSier",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "psSier[${3:options%keyvals}](${4:x0},${5:y0}){${1:base}}{${2:recursion}}"
+      }
     },
-    "psFArrow[]{}": {
-      "snippet": "psFArrow[${2:options}]{${1:fraction}}"
+    {
+      "name": "psSierCarpet"
     },
-    "psFibonacci": {},
-    "psFibonacci[]": {
-      "snippet": "psFibonacci[${1:options}]"
+    {
+      "name": "psSierCarpet",
+      "arg": {
+        "format": "()",
+        "snippet": "psSierCarpet(${1:x},${2:y})"
+      }
     },
-    "psNewFibonacci": {},
-    "psNewFibonacci[]": {
-      "snippet": "psNewFibonacci[${1:options}]"
+    {
+      "name": "psSierCarpet",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSierCarpet[${1:options%keyvals}]"
+      }
     },
-    "psiFibonacci": {},
-    "psiFibonacci[]": {
-      "snippet": "psiFibonacci[${1:options}]"
+    {
+      "name": "psSierCarpet",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psSierCarpet[${1:options%keyvals}](${2:x},${3:y})"
+      }
     },
-    "pskFibonacci[]": {
-      "snippet": "pskFibonacci[${1:options}]"
+    {
+      "name": "psfractal"
     },
-    "psBiperiodicFibonacci[]": {
-      "snippet": "psBiperiodicFibonacci[${1:options}]"
+    {
+      "name": "psfractal",
+      "arg": {
+        "format": "[]",
+        "snippet": "psfractal[${1:options%keyvals}]"
+      }
     },
-    "psFibonacciPolyominoes[]": {
-      "snippet": "psFibonacciPolyominoes[${1:options}]"
+    {
+      "name": "psfractal",
+      "arg": {
+        "format": "()()",
+        "snippet": "psfractal(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "psHilbert": {},
-    "psHilbert[]": {
-      "snippet": "psHilbert[${1:options}]"
+    {
+      "name": "psfractal",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psfractal[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "psHenon": {},
-    "psHenon[]": {
-      "snippet": "psHenon[${1:options}]"
+    {
+      "name": "psPhyllotaxis"
     },
-    "psHugo": {},
-    "psHugo[]": {
-      "snippet": "psHugo[${1:options}]"
+    {
+      "name": "psPhyllotaxis",
+      "arg": {
+        "format": "[]",
+        "snippet": "psPhyllotaxis[${1:options%keyvals}]"
+      }
     },
-    "psdotcolor": {},
-    "pscolorF": {},
-    "PSTfractalLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psPhyllotaxis",
+      "arg": {
+        "format": "()",
+        "snippet": "psPhyllotaxis(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psPhyllotaxis",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psPhyllotaxis[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psFern"
+    },
+    {
+      "name": "psFern",
+      "arg": {
+        "format": "[]",
+        "snippet": "psFern[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psFern",
+      "arg": {
+        "format": "()",
+        "snippet": "psFern(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psFern",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psFern[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psKochflake"
+    },
+    {
+      "name": "psKochflake",
+      "arg": {
+        "format": "[]",
+        "snippet": "psKochflake[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psKochflake",
+      "arg": {
+        "format": "()",
+        "snippet": "psKochflake(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psKochflake",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psKochflake[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psAppolonius"
+    },
+    {
+      "name": "psAppolonius",
+      "arg": {
+        "format": "[]",
+        "snippet": "psAppolonius[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psAppolonius",
+      "arg": {
+        "format": "()",
+        "snippet": "psAppolonius(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psAppolonius",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psAppolonius[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psPTree"
+    },
+    {
+      "name": "psPTree",
+      "arg": {
+        "format": "[]",
+        "snippet": "psPTree[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psPTree",
+      "arg": {
+        "format": "()",
+        "snippet": "psPTree(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psPTree",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psPTree[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psFArrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "psFArrow{${1:fraction}}"
+      }
+    },
+    {
+      "name": "psFArrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psFArrow[${2:options%keyvals}]{${1:fraction}}"
+      }
+    },
+    {
+      "name": "psFArrow",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psFArrow(${2:x},${3:y}){${1:fraction}}"
+      }
+    },
+    {
+      "name": "psFArrow",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psFArrow[${2:options%keyvals}](${3:x},${4:y}){${1:fraction}}"
+      }
+    },
+    {
+      "name": "psFibonacciWord",
+      "arg": {
+        "format": "()",
+        "snippet": "psFibonacciWord(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psFibonacciWord",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psFibonacciWord[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psFibonacci"
+    },
+    {
+      "name": "psFibonacci",
+      "arg": {
+        "format": "[]",
+        "snippet": "psFibonacci[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psNewFibonacci"
+    },
+    {
+      "name": "psNewFibonacci",
+      "arg": {
+        "format": "[]",
+        "snippet": "psNewFibonacci[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psiFibonacci"
+    },
+    {
+      "name": "psiFibonacci",
+      "arg": {
+        "format": "[]",
+        "snippet": "psiFibonacci[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pskFibonacci",
+      "arg": {
+        "format": "[]",
+        "snippet": "pskFibonacci[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "pskFibonacci",
+      "arg": {
+        "format": "[]()",
+        "snippet": "pskFibonacci[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psBiperiodicFibonacci",
+      "arg": {
+        "format": "[]",
+        "snippet": "psBiperiodicFibonacci[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psBiperiodicFibonacci",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psBiperiodicFibonacci[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psFibonacciPolyominoes",
+      "arg": {
+        "format": "[]",
+        "snippet": "psFibonacciPolyominoes[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psFibonacciPolyominoes",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psFibonacciPolyominoes[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psHilbert"
+    },
+    {
+      "name": "psHilbert",
+      "arg": {
+        "format": "[]",
+        "snippet": "psHilbert[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psHenon"
+    },
+    {
+      "name": "psHenon",
+      "arg": {
+        "format": "[]",
+        "snippet": "psHenon[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psHugo"
+    },
+    {
+      "name": "psHugo",
+      "arg": {
+        "format": "[]",
+        "snippet": "psHugo[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psHugo",
+      "arg": {
+        "format": "()",
+        "snippet": "psHugo(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psHugo",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psHugo[${1:options%keyvals}](${2:x},${3:y})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

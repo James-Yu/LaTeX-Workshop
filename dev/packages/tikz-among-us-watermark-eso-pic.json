@@ -1,21 +1,42 @@
 {
-  "includes": {
-    "tikz-among-us": [],
-    "eso-pic": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "ifFG": {},
-    "FGtrue": {},
-    "FGfalse": {},
-    "myboxAmongUs": {}
-  },
-  "envs": {},
-  "options": [
-    "cor=",
-    "type=",
-    "FG",
-    "BG"
+  "deps": [
+    {
+      "name": "tikz-among-us"
+    },
+    {
+      "name": "eso-pic"
+    },
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ifFG",
+      "unusual": true
+    },
+    {
+      "name": "FGtrue",
+      "unusual": true
+    },
+    {
+      "name": "FGfalse",
+      "unusual": true
+    },
+    {
+      "name": "myboxAmongUs"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikz-among-us-watermark-eso-pic#c": [
+      "cor=",
+      "type=${1|0,1|}",
+      "FG",
+      "BG"
+    ]
+  },
+  "args": [
+    "\\usepackage/tikz-among-us-watermark-eso-pic#c"
+  ]
 }

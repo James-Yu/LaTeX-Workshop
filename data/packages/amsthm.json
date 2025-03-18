@@ -1,52 +1,133 @@
 {
-  "includes": {},
-  "macros": {
-    "newtheorem*{}{}": {
-      "snippet": "newtheorem*{${1:envname}}{${2:caption}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newtheorem*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newtheorem*{${1:envname}}{${2:caption}}"
+      }
     },
-    "theoremstyle{}": {
-      "snippet": "theoremstyle{${1:style}}"
+    {
+      "name": "theoremstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "theoremstyle{${1:style%keyvals}}",
+        "keys": [
+          "\\theoremstyle#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "swapnumbers": {},
-    "newtheoremstyle{}{}{}{}{}{}{}{}{}": {
-      "snippet": "newtheoremstyle{${1:style name}}{${2:space above}}{${3:space below}}{${4:body font}}{${5:indent amount}}{${6:head font}}{${7:head punct}}{${8:after head space}}{${9:head spec}}"
+    {
+      "name": "swapnumbers"
     },
-    "thmname{}": {
-      "snippet": "thmname{${1:arg}}"
+    {
+      "name": "newtheoremstyle",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "newtheoremstyle{${1:style name%specialDef}}{${2:space above}}{${3:space below}}{${4:body font}}{${5:indent amount}}{${6:head font}}{${7:head punct}}{${8:after head space}}{${9:head spec}}"
+      }
     },
-    "thmnumber{}": {
-      "snippet": "thmnumber{${1:arg}}"
+    {
+      "name": "thmname",
+      "arg": {
+        "format": "{}",
+        "snippet": "thmname{${1:arg}}"
+      }
     },
-    "thmnote{}": {
-      "snippet": "thmnote{${1:arg}}"
+    {
+      "name": "thmnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "thmnumber{${1:arg}}"
+      }
     },
-    "qedsymbol": {},
-    "qedhere": {},
-    "qed": {},
-    "proofname": {},
-    "nopunct": {},
-    "thmhead{}{}{}": {
-      "snippet": "thmhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "thmnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "thmnote{${1:arg}}"
+      }
     },
-    "swappedhead{}{}{}": {
-      "snippet": "swappedhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "qedsymbol"
     },
-    "mathqed": {},
-    "pushQED{}": {
-      "snippet": "pushQED{${1:arg}}"
+    {
+      "name": "qedhere"
     },
-    "popQED": {},
-    "openbox": {},
-    "textsquare": {},
-    "thmheadnl": {}
-  },
-  "envs": {
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "qed"
+    },
+    {
+      "name": "proofname"
+    },
+    {
+      "name": "nopunct",
+      "unusual": true
+    },
+    {
+      "name": "thmhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "thmhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "swappedhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "swappedhead{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "mathqed",
+      "unusual": true
+    },
+    {
+      "name": "pushQED",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pushQED{${1:arg}}"
+      }
+    },
+    {
+      "name": "popQED",
+      "unusual": true
+    },
+    {
+      "name": "openbox"
+    },
+    {
+      "name": "textsquare"
+    },
+    {
+      "name": "thmheadnl",
+      "unusual": true
     }
+  ],
+  "envs": [
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\theoremstyle#c": [
+      "plain",
+      "definition",
+      "remark",
+      "%theoremstyle"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

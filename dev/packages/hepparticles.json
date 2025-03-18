@@ -1,60 +1,126 @@
 {
-  "includes": {
-    "amsmath": [],
-    "subdepth": []
-  },
-  "macros": {
-    "HepGenParticle{}{}{}": {
-      "snippet": "HepGenParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "HepGenAntiParticle{}{}{}": {
-      "snippet": "HepGenAntiParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepParticle{}{}{}": {
-      "snippet": "HepParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepAntiParticle{}{}{}": {
-      "snippet": "HepAntiParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepGenSusyParticle{}{}{}": {
-      "snippet": "HepGenSusyParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepSusyParticle{}{}{}": {
-      "snippet": "HepSusyParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepGenSusyAntiParticle{}{}{}": {
-      "snippet": "HepGenSusyAntiParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepSusyAntiParticle{}{}{}": {
-      "snippet": "HepSusyAntiParticle{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepResonanceMassTerm{}{}{}": {
-      "snippet": "HepResonanceMassTerm{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepResonanceSpecTerm{}{}{}": {
-      "snippet": "HepResonanceSpecTerm{${1:main}}{${2:subscript}}{${3:superscript}}"
-    },
-    "HepParticleResonance{}{}{}{}": {
-      "snippet": "HepParticleResonance{${1:name}}{${2:mass}}{${3:massSub}}{${4:massSup}}"
-    },
-    "HepParticleResonanceFull{}{}{}{}{}{}": {
-      "snippet": "HepParticleResonanceFull{${1:main}}{${2:sub}}{${3:sup}}{${4:mass}}{${5:massSub}}{${6:massSup}}"
-    },
-    "HepParticleResonanceFormal{}{}{}{}{}{}": {
-      "snippet": "HepParticleResonanceFormal{${1:mass}}{${2:massSub}}{${3:massSup}}{${4:spec}}{${5:specSub}}{${6:specSup}}"
-    },
-    "HepParticleResonanceFormalFull{}{}{}{}{}{}{}{}{}": {
-      "snippet": "HepParticleResonanceFormalFull{${1:main}}{${2:sub}}{${3:sup}}{${4:mass}}{${5:massSub}}{${6:massSup}}{${7:spec}}{${8:specSub}}{${9:specSup}}"
-    },
-    "HepProcess{}": {
-      "snippet": "HepProcess{${1:iParticles \\to fParticles}}"
-    },
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "italic"
+    {
+      "name": "subdepth"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "HepGenParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepGenParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepGenAntiParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepGenAntiParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepAntiParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepAntiParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepGenSusyParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepGenSusyParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepSusyParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepSusyParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepGenSusyAntiParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepGenSusyAntiParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepSusyAntiParticle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepSusyAntiParticle{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepResonanceMassTerm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepResonanceMassTerm{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepResonanceSpecTerm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "HepResonanceSpecTerm{${1:main%formula}}{${2:subscript%formula}}{${3:superscript%formula}}"
+      }
+    },
+    {
+      "name": "HepParticleResonance",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "HepParticleResonance{${1:name%formula}}{${2:mass%formula}}{${3:massSub%formula}}{${4:massSup%formula}}"
+      }
+    },
+    {
+      "name": "HepParticleResonanceFull",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "HepParticleResonanceFull{${1:main%formula}}{${2:sub%formula}}{${3:sup%formula}}{${4:mass%formula}}{${5:massSub%formula}}{${6:massSup%formula}}"
+      }
+    },
+    {
+      "name": "HepParticleResonanceFormal",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "HepParticleResonanceFormal{${1:mass%formula}}{${2:massSub%formula}}{${3:massSup%formula}}{${4:spec%formula}}{${5:specSub%formula}}{${6:specSup%formula}}"
+      }
+    },
+    {
+      "name": "HepParticleResonanceFormalFull",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "HepParticleResonanceFormalFull{${1:main%formula}}{${2:sub%formula}}{${3:sup%formula}}{${4:mass%formula}}{${5:massSub%formula}}{${6:massSup%formula}}{${7:spec%formula}}{${8:specSub%formula}}{${9:specSup%formula}}"
+      }
+    },
+    {
+      "name": "HepProcess",
+      "arg": {
+        "format": "{}",
+        "snippet": "HepProcess{${1:iParticles \\to fParticles%formula}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hepparticles#c": [
+      "italic"
+    ]
+  },
+  "args": [
+    "\\usepackage/hepparticles#c"
+  ]
 }

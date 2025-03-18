@@ -1,54 +1,118 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "ionumbersstyle{}": {
-      "snippet": "ionumbersstyle{${1:options}}"
-    },
-    "ionumbersresetstyle": {},
-    "newionumbersthousands{}{}": {
-      "snippet": "newionumbersthousands{${1:value}}{${2:definition}}"
-    },
-    "newionumbersdecimal{}{}": {
-      "snippet": "newionumbersdecimal{${1:value}}{${2:definition}}"
-    },
-    "newionumbersthousandths{}{}": {
-      "snippet": "newionumbersthousandths{${1:value}}{${2:definition}}"
-    },
-    "newionumbersexponent{}{}": {
-      "snippet": "newionumbersexponent{${1:value}}{${2:definition}}"
-    },
-    "renewionumbersthousands{}{}": {
-      "snippet": "renewionumbersthousands{${1:value}}{${2:definition}}"
-    },
-    "renewionumbersdecimal{}{}": {
-      "snippet": "renewionumbersdecimal{${1:value}}{${2:definition}}"
-    },
-    "renewionumbersthousandths{}{}": {
-      "snippet": "renewionumbersthousandths{${1:value}}{${2:definition}}"
-    },
-    "renewionumbersexponent{}{}": {
-      "snippet": "renewionumbersexponent{${1:value}}{${2:definition}}"
-    },
-    "ionumbers": {},
-    "endionumbers": {},
-    "ionumbersoff{}": {
-      "snippet": "ionumbersoff{${1:content}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "comma=",
-    "point=",
-    "thousands=",
-    "decimal=",
-    "thousandths=",
-    "exponent=",
-    "autothousands",
-    "autothousandths",
-    "grplenthousands=${1:number}",
-    "grplenthousandths=${1:number}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ionumbersstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "ionumbersstyle{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/ionumbers#c,\\ionumbersstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ionumbersresetstyle"
+    },
+    {
+      "name": "newionumbersthousands",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newionumbersthousands{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newionumbersdecimal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newionumbersdecimal{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newionumbersthousandths",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newionumbersthousandths{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newionumbersexponent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newionumbersexponent{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewionumbersthousands",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewionumbersthousands{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewionumbersdecimal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewionumbersdecimal{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewionumbersthousandths",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewionumbersthousandths{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "renewionumbersexponent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewionumbersexponent{${1:value}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "ionumbers"
+    },
+    {
+      "name": "endionumbers"
+    },
+    {
+      "name": "ionumbersoff",
+      "arg": {
+        "format": "{}",
+        "snippet": "ionumbersoff{${1:content}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ionumbers#c,\\ionumbersstyle": [
+      "comma=${1|ignore,decimal,thousands,default|}",
+      "point=${1|ignore,decimal,thousands,default|}",
+      "thousands=${1|none,point,comma,punctpoint,punctcomma,apostrophe,phantom,space,default|}",
+      "decimal=${1|none,point,comma,punctpoint,punctcomma,apostrophe,phantom,space,default|}",
+      "thousandths=${1|none,point,comma,punctpoint,punctcomma,apostrophe,phantom,space,default|}",
+      "exponent=${1|none,original,ite,itE,rme,rmE,timestento,cdottento,wedge,default|}",
+      "autothousands",
+      "autothousandths",
+      "grplenthousands=${1:number}",
+      "grplenthousandths=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/ionumbers#c,\\ionumbersstyle"
+  ]
 }

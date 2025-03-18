@@ -1,14 +1,34 @@
 {
-  "includes": {
-    "graphicx": [],
-    "xcolor": []
-  },
-  "macros": {
-    "Isosign{}": {
-      "snippet": "Isosign{${1:number}}"
+  "deps": [
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "xkeyval"
     }
+  ],
+  "macros": [
+    {
+      "name": "Isosign",
+      "arg": {
+        "format": "{}",
+        "snippet": "Isosign{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/isosafety#c": [
+      "fullpath=${1:file path}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": [
+    "\\usepackage/isosafety#c"
+  ]
 }

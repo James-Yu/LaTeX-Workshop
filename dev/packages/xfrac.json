@@ -1,24 +1,46 @@
 {
-  "includes": {
-    "amstext": [],
-    "graphicx": [],
-    "xtemplate": []
-  },
-  "macros": {
-    "sfrac{}{}": {
-      "snippet": "sfrac{${1:num}}{${2:denom}}"
+  "deps": [
+    {
+      "name": "amstext"
     },
-    "sfrac{}[]{}": {
-      "snippet": "sfrac{${1:num}}[${2:sep}]{${3:denom}}"
+    {
+      "name": "graphicx"
     },
-    "sfrac[]{}{}": {
-      "snippet": "sfrac[${3:instance}]{${1:num}}{${2:denom}}"
-    },
-    "sfrac[]{}[]{}": {
-      "snippet": "sfrac[${3:instance}]{${1:num}}[${4:sep}]{${2:denom}}"
+    {
+      "name": "xtemplate"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "sfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sfrac{${1:num}}{${2:denom}}"
+      }
+    },
+    {
+      "name": "sfrac",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sfrac{${1:num}}[${3:sep}]{${2:denom}}"
+      }
+    },
+    {
+      "name": "sfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "sfrac[${3:instance}]{${1:num}}{${2:denom}}"
+      }
+    },
+    {
+      "name": "sfrac",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "sfrac[${3:instance}]{${1:num}}[${4:sep}]{${2:denom}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

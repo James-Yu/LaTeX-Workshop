@@ -1,24 +1,45 @@
 {
-  "includes": {
-    "tikz": [],
-    "atbegshi": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "bidipagegridsetup{}": {
-      "snippet": "bidipagegridsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "setLTRpagegrid": {},
-    "setRTLpagegrid": {},
-    "bidipagegridShipoutDoubleBegin": {},
-    "bidipagegridShipoutDoubleEnd": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "atbegshi"
+    },
+    {
+      "name": "kvoptions"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bidipagegridsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "bidipagegridsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\bidipagegridsetup,\\usepackage/bidipagegrid#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setLTRpagegrid"
+    },
+    {
+      "name": "setRTLpagegrid"
+    },
+    {
+      "name": "bidipagegridShipoutDoubleBegin",
+      "unusual": true
+    },
+    {
+      "name": "bidipagegridShipoutDoubleEnd",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bidipagegridsetup,\\usepackage/bidipagegrid#c": [
       "enable",
       "disable",
       "left-top",
@@ -42,9 +63,12 @@
       "secondcolor=",
       "arrows",
       "arrowlength=",
-      "double=",
+      "double=${1|false,first,last,true|}",
       "foreground",
-      "direction="
+      "direction=${1|LTR,RTL|}"
     ]
+  },
+  "args": [
+    "\\bidipagegridsetup,\\usepackage/bidipagegrid#c"
   ]
 }

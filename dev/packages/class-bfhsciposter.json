@@ -1,65 +1,162 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-scrartcl": [],
-    "bfhfonts": [],
-    "bfhlogo": [],
-    "graphicx": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tcolorbox": [],
-    "tcolorboxlibraryposter": [],
-    "geometry": [],
-    "bfhcolors": [],
-    "qrcode": [],
-    "bfhmodule": []
-  },
-  "macros": {
-    "authorandname": {},
-    "contentheight": {},
-    "contentwidth": {},
-    "footer{}": {
-      "snippet": "footer{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "footergraphics{}": {
-      "snippet": "footergraphics{${1:graphics code}}"
+    {
+      "name": "class-scrartcl"
     },
-    "footerhsep": {},
-    "footerqrcode*{}": {
-      "snippet": "footerqrcode*{${1:URL}}"
+    {
+      "name": "bfhfonts"
     },
-    "footerqrcode{}": {
-      "snippet": "footerqrcode{${1:URL}}"
+    {
+      "name": "bfhlogo"
     },
-    "inst{}": {
-      "snippet": "inst{${1:arg}}"
+    {
+      "name": "graphicx"
     },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "tikz"
     },
-    "raggedfooter": {},
-    "raggedtitle": {},
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:graphics code}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "BFHarraystretch": {},
-    "BFHarrayrulewidth": {},
-    "setupBfhTabular": {}
-  },
-  "envs": {
-    "bfhTabular{}": {
-      "name": "bfhTabular",
-      "snippet": "{${1:preamble}}"
+    {
+      "name": "tcolorbox"
     },
-    "bfhTabular[]{}": {
-      "name": "bfhTabular",
-      "snippet": "[${2:pos}]{${1:preamble}}"
+    {
+      "name": "tcolorboxlibraryposter"
     },
-    "bfhTblr{}": {
-      "name": "bfhTblr",
-      "snippet": "{${1:preamble}}"
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "bfhcolors"
+    },
+    {
+      "name": "qrcode"
+    },
+    {
+      "name": "bfhmodule"
     }
+  ],
+  "macros": [
+    {
+      "name": "authorandname",
+      "unusual": true
+    },
+    {
+      "name": "contentheight"
+    },
+    {
+      "name": "contentwidth"
+    },
+    {
+      "name": "footer",
+      "arg": {
+        "format": "{}",
+        "snippet": "footer{${1:text}}"
+      }
+    },
+    {
+      "name": "footergraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "footergraphics{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "footerhsep"
+    },
+    {
+      "name": "footerqrcode*",
+      "arg": {
+        "format": "{}",
+        "snippet": "footerqrcode*{${1:URL}}"
+      }
+    },
+    {
+      "name": "footerqrcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "footerqrcode{${1:URL}}"
+      }
+    },
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "inst{${1:arg}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "raggedfooter",
+      "unusual": true
+    },
+    {
+      "name": "raggedtitle",
+      "unusual": true
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "BFHarraystretch",
+      "unusual": true
+    },
+    {
+      "name": "BFHarrayrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "setupBfhTabular"
+    }
+  ],
+  "envs": [
+    {
+      "name": "bfhTabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    },
+    {
+      "name": "bfhTabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:preamble}}"
+      }
+    },
+    {
+      "name": "bfhTblr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\posterbox,\\begin{posterboxenv}": [
+      "BFH-plain",
+      "BFH-inner",
+      "BFH-abstract",
+      "BFH-colored",
+      "BFH-framed",
+      "BFH-framed-inner",
+      "BFH-colored-inner"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,28 +1,54 @@
 {
-  "includes": {
-    "arrayjob": [],
-    "forloop": []
-  },
-  "macros": {
-    "parshapelenout{}": {
-      "snippet": "parshapelenout{${1:length}}"
+  "deps": [
+    {
+      "name": "arrayjob"
     },
-    "parshapearrlenout{}{}": {
-      "snippet": "parshapearrlenout{${1:array}}{${2:counter}}"
-    },
-    "parshapeary{}": {
-      "snippet": "parshapeary{${1:array}}"
-    },
-    "parshapearray{}{}": {
-      "snippet": "parshapearray{${1:array}}{${2:width}}"
-    },
-    "Parshapearray{}{}": {
-      "snippet": "Parshapearray{${1:array1}}{${2:array2}}"
+    {
+      "name": "forloop"
     }
-  },
-  "envs": {
-    "parshapecollect": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "parshapelenout",
+      "arg": {
+        "format": "{}",
+        "snippet": "parshapelenout{${1:length}}"
+      }
+    },
+    {
+      "name": "parshapearrlenout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "parshapearrlenout{${1:array}}{${2:counter}}"
+      }
+    },
+    {
+      "name": "parshapeary",
+      "arg": {
+        "format": "{}",
+        "snippet": "parshapeary{${1:array}}"
+      }
+    },
+    {
+      "name": "parshapearray",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "parshapearray{${1:array}}{${2:width}}"
+      }
+    },
+    {
+      "name": "Parshapearray",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Parshapearray{${1:array1}}{${2:array2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "parshapecollect"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

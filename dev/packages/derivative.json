@@ -1,319 +1,741 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "pdv[]{}{}_{}^{}": {
-      "snippet": "pdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "pdv[]{}{}": {
-      "snippet": "pdv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pdv{}{}_{}^{}": {
-      "snippet": "pdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "pdv{}{}": {
-      "snippet": "pdv{${1:function}}{${2:variables}}"
-    },
-    "pdv*[]{}{}_{}^{}": {
-      "snippet": "pdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "pdv*[]{}{}": {
-      "snippet": "pdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pdv*{}{}_{}^{}": {
-      "snippet": "pdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "pdv*{}{}": {
-      "snippet": "pdv*{${1:function}}{${2:variables}}"
-    },
-    "odv[]{}{}_{}^{}": {
-      "snippet": "odv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "odv[]{}{}": {
-      "snippet": "odv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "odv{}{}_{}^{}": {
-      "snippet": "odv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "odv{}{}": {
-      "snippet": "odv{${1:function}}{${2:variables}}"
-    },
-    "odv*[]{}{}_{}^{}": {
-      "snippet": "odv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "odv*[]{}{}": {
-      "snippet": "odv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "odv*{}{}_{}^{}": {
-      "snippet": "odv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "odv*{}{}": {
-      "snippet": "odv*{${1:function}}{${2:variables}}"
-    },
-    "mdv[]{}{}_{}^{}": {
-      "snippet": "mdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "mdv[]{}{}": {
-      "snippet": "mdv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mdv{}{}_{}^{}": {
-      "snippet": "mdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "mdv{}{}": {
-      "snippet": "mdv{${1:function}}{${2:variables}}"
-    },
-    "mdv*[]{}{}_{}^{}": {
-      "snippet": "mdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "mdv*[]{}{}": {
-      "snippet": "mdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mdv*{}{}_{}^{}": {
-      "snippet": "mdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "mdv*{}{}": {
-      "snippet": "mdv*{${1:function}}{${2:variables}}"
-    },
-    "fdv[]{}{}_{}^{}": {
-      "snippet": "fdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "fdv[]{}{}": {
-      "snippet": "fdv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fdv{}{}_{}^{}": {
-      "snippet": "fdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "fdv{}{}": {
-      "snippet": "fdv{${1:function}}{${2:variables}}"
-    },
-    "fdv*[]{}{}_{}^{}": {
-      "snippet": "fdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "fdv*[]{}{}": {
-      "snippet": "fdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "fdv*{}{}_{}^{}": {
-      "snippet": "fdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "fdv*{}{}": {
-      "snippet": "fdv*{${1:function}}{${2:variables}}"
-    },
-    "adv[]{}{}_{}^{}": {
-      "snippet": "adv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "adv[]{}{}": {
-      "snippet": "adv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "adv{}{}_{}^{}": {
-      "snippet": "adv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "adv{}{}": {
-      "snippet": "adv{${1:function}}{${2:variables}}"
-    },
-    "adv*[]{}{}_{}^{}": {
-      "snippet": "adv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "adv*[]{}{}": {
-      "snippet": "adv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "adv*{}{}_{}^{}": {
-      "snippet": "adv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "adv*{}{}": {
-      "snippet": "adv*{${1:function}}{${2:variables}}"
-    },
-    "jdv[]{}{}_{}^{}": {
-      "snippet": "jdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "jdv[]{}{}": {
-      "snippet": "jdv[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "jdv{}{}_{}^{}": {
-      "snippet": "jdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "jdv{}{}": {
-      "snippet": "jdv{${1:function}}{${2:variables}}"
-    },
-    "jdv*[]{}{}_{}^{}": {
-      "snippet": "jdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "jdv*[]{}{}": {
-      "snippet": "jdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "jdv*{}{}_{}^{}": {
-      "snippet": "jdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
-    },
-    "jdv*{}{}": {
-      "snippet": "jdv*{${1:function}}{${2:variables}}"
-    },
-    "odif[]{}": {
-      "snippet": "odif[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "odif{}": {
-      "snippet": "odif{${1:variables}}"
-    },
-    "odif*[]{}": {
-      "snippet": "odif*[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "odif*{}": {
-      "snippet": "odif*{${1:variables}}"
-    },
-    "pdif[]{}": {
-      "snippet": "pdif[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pdif{}": {
-      "snippet": "pdif{${1:variables}}"
-    },
-    "pdif*[]{}": {
-      "snippet": "pdif*[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pdif*{}": {
-      "snippet": "pdif*{${1:variables}}"
-    },
-    "mdif[]{}": {
-      "snippet": "mdif[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mdif{}": {
-      "snippet": "mdif{${1:variables}}"
-    },
-    "mdif*[]{}": {
-      "snippet": "mdif*[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "mdif*{}": {
-      "snippet": "mdif*{${1:variables}}"
-    },
-    "fdif[]{}": {
-      "snippet": "fdif[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "fdif{}": {
-      "snippet": "fdif{${1:variables}}"
-    },
-    "fdif*[]{}": {
-      "snippet": "fdif*[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "fdif*{}": {
-      "snippet": "fdif*{${1:variables}}"
-    },
-    "adif[]{}": {
-      "snippet": "adif[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "adif{}": {
-      "snippet": "adif{${1:variables}}"
-    },
-    "adif*[]{}": {
-      "snippet": "adif*[${2:keyvals}]{${1:variables}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "adif*{}": {
-      "snippet": "adif*{${1:variables}}"
-    },
-    "derivset{}": {
-      "snippet": "derivset{${1:derivative}}"
-    },
-    "derivset{}[]": {
-      "snippet": "derivset{${1:derivative}}[${2:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "NewDerivative{}{}[]": {
-      "snippet": "NewDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "RenewDerivative{}{}[]": {
-      "snippet": "RenewDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "ProvideDerivative{}{}[]": {
-      "snippet": "ProvideDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "DeclareDerivative{}{}[]": {
-      "snippet": "DeclareDerivative{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "NewDifferential{}{}[]": {
-      "snippet": "NewDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "RenewDifferential{}{}[]": {
-      "snippet": "RenewDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "ProvideDifferential{}{}[]": {
-      "snippet": "ProvideDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "DeclareDifferential{}{}[]": {
-      "snippet": "DeclareDifferential{${1:cmd}}{${2:infinitesimal}}[${3:keyvals}]"
-    },
-    "slashfrac{}{}": {
-      "snippet": "slashfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "slashfrac[]{}{}": {
-      "snippet": "slashfrac[${3:scale}]{${1:numerator}}{${2:denominator}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "italic",
-    "upright"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "pdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "pdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "pdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pdv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "pdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "pdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "pdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pdv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "odv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "odv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "odv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "odv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "odv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "odv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "odv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "odv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "odv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "odv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "odv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "odv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "mdv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "mdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "mdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "mdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mdv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "mdv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "mdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "mdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "mdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mdv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "fdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "fdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "fdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fdv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "fdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "fdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "fdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fdv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "adv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "adv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "adv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "adv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "adv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "adv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "adv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "adv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "adv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "adv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "adv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "adv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "jdv",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "jdv[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jdv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "jdv[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jdv",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "jdv{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "jdv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "jdv{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "jdv*",
+      "arg": {
+        "format": "[]{}{}_{}^{}",
+        "snippet": "jdv*[${5:keyvals}]{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jdv*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "jdv*[${3:keyvals}]{${1:function}}{${2:variables}}",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jdv*",
+      "arg": {
+        "format": "{}{}_{}^{}",
+        "snippet": "jdv*{${1:function}}{${2:variables}}_{${3:pt1}}^{${4:pt2}}"
+      }
+    },
+    {
+      "name": "jdv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "jdv*{${1:function}}{${2:variables}}"
+      }
+    },
+    {
+      "name": "odif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "odif[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odif",
+      "arg": {
+        "format": "{}",
+        "snippet": "odif{${1:variables}}"
+      }
+    },
+    {
+      "name": "odif*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "odif*[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "odif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "odif*{${1:variables}}"
+      }
+    },
+    {
+      "name": "pdif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pdif[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdif",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdif{${1:variables}}"
+      }
+    },
+    {
+      "name": "pdif*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pdif*[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdif*{${1:variables}}"
+      }
+    },
+    {
+      "name": "mdif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mdif[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdif",
+      "arg": {
+        "format": "{}",
+        "snippet": "mdif{${1:variables}}"
+      }
+    },
+    {
+      "name": "mdif*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mdif*[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mdif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "mdif*{${1:variables}}"
+      }
+    },
+    {
+      "name": "fdif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fdif[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdif",
+      "arg": {
+        "format": "{}",
+        "snippet": "fdif{${1:variables}}"
+      }
+    },
+    {
+      "name": "fdif*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fdif*[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fdif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fdif*{${1:variables}}"
+      }
+    },
+    {
+      "name": "adif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adif[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adif",
+      "arg": {
+        "format": "{}",
+        "snippet": "adif{${1:variables}}"
+      }
+    },
+    {
+      "name": "adif*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adif*[${2:keyvals}]{${1:variables}}",
+        "keys": [
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adif*",
+      "arg": {
+        "format": "{}",
+        "snippet": "adif*{${1:variables}}"
+      }
+    },
+    {
+      "name": "derivset",
+      "arg": {
+        "format": "{}",
+        "snippet": "derivset{${1:derivative%cmd}}"
+      }
+    },
+    {
+      "name": "derivset",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "derivset{${1:derivative%cmd}}[${2:options%keyvals}]",
+        "keys": [
+          "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*",
+          "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*",
+          "\\derivset"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "NewDerivative",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "NewDerivative{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "RenewDerivative",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "RenewDerivative{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "ProvideDerivative",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "ProvideDerivative{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "DeclareDerivative",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "DeclareDerivative{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "NewDifferential",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "NewDifferential{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "RenewDifferential",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "RenewDifferential{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "ProvideDifferential",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "ProvideDifferential{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "DeclareDifferential",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "DeclareDifferential{${1:cmd}}{${2:infinitesimal%formula}}[${3:keyvals}]"
+      }
+    },
+    {
+      "name": "slashfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "slashfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "slashfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "slashfrac[${3:scale%keyvals}]{${1:numerator}}{${2:denominator}}",
+        "keys": [
+          "\\slashfrac"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/derivative#c": [
+      "italic",
+      "upright"
+    ],
+    "\\derivset,\\NewDerivative,\\RenewDerivative,\\ProvideDerivative,\\DeclareDerivative,\\pdv,\\pdv*,\\odv,\\odv*,\\mdv,\\mdv*,\\fdv,\\fdv*,\\adv,\\adv*,\\jdv,\\jdv*": [
       "style-inf=${1:infinitesimal}",
       "style-inf-num=${1:infinitesimal}",
       "style-inf-den=${1:infinitesimal}",
       "style-frac=${1:frac macro}",
       "style-frac-/=${1:slashfrac macro}",
-      "style-var=",
-      "style-var-/=",
-      "style-var-!=",
-      "style-var-/!=",
-      "scale-eval=",
-      "scale-eval-/=",
-      "scale-eval-!=",
-      "scale-fun=",
-      "scale-var=",
-      "scale-var-!=",
-      "scale-frac=",
-      "scale-frac-/=",
+      "style-var=${1|single,multiple|}",
+      "style-var-/=${1|single,multiple|}",
+      "style-var-!=${1|single,multiple,mixed|}",
+      "style-var-/!=${1|single,multiple,mixed|}",
+      "scale-eval=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-eval-/=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-eval-!=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-fun=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-var=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-var-!=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-frac=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-frac-/=${1|auto,none,big,Big,bigg,Bigg|}",
       "delims-eval={${1:left delim}}{${2:right delim}}",
       "delims-eval-/={${1:left delim}}{${2:right delim}}",
       "delims-eval-!={${1:left delim}}{${2:right delim}}",
@@ -340,7 +762,7 @@
       "switch-!",
       "switch-sort",
       "sort-method={${1:abs, lexical, number, sign, and/or symbol}}",
-      "sort-numerical=",
+      "sort-numerical=${1|auto,first,last,symbolic|}",
       "sort-abs-reverse",
       "sort-number-reverse",
       "sort-sign-reverse",
@@ -355,12 +777,12 @@
       "mixed-order={${1:mixed order}}",
       "mixord={${1:mixed order}}"
     ],
-    [
+    "\\derivset,\\NewDifferential,\\RenewDifferential,\\ProvideDifferential,\\DeclareDifferential,\\odif,\\odif*,\\pdif,\\pdif*,\\mdif,\\mdif*,\\fdif,\\fdif*,\\adif,\\adif*": [
       "style-inf=${1:infinitesimal}",
-      "style-var=",
-      "style-var-*=",
-      "scale-var=",
-      "scale-var-*=",
+      "style-var=${1|single,multiple,mixed|}",
+      "style-var-*=${1|single,multiple,mixed|}",
+      "scale-var=${1|auto,none,big,Big,bigg,Bigg|}",
+      "scale-var-*=${1|auto,none,big,Big,bigg,Bigg|}",
       "delims-var={${1:left delim}}{${2:right delim}}",
       "delims-var-*={${1:left delim}}{${2:right delim}}",
       "sep-begin=${1:<num>, <mspace>, or <delim>}",
@@ -371,91 +793,25 @@
       "sep-var-var=${1:<num>, <mspace>, or <delim>}",
       "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
       "sep-end=${1:<num>, <mspace>, or <delim>}",
-      "switch-*=",
+      "switch-*=${1|true,false|}",
       "var",
       "var=${1:none, all, or {cs-numbers}}",
       "order={${1:cs-orders}}",
       "ord={${1:cs-orders}}"
     ],
-    [
-      "style-inf=${1:infinitesimal}",
-      "style-inf-num=${1:infinitesimal}",
-      "style-inf-den=${1:infinitesimal}",
-      "style-frac=${1:frac macro}",
-      "style-frac-/=${1:slashfrac macro}",
-      "style-var=",
-      "style-var-/=",
-      "style-var-!=",
-      "style-var-/!=",
-      "scale-eval=",
-      "scale-eval-/=",
-      "scale-eval-!=",
-      "scale-fun=",
-      "scale-var=",
-      "scale-var-!=",
-      "scale-frac=",
-      "scale-frac-/=",
-      "delims-eval={${1:left delim}}{${2:right delim}}",
-      "delims-eval-/={${1:left delim}}{${2:right delim}}",
-      "delims-eval-!={${1:left delim}}{${2:right delim}}",
-      "delims-fun={${1:left delim}}{${2:right delim}}",
-      "delims-var={${1:left delim}}{${2:right delim}}",
-      "delims-var-!={${1:left delim}}{${2:right delim}}",
-      "delims-frac={${1:left delim}}{${2:right delim}}",
-      "delims-frac-/={${1:left delim}}{${2:right delim}}",
-      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
-      "sep-inf-fun=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-func=${1:<num>, <mspace>, or <delim>}",
-      "sep-frac-fun=${1:<num>, <mspace>, or <delim>}",
-      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-var-ord=${1:<num>, <mspace>, or <delim>}",
-      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-inf=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-eval-sb=${1:<num>, <mspace>, or <delim>}",
-      "sep-eval-sp=${1:<num>, <mspace>, or <delim>}",
-      "switch-*",
-      "switch-/",
-      "switch-!",
-      "switch-sort",
-      "sort-method={${1:abs, lexical, number, sign, and/or symbol}}",
-      "sort-numerical=",
-      "sort-abs-reverse",
-      "sort-number-reverse",
-      "sort-sign-reverse",
-      "sort-symbol-reverse",
-      "sort-lexical-reverse",
-      "fun",
-      "frac",
-      "var",
-      "var=${1:none, all, or {cs-numbers}}",
-      "order={${1:cs-orders}}",
-      "ord={${1:cs-orders}}",
-      "mixed-order={${1:mixed order}}",
-      "mixord={${1:mixed order}}",
-      "style-inf=${1:infinitesimal}",
-      "style-var=",
-      "style-var-*=",
-      "scale-var=",
-      "scale-var-*=",
-      "delims-var={${1:left delim}}{${2:right delim}}",
-      "delims-var-*={${1:left delim}}{${2:right delim}}",
-      "sep-begin=${1:<num>, <mspace>, or <delim>}",
-      "sep-inf-ord=${1:<num>, <mspace>, or <delim>}",
-      "sep-inf-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-var-inf=${1:<num>, <mspace>, or <delim>}",
-      "sep-var-var=${1:<num>, <mspace>, or <delim>}",
-      "sep-ord-ord=${1:<num>, <mspace>, or <delim>}",
-      "sep-end=${1:<num>, <mspace>, or <delim>}",
-      "switch-*=",
-      "var",
-      "var=${1:none, all, or {cs-numbers}}",
-      "order={${1:cs-orders}}",
-      "ord={${1:cs-orders}}",
-      "scale-auto="
+    "\\derivset": [
+      "scale-auto=${1|leftright,mleftright|}"
+    ],
+    "\\slashfrac": [
+      "auto",
+      "none",
+      "big",
+      "Big",
+      "bigg",
+      "Bigg"
     ]
+  },
+  "args": [
+    "\\usepackage/derivative#c"
   ]
 }

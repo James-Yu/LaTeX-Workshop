@@ -17,7 +17,7 @@ function parseLaTeX(content: string): Ast.Root {
 }
 
 function parseArgs(ast: Ast.Root, macros: Ast.MacroInfoRecord) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     attachMacroArgs(ast, macros)
 }
 
@@ -26,8 +26,15 @@ function reset(macros: Ast.MacroInfoRecord, environments: Ast.EnvInfoRecord) {
     unifiedParser = getParser({ macros, environments, flags: { autodetectExpl3AndAtLetter: true } })
 }
 
-function parseBibTeX(s: string, options?: bibtexParser.ParserOptions): bibtexParser.BibtexAst {
-    return bibtexParser.parse(s, options)
+function parseBibTeX(s: string): bibtexParser.BibtexAst | string | undefined {
+    try {
+        return bibtexParser.parse(s)
+    } catch (err) {
+        if (bibtexParser.isSyntaxError(err)) {
+            return JSON.stringify(err)
+        }
+        return undefined
+    }
 }
 
 const worker = {

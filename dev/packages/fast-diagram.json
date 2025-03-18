@@ -1,148 +1,400 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": [],
-    "relsize": [],
-    "xargs": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryfit": [],
-    "tikzlibraryshapes": []
-  },
-  "macros": {
-    "FT{}{}": {
-      "snippet": "FT{${1:Fonction technique}}{${2:Descendance}}",
-      "option": "raccourcis"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "FT[]{}{}": {
-      "snippet": "FT[${3:option}]{${1:Fonction technique}}{${2:Descendance}}",
-      "option": "raccourcis"
+    {
+      "name": "ifthen"
     },
-    "ST{}": {
-      "snippet": "ST{${1:Solution technique}}",
-      "option": "raccourcis"
+    {
+      "name": "relsize"
     },
-    "ST{}[]": {
-      "snippet": "ST{${1:Solution technique}}[${2:Descendance}]",
-      "option": "raccourcis"
+    {
+      "name": "xargs"
     },
-    "ST[]{}": {
-      "snippet": "ST[${2:option}]{${1:Solution technique}}",
-      "option": "raccourcis"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "ST[]{}[]": {
-      "snippet": "ST[${2:option}]{${1:Solution technique}}[${3:Descendance}]",
-      "option": "raccourcis"
+    {
+      "name": "tikzlibraryfit"
     },
-    "FV{}": {
-      "snippet": "FV{${1:text}}",
-      "option": "raccourcis"
-    },
-    "FV{}[]": {
-      "snippet": "FV{${1:text}}[${2:Descendance}]",
-      "option": "raccourcis"
-    },
-    "trait{}": {
-      "snippet": "trait{${1:Descendance}}",
-      "option": "raccourcis"
-    },
-    "fastFT{}{}": {
-      "snippet": "fastFT{${1:Fonction technique}}{${2:Descendance}}"
-    },
-    "fastFT[]{}{}": {
-      "snippet": "fastFT[${3:option}]{${1:Fonction technique}}{${2:Descendance}}"
-    },
-    "fastST{}": {
-      "snippet": "fastST{${1:Solution technique}}"
-    },
-    "fastST{}[]": {
-      "snippet": "fastST{${1:Solution technique}}[${2:Descendance}]"
-    },
-    "fastST[]{}": {
-      "snippet": "fastST[${2:option}]{${1:Solution technique}}"
-    },
-    "fastST[]{}[]": {
-      "snippet": "fastST[${2:option}]{${1:Solution technique}}[${3:Descendance}]"
-    },
-    "fastVide{}": {
-      "snippet": "fastVide{${1:text}}"
-    },
-    "fastVide{}[]": {
-      "snippet": "fastVide{${1:text}}[${2:Descendance}]"
-    },
-    "fastTrait{}": {
-      "snippet": "fastTrait{${1:Descendance}}"
-    },
-    "fastReset": {},
-    "fastInterligne": {},
-    "fastLargeurBoite": {},
-    "fastHauteurBoite": {},
-    "fastEspaceColonne": {},
-    "fastDecalageTrait": {},
-    "fastEpaisseurTraits": {},
-    "fastDecalageOuVertical": {},
-    "fastDecalageOuHorizontal": {},
-    "fastSetCouleurBordures{}": {
-      "snippet": "fastSetCouleurBordures{${1:color}}"
-    },
-    "fastSetCouleurBordures[]{}": {
-      "snippet": "fastSetCouleurBordures[${2:type}]{${1:color}}"
-    },
-    "fastSetCouleurTexte{}": {
-      "snippet": "fastSetCouleurTexte{${1:color}}"
-    },
-    "fastSetCouleurTexte[]{}": {
-      "snippet": "fastSetCouleurTexte[${2:type}]{${1:color}}"
-    },
-    "fastSetCouleurFond{}": {
-      "snippet": "fastSetCouleurFond{${1:color}}"
-    },
-    "fastSetCouleurFond[]{}": {
-      "snippet": "fastSetCouleurFond[${2:type}]{${1:color}}"
-    },
-    "fastSetCouleurConnecteurs{}": {
-      "snippet": "fastSetCouleurConnecteurs{${1:color}}"
-    },
-    "fastSetCouleurConnecteurs[]{}": {
-      "snippet": "fastSetCouleurConnecteurs[${2:type}]{${1:color}}"
-    },
-    "fastSetCouleurTraits{}": {
-      "snippet": "fastSetCouleurTraits{${1:color}}"
-    },
-    "fastSetCouleurTraits[]{}": {
-      "snippet": "fastSetCouleurTraits[${2:type}]{${1:color}}"
-    },
-    "fastAvanceColonne": {},
-    "fastEnregistreMinimum": {},
-    "fastFSStyle": {},
-    "fastFSarrondi": {},
-    "fastFStexteStyle": {},
-    "fastFTStyle": {},
-    "fastFTarrondi": {},
-    "fastFTtexteStyle": {},
-    "fastFVStyle": {},
-    "fastFVtexteStyle": {},
-    "fastReculeColonne": {},
-    "fastSTStyle": {},
-    "fastSTarrondi": {},
-    "fastSTtexteStyle": {},
-    "fastTraceConnecteurs": {},
-    "fastTraceConnecteurs[]": {
-      "snippet": "fastTraceConnecteurs[${1:option}]"
-    },
-    "posX": {},
-    "thecptAbscisse": {},
-    "thecptAbscisseParent": {},
-    "thecptBoite": {},
-    "ttt": {}
-  },
-  "envs": {
-    "fast{}": {
-      "name": "fast",
-      "snippet": "{${1:Fonction de Service}}"
+    {
+      "name": "tikzlibraryshapes"
     }
-  },
-  "options": [
-    "raccourcis"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "FT",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FT{${1:Fonction technique%text}}{${2:Descendance%text}}"
+      }
+    },
+    {
+      "name": "FT",
+      "if": "raccourcis",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "FT[${3:option%keyvals}]{${1:Fonction technique%text}}{${2:Descendance%text}}",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ST",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}",
+        "snippet": "ST{${1:Solution technique%text}}"
+      }
+    },
+    {
+      "name": "ST",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ST{${1:Solution technique%text}}[${2:Descendance%text}]"
+      }
+    },
+    {
+      "name": "ST",
+      "if": "raccourcis",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ST[${2:option%keyvals}]{${1:Solution technique%text}}",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ST",
+      "if": "raccourcis",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ST[${2:option%keyvals}]{${1:Solution technique%text}}[${3:Descendance%text}]",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FV",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}",
+        "snippet": "FV{${1:text}}"
+      }
+    },
+    {
+      "name": "FV",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "FV{${1:text}}[${2:Descendance%text}]"
+      }
+    },
+    {
+      "name": "trait",
+      "if": "raccourcis",
+      "arg": {
+        "format": "{}",
+        "snippet": "trait{${1:Descendance%text}}"
+      }
+    },
+    {
+      "name": "fastFT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fastFT{${1:Fonction technique%text}}{${2:Descendance%text}}"
+      }
+    },
+    {
+      "name": "fastFT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fastFT[${3:option%keyvals}]{${1:Fonction technique%text}}{${2:Descendance%text}}",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fastST",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastST{${1:Solution technique%text}}"
+      }
+    },
+    {
+      "name": "fastST",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "fastST{${1:Solution technique%text}}[${2:Descendance%text}]"
+      }
+    },
+    {
+      "name": "fastST",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastST[${2:option%keyvals}]{${1:Solution technique%text}}",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fastST",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "fastST[${2:option%keyvals}]{${1:Solution technique%text}}[${3:Descendance%text}]",
+        "keys": [
+          "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fastVide",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastVide{${1:text}}"
+      }
+    },
+    {
+      "name": "fastVide",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "fastVide{${1:text}}[${2:Descendance%text}]"
+      }
+    },
+    {
+      "name": "fastTrait",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastTrait{${1:Descendance%text}}"
+      }
+    },
+    {
+      "name": "fastReset"
+    },
+    {
+      "name": "fastInterligne",
+      "unusual": true
+    },
+    {
+      "name": "fastLargeurBoite",
+      "unusual": true
+    },
+    {
+      "name": "fastHauteurBoite",
+      "unusual": true
+    },
+    {
+      "name": "fastEspaceColonne",
+      "unusual": true
+    },
+    {
+      "name": "fastDecalageTrait",
+      "unusual": true
+    },
+    {
+      "name": "fastEpaisseurTraits",
+      "unusual": true
+    },
+    {
+      "name": "fastDecalageOuVertical",
+      "unusual": true
+    },
+    {
+      "name": "fastDecalageOuHorizontal",
+      "unusual": true
+    },
+    {
+      "name": "fastSetCouleurBordures",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastSetCouleurBordures{${1:color}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurBordures",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastSetCouleurBordures[${2:type}]{${1:color%plain}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurTexte",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastSetCouleurTexte{${1:color}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurTexte",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastSetCouleurTexte[${2:type}]{${1:color%plain}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurFond",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastSetCouleurFond{${1:color}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurFond",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastSetCouleurFond[${2:type}]{${1:color%plain}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurConnecteurs",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastSetCouleurConnecteurs{${1:color}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurConnecteurs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastSetCouleurConnecteurs[${2:type}]{${1:color%plain}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurTraits",
+      "arg": {
+        "format": "{}",
+        "snippet": "fastSetCouleurTraits{${1:color}}"
+      }
+    },
+    {
+      "name": "fastSetCouleurTraits",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fastSetCouleurTraits[${2:type}]{${1:color%plain}}"
+      }
+    },
+    {
+      "name": "fastAvanceColonne",
+      "unusual": true
+    },
+    {
+      "name": "fastEnregistreMinimum",
+      "unusual": true
+    },
+    {
+      "name": "fastFSStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastFSarrondi",
+      "unusual": true
+    },
+    {
+      "name": "fastFStexteStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastFTStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastFTarrondi",
+      "unusual": true
+    },
+    {
+      "name": "fastFTtexteStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastFVStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastFVtexteStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastReculeColonne",
+      "unusual": true
+    },
+    {
+      "name": "fastSTStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastSTarrondi",
+      "unusual": true
+    },
+    {
+      "name": "fastSTtexteStyle",
+      "unusual": true
+    },
+    {
+      "name": "fastTraceConnecteurs",
+      "unusual": true
+    },
+    {
+      "name": "fastTraceConnecteurs",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "fastTraceConnecteurs[${1:option%keyvals}]"
+      }
+    },
+    {
+      "name": "posX",
+      "unusual": true
+    },
+    {
+      "name": "thecptAbscisse",
+      "unusual": true
+    },
+    {
+      "name": "thecptAbscisseParent",
+      "unusual": true
+    },
+    {
+      "name": "thecptBoite",
+      "unusual": true
+    },
+    {
+      "name": "ttt",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fast",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:Fonction de Service%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/fast-diagram#c": [
+      "raccourcis"
+    ],
+    "\\fastFT,\\fastST,\\FT,\\ST,\\fastTraceConnecteurs": [
+      "tempo",
+      "ou"
+    ]
+  },
+  "args": [
+    "\\usepackage/fast-diagram#c"
+  ]
 }

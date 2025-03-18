@@ -1,19 +1,29 @@
 {
-  "includes": {
-    "lltjfont": [],
-    "lltjdefs": [],
-    "lltjcore": [],
-    "lltjp-atbegshi": [],
-    "lltjp-geometry": []
-  },
-  "macros": {
-    "luatexjalatexLoaded": {},
-    "ltjlistingsvsstdcmd{}": {
-      "snippet": "ltjlistingsvsstdcmd{${1:arg}}"
+  "deps": [
+    {
+      "name": "lltjfont"
     },
-    "CatcodeTableLTJlistings": {}
+    {
+      "name": "lltjdefs"
+    },
+    {
+      "name": "lltjcore"
+    },
+    {
+      "name": "lltjp-atbegshi"
+    },
+    {
+      "name": "lltjp-geometry"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle": [
+      "vsraw",
+      "vscmd=${1:cmd}",
+      "doubleletterspace="
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

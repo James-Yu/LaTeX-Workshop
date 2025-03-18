@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "owl": {},
-    "owl[]": {
-      "snippet": "owl[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "owlhookbackground": {},
-    "owlhookbelly": {},
-    "owlhookbody": {},
-    "owlhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "owl"
+    },
+    {
+      "name": "owl",
+      "arg": {
+        "format": "[]",
+        "snippet": "owl[${1:options%keyvals}]",
+        "keys": [
+          "\\owl#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "owlhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "owlhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "owlhookbody",
+      "unusual": true
+    },
+    {
+      "name": "owlhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\owl#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -146,5 +181,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

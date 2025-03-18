@@ -1,22 +1,41 @@
 {
-  "includes": {
-    "calc": [],
-    "subfigure": [],
-    "graphicx": [],
-    "ifthen": []
-  },
-  "macros": {
-    "SetFigLayout{}{}": {
-      "snippet": "SetFigLayout{${1:rows}}{${2:columns}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "SetFigLayout[]{}{}": {
-      "snippet": "SetFigLayout[${3:space}]{${1:rows}}{${2:columns}}"
+    {
+      "name": "subfigure"
     },
-    "figheight": {},
-    "figwidth": {},
-    "Oldincludegraphics": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "SetFigLayout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetFigLayout{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "SetFigLayout",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "SetFigLayout[${3:space}]{${1:rows}}{${2:columns}}"
+      }
+    },
+    {
+      "name": "figheight"
+    },
+    {
+      "name": "figwidth"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

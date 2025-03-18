@@ -1,247 +1,666 @@
 {
-  "includes": {
-    "fontenc": [],
-    "ifthen": [],
-    "calc": []
-  },
-  "macros": {
-    "annatar": {},
-    "Arnor{}": {
-      "snippet": "Arnor{${1:Tengwar text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "Beleriand{}": {
-      "snippet": "Beleriand{${1:Tengwar text}}"
+    {
+      "name": "ifthen"
     },
-    "cirthfont": {},
-    "Daeron{}": {
-      "snippet": "Daeron{${1:Tengwar text}}"
-    },
-    "defaultbase": {},
-    "eldamar": {},
-    "eleven": {},
-    "Erebor{}": {
-      "snippet": "Erebor{${1:Tengwar text}}"
-    },
-    "Eregion{}": {
-      "snippet": "Eregion{${1:Tengwar text}}"
-    },
-    "es": {},
-    "fonterebor": {},
-    "fontquenya": {},
-    "fontsindarin": {},
-    "Gondor{}": {
-      "snippet": "Gondor{${1:Tengwar text}}"
-    },
-    "Hobbit{}": {
-      "snippet": "Hobbit{${1:text}}"
-    },
-    "Mazarbul{}": {
-      "snippet": "Mazarbul{${1:Tengwar text}}"
-    },
-    "Moria{}": {
-      "snippet": "Moria{${1:Tengwar text}}"
-    },
-    "noldor": {},
-    "of": {},
-    "ofthe": {},
-    "Orthmode{}": {
-      "snippet": "Orthmode{${1:text}}"
-    },
-    "p": {
-      "detail": "𝑝",
-      "documentation": "MATHEMATICAL ITALIC SMALL P"
-    },
-    "parmaite": {},
-    "Phonemic{}": {
-      "snippet": "Phonemic{${1:Tengwar text}}"
-    },
-    "Quenya{}": {
-      "snippet": "Quenya{${1:Tengwar text}}"
-    },
-    "QuenyaA{}": {
-      "snippet": "QuenyaA{${1:Tengwar text}}"
-    },
-    "Quenyagen{}": {
-      "snippet": "Quenyagen{${1:Tengwar text}}"
-    },
-    "Quenyared{}": {
-      "snippet": "Quenyared{${1:Tengwar text}}"
-    },
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
-    },
-    "reversedigits[]{}": {
-      "snippet": "reversedigits[${2:base}]{${1:number}}"
-    },
-    "reversedigits{}": {
-      "snippet": "reversedigits{${1:number}}"
-    },
-    "s": {
-      "detail": "𝑠",
-      "documentation": "MATHEMATICAL ITALIC SMALL S"
-    },
-    "sa": {},
-    "Sarati{}": {
-      "snippet": "Sarati{${1:Tengwar text}}"
-    },
-    "SaratiA{}": {
-      "snippet": "SaratiA{${1:Tengwar text}}"
-    },
-    "saratifont": {},
-    "se": {},
-    "si": {},
-    "so": {},
-    "su": {},
-    "sunrune": {},
-    "sy": {},
-    "Tehtamode{}": {
-      "snippet": "Tehtamode{${1:text}}"
-    },
-    "ten": {},
-    "tengalt": {},
-    "tengfont": {},
-    "The": {},
-    "THE": {},
-    "twelve": {},
-    "valmarfont": {},
-    "Valmaric{}": {
-      "snippet": "Valmaric{${1:Tengwar text}}"
-    },
-    "ValmaricA{}": {
-      "snippet": "ValmaricA{${1:Tengwar text}}"
-    },
-    "arnorfamily": {},
-    "beleriandfamily": {},
-    "cirthabbrevs": {},
-    "cirthE": {},
-    "cirthfancysetup{}": {
-      "snippet": "cirthfancysetup{${1:font family}}"
-    },
-    "cirthS": {},
-    "daeronfamily": {},
-    "donothing{}": {
-      "snippet": "donothing{${1:arg1}}"
-    },
-    "elvishoption": {},
-    "englishabbrevs": {},
-    "englishoption": {},
-    "ereborfamily": {},
-    "eregionfamily": {},
-    "gondorfamily": {},
-    "hobbitfamily": {},
-    "mazarbulfamily": {},
-    "moriafamily": {},
-    "orthfamily": {},
-    "phonemicfamily": {},
-    "quenyaabbrevs": {},
-    "quenyaafamily": {},
-    "quenyafamily": {},
-    "quenyagenfamily": {},
-    "quenyaredfamily": {},
-    "saratiabbrevs": {},
-    "savecolon": {},
-    "savecomma": {},
-    "saveexclam": {},
-    "savehat": {},
-    "saveleftparen": {},
-    "saveperiod": {},
-    "savequest": {},
-    "saverightparen": {},
-    "savescolon": {},
-    "savespace": {},
-    "sindarinabbrevs": {},
-    "tehtafamily": {},
-    "TengwarA": {},
-    "TengwarAA": {},
-    "tengwarabbrevs": {},
-    "TengwarE": {},
-    "TengwarEA": {},
-    "TengwarN": {},
-    "TengwarNA": {},
-    "tengwarnumbering": {},
-    "TengwarP": {},
-    "TengwarPA": {},
-    "TengwarQ": {},
-    "TengwarQA": {},
-    "TengwarS": {},
-    "TengwarSA": {},
-    "textlatin": {},
-    "thetengwarnumctrA": {},
-    "thetengwarnumctrB": {},
-    "thetengwarnumctrC": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "arnor": {},
-    "barsarati": {},
-    "barsaratia": {},
-    "beleriand": {},
-    "daeron": {},
-    "eregion": {},
-    "fancydaeron": {},
-    "fancyerebor": {},
-    "fancyeregion": {},
-    "fancyhobbit": {},
-    "fancymoria": {},
-    "gondor": {},
-    "mazarbul": {},
-    "moria": {},
-    "orthmode": {},
-    "phonemic": {},
-    "quenya": {},
-    "quenyaa": {},
-    "quenyagen": {},
-    "quenyared": {},
-    "sarati": {},
-    "saratia": {},
-    "tehtamode": {},
-    "valmarica": {},
-    "valmaric": {}
-  },
-  "options": [
-    "sarati",
-    "valmaric",
-    "eregion",
-    "daeron",
-    "moria",
-    "quenya",
-    "quenyagen",
-    "quenyared",
-    "quenyaa",
-    "gondor",
-    "arnor",
-    "beleriand",
-    "orthmode",
-    "mazarbul",
-    "tehtamode",
-    "phonemic",
-    "erebor",
-    "hobbit"
+    {
+      "name": "calc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "annatar"
+    },
+    {
+      "name": "Arnor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Arnor{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Beleriand",
+      "arg": {
+        "format": "{}",
+        "snippet": "Beleriand{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "cirthfont"
+    },
+    {
+      "name": "Daeron",
+      "arg": {
+        "format": "{}",
+        "snippet": "Daeron{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "defaultbase",
+      "unusual": true
+    },
+    {
+      "name": "eldamar"
+    },
+    {
+      "name": "eleven"
+    },
+    {
+      "name": "Erebor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Erebor{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Eregion",
+      "arg": {
+        "format": "{}",
+        "snippet": "Eregion{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "es"
+    },
+    {
+      "name": "fonterebor"
+    },
+    {
+      "name": "fontquenya"
+    },
+    {
+      "name": "fontsindarin"
+    },
+    {
+      "name": "Gondor",
+      "arg": {
+        "format": "{}",
+        "snippet": "Gondor{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Hobbit",
+      "arg": {
+        "format": "{}",
+        "snippet": "Hobbit{${1:text}}"
+      }
+    },
+    {
+      "name": "Mazarbul",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mazarbul{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Moria",
+      "arg": {
+        "format": "{}",
+        "snippet": "Moria{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "noldor"
+    },
+    {
+      "name": "of"
+    },
+    {
+      "name": "ofthe"
+    },
+    {
+      "name": "Orthmode",
+      "arg": {
+        "format": "{}",
+        "snippet": "Orthmode{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "p"
+    },
+    {
+      "name": "parmaite"
+    },
+    {
+      "name": "Phonemic",
+      "arg": {
+        "format": "{}",
+        "snippet": "Phonemic{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Quenya",
+      "arg": {
+        "format": "{}",
+        "snippet": "Quenya{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "QuenyaA",
+      "arg": {
+        "format": "{}",
+        "snippet": "QuenyaA{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Quenyagen",
+      "arg": {
+        "format": "{}",
+        "snippet": "Quenyagen{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "Quenyared",
+      "arg": {
+        "format": "{}",
+        "snippet": "Quenyared{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "R"
+    },
+    {
+      "name": "reversedigits",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "reversedigits[${2:base}]{${1:number}}"
+      }
+    },
+    {
+      "name": "reversedigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "reversedigits{${1:number}}"
+      }
+    },
+    {
+      "name": "s"
+    },
+    {
+      "name": "sa"
+    },
+    {
+      "name": "Sarati",
+      "arg": {
+        "format": "{}",
+        "snippet": "Sarati{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "SaratiA",
+      "arg": {
+        "format": "{}",
+        "snippet": "SaratiA{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "saratifont"
+    },
+    {
+      "name": "se"
+    },
+    {
+      "name": "si"
+    },
+    {
+      "name": "so"
+    },
+    {
+      "name": "su"
+    },
+    {
+      "name": "sunrune"
+    },
+    {
+      "name": "sy"
+    },
+    {
+      "name": "Tehtamode",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tehtamode{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ten"
+    },
+    {
+      "name": "tengalt"
+    },
+    {
+      "name": "tengfont"
+    },
+    {
+      "name": "The"
+    },
+    {
+      "name": "THE"
+    },
+    {
+      "name": "twelve"
+    },
+    {
+      "name": "valmarfont"
+    },
+    {
+      "name": "Valmaric",
+      "arg": {
+        "format": "{}",
+        "snippet": "Valmaric{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "ValmaricA",
+      "arg": {
+        "format": "{}",
+        "snippet": "ValmaricA{${1:Tengwar text}}"
+      }
+    },
+    {
+      "name": "arnorfamily",
+      "unusual": true
+    },
+    {
+      "name": "beleriandfamily",
+      "unusual": true
+    },
+    {
+      "name": "cirthabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "cirthE",
+      "unusual": true
+    },
+    {
+      "name": "cirthfancysetup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cirthfancysetup{${1:font family}}"
+      }
+    },
+    {
+      "name": "cirthS",
+      "unusual": true
+    },
+    {
+      "name": "daeronfamily",
+      "unusual": true
+    },
+    {
+      "name": "donothing",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "donothing{${1:arg1}}"
+      }
+    },
+    {
+      "name": "elvishoption",
+      "unusual": true
+    },
+    {
+      "name": "englishabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "englishoption",
+      "unusual": true
+    },
+    {
+      "name": "ereborfamily",
+      "unusual": true
+    },
+    {
+      "name": "eregionfamily",
+      "unusual": true
+    },
+    {
+      "name": "gondorfamily",
+      "unusual": true
+    },
+    {
+      "name": "hobbitfamily",
+      "unusual": true
+    },
+    {
+      "name": "mazarbulfamily",
+      "unusual": true
+    },
+    {
+      "name": "moriafamily",
+      "unusual": true
+    },
+    {
+      "name": "orthfamily",
+      "unusual": true
+    },
+    {
+      "name": "phonemicfamily",
+      "unusual": true
+    },
+    {
+      "name": "quenyaabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "quenyaafamily",
+      "unusual": true
+    },
+    {
+      "name": "quenyafamily",
+      "unusual": true
+    },
+    {
+      "name": "quenyagenfamily",
+      "unusual": true
+    },
+    {
+      "name": "quenyaredfamily",
+      "unusual": true
+    },
+    {
+      "name": "saratiabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "savecolon",
+      "unusual": true
+    },
+    {
+      "name": "savecomma",
+      "unusual": true
+    },
+    {
+      "name": "saveexclam",
+      "unusual": true
+    },
+    {
+      "name": "savehat",
+      "unusual": true
+    },
+    {
+      "name": "saveleftparen",
+      "unusual": true
+    },
+    {
+      "name": "saveperiod",
+      "unusual": true
+    },
+    {
+      "name": "savequest",
+      "unusual": true
+    },
+    {
+      "name": "saverightparen",
+      "unusual": true
+    },
+    {
+      "name": "savescolon",
+      "unusual": true
+    },
+    {
+      "name": "savespace",
+      "unusual": true
+    },
+    {
+      "name": "sindarinabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "tehtafamily",
+      "unusual": true
+    },
+    {
+      "name": "TengwarA",
+      "unusual": true
+    },
+    {
+      "name": "TengwarAA",
+      "unusual": true
+    },
+    {
+      "name": "tengwarabbrevs",
+      "unusual": true
+    },
+    {
+      "name": "TengwarE",
+      "unusual": true
+    },
+    {
+      "name": "TengwarEA",
+      "unusual": true
+    },
+    {
+      "name": "TengwarN",
+      "unusual": true
+    },
+    {
+      "name": "TengwarNA",
+      "unusual": true
+    },
+    {
+      "name": "tengwarnumbering",
+      "unusual": true
+    },
+    {
+      "name": "TengwarP",
+      "unusual": true
+    },
+    {
+      "name": "TengwarPA",
+      "unusual": true
+    },
+    {
+      "name": "TengwarQ",
+      "unusual": true
+    },
+    {
+      "name": "TengwarQA",
+      "unusual": true
+    },
+    {
+      "name": "TengwarS",
+      "unusual": true
+    },
+    {
+      "name": "TengwarSA",
+      "unusual": true
+    },
+    {
+      "name": "textlatin",
+      "unusual": true
+    },
+    {
+      "name": "thetengwarnumctrA",
+      "unusual": true
+    },
+    {
+      "name": "thetengwarnumctrB",
+      "unusual": true
+    },
+    {
+      "name": "thetengwarnumctrC",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "arnor"
+    },
+    {
+      "name": "barsarati"
+    },
+    {
+      "name": "barsaratia"
+    },
+    {
+      "name": "beleriand"
+    },
+    {
+      "name": "daeron"
+    },
+    {
+      "name": "eregion"
+    },
+    {
+      "name": "fancydaeron"
+    },
+    {
+      "name": "fancyerebor"
+    },
+    {
+      "name": "fancyeregion"
+    },
+    {
+      "name": "fancyhobbit"
+    },
+    {
+      "name": "fancymoria"
+    },
+    {
+      "name": "gondor"
+    },
+    {
+      "name": "mazarbul"
+    },
+    {
+      "name": "moria"
+    },
+    {
+      "name": "orthmode"
+    },
+    {
+      "name": "phonemic"
+    },
+    {
+      "name": "quenya"
+    },
+    {
+      "name": "quenyaa"
+    },
+    {
+      "name": "quenyagen"
+    },
+    {
+      "name": "quenyared"
+    },
+    {
+      "name": "sarati"
+    },
+    {
+      "name": "saratia"
+    },
+    {
+      "name": "tehtamode"
+    },
+    {
+      "name": "valmarica"
+    },
+    {
+      "name": "valmaric"
+    }
+  ],
+  "keys": {
+    "\\usepackage/tolkienfonts#c": [
+      "sarati",
+      "valmaric",
+      "eregion",
+      "daeron",
+      "moria",
+      "quenya",
+      "quenyagen",
+      "quenyared",
+      "quenyaa",
+      "gondor",
+      "arnor",
+      "beleriand",
+      "orthmode",
+      "mazarbul",
+      "tehtamode",
+      "phonemic",
+      "erebor",
+      "hobbit"
+    ]
+  },
+  "args": [
+    "\\usepackage/tolkienfonts#c"
+  ]
 }

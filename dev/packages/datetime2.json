@@ -1,1719 +1,5313 @@
 {
-  "includes": {
-    "tracklang": [],
-    "etoolbox": [],
-    "xkeyval": [],
-    "datetime2-calc": [
-      "calc",
-      "calc=true",
-      "showdow",
-      "showdow=true"
-    ]
-  },
-  "macros": {
-    "DTMdisplaydate{}{}{}{}": {
-      "snippet": "DTMdisplaydate{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}"
-    },
-    "DTMDisplaydate{}{}{}{}": {
-      "snippet": "DTMDisplaydate{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}"
-    },
-    "Today": {},
-    "DTMtoday": {},
-    "DTMToday": {},
-    "DTMdate{}": {
-      "snippet": "DTMdate{${1:YYYY-MM-DD}}"
-    },
-    "DTMDate{}": {
-      "snippet": "DTMDate{${1:YYYY-MM-DD}}"
-    },
-    "DTMdate*{}": {
-      "snippet": "DTMdate*{${1:YYYY-MM-DD}}"
-    },
-    "DTMDate*{}": {
-      "snippet": "DTMDate*{${1:YYYY-MM-DD}}"
-    },
-    "DTMdisplaytime{}{}{}": {
-      "snippet": "DTMdisplaytime{${1:hour}}{${2:minute}}{${3:second}}"
-    },
-    "DTMdisplayzone{}{}": {
-      "snippet": "DTMdisplayzone{${1:hour offset}}{${2:minute offset}}"
-    },
-    "DTMcurrenttime": {},
-    "DTMcurrentzone": {},
-    "DTMtime{}": {
-      "snippet": "DTMtime{${1:hh:mm:ss}}"
-    },
-    "DTMdisplay{}{}{}{}{}{}{}{}{}": {
-      "snippet": "DTMdisplay{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}{${5:hour}}{${6:min}}{${7:sec}}{${8:hour offset}}{${9:min offset}}"
-    },
-    "DTMDisplay{}{}{}{}{}{}{}{}{}": {
-      "snippet": "DTMDisplay{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}{${5:hour}}{${6:min}}{${7:sec}}{${8:hour offset}}{${9:min offset}}"
-    },
-    "DTMnow": {},
-    "DTMNow": {},
-    "DTMsavedate{}{}": {
-      "snippet": "DTMsavedate{${1:name}}{${2:YYYY-MM-DD}}"
-    },
-    "DTMsavenoparsedate{}{}{}{}{}": {
-      "snippet": "DTMsavenoparsedate{${1:name}}{${2:YYYY}}{${3:MM}}{${4:DD}}{${5:dow}}"
-    },
-    "DTMsavetime{}{}": {
-      "snippet": "DTMsavetime{${1:name}}{${2:hh:mm:ss}}"
-    },
-    "DTMsavetimezn{}{}": {
-      "snippet": "DTMsavetimezn{${1:name}}{${2:hh:mm:ss ${3:TZh}:TZm}}"
-    },
-    "DTMsavetimestamp{}{}": {
-      "snippet": "DTMsavetimestamp{${1:name}}{${2:YYYY-MM-DDT${3:hh}:mm:ss ${4:TZh}:TZm}}"
-    },
-    "DTMsavepdftimestamp{}{}": {
-      "snippet": "DTMsavepdftimestamp{${1:name}}{${2:PDF data}}"
-    },
-    "DTMsavefrompdfdata{}{}": {
-      "snippet": "DTMsavefrompdfdata{${1:name}}{${2:PDF data}}"
-    },
-    "DTMsavenow{}": {
-      "snippet": "DTMsavenow{${1:name}}"
-    },
-    "DTMsavefilemoddate{}{}": {
-      "snippet": "DTMsavefilemoddate{${1:name}}{${2:file}}"
-    },
-    "DTMmakeglobal{}": {
-      "snippet": "DTMmakeglobal{${1:name}}"
-    },
-    "DTMusedate{}": {
-      "snippet": "DTMusedate{${1:name}}"
-    },
-    "DTMUsedate{}": {
-      "snippet": "DTMUsedate{${1:name}}"
-    },
-    "DTMusetime{}": {
-      "snippet": "DTMusetime{${1:name}}"
-    },
-    "DTMusezone{}": {
-      "snippet": "DTMusezone{${1:name}}"
-    },
-    "DTMuse{}": {
-      "snippet": "DTMuse{${1:name}}"
-    },
-    "DTMUse{}": {
-      "snippet": "DTMUse{${1:name}}"
-    },
-    "DTMifsaveddate{}{}{}": {
-      "snippet": "DTMifsaveddate{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "DTMfetchyear{}": {
-      "snippet": "DTMfetchyear{${1:name}}"
-    },
-    "DTMfetchmonth{}": {
-      "snippet": "DTMfetchmonth{${1:name}}"
-    },
-    "DTMfetchday{}": {
-      "snippet": "DTMfetchday{${1:name}}"
-    },
-    "DTMfetchdow{}": {
-      "snippet": "DTMfetchdow{${1:name}}"
-    },
-    "DTMfetchhour{}": {
-      "snippet": "DTMfetchhour{${1:name}}"
-    },
-    "DTMfetchminute{}": {
-      "snippet": "DTMfetchminute{${1:name}}"
-    },
-    "DTMfetchsecond{}": {
-      "snippet": "DTMfetchsecond{${1:name}}"
-    },
-    "DTMfetchTZhour{}": {
-      "snippet": "DTMfetchTZhour{${1:name}}"
-    },
-    "DTMfetchTZminute{}": {
-      "snippet": "DTMfetchTZminute{${1:name}}"
-    },
-    "DTMsetdatestyle{}": {
-      "snippet": "DTMsetdatestyle{${1:style name}}"
-    },
-    "DTMsettimestyle{}": {
-      "snippet": "DTMsettimestyle{${1:style name}}"
-    },
-    "DTMsetzonestyle{}": {
-      "snippet": "DTMsetzonestyle{${1:style name}}"
-    },
-    "DTMsetstyle{}": {
-      "snippet": "DTMsetstyle{${1:style name}}"
-    },
-    "DTMtryregional{}{}": {
-      "snippet": "DTMtryregional{${1:lang code}}{${2:country code}}"
-    },
-    "DTMtryregional[]{}{}": {
-      "snippet": "DTMtryregional[${3:lang name}]{${1:lang code}}{${2:country code}}"
-    },
-    "DTMtryregional*{}{}": {
-      "snippet": "DTMtryregional*{${1:lang code cs}}{${2:country code cs}}"
-    },
-    "DTMtryregional*[]{}{}": {
-      "snippet": "DTMtryregional*[${3:lang name}]{${1:lang code cs}}{${2:country code cs}}"
-    },
-    "DTMnewdatestyle{}{}": {
-      "snippet": "DTMnewdatestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMfinaldot": {},
-    "DTMnewtimestyle{}{}": {
-      "snippet": "DTMnewtimestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMnewzonestyle{}{}": {
-      "snippet": "DTMnewzonestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMnewstyle{}{}{}{}{}": {
-      "snippet": "DTMnewstyle{${1:name}}{${2:data style def}}{${3:time style def}}{${4:zone style def}}{${5:full style def}}"
-    },
-    "DTMrenewdatestyle{}{}": {
-      "snippet": "DTMrenewdatestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMrenewtimestyle{}{}": {
-      "snippet": "DTMrenewtimestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMrenewzonestyle{}{}": {
-      "snippet": "DTMrenewzonestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMrenewstyle{}{}": {
-      "snippet": "DTMrenewstyle{${1:name}}{${2:definition}}"
-    },
-    "DTMprovidedatestyle{}{}": {
-      "snippet": "DTMprovidedatestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMprovidetimestyle{}{}": {
-      "snippet": "DTMprovidetimestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMprovidezonestyle{}{}": {
-      "snippet": "DTMprovidezonestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMprovidestyle{}{}": {
-      "snippet": "DTMprovidestyle{${1:name}}{${2:definition}}"
-    },
-    "DTMifhasstyle{}{}{}": {
-      "snippet": "DTMifhasstyle{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "DTMifhasdatestyle{}{}{}": {
-      "snippet": "DTMifhasdatestyle{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "DTMifhastimestyle{}{}{}": {
-      "snippet": "DTMifhastimestyle{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "DTMifhaszonestyle{}{}{}": {
-      "snippet": "DTMifhaszonestyle{${1:name}}{${2:true}}{${3:false}}"
-    },
-    "DTMtwodigits{}": {
-      "snippet": "DTMtwodigits{${1:number}}"
-    },
-    "DTMcentury{}": {
-      "snippet": "DTMcentury{${1:year}}"
-    },
-    "DTMdivhundred{}": {
-      "snippet": "DTMdivhundred{${1:number}}"
-    },
-    "DTMtexorpdfstring{}{}": {
-      "snippet": "DTMtexorpdfstring{${1:TeX}}{${2:PDF}}"
-    },
-    "DTMsep{}": {
-      "snippet": "DTMsep{${1:tag}}"
-    },
-    "DTMusezonemap{}{}": {
-      "snippet": "DTMusezonemap{${1:hour offset}}{${2:minute offset}}"
-    },
-    "DTMdefzonemap{}{}{}": {
-      "snippet": "DTMdefzonemap{${1:hour offset}}{${2:minute offset}}{${3:abbr}}"
-    },
-    "DTMNatoZoneMaps": {},
-    "DTMclearmap{}{}": {
-      "snippet": "DTMclearmap{${1:hour offset}}{${2:minute offset}}"
-    },
-    "DTMresetzones": {},
-    "DTMhaszonemap{}{}{}{}": {
-      "snippet": "DTMhaszonemap{${1:hour offset}}{${2:minute offset}}{${3:true}}{${4:false}}"
-    },
-    "DTMusezonemapordefault{}{}": {
-      "snippet": "DTMusezonemapordefault{${1:hour offset}}{${2:minute offset}}"
-    },
-    "DTMlangsetup{}": {
-      "snippet": "DTMlangsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DTMlangsetup[]{}": {
-      "snippet": "DTMlangsetup[${2:module list}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "RequireDateTimeModule{}": {
-      "snippet": "RequireDateTimeModule{${1:name}}"
-    },
-    "DTMusemodule{}{}": {
-      "snippet": "DTMusemodule{${1:language}}{${2:name}}"
-    },
-    "DTMdialecttomodulemap{}": {
-      "snippet": "DTMdialecttomodulemap{${1:dialect}}"
-    },
-    "DTMmonthname{}": {
-      "snippet": "DTMmonthname{${1:month}}"
-    },
-    "DTMMonthname{}": {
-      "snippet": "DTMMonthname{${1:month}}"
-    },
-    "DTMshortmonthname{}": {
-      "snippet": "DTMshortmonthname{${1:month}}"
-    },
-    "DTMshortMonthname{}": {
-      "snippet": "DTMshortMonthname{${1:month}}"
-    },
-    "DTMsetup{}": {
-      "snippet": "DTMsetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DTMsetregional": {},
-    "DTMsetregional[]": {
-      "snippet": "DTMsetregional[${1:value}]"
-    },
-    "DTMdefboolkey{}{}{}": {
-      "snippet": "DTMdefboolkey{${1:region}}{${2:key}}{${3:func}}"
-    },
-    "DTMdefboolkey{}{}[]{}": {
-      "snippet": "DTMdefboolkey{${1:region}}{${2:key}}[${3:default}]{${4:func}}"
-    },
-    "DTMdefboolkey{}{}[]{}[]{}": {
-      "snippet": "DTMdefboolkey{${1:region}}{${2:key}}[${3:mp}]{${4:choice list}}[${5:default}]{${6:func}}"
-    },
-    "DTMdefchoicekey{}{}{}{}{}": {
-      "snippet": "DTMdefchoicekey{${1:region}}{${2:key}}{${3:choice list}}{${4:default}}{${5:func}}"
-    },
-    "DTMdefchoicekey{}{}[]{}{}{}": {
-      "snippet": "DTMdefchoicekey{${1:region}}{${2:key}}[${3:bin}]{${4:choice list}}{${5:default}}{${6:func}}"
-    },
-    "DTMdefkey{}{}{}": {
-      "snippet": "DTMdefkey{${1:region}}{${2:key}}{${3:func}}"
-    },
-    "DTMdefkey{}{}[]{}": {
-      "snippet": "DTMdefkey{${1:region}}{${2:key}}[${3:default}]{${4:func}}"
-    },
-    "DTMifbool{}{}{}{}": {
-      "snippet": "DTMifbool{${1:region}}{${2:key}}{${3:true}}{${4:false}}"
-    },
-    "DTMifcaseregional{}{}{}": {
-      "snippet": "DTMifcaseregional{${1:false}}{${2:text}}{${3:numeric}}"
-    },
-    "DTMsetbool{}{}{}": {
-      "snippet": "DTMsetbool{${1:region}}{${2:key}}{${3:value}}"
-    },
-    "DTMsetcurrentzone{}{}": {
-      "snippet": "DTMsetcurrentzone{${1:hour offset}}{${2:minute offset}}"
-    },
-    "DTMshowmap{}{}": {
-      "snippet": "DTMshowmap{${1:hour offset}}{${2:minute offset}}"
-    },
-    "ifDTMshowdow": {},
-    "DTMshowdowtrue": {},
-    "DTMshowdowfalse": {},
-    "ProvidesDateTimeModule{}": {
-      "snippet": "ProvidesDateTimeModule{${1:module name}}"
-    },
-    "ifDTMshowseconds": {},
-    "DTMshowsecondstrue": {},
-    "DTMshowsecondsfalse": {},
-    "ifDTMshowzone": {},
-    "DTMshowzonetrue": {},
-    "DTMshowzonefalse": {},
-    "ifDTMshowzoneminutes": {},
-    "DTMshowzoneminutestrue": {},
-    "DTMshowzoneminutesfalse": {},
-    "ifDTMshowisoZ": {},
-    "DTMshowisoZtrue": {},
-    "DTMshowisoZfalse": {},
-    "ifDTMshowdate": {},
-    "DTMshowdatetrue": {},
-    "DTMshowdatefalse": {},
-    "DTMbahasaiordinal{}": {
-      "snippet": "DTMbahasaiordinal{${1:number}}"
-    },
-    "DTMbahasaimonthname{}": {
-      "snippet": "DTMbahasaimonthname{${1:month}}"
-    },
-    "DTMbahasaidaymonthsep": {},
-    "DTMbahasaimonthyearsep": {},
-    "DTMbahasaidatetimesep": {},
-    "DTMbahasaitimezonesep": {},
-    "DTMbahasaidatesep": {},
-    "DTMbahasaitimesep": {},
-    "DTMbahasaizonemaps": {},
-    "DTMbasqueordinal{}": {
-      "snippet": "DTMbasqueordinal{${1:number}}"
-    },
-    "DTMbasquemonthname{}": {
-      "snippet": "DTMbasquemonthname{${1:month}}"
-    },
-    "DTMbasquedaymonthsep": {},
-    "DTMbasquemonthyearsep": {},
-    "DTMbasquedatetimesep": {},
-    "DTMbasquetimezonesep": {},
-    "DTMbasquedatesep": {},
-    "DTMbasquetimesep": {},
-    "DTMbasquezonemaps": {},
-    "DTMbretonordinal{}": {
-      "snippet": "DTMbretonordinal{${1:number}}"
-    },
-    "DTMbretonfmtordinal{}": {
-      "snippet": "DTMbretonfmtordinal{${1:text}}"
-    },
-    "DTMbretonfmtordsuffix{}": {
-      "snippet": "DTMbretonfmtordsuffix{${1:text}}"
-    },
-    "DTMbretonmonthname{}": {
-      "snippet": "DTMbretonmonthname{${1:month}}"
-    },
-    "DTMbretondaymonthsep": {},
-    "DTMbretonmonthyearsep": {},
-    "DTMbretondatetimesep": {},
-    "DTMbretontimezonesep": {},
-    "DTMbretondatesep": {},
-    "DTMbretontimesep": {},
-    "DTMbretonzonemaps": {},
-    "DTMbulgarianordinal{}": {
-      "snippet": "DTMbulgarianordinal{${1:number}}"
-    },
-    "DTMbulgarianyear{}": {
-      "snippet": "DTMbulgarianyear{${1:year}}"
-    },
-    "DTMbulgarianmonthname{}": {
-      "snippet": "DTMbulgarianmonthname{${1:month}}"
-    },
-    "DTMbulgarianMonthname{}": {
-      "snippet": "DTMbulgarianMonthname{${1:month}}"
-    },
-    "DTMbulgariandaymonthsep": {},
-    "DTMbulgarianmonthyearsep": {},
-    "DTMbulgariandatetimesep": {},
-    "DTMbulgariantimezonesep": {},
-    "DTMbulgariandatesep": {},
-    "DTMbulgariantimesep": {},
-    "DTMbulgarianzonemaps": {},
-    "DTMcatalanordinal{}": {
-      "snippet": "DTMcatalanordinal{${1:number}}"
-    },
-    "DTMcatalanmonthname{}": {
-      "snippet": "DTMcatalanmonthname{${1:month}}"
-    },
-    "DTMcatalanMonthname{}": {
-      "snippet": "DTMcatalanMonthname{${1:month}}"
-    },
-    "DTMcatalandaymonthsep": {},
-    "DTMcatalanmonthyearsep": {},
-    "DTMcatalandatetimesep": {},
-    "DTMcatalantimezonesep": {},
-    "DTMcatalandatesep": {},
-    "DTMcatalantimesep": {},
-    "DTMcatalanzonemaps": {},
-    "DTMcroatianordinal{}": {
-      "snippet": "DTMcroatianordinal{${1:number}}"
-    },
-    "DTMcroatianyear{}": {
-      "snippet": "DTMcroatianyear{${1:year}}"
-    },
-    "DTMcroatianmonthname{}": {
-      "snippet": "DTMcroatianmonthname{${1:month}}"
-    },
-    "DTMcroatianMonthname{}": {
-      "snippet": "DTMcroatianMonthname{${1:month}}"
-    },
-    "DTMcroatianweekdayname{}": {
-      "snippet": "DTMcroatianweekdayname{${1:day}}"
-    },
-    "DTMcroatianWeekdayname{}": {
-      "snippet": "DTMcroatianWeekdayname{${1:day}}"
-    },
-    "DTMcroatianshortWeekdayname{}": {
-      "snippet": "DTMcroatianshortWeekdayname{${1:day}}"
-    },
-    "DTMcroatianshortweekdayname{}": {
-      "snippet": "DTMcroatianshortweekdayname{${1:day}}"
-    },
-    "DTMcroatiandaymonthsep": {},
-    "DTMcroatianmonthyearsep": {},
-    "DTMcroatiandatetimesep": {},
-    "DTMcroatiantimezonesep": {},
-    "DTMcroatiandatesep": {},
-    "DTMcroatiantimesep": {},
-    "DTMcroatianzonemaps": {},
-    "DTMczechordinal{}": {
-      "snippet": "DTMczechordinal{${1:number}}"
-    },
-    "DTMczechmonthname{}": {
-      "snippet": "DTMczechmonthname{${1:month}}"
-    },
-    "DTMczechMonthname{}": {
-      "snippet": "DTMczechMonthname{${1:month}}"
-    },
-    "DTMczechdaymonthsep": {},
-    "DTMczechmonthyearsep": {},
-    "DTMczechdatetimesep": {},
-    "DTMczechtimezonesep": {},
-    "DTMczechdatesep": {},
-    "DTMczechtimesep": {},
-    "DTMczechzonemaps": {},
-    "DTMdanishordinal{}": {
-      "snippet": "DTMdanishordinal{${1:number}}"
-    },
-    "DTMdanishmonthname{}": {
-      "snippet": "DTMdanishmonthname{${1:month}}"
-    },
-    "DTMdanishMonthname{}": {
-      "snippet": "DTMdanishMonthname{${1:month}}"
-    },
-    "DTMdanishweekdayname{}": {
-      "snippet": "DTMdanishweekdayname{${1:day}}"
-    },
-    "DTMdanishWeekdayname{}": {
-      "snippet": "DTMdanishWeekdayname{${1:day}}"
-    },
-    "DTMdanishdaymonthsep": {},
-    "DTMdanishmonthyearsep": {},
-    "DTMdanishdatetimesep": {},
-    "DTMdanishtimezonesep": {},
-    "DTMdanishdatesep": {},
-    "DTMdanishtimesep": {},
-    "DTMdanishzonemaps": {},
-    "DTMdutchordinal{}": {
-      "snippet": "DTMdutchordinal{${1:number}}"
-    },
-    "DTMdutchmonthname{}": {
-      "snippet": "DTMdutchmonthname{${1:month}}"
-    },
-    "DTMdutchMonthname{}": {
-      "snippet": "DTMdutchMonthname{${1:month}}"
-    },
-    "DTMdutchweekdayname{}": {
-      "snippet": "DTMdutchweekdayname{${1:day}}"
-    },
-    "DTMdutchWeekdayname{}": {
-      "snippet": "DTMdutchWeekdayname{${1:day}}"
-    },
-    "DTMdutchshortweekdayname{}": {
-      "snippet": "DTMdutchshortweekdayname{${1:day}}"
-    },
-    "DTMdutchshortWeekdayname{}": {
-      "snippet": "DTMdutchshortWeekdayname{${1:day}}"
-    },
-    "DTMdutchdaymonthsep": {},
-    "DTMdutchmonthyearsep": {},
-    "DTMdutchdatetimesep": {},
-    "DTMdutchtimezonesep": {},
-    "DTMdutchdatesep": {},
-    "DTMdutchtimesep": {},
-    "DTMdutchzonemaps": {},
-    "DTMenglishordinal{}": {
-      "snippet": "DTMenglishordinal{${1:number}}"
-    },
-    "DTMenglishst": {},
-    "DTMenglishnd": {},
-    "DTMenglishrd": {},
-    "DTMenglishth": {},
-    "DTMenglishfmtordsuffix{}": {
-      "snippet": "DTMenglishfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenglishmonthname{}": {
-      "snippet": "DTMenglishmonthname{${1:month}}"
-    },
-    "DTMenglishMonthname{}": {
-      "snippet": "DTMenglishMonthname{${1:month}}"
-    },
-    "DTMenglishweekdayname{}": {
-      "snippet": "DTMenglishweekdayname{${1:day}}"
-    },
-    "DTMenglishWeekdayname{}": {
-      "snippet": "DTMenglishWeekdayname{${1:day}}"
-    },
-    "DTMenglishshortweekdayname{}": {
-      "snippet": "DTMenglishshortweekdayname{${1:day}}"
-    },
-    "DTMenglishshortWeekdayname{}": {
-      "snippet": "DTMenglishshortWeekdayname{${1:day}}"
-    },
-    "DTMenglisham": {},
-    "DTMenglishpm": {},
-    "DTMenglishmidnight": {},
-    "DTMenglishnoon": {},
-    "DTMenglishampmfmt{}": {
-      "snippet": "DTMenglishampmfmt{${1:text}}"
-    },
-    "DTMenglishtimesep": {},
-    "DTMenGBdowdaysep": {},
-    "DTMenGBdaymonthsep": {},
-    "DTMenGBmonthyearsep": {},
-    "DTMenGBdatetimesep": {},
-    "DTMenGBtimezonesep": {},
-    "DTMenGBdatesep": {},
-    "DTMenGBtimesep": {
-      "snippet": "DTMenGBtimesep "
-    },
-    "DTMenGBfmtordsuffix{}": {
-      "snippet": "DTMenGBfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenGBzonemaps": {},
-    "DTMenUSmonthdaysep": {},
-    "DTMenUSdowmonthsep": {},
-    "DTMenUSdayyearsep": {},
-    "DTMenUSdatetimesep": {},
-    "DTMenUStimezonesep": {},
-    "DTMenUSdatesep": {},
-    "DTMenUStimesep": {},
-    "DTMenUSfmtordsuffix{}": {
-      "snippet": "DTMenUSfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenUSzonemaps": {},
-    "DTMenUSstdzonemaps": {},
-    "DTMenUSdstzonemaps": {},
-    "DTMenUSatlanticzonemaps": {
-      "snippet": "DTMenUSatlanticzonemaps "
-    },
-    "DTMenUSeasternzonemaps": {
-      "snippet": "DTMenUSeasternzonemaps "
-    },
-    "DTMenUScentralzonemaps": {},
-    "DTMenUSmountainzonemaps": {},
-    "DTMenUSpacificzonemaps": {},
-    "DTMenUSalaskazonemaps": {},
-    "DTMenUShawaiialeutianzonemaps": {},
-    "DTMenUSsamoazonemaps": {},
-    "DTMenUSchamorrozonemaps": {},
-    "DTMenCAmonthdaysep": {},
-    "DTMenCAdowmonthsep": {},
-    "DTMenCAdayyearsep": {},
-    "DTMenCAdatetimesep": {},
-    "DTMenCAtimezonesep": {},
-    "DTMenCAdatesep": {},
-    "DTMenCAtimesep": {},
-    "DTMenCAfmtordsuffix{}": {
-      "snippet": "DTMenCAfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenCAzonemaps": {},
-    "DTMenCAstdzonemaps": {},
-    "DTMenCAdstzonemaps": {},
-    "DTMenCAnewfoundlandzonemaps": {},
-    "DTMenCAatlanticzonemaps": {},
-    "DTMenCAeasternzonemaps": {},
-    "DTMenCAcentralzonemaps": {},
-    "DTMenCAmountainzonemaps": {},
-    "DTMenCApacificzonemaps": {},
-    "DTMenAUdowdaysep": {},
-    "DTMenAUdaymonthsep": {},
-    "DTMenAUmonthyearsep": {},
-    "DTMenAUdatetimesep": {},
-    "DTMenAUtimezonesep": {},
-    "DTMenAUdatesep": {},
-    "DTMenAUtimesep": {},
-    "DTMenAUfmtordsuffix{}": {
-      "snippet": "DTMenAUfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenAUzonemaps": {},
-    "DTMenAUstdzonemaps": {},
-    "DTMenAUdstzonemaps": {},
-    "DTMenAUcentralzonemaps": {},
-    "DTMenAUcentralwesternzonemaps": {},
-    "DTMenAUwesternzonemaps": {},
-    "DTMenAUeasternzonemaps": {},
-    "DTMenAUchrismaszonemaps": {},
-    "DTMenAUlordhowezonemaps": {},
-    "DTMenAUnorfolkzonemaps": {},
-    "DTMenAUcocoszonemaps": {},
-    "DTMenNZdowdaysep": {},
-    "DTMenNZdaymonthsep": {},
-    "DTMenNZmonthyearsep": {},
-    "DTMenNZdatetimesep": {},
-    "DTMenNZtimezonesep": {},
-    "DTMenNZdatesep": {},
-    "DTMenNZtimesep": {},
-    "DTMenNZfmtordsuffix{}": {
-      "snippet": "DTMenNZfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenNZzonemaps": {},
-    "DTMenGGdowdaysep": {},
-    "DTMenGGdaymonthsep": {},
-    "DTMenGGmonthyearsep": {},
-    "DTMenGGdatetimesep": {},
-    "DTMenGGtimezonesep": {},
-    "DTMenGGdatesep": {},
-    "DTMenGGtimesep": {},
-    "DTMenGGfmtordsuffix{}": {
-      "snippet": "DTMenGGfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenGGzonemaps": {},
-    "DTMenJEdowdaysep": {},
-    "DTMenJEdaymonthsep": {},
-    "DTMenJEmonthyearsep": {},
-    "DTMenJEdatetimesep": {},
-    "DTMenJEtimezonesep": {},
-    "DTMenJEdatesep": {},
-    "DTMenJEtimesep": {},
-    "DTMenJEfmtordsuffix{}": {
-      "snippet": "DTMenJEfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenJEzonemaps": {},
-    "DTMenIMdowdaysep": {},
-    "DTMenIMdaymonthsep": {},
-    "DTMenIMmonthyearsep": {},
-    "DTMenIMdatetimesep": {},
-    "DTMenIMtimezonesep": {},
-    "DTMenIMdatesep": {},
-    "DTMenIMtimesep": {},
-    "DTMenIMfmtordsuffix{}": {
-      "snippet": "DTMenIMfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenIMzonemaps": {},
-    "DTMenMTdowdaysep": {},
-    "DTMenMTdaymonthsep": {},
-    "DTMenMTmonthyearsep": {},
-    "DTMenMTdatetimesep": {},
-    "DTMenMTtimezonesep": {},
-    "DTMenMTdatesep": {},
-    "DTMenMTtimesep": {},
-    "DTMenMTfmtordsuffix{}": {
-      "snippet": "DTMenMTfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenMTzonemaps": {},
-    "DTMenIEdowdaysep": {},
-    "DTMenIEdaymonthsep": {},
-    "DTMenIEmonthyearsep": {},
-    "DTMenIEdatetimesep": {},
-    "DTMenIEtimezonesep": {},
-    "DTMenIEdatesep": {},
-    "DTMenIEtimesep": {},
-    "DTMenIEfmtordsuffix{}": {
-      "snippet": "DTMenIEfmtordsuffix{${1:suffix}}"
-    },
-    "DTMenIEzonemaps": {},
-    "DTMesperantoordinal{}": {
-      "snippet": "DTMesperantoordinal{${1:number}}"
-    },
-    "DTMesperantomonthname{}": {
-      "snippet": "DTMesperantomonthname{${1:month}}"
-    },
-    "DTMesperantoMonthname{}": {
-      "snippet": "DTMesperantoMonthname{${1:month}}"
-    },
-    "DTMesperantodaymonthsep": {},
-    "DTMesperantomonthyearsep": {},
-    "DTMesperantodatetimesep": {},
-    "DTMesperantotimezonesep": {},
-    "DTMesperantodatesep": {},
-    "DTMesperantotimesep": {},
-    "DTMesperantozonemaps": {},
-    "DTMestonianordinal{}": {
-      "snippet": "DTMestonianordinal{${1:number}}"
-    },
-    "DTMestonianmonthname{}": {
-      "snippet": "DTMestonianmonthname{${1:month}}"
-    },
-    "DTMestonianMonthname{}": {
-      "snippet": "DTMestonianMonthname{${1:month}}"
-    },
-    "DTMestoniandaymonthsep": {},
-    "DTMestonianmonthyearsep": {},
-    "DTMestoniandatetimesep": {},
-    "DTMestoniantimezonesep": {},
-    "DTMestoniandatesep": {},
-    "DTMestoniantimesep": {},
-    "DTMestonianzonemaps": {},
-    "DTMfinnishordinal{}": {
-      "snippet": "DTMfinnishordinal{${1:number}}"
-    },
-    "DTMfinnishmonthname{}": {
-      "snippet": "DTMfinnishmonthname{${1:month}}"
-    },
-    "DTMfinnishMonthname{}": {
-      "snippet": "DTMfinnishMonthname{${1:month}}"
-    },
-    "DTMfinnishshortmonthname{}": {
-      "snippet": "DTMfinnishshortmonthname{${1:month}}"
-    },
-    "DTMfinnishshortMonthname{}": {
-      "snippet": "DTMfinnishshortMonthname{${1:month}}"
-    },
-    "DTMfinnishweekdayname{}": {
-      "snippet": "DTMfinnishweekdayname{${1:day}}"
-    },
-    "DTMfinnishWeekdayname{}": {
-      "snippet": "DTMfinnishWeekdayname{${1:day}}"
-    },
-    "DTMfinnishshortweekdayname{}": {
-      "snippet": "DTMfinnishshortweekdayname{${1:day}}"
-    },
-    "DTMfinnishshortWeekdayname{}": {
-      "snippet": "DTMfinnishshortWeekdayname{${1:day}}"
-    },
-    "DTMfinnishdaymonthsep": {},
-    "DTMfinnishmonthyearsep": {},
-    "DTMfinnishdatetimesep": {},
-    "DTMfinnishtimezonesep": {},
-    "DTMfinnishdatesep": {},
-    "DTMfinnishtimesep": {},
-    "DTMfinnishzonemaps": {},
-    "DTMfrenchordinal{}": {
-      "snippet": "DTMfrenchordinal{${1:number}}"
-    },
-    "DTMfrenchmonthname{}": {
-      "snippet": "DTMfrenchmonthname{${1:month}}"
-    },
-    "DTMfrenchMonthname{}": {
-      "snippet": "DTMfrenchMonthname{${1:month}}"
-    },
-    "DTMfrenchweekdayname{}": {
-      "snippet": "DTMfrenchweekdayname{${1:day}}"
-    },
-    "DTMfrenchWeekdayname{}": {
-      "snippet": "DTMfrenchWeekdayname{${1:day}}"
-    },
-    "DTMfrenchshortweekdayname{}": {
-      "snippet": "DTMfrenchshortweekdayname{${1:day}}"
-    },
-    "DTMfrenchshortWeekdayname{}": {
-      "snippet": "DTMfrenchshortWeekdayname{${1:day}}"
-    },
-    "DTMfrenchmidnight": {},
-    "DTMfrenchnoon": {},
-    "DTMfrenchtimesymsep": {},
-    "DTMfrenchhoursym": {},
-    "DTMfrenchdaymonthsep": {},
-    "DTMfrenchmonthyearsep": {},
-    "DTMfrenchdatetimesep": {},
-    "DTMfrenchtimezonesep": {},
-    "DTMfrenchdatesep": {},
-    "DTMfrenchtimesep": {},
-    "DTMfrenchzonemaps": {},
-    "DTMgalicianordinal{}": {
-      "snippet": "DTMgalicianordinal{${1:number}}"
-    },
-    "DTMgalicianmonthname{}": {
-      "snippet": "DTMgalicianmonthname{${1:month}}"
-    },
-    "DTMgalicianMonthname{}": {
-      "snippet": "DTMgalicianMonthname{${1:month}}"
-    },
-    "DTMgalicianweekdayname{}": {
-      "snippet": "DTMgalicianweekdayname{${1:day}}"
-    },
-    "DTMgalicianWeekdayname{}": {
-      "snippet": "DTMgalicianWeekdayname{${1:day}}"
-    },
-    "DTMgalicianshortweekdayname{}": {
-      "snippet": "DTMgalicianshortweekdayname{${1:day}}"
-    },
-    "DTMgalicianshortWeekdayname{}": {
-      "snippet": "DTMgalicianshortWeekdayname{${1:day}}"
-    },
-    "DTMgaliciandaymonthsep": {},
-    "DTMgalicianmonthyearsep": {},
-    "DTMgaliciandatetimesep": {},
-    "DTMgaliciantimezonesep": {},
-    "DTMgaliciandatesep": {},
-    "DTMgaliciantimesep": {},
-    "DTMgalicianzonemaps": {},
-    "DTMgermanordinal{}": {
-      "snippet": "DTMgermanordinal{${1:number}}"
-    },
-    "DTMgermanweekdayname{}": {
-      "snippet": "DTMgermanweekdayname{${1:day}}"
-    },
-    "DTMgermanWeekdayname{}": {
-      "snippet": "DTMgermanWeekdayname{${1:day}}"
-    },
-    "DTMgermanshortweekdayname{}": {
-      "snippet": "DTMgermanshortweekdayname{${1:day}}"
-    },
-    "DTMgermanshortWeekdayname{}": {
-      "snippet": "DTMgermanshortWeekdayname{${1:day}}"
-    },
-    "DTMgermanzonemaps": {},
-    "DTMgermanmonthname{}": {
-      "snippet": "DTMgermanmonthname{${1:month}}"
-    },
-    "DTMdeATmonthname{}": {
-      "snippet": "DTMdeATmonthname{${1:month}}"
-    },
-    "DTMgermanshortmonthname{}": {
-      "snippet": "DTMgermanshortmonthname{${1:month}}"
-    },
-    "DTMdeATshortmonthname{}": {
-      "snippet": "DTMdeATshortmonthname{${1:month}}"
-    },
-    "DTMdeCHshortmonthname{}": {
-      "snippet": "DTMdeCHshortmonthname{${1:month}}"
-    },
-    "DTMgermandowdaysep": {},
-    "DTMgermandaymonthsep": {},
-    "DTMgermanmonthyearsep": {},
-    "DTMgermandatetimesep": {},
-    "DTMgermantimezonesep": {},
-    "DTMgermandatesep": {},
-    "DTMgermantimesep": {},
-    "DTMdeDEdowdaysep": {},
-    "DTMdeDEdaymonthsep": {},
-    "DTMdeDEmonthyearsep": {},
-    "DTMdeDEdatetimesep": {},
-    "DTMdeDEtimezonesep": {},
-    "DTMdeDEdatesep": {},
-    "DTMdeDEtimesep": {},
-    "DTMdeATdowdaysep": {},
-    "DTMdeATdaymonthsep": {},
-    "DTMdeATmonthyearsep": {},
-    "DTMdeATdatetimesep": {},
-    "DTMdeATtimezonesep": {},
-    "DTMdeATdatesep": {},
-    "DTMdeATtimesep": {},
-    "DTMdeCHdowdaysep": {},
-    "DTMdeCHdaymonthsep": {},
-    "DTMdeCHmonthyearsep": {},
-    "DTMdeCHdatetimesep": {},
-    "DTMdeCHtimezonesep": {},
-    "DTMdeCHdatesep": {},
-    "DTMdeCHtimesep": {},
-    "DTMgreekordinal{}": {
-      "snippet": "DTMgreekordinal{${1:number}}"
-    },
-    "DTMgreekmonthname{}": {
-      "snippet": "DTMgreekmonthname{${1:month}}"
-    },
-    "DTMgreekMonthname{}": {
-      "snippet": "DTMgreekMonthname{${1:month}}"
-    },
-    "DTMgreekdaymonthsep": {},
-    "DTMgreekmonthyearsep": {},
-    "DTMgreekdatetimesep": {},
-    "DTMgreektimezonesep": {},
-    "DTMgreekdatesep": {},
-    "DTMgreektimesep": {},
-    "DTMgreekzonemaps": {},
-    "DTMhebrewdate": {},
-    "DTMhebrewdatetimesep": {},
-    "DTMhebrewtimezonesep": {},
-    "DTMhebrewdatesep": {},
-    "DTMhebrewtimesep": {},
-    "DTMhebrewzonemaps": {},
-    "DTMicelandicordinal{}": {
-      "snippet": "DTMicelandicordinal{${1:number}}"
-    },
-    "DTMicelandicmonthname{}": {
-      "snippet": "DTMicelandicmonthname{${1:month}}"
-    },
-    "DTMicelandicMonthname{}": {
-      "snippet": "DTMicelandicMonthname{${1:month}}"
-    },
-    "DTMicelandicdaymonthsep": {},
-    "DTMicelandicmonthyearsep": {},
-    "DTMicelandicdatetimesep": {},
-    "DTMicelandictimezonesep": {},
-    "DTMicelandicdatesep": {},
-    "DTMicelandictimesep": {},
-    "DTMicelandiczonemaps": {},
-    "DTMirishordinal{}": {
-      "snippet": "DTMirishordinal{${1:number}}"
-    },
-    "DTMirishmonthname{}": {
-      "snippet": "DTMirishmonthname{${1:month}}"
-    },
-    "DTMirishMonthname{}": {
-      "snippet": "DTMirishMonthname{${1:month}}"
-    },
-    "DTMirishdaymonthsep": {},
-    "DTMirishmonthyearsep": {},
-    "DTMirishdatetimesep": {},
-    "DTMirishtimezonesep": {},
-    "DTMirishdatesep": {},
-    "DTMirishtimesep": {},
-    "DTMirishzonemaps": {},
-    "DTMitalianordinal{}": {
-      "snippet": "DTMitalianordinal{${1:number}}"
-    },
-    "DTMitalianmonthname{}": {
-      "snippet": "DTMitalianmonthname{${1:month}}"
-    },
-    "DTMitalianshortmonthname{}": {
-      "snippet": "DTMitalianshortmonthname{${1:month}}"
-    },
-    "DTMitalianweekdayname{}": {
-      "snippet": "DTMitalianweekdayname{${1:day}}"
-    },
-    "DTMitalianshortweekdayname{}": {
-      "snippet": "DTMitalianshortweekdayname{${1:day}}"
-    },
-    "DTMitaliandaymonthsep": {},
-    "DTMitalianmonthyearsep": {},
-    "DTMitaliandatetimesep": {},
-    "DTMitaliantimezonesep": {},
-    "DTMitaliandatesep": {},
-    "DTMitaliantimesep": {},
-    "DTMitalianam": {},
-    "DTMitalianpm": {},
-    "DTMitalianmidnight": {},
-    "DTMitaliannoon": {},
-    "DTMitalianampmfmt{}": {
-      "snippet": "DTMitalianampmfmt{${1:text}}"
-    },
-    "DTMitalianzonemaps": {},
-    "DTMlatindatefont{}": {
-      "snippet": "DTMlatindatefont{${1:text}}"
-    },
-    "DTMlatinordinal{}": {
-      "snippet": "DTMlatinordinal{${1:number}}"
-    },
-    "DTMlatinyear{}": {
-      "snippet": "DTMlatinyear{${1:year}}"
-    },
-    "DTMlatinmonthname{}": {
-      "snippet": "DTMlatinmonthname{${1:month}}"
-    },
-    "DTMlatindaymonthsep": {},
-    "DTMlatinmonthyearsep": {},
-    "DTMlatindatetimesep": {},
-    "DTMlatintimezonesep": {},
-    "DTMlatindatesep": {},
-    "DTMlatintimesep": {},
-    "DTMlatinzonemaps": {},
-    "DTMlsorbianordinal{}": {
-      "snippet": "DTMlsorbianordinal{${1:number}}"
-    },
-    "DTMlsorbiannewmonthname{}": {
-      "snippet": "DTMlsorbiannewmonthname{${1:month}}"
-    },
-    "DTMlsorbiannewMonthname{}": {
-      "snippet": "DTMlsorbiannewMonthname{${1:month}}"
-    },
-    "DTMlsorbianoldmonthname{}": {
-      "snippet": "DTMlsorbianoldmonthname{${1:month}}"
-    },
-    "DTMlsorbianoldMonthname{}": {
-      "snippet": "DTMlsorbianoldMonthname{${1:month}}"
-    },
-    "DTMlsorbianmonthname{}": {
-      "snippet": "DTMlsorbianmonthname{${1:month}}"
-    },
-    "DTMlsorbianMonthname{}": {
-      "snippet": "DTMlsorbianMonthname{${1:month}}"
-    },
-    "DTMlsorbiandaymonthsep": {},
-    "DTMlsorbianmonthyearsep": {},
-    "DTMlsorbiandatetimesep": {},
-    "DTMlsorbiantimezonesep": {},
-    "DTMlsorbiandatesep": {},
-    "DTMlsorbiantimesep": {},
-    "DTMlsorbianzonemaps": {},
-    "DTMmagyarordinal{}": {
-      "snippet": "DTMmagyarordinal{${1:number}}"
-    },
-    "DTMmagyaryear{}": {
-      "snippet": "DTMmagyaryear{${1:year}}"
-    },
-    "DTMmagyarmonthname{}": {
-      "snippet": "DTMmagyarmonthname{${1:month}}"
-    },
-    "DTMmagyarMonthname{}": {
-      "snippet": "DTMmagyarMonthname{${1:month}}"
-    },
-    "DTMmagyardaymonthsep": {},
-    "DTMmagyarmonthyearsep": {},
-    "DTMmagyardatetimesep": {},
-    "DTMmagyartimezonesep": {},
-    "DTMmagyardatesep": {},
-    "DTMmagyartimesep": {},
-    "DTMmagyarzonemaps": {},
-    "DTMnorskordinal{}": {
-      "snippet": "DTMnorskordinal{${1:number}}"
-    },
-    "DTMnorskmonthname{}": {
-      "snippet": "DTMnorskmonthname{${1:month}}"
-    },
-    "DTMnorskMonthname{}": {
-      "snippet": "DTMnorskMonthname{${1:month}}"
-    },
-    "DTMnorskweekdayname{}": {
-      "snippet": "DTMnorskweekdayname{${1:day}}"
-    },
-    "DTMnorskWeekdayname{}": {
-      "snippet": "DTMnorskWeekdayname{${1:day}}"
-    },
-    "DTMnorskdaymonthsep": {},
-    "DTMnorskmonthyearsep": {},
-    "DTMnorskdatetimesep": {},
-    "DTMnorsktimezonesep": {},
-    "DTMnorskdatesep": {},
-    "DTMnorsktimesep": {},
-    "DTMnorskzonemaps": {},
-    "DTMpolishordinal{}": {
-      "snippet": "DTMpolishordinal{${1:number}}"
-    },
-    "DTMpolishmonthname{}": {
-      "snippet": "DTMpolishmonthname{${1:month}}"
-    },
-    "DTMpolishMonthname{}": {
-      "snippet": "DTMpolishMonthname{${1:month}}"
-    },
-    "DTMpolishweekdayname{}": {
-      "snippet": "DTMpolishweekdayname{${1:day}}"
-    },
-    "DTMpolishWeekdayname{}": {
-      "snippet": "DTMpolishWeekdayname{${1:day}}"
-    },
-    "DTMpolishdaymonthsep": {},
-    "DTMpolishmonthyearsep": {},
-    "DTMpolishdatetimesep": {},
-    "DTMpolishtimezonesep": {},
-    "DTMpolishdatesep": {},
-    "DTMpolishtimesep": {},
-    "DTMpolishzonemaps": {},
-    "DTMportugesordinal{}": {
-      "snippet": "DTMportugesordinal{${1:number}}"
-    },
-    "DTMportugesmonthname{}": {
-      "snippet": "DTMportugesmonthname{${1:month}}"
-    },
-    "DTMportugesweekdayname{}": {
-      "snippet": "DTMportugesweekdayname{${1:day}}"
-    },
-    "DTMportugesWeekdayname{}": {
-      "snippet": "DTMportugesWeekdayname{${1:day}}"
-    },
-    "DTMportugesdaymonthsep": {},
-    "DTMportugesmonthyearsep": {},
-    "DTMportugesdatetimesep": {},
-    "DTMportugestimezonesep": {},
-    "DTMportugesdatesep": {},
-    "DTMportugestimesep": {},
-    "DTMportugeszonemaps": {},
-    "DTMromanianordinal{}": {
-      "snippet": "DTMromanianordinal{${1:number}}"
-    },
-    "DTMromanianmonthname{}": {
-      "snippet": "DTMromanianmonthname{${1:month}}"
-    },
-    "DTMromanianMonthname{}": {
-      "snippet": "DTMromanianMonthname{${1:month}}"
-    },
-    "DTMromanianshortmonthname{}": {
-      "snippet": "DTMromanianshortmonthname{${1:month}}"
-    },
-    "DTMromanianshortMonthname{}": {
-      "snippet": "DTMromanianshortMonthname{${1:month}}"
-    },
-    "DTMromanianweekdayname{}": {
-      "snippet": "DTMromanianweekdayname{${1:day}}"
-    },
-    "DTMromanianWeekdayname{}": {
-      "snippet": "DTMromanianWeekdayname{${1:day}}"
-    },
-    "DTMromanianshortweekdayname{}": {
-      "snippet": "DTMromanianshortweekdayname{${1:day}}"
-    },
-    "DTMromanianshortWeekdayname{}": {
-      "snippet": "DTMromanianshortWeekdayname{${1:day}}"
-    },
-    "DTMromaniandowdaysep": {},
-    "DTMromaniandaymonthsep": {},
-    "DTMromanianmonthyearsep": {},
-    "DTMromaniandatetimesep": {},
-    "DTMromaniantimezonesep": {},
-    "DTMromaniandatesep": {},
-    "DTMromaniantimesep": {},
-    "DTMromanianzonemaps": {},
-    "DTMrussianordinal{}": {
-      "snippet": "DTMrussianordinal{${1:number}}"
-    },
-    "DTMrussianyear{}": {
-      "snippet": "DTMrussianyear{${1:year}}"
-    },
-    "DTMrussianmonthname{}": {
-      "snippet": "DTMrussianmonthname{${1:month}}"
-    },
-    "DTMrussianMonthname{}": {
-      "snippet": "DTMrussianMonthname{${1:month}}"
-    },
-    "DTMrussiandaymonthsep": {},
-    "DTMrussianmonthyearsep": {},
-    "DTMrussiandatetimesep": {},
-    "DTMrussiantimezonesep": {},
-    "DTMrussiandatesep": {},
-    "DTMrussiantimesep": {},
-    "DTMrussianzonemaps": {},
-    "DTMsaminordinal{}": {
-      "snippet": "DTMsaminordinal{${1:number}}"
-    },
-    "DTMsaminmonthname{}": {
-      "snippet": "DTMsaminmonthname{${1:month}}"
-    },
-    "DTMsaminMonthname{}": {
-      "snippet": "DTMsaminMonthname{${1:month}}"
-    },
-    "DTMsamindaymonthsep": {},
-    "DTMsaminmonthyearsep": {},
-    "DTMsamindatetimesep": {},
-    "DTMsamintimezonesep": {},
-    "DTMsamindatesep": {},
-    "DTMsamintimesep": {},
-    "DTMsaminzonemaps": {},
-    "DTMscottishordinal{}": {
-      "snippet": "DTMscottishordinal{${1:number}}"
-    },
-    "DTMscottishmonthname{}": {
-      "snippet": "DTMscottishmonthname{${1:month}}"
-    },
-    "DTMscottishMonthname{}": {
-      "snippet": "DTMscottishMonthname{${1:month}}"
-    },
-    "DTMscottishdaymonthsep": {},
-    "DTMscottishmonthyearsep": {},
-    "DTMscottishdatetimesep": {},
-    "DTMscottishtimezonesep": {},
-    "DTMscottishdatesep": {},
-    "DTMscottishtimesep": {},
-    "DTMscottishzonemaps": {},
-    "DTMserbiancdatesep": {},
-    "DTMserbiancdatetimesep": {},
-    "DTMserbiancdaymonthsep": {},
-    "DTMserbiancdayordinal{}": {
-      "snippet": "DTMserbiancdayordinal{${1:number}}"
-    },
-    "DTMserbiancdowdaysep": {},
-    "DTMserbianciMonthname{}": {
-      "snippet": "DTMserbianciMonthname{${1:month}}"
-    },
-    "DTMserbiancimonthname{}": {
-      "snippet": "DTMserbiancimonthname{${1:month}}"
-    },
-    "DTMserbiancmonthordinal{}": {
-      "snippet": "DTMserbiancmonthordinal{${1:number}}"
-    },
-    "DTMserbiancmonthyearsep": {},
-    "DTMserbiancnoiMonthname{}": {
-      "snippet": "DTMserbiancnoiMonthname{${1:month}}"
-    },
-    "DTMserbiancnoimonthname{}": {
-      "snippet": "DTMserbiancnoimonthname{${1:month}}"
-    },
-    "DTMserbianctimesep": {},
-    "DTMserbianctimezonesep": {},
-    "DTMserbiancweekdayname{}": {
-      "snippet": "DTMserbiancweekdayname{${1:day}}"
-    },
-    "DTMserbiancyrekweekdayname{}": {
-      "snippet": "DTMserbiancyrekweekdayname{${1:day}}"
-    },
-    "DTMserbiancyrekWeekdayname{}": {
-      "snippet": "DTMserbiancyrekWeekdayname{${1:day}}"
-    },
-    "DTMserbiancyrijweekdayname{}": {
-      "snippet": "DTMserbiancyrijweekdayname{${1:day}}"
-    },
-    "DTMserbiancyrijWeekdayname{}": {
-      "snippet": "DTMserbiancyrijWeekdayname{${1:day}}"
-    },
-    "DTMserbiancyrimonthname{}": {
-      "snippet": "DTMserbiancyrimonthname{${1:month}}"
-    },
-    "DTMserbiancyriMonthname{}": {
-      "snippet": "DTMserbiancyriMonthname{${1:month}}"
-    },
-    "DTMserbiancyrnoimonthname{}": {
-      "snippet": "DTMserbiancyrnoimonthname{${1:month}}"
-    },
-    "DTMserbiancyrnoiMonthname{}": {
-      "snippet": "DTMserbiancyrnoiMonthname{${1:month}}"
-    },
-    "DTMserbianczonemaps": {},
-    "DTMserbiandatesep": {},
-    "DTMserbiandatetimesep": {},
-    "DTMserbiandaymonthsep": {},
-    "DTMserbiandayordinal{}": {
-      "snippet": "DTMserbiandayordinal{${1:number}}"
-    },
-    "DTMserbiandowdaysep": {},
-    "DTMserbianimonthname{}": {
-      "snippet": "DTMserbianimonthname{${1:month}}"
-    },
-    "DTMserbianiMonthname{}": {
-      "snippet": "DTMserbianiMonthname{${1:month}}"
-    },
-    "DTMserbianlatekweekdayname{}": {
-      "snippet": "DTMserbianlatekweekdayname{${1:day}}"
-    },
-    "DTMserbianlatekWeekdayname{}": {
-      "snippet": "DTMserbianlatekWeekdayname{${1:day}}"
-    },
-    "DTMserbianlatijweekdayname{}": {
-      "snippet": "DTMserbianlatijweekdayname{${1:day}}"
-    },
-    "DTMserbianlatijWeekdayname{}": {
-      "snippet": "DTMserbianlatijWeekdayname{${1:day}}"
-    },
-    "DTMserbianlatimonthname{}": {
-      "snippet": "DTMserbianlatimonthname{${1:month}}"
-    },
-    "DTMserbianlatiMonthname{}": {
-      "snippet": "DTMserbianlatiMonthname{${1:month}}"
-    },
-    "DTMserbianlatnoimonthname{}": {
-      "snippet": "DTMserbianlatnoimonthname{${1:month}}"
-    },
-    "DTMserbianlatnoiMonthname{}": {
-      "snippet": "DTMserbianlatnoiMonthname{${1:month}}"
-    },
-    "DTMserbianmonthordinal{}": {
-      "snippet": "DTMserbianmonthordinal{${1:number}}"
-    },
-    "DTMserbianmonthyearsep": {},
-    "DTMserbiannoimonthname{}": {
-      "snippet": "DTMserbiannoimonthname{${1:month}}"
-    },
-    "DTMserbiannoiMonthname{}": {
-      "snippet": "DTMserbiannoiMonthname{${1:month}}"
-    },
-    "DTMserbianordinalROMAN{}": {
-      "snippet": "DTMserbianordinalROMAN{${1:number}}"
-    },
-    "DTMserbianordinalroman{}": {
-      "snippet": "DTMserbianordinalroman{${1:number}}"
-    },
-    "DTMserbiantimesep": {},
-    "DTMserbiantimezonesep": {},
-    "DTMserbianweekdayname{}": {
-      "snippet": "DTMserbianweekdayname{${1:day}}"
-    },
-    "DTMserbianzonemaps": {},
-    "DTMsrCyrlBAdatesep": {},
-    "DTMsrCyrlBAdatetimesep": {},
-    "DTMsrCyrlBAdaymonthsep": {},
-    "DTMsrCyrlBAdayordinal{}": {
-      "snippet": "DTMsrCyrlBAdayordinal{${1:number}}"
-    },
-    "DTMsrCyrlBAdowdaysep": {},
-    "DTMsrCyrlBAiMonthname{}": {
-      "snippet": "DTMsrCyrlBAiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlBAimonthname{}": {
-      "snippet": "DTMsrCyrlBAimonthname{${1:month}}"
-    },
-    "DTMsrCyrlBAmonthordinal{}": {
-      "snippet": "DTMsrCyrlBAmonthordinal{${1:number}}"
-    },
-    "DTMsrCyrlBAmonthyearsep": {},
-    "DTMsrCyrlBAnoiMonthname{}": {
-      "snippet": "DTMsrCyrlBAnoiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlBAnoimonthname{}": {
-      "snippet": "DTMsrCyrlBAnoimonthname{${1:month}}"
-    },
-    "DTMsrCyrlBAtimesep": {},
-    "DTMsrCyrlBAtimezonesep": {},
-    "DTMsrCyrlBAweekdayname{}": {
-      "snippet": "DTMsrCyrlBAweekdayname{${1:day}}"
-    },
-    "DTMsrCyrldatesep": {},
-    "DTMsrCyrldatetimesep": {},
-    "DTMsrCyrldaymonthsep": {},
-    "DTMsrCyrldayordinal{}": {
-      "snippet": "DTMsrCyrldayordinal{${1:number}}"
-    },
-    "DTMsrCyrldowdaysep": {},
-    "DTMsrCyrliMonthname{}": {
-      "snippet": "DTMsrCyrliMonthname{${1:month}}"
-    },
-    "DTMsrCyrlimonthname{}": {
-      "snippet": "DTMsrCyrlimonthname{${1:month}}"
-    },
-    "DTMsrCyrlMEdatesep": {},
-    "DTMsrCyrlMEdatetimesep": {},
-    "DTMsrCyrlMEdaymonthsep": {},
-    "DTMsrCyrlMEdayordinal{}": {
-      "snippet": "DTMsrCyrlMEdayordinal{${1:number}}"
-    },
-    "DTMsrCyrlMEdowdaysep": {},
-    "DTMsrCyrlMEiMonthname{}": {
-      "snippet": "DTMsrCyrlMEiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlMEimonthname{}": {
-      "snippet": "DTMsrCyrlMEimonthname{${1:month}}"
-    },
-    "DTMsrCyrlMEmonthordinal{}": {
-      "snippet": "DTMsrCyrlMEmonthordinal{${1:number}}"
-    },
-    "DTMsrCyrlMEmonthyearsep": {},
-    "DTMsrCyrlMEnoiMonthname{}": {
-      "snippet": "DTMsrCyrlMEnoiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlMEnoimonthname{}": {
-      "snippet": "DTMsrCyrlMEnoimonthname{${1:month}}"
-    },
-    "DTMsrCyrlMEtimesep": {},
-    "DTMsrCyrlMEtimezonesep": {},
-    "DTMsrCyrlMEweekdayname{}": {
-      "snippet": "DTMsrCyrlMEweekdayname{${1:day}}"
-    },
-    "DTMsrCyrlmonthordinal{}": {
-      "snippet": "DTMsrCyrlmonthordinal{${1:number}}"
-    },
-    "DTMsrCyrlmonthyearsep": {},
-    "DTMsrCyrlnoiMonthname{}": {
-      "snippet": "DTMsrCyrlnoiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlnoimonthname{}": {
-      "snippet": "DTMsrCyrlnoimonthname{${1:month}}"
-    },
-    "DTMsrCyrlRSdatesep": {},
-    "DTMsrCyrlRSdatetimesep": {},
-    "DTMsrCyrlRSdaymonthsep": {},
-    "DTMsrCyrlRSdayordinal{}": {
-      "snippet": "DTMsrCyrlRSdayordinal{${1:number}}"
-    },
-    "DTMsrCyrlRSdowdaysep": {},
-    "DTMsrCyrlRSiMonthname{}": {
-      "snippet": "DTMsrCyrlRSiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlRSimonthname{}": {
-      "snippet": "DTMsrCyrlRSimonthname{${1:month}}"
-    },
-    "DTMsrCyrlRSmonthordinal{}": {
-      "snippet": "DTMsrCyrlRSmonthordinal{${1:number}}"
-    },
-    "DTMsrCyrlRSmonthyearsep": {},
-    "DTMsrCyrlRSnoiMonthname{}": {
-      "snippet": "DTMsrCyrlRSnoiMonthname{${1:month}}"
-    },
-    "DTMsrCyrlRSnoimonthname{}": {
-      "snippet": "DTMsrCyrlRSnoimonthname{${1:month}}"
-    },
-    "DTMsrCyrlRStimesep": {},
-    "DTMsrCyrlRStimezonesep": {},
-    "DTMsrCyrlRSweekdayname{}": {
-      "snippet": "DTMsrCyrlRSweekdayname{${1:day}}"
-    },
-    "DTMsrCyrltimesep": {},
-    "DTMsrCyrltimezonesep": {},
-    "DTMsrCyrlweekdayname{}": {
-      "snippet": "DTMsrCyrlweekdayname{${1:day}}"
-    },
-    "DTMsrLatnBAdatesep": {},
-    "DTMsrLatnBAdatetimesep": {},
-    "DTMsrLatnBAdaymonthsep": {},
-    "DTMsrLatnBAdayordinal{}": {
-      "snippet": "DTMsrLatnBAdayordinal{${1:number}}"
-    },
-    "DTMsrLatnBAdowdaysep": {},
-    "DTMsrLatnBAiMonthname{}": {
-      "snippet": "DTMsrLatnBAiMonthname{${1:month}}"
-    },
-    "DTMsrLatnBAimonthname{}": {
-      "snippet": "DTMsrLatnBAimonthname{${1:month}}"
-    },
-    "DTMsrLatnBAmonthordinal{}": {
-      "snippet": "DTMsrLatnBAmonthordinal{${1:number}}"
-    },
-    "DTMsrLatnBAmonthyearsep": {},
-    "DTMsrLatnBAnoiMonthname{}": {
-      "snippet": "DTMsrLatnBAnoiMonthname{${1:month}}"
-    },
-    "DTMsrLatnBAnoimonthname{}": {
-      "snippet": "DTMsrLatnBAnoimonthname{${1:month}}"
-    },
-    "DTMsrLatnBAtimesep": {},
-    "DTMsrLatnBAtimezonesep": {},
-    "DTMsrLatnBAweekdayname{}": {
-      "snippet": "DTMsrLatnBAweekdayname{${1:day}}"
-    },
-    "DTMsrLatndatesep": {},
-    "DTMsrLatndatetimesep": {},
-    "DTMsrLatndaymonthsep": {},
-    "DTMsrLatndayordinal{}": {
-      "snippet": "DTMsrLatndayordinal{${1:number}}"
-    },
-    "DTMsrLatndowdaysep": {},
-    "DTMsrLatniMonthname{}": {
-      "snippet": "DTMsrLatniMonthname{${1:month}}"
-    },
-    "DTMsrLatnimonthname{}": {
-      "snippet": "DTMsrLatnimonthname{${1:month}}"
-    },
-    "DTMsrLatnMEdatesep": {},
-    "DTMsrLatnMEdatetimesep": {},
-    "DTMsrLatnMEdaymonthsep": {},
-    "DTMsrLatnMEdayordinal{}": {
-      "snippet": "DTMsrLatnMEdayordinal{${1:number}}"
-    },
-    "DTMsrLatnMEdowdaysep": {},
-    "DTMsrLatnMEiMonthname{}": {
-      "snippet": "DTMsrLatnMEiMonthname{${1:month}}"
-    },
-    "DTMsrLatnMEimonthname{}": {
-      "snippet": "DTMsrLatnMEimonthname{${1:month}}"
-    },
-    "DTMsrLatnMEmonthordinal{}": {
-      "snippet": "DTMsrLatnMEmonthordinal{${1:number}}"
-    },
-    "DTMsrLatnMEmonthyearsep": {},
-    "DTMsrLatnMEnoiMonthname{}": {
-      "snippet": "DTMsrLatnMEnoiMonthname{${1:month}}"
-    },
-    "DTMsrLatnMEnoimonthname{}": {
-      "snippet": "DTMsrLatnMEnoimonthname{${1:month}}"
-    },
-    "DTMsrLatnMEtimesep": {},
-    "DTMsrLatnMEtimezonesep": {},
-    "DTMsrLatnMEweekdayname{}": {
-      "snippet": "DTMsrLatnMEweekdayname{${1:day}}"
-    },
-    "DTMsrLatnmonthordinal{}": {
-      "snippet": "DTMsrLatnmonthordinal{${1:number}}"
-    },
-    "DTMsrLatnmonthyearsep": {},
-    "DTMsrLatnnoiMonthname{}": {
-      "snippet": "DTMsrLatnnoiMonthname{${1:month}}"
-    },
-    "DTMsrLatnnoimonthname{}": {
-      "snippet": "DTMsrLatnnoimonthname{${1:month}}"
-    },
-    "DTMsrLatnRSdatesep": {},
-    "DTMsrLatnRSdatetimesep": {},
-    "DTMsrLatnRSdaymonthsep": {},
-    "DTMsrLatnRSdayordinal{}": {
-      "snippet": "DTMsrLatnRSdayordinal{${1:number}}"
-    },
-    "DTMsrLatnRSdowdaysep": {},
-    "DTMsrLatnRSiMonthname{}": {
-      "snippet": "DTMsrLatnRSiMonthname{${1:month}}"
-    },
-    "DTMsrLatnRSimonthname{}": {
-      "snippet": "DTMsrLatnRSimonthname{${1:month}}"
-    },
-    "DTMsrLatnRSmonthordinal{}": {
-      "snippet": "DTMsrLatnRSmonthordinal{${1:number}}"
-    },
-    "DTMsrLatnRSmonthyearsep": {},
-    "DTMsrLatnRSnoiMonthname{}": {
-      "snippet": "DTMsrLatnRSnoiMonthname{${1:month}}"
-    },
-    "DTMsrLatnRSnoimonthname{}": {
-      "snippet": "DTMsrLatnRSnoimonthname{${1:month}}"
-    },
-    "DTMsrLatnRStimesep": {},
-    "DTMsrLatnRStimezonesep": {},
-    "DTMsrLatnRSweekdayname{}": {
-      "snippet": "DTMsrLatnRSweekdayname{${1:day}}"
-    },
-    "DTMsrLatntimesep": {},
-    "DTMsrLatntimezonesep": {},
-    "DTMsrLatnweekdayname{}": {
-      "snippet": "DTMsrLatnweekdayname{${1:day}}"
-    },
-    "DTMslovakordinal{}": {
-      "snippet": "DTMslovakordinal{${1:number}}"
-    },
-    "DTMslovakmonthname{}": {
-      "snippet": "DTMslovakmonthname{${1:month}}"
-    },
-    "DTMslovakMonthname{}": {
-      "snippet": "DTMslovakMonthname{${1:month}}"
-    },
-    "DTMslovakdaymonthsep": {},
-    "DTMslovakmonthyearsep": {},
-    "DTMslovakdatetimesep": {},
-    "DTMslovaktimezonesep": {},
-    "DTMslovakdatesep": {},
-    "DTMslovaktimesep": {},
-    "DTMslovakzonemaps": {},
-    "DTMsloveneordinal{}": {
-      "snippet": "DTMsloveneordinal{${1:number}}"
-    },
-    "DTMslovenemonthname{}": {
-      "snippet": "DTMslovenemonthname{${1:month}}"
-    },
-    "DTMsloveneMonthname{}": {
-      "snippet": "DTMsloveneMonthname{${1:month}}"
-    },
-    "DTMslovenedaymonthsep": {},
-    "DTMslovenemonthyearsep": {},
-    "DTMslovenedatetimesep": {},
-    "DTMslovenetimezonesep": {},
-    "DTMslovenedatesep": {},
-    "DTMslovenetimesep": {},
-    "DTMslovenezonemaps": {},
-    "DTMspanishordinal{}": {
-      "snippet": "DTMspanishordinal{${1:number}}"
-    },
-    "DTMspanishmonthname{}": {
-      "snippet": "DTMspanishmonthname{${1:month}}"
-    },
-    "DTMspanishMonthname{}": {
-      "snippet": "DTMspanishMonthname{${1:month}}"
-    },
-    "DTMspanishweekdayname{}": {
-      "snippet": "DTMspanishweekdayname{${1:day}}"
-    },
-    "DTMspanishWeekdayname{}": {
-      "snippet": "DTMspanishWeekdayname{${1:day}}"
-    },
-    "DTMspanishdaymonthsep": {},
-    "DTMspanishmonthyearsep": {},
-    "DTMspanishdatetimesep": {},
-    "DTMspanishtimezonesep": {},
-    "DTMspanishdatesep": {},
-    "DTMspanishtimesep": {},
-    "DTMspanishzonemaps": {},
-    "DTMswedishordinal{}": {
-      "snippet": "DTMswedishordinal{${1:number}}"
-    },
-    "DTMswedishmonthname{}": {
-      "snippet": "DTMswedishmonthname{${1:month}}"
-    },
-    "DTMswedishMonthname{}": {
-      "snippet": "DTMswedishMonthname{${1:month}}"
-    },
-    "DTMswedishweekdayname{}": {
-      "snippet": "DTMswedishweekdayname{${1:day}}"
-    },
-    "DTMswedishWeekdayname{}": {
-      "snippet": "DTMswedishWeekdayname{${1:day}}"
-    },
-    "DTMswedishdaymonthsep": {},
-    "DTMswedishmonthyearsep": {},
-    "DTMswedishdatetimesep": {},
-    "DTMswedishtimezonesep": {},
-    "DTMswedishdatesep": {},
-    "DTMswedishtimesep": {},
-    "DTMswedishzonemaps": {},
-    "DTMturkishordinal{}": {
-      "snippet": "DTMturkishordinal{${1:number}}"
-    },
-    "DTMturkishmonthname{}": {
-      "snippet": "DTMturkishmonthname{${1:month}}"
-    },
-    "DTMturkishMonthname{}": {
-      "snippet": "DTMturkishMonthname{${1:month}}"
-    },
-    "DTMturkishdaymonthsep": {},
-    "DTMturkishmonthyearsep": {},
-    "DTMturkishdatetimesep": {},
-    "DTMturkishtimezonesep": {},
-    "DTMturkishdatesep": {},
-    "DTMturkishtimesep": {},
-    "DTMturkishzonemaps": {},
-    "DTMukrainianordinal{}": {
-      "snippet": "DTMukrainianordinal{${1:number}}"
-    },
-    "DTMukrainianyear{}": {
-      "snippet": "DTMukrainianyear{${1:year}}"
-    },
-    "DTMukrainiannominativemonthname{}": {
-      "snippet": "DTMukrainiannominativemonthname{${1:month}}"
-    },
-    "DTMukrainiannominativeMonthname{}": {
-      "snippet": "DTMukrainiannominativeMonthname{${1:month}}"
-    },
-    "DTMukrainiangenitiveMonthname{}": {
-      "snippet": "DTMukrainiangenitiveMonthname{${1:month}}"
-    },
-    "DTMukrainianshortMonthname{}": {
-      "snippet": "DTMukrainianshortMonthname{${1:month}}"
-    },
-    "DTMukrainianweekdayname{}": {
-      "snippet": "DTMukrainianweekdayname{${1:day}}"
-    },
-    "DTMukrainianWeekdayname{}": {
-      "snippet": "DTMukrainianWeekdayname{${1:day}}"
-    },
-    "DTMukrainianshortweekdayname{}": {
-      "snippet": "DTMukrainianshortweekdayname{${1:day}}"
-    },
-    "DTMukrainianshortWeekdayname{}": {
-      "snippet": "DTMukrainianshortWeekdayname{${1:day}}"
-    },
-    "DTMukrainianmonthname{}": {
-      "snippet": "DTMukrainianmonthname{${1:month}}"
-    },
-    "DTMukrainianMonthname{}": {
-      "snippet": "DTMukrainianMonthname{${1:month}}"
-    },
-    "DTMukrainiandowdaysep": {},
-    "DTMukrainiandaymonthsep": {},
-    "DTMukrainianmonthyearsep": {},
-    "DTMukrainiandatetimesep": {},
-    "DTMukrainiantimezonesep": {},
-    "DTMukrainiandatesep": {},
-    "DTMukrainiantimesep": {},
-    "DTMukrainianzonemaps": {},
-    "DTMusorbianordinal{}": {
-      "snippet": "DTMusorbianordinal{${1:number}}"
-    },
-    "DTMusorbiannewmonthname": {},
-    "DTMusorbiannewMonthname": {},
-    "DTMusorbianoldmonthname": {},
-    "DTMusorbianoldMonthname": {},
-    "DTMusorbianmonthname{}": {
-      "snippet": "DTMusorbianmonthname{${1:month}}"
-    },
-    "DTMusorbianMonthname{}": {
-      "snippet": "DTMusorbianMonthname{${1:month}}"
-    },
-    "DTMusorbiandaymonthsep": {},
-    "DTMusorbianmonthyearsep": {},
-    "DTMusorbiandatetimesep": {},
-    "DTMusorbiantimezonesep": {},
-    "DTMusorbiandatesep": {},
-    "DTMusorbiantimesep": {},
-    "DTMusorbianzonemaps": {},
-    "DTMwelshordinal{}": {
-      "snippet": "DTMwelshordinal{${1:number}}"
-    },
-    "DTMwelshfmtordinal{}": {
-      "snippet": "DTMwelshfmtordinal{${1:text}}"
-    },
-    "DTMwelshmonthname{}": {
-      "snippet": "DTMwelshmonthname{${1:month}}"
-    },
-    "DTMwelshfmtordsuffix{}": {
-      "snippet": "DTMwelshfmtordsuffix{${1:suffix}}"
-    },
-    "DTMwelshdaymonthsep": {},
-    "DTMwelshmonthyearsep": {},
-    "DTMwelshdatetimesep": {},
-    "DTMwelshtimezonesep": {},
-    "DTMwelshdatesep": {},
-    "DTMwelshtimesep": {},
-    "DTMwelshzonemaps": {}
-  },
-  "envs": {},
-  "options": [
-    "style=${1:style name}",
-    "calc",
-    "${1:language}"
+  "deps": [
+    {
+      "name": "tracklang"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "datetime2-calc",
+      "if": "calc"
+    },
+    {
+      "name": "datetime2-calc",
+      "if": "calc=true"
+    },
+    {
+      "name": "datetime2-calc",
+      "if": "showdow"
+    },
+    {
+      "name": "datetime2-calc",
+      "if": "showdow=true"
+    }
   ],
-  "keyvals": [
-    [
-      "dowdaysep=${1:separator}",
-      "daymonthsep=${1:separator}",
-      "monthyearsep=${1:separator}",
-      "datesep=${1:separator}",
-      "timesep=${1:separator}",
-      "datetimesep=${1:separator}",
-      "timezonesep=${1:separator}",
-      "abbr",
-      "mapzone",
-      "ord=",
-      "showdayofmonth",
-      "showyear",
-      "monthdaysep=${1:separator}",
-      "dayyearsep=${1:separator}",
-      "dowmonthsep=${1:separator}",
-      "zone=",
-      "pronunciation=",
-      "monthi",
-      "leadingzero",
-      "monthord="
+  "macros": [
+    {
+      "name": "DTMdisplaydate",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "DTMdisplaydate{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}"
+      }
+    },
+    {
+      "name": "DTMDisplaydate",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "DTMDisplaydate{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}"
+      }
+    },
+    {
+      "name": "Today"
+    },
+    {
+      "name": "DTMtoday",
+      "unusual": true
+    },
+    {
+      "name": "DTMToday",
+      "unusual": true
+    },
+    {
+      "name": "DTMdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdate{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "DTMDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMDate{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "DTMdate*",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdate*{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "DTMDate*",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMDate*{${1:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "DTMdisplaytime",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMdisplaytime{${1:hour}}{${2:minute}}{${3:second}}"
+      }
+    },
+    {
+      "name": "DTMdisplayzone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMdisplayzone{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "DTMcurrenttime"
+    },
+    {
+      "name": "DTMcurrentzone"
+    },
+    {
+      "name": "DTMtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMtime{${1:hh:mm:ss}}"
+      }
+    },
+    {
+      "name": "DTMdisplay",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "DTMdisplay{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}{${5:hour}}{${6:min}}{${7:sec}}{${8:hour offset}}{${9:min offset}}"
+      }
+    },
+    {
+      "name": "DTMDisplay",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "DTMDisplay{${1:year}}{${2:month}}{${3:day}}{${4:day of week}}{${5:hour}}{${6:min}}{${7:sec}}{${8:hour offset}}{${9:min offset}}"
+      }
+    },
+    {
+      "name": "DTMnow"
+    },
+    {
+      "name": "DTMNow"
+    },
+    {
+      "name": "DTMsavedate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavedate{${1:name}}{${2:YYYY-MM-DD}}"
+      }
+    },
+    {
+      "name": "DTMsavenoparsedate",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "DTMsavenoparsedate{${1:name}}{${2:YYYY}}{${3:MM}}{${4:DD}}{${5:dow}}"
+      }
+    },
+    {
+      "name": "DTMsavetime",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavetime{${1:name}}{${2:hh:mm:ss}}"
+      }
+    },
+    {
+      "name": "DTMsavetimezn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavetimezn{${1:name}}{${2:hh:mm:ss TZh:TZm}}"
+      }
+    },
+    {
+      "name": "DTMsavetimestamp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavetimestamp{${1:name}}{${2:YYYY-MM-DDThh:mm:ss TZh:TZm}}"
+      }
+    },
+    {
+      "name": "DTMsavepdftimestamp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavepdftimestamp{${1:name}}{${2:PDF data}}"
+      }
+    },
+    {
+      "name": "DTMsavefrompdfdata",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavefrompdfdata{${1:name}}{${2:PDF data}}"
+      }
+    },
+    {
+      "name": "DTMsavenow",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsavenow{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMsavefilemoddate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsavefilemoddate{${1:name}}{${2:file}}"
+      }
+    },
+    {
+      "name": "DTMmakeglobal",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmakeglobal{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMusedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusedate{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMUsedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMUsedate{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMusetime",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusetime{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMusezone",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusezone{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMuse{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMUse",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMUse{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMifsaveddate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifsaveddate{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DTMfetchyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchyear{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchmonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchmonth{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchday",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchday{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchdow",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchdow{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchhour",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchhour{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchminute",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchminute{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchsecond",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchsecond{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchTZhour",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchTZhour{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMfetchTZminute",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfetchTZminute{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMsetdatestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsetdatestyle{${1:style name%keyvals}}",
+        "keys": [
+          "\\DTMsetdatestyle#c,\\DTMsettimestyle#c,\\DTMsetzonestyle#c,\\DTMsetstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMsettimestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsettimestyle{${1:style name%keyvals}}",
+        "keys": [
+          "\\DTMsetdatestyle#c,\\DTMsettimestyle#c,\\DTMsetzonestyle#c,\\DTMsetstyle#c",
+          "\\DTMsettimestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMsetzonestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsetzonestyle{${1:style name%keyvals}}",
+        "keys": [
+          "\\DTMsetdatestyle#c,\\DTMsettimestyle#c,\\DTMsetzonestyle#c,\\DTMsetstyle#c",
+          "\\DTMsetzonestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMsetstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsetstyle{${1:style name%keyvals}}",
+        "keys": [
+          "\\DTMsetdatestyle#c,\\DTMsettimestyle#c,\\DTMsetzonestyle#c,\\DTMsetstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMtryregional",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMtryregional{${1:lang code}}{${2:country code}}"
+      }
+    },
+    {
+      "name": "DTMtryregional",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DTMtryregional[${3:lang name}]{${1:lang code}}{${2:country code}}"
+      }
+    },
+    {
+      "name": "DTMtryregional*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMtryregional*{${1:lang code cs}}{${2:country code cs}}"
+      }
+    },
+    {
+      "name": "DTMtryregional*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DTMtryregional*[${3:lang name}]{${1:lang code cs}}{${2:country code cs}}"
+      }
+    },
+    {
+      "name": "DTMnewdatestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMnewdatestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMfinaldot",
+      "unusual": true
+    },
+    {
+      "name": "DTMnewtimestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMnewtimestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMnewzonestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMnewzonestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMnewstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "DTMnewstyle{${1:name}}{${2:data style def}}{${3:time style def}}{${4:zone style def}}{${5:full style def}}"
+      }
+    },
+    {
+      "name": "DTMrenewdatestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMrenewdatestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMrenewtimestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMrenewtimestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMrenewzonestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMrenewzonestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMrenewstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMrenewstyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMprovidedatestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMprovidedatestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMprovidetimestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMprovidetimestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMprovidezonestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMprovidezonestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMprovidestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMprovidestyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DTMifhasstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifhasstyle{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DTMifhasdatestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifhasdatestyle{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DTMifhastimestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifhastimestyle{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DTMifhaszonestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifhaszonestyle{${1:name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DTMtwodigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMtwodigits{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMcentury",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcentury{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMdivhundred",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdivhundred{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMtexorpdfstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMtexorpdfstring{${1:TeX}}{${2:PDF}}"
+      }
+    },
+    {
+      "name": "DTMsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsep{${1:tag}}"
+      }
+    },
+    {
+      "name": "DTMusezonemap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMusezonemap{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "DTMdefzonemap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMdefzonemap{${1:hour offset}}{${2:minute offset}}{${3:abbr}}"
+      }
+    },
+    {
+      "name": "DTMNatoZoneMaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMclearmap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMclearmap{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "DTMresetzones",
+      "unusual": true
+    },
+    {
+      "name": "DTMhaszonemap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "DTMhaszonemap{${1:hour offset}}{${2:minute offset}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "DTMusezonemapordefault",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMusezonemapordefault{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "DTMlangsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlangsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\DTMlangsetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMlangsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DTMlangsetup[${2:module list}]{${1:options%keyvals}}",
+        "keys": [
+          "\\DTMlangsetup#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "RequireDateTimeModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "RequireDateTimeModule{${1:name}}"
+      }
+    },
+    {
+      "name": "DTMusemodule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMusemodule{${1:language}}{${2:name}}"
+      }
+    },
+    {
+      "name": "DTMdialecttomodulemap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdialecttomodulemap{${1:dialect}}"
+      }
+    },
+    {
+      "name": "DTMmonthname",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMMonthname",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMshortmonthname",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMshortMonthname",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMshortMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\DTMsetup,\\usepackage/datetime2#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMsetregional"
+    },
+    {
+      "name": "DTMsetregional",
+      "arg": {
+        "format": "[]",
+        "snippet": "DTMsetregional[${1:value%keyvals}]",
+        "keys": [
+          "\\DTMsetregional"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTMdefboolkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMdefboolkey{${1:region}}{${2:key%plain}}{${3:func}}"
+      }
+    },
+    {
+      "name": "DTMdefboolkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "DTMdefboolkey{${1:region}}{${2:key%plain}}[${4:default}]{${3:func}}"
+      }
+    },
+    {
+      "name": "DTMdefboolkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}[]{}",
+        "snippet": "DTMdefboolkey{${1:region}}{${2:key%plain}}[${5:mp}]{${3:choice list}}[${6:default}]{${4:func}}"
+      }
+    },
+    {
+      "name": "DTMdefchoicekey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "DTMdefchoicekey{${1:region}}{${2:key%plain}}{${3:choice list}}{${4:default}}{${5:func}}"
+      }
+    },
+    {
+      "name": "DTMdefchoicekey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}{}{}",
+        "snippet": "DTMdefchoicekey{${1:region}}{${2:key%plain}}[${6:bin}]{${3:choice list}}{${4:default}}{${5:func}}"
+      }
+    },
+    {
+      "name": "DTMdefkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMdefkey{${1:region}}{${2:key%plain}}{${3:func}}"
+      }
+    },
+    {
+      "name": "DTMdefkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "DTMdefkey{${1:region}}{${2:key%plain}}[${4:default}]{${3:func}}"
+      }
+    },
+    {
+      "name": "DTMifbool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "DTMifbool{${1:region}}{${2:key%plain}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "DTMifcaseregional",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMifcaseregional{${1:false}}{${2:text}}{${3:numeric}}"
+      }
+    },
+    {
+      "name": "DTMsetbool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTMsetbool{${1:region}}{${2:key%plain}}{${3:value}}"
+      }
+    },
+    {
+      "name": "DTMsetcurrentzone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMsetcurrentzone{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "DTMshowmap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTMshowmap{${1:hour offset}}{${2:minute offset}}"
+      }
+    },
+    {
+      "name": "ifDTMshowdow",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowdowtrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowdowfalse",
+      "unusual": true
+    },
+    {
+      "name": "ProvidesDateTimeModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesDateTimeModule{${1:module name}}"
+      }
+    },
+    {
+      "name": "ifDTMshowseconds",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowsecondstrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowsecondsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifDTMshowzone",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowzonetrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowzonefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifDTMshowzoneminutes",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowzoneminutestrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowzoneminutesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifDTMshowisoZ",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowisoZtrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowisoZfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifDTMshowdate",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowdatetrue",
+      "unusual": true
+    },
+    {
+      "name": "DTMshowdatefalse",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaiordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbahasaiordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMbahasaimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbahasaimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMbahasaidaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaimonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaidatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaitimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaidatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaitimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbahasaizonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasqueordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbasqueordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMbasquemonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbasquemonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMbasquedaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquemonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquedatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquetimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquedatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbasquezonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretonordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbretonordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMbretonfmtordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbretonfmtordinal{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMbretonfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbretonfmtordsuffix{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMbretonmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbretonmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMbretondaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretonmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretondatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretontimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretondatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretontimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbretonzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgarianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbulgarianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMbulgarianyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbulgarianyear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMbulgarianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbulgarianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMbulgarianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMbulgarianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMbulgariandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgarianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgariandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgariantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgariandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgariantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMbulgarianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalanordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcatalanordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMcatalanmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcatalanmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMcatalanMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcatalanMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMcatalandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalanmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcatalanzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMcroatianyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianyear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMcroatianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMcroatianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMcroatianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMcroatianWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMcroatianshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMcroatianshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMcroatianshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMcroatiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMcroatianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMczechordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMczechmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMczechmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMczechMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMczechMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMczechdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMczechzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdanishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMdanishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdanishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdanishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdanishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdanishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdanishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdanishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdanishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdanishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdanishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMdutchmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdutchMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdutchweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdutchWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdutchshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdutchshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdutchshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMdutchdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdutchzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMenglishst",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishnd",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishrd",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishth",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenglishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMenglishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMenglishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMenglishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMenglishshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMenglishshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMenglisham",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishpm",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishmidnight",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishnoon",
+      "unusual": true
+    },
+    {
+      "name": "DTMenglishampmfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenglishampmfmt{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMenglishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBtimesep ",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGBfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenGBfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenGBzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSmonthdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSdowmonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSdayyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUStimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUStimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenUSfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenUSzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSstdzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSdstzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSatlanticzonemaps ",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSeasternzonemaps ",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUScentralzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSmountainzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSpacificzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSalaskazonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUShawaiialeutianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSsamoazonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenUSchamorrozonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAmonthdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAdowmonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAdayyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenCAfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenCAzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAstdzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAdstzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAnewfoundlandzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAatlanticzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAeasternzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAcentralzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCAmountainzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenCApacificzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenAUfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenAUzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUstdzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUdstzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUcentralzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUcentralwesternzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUwesternzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUeasternzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUchrismaszonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUlordhowezonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUnorfolkzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenAUcocoszonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenNZfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenNZfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenNZzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenGGfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenGGfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenGGzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenJEfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenJEfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenJEzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIMfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenIMfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenIMzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenMTfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenMTfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenMTzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMenIEfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMenIEfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMenIEzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantoordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMesperantoordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMesperantomonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMesperantomonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMesperantoMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMesperantoMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMesperantodaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantomonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantodatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantotimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantodatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantotimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMesperantozonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMestonianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMestonianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMestonianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMestonianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMestonianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMestonianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMestoniandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestonianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestoniandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestoniantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestoniandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestoniantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMestonianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMfinnishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfinnishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfinnishshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfinnishshortMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishshortMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfinnishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfinnishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfinnishshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfinnishshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfinnishshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfinnishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfinnishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMfrenchmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfrenchMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfrenchmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfrenchMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMfrenchweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfrenchWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfrenchshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfrenchshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMfrenchshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMfrenchmidnight",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchnoon",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchtimesymsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchhoursym",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMfrenchzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMgalicianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMgalicianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgalicianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgalicianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgalicianWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgalicianshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgalicianshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgalicianshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgaliciandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgalicianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgaliciandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgaliciantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgaliciandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgaliciantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgalicianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermanordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMgermanweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgermanWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgermanshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgermanshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMgermanzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermanmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdeATmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdeATmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgermanshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgermanshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdeATshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdeATshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMdeCHshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMdeCHshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgermandowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermanmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgermantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeDEtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeATtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMdeCHtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreekordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgreekordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMgreekmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgreekmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgreekMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMgreekMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMgreekdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreekmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreekdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreektimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreekdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreektimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMgreekzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewdate",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMhebrewzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandicordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMicelandicordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMicelandicmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMicelandicmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMicelandicMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMicelandicMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMicelandicdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandicmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandicdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandictimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandicdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandictimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMicelandiczonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMirishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMirishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMirishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMirishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMirishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMirishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMirishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMitalianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMitalianshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMitalianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMitalianshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMitaliandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitaliandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitaliantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitaliandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitaliantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianam",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianpm",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianmidnight",
+      "unusual": true
+    },
+    {
+      "name": "DTMitaliannoon",
+      "unusual": true
+    },
+    {
+      "name": "DTMitalianampmfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMitalianampmfmt{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMitalianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatindatefont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlatindatefont{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMlatinordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlatinordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMlatinyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlatinyear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMlatinmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlatinmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlatindaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatinmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatindatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatintimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatindatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatintimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlatinzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMlsorbiannewmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbiannewmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbiannewMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbiannewMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbianoldmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbianoldmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbianoldMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbianoldMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMlsorbianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMlsorbiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMlsorbianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyarordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmagyarordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMmagyaryear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmagyaryear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMmagyarmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmagyarmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMmagyarMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMmagyarMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMmagyardaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyarmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyardatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyartimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyardatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyartimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMmagyarzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorskordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMnorskordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMnorskmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMnorskmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMnorskMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMnorskMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMnorskweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMnorskweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMnorskWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMnorskWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMnorskdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorskmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorskdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorsktimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorskdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorsktimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMnorskzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMpolishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMpolishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMpolishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMpolishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMpolishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMpolishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMpolishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMpolishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMpolishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMpolishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMpolishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugesordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMportugesordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMportugesmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMportugesmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMportugesweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMportugesweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMportugesWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMportugesWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMportugesdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugesmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugesdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugestimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugesdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugestimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMportugeszonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMromanianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMromanianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMromanianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMromanianshortmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianshortmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMromanianshortMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianshortMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMromanianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMromanianWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMromanianshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMromanianshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMromanianshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMromaniandowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromaniandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromanianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromaniandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromaniantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromaniandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromaniantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMromanianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMrussianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMrussianyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMrussianyear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMrussianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMrussianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMrussianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMrussianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMrussiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMrussianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMsaminordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsaminordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsaminmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsaminmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsaminMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsaminMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsamindaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsaminmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsamindatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsamintimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsamindatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsamintimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsaminzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMscottishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMscottishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMscottishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMscottishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMscottishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMscottishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMscottishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbiancdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbianciMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianciMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbiancmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianctimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbianctimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiancweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrekweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrekweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrekWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrekWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrijweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrijweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrijWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrijWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyriMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyriMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiancyrnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiancyrnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianczonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiandayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiandayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbiandowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbianimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatekweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatekweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatekWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatekWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatijweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatijweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatijWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatijWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianlatnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianlatnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiannoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiannoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbiannoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbiannoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMserbianordinalROMAN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianordinalROMAN{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbianordinalroman",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianordinalroman{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMserbiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMserbianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMserbianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMserbianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlBAtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlBAweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlBAweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrldatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrldatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrldaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrldayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrldayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrldowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrliMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrliMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlMEtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlMEweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlMEweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRSnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrlRStimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRStimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlRSweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlRSweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrCyrltimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrltimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrCyrlweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrCyrlweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnBAtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnBAweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnBAweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrLatndatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatndatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatndaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatndayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatndayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatndowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatniMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatniMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnMEtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnMEweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnMEweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSdayordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSdayordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSdowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSmonthordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSmonthordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSnoiMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSnoiMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRSnoimonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSnoimonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsrLatnRStimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRStimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnRSweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnRSweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMsrLatntimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatntimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMsrLatnweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsrLatnweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMslovakordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMslovakordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMslovakmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMslovakmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMslovakMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMslovakMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMslovakdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovakmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovakdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovaktimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovakdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovaktimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovakzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMsloveneordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsloveneordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMslovenemonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMslovenemonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMsloveneMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMsloveneMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMslovenedaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenemonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenedatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenetimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenedatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMslovenezonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMspanishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMspanishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMspanishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMspanishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMspanishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMspanishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMspanishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMspanishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMspanishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMspanishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMspanishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMswedishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMswedishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMswedishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMswedishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMswedishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMswedishweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMswedishweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMswedishWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMswedishWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMswedishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMswedishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMturkishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMturkishmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMturkishmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMturkishMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMturkishMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMturkishdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMturkishzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMukrainianyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianyear{${1:year}}"
+      }
+    },
+    {
+      "name": "DTMukrainiannominativemonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainiannominativemonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainiannominativeMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainiannominativeMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainiannominativeMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainiannominativeMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainiangenitiveMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainiangenitiveMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainiangenitiveMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainiangenitiveMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainianshortMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianshortMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainianweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMukrainianWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMukrainianshortweekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianshortweekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMukrainianshortWeekdayname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianshortWeekdayname{${1:day}}"
+      }
+    },
+    {
+      "name": "DTMukrainianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMukrainianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMukrainiandowdaysep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMukrainianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbianordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusorbianordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMusorbiannewmonthname"
+    },
+    {
+      "name": "DTMusorbiannewMonthname"
+    },
+    {
+      "name": "DTMusorbianoldmonthname"
+    },
+    {
+      "name": "DTMusorbianoldMonthname"
+    },
+    {
+      "name": "DTMusorbianmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusorbianmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMusorbianMonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMusorbianMonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMusorbiandaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbianmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbiandatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbiantimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbiandatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbiantimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMusorbianzonemaps",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMwelshordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "DTMwelshfmtordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMwelshfmtordinal{${1:text}}"
+      }
+    },
+    {
+      "name": "DTMwelshmonthname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMwelshmonthname{${1:month}}"
+      }
+    },
+    {
+      "name": "DTMwelshfmtordsuffix",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTMwelshfmtordsuffix{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DTMwelshdaymonthsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshmonthyearsep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshdatetimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshtimezonesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshdatesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshtimesep",
+      "unusual": true
+    },
+    {
+      "name": "DTMwelshzonemaps",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DTMsetdatestyle#c,\\DTMsettimestyle#c,\\DTMsetzonestyle#c,\\DTMsetstyle#c": [
+      "default",
+      "iso",
+      "yyyymd",
+      "ddmmyyyy",
+      "dmyyyy",
+      "dmyy",
+      "ddmmyy",
+      "mmddyyyy",
+      "mmddyy",
+      "mdyyyy",
+      "mdyy",
+      "pdf",
+      "bahasai",
+      "bahasai-numeric",
+      "basque",
+      "basque-numeric",
+      "breton",
+      "breton-numeric",
+      "bulgarian",
+      "bulgarian-numeric",
+      "catalan",
+      "catalan-numeric",
+      "croatian",
+      "croatian-numeric",
+      "czech",
+      "czech-numeric",
+      "danish",
+      "danish-numeric",
+      "dutch",
+      "dutch-numeric",
+      "english",
+      "en-GB",
+      "en-GB-numeric",
+      "en-US",
+      "en-US-numeric",
+      "en-CA",
+      "en-CA-numeric",
+      "en-AU",
+      "en-AU-numeric",
+      "en-NZ",
+      "en-NZ-numeric",
+      "en-GG",
+      "en-GG-numeric",
+      "en-JE",
+      "en-JE-numeric",
+      "en-IM",
+      "en-IM-numeric",
+      "en-MT",
+      "en-MT-numeric",
+      "en-IE",
+      "en-IE-numeric",
+      "esperanto",
+      "esperanto-numeric",
+      "estonian",
+      "estonian-numeric",
+      "finnish",
+      "finnish-numeric",
+      "french",
+      "french-numeric",
+      "galician",
+      "galician-numeric",
+      "german",
+      "german-numeric",
+      "de-DE",
+      "de-DE-numeric",
+      "de-AT",
+      "de-AT-numeric",
+      "de-CH",
+      "de-CH-numeric",
+      "greek",
+      "greek-numeric",
+      "hebrew",
+      "hebrew-numeric",
+      "icelandic",
+      "icelandic-numeric",
+      "irish",
+      "irish-numeric",
+      "italian",
+      "italian-numeric",
+      "latin",
+      "latin-numeric",
+      "lsorbian",
+      "lsorbian-numeric",
+      "magyar",
+      "magyar-numeric",
+      "norsk",
+      "norsk-numeric",
+      "polish",
+      "polish-numeric",
+      "portuges",
+      "portuges-numeric",
+      "romanian",
+      "romanian-numeric",
+      "russian",
+      "russian-numeric",
+      "samin",
+      "samin-numeric",
+      "scottish",
+      "scottish-numeric",
+      "serbian",
+      "serbian-numeric",
+      "sr-Latn",
+      "sr-Latn-numeric",
+      "sr-Latn-RS",
+      "sr-Latn-RS-numeric",
+      "sr-Latn-ME",
+      "sr-Latn-ME-numeric",
+      "sr-Latn-BA",
+      "sr-Latn-BA-numeric",
+      "serbianc",
+      "serbianc-numeric",
+      "sr-Cyrl",
+      "sr-Cyrl-numeric",
+      "sr-Cyrl",
+      "sr-Cyrl-numeric",
+      "sr-Cyrl-RS",
+      "sr-Cyrl-RS-numeric",
+      "sr-Cyrl-ME",
+      "sr-Cyrl-ME-numeric",
+      "sr-Cyrl-BA",
+      "sr-Cyrl-BA-numeric",
+      "slovak",
+      "slovak-numeric",
+      "slovene",
+      "slovene-numeric",
+      "spanish",
+      "spanish-numeric",
+      "swedish",
+      "swedish-numeric",
+      "turkish",
+      "turkish-numeric",
+      "ukrainian",
+      "ukrainian-numeric",
+      "usorbian",
+      "usorbian-numeric",
+      "welsh",
+      "welsh-numeric"
     ],
-    [
+    "\\DTMsettimestyle#c": [
+      "hmmss"
+    ],
+    "\\DTMsetzonestyle#c": [
+      "map",
+      "hhmm"
+    ],
+    "\\DTMsetup,\\usepackage/datetime2#c": [
       "yearmonthsep=${1:separator}",
       "monthdaysep=${1:separator}",
       "dayyearsep=${1:separator}",
@@ -1728,9 +5322,45 @@
       "showzone",
       "showzoneminutes",
       "showisoZ",
-      "useregional=",
+      "useregional=${1|false,text,numeric,num|}",
       "showdow",
       "warn"
+    ],
+    "\\usepackage/datetime2#c": [
+      "style=${1:style name}",
+      "calc",
+      "${1:language}"
+    ],
+    "\\DTMsetregional": [
+      "false",
+      "text",
+      "numeric"
+    ],
+    "\\DTMlangsetup#c": [
+      "dowdaysep=${1:separator}",
+      "daymonthsep=${1:separator}",
+      "monthyearsep=${1:separator}",
+      "datesep=${1:separator}",
+      "timesep=${1:separator}",
+      "datetimesep=${1:separator}",
+      "timezonesep=${1:separator}",
+      "abbr",
+      "mapzone",
+      "ord=${1|level,raise,omit,sc|}",
+      "showdayofmonth",
+      "showyear",
+      "monthdaysep=${1:separator}",
+      "dayyearsep=${1:separator}",
+      "dowmonthsep=${1:separator}",
+      "zone=${1|std,standard,dst,daylight,atlantic,eastern,central,mountain,pacific,alaska,hawaii-aleutian,hawaii,aleutian,samoa,chamorro,clear,newfoundland,central-western,western,christmas,lord-howe,norfolk,cocos,keeling|}",
+      "pronunciation=${1|ekavian,ijekavian|}",
+      "monthi",
+      "leadingzero",
+      "monthord=${1|arabic,roman,romanlsc|}"
     ]
+  },
+  "args": [
+    "\\DTMsetup,\\usepackage/datetime2#c",
+    "\\usepackage/datetime2#c"
   ]
 }

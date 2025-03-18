@@ -1,67 +1,147 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "C": {
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
-    },
-    "C[]": {
-      "snippet": "C[${1:family}]"
-    },
-    "Cl{}": {
-      "snippet": "Cl{${1:label}}"
-    },
-    "Cl[]{}": {
-      "snippet": "Cl[${2:family}]{${1:label}}"
-    },
-    "Cr{}": {
-      "snippet": "Cr{${1:label}}"
-    },
-    "pagerefconstant{}": {
-      "snippet": "pagerefconstant{${1:label}}"
-    },
-    "resetconstant": {},
-    "resetconstant[]": {
-      "snippet": "resetconstant[${1:family}]"
-    },
-    "newconstantfamily{}{}": {
-      "snippet": "newconstantfamily{${1:family name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "renewconstantfamily{}{}": {
-      "snippet": "renewconstantfamily{${1:family name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newlabelconstant{}{{}{}{}": {
-      "snippet": "newlabelconstant{${1:label}}{{${2:number}}{${3:page}}{${4:family}}}"
-    },
-    "refconstant{}": {
-      "snippet": "refconstant{${1:label}}"
-    },
-    "familyconstant{}": {
-      "snippet": "familyconstant{${1:label}}"
-    },
-    "counterconstant{}": {
-      "snippet": "counterconstant{${1:label}}"
-    },
-    "refstepcounterconstant{}": {
-      "snippet": "refstepcounterconstant{${1:counter}}"
-    },
-    "labelconstant{}{}": {
-      "snippet": "labelconstant{${1:label}}{${2:family}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "C"
+    },
+    {
+      "name": "C",
+      "arg": {
+        "format": "[]",
+        "snippet": "C[${1:family}]"
+      }
+    },
+    {
+      "name": "Cl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cl{${1:label%specialDef}}"
+      }
+    },
+    {
+      "name": "Cl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Cl[${2:family}]{${1:label}}"
+      }
+    },
+    {
+      "name": "Cr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cr{${1:label%keyvals}}",
+        "keys": [
+          "\\Cr#c,\\pagerefconstant#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pagerefconstant",
+      "arg": {
+        "format": "{}",
+        "snippet": "pagerefconstant{${1:label%keyvals}}",
+        "keys": [
+          "\\Cr#c,\\pagerefconstant#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetconstant"
+    },
+    {
+      "name": "resetconstant",
+      "arg": {
+        "format": "[]",
+        "snippet": "resetconstant[${1:family}]"
+      }
+    },
+    {
+      "name": "newconstantfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newconstantfamily{${1:family name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newconstantfamily,\\renewconstantfamily"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewconstantfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewconstantfamily{${1:family name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\newconstantfamily,\\renewconstantfamily"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newlabelconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{{}{}{}}",
+        "snippet": "newlabelconstant{${1:label}}{{${2:number}}{${3:page}}{${4:family}}}"
+      }
+    },
+    {
+      "name": "refconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "refconstant{${1:label}}"
+      }
+    },
+    {
+      "name": "familyconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "familyconstant{${1:label}}"
+      }
+    },
+    {
+      "name": "counterconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "counterconstant{${1:label}}"
+      }
+    },
+    {
+      "name": "refstepcounterconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "refstepcounterconstant{${1:counter}}"
+      }
+    },
+    {
+      "name": "labelconstant",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "labelconstant{${1:label}}{${2:family}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Cr#c,\\pagerefconstant#c": [
+      "%constantslabel"
+    ],
+    "\\newconstantfamily,\\renewconstantfamily": [
       "format=${1:font command}",
       "symbol=${1:symbol}",
       "reset=${1:counter}"
     ]
-  ]
+  },
+  "args": []
 }

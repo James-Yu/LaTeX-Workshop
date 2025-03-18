@@ -1,36 +1,71 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "Input{}": {
-      "snippet": "Input{${1:file}}"
-    },
-    "MainFile": {},
-    "srcIncludeHook{}": {
-      "snippet": "srcIncludeHook{${1:file}}"
-    },
-    "CurrentInput": {},
-    "srcInputHook{}": {
-      "snippet": "srcInputHook{${1:file}}"
-    },
-    "ifSRCOK": {},
-    "SRCOKtrue": {},
-    "SRCOKfalse": {},
-    "WinEdt{}": {
-      "snippet": "WinEdt{${1:arg}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "active",
-    "inactive",
-    "nowinedt",
-    "dviwin",
-    "debug",
-    "nopar",
-    "nomath",
-    "nodisplay"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Input",
+      "arg": {
+        "format": "{}",
+        "snippet": "Input{${1:file}}"
+      }
+    },
+    {
+      "name": "MainFile"
+    },
+    {
+      "name": "srcIncludeHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "srcIncludeHook{${1:file}}"
+      }
+    },
+    {
+      "name": "CurrentInput",
+      "unusual": true
+    },
+    {
+      "name": "srcInputHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "srcInputHook{${1:file}}"
+      }
+    },
+    {
+      "name": "ifSRCOK",
+      "unusual": true
+    },
+    {
+      "name": "SRCOKtrue"
+    },
+    {
+      "name": "SRCOKfalse"
+    },
+    {
+      "name": "WinEdt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "WinEdt{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/srcltx#c": [
+      "active",
+      "inactive",
+      "nowinedt",
+      "dviwin",
+      "debug",
+      "nopar",
+      "nomath",
+      "nodisplay"
+    ]
+  },
+  "args": [
+    "\\usepackage/srcltx#c"
+  ]
 }

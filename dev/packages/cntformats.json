@@ -1,92 +1,231 @@
 {
-  "includes": {
-    "cnltx-base": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "AddCounterPattern{}{}": {
-      "snippet": "AddCounterPattern{${1:counter}}{${2:pattern}}"
+  "deps": [
+    {
+      "name": "cnltx-base"
     },
-    "AddCounterPattern[]{}{}": {
-      "snippet": "AddCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "AddCounterPattern*{}{}": {
-      "snippet": "AddCounterPattern*{${1:counter}}{${2:pattern}}"
-    },
-    "AddCounterPattern*[]{}{}": {
-      "snippet": "AddCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "NewCounterPattern{}{}": {
-      "snippet": "NewCounterPattern{${1:counter}}{${2:pattern}}"
-    },
-    "NewCounterPattern[]{}{}": {
-      "snippet": "NewCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "NewCounterPattern*{}{}": {
-      "snippet": "NewCounterPattern*{${1:counter}}{${2:pattern}}"
-    },
-    "NewCounterPattern*[]{}{}": {
-      "snippet": "NewCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "RenewCounterPattern{}{}": {
-      "snippet": "RenewCounterPattern{${1:counter}}{${2:pattern}}"
-    },
-    "RenewCounterPattern[]{}{}": {
-      "snippet": "RenewCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "RenewCounterPattern*{}{}": {
-      "snippet": "RenewCounterPattern*{${1:counter}}{${2:pattern}}"
-    },
-    "RenewCounterPattern*[]{}{}": {
-      "snippet": "RenewCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
-    },
-    "ReadCounterFrom{}{}": {
-      "snippet": "ReadCounterFrom{${1:counter}}{${2:internal cmd}}"
-    },
-    "ReadCounterFrom[]{}{}": {
-      "snippet": "ReadCounterFrom[${3:module}]{${1:counter}}{${2:internal cmd}}"
-    },
-    "ReadCounterPattern{}": {
-      "snippet": "ReadCounterPattern{${1:pattern}}"
-    },
-    "ReadCounterPattern[]{}": {
-      "snippet": "ReadCounterPattern[${2:module}]{${1:pattern}}"
-    },
-    "ReadCounterPatternFrom{}": {
-      "snippet": "ReadCounterPatternFrom{${1:pattern macro}}"
-    },
-    "ReadCounterPatternFrom[]{}": {
-      "snippet": "ReadCounterPatternFrom[${2:module}]{${1:pattern macro}}"
-    },
-    "SaveCounterPattern{}{}{}": {
-      "snippet": "SaveCounterPattern{${1:cmd a}}{${2:cmd b}}{${3:pattern}}"
-    },
-    "SaveCounterPattern[]{}{}{}": {
-      "snippet": "SaveCounterPattern[${4:module}]{${1:cmd a}}{${2:cmd b}}{${3:pattern}}"
-    },
-    "eSaveCounterPattern{}{}{}": {
-      "snippet": "eSaveCounterPattern{${1:cmd a}}{${2:cmd b}}{${3:pattern}}"
-    },
-    "eSaveCounterPattern[]{}{}{}": {
-      "snippet": "eSaveCounterPattern[${4:module}]{${1:cmd a}}{${2:cmd b}}{${3:pattern}}"
-    },
-    "SaveCounterPatternFrom{}{}{}": {
-      "snippet": "SaveCounterPatternFrom{${1:cmd a}}{${2:cmd b}}{${3:pattern macro}}"
-    },
-    "SaveCounterPatternFrom[]{}{}{}": {
-      "snippet": "SaveCounterPatternFrom[${4:module}]{${1:cmd a}}{${2:cmd b}}{${3:pattern macro}}"
-    },
-    "eSaveCounterPatternFrom{}{}{}": {
-      "snippet": "eSaveCounterPatternFrom{${1:cmd a}}{${2:cmd b}}{${3:pattern macro}}"
-    },
-    "eSaveCounterPatternFrom[]{}{}{}": {
-      "snippet": "eSaveCounterPatternFrom[${4:module}]{${1:cmd a}}{${2:cmd b}}{${3:pattern macro}}"
-    },
-    "NewPatternFormat{}{}": {
-      "snippet": "NewPatternFormat{${1:pattern}}{${2:format}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "AddCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddCounterPattern{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "AddCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "AddCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "AddCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddCounterPattern*{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "AddCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "AddCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "NewCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewCounterPattern{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "NewCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "NewCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "NewCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewCounterPattern*{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "NewCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "NewCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "RenewCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewCounterPattern{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "RenewCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "RenewCounterPattern[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "RenewCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RenewCounterPattern*{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "RenewCounterPattern*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "RenewCounterPattern*[${3:module}]{${1:counter}}{${2:pattern}}"
+      }
+    },
+    {
+      "name": "ReadCounterFrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ReadCounterFrom{${1:counter}}{${2:internal cmd}}"
+      }
+    },
+    {
+      "name": "ReadCounterFrom",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ReadCounterFrom[${3:module}]{${1:counter}}{${2:internal cmd}}"
+      }
+    },
+    {
+      "name": "ReadCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ReadCounterPattern{${1:pattern}}"
+      }
+    },
+    {
+      "name": "ReadCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ReadCounterPattern[${2:module}]{${1:pattern}}"
+      }
+    },
+    {
+      "name": "ReadCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ReadCounterPatternFrom{${1:pattern macro}}"
+      }
+    },
+    {
+      "name": "ReadCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ReadCounterPatternFrom[${2:module}]{${1:pattern macro}}"
+      }
+    },
+    {
+      "name": "SaveCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SaveCounterPattern{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern}}"
+      }
+    },
+    {
+      "name": "SaveCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "SaveCounterPattern[${4:module}]{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern}}"
+      }
+    },
+    {
+      "name": "eSaveCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "eSaveCounterPattern{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern}}"
+      }
+    },
+    {
+      "name": "eSaveCounterPattern",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "eSaveCounterPattern[${4:module}]{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern}}"
+      }
+    },
+    {
+      "name": "SaveCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SaveCounterPatternFrom{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern macro}}"
+      }
+    },
+    {
+      "name": "SaveCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "SaveCounterPatternFrom[${4:module}]{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern macro}}"
+      }
+    },
+    {
+      "name": "eSaveCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "eSaveCounterPatternFrom{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern macro}}"
+      }
+    },
+    {
+      "name": "eSaveCounterPatternFrom",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "eSaveCounterPatternFrom[${4:module}]{${1:cmd a%cmd}}{${2:cmd b%cmd}}{${3:pattern macro}}"
+      }
+    },
+    {
+      "name": "NewPatternFormat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewPatternFormat{${1:pattern}}{${2:format}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

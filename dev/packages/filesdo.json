@@ -1,16 +1,26 @@
 {
-  "includes": {
-    "commado": []
-  },
-  "macros": {
-    "DoWithExtBases{}{}{}": {
-      "snippet": "DoWithExtBases{${1:cmd}}{${2:ext}}{${3:basenames}}"
-    },
-    "DoWithBasesExts{}{}{}": {
-      "snippet": "DoWithBasesExts{${1:cmd}}{${2:basenames}}{${3:exts}}"
+  "deps": [
+    {
+      "name": "commado"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "DoWithExtBases",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DoWithExtBases{${1:cmd}}{${2:ext}}{${3:basenames}}"
+      }
+    },
+    {
+      "name": "DoWithBasesExts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DoWithBasesExts{${1:cmd}}{${2:basenames}}{${3:exts}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

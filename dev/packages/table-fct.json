@@ -1,93 +1,254 @@
 {
-  "includes": {
-    "xcolor": [],
-    "graphicx": [],
-    "pstricks": [],
-    "pstricks-add": [],
-    "xifthen": [],
-    "environ": [],
-    "xkeyval": [],
-    "xargs": [],
-    "colortbl": []
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pstricks-add"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xargs"
+    },
+    {
+      "name": "colortbl"
+    }
+  ],
+  "macros": [
+    {
+      "name": "colX",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "colX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "colND",
+      "arg": {
+        "format": "{}",
+        "snippet": "colND{${1:arg}}"
+      }
+    },
+    {
+      "name": "colNDV",
+      "arg": {
+        "format": "{}",
+        "snippet": "colNDV{${1:arg}}"
+      }
+    },
+    {
+      "name": "colV"
+    },
+    {
+      "name": "colC"
+    },
+    {
+      "name": "colD"
+    },
+    {
+      "name": "colCvx"
+    },
+    {
+      "name": "colCcv"
+    },
+    {
+      "name": "colIflx",
+      "arg": {
+        "format": "{}",
+        "snippet": "colIflx{${1:arg}}"
+      }
+    },
+    {
+      "name": "collX",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "collX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "collX",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "collX[${4:\\Zro}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "Zro",
+      "unusual": true
+    },
+    {
+      "name": "collNd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "collNd{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "collNdv",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "collNdv{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "collND",
+      "arg": {
+        "format": "{}",
+        "snippet": "collND{${1:arg}}"
+      }
+    },
+    {
+      "name": "collNDV",
+      "arg": {
+        "format": "{}",
+        "snippet": "collNDV{${1:arg}}"
+      }
+    },
+    {
+      "name": "collV"
+    },
+    {
+      "name": "collC"
+    },
+    {
+      "name": "collD"
+    },
+    {
+      "name": "collCvx"
+    },
+    {
+      "name": "collCcv"
+    },
+    {
+      "name": "collIflx",
+      "arg": {
+        "format": "{}",
+        "snippet": "collIflx{${1:arg}}"
+      }
+    },
+    {
+      "name": "collCz",
+      "arg": {
+        "format": "{}",
+        "snippet": "collCz{${1:arg}}"
+      }
+    },
+    {
+      "name": "collDz",
+      "arg": {
+        "format": "{}",
+        "snippet": "collDz{${1:arg}}"
+      }
+    },
+    {
+      "name": "collCvxz",
+      "arg": {
+        "format": "{}",
+        "snippet": "collCvxz{${1:arg}}"
+      }
+    },
+    {
+      "name": "collCcvz",
+      "arg": {
+        "format": "{}",
+        "snippet": "collCcvz{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcolor",
+      "unusual": true
+    },
+    {
+      "name": "Pos",
+      "unusual": true
+    },
+    {
+      "name": "Scal",
+      "unusual": true
+    },
+    {
+      "name": "TTpos",
+      "unusual": true
+    },
+    {
+      "name": "Tpos",
+      "unusual": true
+    },
+    {
+      "name": "Xunit",
+      "unusual": true
+    },
+    {
+      "name": "Yunit",
+      "unusual": true
+    },
+    {
+      "name": "Zro",
+      "unusual": true
+    },
+    {
+      "name": "colF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "colF{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "collF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "collF{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "linF",
+      "unusual": true
+    },
+    {
+      "name": "linM",
+      "unusual": true
+    },
+    {
+      "name": "linS",
+      "unusual": true
+    },
+    {
+      "name": "linnF",
+      "unusual": true
+    },
+    {
+      "name": "linnM",
+      "unusual": true
+    },
+    {
+      "name": "linnS",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{table-type1},\\begin{table-type2}": [
+      "Xunit=",
+      "Yunit=",
+      "Scal=${1:factor}",
+      "Bcolor="
+    ]
   },
-  "macros": {
-    "colX{}{}{}": {
-      "snippet": "colX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "colND{}": {
-      "snippet": "colND{${1:arg}}"
-    },
-    "colNDV{}": {
-      "snippet": "colNDV{${1:arg}}"
-    },
-    "colV": {},
-    "colC": {},
-    "colD": {},
-    "colCvx": {},
-    "colCcv": {},
-    "colIflx{}": {
-      "snippet": "colIflx{${1:arg}}"
-    },
-    "collX{}{}{}": {
-      "snippet": "collX{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "collX[]{}{}{}": {
-      "snippet": "collX[${4:\\Zro}]{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "Zro": {},
-    "collNd{}{}{}": {
-      "snippet": "collNd{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "collNdv{}{}{}": {
-      "snippet": "collNdv{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "collND{}": {
-      "snippet": "collND{${1:arg}}"
-    },
-    "collNDV{}": {
-      "snippet": "collNDV{${1:arg}}"
-    },
-    "collV": {},
-    "collC": {},
-    "collD": {},
-    "collCvx": {},
-    "collCcv": {},
-    "collIflx{}": {
-      "snippet": "collIflx{${1:arg}}"
-    },
-    "collCz{}": {
-      "snippet": "collCz{${1:arg}}"
-    },
-    "collDz{}": {
-      "snippet": "collDz{${1:arg}}"
-    },
-    "collCvxz{}": {
-      "snippet": "collCvxz{${1:arg}}"
-    },
-    "collCcvz{}": {
-      "snippet": "collCcvz{${1:arg}}"
-    },
-    "Bcolor": {},
-    "Pos": {},
-    "Scal": {},
-    "TTpos": {},
-    "Tpos": {},
-    "Xunit": {},
-    "Yunit": {},
-    "colF{}{}": {
-      "snippet": "colF{${1:arg1}}{${2:arg2}}"
-    },
-    "collF{}{}{}": {
-      "snippet": "collF{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "linF": {},
-    "linM": {},
-    "linS": {},
-    "linnF": {},
-    "linnM": {},
-    "linnS": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

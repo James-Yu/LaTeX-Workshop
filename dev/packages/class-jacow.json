@@ -1,117 +1,268 @@
 {
-  "includes": {
-    "fix-cm": [],
-    "flushend": [],
-    "etoolbox": [],
-    "iftex": [],
-    "textcase": [],
-    "siunitx": [],
-    "graphicx": [],
-    "booktabs": [],
-    "caption": [],
-    "xcolor": [],
-    "amsmath": [],
-    "csquotes": [],
-    "geometry": [],
-    "footmisc": [],
-    "url": [],
-    "newtxtt": [],
-    "fontenc": [],
-    "lmodern": [],
-    "tgtermes": [],
-    "newtxmath": [],
-    "microtype": [],
-    "enumitem": [],
-    "cite": [],
-    "biblatex": [
-      "biblatex"
+  "deps": [
+    {
+      "name": "fix-cm"
+    },
+    {
+      "name": "flushend"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "siunitx"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "newtxtt"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "tgtermes"
+    },
+    {
+      "name": "newtxmath"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "cite"
+    },
+    {
+      "name": "biblatex",
+      "if": "biblatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mkpagegrouped",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkpagegrouped{${1:text}}"
+      }
+    },
+    {
+      "name": "mkonepagegrouped",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mkonepagegrouped{${1:text}}"
+      }
+    },
+    {
+      "name": "titleblockheight",
+      "unusual": true
+    },
+    {
+      "name": "titleblockstartskip",
+      "unusual": true
+    },
+    {
+      "name": "titleblockmiddleskip",
+      "unusual": true
+    },
+    {
+      "name": "titleblockendskip",
+      "unusual": true
+    },
+    {
+      "name": "copyrightspace"
+    },
+    {
+      "name": "copyrightspace",
+      "arg": {
+        "format": "[]",
+        "snippet": "copyrightspace[${1:length}]"
+      }
+    },
+    {
+      "name": "ifjacowbiblatex",
+      "unusual": true
+    },
+    {
+      "name": "jacowbiblatextrue",
+      "unusual": true
+    },
+    {
+      "name": "jacowbiblatexfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifjacowrefpage",
+      "unusual": true
+    },
+    {
+      "name": "jacowrefpagetrue",
+      "unusual": true
+    },
+    {
+      "name": "jacowrefpagefalse",
+      "unusual": true
+    },
+    {
+      "name": "urlZDtxt",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "Enumerate"
+    },
+    {
+      "name": "Itemize"
+    },
+    {
+      "name": "Description"
+    }
+  ],
+  "keys": {
+    "\\documentclass/jacow#c": [
+      "acus",
+      "aca4",
+      "boxit",
+      "biblatex",
+      "refpage",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
     ]
   },
-  "macros": {
-    "mkpagegrouped{}": {
-      "snippet": "mkpagegrouped{${1:text}}",
-      "option": "biblatex"
-    },
-    "mkonepagegrouped{}": {
-      "snippet": "mkonepagegrouped{${1:text}}",
-      "option": "biblatex"
-    },
-    "titleblockheight": {},
-    "titleblockstartskip": {},
-    "titleblockmiddleskip": {},
-    "titleblockendskip": {},
-    "copyrightspace": {},
-    "copyrightspace[]": {
-      "snippet": "copyrightspace[${1:length}]"
-    },
-    "fileversion": {},
-    "filedate": {},
-    "docdate": {},
-    "ifjacowbiblatex": {},
-    "jacowbiblatextrue": {},
-    "jacowbiblatexfalse": {},
-    "ifjacowrefpage": {},
-    "jacowrefpagetrue": {},
-    "jacowrefpagefalse": {},
-    "urlZDtxt": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "Enumerate": {},
-    "Itemize": {},
-    "Description": {}
-  },
-  "options": [
-    "acus",
-    "aca4",
-    "boxit",
-    "biblatex",
-    "refpage",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/jacow#c"
+  ]
 }

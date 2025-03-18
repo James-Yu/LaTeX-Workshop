@@ -1,149 +1,356 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "etoolbox": [],
-    "fancyhdr": [],
-    "fancybox": [],
-    "ifthen": [],
-    "lastpage": [],
-    "listings": [],
-    "appendix": [],
-    "paralist": [],
-    "amsthm": [],
-    "amsfonts": [],
-    "amsmath": [],
-    "bm": [],
-    "amssymb": [],
-    "mathrsfs": [],
-    "latexsym": [],
-    "longtable": [],
-    "multirow": [],
-    "hhline": [],
-    "tabularx": [],
-    "array": [],
-    "flafter": [],
-    "pifont": [],
-    "calc": [],
-    "colortbl": [],
-    "booktabs": [],
-    "geometry": [],
-    "fontenc": [],
-    "berasans": [],
-    "hyperref": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "environ": [],
-    "graphicx": [],
-    "epstopdf": [],
-    "xcolor": []
-  },
-  "macros": {
-    "mcmsetup{}": {
-      "snippet": "mcmsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "dif": {},
-    "headset": {},
-    "keywordsname": {},
-    "lhaddress{}": {
-      "snippet": "lhaddress{${1:address}}"
+    {
+      "name": "etoolbox"
     },
-    "lstbasicfont": {},
-    "makesheet": {},
-    "MCMversion": {},
-    "me": {},
-    "memodate{}": {
-      "snippet": "memodate{${1:date}}"
+    {
+      "name": "fancyhdr"
     },
-    "memofrom{}": {
-      "snippet": "memofrom{${1:name}}"
+    {
+      "name": "fancybox"
     },
-    "memologo{}": {
-      "snippet": "memologo{${1:logo code}}"
+    {
+      "name": "ifthen"
     },
-    "memosubject{}": {
-      "snippet": "memosubject{${1:subject}}"
+    {
+      "name": "lastpage"
     },
-    "memoto{}": {
-      "snippet": "memoto{${1:name}}"
+    {
+      "name": "listings"
     },
-    "mi": {},
-    "team": {},
-    "problem{}": {
-      "snippet": "problem{${1:question}}"
+    {
+      "name": "appendix"
     },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "paralist"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "amsthm"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "Corollary": {},
-    "Corollary[]": {
-      "name": "Corollary",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "amsfonts"
     },
-    "Definition": {},
-    "Definition[]": {
-      "name": "Definition",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "amsmath"
     },
-    "Example": {},
-    "Example[]": {
-      "name": "Example",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "bm"
     },
-    "Lemma": {},
-    "Lemma[]": {
-      "name": "Lemma",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "amssymb"
     },
-    "letter{}": {
-      "name": "letter",
-      "snippet": "{${1:salutation}}"
+    {
+      "name": "mathrsfs"
     },
-    "keywords": {},
-    "memo": {},
-    "memo[]": {
-      "name": "memo",
-      "snippet": "[${1:title}]"
+    {
+      "name": "latexsym"
     },
-    "Proposition": {},
-    "Proposition[]": {
-      "name": "Proposition",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "longtable"
     },
-    "Theorem": {},
-    "Theorem[]": {
-      "name": "Theorem",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "hhline"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "flafter"
+    },
+    {
+      "name": "pifont"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "berasans"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "epstopdf"
+    },
+    {
+      "name": "xcolor"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "mcmsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "mcmsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\mcmsetup,\\documentclass/mcmthesis#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dif"
+    },
+    {
+      "name": "headset",
+      "unusual": true
+    },
+    {
+      "name": "keywordsname",
+      "unusual": true
+    },
+    {
+      "name": "lhaddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lhaddress{${1:address%text}}"
+      }
+    },
+    {
+      "name": "lstbasicfont",
+      "unusual": true
+    },
+    {
+      "name": "makesheet",
+      "unusual": true
+    },
+    {
+      "name": "me"
+    },
+    {
+      "name": "memodate",
+      "arg": {
+        "format": "{}",
+        "snippet": "memodate{${1:date}}"
+      }
+    },
+    {
+      "name": "memofrom",
+      "arg": {
+        "format": "{}",
+        "snippet": "memofrom{${1:name}}"
+      }
+    },
+    {
+      "name": "memologo",
+      "arg": {
+        "format": "{}",
+        "snippet": "memologo{${1:logo code}}"
+      }
+    },
+    {
+      "name": "memosubject",
+      "arg": {
+        "format": "{}",
+        "snippet": "memosubject{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "memoto",
+      "arg": {
+        "format": "{}",
+        "snippet": "memoto{${1:name}}"
+      }
+    },
+    {
+      "name": "mi"
+    },
+    {
+      "name": "team",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "Corollary"
+    },
+    {
+      "name": "Corollary",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Definition"
+    },
+    {
+      "name": "Definition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Example"
+    },
+    {
+      "name": "Example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Lemma"
+    },
+    {
+      "name": "Lemma",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:salutation%text}}"
+      }
+    },
+    {
+      "name": "keywords"
+    },
+    {
+      "name": "memo"
+    },
+    {
+      "name": "memo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "Proposition"
+    },
+    {
+      "name": "Proposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "Theorem"
+    },
+    {
+      "name": "Theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\mcmsetup,\\documentclass/mcmthesis#c": [
       "CTeX",
       "titlepage",
       "abstract",
@@ -153,5 +360,8 @@
       "tcn=${1:team control number}",
       "problem=${1:question}"
     ]
+  },
+  "args": [
+    "\\mcmsetup,\\documentclass/mcmthesis#c"
   ]
 }

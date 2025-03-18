@@ -1,57 +1,127 @@
 {
-  "includes": {
-    "environ": [],
-    "macroswap": [],
-    "ifthen": [],
-    "lcg": [],
-    "silence": []
-  },
-  "macros": {
-    "thegentryctr": {},
-    "gentryidx": {},
-    "gentrycode": {},
-    "gentryidxu": {},
-    "gentryidxs": {},
-    "gentrytitle": {},
-    "nextidx": {},
-    "thegentries": {},
-    "gentrycount": {},
-    "gentryheader{}{}{}{}": {
-      "snippet": "gentryheader{${1:counterIdx}}{${2:fixedIdx}}{${3:code}}{${4:title}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "gentryshouldoutput": {},
-    "gentryfooter": {},
-    "thefncounter": {},
-    "outputfootnotes{}": {
-      "snippet": "outputfootnotes{${1:maxIdx}}"
+    {
+      "name": "macroswap"
     },
-    "noentryfoot": {}
-  },
-  "envs": {
-    "gentry{}": {
-      "name": "gentry",
-      "snippet": "{${1:entrylabel}}"
+    {
+      "name": "ifthen"
     },
-    "gentry[]{}": {
-      "name": "gentry",
-      "snippet": "[${2:index}]{${1:entrylabel}}"
+    {
+      "name": "lcg"
     },
-    "gentry[]{}[]": {
-      "name": "gentry",
-      "snippet": "[${2:index}]{${1:entrylabel}}[${3:title}]"
+    {
+      "name": "silence"
     }
-  },
-  "options": [
-    "verbose",
-    "endpage",
-    "jukebox",
-    "footnote",
-    "noshuffle",
-    "counter=${1:counter}",
-    "first=${1:integer}",
-    "last=${1:integer}",
-    "seed=${1:integer}",
-    "quiet"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "thegentryctr",
+      "unusual": true
+    },
+    {
+      "name": "gentryidx",
+      "unusual": true
+    },
+    {
+      "name": "gentrycode",
+      "unusual": true
+    },
+    {
+      "name": "gentryidxu",
+      "unusual": true
+    },
+    {
+      "name": "gentryidxs",
+      "unusual": true
+    },
+    {
+      "name": "gentrytitle",
+      "unusual": true
+    },
+    {
+      "name": "nextidx",
+      "unusual": true
+    },
+    {
+      "name": "thegentries"
+    },
+    {
+      "name": "gentrycount",
+      "unusual": true
+    },
+    {
+      "name": "gentryheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "gentryheader{${1:counterIdx}}{${2:fixedIdx}}{${3:code}}{${4:title%text}}"
+      }
+    },
+    {
+      "name": "gentryshouldoutput",
+      "unusual": true
+    },
+    {
+      "name": "gentryfooter",
+      "unusual": true
+    },
+    {
+      "name": "thefncounter",
+      "unusual": true
+    },
+    {
+      "name": "outputfootnotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "outputfootnotes{${1:maxIdx}}"
+      }
+    },
+    {
+      "name": "noentryfoot"
+    }
+  ],
+  "envs": [
+    {
+      "name": "gentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:entrylabel}}"
+      }
+    },
+    {
+      "name": "gentry",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:index}]{${1:entrylabel}}"
+      }
+    },
+    {
+      "name": "gentry",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:index}]{${1:entrylabel}}[${3:title%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/gamebooklib#c": [
+      "verbose",
+      "endpage",
+      "jukebox",
+      "footnote",
+      "noshuffle",
+      "counter=${1:counter}",
+      "first=${1:integer}",
+      "last=${1:integer}",
+      "seed=${1:integer}",
+      "quiet"
+    ]
+  },
+  "args": [
+    "\\usepackage/gamebooklib#c"
+  ]
 }

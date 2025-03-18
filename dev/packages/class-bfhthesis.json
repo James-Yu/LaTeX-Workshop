@@ -1,40 +1,93 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-scrbook": [],
-    "bfhlayout": []
-  },
-  "macros": {
-    "advisor{}": {
-      "snippet": "advisor{${1:name}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "coadvisor{}": {
-      "snippet": "coadvisor{${1:name}}"
+    {
+      "name": "class-scrbook"
     },
-    "projectpartner{}": {
-      "snippet": "projectpartner{${1:name}}"
-    },
-    "expert{}": {
-      "snippet": "expert{${1:name}}"
-    },
-    "degreeprogram{}": {
-      "snippet": "degreeprogram{${1:name}}"
-    },
-    "doade": {},
-    "doafr": {},
-    "doaen": {},
-    "setupSignature{}": {
-      "snippet": "setupSignature{${1:text}}"
-    },
-    "SignatureBox{}": {
-      "snippet": "SignatureBox{${1:text}}"
-    },
-    "declarationOfAuthorship": {},
-    "declarationOfAuthorship[]": {
-      "snippet": "declarationOfAuthorship[${1:text}]"
+    {
+      "name": "bfhlayout"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "advisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "advisor{${1:name}}"
+      }
+    },
+    {
+      "name": "coadvisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "coadvisor{${1:name}}"
+      }
+    },
+    {
+      "name": "projectpartner",
+      "arg": {
+        "format": "{}",
+        "snippet": "projectpartner{${1:name}}"
+      }
+    },
+    {
+      "name": "expert",
+      "arg": {
+        "format": "{}",
+        "snippet": "expert{${1:name}}"
+      }
+    },
+    {
+      "name": "degreeprogram",
+      "arg": {
+        "format": "{}",
+        "snippet": "degreeprogram{${1:name%text}}"
+      }
+    },
+    {
+      "name": "doade",
+      "unusual": true
+    },
+    {
+      "name": "doafr",
+      "unusual": true
+    },
+    {
+      "name": "doaen",
+      "unusual": true
+    },
+    {
+      "name": "setupSignature",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setupSignature{${1:text}}"
+      }
+    },
+    {
+      "name": "SignatureBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SignatureBox{${1:text}}"
+      }
+    },
+    {
+      "name": "declarationOfAuthorship",
+      "unusual": true
+    },
+    {
+      "name": "declarationOfAuthorship",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "declarationOfAuthorship[${1:text}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

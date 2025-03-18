@@ -1,165 +1,533 @@
 {
-  "includes": {},
-  "macros": {
-    "shadowbox{}": {
-      "snippet": "shadowbox{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "shadowbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowbox{${1:text}}"
+      }
     },
-    "doublebox{}": {
-      "snippet": "doublebox{${1:text}}"
+    {
+      "name": "doublebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "doublebox{${1:text}}"
+      }
     },
-    "ovalbox{}": {
-      "snippet": "ovalbox{${1:text}}"
+    {
+      "name": "ovalbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "ovalbox{${1:text}}"
+      }
     },
-    "Ovalbox{}": {
-      "snippet": "Ovalbox{${1:text}}"
+    {
+      "name": "Ovalbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ovalbox{${1:text}}"
+      }
     },
-    "thinlines": {},
-    "thicklines": {},
-    "shadowsize": {},
-    "cornersize{}": {
-      "snippet": "cornersize{${1:number}}"
+    {
+      "name": "thinlines",
+      "unusual": true
     },
-    "cornersize*{}": {
-      "snippet": "cornersize*{${1:dimen}}"
+    {
+      "name": "thicklines",
+      "unusual": true
     },
-    "TheSbox": {},
-    "GenericCaption{}": {
-      "snippet": "GenericCaption{${1:text}}"
+    {
+      "name": "shadowsize",
+      "unusual": true
     },
-    "fancypage{}{}": {
-      "snippet": "fancypage{${1:cmds1}}{${2:cmds2}}"
+    {
+      "name": "cornersize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cornersize{${1:number}}"
+      }
     },
-    "thisfancypage{}{}": {
-      "snippet": "thisfancypage{${1:cmds1}}{${2:cmds2}}"
+    {
+      "name": "cornersize*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cornersize*{${1:dimen%l}}"
+      }
     },
-    "LandScape{}": {
-      "snippet": "LandScape{${1:cmd}}"
+    {
+      "name": "fancyoval",
+      "arg": {
+        "format": "()",
+        "snippet": "fancyoval(${1:width},${2:height})"
+      }
     },
-    "Landscape{}{}{}": {
-      "snippet": "Landscape{${1:paperwidth}}{${2:paperheight}}{${3:cmd}}"
+    {
+      "name": "fancyoval",
+      "arg": {
+        "format": "()[]",
+        "snippet": "fancyoval(${2:width},${3:height})[${1:portion%keyvals}]",
+        "keys": [
+          "\\fancyoval"
+        ],
+        "keyPos": 0
+      }
     },
-    "Landscape*{}{}{}": {
-      "snippet": "Landscape*{${1:paperwidth}}{${2:paperheight}}{${3:cmd}}"
+    {
+      "name": "TheSbox",
+      "unusual": true
     },
-    "UsePageParameters": {},
-    "VerbBox{}{}": {
-      "snippet": "VerbBox{${1:cmd}}{${2:contents}}"
+    {
+      "name": "GenericCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GenericCaption{${1:text}}"
+      }
     },
-    "VerbatimFootnotes": {},
-    "AltGetVerbatim": {},
-    "EndVerbatimTokens": {},
-    "VerbatimEnvironment": {},
-    "VerbatimInput{}": {
-      "snippet": "VerbatimInput{${1:file}}"
+    {
+      "name": "item",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "item(${1:vspace%l})"
+      }
     },
-    "LVerbatimInput{}": {
-      "snippet": "LVerbatimInput{${1:file}}"
+    {
+      "name": "item",
+      "unusual": true,
+      "arg": {
+        "format": "()[]",
+        "snippet": "item(${2:vspace%l})[${1:label%plain}]"
+      }
     },
-    "BVerbatimInput{}": {
-      "snippet": "BVerbatimInput{${1:file}}"
+    {
+      "name": "boxput",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "boxput(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
+      }
     },
-    "BVerbatimInput[]{}": {
-      "snippet": "BVerbatimInput[${2:alignment}]{${1:file}}"
+    {
+      "name": "boxput*",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "boxput*(${3:x},${4:y}){${1:contents1}}{${2:contents2}}"
+      }
     },
-    "UseVerbatim{}": {
-      "snippet": "UseVerbatim{${1:cmd}}"
+    {
+      "name": "fancyput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "fancyput(${2:x},${3:y}){${1:contents}}"
+      }
     },
-    "LUseVerbatim{}": {
-      "snippet": "LUseVerbatim{${1:cmd}}"
+    {
+      "name": "fancyput*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "fancyput*(${2:x},${3:y}){${1:contents}}"
+      }
     },
-    "BUseVerbatim{}": {
-      "snippet": "BUseVerbatim{${1:cmd}}"
+    {
+      "name": "thisfancyput*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "thisfancyput*(${2:x},${3:y}){${1:contents}}"
+      }
     },
-    "BUseVerbatim[]{}": {
-      "snippet": "BUseVerbatim[${2:alignment}]{${1:cmd}}"
+    {
+      "name": "thisfancyput*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "thisfancyput*(${2:x},${3:y}){${1:contents}}"
+      }
     },
-    "Verb": {
-      "snippet": "Verb|${1:code}|"
+    {
+      "name": "fancypage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancypage{${1:cmds1}}{${2:cmds2}}"
+      }
     },
-    "Verb{}": {
-      "snippet": "Verb{${1:verbatimSymbol}}"
+    {
+      "name": "thisfancypage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "thisfancypage{${1:cmds1}}{${2:cmds2}}"
+      }
     },
-    "UseVerb{}": {
-      "snippet": "UseVerb{${1:cmd}}"
-    },
-    "SaveVerb{}": {
-      "snippet": "SaveVerb{${1:cmd}}|${2:code}|"
-    },
-    "SaveVerb[]{}": {
-      "snippet": "SaveVerb[${2:default}]{${1:cmd}}|${3:code}|"
-    },
-    "VerbatimSpace": {},
-    "VerbatimTab": {},
-    "VerbatimFont": {},
-    "VerbatimFuzz": {},
-    "EveryVerbatimLine": {},
-    "EveryVerbatim": {},
-    "ThisVerb": {},
-    "EveryVerbatimCodes": {},
-    "ThisVerbCodes": {},
-    "VerbSpace": {},
-    "VerbTab": {},
-    "VerbFont": {},
-    "EveryVerb": {},
-    "EveryVerbCodes": {},
-    "EveryVerbOutCodes": {},
-    "EveryVerbOutLine": {}
-  },
-  "envs": {
-    "Sbox": {},
-    "Beqnarray": {},
-    "Beqnarray*": {},
-    "landfloat{}{}": {
-      "name": "landfloat",
-      "snippet": "{${1:float}}{${2:rotation_command}}"
-    },
-    "Bcenter": {},
-    "Bcenter[]": {
-      "name": "Bcenter",
-      "snippet": "[${1:alignment}]"
-    },
-    "Bflushleft": {},
-    "Bflushleft[]": {
-      "name": "Bflushleft",
-      "snippet": "[${1:alignment}]"
-    },
-    "Bflushright": {},
-    "Bflushright[]": {
-      "name": "Bflushright",
-      "snippet": "[${1:alignment}]"
-    },
-    "Blist{}{}": {
-      "name": "Blist",
-      "snippet": "{${1:item_type}}{${2:code}}"
-    },
-    "Blist{}{}[]": {
-      "name": "Blist",
-      "snippet": "{${1:item_type}}{${2:code}}[${3:alignment}]"
-    },
-    "LandScape{}": {
+    {
       "name": "LandScape",
-      "snippet": "{${1:cmd}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LandScape{${1:cmd}}"
+      }
     },
-    "Landscape{}{}{}": {
+    {
       "name": "Landscape",
-      "snippet": "{${1:paperwidth}}{${2:paperheight}}{${3:cmd}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Landscape{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+      }
     },
-    "Verbatim": {},
-    "LVerbatim": {},
-    "BVerbatim": {},
-    "BVerbatim[]": {
-      "name": "BVerbatim",
-      "snippet": "[${1:alignment}]"
+    {
+      "name": "Landscape*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Landscape*{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+      }
     },
-    "VerbatimOut{}": {
-      "name": "VerbatimOut",
-      "snippet": "{${1:file}}"
+    {
+      "name": "UsePageParameters",
+      "unusual": true
     },
-    "SaveVerbatim{}": {
-      "name": "SaveVerbatim",
-      "snippet": "{${1:cmd}}"
+    {
+      "name": "VerbBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "VerbBox{${1:cmd}}{${2:contents}}"
+      }
+    },
+    {
+      "name": "VerbatimFootnotes",
+      "unusual": true
+    },
+    {
+      "name": "AltGetVerbatim",
+      "unusual": true
+    },
+    {
+      "name": "EndVerbatimTokens",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimEnvironment",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "VerbatimInput{${1:file}}"
+      }
+    },
+    {
+      "name": "LVerbatimInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LVerbatimInput{${1:file}}"
+      }
+    },
+    {
+      "name": "BVerbatimInput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BVerbatimInput{${1:file}}"
+      }
+    },
+    {
+      "name": "BVerbatimInput",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "BVerbatimInput[${2:alignment%keyvals}]{${1:file}}"
+      }
+    },
+    {
+      "name": "UseVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "UseVerbatim{${1:cmd}}"
+      }
+    },
+    {
+      "name": "LUseVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LUseVerbatim{${1:cmd}}"
+      }
+    },
+    {
+      "name": "BUseVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BUseVerbatim{${1:cmd}}"
+      }
+    },
+    {
+      "name": "BUseVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "BUseVerbatim[${2:alignment%keyvals}]{${1:cmd}}"
+      }
+    },
+    {
+      "name": "Verb",
+      "arg": {
+        "format": "||",
+        "snippet": "Verb|${1:code}|"
+      }
+    },
+    {
+      "name": "UseVerb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "UseVerb{${1:cmd}}"
+      }
+    },
+    {
+      "name": "SaveVerb",
+      "unusual": true,
+      "arg": {
+        "format": "{}||",
+        "snippet": "SaveVerb{${1:cmd}}|${2:code}|"
+      }
+    },
+    {
+      "name": "SaveVerb",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}||",
+        "snippet": "SaveVerb[${2:default}]{${1:cmd}}|${3:code}|"
+      }
+    },
+    {
+      "name": "VerbatimSpace",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimTab",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimFont",
+      "unusual": true
+    },
+    {
+      "name": "VerbatimFuzz",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbatimLine",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbatim",
+      "unusual": true
+    },
+    {
+      "name": "ThisVerb",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbatimCodes",
+      "unusual": true
+    },
+    {
+      "name": "ThisVerbCodes",
+      "unusual": true
+    },
+    {
+      "name": "VerbSpace",
+      "unusual": true
+    },
+    {
+      "name": "VerbTab",
+      "unusual": true
+    },
+    {
+      "name": "VerbFont",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerb",
+      "unusual": true
+    },
+    {
+      "name": "ThisVerb",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbCodes",
+      "unusual": true
+    },
+    {
+      "name": "ThisVerbCodes",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbOutCodes",
+      "unusual": true
+    },
+    {
+      "name": "EveryVerbOutLine",
+      "unusual": true
     }
+  ],
+  "envs": [
+    {
+      "name": "Sbox",
+      "unusual": true
+    },
+    {
+      "name": "Beqnarray"
+    },
+    {
+      "name": "Beqnarray*"
+    },
+    {
+      "name": "landfloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:float}}{${2:rotation_command}}"
+      }
+    },
+    {
+      "name": "Bcenter"
+    },
+    {
+      "name": "Bcenter",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Bflushleft"
+    },
+    {
+      "name": "Bflushleft",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Bflushright"
+    },
+    {
+      "name": "Bflushright",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Blist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:item_type}}{${2:code}}"
+      }
+    },
+    {
+      "name": "Blist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:item_type}}{${2:code}}[${3:alignment%keyvals}]",
+        "keys": [
+          "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "LandScape",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "Landscape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "Landscape*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:paperwidth%l}}{${2:paperheight%l}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "Verbatim"
+    },
+    {
+      "name": "LVerbatim"
+    },
+    {
+      "name": "BVerbatim"
+    },
+    {
+      "name": "BVerbatim",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:alignment%keyvals}]"
+      }
+    },
+    {
+      "name": "VerbatimOut",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "SaveVerbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\fancyoval": [
+      "t",
+      "b",
+      "l",
+      "r"
+    ],
+    "\\begin{Bcenter},\\begin{Bflushleft},\\begin{Bflushright},\\begin{Bitemize},\\begin{Benumerate},\\begin{Bdescription},\\begin{Blist},\\begin{BVerbatim},\\BVerbatimInput": [
+      "t",
+      "b"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

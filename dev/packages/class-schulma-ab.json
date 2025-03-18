@@ -1,103 +1,263 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "adjustbox": [],
-    "babel": [],
-    "isodate": [],
-    "schulma": [],
-    "schulma-physik": [],
-    "tasks": [],
-    "enumitem": [],
-    "scrlayer-scrpage": [],
-    "comment": []
-  },
-  "macros": {
-    "Kurs{}": {
-      "snippet": "Kurs{${1:Kursbezeichnung}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "Datum{}": {
-      "snippet": "Datum{${1:Datum}}"
+    {
+      "name": "adjustbox"
     },
-    "Thema{}": {
-      "snippet": "Thema{${1:Thema}}"
+    {
+      "name": "babel"
     },
-    "Thema[]{}": {
-      "snippet": "Thema[${2:Nummer}]{${1:Thema}}"
+    {
+      "name": "isodate"
     },
-    "Bearbeiter{}": {
-      "snippet": "Bearbeiter{${1:Name}}"
+    {
+      "name": "schulma"
     },
-    "schulmaalph{}": {
-      "snippet": "schulmaalph{${1:counter}}"
+    {
+      "name": "schulma-physik"
     },
-    "Aufgabentitel{}": {
-      "snippet": "Aufgabentitel{${1:Bezeichnung}}"
+    {
+      "name": "tasks"
     },
-    "Aufgabenabstand": {},
-    "Aufgabe": {},
-    "Aufgabe*": {},
-    "Uebung": {},
-    "Uebung*": {},
-    "theAufgabe": {},
-    "theTeilaufgabe": {},
-    "Teilaufgabenabstand": {},
-    "Luecke{}": {
-      "snippet": "Luecke{${1:Breite}}"
+    {
+      "name": "enumitem"
     },
-    "NurAufgabe{}": {
-      "snippet": "NurAufgabe{${1:Teil der Aufgabe}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "NurLoesung{}": {
-      "snippet": "NurLoesung{${1:Teil der Aufgabe}}"
-    },
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "dq": {},
-    "ntosstrue": {},
-    "ntossfalse": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "captionsnaustrian": {
-      "option": "AT"
-    },
-    "datenaustrian": {
-      "option": "AT"
-    },
-    "extrasnaustrian": {
-      "option": "AT"
-    },
-    "noextrasnaustrian": {
-      "option": "AT"
+    {
+      "name": "comment"
     }
-  },
-  "envs": {
-    "Kreisliste": {},
-    "Aufgaben": {},
-    "Teilaufgaben": {},
-    "Lsg": {},
-    "Lsg*": {
-      "name": "Lsg",
-      "snippet": "*"
-    }
-  },
-  "options": [
-    "A4quer",
-    "A5",
-    "A5quer",
-    "AT",
-    "Musterloesung"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Kurs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Kurs{${1:Kursbezeichnung%text}}"
+      }
+    },
+    {
+      "name": "Datum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Datum{${1:Datum}}"
+      }
+    },
+    {
+      "name": "Thema",
+      "arg": {
+        "format": "{}",
+        "snippet": "Thema{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Thema",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Thema[${2:Nummer}]{${1:Thema%text}}"
+      }
+    },
+    {
+      "name": "Bearbeiter",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bearbeiter{${1:Name}}"
+      }
+    },
+    {
+      "name": "schulmaalph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "schulmaalph{${1:counter}}"
+      }
+    },
+    {
+      "name": "Aufgabentitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aufgabentitel{${1:Bezeichnung%text}}"
+      }
+    },
+    {
+      "name": "Aufgabenabstand",
+      "unusual": true
+    },
+    {
+      "name": "Aufgabe"
+    },
+    {
+      "name": "Aufgabe*"
+    },
+    {
+      "name": "Uebung"
+    },
+    {
+      "name": "Uebung*"
+    },
+    {
+      "name": "theAufgabe",
+      "unusual": true
+    },
+    {
+      "name": "theTeilaufgabe",
+      "unusual": true
+    },
+    {
+      "name": "Teilaufgabenabstand",
+      "unusual": true
+    },
+    {
+      "name": "Luecke",
+      "arg": {
+        "format": "{}",
+        "snippet": "Luecke{${1:Breite}}"
+      }
+    },
+    {
+      "name": "NurAufgabe",
+      "arg": {
+        "format": "{}",
+        "snippet": "NurAufgabe{${1:Teil der Aufgabe}}"
+      }
+    },
+    {
+      "name": "NurLoesung",
+      "arg": {
+        "format": "{}",
+        "snippet": "NurLoesung{${1:Teil der Aufgabe}}"
+      }
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "captionsnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "datenaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "extrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    },
+    {
+      "name": "noextrasnaustrian",
+      "if": "AT",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Kreisliste"
+    },
+    {
+      "name": "Aufgaben"
+    },
+    {
+      "name": "Teilaufgaben"
+    },
+    {
+      "name": "Lsg"
+    },
+    {
+      "name": "Lsg",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/schulma-ab#c": [
+      "A4quer",
+      "A5",
+      "A5quer",
+      "AT",
+      "Musterloesung"
+    ]
+  },
+  "args": [
+    "\\documentclass/schulma-ab#c"
+  ]
 }

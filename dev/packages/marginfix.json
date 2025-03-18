@@ -1,38 +1,87 @@
 {
-  "includes": {},
-  "macros": {
-    "marginskip{}": {
-      "snippet": "marginskip{${1:length}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "marginskip",
+      "arg": {
+        "format": "{}",
+        "snippet": "marginskip{${1:length}}"
+      }
     },
-    "clearmargin": {},
-    "softclearmargin": {},
-    "extendmargin{}": {
-      "snippet": "extendmargin{${1:length}}"
+    {
+      "name": "clearmargin"
     },
-    "mparshift{}": {
-      "snippet": "mparshift{${1:length}}"
+    {
+      "name": "softclearmargin"
     },
-    "marginheightadjustment": {},
-    "marginposadjustment": {},
-    "blockmargin": {},
-    "blockmargin[]": {
-      "snippet": "blockmargin[${1:pos}]"
+    {
+      "name": "extendmargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "extendmargin{${1:length}}"
+      }
     },
-    "unblockmargin": {},
-    "unblockmargin[]": {
-      "snippet": "unblockmargin[${1:pos}]"
+    {
+      "name": "mparshift",
+      "arg": {
+        "format": "{}",
+        "snippet": "mparshift{${1:length}}"
+      }
     },
-    "marginphantom{}": {
-      "snippet": "marginphantom{${1:size}}"
+    {
+      "name": "marginheightadjustment",
+      "unusual": true
     },
-    "marginphantom[]{}": {
-      "snippet": "marginphantom[${2:pos}]{${1:size}}"
+    {
+      "name": "marginposadjustment",
+      "unusual": true
     },
-    "dumpmargins": {}
-  },
-  "envs": {},
-  "options": [
-    "ypos"
+    {
+      "name": "blockmargin"
+    },
+    {
+      "name": "blockmargin",
+      "arg": {
+        "format": "[]",
+        "snippet": "blockmargin[${1:pos}]"
+      }
+    },
+    {
+      "name": "unblockmargin"
+    },
+    {
+      "name": "unblockmargin",
+      "arg": {
+        "format": "[]",
+        "snippet": "unblockmargin[${1:pos}]"
+      }
+    },
+    {
+      "name": "marginphantom",
+      "arg": {
+        "format": "{}",
+        "snippet": "marginphantom{${1:size}}"
+      }
+    },
+    {
+      "name": "marginphantom",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "marginphantom[${2:pos}]{${1:size}}"
+      }
+    },
+    {
+      "name": "dumpmargins",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/marginfix#c": [
+      "ypos"
+    ]
+  },
+  "args": [
+    "\\usepackage/marginfix#c"
+  ]
 }

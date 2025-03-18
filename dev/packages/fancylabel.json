@@ -1,86 +1,180 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xifthen": [],
-    "suffix": []
-  },
-  "macros": {
-    "fancylabel{}": {
-      "snippet": "fancylabel{${1:marker}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "fancylabel[]{}": {
-      "snippet": "fancylabel[${2:family}]{${1:marker}}"
+    {
+      "name": "xifthen"
     },
-    "fancylabel*{}": {
-      "snippet": "fancylabel*{${1:marker}}"
-    },
-    "fancylabel*[]{}": {
-      "snippet": "fancylabel*[${2:family}]{${1:marker}}"
-    },
-    "fancysublabel{}{}": {
-      "snippet": "fancysublabel{${1:marker}}{${2:submarker}}"
-    },
-    "fancysublabel[]{}{}": {
-      "snippet": "fancysublabel[${3:family}]{${1:marker}}{${2:submarker}}"
-    },
-    "fancysublabel*{}{}": {
-      "snippet": "fancysublabel*{${1:marker}}{${2:submarker}}"
-    },
-    "fancysublabel*[]{}{}": {
-      "snippet": "fancysublabel*[${3:family}]{${1:marker}}{${2:submarker}}"
-    },
-    "fancyref{}": {
-      "snippet": "fancyref{${1:marker}}"
-    },
-    "fancyref[]{}": {
-      "snippet": "fancyref[${2:family}]{${1:marker}}"
-    },
-    "fancyref*{}": {
-      "snippet": "fancyref*{${1:marker}}"
-    },
-    "fancyref*[]{}": {
-      "snippet": "fancyref*[${2:family}]{${1:marker}}"
-    },
-    "fancysubref{}{}": {
-      "snippet": "fancysubref{${1:marker}}{${2:submarker}}"
-    },
-    "fancysubref[]{}{}": {
-      "snippet": "fancysubref[${3:family}]{${1:marker}}{${2:submarker}}"
-    },
-    "fancysubref*{}{}": {
-      "snippet": "fancysubref*{${1:marker}}{${2:submarker}}"
-    },
-    "fancysubref*[]{}{}": {
-      "snippet": "fancysubref*[${3:family}]{${1:marker}}{${2:submarker}}"
-    },
-    "fancylabelformatdefault": {},
-    "fancysublabelformatdefault": {},
-    "fancyonlysublabelformatdefault": {},
-    "fancylabelNewLabelEvent": {},
-    "fancylabelShowLabelEvent": {},
-    "fancylabelShowRefEvent": {},
-    "thefancylabel": {},
-    "thefancysublabel": {},
-    "fancylabelResetCounter{}": {
-      "snippet": "fancylabelResetCounter{${1:arg}}"
-    },
-    "fancylabelthisformat": {}
-  },
-  "envs": {},
-  "options": [
-    "families={${1:list of families}}",
-    "IgnoreFamilies",
-    "numbering=",
-    "level=",
-    "sort",
-    "compress",
-    "CompressLink=${1:separator}",
-    "CompressTwo",
-    "ListLastSublabelOnly",
-    "ListSeparator=${1:separator}",
-    "ListLastLabelSeparator=${1:separator}",
-    "ListLastRefSeparator=${1:separator}",
-    "DisableFamilyCheck"
+    {
+      "name": "suffix"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "fancylabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancylabel{${1:marker%labeldef}}"
+      }
+    },
+    {
+      "name": "fancylabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fancylabel[${2:family}]{${1:marker%labeldef}}"
+      }
+    },
+    {
+      "name": "fancylabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancylabel*{${1:marker%labeldef}}"
+      }
+    },
+    {
+      "name": "fancylabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fancylabel*[${2:family}]{${1:marker%labeldef}}"
+      }
+    },
+    {
+      "name": "fancysublabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancysublabel{${1:marker%labeldef}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysublabel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fancysublabel[${3:family}]{${1:marker%labeldef}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysublabel*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancysublabel*{${1:marker%labeldef}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysublabel*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fancysublabel*[${3:family}]{${1:marker%labeldef}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancyref",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancyref{${1:marker%ref}}"
+      }
+    },
+    {
+      "name": "fancyref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fancyref[${2:family}]{${1:marker%ref}}"
+      }
+    },
+    {
+      "name": "fancyref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancyref*{${1:marker%ref}}"
+      }
+    },
+    {
+      "name": "fancyref*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fancyref*[${2:family}]{${1:marker%ref}}"
+      }
+    },
+    {
+      "name": "fancysubref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancysubref{${1:marker%ref}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysubref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fancysubref[${3:family}]{${1:marker%ref}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysubref*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancysubref*{${1:marker%ref}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancysubref*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fancysubref*[${3:family}]{${1:marker%ref}}{${2:submarker}}"
+      }
+    },
+    {
+      "name": "fancylabelformatdefault",
+      "unusual": true
+    },
+    {
+      "name": "fancysublabelformatdefault",
+      "unusual": true
+    },
+    {
+      "name": "fancyonlysublabelformatdefault",
+      "unusual": true
+    },
+    {
+      "name": "fancylabelNewLabelEvent",
+      "unusual": true
+    },
+    {
+      "name": "fancylabelShowLabelEvent",
+      "unusual": true
+    },
+    {
+      "name": "fancylabelShowRefEvent",
+      "unusual": true
+    },
+    {
+      "name": "thefancylabel",
+      "unusual": true
+    },
+    {
+      "name": "thefancysublabel",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fancylabel#c": [
+      "families={${1:list of families}}",
+      "IgnoreFamilies",
+      "numbering=${1|continuous,ondemand,referenced|}",
+      "level=${1|sub,same|}",
+      "sort",
+      "compress",
+      "CompressLink=${1:separator}",
+      "CompressTwo",
+      "ListLastSublabelOnly",
+      "ListSeparator=${1:separator}",
+      "ListLastLabelSeparator=${1:separator}",
+      "ListLastRefSeparator=${1:separator}",
+      "DisableFamilyCheck"
+    ]
+  },
+  "args": [
+    "\\usepackage/fancylabel#c"
+  ]
 }

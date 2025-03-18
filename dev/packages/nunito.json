@@ -1,38 +1,73 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "sufigures": {},
-    "supfigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "ifthen"
     },
-    "nunitotabular": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "mainfont",
-    "black",
-    "extrabold",
-    "semibold",
-    "bold",
-    "regular"
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    },
+    {
+      "name": "nunitotabular"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nunito#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "lining",
+      "oldstyle",
+      "tabular",
+      "mainfont",
+      "black",
+      "extrabold",
+      "semibold",
+      "bold",
+      "regular"
+    ]
+  },
+  "args": [
+    "\\usepackage/nunito#c"
+  ]
 }

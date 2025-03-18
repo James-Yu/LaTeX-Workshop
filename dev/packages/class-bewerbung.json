@@ -1,54 +1,118 @@
 {
-  "includes": {
-    "ifthen": [],
-    "kvoptions": [],
-    "calc": [],
-    "class-scrlttr2": [],
-    "etoolbox": [],
-    "ifpdf": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "marvosym": [],
-    "scrlayer-scrpage": [],
-    "array": [],
-    "graphicx": [],
-    "microtype": [],
-    "enumitem": [],
-    "hyperref": [],
-    "bewerbung-cv": [],
-    "csquotes": [],
-    "geometry": [],
-    "datatool": [],
-    "eurosym": [],
-    "xspace": [],
-    "multicol": [],
-    "pdfpages": [],
-    "comment": [],
-    "bewerbung": [],
-    "colortbl": [
-      "lebenslaufXcolor=table"
-    ],
-    "pdfcolmk": [
-      "lebenslaufXcolor=fixpdftex"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "class-scrlttr2"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "marvosym"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "bewerbung-cv"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "datatool"
+    },
+    {
+      "name": "eurosym"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "multicol"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "comment"
+    },
+    {
+      "name": "bewerbung"
+    },
+    {
+      "name": "colortbl",
+      "if": "lebenslaufXcolor=table"
+    },
+    {
+      "name": "pdfcolmk",
+      "if": "lebenslaufXcolor=fixpdftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "addtofooter",
+      "if": "lebenslaufStyle=casual",
+      "arg": {
+        "format": "{}",
+        "snippet": "addtofooter{${1:text}}"
+      }
+    },
+    {
+      "name": "addtofooter",
+      "if": "lebenslaufStyle=casual",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addtofooter[${2:symbol}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/bewerbung#c": [
+      "lebenslaufColor=",
+      "lebenslaufXcolor={${1:xcolor options}}",
+      "lebenslaufStyle=${1|classic,casual,oldstyle|}",
+      "anschrift=${1:.csv file}",
+      "idPlain"
     ]
   },
-  "macros": {
-    "addtofooter{}": {
-      "snippet": "addtofooter{${1:text}}",
-      "option": "lebenslaufStyle=casual"
-    },
-    "addtofooter[]{}": {
-      "snippet": "addtofooter[${2:symbol}]{${1:text}}",
-      "option": "lebenslaufStyle=casual"
-    }
-  },
-  "envs": {},
-  "options": [
-    "lebenslaufColor=",
-    "lebenslaufXcolor={${1:xcolor options}}",
-    "lebenslaufStyle=",
-    "anschrift=${1:.csv file}",
-    "idPlain"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/bewerbung#c"
+  ]
 }

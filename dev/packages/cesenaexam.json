@@ -1,0 +1,132 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "circuitikz"
+    },
+    {
+      "name": "tikzlibraryintersections"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibraryfit"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarythrough"
+    },
+    {
+      "name": "tikzlibrarybabel"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "titlesec"
+    }
+  ],
+  "macros": [
+    {
+      "name": "examsection",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "examsection{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "examsection*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "examsection*{${1:title}}{${2:italic text%text}}"
+      }
+    },
+    {
+      "name": "boxempty"
+    },
+    {
+      "name": "boxcheck"
+    },
+    {
+      "name": "examparts",
+      "arg": {
+        "format": "{}",
+        "snippet": "examparts{${1:content%text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "maketitle{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "maketitle[${6:options%keyvals}]{${1:surname}}{${2:name}}{${3:id}}{${4:signature}}{${5:N}}",
+        "keys": [
+          "\\maketitle,\\maketitle*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "examtwoblocks",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "examtwoblocks{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examtwoblockstop",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "examtwoblockstop{${1:length1%l}}{${2:length2%l}}{${3:block1%text}}{${4:block2%text}}"
+      }
+    },
+    {
+      "name": "examoneblocktop",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "examoneblocktop{${1:length}}{${2:block%text}}"
+      }
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cesenaexam#c": [
+      "boxed"
+    ],
+    "\\maketitle,\\maketitle*": [
+      "textboxheight=",
+      "whiteboxheight=",
+      "textboxone={${1:content}}",
+      "textboxtwo={${1:content}}",
+      "textboxthree={${1:content}}",
+      "textboxfour={${1:content}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/cesenaexam#c"
+  ]
+}

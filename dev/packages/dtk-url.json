@@ -1,31 +1,74 @@
 {
-  "includes": {
-    "url": [],
-    "xcolor": [],
-    "xkeyval": [],
-    "pdfescape": [],
-    "ifpdf": [],
-    "atveryend": [],
-    "embedfile": []
-  },
-  "macros": {
-    "CTANurl{}": {
-      "snippet": "CTANurl{${1:URL}}"
+  "deps": [
+    {
+      "name": "url"
     },
-    "ctanurl{}": {
-      "snippet": "ctanurl{${1:URL}}"
+    {
+      "name": "xcolor"
     },
-    "Email{}": {
-      "snippet": "Email{${1:email}}"
+    {
+      "name": "xkeyval"
     },
-    "license{}": {
-      "snippet": "license{${1:license}}"
+    {
+      "name": "pdfescape"
     },
-    "URL{}": {
-      "snippet": "URL{${1:URL}}"
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "atveryend"
+    },
+    {
+      "name": "embedfile"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "File",
+      "arg": {
+        "format": "{}",
+        "snippet": "File{${1:file}}"
+      }
+    },
+    {
+      "name": "CTANurl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CTANurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "ctanurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctanurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "Email",
+      "arg": {
+        "format": "{}",
+        "snippet": "Email{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "license",
+      "arg": {
+        "format": "{}",
+        "snippet": "license{${1:license}}"
+      }
+    },
+    {
+      "name": "URL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "URL{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

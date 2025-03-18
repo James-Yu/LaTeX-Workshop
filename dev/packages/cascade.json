@@ -1,63 +1,112 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "Cascade{}{}{}{}": {
-      "snippet": "Cascade{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}"
-    },
-    "Cascade[]{}{}{}{}": {
-      "snippet": "Cascade[${5:options}]{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ShortCascade{}{}": {
-      "snippet": "ShortCascade{${1:top}}{${2:bottom}}"
-    },
-    "ShortCascade[]{}{}": {
-      "snippet": "ShortCascade[${3:options}]{${1:top}}{${2:bottom}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "CascadeOptions{}": {
-      "snippet": "CascadeOptions{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "Edacsac{}{}{}{}": {
-      "snippet": "Edacsac{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}"
-    },
-    "Edacsac[]{}{}{}{}": {
-      "snippet": "Edacsac[${5:options}]{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ShortEdacsac{}{}": {
-      "snippet": "ShortEdacsac{${1:top}}{${2:bottom}}"
-    },
-    "ShortEdacsac[]{}{}": {
-      "snippet": "ShortEdacsac[${3:options}]{${1:top}}{${2:bottom}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "t",
-      "interline=",
-      "space-between=",
-      "interline-all="
+  ],
+  "macros": [
+    {
+      "name": "Cascade",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Cascade{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}"
+      }
+    },
+    {
+      "name": "Cascade",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "Cascade[${5:options%keyvals}]{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}",
+        "keys": [
+          "\\Cascade,\\ShortCascade",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ShortCascade",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ShortCascade{${1:top}}{${2:bottom}}"
+      }
+    },
+    {
+      "name": "ShortCascade",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ShortCascade[${3:options%keyvals}]{${1:top}}{${2:bottom}}",
+        "keys": [
+          "\\Cascade,\\ShortCascade",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CascadeOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "CascadeOptions{${1:keyvals}}",
+        "keys": [
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Edacsac",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Edacsac{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}"
+      }
+    },
+    {
+      "name": "Edacsac",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "Edacsac[${5:options%keyvals}]{${1:top_left}}{${2:top_right}}{${3:bot_left}}{${4:bot_right}}",
+        "keys": [
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ShortEdacsac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ShortEdacsac{${1:top}}{${2:bottom}}"
+      }
+    },
+    {
+      "name": "ShortEdacsac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ShortEdacsac[${3:options%keyvals}]{${1:top}}{${2:bottom}}",
+        "keys": [
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac",
+          "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Cascade,\\ShortCascade": [
+      "t"
     ],
-    [
-      "space-between=",
-      "interline-all="
+    "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac": [
+      "interline="
     ],
-    [
-      "interline=",
+    "\\Cascade,\\ShortCascade,\\Edacsac,\\ShortEdacsac,\\CascadeOptions": [
       "space-between=",
       "interline-all="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,18 +1,34 @@
 {
-  "includes": {},
-  "macros": {
-    "dimbox": {},
-    "boxdimfile{}": {
-      "snippet": "boxdimfile{${1:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "dimbox",
+      "unusual": true
     },
-    "boxdims{}{}": {
-      "snippet": "boxdims{${1:name}}{${2:text}}"
+    {
+      "name": "boxdimfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "boxdimfile{${1:file}}"
+      }
     },
-    "defboxdim{}{}": {
-      "snippet": "defboxdim{${1:name}}{${2:text}}"
+    {
+      "name": "boxdims",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "boxdims{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "defboxdim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defboxdim{${1:name}}{${2:text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

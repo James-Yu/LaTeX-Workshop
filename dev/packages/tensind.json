@@ -1,20 +1,39 @@
 {
-  "includes": {},
-  "macros": {
-    "tensordelimiter{}": {
-      "snippet": "tensordelimiter{${1:symbol}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "tensordelimiter",
+      "arg": {
+        "format": "{}",
+        "snippet": "tensordelimiter{${1:symbol}}"
+      }
     },
-    "tensorformat{}": {
-      "snippet": "tensorformat{${1:format}}"
+    {
+      "name": "tensorformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "tensorformat{${1:format}}"
+      }
     },
-    "indexdot": {},
-    "whenindex{}{}{}": {
-      "snippet": "whenindex{${1:index}}{${2:new-index}}{${3:commands}}"
+    {
+      "name": "indexdot",
+      "unusual": true
+    },
+    {
+      "name": "whenindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "whenindex{${1:index}}{${2:new-index}}{${3:commands}}"
+      }
     }
-  },
-  "envs": {
-    "tensor": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "tensor",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

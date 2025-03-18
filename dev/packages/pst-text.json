@@ -1,66 +1,179 @@
 {
-  "includes": {
-    "pstricks": []
-  },
-  "macros": {
-    "pscharpath{}": {
-      "snippet": "pscharpath{${1:text}}"
-    },
-    "pscharpath[]{}": {
-      "snippet": "pscharpath[${2:options}]{${1:text}}"
-    },
-    "pscharpath*{}": {
-      "snippet": "pscharpath*{${1:text}}"
-    },
-    "pscharpath*[]{}": {
-      "snippet": "pscharpath*[${2:options}]{${1:text}}"
-    },
-    "pscharclip{}": {
-      "snippet": "pscharclip{${1:text}}"
-    },
-    "pscharclip[]{}": {
-      "snippet": "pscharclip[${2:options}]{${1:text}}"
-    },
-    "pscharclip*{}": {
-      "snippet": "pscharclip*{${1:text}}"
-    },
-    "pscharclip*[]{}": {
-      "snippet": "pscharclip*[${2:options}]{${1:text}}"
-    },
-    "endpscharclip": {},
-    "psCircleText{}": {
-      "snippet": "psCircleText{${1:text}}"
-    },
-    "psCircleText[]{}": {
-      "snippet": "psCircleText[${2:options}]{${1:text}}"
-    },
-    "psWarp{}": {
-      "snippet": "psWarp{${1:text}}"
-    },
-    "psWarp[]{}": {
-      "snippet": "psWarp[${2:options}]{${1:text}}"
-    },
-    "TPoffset": {},
-    "PSTextPathLoaded": {}
-  },
-  "envs": {
-    "pscharclip{}": {
-      "name": "pscharclip",
-      "snippet": "{${1:text}}"
-    },
-    "pscharclip[]{}": {
-      "name": "pscharclip",
-      "snippet": "[${2:options}]{${1:text}}"
-    },
-    "pscharclip*{}": {
-      "name": "pscharclip*",
-      "snippet": "{${1:text}}"
-    },
-    "pscharclip*[]{}": {
-      "name": "pscharclip*",
-      "snippet": "[${2:options}]{${1:text}}"
+  "deps": [
+    {
+      "name": "pstricks"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "pstextpath",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstextpath[${3:pos}](${4:x},${5:y}){${1:graphics object}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pstextpath",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstextpath(${3:x},${4:y}){${1:graphics object}}{${2:text}}"
+      }
+    },
+    {
+      "name": "pscharpath",
+      "arg": {
+        "format": "{}",
+        "snippet": "pscharpath{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharpath",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pscharpath[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharpath*",
+      "arg": {
+        "format": "{}",
+        "snippet": "pscharpath*{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharpath*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pscharpath*[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pscharclip{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pscharclip[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pscharclip*{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pscharclip*[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "endpscharclip",
+      "unusual": true
+    },
+    {
+      "name": "psCircleText",
+      "arg": {
+        "format": "{}",
+        "snippet": "psCircleText{${1:text}}"
+      }
+    },
+    {
+      "name": "psCircleText",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psCircleText[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "psCircleText",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psCircleText(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "psCircleText",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psCircleText[${2:options%keyvals}](${3:x},${4:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "psWarp",
+      "arg": {
+        "format": "{}",
+        "snippet": "psWarp{${1:text}}"
+      }
+    },
+    {
+      "name": "psWarp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psWarp[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "psWarp",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psWarp(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "psWarp",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "psWarp[${2:options%keyvals}](${3:x},${4:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "TPoffset",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "pscharclip",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "pscharclip*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

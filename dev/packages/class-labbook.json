@@ -1,65 +1,142 @@
 {
-  "includes": {
-    "class-scrbook": [],
-    "makeidx": []
-  },
-  "macros": {
-    "theHexperiment": {
-      "option": "hyperref"
+  "deps": [
+    {
+      "name": "class-scrbook"
     },
-    "theHlabday": {
-      "option": "hyperref"
-    },
-    "theHsubexperiment": {
-      "option": "hyperref"
-    },
-    "theHsubfigure": {
-      "option": "hyperref"
-    },
-    "labday": {},
-    "experiment{}": {
-      "snippet": "experiment{${1:title}}"
-    },
-    "experiment[]{}": {
-      "snippet": "experiment[${2:short title}]{${1:title}}"
-    },
-    "experiment*{}": {
-      "snippet": "experiment*{${1:title}}"
-    },
-    "subexperiment{}": {
-      "snippet": "subexperiment{${1:title}}"
-    },
-    "subexperiment[]{}": {
-      "snippet": "subexperiment[${2:short title}]{${1:title}}"
-    },
-    "subexperiment*{}": {
-      "snippet": "subexperiment*{${1:title}}"
-    },
-    "newexperiment{}{}": {
-      "snippet": "newexperiment{${1:abbrev}}{${2:long form}}"
-    },
-    "newexperiment{}[]{}": {
-      "snippet": "newexperiment{${1:abbrev}}[${2:short form}]{${3:long form}}"
-    },
-    "newsubexperiment{}{}": {
-      "snippet": "newsubexperiment{${1:abbrev}}{${2:long form}}"
-    },
-    "newsubexperiment{}[]{}": {
-      "snippet": "newsubexperiment{${1:abbrev}}[${2:short form}]{${3:long form}}"
-    },
-    "experimentmark{}": {
-      "snippet": "experimentmark{${1:code}}"
-    },
-    "subexperimentmark{}": {
-      "snippet": "subexperimentmark{${1:code}}"
-    },
-    "theexperiment": {},
-    "thelabday": {},
-    "thesubexperiment": {}
-  },
-  "envs": {},
-  "options": [
-    "hyperref"
+    {
+      "name": "makeidx"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "theHexperiment",
+      "if": "hyperref",
+      "unusual": true
+    },
+    {
+      "name": "theHlabday",
+      "if": "hyperref",
+      "unusual": true
+    },
+    {
+      "name": "theHsubexperiment",
+      "if": "hyperref",
+      "unusual": true
+    },
+    {
+      "name": "theHsubfigure",
+      "if": "hyperref",
+      "unusual": true
+    },
+    {
+      "name": "labday"
+    },
+    {
+      "name": "experiment",
+      "arg": {
+        "format": "{}",
+        "snippet": "experiment{${1:title}}"
+      }
+    },
+    {
+      "name": "experiment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "experiment[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "experiment*",
+      "arg": {
+        "format": "{}",
+        "snippet": "experiment*{${1:title}}"
+      }
+    },
+    {
+      "name": "subexperiment",
+      "arg": {
+        "format": "{}",
+        "snippet": "subexperiment{${1:title}}"
+      }
+    },
+    {
+      "name": "subexperiment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subexperiment[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subexperiment*",
+      "arg": {
+        "format": "{}",
+        "snippet": "subexperiment*{${1:title}}"
+      }
+    },
+    {
+      "name": "newexperiment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newexperiment{${1:abbrev}}{${2:long form%text}}"
+      }
+    },
+    {
+      "name": "newexperiment",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newexperiment{${1:abbrev}}[${3:short form%text}]{${2:long form%text}}"
+      }
+    },
+    {
+      "name": "newsubexperiment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newsubexperiment{${1:abbrev}}{${2:long form%text}}"
+      }
+    },
+    {
+      "name": "newsubexperiment",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newsubexperiment{${1:abbrev}}[${3:short form%text}]{${2:long form%text}}"
+      }
+    },
+    {
+      "name": "experimentmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "experimentmark{${1:code}}"
+      }
+    },
+    {
+      "name": "subexperimentmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subexperimentmark{${1:code}}"
+      }
+    },
+    {
+      "name": "theexperiment",
+      "unusual": true
+    },
+    {
+      "name": "thelabday",
+      "unusual": true
+    },
+    {
+      "name": "thesubexperiment",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/labbook#c": [
+      "hyperref"
+    ]
+  },
+  "args": [
+    "\\documentclass/labbook#c"
+  ]
 }

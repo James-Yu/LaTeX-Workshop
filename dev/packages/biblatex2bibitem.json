@@ -1,19 +1,39 @@
 {
-  "includes": {
-    "biblatex": []
-  },
-  "macros": {
-    "printbibitembibliography": {},
-    "printgeneratedbibitemseparator": {},
-    "ignorespacesaftertitlecase": {},
-    "nolinkurl{}": {
-      "snippet": "nolinkurl{${1:URL}}"
-    },
-    "utffriendlydetokenize{}": {
-      "snippet": "utffriendlydetokenize{${1:arg}}"
+  "deps": [
+    {
+      "name": "biblatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "printbibitembibliography"
+    },
+    {
+      "name": "printgeneratedbibitemseparator",
+      "unusual": true
+    },
+    {
+      "name": "ignorespacesaftertitlecase",
+      "unusual": true
+    },
+    {
+      "name": "nolinkurl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nolinkurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "utffriendlydetokenize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "utffriendlydetokenize{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

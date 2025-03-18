@@ -1,174 +1,339 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "hyperref": [],
-    "eforms": [],
-    "refcount": [],
-    "soul": []
-  },
-  "macros": {
-    "ui{}": {
-      "snippet": "ui{${1:keyvals}}",
-      "option": "useui",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "mlhypertext{}": {
-      "snippet": "mlhypertext{${1:link text}}"
+    {
+      "name": "ifpdf"
     },
-    "mlhypertext[]{}": {
-      "snippet": "mlhypertext[${2:modifications}]{${1:link text}}"
+    {
+      "name": "ifxetex"
     },
-    "mlsetLink{}": {
-      "snippet": "mlsetLink{${1:link text}}"
+    {
+      "name": "hyperref"
     },
-    "mlsetLink[]{}": {
-      "snippet": "mlsetLink[${2:modifications}]{${1:link text}}"
+    {
+      "name": "eforms"
     },
-    "mlhyperlink{}{}": {
-      "snippet": "mlhyperlink{${1:target name}}{${2:link text}}"
+    {
+      "name": "refcount"
     },
-    "mlhyperlink[]{}{}": {
-      "snippet": "mlhyperlink[${3:modifications}]{${1:target name}}{${2:link text}}"
-    },
-    "mlhyperref{}{}": {
-      "snippet": "mlhyperref{${1:label}}{${2:text}}"
-    },
-    "mlhyperref[]{}{}": {
-      "snippet": "mlhyperref[${3:modifications}]{${1:label}}{${2:text}}"
-    },
-    "mlnameref{}": {
-      "snippet": "mlnameref{${1:label}}"
-    },
-    "mlnameref[]{}": {
-      "snippet": "mlnameref[${2:modifications}]{${1:label}}"
-    },
-    "mlNameref{}": {
-      "snippet": "mlNameref{${1:label}}"
-    },
-    "mlNameref[]{}": {
-      "snippet": "mlNameref[${2:modifications}]{${1:label}}"
-    },
-    "mlhref{}{}": {
-      "snippet": "mlhref{${1:URL}}{${2:text}}"
-    },
-    "mlhref[]{}{}": {
-      "snippet": "mlhref[${3:modifications}]{${1:URL}}{${2:text}}"
-    },
-    "mlurl{}": {
-      "snippet": "mlurl{${1:URL}}"
-    },
-    "mlurl[]{}": {
-      "snippet": "mlurl[${2:modifications}]{${1:URL}}"
-    },
-    "mlfixOn": {},
-    "mlfixOff": {},
-    "mlfix{}": {
-      "snippet": "mlfix{${1:y|n}}"
-    },
-    "mlcs{}": {
-      "snippet": "mlcs{${1:csname}}"
-    },
-    "OldStyleBoxesOn": {},
-    "OldStyleBoxesOff": {},
-    "mlMarksOn": {},
-    "mlMarksOff": {},
-    "turnSyllbCntOn": {},
-    "turnSyllbCntOff": {},
-    "aebnameref{}": {
-      "snippet": "aebnameref{${1:label}}"
-    },
-    "atPage{}": {
-      "snippet": "atPage{${1:label}}"
-    },
-    "bWebCustomize": {},
-    "CMT{}": {
-      "snippet": "CMT{${1:arg}}"
-    },
-    "CurrentBorderColor": {},
-    "eWebCustomize": {},
-    "FixupProc": {},
-    "iffixmlinks": {},
-    "iflinknotformed": {},
-    "ifmllinktotalchanged": {},
-    "ifmlmarks": {},
-    "ifoldstylequads": {},
-    "ifSmallRect": {},
-    "isWindow": {},
-    "itsunderline": {},
-    "labelRef{}": {
-      "snippet": "labelRef{${1:label}}"
-    },
-    "linknotformedfalse": {},
-    "linknotformedtrue": {},
-    "mlcsarg{}{}": {
-      "snippet": "mlcsarg{${1:arg1}}{${2:arg2}}"
-    },
-    "mldb{}{}": {
-      "snippet": "mldb{${1:arg1}}{${2:arg2}}"
-    },
-    "mldblevel": {},
-    "mldbModeOff": {},
-    "mldbModeOn": {},
-    "mlDict": {},
-    "mlinkstotal": {},
-    "mllinktotalchangedfalse": {},
-    "mllinktotalchangedtrue": {},
-    "mllnkcontainer{}": {
-      "snippet": "mllnkcontainer{${1:arg}}"
-    },
-    "mlmarksfalse": {},
-    "mlmarkstrue": {},
-    "mlMaxNSylls": {},
-    "mlpgMsg": {},
-    "MrkLnkLtr": {},
-    "oldstylequadsfalse": {},
-    "oldstylequadstrue": {},
-    "pboxRect": {},
-    "pgmonitoring": {},
-    "removelastspace": {},
-    "revCrackAt": {},
-    "setQuadBox": {},
-    "SmallRectfalse": {},
-    "smallRectTF": {},
-    "SmallRecttrue": {},
-    "syllableCnt": {},
-    "theView": {}
-  },
-  "envs": {},
-  "options": [
-    "dvipsone",
-    "dvips",
-    "dblevel=",
-    "urlOpts={${1:url package options}}",
-    "useui",
-    "setcorder",
-    "nodljs",
-    "debug",
-    "execJS",
-    "nopro",
-    "reqjs",
-    "!reqjs",
-    "usealtadobe"
+    {
+      "name": "soul"
+    }
   ],
-  "keyvals": [
-    [
-      "border=",
-      "linewidth=",
-      "highlight=",
+  "macros": [
+    {
+      "name": "ui",
+      "if": "useui",
+      "arg": {
+        "format": "{}",
+        "snippet": "ui{${1:keyvals}}",
+        "keys": [
+          "\\ui"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mlhypertext",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlhypertext{${1:link text%text}}"
+      }
+    },
+    {
+      "name": "mlhypertext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mlhypertext[${2:modifications}]{${1:link text%text}}"
+      }
+    },
+    {
+      "name": "mlsetLink",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlsetLink{${1:link text%text}}"
+      }
+    },
+    {
+      "name": "mlsetLink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mlsetLink[${2:modifications}]{${1:link text%text}}"
+      }
+    },
+    {
+      "name": "mlhyperlink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlhyperlink{${1:target name}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "mlhyperlink",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mlhyperlink[${3:modifications}]{${1:target name}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "mlhyperref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlhyperref{${1:label%ref}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mlhyperref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mlhyperref[${3:modifications}]{${1:label%ref}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mlnameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlnameref{${1:label%ref}}"
+      }
+    },
+    {
+      "name": "mlnameref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mlnameref[${2:modifications}]{${1:label%ref}}"
+      }
+    },
+    {
+      "name": "mlNameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlNameref{${1:label%ref}}"
+      }
+    },
+    {
+      "name": "mlNameref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mlNameref[${2:modifications}]{${1:label%ref}}"
+      }
+    },
+    {
+      "name": "mlhref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlhref{${1:URL}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mlhref",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "mlhref[${3:modifications}]{${1:URL}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mlurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "mlurl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mlurl[${2:modifications}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "mlfixOn"
+    },
+    {
+      "name": "mlfixOff"
+    },
+    {
+      "name": "mlfix",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlfix{${1:y|n}}"
+      }
+    },
+    {
+      "name": "mlcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlcs{${1:csname}}"
+      }
+    },
+    {
+      "name": "OldStyleBoxesOn"
+    },
+    {
+      "name": "OldStyleBoxesOff"
+    },
+    {
+      "name": "mlMarksOn"
+    },
+    {
+      "name": "mlMarksOff"
+    },
+    {
+      "name": "turnSyllbCntOn"
+    },
+    {
+      "name": "turnSyllbCntOff"
+    },
+    {
+      "name": "aebnameref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "aebnameref{${1:label}}"
+      }
+    },
+    {
+      "name": "atPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "atPage{${1:label}}"
+      }
+    },
+    {
+      "name": "CMT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CMT{${1:arg}}"
+      }
+    },
+    {
+      "name": "CurrentBorderColor",
+      "unusual": true
+    },
+    {
+      "name": "FixupProc",
+      "unusual": true
+    },
+    {
+      "name": "isWindow",
+      "unusual": true
+    },
+    {
+      "name": "labelRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "labelRef{${1:label}}"
+      }
+    },
+    {
+      "name": "mldb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mldb{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mldblevel",
+      "unusual": true
+    },
+    {
+      "name": "mldbModeOff",
+      "unusual": true
+    },
+    {
+      "name": "mldbModeOn",
+      "unusual": true
+    },
+    {
+      "name": "mlDict",
+      "unusual": true
+    },
+    {
+      "name": "mllnkcontainer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mllnkcontainer{${1:arg}}"
+      }
+    },
+    {
+      "name": "mlMaxNSylls",
+      "unusual": true
+    },
+    {
+      "name": "MrkLnkLtr",
+      "unusual": true
+    },
+    {
+      "name": "pboxRect",
+      "unusual": true
+    },
+    {
+      "name": "pgmonitoring",
+      "unusual": true
+    },
+    {
+      "name": "removelastspace",
+      "unusual": true
+    },
+    {
+      "name": "revCrackAt",
+      "unusual": true
+    },
+    {
+      "name": "setQuadBox",
+      "unusual": true
+    },
+    {
+      "name": "smallRectTF",
+      "unusual": true
+    },
+    {
+      "name": "syllableCnt",
+      "unusual": true
+    },
+    {
+      "name": "theView",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/aeb_mlink#c": [
+      "dvipsone",
+      "dvips",
+      "dblevel=${1|0,1,2|}",
+      "urlOpts={${1:url package options}}",
+      "useui",
+      "setcorder",
+      "nodljs",
+      "debug",
+      "execJS",
+      "nopro",
+      "reqjs",
+      "!reqjs",
+      "usealtadobe"
+    ],
+    "\\ui": [
+      "border=${1|visible,invisible|}",
+      "linewidth=${1|thin,medium,thick|}",
+      "highlight=${1|none,invert,outline,inset,push|}",
       "bordercolor={${1:R G B}}",
-      "linestyle=",
+      "linestyle=${1|solid,dashed,underlined,beveled,inset|}",
       "dasharray=${1:number}",
       "linktxtcolor=",
-      "annotflags=",
-      "fieldflags=",
+      "annotflags=${1|hidden,print,-print,noview,lock|}",
+      "fieldflags=${1|readonly,required,noexport,multiline,password,notoggleoff,radio,pushbutton,combo,edit,sort,fileselect,multiselect,nospellcheck,noscrolling,comb,radiosinunison,commitonchange,richtext|}",
       "maxlength=${1:number}",
       "tooltip={${1:text}}",
       "default=${1:text}",
       "value=${1:text}",
-      "rotate=",
+      "rotate=${1|0,90,180,270|}",
       "bgcolor={${1:R G B}}",
       "uptxt={${1:text}}",
       "downtxt={${1:text}}",
@@ -176,21 +341,21 @@
       "normappr=${1:string}",
       "rollappr=${1:string}",
       "downappr=${1:string}",
-      "importicons=",
-      "layout=",
-      "scalewhen=",
-      "scale=",
+      "importicons=${1|yes,no|}",
+      "layout=${1|labelonly,icononly,icontop,iconbottom,iconleft,iconright,labelover|}",
+      "scalewhen=${1|always,never,iconbig,iconsmall|}",
+      "scale=${1|proportional,nonproportional|}",
       "position={${1:x y}}",
       "fitbounds",
       "appr={${1:specs}}",
-      "align=",
+      "align=${1|left,centered,right|}",
       "textfont=${1:font name}",
       "textsize=${1:number}",
       "textcolor=${1:number}",
-      "autocenter=",
-      "inline=",
+      "autocenter=${1|yes,no|}",
+      "inline=${1|yes,no|}",
       "presets=${1:\\cmd}",
-      "symbolchoice=",
+      "symbolchoice=${1|check,circle,cross,diamond,square,star|}",
       "rectW=",
       "rectH=",
       "width=",
@@ -214,5 +379,8 @@
       "pageinvisible={${1:script}}",
       "lock={${1:KV-pairs}}"
     ]
+  },
+  "args": [
+    "\\usepackage/aeb_mlink#c"
   ]
 }

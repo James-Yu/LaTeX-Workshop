@@ -1,150 +1,356 @@
 {
-  "includes": {},
-  "macros": {
-    "dottedcontents{}{}{}{}": {
-      "snippet": "dottedcontents{${1:section}}{${2:above-code}}{${3:label-width}}{${4:leader-width}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "dottedcontents",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "dottedcontents{${1:section}}{${2:above-code}}{${3:label-width%l}}{${4:leader-width%l}}"
+      }
     },
-    "dottedcontents{}[]{}{}{}": {
-      "snippet": "dottedcontents{${1:section}}[${2:left}]{${3:above-code}}{${4:label-width}}{${5:leader-width}}"
+    {
+      "name": "dottedcontents",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "dottedcontents{${1:section}}[${5:left%l}]{${2:above-code}}{${3:label-width%l}}{${4:leader-width%l}}"
+      }
     },
-    "titlecontents{}{}{}{}{}": {
-      "snippet": "titlecontents{${1:section}}{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}"
+    {
+      "name": "titlecontents",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "titlecontents{${1:section}}{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}"
+      }
     },
-    "titlecontents{}[]{}{}{}{}": {
-      "snippet": "titlecontents{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}"
+    {
+      "name": "titlecontents",
+      "arg": {
+        "format": "{}[]{}{}{}{}",
+        "snippet": "titlecontents{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}"
+      }
     },
-    "titlecontents{}{}{}{}{}[]": {
-      "snippet": "titlecontents{${1:section}}{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${6:below-code}]"
+    {
+      "name": "titlecontents",
+      "arg": {
+        "format": "{}{}{}{}{}[]",
+        "snippet": "titlecontents{${1:section}}{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${6:below-code}]"
+      }
     },
-    "titlecontents{}[]{}{}{}{}[]": {
-      "snippet": "titlecontents{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}[${7:below-code}]"
+    {
+      "name": "titlecontents",
+      "arg": {
+        "format": "{}[]{}{}{}{}[]",
+        "snippet": "titlecontents{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${7:below-code}]"
+      }
     },
-    "contentsmargin{}": {
-      "snippet": "contentsmargin{${1:right}}"
+    {
+      "name": "contentsmargin",
+      "arg": {
+        "format": "{}",
+        "snippet": "contentsmargin{${1:right%l}}"
+      }
     },
-    "contentsmargin[]{}": {
-      "snippet": "contentsmargin[${2:correction}]{${1:right}}"
+    {
+      "name": "contentsmargin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "contentsmargin[${2:correction%l}]{${1:right%l}}"
+      }
     },
-    "thecontentslabel": {},
-    "thecontentspage": {},
-    "contentslabel{}": {
-      "snippet": "contentslabel{${1:space}}"
+    {
+      "name": "thecontentslabel"
     },
-    "contentslabel[]{}": {
-      "snippet": "contentslabel[${2:format}]{${1:space}}"
+    {
+      "name": "thecontentspage"
     },
-    "contentspage": {},
-    "contentspage[]": {
-      "snippet": "contentspage[${1:format}]"
+    {
+      "name": "contentslabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "contentslabel{${1:space%l}}"
+      }
     },
-    "contentspush{}": {
-      "snippet": "contentspush{${1:text}}"
+    {
+      "name": "contentslabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "contentslabel[${2:format}]{${1:space%l}}"
+      }
     },
-    "titlecontents*{}[]{}{}{}{}": {
-      "snippet": "titlecontents*{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}"
+    {
+      "name": "contentspage"
     },
-    "titlecontents*{}[]{}{}{}{}[]": {
-      "snippet": "titlecontents*{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}[${7:separator}]"
+    {
+      "name": "contentspage",
+      "arg": {
+        "format": "[]",
+        "snippet": "contentspage[${1:format}]"
+      }
     },
-    "titlecontents*{}[]{}{}{}{}[][]": {
-      "snippet": "titlecontents*{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}[${7:separator}][${8:end}]"
+    {
+      "name": "contentspush",
+      "arg": {
+        "format": "{}",
+        "snippet": "contentspush{${1:text}}"
+      }
     },
-    "titlecontents*{}[]{}{}{}{}[][][]": {
-      "snippet": "titlecontents*{${1:section}}[${2:left}]{${3:above-code}}{${4:numbered-entry-format}}{${5:numberless-entry-format}}{${6:filler-page-format}}[${7:begin}][${8:separator}][${9:end}]"
+    {
+      "name": "titlecontents*",
+      "arg": {
+        "format": "{}[]{}{}{}{}",
+        "snippet": "titlecontents*{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}"
+      }
     },
-    "contentsuse{}{}": {
-      "snippet": "contentsuse{${1:name}}{${2:ext}}"
+    {
+      "name": "titlecontents*",
+      "arg": {
+        "format": "{}[]{}{}{}{}[]",
+        "snippet": "titlecontents*{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${7:separator}]"
+      }
     },
-    "contentsfinish": {},
-    "startcontents": {},
-    "startcontents[]": {
-      "snippet": "startcontents[${1:name}]"
+    {
+      "name": "titlecontents*",
+      "arg": {
+        "format": "{}[]{}{}{}{}[][]",
+        "snippet": "titlecontents*{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${7:separator}][${8:end}]"
+      }
     },
-    "stopcontents": {},
-    "stopcontents[]": {
-      "snippet": "stopcontents[${1:name}]"
+    {
+      "name": "titlecontents*",
+      "arg": {
+        "format": "{}[]{}{}{}{}[][][]",
+        "snippet": "titlecontents*{${1:section}}[${6:left%l}]{${2:above-code}}{${3:numbered-entry-format}}{${4:numberless-entry-format}}{${5:filler-page-format}}[${7:begin}][${8:separator}][${9:end}]"
+      }
     },
-    "resumecontents": {},
-    "resumecontents[]": {
-      "snippet": "resumecontents[${1:name}]"
+    {
+      "name": "contentsuse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "contentsuse{${1:name}}{${2:ext}}"
+      }
     },
-    "printcontents{}{}{}": {
-      "snippet": "printcontents{${1:prefix}}{${2:start-level}}{${3:toc-code}}"
+    {
+      "name": "contentsfinish",
+      "unusual": true
     },
-    "printcontents[]{}{}{}": {
-      "snippet": "printcontents[${4:name}]{${1:prefix}}{${2:start-level}}{${3:toc-code}}"
+    {
+      "name": "startcontents"
     },
-    "printcontents{}{}[]{}": {
-      "snippet": "printcontents{${1:prefix}}{${2:start-level}}[${3:toc-depth}]{${4:toc-code}}"
+    {
+      "name": "startcontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "startcontents[${1:name}]"
+      }
     },
-    "printcontents[]{}{}[]{}": {
-      "snippet": "printcontents[${4:name}]{${1:prefix}}{${2:start-level}}[${5:toc-depth}]{${3:toc-code}}"
+    {
+      "name": "stopcontents"
     },
-    "startlist{}": {
-      "snippet": "startlist{${1:list}}"
+    {
+      "name": "stopcontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "stopcontents[${1:name}]"
+      }
     },
-    "startlist[]{}": {
-      "snippet": "startlist[${2:name}]{${1:list}}"
+    {
+      "name": "resumecontents"
     },
-    "stoplist{}": {
-      "snippet": "stoplist{${1:list}}"
+    {
+      "name": "resumecontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "resumecontents[${1:name}]"
+      }
     },
-    "stoplist[]{}": {
-      "snippet": "stoplist[${2:name}]{${1:list}}"
+    {
+      "name": "printcontents",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "printcontents{${1:prefix}}{${2:start-level}}{${3:toc-code}}"
+      }
     },
-    "resumelist{}": {
-      "snippet": "resumelist{${1:list}}"
+    {
+      "name": "printcontents",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "printcontents[${4:name}]{${1:prefix}}{${2:start-level}}{${3:toc-code}}"
+      }
     },
-    "resumelist[]{}": {
-      "snippet": "resumelist[${2:name}]{${1:list}}"
+    {
+      "name": "printcontents",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "printcontents{${1:prefix}}{${2:start-level}}[${4:toc-depth}]{${3:toc-code}}"
+      }
     },
-    "printlist{}{}{}": {
-      "snippet": "printlist{${1:list}}{${2:prefix}}{${3:toc-code}}"
+    {
+      "name": "printcontents",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "printcontents[${4:name}]{${1:prefix}}{${2:start-level}}[${5:toc-depth}]{${3:toc-code}}"
+      }
     },
-    "printlist[]{}{}{}": {
-      "snippet": "printlist[${4:name}]{${1:list}}{${2:prefix}}{${3:toc-code}}"
+    {
+      "name": "startlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "startlist{${1:list}}"
+      }
     },
-    "printlist{}{}[]{}": {
-      "snippet": "printlist{${1:list}}{${2:prefix}}[${3:toc-depth}]{${4:toc-code}}"
+    {
+      "name": "startlist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "startlist[${2:name}]{${1:list}}"
+      }
     },
-    "printlist[]{}{}[]{}": {
-      "snippet": "printlist[${4:name}]{${1:list}}{${2:prefix}}[${5:toc-depth}]{${3:toc-code}}"
+    {
+      "name": "stoplist",
+      "arg": {
+        "format": "{}",
+        "snippet": "stoplist{${1:list}}"
+      }
     },
-    "titleline{}": {
-      "snippet": "titleline{${1:horizontal material}}"
+    {
+      "name": "stoplist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "stoplist[${2:name}]{${1:list}}"
+      }
     },
-    "titleline[]{}": {
-      "snippet": "titleline[${2:align}]{${1:horizontal material}}"
+    {
+      "name": "resumelist",
+      "arg": {
+        "format": "{}",
+        "snippet": "resumelist{${1:list}}"
+      }
     },
-    "titleline*{}": {
-      "snippet": "titleline*{${1:horizontal material}}"
+    {
+      "name": "resumelist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "resumelist[${2:name}]{${1:list}}"
+      }
     },
-    "titleline*[]{}": {
-      "snippet": "titleline*[${2:align}]{${1:horizontal material}}"
+    {
+      "name": "printlist",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "printlist{${1:list}}{${2:prefix}}{${3:toc-code}}"
+      }
     },
-    "titlerule": {},
-    "titlerule[]": {
-      "snippet": "titlerule[${1:height}]"
+    {
+      "name": "printlist",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "printlist[${4:name}]{${1:list}}{${2:prefix}}{${3:toc-code}}"
+      }
     },
-    "titlerule*{}": {
-      "snippet": "titlerule*{${1:text}}"
+    {
+      "name": "printlist",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "printlist{${1:list}}{${2:prefix}}[${4:toc-depth}]{${3:toc-code}}"
+      }
     },
-    "titlerule*[]{}": {
-      "snippet": "titlerule*[${2:width}]{${1:text}}"
+    {
+      "name": "printlist",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "printlist[${4:name}]{${1:list}}{${2:prefix}}[${5:toc-depth}]{${3:toc-code}}"
+      }
     },
-    "filright": {},
-    "filleft": {},
-    "filcenter": {},
-    "fillast": {}
-  },
-  "envs": {},
-  "options": [
-    "dotinlabels",
-    "nodotinlabels",
-    "rigidseps",
-    "rubberseps",
-    "leftlabels",
-    "rightlabels"
+    {
+      "name": "titleline",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleline{${1:horizontal material%text}}"
+      }
+    },
+    {
+      "name": "titleline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "titleline[${2:align%keyvals}]{${1:horizontal material%text}}",
+        "keys": [
+          "\\titleline,\\titleline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titleline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleline*{${1:horizontal material%text}}"
+      }
+    },
+    {
+      "name": "titleline*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "titleline*[${2:align%keyvals}]{${1:horizontal material%text}}",
+        "keys": [
+          "\\titleline,\\titleline*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titlerule"
+    },
+    {
+      "name": "titlerule",
+      "arg": {
+        "format": "[]",
+        "snippet": "titlerule[${1:height}]"
+      }
+    },
+    {
+      "name": "titlerule*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlerule*{${1:text}}"
+      }
+    },
+    {
+      "name": "titlerule*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "titlerule*[${2:width}]{${1:text}}"
+      }
+    },
+    {
+      "name": "filright"
+    },
+    {
+      "name": "filleft"
+    },
+    {
+      "name": "filcenter"
+    },
+    {
+      "name": "fillast"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/titletoc#c": [
+      "dotinlabels",
+      "nodotinlabels",
+      "rigidseps",
+      "rubberseps",
+      "leftlabels",
+      "rightlabels"
+    ],
+    "\\titleline,\\titleline*": [
+      "l",
+      "c",
+      "r"
+    ]
+  },
+  "args": [
+    "\\usepackage/titletoc#c"
+  ]
 }

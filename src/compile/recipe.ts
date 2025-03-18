@@ -1,7 +1,5 @@
 import vscode from 'vscode'
 import path from 'path'
-import fs from 'fs'
-import * as cp from 'child_process'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
 import { lw } from '../lw'
@@ -10,8 +8,20 @@ import { queue } from './queue'
 
 const logger = lw.log('Build', 'Recipe')
 
-let prevRecipe: Recipe | undefined = undefined
-let prevLangId = ''
+let state: {
+    prevRecipe: Recipe | undefined,
+    prevLangId: string,
+    isMikTeX: boolean | undefined
+}
+
+initialize()
+export function initialize() {
+    state = {
+        prevRecipe: undefined,
+        prevLangId: '',
+        isMikTeX: undefined
+    }
+}
 
 setDockerImage()
 lw.onConfigChange('docker.image.latex', setDockerImage)
@@ -48,13 +58,13 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     await vscode.workspace.saveAll()
 
     // Create build tools based on the recipe system
-    const tools = createBuildTools(rootFile, langId, recipeName)
+    const tools = await createBuildTools(rootFile, langId, recipeName)
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
-        createOutputSubFolders(lw.root.file.path)
+        await createOutputSubFolders(lw.root.file.path)
     } else {
-        createOutputSubFolders(rootFile)
+        await createOutputSubFolders(rootFile)
     }
 
     // Check for invalid toolchain
@@ -67,7 +77,13 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     const timestamp = Date.now()
     tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-    lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    // #4513 If the recipe contains a forced latexmk compilation, don't set the
+    // compiledPDFPath so that PDF refresh is handled by file watcher.
+    if (!tools.some(tool => tool.command === 'latexmk' &&
+                            tool.args?.includes('-interaction=nonstopmode') &&
+                            tool.args?.includes('-f'))) {
+        lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    }
     // Execute the build loop
     await buildLoop()
 }
@@ -78,21 +94,27 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  */
-function createOutputSubFolders(rootFile: string) {
+async function createOutputSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
     let outDir = lw.file.getOutDir(rootFile)
     if (!path.isAbsolute(outDir)) {
         outDir = path.resolve(rootDir, outDir)
     }
     logger.log(`outDir: ${outDir} .`)
-    lw.cache.getIncludedTeX(rootFile).forEach(file => {
+    for (const file of lw.cache.getIncludedTeX(rootFile)) {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
         const fullOutDir = path.resolve(outDir, relativePath)
         // To avoid issues when fullOutDir is the root dir
         // Using fs.mkdir() on the root directory even with recursion will result in an error
         try {
-            if (! (fs.existsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
-                fs.mkdirSync(fullOutDir, { recursive: true })
+            const fileStat = await lw.file.exists(fullOutDir)
+            if (
+                !fileStat ||
+                ![vscode.FileType.Directory, vscode.FileType.Directory | vscode.FileType.SymbolicLink].includes(
+                    fileStat.type
+                )
+            ) {
+                lw.external.mkdirSync(fullOutDir, { recursive: true })
             }
         } catch (e) {
             if (e instanceof Error) {
@@ -104,7 +126,7 @@ function createOutputSubFolders(rootFile: string) {
                 throw(e)
             }
         }
-    })
+    }
 }
 
 
@@ -117,11 +139,11 @@ function createOutputSubFolders(rootFile: string) {
  * @returns {Tool[] | undefined} - An array of Tool objects representing the
  * build tools.
  */
-function createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
+async function createBuildTools(rootFile: string, langId: string, recipeName?: string): Promise<Tool[] | undefined> {
     let buildTools: Tool[] = []
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const magic = findMagicComments(rootFile)
+    const magic = await findMagicComments(rootFile)
 
     if (recipeName === undefined && magic.tex && !configuration.get('latex.build.forceRecipeUsage')) {
         buildTools = createBuildMagic(rootFile, magic.tex, magic.bib)
@@ -131,8 +153,8 @@ function createBuildTools(rootFile: string, langId: string, recipeName?: string)
             return
         }
         logger.log(`Preparing to run recipe: ${recipe.name}.`)
-        prevRecipe = recipe
-        prevLangId = langId
+        state.prevRecipe = recipe
+        state.prevLangId = langId
         const tools = configuration.get('latex.tools') as Tool[]
         recipe.tools.forEach(tool => {
             if (typeof tool === 'string') {
@@ -169,14 +191,14 @@ function createBuildTools(rootFile: string, langId: string, recipeName?: string)
  * @returns {{tex?: Tool, bib?: Tool, recipe?: string}} - An object containing
  * the TeX and BibTeX tools and the LW recipe name.
  */
-function findMagicComments(rootFile: string): {tex?: Tool, bib?: Tool, recipe?: string} {
+async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: Tool, recipe?: string}> {
     const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
     const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
     const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
     const regexRecipe = /^(?:%\s*!\s*LW\srecipe\s*=\s*(.*)$)/m
     let content = ''
-    for (const line of fs.readFileSync(rootFile).toString().split('\n')) {
+    for (const line of (await lw.file.read(rootFile))?.split('\n') || []) {
         if (line.startsWith('%') || line.trim().length === 0) {
             content += line + '\n'
         } else {
@@ -271,8 +293,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         void logger.showErrorMessage('[Builder] No recipes defined.')
         return
     }
-    if (prevLangId !== langId) {
-        prevRecipe = undefined
+    if (state.prevLangId !== langId) {
+        state.prevRecipe = undefined
     }
     let recipe: Recipe | undefined
     // Find recipe according to the given name
@@ -287,8 +309,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         }
     }
     // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === prevRecipe?.name)) {
-        recipe = prevRecipe
+    if (recipe === undefined && defaultRecipeName === 'lastUsed') {
+        recipe = recipes.find(candidate => candidate.name === state.prevRecipe?.name)
     }
     // If still not found, fallback to 'first'
     if (recipe === undefined) {
@@ -301,8 +323,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
             candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
         }
         if (candidates.length < 1) {
-            logger.log(`Failed to resolve build recipe: ${recipeName}.`)
-            void logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}.`)
+            logger.log(`Cannot find any recipe for langID \`${langId}\`.`)
+            void logger.showErrorMessage(`[Builder] Cannot find any recipe for langID \`${langId}\`: ${recipeName}.`)
         }
         recipe = candidates[0]
     }
@@ -329,7 +351,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                         tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk.bat')
                     } else {
                         tool.command = path.resolve(lw.extensionRoot, './scripts/latexmk')
-                        fs.chmodSync(tool.command, 0o755)
+                        lw.external.chmodSync(tool.command, 0o755)
                     }
                     break
                 default:
@@ -349,21 +371,29 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         })
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
-            const isLuaLatex = tool.args.includes('-lualatex') ||
-                               tool.args.includes('-pdflua') ||
-                               tool.args.includes('-pdflualatex') ||
-                               tool.args.includes('--lualatex') ||
-                               tool.args.includes('--pdflua') ||
-                               tool.args.includes('--pdflualatex')
-            if (isMikTeX() && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
-                tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+            const isLaTeXmk =
+                tool.command === 'latexmk' &&
+                !(
+                    tool.args.includes('-lualatex') ||
+                    tool.args.includes('-pdflua') ||
+                    tool.args.includes('-pdflualatex') ||
+                    tool.args.includes('--lualatex') ||
+                    tool.args.includes('--pdflua') ||
+                    tool.args.includes('--pdflualatex')
+                )
+            if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
+                if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
+                    // %!TeX options is present. All args are provided in a string and { shell: true }
+                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
+                } else {
+                    tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+                }
             }
         }
     })
     return buildTools
 }
 
-let _isMikTeX: boolean
 /**
  * Check whether the LaTeX toolchain compilers are provided by MikTeX.
  *
@@ -371,18 +401,19 @@ let _isMikTeX: boolean
  * otherwise, false.
  */
 function isMikTeX(): boolean {
-    if (_isMikTeX === undefined) {
+    if (state.isMikTeX === undefined) {
         try {
-            if (cp.execSync('pdflatex --version').toString().match(/MiKTeX/)) {
-                _isMikTeX = true
+            const log = lw.external.sync('pdflatex', ['--version']).stdout.toString()
+            if (log.includes('MiKTeX')) {
+                state.isMikTeX = true
                 logger.log('`pdflatex` is provided by MiKTeX.')
             } else {
-                _isMikTeX = false
+                state.isMikTeX = false
             }
-        } catch (e) {
-            logger.log('Cannot run `pdflatex` to determine if we are using MiKTeX.')
-            _isMikTeX = false
+        } catch (err) {
+            logger.logError('Cannot run `pdflatex` to determine if we are using MiKTeX.', err)
+            state.isMikTeX = false
         }
     }
-    return _isMikTeX
+    return state.isMikTeX
 }

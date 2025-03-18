@@ -1,76 +1,152 @@
 {
-  "includes": {},
-  "macros": {
-    "tag{}": {
-      "snippet": "tag{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "tag",
+      "arg": {
+        "format": "{}",
+        "snippet": "tag{${1:text}}"
+      }
     },
-    "notag": {},
-    "minilab{}": {
-      "snippet": "minilab{${1:label}}"
+    {
+      "name": "notag"
     },
-    "setlabtype{}": {
-      "snippet": "setlabtype{${1:style}}"
+    {
+      "name": "minilab",
+      "arg": {
+        "format": "{}",
+        "snippet": "minilab{${1:label}}"
+      }
     },
-    "intertext{}": {
-      "snippet": "intertext{${1:text}}"
+    {
+      "name": "setlabtype",
+      "arg": {
+        "format": "{}",
+        "snippet": "setlabtype{${1:style}}"
+      }
     },
-    "multicol{}{}": {
-      "snippet": "multicol{${1:num of cols}}{${2:content}}"
+    {
+      "name": "intertext",
+      "arg": {
+        "format": "{}",
+        "snippet": "intertext{${1:text}}"
+      }
     },
-    "computelength{}": {
-      "snippet": "computelength{${1:arg}}"
+    {
+      "name": "multicol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicol{${1:num of cols}}{${2:content}}"
+      }
     },
-    "getlength{}": {
-      "snippet": "getlength{${1:arg}}"
+    {
+      "name": "computelength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "computelength{${1:arg}}"
+      }
     },
-    "next{}": {
-      "snippet": "next{${1:arg}}"
+    {
+      "name": "getlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "getlength{${1:arg}}"
+      }
     },
-    "MHcenter": {},
-    "MHbig": {},
-    "openup": {},
-    "displaylines{}": {
-      "snippet": "displaylines{${1:arg}}"
+    {
+      "name": "next",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "next{${1:arg}}"
+      }
     },
-    "MHsavelabel{}": {
-      "snippet": "MHsavelabel{${1:arg}}"
+    {
+      "name": "MHcenter",
+      "unusual": true
     },
-    "sublabeltype": {},
-    "MHgobble": {},
-    "comm": {},
-    "strutdepth": {}
-  },
-  "envs": {
-    "equ": {},
-    "equ[]": {
-      "name": "equ",
-      "snippet": "[${1:label}]"
+    {
+      "name": "MHbig",
+      "unusual": true
     },
-    "equs": {},
-    "equs[]": {
-      "name": "equs",
-      "snippet": "[${1:label}]"
+    {
+      "name": "openup",
+      "unusual": true
     },
-    "equs[][]": {
-      "name": "equs",
-      "snippet": "[${1:num of cols}][${2:label}]"
+    {
+      "name": "displaylines",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "displaylines{${1:arg}}"
+      }
     },
-    "equa": {},
-    "equa[]": {
-      "name": "equa",
-      "snippet": "[${1:label}]"
+    {
+      "name": "MHsavelabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MHsavelabel{${1:arg}}"
+      }
     },
-    "equa[][]": {
-      "name": "equa",
-      "snippet": "[${1:num of cols}][${2:label}]"
+    {
+      "name": "sublabeltype",
+      "unusual": true
+    },
+    {
+      "name": "MHgobble",
+      "unusual": true
+    },
+    {
+      "name": "comm",
+      "unusual": true
+    },
+    {
+      "name": "strutdepth",
+      "unusual": true
     }
-  },
-  "options": [
-    "righttag",
-    "lefttag",
-    "numberall",
-    "fleqn",
-    "leqno"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "equ"
+    },
+    {
+      "name": "equ",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "equs"
+    },
+    {
+      "name": "equs",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label}]"
+      }
+    },
+    {
+      "name": "equs",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:num of cols}][${2:label}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/mhequ#c": [
+      "righttag",
+      "lefttag",
+      "numberall",
+      "fleqn",
+      "leqno"
+    ]
+  },
+  "args": [
+    "\\usepackage/mhequ#c"
+  ]
 }

@@ -1,133 +1,362 @@
 {
-  "includes": {},
-  "macros": {
-    "seticonparams{}{}": {
-      "snippet": "seticonparams{${1:icon-type}}{${2:params}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "seticonparams",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seticonparams{${1:icon-type}}{${2:params}}"
+      }
     },
-    "entity{}": {
-      "snippet": "entity{${1:id}}"
+    {
+      "name": "entity",
+      "arg": {
+        "format": "{}",
+        "snippet": "entity{${1:id}}"
+      }
     },
-    "entity{}[]": {
-      "snippet": "entity{${1:id}}[${2:text}]"
+    {
+      "name": "entity",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "entity{${1:id}}[${2:text}]"
+      }
     },
-    "entity[]{}": {
-      "snippet": "entity[${2:property}]{${1:id}}"
+    {
+      "name": "entity",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "entity[${2:property}]{${1:id}}"
+      }
     },
-    "entity[]{}[]": {
-      "snippet": "entity[${2:property}]{${1:id}}[${3:text}]"
+    {
+      "name": "entity",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "entity[${2:property}]{${1:id}}[${3:text}]"
+      }
     },
-    "attribute{}": {
-      "snippet": "attribute{${1:id}}"
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "{}",
+        "snippet": "attribute{${1:id}}"
+      }
     },
-    "attribute{}[]": {
-      "snippet": "attribute{${1:id}}[${2:text}]"
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "attribute{${1:id}}[${2:text}]"
+      }
     },
-    "attribute[]{}": {
-      "snippet": "attribute[${2:property}]{${1:id}}"
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "attribute[${2:property}]{${1:id}}"
+      }
     },
-    "attribute[]{}[]": {
-      "snippet": "attribute[${2:property}]{${1:id}}[${3:text}]"
+    {
+      "name": "attribute",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "attribute[${2:property}]{${1:id}}[${3:text}]"
+      }
     },
-    "attributeof{}{}{}": {
-      "snippet": "attributeof{${1:id}}{${2:angle}}{${3:id2}}"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "attributeof{${1:id}}{${2:angle}}{${3:id2}}"
+      }
     },
-    "attributeof{}{}{}[]": {
-      "snippet": "attributeof{${1:id}}{${2:angle}}{${3:id2}}[${4:text}]"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "attributeof{${1:id}}{${2:angle}}{${3:id2}}[${4:text}]"
+      }
     },
-    "attributeof{}{}[]{}": {
-      "snippet": "attributeof{${1:id}}{${2:angle}}[${3:property}]{${4:id2}}"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "attributeof{${1:id}}{${2:angle}}[${4:property}]{${3:id2}}"
+      }
     },
-    "attributeof{}{}[]{}[]": {
-      "snippet": "attributeof{${1:id}}{${2:angle}}[${3:property}]{${4:id2}}[${5:text}]"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "attributeof{${1:id}}{${2:angle}}[${4:property}]{${3:id2}}[${5:text}]"
+      }
     },
-    "attributeof{}[]{}{}": {
-      "snippet": "attributeof{${1:id}}[${2:dist}]{${3:angle}}{${4:id2}}"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "attributeof{${1:id}}[${4:dist}]{${2:angle}}{${3:id2}}"
+      }
     },
-    "attributeof{}[]{}[]{}": {
-      "snippet": "attributeof{${1:id}}[${2:dist}]{${3:angle}}[${4:property}]{${5:id2}}"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}[]{}[]{}",
+        "snippet": "attributeof{${1:id}}[${4:dist}]{${2:angle}}[${5:property}]{${3:id2}}"
+      }
     },
-    "attributeof{}[]{}[]{}[]": {
-      "snippet": "attributeof{${1:id}}[${2:dist}]{${3:angle}}[${4:property}]{${5:id2}}[${6:text}]"
+    {
+      "name": "attributeof",
+      "arg": {
+        "format": "{}[]{}[]{}[]",
+        "snippet": "attributeof{${1:id}}[${4:dist}]{${2:angle}}[${5:property}]{${3:id2}}[${6:text}]"
+      }
     },
-    "attrdist{}": {
-      "snippet": "attrdist{${1:dist}}"
+    {
+      "name": "attrdist",
+      "arg": {
+        "format": "{}",
+        "snippet": "attrdist{${1:dist}}"
+      }
     },
-    "relationship{}": {
-      "snippet": "relationship{${1:id}}"
+    {
+      "name": "relationship",
+      "arg": {
+        "format": "{}",
+        "snippet": "relationship{${1:id}}"
+      }
     },
-    "relationship{}[]": {
-      "snippet": "relationship{${1:id}}[${2:text}]"
+    {
+      "name": "relationship",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "relationship{${1:id}}[${2:text}]"
+      }
     },
-    "relationship[]{}": {
-      "snippet": "relationship[${2:property}]{${1:id}}"
+    {
+      "name": "relationship",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "relationship[${2:property}]{${1:id}}"
+      }
     },
-    "relationship[]{}[]": {
-      "snippet": "relationship[${2:property}]{${1:id}}[${3:text}]"
+    {
+      "name": "relationship",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "relationship[${2:property}]{${1:id}}[${3:text}]"
+      }
     },
-    "relationshipbetween{}{}{}": {
-      "snippet": "relationshipbetween{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "relationshipbetween{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}"
+      }
     },
-    "relationshipbetween{}{}{}[]": {
-      "snippet": "relationshipbetween{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}[${4:relationship-name}]"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "relationshipbetween{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}[${4:relationship-name}]"
+      }
     },
-    "relationshipbetween[]{}{}{}": {
-      "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}"
+      }
     },
-    "relationshipbetween[]{}{}{}[]": {
-      "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}[${5:relationship-name}]"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}{${2:entity-id2}}{${3:relationship-id}}[${5:relationship-name}]"
+      }
     },
-    "inrelationship{}{}": {
-      "snippet": "inrelationship{${1:entity-id}}{${2:relationship-id}}"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "{}()[]{}()[]{}",
+        "snippet": "relationshipbetween{${1:entity-id1}}(${6:role1})[${4:card1}]{${2:entity-id2}}(${7:role2})[${5:card2}]{${3:relationship-id}}"
+      }
     },
-    "inrelationship{}{}[]": {
-      "snippet": "inrelationship{${1:entity-id}}{${2:relationship-id}}[${3:relationship-name}]"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "{}()[]{}()[]{}[]",
+        "snippet": "relationshipbetween{${1:entity-id1}}(${7:role1})[${4:card1}]{${2:entity-id2}}(${8:role2})[${5:card2}]{${3:relationship-id}}[${6:relationship-name}]"
+      }
     },
-    "inrelationship[]{}{}": {
-      "snippet": "inrelationship[${3:property}]{${1:entity-id}}{${2:relationship-id}}"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "[]{}()[]{}()[]{}",
+        "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}(${7:role1})[${5:card1}]{${2:entity-id2}}(${8:role2})[${6:card2}]{${3:relationship-id}}"
+      }
     },
-    "inrelationship[]{}{}[]": {
-      "snippet": "inrelationship[${3:property}]{${1:entity-id}}{${2:relationship-id}}[${4:relationship-name}]"
+    {
+      "name": "relationshipbetween",
+      "arg": {
+        "format": "[]{}()[]{}()[]{}[]",
+        "snippet": "relationshipbetween[${4:property}]{${1:entity-id1}}(${8:role1})[${5:card1}]{${2:entity-id2}}(${9:role2})[${6:card2}]{${3:relationship-id}}[${7:relationship-name}]"
+      }
     },
-    "rolepos{}": {
-      "snippet": "rolepos{${1:number}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "inrelationship{${1:entity-id}}{${2:relationship-id}}"
+      }
     },
-    "cardpos{}": {
-      "snippet": "cardpos{${1:number}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "inrelationship{${1:entity-id}}{${2:relationship-id}}[${3:relationship-name}]"
+      }
     },
-    "nodeconnections{}": {
-      "snippet": "nodeconnections{${1:node connections}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "inrelationship[${3:property}]{${1:entity-id}}{${2:relationship-id}}"
+      }
     },
-    "database{}{}{}": {
-      "snippet": "database{${1:width}}{${2:height}}{${3:text}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "inrelationship[${3:property}]{${1:entity-id}}{${2:relationship-id}}[${4:relationship-name}]"
+      }
     },
-    "database{}{}{}[]": {
-      "snippet": "database{${1:width}}{${2:height}}{${3:text}}[${4:id}]"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "{}()[]{}",
+        "snippet": "inrelationship{${1:entity-id}}(${4:role})[${3:card}]{${2:relationship-id}}"
+      }
     },
-    "database{}{}[]{}": {
-      "snippet": "database{${1:width}}{${2:height}}[${3:graph-params}]{${4:text}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "{}()[]{}[]",
+        "snippet": "inrelationship{${1:entity-id}}(${5:role})[${3:card}]{${2:relationship-id}}[${4:relationship-name}]"
+      }
     },
-    "database{}{}[]{}[]": {
-      "snippet": "database{${1:width}}{${2:height}}[${3:graph-params}]{${4:text}}[${5:id}]"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "[]{}()[]{}",
+        "snippet": "inrelationship[${3:property}]{${1:entity-id}}(${5:role})[${4:card}]{${2:relationship-id}}"
+      }
     },
-    "database[]{}{}{}": {
-      "snippet": "database[${4:pos}]{${1:width}}{${2:height}}{${3:text}}"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "[]{}()[]{}[]",
+        "snippet": "inrelationship[${3:property}]{${1:entity-id}}(${6:role})[${4:card}]{${2:relationship-id}}[${5:relationship-name}]"
+      }
     },
-    "database[]{}{}{}[]": {
-      "snippet": "database[${4:pos}]{${1:width}}{${2:height}}{${3:text}}[${5:id}]"
+    {
+      "name": "inrelationship",
+      "arg": {
+        "format": "[]{}()[]{}[]()",
+        "snippet": "inrelationship[${3:property}]{${1:entity-id}}(${6:role})[${4:card}]{${2:relationship-id}}[${5:relationship-name}](${7:dist},${8:angle})"
+      }
     },
-    "database[]{}{}[]{}": {
-      "snippet": "database[${4:pos}]{${1:width}}{${2:height}}[${5:graph-params}]{${3:text}}"
+    {
+      "name": "rolepos",
+      "arg": {
+        "format": "{}",
+        "snippet": "rolepos{${1:number}}"
+      }
     },
-    "database[]{}{}[]{}[]": {
-      "snippet": "database[${4:pos}]{${1:width}}{${2:height}}[${5:graph-params}]{${3:text}}[${6:id}]"
+    {
+      "name": "cardpos",
+      "arg": {
+        "format": "{}",
+        "snippet": "cardpos{${1:number}}"
+      }
     },
-    "relationtype": {},
-    "filedate": {},
-    "docdate": {},
-    "fileversion": {},
-    "basename": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "annote",
+      "arg": {
+        "format": "{}{}()",
+        "snippet": "annote{${1:id}}{${2:text}}(${3:dist},${4:angle})"
+      }
+    },
+    {
+      "name": "nodeconnections",
+      "arg": {
+        "format": "{}",
+        "snippet": "nodeconnections{${1:node connections}}"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "database{${1:width}}{${2:height}}{${3:text}}"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "database{${1:width}}{${2:height}}{${3:text}}[${4:id}]"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "database{${1:width}}{${2:height}}[${4:graph-params}]{${3:text}}"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "{}{}[]{}[]",
+        "snippet": "database{${1:width}}{${2:height}}[${4:graph-params}]{${3:text}}[${5:id}]"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "database[${4:pos}]{${1:width}}{${2:height}}{${3:text}}"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "database[${4:pos}]{${1:width}}{${2:height}}{${3:text}}[${5:id}]"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "database[${4:pos}]{${1:width}}{${2:height}}[${5:graph-params}]{${3:text}}"
+      }
+    },
+    {
+      "name": "database",
+      "arg": {
+        "format": "[]{}{}[]{}[]",
+        "snippet": "database[${4:pos}]{${1:width}}{${2:height}}[${5:graph-params}]{${3:text}}[${6:id}]"
+      }
+    },
+    {
+      "name": "relationtype",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,0 +1,76 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "listingsize",
+      "unusual": true
+    },
+    {
+      "name": "listingindent",
+      "unusual": true
+    },
+    {
+      "name": "verbinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "verbinput{${1:file}}"
+      }
+    },
+    {
+      "name": "matcher",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "matcher{${1:cmd}}{${2:target}}{${3:process-cmd}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "listing"
+    },
+    {
+      "name": "listing*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:end string}}"
+      }
+    },
+    {
+      "name": "verbwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "demo",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title}}"
+      }
+    },
+    {
+      "name": "demo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:shape%keyvals}]{${1:title}}",
+        "keys": [
+          "\\begin{demo}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ignore",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\begin{demo}": [
+      "w",
+      "n"
+    ]
+  },
+  "args": []
+}

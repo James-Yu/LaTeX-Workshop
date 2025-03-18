@@ -1,53 +1,128 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tabularx": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "useavremulibrary{}": {
-      "snippet": "useavremulibrary{${1:list of libraries}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "avrloadc{}": {
-      "snippet": "avrloadc{${1:file}}"
+    {
+      "name": "tabularx"
     },
-    "avrloadc[]{}": {
-      "snippet": "avrloadc[${2:compiler options}]{${1:file}}"
-    },
-    "avrcompile{}": {
-      "snippet": "avrcompile{${1:file}}"
-    },
-    "avrcompile[]{}": {
-      "snippet": "avrcompile[${2:compiler options}]{${1:file}}"
-    },
-    "avrloadihex{}": {
-      "snippet": "avrloadihex{${1:file}}"
-    },
-    "ifavrbreak": {},
-    "avrbreaktrue": {},
-    "avrbreakfalse": {},
-    "avrstep": {},
-    "avrstep[]": {
-      "snippet": "avrstep[${1:number}]"
-    },
-    "avrrun": {},
-    "avrsinglestep": {},
-    "avrinstrcount": {},
-    "avrUDR": {},
-    "avrUDRclear": {},
-    "avrdrawiter{}": {
-      "snippet": "avrdrawiter{${1:arg}}"
-    },
-    "avrdrawSize{}{}": {
-      "snippet": "avrdrawSize{${1:arg1}}{${2:arg2}}"
-    },
-    "avrdrawppm{}": {
-      "snippet": "avrdrawppm{${1:file}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "debug"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "useavremulibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "useavremulibrary{${1:list of libraries}}"
+      }
+    },
+    {
+      "name": "avrloadc",
+      "arg": {
+        "format": "{}",
+        "snippet": "avrloadc{${1:file}}"
+      }
+    },
+    {
+      "name": "avrloadc",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "avrloadc[${2:compiler options}]{${1:file}}"
+      }
+    },
+    {
+      "name": "avrcompile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "avrcompile{${1:file}}"
+      }
+    },
+    {
+      "name": "avrcompile",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "avrcompile[${2:compiler options}]{${1:file}}"
+      }
+    },
+    {
+      "name": "avrloadihex",
+      "arg": {
+        "format": "{}",
+        "snippet": "avrloadihex{${1:file}}"
+      }
+    },
+    {
+      "name": "ifavrbreak",
+      "unusual": true
+    },
+    {
+      "name": "avrbreaktrue",
+      "unusual": true
+    },
+    {
+      "name": "avrbreakfalse",
+      "unusual": true
+    },
+    {
+      "name": "avrstep"
+    },
+    {
+      "name": "avrstep",
+      "arg": {
+        "format": "[]",
+        "snippet": "avrstep[${1:number}]"
+      }
+    },
+    {
+      "name": "avrrun"
+    },
+    {
+      "name": "avrsinglestep"
+    },
+    {
+      "name": "avrinstrcount"
+    },
+    {
+      "name": "avrUDR"
+    },
+    {
+      "name": "avrUDRclear"
+    },
+    {
+      "name": "avrdrawiter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "avrdrawiter{${1:arg}}"
+      }
+    },
+    {
+      "name": "avrdrawSize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "avrdrawSize{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "avrdrawppm",
+      "arg": {
+        "format": "{}",
+        "snippet": "avrdrawppm{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/avremu#c": [
+      "debug"
+    ]
+  },
+  "args": [
+    "\\usepackage/avremu#c"
+  ]
 }

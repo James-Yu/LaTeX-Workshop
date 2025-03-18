@@ -1,38 +1,86 @@
 {
-  "includes": {
-    "manyfoot": [],
-    "suffix": [],
-    "perpage": []
-  },
-  "macros": {
-    "RestyleFootnote{}{}": {
-      "snippet": "RestyleFootnote{${1:type}}{${2:style}}"
+  "deps": [
+    {
+      "name": "manyfoot"
     },
-    "FootnoteSpecific{}": {
-      "snippet": "FootnoteSpecific{${1:type}}"
+    {
+      "name": "suffix"
     },
-    "DefineFootnoteStack{}": {
-      "snippet": "DefineFootnoteStack{${1:name}}"
-    },
-    "PushFootnoteMark{}": {
-      "snippet": "PushFootnoteMark{${1:stack name}}"
-    },
-    "PopFootnoteMark{}": {
-      "snippet": "PopFootnoteMark{${1:stack name}}"
-    },
-    "hfootfraction": {},
-    "vtypefraction": {},
-    "FootnoteMinimum": {},
-    "FootnoteMainMinimum": {},
-    "bigfoottolerance": {},
-    "footnotecarryratio": {}
-  },
-  "envs": {},
-  "options": [
-    "ruled",
-    "robust",
-    "fragile",
-    "verbose"
+    {
+      "name": "perpage"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "RestyleFootnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RestyleFootnote{${1:type}}{${2:style}}"
+      }
+    },
+    {
+      "name": "FootnoteSpecific",
+      "arg": {
+        "format": "{}",
+        "snippet": "FootnoteSpecific{${1:type}}"
+      }
+    },
+    {
+      "name": "DefineFootnoteStack",
+      "arg": {
+        "format": "{}",
+        "snippet": "DefineFootnoteStack{${1:name}}"
+      }
+    },
+    {
+      "name": "PushFootnoteMark",
+      "arg": {
+        "format": "{}",
+        "snippet": "PushFootnoteMark{${1:stack name}}"
+      }
+    },
+    {
+      "name": "PopFootnoteMark",
+      "arg": {
+        "format": "{}",
+        "snippet": "PopFootnoteMark{${1:stack name}}"
+      }
+    },
+    {
+      "name": "hfootfraction",
+      "unusual": true
+    },
+    {
+      "name": "vtypefraction",
+      "unusual": true
+    },
+    {
+      "name": "FootnoteMinimum",
+      "unusual": true
+    },
+    {
+      "name": "FootnoteMainMinimum",
+      "unusual": true
+    },
+    {
+      "name": "bigfoottolerance",
+      "unusual": true
+    },
+    {
+      "name": "footnotecarryratio",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bigfoot#c": [
+      "ruled",
+      "robust",
+      "fragile",
+      "verbose"
+    ]
+  },
+  "args": [
+    "\\usepackage/bigfoot#c"
+  ]
 }

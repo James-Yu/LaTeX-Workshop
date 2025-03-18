@@ -1,47 +1,106 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "exerquiz": []
-  },
-  "macros": {
-    "htmlSubmitType": {
-      "option": "eqText"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "insertHTMLs": {
-      "option": "eqText"
-    },
-    "addHiddenTextField[]{}{}": {
-      "snippet": "addHiddenTextField[${3:eforms params}]{${1:field}}{${2:value}}"
-    },
-    "addHiddenTextField{}{}": {
-      "snippet": "addHiddenTextField{${1:field}}{${2:value}}"
-    },
-    "addtohidden": {},
-    "basicFieldsSet": {},
-    "hiddenTextField[]{}{}": {
-      "snippet": "hiddenTextField[${3:eforms params}]{${1:field}}{${2:value}}"
-    },
-    "hiddenTextField{}{}": {
-      "snippet": "hiddenTextField{${1:field}}{${2:value}}"
-    },
-    "populateHiddenField{}{}": {
-      "snippet": "populateHiddenField{${1:field}}{${2:value}}"
-    },
-    "populatehiddenfields": {},
-    "rtnURL{}": {
-      "snippet": "rtnURL{${1:URL}}"
-    },
-    "thisRtnURL": {}
-  },
-  "envs": {},
-  "options": [
-    "eqRecord",
-    "eqEmail",
-    "eqText",
-    "taoas",
-    "custom=${1:file name}",
-    "tagged",
-    "submitAs="
+    {
+      "name": "exerquiz"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "htmlSubmitType",
+      "if": "eqEmail",
+      "unusual": true
+    },
+    {
+      "name": "insertHTMLs",
+      "if": "eqEmail",
+      "unusual": true
+    },
+    {
+      "name": "htmlSubmitType",
+      "if": "eqText",
+      "unusual": true
+    },
+    {
+      "name": "insertHTMLs",
+      "if": "eqText",
+      "unusual": true
+    },
+    {
+      "name": "addHiddenTextField",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "addHiddenTextField[${3:eforms params}]{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "addHiddenTextField",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addHiddenTextField{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "addtohidden",
+      "unusual": true
+    },
+    {
+      "name": "basicFieldsSet",
+      "unusual": true
+    },
+    {
+      "name": "hiddenTextField",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "hiddenTextField[${3:eforms params}]{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "hiddenTextField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hiddenTextField{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "populateHiddenField",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "populateHiddenField{${1:field}}{${2:value}}"
+      }
+    },
+    {
+      "name": "populatehiddenfields",
+      "unusual": true
+    },
+    {
+      "name": "rtnURL",
+      "arg": {
+        "format": "{}",
+        "snippet": "rtnURL{${1:URL}}"
+      }
+    },
+    {
+      "name": "thisRtnURL"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/eq2db#c": [
+      "eqRecord",
+      "eqEmail",
+      "eqText",
+      "taoas",
+      "custom=${1:file name}",
+      "tagged",
+      "submitAs=${1|FDF,HTML,XML|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/eq2db#c"
+  ]
 }

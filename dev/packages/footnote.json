@@ -1,0 +1,84 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "savenotes",
+      "unusual": true
+    },
+    {
+      "name": "spewnotes",
+      "unusual": true
+    },
+    {
+      "name": "makesavenoteenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makesavenoteenv{${1:environment}}"
+      }
+    },
+    {
+      "name": "makesavenoteenv",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "makesavenoteenv[${2:new_envname%envname}]{${1:environment}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "savenotes"
+    },
+    {
+      "name": "minipage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:position%keyvals}]{${1:width}}",
+        "keys": [
+          "\\begin{minipage*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "minipage*",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "[${2:position%keyvals}][${3:height}][${4:inner-pos}]{${1:width}}",
+        "keys": [
+          "\\begin{minipage*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "footnote"
+    },
+    {
+      "name": "footnote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "footnotetext"
+    }
+  ],
+  "keys": {
+    "\\begin{minipage*}": [
+      "c",
+      "t",
+      "b"
+    ]
+  },
+  "args": []
+}

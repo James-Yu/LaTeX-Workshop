@@ -1,288 +1,807 @@
 {
-  "includes": {
-    "silence": [],
-    "geometry": [],
-    "minimalist": [],
-    "projlib-font": [],
-    "fontspec": [],
-    "ctex": [],
-    "unicode-math": [],
-    "tikz-cd": [],
-    "nowidow": [],
-    "embrac": [],
-    "graphicx": [],
-    "wrapfig": [],
-    "float": [],
-    "caption": [],
-    "draftwatermark": [
+  "deps": [
+    {
+      "name": "silence"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "minimalist"
+    },
+    {
+      "name": "projlib-font"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "ctex"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "tikz-cd"
+    },
+    {
+      "name": "nowidow"
+    },
+    {
+      "name": "embrac"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "wrapfig"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draft"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draft=true"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "fast"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "fast=true"
+    },
+    {
+      "name": "parskip",
+      "if": "useindent=false"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern"
+    },
+    {
+      "name": "amssymb",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "lmodern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin-modern=true"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern"
+    },
+    {
+      "name": "amssymb",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "lmodern",
+      "if": "latin modern=true"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond"
+    },
+    {
+      "name": "newtxmath",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond-maths",
+      "if": "garamond=true"
+    },
+    {
+      "name": "ebgaramond",
+      "if": "garamond=true"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto"
+    },
+    {
+      "name": "notomath",
+      "if": "noto"
+    },
+    {
+      "name": "anyfontsize",
+      "if": "noto=true"
+    },
+    {
+      "name": "notomath",
+      "if": "noto=true"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum"
+    },
+    {
+      "name": "eulervm",
+      "if": "biolinum=true"
+    },
+    {
+      "name": "mathastext",
+      "if": "biolinum=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "desculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical",
+      "unusual": true
+    },
+    {
+      "name": "desculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "seculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "simpleqedsymbol",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "subseculine",
+      "if": "classical=true",
+      "unusual": true
+    },
+    {
+      "name": "xlongequal",
+      "arg": {
+        "format": "{}",
+        "snippet": "xlongequal{${1:sup}}"
+      }
+    },
+    {
+      "name": "xlongequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xlongequal[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadrightarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "xtwoheadrightarrow{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadrightarrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xtwoheadrightarrow[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadleftarrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "xtwoheadleftarrow{${1:sup}}"
+      }
+    },
+    {
+      "name": "xtwoheadleftarrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xtwoheadleftarrow[${2:sub}]{${1:sup}}"
+      }
+    },
+    {
+      "name": "xrightrightarrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "xrightrightarrows{${1:arg}}"
+      }
+    },
+    {
+      "name": "xrightrightarrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xrightrightarrows[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "xleftleftarrows",
+      "arg": {
+        "format": "{}",
+        "snippet": "xleftleftarrows{${1:arg}}"
+      }
+    },
+    {
+      "name": "xleftleftarrows",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "xleftleftarrows[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "IfPrintModeTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfPrintModeTF{${1:true-code}}{${2:false-code}}"
+      }
+    },
+    {
+      "name": "IfPrintModeT",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfPrintModeT{${1:true-code}}"
+      }
+    },
+    {
+      "name": "IfPrintModeF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "IfPrintModeF{${1:false-code}}"
+      }
+    },
+    {
+      "name": "limstrut",
+      "unusual": true
+    },
+    {
+      "name": "raisesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "raisesymbol{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "captionsjapanese",
+      "unusual": true
+    },
+    {
+      "name": "datejapanese",
+      "unusual": true
+    },
+    {
+      "name": "extrasjapanese",
+      "unusual": true
+    },
+    {
+      "name": "noextrasjapanese",
+      "unusual": true
+    },
+    {
+      "name": "cyrdash"
+    },
+    {
+      "name": "asbuk",
+      "arg": {
+        "format": "{}",
+        "snippet": "asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Asbuk",
+      "arg": {
+        "format": "{}",
+        "snippet": "Asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Russian"
+    },
+    {
+      "name": "sh",
+      "unusual": true
+    },
+    {
+      "name": "ch",
+      "unusual": true
+    },
+    {
+      "name": "tg",
+      "unusual": true
+    },
+    {
+      "name": "ctg",
+      "unusual": true
+    },
+    {
+      "name": "arctg",
+      "unusual": true
+    },
+    {
+      "name": "arcctg",
+      "unusual": true
+    },
+    {
+      "name": "th",
+      "unusual": true
+    },
+    {
+      "name": "cth",
+      "unusual": true
+    },
+    {
+      "name": "cosec",
+      "unusual": true
+    },
+    {
+      "name": "Prob",
+      "unusual": true
+    },
+    {
+      "name": "Variance",
+      "unusual": true
+    },
+    {
+      "name": "NOD",
+      "unusual": true
+    },
+    {
+      "name": "nod",
+      "unusual": true
+    },
+    {
+      "name": "NOK",
+      "unusual": true
+    },
+    {
+      "name": "nok",
+      "unusual": true
+    },
+    {
+      "name": "Proj",
+      "unusual": true
+    },
+    {
+      "name": "cyrillicencoding",
+      "unusual": true
+    },
+    {
+      "name": "cyrillictext",
+      "unusual": true
+    },
+    {
+      "name": "cyr",
+      "unusual": true
+    },
+    {
+      "name": "textcyrillic",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcyrillic{${1:text}}"
+      }
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "captionsrussian",
+      "unusual": true
+    },
+    {
+      "name": "daterussian",
+      "unusual": true
+    },
+    {
+      "name": "extrasrussian",
+      "unusual": true
+    },
+    {
+      "name": "noextrasrussian",
+      "unusual": true
+    },
+    {
+      "name": "CYRA",
+      "unusual": true
+    },
+    {
+      "name": "CYRB",
+      "unusual": true
+    },
+    {
+      "name": "CYRV",
+      "unusual": true
+    },
+    {
+      "name": "CYRG",
+      "unusual": true
+    },
+    {
+      "name": "CYRGUP",
+      "unusual": true
+    },
+    {
+      "name": "CYRD",
+      "unusual": true
+    },
+    {
+      "name": "CYRE",
+      "unusual": true
+    },
+    {
+      "name": "CYRIE",
+      "unusual": true
+    },
+    {
+      "name": "CYRZH",
+      "unusual": true
+    },
+    {
+      "name": "CYRZ",
+      "unusual": true
+    },
+    {
+      "name": "CYRI",
+      "unusual": true
+    },
+    {
+      "name": "CYRII",
+      "unusual": true
+    },
+    {
+      "name": "CYRYI",
+      "unusual": true
+    },
+    {
+      "name": "CYRISHRT",
+      "unusual": true
+    },
+    {
+      "name": "CYRK",
+      "unusual": true
+    },
+    {
+      "name": "CYRL",
+      "unusual": true
+    },
+    {
+      "name": "CYRM",
+      "unusual": true
+    },
+    {
+      "name": "CYRN",
+      "unusual": true
+    },
+    {
+      "name": "CYRO",
+      "unusual": true
+    },
+    {
+      "name": "CYRP",
+      "unusual": true
+    },
+    {
+      "name": "CYRR",
+      "unusual": true
+    },
+    {
+      "name": "CYRS",
+      "unusual": true
+    },
+    {
+      "name": "CYRT",
+      "unusual": true
+    },
+    {
+      "name": "CYRU",
+      "unusual": true
+    },
+    {
+      "name": "CYRF",
+      "unusual": true
+    },
+    {
+      "name": "CYRH",
+      "unusual": true
+    },
+    {
+      "name": "CYRC",
+      "unusual": true
+    },
+    {
+      "name": "CYRCH",
+      "unusual": true
+    },
+    {
+      "name": "CYRSH",
+      "unusual": true
+    },
+    {
+      "name": "CYRSHCH",
+      "unusual": true
+    },
+    {
+      "name": "CYRYU",
+      "unusual": true
+    },
+    {
+      "name": "CYRYA",
+      "unusual": true
+    },
+    {
+      "name": "CYRSFTSN",
+      "unusual": true
+    },
+    {
+      "name": "CYRERY",
+      "unusual": true
+    },
+    {
+      "name": "cyra",
+      "unusual": true
+    },
+    {
+      "name": "cyrb",
+      "unusual": true
+    },
+    {
+      "name": "cyrv",
+      "unusual": true
+    },
+    {
+      "name": "cyrg",
+      "unusual": true
+    },
+    {
+      "name": "cyrgup",
+      "unusual": true
+    },
+    {
+      "name": "cyrd",
+      "unusual": true
+    },
+    {
+      "name": "cyre",
+      "unusual": true
+    },
+    {
+      "name": "cyrie",
+      "unusual": true
+    },
+    {
+      "name": "cyrzh",
+      "unusual": true
+    },
+    {
+      "name": "cyrz",
+      "unusual": true
+    },
+    {
+      "name": "cyri",
+      "unusual": true
+    },
+    {
+      "name": "cyrii",
+      "unusual": true
+    },
+    {
+      "name": "cyryi",
+      "unusual": true
+    },
+    {
+      "name": "cyrishrt",
+      "unusual": true
+    },
+    {
+      "name": "cyrk",
+      "unusual": true
+    },
+    {
+      "name": "cyrl",
+      "unusual": true
+    },
+    {
+      "name": "cyrm",
+      "unusual": true
+    },
+    {
+      "name": "cyrn",
+      "unusual": true
+    },
+    {
+      "name": "cyro",
+      "unusual": true
+    },
+    {
+      "name": "cyrp",
+      "unusual": true
+    },
+    {
+      "name": "cyrr",
+      "unusual": true
+    },
+    {
+      "name": "cyrs",
+      "unusual": true
+    },
+    {
+      "name": "cyrt",
+      "unusual": true
+    },
+    {
+      "name": "cyru",
+      "unusual": true
+    },
+    {
+      "name": "cyrf",
+      "unusual": true
+    },
+    {
+      "name": "cyrh",
+      "unusual": true
+    },
+    {
+      "name": "cyrc",
+      "unusual": true
+    },
+    {
+      "name": "cyrch",
+      "unusual": true
+    },
+    {
+      "name": "cyrsh",
+      "unusual": true
+    },
+    {
+      "name": "cyrshch",
+      "unusual": true
+    },
+    {
+      "name": "cyryu",
+      "unusual": true
+    },
+    {
+      "name": "cyrya",
+      "unusual": true
+    },
+    {
+      "name": "cyrsftsn",
+      "unusual": true
+    },
+    {
+      "name": "cyrery",
+      "unusual": true
+    },
+    {
+      "name": "cdash",
+      "unusual": true
+    },
+    {
+      "name": "tocname",
+      "unusual": true
+    },
+    {
+      "name": "authorname",
+      "unusual": true
+    },
+    {
+      "name": "acronymname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistlistingname",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "nomname",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/einfart#c": [
       "draft",
-      "draft=true",
       "fast",
-      "fast=true"
-    ],
-    "parskip": [
-      "useindent=false"
-    ],
-    "amssymb": [
+      "classical",
+      "useindent",
+      "a4paper",
+      "b5paper",
+      "oneside",
+      "twoside",
+      "11pt",
+      "12pt",
+      "use boldface",
+      "runin",
+      "nothms",
+      "nothmnum",
+      "thmnum",
+      "thmnum=${1:counter}",
+      "theorem style=${1:style}",
+      "complex name",
+      "simple name",
+      "no preset names",
+      "regionalref",
+      "originalref",
+      "Chinese",
+      "TChinese",
+      "English",
+      "German",
+      "Italian",
+      "Portuguese",
+      "Brazilian",
+      "Spanish",
+      "Japanese",
+      "Russian",
+      "useosf",
       "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "lmodern": [
-      "lmodern",
-      "lmodern=true",
-      "latin-modern",
-      "latin-modern=true",
-      "latin modern",
-      "latin modern=true"
-    ],
-    "newtxmath": [
+      "palatino",
+      "times",
       "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond-maths": [
-      "garamond",
-      "garamond=true"
-    ],
-    "ebgaramond": [
-      "garamond",
-      "garamond=true"
-    ],
-    "anyfontsize": [
       "noto",
-      "noto=true"
-    ],
-    "notomath": [
-      "noto",
-      "noto=true"
-    ],
-    "eulervm": [
-      "biolinum",
-      "biolinum=true"
-    ],
-    "mathastext": [
-      "biolinum",
-      "biolinum=true"
+      "biolinum"
     ]
   },
-  "macros": {
-    "desculine": {
-      "option": "classical=true"
-    },
-    "seculine": {
-      "option": "classical=true"
-    },
-    "simpleqedsymbol": {
-      "option": "classical=true"
-    },
-    "subseculine": {
-      "option": "classical=true"
-    },
-    "xlongequal{}": {
-      "snippet": "xlongequal{${1:sup}}"
-    },
-    "xlongequal[]{}": {
-      "snippet": "xlongequal[${2:sub}]{${1:sup}}"
-    },
-    "xtwoheadrightarrow{}": {
-      "snippet": "xtwoheadrightarrow{${1:sup}}"
-    },
-    "xtwoheadrightarrow[]{}": {
-      "snippet": "xtwoheadrightarrow[${2:sub}]{${1:sup}}"
-    },
-    "xtwoheadleftarrow{}": {
-      "snippet": "xtwoheadleftarrow{${1:sup}}"
-    },
-    "xtwoheadleftarrow[]{}": {
-      "snippet": "xtwoheadleftarrow[${2:sub}]{${1:sup}}"
-    },
-    "xrightrightarrows{}": {
-      "snippet": "xrightrightarrows{${1:arg}}"
-    },
-    "xrightrightarrows[]{}": {
-      "snippet": "xrightrightarrows[${2:opt}]{${1:arg}}"
-    },
-    "xleftleftarrows{}": {
-      "snippet": "xleftleftarrows{${1:arg}}"
-    },
-    "xleftleftarrows[]{}": {
-      "snippet": "xleftleftarrows[${2:opt}]{${1:arg}}"
-    },
-    "IfPrintModeTF{}{}": {
-      "snippet": "IfPrintModeTF{${1:true-code}}{${2:false-code}}"
-    },
-    "IfPrintModeT{}": {
-      "snippet": "IfPrintModeT{${1:true-code}}"
-    },
-    "IfPrintModeF{}": {
-      "snippet": "IfPrintModeF{${1:false-code}}"
-    },
-    "limstrut": {},
-    "standarddashv": {},
-    "standardvdash": {},
-    "raisesymbol{}{}": {
-      "snippet": "raisesymbol{${1:arg1}}{${2:arg2}}"
-    },
-    "captionsjapanese": {},
-    "datejapanese": {},
-    "extrasjapanese": {},
-    "noextrasjapanese": {},
-    "cyrdash": {},
-    "asbuk{}": {
-      "snippet": "asbuk{${1:counter}}"
-    },
-    "Asbuk{}": {
-      "snippet": "Asbuk{${1:counter}}"
-    },
-    "Russian": {},
-    "sh": {},
-    "ch": {},
-    "tg": {},
-    "ctg": {},
-    "arctg": {},
-    "arcctg": {},
-    "th": {},
-    "cth": {},
-    "cosec": {},
-    "Prob": {},
-    "Variance": {},
-    "NOD": {},
-    "nod": {},
-    "NOK": {},
-    "nok": {},
-    "Proj": {},
-    "cyrillicencoding": {},
-    "cyrillictext": {},
-    "cyr": {},
-    "textcyrillic{}": {
-      "snippet": "textcyrillic{${1:text}}"
-    },
-    "dq": {},
-    "captionsrussian": {},
-    "daterussian": {},
-    "extrasrussian": {},
-    "noextrasrussian": {},
-    "CYRA": {},
-    "CYRB": {},
-    "CYRV": {},
-    "CYRG": {},
-    "CYRGUP": {},
-    "CYRD": {},
-    "CYRE": {},
-    "CYRIE": {},
-    "CYRZH": {},
-    "CYRZ": {},
-    "CYRI": {},
-    "CYRII": {},
-    "CYRYI": {},
-    "CYRISHRT": {},
-    "CYRK": {},
-    "CYRL": {},
-    "CYRM": {},
-    "CYRN": {},
-    "CYRO": {},
-    "CYRP": {},
-    "CYRR": {},
-    "CYRS": {},
-    "CYRT": {},
-    "CYRU": {},
-    "CYRF": {},
-    "CYRH": {},
-    "CYRC": {},
-    "CYRCH": {},
-    "CYRSH": {},
-    "CYRSHCH": {},
-    "CYRYU": {},
-    "CYRYA": {},
-    "CYRSFTSN": {},
-    "CYRERY": {},
-    "cyra": {},
-    "cyrb": {},
-    "cyrv": {},
-    "cyrg": {},
-    "cyrgup": {},
-    "cyrd": {},
-    "cyre": {},
-    "cyrie": {},
-    "cyrzh": {},
-    "cyrz": {},
-    "cyri": {},
-    "cyrii": {},
-    "cyryi": {},
-    "cyrishrt": {},
-    "cyrk": {},
-    "cyrl": {},
-    "cyrm": {},
-    "cyrn": {},
-    "cyro": {},
-    "cyrp": {},
-    "cyrr": {},
-    "cyrs": {},
-    "cyrt": {},
-    "cyru": {},
-    "cyrf": {},
-    "cyrh": {},
-    "cyrc": {},
-    "cyrch": {},
-    "cyrsh": {},
-    "cyrshch": {},
-    "cyryu": {},
-    "cyrya": {},
-    "cyrsftsn": {},
-    "cyrery": {},
-    "cdash": {},
-    "tocname": {},
-    "authorname": {},
-    "acronymname": {},
-    "lstlistingname": {},
-    "lstlistlistingname": {},
-    "notesname": {},
-    "nomname": {}
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "fast",
-    "classical",
-    "useindent",
-    "a4paper",
-    "b5paper",
-    "oneside",
-    "twoside",
-    "11pt",
-    "12pt",
-    "use boldface",
-    "runin",
-    "nothms",
-    "nothmnum",
-    "thmnum",
-    "thmnum=${1:counter}",
-    "theorem style=${1:style}",
-    "complex name",
-    "simple name",
-    "no preset names",
-    "regionalref",
-    "originalref",
-    "Chinese",
-    "TChinese",
-    "English",
-    "German",
-    "Italian",
-    "Portuguese",
-    "Brazilian",
-    "Spanish",
-    "Japanese",
-    "Russian",
-    "useosf",
-    "lmodern",
-    "palatino",
-    "times",
-    "garamond",
-    "noto",
-    "biolinum"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/einfart#c"
+  ]
 }

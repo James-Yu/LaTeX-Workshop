@@ -1,41 +1,93 @@
 {
-  "includes": {
-    "iftex": [],
-    "fancyvrb": []
-  },
-  "macros": {
-    "DeclareSlantedCapitalGreekLetters": {},
-    "textormath{}{}": {
-      "snippet": "textormath{${1:text code}}{${2:math code}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "ohm": {},
-    "ped{}": {
-      "snippet": "ped{${1:text}}"
+    {
+      "name": "fancyvrb"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DeclareSlantedCapitalGreekLetters"
     },
-    "ap{}": {
-      "snippet": "ap{${1:text}}"
+    {
+      "name": "textormath",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textormath{${1:text code}}{${2:math code%formula}}"
+      }
     },
-    "diff": {},
-    "unit{}": {
-      "snippet": "unit{${1:unit}}"
+    {
+      "name": "ohm"
     },
-    "gei": {},
-    "eu": {},
-    "micro": {},
-    "gradi": {},
-    "listing{}": {
-      "snippet": "listing{${1:file}}"
+    {
+      "name": "ped",
+      "arg": {
+        "format": "{}",
+        "snippet": "ped{${1:text%plain}}"
+      }
     },
-    "fakeSC{}": {
-      "snippet": "fakeSC{${1:text}}"
+    {
+      "name": "ap",
+      "arg": {
+        "format": "{}",
+        "snippet": "ap{${1:text%plain}}"
+      }
     },
-    "simulatedSC{}": {
-      "snippet": "simulatedSC{${1:text}}"
+    {
+      "name": "diff"
     },
-    "DisableFigTabNames": {},
-    "EnableFigTabNames": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "unit",
+      "arg": {
+        "format": "{}",
+        "snippet": "unit{${1:unit%formula}}"
+      }
+    },
+    {
+      "name": "gei"
+    },
+    {
+      "name": "eu"
+    },
+    {
+      "name": "micro"
+    },
+    {
+      "name": "gradi"
+    },
+    {
+      "name": "listing",
+      "arg": {
+        "format": "{}",
+        "snippet": "listing{${1:file}}"
+      }
+    },
+    {
+      "name": "fakeSC",
+      "arg": {
+        "format": "{}",
+        "snippet": "fakeSC{${1:text}}"
+      }
+    },
+    {
+      "name": "simulatedSC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "simulatedSC{${1:text}}"
+      }
+    },
+    {
+      "name": "DisableFigTabNames"
+    },
+    {
+      "name": "EnableFigTabNames"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

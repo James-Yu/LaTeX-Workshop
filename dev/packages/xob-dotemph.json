@@ -1,24 +1,52 @@
 {
-  "includes": {},
-  "macros": {
-    "circemph{}": {
-      "snippet": "circemph{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "circemph",
+      "arg": {
+        "format": "{}",
+        "snippet": "circemph{${1:text}}"
+      }
     },
-    "useremph{}": {
-      "snippet": "useremph{${1:text}}"
+    {
+      "name": "useremph",
+      "arg": {
+        "format": "{}",
+        "snippet": "useremph{${1:text}}"
+      }
     },
-    "useremph[]{}": {
-      "snippet": "useremph[${2:raise}]{${1:text}}"
+    {
+      "name": "useremph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useremph[${2:raise%l}]{${1:text}}"
+      }
     },
-    "useremph[][]{}": {
-      "snippet": "useremph[${2:raise}][${3:char}]{${1:text}}"
+    {
+      "name": "useremph",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "useremph[${2:raise%l}][${3:char}]{${1:text}}"
+      }
     },
-    "useremphraisedim": {},
-    "useremphchar": {},
-    "useremphstarblack": {},
-    "useremphstarwhite": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "useremphraisedim",
+      "unusual": true
+    },
+    {
+      "name": "useremphchar",
+      "unusual": true
+    },
+    {
+      "name": "useremphstarblack",
+      "unusual": true
+    },
+    {
+      "name": "useremphstarwhite",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,25 +1,37 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-solides3d": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psAntiprism": {},
-    "psAntiprism[]": {
-      "snippet": "psAntiprism[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PSTANTIPRISMLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-solides3d"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psAntiprism"
+    },
+    {
+      "name": "psAntiprism",
+      "arg": {
+        "format": "[]",
+        "snippet": "psAntiprism[${1:options%keyvals}]",
+        "keys": [
+          "\\psAntiprism#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psAntiprism#c": [
       "a=${1:radius}",
-      "action=",
-      "affinage=",
+      "action=${1|none,draw,draw*,draw**,writesolid,writeobj,writeoff|}",
+      "affinage=${1|0,1,2,3,all|}",
       "affinagecoeff=${1:factor}",
       "affinagerm",
       "colored",
@@ -35,10 +47,11 @@
       "meshbases",
       "n=${1:number of edges}",
       "name=${1:name}",
-      "numfaces=",
+      "numfaces=${2|0,1,2,3,all,${1:PS code}|}",
       "opacity=${1:factor}",
       "plansepare={[${1:a b c d}]}",
       "rm="
     ]
-  ]
+  },
+  "args": []
 }

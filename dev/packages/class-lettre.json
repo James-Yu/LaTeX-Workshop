@@ -1,273 +1,654 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "graphicx": []
-  },
-  "macros": {
-    "opening{}": {
-      "snippet": "opening{${1:salutations}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "closing{}": {
-      "snippet": "closing{${1:salutations}}"
-    },
-    "Nref{}": {
-      "snippet": "Nref{${1:text}}"
-    },
-    "Vref{}": {
-      "snippet": "Vref{${1:text}}"
-    },
-    "telex{}": {
-      "snippet": "telex{${1:numéro}}"
-    },
-    "ccp{}": {
-      "snippet": "ccp{${1:numéro}}"
-    },
-    "makelabels": {},
-    "makelabels[]": {
-      "snippet": "makelabels[${1:n}]"
-    },
-    "address{}": {
-      "snippet": "address{${1:adresse}}"
-    },
-    "location{}": {
-      "snippet": "location{${1:location}}"
-    },
-    "addpages{}": {
-      "snippet": "addpages{${1:n}}"
-    },
-    "telephone{}": {
-      "snippet": "telephone{${1:numéro}}"
-    },
-    "fax{}": {
-      "snippet": "fax{${1:numéro}}"
-    },
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "lieu{}": {
-      "snippet": "lieu{${1:lieu}}"
-    },
-    "name{}": {
-      "snippet": "name{${1:nom}}"
-    },
-    "signature{}": {
-      "snippet": "signature{${1:signature}}"
-    },
-    "secondsignature{}": {
-      "snippet": "secondsignature{${1:signature}}"
-    },
-    "thirdsignature{}": {
-      "snippet": "thirdsignature{${1:signature}}"
-    },
-    "username{}": {
-      "snippet": "username{${1:nom}}"
-    },
-    "bitnet{}": {
-      "snippet": "bitnet{${1:adresse}}"
-    },
-    "ccitt{}": {
-      "snippet": "ccitt{${1:adresse}}"
-    },
-    "decnet{}": {
-      "snippet": "decnet{${1:adresse}}"
-    },
-    "internet{}": {
-      "snippet": "internet{${1:adresse}}"
-    },
-    "telepac{}": {
-      "snippet": "telepac{${1:adresse}}"
-    },
-    "lettreselectlanguage{}": {
-      "snippet": "lettreselectlanguage{${1:language}}"
-    },
-    "tension{}": {
-      "snippet": "tension{${1:valeur}}"
-    },
-    "marge{}": {
-      "snippet": "marge{${1:dimen}}"
-    },
-    "basdepage{}": {
-      "snippet": "basdepage{${1:contenu}}"
-    },
-    "conc{}": {
-      "snippet": "conc{${1:sujet}}"
-    },
-    "ps{}{}": {
-      "snippet": "ps{${1:label}}{${2:text}}"
-    },
-    "encl{}": {
-      "snippet": "encl{${1:annexes}}"
-    },
-    "mencl": {},
-    "cc{}": {
-      "snippet": "cc{${1:destinataires}}"
-    },
-    "detailledaddress": {},
-    "institut{}": {
-      "snippet": "institut{${1:fichier}}"
-    },
-    "notelephone": {},
-    "nofax": {},
-    "nolieu": {},
-    "nodate": {},
-    "faxwarning": {},
-    "telefaxstring": {},
-    "telephonelabelname": {},
-    "telefaxlabelname": {},
-    "telefaxname": {},
-    "tellabelname": {},
-    "faxlabelname": {},
-    "telexlabelname": {},
-    "headtoname": {},
-    "headfromname": {},
-    "pagetotalname": {},
-    "concname": {},
-    "ccname": {},
-    "enclname": {},
-    "mentionname": {},
-    "vrefname": {},
-    "nrefname": {},
-    "letterwidth": {},
-    "lettermargin": {},
-    "listmargin": {},
-    "openingspace": {},
-    "openingindent": {},
-    "sigspace": {},
-    "ssigwidth": {},
-    "ssigindent": {},
-    "msigwidth": {},
-    "FAXSTR": {},
-    "auxcount": {},
-    "auxflag": {},
-    "auxline": {},
-    "bdp": {},
-    "bitnetnum": {},
-    "ccittnum": {},
-    "ccpnum": {},
-    "concdecl": {},
-    "concline": {},
-    "decnetnum": {},
-    "emailcount": {},
-    "emailflag": {},
-    "emailine": {},
-    "emailnum": {},
-    "faxopening{}": {
-      "snippet": "faxopening{${1:text}}"
-    },
-    "faxpage": {},
-    "flushleft": {},
-    "fromaddress": {},
-    "fromlocation": {},
-    "fromref": {},
-    "fromsig": {},
-    "fromssig": {},
-    "fromtsig": {},
-    "infos": {},
-    "internetnum": {},
-    "letteropening{}": {
-      "snippet": "letteropening{${1:text}}"
-    },
-    "LettreDeclareLanguage{}{}": {
-      "snippet": "LettreDeclareLanguage{${1:name}}{${2:definition}}"
-    },
-    "lettrelabelselectlanguage{}": {
-      "snippet": "lettrelabelselectlanguage{${1:language}}"
-    },
-    "lettrelmpselectlanguage{}": {
-      "snippet": "lettrelmpselectlanguage{${1:language}}"
-    },
-    "lettreloadlang{}": {
-      "snippet": "lettreloadlang{${1:language}}"
-    },
-    "LettreProvidesLanguage{}": {
-      "snippet": "LettreProvidesLanguage{${1:name}}"
-    },
-    "mlabel{}": {
-      "snippet": "mlabel{${1:l’étiquette}}"
-    },
-    "noinfos": {},
-    "pdate": {},
-    "resetauxenv": {},
-    "resetcloseenv": {},
-    "resetemailenv": {},
-    "resetopenenv": {},
-    "sigflag": {},
-    "signum": {},
-    "startlabels": {},
-    "stopfax": {},
-    "stopletter": {},
-    "telepacnum": {},
-    "telexnum": {},
-    "tofaxnum": {},
-    "toref": {},
-    "totalpages": {},
-    "trfam": {},
-    "treit": {},
-    "trten": {},
-    "trfvtn": {},
-    "psobs": {},
-    "dhfam": {},
-    "cmd": {},
-    "Cmd": {},
-    "CMD": {},
-    "addressobs": {},
-    "lieuobs": {},
-    "telephoneobs": {},
-    "faxobs": {},
-    "ccpobs": {},
-    "ccittobs": {},
-    "internetobs": {},
-    "ftpobs": {},
-    "wwwobs": {},
-    "nref{}": {
-      "snippet": "nref{${1:text}}"
-    },
-    "vref{}": {
-      "snippet": "vref{${1:text}}"
-    },
-    "francais": {},
-    "romand": {},
-    "anglais": {},
-    "americain": {},
-    "allemand": {}
-  },
-  "envs": {
-    "letter{}": {
-      "name": "letter",
-      "snippet": "{${1:destinataire}}"
-    },
-    "telefax{}{}": {
-      "name": "telefax",
-      "snippet": "{${1:numéro}}{${2:destinataire \\\\ adresse}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "a4paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "b5paper",
-    "a5paper",
-    "twoside",
-    "oneside",
-    "origdate",
-    "draft",
-    "final",
-    "leqno",
-    "fleqn",
-    "keepenvs",
-    "passlang",
-    "noinfo",
-    "loghighlight",
-    "strict",
-    "romand",
-    "francais",
-    "allemand",
-    "anglais",
-    "americain"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "opening",
+      "arg": {
+        "format": "{}",
+        "snippet": "opening{${1:salutations%text}}"
+      }
+    },
+    {
+      "name": "closing",
+      "arg": {
+        "format": "{}",
+        "snippet": "closing{${1:salutations%text}}"
+      }
+    },
+    {
+      "name": "Nref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Nref{${1:text}}"
+      }
+    },
+    {
+      "name": "Vref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vref{${1:text}}"
+      }
+    },
+    {
+      "name": "telex",
+      "arg": {
+        "format": "{}",
+        "snippet": "telex{${1:numéro}}"
+      }
+    },
+    {
+      "name": "ccp",
+      "arg": {
+        "format": "{}",
+        "snippet": "ccp{${1:numéro}}"
+      }
+    },
+    {
+      "name": "makelabels"
+    },
+    {
+      "name": "makelabels",
+      "arg": {
+        "format": "[]",
+        "snippet": "makelabels[${1:n}]"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "address{${1:adresse%text}}"
+      }
+    },
+    {
+      "name": "location",
+      "arg": {
+        "format": "{}",
+        "snippet": "location{${1:location%text}}"
+      }
+    },
+    {
+      "name": "addpages",
+      "arg": {
+        "format": "{}",
+        "snippet": "addpages{${1:n}}"
+      }
+    },
+    {
+      "name": "telephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "telephone{${1:numéro}}"
+      }
+    },
+    {
+      "name": "fax",
+      "arg": {
+        "format": "{}",
+        "snippet": "fax{${1:numéro}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "lieu",
+      "arg": {
+        "format": "{}",
+        "snippet": "lieu{${1:lieu%text}}"
+      }
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "name{${1:nom}}"
+      }
+    },
+    {
+      "name": "signature",
+      "arg": {
+        "format": "{}",
+        "snippet": "signature{${1:signature}}"
+      }
+    },
+    {
+      "name": "secondsignature",
+      "arg": {
+        "format": "{}",
+        "snippet": "secondsignature{${1:signature}}"
+      }
+    },
+    {
+      "name": "thirdsignature",
+      "arg": {
+        "format": "{}",
+        "snippet": "thirdsignature{${1:signature}}"
+      }
+    },
+    {
+      "name": "username",
+      "arg": {
+        "format": "{}",
+        "snippet": "username{${1:nom}}"
+      }
+    },
+    {
+      "name": "bitnet",
+      "arg": {
+        "format": "{}",
+        "snippet": "bitnet{${1:adresse}}"
+      }
+    },
+    {
+      "name": "ccitt",
+      "arg": {
+        "format": "{}",
+        "snippet": "ccitt{${1:adresse}}"
+      }
+    },
+    {
+      "name": "decnet",
+      "arg": {
+        "format": "{}",
+        "snippet": "decnet{${1:adresse}}"
+      }
+    },
+    {
+      "name": "internet",
+      "arg": {
+        "format": "{}",
+        "snippet": "internet{${1:adresse}}"
+      }
+    },
+    {
+      "name": "telepac",
+      "arg": {
+        "format": "{}",
+        "snippet": "telepac{${1:adresse}}"
+      }
+    },
+    {
+      "name": "lettreselectlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "lettreselectlanguage{${1:language%keyvals}}",
+        "keys": [
+          "\\lettreselectlanguage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tension",
+      "arg": {
+        "format": "{}",
+        "snippet": "tension{${1:valeur}}"
+      }
+    },
+    {
+      "name": "marge",
+      "arg": {
+        "format": "{}",
+        "snippet": "marge{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "basdepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "basdepage{${1:contenu%text}}"
+      }
+    },
+    {
+      "name": "conc",
+      "arg": {
+        "format": "{}",
+        "snippet": "conc{${1:sujet%text}}"
+      }
+    },
+    {
+      "name": "ps",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ps{${1:label}}{${2:text}}"
+      }
+    },
+    {
+      "name": "encl",
+      "arg": {
+        "format": "{}",
+        "snippet": "encl{${1:annexes%text}}"
+      }
+    },
+    {
+      "name": "mencl"
+    },
+    {
+      "name": "cc",
+      "arg": {
+        "format": "{}",
+        "snippet": "cc{${1:destinataires}}"
+      }
+    },
+    {
+      "name": "detailledaddress"
+    },
+    {
+      "name": "institut",
+      "arg": {
+        "format": "{}",
+        "snippet": "institut{${1:fichier}}"
+      }
+    },
+    {
+      "name": "notelephone"
+    },
+    {
+      "name": "nofax"
+    },
+    {
+      "name": "nolieu"
+    },
+    {
+      "name": "nodate"
+    },
+    {
+      "name": "faxwarning",
+      "unusual": true
+    },
+    {
+      "name": "telefaxstring",
+      "unusual": true
+    },
+    {
+      "name": "telephonelabelname",
+      "unusual": true
+    },
+    {
+      "name": "telefaxlabelname",
+      "unusual": true
+    },
+    {
+      "name": "telefaxname",
+      "unusual": true
+    },
+    {
+      "name": "tellabelname",
+      "unusual": true
+    },
+    {
+      "name": "faxlabelname",
+      "unusual": true
+    },
+    {
+      "name": "telexlabelname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "headfromname",
+      "unusual": true
+    },
+    {
+      "name": "pagetotalname",
+      "unusual": true
+    },
+    {
+      "name": "concname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "mentionname",
+      "unusual": true
+    },
+    {
+      "name": "vrefname",
+      "unusual": true
+    },
+    {
+      "name": "nrefname",
+      "unusual": true
+    },
+    {
+      "name": "letterwidth",
+      "unusual": true
+    },
+    {
+      "name": "lettermargin",
+      "unusual": true
+    },
+    {
+      "name": "listmargin",
+      "unusual": true
+    },
+    {
+      "name": "openingspace",
+      "unusual": true
+    },
+    {
+      "name": "openingindent",
+      "unusual": true
+    },
+    {
+      "name": "sigspace",
+      "unusual": true
+    },
+    {
+      "name": "ssigwidth",
+      "unusual": true
+    },
+    {
+      "name": "ssigindent",
+      "unusual": true
+    },
+    {
+      "name": "msigwidth",
+      "unusual": true
+    },
+    {
+      "name": "FAXSTR",
+      "unusual": true
+    },
+    {
+      "name": "auxcount",
+      "unusual": true
+    },
+    {
+      "name": "auxflag",
+      "unusual": true
+    },
+    {
+      "name": "auxline",
+      "unusual": true
+    },
+    {
+      "name": "bdp",
+      "unusual": true
+    },
+    {
+      "name": "bitnetnum",
+      "unusual": true
+    },
+    {
+      "name": "ccittnum",
+      "unusual": true
+    },
+    {
+      "name": "ccpnum",
+      "unusual": true
+    },
+    {
+      "name": "concdecl",
+      "unusual": true
+    },
+    {
+      "name": "concline",
+      "unusual": true
+    },
+    {
+      "name": "decnetnum",
+      "unusual": true
+    },
+    {
+      "name": "emailcount",
+      "unusual": true
+    },
+    {
+      "name": "emailflag",
+      "unusual": true
+    },
+    {
+      "name": "emailine",
+      "unusual": true
+    },
+    {
+      "name": "emailnum",
+      "unusual": true
+    },
+    {
+      "name": "faxopening",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "faxopening{${1:text}}"
+      }
+    },
+    {
+      "name": "faxpage",
+      "unusual": true
+    },
+    {
+      "name": "flushleft",
+      "unusual": true
+    },
+    {
+      "name": "fromaddress",
+      "unusual": true
+    },
+    {
+      "name": "fromlocation",
+      "unusual": true
+    },
+    {
+      "name": "fromref",
+      "unusual": true
+    },
+    {
+      "name": "fromsig",
+      "unusual": true
+    },
+    {
+      "name": "fromssig",
+      "unusual": true
+    },
+    {
+      "name": "fromtsig",
+      "unusual": true
+    },
+    {
+      "name": "infos",
+      "unusual": true
+    },
+    {
+      "name": "internetnum",
+      "unusual": true
+    },
+    {
+      "name": "letteropening",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "letteropening{${1:text}}"
+      }
+    },
+    {
+      "name": "LettreDeclareLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LettreDeclareLanguage{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "lettrelabelselectlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lettrelabelselectlanguage{${1:language}}"
+      }
+    },
+    {
+      "name": "lettrelmpselectlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lettrelmpselectlanguage{${1:language}}"
+      }
+    },
+    {
+      "name": "lettreloadlang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lettreloadlang{${1:language}}"
+      }
+    },
+    {
+      "name": "LettreProvidesLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "LettreProvidesLanguage{${1:name}}"
+      }
+    },
+    {
+      "name": "mlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mlabel{${1:l’étiquette}}"
+      }
+    },
+    {
+      "name": "noinfos",
+      "unusual": true
+    },
+    {
+      "name": "pdate",
+      "unusual": true
+    },
+    {
+      "name": "resetauxenv",
+      "unusual": true
+    },
+    {
+      "name": "resetcloseenv",
+      "unusual": true
+    },
+    {
+      "name": "resetemailenv",
+      "unusual": true
+    },
+    {
+      "name": "resetopenenv",
+      "unusual": true
+    },
+    {
+      "name": "sigflag",
+      "unusual": true
+    },
+    {
+      "name": "signum",
+      "unusual": true
+    },
+    {
+      "name": "startlabels",
+      "unusual": true
+    },
+    {
+      "name": "stopfax",
+      "unusual": true
+    },
+    {
+      "name": "stopletter",
+      "unusual": true
+    },
+    {
+      "name": "telepacnum",
+      "unusual": true
+    },
+    {
+      "name": "telexnum",
+      "unusual": true
+    },
+    {
+      "name": "tofaxnum",
+      "unusual": true
+    },
+    {
+      "name": "toref",
+      "unusual": true
+    },
+    {
+      "name": "totalpages",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "letter",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:destinataire%text}}"
+      }
+    },
+    {
+      "name": "telefax",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:numéro}}{${2:destinataire \\\\ adresse%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/lettre#c": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "a4paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "b5paper",
+      "a5paper",
+      "twoside",
+      "oneside",
+      "origdate",
+      "draft",
+      "final",
+      "leqno",
+      "fleqn",
+      "keepenvs",
+      "passlang",
+      "noinfo",
+      "loghighlight",
+      "strict",
+      "romand",
+      "francais",
+      "allemand",
+      "anglais",
+      "americain"
+    ],
+    "\\lettreselectlanguage#c": [
+      "french",
+      "english",
+      "german"
+    ]
+  },
+  "args": [
+    "\\documentclass/lettre#c"
+  ]
 }

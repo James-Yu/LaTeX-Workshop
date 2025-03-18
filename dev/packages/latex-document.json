@@ -1,650 +1,1755 @@
 {
-  "includes": {
-    "latex-dev": [],
-    "textcomp": []
-  },
-  "macros": {
-    "abstractname": {},
-    "Alph{}": {
-      "snippet": "Alph{${1:counter}}"
-    },
-    "alph{}": {
-      "snippet": "alph{${1:counter}}"
-    },
-    "and": {},
-    "asciispace": {},
-    "bfseries": {},
-    "bibindent": {},
-    "Bigg": {},
-    "Bigg[": {
-      "snippet": "Bigg[${1}\\Bigg]"
-    },
-    "bigg": {},
-    "bigg[": {
-      "snippet": "bigg[${1}\\bigg]"
-    },
-    "boldmath": {},
-    "botfigrule": {},
-    "braceld": {},
-    "bracelu": {},
-    "bracerd": {},
-    "braceru": {},
-    "circle{}": {
-      "snippet": "circle{${1:diameter}}"
-    },
-    "circle*{}": {
-      "snippet": "circle*{${1:diameter}}"
-    },
-    "columnwidth": {},
-    "contentsline{}{}{}{}": {
-      "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}{${4:Href}}"
-    },
-    "contentsname": {},
-    "date{}": {
-      "snippet": "date{${1:text}}"
-    },
-    "depth": {},
-    "descriptionlabel{}": {
-      "snippet": "descriptionlabel{${1:code}}"
-    },
-    "dimeval{}": {
-      "snippet": "dimeval{${1:dimen expression}}"
-    },
-    "em": {},
-    "encodingdefault": {},
-    "enlargethispage*{}": {
-      "snippet": "enlargethispage*{${1:size}}"
-    },
-    "enlargethispage{}": {
-      "snippet": "enlargethispage{${1:size}}"
-    },
-    "figurename": {},
-    "flushbottom": {},
-    "fnsymbol{}": {
-      "snippet": "fnsymbol{${1:counter}}"
-    },
-    "fontencoding{}": {
-      "snippet": "fontencoding{${1:enc}}"
-    },
-    "fontfamily{}": {
-      "snippet": "fontfamily{${1:family}}"
-    },
-    "fontseries{}": {
-      "snippet": "fontseries{${1:series}}"
-    },
-    "fontseriesforce{}": {
-      "snippet": "fontseriesforce{${1:series}}"
-    },
-    "fontshape{}": {
-      "snippet": "fontshape{${1:shape}}"
-    },
-    "fontshapeforce{}": {
-      "snippet": "fontshapeforce{${1:shape}}"
-    },
-    "fontsize{}{}": {
-      "snippet": "fontsize{${1:size}}{${2:skip}}"
-    },
-    "fontsubfuzz": {},
-    "footref{}": {
-      "snippet": "footref{${1:label}}"
-    },
-    "fpeval{}": {
-      "snippet": "fpeval{${1:fp expression}}"
-    },
-    "frame{}": {
-      "snippet": "frame{${1:text}}"
-    },
-    "fussy": {},
-    "glossary{}": {
-      "snippet": "glossary{${1:text}}"
-    },
-    "hrule": {},
-    "i": {
-      "detail": "𝑖",
-      "documentation": "MATHEMATICAL ITALIC SMALL I"
-    },
-    "ij": {},
-    "IJ": {},
-    "indexname": {},
-    "indexspace": {},
-    "input{}": {
-      "snippet": "input{${1:file}}"
-    },
-    "inputencodingname": {},
-    "inteval{}": {
-      "snippet": "inteval{${1:int expression}}"
-    },
-    "intop": {},
-    "it": {},
-    "iterate": {},
-    "labelformat{}{}": {
-      "snippet": "labelformat{${1:counter}}{${2:representation}}"
-    },
-    "labelitemfont": {},
-    "language": {},
-    "languagename": {},
-    "LaTeXe": {},
-    "lbrack": {
-      "detail": "[",
-      "documentation": "LEFT SQUARE BRACKET"
-    },
-    "lefteqn{}": {
-      "snippet": "lefteqn{${1:formula}}"
-    },
-    "lefthyphenmin": {},
-    "legacyoldstylenums{}": {
-      "snippet": "legacyoldstylenums{${1:text}}"
-    },
-    "lhook": {},
-    "linethickness{}": {
-      "snippet": "linethickness{${1:dimension}}"
-    },
-    "linewidth": {},
-    "listfigurename": {},
-    "listfiles": {},
-    "listparindent": {},
-    "listtablename": {},
-    "makelabel": {},
-    "MakeLowercase{}": {
-      "snippet": "MakeLowercase{${1:text}}"
-    },
-    "MakeLowercase[]{}": {
-      "snippet": "MakeLowercase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "MakeTitlecase{}": {
-      "snippet": "MakeTitlecase{${1:text}}"
-    },
-    "MakeTitlecase[]{}": {
-      "snippet": "MakeTitlecase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "MakeUppercase{}": {
-      "snippet": "MakeUppercase{${1:text}}"
-    },
-    "MakeUppercase[]{}": {
-      "snippet": "MakeUppercase[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "mapstochar": {},
-    "mathdollar": {
-      "detail": "$",
-      "documentation": "DOLLAR SIGN"
-    },
-    "mathellipsis": {},
-    "mathgroup": {},
-    "mathindent": {},
-    "mathparagraph": {},
-    "mathring{}": {
-      "snippet": "mathring{${1:o}}"
-    },
-    "mathsection": {},
-    "mathsterling": {
-      "detail": "£",
-      "documentation": "POUND SIGN, fourier prints a dollar sign"
-    },
-    "mathunderscore": {},
-    "mathversion{}": {
-      "snippet": "mathversion{${1:version}}"
-    },
-    "medspace": {
-      "detail": " ",
-      "documentation": "MEDIUM MATHEMATICAL SPACE, four-eighteenths of an em"
-    },
-    "mdseries": {},
-    "negmedspace": {},
-    "negthickspace": {},
-    "newblock": {},
-    "newlabel{}{}": {
-      "snippet": "newlabel{${1:label}}{${2:data}}"
-    },
-    "newlength{}": {
-      "snippet": "newlength{${1:newlength}}"
-    },
-    "NoCaseChange{}": {
-      "snippet": "NoCaseChange{${1:text}}"
-    },
-    "nocorr": {},
-    "nocorrlist{}": {
-      "snippet": "nocorrlist{${1:charlist}}"
-    },
-    "nofiles": {},
-    "noprotrusion": {},
-    "normalcolor": {},
-    "normalfont": {},
-    "normalmarginpar": {},
-    "normalshape": {},
-    "obeycr": {},
-    "oddsidemargin": {},
-    "oe": {},
-    "OE": {},
-    "ointop": {},
-    "oldstylenums{}": {
-      "snippet": "oldstylenums{${1:text}}"
-    },
-    "onecolumn": {},
-    "pageref*{}": {
-      "snippet": "pageref*{${1:label}}"
-    },
-    "paragraphmark{}": {
-      "snippet": "paragraphmark{${1:code}}"
-    },
-    "parbox[][][]{}{}": {
-      "snippet": "parbox[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:text}}"
-    },
-    "parbox[][]{}{}": {
-      "snippet": "parbox[${3:position}][${4:height}]{${1:width}}{${2:text}}"
-    },
-    "partname": {},
-    "poptabs": {},
-    "pounds": {
-      "detail": "£",
-      "documentation": "POUND SIGN, fourier prints a dollar sign"
-    },
-    "protect": {},
-    "pushtabs": {},
-    "qbeziermax": {},
-    "r{}": {
-      "snippet": "r{${1:letter}}"
-    },
-    "rbrack": {
-      "detail": "]",
-      "documentation": "RIGHT SQUARE BRACKET"
-    },
-    "ref*{}": {
-      "snippet": "ref*{${1:label}}"
-    },
-    "Ref{}": {
-      "snippet": "Ref{${1:label}}"
-    },
-    "Ref*{}": {
-      "snippet": "Ref*{${1:label}}"
-    },
-    "refname": {},
-    "relbar": {},
-    "Relbar": {},
-    "rhook": {},
-    "rightmargin": {},
-    "rightmark": {},
-    "rm": {},
-    "rmfamily": {},
-    "rootbox": {},
-    "SS": {},
-    "samepage": {},
-    "sbox{}{}": {
-      "snippet": "sbox{${1:cmd}}{${2:text}}"
-    },
-    "sc": {},
-    "scshape": {},
-    "sectionmark{}": {
-      "snippet": "sectionmark{${1:code}}"
-    },
-    "selectfont": {},
-    "setlength{}{}": {
-      "snippet": "setlength{${1:cmd}}{${2:length}}"
-    },
-    "sf": {},
-    "sffamily": {},
-    "shortstack[]{}": {
-      "snippet": "shortstack[${2:position}]{${1:text\\\\text}}"
-    },
-    "shortstack{}": {
-      "snippet": "shortstack{${1:text\\\\text}}"
-    },
-    "skipeval{}": {
-      "snippet": "skipeval{${1:skip expression}}"
-    },
-    "sl": {},
-    "sloppy": {},
-    "slshape": {},
-    "sqrt[]{}": {
-      "snippet": "sqrt[${2:root}]{${1:arg}}"
-    },
-    "sqrtsign{}": {
-      "snippet": "sqrtsign{${1:arg}}"
-    },
-    "sscshape": {},
-    "stepcounter{}": {
-      "snippet": "stepcounter{${1:counter}}"
-    },
-    "stop": {},
-    "subitem": {},
-    "subparagraphmark{}": {
-      "snippet": "subparagraphmark{${1:code}}"
-    },
-    "subsectionmark{}": {
-      "snippet": "subsectionmark{${1:code}}"
-    },
-    "subsubitem": {},
-    "subsubsectionmark{}": {
-      "snippet": "subsubsectionmark{${1:code}}"
-    },
-    "suppressfloats": {},
-    "suppressfloats[]": {
-      "snippet": "suppressfloats[${1:placement}]"
-    },
-    "swshape": {},
-    "symbol{}": {
-      "snippet": "symbol{${1:n}}"
-    },
-    "tablename": {},
-    "tabularnewline": {},
-    "textasciicircum": {},
-    "textasciitilde": {},
-    "textasteriskcentered": {},
-    "textbackslash": {},
-    "textbar": {},
-    "textbardbl": {},
-    "textbraceleft": {},
-    "textbraceright": {},
-    "textbullet": {},
-    "textcircled{}": {
-      "snippet": "textcircled{${1:text}}"
-    },
-    "textcommaabove{}": {
-      "snippet": "textcommaabove{${1:text}}"
-    },
-    "textcommabelow{}": {
-      "snippet": "textcommabelow{${1:text}}"
-    },
-    "textcompwordmark": {},
-    "textcopyright": {},
-    "textdagger": {},
-    "textdaggerdbl": {},
-    "textdollar": {},
-    "textellipsis": {},
-    "textemdash": {},
-    "textendash": {},
-    "textexclamdown": {},
-    "textfiguredash": {},
-    "textgreater": {},
-    "textheight": {},
-    "texthorizontalbar": {},
-    "textless": {},
-    "textnonbreakinghyphen": {},
-    "textparagraph": {},
-    "textperiodcentered": {},
-    "textquestiondown": {},
-    "textquotedblleft": {},
-    "textquotedblright": {},
-    "textquoteleft": {},
-    "textquoteright": {},
-    "textregistered": {},
-    "textssc{}": {
-      "snippet": "textssc{${1:text}}"
-    },
-    "textsection": {},
-    "textsterling": {},
-    "textsubscript{}": {
-      "snippet": "textsubscript{${1:text}}"
-    },
-    "textsuperscript{}": {
-      "snippet": "textsuperscript{${1:text}}"
-    },
-    "textsw{}": {
-      "snippet": "textsw{${1:text}}"
-    },
-    "texttrademark": {},
-    "textulc{}": {
-      "snippet": "textulc{${1:text}}"
-    },
-    "textunderscore": {},
-    "textvisiblespace": {},
-    "thicklines": {},
-    "thickspace": {},
-    "thinlines": {},
-    "thispagestyle{}": {
-      "snippet": "thispagestyle{${1:pagestyle}}"
-    },
-    "time": {},
-    "tt": {},
-    "twocolumn[]": {
-      "snippet": "twocolumn[${1:text}]"
-    },
-    "typein[]{}": {
-      "snippet": "typein[${2:cmd}]{${1:msg}}"
-    },
-    "typein{}": {
-      "snippet": "typein{${1:msg}}"
-    },
-    "typeout{}": {
-      "snippet": "typeout{${1:msg}}"
-    },
-    "ulcshape": {},
-    "unboldmath": {},
-    "upshape": {},
-    "varbigtriangledown": {},
-    "varbigtriangleup": {},
-    "vdots": {
-      "detail": "⋮",
-      "documentation": "VERTICAL ELLIPSIS"
-    },
-    "verb": {
-      "snippet": "verb|${1:text}|"
-    },
-    "verb*": {
-      "snippet": "verb*|${1:text}|"
-    },
-    "verb{}": {
-      "snippet": "verb{${1:verbatimSymbol}}"
-    },
-    "verb*{}": {
-      "snippet": "verb*{${1:verbatimSymbol}}"
-    },
-    "verbvisiblespace": {},
-    "vline": {},
-    "width": {},
-    "newcommand*{}[][]{}": {
-      "snippet": "newcommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "newcommand*{}[]{}": {
-      "snippet": "newcommand*{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "newcommand*{}{}": {
-      "snippet": "newcommand*{${1:cmd}}{${2:def}}"
-    },
-    "providecommand*{}[][]{}": {
-      "snippet": "providecommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "providecommand*{}[]{}": {
-      "snippet": "providecommand*{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "providecommand*{}{}": {
-      "snippet": "providecommand*{${1:cmd}}{${2:def}}"
-    },
-    "newenvironment*{}[][]{}{}": {
-      "snippet": "newenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "newenvironment*{}[]{}{}": {
-      "snippet": "newenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "newenvironment*{}{}{}": {
-      "snippet": "newenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "renewcommand*{}[][]{}": {
-      "snippet": "renewcommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "renewcommand*{}[]{}": {
-      "snippet": "renewcommand*{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "renewcommand*{}{}": {
-      "snippet": "renewcommand*{${1:cmd}}{${2:def}}"
-    },
-    "renewenvironment*{}[][]{}{}": {
-      "snippet": "renewenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "renewenvironment*{}[]{}{}": {
-      "snippet": "renewenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "renewenvironment*{}{}{}": {
-      "snippet": "renewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+  "deps": [
+    {
+      "name": "latex-dev"
+    },
+    {
+      "name": "textcomp"
     }
-  },
-  "envs": {
-    "abstract": {},
-    "array{}": {
-      "name": "array",
-      "snippet": "{${1:cols}}"
-    },
-    "array[]{}": {
-      "name": "array",
-      "snippet": "[${2:pos}]{${1:cols}}"
-    },
-    "center": {},
-    "description": {},
-    "displaymath": {},
-    "document": {},
-    "equation": {},
-    "eqnarray": {},
-    "eqnarray*": {},
-    "figure": {},
-    "figure[]": {
-      "name": "figure",
-      "snippet": "[${1:placement}]"
-    },
-    "figure*": {},
-    "figure*[]": {
-      "name": "figure*",
-      "snippet": "[${1:placement}]"
-    },
-    "filecontents{}": {
-      "name": "filecontents",
-      "snippet": "{${1:file}}"
-    },
-    "filecontents[]{}": {
-      "name": "filecontents",
-      "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "filecontents*{}": {
-      "name": "filecontents*",
-      "snippet": "{${1:file}}"
-    },
-    "filecontents*[]{}": {
-      "name": "filecontents*",
-      "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "flushleft": {},
-    "flushright": {},
-    "footnotesize": {},
-    "Huge": {},
-    "huge": {},
-    "itemize": {},
-    "LARGE": {},
-    "Large": {},
-    "large": {},
-    "list{}{}": {
-      "name": "list",
-      "snippet": "{${1:label}}{${2:spacing}}"
-    },
-    "lrbox{}": {
-      "name": "lrbox",
-      "snippet": "{${1:box}}"
-    },
-    "math": {},
-    "matrix": {},
-    "minipage[][][]{}": {
-      "name": "minipage",
-      "snippet": "[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
-    },
-    "minipage[][]{}": {
-      "name": "minipage",
-      "snippet": "[${2:position}][${3:height}]{${1:width}}"
-    },
-    "minipage[]{}": {
-      "name": "minipage",
-      "snippet": "[${2:position}]{${1:width}}"
-    },
-    "minipage{}": {
-      "name": "minipage",
-      "snippet": "{${1:width}}"
-    },
-    "normalsize": {},
-    "pmatrix": {},
-    "quotation": {},
-    "quote": {},
-    "scriptsize": {},
-    "samepage": {},
-    "small": {},
-    "tabbing": {},
-    "table*": {},
-    "table*[]": {
-      "name": "table*",
-      "snippet": "[${1:placement}]"
-    },
-    "table": {},
-    "table[]": {
-      "name": "table",
-      "snippet": "[${1:placement}]"
-    },
-    "tabular{}": {
-      "name": "tabular",
-      "snippet": "{${1:cols}}"
-    },
-    "tabular[]{}": {
-      "name": "tabular",
-      "snippet": "[${2:pos}]{${1:cols}}"
-    },
-    "tabular*{}[]{}": {
-      "name": "tabular*",
-      "snippet": "{${1:width}}[${2:pos}]{${3:cols}}"
-    },
-    "tabular*{}{}": {
-      "name": "tabular*",
-      "snippet": "{${1:width}}{${2:cols}}"
-    },
-    "thebibliography{}": {
-      "name": "thebibliography",
-      "snippet": "{${1:widestlabel}}"
-    },
-    "theindex": {},
-    "tiny": {},
-    "titlepage": {},
-    "trivlist": {},
-    "verbatim": {},
-    "verbatim*": {},
-    "verse": {}
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": [
-    [
-      "locale=${1:BCP-47 tag}",
-      "lang=${1:BCP-47 tag}"
-    ],
-    [
+  "macros": [
+    {
+      "name": "abstractname",
+      "unusual": true
+    },
+    {
+      "name": "Alph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Alph{${1:counter}}"
+      }
+    },
+    {
+      "name": "alph",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "alph{${1:counter}}"
+      }
+    },
+    {
+      "name": "and",
+      "unusual": true
+    },
+    {
+      "name": "asciispace",
+      "unusual": true
+    },
+    {
+      "name": "bezier",
+      "unusual": true,
+      "arg": {
+        "format": "{}()()()",
+        "snippet": "bezier{${1:n}}(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})"
+      }
+    },
+    {
+      "name": "bfseries"
+    },
+    {
+      "name": "bibindent",
+      "unusual": true
+    },
+    {
+      "name": "Bigg"
+    },
+    {
+      "name": "Bigg(",
+      "arg": {
+        "format": "",
+        "snippet": "Bigg(${1}\\Bigg)"
+      }
+    },
+    {
+      "name": "Bigg[",
+      "arg": {
+        "format": "",
+        "snippet": "Bigg[${1}\\Bigg]"
+      }
+    },
+    {
+      "name": "Bigg|",
+      "arg": {
+        "format": "",
+        "snippet": "Bigg|${1}\\Bigg|"
+      }
+    },
+    {
+      "name": "bigg"
+    },
+    {
+      "name": "bigg(",
+      "arg": {
+        "format": "",
+        "snippet": "bigg(${1}\\bigg)"
+      }
+    },
+    {
+      "name": "bigg[",
+      "arg": {
+        "format": "",
+        "snippet": "bigg[${1}\\bigg]"
+      }
+    },
+    {
+      "name": "bigg|",
+      "arg": {
+        "format": "",
+        "snippet": "bigg|${1}\\bigg|"
+      }
+    },
+    {
+      "name": "boldmath"
+    },
+    {
+      "name": "botfigrule",
+      "unusual": true
+    },
+    {
+      "name": "braceld",
+      "unusual": true
+    },
+    {
+      "name": "bracelu",
+      "unusual": true
+    },
+    {
+      "name": "bracerd",
+      "unusual": true
+    },
+    {
+      "name": "braceru",
+      "unusual": true
+    },
+    {
+      "name": "circle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "circle{${1:diameter}}"
+      }
+    },
+    {
+      "name": "circle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "circle*{${1:diameter}}"
+      }
+    },
+    {
+      "name": "columnwidth"
+    },
+    {
+      "name": "contentsline",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}{${4:Href}}"
+      }
+    },
+    {
+      "name": "contentsname"
+    },
+    {
+      "name": "dashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}()[]{}",
+        "snippet": "dashbox{${1:dashlength}}(${4:width},${5:height})[${3:position}]{${2:text}}"
+      }
+    },
+    {
+      "name": "dashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "dashbox{${1:dashlength}}(${3:width},${4:height}){${2:text}}"
+      }
+    },
+    {
+      "name": "depth",
+      "unusual": true
+    },
+    {
+      "name": "descriptionlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "descriptionlabel{${1:code}}"
+      }
+    },
+    {
+      "name": "dimeval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dimeval{${1:dimen expression}}"
+      }
+    },
+    {
+      "name": "em",
+      "unusual": true
+    },
+    {
+      "name": "encodingdefault",
+      "unusual": true
+    },
+    {
+      "name": "enlargethispage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "enlargethispage*{${1:size}}"
+      }
+    },
+    {
+      "name": "enlargethispage",
+      "arg": {
+        "format": "{}",
+        "snippet": "enlargethispage{${1:size}}"
+      }
+    },
+    {
+      "name": "figurename"
+    },
+    {
+      "name": "flushbottom"
+    },
+    {
+      "name": "fnsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fnsymbol{${1:counter}}"
+      }
+    },
+    {
+      "name": "fontencoding",
+      "arg": {
+        "format": "{}",
+        "snippet": "fontencoding{${1:enc}}"
+      }
+    },
+    {
+      "name": "fontfamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "fontfamily{${1:family}}"
+      }
+    },
+    {
+      "name": "fontseries",
+      "arg": {
+        "format": "{}",
+        "snippet": "fontseries{${1:series}}"
+      }
+    },
+    {
+      "name": "fontseriesforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fontseriesforce{${1:series}}"
+      }
+    },
+    {
+      "name": "fontshape",
+      "arg": {
+        "format": "{}",
+        "snippet": "fontshape{${1:shape}}"
+      }
+    },
+    {
+      "name": "fontshapeforce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fontshapeforce{${1:shape}}"
+      }
+    },
+    {
+      "name": "fontsize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fontsize{${1:size}}{${2:skip}}"
+      }
+    },
+    {
+      "name": "fontsubfuzz",
+      "unusual": true
+    },
+    {
+      "name": "footref",
+      "arg": {
+        "format": "{}",
+        "snippet": "footref{${1:label}}"
+      }
+    },
+    {
+      "name": "fpeval",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpeval{${1:fp expression%definition}}"
+      }
+    },
+    {
+      "name": "framebox",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "framebox(${3:xdimen},${4:ydimen})[${2:position}]{${1:text}}"
+      }
+    },
+    {
+      "name": "framebox",
+      "arg": {
+        "format": "(){}",
+        "snippet": "framebox(${2:xdimen},${3:ydimen}){${1:text}}"
+      }
+    },
+    {
+      "name": "frame",
+      "arg": {
+        "format": "{}",
+        "snippet": "frame{${1:text}}"
+      }
+    },
+    {
+      "name": "fussy",
+      "unusual": true
+    },
+    {
+      "name": "hrule"
+    },
+    {
+      "name": "i"
+    },
+    {
+      "name": "ij"
+    },
+    {
+      "name": "IJ"
+    },
+    {
+      "name": "indexname"
+    },
+    {
+      "name": "indexspace"
+    },
+    {
+      "name": "inputencodingname",
+      "unusual": true
+    },
+    {
+      "name": "inteval",
+      "arg": {
+        "format": "{}",
+        "snippet": "inteval{${1:int expression}}"
+      }
+    },
+    {
+      "name": "intop",
+      "unusual": true
+    },
+    {
+      "name": "it",
+      "unusual": true
+    },
+    {
+      "name": "iterate",
+      "unusual": true
+    },
+    {
+      "name": "labelformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "labelformat{${1:counter}}{${2:representation}}"
+      }
+    },
+    {
+      "name": "labelitemfont",
+      "unusual": true
+    },
+    {
+      "name": "language",
+      "unusual": true
+    },
+    {
+      "name": "languagename",
+      "unusual": true
+    },
+    {
+      "name": "LaTeXe"
+    },
+    {
+      "name": "lbrack",
+      "unusual": true,
+      "detail": "[",
+      "doc": "Left square bracket"
+    },
+    {
+      "name": "lefteqn",
+      "arg": {
+        "format": "{}",
+        "snippet": "lefteqn{${1:formula}}"
+      }
+    },
+    {
+      "name": "lefthyphenmin",
+      "unusual": true
+    },
+    {
+      "name": "legacyoldstylenums",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "legacyoldstylenums{${1:text}}"
+      }
+    },
+    {
+      "name": "lhook",
+      "unusual": true
+    },
+    {
+      "name": "line",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "line(${2:xslope},${3:yslope}){${1:length}}"
+      }
+    },
+    {
+      "name": "linethickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "linethickness{${1:dimension}}"
+      }
+    },
+    {
+      "name": "linewidth"
+    },
+    {
+      "name": "listfigurename"
+    },
+    {
+      "name": "listfiles"
+    },
+    {
+      "name": "listfiles",
+      "arg": {
+        "format": "[]",
+        "snippet": "listfiles[${1:options%keyvals}]",
+        "keys": [
+          "\\listfiles"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listparindent",
+      "unusual": true
+    },
+    {
+      "name": "listtablename"
+    },
+    {
+      "name": "makebox",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "makebox(${3:width},${4:height})[${2:position}]{${1:text}}"
+      }
+    },
+    {
+      "name": "makebox",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "makebox(${2:width},${3:height}){${1:text}}"
+      }
+    },
+    {
+      "name": "makelabel",
+      "unusual": true
+    },
+    {
+      "name": "MakeLowercase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeLowercase{${1:text}}"
+      }
+    },
+    {
+      "name": "MakeLowercase",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MakeLowercase[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\MakeLowercase#c,\\MakeTitlecase#c,\\MakeUppercase#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MakeTitlecase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeTitlecase{${1:text}}"
+      }
+    },
+    {
+      "name": "MakeTitlecase",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MakeTitlecase[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\MakeLowercase#c,\\MakeTitlecase#c,\\MakeUppercase#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MakeUppercase",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeUppercase{${1:text}}"
+      }
+    },
+    {
+      "name": "MakeUppercase",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MakeUppercase[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\MakeLowercase#c,\\MakeTitlecase#c,\\MakeUppercase#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mapstochar",
+      "unusual": true
+    },
+    {
+      "name": "mathdollar",
+      "detail": "$",
+      "doc": "\\mathdollar, dollar sign"
+    },
+    {
+      "name": "mathellipsis"
+    },
+    {
+      "name": "mathgroup"
+    },
+    {
+      "name": "mathindent",
+      "unusual": true
+    },
+    {
+      "name": "mathparagraph"
+    },
+    {
+      "name": "mathring",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathring{${1:o}}"
+      }
+    },
+    {
+      "name": "mathsection"
+    },
+    {
+      "name": "mathsterling"
+    },
+    {
+      "name": "mathunderscore"
+    },
+    {
+      "name": "mathversion",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathversion{${1:version%keyvals}}",
+        "keys": [
+          "\\mathversion#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "medspace"
+    },
+    {
+      "name": "mdseries",
+      "unusual": true
+    },
+    {
+      "name": "multiput",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "multiput(${3:xcoord},${4:ycoord})(${5:xdelta},${6:ydelta}){${1:copies}}{${2:object}}"
+      }
+    },
+    {
+      "name": "negmedspace"
+    },
+    {
+      "name": "negthickspace"
+    },
+    {
+      "name": "newblock",
+      "unusual": true
+    },
+    {
+      "name": "newlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newlabel{${1:label%plain}}{${2:data}}"
+      }
+    },
+    {
+      "name": "newlength",
+      "arg": {
+        "format": "{}",
+        "snippet": "newlength{${1:newlength%cmd}}"
+      }
+    },
+    {
+      "name": "NoCaseChange",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NoCaseChange{${1:text}}"
+      }
+    },
+    {
+      "name": "nocorr",
+      "unusual": true
+    },
+    {
+      "name": "nocorrlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nocorrlist{${1:charlist}}"
+      }
+    },
+    {
+      "name": "nofiles"
+    },
+    {
+      "name": "noprotrusion",
+      "unusual": true
+    },
+    {
+      "name": "normalcolor"
+    },
+    {
+      "name": "normalfont"
+    },
+    {
+      "name": "normalmarginpar",
+      "unusual": true
+    },
+    {
+      "name": "normalshape",
+      "unusual": true
+    },
+    {
+      "name": "obeycr",
+      "unusual": true
+    },
+    {
+      "name": "oddsidemargin",
+      "unusual": true
+    },
+    {
+      "name": "oe"
+    },
+    {
+      "name": "OE"
+    },
+    {
+      "name": "ointop",
+      "unusual": true
+    },
+    {
+      "name": "oldstylenums",
+      "arg": {
+        "format": "{}",
+        "snippet": "oldstylenums{${1:text}}"
+      }
+    },
+    {
+      "name": "onecolumn"
+    },
+    {
+      "name": "oval",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "oval(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "oval",
+      "unusual": true,
+      "arg": {
+        "format": "()[]",
+        "snippet": "oval(${2:width},${3:height})[${1:portion}]"
+      }
+    },
+    {
+      "name": "pageref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "pageref*{${1:label}}"
+      }
+    },
+    {
+      "name": "paragraphmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "paragraphmark{${1:code}}"
+      }
+    },
+    {
+      "name": "parbox",
+      "arg": {
+        "format": "[][][]{}{}",
+        "snippet": "parbox[${3:position}][${4:height}][${5:inner-pos}]{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "parbox",
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "parbox[${3:position}][${4:height}]{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "partname"
+    },
+    {
+      "name": "poptabs"
+    },
+    {
+      "name": "pounds"
+    },
+    {
+      "name": "protect"
+    },
+    {
+      "name": "pushtabs"
+    },
+    {
+      "name": "put",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "put(${2:xcoord},${3:ycoord}){${1:text}}"
+      }
+    },
+    {
+      "name": "qbezier",
+      "unusual": true,
+      "arg": {
+        "format": "()()()",
+        "snippet": "qbezier(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
+    },
+    {
+      "name": "qbezier",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "qbezier[${1:n}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})"
+      }
+    },
+    {
+      "name": "qbeziermax",
+      "unusual": true
+    },
+    {
+      "name": "r",
+      "arg": {
+        "format": "{}",
+        "snippet": "r{${1:letter}}"
+      }
+    },
+    {
+      "name": "rbrack",
+      "unusual": true,
+      "detail": "]",
+      "doc": "Right square bracket"
+    },
+    {
+      "name": "ref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "ref*{${1:label}}"
+      }
+    },
+    {
+      "name": "Ref",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ref{${1:label}}"
+      }
+    },
+    {
+      "name": "Ref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ref*{${1:label}}"
+      }
+    },
+    {
+      "name": "refname"
+    },
+    {
+      "name": "relbar",
+      "unusual": true
+    },
+    {
+      "name": "Relbar",
+      "unusual": true
+    },
+    {
+      "name": "rhook",
+      "unusual": true
+    },
+    {
+      "name": "rightmargin"
+    },
+    {
+      "name": "rightmark"
+    },
+    {
+      "name": "rm",
+      "unusual": true
+    },
+    {
+      "name": "rmfamily"
+    },
+    {
+      "name": "rootbox",
+      "unusual": true
+    },
+    {
+      "name": "SS"
+    },
+    {
+      "name": "samepage",
+      "unusual": true
+    },
+    {
+      "name": "sbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sbox{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "sc",
+      "unusual": true
+    },
+    {
+      "name": "scshape"
+    },
+    {
+      "name": "sectionmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sectionmark{${1:code}}"
+      }
+    },
+    {
+      "name": "selectfont"
+    },
+    {
+      "name": "setlength",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setlength{${1:cmd}}{${2:length}}"
+      }
+    },
+    {
+      "name": "sf",
+      "unusual": true
+    },
+    {
+      "name": "sffamily"
+    },
+    {
+      "name": "shortstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "shortstack[${2:position}]{${1:text\\\\text}}"
+      }
+    },
+    {
+      "name": "shortstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "shortstack{${1:text\\\\text}}"
+      }
+    },
+    {
+      "name": "skipeval",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "skipeval{${1:skip expression}}"
+      }
+    },
+    {
+      "name": "sl",
+      "unusual": true
+    },
+    {
+      "name": "sloppy",
+      "unusual": true
+    },
+    {
+      "name": "slshape"
+    },
+    {
+      "name": "sqrt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sqrt[${2:root}]{${1:arg}}"
+      },
+      "detail": "√",
+      "doc": "Radical"
+    },
+    {
+      "name": "sqrtsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sqrtsign{${1:arg}}"
+      }
+    },
+    {
+      "name": "sscshape",
+      "unusual": true
+    },
+    {
+      "name": "stepcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "stepcounter{${1:counter}}"
+      }
+    },
+    {
+      "name": "stop"
+    },
+    {
+      "name": "subitem"
+    },
+    {
+      "name": "subparagraphmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subparagraphmark{${1:code}}"
+      }
+    },
+    {
+      "name": "subsectionmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subsectionmark{${1:code}}"
+      }
+    },
+    {
+      "name": "subsubitem"
+    },
+    {
+      "name": "subsubsectionmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsectionmark{${1:code}}"
+      }
+    },
+    {
+      "name": "suppressfloats"
+    },
+    {
+      "name": "suppressfloats",
+      "arg": {
+        "format": "[]",
+        "snippet": "suppressfloats[${1:placement}]"
+      }
+    },
+    {
+      "name": "swshape",
+      "unusual": true
+    },
+    {
+      "name": "symbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "symbol{${1:n}}"
+      }
+    },
+    {
+      "name": "tablename"
+    },
+    {
+      "name": "tabularnewline"
+    },
+    {
+      "name": "textasciicircum"
+    },
+    {
+      "name": "textasciitilde"
+    },
+    {
+      "name": "textasteriskcentered"
+    },
+    {
+      "name": "textbackslash"
+    },
+    {
+      "name": "textbar"
+    },
+    {
+      "name": "textbardbl",
+      "unusual": true
+    },
+    {
+      "name": "textbraceleft"
+    },
+    {
+      "name": "textbraceright"
+    },
+    {
+      "name": "textbullet"
+    },
+    {
+      "name": "textcircled",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcircled{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textcommaabove",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcommaabove{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textcommabelow",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcommabelow{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textcompwordmark"
+    },
+    {
+      "name": "textcopyright"
+    },
+    {
+      "name": "textdagger"
+    },
+    {
+      "name": "textdaggerdbl"
+    },
+    {
+      "name": "textdollar"
+    },
+    {
+      "name": "textellipsis"
+    },
+    {
+      "name": "textemdash"
+    },
+    {
+      "name": "textendash"
+    },
+    {
+      "name": "textexclamdown"
+    },
+    {
+      "name": "textfiguredash",
+      "unusual": true
+    },
+    {
+      "name": "textgreater"
+    },
+    {
+      "name": "textheight"
+    },
+    {
+      "name": "texthorizontalbar",
+      "unusual": true
+    },
+    {
+      "name": "textless"
+    },
+    {
+      "name": "textnonbreakinghyphen",
+      "unusual": true
+    },
+    {
+      "name": "textparagraph"
+    },
+    {
+      "name": "textperiodcentered"
+    },
+    {
+      "name": "textquestiondown"
+    },
+    {
+      "name": "textquotedblleft"
+    },
+    {
+      "name": "textquotedblright"
+    },
+    {
+      "name": "textquoteleft"
+    },
+    {
+      "name": "textquoteright"
+    },
+    {
+      "name": "textregistered"
+    },
+    {
+      "name": "textssc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textssc{${1:text}}"
+      }
+    },
+    {
+      "name": "textsection"
+    },
+    {
+      "name": "textsterling"
+    },
+    {
+      "name": "textsubscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsubscript{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textsuperscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperscript{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "textsw",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsw{${1:text}}"
+      }
+    },
+    {
+      "name": "texttrademark"
+    },
+    {
+      "name": "textulc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textulc{${1:text}}"
+      }
+    },
+    {
+      "name": "textunderscore"
+    },
+    {
+      "name": "textvisiblespace"
+    },
+    {
+      "name": "thicklines",
+      "unusual": true
+    },
+    {
+      "name": "thickspace"
+    },
+    {
+      "name": "thinlines",
+      "unusual": true
+    },
+    {
+      "name": "time"
+    },
+    {
+      "name": "tt",
+      "unusual": true
+    },
+    {
+      "name": "twocolumn",
+      "arg": {
+        "format": "[]",
+        "snippet": "twocolumn[${1:text}]"
+      }
+    },
+    {
+      "name": "typein",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "typein[${2:cmd}]{${1:msg}}"
+      }
+    },
+    {
+      "name": "typein",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typein{${1:msg}}"
+      }
+    },
+    {
+      "name": "typeout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typeout{${1:msg}}"
+      }
+    },
+    {
+      "name": "ulcshape",
+      "unusual": true
+    },
+    {
+      "name": "unboldmath"
+    },
+    {
+      "name": "upshape"
+    },
+    {
+      "name": "varbigtriangledown"
+    },
+    {
+      "name": "varbigtriangleup"
+    },
+    {
+      "name": "vdots",
+      "detail": "⋮",
+      "doc": "Vertical ellipsis"
+    },
+    {
+      "name": "vector",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "vector(${2:xslope},${3:yslope}){${1:length}}"
+      }
+    },
+    {
+      "name": "verb",
+      "arg": {
+        "format": "||",
+        "snippet": "verb|${1:text}|"
+      }
+    },
+    {
+      "name": "verb*",
+      "arg": {
+        "format": "||",
+        "snippet": "verb*|${1:text}|"
+      }
+    },
+    {
+      "name": "verbvisiblespace",
+      "unusual": true
+    },
+    {
+      "name": "vline"
+    },
+    {
+      "name": "width"
+    },
+    {
+      "name": "newcommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newcommand*{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newcommand*{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newcommand*{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "providecommand*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "providecommand*{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providecommand*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providecommand*{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providecommand*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "providecommand*{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "newenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "newenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "newenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewcommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "renewcommand*{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewcommand*{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewcommand*{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "renewenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "renewenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "renewenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract"
+    },
+    {
+      "name": "array",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "array",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:cols}}"
+      }
+    },
+    {
+      "name": "center"
+    },
+    {
+      "name": "description"
+    },
+    {
+      "name": "displaymath"
+    },
+    {
+      "name": "document"
+    },
+    {
+      "name": "equation"
+    },
+    {
+      "name": "eqnarray"
+    },
+    {
+      "name": "eqnarray*"
+    },
+    {
+      "name": "figure"
+    },
+    {
+      "name": "figure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "figure*"
+    },
+    {
+      "name": "figure*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "filecontents",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "filecontents",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{filecontents},\\begin{filecontents*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "filecontents*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "filecontents*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{filecontents},\\begin{filecontents*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "flushleft"
+    },
+    {
+      "name": "flushright"
+    },
+    {
+      "name": "footnotesize"
+    },
+    {
+      "name": "Huge"
+    },
+    {
+      "name": "huge"
+    },
+    {
+      "name": "itemize"
+    },
+    {
+      "name": "LARGE"
+    },
+    {
+      "name": "Large"
+    },
+    {
+      "name": "large"
+    },
+    {
+      "name": "list",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:label}}{${2:spacing}}"
+      }
+    },
+    {
+      "name": "lrbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box}}"
+      }
+    },
+    {
+      "name": "math"
+    },
+    {
+      "name": "matrix"
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "[][][]{}",
+        "snippet": "[${2:position}][${3:height}][${4:inner pos}]{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "[${2:position}][${3:height}]{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:position}]{${1:width}}"
+      }
+    },
+    {
+      "name": "minipage",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "normalsize"
+    },
+    {
+      "name": "picture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:width},${2:height})"
+      }
+    },
+    {
+      "name": "picture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:width},${2:height})(${3:xoffset},${4:yoffset})"
+      }
+    },
+    {
+      "name": "pmatrix"
+    },
+    {
+      "name": "quotation"
+    },
+    {
+      "name": "quote"
+    },
+    {
+      "name": "scriptsize"
+    },
+    {
+      "name": "samepage"
+    },
+    {
+      "name": "small"
+    },
+    {
+      "name": "tabbing"
+    },
+    {
+      "name": "table*"
+    },
+    {
+      "name": "table*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "table"
+    },
+    {
+      "name": "table",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:placement}]"
+      }
+    },
+    {
+      "name": "tabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "tabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:cols}}"
+      }
+    },
+    {
+      "name": "tabular*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:width}}[${3:pos}]{${2:cols}}"
+      }
+    },
+    {
+      "name": "tabular*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:cols}}"
+      }
+    },
+    {
+      "name": "thebibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widestlabel}}"
+      }
+    },
+    {
+      "name": "theindex"
+    },
+    {
+      "name": "tiny"
+    },
+    {
+      "name": "titlepage"
+    },
+    {
+      "name": "trivlist"
+    },
+    {
+      "name": "verbatim"
+    },
+    {
+      "name": "verbatim*"
+    },
+    {
+      "name": "verse"
+    }
+  ],
+  "keys": {
+    "\\begin{filecontents},\\begin{filecontents*}": [
       "force",
       "overwrite",
       "noheader",
       "nosearch",
       "nowarn"
+    ],
+    "\\bibliographystyle#c": [
+      "abbrv",
+      "acm",
+      "alpha",
+      "apalike",
+      "ieeetr",
+      "plain",
+      "siam",
+      "unsrt"
+    ],
+    "\\listfiles": [
+      "hashes",
+      "sizes"
+    ],
+    "\\MakeLowercase#c,\\MakeTitlecase#c,\\MakeUppercase#c": [
+      "locale=${1:BCP-47 tag}",
+      "lang=${1:BCP-47 tag}"
+    ],
+    "\\mathversion#c": [
+      "bold",
+      "normal"
+    ],
+    "\\pagenumbering#c": [
+      "arabic",
+      "roman",
+      "Roman",
+      "alph",
+      "Alph"
+    ],
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "plain",
+      "empty",
+      "headings",
+      "myheadings"
+    ],
+    "\\documentclass/article#c": [
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
     ]
+  },
+  "args": [
+    "\\documentclass/article#c"
   ]
 }

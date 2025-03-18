@@ -1,25 +1,49 @@
 {
-  "includes": {
-    "fontspec": []
-  },
-  "macros": {
-    "inconsolatanffamily": {},
-    "inconsolatanfmonofamily": {},
-    "inconsolatanfpropofamily": {},
-    "textinconsolatanf{}": {
-      "snippet": "textinconsolatanf{${1:text}}"
-    },
-    "textinconsolatanfmono{}": {
-      "snippet": "textinconsolatanfmono{${1:text}}"
-    },
-    "textinconsolatanfpropo{}": {
-      "snippet": "textinconsolatanfpropo{${1:text}}"
+  "deps": [
+    {
+      "name": "fontspec"
     }
-  },
-  "envs": {},
-  "options": [
-    "variant=",
-    "scale=${1:factor}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "inconsolatanffamily"
+    },
+    {
+      "name": "inconsolatanfmonofamily"
+    },
+    {
+      "name": "inconsolatanfpropofamily"
+    },
+    {
+      "name": "textinconsolatanf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinconsolatanf{${1:text}}"
+      }
+    },
+    {
+      "name": "textinconsolatanfmono",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinconsolatanfmono{${1:text}}"
+      }
+    },
+    {
+      "name": "textinconsolatanfpropo",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinconsolatanfpropo{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/inconsolata-nerd-font#c": [
+      "variant=${1|default,mono,propo|}",
+      "scale=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/inconsolata-nerd-font#c"
+  ]
 }

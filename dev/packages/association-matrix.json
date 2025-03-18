@@ -1,54 +1,114 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "forloop": [],
-    "ifthen": []
-  },
-  "macros": {
-    "amxrow{}{}": {
-      "snippet": "amxrow{${1:key}}{${2:text}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "amxcol{}{}": {
-      "snippet": "amxcol{${1:key}}{${2:text}}"
+    {
+      "name": "forloop"
     },
-    "amxassociate{}{}": {
-      "snippet": "amxassociate{${1:col-key}}{${2:row-key}}"
+    {
+      "name": "ifthen"
+    }
+  ],
+  "macros": [
+    {
+      "name": "amxrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amxrow{${1:key%plain}}{${2:text}}"
+      }
     },
-    "amxrows": {},
-    "amxcols": {},
-    "amxrowtext{}": {
-      "snippet": "amxrowtext{${1:key}}"
+    {
+      "name": "amxcol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amxcol{${1:key%plain}}{${2:text}}"
+      }
     },
-    "amxcoltext{}": {
-      "snippet": "amxcoltext{${1:key}}"
+    {
+      "name": "amxassociate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amxassociate{${1:col-key}}{${2:row-key}}"
+      }
     },
-    "amxgenerate": {},
-    "amxgenerate[]": {
-      "snippet": "amxgenerate[${1:row-key}]"
+    {
+      "name": "amxrows"
     },
-    "amxsetTopCorner{}": {
-      "snippet": "amxsetTopCorner{${1:heading}}"
+    {
+      "name": "amxcols"
     },
-    "amxsetColumnHeading{}": {
-      "snippet": "amxsetColumnHeading{${1:render-command}}"
+    {
+      "name": "amxrowtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxrowtext{${1:key%plain}}"
+      }
     },
-    "amxsetRowFormat{}": {
-      "snippet": "amxsetRowFormat{${1:render-command}}"
+    {
+      "name": "amxcoltext",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxcoltext{${1:key%plain}}"
+      }
     },
-    "amxsetRowFormatHighlighted{}": {
-      "snippet": "amxsetRowFormatHighlighted{${1:render-command}}"
+    {
+      "name": "amxgenerate"
     },
-    "amxsetIndicator{}": {
-      "snippet": "amxsetIndicator{${1:indicator}}"
+    {
+      "name": "amxgenerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "amxgenerate[${1:row-key}]"
+      }
     },
-    "amxsetIndicatorHighlighted{}{}": {
-      "snippet": "amxsetIndicatorHighlighted{${1:hl-indicator}}{${2:ot-indicator}}"
+    {
+      "name": "amxsetTopCorner",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxsetTopCorner{${1:heading%text}}"
+      }
     },
-    "amxReset": {},
-    "amxDate": {},
-    "amxVersion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "amxsetColumnHeading",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxsetColumnHeading{${1:render-command}}"
+      }
+    },
+    {
+      "name": "amxsetRowFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxsetRowFormat{${1:render-command}}"
+      }
+    },
+    {
+      "name": "amxsetRowFormatHighlighted",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxsetRowFormatHighlighted{${1:render-command}}"
+      }
+    },
+    {
+      "name": "amxsetIndicator",
+      "arg": {
+        "format": "{}",
+        "snippet": "amxsetIndicator{${1:indicator}}"
+      }
+    },
+    {
+      "name": "amxsetIndicatorHighlighted",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amxsetIndicatorHighlighted{${1:hl-indicator}}{${2:ot-indicator}}"
+      }
+    },
+    {
+      "name": "amxReset"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

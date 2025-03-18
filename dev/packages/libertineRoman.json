@@ -1,65 +1,142 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "mweights": [],
-    "fontenc": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "libertine": {},
-    "libertineSB": {},
-    "libertineOsF": {},
-    "libertineLF": {},
-    "libertineDisplay": {},
-    "libertineInitial": {},
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "oldstylenumsf{}": {
-      "snippet": "oldstylenumsf{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "liningnumsf{}": {
-      "snippet": "liningnumsf{${1:text}}"
-    },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
-    },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
-    },
-    "DeclareTextGlyphY{}{}{}": {
-      "snippet": "DeclareTextGlyphY{${1:type}}{${2:name}}{${3:number}}"
-    },
-    "libertineGlyph{}": {
-      "snippet": "libertineGlyph{${1:glyph name}}"
-    },
-    "libertineInitialGlyph{}": {
-      "snippet": "libertineInitialGlyph{${1:glyph name}}"
+    {
+      "name": "fontaxes"
     }
-  },
-  "envs": {},
-  "options": [
-    "type1",
-    "nofontspec",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "semibold",
-    "bold",
-    "defaultfeatures={${1:fontspec features}}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "libertine"
+    },
+    {
+      "name": "libertineSB"
+    },
+    {
+      "name": "libertineOsF"
+    },
+    {
+      "name": "libertineLF"
+    },
+    {
+      "name": "libertineDisplay"
+    },
+    {
+      "name": "libertineInitial"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "oldstylenumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "oldstylenumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "liningnumsf",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnumsf{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnums{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnums{${1:text}}"
+      }
+    },
+    {
+      "name": "DeclareTextGlyphY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareTextGlyphY{${1:type}}{${2:name}}{${3:number}}"
+      }
+    },
+    {
+      "name": "libertineGlyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "libertineGlyph{${1:glyph name}}"
+      }
+    },
+    {
+      "name": "libertineInitialGlyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "libertineInitialGlyph{${1:glyph name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/libertineRoman#c": [
+      "type1",
+      "nofontspec",
+      "lining",
+      "oldstyle",
+      "tabular",
+      "proportional",
+      "semibold",
+      "bold",
+      "defaultfeatures={${1:fontspec features}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/libertineRoman#c"
+  ]
 }

@@ -1,71 +1,212 @@
 {
-  "includes": {
-    "geometry": [],
-    "fancyhdr": [],
-    "ifthen": [],
-    "lastpage": [],
-    "fancybox": [],
-    "xcolor": [],
-    "translations": []
+  "deps": [
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "lastpage"
+    },
+    {
+      "name": "fancybox"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "translations"
+    }
+  ],
+  "macros": [
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:head%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "subject{${1:text}}"
+      }
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subject[${2:head%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "school",
+      "arg": {
+        "format": "{}",
+        "snippet": "school{${1:text}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]",
+        "snippet": "maketitle[${1:rule length%l}]"
+      }
+    },
+    {
+      "name": "seprule"
+    },
+    {
+      "name": "seprule",
+      "arg": {
+        "format": "[]",
+        "snippet": "seprule[${1:length}]"
+      }
+    },
+    {
+      "name": "correct"
+    },
+    {
+      "name": "makesmalltitle"
+    },
+    {
+      "name": "titlestyle",
+      "unusual": true
+    },
+    {
+      "name": "subjectstyle",
+      "unusual": true
+    },
+    {
+      "name": "datestyle",
+      "unusual": true
+    },
+    {
+      "name": "smalltitledatestyle",
+      "unusual": true
+    },
+    {
+      "name": "titleflush",
+      "unusual": true
+    },
+    {
+      "name": "titletopskip",
+      "unusual": true
+    },
+    {
+      "name": "smalltitletopskip",
+      "unusual": true
+    },
+    {
+      "name": "titlebottomskip",
+      "unusual": true
+    },
+    {
+      "name": "titlesep",
+      "unusual": true
+    },
+    {
+      "name": "seprulewidth",
+      "unusual": true
+    },
+    {
+      "name": "seprulelength",
+      "unusual": true
+    },
+    {
+      "name": "subtitlestyle",
+      "unusual": true
+    },
+    {
+      "name": "titlecorrectstyle",
+      "unusual": true
+    },
+    {
+      "name": "boxedshape",
+      "arg": {
+        "format": "{}",
+        "snippet": "boxedshape{${1:text}}"
+      }
+    },
+    {
+      "name": "headstyle",
+      "unusual": true
+    },
+    {
+      "name": "footstyle",
+      "unusual": true
+    },
+    {
+      "name": "headtitlestyle",
+      "unusual": true
+    },
+    {
+      "name": "headsubjectstyle",
+      "unusual": true
+    },
+    {
+      "name": "schoolstyle",
+      "unusual": true
+    },
+    {
+      "name": "headdatestyle",
+      "unusual": true
+    },
+    {
+      "name": "authorstyle",
+      "unusual": true
+    },
+    {
+      "name": "pagenamestyle",
+      "unusual": true
+    },
+    {
+      "name": "correctname",
+      "unusual": true
+    },
+    {
+      "name": "identityname",
+      "unusual": true
+    },
+    {
+      "name": "identityforename",
+      "unusual": true
+    },
+    {
+      "name": "schooldocstitles",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pagestyle#c,\\thispagestyle#c": [
+      "classic",
+      "elegant",
+      "modern",
+      "soft",
+      "exam",
+      "collection",
+      "identity"
+    ]
   },
-  "macros": {
-    "title[]{}": {
-      "snippet": "title[${2:head}]{${1:text}}"
-    },
-    "subject{}": {
-      "snippet": "subject{${1:text}}"
-    },
-    "subject[]{}": {
-      "snippet": "subject[${2:head}]{${1:text}}"
-    },
-    "school{}": {
-      "snippet": "school{${1:text}}"
-    },
-    "institute{}": {
-      "snippet": "institute{${1:text}}"
-    },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "maketitle[]": {
-      "snippet": "maketitle[${1:rule length}]"
-    },
-    "seprule": {},
-    "seprule[]": {
-      "snippet": "seprule[${1:length}]"
-    },
-    "correct": {},
-    "makesmalltitle": {},
-    "titlestyle": {},
-    "subjectstyle": {},
-    "datestyle": {},
-    "smalltitledatestyle": {},
-    "titleflush": {},
-    "titletopskip": {},
-    "smalltitletopskip": {},
-    "titlebottomskip": {},
-    "titlesep": {},
-    "seprulewidth": {},
-    "seprulelength": {},
-    "subtitlestyle": {},
-    "titlecorrectstyle": {},
-    "boxedshape{}": {
-      "snippet": "boxedshape{${1:text}}"
-    },
-    "headstyle": {},
-    "footstyle": {},
-    "headtitlestyle": {},
-    "headsubjectstyle": {},
-    "schoolstyle": {},
-    "headdatestyle": {},
-    "authorstyle": {},
-    "pagenamestyle": {},
-    "correctname": {},
-    "identityname": {},
-    "identityforename": {},
-    "schooldocstitles": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

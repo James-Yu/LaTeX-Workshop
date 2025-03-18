@@ -1,17 +1,29 @@
 {
-  "includes": {
-    "emoji": [],
-    "natbib": []
-  },
-  "macros": {
-    "emojicite{}": {
-      "snippet": "emojicite{${1:bibid}}"
+  "deps": [
+    {
+      "name": "emoji"
     },
-    "emojicitep{}": {
-      "snippet": "emojicitep{${1:bibid}}"
+    {
+      "name": "natbib"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "emojicite",
+      "arg": {
+        "format": "{}",
+        "snippet": "emojicite{${1:key,emoji}}"
+      }
+    },
+    {
+      "name": "emojicitep",
+      "arg": {
+        "format": "{}",
+        "snippet": "emojicitep{${1:key,emoji}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

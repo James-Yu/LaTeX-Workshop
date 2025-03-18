@@ -1,20 +1,39 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psboxfill{}": {
-      "snippet": "psboxfill{${1:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstTiling": {},
-    "txfillDict": {},
-    "pstFillSetDefaults": {},
-    "PSTboxfillLoaded": {}
-  },
-  "envs": {},
-  "options": [
-    "tiling"
+    {
+      "name": "pst-xkey"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "psboxfill",
+      "arg": {
+        "format": "{}",
+        "snippet": "psboxfill{${1:stuff}}"
+      }
+    },
+    {
+      "name": "PstTiling"
+    },
+    {
+      "name": "txfillDict",
+      "unusual": true
+    },
+    {
+      "name": "pstFillSetDefaults",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-fill#c": [
+      "tiling"
+    ]
+  },
+  "args": [
+    "\\usepackage/pst-fill#c"
+  ]
 }

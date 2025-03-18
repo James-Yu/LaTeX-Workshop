@@ -1,168 +1,525 @@
 {
-  "includes": {
-    "pgfrcs": [],
-    "pgfcore": []
-  },
-  "macros": {
-    "pgfplotstreamstart": {},
-    "pgfplotstreampoint{}": {
-      "snippet": "pgfplotstreampoint{${1:point}}"
+  "deps": [
+    {
+      "name": "pgfrcs"
     },
-    "pgfplotstreampointoutlier{}": {
-      "snippet": "pgfplotstreampointoutlier{${1:point}}"
-    },
-    "pgfplotstreampointundefined": {},
-    "pgfplotstreamnewdataset": {},
-    "pgfplotstreamspecial{}": {
-      "snippet": "pgfplotstreamspecial{${1:text}}"
-    },
-    "pgfplotstreamend": {},
-    "pgfdeclareplothandler{}{}{}": {
-      "snippet": "pgfdeclareplothandler{${1:macro}}{${2:args}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "pgfsetlinetofirstplotpoint": {},
-    "pgfsetmovetofirstplotpoint": {},
-    "pgfplothandlerlineto": {},
-    "pgfplothandlerpolygon": {},
-    "pgfplothandlerdiscard": {},
-    "pgfplothandlerrecord{}": {
-      "snippet": "pgfplothandlerrecord{${1:macro}}"
-    },
-    "pgfplotxyfile{}": {
-      "snippet": "pgfplotxyfile{${1:file}}"
-    },
-    "pgfplotxyzfile{}": {
-      "snippet": "pgfplotxyzfile{${1:file}}"
-    },
-    "pgfplotgnuplot{}": {
-      "snippet": "pgfplotgnuplot{${1:gnuplot function}}"
-    },
-    "pgfplotgnuplot[]{}": {
-      "snippet": "pgfplotgnuplot[${2:prefix}]{${1:gnuplot function}}"
-    },
-    "pgfplotfunction{}{}{}": {
-      "snippet": "pgfplotfunction{${1:variable}}{${2:sample list}}{${3:point}}"
-    },
-    "pgfnodeparttextbox": {},
-    "pgfmultipartnode{}{}{}{}": {
-      "snippet": "pgfmultipartnode{${1:shape}}{${2:anchor}}{${3:name}}{${4:path usage cmd}}"
-    },
-    "pgfnode{}{}{}{}{}": {
-      "snippet": "pgfnode{${1:shape}}{${2:anchor}}{${3:label text}}{${4:name}}{${5:path usage cmd}}"
-    },
-    "pgfpositionnodelater{}": {
-      "snippet": "pgfpositionnodelater{${1:macro}}"
-    },
-    "pgfpositionnodelatername": {},
-    "pgfpositionnodelaterminx": {},
-    "pgfpositionnodelatermaxx": {},
-    "pgfpositionnodelaterminy": {},
-    "pgfpositionnodelatermaxy": {},
-    "ifpgflatenodepositioning": {},
-    "pgflatenodepositioningtrue": {},
-    "pgflatenodepositioningfalse": {},
-    "pgfpositionnodelaterbox": {},
-    "pgfpositionnodenow{}": {
-      "snippet": "pgfpositionnodenow{${1:coordinate}}"
-    },
-    "pgffakenode{}": {
-      "snippet": "pgffakenode{${1:node name}}"
-    },
-    "pgfnodepostsetupcode{}{}": {
-      "snippet": "pgfnodepostsetupcode{${1:node name}}{${2:code}}"
-    },
-    "pgfnodealias{}{}": {
-      "snippet": "pgfnodealias{${1:new name}}{${2:existing name}}"
-    },
-    "pgfnoderename{}{}": {
-      "snippet": "pgfnoderename{${1:new name}}{${2:existing name}}"
-    },
-    "pgfcoordinate{}{}": {
-      "snippet": "pgfcoordinate{${1:name}}{${2:coordinate}}"
-    },
-    "pgfdeclaregenericanchor{}{}": {
-      "snippet": "pgfdeclaregenericanchor{${1:anchor}}{${2:code}}"
-    },
-    "pgfpointanchor{}{}": {
-      "snippet": "pgfpointanchor{${1:node}}{${2:anchor}}"
-    },
-    "pgfpointshapeborder{}{}": {
-      "snippet": "pgfpointshapeborder{${1:node}}{${2:point}}"
-    },
-    "pgfgetnodeparts{}{}": {
-      "snippet": "pgfgetnodeparts{${1:macro}}{${2:shape name}}"
-    },
-    "pgfdeclareshape{}{}": {
-      "snippet": "pgfdeclareshape{${1:shape name}}{${2:shape spec}}"
-    },
-    "centerpoint": {},
-    "ifpgfshapeborderusesincircle": {},
-    "pgfshapeborderusesincircletrue": {},
-    "pgfshapeborderusesincirclefalse": {},
-    "northeast": {},
-    "southwest": {},
-    "radius": {},
-    "nodeparts{}": {
-      "snippet": "nodeparts{${1:list of node parts}}"
-    },
-    "savedanchor{}{}": {
-      "snippet": "savedanchor{${1:cmd}}{${2:code}}"
-    },
-    "saveddimen{}{}": {
-      "snippet": "saveddimen{${1:cmd}}{${2:code}}"
-    },
-    "savedmacro{}{}": {
-      "snippet": "savedmacro{${1:cmd}}{${2:code}}"
-    },
-    "addtosavedmacro{}": {
-      "snippet": "addtosavedmacro{${1:macro}}"
-    },
-    "anchor{}{}": {
-      "snippet": "anchor{${1:name}}{${2:code}}"
-    },
-    "deferredanchor{}{}": {
-      "snippet": "deferredanchor{${1:name}}{${2:code}}"
-    },
-    "anchorborder{}": {
-      "snippet": "anchorborder{${1:code}}"
-    },
-    "backgroundpath{}": {
-      "snippet": "backgroundpath{${1:code}}"
-    },
-    "foregroundpath{}": {
-      "snippet": "foregroundpath{${1:code}}"
-    },
-    "behindbackgroundpath{}": {
-      "snippet": "behindbackgroundpath{${1:code}}"
-    },
-    "beforebackgroundpath{}": {
-      "snippet": "beforebackgroundpath{${1:code}}"
-    },
-    "behindforegroundpath{}": {
-      "snippet": "behindforegroundpath{${1:code}}"
-    },
-    "beforeforegroundpath{}": {
-      "snippet": "beforeforegroundpath{${1:code}}"
-    },
-    "inheritsavedanchors": {},
-    "inheritbehindbackgroundpath": {},
-    "inheritbackgroundpath": {},
-    "inheritbeforebackgroundpath": {},
-    "inheritbehindforegroundpath": {},
-    "inheritforegroundpath": {},
-    "inheritbeforeforegroundpath": {},
-    "inheritanchor": {},
-    "inheritanchorborder": {}
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "version="
+    {
+      "name": "pgfcore"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pgfplotstreamstart",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstreampoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstreampoint{${1:point}}"
+      }
+    },
+    {
+      "name": "pgfplotstreampointoutlier",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstreampointoutlier{${1:point}}"
+      }
+    },
+    {
+      "name": "pgfplotstreampointundefined",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstreamnewdataset",
+      "unusual": true
+    },
+    {
+      "name": "pgfplotstreamspecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotstreamspecial{${1:text}}"
+      }
+    },
+    {
+      "name": "pgfplotstreamend",
+      "unusual": true
+    },
+    {
+      "name": "pgfdeclareplothandler",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfdeclareplothandler{${1:macro%cmd}}{${2:args}}{${3:options%keyvals}}",
+        "keys": [
+          "\\pgfdeclareplothandler#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "pgfsetlinetofirstplotpoint",
+      "unusual": true
+    },
+    {
+      "name": "pgfsetmovetofirstplotpoint",
+      "unusual": true
+    },
+    {
+      "name": "pgfplothandlerlineto",
+      "unusual": true
+    },
+    {
+      "name": "pgfplothandlerpolygon",
+      "unusual": true
+    },
+    {
+      "name": "pgfplothandlerdiscard",
+      "unusual": true
+    },
+    {
+      "name": "pgfplothandlerrecord",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplothandlerrecord{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "pgfplotxyfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotxyfile{${1:file}}"
+      }
+    },
+    {
+      "name": "pgfplotxyzfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotxyzfile{${1:file}}"
+      }
+    },
+    {
+      "name": "pgfplotgnuplot",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfplotgnuplot{${1:gnuplot function}}"
+      }
+    },
+    {
+      "name": "pgfplotgnuplot",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfplotgnuplot[${2:prefix}]{${1:gnuplot function}}"
+      }
+    },
+    {
+      "name": "pgfplotfunction",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfplotfunction{${1:variable%cmd}}{${2:sample list}}{${3:point}}"
+      }
+    },
+    {
+      "name": "pgfnodeparttextbox",
+      "unusual": true
+    },
+    {
+      "name": "pgfmultipartnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfmultipartnode{${1:shape}}{${2:anchor}}{${3:name}}{${4:path usage cmd}}"
+      }
+    },
+    {
+      "name": "pgfnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfnode{${1:shape}}{${2:anchor}}{${3:label text}}{${4:name}}{${5:path usage cmd}}"
+      }
+    },
+    {
+      "name": "pgfpositionnodelater",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfpositionnodelater{${1:macro}}"
+      }
+    },
+    {
+      "name": "pgfpositionnodelatername",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelaterminx",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelatermaxx",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelaterminy",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelatermaxy",
+      "unusual": true
+    },
+    {
+      "name": "ifpgflatenodepositioning",
+      "unusual": true
+    },
+    {
+      "name": "pgflatenodepositioningtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgflatenodepositioningfalse",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelaterbox",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodenow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfpositionnodenow{${1:coordinate}}"
+      }
+    },
+    {
+      "name": "pgffakenode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgffakenode{${1:node name}}"
+      }
+    },
+    {
+      "name": "pgfnodepostsetupcode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfnodepostsetupcode{${1:node name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfnodealias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfnodealias{${1:new name}}{${2:existing name}}"
+      }
+    },
+    {
+      "name": "pgfnoderename",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfnoderename{${1:new name}}{${2:existing name}}"
+      }
+    },
+    {
+      "name": "pgfcoordinate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfcoordinate{${1:name}}{${2:coordinate}}"
+      }
+    },
+    {
+      "name": "pgfdeclaregenericanchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfdeclaregenericanchor{${1:anchor}}{${2:code}}"
+      }
+    },
+    {
+      "name": "pgfpointanchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfpointanchor{${1:node}}{${2:anchor}}"
+      }
+    },
+    {
+      "name": "pgfpointshapeborder",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfpointshapeborder{${1:node}}{${2:point}}"
+      }
+    },
+    {
+      "name": "pgfgetnodeparts",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfgetnodeparts{${1:macro}}{${2:shape name}}"
+      }
+    },
+    {
+      "name": "pgfdeclareshape",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfdeclareshape{${1:shape name}}{${2:shape spec}}"
+      }
+    },
+    {
+      "name": "ifpgfshapeborderusesincircle",
+      "unusual": true
+    },
+    {
+      "name": "pgfshapeborderusesincircletrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfshapeborderusesincirclefalse",
+      "unusual": true
+    },
+    {
+      "name": "nodeparts",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nodeparts{${1:list of node parts}}"
+      }
+    },
+    {
+      "name": "savedanchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "savedanchor{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "saveddimen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "saveddimen{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "savedmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "savedmacro{${1:cmd}}{${2:code}}"
+      }
+    },
+    {
+      "name": "addtosavedmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtosavedmacro{${1:macro}}"
+      }
+    },
+    {
+      "name": "anchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "anchor{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "deferredanchor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "deferredanchor{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "anchorborder",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "anchorborder{${1:code}}"
+      }
+    },
+    {
+      "name": "backgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "backgroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "foregroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "foregroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "behindbackgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "behindbackgroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "beforebackgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "beforebackgroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "behindforegroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "behindforegroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "beforeforegroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "beforeforegroundpath{${1:code}}"
+      }
+    },
+    {
+      "name": "inheritsavedanchors",
+      "unusual": true
+    },
+    {
+      "name": "inheritsavedanchors",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritsavedanchors[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritbehindbackgroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritbehindbackgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritbehindbackgroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritbackgroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritbackgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritbackgroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritbeforebackgroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritbeforebackgroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritbeforebackgroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritbehindforegroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritbehindforegroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritbehindforegroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritforegroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritforegroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritforegroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritbeforeforegroundpath",
+      "unusual": true
+    },
+    {
+      "name": "inheritbeforeforegroundpath",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritbeforeforegroundpath[${2:from={${1:shape name}}}]"
+      }
+    },
+    {
+      "name": "inheritanchor",
+      "unusual": true
+    },
+    {
+      "name": "inheritanchor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inheritanchor[${3:from={${1:shape name}}}]{${2:name}}"
+      }
+    },
+    {
+      "name": "inheritanchorborder",
+      "unusual": true
+    },
+    {
+      "name": "inheritanchorborder",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "inheritanchorborder[${2:from={${1:shape name}}}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pgf#c": [
+      "draft",
+      "version=${1|0.65,0.96,1.18,latest|}"
+    ],
+    "\\pgfdeclareplothandler#c": [
       "start=${1:code}",
       "end=${1:code}",
       "point=${1:code}",
@@ -174,5 +531,8 @@
       "end macro=${1:macro}",
       "jump macro=${1:macro}"
     ]
+  },
+  "args": [
+    "\\usepackage/pgf#c"
   ]
 }

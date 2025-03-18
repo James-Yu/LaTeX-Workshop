@@ -1,37 +1,96 @@
 {
-  "includes": {
-    "ifplatform": [],
-    "pdftexcmds": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "HardWrap{}{}{}{}{}": {
-      "snippet": "HardWrap{${1:function}}{${2:width}}{${3:setup code}}{${4:newline}}{${5:text}}"
+  "deps": [
+    {
+      "name": "ifplatform"
     },
-    "GenerateLogMacros{}{}": {
-      "snippet": "GenerateLogMacros{${1:type}}{${2:name}}"
+    {
+      "name": "pdftexcmds"
     },
-    "GenerateLogMacros{}[]{}": {
-      "snippet": "GenerateLogMacros{${1:type}}[${2:prefix}]{${3:name}}"
-    },
-    "HardWrapSetup": {},
-    "setmaxprintline{}": {
-      "snippet": "setmaxprintline{${1:integer}}"
-    },
-    "GeneratePackageLogMacros{}": {
-      "snippet": "GeneratePackageLogMacros{${1:name}}"
-    },
-    "GeneratePackageLogMacros[]{}": {
-      "snippet": "GeneratePackageLogMacros[${2:prefix}]{${1:name}}"
-    },
-    "GenerateClassLogMacros{}": {
-      "snippet": "GenerateClassLogMacros{${1:name}}"
-    },
-    "GenerateClassLogMacros[]{}": {
-      "snippet": "GenerateClassLogMacros[${2:prefix}]{${1:name}}"
+    {
+      "name": "ifxetex"
     }
+  ],
+  "macros": [
+    {
+      "name": "HardWrap",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "HardWrap{${1:function}}{${2:width}}{${3:setup code}}{${4:newline}}{${5:text}}"
+      }
+    },
+    {
+      "name": "GenerateLogMacros",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "GenerateLogMacros{${1:type%keyvals}}{${2:name}}",
+        "keys": [
+          "\\GenerateLogMacros"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GenerateLogMacros",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "GenerateLogMacros{${1:type%keyvals}}[${3:prefix}]{${2:name}}",
+        "keys": [
+          "\\GenerateLogMacros"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "HardWrapSetup",
+      "unusual": true
+    },
+    {
+      "name": "setmaxprintline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setmaxprintline{${1:integer}}"
+      }
+    },
+    {
+      "name": "GeneratePackageLogMacros",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GeneratePackageLogMacros{${1:name}}"
+      }
+    },
+    {
+      "name": "GeneratePackageLogMacros",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "GeneratePackageLogMacros[${2:prefix}]{${1:name}}"
+      }
+    },
+    {
+      "name": "GenerateClassLogMacros",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "GenerateClassLogMacros{${1:name}}"
+      }
+    },
+    {
+      "name": "GenerateClassLogMacros",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "GenerateClassLogMacros[${2:prefix}]{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\GenerateLogMacros": [
+      "package",
+      "class"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

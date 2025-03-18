@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as cs from 'cross-spawn'
 import type { log } from './utils/logger'
 import type { event } from './core/event'
@@ -25,6 +26,7 @@ const wrapper = <T extends Array<any>, U>(fn: (...args: T) => U) => {
 /* eslint-disable */
 export const lw = {
     extensionRoot: '',
+    previousActive: undefined as vscode.TextEditor | undefined,
     constant: {} as typeof constant,
     log: {} as typeof log.getLogger,
     event: {} as typeof event,
@@ -47,7 +49,9 @@ export const lw = {
     external: {
         spawn: wrapper(cs.spawn),
         sync: wrapper(cs.sync),
-        stat: wrapper(vscode.workspace.fs.stat)
+        stat: wrapper(vscode.workspace.fs.stat.bind(vscode.workspace.fs)),
+        mkdirSync: wrapper(fs.mkdirSync),
+        chmodSync: wrapper(fs.chmodSync)
     },
     onConfigChange,
     onDispose
@@ -65,7 +69,7 @@ const constant = {
     MAGIC_PROGRAM_ARGS_SUFFIX: '_WITH_ARGS',
     MAX_PRINT_LINE: '10000',
     /**
-     * Prefix that server.ts uses to distiguish requests on pdf files from
+     * Prefix that server.ts uses to distinguish requests on pdf files from
      * others. We use '.' because it is not converted by encodeURIComponent and
      * other functions.
      * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url

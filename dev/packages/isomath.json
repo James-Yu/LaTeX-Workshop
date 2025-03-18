@@ -1,0 +1,115 @@
+{
+  "deps": [
+    {
+      "name": "fixmath"
+    },
+    {
+      "name": "kvoptions"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mathbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbfit{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfbfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathsfbfit{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbold{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathboldsans",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathboldsans{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfit",
+      "if": "OMLmathsfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathsfit{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsans",
+      "if": "OMLmathsfit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathsans{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsfit",
+      "if": "OMLmathsfit=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathsfit{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathsans",
+      "if": "OMLmathsfit=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathsans{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "vectorsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "vectorsym{${1:symbol}}"
+      }
+    },
+    {
+      "name": "matrixsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "matrixsym{${1:symbol}}"
+      }
+    },
+    {
+      "name": "tensorsym",
+      "arg": {
+        "format": "{}",
+        "snippet": "tensorsym{${1:symbol}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/isomath#c": [
+      "rmdefault=${1:font family}",
+      "sfdefault=${1|cmbr,fav,hvm,iwona,jkpss,llcmss|}",
+      "scaled=${1:factor}",
+      "reuseMathAlphabets",
+      "OMLmathrm",
+      "OMLmathbf",
+      "OMLmathsf",
+      "OMLmathsfit",
+      "OMLmathtt",
+      "OMLmathsans"
+    ]
+  },
+  "args": [
+    "\\usepackage/isomath#c"
+  ]
+}

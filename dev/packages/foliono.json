@@ -1,69 +1,150 @@
 {
-  "includes": {
-    "calc": []
-  },
-  "macros": {
-    "folionumber": {},
-    "folionoquirefolios{}": {
-      "snippet": "folionoquirefolios{${1:number}}"
-    },
-    "stepfolio": {},
-    "setfoliono{}{}": {
-      "snippet": "setfoliono{${1:quire-num}}{${2:folio-num}}"
-    },
-    "currentfolio": {},
-    "currentfoliowithsides": {},
-    "currentfoliowithstyles": {},
-    "folionostyle": {},
-    "quirenostyle": {},
-    "folionofont{}": {
-      "snippet": "folionofont{${1:fontname}}"
-    },
-    "folionofontsize{}": {
-      "snippet": "folionofontsize{${1:size}}"
-    },
-    "foliofontcolor{}": {
-      "snippet": "foliofontcolor{${1:color}}"
-    },
-    "quirenoprefix{}": {
-      "snippet": "quirenoprefix{${1:text}}"
-    },
-    "quirenosuffix{}": {
-      "snippet": "quirenosuffix{${1:text}}"
-    },
-    "folionoprefix{}": {
-      "snippet": "folionoprefix{${1:text}}"
-    },
-    "folionosuffix{}": {
-      "snippet": "folionosuffix{${1:text}}"
-    },
-    "folionoseparator{}": {
-      "snippet": "folionoseparator{${1:text}}"
-    },
-    "folionolabel{}": {
-      "snippet": "folionolabel{${1:label}}"
-    },
-    "folionolabelwithstyles{}": {
-      "snippet": "folionolabelwithstyles{${1:label}}"
-    },
-    "folionoindex{}": {
-      "snippet": "folionoindex{${1:text}}"
-    },
-    "folionoindexwithstyles{}": {
-      "snippet": "folionoindexwithstyles{${1:text}}"
+  "deps": [
+    {
+      "name": "calc"
     }
-  },
-  "envs": {},
-  "options": [
-    "AllQuires",
-    "ArabicNumbers",
-    "LowerCase",
-    "NoQuires",
-    "OnlyQuire",
-    "SheetNumbers",
-    "ShowSides",
-    "SkipFirst",
-    "SkipEnd"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "folionumber"
+    },
+    {
+      "name": "folionoquirefolios",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionoquirefolios{${1:number}}"
+      }
+    },
+    {
+      "name": "stepfolio"
+    },
+    {
+      "name": "setfoliono",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setfoliono{${1:quire-num}}{${2:folio-num}}"
+      }
+    },
+    {
+      "name": "currentfolio"
+    },
+    {
+      "name": "currentfoliowithsides"
+    },
+    {
+      "name": "currentfoliowithstyles"
+    },
+    {
+      "name": "folionostyle",
+      "unusual": true
+    },
+    {
+      "name": "quirenostyle",
+      "unusual": true
+    },
+    {
+      "name": "folionofont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "folionofont{${1:fontname}}"
+      }
+    },
+    {
+      "name": "folionofontsize",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "folionofontsize{${1:size}}"
+      }
+    },
+    {
+      "name": "foliofontcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "foliofontcolor{${1:color}}"
+      }
+    },
+    {
+      "name": "quirenoprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "quirenoprefix{${1:text}}"
+      }
+    },
+    {
+      "name": "quirenosuffix",
+      "arg": {
+        "format": "{}",
+        "snippet": "quirenosuffix{${1:text}}"
+      }
+    },
+    {
+      "name": "folionoprefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionoprefix{${1:text}}"
+      }
+    },
+    {
+      "name": "folionosuffix",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionosuffix{${1:text}}"
+      }
+    },
+    {
+      "name": "folionoseparator",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionoseparator{${1:text}}"
+      }
+    },
+    {
+      "name": "folionolabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionolabel{${1:label}}"
+      }
+    },
+    {
+      "name": "folionolabelwithstyles",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionolabelwithstyles{${1:label}}"
+      }
+    },
+    {
+      "name": "folionoindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionoindex{${1:text}}"
+      }
+    },
+    {
+      "name": "folionoindexwithstyles",
+      "arg": {
+        "format": "{}",
+        "snippet": "folionoindexwithstyles{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/foliono#c": [
+      "AllQuires",
+      "ArabicNumbers",
+      "LowerCase",
+      "NoQuires",
+      "OnlyQuire",
+      "SheetNumbers",
+      "ShowSides",
+      "SkipFirst",
+      "SkipEnd"
+    ]
+  },
+  "args": [
+    "\\usepackage/foliono#c"
+  ]
 }

@@ -1,16 +1,26 @@
 {
-  "includes": {
-    "graphicx": []
-  },
-  "macros": {
-    "epsdice{}": {
-      "snippet": "epsdice{${1:number}}"
-    },
-    "epsdice[]{}": {
-      "snippet": "epsdice[${2:black}]{${1:number}}"
+  "deps": [
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "epsdice",
+      "arg": {
+        "format": "{}",
+        "snippet": "epsdice{${1:number}}"
+      }
+    },
+    {
+      "name": "epsdice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "epsdice[${2:black}]{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,104 +1,212 @@
 {
-  "includes": {
-    "color": [],
-    "hyperref": [],
-    "graphicx": [],
-    "pifont": [],
-    "ocg": [],
-    "xkeyval": [],
-    "atbegshi": [],
-    "eforms": [],
-    "transparent": [
-      "transparent"
-    ]
-  },
-  "macros": {
-    "ocgtext{}{}": {
-      "snippet": "ocgtext{${1:text1}}{${2:text2}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "ocgtext[]{}{}": {
-      "snippet": "ocgtext[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
     },
-    "defaultocgpapercolor": {},
-    "defaultocgfontcolor": {},
-    "ocgpicture{}": {
-      "snippet": "ocgpicture{${1:imagefile}}"
+    {
+      "name": "graphicx"
     },
-    "ocgpicture[]{}": {
-      "snippet": "ocgpicture[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pifont"
     },
-    "ocgminitext{}{}": {
-      "snippet": "ocgminitext{${1:text1}}{${2:text2}}"
+    {
+      "name": "ocg"
     },
-    "ocgminitext[]{}{}": {
-      "snippet": "ocgminitext[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "ocgminitextrt{}{}": {
-      "snippet": "ocgminitextrt{${1:text1}}{${2:text2}}"
+    {
+      "name": "atbegshi"
     },
-    "ocgminitextrt[]{}{}": {
-      "snippet": "ocgminitextrt[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "eforms"
     },
-    "ocgminitextrb{}{}": {
-      "snippet": "ocgminitextrb{${1:text1}}{${2:text2}}"
-    },
-    "ocgminitextrb[]{}{}": {
-      "snippet": "ocgminitextrb[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ocgminitextlt{}{}": {
-      "snippet": "ocgminitextlt{${1:text1}}{${2:text2}}"
-    },
-    "ocgminitextlt[]{}{}": {
-      "snippet": "ocgminitextlt[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ocgminitextlb{}{}": {
-      "snippet": "ocgminitextlb{${1:text1}}{${2:text2}}"
-    },
-    "ocgminitextlb[]{}{}": {
-      "snippet": "ocgminitextlb[${3:options}]{${1:text1}}{${2:text2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ocgtextstart": {},
-    "ocgtextend": {},
-    "layerHshift": {},
-    "layerVshift": {},
-    "ocgclosechar": {}
-  },
-  "envs": {},
-  "options": [
-    "transparent",
-    "insertvisible",
-    "nobutton",
-    "noprogressmsg",
-    "minimouseover",
-    "mouseover",
-    "nopageclose",
-    "inactive",
-    "noocg",
-    "active",
-    "fixcolor"
+    {
+      "name": "transparent",
+      "if": "transparent"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "ocgtext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgtext{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgtext",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgtext[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defaultocgpapercolor",
+      "unusual": true
+    },
+    {
+      "name": "defaultocgfontcolor",
+      "unusual": true
+    },
+    {
+      "name": "ocgpicture",
+      "arg": {
+        "format": "{}",
+        "snippet": "ocgpicture{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "ocgpicture",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ocgpicture[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\ocgpicture"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgminitext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgminitext{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgminitext",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgminitext[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgminitextrt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgminitextrt{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgminitextrt",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgminitextrt[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgminitextrb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgminitextrb{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgminitextrb",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgminitextrb[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgminitextlt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgminitextlt{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgminitextlt",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgminitextlt[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgminitextlb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ocgminitextlb{${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "ocgminitextlb",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ocgminitextlb[${3:options%keyvals}]{${1:text1%text}}{${2:text2%text}}",
+        "keys": [
+          "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ocgtextstart",
+      "unusual": true
+    },
+    {
+      "name": "ocgtextend",
+      "unusual": true
+    },
+    {
+      "name": "layerHshift",
+      "unusual": true
+    },
+    {
+      "name": "layerVshift",
+      "unusual": true
+    },
+    {
+      "name": "ocgclosechar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ocgtools#c": [
+      "transparent",
+      "insertvisible",
+      "nobutton",
+      "noprogressmsg",
+      "minimouseover",
+      "mouseover",
+      "nopageclose",
+      "inactive",
+      "noocg",
+      "active",
+      "fixcolor"
+    ],
+    "\\ocgtext#c,\\ocgminitext#c,\\ocgminitextrt#c,\\ocgminitextrb#c,\\ocgminitextlt#c,\\ocgminitextlb#c": [
       "width=",
       "${1:width}",
       "bg=",
       "fg="
     ],
-    [
+    "\\ocgpicture": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -108,7 +216,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -129,5 +237,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/ocgtools#c"
   ]
 }

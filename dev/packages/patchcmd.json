@@ -1,14 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "patchcommand{}{}{}": {
-      "snippet": "patchcommand{${1:command}}{${2:before code}}{${3:after code}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "patchcommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "patchcommand{${1:command}}{${2:before code%definition}}{${3:after code%definition}}"
+      }
     },
-    "patchcmdError{}{}": {
-      "snippet": "patchcmdError{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "patchcmdError",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "patchcmdError{${1:arg1}}{${2:arg2}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

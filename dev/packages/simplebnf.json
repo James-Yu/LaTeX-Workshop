@@ -1,50 +1,60 @@
 {
-  "includes": {
-    "tabularray": [],
-    "mathtools": []
-  },
-  "macros": {
-    "SetBNFLayout{}": {
-      "snippet": "SetBNFLayout{${1:tblr options}}"
+  "deps": [
+    {
+      "name": "tabularray"
     },
-    "SetBNFConfig{}": {
-      "snippet": "SetBNFConfig{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "SimpleBNFDefEq": {},
-    "SimpleBNFDefOr": {},
-    "SimpleBNFStretch": {},
-    "bnfexpr{}": {
-      "snippet": "bnfexpr{${1:text}}"
-    },
-    "bnfannot{}": {
-      "snippet": "bnfannot{${1:text}}"
+    {
+      "name": "mathtools"
     }
-  },
-  "envs": {
-    "bnf": {},
-    "bnf[]": {
+  ],
+  "macros": [
+    {
+      "name": "SetBNFLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetBNFLayout{${1:tblr options}}"
+      }
+    },
+    {
+      "name": "SetBNFConfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetBNFConfig{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{bnf},\\SetBNFConfig"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "bnf"
+    },
+    {
       "name": "bnf",
-      "snippet": "[${1:tblr options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:tblr options}]"
+      }
     },
-    "bnfgrammar": {},
-    "bnfgrammar[]": {
-      "name": "bnfgrammar",
-      "snippet": "[${1:cols}]"
+    {
+      "name": "bnf",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:options%keyvals})"
+      }
     },
-    "bnfgrammar[][]": {
-      "name": "bnfgrammar",
-      "snippet": "[${1:cols}][${2:newline sep regexp}]"
-    },
-    "bnfgrammar[][][]": {
-      "name": "bnfgrammar",
-      "snippet": "[${1:cols}][${2:newline sep regexp}][${3:non-breaking sep regexp}]"
+    {
+      "name": "bnf",
+      "arg": {
+        "format": "()[]",
+        "snippet": "(${2:options%keyvals})[${1:tblr options}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{bnf},\\SetBNFConfig": [
       "prod-delim={${1:characters}}",
       "new-line-delim={${1:characters}}",
       "single-line-delim={${1:characters}}",
@@ -55,5 +65,6 @@
       "prod-sep=",
       "row-sep="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,106 +1,205 @@
 {
-  "includes": {},
-  "macros": {
-    "zhnumber{}": {
-      "snippet": "zhnumber{${1:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "zhnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhnumber{${1:number}}"
+      }
     },
-    "zhnumber[]{}": {
-      "snippet": "zhnumber[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhnumber",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhnumber[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhdigits{}": {
-      "snippet": "zhdigits{${1:number}}"
+    {
+      "name": "zhdigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdigits{${1:number}}"
+      }
     },
-    "zhdigits[]{}": {
-      "snippet": "zhdigits[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhdigits",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhdigits[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhdigits*{}": {
-      "snippet": "zhdigits*{${1:number}}"
+    {
+      "name": "zhdigits*",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdigits*{${1:number}}"
+      }
     },
-    "zhdigits*[]{}": {
-      "snippet": "zhdigits*[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhdigits*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhdigits*[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhnum{}": {
-      "snippet": "zhnum{${1:counter}}"
+    {
+      "name": "zhnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhnum{${1:counter}}"
+      }
     },
-    "zhnum[]{}": {
-      "snippet": "zhnum[${2:options}]{${1:counter}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhnum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhnum[${2:options%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhdig{}": {
-      "snippet": "zhdig{${1:counter}}"
+    {
+      "name": "zhdig",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdig{${1:counter}}"
+      }
     },
-    "zhdig[]{}": {
-      "snippet": "zhdig[${2:options}]{${1:counter}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhdig",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhdig[${2:options%keyvals}]{${1:counter}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhweekday{}": {
-      "snippet": "zhweekday{${1:yyyy/mm/dd}}"
+    {
+      "name": "zhweekday",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhweekday{${1:yyyy/mm/dd}}"
+      }
     },
-    "zhdate{}": {
-      "snippet": "zhdate{${1:yyyy/mm/dd}}"
+    {
+      "name": "zhdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdate{${1:yyyy/mm/dd}}"
+      }
     },
-    "zhdate*{}": {
-      "snippet": "zhdate*{${1:yyyy/mm/dd}}"
+    {
+      "name": "zhdate*",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdate*{${1:yyyy/mm/dd}}"
+      }
     },
-    "zhtoday": {},
-    "zhtime{}": {
-      "snippet": "zhtime{${1:hh:mm}}"
+    {
+      "name": "zhtoday"
     },
-    "zhcurrtime": {},
-    "zhtiangan{}": {
-      "snippet": "zhtiangan{${1:number}}"
+    {
+      "name": "zhtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhtime{${1:hh:mm}}"
+      }
     },
-    "zhdizhi{}": {
-      "snippet": "zhdizhi{${1:number}}"
+    {
+      "name": "zhcurrtime"
     },
-    "zhganzhi{}": {
-      "snippet": "zhganzhi{${1:number}}"
+    {
+      "name": "zhtiangan",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zhtiangan{${1:number}}"
+      }
     },
-    "zhganzhinian{}": {
-      "snippet": "zhganzhinian{${1:year}}"
+    {
+      "name": "zhdizhi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zhdizhi{${1:number}}"
+      }
     },
-    "zhnumExtendScaleMap{}": {
-      "snippet": "zhnumExtendScaleMap{${1:character1, character2, ..., charactern}}"
+    {
+      "name": "zhganzhi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zhganzhi{${1:number}}"
+      }
     },
-    "zhnumExtendScaleMap[]{}": {
-      "snippet": "zhnumExtendScaleMap[${2:character}]{${1:character1, character2, ..., charactern}}"
+    {
+      "name": "zhganzhinian",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zhganzhinian{${1:year}}"
+      }
     },
-    "zhnumsetup{}": {
-      "snippet": "zhnumsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "zhnumExtendScaleMap",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zhnumExtendScaleMap{${1:character1, character2, ..., charactern}}"
+      }
     },
-    "zhnumClearWrapper": {},
-    "zhnumResetWrapper": {},
-    "zhnumberwithoptions{}{}": {
-      "snippet": "zhnumberwithoptions{${1:options}}{${2:number}}"
+    {
+      "name": "zhnumExtendScaleMap",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "zhnumExtendScaleMap[${2:character}]{${1:character1, character2, ..., charactern}}"
+      }
     },
-    "zhdigitswithoptions{}{}": {
-      "snippet": "zhdigitswithoptions{${1:options}}{${2:number}}"
+    {
+      "name": "zhnumsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "zhnumsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig"
+        ],
+        "keyPos": 0
+      }
     },
-    "zhnumwithoptions{}{}": {
-      "snippet": "zhnumwithoptions{${1:options}}{${2:counter}}"
+    {
+      "name": "zhnumClearWrapper",
+      "unusual": true
     },
-    "zhdigwithoptions{}{}": {
-      "snippet": "zhdigwithoptions{${1:options}}{${2:counter}}"
+    {
+      "name": "zhnumResetWrapper",
+      "unusual": true
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "encoding=",
-      "time=",
+  ],
+  "envs": [],
+  "keys": {
+    "\\zhnumsetup,\\zhnumber,\\zhdigits,\\zhdigits*,\\zhnum,\\zhdig": [
+      "encoding=${1|GBK,Big5,UTF8|}",
+      "time=${1|Arabic,Chinese|}",
       "arabicsep={${1:separator}}",
-      "style=",
+      "style=${1|Simplified,Traditional,Normal,Financial,Ancient|}",
       "null",
       "ganzhi-cyclic",
       "reset",
@@ -169,5 +268,6 @@
       "sat=",
       "sun="
     ]
-  ]
+  },
+  "args": []
 }

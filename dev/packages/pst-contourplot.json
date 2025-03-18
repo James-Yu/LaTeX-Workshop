@@ -1,20 +1,45 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psReadData[]": {
-      "snippet": "psReadData[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PSTCONTOURPLOTLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psContourPlot",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psContourPlot[${1:function=function}](${2:%<x1},${3:y1%>})(${4:%<x2},${5:y2%>})"
+      }
+    },
+    {
+      "name": "psContourPlot",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psContourPlot[${1:function=function,options}](${2:%<x1},${3:y1%>})(${4:%<x2},${5:y2%>})"
+      }
+    },
+    {
+      "name": "psReadData",
+      "arg": {
+        "format": "[]",
+        "snippet": "psReadData[${1:FileName=file name}]"
+      }
+    },
+    {
+      "name": "psReadData",
+      "arg": {
+        "format": "[]",
+        "snippet": "psReadData[${1:FileName=file name,options}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psContourPlot#c,\\psReadData#c": [
       "a=${1:side length}",
       "ChoicePoints=${1:n1 n2 ...}",
       "FileName=${1:file name}",
@@ -24,6 +49,14 @@
       "ReverseColors",
       "showpoints",
       "unit=${1:number}"
+    ],
+    "\\psContourPlot#c": [
+      "algebraic",
+      "Fill",
+      "fillcolor=",
+      "function=${1:function}",
+      "WriteData"
     ]
-  ]
+  },
+  "args": []
 }

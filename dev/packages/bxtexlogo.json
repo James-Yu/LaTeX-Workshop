@@ -1,117 +1,450 @@
 {
-  "includes": {
-    "hologo": []
+  "deps": [
+    {
+      "name": "hologo"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bxtexlogoimport",
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoimport{${1:logo list%keyvals}}",
+        "keys": [
+          "\\bxtexlogoimport#c,\\bxtexlogoImport#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bxtexlogoImport",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoImport{${1:logo list%keyvals}}",
+        "keys": [
+          "\\bxtexlogoimport#c,\\bxtexlogoImport#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bxtexlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogo{${1:logo%keyvals}}",
+        "keys": [
+          "\\bxtexlogo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AmSLaTeX"
+    },
+    {
+      "name": "AmSTeX"
+    },
+    {
+      "name": "BibTeX"
+    },
+    {
+      "name": "ConTeXt"
+    },
+    {
+      "name": "epTeX"
+    },
+    {
+      "name": "eTeX"
+    },
+    {
+      "name": "eupTeX"
+    },
+    {
+      "name": "JBibTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "LuaTeX"
+    },
+    {
+      "name": "LyX"
+    },
+    {
+      "name": "METAFONT"
+    },
+    {
+      "name": "METAPOST"
+    },
+    {
+      "name": "pBibTeX"
+    },
+    {
+      "name": "pdfLaTeX"
+    },
+    {
+      "name": "pdfTeX"
+    },
+    {
+      "name": "pLaTeX"
+    },
+    {
+      "name": "pLaTeXe"
+    },
+    {
+      "name": "pTeX"
+    },
+    {
+      "name": "TikZ"
+    },
+    {
+      "name": "upBibTeX"
+    },
+    {
+      "name": "upLaTeX"
+    },
+    {
+      "name": "upLaTeXe"
+    },
+    {
+      "name": "upTeX"
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "ApTeX"
+    },
+    {
+      "name": "BaSiX"
+    },
+    {
+      "name": "CSTUG"
+    },
+    {
+      "name": "DVIPDFMx"
+    },
+    {
+      "name": "HanTheThanh"
+    },
+    {
+      "name": "HeVeA"
+    },
+    {
+      "name": "HiTeX"
+    },
+    {
+      "name": "JBibTeX"
+    },
+    {
+      "name": "JLaTeX"
+    },
+    {
+      "name": "JTeX"
+    },
+    {
+      "name": "KaTeX"
+    },
+    {
+      "name": "KET"
+    },
+    {
+      "name": "KETpic"
+    },
+    {
+      "name": "KOMAScript"
+    },
+    {
+      "name": "LaTeXiT"
+    },
+    {
+      "name": "LaTeXML"
+    },
+    {
+      "name": "LaTeXTeX"
+    },
+    {
+      "name": "logoAleph"
+    },
+    {
+      "name": "logoLambda"
+    },
+    {
+      "name": "logoLamed"
+    },
+    {
+      "name": "logoOmega"
+    },
+    {
+      "name": "logoon"
+    },
+    {
+      "name": "NTS"
+    },
+    {
+      "name": "OneTeX"
+    },
+    {
+      "name": "OpTeX"
+    },
+    {
+      "name": "PiCTeX"
+    },
+    {
+      "name": "pTeXsT"
+    },
+    {
+      "name": "SageTeX"
+    },
+    {
+      "name": "SATySFi"
+    },
+    {
+      "name": "SLiTeX"
+    },
+    {
+      "name": "SuyahTeX"
+    },
+    {
+      "name": "teTeX"
+    },
+    {
+      "name": "TeXonLaTeX"
+    },
+    {
+      "name": "TeXXeT"
+    },
+    {
+      "name": "TTH"
+    },
+    {
+      "name": "XyM"
+    },
+    {
+      "name": "XyMTeX"
+    },
+    {
+      "name": "bxtexlogoDeclare",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "bxtexlogoDeclare{${1:level}}{${2:name}}[${4:text form}]{${3:LaTeX form}}"
+      }
+    },
+    {
+      "name": "bxtexlogoDeclare",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bxtexlogoDeclare{${1:level}}{${2:name}}{${3:LaTeX form}}"
+      }
+    },
+    {
+      "name": "bxtexlogoFontSlant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoFontSlant{${1:font}}"
+      }
+    },
+    {
+      "name": "bxtexlogoItalicOrSlant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoItalicOrSlant{${1:text}}"
+      }
+    },
+    {
+      "name": "bxtexlogoNoUseBboldx",
+      "unusual": true
+    },
+    {
+      "name": "bxtexlogoReflect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bxtexlogoReflect{${1:text}}{${2:fallback}}"
+      }
+    },
+    {
+      "name": "bxtexlogoSlant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoSlant{${1:real}}"
+      }
+    },
+    {
+      "name": "bxtexlogoSmcp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoSmcp{${1:string}}"
+      }
+    },
+    {
+      "name": "bxtexlogoSmcpAs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoSmcpAs{${1:choice%keyvals}}",
+        "keys": [
+          "\\bxtexlogoSmcpAs#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bxtexlogoSmcpAsFakeFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bxtexlogoSmcpAsFakeFor{${1:list}}"
+      }
+    },
+    {
+      "name": "bxtexlogoSmcpChoice",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bxtexlogoSmcpChoice{${1:text1}}{${2:text2}}"
+      }
+    },
+    {
+      "name": "bxtexlogoTest",
+      "unusual": true
+    },
+    {
+      "name": "bxtexlogoUseBboldx",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bxtexlogoimport#c,\\bxtexlogoImport#c": [
+      "${1:name}",
+      "+${1:name}",
+      "${1:prefix}-${2:name}",
+      "${1:prefix}+${2:name}",
+      "*",
+      "+*",
+      "${1:prefix}-*",
+      "${1:prefix}+*",
+      "**",
+      "+**",
+      "${1:prefix}-**",
+      "${1:prefix}+**"
+    ],
+    "\\bxtexlogo#c": [
+      "(La)TeX",
+      "1TeX",
+      "AmSLaTeX",
+      "AmSTeX",
+      "ApTeX",
+      "arara",
+      "BaSiX",
+      "biber",
+      "BibTeX",
+      "BibTeX8",
+      "ConTeXt",
+      "CSTUG",
+      "DVIPDFMx",
+      "e",
+      "emTeX",
+      "epTeX",
+      "eTeX",
+      "eupTeX",
+      "ExTeX",
+      "HanTheThanh",
+      "HeVeA",
+      "HiTeX",
+      "iniTeX",
+      "JBibTeX",
+      "JBibTeX",
+      "JLaTeX",
+      "JTeX",
+      "KaTeX",
+      "KET",
+      "KETpic",
+      "KOMAScript",
+      "La",
+      "LaTeX",
+      "LaTeX2e",
+      "LaTeX3",
+      "LaTeXe",
+      "LaTeXiT",
+      "LaTeXML",
+      "LaTeXTeX",
+      "logoAleph",
+      "logoLambda",
+      "logoLamed",
+      "logoOmega",
+      "logoon",
+      "LuahbTeX",
+      "LuaLaTeX",
+      "LuaTeX",
+      "LyX",
+      "METAFONT",
+      "MetaFun",
+      "METAPOST",
+      "MetaPost",
+      "MiKTeX",
+      "NTS",
+      "OneTeX",
+      "OpTeX",
+      "OzMF",
+      "OzMP",
+      "OzTeX",
+      "OzTtH",
+      "pBibTeX",
+      "PCTeX",
+      "pdfLaTeX",
+      "pdfTeX",
+      "PiC",
+      "PiCTeX",
+      "plainTeX",
+      "pLaTeX",
+      "pLaTeXe",
+      "pTeX",
+      "pTeXsT",
+      "SageTeX",
+      "SATySFi",
+      "SLiTeX",
+      "SliTeX",
+      "SuyahTeX",
+      "teTeX",
+      "TeX",
+      "TeX4ht",
+      "TeXonLaTeX",
+      "TeXXeT",
+      "TikZ",
+      "TTH",
+      "upBibTeX",
+      "upBibTeX",
+      "upLaTeX",
+      "upLaTeXe",
+      "upTeX",
+      "virTeX",
+      "VTeX",
+      "Xe",
+      "XeLaTeX",
+      "XeT",
+      "XeTeX",
+      "XyM",
+      "XyMTeX",
+      "YukidarumaTeX"
+    ],
+    "\\bxtexlogoSmcpAs#c": [
+      "auto",
+      "real",
+      "fake"
+    ]
   },
-  "macros": {
-    "bxtexlogoimport{}": {
-      "snippet": "bxtexlogoimport{${1:logo list}}"
-    },
-    "bxtexlogoImport{}": {
-      "snippet": "bxtexlogoImport{${1:logo list}}"
-    },
-    "bxtexlogo{}": {
-      "snippet": "bxtexlogo{${1:logo}}"
-    },
-    "AmSLaTeX": {},
-    "AmSTeX": {},
-    "BibTeX": {},
-    "ConTeXt": {},
-    "epTeX": {},
-    "eTeX": {},
-    "eupTeX": {},
-    "JBibTeX": {},
-    "LuaLaTeX": {},
-    "LuaTeX": {},
-    "LyX": {},
-    "METAFONT": {},
-    "METAPOST": {},
-    "pBibTeX": {},
-    "pdfLaTeX": {},
-    "pdfTeX": {},
-    "pLaTeX": {},
-    "pLaTeXe": {},
-    "pTeX": {},
-    "TikZ": {},
-    "upBibTeX": {},
-    "upLaTeX": {},
-    "upLaTeXe": {},
-    "upTeX": {},
-    "XeLaTeX": {},
-    "XeTeX": {},
-    "ApTeX": {},
-    "BaSiX": {},
-    "CSTUG": {},
-    "DVIPDFMx": {},
-    "HanTheThanh": {},
-    "HeVeA": {},
-    "HiTeX": {},
-    "JLaTeX": {},
-    "JTeX": {},
-    "KaTeX": {},
-    "KET": {},
-    "KETpic": {},
-    "KOMAScript": {},
-    "LaTeXiT": {},
-    "LaTeXML": {},
-    "LaTeXTeX": {},
-    "logoAleph": {},
-    "logoLambda": {},
-    "logoLamed": {},
-    "logoOmega": {},
-    "logoon": {},
-    "NTS": {},
-    "OneTeX": {},
-    "OpTeX": {},
-    "PiCTeX": {},
-    "pTeXsT": {},
-    "SageTeX": {},
-    "SATySFi": {},
-    "SLiTeX": {},
-    "SuyahTeX": {},
-    "teTeX": {},
-    "TeXonLaTeX": {},
-    "TeXXeT": {},
-    "TTH": {},
-    "XyM": {},
-    "XyMTeX": {},
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:text}}"
-    },
-    "bxtexlogoDeclare{}{}[]{}": {
-      "snippet": "bxtexlogoDeclare{${1:level}}{${2:name}}[${3:text form}]{${4:LaTeX form}}"
-    },
-    "bxtexlogoDeclare{}{}{}": {
-      "snippet": "bxtexlogoDeclare{${1:level}}{${2:name}}{${3:LaTeX form}}"
-    },
-    "bxtexlogoFontSlant{}": {
-      "snippet": "bxtexlogoFontSlant{${1:font}}"
-    },
-    "bxtexlogoItalicOrSlant{}": {
-      "snippet": "bxtexlogoItalicOrSlant{${1:text}}"
-    },
-    "bxtexlogoNoUseBboldx": {},
-    "bxtexlogoReflect{}{}": {
-      "snippet": "bxtexlogoReflect{${1:text}}{${2:fallback}}"
-    },
-    "bxtexlogoSlant{}": {
-      "snippet": "bxtexlogoSlant{${1:real}}"
-    },
-    "bxtexlogoSmcp{}": {
-      "snippet": "bxtexlogoSmcp{${1:string}}"
-    },
-    "bxtexlogoSmcpAs{}": {
-      "snippet": "bxtexlogoSmcpAs{${1:choice}}"
-    },
-    "bxtexlogoSmcpAsFakeFor{}": {
-      "snippet": "bxtexlogoSmcpAsFakeFor{${1:list}}"
-    },
-    "bxtexlogoSmcpChoice{}{}": {
-      "snippet": "bxtexlogoSmcpChoice{${1:text1}}{${2:text2}}"
-    },
-    "bxtexlogoTest": {},
-    "bxtexlogoUseBboldx": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

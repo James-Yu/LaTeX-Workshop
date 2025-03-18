@@ -1,113 +1,519 @@
 {
-  "includes": {},
-  "macros": {
-    "glosstex{}": {
-      "snippet": "glosstex{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "glosstex",
+      "arg": {
+        "format": "{}",
+        "snippet": "glosstex{${1:label}}"
+      }
     },
-    "glosstex[]{}": {
-      "snippet": "glosstex[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "glosstex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "glosstex[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "glosstex*{}": {
-      "snippet": "glosstex*{${1:label}}"
+    {
+      "name": "glosstex",
+      "arg": {
+        "format": "(){}",
+        "snippet": "glosstex(${2:list}){${1:label}}"
+      }
     },
-    "glosstex*[]{}": {
-      "snippet": "glosstex*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "glosstex",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "glosstex(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acronym{}": {
-      "snippet": "acronym{${1:label}}"
+    {
+      "name": "glosstex*",
+      "arg": {
+        "format": "{}",
+        "snippet": "glosstex*{${1:label}}"
+      }
     },
-    "acronym[]{}": {
-      "snippet": "acronym[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "glosstex*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "glosstex*[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acronym*{}": {
-      "snippet": "acronym*{${1:label}}"
+    {
+      "name": "glosstex*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "glosstex*(${2:list}){${1:label}}"
+      }
     },
-    "acronym*[]{}": {
-      "snippet": "acronym*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "glosstex*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "glosstex*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "gls{}": {
-      "snippet": "gls{${1:label}}"
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "{}",
+        "snippet": "acronym{${1:label}}"
+      }
     },
-    "gls[]{}": {
-      "snippet": "gls[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acronym[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "gls*{}": {
-      "snippet": "gls*{${1:label}}"
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "(){}",
+        "snippet": "acronym(${2:list}){${1:label}}"
+      }
     },
-    "gls*[]{}": {
-      "snippet": "gls*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "acronym",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acronym(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "ac{}": {
-      "snippet": "ac{${1:label}}"
+    {
+      "name": "acronym*",
+      "arg": {
+        "format": "{}",
+        "snippet": "acronym*{${1:label}}"
+      }
     },
-    "ac[]{}": {
-      "snippet": "ac[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "acronym*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acronym*[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "ac*{}": {
-      "snippet": "ac*{${1:label}}"
+    {
+      "name": "acronym*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "acronym*(${2:list}){${1:label}}"
+      }
     },
-    "ac*[]{}": {
-      "snippet": "ac*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "acronym*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acronym*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acs{}": {
-      "snippet": "acs{${1:label}}"
+    {
+      "name": "gls",
+      "arg": {
+        "format": "{}",
+        "snippet": "gls{${1:label}}"
+      }
     },
-    "acs[]{}": {
-      "snippet": "acs[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "gls",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gls[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acs*{}": {
-      "snippet": "acs*{${1:label}}"
+    {
+      "name": "gls",
+      "arg": {
+        "format": "(){}",
+        "snippet": "gls(${2:list}){${1:label}}"
+      }
     },
-    "acs*[]{}": {
-      "snippet": "acs*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "gls",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "gls(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acl{}": {
-      "snippet": "acl{${1:label}}"
+    {
+      "name": "gls*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gls*{${1:label}}"
+      }
     },
-    "acl[]{}": {
-      "snippet": "acl[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "gls*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gls*[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acl*{}": {
-      "snippet": "acl*{${1:label}}"
+    {
+      "name": "gls*",
+      "arg": {
+        "format": "(){}",
+        "snippet": "gls*(${2:list}){${1:label}}"
+      }
     },
-    "acl*[]{}": {
-      "snippet": "acl*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "gls*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "gls*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acf{}": {
-      "snippet": "acf{${1:label}}"
+    {
+      "name": "ac",
+      "arg": {
+        "format": "{}",
+        "snippet": "ac{${1:label}}"
+      }
     },
-    "acf[]{}": {
-      "snippet": "acf[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "ac",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ac[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acf*{}": {
-      "snippet": "acf*{${1:label}}"
+    {
+      "name": "ac",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "ac(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "acf*[]{}": {
-      "snippet": "acf*[${2:pageref-mode}]{${1:label}}"
+    {
+      "name": "ac<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "ac<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxitemorderdefault{}{}": {
-      "snippet": "glxitemorderdefault{${1:list}}{${2:item-order i/l/\"\"}}"
+    {
+      "name": "ac",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "ac[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxitemplacementdefault{}{}": {
-      "snippet": "glxitemplacementdefault{${1:list}}{${2:item-order t/f/\"\"}}"
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "{}",
+        "snippet": "ac*{${1:label}}"
+      }
     },
-    "glxparendefault{}{}": {
-      "snippet": "glxparendefault{${1:lparen}}{${2:rparen}}"
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ac*[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxparenlistdefault{}{}{}": {
-      "snippet": "glxparenlistdefault{${1:list}}{${2:lparen}}{${3:rparen}}"
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "ac*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxref{}": {
-      "snippet": "glxref{${1:item}}"
+    {
+      "name": "ac*<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "ac*<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxref*{}": {
-      "snippet": "glxref*{${1:item}}"
+    {
+      "name": "ac*",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "ac*[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
     },
-    "glxheading{}{}": {
-      "snippet": "glxheading{${1:glo, acr or own list}}{${2:definition}}"
+    {
+      "name": "acs",
+      "arg": {
+        "format": "{}",
+        "snippet": "acs{${1:label}}"
+      }
+    },
+    {
+      "name": "acs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acs[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acs(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acs<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acs[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "acs*{${1:label}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acs*[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acs*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs*<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acs*<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acs*",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acs*[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "{}",
+        "snippet": "acl{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acl[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acl(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acl<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acl[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "{}",
+        "snippet": "acl*{${1:label}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acl*[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acl*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl*<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acl*<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acl*",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acl*[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "{}",
+        "snippet": "acf{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acf[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acf(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acf<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acf[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "{}",
+        "snippet": "acf*{${1:label}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "acf*[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acf*(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf*<form>",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "acf*<form>(${3:list})[${2:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "acf*",
+      "arg": {
+        "format": "[]<>()[]{}",
+        "snippet": "acf*[${2:, lparen , rparen ,}]<${4:form}>(${5:list})[${3:pageref-mode}]{${1:label}}"
+      }
+    },
+    {
+      "name": "printglosstex",
+      "arg": {
+        "format": "()",
+        "snippet": "printglosstex(${1:list})"
+      }
+    },
+    {
+      "name": "printglosstex",
+      "arg": {
+        "format": "()[]",
+        "snippet": "printglosstex(${2:list})[${1:pageref-mode}]"
+      }
+    },
+    {
+      "name": "glxitemorderdefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glxitemorderdefault{${1:list}}{${2:item-order i/l/\"\"}}"
+      }
+    },
+    {
+      "name": "glxitemplacementdefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glxitemplacementdefault{${1:list}}{${2:item-order t/f/\"\"}}"
+      }
+    },
+    {
+      "name": "glxparendefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glxparendefault{${1:lparen}}{${2:rparen}}"
+      }
+    },
+    {
+      "name": "glxparenlistdefault",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "glxparenlistdefault{${1:list}}{${2:lparen}}{${3:rparen}}"
+      }
+    },
+    {
+      "name": "glxref",
+      "arg": {
+        "format": "{}",
+        "snippet": "glxref{${1:item}}"
+      }
+    },
+    {
+      "name": "glxref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "glxref*{${1:item}}"
+      }
+    },
+    {
+      "name": "glxheading",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glxheading{${1:glo, acr or own list}}{${2:definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

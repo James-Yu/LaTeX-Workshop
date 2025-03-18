@@ -1,42 +1,84 @@
 {
-  "includes": {},
-  "macros": {
-    "tikzgraphsset{}": {
-      "snippet": "tikzgraphsset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "tikzgraphsset",
+      "arg": {
+        "format": "{}",
+        "snippet": "tikzgraphsset{${1:options%keyvals}}",
+        "keys": [
+          "\\tikzgraphsset#c",
+          "\\graph#c,\\tikzgraphsset#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "tikzgraphnodetext": {},
-    "tikzgraphnodename": {},
-    "tikzgraphnodepath": {},
-    "tikzgraphnodefullname": {},
-    "tikzgraphforeachcolorednode{}{}": {
-      "snippet": "tikzgraphforeachcolorednode{${1:color}}{${2:macro}}"
+    {
+      "name": "tikzgraphnodetext",
+      "unusual": true
     },
-    "tikzgraphpreparecolor{}{}{}": {
-      "snippet": "tikzgraphpreparecolor{${1:color}}{${2:counter}}{${3:prefix}}"
+    {
+      "name": "tikzgraphnodename",
+      "unusual": true
     },
-    "tikzgraphinvokeoperator{}": {
-      "snippet": "tikzgraphinvokeoperator{${1:option}}"
+    {
+      "name": "tikzgraphnodepath",
+      "unusual": true
     },
-    "tikzlibgraphactivations": {},
-    "tikzlibgraphscommercialat": {},
-    "tikzlibgraphactivationsbrace": {},
-    "tikzgraphnodeas": {},
-    "iftikzgraphsautonumbernodes": {},
-    "tikzgraphsautonumbernodestrue": {},
-    "tikzgraphsautonumbernodesfalse": {},
-    "tikzgraphpreparewrapafter": {},
-    "tikzgraphV": {},
-    "tikzgraphVnum": {},
-    "tikzgraphW": {},
-    "tikzgraphWnum": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "every graph/.style={${1:options}}",
+    {
+      "name": "tikzgraphnodefullname",
+      "unusual": true
+    },
+    {
+      "name": "tikzgraphforeachcolorednode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tikzgraphforeachcolorednode{${1:color}}{${2:macro}}"
+      }
+    },
+    {
+      "name": "tikzgraphpreparecolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tikzgraphpreparecolor{${1:color}}{${2:counter}}{${3:prefix}}"
+      }
+    },
+    {
+      "name": "tikzgraphV",
+      "unusual": true
+    },
+    {
+      "name": "tikzgraphVnum",
+      "unusual": true
+    },
+    {
+      "name": "tikzgraphW",
+      "unusual": true
+    },
+    {
+      "name": "tikzgraphWnum",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every new ->/.style={${1:options}}",
+      "every new --/.style={${1:options}}",
+      "every new <->/.style={${1:options}}",
+      "every new <-/.style={${1:options}}",
+      "every new -!-/.style={${1:options}}",
+      "new set=${1:set name}"
+    ],
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "set=${1:set name}"
+    ],
+    "\\tikzgraphsset#c": [
+      "every graph/.style={${1:options}}"
+    ],
+    "\\graph#c,\\tikzgraphsset#c": [
       "nodes={${1:options}}",
       "edges={${1:options}}",
       "edge node={${1:node spec}}",
@@ -127,6 +169,10 @@
       "placement/logical node width=${1:node name}",
       "placement/logical node depth=${1:node name}",
       "placement/compute position/.append code=${1:code}"
+    ],
+    "\\graph#c": [
+      "declare={${1:name}}{${2:specification}}"
     ]
-  ]
+  },
+  "args": []
 }

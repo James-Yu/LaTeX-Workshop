@@ -1,17 +1,31 @@
 {
-  "includes": {},
-  "macros": {
-    "wordcolor": {},
-    "strbg": {},
-    "thankframe{}": {
-      "snippet": "thankframe{${1:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "wordcolor",
+      "unusual": true
+    },
+    {
+      "name": "strbg",
+      "unusual": true
+    },
+    {
+      "name": "thankframe",
+      "arg": {
+        "format": "{}",
+        "snippet": "thankframe{${1:content%text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "blue",
-    "red",
-    "purple"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/beamertheme-light#c,\\usetheme/-light#c": [
+      "blue",
+      "red",
+      "purple"
+    ]
+  },
+  "args": [
+    "\\usepackage/beamertheme-light#c,\\usetheme/-light#c"
+  ]
 }

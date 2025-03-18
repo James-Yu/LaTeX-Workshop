@@ -1,0 +1,381 @@
+{
+  "deps": [
+    {
+      "name": "array"
+    }
+  ],
+  "macros": [
+    {
+      "name": "numprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "numprint{${1:number}}"
+      }
+    },
+    {
+      "name": "numprint",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "numprint[${2:unit}]{${1:number}}"
+      }
+    },
+    {
+      "name": "np",
+      "if": "np",
+      "arg": {
+        "format": "{}",
+        "snippet": "np{${1:number}}"
+      }
+    },
+    {
+      "name": "np",
+      "if": "np",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "np[${2:unit}]{${1:number}}"
+      }
+    },
+    {
+      "name": "cntprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "cntprint{${1:counter}}"
+      }
+    },
+    {
+      "name": "cntprint",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cntprint[${2:unit}]{${1:counter}}"
+      }
+    },
+    {
+      "name": "lenprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "lenprint{${1:length}}"
+      }
+    },
+    {
+      "name": "lenprint",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lenprint[${2:unit%keyvals}]{${1:length}}",
+        "keys": [
+          "\\lenprint#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "npfourdigitsep",
+      "unusual": true
+    },
+    {
+      "name": "npfourdigitnosep",
+      "unusual": true
+    },
+    {
+      "name": "npaddmissingzero",
+      "unusual": true
+    },
+    {
+      "name": "npnoaddmissingzero",
+      "unusual": true
+    },
+    {
+      "name": "npaddplus",
+      "unusual": true
+    },
+    {
+      "name": "npnoaddplus",
+      "unusual": true
+    },
+    {
+      "name": "npaddplusexponent",
+      "unusual": true
+    },
+    {
+      "name": "npnoaddplusexponent",
+      "unusual": true
+    },
+    {
+      "name": "nprounddigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "nprounddigits{${1:digits}}"
+      }
+    },
+    {
+      "name": "nproundexpdigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "nproundexpdigits{${1:digits}}"
+      }
+    },
+    {
+      "name": "npnoround",
+      "unusual": true
+    },
+    {
+      "name": "npnoroundexp",
+      "unusual": true
+    },
+    {
+      "name": "nplpadding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nplpadding{${1:digits}}"
+      }
+    },
+    {
+      "name": "nplpadding",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nplpadding[${2:character}]{${1:digits}}"
+      }
+    },
+    {
+      "name": "npnolpadding",
+      "unusual": true
+    },
+    {
+      "name": "npreplacenull",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npreplacenull{${1:replacement}}"
+      }
+    },
+    {
+      "name": "npprintnull",
+      "unusual": true
+    },
+    {
+      "name": "npunitcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npunitcommand{${1:arg}}"
+      }
+    },
+    {
+      "name": "npdefunit",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "npdefunit{${1:unitname}}{${2:unit}}{${3:scale}}"
+      }
+    },
+    {
+      "name": "selectlanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "selectlanguage{${1:language}}"
+      }
+    },
+    {
+      "name": "npmakebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npmakebox{${1:text}}"
+      }
+    },
+    {
+      "name": "npmakebox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "npmakebox[${2:dummy text}][${3:justification}]{${1:text}}"
+      }
+    },
+    {
+      "name": "npboldmath",
+      "if": "boldmath",
+      "unusual": true
+    },
+    {
+      "name": "npafternum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npafternum{${1:arg}}"
+      }
+    },
+    {
+      "name": "npunit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npunit{${1:unit}}"
+      }
+    },
+    {
+      "name": "npdigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "npdigits{${1:before}}{${2:after}}"
+      }
+    },
+    {
+      "name": "npexponentdigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npexponentdigits{${1:before}}"
+      }
+    },
+    {
+      "name": "npexponentdigits",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "npexponentdigits[${2:after}]{${1:before}}"
+      }
+    },
+    {
+      "name": "npnodigits",
+      "unusual": true
+    },
+    {
+      "name": "npnoexponentdigits",
+      "unusual": true
+    },
+    {
+      "name": "npthousandsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npthousandsep{${1:separator}}"
+      }
+    },
+    {
+      "name": "npthousandthpartsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npthousandthpartsep{${1:separator}}"
+      }
+    },
+    {
+      "name": "npdecimalsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npdecimalsign{${1:sign}}"
+      }
+    },
+    {
+      "name": "npproductsign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npproductsign{${1:sign}}"
+      }
+    },
+    {
+      "name": "npunitseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npunitseparator{${1:separator}}"
+      }
+    },
+    {
+      "name": "npdegreeseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npdegreeseparator{${1:separator}}"
+      }
+    },
+    {
+      "name": "npcelsiusseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "npcelsiusseparator{${1:separator}}"
+      }
+    },
+    {
+      "name": "nppercentseparator",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nppercentseparator{${1:separator}}"
+      }
+    },
+    {
+      "name": "npstyledefault",
+      "unusual": true
+    },
+    {
+      "name": "npstyleenglish",
+      "unusual": true
+    },
+    {
+      "name": "npstylegerman",
+      "unusual": true
+    },
+    {
+      "name": "npstylefrench",
+      "unusual": true
+    },
+    {
+      "name": "npstyleportuguese",
+      "unusual": true
+    },
+    {
+      "name": "npstyledutch",
+      "unusual": true
+    },
+    {
+      "name": "npaddtolanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "npaddtolanguage{${1:lang1}}{${2:lang2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/numprint#c": [
+      "nosepfour",
+      "sepfour",
+      "noaddmissingzero",
+      "addmissingzero",
+      "noaddplus",
+      "addplus",
+      "noaddplusexponent",
+      "addplusexponent",
+      "noautolanguage",
+      "autolanguage",
+      "np",
+      "oldcolumntypes",
+      "newcolumntypes",
+      "boldmath",
+      "warning",
+      "error",
+      "debug"
+    ],
+    "\\lenprint#c": [
+      "pt",
+      "bp",
+      "in",
+      "ft",
+      "mm",
+      "cm",
+      "m",
+      "km"
+    ]
+  },
+  "args": [
+    "\\usepackage/numprint#c"
+  ]
+}

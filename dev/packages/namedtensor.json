@@ -1,32 +1,65 @@
 {
-  "includes": {
-    "amsmath": []
-  },
-  "macros": {
-    "name{}": {
-      "snippet": "name{${1:axis name}}"
+  "deps": [
+    {
+      "name": "amsmath"
+    }
+  ],
+  "macros": [
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "name{${1:axis name%formula}}"
+      }
     },
-    "ndef{}{}": {
-      "snippet": "ndef{${1:command}}{${2:axis name}}"
+    {
+      "name": "ndef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ndef{${1:command}}{${2:axis name%formula}}"
+      }
     },
-    "ndot{}": {
-      "snippet": "ndot{${1:axis name}}"
+    {
+      "name": "ndot",
+      "arg": {
+        "format": "{}",
+        "snippet": "ndot{${1:axis name}}"
+      }
     },
-    "ncat{}": {
-      "snippet": "ncat{${1:axis name}}"
+    {
+      "name": "ncat",
+      "arg": {
+        "format": "{}",
+        "snippet": "ncat{${1:axis name}}"
+      }
     },
-    "nbin{}{}": {
-      "snippet": "nbin{${1:axis name}}{${2:symbol}}"
+    {
+      "name": "nbin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nbin{${1:axis name}}{${2:symbol}}"
+      }
     },
-    "nsum{}": {
-      "snippet": "nsum{${1:axis name}}"
+    {
+      "name": "nsum",
+      "arg": {
+        "format": "{}",
+        "snippet": "nsum{${1:axis name}}"
+      }
     },
-    "nfun{}{}": {
-      "snippet": "nfun{${1:axis name}}{${2:function}}"
+    {
+      "name": "nfun",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nfun{${1:axis name}}{${2:function}}"
+      }
     },
-    "namedtensorstrut": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "namedtensorstrut",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

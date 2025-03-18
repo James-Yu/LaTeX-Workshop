@@ -1,74 +1,178 @@
 {
-  "includes": {},
-  "macros": {
-    "settransparency{}{}{}": {
-      "snippet": "settransparency{${1:ca}}{${2:CA}}{${3:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "settransparency{${1:ca}}{${2:CA}}{${3:content%text}}"
+      }
     },
-    "settransparency{}{}[]{}": {
-      "snippet": "settransparency{${1:ca}}{${2:CA}}[${3:PDF KVs}]{${4:content}}"
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "settransparency{${1:ca}}{${2:CA}}[${4:PDF KVs}]{${3:content%text}}"
+      }
     },
-    "settransparency[]{}{}{}": {
-      "snippet": "settransparency[${4:blend mode}]{${1:ca}}{${2:CA}}{${3:content}}"
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "settransparency[${4:blend mode%keyvals}]{${1:ca}}{${2:CA}}{${3:content%text}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "settransparency[]{}{}[]{}": {
-      "snippet": "settransparency[${4:blend mode}]{${1:ca}}{${2:CA}}[${5:PDF KVs}]{${3:content}}"
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "settransparency[${4:blend mode%keyvals}]{${1:ca}}{${2:CA}}[${5:PDF KVs}]{${3:content%text}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "settransparency*{}{}{}": {
-      "snippet": "settransparency*{${1:ca}}{${2:CA}}{${3:content}}"
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "settransparency*{${1:ca}}{${2:CA}}{${3:content%text}}"
+      }
     },
-    "settransparency*{}{}[]{}": {
-      "snippet": "settransparency*{${1:ca}}{${2:CA}}[${3:PDF KVs}]{${4:content}}"
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "settransparency*{${1:ca}}{${2:CA}}[${4:PDF KVs}]{${3:content%text}}"
+      }
     },
-    "settransparency*[]{}{}{}": {
-      "snippet": "settransparency*[${4:blend mode}]{${1:ca}}{${2:CA}}{${3:content}}"
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "settransparency*[${4:blend mode%keyvals}]{${1:ca}}{${2:CA}}{${3:content%text}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "settransparency*[]{}{}[]{}": {
-      "snippet": "settransparency*[${4:blend mode}]{${1:ca}}{${2:CA}}[${5:PDF KVs}]{${3:content}}"
-    },
-    "settransparencyii{}{}{}{}{}": {
-      "snippet": "settransparencyii{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "settransparencyi{}{}{}": {
-      "snippet": "settransparencyi{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "settransparency*[${4:blend mode%keyvals}]{${1:ca}}{${2:CA}}[${5:PDF KVs}]{${3:content%text}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {
-    "settransparency{}{}": {
-      "name": "settransparency",
-      "snippet": "{${1:ca}}{${2:CA}}"
-    },
-    "settransparency{}{}[]": {
-      "name": "settransparency",
-      "snippet": "{${1:ca}}{${2:CA}}[${3:PDF KVs}]"
-    },
-    "settransparency[]{}{}": {
-      "name": "settransparency",
-      "snippet": "[${3:blend mode}]{${1:ca}}{${2:CA}}"
-    },
-    "settransparency[]{}{}[]": {
-      "name": "settransparency",
-      "snippet": "[${3:blend mode}]{${1:ca}}{${2:CA}}[${4:PDF KVs}]"
-    },
-    "settransparency*{}{}": {
-      "name": "settransparency*",
-      "snippet": "{${1:ca}}{${2:CA}}"
-    },
-    "settransparency*{}{}[]": {
-      "name": "settransparency*",
-      "snippet": "{${1:ca}}{${2:CA}}[${3:PDF KVs}]"
-    },
-    "settransparency*[]{}{}": {
-      "name": "settransparency*",
-      "snippet": "[${3:blend mode}]{${1:ca}}{${2:CA}}"
-    },
-    "settransparency*[]{}{}[]": {
-      "name": "settransparency*",
-      "snippet": "[${3:blend mode}]{${1:ca}}{${2:CA}}[${4:PDF KVs}]"
-    }
-  },
-  "options": [
-    "dvips",
-    "dvipsone"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ca}}{${2:CA}}"
+      }
+    },
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:ca}}{${2:CA}}[${3:PDF KVs}]"
+      }
+    },
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:blend mode%keyvals}]{${1:ca}}{${2:CA}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settransparency",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:blend mode%keyvals}]{${1:ca}}{${2:CA}}[${4:PDF KVs}]",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ca}}{${2:CA}}"
+      }
+    },
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:ca}}{${2:CA}}[${3:PDF KVs}]"
+      }
+    },
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:blend mode%keyvals}]{${1:ca}}{${2:CA}}",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "settransparency*",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "[${3:blend mode%keyvals}]{${1:ca}}{${2:CA}}[${4:PDF KVs}]",
+        "keys": [
+          "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/opacity-pro#c": [
+      "dvips",
+      "dvipsone"
+    ],
+    "\\settransparency#c,\\settransparency*#c,\\begin{settransparency}#c,\\begin{settransparency*}#c": [
+      "Normal",
+      "Multiply",
+      "Screen",
+      "Overlay",
+      "Darken",
+      "Lighten",
+      "ColorDodge",
+      "ColorBurn",
+      "HardLight",
+      "SoftLight",
+      "Difference",
+      "Exclusion",
+      "Hue",
+      "Color",
+      "Saturation",
+      "Luminosity"
+    ]
+  },
+  "args": [
+    "\\usepackage/opacity-pro#c"
+  ]
 }

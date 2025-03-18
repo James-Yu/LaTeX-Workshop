@@ -1,52 +1,77 @@
 {
-  "includes": {
-    "environ": [],
-    "calc": [],
-    "keycommand": [],
-    "xifthen": [],
-    "picinpar": [],
-    "picins": [],
-    "ksinsbox": [
-      "insboxonly",
-      "insbox"
-    ]
-  },
-  "macros": {
-    "kswrapfig{}{}": {
-      "snippet": "kswrapfig{${1:imagefile}}{${2:text}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "kswrapfig[]{}{}": {
-      "snippet": "kswrapfig[${3:options}]{${1:imagefile}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "calc"
     },
-    "kswrapfigline[]{}{}": {
-      "snippet": "kswrapfigline[${3:options}]{${1:imagefile}}{${2:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "keycommand"
     },
-    "tightlist": {}
-  },
-  "envs": {
-    "KSwrapfig{}{}": {
-      "name": "KSwrapfig",
-      "snippet": "{${1:options}}{${2:imagefile}}"
+    {
+      "name": "xifthen"
     },
-    "KSwrapfigline{}{}": {
-      "name": "KSwrapfigline",
-      "snippet": "{${1:options}}{${2:imagefile}}"
+    {
+      "name": "picinpar"
+    },
+    {
+      "name": "picins"
+    },
+    {
+      "name": "ksinsbox",
+      "if": "insboxonly"
+    },
+    {
+      "name": "ksinsbox",
+      "if": "insbox"
     }
-  },
-  "options": [
-    "insboxonly",
-    "clscaption",
-    "insbox"
   ],
-  "keyvals": [
-    [
-      "Pos=",
+  "macros": [
+    {
+      "name": "kswrapfig",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "kswrapfig{${1:imagefile}}{${2:text}}"
+      }
+    },
+    {
+      "name": "kswrapfig",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "kswrapfig[${3:options%keyvals}]{${1:imagefile}}{${2:text}}",
+        "keys": [
+          "\\kswrapfig#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "kswrapfigline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "kswrapfigline[${3:options%keyvals}]{${1:imagefile}}{${2:text}}",
+        "keys": [
+          "\\kswrapfigline#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tightlist"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/kswrapfig#c": [
+      "insboxonly",
+      "clscaption",
+      "insbox"
+    ],
+    "\\kswrapfig#c": [
+      "Pos=${1|r,l|}",
       "Width=",
-      "InPos=",
+      "InPos=${1|r,c,l|}",
       "Sep=",
       "Indent=",
       "Lower=",
@@ -57,12 +82,12 @@
       "VAdjust=",
       "UseBox"
     ],
-    [
+    "\\kswrapfigline#c": [
       "Line=${1:num lines}",
-      "Pos=",
+      "Pos=${1|r,l,c|}",
       "CaptionName=${1:env name}",
       "Width=",
-      "InPos=",
+      "InPos=${1|r,c,l|}",
       "Sep=",
       "Indent=",
       "Lower=",
@@ -73,5 +98,8 @@
       "VAdjust=",
       "UseBox"
     ]
+  },
+  "args": [
+    "\\usepackage/kswrapfig#c"
   ]
 }

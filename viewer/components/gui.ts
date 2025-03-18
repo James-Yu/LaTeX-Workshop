@@ -8,34 +8,76 @@ import type { PDFViewerApplicationType } from './interface.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 
-export function patchViewerUI() {
+let hideToolbarTimeout: number | undefined
+function hideToolbar(params: Awaited<ReturnType<typeof utils.getParams>>) {
+    if (typeof PDFViewerApplication === 'undefined') {
+        return
+    }
+    if (hideToolbarTimeout === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
+        hideToolbarTimeout = setTimeout(() => {
+            const toolbarDom = document.getElementsByClassName('toolbar')[0]
+            toolbarDom.classList.add('hide')
+            hideToolbarTimeout = undefined
+        }, params.toolbar * 1000)
+    }
+}
+export async function patchViewerUI() {
     if (utils.isEmbedded()) {
         // Cannot simply remove this element, as pdf.js indeed require it to
         // bind listeners.
-        document.getElementById('print')!.style.display = 'none'
+        document.getElementById('printButton')!.style.display = 'none'
+    }
+
+    const params = await utils.getParams()
+
+    if (params.reloadTransition === 'none') {
+        const css = document.styleSheets[document.styleSheets.length - 1]
+        css.insertRule(
+`.page-loading-mask.remove {
+    transition: none !important;
+}`)
+    }
+
+    if (params.toolbar === 0) {
+        document.getElementsByClassName('toolbar')[0]?.classList.remove('hide')
+        document.getElementById('viewerContainer')!.style.top = '32px'
+    }
+
+    document.getElementById('outerContainer')!.onmouseleave = () => {
+        if (params.toolbar !== 0) {
+            hideToolbar(params)
+        }
     }
 
     document.getElementById('outerContainer')!.onmousemove = (e) => {
+        if (params.toolbar === 0) {
+            return
+        }
         if (e.clientY <= 64) {
+            if (hideToolbarTimeout) {
+                clearTimeout(hideToolbarTimeout)
+                hideToolbarTimeout = undefined
+            }
             showToolbar()
+        } else {
+            hideToolbar(params)
         }
     }
 
     document.getElementById('sidebarResizer')?.classList.add('hidden')
-    document.getElementsByClassName('toolbar')[0]?.classList.add('hide')
     document.getElementById('firstPage')?.previousElementSibling?.classList.add('visibleLargeView')
 
     const template = document.createElement('template')
     template.innerHTML =
-`<button id="TrimButton" class="secondaryToolbarButton" title="${getL10n('trimMargin')}" tabindex="70">
+`<button id="TrimButton" class="toolbarButton labeled" type="button" title="${getL10n('trimMargin')}" tabindex="70">
     <label for="trimPct">${getL10n('trimMargin')}</label>
     <input type="number" id="trimPct" name="trimPct" min="0" max="99" value="0">
     <label for="trimPct">%</label>
 </button>
-<button id="synctexOnButton" class="secondaryToolbarButton" title="${getL10n('enableSyncTeX')}" tabindex="71">
+<button id="synctexOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableSyncTeX')}" tabindex="71">
     <input id="synctexOn" type="checkbox" checked><span>${getL10n('enableSyncTeX')}</span>
 </button>
-<button id="autoRefreshOnButton" class="secondaryToolbarButton" title="${getL10n('enableRefresh')}" tabindex="72">
+<button id="autoRefreshOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableRefresh')}" tabindex="72">
     <input id="autoRefreshOn" type="checkbox" checked><span>${getL10n('enableRefresh')}</span>
 </button>
 <div class="horizontalToolbarSeparator"></div>`
@@ -43,7 +85,10 @@ export function patchViewerUI() {
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
-
+    const trimButton = document.getElementById('TrimButton')! as HTMLButtonElement
+    trimButton.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
     registerSynctexCheckBox()
     registerAutoReloadCheckBox()
 
@@ -55,7 +100,7 @@ export function patchViewerUI() {
 <button class="toolbarButton findNext" title="${getL10n('navForward')} (⇧←)" id="historyForward">
   <span>Forward</span>
 </button>`
-    anchor = document.getElementById('sidebarToggle')!.nextElementSibling!
+    anchor = document.getElementById('sidebarToggleButton')!.nextElementSibling!
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
@@ -70,8 +115,9 @@ export function patchViewerUI() {
 function registerSynctexCheckBox() {
     const synctexOn = document.getElementById('synctexOn')! as HTMLInputElement
     const synctexOnButton = document.getElementById('synctexOnButton')! as HTMLInputElement
-    synctexOnButton.addEventListener('click', () => {
+    synctexOnButton.addEventListener('click', (e) => {
         synctexOn.checked = toggleSyncTeX()
+        e.stopPropagation()
         // PDFViewerApplication.secondaryToolbar.close()
     })
 }
@@ -79,8 +125,9 @@ function registerSynctexCheckBox() {
 function registerAutoReloadCheckBox() {
     const autoRefreshOn = document.getElementById('autoRefreshOn')! as HTMLInputElement
     const autoRefreshOnButton = document.getElementById('autoRefreshOnButton')! as HTMLButtonElement
-    autoRefreshOnButton.addEventListener('click', () => {
+    autoRefreshOnButton.addEventListener('click', (e) => {
         autoRefreshOn.checked = toggleAutoRefresh()
+        e.stopPropagation()
         // PDFViewerApplication.secondaryToolbar.close()
     })
 }
@@ -212,18 +259,7 @@ export function repositionAnnotation() {
     }
 }
 
-let hideToolbarInterval: number | undefined
-function showToolbar(animate: boolean=true) {
-    if (hideToolbarInterval) {
-        clearInterval(hideToolbarInterval)
-    }
-    const d = document.getElementsByClassName('toolbar')[0]
-    d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
-
-    hideToolbarInterval = setInterval(() => {
-        if(!PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
-            d.className = d.className.replace(' notransition', '') + ' hide'
-            clearInterval(hideToolbarInterval)
-        }
-    }, 3000)
+function showToolbar() {
+    const toolbarDom = document.getElementsByClassName('toolbar')[0]
+    toolbarDom.classList.remove('hide')
 }

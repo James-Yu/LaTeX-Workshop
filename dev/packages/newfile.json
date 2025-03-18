@@ -1,54 +1,129 @@
 {
-  "includes": {
-    "verbatim": []
-  },
-  "macros": {
-    "newoutputstream{}": {
-      "snippet": "newoutputstream{${1:stream}}"
-    },
-    "newinputstream{}": {
-      "snippet": "newinputstream{${1:stream}}"
-    },
-    "openoutputfile{}{}": {
-      "snippet": "openoutputfile{${1:file}}{${2:stream}}"
-    },
-    "closeoutputstream{}": {
-      "snippet": "closeoutputstream{${1:stream}}"
-    },
-    "addtostream{}{}": {
-      "snippet": "addtostream{${1:stream}}{${2:text}}"
-    },
-    "openinputfile{}{}": {
-      "snippet": "openinputfile{${1:file}}{${2:stream}}"
-    },
-    "closeinputstream{}": {
-      "snippet": "closeinputstream{${1:stream}}"
-    },
-    "readstream{}": {
-      "snippet": "readstream{${1:stream}}"
-    },
-    "readaline{}": {
-      "snippet": "readaline{${1:stream}}"
-    },
-    "readverbatim{}": {
-      "snippet": "readverbatim{${1:stream}}"
-    },
-    "streamvfont{}": {
-      "snippet": "streamvfont{${1:font cmds}}"
-    },
-    "numbervstream": {},
-    "marginnumbervstream": {},
-    "streamvnumfont{}": {
-      "snippet": "streamvnumfont{${1:font cmds}}"
-    },
-    "plainvstream": {}
-  },
-  "envs": {
-    "writeverbatim{}": {
-      "name": "writeverbatim",
-      "snippet": "{${1:stream}}"
+  "deps": [
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "newoutputstream",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newoutputstream{${1:stream}}"
+      }
+    },
+    {
+      "name": "newinputstream",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newinputstream{${1:stream}}"
+      }
+    },
+    {
+      "name": "openoutputfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "openoutputfile{${1:file}}{${2:stream}}"
+      }
+    },
+    {
+      "name": "closeoutputstream",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "closeoutputstream{${1:stream}}"
+      }
+    },
+    {
+      "name": "addtostream",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addtostream{${1:stream}}{${2:text}}"
+      }
+    },
+    {
+      "name": "openinputfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "openinputfile{${1:file}}{${2:stream}}"
+      }
+    },
+    {
+      "name": "closeinputstream",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "closeinputstream{${1:stream}}"
+      }
+    },
+    {
+      "name": "readstream",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "readstream{${1:stream}}"
+      }
+    },
+    {
+      "name": "readaline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "readaline{${1:stream}}"
+      }
+    },
+    {
+      "name": "readverbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "readverbatim{${1:stream}}"
+      }
+    },
+    {
+      "name": "streamvfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "streamvfont{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "numbervstream",
+      "unusual": true
+    },
+    {
+      "name": "marginnumbervstream",
+      "unusual": true
+    },
+    {
+      "name": "streamvnumfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "streamvnumfont{${1:font cmds}}"
+      }
+    },
+    {
+      "name": "plainvstream",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "writeverbatim",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:stream}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

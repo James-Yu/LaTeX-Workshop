@@ -1,94 +1,235 @@
 {
-  "includes": {
-    "calc": [],
-    "graphicx": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "scalerel{}{}": {
-      "snippet": "scalerel{${1:object}}{${2:reference}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "scalerel[]{}{}": {
-      "snippet": "scalerel[${3:max width}]{${1:object}}{${2:reference}}"
+    {
+      "name": "graphicx"
     },
-    "scalerel*{}{}": {
-      "snippet": "scalerel*{${1:object}}{${2:reference}}"
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "scalerel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scalerel{${1:object}}{${2:reference}}"
+      }
     },
-    "scalerel*[]{}{}": {
-      "snippet": "scalerel*[${3:max width}]{${1:object}}{${2:reference}}"
+    {
+      "name": "scalerel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "scalerel[${3:max width}]{${1:object}}{${2:reference}}"
+      }
     },
-    "stretchrel{}{}": {
-      "snippet": "stretchrel{${1:object}}{${2:reference}}"
+    {
+      "name": "scalerel*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scalerel*{${1:object}}{${2:reference}}"
+      }
     },
-    "stretchrel[]{}{}": {
-      "snippet": "stretchrel[${3:narrowest aspect}]{${1:object}}{${2:reference}}"
+    {
+      "name": "scalerel*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "scalerel*[${3:max width}]{${1:object}}{${2:reference}}"
+      }
     },
-    "stretchrel*{}{}": {
-      "snippet": "stretchrel*{${1:object}}{${2:reference}}"
+    {
+      "name": "stretchrel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stretchrel{${1:object}}{${2:reference}}"
+      }
     },
-    "stretchrel*[]{}{}": {
-      "snippet": "stretchrel*[${3:narrowest aspect}]{${1:object}}{${2:reference}}"
+    {
+      "name": "stretchrel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stretchrel[${3:narrowest aspect}]{${1:object}}{${2:reference}}"
+      }
     },
-    "scaleto{}{}": {
-      "snippet": "scaleto{${1:object}}{${2:height}}"
+    {
+      "name": "stretchrel*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stretchrel*{${1:object}}{${2:reference}}"
+      }
     },
-    "scaleto[]{}{}": {
-      "snippet": "scaleto[${3:max width}]{${1:object}}{${2:height}}"
+    {
+      "name": "stretchrel*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stretchrel*[${3:narrowest aspect}]{${1:object}}{${2:reference}}"
+      }
     },
-    "stretchto{}{}": {
-      "snippet": "stretchto{${1:object}}{${2:height}}"
+    {
+      "name": "scaleto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scaleto{${1:object}}{${2:height}}"
+      }
     },
-    "stretchto[]{}{}": {
-      "snippet": "stretchto[${3:narrowest aspect}]{${1:object}}{${2:height}}"
+    {
+      "name": "scaleto",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "scaleto[${3:max width}]{${1:object}}{${2:height}}"
+      }
     },
-    "scaleleftright{}{}{}": {
-      "snippet": "scaleleftright{${1:left obj}}{${2:reference}}{${3:right obj}}"
+    {
+      "name": "stretchto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stretchto{${1:object}}{${2:height}}"
+      }
     },
-    "scaleleftright[]{}{}{}": {
-      "snippet": "scaleleftright[${4:max width}]{${1:left obj}}{${2:reference}}{${3:right obj}}"
+    {
+      "name": "stretchto",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stretchto[${3:narrowest aspect}]{${1:object}}{${2:height}}"
+      }
     },
-    "stretchleftright{}{}{}": {
-      "snippet": "stretchleftright{${1:left obj}}{${2:reference}}{${3:right obj}}"
+    {
+      "name": "scaleleftright",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "scaleleftright{${1:left obj}}{${2:reference}}{${3:right obj}}"
+      }
     },
-    "stretchleftright[]{}{}{}": {
-      "snippet": "stretchleftright[${4:narrowest aspect}]{${1:left obj}}{${2:reference}}{${3:right obj}}"
+    {
+      "name": "scaleleftright",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "scaleleftright[${4:max width}]{${1:left obj}}{${2:reference}}{${3:right obj}}"
+      }
     },
-    "hstretch{}{}": {
-      "snippet": "hstretch{${1:scale}}{${2:object}}"
+    {
+      "name": "stretchleftright",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "stretchleftright{${1:left obj}}{${2:reference}}{${3:right obj}}"
+      }
     },
-    "vstretch{}{}": {
-      "snippet": "vstretch{${1:scale}}{${2:object}}"
+    {
+      "name": "stretchleftright",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "stretchleftright[${4:narrowest aspect}]{${1:left obj}}{${2:reference}}{${3:right obj}}"
+      }
     },
-    "scaleobj{}{}": {
-      "snippet": "scaleobj{${1:scale}}{${2:object}}"
+    {
+      "name": "hstretch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hstretch{${1:scale}}{${2:object}}"
+      }
     },
-    "ThisStyle{}": {
-      "snippet": "ThisStyle{${1:definition}}"
+    {
+      "name": "vstretch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vstretch{${1:scale}}{${2:object}}"
+      }
     },
-    "SavedStyle": {},
-    "LMex": {},
-    "LMpt": {},
-    "scriptstyleScaleFactor": {},
-    "scriptscriptstyleScaleFactor": {},
-    "Isnextbyte{}{}": {
-      "snippet": "Isnextbyte{${1:test byte}}{${2:string}}"
+    {
+      "name": "scaleobj",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scaleobj{${1:scale}}{${2:object}}"
+      }
     },
-    "Isnextbyte[]{}{}": {
-      "snippet": "Isnextbyte[${3:q}]{${1:test byte}}{${2:string}}"
+    {
+      "name": "ThisStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ThisStyle{${1:definition}}"
+      }
     },
-    "theresult": {},
-    "ignoremathstyle": {},
-    "ignoremathstyle[]": {
-      "snippet": "ignoremathstyle[${1:mode}]"
+    {
+      "name": "SavedStyle",
+      "unusual": true
     },
-    "discernmathstyle": {},
-    "thesrwidth": {},
-    "thesrheight": {},
-    "srblobheight": {},
-    "srblobdepth": {},
-    "mnxsrwidth": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "LMex",
+      "unusual": true
+    },
+    {
+      "name": "LMpt",
+      "unusual": true
+    },
+    {
+      "name": "scriptstyleScaleFactor",
+      "unusual": true
+    },
+    {
+      "name": "scriptscriptstyleScaleFactor",
+      "unusual": true
+    },
+    {
+      "name": "Isnextbyte",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Isnextbyte{${1:test byte}}{${2:string}}"
+      }
+    },
+    {
+      "name": "Isnextbyte",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Isnextbyte[${3:q}]{${1:test byte}}{${2:string}}"
+      }
+    },
+    {
+      "name": "theresult",
+      "unusual": true
+    },
+    {
+      "name": "ignoremathstyle",
+      "unusual": true
+    },
+    {
+      "name": "ignoremathstyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ignoremathstyle[${1:mode}]"
+      }
+    },
+    {
+      "name": "discernmathstyle",
+      "unusual": true
+    },
+    {
+      "name": "thesrwidth",
+      "unusual": true
+    },
+    {
+      "name": "thesrheight",
+      "unusual": true
+    },
+    {
+      "name": "srblobheight",
+      "unusual": true
+    },
+    {
+      "name": "srblobdepth",
+      "unusual": true
+    },
+    {
+      "name": "mnxsrwidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

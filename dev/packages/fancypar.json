@@ -1,106 +1,228 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "xcolor": []
-  },
-  "macros": {
-    "fancyparsetup{}": {
-      "snippet": "fancyparsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "NotebookPar{}": {
-      "snippet": "NotebookPar{${1:text}}"
+    {
+      "name": "tikz"
     },
-    "NotebookPar[]{}": {
-      "snippet": "NotebookPar[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "ZebraPar{}": {
-      "snippet": "ZebraPar{${1:text}}"
+    {
+      "name": "xcolor"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fancyparsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancyparsetup{${1:keyvals}}",
+        "keys": [
+          "\\NotebookPar,\\fancyparsetup",
+          "\\ZebraPar,\\fancyparsetup",
+          "\\DashedPar,\\fancyparsetup",
+          "\\MarkedPar,\\fancyparsetup",
+          "\\UnderlinedPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "ZebraPar[]{}": {
-      "snippet": "ZebraPar[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "NotebookPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "NotebookPar{${1:text}}"
+      }
     },
-    "FancyZColor": {},
-    "FancyZTextColor": {},
-    "DashedPar{}": {
-      "snippet": "DashedPar{${1:text}}"
+    {
+      "name": "NotebookPar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NotebookPar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\NotebookPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "DashedPar[]{}": {
-      "snippet": "DashedPar[${2:options}]{${1:text}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "ZebraPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "ZebraPar{${1:text}}"
+      }
     },
-    "MarkedPar{}": {
-      "snippet": "MarkedPar{${1:text}}"
+    {
+      "name": "ZebraPar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ZebraPar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\ZebraPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "MarkedPar[]{}": {
-      "snippet": "MarkedPar[${2:options}]{${1:text}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "FancyZColor",
+      "unusual": true
     },
-    "UnderlinedPar{}": {
-      "snippet": "UnderlinedPar{${1:text}}"
+    {
+      "name": "FancyZTextColor",
+      "unusual": true
     },
-    "UnderlinedPar[]{}": {
-      "snippet": "UnderlinedPar[${2:options}]{${1:text}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "DashedPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "DashedPar{${1:text}}"
+      }
     },
-    "FancyPreFormat": {},
-    "FancyFormat": {},
-    "AddFancyFormat": {},
-    "thefancycount": {},
-    "FancyZColorOne": {},
-    "FancyZColorTwo": {},
-    "FancyZTextColorOne": {},
-    "FancyZTextColorTwo": {},
-    "FancyNlColor": {},
-    "FancyNilColor": {},
-    "FancyNilHeight": {},
-    "FancyNSColor": {},
-    "FancyNTextColor": {},
-    "FancyNTWidth": {},
-    "FancyMark": {},
-    "FancyUColor": {},
-    "FancyDSeparation": {},
-    "FancyDColor": {},
-    "FancyDSymbol": {},
-    "textindent": {},
-    "textindentright": {},
-    "FancyMarkPosition": {},
-    "linebox": {},
-    "leaderfill": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "linecolor=",
-      "intercolor=",
-      "textcolor=",
-      "spiralcolor=",
-      "interheight=",
-      "spiral",
-      "nbtextwidth=",
-      "colorone=",
-      "colortwo=",
-      "textcolorone=",
-      "textcolortwo=",
-      "dashsymbol=${1:symbol}",
-      "dashcolor=",
-      "separation=",
-      "mark=${1:symbol}",
-      "position=",
-      "rulecolor="
-    ],
-    [
+    {
+      "name": "DashedPar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DashedPar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\DashedPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MarkedPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "MarkedPar{${1:text}}"
+      }
+    },
+    {
+      "name": "MarkedPar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MarkedPar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\MarkedPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "UnderlinedPar",
+      "arg": {
+        "format": "{}",
+        "snippet": "UnderlinedPar{${1:text}}"
+      }
+    },
+    {
+      "name": "UnderlinedPar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "UnderlinedPar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\UnderlinedPar,\\fancyparsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "FancyPreFormat",
+      "unusual": true
+    },
+    {
+      "name": "FancyFormat",
+      "unusual": true
+    },
+    {
+      "name": "AddFancyFormat",
+      "unusual": true
+    },
+    {
+      "name": "thefancycount",
+      "unusual": true
+    },
+    {
+      "name": "FancyZColorOne",
+      "unusual": true
+    },
+    {
+      "name": "FancyZColorTwo",
+      "unusual": true
+    },
+    {
+      "name": "FancyZTextColorOne",
+      "unusual": true
+    },
+    {
+      "name": "FancyZTextColorTwo",
+      "unusual": true
+    },
+    {
+      "name": "FancyNlColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyNilColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyNilHeight",
+      "unusual": true
+    },
+    {
+      "name": "FancyNSColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyNTextColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyNTWidth",
+      "unusual": true
+    },
+    {
+      "name": "FancyMark",
+      "unusual": true
+    },
+    {
+      "name": "FancyUColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyDSeparation",
+      "unusual": true
+    },
+    {
+      "name": "FancyDColor",
+      "unusual": true
+    },
+    {
+      "name": "FancyDSymbol",
+      "unusual": true
+    },
+    {
+      "name": "textindent",
+      "unusual": true
+    },
+    {
+      "name": "textindentright",
+      "unusual": true
+    },
+    {
+      "name": "FancyMarkPosition",
+      "unusual": true
+    },
+    {
+      "name": "leaderfill",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\NotebookPar,\\fancyparsetup": [
       "linecolor=",
       "intercolor=",
       "textcolor=",
@@ -109,23 +231,24 @@
       "spiral",
       "nbtextwidth="
     ],
-    [
+    "\\ZebraPar,\\fancyparsetup": [
       "colorone=",
       "colortwo=",
       "textcolorone=",
       "textcolortwo="
     ],
-    [
+    "\\DashedPar,\\fancyparsetup": [
       "dashsymbol=${1:symbol}",
       "dashcolor=",
       "separation="
     ],
-    [
+    "\\MarkedPar,\\fancyparsetup": [
       "mark=${1:symbol}",
-      "position="
+      "position=${1|left,right|}"
     ],
-    [
+    "\\UnderlinedPar,\\fancyparsetup": [
       "rulecolor="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,14 +1,22 @@
 {
-  "includes": {
-    "fp-basic": []
-  },
-  "macros": {
-    "FPseed": {},
-    "FPrandom{}": {
-      "snippet": "FPrandom{${1:variable}}"
+  "deps": [
+    {
+      "name": "fp-basic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "FPseed"
+    },
+    {
+      "name": "FPrandom",
+      "arg": {
+        "format": "{}",
+        "snippet": "FPrandom{${1:variable%cmd}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

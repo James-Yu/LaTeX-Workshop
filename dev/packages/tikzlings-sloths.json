@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "sloth": {},
-    "sloth[]": {
-      "snippet": "sloth[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "slothhookbackground": {},
-    "slothhookbelly": {},
-    "slothhookbody": {},
-    "slothhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "sloth"
+    },
+    {
+      "name": "sloth",
+      "arg": {
+        "format": "[]",
+        "snippet": "sloth[${1:options%keyvals}]",
+        "keys": [
+          "\\sloth#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "slothhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "slothhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "slothhookbody",
+      "unusual": true
+    },
+    {
+      "name": "slothhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\sloth#c": [
       "body=",
       "eye=",
       "mouth=",
@@ -146,5 +181,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

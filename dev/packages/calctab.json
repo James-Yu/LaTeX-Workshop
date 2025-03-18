@@ -1,85 +1,177 @@
 {
-  "includes": {
-    "alphalph": [],
-    "booktabs": [],
-    "eurosym": [],
-    "xcolor": [],
-    "numprint": [],
-    "xkeyval": [],
-    "ifthen": [],
-    "fltpoint": [],
-    "xstring": [],
-    "colortbl": []
-  },
-  "macros": {
-    "amount{}{}": {
-      "snippet": "amount{${1:description}}{${2:value}}"
+  "deps": [
+    {
+      "name": "alphalph"
     },
-    "amount[]{}{}": {
-      "snippet": "amount[${3:options}]{${1:description}}{${2:value}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "booktabs"
     },
-    "perc{}{}": {
-      "snippet": "perc{${1:description}}{${2:percentage}}"
+    {
+      "name": "eurosym"
     },
-    "perc[]{}{}": {
-      "snippet": "perc[${3:options}]{${1:description}}{${2:percentage}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "add{}": {
-      "snippet": "add{${1:description}}"
+    {
+      "name": "numprint"
     },
-    "add[]{}": {
-      "snippet": "add[${2:options}]{${1:description}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "inrule": {},
-    "amount{}{}{}": {
-      "snippet": "amount{${1:description}}{${2:value1}}{${3:value2}}"
+    {
+      "name": "ifthen"
     },
-    "amount[]{}{}{}": {
-      "snippet": "amount[${4:options}]{${1:description}}{${2:value1}}{${3:value2}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "fltpoint"
     },
-    "ctcurrency{}": {
-      "snippet": "ctcurrency{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "ctdescription{}": {
-      "snippet": "ctdescription{${1:text}}"
+    {
+      "name": "colortbl"
+    }
+  ],
+  "macros": [
+    {
+      "name": "amount",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amount{${1:description%text}}{${2:value}}"
+      }
     },
-    "ctontranslation{}": {
-      "snippet": "ctontranslation{${1:on translation}}"
+    {
+      "name": "amount",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amount[${3:options%keyvals}]{${1:description%text}}{${2:value}}",
+        "keys": [
+          "\\amount"
+        ],
+        "keyPos": 0
+      }
     },
-    "ctheaderone{}": {
-      "snippet": "ctheaderone{${1:header}}"
+    {
+      "name": "perc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "perc{${1:description%text}}{${2:percentage}}"
+      }
     },
-    "ctheadertwo{}": {
-      "snippet": "ctheadertwo{${1:header}}"
+    {
+      "name": "perc",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "perc[${3:options%keyvals}]{${1:description%text}}{${2:percentage}}",
+        "keys": [
+          "\\perc#c,\\add#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ctsep": {}
-  },
-  "envs": {
-    "calctab": {},
-    "calctab[]": {
+    {
+      "name": "add",
+      "arg": {
+        "format": "{}",
+        "snippet": "add{${1:description%text}}"
+      }
+    },
+    {
+      "name": "add",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "add[${2:options%keyvals}]{${1:description%text}}",
+        "keys": [
+          "\\perc#c,\\add#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inrule"
+    },
+    {
+      "name": "amount",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "amount{${1:description%text}}{${2:value1}}{${3:value2}}"
+      }
+    },
+    {
+      "name": "amount",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "amount[${4:options%keyvals}]{${1:description%text}}{${2:value1}}{${3:value2}}",
+        "keys": [
+          "\\amount"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctcurrency",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctcurrency{${1:text}}"
+      }
+    },
+    {
+      "name": "ctdescription",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctdescription{${1:text}}"
+      }
+    },
+    {
+      "name": "ctontranslation",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctontranslation{${1:on translation}}"
+      }
+    },
+    {
+      "name": "ctheaderone",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctheaderone{${1:header%text}}"
+      }
+    },
+    {
+      "name": "ctheadertwo",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctheadertwo{${1:header%text}}"
+      }
+    },
+    {
+      "name": "ctsep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "calctab"
+    },
+    {
       "name": "calctab",
-      "snippet": "[${1:description}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:description%text}]"
+      }
     },
-    "xcalctab": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "xcalctab"
+    }
+  ],
+  "keys": {
+    "\\amount": [
       "id=${1:row id}"
     ],
-    [
+    "\\perc#c,\\add#c": [
       "id=${1:row id}",
       "from=${1:row id}",
       "until=${1:row id}",
       "${1:row id}"
     ]
-  ]
+  },
+  "args": []
 }

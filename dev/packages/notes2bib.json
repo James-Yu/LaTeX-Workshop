@@ -1,45 +1,94 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "bibnote{}": {
-      "snippet": "bibnote{${1:text}}"
-    },
-    "bibnote[]{}": {
-      "snippet": "bibnote[${2:name}]{${1:text}}"
-    },
-    "bibnotemark": {},
-    "bibnotemark[]": {
-      "snippet": "bibnotemark[${1:name}]"
-    },
-    "bibnotetext{}": {
-      "snippet": "bibnotetext{${1:text}}"
-    },
-    "bibnotetext[]{}": {
-      "snippet": "bibnotetext[${2:name}]{${1:text}}"
-    },
-    "printbibnotes": {},
-    "bibnotesetup{}": {
-      "snippet": "bibnotesetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "recordnotes": {},
-    "TotalNotes{}": {
-      "snippet": "TotalNotes{${1:number}}"
-    },
-    "NotesAfterCitations{}": {
-      "snippet": "NotesAfterCitations{${1:note-list}}"
-    },
-    "NotesBeforeCitations{}": {
-      "snippet": "NotesBeforeCitations{${1:note-list}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "bibnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibnote{${1:text}}"
+      }
+    },
+    {
+      "name": "bibnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bibnote[${2:name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "bibnotemark"
+    },
+    {
+      "name": "bibnotemark",
+      "arg": {
+        "format": "[]",
+        "snippet": "bibnotemark[${1:name}]"
+      }
+    },
+    {
+      "name": "bibnotetext",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibnotetext{${1:text}}"
+      }
+    },
+    {
+      "name": "bibnotetext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bibnotetext[${2:name}]{${1:text}}"
+      }
+    },
+    {
+      "name": "printbibnotes"
+    },
+    {
+      "name": "bibnotesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibnotesetup{${1:options%keyvals}}",
+        "keys": [
+          "\\bibnotesetup,\\usepackage/notes2bib#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "recordnotes",
+      "unusual": true
+    },
+    {
+      "name": "TotalNotes",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TotalNotes{${1:number}}"
+      }
+    },
+    {
+      "name": "NotesAfterCitations",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NotesAfterCitations{${1:note-list}}"
+      }
+    },
+    {
+      "name": "NotesBeforeCitations",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NotesBeforeCitations{${1:note-list}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bibnotesetup,\\usepackage/notes2bib#c": [
       "note-name=${1:text}",
       "refsection-name=${1:text}",
       "refsection-separator=${1:symbol}",
@@ -48,7 +97,7 @@
       "record-type=${1:type}",
       "note-field=${1:field}",
       "keyword-entry=${1:text}",
-      "placement=",
+      "placement=${1|before,after,mixed|}",
       "presort-before=${1:string}",
       "presort-mixed=${1:string}",
       "presort-after=${1:string}",
@@ -59,5 +108,8 @@
       "convert-footnotes",
       "use-sort-key"
     ]
+  },
+  "args": [
+    "\\bibnotesetup,\\usepackage/notes2bib#c"
   ]
 }

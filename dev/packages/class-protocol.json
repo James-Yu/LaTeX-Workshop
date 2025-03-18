@@ -1,48 +1,104 @@
 {
-  "includes": {
-    "class-scrartcl": []
-  },
-  "macros": {
-    "groupname{}": {
-      "snippet": "groupname{${1:name}}"
+  "deps": [
+    {
+      "name": "class-scrartcl"
+    }
+  ],
+  "macros": [
+    {
+      "name": "groupname",
+      "arg": {
+        "format": "{}",
+        "snippet": "groupname{${1:name}}"
+      }
     },
-    "chair{}": {
-      "snippet": "chair{${1:name}}"
+    {
+      "name": "chair",
+      "arg": {
+        "format": "{}",
+        "snippet": "chair{${1:name}}"
+      }
     },
-    "writer{}": {
-      "snippet": "writer{${1:name}}"
+    {
+      "name": "writer",
+      "arg": {
+        "format": "{}",
+        "snippet": "writer{${1:name}}"
+      }
     },
-    "place{}": {
-      "snippet": "place{${1:place}}"
+    {
+      "name": "place",
+      "arg": {
+        "format": "{}",
+        "snippet": "place{${1:place}}"
+      }
     },
-    "begintime{}": {
-      "snippet": "begintime{${1:time}}"
+    {
+      "name": "begintime",
+      "arg": {
+        "format": "{}",
+        "snippet": "begintime{${1:time}}"
+      }
     },
-    "endtime{}": {
-      "snippet": "endtime{${1:time}}"
+    {
+      "name": "endtime",
+      "arg": {
+        "format": "{}",
+        "snippet": "endtime{${1:time}}"
+      }
     },
-    "nextdate{}": {
-      "snippet": "nextdate{${1:date}}"
+    {
+      "name": "nextdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "nextdate{${1:date}}"
+      }
     },
-    "nexttime{}": {
-      "snippet": "nexttime{${1:time}}"
+    {
+      "name": "nexttime",
+      "arg": {
+        "format": "{}",
+        "snippet": "nexttime{${1:time}}"
+      }
     },
-    "nextplace{}": {
-      "snippet": "nextplace{${1:place}}"
+    {
+      "name": "nextplace",
+      "arg": {
+        "format": "{}",
+        "snippet": "nextplace{${1:place}}"
+      }
     },
-    "actionitem{}{}{}": {
-      "snippet": "actionitem{${1:item}}{${2:name}}{${3:date}}"
+    {
+      "name": "actionitem",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "actionitem{${1:item%text}}{${2:name}}{${3:date}}"
+      }
     },
-    "vote{}{}{}{}{}": {
-      "snippet": "vote{${1:item}}{${2:Stimmen dafür}}{${3:Stimmen dagegen}}{${4:Enthaltungen}}{${5:Ergebnis}}"
+    {
+      "name": "vote",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "vote{${1:item%text}}{${2:Stimmen dafür}}{${3:Stimmen dagegen}}{${4:Enthaltungen}}{${5:Ergebnis%text}}"
+      }
     },
-    "makehead": {},
-    "ProtocolGroupName": {}
-  },
-  "envs": {
-    "Persons": {},
-    "Absent": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "makehead",
+      "unusual": true
+    },
+    {
+      "name": "ProtocolGroupName",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Persons"
+    },
+    {
+      "name": "Absent"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

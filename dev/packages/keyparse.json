@@ -1,14 +1,24 @@
 {
-  "includes": {},
-  "macros": {
-    "KeyparseKeys{}": {
-      "snippet": "KeyparseKeys{${1:<${2:rule}>}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "KeyparseKeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "KeyparseKeys{${1:<rule>}}"
+      }
     },
-    "KeyparseEval{}{}": {
-      "snippet": "KeyparseEval{${1:<${3:rule}>}}{${2:<${4:key}><args}}"
+    {
+      "name": "KeyparseEval",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "KeyparseEval{${1:<rule>}}{${2:<key><args}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

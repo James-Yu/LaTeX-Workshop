@@ -1,78 +1,192 @@
 {
-  "includes": {},
-  "macros": {
-    "titlepage": {},
-    "partpage": {},
-    "sectionpage": {},
-    "subsectionpage": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:title}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "titlepage"
     },
-    "inserttitle": {},
-    "insertshorttitle": {},
-    "insertshorttitle[]": {
-      "snippet": "insertshorttitle[${1:options}]"
+    {
+      "name": "partpage"
     },
-    "subtitle[]{}": {
-      "snippet": "subtitle[${2:short subtitle}]{${1:subtitle}}"
+    {
+      "name": "sectionpage"
     },
-    "subtitle{}": {
-      "snippet": "subtitle{${1:subtitle}}"
+    {
+      "name": "subsectionpage"
     },
-    "insertsubtitle": {},
-    "insertshortsubtitle": {},
-    "insertshortsubtitle[]": {
-      "snippet": "insertshortsubtitle[${1:options}]"
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:short title%text}]{${1:title%text}}"
+      }
     },
-    "date{}": {
-      "snippet": "date{${1:date}}"
+    {
+      "name": "inserttitle",
+      "unusual": true
     },
-    "date[]{}": {
-      "snippet": "date[${2:short date}]{${1:date}}"
+    {
+      "name": "insertshorttitle",
+      "unusual": true
     },
-    "insertdate": {},
-    "insertshortdate": {},
-    "insertshortdate[]": {
-      "snippet": "insertshortdate[${1:options}]"
+    {
+      "name": "insertshorttitle",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "insertshorttitle[${1:options%keyvals}]"
+      }
     },
-    "author[]{}": {
-      "snippet": "author[${2:short author names}]{${1:author names}}"
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subtitle[${2:short subtitle%text}]{${1:subtitle%text}}"
+      }
     },
-    "insertauthor": {},
-    "insertshortauthor": {},
-    "insertshortauthor[]": {
-      "snippet": "insertshortauthor[${1:options}]"
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:subtitle%text}}"
+      }
     },
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:text}}"
+    {
+      "name": "insertsubtitle",
+      "unusual": true
     },
-    "inserttitlegraphic": {},
-    "subject{}": {
-      "snippet": "subject{${1:text}}"
+    {
+      "name": "insertshortsubtitle",
+      "unusual": true
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:text}}"
+    {
+      "name": "insertshortsubtitle",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "insertshortsubtitle[${1:options%keyvals}]"
+      }
     },
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "date",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "date[${2:short date}]{${1:date}}"
+      }
     },
-    "institute[]{}": {
-      "snippet": "institute[${2:short institute}]{${1:institute}}"
+    {
+      "name": "insertdate",
+      "unusual": true
     },
-    "insertinstitute": {},
-    "insertshortinstitute": {},
-    "insertshortinstitute[]": {
-      "snippet": "insertshortinstitute[${1:options}]"
+    {
+      "name": "insertshortdate",
+      "unusual": true
     },
-    "inst{}": {
-      "snippet": "inst{${1:parameter}}"
+    {
+      "name": "insertshortdate",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "insertshortdate[${1:options%keyvals}]"
+      }
     },
-    "logo{}": {
-      "snippet": "logo{${1:logo text}}"
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:short author names}]{${1:author names}}"
+      }
     },
-    "insertlogo": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "insertauthor",
+      "unusual": true
+    },
+    {
+      "name": "insertshortauthor",
+      "unusual": true
+    },
+    {
+      "name": "insertshortauthor",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "insertshortauthor[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:text}}"
+      }
+    },
+    {
+      "name": "inserttitlegraphic",
+      "unusual": true
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "subject{${1:text}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:text}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:institute}}"
+      }
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "institute[${2:short institute}]{${1:institute}}"
+      }
+    },
+    {
+      "name": "insertinstitute",
+      "unusual": true
+    },
+    {
+      "name": "insertshortinstitute",
+      "unusual": true
+    },
+    {
+      "name": "insertshortinstitute",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "insertshortinstitute[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "inst{${1:parameter}}"
+      }
+    },
+    {
+      "name": "logo",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo{${1:logo text%text}}"
+      }
+    },
+    {
+      "name": "insertlogo",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

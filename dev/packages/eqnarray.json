@@ -1,27 +1,58 @@
 {
-  "includes": {
-    "array": []
-  },
-  "macros": {
-    "yesnumber": {},
-    "eqnnum{}": {
-      "snippet": "eqnnum{${1:number}}"
+  "deps": [
+    {
+      "name": "array"
     }
-  },
-  "envs": {
-    "equationarray{}": {
-      "name": "equationarray",
-      "snippet": "{${1:preamble}}"
+  ],
+  "macros": [
+    {
+      "name": "yesnumber"
     },
-    "equationarray[]{}": {
+    {
+      "name": "eqnnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "eqnnum{${1:number}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "equationarray",
-      "snippet": "[${2:alignment}]{${1:preamble}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
     },
-    "equationarray*[]{}": {
+    {
+      "name": "equationarray",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\begin{equationarray},\\begin{equationarray*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
       "name": "equationarray*",
-      "snippet": "[${2:alignment}]{${1:preamble}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:alignment%keyvals}]{${1:preamble}}",
+        "keys": [
+          "\\begin{equationarray},\\begin{equationarray*}"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{equationarray},\\begin{equationarray*}": [
+      "l",
+      "c",
+      "r"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

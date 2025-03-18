@@ -83,7 +83,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.view(lw.file.getPdfPath(pickedRootFile), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.view(vscode.Uri.file(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
@@ -107,13 +107,13 @@ export function synctex() {
     if (lw.extra.liveshare.handle.command.syncTeX()) {
         return
     }
-    let pdfFile: string | undefined = undefined
+    let pdfUri: vscode.Uri | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
+        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.subfiles.path))
     } else if (lw.root.file.path !== undefined) {
-        pdfFile = lw.file.getPdfPath(lw.root.file.path)
+        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.file.path))
     }
-    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
+    lw.locate.synctex.toPDF(pdfUri)
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -190,7 +190,7 @@ export async function gotoSection(filePath: string, lineNumber: number) {
     if (vscode.window.activeTextEditor) {
         vscode.window.activeTextEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
         if (vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sync.viewer') as boolean) {
-            lw.locate.synctex.toPDF({ line: lineNumber, filePath: doc.fileName })
+            lw.locate.synctex.toPDF(undefined, { line: lineNumber, filePath: doc.fileName })
         }
     }
 }
@@ -438,7 +438,10 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await lw.parser.parse.bib(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parser.parse.bib(
+        vscode.window.activeTextEditor.document.uri,
+        vscode.window.activeTextEditor.document.getText()
+    )
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 

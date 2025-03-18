@@ -1,44 +1,59 @@
 {
-  "includes": {
-    "class-ximera": []
-  },
-  "macros": {
-    "activity{}": {
-      "snippet": "activity{${1:file}}"
-    },
-    "logo{}": {
-      "snippet": "logo{${1:imagefile}}"
-    },
-    "practice{}": {
-      "snippet": "practice{${1:file}}"
-    },
-    "ifnotoc": {},
-    "notoctrue": {},
-    "notocfalse": {},
-    "ifnonewpage": {},
-    "nonewpagetrue": {},
-    "nonewpagefalse": {}
-  },
-  "envs": {
-    "graded{}": {
-      "name": "graded",
-      "snippet": "{${1:weight}}"
+  "deps": [
+    {
+      "name": "class-ximera"
     }
-  },
-  "options": [
-    "notoc",
-    "nonewpage",
-    "handout",
-    "noauthor",
-    "nooutcomes",
-    "instructornotes",
-    "noinstructornotes",
-    "hints",
-    "newpage",
-    "numbers",
-    "wordchoicegiven",
-    "xake",
-    "tikzexport"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "activity",
+      "arg": {
+        "format": "{}",
+        "snippet": "activity{${1:file}}"
+      }
+    },
+    {
+      "name": "logo",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "practice",
+      "arg": {
+        "format": "{}",
+        "snippet": "practice{${1:file}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "graded",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:weight}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/xourse#c": [
+      "notoc",
+      "nonewpage",
+      "handout",
+      "noauthor",
+      "nooutcomes",
+      "instructornotes",
+      "noinstructornotes",
+      "hints",
+      "newpage",
+      "numbers",
+      "wordchoicegiven",
+      "xake",
+      "tikzexport"
+    ]
+  },
+  "args": [
+    "\\documentclass/xourse#c"
+  ]
 }

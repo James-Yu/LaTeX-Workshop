@@ -1,40 +1,90 @@
 {
-  "includes": {
-    "xcolor": []
-  },
-  "macros": {
-    "definespotcolor{}{}{}": {
-      "snippet": "definespotcolor{${1:name}}{${2:PDF name}}{${3:CMYK-equivalent}}"
-    },
-    "definespotcolor{}{}[]{}": {
-      "snippet": "definespotcolor{${1:name}}{${2:PDF name}}[${3:alt=lab}]{${4:lab-values}}"
-    },
-    "definecolorspace{}{}{}": {
-      "snippet": "definecolorspace{${1:name}}{${2:mixed}}{${3:color-list}}"
-    },
-    "definecolorspace*{}{}{}": {
-      "snippet": "definecolorspace*{${1:name}}{${2:iccbased}}{${3:icc-file}}"
-    },
-    "pagecolorspace{}": {
-      "snippet": "pagecolorspace{${1:colorspace list}}"
-    },
-    "resetpagecolorspace": {},
-    "overprintstate{}": {
-      "snippet": "overprintstate{${1:state}}"
-    },
-    "textoverprint{}": {
-      "snippet": "textoverprint{${1:text}}"
-    },
-    "textoverprint[]{}": {
-      "snippet": "textoverprint[${2:state}]{${1:text}}"
+  "deps": [
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [
-    "illuminant=",
-    "overprint",
-    "opm=",
-    "knockout"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "definespotcolor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definespotcolor{${1:name%specialDef}}{${2:PDF name}}{${3:CMYK-equivalent}}"
+      }
+    },
+    {
+      "name": "definespotcolor",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "definespotcolor{${1:name%specialDef}}{${2:PDF name}}[${4:model}]{${3:equivalent}}"
+      }
+    },
+    {
+      "name": "definespotcolor",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "definespotcolor{${1:name}}{${2:PDF name}}[${4:alt=lab}]{${3:lab-values}}"
+      }
+    },
+    {
+      "name": "definecolorspace",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definecolorspace{${1:name}}{${2:mixed}}{${3:color-list}}"
+      }
+    },
+    {
+      "name": "definecolorspace*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definecolorspace*{${1:name}}{${2:iccbased}}{${3:icc-file}}"
+      }
+    },
+    {
+      "name": "pagecolorspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "pagecolorspace{${1:colorspace list}}"
+      }
+    },
+    {
+      "name": "resetpagecolorspace"
+    },
+    {
+      "name": "overprintstate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "overprintstate{${1:state}}"
+      }
+    },
+    {
+      "name": "textoverprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textoverprint{${1:text}}"
+      }
+    },
+    {
+      "name": "textoverprint",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textoverprint[${2:state}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/colorspace#c": [
+      "illuminant=${1|a,c,e,d50,d55,d65,d75|}",
+      "overprint",
+      "opm=${1|0,1|}",
+      "knockout"
+    ]
+  },
+  "args": [
+    "\\usepackage/colorspace#c"
+  ]
 }

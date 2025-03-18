@@ -1,134 +1,293 @@
 {
-  "includes": {
-    "calc": [],
-    "keyval": []
-  },
-  "macros": {
-    "bitbox{}{}": {
-      "snippet": "bitbox{${1:width}}{${2:text}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "bitbox[]{}{}": {
-      "snippet": "bitbox[${3:sides}]{${1:width}}{${2:text}}"
-    },
-    "bitbox{}[]{}": {
-      "snippet": "bitbox{${1:width}}[${2:options}]{${3:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "bitbox[]{}[]{}": {
-      "snippet": "bitbox[${3:sides}]{${1:width}}[${4:options}]{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "wordbox{}{}": {
-      "snippet": "wordbox{${1:width}}{${2:text}}"
-    },
-    "wordbox[]{}{}": {
-      "snippet": "wordbox[${3:sides}]{${1:width}}{${2:text}}"
-    },
-    "wordbox{}[]{}": {
-      "snippet": "wordbox{${1:width}}[${2:options}]{${3:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "wordbox[]{}[]{}": {
-      "snippet": "wordbox[${3:sides}]{${1:width}}[${4:options}]{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "bitboxes{}{}": {
-      "snippet": "bitboxes{${1:width}}{${2:tokens}}"
-    },
-    "bitboxes[]{}{}": {
-      "snippet": "bitboxes[${3:sides}]{${1:width}}{${2:tokens}}"
-    },
-    "bitboxes{}[]{}": {
-      "snippet": "bitboxes{${1:width}}[${2:options}]{${3:tokens}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "bitboxes[]{}[]{}": {
-      "snippet": "bitboxes[${3:sides}]{${1:width}}[${4:options}]{${2:tokens}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "bitboxes*{}{}": {
-      "snippet": "bitboxes*{${1:width}}{${2:tokens}}"
-    },
-    "bitboxes*[]{}{}": {
-      "snippet": "bitboxes*[${3:sides}]{${1:width}}{${2:tokens}}"
-    },
-    "bitboxes*{}[]{}": {
-      "snippet": "bitboxes*{${1:width}}[${2:options}]{${3:tokens}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "bitboxes*[]{}[]{}": {
-      "snippet": "bitboxes*[${3:sides}]{${1:width}}[${4:options}]{${2:tokens}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "bitheader{}": {
-      "snippet": "bitheader{${1:bit-positions}}"
-    },
-    "bitheader[]{}": {
-      "snippet": "bitheader[${2:options}]{${1:bit-positions}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "skippedwords": {},
-    "bytefieldsetup{}": {
-      "snippet": "bytefieldsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "amp": {},
-    "bitwidth": {},
-    "byteheight": {},
-    "curlyshrinkage": {},
-    "curlyspace": {},
-    "labelspace": {},
-    "heightunits": {},
-    "widthunits": {}
-  },
-  "envs": {
-    "bytefield{}": {
-      "name": "bytefield",
-      "snippet": "{${1:bit-width}}"
-    },
-    "bytefield[]{}": {
-      "name": "bytefield",
-      "snippet": "[${2:options}]{${1:bit-width}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "rightwordgroup{}": {
-      "name": "rightwordgroup",
-      "snippet": "{${1:text}}"
-    },
-    "rightwordgroup[]{}": {
-      "name": "rightwordgroup",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "leftwordgroup{}": {
-      "name": "leftwordgroup",
-      "snippet": "{${1:text}}"
-    },
-    "leftwordgroup[]{}": {
-      "name": "leftwordgroup",
-      "snippet": "[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "bitbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bitbox{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "bitbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bitbox[${3:sides}]{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "bitbox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "bitbox{${1:width}}[${3:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bitbox",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "bitbox[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "wordbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "wordbox{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "wordbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "wordbox[${3:sides}]{${1:width}}{${2:text}}"
+      }
+    },
+    {
+      "name": "wordbox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "wordbox{${1:width}}[${3:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "wordbox",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "wordbox[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:text}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "bitboxes",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bitboxes{${1:width}}{${2:tokens}}"
+      }
+    },
+    {
+      "name": "bitboxes",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bitboxes[${3:sides}]{${1:width}}{${2:tokens}}"
+      }
+    },
+    {
+      "name": "bitboxes",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "bitboxes{${1:width}}[${3:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bitboxes",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "bitboxes[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "bitboxes*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bitboxes*{${1:width}}{${2:tokens}}"
+      }
+    },
+    {
+      "name": "bitboxes*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bitboxes*[${3:sides}]{${1:width}}{${2:tokens}}"
+      }
+    },
+    {
+      "name": "bitboxes*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "bitboxes*{${1:width}}[${3:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bitboxes*",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "bitboxes*[${3:sides}]{${1:width}}[${4:options%keyvals}]{${2:tokens}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "bitheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "bitheader{${1:bit-positions}}"
+      }
+    },
+    {
+      "name": "bitheader",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bitheader[${2:options%keyvals}]{${1:bit-positions}}",
+        "keys": [
+          "\\bitheader"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skippedwords"
+    },
+    {
+      "name": "bytefieldsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "bytefieldsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "amp",
+      "unusual": true
+    },
+    {
+      "name": "bitwidth",
+      "unusual": true
+    },
+    {
+      "name": "byteheight",
+      "unusual": true
+    },
+    {
+      "name": "curlyshrinkage",
+      "unusual": true
+    },
+    {
+      "name": "curlyspace",
+      "unusual": true
+    },
+    {
+      "name": "labelspace",
+      "unusual": true
+    },
+    {
+      "name": "heightunits",
+      "unusual": true
+    },
+    {
+      "name": "widthunits",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "bytefield",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bit-width}}"
+      }
+    },
+    {
+      "name": "bytefield",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:bit-width}}",
+        "keys": [
+          "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rightwordgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "rightwordgroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{rightwordgroup},\\begin{leftwordgroup}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "leftwordgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:text}}"
+      }
+    },
+    {
+      "name": "leftwordgroup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{rightwordgroup},\\begin{leftwordgroup}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\bitheader": [
+      "bitformatting={${1:commands}}",
+      "endianness=${1|little,big|}",
+      "lsb=${1:integer}"
+    ],
+    "\\begin{rightwordgroup},\\begin{leftwordgroup}": [
+      "curlystyle=${1:command}",
+      "leftcurlystyle=${1:command}",
+      "rightcurlystyle=${1:command}"
+    ],
+    "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c": [
       "bitwidth=",
       "bitheight=",
-      "endianness=",
+      "endianness=${1|little,big|}",
       "bitformatting={${1:commands}}",
       "boxformatting={${1:commands}}",
       "bgcolor=",
@@ -148,16 +307,9 @@
       "curlystyle=${1:command}",
       "lsb=${1:integer}",
       "perword=${1:command}"
-    ],
-    [
-      "bitformatting={${1:commands}}",
-      "endianness=",
-      "lsb=${1:integer}"
-    ],
-    [
-      "curlystyle=${1:command}",
-      "leftcurlystyle=${1:command}",
-      "rightcurlystyle=${1:command}"
     ]
+  },
+  "args": [
+    "\\bytefieldsetup,\\begin{bytefield},\\bitbox,\\wordbox,\\bitboxes,\\bitboxes*,\\usepackage/bytefield#c"
   ]
 }

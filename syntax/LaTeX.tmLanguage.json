@@ -87,7 +87,7 @@
                 "4": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -114,7 +114,7 @@
             ]
         },
         {
-            "begin": "((?:\\s*)\\\\begin\\{songs\\}\\{.*\\})",
+            "begin": "(\\s*\\\\begin\\{songs\\}\\{.*\\})",
             "captures": {
                 "1": {
                     "patterns": [
@@ -129,21 +129,45 @@
             "name": "meta.function.environment.songs.latex",
             "patterns": [
                 {
-                    "begin": "\\\\\\[",
-                    "end": "\\]",
-                    "name": "meta.chord.block.latex support.class.chord.block.environment.latex",
+                    "include": "text.tex.latex#songs-chords"
+                }
+            ]
+        },
+        {
+            "comment": "This scope applies songs-environment coloring between \\\\beginsong and \\\\endsong. Useful in separate files without \\\\begin{songs}.",
+            "begin": "\\s*((\\\\)beginsong)(?=\\{)",
+            "captures": {
+                "1": {
+                    "name": "support.function.be.latex"
+                },
+                "2": {
+                    "name": "punctuation.definition.function.latex"
+                },
+                "3": {
+                    "name": "punctuation.definition.arguments.begin.latex"
+                },
+                "4": {
+                    "name": "punctuation.definition.arguments.end.latex"
+                }
+            },
+            "end": "((\\\\)endsong)(?:\\s*\\n)?",
+            "name": "meta.function.environment.song.latex",
+            "patterns": [
+                {
+                    "include": "#multiline-arg-no-highlight"
+                },
+                {
+                    "include": "#multiline-optional-arg-no-highlight"
+                },
+                {
+                    "begin": "(?:\\G|(?<=\\]|\\}))\\s*",
+                    "end": "\\s*(?=\\\\endsong)",
+                    "contentName": "meta.data.environment.song.latex",
                     "patterns": [
                         {
-                            "include": "$self"
+                            "include": "text.tex.latex#songs-chords"
                         }
                     ]
-                },
-                {
-                    "match": "\\^",
-                    "name": "meta.chord.block.latex support.class.chord.block.environment.latex"
-                },
-                {
-                    "include": "$self"
                 }
             ]
         },
@@ -755,6 +779,49 @@
             ]
         },
         {
+            "begin": "\\s*\\\\begin\\{(?:javacode|javaverbatim|javablock|javaconcode|javaconsole|javaconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+            "end": "\\s*\\\\end\\{(?:javacode|javaverbatim|javablock|javaconcode|javaconsole|javaconverbatim)\\*?\\}",
+            "captures": {
+                "0": {
+                    "patterns": [
+                        {
+                            "include": "#begin-env-tokenizer"
+                        }
+                    ]
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#multiline-optional-arg-no-highlight"
+                },
+                {
+                    "begin": "(?:\\G|(?<=\\]))(\\{)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.begin.latex"
+                        }
+                    },
+                    "end": "(\\})",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.end.latex"
+                        }
+                    },
+                    "contentName": "variable.parameter.function.latex"
+                },
+                {
+                    "begin": "^(?=\\s*)",
+                    "end": "^\\s*(?=\\\\end\\{(?:javacode|javaverbatim|javablock|javaconcode|javaconsole|javaconverbatim)\\*?\\})",
+                    "contentName": "source.java",
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "begin": "\\s*\\\\begin\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
             "end": "\\s*\\\\end\\{(?:jlcode|jlverbatim|jlblock|jlconcode|jlconsole|jlconverbatim)\\*?\\}",
             "captures": {
@@ -1099,7 +1166,7 @@
             ]
         },
         {
-            "begin": "\\s*\\\\begin\\{([a-zA-Z]*code|lstlisting|minted|pyglist)\\*?\\}(?:\\[.*\\])?(?:\\{.*\\})?",
+            "begin": "\\s*\\\\begin\\{((?:[a-zA-Z]*code|lstlisting|minted|pyglist)\\*?)\\}(?:\\[.*\\])?(?:\\{.*\\})?",
             "captures": {
                 "0": {
                     "patterns": [
@@ -1893,7 +1960,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -1903,7 +1970,7 @@
                 "5": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -1995,7 +2062,7 @@
                     ]
                 }
             },
-            "contentName": "punctuation.definition.comment.latex",
+            "contentName": "comment.line.percentage.latex",
             "end": "(\\\\end\\{\\2\\})",
             "name": "meta.function.verbatim.latex"
         },
@@ -2308,7 +2375,7 @@
             ]
         },
         {
-            "begin": "(\\s*\\\\begin\\{(\\w+\\*?)\\})",
+            "begin": "(\\s*\\\\begin\\{(\\p{Alphabetic}+\\*?)\\})",
             "captures": {
                 "1": {
                     "patterns": [
@@ -2361,7 +2428,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -2397,7 +2464,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -2555,7 +2622,7 @@
             "name": "meta.scope.item.latex"
         },
         {
-            "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^\\)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}:.]*\\})*)(?:([<\\[])[^\\]<>]*([>\\]]))?(?:(\\[)[^\\]]*(\\]))?(\\{)",
+            "begin": "((\\\\)(?:[aA]uto|foot|full|no|ref|short|[tT]ext|[pP]aren|[sS]mart)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\\*?)((?:(?:\\([^\\)]*\\)){0,2}(?:\\[[^\\]]*\\]){0,2}\\{[\\p{Alphabetic}\\p{Number}_:.-]*\\})*)(<[^\\]<>]*>)?((?:\\[[^\\]]*\\])*)(\\{)",
             "captures": {
                 "1": {
                     "name": "keyword.control.cite.latex"
@@ -2571,18 +2638,20 @@
                     ]
                 },
                 "4": {
-                    "name": "punctuation.definition.arguments.optional.begin.latex"
+                    "patterns": [
+                        {
+                            "include": "#optional-arg-angle-no-highlight"
+                        }
+                    ]
                 },
                 "5": {
-                    "name": "punctuation.definition.arguments.optional.end.latex"
+                    "patterns": [
+                        {
+                            "include": "#optional-arg-bracket-no-highlight"
+                        }
+                    ]
                 },
                 "6": {
-                    "name": "punctuation.definition.arguments.optional.begin.latex"
-                },
-                "7": {
-                    "name": "punctuation.definition.arguments.optional.end.latex"
-                },
-                "8": {
                     "name": "punctuation.definition.arguments.begin.latex"
                 }
             },
@@ -2595,6 +2664,7 @@
             "name": "meta.citation.latex",
             "patterns": [
                 {
+                    "match": "((%).*)$",
                     "captures": {
                         "1": {
                             "name": "comment.line.percentage.tex"
@@ -2602,8 +2672,7 @@
                         "2": {
                             "name": "punctuation.definition.comment.tex"
                         }
-                    },
-                    "match": "((%).*)$"
+                    }
                 },
                 {
                     "match": "[\\p{Alphabetic}\\p{Number}:.-]+",
@@ -2733,7 +2802,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -2776,7 +2845,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -2813,7 +2882,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -2860,7 +2929,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -3041,7 +3110,7 @@
                     "name": "punctuation.definition.variable.latex"
                 }
             },
-            "match": "(\\\\)[cgl](?:[_\\p{Alphabetic}@]+)+_[a-z]+",
+            "match": "(\\\\)(?:[cgl]_+[_\\p{Alphabetic}@]+_[a-z]+|[qs]_[_\\p{Alphabetic}@]+[\\p{Alphabetic}@])",
             "name": "variable.other.latex3.latex"
         },
         {
@@ -3066,27 +3135,29 @@
                 {
                     "captures": {
                         "1": {
-                            "name": "punctuation.definition.arguments.optional.begin.latex"
+                            "patterns": [
+                                {
+                                    "include": "#optional-arg-parenthesis-no-highlight"
+                                }
+                            ]
                         },
                         "2": {
-                            "name": "punctuation.definition.arguments.optional.end.latex"
+                            "patterns": [
+                                {
+                                    "include": "#optional-arg-bracket-no-highlight"
+                                }
+                            ]
                         },
                         "3": {
-                            "name": "punctuation.definition.arguments.optional.begin.latex"
-                        },
-                        "4": {
-                            "name": "punctuation.definition.arguments.optional.end.latex"
-                        },
-                        "5": {
                             "name": "punctuation.definition.arguments.begin.latex"
                         },
-                        "6": {
+                        "4": {
                             "name": "constant.other.reference.citation.latex"
                         },
-                        "7": {
+                        "5": {
                             "name": "punctuation.definition.arguments.end.latex"
                         },
-                        "8": {
+                        "6": {
                             "patterns": [
                                 {
                                     "include": "#autocites-arg"
@@ -3094,7 +3165,7 @@
                             ]
                         }
                     },
-                    "match": "(?:(\\()[^\\)]*(\\))){0,2}(?:(\\[)[^\\]]*(\\])){0,2}(\\{)([\\p{Alphabetic}\\p{Number}:.]+)(\\})(.*)"
+                    "match": "((?:\\([^\\)]*\\)){0,2})((?:\\[[^\\]]*\\]){0,2})(\\{)([\\p{Alphabetic}\\p{Number}_:.-]+)(\\})(.*)"
                 }
             ]
         },
@@ -3138,7 +3209,7 @@
                     "name": "punctuation.definition.arguments.end.latex"
                 }
             },
-            "match": "\\s*((\\\\)(?:begin|end))(\\{)([a-zA-Z]*\\*?)(\\})(?:(\\[)([^\\]]*)(\\])){,2}(?:(\\{)([^{}]*)(\\}))?"
+            "match": "\\s*((\\\\)(?:begin|end))(\\{)(\\p{Alphabetic}+\\*?)(\\})(?:(\\[)([^\\]]*)(\\])){,2}(?:(\\{)([^{}]*)(\\}))?"
         },
         "definition-label": {
             "begin": "((\\\\)z?label)((?:\\[[^\\[]*?\\])*)(\\{)",
@@ -3152,7 +3223,7 @@
                 "3": {
                     "patterns": [
                         {
-                            "include": "#optional-arg"
+                            "include": "#optional-arg-bracket"
                         }
                     ]
                 },
@@ -3196,7 +3267,7 @@
             ]
         },
         "multiline-optional-arg-no-highlight": {
-            "begin": "\\G\\[",
+            "begin": "(?:\\G|(?<=\\}))\\s*\\[",
             "beginCaptures": {
                 "0": {
                     "name": "punctuation.definition.arguments.optional.begin.latex"
@@ -3215,7 +3286,27 @@
                 }
             ]
         },
-        "optional-arg": {
+        "multiline-arg-no-highlight": {
+            "begin": "\\G\\{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.arguments.begin.latex"
+                }
+            },
+            "end": "\\}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.arguments.end.latex"
+                }
+            },
+            "name": "meta.parameter.latex",
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ]
+        },
+        "optional-arg-bracket": {
             "patterns": [
                 {
                     "captures": {
@@ -3231,6 +3322,94 @@
                     },
                     "match": "(\\[)([^\\[]*?)(\\])",
                     "name": "meta.parameter.optional.latex"
+                }
+            ]
+        },
+        "optional-arg-parenthesis": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.optional.begin.latex"
+                        },
+                        "2": {
+                            "name": "variable.parameter.function.latex"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.arguments.optional.end.latex"
+                        }
+                    },
+                    "match": "(\\()([^\\(]*?)(\\))",
+                    "name": "meta.parameter.optional.latex"
+                }
+            ]
+        },
+        "optional-arg-bracket-no-highlight": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.optional.begin.latex"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.arguments.optional.end.latex"
+                        }
+                    },
+                    "match": "(\\[)[^\\[]*?(\\])",
+                    "name": "meta.parameter.optional.latex"
+                }
+            ]
+        },
+        "optional-arg-angle-no-highlight": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.optional.begin.latex"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.arguments.optional.end.latex"
+                        }
+                    },
+                    "match": "(<)[^<]*?(>)",
+                    "name": "meta.parameter.optional.latex"
+                }
+            ]
+        },
+        "optional-arg-parenthesis-no-highlight": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.arguments.optional.begin.latex"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.arguments.optional.end.latex"
+                        }
+                    },
+                    "match": "(\\()[^\\(]*?(\\))",
+                    "name": "meta.parameter.optional.latex"
+                }
+            ]
+        },
+        "songs-chords": {
+            "patterns": [
+                {
+                    "begin": "\\\\\\[",
+                    "end": "\\]",
+                    "name": "meta.chord.block.latex support.class.chord.block.environment.latex",
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ]
+                },
+                {
+                    "match": "\\^",
+                    "name": "meta.chord.block.latex support.class.chord.block.environment.latex"
+                },
+                {
+                    "include": "$self"
                 }
             ]
         }

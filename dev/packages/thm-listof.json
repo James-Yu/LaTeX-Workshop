@@ -1,39 +1,81 @@
 {
-  "includes": {
-    "thm-patch": [],
-    "keyval": [],
-    "kvsetkeys": []
-  },
-  "macros": {
-    "listoftheorems": {},
-    "listoftheorems[]": {
-      "snippet": "listoftheorems[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "thm-patch"
     },
-    "listtheoremname": {},
-    "setlisttheoremstyle{}": {
-      "snippet": "setlisttheoremstyle{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "keyval"
     },
-    "thmtformatoptarg{}": {
-      "snippet": "thmtformatoptarg{${1:arg}}"
-    },
-    "showtheorems{}": {
-      "snippet": "showtheorems{${1:thm1,thm2,...}}"
-    },
-    "ignoretheorems{}": {
-      "snippet": "ignoretheorems{${1:thm1,thm2,...}}"
-    },
-    "onlynamedtheorems{}": {
-      "snippet": "onlynamedtheorems{${1:thm1,thm2,...}}"
+    {
+      "name": "kvsetkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "listoftheorems"
+    },
+    {
+      "name": "listoftheorems",
+      "arg": {
+        "format": "[]",
+        "snippet": "listoftheorems[${1:options%keyvals}]",
+        "keys": [
+          "\\listoftheorems,\\setlisttheoremstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "listtheoremname"
+    },
+    {
+      "name": "setlisttheoremstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setlisttheoremstyle{${1:options%keyvals}}",
+        "keys": [
+          "\\listoftheorems,\\setlisttheoremstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thmtformatoptarg",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thmtformatoptarg{${1:arg}}"
+      }
+    },
+    {
+      "name": "showtheorems",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showtheorems{${1:thm1,thm2,...}}"
+      }
+    },
+    {
+      "name": "ignoretheorems",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ignoretheorems{${1:thm1,thm2,...}}"
+      }
+    },
+    {
+      "name": "onlynamedtheorems",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "onlynamedtheorems{${1:thm1,thm2,...}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\listoftheorems,\\setlisttheoremstyle": [
       "title=${1:title}",
       "ignore={${1:thm1,thm2,...}}",
       "ignoreall",
@@ -43,5 +85,6 @@
       "swapnumber",
       "numwidth="
     ]
-  ]
+  },
+  "args": []
 }

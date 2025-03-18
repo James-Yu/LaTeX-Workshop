@@ -229,20 +229,20 @@ async function synctexToPDFCombined(line: number, col: number, filePath: string,
  * document and cursor position. The forward SyncTeX can be executed with a
  * specific PDF viewer, and the PDF file can be specified.
  *
+ * @param pdfUri - The path of a PDF File compiled from the filePath of args.
+ * If undefined, it is automatically detected.
  * @param args - The arguments of forward SyncTeX. If undefined, the document
  * and cursor position of activeTextEditor are used.
  * @param forcedViewer - Indicates a PDF viewer with which SyncTeX is executed
  * ('auto', 'tabOrBrowser', or 'external').
- * @param pdfFile - The path of a PDF File compiled from the filePath of args.
- * If undefined, it is automatically detected.
  */
-function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
+function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto') {
     let line: number
     let filePath: string
     let column = 0
-
-    if (!vscode.window.activeTextEditor) {
-        logger.log('No active editor found.')
+    const active = vscode.window.activeTextEditor ?? lw.previousActive
+    if (!active) {
+        logger.log('No active LaTeX editor found or previous one recorded.')
         return
     }
 
@@ -290,21 +290,21 @@ function toPDF(args?: {line: number, filePath: string}, forcedViewer: 'auto' | '
  * @param line - The line number in the TeX file.
  * @param col - The character position (column) in the line.
  * @param filePath - The path of the TeX file.
- * @param pdfFile - The path of the PDF file.
+ * @param pdfUri - The path of the PDF file.
  * @param indicator - The type of the SyncTex indicator.
  * @returns A promise resolving to a SyncTeXRecordToPDF object or a
  * SyncTeXRecordToPDF[] object.
  */
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF>
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDFAll[]>
-function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]> {
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: vscode.Uri, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: vscode.Uri, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDFAll[]>
+function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: vscode.Uri, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const docker = configuration.get('docker.enabled')
 
     const args = ['view', '-i'].concat([
         `${line}${indicator === 'rectangle' ? ':0' : `:${col + 1}`}:${docker ? path.basename(filePath) : filePath}`,
         '-o',
-        docker ? path.basename(pdfFile) : pdfFile
+        docker ? path.basename(pdfUri.fsPath) : pdfUri.fsPath
     ])
 
     let command = configuration.get('synctex.path') as string
@@ -317,8 +317,8 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfFile: 
         }
     }
     const logTag = docker ? 'Docker' : 'SyncTeX'
-    logger.log(`Forward from ${filePath} to ${pdfFile} on line ${line}.`)
-    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile)})
+    logger.log(`Forward from ${filePath} to ${pdfUri.toString(true)} on line ${line}.`)
+    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath)})
     proc.stdout.setEncoding('utf8')
     proc.stderr.setEncoding('utf8')
 
@@ -369,9 +369,9 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
     const viewer = configuration.get('view.pdf.ref.viewer') as 'auto' | 'tabOrBrowser' | 'external'
     args.line += 1
     if (viewer) {
-        toPDF(args, viewer)
+        toPDF(undefined, args, viewer)
     } else {
-        toPDF(args)
+        toPDF(undefined, args)
     }
 }
 
@@ -449,16 +449,16 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
  *
  * @param data - ClientRequest data containing the type ('reverse_synctex') and
  * position information.
- * @param pdfPath - The path of the PDF file.
+ * @param pdfUri - The path of the PDF file.
  */
-async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
+async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri) {
     const record = computeToTeX(data, pdfPath)
     if (record) {
         await openTeX(record.input, record.line, record.column, data.textBeforeSelection, data.textAfterSelection)
     }
 }
 
-function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string): SyncTeXRecordToTeX | undefined {
+function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri): SyncTeXRecordToTeX | undefined {
     let record: SyncTeXRecordToTeX
 
     // We only use synctex.js for backward sync as the binary cannot handle CJK encodings #4239.
@@ -466,15 +466,15 @@ function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, p
     // const configuration = vscode.workspace.getConfiguration('latex-workshop')
     // const docker = configuration.get('docker.enabled')
     // try {
-    //     record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
+    //     record = await callSyncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfUri)
     //     if (docker && process.platform === 'win32') {
-    //         record.input = path.join(path.dirname(pdfPath), record.input.replace('/data/', ''))
+    //         record.input = path.join(path.dirname(pdfUri), record.input.replace('/data/', ''))
     //     }
     // } catch {
     // }
     try {
-        logger.log(`Backward from ${pdfPath} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
-        const temp = syncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfPath)
+        logger.log(`Backward from ${pdfUri.toString(true)} at x=${data.pos[0]}, y=${data.pos[1]} on page ${data.page}.`)
+        const temp = await syncTeXToTeX(data.page, data.pos[0], data.pos[1], pdfUri)
         if (!temp) {
             return
         }
@@ -721,10 +721,10 @@ function animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
  * viewer. It constructs the command and arguments based on user configuration.
  *
  * @param line - The line number in the PDF.
- * @param pdfFile - The path of the PDF file.
+ * @param pdfUri - The path of the PDF file.
  * @param rootFile - The path of the root TeX file.
  */
-function syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+function syncTeXExternal(line: number, pdfUri: vscode.Uri, rootFile: string) {
     if (!vscode.window.activeTextEditor) {
         return
     }
@@ -739,12 +739,12 @@ function syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
     if (args) {
         args = args.map(arg => {
             return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)
-                    .replace(/%PDF%/g, pdfFile)
+                    .replace(/%PDF%/g, pdfUri.fsPath)
                     .replace(/%LINE%/g, line.toString())
                     .replace(/%TEX%/g, texFile)
         })
     }
-    logger.logCommand(`Opening external viewer for SyncTeX from ${pdfFile} .`, command, args)
+    logger.logCommand(`Opening external viewer for SyncTeX from ${pdfUri.toString(true)} .`, command, args)
     const proc = cs.spawn(command, args)
     let stdout = ''
     proc.stdout.on('data', newStdout => {

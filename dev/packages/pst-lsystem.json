@@ -1,12 +1,46 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pslsystem",
+      "arg": {
+        "format": "()",
+        "snippet": "pslsystem(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "pslsystem",
+      "arg": {
+        "format": "[]()",
+        "snippet": "pslsystem[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\pslsystem#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pslsystem#c": [
+      "F=${1:Rule F → (F)}",
+      "X=${1:Rule X → (F,X,Y)}",
+      "Y=${1:Rule Y → (F,X,Y)}",
+      "Start=${1:Startrule S → (F,X,Y)}",
+      "Angle=${1:degrees}",
+      "N=${1:number of recursive calls}",
+      "Ftype=${1|1,2,3,4|}",
+      "BaseLength=",
+      "usecolor=${1|0,1,2,3,4|}",
+      "linecolor="
+    ]
   },
-  "macros": {
-    "PSTlsystemLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

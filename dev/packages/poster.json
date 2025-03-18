@@ -1,0 +1,103 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "poster",
+      "arg": {
+        "format": "{}",
+        "snippet": "poster{${1:stuff%text}}"
+      }
+    },
+    {
+      "name": "poster",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "poster[${2:options%keyvals}]{${1:stuff%text}}",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PosterPage"
+    },
+    {
+      "name": "PosterPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "PosterPage[${1:options%keyvals}]",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "POSTERclip",
+      "unusual": true
+    },
+    {
+      "name": "POSTERcrop",
+      "unusual": true
+    },
+    {
+      "name": "POSTERhcenter",
+      "unusual": true
+    },
+    {
+      "name": "POSTERimageheight",
+      "unusual": true
+    },
+    {
+      "name": "POSTERimagewidth",
+      "unusual": true
+    },
+    {
+      "name": "POSTERlandscape",
+      "unusual": true
+    },
+    {
+      "name": "POSTERpaperheight",
+      "unusual": true
+    },
+    {
+      "name": "POSTERpaperwidth",
+      "unusual": true
+    },
+    {
+      "name": "POSTERvcenter",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Poster"
+    },
+    {
+      "name": "Poster",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\poster,\\begin{Poster},\\PosterPage"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\poster,\\begin{Poster},\\PosterPage": [
+      "paperwidth=",
+      "paperheight=",
+      "imagewidth=",
+      "imageheight=",
+      "landscape",
+      "hcenter",
+      "vcenter",
+      "crop=${1|none,corners,full|}",
+      "clip=${1|none,pstricks|}"
+    ]
+  },
+  "args": []
+}

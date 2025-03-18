@@ -1,94 +1,156 @@
 {
-  "includes": {
-    "sdapsbase": [],
-    "sdapsarray": []
-  },
-  "macros": {
-    "choice{}": {
-      "snippet": "choice{${1:text}}"
+  "deps": [
+    {
+      "name": "sdapsbase"
     },
-    "choice[]{}": {
-      "snippet": "choice[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "question{}": {
-      "snippet": "question{${1:text}}"
-    },
-    "question[]{}": {
-      "snippet": "question[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "range{}{}{}{}": {
-      "snippet": "range{${1:question}}{${2:lower}}{${3:upper}}{${4:other}}"
-    },
-    "range[]{}{}{}{}": {
-      "snippet": "range[${5:options}]{${1:question}}{${2:lower}}{${3:upper}}{${4:other}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "sdapsarray"
     }
-  },
-  "envs": {
-    "choicearray": {},
-    "choicearray[]": {
+  ],
+  "macros": [
+    {
+      "name": "choice",
+      "arg": {
+        "format": "{}",
+        "snippet": "choice{${1:text}}"
+      }
+    },
+    {
+      "name": "choice",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "choice[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\choice"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "{}",
+        "snippet": "question{${1:text}}"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "question[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\question"
+        ],
+        "keyPos": 0
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "range",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "range{${1:question%text}}{${2:lower%text}}{${3:upper%text}}{${4:other%text}}"
+      }
+    },
+    {
+      "name": "range",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "range[${5:options%keyvals}]{${1:question%text}}{${2:lower%text}}{${3:upper%text}}{${4:other%text}}",
+        "keys": [
+          "\\range"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "choicearray"
+    },
+    {
       "name": "choicearray",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{choicearray},\\begin{optionarray}",
+          "\\begin{choicearray}"
+        ],
+        "keyPos": 0
+      }
     },
-    "optionarray": {},
-    "optionarray[]": {
+    {
+      "name": "optionarray"
+    },
+    {
       "name": "optionarray",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{choicearray},\\begin{optionarray}"
+        ],
+        "keyPos": 0
+      }
     },
-    "rangearray": {},
-    "rangearray[]": {
+    {
+      "name": "rangearray"
+    },
+    {
       "name": "rangearray",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{rangearray}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{choicearray},\\begin{optionarray}": [
+      "align=",
+      "noalign",
+      "horizontal",
+      "layouter=${1|default,rotated|}",
+      "angle=${1:angle}",
+      "vertical",
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
+    ],
+    "\\begin{choicearray}": [
+      "type=${1|multichoice,singlechoice|}",
+      "multichoice",
+      "singlechoice"
+    ],
+    "\\choice": [
       "text=${1:text}",
       "var=${1:variable}",
       "val=${1:value}"
     ],
-    [
+    "\\question": [
       "text=${1:text}",
       "var=${1:variable}",
       "range=${1:list}"
     ],
-    [
+    "\\begin{rangearray}": [
+      "count=${1:integer}",
+      "align=${1:string}",
+      "other"
+    ],
+    "\\range": [
       "text=${1:text}",
       "var=${1:variable}",
       "upper=${1:text}",
       "lower=${1:text}",
       "other"
-    ],
-    [
-      "align=",
-      "noalign",
-      "horizontal",
-      "layouter=",
-      "angle=${1:angle}",
-      "vertical",
-      "type=",
-      "multichoice",
-      "singlechoice",
-      "type=",
-      "multichoice",
-      "singlechoice"
-    ],
-    [
-      "count=${1:integer}",
-      "align=${1:string}",
-      "other"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,184 +1,468 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "captionsetup[]{}": {
-      "snippet": "captionsetup[${2:float type}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "captionsetup{}": {
-      "snippet": "captionsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "captionsetup*[]{}": {
-      "snippet": "captionsetup*[${2:float type}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "captionsetup*{}": {
-      "snippet": "captionsetup*{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "DeclareCaptionStyle{}[]{}": {
-      "snippet": "DeclareCaptionStyle{${1:name}}[${2:additional options}]{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
-    },
-    "DeclareCaptionStyle{}{}": {
-      "snippet": "DeclareCaptionStyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "clearcaptionsetup[]{}": {
-      "snippet": "clearcaptionsetup[${2:option}]{${1:float type}}"
-    },
-    "clearcaptionsetup{}": {
-      "snippet": "clearcaptionsetup{${1:float type}}"
-    },
-    "clearcaptionsetup*[]{}": {
-      "snippet": "clearcaptionsetup*[${2:option}]{${1:float type}}"
-    },
-    "clearcaptionsetup*{}": {
-      "snippet": "clearcaptionsetup*{${1:float type}}"
-    },
-    "centerfirst": {},
-    "centerlast": {},
-    "showcaptionsetup{}": {
-      "snippet": "showcaptionsetup{${1:float type}}"
-    },
-    "bothIfFirst{}{}": {
-      "snippet": "bothIfFirst{${1:first arg}}{${2:second arg}}"
-    },
-    "bothIfSecond{}{}": {
-      "snippet": "bothIfSecond{${1:first arg}}{${2:second arg}}"
-    },
-    "DeclareCaptionFont{}{}": {
-      "snippet": "DeclareCaptionFont{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionFormat{}{}": {
-      "snippet": "DeclareCaptionFormat{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionFormat*{}{}": {
-      "snippet": "DeclareCaptionFormat*{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionJustification{}{}": {
-      "snippet": "DeclareCaptionJustification{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionLabelFormat{}{}": {
-      "snippet": "DeclareCaptionLabelFormat{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionLabelSeparator{}{}": {
-      "snippet": "DeclareCaptionLabelSeparator{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionLabelSeparator*{}{}": {
-      "snippet": "DeclareCaptionLabelSeparator*{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionListFormat{}{}": {
-      "snippet": "DeclareCaptionListFormat{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionTextFormat{}{}": {
-      "snippet": "DeclareCaptionTextFormat{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionSubType{}": {
-      "snippet": "DeclareCaptionSubType{${1:type}}"
-    },
-    "DeclareCaptionSubType[]{}": {
-      "snippet": "DeclareCaptionSubType[${2:numbering scheme}]{${1:type}}"
-    },
-    "DeclareCaptionSubType*{}": {
-      "snippet": "DeclareCaptionSubType*{${1:type}}"
-    },
-    "DeclareCaptionSubType*[]{}": {
-      "snippet": "DeclareCaptionSubType*[${2:numbering scheme}]{${1:type}}"
-    },
-    "AfterCaptionPackage{}": {
-      "snippet": "AfterCaptionPackage{${1:code}}"
-    },
-    "AtBeginCaption{}": {
-      "snippet": "AtBeginCaption{${1:code}}"
-    },
-    "AtCaptionPackage{}": {
-      "snippet": "AtCaptionPackage{${1:code}}"
-    },
-    "AtEndCaption{}": {
-      "snippet": "AtEndCaption{${1:code}}"
-    },
-    "DeclareCaptionOption{}{}": {
-      "snippet": "DeclareCaptionOption{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionOption*{}{}": {
-      "snippet": "DeclareCaptionOption*{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionOptionNoValue{}{}": {
-      "snippet": "DeclareCaptionOptionNoValue{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionOptionNoValue*{}{}": {
-      "snippet": "DeclareCaptionOptionNoValue*{${1:name}}{${2:code}}"
-    },
-    "SetCaptionDefault{}{}": {
-      "snippet": "SetCaptionDefault{${1:option}}{${2:default}}"
-    },
-    "SetCaptionDefault*{}{}": {
-      "snippet": "SetCaptionDefault*{${1:option}}{${2:default}}"
-    },
-    "SetCaptionFallback{}{}": {
-      "snippet": "SetCaptionFallback{${1:option}}{${2:fallback value}}"
-    },
-    "captionfont": {},
-    "captionlabelfont": {},
-    "captiontextfont": {},
-    "captionmargin": {},
-    "captionsize": {},
-    "DeclareCaptionType[]{}": {
-      "snippet": "DeclareCaptionType[${2:options}]{${1:envname}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DeclareCaptionType{}": {
-      "snippet": "DeclareCaptionType{${1:envname}}"
-    },
-    "DeclareCaptionBox{}{}": {
-      "snippet": "DeclareCaptionBox{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionLength{}{}": {
-      "snippet": "DeclareCaptionLength{${1:name}}{${2:length}}"
-    },
-    "DeclareCaptionSinglelinecheck{}{}": {
-      "snippet": "DeclareCaptionSinglelinecheck{${1:name}}{${2:code}}"
-    },
-    "ForEachCaptionSubType{}{}": {
-      "snippet": "ForEachCaptionSubType{${1:subtype list}}{${2:code}}"
-    },
-    "ForEachCaptionType{}{}": {
-      "snippet": "ForEachCaptionType{${1:type list}}{${2:code}}"
-    },
-    "IfCaptionOptionCheck{}{}": {
-      "snippet": "IfCaptionOptionCheck{${1:true code}}{${2:false code}}"
-    },
-    "captionnewline": {},
-    "DeclareCaptionPosition{}{}": {
-      "snippet": "DeclareCaptionPosition{${1:name}}{${2:code}}"
-    },
-    "DeclareCaptionAutoPosition": {},
-    "captionlisttype": {},
-    "ifsinglelinecaption": {},
-    "singlelinecaptionfalse": {},
-    "singlelinecaptiontrue": {},
-    "AtCaptionSingleLineCheck{}": {
-      "snippet": "AtCaptionSingleLineCheck{${1:code}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "captionsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captionsetup[${2:float type}]{${1:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "captionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "captionsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "captionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captionsetup*[${2:float type}]{${1:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "captionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "captionsetup*{${1:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareCaptionStyle",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "DeclareCaptionStyle{${1:name%specialDef}}[${3:additional options}]{${2:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DeclareCaptionStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionStyle{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "clearcaptionsetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "clearcaptionsetup[${2:option%keyvals}]{${1:float type}}",
+        "keys": [
+          "\\clearcaptionsetup#c,\\clearcaptionsetup*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clearcaptionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "clearcaptionsetup{${1:float type}}"
+      }
+    },
+    {
+      "name": "clearcaptionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "clearcaptionsetup*[${2:option%keyvals}]{${1:float type}}",
+        "keys": [
+          "\\clearcaptionsetup#c,\\clearcaptionsetup*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "clearcaptionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "clearcaptionsetup*{${1:float type}}"
+      }
+    },
+    {
+      "name": "clearcaptionsetup*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "clearcaptionsetup*[${2:option%keyvals}]{${1:float type}}",
+        "keys": [
+          "\\clearcaptionsetup#c,\\clearcaptionsetup*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "centerfirst"
+    },
+    {
+      "name": "centerlast"
+    },
+    {
+      "name": "showcaptionsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "showcaptionsetup{${1:float type}}"
+      }
+    },
+    {
+      "name": "bothIfFirst",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bothIfFirst{${1:first arg}}{${2:second arg}}"
+      }
+    },
+    {
+      "name": "bothIfSecond",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bothIfSecond{${1:first arg}}{${2:second arg}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionFont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionFont{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionFormat{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionFormat*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionFormat*{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionJustification",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionJustification{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionLabelFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionLabelFormat{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionLabelSeparator",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionLabelSeparator{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionLabelSeparator*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionLabelSeparator*{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionListFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionListFormat{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionTextFormat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionTextFormat{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionSubType",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareCaptionSubType{${1:type}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionSubType",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeclareCaptionSubType[${2:numbering scheme}]{${1:type}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionSubType*",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareCaptionSubType*{${1:type}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionSubType*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeclareCaptionSubType*[${2:numbering scheme}]{${1:type}}"
+      }
+    },
+    {
+      "name": "AfterCaptionPackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AfterCaptionPackage{${1:code}}"
+      }
+    },
+    {
+      "name": "AtBeginCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtBeginCaption{${1:code}}"
+      }
+    },
+    {
+      "name": "AtCaptionPackage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtCaptionPackage{${1:code}}"
+      }
+    },
+    {
+      "name": "AtEndCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtEndCaption{${1:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionOption{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionOption*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionOption*{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionOptionNoValue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionOptionNoValue{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionOptionNoValue*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionOptionNoValue*{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "SetCaptionDefault",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetCaptionDefault{${1:option}}{${2:default}}"
+      }
+    },
+    {
+      "name": "SetCaptionDefault*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetCaptionDefault*{${1:option}}{${2:default}}"
+      }
+    },
+    {
+      "name": "SetCaptionFallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetCaptionFallback{${1:option}}{${2:fallback value}}"
+      }
+    },
+    {
+      "name": "captionfont",
+      "unusual": true
+    },
+    {
+      "name": "captionlabelfont",
+      "unusual": true
+    },
+    {
+      "name": "captiontextfont",
+      "unusual": true
+    },
+    {
+      "name": "captionmargin",
+      "unusual": true
+    },
+    {
+      "name": "captionsize",
+      "unusual": true
+    },
+    {
+      "name": "DeclareCaptionType",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeclareCaptionType[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\DeclareCaptionType"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareCaptionType",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareCaptionType{${1:envname}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionBox{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionLength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionLength{${1:name}}{${2:length}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionSinglelinecheck",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionSinglelinecheck{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ForEachCaptionSubType",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ForEachCaptionSubType{${1:subtype list}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ForEachCaptionType",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ForEachCaptionType{${1:type list}}{${2:code}}"
+      }
+    },
+    {
+      "name": "IfCaptionOptionCheck",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfCaptionOptionCheck{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "captionnewline",
+      "unusual": true
+    },
+    {
+      "name": "DeclareCaptionPosition",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionPosition{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareCaptionAutoPosition",
+      "unusual": true
+    },
+    {
+      "name": "captionlisttype",
+      "unusual": true
+    },
+    {
+      "name": "ifsinglelinecaption",
+      "unusual": true
+    },
+    {
+      "name": "singlelinecaptionfalse",
+      "unusual": true
+    },
+    {
+      "name": "singlelinecaptiontrue",
+      "unusual": true
+    },
+    {
+      "name": "AtCaptionSingleLineCheck",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtCaptionSingleLineCheck{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c": [
       "aboveskip=",
       "belowskip=",
-      "box=",
+      "box=${1|empty,none,parbox,colorbox|}",
       "boxcolor=",
       "boxsep=",
       "calcmargin*=",
@@ -187,22 +471,22 @@
       "calcwidth=",
       "debug",
       "figurename=${1:name}",
-      "figureposition=",
+      "figureposition=${1|top,above,bottom,below,auto|}",
       "figurewithin=${1:counter}",
       "figurewithout",
-      "font+=",
-      "font=",
-      "format=",
+      "font+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "font=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "format=${1|plain,hang|}",
       "hangindent=",
       "indention=",
-      "justification=",
-      "labelfont+=",
-      "labelfont=",
-      "labelformat=",
-      "labelsep=",
-      "list=",
+      "justification=${1|justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft|}",
+      "labelfont+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "labelfont=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "labelformat=${1|original,empty,simple,brace,parens,autodot,unnumbered|}",
+      "labelsep=${1|none,colon,period,space,quad,newline,endash,gobble,gobbletwo|}",
+      "list=${1|on,off,true,false|}",
       "listfigurename=${1:name}",
-      "listformat=",
+      "listformat=${1|empty,simple,parens,subsimple,subparens,period,subperiod|}",
       "listtablename=${1:name}",
       "listtype=${1:list type}",
       "listtype+=${1:list type ext}",
@@ -214,38 +498,105 @@
       "minmargin=",
       "name=${1:name}",
       "oneside",
-      "parbox=",
+      "parbox=${1|empty,none,parbox,colorbox|}",
       "parindent=",
       "parskip=",
-      "position=",
+      "position=${1|top,above,bottom,below,auto|}",
       "singlelinecheck",
       "skip=",
-      "strut=",
+      "strut=${1|on,off|}",
       "style=",
       "style*=",
       "tablename=${1:name}",
-      "tableposition=",
+      "tableposition=${1|top,above,bottom,below,auto|}",
       "tablewithin=${1:counter}",
       "tablewithout",
-      "textfont+=",
-      "textfont=",
-      "textformat=",
+      "textfont+=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "textfont=${4|scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=${1:factor}},normalcolor,{color=${2:color}},normal,{hypersetup=${3:options}},sansmath|}",
+      "textformat=${1|empty,simple,period|}",
       "twoside",
       "width*=",
       "width=",
       "within=${1:counter}",
       "without"
     ],
-    [
+    "\\clearcaptionsetup#c,\\clearcaptionsetup*#c": [
+      "aboveskip",
+      "belowskip",
+      "box",
+      "boxcolor",
+      "boxsep",
+      "calcmargin",
+      "calcmargin*",
+      "calcwidth",
+      "calcwidth*",
+      "figurename",
+      "figureposition",
+      "figurewithin",
+      "figurewithout",
+      "font",
+      "font+",
+      "format",
+      "hangindent",
+      "indention",
+      "justification",
+      "labelfont",
+      "labelfont+",
+      "labelformat",
+      "labelsep",
+      "list",
+      "listfigurename",
+      "listformat",
+      "listtablename",
+      "listtype",
+      "listtype+",
+      "lofdepth",
+      "lotdepth",
+      "margin",
+      "margin*",
+      "maxmargin",
+      "minmargin",
+      "name",
+      "oneside",
+      "parbox",
+      "parindent",
+      "parskip",
+      "position",
+      "singlelinecheck",
+      "skip",
+      "strut",
+      "style",
+      "style*",
+      "subtype",
+      "subtype*",
+      "tablename",
+      "tableposition",
+      "tablewithin",
+      "tablewithout",
+      "textfont",
+      "textfont+",
+      "textformat",
+      "twoside",
+      "type",
+      "type*",
+      "width",
+      "width*",
+      "within",
+      "without"
+    ],
+    "\\DeclareCaptionType": [
       "fileext=${1:file extension}",
       "listname=${1:list name}",
       "name=${1:name}",
       "placement=${1:combination of htbp}",
       "within=${1:<counter> or none}",
-      "chapterlistsgaps=",
+      "chapterlistsgaps=${1|on,off|}",
       "without",
       "planb",
       "planb-fileext=${1:file extension}"
     ]
+  },
+  "args": [
+    "\\captionsetup#c,\\captionsetup*#c,\\usepackage/caption#c,\\DeclareCaptionStyle#c,\\bicaptionsetup#c,\\bicaptionsetup*#c,\\subcaptionsetup#c,\\subcaptionsetup*#c"
   ]
 }

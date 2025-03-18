@@ -1,50 +1,81 @@
 {
-  "includes": {
-    "url": []
-  },
-  "macros": {
-    "pVariable{}": {
-      "snippet": "pVariable{${1:name}}"
-    },
-    "pVar{}": {
-      "snippet": "pVar{${1:name}}"
-    },
-    "pKeyword{}": {
-      "snippet": "pKeyword{${1:keyword}}"
-    },
-    "pKey{}": {
-      "snippet": "pKey{${1:keyword}}"
-    },
-    "pExpression{}": {
-      "snippet": "pExpression{${1:expression}}"
-    },
-    "pExp{}": {
-      "snippet": "pExp{${1:expression}}"
-    },
-    "pComment{}": {
-      "snippet": "pComment{${1:text}}"
-    },
-    "pTrue": {},
-    "pFalse": {},
-    "pFonts{}{}{}": {
-      "snippet": "pFonts{${1:variable font}}{${2:keyword font}}{${3:comment font}}"
-    },
-    "pBoolValue{}{}": {
-      "snippet": "pBoolValue{${1:true}}{${2:false}}"
-    },
-    "sVar{}": {
-      "snippet": "sVar{${1:name}}"
-    },
-    "sKey{}": {
-      "snippet": "sKey{${1:keyword}}"
-    },
-    "sTrue": {},
-    "sFalse": {},
-    "sBoolValue{}{}": {
-      "snippet": "sBoolValue{${1:true}}{${2:false}}"
+  "deps": [
+    {
+      "name": "url"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "pVariable",
+      "arg": {
+        "format": "{}",
+        "snippet": "pVariable{${1:name%definition}}"
+      }
+    },
+    {
+      "name": "pVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "pVar{${1:name%definition}}"
+      }
+    },
+    {
+      "name": "pKeyword",
+      "arg": {
+        "format": "{}",
+        "snippet": "pKeyword{${1:keyword%definition}}"
+      }
+    },
+    {
+      "name": "pKey",
+      "arg": {
+        "format": "{}",
+        "snippet": "pKey{${1:keyword%definition}}"
+      }
+    },
+    {
+      "name": "pExpression",
+      "arg": {
+        "format": "{}",
+        "snippet": "pExpression{${1:expression%definition}}"
+      }
+    },
+    {
+      "name": "pExp",
+      "arg": {
+        "format": "{}",
+        "snippet": "pExp{${1:expression%definition}}"
+      }
+    },
+    {
+      "name": "pComment",
+      "arg": {
+        "format": "{}",
+        "snippet": "pComment{${1:text}}"
+      }
+    },
+    {
+      "name": "pTrue"
+    },
+    {
+      "name": "pFalse"
+    },
+    {
+      "name": "pFonts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pFonts{${1:variable font}}{${2:keyword font}}{${3:comment font}}"
+      }
+    },
+    {
+      "name": "pBoolValue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pBoolValue{${1:true}}{${2:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

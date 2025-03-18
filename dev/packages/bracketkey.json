@@ -1,41 +1,98 @@
 {
-  "includes": {
-    "calc": [],
-    "xifthen": [],
-    "coolstr": [],
-    "hyperref": []
-  },
-  "macros": {
-    "leadONE{}{}": {
-      "snippet": "leadONE{${1:backref}}{${2:text}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "leadTWO{}": {
-      "snippet": "leadTWO{${1:text}}"
+    {
+      "name": "xifthen"
     },
-    "name{}{}{}": {
-      "snippet": "name{${1:text1}}{${2:text2}}{${3:text3}}"
+    {
+      "name": "coolstr"
     },
-    "hang": {},
-    "theindex": {},
-    "thebackindex": {},
-    "thekey": {},
-    "gprefix": {},
-    "altindent": {},
-    "keylabelwidth": {},
-    "oldparindent": {},
-    "keytitle{}": {
-      "snippet": "keytitle{${1:text}}"
-    },
-    "keytitle[]{}": {
-      "snippet": "keytitle[${2:it}]{${1:text}}"
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "key{}": {
+  ],
+  "macros": [
+    {
+      "name": "leadONE",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "leadONE{${1:backref}}{${2:text}}"
+      }
+    },
+    {
+      "name": "leadTWO",
+      "arg": {
+        "format": "{}",
+        "snippet": "leadTWO{${1:text}}"
+      }
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "name{${1:text1%text}}{${2:text2%text}}{${3:text3%text}}"
+      }
+    },
+    {
+      "name": "hang",
+      "unusual": true
+    },
+    {
+      "name": "theindex",
+      "unusual": true
+    },
+    {
+      "name": "thebackindex",
+      "unusual": true
+    },
+    {
+      "name": "thekey",
+      "unusual": true
+    },
+    {
+      "name": "gprefix",
+      "unusual": true
+    },
+    {
+      "name": "altindent",
+      "unusual": true
+    },
+    {
+      "name": "keylabelwidth",
+      "unusual": true
+    },
+    {
+      "name": "oldparindent",
+      "unusual": true
+    },
+    {
+      "name": "keytitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "keytitle{${1:text}}"
+      }
+    },
+    {
+      "name": "keytitle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "keytitle[${2:it}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "key",
-      "snippet": "{${1:prefix}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prefix}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

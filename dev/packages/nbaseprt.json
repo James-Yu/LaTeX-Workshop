@@ -1,46 +1,74 @@
 {
-  "includes": {
-    "numprint": [],
-    "ifthen": []
-  },
-  "macros": {
-    "np{}": {
-      "snippet": "np{${1:number}}",
-      "option": "np"
+  "deps": [
+    {
+      "name": "numprint"
     },
-    "np[]{}": {
-      "snippet": "np[${2:unit}]{${1:number}}",
-      "option": "np"
-    },
-    "nbp{}": {
-      "snippet": "nbp{${1:number}}",
-      "option": "np"
-    },
-    "nbaseprint{}": {
-      "snippet": "nbaseprint{${1:number}}"
-    },
-    "nbaseposttext": {},
-    "nbasepretext": {}
-  },
-  "envs": {},
-  "options": [
-    "nosepfour",
-    "sepfour",
-    "noaddmissingzero",
-    "addmissingzero",
-    "noaddplus",
-    "addplus",
-    "noaddplusexponent",
-    "addplusexponent",
-    "noautolanguage",
-    "autolanguage",
-    "np",
-    "oldcolumntypes",
-    "newcolumntypes",
-    "boldmath",
-    "warning",
-    "error",
-    "debug"
+    {
+      "name": "ifthen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "np",
+      "if": "np",
+      "arg": {
+        "format": "{}",
+        "snippet": "np{${1:number}}"
+      }
+    },
+    {
+      "name": "np",
+      "if": "np",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "np[${2:unit}]{${1:number}}"
+      }
+    },
+    {
+      "name": "nbp",
+      "if": "np",
+      "arg": {
+        "format": "{}",
+        "snippet": "nbp{${1:number}}"
+      }
+    },
+    {
+      "name": "nbaseprint",
+      "arg": {
+        "format": "{}",
+        "snippet": "nbaseprint{${1:number}}"
+      }
+    },
+    {
+      "name": "nbaseposttext"
+    },
+    {
+      "name": "nbasepretext"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nbaseprt#c": [
+      "nosepfour",
+      "sepfour",
+      "noaddmissingzero",
+      "addmissingzero",
+      "noaddplus",
+      "addplus",
+      "noaddplusexponent",
+      "addplusexponent",
+      "noautolanguage",
+      "autolanguage",
+      "np",
+      "oldcolumntypes",
+      "newcolumntypes",
+      "boldmath",
+      "warning",
+      "error",
+      "debug"
+    ]
+  },
+  "args": [
+    "\\usepackage/nbaseprt#c"
+  ]
 }

@@ -1,30 +1,74 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "multido": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setpstgraph{}": {
-      "snippet": "setpstgraph{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pstlabel{}{}": {
-      "snippet": "pstlabel{${1:x-label}}{${2:y-label}}"
+    {
+      "name": "pst-plot"
     },
-    "pstfileplot{}": {
-      "snippet": "pstfileplot{${1:file}}"
+    {
+      "name": "multido"
     },
-    "pstfileplot[]{}": {
-      "snippet": "pstfileplot[${2:pstricks options}]{${1:file}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "setpstgraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpstgraph{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{pstgraph},\\setpstgraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pstlabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstlabel{${1:x-label}}{${2:y-label}}"
+      }
+    },
+    {
+      "name": "pstfileplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstfileplot{${1:file}}"
+      }
+    },
+    {
+      "name": "pstfileplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pstfileplot[${2:pstricks options}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "pstgraph",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x0},${2:y0})"
+      }
+    },
+    {
+      "name": "pstgraph",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:options%keyvals}](${2:x0},${3:y0})",
+        "keys": [
+          "\\begin{pstgraph},\\setpstgraph"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{pstgraph},\\setpstgraph": [
       "xmin=${1:number}",
       "xmax=${1:number}",
       "ymin=${1:number}",
@@ -47,5 +91,6 @@
       "framewidth=",
       "framecolor="
     ]
-  ]
+  },
+  "args": []
 }

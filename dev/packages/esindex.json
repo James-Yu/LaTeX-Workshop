@@ -1,50 +1,116 @@
 {
-  "includes": {},
-  "macros": {
-    "esindex{}": {
-      "snippet": "esindex{${1:entry}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "esindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "esindex{${1:entry}}"
+      }
     },
-    "esindexactual{}{}": {
-      "snippet": "esindexactual{${1:entry}}{${2:text}}"
+    {
+      "name": "esindexactual",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "esindexactual{${1:entry}}{${2:text}}"
+      }
     },
-    "esindexsort{}{}": {
-      "snippet": "esindexsort{${1:entry}}{${2:replacement}}"
+    {
+      "name": "esindexsort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "esindexsort{${1:entry}}{${2:replacement}}"
+      }
     },
-    "everyesindex{}": {
-      "snippet": "everyesindex{${1:code}}"
+    {
+      "name": "everyesindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "everyesindex{${1:code}}"
+      }
     },
-    "ignorewords{}": {
-      "snippet": "ignorewords{${1:word}}"
+    {
+      "name": "ignorewords",
+      "arg": {
+        "format": "{}",
+        "snippet": "ignorewords{${1:word}}"
+      }
     },
-    "esindexexpandkey": {},
-    "esindexexpandkeys": {},
-    "esindexexpandsubkey": {},
-    "esindexexpandsubsubkey": {},
-    "esindexkey": {},
-    "esindexlanguage": {},
-    "esindexlastchar": {},
-    "esindexreplace{}{}": {
-      "snippet": "esindexreplace{${1:text}}{${2:replacement}}"
+    {
+      "name": "esindexexpandkey",
+      "unusual": true
     },
-    "esindexreplacesub{}{}{}": {
-      "snippet": "esindexreplacesub{${1:text}}{${2:replacement}}{${3:integer}}"
+    {
+      "name": "esindexexpandkeys",
+      "unusual": true
     },
-    "esindexreplacesubsub{}{}{}{}": {
-      "snippet": "esindexreplacesubsub{${1:text}}{${2:replacement}}{${3:integer1}}{${4:integer2}}"
+    {
+      "name": "esindexexpandsubkey",
+      "unusual": true
     },
-    "esindexsubkey": {},
-    "esindexsubsubkey": {}
-  },
-  "envs": {},
-  "options": [
-    "ignorespaces",
-    "replaceindex",
-    "nospanish",
-    "babel",
-    "encap=",
-    "level=",
-    "actual=",
-    "quote="
+    {
+      "name": "esindexexpandsubsubkey",
+      "unusual": true
+    },
+    {
+      "name": "esindexkey",
+      "unusual": true
+    },
+    {
+      "name": "esindexlanguage",
+      "unusual": true
+    },
+    {
+      "name": "esindexlastchar",
+      "unusual": true
+    },
+    {
+      "name": "esindexreplace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "esindexreplace{${1:text%plain}}{${2:replacement}}"
+      }
+    },
+    {
+      "name": "esindexreplacesub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "esindexreplacesub{${1:text%plain}}{${2:replacement}}{${3:integer}}"
+      }
+    },
+    {
+      "name": "esindexreplacesubsub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "esindexreplacesubsub{${1:text%plain}}{${2:replacement}}{${3:integer1}}{${4:integer2}}"
+      }
+    },
+    {
+      "name": "esindexsubkey",
+      "unusual": true
+    },
+    {
+      "name": "esindexsubsubkey",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/esindex#c": [
+      "ignorespaces",
+      "replaceindex",
+      "nospanish",
+      "babel",
+      "encap=",
+      "level=",
+      "actual=",
+      "quote="
+    ]
+  },
+  "args": [
+    "\\usepackage/esindex#c"
+  ]
 }

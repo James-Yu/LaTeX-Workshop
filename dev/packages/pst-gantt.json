@@ -1,46 +1,87 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-grad": [],
-    "pst-xkey": [],
-    "multido": []
-  },
-  "macros": {
-    "PstGanttChart{}{}": {
-      "snippet": "PstGanttChart{${1:vertical units}}{${2:horizontal units}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstGanttChart[]{}{}": {
-      "snippet": "PstGanttChart[${3:options}]{${1:vertical units}}{${2:horizontal units}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "endPstGanttChart": {},
-    "PstGanttTask{}{}": {
-      "snippet": "PstGanttTask{${1:start}}{${2:end}}"
+    {
+      "name": "pst-grad"
     },
-    "PstGanttTask[]{}{}": {
-      "snippet": "PstGanttTask[${3:options}]{${1:start}}{${2:end}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     },
-    "PSTganttLoaded": {}
-  },
-  "envs": {
-    "PstGanttChart{}{}": {
-      "name": "PstGanttChart",
-      "snippet": "{${1:vertical units}}{${2:horizontal units}}"
-    },
-    "PstGanttChart[]{}{}": {
-      "name": "PstGanttChart",
-      "snippet": "[${3:options}]{${1:vertical units}}{${2:horizontal units}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "multido"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "PstGanttChart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PstGanttChart{${1:vertical units}}{${2:horizontal units}}"
+      }
+    },
+    {
+      "name": "PstGanttChart",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "PstGanttChart[${3:options%keyvals}]{${1:vertical units}}{${2:horizontal units}}",
+        "keys": [
+          "\\PstGanttChart#c,\\begin{PstGanttChart}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "endPstGanttChart",
+      "unusual": true
+    },
+    {
+      "name": "PstGanttTask",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PstGanttTask{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "PstGanttTask",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "PstGanttTask[${3:options%keyvals}]{${1:start}}{${2:end}}",
+        "keys": [
+          "\\PstGanttTask#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "PstGanttChart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:vertical units}}{${2:horizontal units}}"
+      }
+    },
+    {
+      "name": "PstGanttChart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:vertical units}}{${2:horizontal units}}",
+        "keys": [
+          "\\PstGanttChart#c,\\begin{PstGanttChart}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\PstGanttChart#c,\\begin{PstGanttChart}#c": [
       "PstPicture",
       "ChartShowIntervals",
       "ChartStartInterval=${1:number}",
@@ -55,11 +96,12 @@
       "xunit=${1:number}",
       "yunit=${1:number}"
     ],
-    [
+    "\\PstGanttTask#c": [
       "TaskUnitType=${1:text}",
       "TaskOutsideLabel={${1:text}}",
       "TaskInsideLabel={${1:text}}",
       "TaskStyle=${1:style}"
     ]
-  ]
+  },
+  "args": []
 }

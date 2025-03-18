@@ -1,45 +1,89 @@
 {
-  "includes": {
-    "pdfbase": []
-  },
-  "macros": {
-    "xsbox{}{}": {
-      "snippet": "xsbox{${1:name}}{${2:content}}"
-    },
-    "xsavebox{}{}": {
-      "snippet": "xsavebox{${1:name}}{${2:content}}"
-    },
-    "xsavebox{}[]{}": {
-      "snippet": "xsavebox{${1:name}}[${2:width}]{${3:content}}"
-    },
-    "xsavebox{}[][]{}": {
-      "snippet": "xsavebox{${1:name}}[${2:width}][${3:position}]{${4:content}}"
-    },
-    "xsavebox*{}{}": {
-      "snippet": "xsavebox*{${1:name}}{${2:content}}"
-    },
-    "xsavebox*{}[]{}": {
-      "snippet": "xsavebox*{${1:name}}[${2:width}]{${3:content}}"
-    },
-    "xsavebox*{}[][]{}": {
-      "snippet": "xsavebox*{${1:name}}[${2:width}][${3:position}]{${4:content}}"
-    },
-    "xusebox{}": {
-      "snippet": "xusebox{${1:name}}"
+  "deps": [
+    {
+      "name": "pdfbase"
     }
-  },
-  "envs": {
-    "xlrbox{}": {
-      "name": "xlrbox",
-      "snippet": "{${1:name}}"
-    },
-    "xlrbox*{}": {
-      "name": "xlrbox*",
-      "snippet": "{${1:name}}"
-    }
-  },
-  "options": [
-    "margin="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "xsbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "xsbox{${1:name}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "xsavebox{${1:name}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "xsavebox{${1:name}}[${3:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "xsavebox{${1:name}}[${3:width}][${4:position}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "xsavebox*{${1:name}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "xsavebox*{${1:name}}[${3:width}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xsavebox*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "xsavebox*{${1:name}}[${3:width}][${4:position}]{${2:content%text}}"
+      }
+    },
+    {
+      "name": "xusebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "xusebox{${1:name}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "xlrbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "xlrbox*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/xsavebox#c": [
+      "margin="
+    ]
+  },
+  "args": [
+    "\\usepackage/xsavebox#c"
+  ]
 }

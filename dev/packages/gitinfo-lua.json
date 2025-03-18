@@ -1,62 +1,141 @@
 {
-  "includes": {
-    "luacode": [],
-    "pgfopts": []
-  },
-  "macros": {
-    "gitdirectory{}": {
-      "snippet": "gitdirectory{${1:path}}"
+  "deps": [
+    {
+      "name": "luacode"
     },
-    "gitunsetdirectory": {},
-    "gitversion": {},
-    "gitdate": {},
-    "gitauthor": {},
-    "gitemail": {},
-    "dogitauthors": {},
-    "dogitauthors[]": {
-      "snippet": "dogitauthors[${1:conjunction}]"
-    },
-    "forgitauthors{}": {
-      "snippet": "forgitauthors{${1:csname}}"
-    },
-    "forgitauthors[]{}": {
-      "snippet": "forgitauthors[${2:conjunction}]{${1:csname}}"
-    },
-    "gitcommit{}{}": {
-      "snippet": "gitcommit{${1:csname}}{${2:revision}}"
-    },
-    "gitcommit[]{}{}": {
-      "snippet": "gitcommit[${3:format}]{${1:csname}}{${2:revision}}"
-    },
-    "forgitcommit{}{}": {
-      "snippet": "forgitcommit{${1:csname}}{${2:rev-spec}}"
-    },
-    "forgitcommit[]{}{}": {
-      "snippet": "forgitcommit[${3:format}]{${1:csname}}{${2:rev-spec}}"
-    },
-    "forgittag{}": {
-      "snippet": "forgittag{${1:csname}}"
-    },
-    "forgittag[]{}": {
-      "snippet": "forgittag[${2:format}]{${1:csname}}"
-    },
-    "forgittagseq{}": {
-      "snippet": "forgittagseq{${1:csname}}"
-    },
-    "gittag{}{}": {
-      "snippet": "gittag{${1:csname}}{${2:tag}}"
-    },
-    "gittag[]{}{}": {
-      "snippet": "gittag[${3:format}]{${1:csname}}{${2:tag}}"
+    {
+      "name": "pgfopts"
     }
-  },
-  "envs": {},
-  "options": [
-    "contrib",
-    "alpha",
-    "authors",
-    "titlepage",
-    "rootdir"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "gitdirectory",
+      "arg": {
+        "format": "{}",
+        "snippet": "gitdirectory{${1:path%definition}}"
+      }
+    },
+    {
+      "name": "gitunsetdirectory"
+    },
+    {
+      "name": "gitversion"
+    },
+    {
+      "name": "ifgitdirty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifgitdirty{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "gitdate"
+    },
+    {
+      "name": "gitauthor"
+    },
+    {
+      "name": "gitemail"
+    },
+    {
+      "name": "dogitauthors"
+    },
+    {
+      "name": "dogitauthors",
+      "arg": {
+        "format": "[]",
+        "snippet": "dogitauthors[${1:conjunction}]"
+      }
+    },
+    {
+      "name": "forgitauthors",
+      "arg": {
+        "format": "{}",
+        "snippet": "forgitauthors{${1:csname}}"
+      }
+    },
+    {
+      "name": "forgitauthors",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "forgitauthors[${2:conjunction}]{${1:csname}}"
+      }
+    },
+    {
+      "name": "gitcommit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gitcommit{${1:csname}}{${2:revision}}"
+      }
+    },
+    {
+      "name": "gitcommit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "gitcommit[${3:format}]{${1:csname}}{${2:revision}}"
+      }
+    },
+    {
+      "name": "forgitcommit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "forgitcommit{${1:csname}}{${2:rev-spec}}"
+      }
+    },
+    {
+      "name": "forgitcommit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "forgitcommit[${3:format}]{${1:csname}}{${2:rev-spec}}"
+      }
+    },
+    {
+      "name": "forgittag",
+      "arg": {
+        "format": "{}",
+        "snippet": "forgittag{${1:csname}}"
+      }
+    },
+    {
+      "name": "forgittag",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "forgittag[${2:format}]{${1:csname}}"
+      }
+    },
+    {
+      "name": "forgittagseq",
+      "arg": {
+        "format": "{}",
+        "snippet": "forgittagseq{${1:csname}}"
+      }
+    },
+    {
+      "name": "gittag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gittag{${1:csname}}{${2:tag}}"
+      }
+    },
+    {
+      "name": "gittag",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "gittag[${3:format}]{${1:csname}}{${2:tag}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/gitinfo-lua#c": [
+      "contrib",
+      "alpha",
+      "authors",
+      "titlepage",
+      "rootdir"
+    ]
+  },
+  "args": [
+    "\\usepackage/gitinfo-lua#c"
+  ]
 }

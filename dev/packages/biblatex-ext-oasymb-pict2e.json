@@ -1,20 +1,48 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": [],
-    "pict2e": [],
-    "xcolor": []
-  },
-  "macros": {
-    "oasymbol": {},
-    "DefineOASymbol": {},
-    "DefineOASymbol[]": {
-      "snippet": "DefineOASymbol[${1:symbol}]"
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "pict2e"
+    },
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {},
-  "options": [
-    "symbol="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "oasymbol"
+    },
+    {
+      "name": "DefineOASymbol"
+    },
+    {
+      "name": "DefineOASymbol",
+      "arg": {
+        "format": "[]",
+        "snippet": "DefineOASymbol[${1:symbol%keyvals}]",
+        "keys": [
+          "\\DefineOASymbol#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/biblatex-ext-oasymb-pict2e#c": [
+      "symbol=${1|plos,oanet|}"
+    ],
+    "\\DefineOASymbol#c": [
+      "plos",
+      "oanet"
+    ]
+  },
+  "args": [
+    "\\usepackage/biblatex-ext-oasymb-pict2e#c"
+  ]
 }

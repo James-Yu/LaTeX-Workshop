@@ -1,23 +1,46 @@
 {
-  "includes": {
-    "array": [],
-    "fltpoint": []
-  },
-  "macros": {
-    "rcRoundingtrue": {},
-    "rcRoundingfalse": {},
-    "rcDecimalSign{}": {
-      "snippet": "rcDecimalSign{${1:character}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "rcDecimalSignInput{}": {
-      "snippet": "rcDecimalSignInput{${1:character}}"
+    {
+      "name": "fltpoint"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rcRoundingtrue"
     },
-    "rcDecimalSignOutput{}": {
-      "snippet": "rcDecimalSignOutput{${1:character}}"
+    {
+      "name": "rcRoundingfalse"
     },
-    "ifrcRounding": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "rcDecimalSign",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcDecimalSign{${1:character}}"
+      }
+    },
+    {
+      "name": "rcDecimalSignInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcDecimalSignInput{${1:character}}"
+      }
+    },
+    {
+      "name": "rcDecimalSignOutput",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcDecimalSignOutput{${1:character}}"
+      }
+    },
+    {
+      "name": "ifrcRounding",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

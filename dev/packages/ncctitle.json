@@ -1,68 +1,151 @@
 {
-  "includes": {
-    "ncctitlepage": []
-  },
-  "macros": {
-    "titleareadefault": {},
-    "AuthorBeforeTitle": {},
-    "TitleBeforeAuthor": {},
-    "titlestretch{}": {
-      "snippet": "titlestretch{${1:value}}"
-    },
-    "titlestyle{}": {
-      "snippet": "titlestyle{${1:style}}"
-    },
-    "titlehead{}": {
-      "snippet": "titlehead{${1:text}}"
-    },
-    "titlesign{}": {
-      "snippet": "titlesign{${1:text}}"
-    },
-    "titlefoot{}": {
-      "snippet": "titlefoot{${1:text}}"
-    },
-    "titlecomment{}": {
-      "snippet": "titlecomment{${1:text}}"
-    },
-    "abstractstyle{}": {
-      "snippet": "abstractstyle{${1:style}}"
-    },
-    "bibindex[]{}": {
-      "snippet": "bibindex[${2:style}]{${1:bibindex}}"
-    },
-    "bibindex{}": {
-      "snippet": "bibindex{${1:bibindex}}"
-    },
-    "copyrighttable[]{}{}": {
-      "snippet": "copyrighttable[${3:style}]{${1:label}}{${2:\\item copyright\\\\ \\item copyright ...}}"
-    },
-    "copyrighttable{}{}": {
-      "snippet": "copyrighttable{${1:label}}{${2:\\item copyright\\\\ \\item copyright ...}}"
-    },
-    "fulltitle[]{}{}": {
-      "snippet": "fulltitle[${3:style}]{${1:authors}}{${2:full title}}"
-    },
-    "fulltitle{}{}": {
-      "snippet": "fulltitle{${1:authors}}{${2:full title}}"
-    },
-    "makelastpage": {},
-    "lastpagestretch{}": {
-      "snippet": "lastpagestretch{${1:value}}"
-    },
-    "lastpagestyle{}": {
-      "snippet": "lastpagestyle{${1:style}}"
-    },
-    "lastpagehead{}": {
-      "snippet": "lastpagehead{${1:text}}"
-    },
-    "lastpageinfo[]{}{}{}": {
-      "snippet": "lastpageinfo[${4:style}]{${1:designers}}{${2:publishing attributes}}{${3:publisher}}"
-    },
-    "lastpageinfo{}{}{}": {
-      "snippet": "lastpageinfo{${1:designers}}{${2:publishing attributes}}{${3:publisher}}"
+  "deps": [
+    {
+      "name": "ncctitlepage"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "titleareadefault",
+      "unusual": true
+    },
+    {
+      "name": "AuthorBeforeTitle"
+    },
+    {
+      "name": "TitleBeforeAuthor"
+    },
+    {
+      "name": "titlestretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlestretch{${1:value}}"
+      }
+    },
+    {
+      "name": "titlestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlestyle{${1:style}}"
+      }
+    },
+    {
+      "name": "titlehead",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlehead{${1:text}}"
+      }
+    },
+    {
+      "name": "titlesign",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlesign{${1:text}}"
+      }
+    },
+    {
+      "name": "titlefoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlefoot{${1:text}}"
+      }
+    },
+    {
+      "name": "titlecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlecomment{${1:text}}"
+      }
+    },
+    {
+      "name": "abstractstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "abstractstyle{${1:style}}"
+      }
+    },
+    {
+      "name": "bibindex",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bibindex[${2:style}]{${1:bibindex}}"
+      }
+    },
+    {
+      "name": "bibindex",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibindex{${1:bibindex}}"
+      }
+    },
+    {
+      "name": "copyrighttable",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "copyrighttable[${3:style}]{${1:label}}{${2:\\item copyright\\\\ \\item copyright ...}}"
+      }
+    },
+    {
+      "name": "copyrighttable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copyrighttable{${1:label}}{${2:\\item copyright\\\\ \\item copyright ...}}"
+      }
+    },
+    {
+      "name": "fulltitle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fulltitle[${3:style}]{${1:authors}}{${2:full title%text}}"
+      }
+    },
+    {
+      "name": "fulltitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fulltitle{${1:authors}}{${2:full title%text}}"
+      }
+    },
+    {
+      "name": "makelastpage"
+    },
+    {
+      "name": "lastpagestretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "lastpagestretch{${1:value}}"
+      }
+    },
+    {
+      "name": "lastpagestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "lastpagestyle{${1:style}}"
+      }
+    },
+    {
+      "name": "lastpagehead",
+      "arg": {
+        "format": "{}",
+        "snippet": "lastpagehead{${1:text}}"
+      }
+    },
+    {
+      "name": "lastpageinfo",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "lastpageinfo[${4:style}]{${1:designers}}{${2:publishing attributes%text}}{${3:publisher}}"
+      }
+    },
+    {
+      "name": "lastpageinfo",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lastpageinfo{${1:designers}}{${2:publishing attributes%text}}{${3:publisher}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

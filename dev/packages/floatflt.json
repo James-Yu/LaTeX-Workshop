@@ -1,100 +1,315 @@
 {
-  "includes": {},
-  "macros": {
-    "fltitem{}": {
-      "snippet": "fltitem{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "fltitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "fltitem{${1:text}}"
+      }
     },
-    "fltitem[]{}": {
-      "snippet": "fltitem[${2:space}]{${1:text}}"
+    {
+      "name": "fltitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fltitem[${2:space%l}]{${1:text}}"
+      }
     },
-    "fltditem{}{}": {
-      "snippet": "fltditem{${1:label}}{${2:text}}"
+    {
+      "name": "fltditem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fltditem{${1:label}}{${2:text}}"
+      }
     },
-    "fltditem[]{}{}": {
-      "snippet": "fltditem[${3:space}]{${1:label}}{${2:text}}"
+    {
+      "name": "fltditem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fltditem[${3:space%l}]{${1:label}}{${2:text}}"
+      }
     },
-    "figbox": {},
-    "tabbox": {},
-    "pagebox": {},
-    "ffigcount": {},
-    "ftabcount": {},
-    "fftest": {},
-    "hangcount": {},
-    "nosuccesstryfig": {},
-    "nosuccesstrytab": {},
-    "figgutter": {},
-    "tabgutter": {},
-    "htdone": {},
-    "pageht": {},
-    "startpageht": {},
-    "tabbredd": {},
-    "floatfltwidth": {},
-    "fltitemwidth": {},
-    "iftryingfig": {},
-    "tryingfigfalse": {},
-    "tryingfigtrue": {},
-    "iftryingtab": {},
-    "tryingtabfalse": {},
-    "tryingtabtrue": {},
-    "ifdoingfig": {},
-    "doingfigfalse": {},
-    "doingfigtrue": {},
-    "ifdoingtab": {},
-    "doingtabfalse": {},
-    "doingtabtrue": {},
-    "iffigprocessing": {},
-    "figprocessingfalse": {},
-    "figprocessingtrue": {},
-    "iftabprocessing": {},
-    "tabprocessingfalse": {},
-    "tabprocessingtrue": {},
-    "ifpageafterfig": {},
-    "pageafterfigfalse": {},
-    "pageafterfigtrue": {},
-    "ifpageaftertab": {},
-    "pageaftertabfalse": {},
-    "pageaftertabtrue": {},
-    "ifoddpages": {},
-    "oddpagesfalse": {},
-    "oddpagestrue": {},
-    "ifoutput": {},
-    "outputfalse": {},
-    "outputtrue": {},
-    "outputpretest": {},
-    "dofigtest": {},
-    "dohangf": {},
-    "dohangt": {},
-    "dotabtest": {},
-    "figinsert": {},
-    "oldeverypar": {},
-    "oldoutput": {},
-    "tabinsert": {},
-    "theOptionTest": {},
-    "tryfig": {},
-    "trytab": {}
-  },
-  "envs": {
-    "floatingfigure{}": {
-      "name": "floatingfigure",
-      "snippet": "{${1:width}}"
+    {
+      "name": "figbox",
+      "unusual": true
     },
-    "floatingfigure[]{}": {
-      "name": "floatingfigure",
-      "snippet": "[${2:option}]{${1:width}}"
+    {
+      "name": "tabbox",
+      "unusual": true
     },
-    "floatingtable{}": {
-      "name": "floatingtable",
-      "snippet": "{${1:tabular content}}"
+    {
+      "name": "pagebox",
+      "unusual": true
     },
-    "floatingtable[]{}": {
-      "name": "floatingtable",
-      "snippet": "[${2:option}]{${1:tabular content}}"
+    {
+      "name": "ffigcount",
+      "unusual": true
+    },
+    {
+      "name": "ftabcount",
+      "unusual": true
+    },
+    {
+      "name": "fftest",
+      "unusual": true
+    },
+    {
+      "name": "hangcount",
+      "unusual": true
+    },
+    {
+      "name": "nosuccesstryfig",
+      "unusual": true
+    },
+    {
+      "name": "nosuccesstrytab",
+      "unusual": true
+    },
+    {
+      "name": "figgutter",
+      "unusual": true
+    },
+    {
+      "name": "tabgutter",
+      "unusual": true
+    },
+    {
+      "name": "htdone",
+      "unusual": true
+    },
+    {
+      "name": "pageht",
+      "unusual": true
+    },
+    {
+      "name": "startpageht",
+      "unusual": true
+    },
+    {
+      "name": "tabbredd",
+      "unusual": true
+    },
+    {
+      "name": "floatfltwidth",
+      "unusual": true
+    },
+    {
+      "name": "fltitemwidth",
+      "unusual": true
+    },
+    {
+      "name": "iftryingfig",
+      "unusual": true
+    },
+    {
+      "name": "tryingfigfalse",
+      "unusual": true
+    },
+    {
+      "name": "tryingfigtrue",
+      "unusual": true
+    },
+    {
+      "name": "iftryingtab",
+      "unusual": true
+    },
+    {
+      "name": "tryingtabfalse",
+      "unusual": true
+    },
+    {
+      "name": "tryingtabtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifdoingfig",
+      "unusual": true
+    },
+    {
+      "name": "doingfigfalse",
+      "unusual": true
+    },
+    {
+      "name": "doingfigtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifdoingtab",
+      "unusual": true
+    },
+    {
+      "name": "doingtabfalse",
+      "unusual": true
+    },
+    {
+      "name": "doingtabtrue",
+      "unusual": true
+    },
+    {
+      "name": "iffigprocessing",
+      "unusual": true
+    },
+    {
+      "name": "figprocessingfalse",
+      "unusual": true
+    },
+    {
+      "name": "figprocessingtrue",
+      "unusual": true
+    },
+    {
+      "name": "iftabprocessing",
+      "unusual": true
+    },
+    {
+      "name": "tabprocessingfalse",
+      "unusual": true
+    },
+    {
+      "name": "tabprocessingtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifpageafterfig",
+      "unusual": true
+    },
+    {
+      "name": "pageafterfigfalse",
+      "unusual": true
+    },
+    {
+      "name": "pageafterfigtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifpageaftertab",
+      "unusual": true
+    },
+    {
+      "name": "pageaftertabfalse",
+      "unusual": true
+    },
+    {
+      "name": "pageaftertabtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifoddpages",
+      "unusual": true
+    },
+    {
+      "name": "oddpagesfalse",
+      "unusual": true
+    },
+    {
+      "name": "oddpagestrue",
+      "unusual": true
+    },
+    {
+      "name": "ifoutput",
+      "unusual": true
+    },
+    {
+      "name": "outputfalse",
+      "unusual": true
+    },
+    {
+      "name": "outputtrue",
+      "unusual": true
+    },
+    {
+      "name": "outputpretest",
+      "unusual": true
+    },
+    {
+      "name": "dofigtest",
+      "unusual": true
+    },
+    {
+      "name": "dohangf",
+      "unusual": true
+    },
+    {
+      "name": "dohangt",
+      "unusual": true
+    },
+    {
+      "name": "dotabtest",
+      "unusual": true
+    },
+    {
+      "name": "figinsert",
+      "unusual": true
+    },
+    {
+      "name": "tabinsert",
+      "unusual": true
+    },
+    {
+      "name": "theOptionTest",
+      "unusual": true
+    },
+    {
+      "name": "tryfig",
+      "unusual": true
+    },
+    {
+      "name": "trytab",
+      "unusual": true
     }
-  },
-  "options": [
-    "rflt",
-    "lflt",
-    "vflt"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "floatingfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:width}}"
+      }
+    },
+    {
+      "name": "floatingfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:width}}",
+        "keys": [
+          "\\begin{floatingfigure},\\begin{floatingtable}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "floatingtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tabular content%text}}"
+      }
+    },
+    {
+      "name": "floatingtable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:option%keyvals}]{${1:tabular content%text}}",
+        "keys": [
+          "\\begin{floatingfigure},\\begin{floatingtable}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/floatflt#c": [
+      "rflt",
+      "lflt",
+      "vflt"
+    ],
+    "\\begin{floatingfigure},\\begin{floatingtable}": [
+      "r",
+      "l",
+      "p",
+      "v"
+    ]
+  },
+  "args": [
+    "\\usepackage/floatflt#c"
+  ]
 }

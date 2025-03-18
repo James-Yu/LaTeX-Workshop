@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "xpatch": []
-  },
-  "macros": {
-    "NoIndentAfterEnv{}": {
-      "snippet": "NoIndentAfterEnv{${1:envname}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "NoIndentAfterCmd{}": {
-      "snippet": "NoIndentAfterCmd{${1:cmd}}"
+    {
+      "name": "xpatch"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NoIndentAfterEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "NoIndentAfterEnv{${1:envname}}"
+      }
     },
-    "NoIndentAfterThis": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "NoIndentAfterCmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "NoIndentAfterCmd{${1:cmd}}"
+      }
+    },
+    {
+      "name": "NoIndentAfterThis"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

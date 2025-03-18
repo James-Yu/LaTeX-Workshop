@@ -1,77 +1,199 @@
 {
-  "includes": {
-    "ifthen": [],
-    "algorithmicx": [],
-    "algcompatible": [
-      "compatible"
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "algorithmicx"
+    },
+    {
+      "name": "algcompatible",
+      "if": "compatible"
+    }
+  ],
+  "macros": [
+    {
+      "name": "For",
+      "arg": {
+        "format": "{}",
+        "snippet": "For{${1:condition}}"
+      }
+    },
+    {
+      "name": "EndFor"
+    },
+    {
+      "name": "ForAll",
+      "arg": {
+        "format": "{}",
+        "snippet": "ForAll{${1:condition}}"
+      }
+    },
+    {
+      "name": "While",
+      "arg": {
+        "format": "{}",
+        "snippet": "While{${1:condition}}"
+      }
+    },
+    {
+      "name": "EndWhile"
+    },
+    {
+      "name": "Repeat"
+    },
+    {
+      "name": "Until",
+      "arg": {
+        "format": "{}",
+        "snippet": "Until{${1:condition}}"
+      }
+    },
+    {
+      "name": "If",
+      "arg": {
+        "format": "{}",
+        "snippet": "If{${1:condition}}"
+      }
+    },
+    {
+      "name": "ElsIf",
+      "arg": {
+        "format": "{}",
+        "snippet": "ElsIf{${1:condition}}"
+      }
+    },
+    {
+      "name": "Else"
+    },
+    {
+      "name": "EndIf"
+    },
+    {
+      "name": "Procedure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Procedure{${1:name}}{${2:params}}"
+      }
+    },
+    {
+      "name": "EndProcedure"
+    },
+    {
+      "name": "Function",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Function{${1:name}}{${2:params}}"
+      }
+    },
+    {
+      "name": "EndFunction"
+    },
+    {
+      "name": "Loop"
+    },
+    {
+      "name": "EndLoop"
+    },
+    {
+      "name": "Require"
+    },
+    {
+      "name": "Ensure"
+    },
+    {
+      "name": "Call",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Call{${1:name}}{${2:params}}"
+      }
+    },
+    {
+      "name": "Return"
+    },
+    {
+      "name": "algorithmicend",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicdo",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicwhile",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicfor",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicforall",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicloop",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicrepeat",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicuntil",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicprocedure",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicfunction",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicif",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicthen",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicelse",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicrequire",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicensure",
+      "unusual": true
+    },
+    {
+      "name": "algorithmicreturn",
+      "unusual": true
+    },
+    {
+      "name": "textproc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textproc{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/algpseudocode#c": [
+      "noend",
+      "end",
+      "compatible",
+      "noncompatible"
     ]
   },
-  "macros": {
-    "For{}": {
-      "snippet": "For{${1:condition}}"
-    },
-    "EndFor": {},
-    "ForAll{}": {
-      "snippet": "ForAll{${1:condition}}"
-    },
-    "While{}": {
-      "snippet": "While{${1:condition}}"
-    },
-    "EndWhile": {},
-    "Repeat": {},
-    "Until{}": {
-      "snippet": "Until{${1:condition}}"
-    },
-    "If{}": {
-      "snippet": "If{${1:condition}}"
-    },
-    "ElsIf{}": {
-      "snippet": "ElsIf{${1:condition}}"
-    },
-    "Else": {},
-    "EndIf": {},
-    "Procedure{}{}": {
-      "snippet": "Procedure{${1:name}}{${2:params}}"
-    },
-    "EndProcedure": {},
-    "Function{}{}": {
-      "snippet": "Function{${1:name}}{${2:params}}"
-    },
-    "EndFunction": {},
-    "Loop": {},
-    "EndLoop": {},
-    "Require": {},
-    "Ensure": {},
-    "Call{}{}": {
-      "snippet": "Call{${1:name}}{${2:params}}"
-    },
-    "Return": {},
-    "algorithmicend": {},
-    "algorithmicdo": {},
-    "algorithmicwhile": {},
-    "algorithmicfor": {},
-    "algorithmicforall": {},
-    "algorithmicloop": {},
-    "algorithmicrepeat": {},
-    "algorithmicuntil": {},
-    "algorithmicprocedure": {},
-    "algorithmicfunction": {},
-    "algorithmicif": {},
-    "algorithmicthen": {},
-    "algorithmicelse": {},
-    "algorithmicrequire": {},
-    "algorithmicensure": {},
-    "algorithmicreturn": {},
-    "textproc{}": {
-      "snippet": "textproc{${1:text}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "noend",
-    "end",
-    "compatible",
-    "noncompatible"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/algpseudocode#c"
+  ]
 }

@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "tikz": [],
-    "ifthen": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "includetikzgraphics{}": {
-      "snippet": "includetikzgraphics{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "includetikzgraphics[]{}": {
-      "snippet": "includetikzgraphics[${2:name}]{${1:imagefile}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "includetikzgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "includetikzgraphics{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includetikzgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includetikzgraphics[${2:name}]{${1:imagefile}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

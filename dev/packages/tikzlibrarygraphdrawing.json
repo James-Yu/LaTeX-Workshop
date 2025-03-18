@@ -1,65 +1,303 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "pgfgdtikzedgecallback{}{}{}{}{}{}{}{}": {
-      "snippet": "pgfgdtikzedgecallback{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}"
-    },
-    "usegdlibrary{}": {
-      "snippet": "usegdlibrary{${1:list of libraries}}"
-    },
-    "pgfgdset{}": {
-      "snippet": "pgfgdset{${1:options}}"
-    },
-    "pgfgdevent{}{}": {
-      "snippet": "pgfgdevent{${1:name}}{${2:parameter}}"
-    },
-    "pgfgdbegineventgroup{}": {
-      "snippet": "pgfgdbegineventgroup{${1:parameter}}"
-    },
-    "pgfgdendeventgroup": {},
-    "pgfgdeventgroup{}": {
-      "snippet": "pgfgdeventgroup{${1:name}}"
-    },
-    "pgfgdsetlatenodeoption{}": {
-      "snippet": "pgfgdsetlatenodeoption{${1:node name}}"
-    },
-    "pgfgdcallbackrendernode{}{}{}{}{}{}{}{}{}": {
-      "snippet": "pgfgdcallbackrendernode{${1:node name}}{${2:xmin}}{${3:xmax}}{${4:ymin}}{${5:ymax}}{${6:xpos}}{${7:ypos}}{${8:boxnum}}{${9:code}}"
-    },
-    "pgfpositionnodelatername": {},
-    "pgfpositionnodelaterminx": {},
-    "pgfpositionnodelatermaxx": {},
-    "pgfpositionnodelaterminy": {},
-    "pgfpositionnodelatermaxy": {},
-    "pgfgdedge{}{}{}{}{}": {
-      "snippet": "pgfgdedge{${1:node1}}{${2:node2}}{${3:edge dir}}{${4:edge opts}}{${5:edge nodes}}"
-    },
-    "pgfgdsetedgecallback{}": {
-      "snippet": "pgfgdsetedgecallback{${1:macro}}"
-    },
-    "pgfgddefaultedgecallback{}{}{}{}{}{}{}": {
-      "snippet": "pgfgddefaultedgecallback{${1:node1}}{${2:node2}}{${3:options}}{${4:auxtext}}{${5:alg options}}{${6:bend info}}{${7:animations}}"
-    },
-    "pgfgdcallbackbeginshipout": {},
-    "pgfgdcallbackendshipout": {},
-    "pgfgdbeginlayout": {},
-    "pgfgdendlayout": {},
-    "pgfgdsubgraphnode{}{}{}": {
-      "snippet": "pgfgdsubgraphnode{${1:node name}}{${2:node options}}{${3:node text}}"
-    },
-    "pgfgdsetrequestcallback{}": {
-      "snippet": "pgfgdsetrequestcallback{${1:macro}}"
-    },
-    "ifpgfgdgraphdrawingscopeactive": {},
-    "pgfgdbeginscope": {},
-    "pgfgdendscope": {},
-    "pgfgdaddspecificationhook{}": {
-      "snippet": "pgfgdaddspecificationhook{${1:code}}"
+  "deps": [
+    {
+      "name": "luatex"
     }
+  ],
+  "macros": [
+    {
+      "name": "usegdlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "usegdlibrary{${1:list of libraries%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfgdset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdset{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "pgfgdevent",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfgdevent{${1:name}}{${2:parameter}}"
+      }
+    },
+    {
+      "name": "pgfgdbegineventgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdbegineventgroup{${1:parameter}}"
+      }
+    },
+    {
+      "name": "pgfgdendeventgroup",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdeventgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdeventgroup{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfgdsetlatenodeoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdsetlatenodeoption{${1:node name}}"
+      }
+    },
+    {
+      "name": "pgfgdcallbackrendernode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "pgfgdcallbackrendernode{${1:node name}}{${2:xmin}}{${3:xmax}}{${4:ymin}}{${5:ymax}}{${6:xpos}}{${7:ypos}}{${8:boxnum}}{${9:code}}"
+      }
+    },
+    {
+      "name": "pgfpositionnodelatername",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelaterminx",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelatermaxx",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelaterminy",
+      "unusual": true
+    },
+    {
+      "name": "pgfpositionnodelatermaxy",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdedge",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfgdedge{${1:node1}}{${2:node2}}{${3:edge dir}}{${4:edge opts}}{${5:edge nodes}}"
+      }
+    },
+    {
+      "name": "pgfgdsetedgecallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdsetedgecallback{${1:macro}}"
+      }
+    },
+    {
+      "name": "pgfgddefaultedgecallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "pgfgddefaultedgecallback{${1:node1}}{${2:node2}}{${3:options}}{${4:auxtext}}{${5:alg options}}{${6:bend info}}{${7:animations}}"
+      }
+    },
+    {
+      "name": "pgfgdcallbackbeginshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdcallbackendshipout",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdbeginlayout",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdendlayout",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdsubgraphnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfgdsubgraphnode{${1:node name}}{${2:node options}}{${3:node text}}"
+      }
+    },
+    {
+      "name": "pgfgdsetrequestcallback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdsetrequestcallback{${1:macro}}"
+      }
+    },
+    {
+      "name": "ifpgfgdgraphdrawingscopeactive",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdbeginscope",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdendscope",
+      "unusual": true
+    },
+    {
+      "name": "pgfgdaddspecificationhook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfgdaddspecificationhook{${1:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\graph#c,\\tikzgraphsset#c": [
+      "node distance=",
+      "node pre sep=",
+      "node post sep=",
+      "node sep=",
+      "level distance=",
+      "layer distance=",
+      "level pre sep=",
+      "level post sep=",
+      "layer pre sep=",
+      "layer post sep=",
+      "level sep=",
+      "layer sep=",
+      "sibling distance=",
+      "sibling pre sep=",
+      "sibling post sep=",
+      "sibling sep=",
+      "part distance=",
+      "part pre sep=",
+      "part post sep=",
+      "part sep=",
+      "component sep=",
+      "component distance=",
+      "anchor node=${1:string}",
+      "anchor at={${1:coord}}",
+      "orient=${1:direction}",
+      "orient'=${1:direction}",
+      "orient tail=${1:string}",
+      "orient head=${1:string}",
+      "horizontal=${1:tail} to ${2:head}",
+      "horizontal'=${1:head} to ${2:tail}",
+      "vertical=${1:tail} to ${2:head}",
+      "vertical'=${1:head} to ${2:tail}",
+      "grow=${1:direction}",
+      "grow'=${1:direction}",
+      "componentwise",
+      "component order=${1|by first specified node,increasing node number,decreasing node number|}",
+      "small components first",
+      "large components first",
+      "component direction=${1:direction}",
+      "component align=${1|first node,center,counterclockwise,clockwise,counterclockwise bounding box,clockwise bounding box,|}",
+      "components go right top aligned",
+      "components go right absolute top aligned",
+      "components go right bottom aligned",
+      "components go right absolute bottom aligned",
+      "components go right center aligned",
+      "components go right",
+      "components go left top aligned",
+      "components go left absolute top aligned",
+      "components go left bottom aligned",
+      "components go left absolute bottom aligned",
+      "components go left center aligned",
+      "components go left",
+      "components go down right aligned",
+      "components go down absolute right aligned",
+      "components go down left aligned",
+      "components go down absolute left aligned",
+      "components go down center aligned",
+      "components go down",
+      "components go up right aligned",
+      "components go up absolute right aligned",
+      "components go up left aligned",
+      "components go up absolute left aligned",
+      "components go up center aligned",
+      "components go up",
+      "component packing=${1|rectangular,skyline|}",
+      "allow inside edges",
+      "nodes behind edges",
+      "edges behind nodes",
+      "random seed=${1:number}",
+      "variation=${1:number}",
+      "tree layout",
+      "missing nodes get space",
+      "significant sep=",
+      "binary tree layout",
+      "extended binary tree layout",
+      "minimum number of children=${1:number}",
+      "breadth first spanning tree",
+      "depth first spanning tree",
+      "root",
+      "span priority=${1:number}",
+      "span edge",
+      "no span edge",
+      "span priority ->=${1:number}",
+      "span priority reversed ->=${1:number}",
+      "span using directed",
+      "span using all",
+      "layered layout",
+      "depth first cycle removal",
+      "prioritized greedy cycle removal",
+      "greedy cycle removal",
+      "naive greedy cycle removal",
+      "random greedy cycle removal",
+      "linear optimization layer assignment",
+      "minimum height layer assignment",
+      "sweep crossing minimization",
+      "linear optimization node positioning",
+      "polyline layer edge routing",
+      "iterations=${1:number}",
+      "initial step length=",
+      "cooling factor=${1:number}",
+      "convergence tolerance=${1:number}",
+      "spring constant=${1:number}",
+      "electric force order=${1:number}",
+      "approximate remote forces",
+      "coarsen",
+      "minimum coarsening size=${1:number}",
+      "downsize ratio=${1:number}",
+      "spring layout",
+      "spring Hu 2006 layout",
+      "spring electrical layout",
+      "spring electrical layout'",
+      "spring electrical Hu 2006 layout",
+      "spring electrical Walshaw 2000 layout",
+      "simple necklace layout",
+      "phylogenetic tree layout",
+      "phylogenetic tree by author",
+      "unweighted pair group method using arithmetic averages",
+      "upgma",
+      "balanced minimum evolution",
+      "balanced nearest neighbour interchange",
+      "no phylogenetic tree optimization",
+      "rooted rectangular phylogram",
+      "rectangular phylogram",
+      "rooted straight phylogram",
+      "straight phylogram",
+      "unrooted rectangular phylogram",
+      "unrooted straight phylogram",
+      "evolutionary unit length=",
+      "necklace routing",
+      "simple demo layout",
+      "simple edge demo layout",
+      "simple Huffman layout",
+      "probability=${1:number}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

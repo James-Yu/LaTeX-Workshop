@@ -1,173 +1,370 @@
 {
-  "includes": {
-    "iftex": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "xstring": [],
-    "ifthen": [],
-    "scalefnt": [],
-    "mweights": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "fontspec": [
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "scalefnt"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "fontspec",
+      "if": "otfmath"
+    },
+    {
+      "name": "xcharter-otf",
+      "if": "otfmath"
+    },
+    {
+      "name": "fontspec",
+      "if": "otfmath=true"
+    },
+    {
+      "name": "xcharter-otf",
+      "if": "otfmath=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "circledtxt",
+      "unusual": true
+    },
+    {
+      "name": "defigures"
+    },
+    {
+      "name": "destyle",
+      "unusual": true
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "lfstyle"
+    },
+    {
+      "name": "liningnums"
+    },
+    {
+      "name": "nufigures"
+    },
+    {
+      "name": "nustyle",
+      "unusual": true
+    },
+    {
+      "name": "osfstyle"
+    },
+    {
+      "name": "proportionalnums"
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "sustyle",
+      "unusual": true
+    },
+    {
+      "name": "tabularnums"
+    },
+    {
+      "name": "textde",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textde{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominator",
+      "arg": {
+        "format": "{}",
+        "snippet": "textdenominator{${1:text}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinf{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textinferior{${1:text}}"
+      }
+    },
+    {
+      "name": "textlf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textlf{${1:text}}"
+      }
+    },
+    {
+      "name": "textosf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textosf{${1:text}}"
+      }
+    },
+    {
+      "name": "textosfI",
+      "arg": {
+        "format": "{}",
+        "snippet": "textosfI{${1:text}}"
+      }
+    },
+    {
+      "name": "textnum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textnum{${1:text}}"
+      }
+    },
+    {
+      "name": "textnumerator",
+      "arg": {
+        "format": "{}",
+        "snippet": "textnumerator{${1:text}}"
+      }
+    },
+    {
+      "name": "textruble"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsub",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsub{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textth",
+      "arg": {
+        "format": "{}",
+        "snippet": "textth{${1:text}}"
+      }
+    },
+    {
+      "name": "textthit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textthit{${1:text}}"
+      }
+    },
+    {
+      "name": "thdefault",
+      "unusual": true
+    },
+    {
+      "name": "thfamily"
+    },
+    {
+      "name": "tlfstyle"
+    },
+    {
+      "name": "tosfstyle"
+    },
+    {
+      "name": "useosf",
+      "unusual": true
+    },
+    {
+      "name": "useosfI",
+      "unusual": true
+    },
+    {
+      "name": "useproportional",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/XCharter#c": [
+      "aftsolidus=",
+      "defaultfeatures={${1:fontspec features}}",
+      "foresolidus=",
+      "lf",
+      "lining",
+      "nofontspec",
+      "notextnu",
+      "oldSS",
+      "oldstyle",
+      "oldstyleI",
+      "osf",
+      "osfI",
       "otfmath",
-      "otfmath=true"
-    ],
-    "xcharter-otf": [
-      "otfmath",
-      "otfmath=true"
+      "p",
+      "proportional",
+      "scaled=${1:factor}",
+      "scosf",
+      "sups",
+      "t",
+      "tabular",
+      "theoremfont",
+      "thmlining",
+      "type1",
+      "type1text",
+      "no-text",
+      "tight",
+      "loose",
+      "fulloldstyle",
+      "math-style=${1|ISO,TeX,french,upright|}",
+      "bold-style=${1|ISO,TeX,upright|}",
+      "nabla=${1|italic,upright,literal|}",
+      "partial=${1|italic,upright,literal|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "StylisticSet=${1|4,5,6|}",
+      "Style=${1|upint,leqslant,smaller,subsetneq,parallelslant|}",
+      "Scale=${1:factor}",
+      "no-text",
+      "tight",
+      "loose",
+      "fulloldstyle",
+      "math-style=${1|ISO,TeX,french,upright|}",
+      "bold-style=${1|ISO,TeX,upright|}",
+      "nabla=${1|italic,upright,literal|}",
+      "partial=${1|italic,upright,literal|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "StylisticSet=${1|4,5,6|}",
+      "Style=${1|upint,leqslant,smaller,subsetneq,parallelslant|}",
+      "Scale=${1:factor}"
     ]
   },
-  "macros": {
-    "circledtxt": {},
-    "defigures": {},
-    "destyle": {},
-    "infigures": {},
-    "lfstyle": {},
-    "liningnums": {},
-    "nufigures": {},
-    "nustyle": {},
-    "oldstyleInums": {},
-    "osfstyle": {},
-    "proportionalnums": {},
-    "sufigures": {},
-    "sustyle": {},
-    "tabularnums": {},
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
-    },
-    "textdenominator{}": {
-      "snippet": "textdenominator{${1:text}}"
-    },
-    "textfrac{}{}": {
-      "snippet": "textfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "textfrac[]{}{}": {
-      "snippet": "textfrac[${3:whole part}]{${1:numerator}}{${2:denominator}}"
-    },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
-    },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
-    },
-    "textlf{}": {
-      "snippet": "textlf{${1:text}}"
-    },
-    "textosf{}": {
-      "snippet": "textosf{${1:text}}"
-    },
-    "textosfI{}": {
-      "snippet": "textosfI{${1:text}}"
-    },
-    "textnu{}": {
-      "snippet": "textnu{${1:text}}"
-    },
-    "textnum{}": {
-      "snippet": "textnum{${1:text}}"
-    },
-    "textnumerator{}": {
-      "snippet": "textnumerator{${1:text}}"
-    },
-    "textruble": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
-    },
-    "textsub{}": {
-      "snippet": "textsub{${1:text}}"
-    },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
-    },
-    "textth{}": {
-      "snippet": "textth{${1:text}}"
-    },
-    "textthit{}": {
-      "snippet": "textthit{${1:text}}"
-    },
-    "thdefault": {},
-    "thfamily": {},
-    "tlfstyle": {},
-    "tosfstyle": {},
-    "useosf": {},
-    "useosfI": {},
-    "useproportional": {},
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "aftsolidus=",
-    "defaultfeatures={${1:fontspec features}}",
-    "foresolidus=",
-    "lf",
-    "lining",
-    "nofontspec",
-    "notextnu",
-    "oldSS",
-    "oldstyle",
-    "oldstyleI",
-    "osf",
-    "osfI",
-    "otfmath",
-    "p",
-    "proportional",
-    "scaled=${1:factor}",
-    "scosf",
-    "sups",
-    "t",
-    "tabular",
-    "theoremfont",
-    "thmlining",
-    "type1",
-    "type1text",
-    "no-text",
-    "tight",
-    "loose",
-    "fulloldstyle",
-    "math-style=",
-    "bold-style=",
-    "nabla=",
-    "partial=",
-    "CharacterVariant={${1:glyph num list}:${2:variety num}}",
-    "StylisticSet=",
-    "Style=",
-    "Scale=${1:factor}",
-    "no-text",
-    "tight",
-    "loose",
-    "fulloldstyle",
-    "math-style=",
-    "bold-style=",
-    "nabla=",
-    "partial=",
-    "CharacterVariant={${1:glyph num list}:${2:variety num}}",
-    "StylisticSet=",
-    "Style=",
-    "Scale=${1:factor}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/XCharter#c"
+  ]
 }

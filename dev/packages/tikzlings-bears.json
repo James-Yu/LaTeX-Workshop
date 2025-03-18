@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "bear": {},
-    "bear[]": {
-      "snippet": "bear[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "bearhookbackground": {},
-    "bearhookbelly": {},
-    "bearhookbody": {},
-    "bearhookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bear"
+    },
+    {
+      "name": "bear",
+      "arg": {
+        "format": "[]",
+        "snippet": "bear[${1:options%keyvals}]",
+        "keys": [
+          "\\bear#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bearhookbackground",
+      "unusual": true
+    },
+    {
+      "name": "bearhookbelly",
+      "unusual": true
+    },
+    {
+      "name": "bearhookbody",
+      "unusual": true
+    },
+    {
+      "name": "bearhookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bear#c": [
       "body=",
       "eye=",
       "mouth=",
@@ -144,5 +179,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

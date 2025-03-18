@@ -1,66 +1,195 @@
 {
-  "includes": {
-    "forloop": [],
-    "listofitems": []
-  },
-  "macros": {
-    "readdef{}{}": {
-      "snippet": "readdef{${1:file}}{${2:data-macro}}"
+  "deps": [
+    {
+      "name": "forloop"
     },
-    "readrecordarray{}{}": {
-      "snippet": "readrecordarray{${1:file}}{${2:array-identifier}}"
+    {
+      "name": "listofitems"
+    }
+  ],
+  "macros": [
+    {
+      "name": "readdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "readdef{${1:file}}{${2:data-macro%cmd}}"
+      }
     },
-    "readarray{}{}[]": {
-      "snippet": "readarray{${1:data-macro}}{${2:array-identifier}}[${3:-,rows,columns}]"
+    {
+      "name": "readrecordarray",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "readrecordarray{${1:file}}{${2:array-identifier%cmd}}"
+      }
     },
-    "readarray*{}{}[]": {
-      "snippet": "readarray*{${1:data-macro}}{${2:array-identifier}}[${3:-,rows,columns}]"
+    {
+      "name": "readarray",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "readarray{${1:data-macro}}{${2:array-identifier%cmd}}[${3:-,columns}]"
+      }
     },
-    "initarray{}[]": {
-      "snippet": "initarray{${1:array-identifier}}[${2:planes,rows,columns}]"
+    {
+      "name": "readarray",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "readarray{${1:data-macro}}{${2:array-identifier%cmd}}[${3:-,rows,columns}]"
+      }
     },
-    "mergearray{}{}[]": {
-      "snippet": "mergearray{${1:from-array-id}}{${2:to-array-id}}[${3:plane,row,column}]"
+    {
+      "name": "readarray*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "readarray*{${1:data-macro}}{${2:array-identifier%cmd}}[${3:-,columns}]"
+      }
     },
-    "typesetarray{}": {
-      "snippet": "typesetarray{${1:array-identifier}}"
+    {
+      "name": "readarray*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "readarray*{${1:data-macro}}{${2:array-identifier%cmd}}[${3:-,rows,columns}]"
+      }
     },
-    "arraytomacro{}[]{}": {
-      "snippet": "arraytomacro{${1:array-identifier}}[${2:plane,row,column}]{${3:macro}}"
+    {
+      "name": "initarray",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "initarray{${1:array-identifier%cmd}}[${2:rows,columns}]"
+      }
     },
-    "setvalue{}[]{}": {
-      "snippet": "setvalue{${1:array-identifier}}[${2:plane,row,column}]{${3:value}}"
+    {
+      "name": "initarray",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "initarray{${1:array-identifier%cmd}}[${2:planes,rows,columns}]"
+      }
     },
-    "readarraysepchar{}": {
-      "snippet": "readarraysepchar{${1:parsing-separator-char}}"
+    {
+      "name": "mergearray",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "mergearray{${1:from-array-id}}{${2:to-array-id}}[${3:row,column}]"
+      }
     },
-    "readarrayinitvalue": {},
-    "typesetcell{}": {
-      "snippet": "typesetcell{${1:arg}}"
+    {
+      "name": "mergearray",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "mergearray{${1:from-array-id}}{${2:to-array-id}}[${3:plane,row,column}]"
+      }
     },
-    "typesetplanesepchar": {},
-    "typesetrowsepchar": {},
-    "typesetcolsepchar": {},
-    "nocheckbounds": {},
-    "checkbounds": {},
-    "hypercheckbounds": {},
-    "ifignoreblankreadarrayrecords": {},
-    "ignoreblankreadarrayrecordstrue": {},
-    "ignoreblankreadarrayrecordsfalse": {},
-    "nrows": {},
-    "ncols": {},
-    "nrecords": {},
-    "ArrayRecord": {},
-    "ArrayRecord[]": {
-      "snippet": "ArrayRecord[${1:record}]"
+    {
+      "name": "typesetarray",
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetarray{${1:array-identifier}}"
+      }
     },
-    "readarraybackslash": {},
-    "readarrayPackageVersion": {},
-    "readarrayPackageDate": {},
-    "arraydump": {},
-    "scalardump": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "arraytomacro",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "arraytomacro{${1:array-identifier}}[${3:row,column}]{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "arraytomacro",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "arraytomacro{${1:array-identifier}}[${3:plane,row,column}]{${2:macro%cmd}}"
+      }
+    },
+    {
+      "name": "setvalue",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setvalue{${1:array-identifier}}[${3:row,column}]{${2:value}}"
+      }
+    },
+    {
+      "name": "setvalue",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setvalue{${1:array-identifier}}[${3:plane,row,column}]{${2:value}}"
+      }
+    },
+    {
+      "name": "readarraysepchar",
+      "arg": {
+        "format": "{}",
+        "snippet": "readarraysepchar{${1:parsing-separator-char}}"
+      }
+    },
+    {
+      "name": "readarrayinitvalue",
+      "unusual": true
+    },
+    {
+      "name": "typesetcell",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetcell{${1:arg}}"
+      }
+    },
+    {
+      "name": "typesetplanesepchar",
+      "unusual": true
+    },
+    {
+      "name": "typesetrowsepchar",
+      "unusual": true
+    },
+    {
+      "name": "typesetcolsepchar",
+      "unusual": true
+    },
+    {
+      "name": "nocheckbounds"
+    },
+    {
+      "name": "checkbounds"
+    },
+    {
+      "name": "hypercheckbounds"
+    },
+    {
+      "name": "ifignoreblankreadarrayrecords",
+      "unusual": true
+    },
+    {
+      "name": "ignoreblankreadarrayrecordstrue",
+      "unusual": true
+    },
+    {
+      "name": "ignoreblankreadarrayrecordsfalse",
+      "unusual": true
+    },
+    {
+      "name": "nrows"
+    },
+    {
+      "name": "ncols"
+    },
+    {
+      "name": "nrecords"
+    },
+    {
+      "name": "ArrayRecord"
+    },
+    {
+      "name": "ArrayRecord",
+      "arg": {
+        "format": "[]",
+        "snippet": "ArrayRecord[${1:record}]"
+      }
+    },
+    {
+      "name": "readarraybackslash",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

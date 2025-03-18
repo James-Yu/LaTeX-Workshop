@@ -1,82 +1,154 @@
 {
-  "includes": {
-    "class-rapport3": [],
-    "keyval": [],
-    "etoolbox": [],
-    "ltxcmds": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "inputenc": [],
-    "xpatch": [],
-    "babel": [],
-    "hyperref": [],
-    "xcolor": [],
-    "caption": [],
-    "graphicx": [],
-    "pdfpages": [],
-    "tabularx": [],
-    "tabu": [],
-    "booktabs": [],
-    "tikz": [],
-    "microtype": [],
-    "fontspec": [],
-    "unicode-math": [],
-    "csquotes": [],
-    "biblatex": [],
-    "colortbl": [
-      "table"
-    ]
-  },
-  "macros": {
-    "thesissetup{}": {
-      "snippet": "thesissetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "class-rapport3"
     },
-    "thesislong{}{}": {
-      "snippet": "thesislong{${1:key}}{${2:value}}"
+    {
+      "name": "keyval"
     },
-    "thesisload": {},
-    "ea": {}
-  },
-  "envs": {
-    "alwayssingle": {}
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "onecolumn",
-    "twocolumn",
-    "draft",
-    "final",
-    "palatino",
-    "nopalatino",
-    "neuehaas",
-    "noneuehaas",
-    "monochrome",
-    "color",
-    "colorbold",
-    "nocolorbold",
-    "microtype",
-    "nomicrotype",
-    "sansbold",
-    "nosansbold",
-    "table",
-    "oldtable",
-    "nolot",
-    "lot",
-    "nolof",
-    "lof",
-    "nocover",
-    "cover",
-    "digital",
-    "printed"
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "xpatch"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "tabu"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "colortbl",
+      "if": "table"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "thesissetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "thesissetup{${1:options%keyvals}}",
+        "keys": [
+          "\\thesissetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thesislong",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "thesislong{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "thesisload",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "alwayssingle",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/fithesis4#c": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "onecolumn",
+      "twocolumn",
+      "draft",
+      "final",
+      "palatino",
+      "nopalatino",
+      "neuehaas",
+      "noneuehaas",
+      "monochrome",
+      "color",
+      "colorbold",
+      "nocolorbold",
+      "microtype",
+      "nomicrotype",
+      "sansbold",
+      "nosansbold",
+      "table",
+      "oldtable",
+      "nolot",
+      "lot",
+      "nolof",
+      "lof",
+      "nocover",
+      "cover",
+      "digital",
+      "printed"
+    ],
+    "\\thesissetup": [
       "basePath=${1:path}",
       "logoPath=${1:path}",
       "stylePath=${1:path}",
@@ -84,9 +156,9 @@
       "gender=${1:m|f}",
       "author=${1:name}",
       "id=${1:identifier}",
-      "type=",
+      "type=${1|sem,bc,mgr,prop,d,r|}",
       "university=${1:identifier}",
-      "faculty=",
+      "faculty=${1|fi,sci,law,econ,fss,med,ped,phil,fsps,pharm|}",
       "department=${1:name}",
       "departmentEn=${1:name}",
       "programme=${1:name}",
@@ -118,5 +190,8 @@
       "autoLayout",
       "extra={${1:keyvals}}"
     ]
+  },
+  "args": [
+    "\\documentclass/fithesis4#c"
   ]
 }

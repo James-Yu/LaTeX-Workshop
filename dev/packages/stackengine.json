@@ -1,0 +1,526 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "listofitems"
+    },
+    {
+      "name": "calc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Sstackgap"
+    },
+    {
+      "name": "Lstackgap"
+    },
+    {
+      "name": "setstackgap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setstackgap{${1:S or L}}{${2:gap%l}}"
+      }
+    },
+    {
+      "name": "stackgap"
+    },
+    {
+      "name": "stackalignment"
+    },
+    {
+      "name": "quietstack"
+    },
+    {
+      "name": "useanchorwidth"
+    },
+    {
+      "name": "stacktype"
+    },
+    {
+      "name": "stackMath"
+    },
+    {
+      "name": "lstackMath"
+    },
+    {
+      "name": "stackText"
+    },
+    {
+      "name": "lstackText"
+    },
+    {
+      "name": "strutlongstacks",
+      "arg": {
+        "format": "{}",
+        "snippet": "strutlongstacks{${1:T or F}}"
+      }
+    },
+    {
+      "name": "strutshortanchors",
+      "arg": {
+        "format": "{}",
+        "snippet": "strutshortanchors{${1:T or F}}"
+      }
+    },
+    {
+      "name": "setstackEOL",
+      "arg": {
+        "format": "{}",
+        "snippet": "setstackEOL{${1:end-of-line character}}"
+      }
+    },
+    {
+      "name": "stackengine",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "stackengine{${1:gap%l}}{${2:anchor}}{${3:item}}{${4:O or U}}{${5:align%keyvals}}{${6:quiet-bool}}{${7:anchorwidth-bool}}{${8:type}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 4
+      }
+    },
+    {
+      "name": "stackon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stackon{${1:anchor}}{${2:item}}"
+      }
+    },
+    {
+      "name": "stackon",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stackon[${3:length}]{${1:anchor}}{${2:item}}"
+      }
+    },
+    {
+      "name": "stackunder",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stackunder{${1:anchor}}{${2:item}}"
+      }
+    },
+    {
+      "name": "stackunder",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stackunder[${3:length}]{${1:anchor}}{${2:item}}"
+      }
+    },
+    {
+      "name": "Shortstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Shortstack{${1:item1 ... itemN anchor}}"
+      }
+    },
+    {
+      "name": "Shortstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Shortstack[${2:align%keyvals}]{${1:item1 ... itemN anchor}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Longstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Longstack{${1:item1 ... itemN anchor}}"
+      }
+    },
+    {
+      "name": "Longstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Longstack[${2:align%keyvals}]{${1:item1 ... itemN anchor}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Shortunderstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Shortunderstack{${1:anchor item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "Shortunderstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Shortunderstack[${2:align%keyvals}]{${1:anchor item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Longunderstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Longunderstack{${1:anchor item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "Longunderstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Longunderstack[${2:align%keyvals}]{${1:anchor item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tllap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tllap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "tllap",
+      "arg": {
+        "format": "{}",
+        "snippet": "tllap{${1:item}}"
+      }
+    },
+    {
+      "name": "tclap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tclap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "tclap",
+      "arg": {
+        "format": "{}",
+        "snippet": "tclap{${1:item}}"
+      }
+    },
+    {
+      "name": "trlap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "trlap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "trlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "trlap{${1:item}}"
+      }
+    },
+    {
+      "name": "bllap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bllap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "bllap",
+      "arg": {
+        "format": "{}",
+        "snippet": "bllap{${1:item}}"
+      }
+    },
+    {
+      "name": "bclap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bclap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "bclap",
+      "arg": {
+        "format": "{}",
+        "snippet": "bclap{${1:item}}"
+      }
+    },
+    {
+      "name": "brlap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "brlap[${2:length}]{${1:item}}"
+      }
+    },
+    {
+      "name": "brlap",
+      "arg": {
+        "format": "{}",
+        "snippet": "brlap{${1:item}}"
+      }
+    },
+    {
+      "name": "toplap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "toplap{${1:direction%keyvals}}{${2:item}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "toplap",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "toplap[${3:length}]{${1:direction%keyvals}}{${2:item}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bottomlap",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bottomlap{${1:direction%keyvals}}{${2:item}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bottomlap",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bottomlap[${3:length}]{${1:direction%keyvals}}{${2:item}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "stackanchor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "stackanchor{${1:top item}}{${2:bottom item}}"
+      }
+    },
+    {
+      "name": "stackanchor",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "stackanchor[${3:gap%l}]{${1:top item}}{${2:bottom item}}"
+      }
+    },
+    {
+      "name": "Centerstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Centerstack{${1:item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "Centerstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Centerstack[${2:align%keyvals}]{${1:item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Vectorstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vectorstack{${1:item1 ... itemN%formula}}"
+      }
+    },
+    {
+      "name": "Vectorstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Vectorstack[${2:align%keyvals}]{${1:item1 ... itemN%formula}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "parenVectorstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "parenVectorstack{${1:item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "parenVectorstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "parenVectorstack[${2:align%keyvals}]{${1:item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bracketVectorstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "bracketVectorstack{${1:item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "bracketVectorstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bracketVectorstack[${2:align%keyvals}]{${1:item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "braceVectorstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "braceVectorstack{${1:item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "braceVectorstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "braceVectorstack[${2:align%keyvals}]{${1:item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vertVectorstack",
+      "arg": {
+        "format": "{}",
+        "snippet": "vertVectorstack{${1:item1 ... itemN}}"
+      }
+    },
+    {
+      "name": "vertVectorstack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "vertVectorstack[${2:align%keyvals}]{${1:item1 ... itemN}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ensurestackMath",
+      "arg": {
+        "format": "{}",
+        "snippet": "ensurestackMath{${1:formula}}"
+      }
+    },
+    {
+      "name": "abovebaseline",
+      "arg": {
+        "format": "{}",
+        "snippet": "abovebaseline{${1:item}}"
+      }
+    },
+    {
+      "name": "abovebaseline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "abovebaseline[${2:gap%l}]{${1:item}}"
+      }
+    },
+    {
+      "name": "belowbaseline",
+      "arg": {
+        "format": "{}",
+        "snippet": "belowbaseline{${1:item}}"
+      }
+    },
+    {
+      "name": "belowbaseline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "belowbaseline[${2:gap%l}]{${1:item}}"
+      }
+    },
+    {
+      "name": "stackinset",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "stackinset{${1:Halign%keyvals}}{${2:Hoffset%l}}{${3:Valign}}{${4:Voffset}}{${5:inset item}}{${6:anchor item}}",
+        "keys": [
+          "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addstackgap",
+      "arg": {
+        "format": "{}",
+        "snippet": "addstackgap{${1:item}}"
+      }
+    },
+    {
+      "name": "addstackgap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addstackgap[${2:gap%l}]{${1:item}}"
+      }
+    },
+    {
+      "name": "hsmash",
+      "arg": {
+        "format": "{}",
+        "snippet": "hsmash{${1:item}}"
+      }
+    },
+    {
+      "name": "savestack",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "savestack{${1:macro%cmd}}{${2:stacking operation}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/stackengine#c": [
+      "usestackEOL",
+      "oldsyntax"
+    ],
+    "\\stackengine#c,\\Shortstack#c,\\Longstack#c,\\Shortunderstack#c,\\Longunderstack#c,\\toplap#c,\\bottomlap#c,\\Centerstack#c,\\Vectorstack#c,\\parenVectorstack#c,\\bracketVectorstack#c,\\braceVectorstack#c,\\vertVectorstack#c,\\stackinset#c": [
+      "l",
+      "c",
+      "r"
+    ]
+  },
+  "args": [
+    "\\usepackage/stackengine#c"
+  ]
+}

@@ -1,724 +1,3177 @@
 {
-  "includes": {
-    "ncccomma": [
+  "deps": [
+    {
+      "name": "ncccomma",
+      "if": "ncccomma"
+    },
+    {
+      "name": "decimalcomma",
+      "if": "decimalcomma"
+    },
+    {
+      "name": "decimalcomma",
+      "if": "frenchmath*"
+    },
+    {
+      "name": "ncccomma",
+      "if": "frenchmath+"
+    }
+  ],
+  "macros": [
+    {
+      "name": "HUGE"
+    },
+    {
+      "name": "Mathastext"
+    },
+    {
+      "name": "Mathastext",
+      "arg": {
+        "format": "[]",
+        "snippet": "Mathastext[${1:name}]"
+      }
+    },
+    {
+      "name": "mathastext",
+      "unusual": true
+    },
+    {
+      "name": "mathastext",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "mathastext[${1:name}]"
+      }
+    },
+    {
+      "name": "MTencoding",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTencoding{${1:encoding}}"
+      }
+    },
+    {
+      "name": "MTfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTfamily{${1:family}}"
+      }
+    },
+    {
+      "name": "MTseries",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTseries{${1:series}}"
+      }
+    },
+    {
+      "name": "MTshape",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTshape{${1:shape}}"
+      }
+    },
+    {
+      "name": "MTlettershape",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTlettershape{${1:shape}}"
+      }
+    },
+    {
+      "name": "MTWillUse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "MTWillUse{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "MTWillUse",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "MTWillUse[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "MTDeclareVersion",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "MTDeclareVersion{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "MTDeclareVersion",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "MTDeclareVersion[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
+      }
+    },
+    {
+      "name": "MTDeclareVersion",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}[]",
+        "snippet": "MTDeclareVersion[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}[${6:other version}]"
+      }
+    },
+    {
+      "name": "MTboldvariant",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTboldvariant{${1:variant}}"
+      }
+    },
+    {
+      "name": "MTEulerScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTEulerScale{${1:factor}}"
+      }
+    },
+    {
+      "name": "MTSymbolScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTSymbolScale{${1:factor}}"
+      }
+    },
+    {
+      "name": "MTmathactiveletters",
+      "unusual": true
+    },
+    {
+      "name": "MTmathactiveLetters",
+      "unusual": true
+    },
+    {
+      "name": "MTmathstandardletters",
+      "unusual": true
+    },
+    {
+      "name": "MTicinmath",
+      "unusual": true
+    },
+    {
+      "name": "MTnoicinmath",
+      "unusual": true
+    },
+    {
+      "name": "MTICinmath",
+      "unusual": true
+    },
+    {
+      "name": "MTnoICinmath",
+      "unusual": true
+    },
+    {
+      "name": "MTicalsoinmathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTnormalasterisk",
+      "unusual": true
+    },
+    {
+      "name": "MTactiveasterisk",
+      "unusual": true
+    },
+    {
+      "name": "MTeasynonlettersobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTeasynonlettersdonotobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTnonlettersobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTnonlettersdonotobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTexplicitbracesobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTexplicitbracesdonotobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTnormalprime",
+      "unusual": true
+    },
+    {
+      "name": "MTprimedoesskip",
+      "unusual": true
+    },
+    {
+      "name": "MTeverymathdefault",
+      "unusual": true
+    },
+    {
+      "name": "MTeverymathoff",
+      "unusual": true
+    },
+    {
+      "name": "MTfixfonts",
+      "unusual": true
+    },
+    {
+      "name": "MTdonotfixfonts",
+      "unusual": true
+    },
+    {
+      "name": "MTfixmathfonts",
+      "unusual": true
+    },
+    {
+      "name": "MTsetmathskips",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "MTsetmathskips{${1:letter}}{${2:mu-glue-before}}{${3:mu-glue-after}}"
+      }
+    },
+    {
+      "name": "MTunsetmathskips",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTunsetmathskips{${1:letter}}"
+      }
+    },
+    {
+      "name": "MTexistsskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTexistsskip{${1:math glue}}"
+      }
+    },
+    {
+      "name": "MTnormalexists",
+      "unusual": true
+    },
+    {
+      "name": "MTexistsdoesskip",
+      "unusual": true
+    },
+    {
+      "name": "MTforallskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTforallskip{${1:math glue}}"
+      }
+    },
+    {
+      "name": "MTnormalforall",
+      "unusual": true
+    },
+    {
+      "name": "MTforalldoesskip",
+      "unusual": true
+    },
+    {
+      "name": "MTprimeskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTprimeskip{${1:math glue}}"
+      }
+    },
+    {
+      "name": "MTlowerast",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MTlowerast{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "MTmathoperatorsobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTmathoperatorsdonotobeymathxx",
+      "unusual": true
+    },
+    {
+      "name": "MTversion",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTversion{${1:math version}}"
+      }
+    },
+    {
+      "name": "MTversion",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MTversion[${2:text version}]{${1:math version}}"
+      }
+    },
+    {
+      "name": "MTversion*",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTversion*{${1:math version}}"
+      }
+    },
+    {
+      "name": "MTcustomgreek",
+      "unusual": true
+    },
+    {
+      "name": "MTstandardgreek",
+      "unusual": true
+    },
+    {
+      "name": "MTgreekupdefault",
+      "unusual": true
+    },
+    {
+      "name": "MTgreekitdefault",
+      "unusual": true
+    },
+    {
+      "name": "MTrecordstandardgreek",
+      "unusual": true
+    },
+    {
+      "name": "MTresetnewmcodes",
+      "unusual": true
+    },
+    {
+      "name": "MTcustomizenewmcodes",
+      "unusual": true
+    },
+    {
+      "name": "MTmathactivedigits",
+      "unusual": true
+    },
+    {
+      "name": "MTmathstandarddigits",
+      "unusual": true
+    },
+    {
+      "name": "pmvec",
+      "arg": {
+        "format": "{}",
+        "snippet": "pmvec{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathnormal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathnormal{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathrm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathrm{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathbf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathbf{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathit",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathit{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathsf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathsf{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathtt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathtt{${1:arg}}"
+      }
+    },
+    {
+      "name": "mathnormalbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathnormalbold{${1:arg}}"
+      }
+    },
+    {
+      "name": "Mathnormalbold",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Mathnormalbold{${1:arg}}"
+      }
+    },
+    {
+      "name": "inodot"
+    },
+    {
+      "name": "jnodot"
+    },
+    {
+      "name": "MTitgreek",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "MTupgreek",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "MTitGreek",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "MTupGreek",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "MTgreekfont",
+      "if": "LGRgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTgreekfont{${1:font family}}"
+      }
+    },
+    {
+      "name": "Digamma",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "digamma",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Alpha",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Beta",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Epsilon",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Zeta",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Eta",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Iota",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Kappa",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Mu",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Nu",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Omicron",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Rho",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Tau",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Chi",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "omicron",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "mathgreekup",
+      "if": "LGRgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekup{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekit",
+      "if": "LGRgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekit{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekupbold",
+      "if": "LGRgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekupbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekitbold",
+      "if": "LGRgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekitbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "Alphaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Betaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Epsilonup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Zetaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Etaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Iotaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Kappaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Muup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Nuup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Omicronup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Rhoup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Tauup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Chiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Alphait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Betait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Epsilonit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Zetait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Etait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Iotait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Kappait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Muit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Nuit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Omicronit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Rhoit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Tauit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Chiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Digammaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Digammait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Gammaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Deltaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Thetaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Lambdaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Xiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Piup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Sigmaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Upsilonup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Phiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Psiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Omegaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Gammait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Deltait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Thetait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Lambdait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Xiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Piit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Sigmait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Upsilonit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Phiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Psiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "Omegait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "alphaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "betaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "gammaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "deltaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "epsilonup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "zetaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "etaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "thetaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "iotaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "kappaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "lambdaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "muup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "nuup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "xiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "omicronup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "piup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "rhoup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "sigmaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "tauup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "upsilonup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "phiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "chiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "psiup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "omegaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "digammaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "varsigmaup",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "alphait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "betait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "gammait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "deltait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "epsilonit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "zetait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "etait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "thetait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "iotait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "kappait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "lambdait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "muit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "nuit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "xiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "omicronit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "piit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "rhoit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "sigmait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "tauit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "upsilonit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "phiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "chiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "psiit",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "omegait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "digammait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "varsigmait",
+      "if": "LGRgreek"
+    },
+    {
+      "name": "MTitgreek",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "MTupgreek",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "MTitGreek",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "MTupGreek",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "MTgreekfont",
+      "if": "LGRgreeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTgreekfont{${1:font family}}"
+      }
+    },
+    {
+      "name": "Digamma",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "digamma",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Alpha",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Beta",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Epsilon",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Zeta",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Eta",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Iota",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Kappa",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Mu",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Nu",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Omicron",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Rho",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Tau",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Chi",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "omicron",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "mathgreekup",
+      "if": "LGRgreeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekup{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekit",
+      "if": "LGRgreeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekit{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekupbold",
+      "if": "LGRgreeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekupbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekitbold",
+      "if": "LGRgreeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekitbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "Alphaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Betaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Epsilonup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Zetaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Etaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Iotaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Kappaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Muup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Nuup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Omicronup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Rhoup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Tauup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Chiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Alphait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Betait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Epsilonit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Zetait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Etait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Iotait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Kappait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Muit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Nuit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Omicronit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Rhoit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Tauit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Chiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Digammaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Digammait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Gammaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Deltaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Thetaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Lambdaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Xiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Piup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Sigmaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Upsilonup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Phiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Psiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Omegaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Gammait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Deltait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Thetait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Lambdait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Xiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Piit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Sigmait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Upsilonit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Phiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Psiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "Omegait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "alphaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "betaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "gammaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "deltaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "epsilonup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "zetaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "etaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "thetaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "iotaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "kappaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "lambdaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "muup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "nuup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "xiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "omicronup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "piup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "rhoup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "sigmaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "tauup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "upsilonup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "phiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "chiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "psiup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "omegaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "digammaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "varsigmaup",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "alphait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "betait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "gammait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "deltait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "epsilonit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "zetait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "etait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "thetait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "iotait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "kappait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "lambdait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "muit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "nuit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "xiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "omicronit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "piit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "rhoit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "sigmait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "tauit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "upsilonit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "phiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "chiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "psiit",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "omegait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "digammait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "varsigmait",
+      "if": "LGRgreeks"
+    },
+    {
+      "name": "MTitgreek",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "MTupgreek",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "MTitGreek",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "MTupGreek",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "MTgreekfont",
+      "if": "LGRgreek+",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTgreekfont{${1:font family}}"
+      }
+    },
+    {
+      "name": "Digamma",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "digamma",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Alpha",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Beta",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Epsilon",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Zeta",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Eta",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Iota",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Kappa",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Mu",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Nu",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Omicron",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Rho",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Tau",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Chi",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "omicron",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "mathgreekup",
+      "if": "LGRgreek+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekup{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekit",
+      "if": "LGRgreek+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekit{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekupbold",
+      "if": "LGRgreek+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekupbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekitbold",
+      "if": "LGRgreek+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekitbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "Alphaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Betaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Epsilonup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Zetaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Etaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Iotaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Kappaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Muup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Nuup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Omicronup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Rhoup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Tauup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Chiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Alphait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Betait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Epsilonit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Zetait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Etait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Iotait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Kappait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Muit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Nuit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Omicronit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Rhoit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Tauit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Chiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Digammaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Digammait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Gammaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Deltaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Thetaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Lambdaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Xiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Piup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Sigmaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Upsilonup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Phiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Psiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Omegaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Gammait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Deltait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Thetait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Lambdait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Xiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Piit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Sigmait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Upsilonit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Phiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Psiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "Omegait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "alphaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "betaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "gammaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "deltaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "epsilonup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "zetaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "etaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "thetaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "iotaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "kappaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "lambdaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "muup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "nuup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "xiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "omicronup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "piup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "rhoup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "sigmaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "tauup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "upsilonup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "phiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "chiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "psiup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "omegaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "digammaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "varsigmaup",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "alphait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "betait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "gammait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "deltait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "epsilonit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "zetait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "etait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "thetait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "iotait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "kappait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "lambdait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "muit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "nuit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "xiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "omicronit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "piit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "rhoit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "sigmait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "tauit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "upsilonit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "phiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "chiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "psiit",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "omegait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "digammait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "varsigmait",
+      "if": "LGRgreek+"
+    },
+    {
+      "name": "MTitgreek",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "MTupgreek",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "MTitGreek",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "MTupGreek",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "MTgreekfont",
+      "if": "LGRgreeks+",
+      "arg": {
+        "format": "{}",
+        "snippet": "MTgreekfont{${1:font family}}"
+      }
+    },
+    {
+      "name": "Digamma",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "digamma",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Alpha",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Beta",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Epsilon",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Zeta",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Eta",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Iota",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Kappa",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Mu",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Nu",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Omicron",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Rho",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Tau",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Chi",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "omicron",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "mathgreekup",
+      "if": "LGRgreeks+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekup{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekit",
+      "if": "LGRgreeks+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekit{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekupbold",
+      "if": "LGRgreeks+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekupbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "mathgreekitbold",
+      "if": "LGRgreeks+",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathgreekitbold{${1:letter}}"
+      }
+    },
+    {
+      "name": "Alphaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Betaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Epsilonup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Zetaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Etaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Iotaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Kappaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Muup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Nuup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Omicronup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Rhoup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Tauup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Chiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Alphait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Betait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Epsilonit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Zetait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Etait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Iotait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Kappait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Muit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Nuit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Omicronit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Rhoit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Tauit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Chiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Digammaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Digammait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Gammaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Deltaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Thetaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Lambdaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Xiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Piup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Sigmaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Upsilonup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Phiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Psiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Omegaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Gammait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Deltait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Thetait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Lambdait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Xiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Piit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Sigmait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Upsilonit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Phiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Psiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "Omegait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "alphaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "betaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "gammaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "deltaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "epsilonup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "zetaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "etaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "thetaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "iotaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "kappaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "lambdaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "muup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "nuup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "xiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "omicronup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "piup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "rhoup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "sigmaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "tauup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "upsilonup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "phiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "chiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "psiup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "omegaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "digammaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "varsigmaup",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "alphait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "betait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "gammait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "deltait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "epsilonit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "zetait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "etait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "thetait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "iotait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "kappait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "lambdait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "muit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "nuit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "xiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "omicronit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "piit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "rhoit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "sigmait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "tauit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "upsilonit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "phiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "chiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "psiit",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "omegait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "digammait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "varsigmait",
+      "if": "LGRgreeks+"
+    },
+    {
+      "name": "MathEuler",
+      "if": "eulergreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathEuler{${1:letter}}"
+      }
+    },
+    {
+      "name": "MathEulerBold",
+      "if": "eulergreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathEulerBold{${1:letter}}"
+      }
+    },
+    {
+      "name": "Digamma",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Alpha",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Beta",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Epsilon",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Zeta",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Eta",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Iota",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Kappa",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Mu",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Nu",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Omicron",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Rho",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Tau",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Chi",
+      "if": "eulergreek"
+    },
+    {
+      "name": "omicron",
+      "if": "eulergreek"
+    },
+    {
+      "name": "Digamma",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Alpha",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Beta",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Epsilon",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Zeta",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Eta",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Iota",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Kappa",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Mu",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Nu",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Omicron",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Rho",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Tau",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Chi",
+      "if": "selfGreek"
+    },
+    {
+      "name": "Digamma",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Alpha",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Beta",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Epsilon",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Zeta",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Eta",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Iota",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Kappa",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Mu",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Nu",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Omicron",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Rho",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Tau",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "Chi",
+      "if": "selfGreeks"
+    },
+    {
+      "name": "MathEuler",
+      "if": "eulerdigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathEuler{${1:letter}}"
+      }
+    },
+    {
+      "name": "MathEulerBold",
+      "if": "eulerdigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathEulerBold{${1:letter}}"
+      }
+    },
+    {
+      "name": "fouriervec",
+      "if": "fouriervec",
+      "arg": {
+        "format": "{}",
+        "snippet": "fouriervec{${1:arg}}"
+      }
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symboldelimiters",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symboldigits",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symbolgreek",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "Alpha",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Beta",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Epsilon",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Zeta",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Eta",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Iota",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Kappa",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Mu",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Nu",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Omicron",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Rho",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Tau",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "Chi",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "omicron",
+      "if": "symbolgreek"
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symbolre",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "DotTriangle",
+      "if": "symbolre"
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symbolmisc",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "implies",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "impliedby",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "shortiff",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "longto",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "inftypsy",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "proptopsy",
+      "if": "symbolmisc"
+    },
+    {
+      "name": "MToriginalprod",
+      "if": "symbolmisc",
+      "unusual": true
+    },
+    {
+      "name": "MToriginalsum",
+      "if": "symbolmisc",
+      "unusual": true
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "Alpha",
+      "if": "symbol"
+    },
+    {
+      "name": "Beta",
+      "if": "symbol"
+    },
+    {
+      "name": "Epsilon",
+      "if": "symbol"
+    },
+    {
+      "name": "Zeta",
+      "if": "symbol"
+    },
+    {
+      "name": "Eta",
+      "if": "symbol"
+    },
+    {
+      "name": "Iota",
+      "if": "symbol"
+    },
+    {
+      "name": "Kappa",
+      "if": "symbol"
+    },
+    {
+      "name": "Mu",
+      "if": "symbol"
+    },
+    {
+      "name": "Nu",
+      "if": "symbol"
+    },
+    {
+      "name": "Omicron",
+      "if": "symbol"
+    },
+    {
+      "name": "Rho",
+      "if": "symbol"
+    },
+    {
+      "name": "Tau",
+      "if": "symbol"
+    },
+    {
+      "name": "Chi",
+      "if": "symbol"
+    },
+    {
+      "name": "omicron",
+      "if": "symbol"
+    },
+    {
+      "name": "implies",
+      "if": "symbol"
+    },
+    {
+      "name": "impliedby",
+      "if": "symbol"
+    },
+    {
+      "name": "shortiff",
+      "if": "symbol"
+    },
+    {
+      "name": "longto",
+      "if": "symbol"
+    },
+    {
+      "name": "inftypsy",
+      "if": "symbol"
+    },
+    {
+      "name": "proptopsy",
+      "if": "symbol"
+    },
+    {
+      "name": "DotTriangle",
+      "if": "symbol"
+    },
+    {
+      "name": "MToriginalprod",
+      "if": "symbol",
+      "unusual": true
+    },
+    {
+      "name": "MToriginalsum",
+      "if": "symbol",
+      "unusual": true
+    },
+    {
+      "name": "MathPSymbol",
+      "if": "symbolmax",
+      "arg": {
+        "format": "{}",
+        "snippet": "MathPSymbol{${1:arg}}"
+      }
+    },
+    {
+      "name": "Alpha",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Beta",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Epsilon",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Zeta",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Eta",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Iota",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Kappa",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Mu",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Nu",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Omicron",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Rho",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Tau",
+      "if": "symbolmax"
+    },
+    {
+      "name": "Chi",
+      "if": "symbolmax"
+    },
+    {
+      "name": "omicron",
+      "if": "symbolmax"
+    },
+    {
+      "name": "implies",
+      "if": "symbolmax"
+    },
+    {
+      "name": "impliedby",
+      "if": "symbolmax"
+    },
+    {
+      "name": "shortiff",
+      "if": "symbolmax"
+    },
+    {
+      "name": "longto",
+      "if": "symbolmax"
+    },
+    {
+      "name": "inftypsy",
+      "if": "symbolmax"
+    },
+    {
+      "name": "proptopsy",
+      "if": "symbolmax"
+    },
+    {
+      "name": "DotTriangle",
+      "if": "symbolmax"
+    },
+    {
+      "name": "MToriginalprod",
+      "if": "symbolmax",
+      "unusual": true
+    },
+    {
+      "name": "MToriginalsum",
+      "if": "symbolmax",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathastext#c": [
+      "italic",
+      "frenchmath",
       "ncccomma",
-      "frenchmath+"
-    ],
-    "decimalcomma": [
       "decimalcomma",
-      "frenchmath*"
+      "binarysemicolon",
+      "frenchmath*",
+      "frenchmath+",
+      "endash",
+      "noendash",
+      "emdash",
+      "alldelims",
+      "nolessnomore",
+      "nosmalldelims",
+      "noplus",
+      "nominus",
+      "noplusnominus",
+      "noparenthesis",
+      "nopunctuation",
+      "noequal",
+      "noexclam",
+      "asterisk",
+      "nospecials",
+      "basic",
+      "nohbar",
+      "activedigits",
+      "nodigits",
+      "defaultimath",
+      "noletters",
+      "mathaccents",
+      "unimathaccents",
+      "symboldelimiters",
+      "symboldigits",
+      "symbolgreek",
+      "symbolre",
+      "symbolmisc",
+      "symbol",
+      "symbolmax",
+      "eulerdigits",
+      "eulergreek",
+      "selfGreek",
+      "selfGreeks",
+      "LGRgreek",
+      "LGRgreeks",
+      "LGRgreek+",
+      "LGRgreeks+",
+      "itgreek",
+      "upgreek",
+      "itGreek",
+      "upGreek",
+      "defaultnormal",
+      "defaultrm",
+      "defaultbf",
+      "defaultit",
+      "defaultsf",
+      "defaulttt",
+      "defaultalphabets",
+      "defaultmathsizes",
+      "12pt",
+      "fouriervec",
+      "subdued",
+      "everymath"
     ]
   },
-  "macros": {
-    "HUGE": {},
-    "Mathastext": {},
-    "Mathastext[]": {
-      "snippet": "Mathastext[${1:name}]"
-    },
-    "mathastext": {},
-    "mathastext[]": {
-      "snippet": "mathastext[${1:name}]"
-    },
-    "MTencoding{}": {
-      "snippet": "MTencoding{${1:encoding}}"
-    },
-    "MTfamily{}": {
-      "snippet": "MTfamily{${1:family}}"
-    },
-    "MTseries{}": {
-      "snippet": "MTseries{${1:series}}"
-    },
-    "MTshape{}": {
-      "snippet": "MTshape{${1:shape}}"
-    },
-    "MTlettershape{}": {
-      "snippet": "MTlettershape{${1:shape}}"
-    },
-    "MTWillUse{}{}{}{}": {
-      "snippet": "MTWillUse{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
-    },
-    "MTWillUse[]{}{}{}{}": {
-      "snippet": "MTWillUse[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
-    },
-    "MathastextWillUse": {},
-    "Mathastextwilluse": {},
-    "MTDeclareVersion{}{}{}{}": {
-      "snippet": "MTDeclareVersion{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
-    },
-    "MTDeclareVersion[]{}{}{}{}": {
-      "snippet": "MTDeclareVersion[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}"
-    },
-    "MTDeclareVersion[]{}{}{}{}[]": {
-      "snippet": "MTDeclareVersion[${5:lettershape}]{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}[${6:other version}]"
-    },
-    "MathastextDeclareVersion": {},
-    "MTboldvariant{}": {
-      "snippet": "MTboldvariant{${1:variant}}"
-    },
-    "MTEulerScale{}": {
-      "snippet": "MTEulerScale{${1:factor}}"
-    },
-    "MTSymbolScale{}": {
-      "snippet": "MTSymbolScale{${1:factor}}"
-    },
-    "MTmathactiveletters": {},
-    "MTmathactiveLetters": {},
-    "MTmathstandardletters": {},
-    "MTicinmath": {},
-    "MTnoicinmath": {},
-    "MTICinmath": {},
-    "MTnoICinmath": {},
-    "MTicalsoinmathxx": {},
-    "MTnormalasterisk": {},
-    "MTactiveasterisk": {},
-    "MTeasynonlettersobeymathxx": {},
-    "MTeasynonlettersdonotobeymathxx": {},
-    "MTnonlettersobeymathxx": {},
-    "MTnonlettersdonotobeymathxx": {},
-    "MTexplicitbracesobeymathxx": {},
-    "MTexplicitbracesdonotobeymathxx": {},
-    "MTnormalprime": {},
-    "MTprimedoesskip": {},
-    "MTeverymathdefault": {},
-    "MTeverymathoff": {},
-    "MTfixfonts": {},
-    "MTdonotfixfonts": {},
-    "MTfixmathfonts": {},
-    "MTsetmathskips{}{}{}": {
-      "snippet": "MTsetmathskips{${1:letter}}{${2:mu-glue-before}}{${3:mu-glue-after}}"
-    },
-    "MTunsetmathskips{}": {
-      "snippet": "MTunsetmathskips{${1:letter}}"
-    },
-    "MTexistsskip{}": {
-      "snippet": "MTexistsskip{${1:math glue}}"
-    },
-    "MTnormalexists": {},
-    "MTexistsdoesskip": {},
-    "MTforallskip{}": {
-      "snippet": "MTforallskip{${1:math glue}}"
-    },
-    "MTnormalforall": {},
-    "MTforalldoesskip": {},
-    "MTprimeskip{}": {
-      "snippet": "MTprimeskip{${1:math glue}}"
-    },
-    "MTlowerast{}": {
-      "snippet": "MTlowerast{${1:dimen}}"
-    },
-    "MTmathoperatorsobeymathxx": {},
-    "MTmathoperatorsdonotobeymathxx": {},
-    "MTversion{}": {
-      "snippet": "MTversion{${1:math version}}"
-    },
-    "MTversion[]{}": {
-      "snippet": "MTversion[${2:text version}]{${1:math version}}"
-    },
-    "MTversion*{}": {
-      "snippet": "MTversion*{${1:math version}}"
-    },
-    "Mathastextversion": {},
-    "MTversion": {},
-    "mathastextversion": {},
-    "MTcustomgreek": {},
-    "Mathastextcustomgreek": {},
-    "MTstandardgreek": {},
-    "Mathastextstandardgreek": {},
-    "MTgreekupdefault": {},
-    "MTgreekitdefault": {},
-    "MTrecordstandardgreek": {},
-    "MTresetnewmcodes": {},
-    "MTcustomizenewmcodes": {},
-    "pmvec{}": {
-      "snippet": "pmvec{${1:arg}}"
-    },
-    "Mathnormal{}": {
-      "snippet": "Mathnormal{${1:arg}}"
-    },
-    "Mathrm{}": {
-      "snippet": "Mathrm{${1:arg}}"
-    },
-    "Mathbf{}": {
-      "snippet": "Mathbf{${1:arg}}"
-    },
-    "Mathit{}": {
-      "snippet": "Mathit{${1:arg}}"
-    },
-    "Mathsf{}": {
-      "snippet": "Mathsf{${1:arg}}"
-    },
-    "Mathtt{}": {
-      "snippet": "Mathtt{${1:arg}}"
-    },
-    "mathnormalbold{}": {
-      "snippet": "mathnormalbold{${1:arg}}"
-    },
-    "Mathnormalbold{}": {
-      "snippet": "Mathnormalbold{${1:arg}}"
-    },
-    "inodot": {},
-    "jnodot": {},
-    "MTitgreek": {
-      "option": "LGRgreeks+"
-    },
-    "Mathastextitgreek": {
-      "option": "LGRgreeks+"
-    },
-    "MTupgreek": {
-      "option": "LGRgreeks+"
-    },
-    "Mathastextupgreek": {
-      "option": "LGRgreeks+"
-    },
-    "MTitGreek": {
-      "option": "LGRgreeks+"
-    },
-    "MathastextitGreek": {
-      "option": "LGRgreeks+"
-    },
-    "MTupGreek": {
-      "option": "LGRgreeks+"
-    },
-    "MathastextupGreek": {
-      "option": "LGRgreeks+"
-    },
-    "MTgreekfont{}": {
-      "snippet": "MTgreekfont{${1:font family}}",
-      "option": "LGRgreeks+"
-    },
-    "Mathastextgreekfont": {
-      "option": "LGRgreeks+"
-    },
-    "Digamma": {
-      "option": "selfGreeks",
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "digamma": {
-      "option": "LGRgreeks+",
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
-    },
-    "Alpha": {
-      "option": "symbolmax"
-    },
-    "Beta": {
-      "option": "symbolmax"
-    },
-    "Epsilon": {
-      "option": "symbolmax"
-    },
-    "Zeta": {
-      "option": "symbolmax"
-    },
-    "Eta": {
-      "option": "symbolmax"
-    },
-    "Iota": {
-      "option": "symbolmax"
-    },
-    "Kappa": {
-      "option": "symbolmax"
-    },
-    "Mu": {
-      "option": "symbolmax"
-    },
-    "Nu": {
-      "option": "symbolmax"
-    },
-    "Omicron": {
-      "option": "symbolmax"
-    },
-    "Rho": {
-      "option": "symbolmax"
-    },
-    "Tau": {
-      "option": "symbolmax"
-    },
-    "Chi": {
-      "option": "symbolmax"
-    },
-    "omicron": {
-      "option": "symbolmax"
-    },
-    "mathgreekup{}": {
-      "snippet": "mathgreekup{${1:letter}}",
-      "option": "LGRgreeks+"
-    },
-    "mathgreekit{}": {
-      "snippet": "mathgreekit{${1:letter}}",
-      "option": "LGRgreeks+"
-    },
-    "mathgreekupbold{}": {
-      "snippet": "mathgreekupbold{${1:letter}}",
-      "option": "LGRgreeks+"
-    },
-    "mathgreekitbold{}": {
-      "snippet": "mathgreekitbold{${1:letter}}",
-      "option": "LGRgreeks+"
-    },
-    "Alphaup": {
-      "option": "LGRgreeks+"
-    },
-    "Betaup": {
-      "option": "LGRgreeks+"
-    },
-    "Epsilonup": {
-      "option": "LGRgreeks+"
-    },
-    "Zetaup": {
-      "option": "LGRgreeks+"
-    },
-    "Etaup": {
-      "option": "LGRgreeks+"
-    },
-    "Iotaup": {
-      "option": "LGRgreeks+"
-    },
-    "Kappaup": {
-      "option": "LGRgreeks+"
-    },
-    "Muup": {
-      "option": "LGRgreeks+"
-    },
-    "Nuup": {
-      "option": "LGRgreeks+"
-    },
-    "Omicronup": {
-      "option": "LGRgreeks+"
-    },
-    "Rhoup": {
-      "option": "LGRgreeks+"
-    },
-    "Tauup": {
-      "option": "LGRgreeks+"
-    },
-    "Chiup": {
-      "option": "LGRgreeks+"
-    },
-    "Alphait": {
-      "option": "LGRgreeks+"
-    },
-    "Betait": {
-      "option": "LGRgreeks+"
-    },
-    "Epsilonit": {
-      "option": "LGRgreeks+"
-    },
-    "Zetait": {
-      "option": "LGRgreeks+"
-    },
-    "Etait": {
-      "option": "LGRgreeks+"
-    },
-    "Iotait": {
-      "option": "LGRgreeks+"
-    },
-    "Kappait": {
-      "option": "LGRgreeks+"
-    },
-    "Muit": {
-      "option": "LGRgreeks+"
-    },
-    "Nuit": {
-      "option": "LGRgreeks+"
-    },
-    "Omicronit": {
-      "option": "LGRgreeks+"
-    },
-    "Rhoit": {
-      "option": "LGRgreeks+"
-    },
-    "Tauit": {
-      "option": "LGRgreeks+"
-    },
-    "Chiit": {
-      "option": "LGRgreeks+"
-    },
-    "Digammaup": {
-      "option": "LGRgreeks+"
-    },
-    "Digammait": {
-      "option": "LGRgreeks+"
-    },
-    "Gammaup": {
-      "option": "LGRgreeks+"
-    },
-    "Deltaup": {
-      "option": "LGRgreeks+"
-    },
-    "Thetaup": {
-      "option": "LGRgreeks+"
-    },
-    "Lambdaup": {
-      "option": "LGRgreeks+"
-    },
-    "Xiup": {
-      "option": "LGRgreeks+"
-    },
-    "Piup": {
-      "option": "LGRgreeks+"
-    },
-    "Sigmaup": {
-      "option": "LGRgreeks+"
-    },
-    "Upsilonup": {
-      "option": "LGRgreeks+"
-    },
-    "Phiup": {
-      "option": "LGRgreeks+"
-    },
-    "Psiup": {
-      "option": "LGRgreeks+"
-    },
-    "Omegaup": {
-      "option": "LGRgreeks+"
-    },
-    "Gammait": {
-      "option": "LGRgreeks+"
-    },
-    "Deltait": {
-      "option": "LGRgreeks+"
-    },
-    "Thetait": {
-      "option": "LGRgreeks+"
-    },
-    "Lambdait": {
-      "option": "LGRgreeks+"
-    },
-    "Xiit": {
-      "option": "LGRgreeks+"
-    },
-    "Piit": {
-      "option": "LGRgreeks+"
-    },
-    "Sigmait": {
-      "option": "LGRgreeks+"
-    },
-    "Upsilonit": {
-      "option": "LGRgreeks+"
-    },
-    "Phiit": {
-      "option": "LGRgreeks+"
-    },
-    "Psiit": {
-      "option": "LGRgreeks+"
-    },
-    "Omegait": {
-      "option": "LGRgreeks+"
-    },
-    "alphaup": {
-      "option": "LGRgreeks+",
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "betaup": {
-      "option": "LGRgreeks+",
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "gammaup": {
-      "option": "LGRgreeks+",
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "deltaup": {
-      "option": "LGRgreeks+",
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "epsilonup": {
-      "option": "LGRgreeks+",
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "zetaup": {
-      "option": "LGRgreeks+",
-      "detail": "ζ",
-      "documentation": "ze greek"
-    },
-    "etaup": {
-      "option": "LGRgreeks+",
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "thetaup": {
-      "option": "LGRgreeks+",
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "iotaup": {
-      "option": "LGRgreeks+",
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "kappaup": {
-      "option": "LGRgreeks+",
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "lambdaup": {
-      "option": "LGRgreeks+",
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "muup": {
-      "option": "LGRgreeks+",
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "nuup": {
-      "option": "LGRgreeks+",
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "xiup": {
-      "option": "LGRgreeks+",
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "omicronup": {
-      "option": "LGRgreeks+"
-    },
-    "piup": {
-      "option": "LGRgreeks+",
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "rhoup": {
-      "option": "LGRgreeks+",
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "sigmaup": {
-      "option": "LGRgreeks+",
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "tauup": {
-      "option": "LGRgreeks+",
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "upsilonup": {
-      "option": "LGRgreeks+",
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "phiup": {
-      "option": "LGRgreeks+",
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "chiup": {
-      "option": "LGRgreeks+",
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "psiup": {
-      "option": "LGRgreeks+",
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "omegaup": {
-      "option": "LGRgreeks+",
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "digammaup": {
-      "option": "LGRgreeks+"
-    },
-    "varsigmaup": {
-      "option": "LGRgreeks+",
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "alphait": {
-      "option": "LGRgreeks+"
-    },
-    "betait": {
-      "option": "LGRgreeks+"
-    },
-    "gammait": {
-      "option": "LGRgreeks+"
-    },
-    "deltait": {
-      "option": "LGRgreeks+"
-    },
-    "epsilonit": {
-      "option": "LGRgreeks+"
-    },
-    "zetait": {
-      "option": "LGRgreeks+"
-    },
-    "etait": {
-      "option": "LGRgreeks+"
-    },
-    "thetait": {
-      "option": "LGRgreeks+"
-    },
-    "iotait": {
-      "option": "LGRgreeks+"
-    },
-    "kappait": {
-      "option": "LGRgreeks+"
-    },
-    "lambdait": {
-      "option": "LGRgreeks+"
-    },
-    "muit": {
-      "option": "LGRgreeks+"
-    },
-    "nuit": {
-      "option": "LGRgreeks+"
-    },
-    "xiit": {
-      "option": "LGRgreeks+"
-    },
-    "omicronit": {
-      "option": "LGRgreeks+"
-    },
-    "piit": {
-      "option": "LGRgreeks+"
-    },
-    "rhoit": {
-      "option": "LGRgreeks+"
-    },
-    "sigmait": {
-      "option": "LGRgreeks+"
-    },
-    "tauit": {
-      "option": "LGRgreeks+"
-    },
-    "upsilonit": {
-      "option": "LGRgreeks+"
-    },
-    "phiit": {
-      "option": "LGRgreeks+"
-    },
-    "chiit": {
-      "option": "LGRgreeks+"
-    },
-    "psiit": {
-      "option": "LGRgreeks+"
-    },
-    "omegait": {
-      "option": "LGRgreeks+"
-    },
-    "digammait": {
-      "option": "LGRgreeks+"
-    },
-    "varsigmait": {
-      "option": "LGRgreeks+"
-    },
-    "MathEuler{}": {
-      "snippet": "MathEuler{${1:letter}}",
-      "option": "eulerdigits"
-    },
-    "MathEulerBold{}": {
-      "snippet": "MathEulerBold{${1:letter}}",
-      "option": "eulerdigits"
-    },
-    "fouriervec{}": {
-      "snippet": "fouriervec{${1:arg}}",
-      "option": "fouriervec"
-    },
-    "MathPSymbol{}": {
-      "snippet": "MathPSymbol{${1:arg}}",
-      "option": "symbolmax"
-    },
-    "DotTriangle": {
-      "option": "symbolmax"
-    },
-    "implies": {
-      "option": "symbolmax",
-      "detail": "⟹",
-      "documentation": "LONG RIGHTWARDS DOUBLE ARROW"
-    },
-    "impliedby": {
-      "option": "symbolmax",
-      "detail": "⟸",
-      "documentation": "LONG LEFTWARDS DOUBLE ARROW"
-    },
-    "shortiff": {
-      "option": "symbolmax"
-    },
-    "longto": {
-      "option": "symbolmax"
-    },
-    "inftypsy": {
-      "option": "symbolmax"
-    },
-    "proptopsy": {
-      "option": "symbolmax"
-    },
-    "MToriginalprod": {
-      "option": "symbolmax"
-    },
-    "MToriginalsum": {
-      "option": "symbolmax"
-    }
-  },
-  "envs": {},
-  "options": [
-    "italic",
-    "frenchmath",
-    "ncccomma",
-    "decimalcomma",
-    "binarysemicolon",
-    "frenchmath*",
-    "frenchmath+",
-    "endash",
-    "noendash",
-    "emdash",
-    "alldelims",
-    "nolessnomore",
-    "nosmalldelims",
-    "noplus",
-    "nominus",
-    "noplusnominus",
-    "noparenthesis",
-    "nopunctuation",
-    "noequal",
-    "noexclam",
-    "asterisk",
-    "nospecials",
-    "basic",
-    "nohbar",
-    "nodigits",
-    "defaultimath",
-    "mathaccents",
-    "unimathaccents",
-    "symboldelimiters",
-    "symboldigits",
-    "symbolgreek",
-    "symbolre",
-    "symbolmisc",
-    "symbol",
-    "symbolmax",
-    "eulerdigits",
-    "eulergreek",
-    "selfGreek",
-    "selfGreeks",
-    "LGRgreek",
-    "LGRgreeks",
-    "LGRgreek+",
-    "LGRgreeks+",
-    "itgreek",
-    "upgreek",
-    "itGreek",
-    "upGreek",
-    "defaultnormal",
-    "defaultrm",
-    "defaultbf",
-    "defaultit",
-    "defaultsf",
-    "defaulttt",
-    "defaultalphabets",
-    "defaultmathsizes",
-    "12pt",
-    "fouriervec",
-    "subdued"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/mathastext#c"
+  ]
 }

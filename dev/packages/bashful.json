@@ -1,52 +1,104 @@
 {
-  "includes": {
-    "catchfile": [],
-    "listings": [],
-    "xcolor": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "bash[]": {
-      "snippet": "bash[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "catchfile"
     },
-    "END": {},
-    "bashStdout": {},
-    "bashStderr": {},
-    "splice{}": {
-      "snippet": "splice{${1:shell command}}"
+    {
+      "name": "listings"
     },
-    "bashI[]": {
-      "snippet": "bashI[${1:options}]"
+    {
+      "name": "xcolor"
     },
-    "bashII{}": {
-      "snippet": "bashII{${1:arg}}"
-    },
-    "bashIII{}": {
-      "snippet": "bashIII{${1:arg}}"
-    },
-    "bashIV{}": {
-      "snippet": "bashIV{${1:shell command}}"
-    },
-    "bashV{}": {
-      "snippet": "bashV{${1:arg}}"
-    },
-    "logBL{}": {
-      "snippet": "logBL{${1:message}}"
-    },
-    "eoln": {},
-    "firstErrorLine": {}
-  },
-  "envs": {},
-  "options": [
-    "unique",
-    "hide",
-    "dir=${1:directory}",
-    "verbose"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "bash",
+      "arg": {
+        "format": "[]",
+        "snippet": "bash[${1:options%keyvals}]",
+        "keys": [
+          "\\bash"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "END"
+    },
+    {
+      "name": "bashStdout"
+    },
+    {
+      "name": "bashStderr"
+    },
+    {
+      "name": "splice",
+      "arg": {
+        "format": "{}",
+        "snippet": "splice{${1:shell command%definition}}"
+      }
+    },
+    {
+      "name": "bashI",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "bashI[${1:options}]"
+      }
+    },
+    {
+      "name": "bashII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bashII{${1:arg}}"
+      }
+    },
+    {
+      "name": "bashIII",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bashIII{${1:arg}}"
+      }
+    },
+    {
+      "name": "bashIV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bashIV{${1:shell command%definition}}"
+      }
+    },
+    {
+      "name": "bashV",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bashV{${1:arg}}"
+      }
+    },
+    {
+      "name": "logBL",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "logBL{${1:message%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bashful#c": [
+      "unique",
+      "hide",
+      "dir=${1:directory}",
+      "verbose"
+    ],
+    "\\bash": [
       "scriptFile=${1:file name}",
       "stdoutFile=${1:file name}",
       "stderrFile=${1:file name}",
@@ -59,6 +111,14 @@
       "prefix=${1:tokens}",
       "environment=${1:envname}",
       "verbose"
+    ],
+    "\\lstset,\\lstinline,\\begin{lstlisting},\\lstinputlisting,\\lstMakeShortInline": [
+      "style=bashfulScript",
+      "style=bashfulStdout",
+      "style=bashfulStderr"
     ]
+  },
+  "args": [
+    "\\usepackage/bashful#c"
   ]
 }

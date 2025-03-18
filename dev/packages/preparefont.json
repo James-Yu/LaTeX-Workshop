@@ -1,18 +1,26 @@
 {
-  "includes": {
-    "ifplatform": []
-  },
-  "macros": {
-    "preparefontfile{}{}": {
-      "snippet": "preparefontfile{${1:font-file-name}}{${2:URL}}"
+  "deps": [
+    {
+      "name": "ifplatform"
+    }
+  ],
+  "macros": [
+    {
+      "name": "preparefontfile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "preparefontfile{${1:font-file-name}}{${2:URL}}"
+      }
     },
-    "preparefontfile{}{}[]": {
-      "snippet": "preparefontfile{${1:font-file-name}}{${2:URL}}[${3:local-saved-file-name}]"
-    },
-    "PFWgetCommand": {},
-    "PFWgetWithName": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "preparefontfile",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "preparefontfile{${1:font-file-name}}{${2:URL}}[${3:local-saved-file-name}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

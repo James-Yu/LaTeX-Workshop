@@ -1,79 +1,270 @@
 {
-  "includes": {
-    "tikz": [],
-    "simplekv": [],
-    "xstring": [],
-    "setspace": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": []
-  },
-  "macros": {
-    "ColGgurvan": {},
-    "PapierGurvan[]": {
-      "snippet": "PapierGurvan[${1:clés}]"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "PapierGurvan[]<>": {
-      "snippet": "PapierGurvan[${1:clés}]<${2:couleur}>"
+    {
+      "name": "simplekv"
     },
-    "EcrireLigneGurvan{}": {
-      "snippet": "EcrireLigneGurvan{${1:texte}}"
+    {
+      "name": "xstring"
     },
-    "EcrireLigneGurvan<>{}": {
-      "snippet": "EcrireLigneGurvan<${2:alignement}>{${1:texte}}"
+    {
+      "name": "setspace"
     },
-    "EcrireLigneGurvan[]{}": {
-      "snippet": "EcrireLigneGurvan[${2:clés}]{${1:texte}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "EcrireLigneGurvan[]<>{}": {
-      "snippet": "EcrireLigneGurvan[${2:clés}]<${3:alignement}>{${1:texte}}"
-    },
-    "PasseLigneGurvan": {},
-    "LigneGurvan{}": {
-      "snippet": "LigneGurvan{${1:texte}}"
-    },
-    "LigneGurvan<>{}": {
-      "snippet": "LigneGurvan<${2:alignement}>{${1:texte}}"
-    },
-    "LigneGurvan[]{}": {
-      "snippet": "LigneGurvan[${2:clés}]{${1:texte}}"
-    },
-    "LigneGurvan[]<>{}": {
-      "snippet": "LigneGurvan[${2:clés}]<${3:alignement}>{${1:texte}}"
-    },
-    "ParagrapheGurvan{}": {
-      "snippet": "ParagrapheGurvan{${1:texte}}"
-    },
-    "ParagrapheGurvan<>{}": {
-      "snippet": "ParagrapheGurvan<${2:alignement}>{${1:texte}}"
-    },
-    "ParagrapheGurvan[]{}": {
-      "snippet": "ParagrapheGurvan[${2:clés}]{${1:texte}}"
-    },
-    "ParagrapheGurvan[]<>{}": {
-      "snippet": "ParagrapheGurvan[${2:clés}]<${3:alignement}>{${1:texte}}"
-    },
-    "thelggurvan": {}
-  },
-  "envs": {
-    "EnvGurvan": {},
-    "EnvGurvan<>": {
-      "name": "EnvGurvan",
-      "snippet": "<${1:couleur}>"
-    },
-    "EnvGurvan[]": {
-      "name": "EnvGurvan",
-      "snippet": "[${1:clés}]"
-    },
-    "EnvGurvan[]<>": {
-      "name": "EnvGurvan",
-      "snippet": "[${1:clés}]<${2:couleur}>"
-    },
-    "PleinePageGurvan": {},
-    "PleinePageGurvan[]": {
-      "name": "PleinePageGurvan",
-      "snippet": "[${1:clés}]"
+    {
+      "name": "tikzlibrarypositioning"
     }
+  ],
+  "macros": [
+    {
+      "name": "ColGgurvan",
+      "unusual": true
+    },
+    {
+      "name": "PapierGurvan",
+      "arg": {
+        "format": "[]",
+        "snippet": "PapierGurvan[${1:clés%keyvals}]",
+        "keys": [
+          "\\PapierGurvan,\\begin{EnvGurvan}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PapierGurvan",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "PapierGurvan[${1:clés%keyvals}]<${2:couleur}>",
+        "keys": [
+          "\\PapierGurvan,\\begin{EnvGurvan}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EcrireLigneGurvan",
+      "arg": {
+        "format": "{}",
+        "snippet": "EcrireLigneGurvan{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "EcrireLigneGurvan<alignement>",
+      "arg": {
+        "format": "{}",
+        "snippet": "EcrireLigneGurvan<alignement>{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "EcrireLigneGurvan",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "EcrireLigneGurvan[${2:clés%keyvals}]{${1:texte%text}}",
+        "keys": [
+          "\\EcrireLigneGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EcrireLigneGurvan",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "EcrireLigneGurvan[${2:clés%keyvals}]<${3:alignement}>{${1:texte%text}}",
+        "keys": [
+          "\\EcrireLigneGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PasseLigneGurvan"
+    },
+    {
+      "name": "LigneGurvan",
+      "arg": {
+        "format": "{}",
+        "snippet": "LigneGurvan{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "LigneGurvan<alignement>",
+      "arg": {
+        "format": "{}",
+        "snippet": "LigneGurvan<alignement>{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "LigneGurvan",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LigneGurvan[${2:clés%keyvals}]{${1:texte%text}}",
+        "keys": [
+          "\\LigneGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LigneGurvan",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "LigneGurvan[${2:clés%keyvals}]<${3:alignement}>{${1:texte%text}}",
+        "keys": [
+          "\\LigneGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LigneGurvan",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "LigneGurvan[${2:clés%keyvals}]<${3:alignement}>(${4:ajustement}){${1:texte%text}}",
+        "keys": [
+          "\\LigneGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ParagrapheGurvan",
+      "arg": {
+        "format": "{}",
+        "snippet": "ParagrapheGurvan{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "ParagrapheGurvan<alignement>",
+      "arg": {
+        "format": "{}",
+        "snippet": "ParagrapheGurvan<alignement>{${1:texte%text}}"
+      }
+    },
+    {
+      "name": "ParagrapheGurvan",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ParagrapheGurvan[${2:clés%keyvals}]{${1:texte%text}}",
+        "keys": [
+          "\\ParagrapheGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ParagrapheGurvan",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "ParagrapheGurvan[${2:clés%keyvals}]<${3:alignement}>{${1:texte%text}}",
+        "keys": [
+          "\\ParagrapheGurvan"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ParagrapheGurvan",
+      "arg": {
+        "format": "[]<>(){}",
+        "snippet": "ParagrapheGurvan[${2:clés%keyvals}]<${3:alignement}>(${4:ajustement}){${1:texte%text}}",
+        "keys": [
+          "\\ParagrapheGurvan"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "EnvGurvan"
+    },
+    {
+      "name": "EnvGurvan",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:couleur}>"
+      }
+    },
+    {
+      "name": "EnvGurvan",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\PapierGurvan,\\begin{EnvGurvan}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EnvGurvan",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "[${1:clés%keyvals}]<${2:couleur}>",
+        "keys": [
+          "\\PapierGurvan,\\begin{EnvGurvan}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PleinePageGurvan"
+    },
+    {
+      "name": "PleinePageGurvan",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:clés%keyvals}]",
+        "keys": [
+          "\\begin{PleinePageGurvan}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\PapierGurvan,\\begin{EnvGurvan}": [
+      "NbCarreaux=${1:nbCol}x${2:nbLig}",
+      "Unite=${1:nombre}",
+      "Marge=${1:nombre}",
+      "AffBarres",
+      "Interligne=${1:nombre}",
+      "CouleurBarre="
+    ],
+    "\\EcrireLigneGurvan": [
+      "DecalH=${1:nombre}",
+      "DecalV=",
+      "Echelle=${1:nombre}"
+    ],
+    "\\begin{PleinePageGurvan}": [
+      "Interligne=${1:nombre}",
+      "Papier=${1|A4,A5|}",
+      "CoulLignes=",
+      "CoulFondClair=",
+      "CoulFondFonce=",
+      "Marges=${1:MargeGauche}/${2:MargeDroite}",
+      "NumLignes"
+    ],
+    "\\LigneGurvan": [
+      "Couleur=",
+      "Ligne=${1:numéro}",
+      "Echelle=${1:nombre}",
+      "DecalBord=${1:nombre}",
+      "TaillePolice=${1:nombre}"
+    ],
+    "\\ParagrapheGurvan": [
+      "Couleur=",
+      "Ligne=${1:numéro}",
+      "Echelle=${1:nombre}",
+      "DecalBord=${1:nombre}",
+      "Espacement="
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

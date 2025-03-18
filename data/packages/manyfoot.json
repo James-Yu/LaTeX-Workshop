@@ -1,46 +1,93 @@
 {
-  "includes": {
-    "nccfoots": [],
-    "perpage": [
+  "deps": [
+    {
+      "name": "nccfoots"
+    },
+    {
+      "name": "perpage",
+      "if": "perpage"
+    }
+  ],
+  "macros": [
+    {
+      "name": "extrafootnoterule"
+    },
+    {
+      "name": "defaultfootnoterule"
+    },
+    {
+      "name": "newfootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "newfootnote{${1:suffix}}"
+      }
+    },
+    {
+      "name": "newfootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newfootnote[${2:style}]{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DeclareNewFootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareNewFootnote{${1:suffix}}"
+      }
+    },
+    {
+      "name": "DeclareNewFootnote",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "DeclareNewFootnote[${2:footnote-style}]{${1:suffix}}[${3:enumeration-style}]"
+      }
+    },
+    {
+      "name": "SelectFootnoteRule",
+      "arg": {
+        "format": "{}",
+        "snippet": "SelectFootnoteRule{${1:rule-name}}"
+      }
+    },
+    {
+      "name": "SelectFootnoteRule",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "SelectFootnoteRule[${2:priority}]{${1:rule-name}}[${3:action}]"
+      }
+    },
+    {
+      "name": "footnoterulepriority"
+    },
+    {
+      "name": "SetFootnoteHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetFootnoteHook{${1:code}}"
+      }
+    },
+    {
+      "name": "SplitNote"
+    },
+    {
+      "name": "ExtraParaSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "ExtraParaSkip{${1:space%l}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/manyfoot#c": [
+      "ruled",
+      "para",
+      "para*",
       "perpage"
     ]
   },
-  "macros": {
-    "extrafootnoterule": {},
-    "defaultfootnoterule": {},
-    "newfootnote{}": {
-      "snippet": "newfootnote{${1:suffix}}"
-    },
-    "newfootnote[]{}": {
-      "snippet": "newfootnote[${2:style}]{${1:suffix}}"
-    },
-    "DeclareNewFootnote{}": {
-      "snippet": "DeclareNewFootnote{${1:suffix}}"
-    },
-    "DeclareNewFootnote[]{}[]": {
-      "snippet": "DeclareNewFootnote[${2:footnote-style}]{${1:suffix}}[${3:enumeration-style}]"
-    },
-    "SelectFootnoteRule{}": {
-      "snippet": "SelectFootnoteRule{${1:rule-name}}"
-    },
-    "SelectFootnoteRule[]{}[]": {
-      "snippet": "SelectFootnoteRule[${2:priority}]{${1:rule-name}}[${3:action}]"
-    },
-    "footnoterulepriority": {},
-    "SetFootnoteHook{}": {
-      "snippet": "SetFootnoteHook{${1:code}}"
-    },
-    "SplitNote": {},
-    "ExtraParaSkip{}": {
-      "snippet": "ExtraParaSkip{${1:space}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "ruled",
-    "para",
-    "para*",
-    "perpage"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/manyfoot#c"
+  ]
 }

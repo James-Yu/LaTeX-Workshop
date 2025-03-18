@@ -1,720 +1,4275 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-tools": [],
-    "pst-calculate": [],
-    "pst-arrow": [],
-    "pst-plot": [],
-    "multido": []
-  },
-  "macros": {
-    "pstAbscissa{}": {
-      "snippet": "pstAbscissa{${1:A}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "pstOrdinate{}": {
-      "snippet": "pstOrdinate{${1:A}}"
+    {
+      "name": "pst-node"
     },
-    "pstSegmentMark{}{}": {
-      "snippet": "pstSegmentMark{${1:A}}{${2:B}}"
+    {
+      "name": "pst-tools"
     },
-    "pstSegmentMark[]{}{}": {
-      "snippet": "pstSegmentMark[${3:options}]{${1:A}}{${2:B}}"
+    {
+      "name": "pst-calculate"
     },
-    "pstLabelAB{}{}{}": {
-      "snippet": "pstLabelAB{${1:A}}{${2:B}}{${3:label}}"
+    {
+      "name": "pst-arrow"
     },
-    "pstLabelAB[]{}{}{}": {
-      "snippet": "pstLabelAB[${4:options}]{${1:A}}{${2:B}}{${3:label}}"
+    {
+      "name": "pst-plot"
     },
-    "pstLabelAB*{}{}{}": {
-      "snippet": "pstLabelAB*{${1:A}}{${2:B}}{${3:label}}"
-    },
-    "pstLabelAB*[]{}{}{}": {
-      "snippet": "pstLabelAB*[${4:options}]{${1:A}}{${2:B}}{${3:label}}"
-    },
-    "pstTriangleIC{}{}{}": {
-      "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstTriangleIC{}{}{}[][]": {
-      "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}[${4:I}][${5:H}]"
-    },
-    "pstTriangleIC[]{}{}{}": {
-      "snippet": "pstTriangleIC[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstTriangleIC[]{}{}{}[][]": {
-      "snippet": "pstTriangleIC[${4:options}]{${1:A}}{${2:B}}{${3:C}}[${5:I}][${6:H}]"
-    },
-    "pstTriangleOC{}{}{}": {
-      "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstTriangleOC{}{}{}[]": {
-      "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}[${4:O}]"
-    },
-    "pstTriangleOC[]{}{}{}": {
-      "snippet": "pstTriangleOC[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstTriangleOC[]{}{}{}[]": {
-      "snippet": "pstTriangleOC[${4:options}]{${1:A}}{${2:B}}{${3:C}}[${5:O}]"
-    },
-    "pstTriangleGC{}{}{}{}": {
-      "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
-    },
-    "pstTriangleGC{}{}{}{}[][]": {
-      "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${5:M1}][${6:M2}]"
-    },
-    "pstTriangleGC[]{}{}{}{}": {
-      "snippet": "pstTriangleGC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
-    },
-    "pstTriangleGC[]{}{}{}{}[][]": {
-      "snippet": "pstTriangleGC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${6:M1}][${7:M2}]"
-    },
-    "pstTriangleHC{}{}{}{}": {
-      "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
-    },
-    "pstTriangleHC{}{}{}{}[][]": {
-      "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${5:H1}][${6:H2}]"
-    },
-    "pstTriangleHC[]{}{}{}{}": {
-      "snippet": "pstTriangleHC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
-    },
-    "pstTriangleHC[]{}{}{}{}[][]": {
-      "snippet": "pstTriangleHC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${6:H1}][${7:H2}]"
-    },
-    "pstTriangleEC{}{}{}{}": {
-      "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
-    },
-    "pstTriangleEC{}{}{}{}[]": {
-      "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${5:T1}]"
-    },
-    "pstTriangleEC[]{}{}{}{}": {
-      "snippet": "pstTriangleEC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
-    },
-    "pstTriangleEC[]{}{}{}{}[]": {
-      "snippet": "pstTriangleEC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${6:T1}]"
-    },
-    "pstTriangleNC{}{}{}{}": {
-      "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
-    },
-    "pstTriangleNC{}{}{}{}[][][]": {
-      "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${5:M1}][${6:M2}][${7:M3}]"
-    },
-    "pstTriangleNC[]{}{}{}{}": {
-      "snippet": "pstTriangleNC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
-    },
-    "pstTriangleNC[]{}{}{}{}[][][]": {
-      "snippet": "pstTriangleNC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${6:M1}][${7:M2}][${8:M3}]"
-    },
-    "pstTriangleLC{}{}{}{}": {
-      "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
-    },
-    "pstTriangleLC{}{}{}{}[][][]": {
-      "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${5:S1}][${6:S2}][${7:S3}]"
-    },
-    "pstTriangleLC[]{}{}{}{}": {
-      "snippet": "pstTriangleLC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
-    },
-    "pstTriangleLC[]{}{}{}{}[][][]": {
-      "snippet": "pstTriangleLC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${6:S1}][${7:S2}][${8:S3}]"
-    },
-    "pstRightAngle{}{}{}": {
-      "snippet": "pstRightAngle{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstRightAngle[]{}{}{}": {
-      "snippet": "pstRightAngle[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstMarkAngle{}{}{}{}": {
-      "snippet": "pstMarkAngle{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
-    },
-    "pstMarkAngle[]{}{}{}{}": {
-      "snippet": "pstMarkAngle[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
-    },
-    "pstLineAB{}{}": {
-      "snippet": "pstLineAB{${1:A}}{${2:B}}"
-    },
-    "pstLineAB[]{}{}": {
-      "snippet": "pstLineAB[${3:options}]{${1:A}}{${2:B}}"
-    },
-    "pstLine{}{}": {
-      "snippet": "pstLine{${1:A}}{${2:B}}"
-    },
-    "pstLine[]{}{}": {
-      "snippet": "pstLine[${3:options}]{${1:A}}{${2:B}}"
-    },
-    "pstLineAA{}{}{}": {
-      "snippet": "pstLineAA{${1:A}}{${2:angle}}{${3:B}}"
-    },
-    "pstLineAA[]{}{}{}": {
-      "snippet": "pstLineAA[${4:options}]{${1:A}}{${2:angle}}{${3:B}}"
-    },
-    "pstLineAS{}{}{}": {
-      "snippet": "pstLineAS{${1:A}}{${2:gradient}}{${3:B}}"
-    },
-    "pstLineAS[]{}{}{}": {
-      "snippet": "pstLineAS[${4:options}]{${1:A}}{${2:gradient}}{${3:B}}"
-    },
-    "pstLineCoef{}{}{}": {
-      "snippet": "pstLineCoef{${1:a,b,c}}{${2:A}}{${3:B}}"
-    },
-    "pstLineCoef[]{}{}{}": {
-      "snippet": "pstLineCoef[${4:options}]{${1:a,b,c}}{${2:A}}{${3:B}}"
-    },
-    "pstLineAbsNode{}{}{}{}": {
-      "snippet": "pstLineAbsNode{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
-    },
-    "pstLineAbsNode[]{}{}{}{}": {
-      "snippet": "pstLineAbsNode[${5:options}]{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
-    },
-    "pstLineOrdNode{}{}{}{}": {
-      "snippet": "pstLineOrdNode{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
-    },
-    "pstLineOrdNode[]{}{}{}{}": {
-      "snippet": "pstLineOrdNode[${5:options}]{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
-    },
-    "pstProportionNode{}{}{}{}{}": {
-      "snippet": "pstProportionNode{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
-    },
-    "pstProportionNode[]{}{}{}{}{}": {
-      "snippet": "pstProportionNode[${6:options}]{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
-    },
-    "pstBisectorAOB{}{}{}{}{}": {
-      "snippet": "pstBisectorAOB{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
-    },
-    "pstBisectorAOB[]{}{}{}{}{}": {
-      "snippet": "pstBisectorAOB[${6:options}]{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
-    },
-    "pstFourthHarmonicNode{}{}{}{}": {
-      "snippet": "pstFourthHarmonicNode{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
-    },
-    "pstFourthHarmonicNode[]{}{}{}{}": {
-      "snippet": "pstFourthHarmonicNode[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
-    },
-    "pstLocateAB{}{}{}{}": {
-      "snippet": "pstLocateAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
-    },
-    "pstLocateAB[]{}{}{}{}": {
-      "snippet": "pstLocateAB[${5:options}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
-    },
-    "pstExtendAB{}{}{}{}": {
-      "snippet": "pstExtendAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
-    },
-    "pstExtendAB[]{}{}{}{}": {
-      "snippet": "pstExtendAB[${5:options}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
-    },
-    "pstInversion{}{}{}{}": {
-      "snippet": "pstInversion{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
-    },
-    "pstInversion[]{}{}{}{}": {
-      "snippet": "pstInversion[${5:options}]{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
-    },
-    "pstGoldenMean{}{}{}": {
-      "snippet": "pstGoldenMean{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstGoldenMean[]{}{}{}": {
-      "snippet": "pstGoldenMean[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstGeometricMean{}{}{}{}{}": {
-      "snippet": "pstGeometricMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
-    },
-    "pstGeometricMean[]{}{}{}{}{}": {
-      "snippet": "pstGeometricMean[${6:options}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
-    },
-    "pstHarmonicMean{}{}{}{}{}": {
-      "snippet": "pstHarmonicMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
-    },
-    "pstHarmonicMean[]{}{}{}{}{}": {
-      "snippet": "pstHarmonicMean[${6:options}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
-    },
-    "pstDistAB{}{}": {
-      "snippet": "pstDistAB{${1:A}}{${2:B}}"
-    },
-    "pstDistVal{}": {
-      "snippet": "pstDistVal{${1:l}}"
-    },
-    "pstDistCalc{}": {
-      "snippet": "pstDistCalc{${1:expr}}"
-    },
-    "pstDist{}{}": {
-      "snippet": "pstDist{${1:A}}{${2:B}}"
-    },
-    "pstDistConst{}": {
-      "snippet": "pstDistConst{${1:l}}"
-    },
-    "pstDistExpr{}": {
-      "snippet": "pstDistExpr{${1:expr}}"
-    },
-    "pstDistCoef{}": {
-      "snippet": "pstDistCoef{${1:distance}}"
-    },
-    "pstUserDist{}": {
-      "snippet": "pstUserDist{${1:distance}}"
-    },
-    "pstScreenDist{}": {
-      "snippet": "pstScreenDist{${1:distance}}"
-    },
-    "pstDistMul{}{}{}": {
-      "snippet": "pstDistMul{${1:A}}{${2:B}}{${3:λ}}"
-    },
-    "pstDistAdd{}{}{}{}": {
-      "snippet": "pstDistAdd{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
-    },
-    "pstDistAddVal{}{}{}{}": {
-      "snippet": "pstDistAddVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
-    },
-    "pstDistAddCoef{}{}{}{}{}{}": {
-      "snippet": "pstDistAddCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
-    },
-    "pstDistSub{}{}{}{}": {
-      "snippet": "pstDistSub{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
-    },
-    "pstDistSubVal{}{}{}{}": {
-      "snippet": "pstDistSubVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
-    },
-    "pstDistSubCoef{}{}{}{}{}{}": {
-      "snippet": "pstDistSubCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
-    },
-    "pstDistDiv{}{}{}{}": {
-      "snippet": "pstDistDiv{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
-    },
-    "pstDistABC{}{}{}": {
-      "snippet": "pstDistABC{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstCircleOA{}{}": {
-      "snippet": "pstCircleOA{${1:O}}{${2:A}}"
-    },
-    "pstCircleOA{}{}[][]": {
-      "snippet": "pstCircleOA{${1:O}}{${2:A}}[${3:angleA}][${4:angleB}]"
-    },
-    "pstCircleOA[]{}{}": {
-      "snippet": "pstCircleOA[${3:options}]{${1:O}}{${2:A}}"
-    },
-    "pstCircleOA[]{}{}[][]": {
-      "snippet": "pstCircleOA[${3:options}]{${1:O}}{${2:A}}[${4:angleA}][${5:angleB}]"
-    },
-    "pstCircleAB{}{}": {
-      "snippet": "pstCircleAB{${1:A}}{${2:B}}"
-    },
-    "pstCircleAB{}{}[][]": {
-      "snippet": "pstCircleAB{${1:A}}{${2:B}}[${3:angleA}][${4:angleB}]"
-    },
-    "pstCircleAB[]{}{}": {
-      "snippet": "pstCircleAB[${3:options}]{${1:A}}{${2:B}}"
-    },
-    "pstCircleAB[]{}{}[][]": {
-      "snippet": "pstCircleAB[${3:options}]{${1:A}}{${2:B}}[${4:angleA}][${5:angleB}]"
-    },
-    "pstCircleABR{}{}{}{}": {
-      "snippet": "pstCircleABR{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
-    },
-    "pstCircleABR[]{}{}{}{}": {
-      "snippet": "pstCircleABR[${5:options}]{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
-    },
-    "pstArcOAB{}{}{}": {
-      "snippet": "pstArcOAB{${1:O}}{${2:A}}{${3:B}}"
-    },
-    "pstArcOAB[]{}{}{}": {
-      "snippet": "pstArcOAB[${4:options}]{${1:O}}{${2:A}}{${3:B}}"
-    },
-    "pstArcnOAB{}{}{}": {
-      "snippet": "pstArcnOAB{${1:O}}{${2:A}}{${3:B}}"
-    },
-    "pstArcnOAB[]{}{}{}": {
-      "snippet": "pstArcnOAB[${4:options}]{${1:O}}{${2:A}}{${3:B}}"
-    },
-    "pstCircleNode{}{}{}{}": {
-      "snippet": "pstCircleNode{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
-    },
-    "pstCircleNode[]{}{}{}{}": {
-      "snippet": "pstCircleNode[${5:options}]{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
-    },
-    "pstCircleRotNode{}{}{}": {
-      "snippet": "pstCircleRotNode{${1:O}}{${2:A}}{${3:X}}"
-    },
-    "pstCircleRotNode[]{}{}{}": {
-      "snippet": "pstCircleRotNode[${4:options}]{${1:O}}{${2:A}}{${3:X}}"
-    },
-    "pstCircleChordNode{}{}{}{}": {
-      "snippet": "pstCircleChordNode{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
-    },
-    "pstCircleChordNode[]{}{}{}{}": {
-      "snippet": "pstCircleChordNode[${5:options}]{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
-    },
-    "pstCircleAbsNode{}{}{}{}{}": {
-      "snippet": "pstCircleAbsNode{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
-    },
-    "pstCircleAbsNode[]{}{}{}{}{}": {
-      "snippet": "pstCircleAbsNode[${6:options}]{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
-    },
-    "pstCircleOrdNode{}{}{}{}{}": {
-      "snippet": "pstCircleOrdNode{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
-    },
-    "pstCircleOrdNode[]{}{}{}{}{}": {
-      "snippet": "pstCircleOrdNode[${6:options}]{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
-    },
-    "pstCurvAbsNode{}{}{}{}": {
-      "snippet": "pstCurvAbsNode{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
-    },
-    "pstCurvAbsNode[]{}{}{}{}": {
-      "snippet": "pstCurvAbsNode[${5:options}]{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
-    },
-    "pstCircleTangentLine{}{}{}": {
-      "snippet": "pstCircleTangentLine{${1:O}}{${2:A}}{${3:T}}"
-    },
-    "pstCircleTangentLine[]{}{}{}": {
-      "snippet": "pstCircleTangentLine[${4:options}]{${1:O}}{${2:A}}{${3:T}}"
-    },
-    "pstCircleTangentNode{}{}{}{}{}": {
-      "snippet": "pstCircleTangentNode{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
-    },
-    "pstCircleTangentNode[]{}{}{}{}{}": {
-      "snippet": "pstCircleTangentNode[${6:options}]{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
-    },
-    "pstCircleExternalCommonTangent{}{}{}{}{}{}{}{}": {
-      "snippet": "pstCircleExternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
-    },
-    "pstCircleExternalCommonTangent[]{}{}{}{}{}{}{}{}": {
-      "snippet": "pstCircleExternalCommonTangent[${9:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
-    },
-    "pstCircleInternalCommonTangent{}{}{}{}{}{}{}{}": {
-      "snippet": "pstCircleInternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
-    },
-    "pstCircleInternalCommonTangent[]{}{}{}{}{}{}{}{}": {
-      "snippet": "pstCircleInternalCommonTangent[${9:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
-    },
-    "pstCircleRadicalAxis{}{}{}{}{}{}": {
-      "snippet": "pstCircleRadicalAxis{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
-    },
-    "pstCircleRadicalAxis[]{}{}{}{}{}{}": {
-      "snippet": "pstCircleRadicalAxis[${7:options}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
-    },
-    "pstETriangleAB{}{}{}": {
-      "snippet": "pstETriangleAB{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstETriangleAB[]{}{}{}": {
-      "snippet": "pstETriangleAB[${4:options}]{${1:A}}{${2:B}}{${3:C}}"
-    },
-    "pstSquareAB{}{}{}{}": {
-      "snippet": "pstSquareAB{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
-    },
-    "pstSquareAB[]{}{}{}{}": {
-      "snippet": "pstSquareAB[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
-    },
-    "pstRegularPolygonAB{}{}{}{}": {
-      "snippet": "pstRegularPolygonAB{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
-    },
-    "pstRegularPolygonAB[]{}{}{}{}": {
-      "snippet": "pstRegularPolygonAB[${5:options}]{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
-    },
-    "pstRegularPolygonOA{}{}{}{}": {
-      "snippet": "pstRegularPolygonOA{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
-    },
-    "pstRegularPolygonOA[]{}{}{}{}": {
-      "snippet": "pstRegularPolygonOA[${5:options}]{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
-    },
-    "pstGenericCurve{}{}{}": {
-      "snippet": "pstGenericCurve{${1:radical}}{${2:n1}}{${3:n2}}"
-    },
-    "pstGenericCurve[]{}{}{}": {
-      "snippet": "pstGenericCurve[${4:options}]{${1:radical}}{${2:n1}}{${3:n2}}"
-    },
-    "pstGeneralEllipseFle{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
-    },
-    "pstGeneralEllipseFle[]{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseFle[${8:options}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
-    },
-    "pstGeneralEllipseFFN{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
-    },
-    "pstGeneralEllipseFFN[]{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseFFN[${6:options}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
-    },
-    "pstGeneralEllipseCoef{}{}{}{}": {
-      "snippet": "pstGeneralEllipseCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
-    },
-    "pstGeneralEllipseCoef[]{}{}{}{}": {
-      "snippet": "pstGeneralEllipseCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
-    },
-    "pstGeneralEllipseABCDE{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
-    },
-    "pstGeneralEllipseABCDE[]{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralEllipseABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
-    },
-    "pstGeneralParabolaFl{}{}{}{}{}{}": {
-      "snippet": "pstGeneralParabolaFl{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
-    },
-    "pstGeneralParabolaFl[]{}{}{}{}{}{}": {
-      "snippet": "pstGeneralParabolaFl[${7:options}]{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
-    },
-    "pstGeneralParabolaCoef{}{}{}{}": {
-      "snippet": "pstGeneralParabolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
-    },
-    "pstGeneralParabolaCoef[]{}{}{}{}": {
-      "snippet": "pstGeneralParabolaCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
-    },
-    "pstGeneralParabolaABCDE{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralParabolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
-    },
-    "pstGeneralParabolaABCDE[]{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralParabolaABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
-    },
-    "pstGeneralHyperbolaFle{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
-    },
-    "pstGeneralHyperbolaFle[]{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaFle[${8:options}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
-    },
-    "pstGeneralHyperbolaFFN{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
-    },
-    "pstGeneralHyperbolaFFN[]{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaFFN[${6:options}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
-    },
-    "pstGeneralHyperbolaCoef{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
-    },
-    "pstGeneralHyperbolaCoef[]{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaCoef[${5:options}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
-    },
-    "pstGeneralHyperbolaABCDE{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
-    },
-    "pstGeneralHyperbolaABCDE[]{}{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralHyperbolaABCDE[${9:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
-    },
-    "pstGeneralConicEquation{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralConicEquation{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
-    },
-    "pstGeneralConicEquation[]{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralConicEquation[${8:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
-    },
-    "pstGeneralConicLineInter{}{}{}{}{}": {
-      "snippet": "pstGeneralConicLineInter{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
-    },
-    "pstGeneralConicLineInter[]{}{}{}{}{}": {
-      "snippet": "pstGeneralConicLineInter[${6:options}]{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
-    },
-    "pstGeneralConicCircleInter{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralConicCircleInter{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
-    },
-    "pstGeneralConicCircleInter[]{}{}{}{}{}{}{}": {
-      "snippet": "pstGeneralConicCircleInter[${8:options}]{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
-    },
-    "pstGeneralConicInter{}{}{}{}{}{}": {
-      "snippet": "pstGeneralConicInter{${1:a,b,c,d,e,f}}{${2:a',b',c',d',e',f'}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
-    },
-    "pstGeneralConicTangentLine{}{}{}": {
-      "snippet": "pstGeneralConicTangentLine{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
-    },
-    "pstGeneralConicTangentLine[]{}{}{}": {
-      "snippet": "pstGeneralConicTangentLine[${4:options}]{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
-    },
-    "pstGeneralConicTangentChord{}{}{}{}": {
-      "snippet": "pstGeneralConicTangentChord{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
-    },
-    "pstGeneralConicTangentChord[]{}{}{}{}": {
-      "snippet": "pstGeneralConicTangentChord[${5:options}]{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
-    },
-    "pstSymO{}{}": {
-      "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstSymO{}{}[]": {
-      "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
-    },
-    "pstSymO[]{}{}": {
-      "snippet": "pstSymO[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstSymO[]{}{}[]": {
-      "snippet": "pstSymO[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstOrtSym{}{}{}": {
-      "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstOrtSym{}{}{}[]": {
-      "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstOrtSym[]{}{}{}": {
-      "snippet": "pstOrtSym[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstOrtSym[]{}{}{}[]": {
-      "snippet": "pstOrtSym[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
-    },
-    "pstRotation{}{}": {
-      "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstRotation{}{}[]": {
-      "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
-    },
-    "pstRotation[]{}{}": {
-      "snippet": "pstRotation[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstRotation[]{}{}[]": {
-      "snippet": "pstRotation[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstAngleAOB{}{}{}": {
-      "snippet": "pstAngleAOB{${1:A}}{${2:O}}{${3:B}}"
-    },
-    "pstTranslation{}{}{}": {
-      "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstTranslation{}{}{}[]": {
-      "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstTranslation[]{}{}{}": {
-      "snippet": "pstTranslation[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstTranslation[]{}{}{}[]": {
-      "snippet": "pstTranslation[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
-    },
-    "pstHomO{}{}": {
-      "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstHomO{}{}[]": {
-      "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
-    },
-    "pstHomO[]{}{}": {
-      "snippet": "pstHomO[${3:options}]{${1:O}}{${2:M1,...,Mn}}"
-    },
-    "pstHomO[]{}{}[]": {
-      "snippet": "pstHomO[${3:options}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstProjection{}{}{}": {
-      "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstProjection{}{}{}[]": {
-      "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
-    },
-    "pstProjection[]{}{}{}": {
-      "snippet": "pstProjection[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
-    },
-    "pstProjection[]{}{}{}[]": {
-      "snippet": "pstProjection[${4:options}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
-    },
-    "pstMiddleAB{}{}{}": {
-      "snippet": "pstMiddleAB{${1:A}}{${2:B}}{${3:I}}"
-    },
-    "pstMiddleAB[]{}{}{}": {
-      "snippet": "pstMiddleAB[${4:options}]{${1:A}}{${2:B}}{${3:I}}"
-    },
-    "pstCGravABC{}{}{}{}": {
-      "snippet": "pstCGravABC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
-    },
-    "pstCGravABC[]{}{}{}{}": {
-      "snippet": "pstCGravABC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
-    },
-    "pstCircleABC{}{}{}{}": {
-      "snippet": "pstCircleABC{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
-    },
-    "pstCircleABC[]{}{}{}{}": {
-      "snippet": "pstCircleABC[${5:options}]{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
-    },
-    "pstMediatorAB{}{}{}{}": {
-      "snippet": "pstMediatorAB{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
-    },
-    "pstMediatorAB[]{}{}{}{}": {
-      "snippet": "pstMediatorAB[${5:options}]{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
-    },
-    "pstBissectBAC{}{}{}{}": {
-      "snippet": "pstBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
-    },
-    "pstBissectBAC[]{}{}{}{}": {
-      "snippet": "pstBissectBAC[${5:options}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
-    },
-    "pstOutBissectBAC{}{}{}{}": {
-      "snippet": "pstOutBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
-    },
-    "pstOutBissectBAC[]{}{}{}{}": {
-      "snippet": "pstOutBissectBAC[${5:options}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
-    },
-    "pstInterLL{}{}{}{}{}": {
-      "snippet": "pstInterLL{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
-    },
-    "pstInterLL[]{}{}{}{}{}": {
-      "snippet": "pstInterLL[${6:options}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
-    },
-    "pstInterLC{}{}{}{}{}{}": {
-      "snippet": "pstInterLC{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
-    },
-    "pstInterLC[]{}{}{}{}{}{}": {
-      "snippet": "pstInterLC[${7:options}]{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
-    },
-    "pstInterCC{}{}{}{}{}{}": {
-      "snippet": "pstInterCC{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
-    },
-    "pstInterCC[]{}{}{}{}{}{}": {
-      "snippet": "pstInterCC[${7:options}]{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
-    },
-    "pstInterFF{}{}{}{}": {
-      "snippet": "pstInterFF{${1:f}}{${2:g}}{${3:x0}}{${4:M}}"
-    },
-    "pstInterFF[]{}{}{}{}": {
-      "snippet": "pstInterFF[${5:options}]{${1:f}}{${2:g}}{${3:x0}}{${4:M}}"
-    },
-    "pstInterFL{}{}{}{}{}": {
-      "snippet": "pstInterFL{${1:f}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
-    },
-    "pstInterFL[]{}{}{}{}{}": {
-      "snippet": "pstInterFL[${6:options}]{${1:f}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
-    },
-    "pstInterFC{}{}{}{}{}": {
-      "snippet": "pstInterFC{${1:f}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
-    },
-    "pstInterFC[]{}{}{}{}{}": {
-      "snippet": "pstInterFC[${6:options}]{${1:f}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
-    },
-    "AngleMarkCirc": {},
-    "AngleMarkCros": {},
-    "AngleMarkCross": {},
-    "AngleMarkHash": {},
-    "AngleMarkHashh": {},
-    "AngleMarkHashhh": {},
-    "Anglepstslash": {},
-    "Anglepstslashh": {},
-    "Anglepstslashhh": {},
-    "Anglepstslashslash": {},
-    "Anglepstslashslashslash": {},
-    "LastValidPN": {},
-    "LastValidSS": {},
-    "MarkArrow": {},
-    "MarkArroww": {},
-    "MarkArrowww": {},
-    "MarkCirc": {},
-    "MarkCros": {},
-    "MarkCross": {},
-    "MarkHash": {},
-    "MarkHashh": {},
-    "MarkHashhh": {},
-    "OldPointName": {},
-    "OldPointNameSep": {},
-    "OldPointSymbol": {},
-    "OldPosAngle": {},
-    "PstParamListFirst{}": {
-      "snippet": "PstParamListFirst{${1:arg}}"
-    },
-    "PstParamListLasts{}": {
-      "snippet": "PstParamListLasts{${1:arg}}"
-    },
-    "SegSymLst": {},
-    "pstParseArg{}{}{}": {
-      "snippet": "pstParseArg{${1:prefix}}{${2:element list}}{${3:value list}}"
-    },
-    "pstShowCoor{}": {
-      "snippet": "pstShowCoor{${1:A}}"
-    },
-    "pstslash": {},
-    "pstslashh": {},
-    "pstslashhh": {},
-    "pstslashslash": {},
-    "pstslashslashslash": {},
-    "resetEUCLvalues": {},
-    "psMarkHashLength": {},
-    "psMarkHashSep": {},
-    "PSTEuclideLoaded": {}
-  },
-  "envs": {},
-  "options": [
-    "old"
+    {
+      "name": "multido"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "pstAbscissa",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstAbscissa{${1:A}}"
+      }
+    },
+    {
+      "name": "pstOrdinate",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstOrdinate{${1:A}}"
+      }
+    },
+    {
+      "name": "pstMoveNode",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstMoveNode(${3:dx},${4:dy}){${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstMoveNode",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstMoveNode[${3:options%keyvals}](${4:dx},${5:dy}){${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstSegmentMark",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstSegmentMark{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstSegmentMark",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstSegmentMark[${3:options%keyvals}]{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLabelAB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstLabelAB{${1:A}}{${2:B}}{${3:label}}"
+      }
+    },
+    {
+      "name": "pstLabelAB",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstLabelAB[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:label}}"
+      }
+    },
+    {
+      "name": "pstLabelAB*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstLabelAB*{${1:A}}{${2:B}}{${3:label}}"
+      }
+    },
+    {
+      "name": "pstLabelAB*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstLabelAB*[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:label}}"
+      }
+    },
+    {
+      "name": "pstTriangle",
+      "arg": {
+        "format": "(){}(){}(){}",
+        "snippet": "pstTriangle(${4:x1},${5:y1}){${1:A}}(${6:x2},${7:y2}){${2:B}}(${8:x3},${9:y3}){${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangle",
+      "arg": {
+        "format": "[](){}(){}(){}",
+        "snippet": "pstTriangle[${4:options%keyvals}](${5:x1},${6:y1}){${1:A}}(${7:x2},${8:y2}){${2:B}}(${9:x3},${10:y3}){${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleSSS",
+      "arg": {
+        "format": "(){}(){}{}",
+        "snippet": "pstTriangleSSS(${4:pos}){${1:A}}(${5:a},${6:b},${7:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleSSS",
+      "arg": {
+        "format": "[](){}(){}{}",
+        "snippet": "pstTriangleSSS[${4:options%keyvals}](${5:pos}){${1:A}}(${6:a},${7:b},${8:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleSAS",
+      "arg": {
+        "format": "(){}(){}{}",
+        "snippet": "pstTriangleSAS(${4:pos}){${1:A}}(${5:b},${6:∠A},${7:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleSAS",
+      "arg": {
+        "format": "[](){}(){}{}",
+        "snippet": "pstTriangleSAS[${4:options%keyvals}](${5:pos}){${1:A}}(${6:b},${7:∠A},${8:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleAAS",
+      "arg": {
+        "format": "(){}(){}{}",
+        "snippet": "pstTriangleAAS(${4:pos}){${1:A}}(${5:∠C},${6:∠A},${7:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleAAS",
+      "arg": {
+        "format": "[](){}(){}{}",
+        "snippet": "pstTriangleAAS[${4:options%keyvals}](${5:pos}){${1:A}}(${6:∠C},${7:∠A},${8:c}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleASA",
+      "arg": {
+        "format": "(){}(){}{}",
+        "snippet": "pstTriangleASA(${4:pos}){${1:A}}(${5:∠A},${6:c},${7:∠B}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleASA",
+      "arg": {
+        "format": "[](){}(){}{}",
+        "snippet": "pstTriangleASA[${4:options%keyvals}](${5:pos}){${1:A}}(${6:∠A},${7:c},${8:∠B}){${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleIC",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleIC",
+      "arg": {
+        "format": "{}{}{}[][]",
+        "snippet": "pstTriangleIC{${1:A}}{${2:B}}{${3:C}}[${4:I}][${5:H}]"
+      }
+    },
+    {
+      "name": "pstTriangleIC",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstTriangleIC[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleIC",
+      "arg": {
+        "format": "[]{}{}{}[][]",
+        "snippet": "pstTriangleIC[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}[${5:I}][${6:H}]"
+      }
+    },
+    {
+      "name": "pstTriangleOC",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleOC",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "pstTriangleOC{${1:A}}{${2:B}}{${3:C}}[${4:O}]"
+      }
+    },
+    {
+      "name": "pstTriangleOC",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstTriangleOC[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstTriangleOC",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "pstTriangleOC[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}[${5:O}]"
+      }
+    },
+    {
+      "name": "pstTriangleGC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+      }
+    },
+    {
+      "name": "pstTriangleGC",
+      "arg": {
+        "format": "{}{}{}{}[][]",
+        "snippet": "pstTriangleGC{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${5:M1}][${6:M2}]"
+      }
+    },
+    {
+      "name": "pstTriangleGC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstTriangleGC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+      }
+    },
+    {
+      "name": "pstTriangleGC",
+      "arg": {
+        "format": "[]{}{}{}{}[][]",
+        "snippet": "pstTriangleGC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}[${6:M1}][${7:M2}]"
+      }
+    },
+    {
+      "name": "pstTriangleHC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
+      }
+    },
+    {
+      "name": "pstTriangleHC",
+      "arg": {
+        "format": "{}{}{}{}[][]",
+        "snippet": "pstTriangleHC{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${5:H1}][${6:H2}]"
+      }
+    },
+    {
+      "name": "pstTriangleHC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstTriangleHC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}"
+      }
+    },
+    {
+      "name": "pstTriangleHC",
+      "arg": {
+        "format": "[]{}{}{}{}[][]",
+        "snippet": "pstTriangleHC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:H}}[${6:H1}][${7:H2}]"
+      }
+    },
+    {
+      "name": "pstTriangleEC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
+      }
+    },
+    {
+      "name": "pstTriangleEC",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "pstTriangleEC{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${5:T1}]"
+      }
+    },
+    {
+      "name": "pstTriangleEC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstTriangleEC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}"
+      }
+    },
+    {
+      "name": "pstTriangleEC",
+      "arg": {
+        "format": "[]{}{}{}{}[]",
+        "snippet": "pstTriangleEC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:E}}[${6:T1}]"
+      }
+    },
+    {
+      "name": "pstTriangleNC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstTriangleNC",
+      "arg": {
+        "format": "{}{}{}{}[][][]",
+        "snippet": "pstTriangleNC{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${5:M1}][${6:M2}][${7:M3}]"
+      }
+    },
+    {
+      "name": "pstTriangleNC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstTriangleNC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstTriangleNC",
+      "arg": {
+        "format": "[]{}{}{}{}[][][]",
+        "snippet": "pstTriangleNC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:N}}[${6:M1}][${7:M2}][${8:M3}]"
+      }
+    },
+    {
+      "name": "pstTriangleLC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
+      }
+    },
+    {
+      "name": "pstTriangleLC",
+      "arg": {
+        "format": "{}{}{}{}[][][]",
+        "snippet": "pstTriangleLC{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${5:S1}][${6:S2}][${7:S3}]"
+      }
+    },
+    {
+      "name": "pstTriangleLC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstTriangleLC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}"
+      }
+    },
+    {
+      "name": "pstTriangleLC",
+      "arg": {
+        "format": "[]{}{}{}{}[][][]",
+        "snippet": "pstTriangleLC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:L}}[${6:S1}][${7:S2}][${8:S3}]"
+      }
+    },
+    {
+      "name": "pstRightAngle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstRightAngle{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstRightAngle",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstRightAngle[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstMarkAngle",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstMarkAngle{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
+      }
+    },
+    {
+      "name": "pstMarkAngle",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstMarkAngle[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:label}}"
+      }
+    },
+    {
+      "name": "pstLineAB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstLineAB{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLineAB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstLineAB[${3:options%keyvals}]{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstLine{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstLine[${3:options%keyvals}]{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "{}()",
+        "snippet": "pstLine{${1:A}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "pstLine[${2:options%keyvals}]{${1:A}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pstLine(${2:x},${3:y}){${1:B}}"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pstLine[${2:options%keyvals}](${3:x},${4:y}){${1:B}}"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstLine(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "pstLine",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstLine[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "pstLineAA",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstLineAA{${1:A}}{${2:angle}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineAA",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstLineAA[${4:options%keyvals}]{${1:A}}{${2:angle}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineAA",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstLineAA(${3:x},${4:y}){${1:angle}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLineAA",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstLineAA[${3:options%keyvals}](${4:x},${5:y}){${1:angle}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLineAS",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstLineAS{${1:A}}{${2:gradient}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineAS",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstLineAS[${4:options%keyvals}]{${1:A}}{${2:gradient}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineAS",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstLineAS(${3:x},${4:y}){${1:gradient}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLineAS",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstLineAS[${3:options%keyvals}](${4:x},${5:y}){${1:gradient}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstLineCoef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstLineCoef{${1:a,b,c}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineCoef",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstLineCoef[${4:options%keyvals}]{${1:a,b,c}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstLineAbsNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstLineAbsNode{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstLineAbsNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstLineAbsNode[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:x}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstLineOrdNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstLineOrdNode{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstLineOrdNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstLineOrdNode[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:y}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstProportionNode",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstProportionNode{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
+      }
+    },
+    {
+      "name": "pstProportionNode",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstProportionNode[${6:options%keyvals}]{${1:A}}{${2:B}}{${3:λ}}{${4:C}}{${5:C'}}"
+      }
+    },
+    {
+      "name": "pstBisectorAOB",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstBisectorAOB{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
+      }
+    },
+    {
+      "name": "pstBisectorAOB",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstBisectorAOB[${6:options%keyvals}]{${1:A}}{${2:O}}{${3:B}}{${4:T1}}{${5:T2}}"
+      }
+    },
+    {
+      "name": "pstFourthHarmonicNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstFourthHarmonicNode{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstFourthHarmonicNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstFourthHarmonicNode[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstLocateAB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstLocateAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstLocateAB",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstLocateAB[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstExtendAB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstExtendAB{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstExtendAB",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstExtendAB[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:L}}{${4:C}}"
+      }
+    },
+    {
+      "name": "pstInversion",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstInversion{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
+      }
+    },
+    {
+      "name": "pstInversion",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstInversion[${5:options%keyvals}]{${1:O}}{${2:A}}{${3:C}}{${4:C'}}"
+      }
+    },
+    {
+      "name": "pstGoldenMean",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstGoldenMean{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstGoldenMean",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstGoldenMean[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstGeometricMean",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstGeometricMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+      }
+    },
+    {
+      "name": "pstGeometricMean",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstGeometricMean[${6:options%keyvals}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+      }
+    },
+    {
+      "name": "pstHarmonicMean",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstHarmonicMean{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+      }
+    },
+    {
+      "name": "pstHarmonicMean",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstHarmonicMean[${6:options%keyvals}]{${1:A}}{${2:B}}{${3:L1}}{${4:L2}}{${5:C}}"
+      }
+    },
+    {
+      "name": "pstDistAB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstDistAB{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstDistVal",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstDistVal{${1:l}}"
+      }
+    },
+    {
+      "name": "pstDistCalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstDistCalc{${1:expr%definition}}"
+      }
+    },
+    {
+      "name": "pstDist",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstDist{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstDistConst",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstDistConst{${1:l}}"
+      }
+    },
+    {
+      "name": "pstDistExpr",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstDistExpr{${1:expr%definition}}"
+      }
+    },
+    {
+      "name": "pstDistCoef",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstDistCoef{${1:distance}}"
+      }
+    },
+    {
+      "name": "pstUserDist",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstUserDist{${1:distance}}"
+      }
+    },
+    {
+      "name": "pstScreenDist",
+      "arg": {
+        "format": "{}",
+        "snippet": "pstScreenDist{${1:distance}}"
+      }
+    },
+    {
+      "name": "pstDistMul",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstDistMul{${1:A}}{${2:B}}{${3:λ}}"
+      }
+    },
+    {
+      "name": "pstDistAdd",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstDistAdd{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstDistAddVal",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstDistAddVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
+      }
+    },
+    {
+      "name": "pstDistAddCoef",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstDistAddCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
+      }
+    },
+    {
+      "name": "pstDistSub",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstDistSub{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstDistSubVal",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstDistSubVal{${1:A}}{${2:B}}{${3:λ}}{${4:L}}"
+      }
+    },
+    {
+      "name": "pstDistSubCoef",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstDistSubCoef{${1:A}}{${2:B}}{${3:λ1}}{${4:C}}{${5:D}}{${6:λ2}}"
+      }
+    },
+    {
+      "name": "pstDistDiv",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstDistDiv{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstDistABC",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstDistABC{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstCircleOA",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstCircleOA{${1:O}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstCircleOA",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "pstCircleOA{${1:O}}{${2:A}}[${3:angleA}][${4:angleB}]"
+      }
+    },
+    {
+      "name": "pstCircleOA",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstCircleOA[${3:options%keyvals}]{${1:O}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstCircleOA",
+      "arg": {
+        "format": "[]{}{}[][]",
+        "snippet": "pstCircleOA[${3:options%keyvals}]{${1:O}}{${2:A}}[${4:angleA}][${5:angleB}]"
+      }
+    },
+    {
+      "name": "pstCircleAB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstCircleAB{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstCircleAB",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "pstCircleAB{${1:A}}{${2:B}}[${3:angleA}][${4:angleB}]"
+      }
+    },
+    {
+      "name": "pstCircleAB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstCircleAB[${3:options%keyvals}]{${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstCircleAB",
+      "arg": {
+        "format": "[]{}{}[][]",
+        "snippet": "pstCircleAB[${3:options%keyvals}]{${1:A}}{${2:B}}[${4:angleA}][${5:angleB}]"
+      }
+    },
+    {
+      "name": "pstCircleABR",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCircleABR{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
+      }
+    },
+    {
+      "name": "pstCircleABR",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCircleABR[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:R}}{${4:O}}"
+      }
+    },
+    {
+      "name": "pstArcOAB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstArcOAB{${1:O}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstArcOAB",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstArcOAB[${4:options%keyvals}]{${1:O}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstArcnOAB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstArcnOAB{${1:O}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstArcnOAB",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstArcnOAB[${4:options%keyvals}]{${1:O}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstCircleNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCircleNode{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstCircleNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCircleNode[${5:options%keyvals}]{${1:O}}{${2:A}}{${3:θ}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstCircleRotNode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstCircleRotNode{${1:O}}{${2:A}}{${3:X}}"
+      }
+    },
+    {
+      "name": "pstCircleRotNode",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstCircleRotNode[${4:options%keyvals}]{${1:O}}{${2:A}}{${3:X}}"
+      }
+    },
+    {
+      "name": "pstCircleChordNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCircleChordNode{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstCircleChordNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCircleChordNode[${5:options%keyvals}]{${1:O}}{${2:A}}{${3:L}}{${4:X}}"
+      }
+    },
+    {
+      "name": "pstCircleAbsNode",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstCircleAbsNode{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstCircleAbsNode",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstCircleAbsNode[${6:options%keyvals}]{${1:O}}{${2:A}}{${3:x}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstCircleOrdNode",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstCircleOrdNode{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstCircleOrdNode",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstCircleOrdNode[${6:options%keyvals}]{${1:O}}{${2:A}}{${3:y}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstCurvAbsNode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCurvAbsNode{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
+      }
+    },
+    {
+      "name": "pstCurvAbsNode",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCurvAbsNode[${5:options%keyvals}]{${1:O}}{${2:A}}{${3:B}}{${4:abscissa}}"
+      }
+    },
+    {
+      "name": "pstCircleTangentLine",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstCircleTangentLine{${1:O}}{${2:A}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstCircleTangentLine",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstCircleTangentLine[${4:options%keyvals}]{${1:O}}{${2:A}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstCircleTangentNode",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstCircleTangentNode{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
+      }
+    },
+    {
+      "name": "pstCircleTangentNode",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstCircleTangentNode[${6:options%keyvals}]{${1:O}}{${2:A}}{${3:P}}{${4:T1}}{${5:T2}}"
+      }
+    },
+    {
+      "name": "pstCircleExternalCommonTangent",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "pstCircleExternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+      }
+    },
+    {
+      "name": "pstCircleExternalCommonTangent",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "pstCircleExternalCommonTangent[${9:options%keyvals}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+      }
+    },
+    {
+      "name": "pstCircleInternalCommonTangent",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "pstCircleInternalCommonTangent{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+      }
+    },
+    {
+      "name": "pstCircleInternalCommonTangent",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "pstCircleInternalCommonTangent[${9:options%keyvals}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:T1}}{${6:T2}}{${7:T3}}{${8:T4}}"
+      }
+    },
+    {
+      "name": "pstCircleRadicalAxis",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstCircleRadicalAxis{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
+      }
+    },
+    {
+      "name": "pstCircleRadicalAxis",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "pstCircleRadicalAxis[${7:options%keyvals}]{${1:O1}}{${2:A}}{${3:O2}}{${4:B}}{${5:C}}{${6:D}}"
+      }
+    },
+    {
+      "name": "pstETriangleAB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstETriangleAB{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstETriangleAB",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstETriangleAB[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}"
+      }
+    },
+    {
+      "name": "pstSquareAB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstSquareAB{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstSquareAB",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstSquareAB[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstRegularPolygonAB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstRegularPolygonAB{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
+      }
+    },
+    {
+      "name": "pstRegularPolygonAB",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstRegularPolygonAB[${5:options%keyvals}]{${1:A0}}{${2:A1}}{${3:n}}{${4:A2,A3,...}}"
+      }
+    },
+    {
+      "name": "pstRegularPolygonOA",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstRegularPolygonOA{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
+      }
+    },
+    {
+      "name": "pstRegularPolygonOA",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstRegularPolygonOA[${5:options%keyvals}]{${1:O}}{${2:A0}}{${3:n}}{${4:A1,A2,...}}"
+      }
+    },
+    {
+      "name": "pstGenericCurve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstGenericCurve{${1:radical}}{${2:n1}}{${3:n2}}"
+      }
+    },
+    {
+      "name": "pstGenericCurve",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstGenericCurve[${4:options%keyvals}]{${1:radical}}{${2:n1}}{${3:n2}}"
+      }
+    },
+    {
+      "name": "pstEllipse",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstEllipse(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstEllipse",
+      "arg": {
+        "format": "()()[][]",
+        "snippet": "pstEllipse(${3:O})(${4:a},${5:b})[${1:angleA}][${2:angleB}]"
+      }
+    },
+    {
+      "name": "pstEllipse",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstEllipse[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstEllipse",
+      "arg": {
+        "format": "[]()()[][]",
+        "snippet": "pstEllipse[${1:options%keyvals}](${4:O})(${5:a},${6:b})[${2:angleA}][${3:angleB}]"
+      }
+    },
+    {
+      "name": "pstEllipseNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstEllipseNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:P}}"
+      }
+    },
+    {
+      "name": "pstEllipseNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstEllipseNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:P}}"
+      }
+    },
+    {
+      "name": "pstEllipseRotNode",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pstEllipseRotNode(${2:O})(${3:a},${4:b}){${1:P}}"
+      }
+    },
+    {
+      "name": "pstEllipseRotNode",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pstEllipseRotNode[${2:options%keyvals}](${3:O})(${4:a},${5:b}){${1:P}}"
+      }
+    },
+    {
+      "name": "pstEllipseAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstEllipseAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstEllipseAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstEllipseOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstEllipseOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseFocusNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstEllipseFocusNode(${3:O})(${4:a},${5:b}){${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseFocusNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstEllipseFocusNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstEllipseDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstEllipseDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstEllipseDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstEllipseLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstEllipseLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstEllipseLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstEllipseLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstEllipsePolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstEllipsePolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstEllipsePolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstEllipsePolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstEllipseTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstEllipseTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstEllipseTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstEllipseTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstGeneralEllipse(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "pstGeneralEllipse(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "()()[][][]",
+        "snippet": "pstGeneralEllipse(${4:O})(${5:a},${6:b})[${1:θ}][${2:angleA}][${3:angleB}]"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstGeneralEllipse[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "[]()()[]",
+        "snippet": "pstGeneralEllipse[${1:options%keyvals}](${3:O})(${4:a},${5:b})[${2:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralEllipse",
+      "arg": {
+        "format": "[]()()[][][]",
+        "snippet": "pstGeneralEllipse[${1:options%keyvals}](${5:O})(${6:a},${7:b})[${2:θ}][${3:angleA}][${4:angleB}]"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFle",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFle",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseFle[${8:options%keyvals}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFFN",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFFN",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseFFN[${6:options%keyvals}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseCoef",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstGeneralEllipseCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseCoef",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstGeneralEllipseCoef[${5:options%keyvals}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseABCDE",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseABCDE",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralEllipseABCDE[${9:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralEllipseNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralEllipseNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralEllipseNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralEllipseNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseRotNode",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pstGeneralEllipseRotNode(${2:O})(${3:a},${4:b}){${1:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseRotNode",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "pstGeneralEllipseRotNode(${3:O})(${4:a},${5:b})[${2:θ}]{${1:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseRotNode",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pstGeneralEllipseRotNode[${2:options%keyvals}](${3:O})(${4:a},${5:b}){${1:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseRotNode",
+      "arg": {
+        "format": "[]()()[]{}",
+        "snippet": "pstGeneralEllipseRotNode[${2:options%keyvals}](${4:O})(${5:a},${6:b})[${3:θ}]{${1:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralEllipseAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseAbsNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseAbsNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralEllipseAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseAbsNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseAbsNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralEllipseOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseOrdNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseOrdNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralEllipseOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseOrdNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseOrdNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFocusNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralEllipseFocusNode(${4:O})(${5:a},${6:b}){${1:t}}{${2:F1}}{${3:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFocusNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseFocusNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:t}}{${2:F1}}{${3:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFocusNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralEllipseFocusNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:t}}{${2:F1}}{${3:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseFocusNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseFocusNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:t}}{${2:F1}}{${3:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralEllipseDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseDirectrixLine",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralEllipseDirectrixLine(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralEllipseDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseDirectrixLine",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralEllipseDirectrixLine[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralEllipseLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseLineInter",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralEllipseLineInter(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralEllipseLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseLineInter",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralEllipseLineInter[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipsePolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralEllipsePolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipsePolarNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralEllipsePolarNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipsePolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralEllipsePolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipsePolarNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralEllipsePolarNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralEllipseTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseTangentNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseTangentNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralEllipseTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseTangentNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralEllipseTangentNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstParabola",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstParabola(${4:O}){${1:p}}{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstParabola",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstParabola[${4:options%keyvals}](${5:O}){${1:p}}{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstParabolaNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstParabolaNode(${4:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstParabolaNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstParabolaNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstParabolaAbsNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstParabolaAbsNode(${4:O}){${1:p}}{${2:x}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstParabolaAbsNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstParabolaAbsNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:x}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstParabolaOrdNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstParabolaOrdNode(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstParabolaOrdNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstParabolaOrdNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstParabolaFocusNode",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstParabolaFocusNode(${3:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstParabolaFocusNode",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstParabolaFocusNode[${3:options%keyvals}](${4:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstParabolaDirectrixLine(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstParabolaDirectrixLine[${4:options%keyvals}](${5:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstParabolaLineInter",
+      "arg": {
+        "format": "(){}{}{}{}{}",
+        "snippet": "pstParabolaLineInter(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstParabolaPolarNode(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "(){}(){}{}{}",
+        "snippet": "pstParabolaPolarNode(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "pstParabolaPolarNode(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "[](){}(){}{}{}",
+        "snippet": "pstParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}(${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaPolarNode",
+      "arg": {
+        "format": "[](){}()[][]{}{}{}",
+        "snippet": "pstParabolaPolarNode[${5:options%keyvals}](${8:O}){${1:p}}(${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstParabolaTangentNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstParabolaTangentNode(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstParabolaTangentNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstParabolaTangentNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstIParabola",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstIParabola(${4:O}){${1:p}}{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstIParabola",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstIParabola[${4:options%keyvals}](${5:O}){${1:p}}{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstIParabolaNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstIParabolaNode(${4:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstIParabolaNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstIParabolaNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstIParabolaAbsNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstIParabolaAbsNode(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstIParabolaAbsNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstIParabolaAbsNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstIParabolaOrdNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstIParabolaOrdNode(${4:O}){${1:p}}{${2:y}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstIParabolaOrdNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstIParabolaOrdNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:y}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstIParabolaFocusNode",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstIParabolaFocusNode(${3:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstIParabolaFocusNode",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstIParabolaFocusNode[${3:options%keyvals}](${4:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstIParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstIParabolaDirectrixLine(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstIParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstIParabolaDirectrixLine[${4:options%keyvals}](${5:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstIParabolaLineInter",
+      "arg": {
+        "format": "(){}{}{}{}{}",
+        "snippet": "pstIParabolaLineInter(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstIParabolaLineInter",
+      "arg": {
+        "format": "[](){}{}{}{}{}",
+        "snippet": "pstIParabolaLineInter[${6:options%keyvals}](${7:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstIParabolaPolarNode(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "(){}(){}{}{}",
+        "snippet": "pstIParabolaPolarNode(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "pstIParabolaPolarNode(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstIParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}(){}{}{}",
+        "snippet": "pstIParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}(${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}()[][]{}{}{}",
+        "snippet": "pstIParabolaPolarNode[${5:options%keyvals}](${8:O}){${1:p}}(${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstIParabolaTangentNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstIParabolaTangentNode(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstIParabolaTangentNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstIParabolaTangentNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabola",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralParabola(${4:O}){${1:p}}{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabola",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralParabola(${5:O}){${1:p}}[${4:θ}]{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabola",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralParabola[${4:options%keyvals}](${5:O}){${1:p}}{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabola",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralParabola[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:x1}}{${3:x2}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralParabolaNode(${4:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaNode",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralParabolaNode(${5:O}){${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralParabolaNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaNode",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralParabolaNode[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaAbsNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralParabolaAbsNode(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaAbsNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaAbsNode(${6:O}){${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaAbsNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralParabolaAbsNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaAbsNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaAbsNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaOrdNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralParabolaOrdNode(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaOrdNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaOrdNode(${6:O}){${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaOrdNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralParabolaOrdNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaOrdNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaOrdNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFl",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstGeneralParabolaFl{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFl",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "pstGeneralParabolaFl[${7:options%keyvals}]{${1:F}}{${2:A}}{${3:B}}{${4:O}}{${5:p}}{${6:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaCoef",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstGeneralParabolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaCoef",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstGeneralParabolaCoef[${5:options%keyvals}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:p}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaABCDE",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralParabolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaABCDE",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralParabolaABCDE[${9:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:p}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFocusNode",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstGeneralParabolaFocusNode(${3:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFocusNode",
+      "arg": {
+        "format": "(){}[]{}",
+        "snippet": "pstGeneralParabolaFocusNode(${4:O}){${1:p}}[${3:θ}]{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFocusNode",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstGeneralParabolaFocusNode[${3:options%keyvals}](${4:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaFocusNode",
+      "arg": {
+        "format": "[](){}[]{}",
+        "snippet": "pstGeneralParabolaFocusNode[${3:options%keyvals}](${5:O}){${1:p}}[${4:θ}]{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralParabolaDirectrixLine(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralParabolaDirectrixLine(${5:O}){${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralParabolaDirectrixLine[${4:options%keyvals}](${5:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralParabolaDirectrixLine[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaLineInter",
+      "arg": {
+        "format": "(){}{}{}{}{}",
+        "snippet": "pstGeneralParabolaLineInter(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaLineInter",
+      "arg": {
+        "format": "(){}[]{}{}{}{}",
+        "snippet": "pstGeneralParabolaLineInter(${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaLineInter",
+      "arg": {
+        "format": "[](){}{}{}{}{}",
+        "snippet": "pstGeneralParabolaLineInter[${6:options%keyvals}](${7:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaLineInter",
+      "arg": {
+        "format": "[](){}[]{}{}{}{}",
+        "snippet": "pstGeneralParabolaLineInter[${6:options%keyvals}](${8:O}){${1:p}}[${7:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${6:O}){${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}(){}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}[](){}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${6:O}){${1:p}}[${5:θ}](${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "(){}[]()[][]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode(${8:O}){${1:p}}[${5:θ}](${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}(){}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}(${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[](){}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}](${8:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}()[][]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${8:O}){${1:p}}(${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[]()[][]{}{}{}",
+        "snippet": "pstGeneralParabolaPolarNode[${5:options%keyvals}](${9:O}){${1:p}}[${6:θ}](${10:F})[${7:Lx}][${8:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaTangentNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralParabolaTangentNode(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaTangentNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaTangentNode(${6:O}){${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaTangentNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralParabolaTangentNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaTangentNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralParabolaTangentNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabola",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralIParabola(${4:O}){${1:p}}{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabola",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralIParabola[${4:options%keyvals}](${5:O}){${1:p}}{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabola",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralIParabola(${5:O}){${1:p}}[${4:θ}]{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabola",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralIParabola[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:y1}}{${3:y2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaNode",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralIParabolaNode(${4:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaNode",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralIParabolaNode[${4:options%keyvals}](${5:O}){${1:p}}{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaNode",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralIParabolaNode(${5:O}){${1:p}}[${4:θ}]{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaNode",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralIParabolaNode[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:t}}{${3:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaAbsNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralIParabolaAbsNode(${5:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaAbsNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralIParabolaAbsNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaAbsNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaAbsNode(${6:O}){${1:p}}[${5:θ}]{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaAbsNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaAbsNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:x}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaOrdNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralIParabolaOrdNode(${5:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaOrdNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralIParabolaOrdNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaOrdNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaOrdNode(${6:O}){${1:p}}[${5:θ}]{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaOrdNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaOrdNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:y}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaFocusNode",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstGeneralIParabolaFocusNode(${3:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaFocusNode",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstGeneralIParabolaFocusNode[${3:options%keyvals}](${4:O}){${1:p}}{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaFocusNode",
+      "arg": {
+        "format": "(){}[]{}",
+        "snippet": "pstGeneralIParabolaFocusNode(${4:O}){${1:p}}[${3:θ}]{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaFocusNode",
+      "arg": {
+        "format": "[](){}[]{}",
+        "snippet": "pstGeneralIParabolaFocusNode[${3:options%keyvals}](${5:O}){${1:p}}[${4:θ}]{${2:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "pstGeneralIParabolaDirectrixLine(${4:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}{}{}",
+        "snippet": "pstGeneralIParabolaDirectrixLine[${4:options%keyvals}](${5:O}){${1:p}}{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaDirectrixLine",
+      "arg": {
+        "format": "(){}[]{}{}",
+        "snippet": "pstGeneralIParabolaDirectrixLine(${5:O}){${1:p}}[${4:θ}]{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaDirectrixLine",
+      "arg": {
+        "format": "[](){}[]{}{}",
+        "snippet": "pstGeneralIParabolaDirectrixLine[${4:options%keyvals}](${6:O}){${1:p}}[${5:θ}]{${2:Lx}}{${3:Ly}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaLineInter",
+      "arg": {
+        "format": "(){}{}{}{}{}",
+        "snippet": "pstGeneralIParabolaLineInter(${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaLineInter",
+      "arg": {
+        "format": "[](){}{}{}{}{}",
+        "snippet": "pstGeneralIParabolaLineInter[${6:options%keyvals}](${7:O}){${1:p}}{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaLineInter",
+      "arg": {
+        "format": "(){}[]{}{}{}{}",
+        "snippet": "pstGeneralIParabolaLineInter(${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaLineInter",
+      "arg": {
+        "format": "[](){}[]{}{}{}{}",
+        "snippet": "pstGeneralIParabolaLineInter[${6:options%keyvals}](${8:O}){${1:p}}[${7:θ}]{${2:A}}{${3:B}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${5:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${6:O}){${1:p}}[${5:θ}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}(){}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${5:O}){${1:p}}(${6:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}(){}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${6:O}){${1:p}}(${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}[](){}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${6:O}){${1:p}}[${5:θ}](${7:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[](){}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}](${8:F}){${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}()[][]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${7:O}){${1:p}}(${8:F})[${5:Lx}][${6:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}()[][]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${8:O}){${1:p}}(${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "(){}[]()[][]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode(${8:O}){${1:p}}[${5:θ}](${9:F})[${6:Lx}][${7:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaPolarNode",
+      "arg": {
+        "format": "[](){}[]()[][]{}{}{}",
+        "snippet": "pstGeneralIParabolaPolarNode[${5:options%keyvals}](${9:O}){${1:p}}[${6:θ}](${10:F})[${7:Lx}][${8:Ly}]{${2:A}}{${3:B}}{${4:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaTangentNode",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "pstGeneralIParabolaTangentNode(${5:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaTangentNode",
+      "arg": {
+        "format": "[](){}{}{}{}",
+        "snippet": "pstGeneralIParabolaTangentNode[${5:options%keyvals}](${6:O}){${1:p}}{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaTangentNode",
+      "arg": {
+        "format": "(){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaTangentNode(${6:O}){${1:p}}[${5:θ}]{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIParabolaTangentNode",
+      "arg": {
+        "format": "[](){}[]{}{}{}",
+        "snippet": "pstGeneralIParabolaTangentNode[${5:options%keyvals}](${7:O}){${1:p}}[${6:θ}]{${2:T}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstHyperbola(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstHyperbola",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "pstHyperbola(${2:O})(${3:a},${4:b})[${1:angleX}]"
+      }
+    },
+    {
+      "name": "pstHyperbola",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstHyperbola[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstHyperbola",
+      "arg": {
+        "format": "[]()()[]",
+        "snippet": "pstHyperbola[${1:options%keyvals}](${3:O})(${4:a},${5:b})[${2:angleX}]"
+      }
+    },
+    {
+      "name": "pstHyperbolaNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstHyperbolaNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstHyperbolaNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstHyperbolaAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstHyperbolaAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstHyperbolaOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstHyperbolaOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaFocusNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstHyperbolaFocusNode(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstHyperbolaFocusNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstHyperbolaDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstHyperbolaDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstHyperbolaAsymptoteLine(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstHyperbolaAsymptoteLine[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstHyperbolaLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstHyperbolaLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaPolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstHyperbolaPolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstHyperbolaPolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstHyperbolaTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstHyperbolaTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstIHyperbola(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstIHyperbola",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "pstIHyperbola(${2:O})(${3:a},${4:b})[${1:angleY}]"
+      }
+    },
+    {
+      "name": "pstIHyperbola",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstIHyperbola[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstIHyperbola",
+      "arg": {
+        "format": "[]()()[]",
+        "snippet": "pstIHyperbola[${1:options%keyvals}](${3:O})(${4:a},${5:b})[${2:angleY}]"
+      }
+    },
+    {
+      "name": "pstIHyperbolaNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstIHyperbolaNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstIHyperbolaNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstIHyperbolaAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstIHyperbolaAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstIHyperbolaOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstIHyperbolaOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaFocusNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstIHyperbolaFocusNode(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstIHyperbolaFocusNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstIHyperbolaDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstIHyperbolaDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstIHyperbolaAsymptoteLine(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstIHyperbolaAsymptoteLine[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstIHyperbolaLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstIHyperbolaLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaPolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstIHyperbolaPolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstIHyperbolaPolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstIHyperbolaTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstIHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstIHyperbolaTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstGeneralHyperbola(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "pstGeneralHyperbola(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "()()[][]",
+        "snippet": "pstGeneralHyperbola(${3:O})(${4:a},${5:b})[${1:θ}][${2:angleX}]"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstGeneralHyperbola[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "[]()()[]",
+        "snippet": "pstGeneralHyperbola[${1:options%keyvals}](${3:O})(${4:a},${5:b})[${2:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbola",
+      "arg": {
+        "format": "[]()()[][]",
+        "snippet": "pstGeneralHyperbola[${1:options%keyvals}](${4:O})(${5:a},${6:b})[${2:θ}][${3:angleX}]"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFle",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaFle{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFle",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaFle[${8:options%keyvals}]{${1:F}}{${2:A}}{${3:B}}{${4:e}}{${5:O}}{${6:Rab}}{${7:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFFN",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaFFN{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFFN",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaFFN[${6:options%keyvals}]{${1:F1}}{${2:F2}}{${3:O}}{${4:Rab}}{${5:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaCoef",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaCoef{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaCoef",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaCoef[${5:options%keyvals}]{${1:a,b,c,d,e,f}}{${2:O}}{${3:Rab}}{${4:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaABCDE",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaABCDE{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaABCDE",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaABCDE[${9:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:O}}{${7:Rab}}{${8:θ}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralHyperbolaNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralHyperbolaNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaAbsNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaAbsNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaAbsNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaOrdNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaOrdNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaOrdNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFocusNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralHyperbolaFocusNode(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFocusNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaFocusNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralHyperbolaFocusNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaFocusNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaVertexNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralHyperbolaVertexNode(${3:O})(${4:a},${5:b}){${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaVertexNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaVertexNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaVertexNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralHyperbolaVertexNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaVertexNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralHyperbolaVertexNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralHyperbolaDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaDirectrixLine(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralHyperbolaDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaDirectrixLine[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralHyperbolaLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaLineInter",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaLineInter(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralHyperbolaLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaLineInter",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralHyperbolaLineInter[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaPolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaPolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaPolarNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaPolarNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaPolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaPolarNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaTangentNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaTangentNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralHyperbolaTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralHyperbolaTangentNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "()()",
+        "snippet": "pstGeneralIHyperbola(${1:O})(${2:a},${3:b})"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "()()[]",
+        "snippet": "pstGeneralIHyperbola(${2:O})(${3:a},${4:b})[${1:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "()()[][]",
+        "snippet": "pstGeneralIHyperbola(${3:O})(${4:a},${5:b})[${1:θ}][${2:angleY}]"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pstGeneralIHyperbola[${1:options%keyvals}](${2:O})(${3:a},${4:b})"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "[]()()[]",
+        "snippet": "pstGeneralIHyperbola[${1:options%keyvals}](${3:O})(${4:a},${5:b})[${2:θ}]"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbola",
+      "arg": {
+        "format": "[]()()[][]",
+        "snippet": "pstGeneralIHyperbola[${1:options%keyvals}](${4:O})(${5:a},${6:b})[${2:θ}][${3:angleY}]"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralIHyperbolaNode(${3:O})(${4:a},${5:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralIHyperbolaNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:t}}{${2:A}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAbsNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaAbsNode(${4:O})(${5:a},${6:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAbsNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaAbsNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaAbsNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAbsNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaAbsNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:x}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaOrdNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaOrdNode(${4:O})(${5:a},${6:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaOrdNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaOrdNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaOrdNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaOrdNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaOrdNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:y}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaFocusNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralIHyperbolaFocusNode(${3:O})(${4:a},${5:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaFocusNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaFocusNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralIHyperbolaFocusNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaFocusNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaFocusNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:F1}}{${2:F2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaVertexNode",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralIHyperbolaVertexNode(${3:O})(${4:a},${5:b}){${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaVertexNode",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaVertexNode(${4:O})(${5:a},${6:b})[${3:θ}]{${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaVertexNode",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralIHyperbolaVertexNode[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaVertexNode",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaVertexNode[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:V1}}{${2:V2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaDirectrixLine(${5:O})(${6:a},${7:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaDirectrixLine(${6:O})(${7:a},${8:b})[${5:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaDirectrixLine[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaDirectrixLine",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaDirectrixLine[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:Lx}}{${2:Ly}}{${3:Rx}}{${4:Ry}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "pstGeneralIHyperbolaAsymptoteLine(${3:O})(${4:a},${5:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaAsymptoteLine(${4:O})(${5:a},${6:b})[${3:θ}]{${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "pstGeneralIHyperbolaAsymptoteLine[${3:options%keyvals}](${4:O})(${5:a},${6:b}){${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaAsymptoteLine",
+      "arg": {
+        "format": "[]()()[]{}{}",
+        "snippet": "pstGeneralIHyperbolaAsymptoteLine[${3:options%keyvals}](${5:O})(${6:a},${7:b})[${4:θ}]{${1:L1}}{${2:L2}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaLineInter",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaLineInter(${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaLineInter",
+      "arg": {
+        "format": "()()[]{}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaLineInter(${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaLineInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaLineInter[${5:options%keyvals}](${6:O})(${7:a},${8:b}){${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaLineInter",
+      "arg": {
+        "format": "[]()()[]{}{}{}{}",
+        "snippet": "pstGeneralIHyperbolaLineInter[${5:options%keyvals}](${7:O})(${8:a},${9:b})[${6:θ}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaPolarNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaPolarNode(${4:O})(${5:a},${6:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaPolarNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaPolarNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaPolarNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaPolarNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaPolarNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:A}}{${2:B}}{${3:T}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaTangentNode",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaTangentNode(${4:O})(${5:a},${6:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaTangentNode",
+      "arg": {
+        "format": "()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaTangentNode(${5:O})(${6:a},${7:b})[${4:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "pstGeneralIHyperbolaTangentNode[${4:options%keyvals}](${5:O})(${6:a},${7:b}){${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralIHyperbolaTangentNode",
+      "arg": {
+        "format": "[]()()[]{}{}{}",
+        "snippet": "pstGeneralIHyperbolaTangentNode[${4:options%keyvals}](${6:O})(${7:a},${8:b})[${5:θ}]{${1:T}}{${2:A}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicEquation",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralConicEquation{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicEquation",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralConicEquation[${8:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}{${7:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseEquation",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pstGeneralEllipseEquation(${2:O})(${3:a},${4:b}){${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseEquation",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pstGeneralEllipseEquation[${2:options%keyvals}](${3:O})(${4:a},${5:b}){${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseEquation",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "pstGeneralEllipseEquation(${3:O})(${4:a},${5:b})[${2:θ}]{${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralEllipseEquation",
+      "arg": {
+        "format": "[]()()[]{}",
+        "snippet": "pstGeneralEllipseEquation[${2:options%keyvals}](${4:O})(${5:a},${6:b})[${3:θ}]{${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaEquation",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pstGeneralHyperbolaEquation(${2:O})(${3:a},${4:b}){${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaEquation",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "pstGeneralHyperbolaEquation(${3:O})(${4:a},${5:b})[${2:θ}]{${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaEquation",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pstGeneralHyperbolaEquation[${2:options%keyvals}](${3:O})(${4:a},${5:b}){${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralHyperbolaEquation",
+      "arg": {
+        "format": "[]()()[]{}",
+        "snippet": "pstGeneralHyperbolaEquation[${2:options%keyvals}](${4:O})(${5:a},${6:b})[${3:θ}]{${1:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaEquation",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "pstGeneralParabolaEquation(${3:O}){${1:p}}{${2:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaEquation",
+      "arg": {
+        "format": "(){}[]{}",
+        "snippet": "pstGeneralParabolaEquation(${4:O}){${1:p}}[${3:θ}]{${2:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaEquation",
+      "arg": {
+        "format": "[](){}{}",
+        "snippet": "pstGeneralParabolaEquation[${3:options%keyvals}](${4:O}){${1:p}}{${2:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralParabolaEquation",
+      "arg": {
+        "format": "[](){}[]{}",
+        "snippet": "pstGeneralParabolaEquation[${3:options%keyvals}](${5:O}){${1:p}}[${4:θ}]{${2:a,b,c,d,e,f}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicLineInter",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstGeneralConicLineInter{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicLineInter",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstGeneralConicLineInter[${6:options%keyvals}]{${1:A}}{${2:B}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicCircleInter",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralConicCircleInter{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicCircleInter",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "pstGeneralConicCircleInter[${8:options%keyvals}]{${1:O}}{${2:A}}{${3:a,b,c,d,e,f}}{${4:C}}{${5:D}}{${6:E}}{${7:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicEllipseInter",
+      "arg": {
+        "format": "()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicEllipseInter(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicEllipseInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicEllipseInter[${6:options%keyvals}](${7:O})(${8:m},${9:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicHyperbolaInter",
+      "arg": {
+        "format": "()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicHyperbolaInter(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicHyperbolaInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicHyperbolaInter[${6:options%keyvals}](${7:O})(${8:m},${9:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicIHyperbolaInter",
+      "arg": {
+        "format": "()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicIHyperbolaInter(${6:O})(${7:m},${8:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicIHyperbolaInter",
+      "arg": {
+        "format": "[]()(){}{}{}{}{}",
+        "snippet": "pstGeneralConicIHyperbolaInter[${6:options%keyvals}](${7:O})(${8:m},${9:n}){${1:a,b,c,d,e,f}}{${2:C}}{${3:D}}{${4:E}}{${5:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicParabolaInter",
+      "arg": {
+        "format": "(){}{}{}{}{}{}",
+        "snippet": "pstGeneralConicParabolaInter(${7:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicParabolaInter",
+      "arg": {
+        "format": "[](){}{}{}{}{}{}",
+        "snippet": "pstGeneralConicParabolaInter[${7:options%keyvals}](${8:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicIParabolaInter",
+      "arg": {
+        "format": "(){}{}{}{}{}{}",
+        "snippet": "pstGeneralConicIParabolaInter(${7:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicIParabolaInter",
+      "arg": {
+        "format": "[](){}{}{}{}{}{}",
+        "snippet": "pstGeneralConicIParabolaInter[${7:options%keyvals}](${8:O}){${1:p}}{${2:a,b,c,d,e,f}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicInter",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstGeneralConicInter{${1:a,b,c,d,e,f}}{${2:a',b',c',d',e',f'}}{${3:C}}{${4:D}}{${5:E}}{${6:F}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicTangentLine",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstGeneralConicTangentLine{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicTangentLine",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstGeneralConicTangentLine[${4:options%keyvals}]{${1:A}}{${2:a,b,c,d,e,f}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicTangentChord",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstGeneralConicTangentChord{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstGeneralConicTangentChord",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstGeneralConicTangentChord[${5:options%keyvals}]{${1:T}}{${2:a,b,c,d,e,f}}{${3:A}}{${4:B}}"
+      }
+    },
+    {
+      "name": "pstSymO",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstSymO",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "pstSymO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstSymO",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstSymO[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstSymO",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "pstSymO[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstOrtSym",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstOrtSym",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "pstOrtSym{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstOrtSym",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstOrtSym[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstOrtSym",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "pstOrtSym[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstRotation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstRotation",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "pstRotation{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstRotation",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstRotation[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstRotation",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "pstRotation[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstAngleAOB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstAngleAOB{${1:A}}{${2:O}}{${3:B}}"
+      }
+    },
+    {
+      "name": "pstTranslation",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstTranslation",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "pstTranslation{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstTranslation",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstTranslation[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstTranslation",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "pstTranslation[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstHomO",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstHomO",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "pstHomO{${1:O}}{${2:M1,...,Mn}}[${3:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstHomO",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstHomO[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstHomO",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "pstHomO[${3:options%keyvals}]{${1:O}}{${2:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstProjection",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstProjection",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "pstProjection{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${4:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstProjection",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstProjection[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}"
+      }
+    },
+    {
+      "name": "pstProjection",
+      "arg": {
+        "format": "[]{}{}{}[]",
+        "snippet": "pstProjection[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:M1,...,Mn}}[${5:M1',...,Mn'}]"
+      }
+    },
+    {
+      "name": "pstMiddleAB",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstMiddleAB{${1:A}}{${2:B}}{${3:I}}"
+      }
+    },
+    {
+      "name": "pstMiddleAB",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pstMiddleAB[${4:options%keyvals}]{${1:A}}{${2:B}}{${3:I}}"
+      }
+    },
+    {
+      "name": "pstCGravABC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCGravABC{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+      }
+    },
+    {
+      "name": "pstCGravABC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCGravABC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:G}}"
+      }
+    },
+    {
+      "name": "pstCircleABC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstCircleABC{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
+      }
+    },
+    {
+      "name": "pstCircleABC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstCircleABC[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:O}}"
+      }
+    },
+    {
+      "name": "pstMediatorAB",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstMediatorAB{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
+      }
+    },
+    {
+      "name": "pstMediatorAB",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstMediatorAB[${5:options%keyvals}]{${1:A}}{${2:B}}{${3:I}}{${4:M}}"
+      }
+    },
+    {
+      "name": "pstBissectBAC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstBissectBAC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstBissectBAC[${5:options%keyvals}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstOutBissectBAC",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstOutBissectBAC{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstOutBissectBAC",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstOutBissectBAC[${5:options%keyvals}]{${1:B}}{${2:A}}{${3:C}}{${4:N}}"
+      }
+    },
+    {
+      "name": "pstInterLL",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstInterLL{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
+      }
+    },
+    {
+      "name": "pstInterLL",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstInterLL[${6:options%keyvals}]{${1:A}}{${2:B}}{${3:C}}{${4:D}}{${5:M}}"
+      }
+    },
+    {
+      "name": "pstInterLC",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstInterLC{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
+      }
+    },
+    {
+      "name": "pstInterLC",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "pstInterLC[${7:options%keyvals}]{${1:A}}{${2:B}}{${3:O}}{${4:C}}{${5:M1}}{${6:M2}}"
+      }
+    },
+    {
+      "name": "pstInterCC",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pstInterCC{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
+      }
+    },
+    {
+      "name": "pstInterCC",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "pstInterCC[${7:options%keyvals}]{${1:O1}}{${2:B}}{${3:O2}}{${4:C}}{${5:M1}}{${6:M2}}"
+      }
+    },
+    {
+      "name": "pstInterFF",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pstInterFF{${1:f%definition}}{${2:g%definition}}{${3:x0}}{${4:M}}"
+      }
+    },
+    {
+      "name": "pstInterFF",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "pstInterFF[${5:options%keyvals}]{${1:f%definition}}{${2:g%definition}}{${3:x0}}{${4:M}}"
+      }
+    },
+    {
+      "name": "pstInterFL",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstInterFL{${1:f%definition}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
+      }
+    },
+    {
+      "name": "pstInterFL",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstInterFL[${6:options%keyvals}]{${1:f%definition}}{${2:A}}{${3:B}}{${4:x0}}{${5:M}}"
+      }
+    },
+    {
+      "name": "pstInterFC",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pstInterFC{${1:f%definition}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
+      }
+    },
+    {
+      "name": "pstInterFC",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "pstInterFC[${6:options%keyvals}]{${1:f%definition}}{${2:O}}{${3:A}}{${4:x0}}{${5:M}}"
+      }
+    },
+    {
+      "name": "psGetDistanceAB",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psGetDistanceAB(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:name}}"
+      }
+    },
+    {
+      "name": "psGetDistanceAB",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psGetDistanceAB[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:name}}"
+      }
+    },
+    {
+      "name": "psGetAngleABC",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "psGetAngleABC(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3}){${1:name}}"
+      }
+    },
+    {
+      "name": "psGetAngleABC",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "psGetAngleABC[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:name}}"
+      }
+    },
+    {
+      "name": "MarkArrow",
+      "unusual": true
+    },
+    {
+      "name": "MarkArroww",
+      "unusual": true
+    },
+    {
+      "name": "MarkArrowww",
+      "unusual": true
+    },
+    {
+      "name": "MarkCirc",
+      "unusual": true
+    },
+    {
+      "name": "MarkCros",
+      "unusual": true
+    },
+    {
+      "name": "MarkCross",
+      "unusual": true
+    },
+    {
+      "name": "MarkHash",
+      "unusual": true
+    },
+    {
+      "name": "MarkHashh",
+      "unusual": true
+    },
+    {
+      "name": "MarkHashhh",
+      "unusual": true
+    },
+    {
+      "name": "SegSymLst",
+      "unusual": true
+    },
+    {
+      "name": "pstParseArg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pstParseArg{${1:prefix}}{${2:element list}}{${3:value list}}"
+      }
+    },
+    {
+      "name": "pstShowCoor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pstShowCoor{${1:A}}"
+      }
+    },
+    {
+      "name": "pstslash",
+      "unusual": true
+    },
+    {
+      "name": "pstslashh",
+      "unusual": true
+    },
+    {
+      "name": "pstslashhh",
+      "unusual": true
+    },
+    {
+      "name": "pstslashslash",
+      "unusual": true
+    },
+    {
+      "name": "pstslashslashslash",
+      "unusual": true
+    },
+    {
+      "name": "resetEUCLvalues",
+      "unusual": true
+    },
+    {
+      "name": "psMarkHashLength",
+      "unusual": true
+    },
+    {
+      "name": "psMarkHashSep",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-eucl#c": [
+      "old"
+    ]
+  },
+  "args": [
+    "\\usepackage/pst-eucl#c"
+  ]
 }

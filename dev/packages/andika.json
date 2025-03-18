@@ -1,21 +1,40 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "iftex": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "andikafamily": {},
-    "andika": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "default",
-    "sfdefault",
-    "type1"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "andikafamily",
+      "unusual": true
+    },
+    {
+      "name": "andika"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/andika#c": [
+      "scaled=${1:factor}",
+      "default",
+      "sfdefault",
+      "type1"
+    ]
+  },
+  "args": [
+    "\\usepackage/andika#c"
+  ]
 }

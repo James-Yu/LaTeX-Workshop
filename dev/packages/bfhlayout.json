@@ -1,85 +1,208 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "geometry": [],
-    "bfhcolors": [],
-    "zref": [],
-    "zref-lastpage": [],
-    "zref-user": [],
-    "translations": [],
-    "scrlayer-scrpage": [],
-    "amsmath": [],
-    "bfhfonts": [],
-    "graphicx": [],
-    "bfhlogo": [],
-    "trimclip": [],
-    "bfhmodule": [],
-    "colortbl": [],
-    "tikz": []
-  },
-  "macros": {
-    "backmatter": {},
-    "bfhitemlabel": {},
-    "coverpagebottommargin": {},
-    "coverpageleftmargin": {},
-    "coverpagerightmargin": {},
-    "coverpagetopmargin": {},
-    "department{}": {
-      "snippet": "department{${1:department}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "frontmatter": {},
-    "institute{}": {
-      "snippet": "institute{${1:institute}}"
+    {
+      "name": "geometry"
     },
-    "institution{}": {
-      "snippet": "institution{${1:institution}}"
+    {
+      "name": "bfhcolors"
     },
-    "Logo": {},
-    "Logoplain": {},
-    "mainmatter": {},
-    "partnerlogo{}": {
-      "snippet": "partnerlogo{${1:graphics code}}"
+    {
+      "name": "zref"
     },
-    "titlefooterleft{}": {
-      "snippet": "titlefooterleft{${1:text}}"
+    {
+      "name": "zref-lastpage"
     },
-    "titlefooterright{}": {
-      "snippet": "titlefooterright{${1:text}}"
+    {
+      "name": "zref-user"
     },
-    "titlegraphic*{}": {
-      "snippet": "titlegraphic*{${1:graphics code}}"
+    {
+      "name": "translations"
     },
-    "titlegraphic{}": {
-      "snippet": "titlegraphic{${1:graphics code}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "version{}": {
-      "snippet": "version{${1:version}}"
+    {
+      "name": "amsmath"
     },
-    "versionformat{}": {
-      "snippet": "versionformat{${1:text}}"
+    {
+      "name": "bfhfonts"
     },
-    "BFHarraystretch": {},
-    "BFHarrayrulewidth": {},
-    "setupBfhTabular": {},
-    "bfhRule": {},
-    "bfhRule[]": {
-      "snippet": "bfhRule[${1:length}]"
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "bfhlogo"
+    },
+    {
+      "name": "trimclip"
+    },
+    {
+      "name": "bfhmodule"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "bfhTabular{}": {
-      "name": "bfhTabular",
-      "snippet": "{${1:preamble}}"
+  ],
+  "macros": [
+    {
+      "name": "backmatter"
     },
-    "bfhTabular[]{}": {
-      "name": "bfhTabular",
-      "snippet": "[${2:pos}]{${1:preamble}}"
+    {
+      "name": "bfhitemlabel"
     },
-    "bfhTblr{}": {
+    {
+      "name": "coverpagebottommargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpageleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpagerightmargin",
+      "unusual": true
+    },
+    {
+      "name": "coverpagetopmargin",
+      "unusual": true
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:department%text}}"
+      }
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "institute",
+      "arg": {
+        "format": "{}",
+        "snippet": "institute{${1:institute%text}}"
+      }
+    },
+    {
+      "name": "institution",
+      "arg": {
+        "format": "{}",
+        "snippet": "institution{${1:institution%text}}"
+      }
+    },
+    {
+      "name": "Logo",
+      "unusual": true
+    },
+    {
+      "name": "Logoplain",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "partnerlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "partnerlogo{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "titlefooterleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlefooterleft{${1:text}}"
+      }
+    },
+    {
+      "name": "titlefooterright",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlefooterright{${1:text}}"
+      }
+    },
+    {
+      "name": "titlegraphic*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic*{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "titlegraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic{${1:graphics code}}"
+      }
+    },
+    {
+      "name": "version",
+      "arg": {
+        "format": "{}",
+        "snippet": "version{${1:version}}"
+      }
+    },
+    {
+      "name": "versionformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "versionformat{${1:text}}"
+      }
+    },
+    {
+      "name": "BFHarraystretch",
+      "unusual": true
+    },
+    {
+      "name": "BFHarrayrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "setupBfhTabular"
+    },
+    {
+      "name": "bfhRule"
+    },
+    {
+      "name": "bfhRule",
+      "arg": {
+        "format": "[]",
+        "snippet": "bfhRule[${1:length}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "bfhTabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    },
+    {
+      "name": "bfhTabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:preamble}}"
+      }
+    },
+    {
       "name": "bfhTblr",
-      "snippet": "{${1:preamble}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

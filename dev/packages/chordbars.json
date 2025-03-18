@@ -1,93 +1,176 @@
 {
-  "includes": {
-    "calc": [],
-    "ifthen": [],
-    "wasysym": [],
-    "relsize": [],
-    "pgfmath": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "tikzlibraryshapes": [],
-    "tkz-euclide": []
-  },
-  "macros": {
-    "addHalfBar{}": {
-      "snippet": "addHalfBar{${1:note}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "addMeasures{}": {
-      "snippet": "addMeasures{${1:number}}"
+    {
+      "name": "ifthen"
     },
-    "addN": {},
-    "bpm{}": {
-      "snippet": "bpm{${1:number}}"
+    {
+      "name": "wasysym"
     },
-    "chordf{}": {
-      "snippet": "chordf{${1:note}}"
+    {
+      "name": "relsize"
     },
-    "chordh{}{}": {
-      "snippet": "chordh{${1:note1}}{${2:note2}}"
+    {
+      "name": "pgfmath"
     },
-    "chordline{}{}{}": {
-      "snippet": "chordline{${1:note}}{${2:num of bars}}{${3:name}}"
+    {
+      "name": "tikz"
     },
-    "countbarsNo": {},
-    "countbarsYes": {},
-    "dim": {},
-    "flat": {
-      "detail": "♭",
-      "documentation": "musical flat"
+    {
+      "name": "tikzlibrarymath"
     },
-    "MajS": {},
-    "printNbBars": {},
-    "repeatBar": {},
-    "repeatBarPair": {},
-    "resetchordbars": {},
-    "sharp": {
-      "detail": "♯",
-      "documentation": "= \\ MUSIC SHARP SIGN, z notation infix bag count"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "songtitle": {},
-    "susF": {},
-    "barsize": {},
-    "bpbfour": {},
-    "bpbthree": {},
-    "chordFontSize": {},
-    "NumberOfBarsPerLine": {},
-    "ycoeff": {},
-    "bpb": {},
-    "nbbars": {},
-    "NbBarsInitialLine": {},
-    "newchordline": {},
-    "OLDflat": {},
-    "OLDsharp": {},
-    "tempoBPM": {},
-    "theCurrentBar": {},
-    "theCurrentBarInLine": {},
-    "theCurrentLine": {},
-    "theNumMesure": {},
-    "theNumPart": {},
-    "titleFontSize": {},
-    "vspaceafter": {},
-    "vspacebefore": {}
-  },
-  "envs": {
-    "chordbar{}{}": {
-      "name": "chordbar",
-      "snippet": "{${1:num of bars}}{${2:name}}"
-    },
-    "chordbar[]{}{}": {
-      "name": "chordbar",
-      "snippet": "[${3:repetitions}]{${1:num of bars}}{${2:name}}"
-    },
-    "chordbar*{}{}": {
-      "name": "chordbar*",
-      "snippet": "{${1:num of bars}}{${2:name}}"
-    },
-    "chordbar*[]{}{}": {
-      "name": "chordbar*",
-      "snippet": "[${3:repetitions}]{${1:num of bars}}{${2:name}}"
+    {
+      "name": "tkz-euclide"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "addHalfBar",
+      "arg": {
+        "format": "{}",
+        "snippet": "addHalfBar{${1:note}}"
+      }
+    },
+    {
+      "name": "addMeasures",
+      "arg": {
+        "format": "{}",
+        "snippet": "addMeasures{${1:number}}"
+      }
+    },
+    {
+      "name": "addN"
+    },
+    {
+      "name": "bpm",
+      "arg": {
+        "format": "{}",
+        "snippet": "bpm{${1:number}}"
+      }
+    },
+    {
+      "name": "chordf",
+      "arg": {
+        "format": "{}",
+        "snippet": "chordf{${1:note}}"
+      }
+    },
+    {
+      "name": "chordh",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "chordh{${1:note1}}{${2:note2}}"
+      }
+    },
+    {
+      "name": "chordline",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "chordline{${1:note}}{${2:num of bars}}{${3:name}}"
+      }
+    },
+    {
+      "name": "countbarsNo"
+    },
+    {
+      "name": "countbarsYes"
+    },
+    {
+      "name": "dim"
+    },
+    {
+      "name": "flat",
+      "detail": "♭",
+      "doc": "Musical flat"
+    },
+    {
+      "name": "MajS"
+    },
+    {
+      "name": "printNbBars"
+    },
+    {
+      "name": "repeatBar"
+    },
+    {
+      "name": "repeatBarPair"
+    },
+    {
+      "name": "resetchordbars"
+    },
+    {
+      "name": "sharp",
+      "detail": "♯",
+      "doc": "\\# (oz), music sharp sign, infix bag count"
+    },
+    {
+      "name": "songtitle"
+    },
+    {
+      "name": "susF"
+    },
+    {
+      "name": "barsize",
+      "unusual": true
+    },
+    {
+      "name": "bpbfour",
+      "unusual": true
+    },
+    {
+      "name": "bpbthree",
+      "unusual": true
+    },
+    {
+      "name": "chordFontSize",
+      "unusual": true
+    },
+    {
+      "name": "NumberOfBarsPerLine",
+      "unusual": true
+    },
+    {
+      "name": "ycoeff",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "chordbar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num of bars}}{${2:name}}"
+      }
+    },
+    {
+      "name": "chordbar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:repetitions}]{${1:num of bars}}{${2:name}}"
+      }
+    },
+    {
+      "name": "chordbar*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:num of bars}}{${2:name}}"
+      }
+    },
+    {
+      "name": "chordbar*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:repetitions}]{${1:num of bars}}{${2:name}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

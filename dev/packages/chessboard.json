@@ -1,78 +1,194 @@
 {
-  "includes": {
-    "chessfss": [],
-    "xifthen": [],
-    "ifpdf": [],
-    "tikz": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "chessboard": {},
-    "chessboard[]": {
-      "snippet": "chessboard[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "chessfss"
     },
-    "setchessboard{}": {
-      "snippet": "setchessboard{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xifthen"
     },
-    "storechessboardstyle{}{}": {
-      "snippet": "storechessboardstyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "ifpdf"
     },
-    "cblistK": {},
-    "cblistQ": {},
-    "cblistR": {},
-    "cblistB": {},
-    "cblistN": {},
-    "cblistP": {},
-    "cblistk": {},
-    "cblistq": {},
-    "cblistr": {},
-    "cblistb": {},
-    "cblistn": {},
-    "cblistp": {},
-    "cbDefineLanguage{}": {
-      "snippet": "cbDefineLanguage{${1:language}}"
+    {
+      "name": "tikz"
     },
-    "cbDefineTranslation{}{}": {
-      "snippet": "cbDefineTranslation{${1:piece letter}}{${2:new piece letter}}"
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "chessboard"
     },
-    "cbDefineMoverStyle{}{}{}{}{}": {
-      "snippet": "cbDefineMoverStyle{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+    {
+      "name": "chessboard",
+      "arg": {
+        "format": "[]",
+        "snippet": "chessboard[${1:options%keyvals}]",
+        "keys": [
+          "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame"
+        ],
+        "keyPos": 0
+      }
     },
-    "cbDefineMoverStyle[]{}{}{}{}{}": {
-      "snippet": "cbDefineMoverStyle[${6:cmds}]{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+    {
+      "name": "setchessboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchessboard{${1:options%keyvals}}",
+        "keys": [
+          "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame"
+        ],
+        "keyPos": 0
+      }
     },
-    "cbDefinePgfFieldStyle{}{}": {
-      "snippet": "cbDefinePgfFieldStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "storechessboardstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "storechessboardstyle{${1:name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame"
+        ],
+        "keyPos": 1
+      }
     },
-    "cbDefinePgfRegionStyle{}{}": {
-      "snippet": "cbDefinePgfRegionStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "cblistK"
     },
-    "cbDefinePgfMoveStyle{}{}": {
-      "snippet": "cbDefinePgfMoveStyle{${1:name}}{${2:definition}}"
+    {
+      "name": "cblistQ"
     },
-    "cbDefineNewPiece{}{}{}{}": {
-      "snippet": "cbDefineNewPiece{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+    {
+      "name": "cblistR"
     },
-    "cbDefineNewPiece[]{}{}{}{}": {
-      "snippet": "cbDefineNewPiece[${5:game}]{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+    {
+      "name": "cblistB"
     },
-    "printarea": {},
-    "board": {},
-    "currentbk": {},
-    "currentbq": {},
-    "currentwk": {},
-    "currentwq": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "cblistN"
+    },
+    {
+      "name": "cblistP"
+    },
+    {
+      "name": "cblistk"
+    },
+    {
+      "name": "cblistq"
+    },
+    {
+      "name": "cblistr"
+    },
+    {
+      "name": "cblistb"
+    },
+    {
+      "name": "cblistn"
+    },
+    {
+      "name": "cblistp"
+    },
+    {
+      "name": "cbDefineLanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cbDefineLanguage{${1:language}}"
+      }
+    },
+    {
+      "name": "cbDefineTranslation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cbDefineTranslation{${1:piece letter}}{${2:new piece letter}}"
+      }
+    },
+    {
+      "name": "cbDefineMoverStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "cbDefineMoverStyle{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+      }
+    },
+    {
+      "name": "cbDefineMoverStyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "cbDefineMoverStyle[${6:cmds}]{${1:name}}{${2:white top}}{${3:white bot}}{${4:black top}}{${5:black bot}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfFieldStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cbDefinePgfFieldStyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfRegionStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cbDefinePgfRegionStyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefinePgfMoveStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cbDefinePgfMoveStyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "cbDefineNewPiece",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "cbDefineNewPiece{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+      }
+    },
+    {
+      "name": "cbDefineNewPiece",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "cbDefineNewPiece[${5:game}]{${1:color}}{${2:char}}{${3:on white}}{${4:on black}}"
+      }
+    },
+    {
+      "name": "printarea",
+      "unusual": true
+    },
+    {
+      "name": "board",
+      "unusual": true
+    },
+    {
+      "name": "currentbk",
+      "unusual": true
+    },
+    {
+      "name": "currentbq",
+      "unusual": true
+    },
+    {
+      "name": "currentwk",
+      "unusual": true
+    },
+    {
+      "name": "currentwq",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chessboard,\\setchessboard,\\storechessboardstyle,\\newchessgame,\\resumechessgame": [
       "style=${1:style}",
       "maxfield=${1:field}",
       "zero",
@@ -101,7 +217,7 @@
       "startstore=${1:field}",
       "stopstore=${1:field}",
       "storearea=${1:area}",
-      "mover=",
+      "mover=${1|w,b|}",
       "castling=${1:castling possibilies}",
       "enpassant=${1:field}",
       "halfmove=${1:integer}",
@@ -226,7 +342,7 @@
       "movershift=",
       "movertopshift=",
       "moverbottomshift=",
-      "moverstyle=",
+      "moverstyle=${1|circle,triangle,squarearrow,unknown|}",
       "print",
       "startprint=${1:field}",
       "stopprint=${1:field}",
@@ -320,7 +436,7 @@
       "backcornerarc=",
       "addpgf=${1:pgf cmds}",
       "usepgf",
-      "usepgf=",
+      "usepgf=${1|back,mark,all,both,none|}",
       "pgfborder",
       "pgfborder=${1:area}",
       "colorbackboard",
@@ -347,10 +463,11 @@
       "trimare=${1:area}",
       "captrimtoprint",
       "trim",
-      "trimtocolor=",
+      "trimtocolor=${1|white,black,false|}",
       "psset",
       "psskak",
       "text=${1:text}"
     ]
-  ]
+  },
+  "args": []
 }

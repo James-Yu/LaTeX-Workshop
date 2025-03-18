@@ -1,27 +1,44 @@
 {
-  "includes": {
-    "pgfkeys": []
-  },
-  "macros": {
-    "pdfmarginpar{}": {
-      "snippet": "pdfmarginpar{${1:text}}"
-    },
-    "pdfmarginpar[]{}": {
-      "snippet": "pdfmarginpar[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pdfmarginparset{}": {
-      "snippet": "pdfmarginparset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "Name=",
+  ],
+  "macros": [
+    {
+      "name": "pdfmarginpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfmarginpar{${1:text}}"
+      }
+    },
+    {
+      "name": "pdfmarginpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pdfmarginpar[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\pdfmarginpar#c,\\pdfmarginparset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdfmarginparset",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfmarginparset{${1:options%keyvals}}",
+        "keys": [
+          "\\pdfmarginpar#c,\\pdfmarginparset#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pdfmarginpar#c,\\pdfmarginparset#c": [
+      "Name=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,none|}",
       "Comment",
       "Key",
       "Note",
@@ -42,5 +59,6 @@
       "height=",
       "depth="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,149 +1,338 @@
 {
-  "includes": {
-    "verbatim": []
-  },
-  "macros": {
-    "nToksFor{}": {
-      "snippet": "nToksFor{${1:name}}"
-    },
-    "useRanTok{}": {
-      "snippet": "useRanTok{${1:number}}"
-    },
-    "useRanTok[]{}": {
-      "snippet": "useRanTok[${2:name}]{${1:number}}"
-    },
-    "useRTName{}": {
-      "snippet": "useRTName{${1:name}}"
-    },
-    "reorderRanToks{}": {
-      "snippet": "reorderRanToks{${1:name}}"
-    },
-    "copyRanToks{}{}": {
-      "snippet": "copyRanToks{${1:name1}}{${2:name2}}"
-    },
-    "bRTVToks{}": {
-      "snippet": "bRTVToks{${1:name}}"
-    },
-    "eRTVToks": {},
-    "RTVWHook": {},
-    "rtVWHook{}": {
-      "snippet": "rtVWHook{${1:code}}"
-    },
-    "displayListRandomly{}": {
-      "snippet": "displayListRandomly{${1:name}}"
-    },
-    "displayListRandomly[]{}": {
-      "snippet": "displayListRandomly[${2:prior}]{${1:name}}"
-    },
-    "displayListRandomly[][]{}": {
-      "snippet": "displayListRandomly[${2:prior}][${3:post}]{${1:name}}"
-    },
-    "first": {},
-    "last": {},
-    "lessone": {},
-    "rtTokByNum{}": {
-      "snippet": "rtTokByNum{${1:number}}"
-    },
-    "rtTokByNum[]{}": {
-      "snippet": "rtTokByNum[${2:name}]{${1:number}}"
-    },
-    "ranToksOff": {},
-    "ranToksOn": {},
-    "useLastAsSeed": {},
-    "useThisSeed{}": {
-      "snippet": "useThisSeed{${1:init seed value}}"
-    },
-    "useTheseDBs{}": {
-      "snippet": "useTheseDBs{${1:db1,db2,...}}",
-      "option": "usedbapp"
-    },
-    "useProbDBs{}": {
-      "snippet": "useProbDBs{${1:db1,db2,...}}",
-      "option": "usedbapp"
-    },
-    "ProbDBWarningMsg{}": {
-      "snippet": "ProbDBWarningMsg{${1:message}}",
-      "option": "usedbapp"
-    },
-    "viewDB{}": {
-      "snippet": "viewDB{${1:name}}",
-      "option": "usedbapp"
-    },
-    "nSTOP": {
-      "option": "usedbapp"
-    },
-    "ranIndex": {
-      "option": "usedbapp"
-    },
-    "uniqueXDBChoicesOn": {},
-    "uniqueXDBChoicesOff": {},
-    "InputUsedIDs": {},
-    "ifrtdebug": {},
-    "rtdebugtrue": {},
-    "rtdebugfalse": {},
-    "ifwerandomize": {},
-    "werandomizetrue": {},
-    "werandomizefalse": {},
-    "ifsaveseed": {},
-    "saveseedtrue": {},
-    "saveseedfalse": {},
-    "rtPkgInpt": {},
-    "readsavfile": {},
-    "InitSeedValue": {},
-    "lastRandomNum": {},
-    "inputRandomSeed": {},
-    "useRandomSeed{}": {
-      "snippet": "useRandomSeed{${1:init seed value}}"
-    },
-    "verbatimwrite": {},
-    "endverbatimwrite": {},
-    "reVerbEnd": {},
-    "wrtprobids": {},
-    "ifviewIDs": {},
-    "viewIDstrue": {},
-    "viewIDsfalse": {},
-    "ifxDBUnique": {},
-    "xDBUniquetrue": {},
-    "xDBUniquefalse": {},
-    "xdbunique": {},
-    "wrtProbIds{}": {
-      "snippet": "wrtProbIds{${1:arg}}"
-    },
-    "rtVWId{}": {
-      "snippet": "rtVWId{${1:arg}}"
-    },
-    "rtVW": {},
-    "endrtVW": {},
-    "rtVWi": {},
-    "endrtVWi": {},
-    "rtVWii": {},
-    "endrtVWii": {},
-    "makeInfoAWarning": {},
-    "pkgNotifType": {},
-    "rtcsarg{}{}": {
-      "snippet": "rtcsarg{${1:arg1}}{${2:arg2}}"
-    },
-    "Indx": {},
-    "randomi": {},
-    "nextrandom": {},
-    "setrannum{}{}{}": {
-      "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
-    },
-    "setrandim{}{}{}": {
-      "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
-    },
-    "pointless": {},
-    "PoinTless": {},
-    "ranval": {}
-  },
-  "envs": {
-    "rtVW": {},
-    "rtVWi": {},
-    "rtVWii": {},
-    "verbatimwrite": {}
-  },
-  "options": [
-    "usedbapp"
+  "deps": [
+    {
+      "name": "verbatim"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nToksFor",
+      "arg": {
+        "format": "{}",
+        "snippet": "nToksFor{${1:name}}"
+      }
+    },
+    {
+      "name": "useRanTok",
+      "arg": {
+        "format": "{}",
+        "snippet": "useRanTok{${1:number}}"
+      }
+    },
+    {
+      "name": "useRanTok",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useRanTok[${2:name}]{${1:number}}"
+      }
+    },
+    {
+      "name": "useRTName",
+      "arg": {
+        "format": "{}",
+        "snippet": "useRTName{${1:name}}"
+      }
+    },
+    {
+      "name": "reorderRanToks",
+      "arg": {
+        "format": "{}",
+        "snippet": "reorderRanToks{${1:name}}"
+      }
+    },
+    {
+      "name": "copyRanToks",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copyRanToks{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "bRTVToks",
+      "arg": {
+        "format": "{}",
+        "snippet": "bRTVToks{${1:name}}"
+      }
+    },
+    {
+      "name": "eRTVToks"
+    },
+    {
+      "name": "RTVWHook",
+      "unusual": true
+    },
+    {
+      "name": "rtVWHook",
+      "arg": {
+        "format": "{}",
+        "snippet": "rtVWHook{${1:code}}"
+      }
+    },
+    {
+      "name": "displayListRandomly",
+      "arg": {
+        "format": "{}",
+        "snippet": "displayListRandomly{${1:name}}"
+      }
+    },
+    {
+      "name": "displayListRandomly",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "displayListRandomly[${2:prior}]{${1:name}}"
+      }
+    },
+    {
+      "name": "displayListRandomly",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "displayListRandomly[${2:prior}][${3:post}]{${1:name}}"
+      }
+    },
+    {
+      "name": "displayListRandomly",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "displayListRandomly[${2:prior}][${3:post}]{${1:name}}"
+      }
+    },
+    {
+      "name": "first",
+      "unusual": true
+    },
+    {
+      "name": "last",
+      "unusual": true
+    },
+    {
+      "name": "lessone",
+      "unusual": true
+    },
+    {
+      "name": "rtTokByNum",
+      "arg": {
+        "format": "{}",
+        "snippet": "rtTokByNum{${1:number}}"
+      }
+    },
+    {
+      "name": "rtTokByNum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rtTokByNum[${2:name}]{${1:number}}"
+      }
+    },
+    {
+      "name": "ranToksOff"
+    },
+    {
+      "name": "ranToksOn"
+    },
+    {
+      "name": "useLastAsSeed"
+    },
+    {
+      "name": "useThisSeed",
+      "arg": {
+        "format": "{}",
+        "snippet": "useThisSeed{${1:init seed value}}"
+      }
+    },
+    {
+      "name": "useTheseDBs",
+      "if": "usedbapp",
+      "arg": {
+        "format": "{}",
+        "snippet": "useTheseDBs{${1:db1,db2,...}}"
+      }
+    },
+    {
+      "name": "useProbDBs",
+      "if": "usedbapp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "useProbDBs{${1:db1,db2,...}}"
+      }
+    },
+    {
+      "name": "viewDB",
+      "if": "usedbapp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "viewDB{${1:name}}"
+      }
+    },
+    {
+      "name": "uniqueXDBChoicesOn"
+    },
+    {
+      "name": "uniqueXDBChoicesOff"
+    },
+    {
+      "name": "InputUsedIDs"
+    },
+    {
+      "name": "ifrtdebug",
+      "unusual": true
+    },
+    {
+      "name": "rtdebugtrue",
+      "unusual": true
+    },
+    {
+      "name": "rtdebugfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifwerandomize",
+      "unusual": true
+    },
+    {
+      "name": "werandomizetrue",
+      "unusual": true
+    },
+    {
+      "name": "werandomizefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifsaveseed",
+      "unusual": true
+    },
+    {
+      "name": "saveseedtrue",
+      "unusual": true
+    },
+    {
+      "name": "saveseedfalse",
+      "unusual": true
+    },
+    {
+      "name": "readsavfile",
+      "unusual": true
+    },
+    {
+      "name": "InitSeedValue",
+      "unusual": true
+    },
+    {
+      "name": "lastRandomNum",
+      "unusual": true
+    },
+    {
+      "name": "inputRandomSeed",
+      "unusual": true
+    },
+    {
+      "name": "useRandomSeed",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "useRandomSeed{${1:init seed value}}"
+      }
+    },
+    {
+      "name": "reVerbEnd",
+      "unusual": true
+    },
+    {
+      "name": "wrtprobids",
+      "unusual": true
+    },
+    {
+      "name": "ifviewIDs",
+      "unusual": true
+    },
+    {
+      "name": "viewIDstrue",
+      "unusual": true
+    },
+    {
+      "name": "viewIDsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifxDBUnique",
+      "unusual": true
+    },
+    {
+      "name": "xDBUniquetrue",
+      "unusual": true
+    },
+    {
+      "name": "xDBUniquefalse",
+      "unusual": true
+    },
+    {
+      "name": "wrtProbIds",
+      "arg": {
+        "format": "{}",
+        "snippet": "wrtProbIds{${1:arg}}"
+      }
+    },
+    {
+      "name": "rtVWId",
+      "arg": {
+        "format": "{}",
+        "snippet": "rtVWId{${1:arg}}"
+      }
+    },
+    {
+      "name": "Indx",
+      "unusual": true
+    },
+    {
+      "name": "randomi",
+      "unusual": true
+    },
+    {
+      "name": "nextrandom",
+      "unusual": true
+    },
+    {
+      "name": "setrannum",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setrannum{${1:count register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "setrandim",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setrandim{${1:dimen register}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "pointless",
+      "unusual": true
+    },
+    {
+      "name": "ranval",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "rtVW"
+    },
+    {
+      "name": "rtVWi"
+    },
+    {
+      "name": "rtVWii"
+    }
+  ],
+  "keys": {
+    "\\usepackage/ran_toks#c": [
+      "usedbapp"
+    ]
+  },
+  "args": [
+    "\\usepackage/ran_toks#c"
+  ]
 }

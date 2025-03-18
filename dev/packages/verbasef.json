@@ -1,44 +1,91 @@
 {
-  "includes": {
-    "vrbexin": [],
-    "verbatim": [],
-    "here": []
-  },
-  "macros": {
-    "VautoSubF{}{}{}{}{}": {
-      "snippet": "VautoSubF{${1:startline}}{${2:endline}}{${3:file}}{${4:caption}}{${5:label}}"
+  "deps": [
+    {
+      "name": "vrbexin"
     },
-    "VautoSubF[]{}{}{}{}{}": {
-      "snippet": "VautoSubF[${6:lines-numbered}]{${1:startline}}{${2:endline}}{${3:file}}{${4:caption}}{${5:label}}"
+    {
+      "name": "verbatim"
     },
-    "VautoSfFont{}": {
-      "snippet": "VautoSfFont{${1:font commands}}"
+    {
+      "name": "here"
+    }
+  ],
+  "macros": [
+    {
+      "name": "VautoSubF",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "VautoSubF{${1:startline}}{${2:endline}}{${3:file}}{${4:caption}}{${5:label}}"
+      }
     },
-    "VautoSfFont[]{}": {
-      "snippet": "VautoSfFont[${2:linenum-font-commands}]{${1:font-commands}}"
+    {
+      "name": "VautoSubF",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "VautoSubF[${6:lines-numbered}]{${1:startline}}{${2:endline}}{${3:file}}{${4:caption}}{${5:label}}"
+      }
     },
-    "VautoPl{}": {
-      "snippet": "VautoPl{${1:placement}}"
+    {
+      "name": "VautoSfFont",
+      "arg": {
+        "format": "{}",
+        "snippet": "VautoSfFont{${1:font commands}}"
+      }
     },
-    "VautoLines{}": {
-      "snippet": "VautoLines{${1:lines-per-page}}"
+    {
+      "name": "VautoSfFont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "VautoSfFont[${2:linenum-font-commands}]{${1:font-commands}}"
+      }
     },
-    "VautoLines[]{}": {
-      "snippet": "VautoLines[${2:first-page-lines}]{${1:lines-per-page}}"
+    {
+      "name": "VautoPl",
+      "arg": {
+        "format": "{}",
+        "snippet": "VautoPl{${1:placement}}"
+      }
     },
-    "VautoSubFF{}": {
-      "snippet": "VautoSubFF{${1:font commands}}"
+    {
+      "name": "VautoLines",
+      "arg": {
+        "format": "{}",
+        "snippet": "VautoLines{${1:lines-per-page}}"
+      }
     },
-    "VautoSubFF[]{}": {
-      "snippet": "VautoSubFF[${2:linenum-font-commands}]{${1:font-commands}}"
+    {
+      "name": "VautoLines",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "VautoLines[${2:first-page-lines}]{${1:lines-per-page}}"
+      }
     },
-    "ifsubstr{}{}{}{}": {
-      "snippet": "ifsubstr{${1:string}}{${2:substring}}{${3:true}}{${4:false}}"
+    {
+      "name": "VautoSubFF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "VautoSubFF{${1:font commands}}"
+      }
     },
-    "subz": {},
-    "xxparse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "VautoSubFF",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "VautoSubFF[${2:linenum-font-commands}]{${1:font-commands}}"
+      }
+    },
+    {
+      "name": "ifsubstr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ifsubstr{${1:string}}{${2:substring}}{${3:true}}{${4:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

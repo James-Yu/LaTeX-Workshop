@@ -1,56 +1,102 @@
 {
-  "includes": {
-    "options": [],
-    "longbox": [],
-    "pict2e": [],
-    "ellipse": []
-  },
-  "macros": {
-    "lfbox{}": {
-      "snippet": "lfbox{${1:content}}"
+  "deps": [
+    {
+      "name": "options"
     },
-    "lfbox[]{}": {
-      "snippet": "lfbox[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "longbox"
     },
-    "newfboxstyle{}{}": {
-      "snippet": "newfboxstyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "pict2e"
     },
-    "fboxset{}": {
-      "snippet": "fboxset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "optionlengthlimit{}{}{}": {
-      "snippet": "optionlengthlimit{${1:length}}{${2:min}}{${3:max}}"
-    },
-    "optionradiuslimit{}{}{}{}": {
-      "snippet": "optionradiuslimit{${1:r1}}{${2:r2}}{${3:min}}{${4:max}}"
+    {
+      "name": "ellipse"
     }
-  },
-  "envs": {
-    "longfbox": {},
-    "longfbox[]": {
+  ],
+  "macros": [
+    {
+      "name": "lfbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "lfbox{${1:content%text}}"
+      }
+    },
+    {
+      "name": "lfbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lfbox[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newfboxstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfboxstyle{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "fboxset",
+      "arg": {
+        "format": "{}",
+        "snippet": "fboxset{${1:options%keyvals}}",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "optionlengthlimit",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "optionlengthlimit{${1:length}}{${2:min}}{${3:max}}"
+      }
+    },
+    {
+      "name": "optionradiuslimit",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "optionradiuslimit{${1:r1}}{${2:r2}}{${3:min}}{${4:max}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "longfbox"
+    },
+    {
       "name": "longfbox",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "border-style=",
-      "border-top-style=",
-      "border-right-style=",
-      "border-bottom-style=",
-      "border-left-style=",
+  ],
+  "keys": {
+    "\\lfbox#c,\\begin{longfbox}#c,\\newfboxstyle#c,\\fboxset#c": [
+      "border-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
+      "border-top-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
+      "border-right-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
+      "border-bottom-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
+      "border-left-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
       "border-break-style=",
-      "border-break-top-style=",
-      "border-break-bottom-style=",
+      "border-break-top-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
+      "border-break-bottom-style=${1|none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge|}",
       "border-width=",
       "border-top-width=",
       "border-right-width=",
@@ -73,11 +119,11 @@
       "border-top-right-radius=",
       "border-bottom-left-radius=",
       "border-bottom-right-radius=",
-      "baseline=",
-      "vertical-align=",
+      "baseline=${1|bottom,middle,top|}",
+      "vertical-align=${1|baseline,bottom,middle,top,text-bottom,text-top,super,sub|}",
       "raise=",
-      "height-align=",
-      "text-align=",
+      "height-align=${1|top,middle,bottom|}",
+      "text-align=${1|default,left,center,right,justify|}",
       "background-color=",
       "background-clip=border-box,padding-box,content-box",
       "background-padding-color=",
@@ -107,7 +153,7 @@
       "tight",
       "rounded",
       "dotted",
-      "render=",
+      "render=${1|default,plain,picture|}",
       "insert-before={${1:code}}",
       "inser-after={${1:code}}",
       "render-insert-before={${1:code}}",
@@ -148,5 +194,6 @@
       "border-break-bottom-dotskip=",
       "%fboxstyle"
     ]
-  ]
+  },
+  "args": []
 }

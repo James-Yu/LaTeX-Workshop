@@ -1,173 +1,507 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-ctexbook": [],
-    "geometry": [],
-    "xcolor": [],
-    "colortbl": [],
-    "xeCJK": [],
-    "titletoc": [],
-    "setspace": [],
-    "graphicx": [],
-    "fancyhdr": [],
-    "pdfpages": [],
-    "booktabs": [],
-    "multirow": [],
-    "tikz": [],
-    "etoolbox": [],
-    "hyperref": [],
-    "caption": [],
-    "array": [],
-    "amsmath": [],
-    "amssymb": [],
-    "pifont": [],
-    "amsthm": [],
-    "unicode-math": [],
-    "listings": [],
-    "enumitem": [],
-    "fmtcount": [],
-    "environ": [],
-    "datetime2": [
-      "type=bachelor_english"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "class-ctexbook"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "colortbl"
+    },
+    {
+      "name": "xeCJK"
+    },
+    {
+      "name": "zhlineskip"
+    },
+    {
+      "name": "titletoc"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "pifont"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "fmtcount"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "datetime2",
+      "if": "type=bachelor_english"
+    },
+    {
+      "name": "indentfirst",
+      "if": "type=bachelor_english"
+    }
+  ],
+  "macros": [
+    {
+      "name": "BITSetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "BITSetup{${1:键值对%keyvals}}",
+        "keys": [
+          "\\BITSetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addpub",
+      "arg": {
+        "format": "{}",
+        "snippet": "addpub{${1:bibid}}"
+      }
+    },
+    {
+      "name": "addpubs",
+      "arg": {
+        "format": "{}",
+        "snippet": "addpubs{${1:bibid}}"
+      }
+    },
+    {
+      "name": "Author"
+    },
+    {
+      "name": "Author",
+      "arg": {
+        "format": "[]",
+        "snippet": "Author[${1:n}]"
+      }
+    },
+    {
+      "name": "Author",
+      "arg": {
+        "format": "[][]",
+        "snippet": "Author[${1:n}][${2:覆盖普通模式下内容}]"
+      }
+    },
+    {
+      "name": "Author",
+      "arg": {
+        "format": "[][][]",
+        "snippet": "Author[${1:n}][${2:覆盖普通模式下内容}][${3:覆盖盲审模式下内容}]"
+      }
+    },
+    {
+      "name": "AuthorEn"
+    },
+    {
+      "name": "AuthorEn",
+      "arg": {
+        "format": "[]",
+        "snippet": "AuthorEn[${1:n}]"
+      }
+    },
+    {
+      "name": "AuthorEn",
+      "arg": {
+        "format": "[][]",
+        "snippet": "AuthorEn[${1:n}][${2:覆盖普通模式下内容}]"
+      }
+    },
+    {
+      "name": "AuthorEn",
+      "arg": {
+        "format": "[][][]",
+        "snippet": "AuthorEn[${1:n}][${2:覆盖普通模式下内容}][${3:覆盖盲审模式下内容}]"
+      }
+    },
+    {
+      "name": "MakeCover"
+    },
+    {
+      "name": "MakeOriginality"
+    },
+    {
+      "name": "MakePaperBack"
+    },
+    {
+      "name": "MakeTitle"
+    },
+    {
+      "name": "MakeTOC"
+    },
+    {
+      "name": "pubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "pubsection{${1:text}}"
+      }
+    },
+    {
+      "name": "SecretInfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "SecretInfo{${1:arg}}"
+      }
+    },
+    {
+      "name": "SecretInfo",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "SecretInfo{${1:arg}}[${2:opt}]"
+      }
+    },
+    {
+      "name": "arabicHeiti",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "arabicHeiti{${1:arg}}"
+      }
+    },
+    {
+      "name": "arialfamily",
+      "unusual": true
+    },
+    {
+      "name": "BigStar",
+      "unusual": true
+    },
+    {
+      "name": "circled",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "circled[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "circled",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "circled{${1:arg}}"
+      }
+    },
+    {
+      "name": "dunderline",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dunderline[${3:opt}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "dunderline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dunderline{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstractEn"
+    },
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "algo"
+    },
+    {
+      "name": "algo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "appendices"
+    },
+    {
+      "name": "axi"
+    },
+    {
+      "name": "axi",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "bibprint"
+    },
+    {
+      "name": "case"
+    },
+    {
+      "name": "case",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "conclusion"
+    },
+    {
+      "name": "conj"
+    },
+    {
+      "name": "conj",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "cor"
+    },
+    {
+      "name": "cor",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "defn"
+    },
+    {
+      "name": "defn",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "exmp"
+    },
+    {
+      "name": "exmp",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "lem"
+    },
+    {
+      "name": "lem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "prop"
+    },
+    {
+      "name": "prop",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "publications"
+    },
+    {
+      "name": "rem"
+    },
+    {
+      "name": "rem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "resume"
+    },
+    {
+      "name": "symbols"
+    },
+    {
+      "name": "them"
+    },
+    {
+      "name": "them",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:留数定理%text}]"
+      }
+    },
+    {
+      "name": "blindPeerReview",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/bithesis#c": [
+      "type=${1|bachelor,bachelor_translation,bachelor_english,master,doctor|}",
+      "blindPeerReview",
+      "quirks",
+      "twoside"
     ],
-    "indentfirst": [
-      "type=bachelor_english"
+    "\\BITSetup#c": [
+      "cover={${1:键值列表}}",
+      "cover/date=${1:任意字符串}",
+      "cover/headerImage=${1:图片路径}",
+      "cover/xiheiFont=${1:字体路径}",
+      "cover/delimiter=${1:任意字符串}",
+      "cover/autoWidth",
+      "cover/autoWidthPadding=",
+      "cover/labelMaxWidth=",
+      "cover/valueMaxWidth=",
+      "cover/labelAlign=${1|c,l,r|}",
+      "cover/valueAlign=${1|c,l,r|}",
+      "cover/underlineThickness=",
+      "cover/underlineOffset=",
+      "cover/hideCoverInPeerReview",
+      "cover/showSpecialTypeBox",
+      "cover/prefer-zh",
+      "cover/reverse-titles",
+      "cover/addTitleZh",
+      "info={${1:键值列表}}",
+      "info/title=${1:字符串}",
+      "info/titleEn=${1:字符串}",
+      "info/verticalTitle=${1:字符串}",
+      "info/school=${1:字符串}",
+      "info/schoolEn=${1:字符串}",
+      "info/major=${1:字符串}",
+      "info/majorEn=${1:字符串}",
+      "info/author=${1:字符串}",
+      "info/authorEn=${1:字符串}",
+      "info/studentId=${1:字符串}",
+      "info/supervisor=${1:字符串}",
+      "info/supervisorEn=${1:字符串}",
+      "info/externalSupervisor=${1:字符串}",
+      "info/class=${1:字符串}",
+      "info/keywords={${1:字符串；以全角分号分割}}",
+      "info/keywordsEn={${1:字符串; 以分号分割}}",
+      "info/translationTitle=${1:字符串}",
+      "info/translationOriginTitleEn=${1:字符串}",
+      "info/classification=${1:字符串}",
+      "info/UDC=${1:字符串}",
+      "info/chairman=${1:字符串}",
+      "info/chairmanEn=${1:字符串}",
+      "info/degree=${1:字符串}",
+      "info/degreeEn=${1:字符串}",
+      "info/institute=${1:字符串}",
+      "info/instituteEn=${1:字符串}",
+      "info/defenseDate=${1:字符串}",
+      "info/defenseDateEn=${1:字符串}",
+      "info/classifiedLevel=${1:字符串}",
+      "info/crossResearch",
+      "info/internationalStudentUGP",
+      "info/teacher=${1:字符串}",
+      "info/semester=${1:字符串}",
+      "style={${1:键值列表}}",
+      "style/head=${1:字符串}",
+      "style/headline=${1:字符串}",
+      "style/bibliographyIndent",
+      "style/pageVerticalAlign=${1|top,scattered|}",
+      "style/non-CJK-font-in-headings=${1|serif,sans|}",
+      "style/mathFont=${1|asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,pagella,schola,stix,stix2,termes,xcharter,xits,none|}",
+      "style/windowsSimSunFakeBold",
+      "style/unicodeMathOptions=${1:任意选项}",
+      "style/hyphen",
+      "style/mathAboveDisplaySkip=",
+      "style/mathBelowDisplaySkip=",
+      "style/betterTimesNewRoman",
+      "TOC={${1:键值列表}}",
+      "TOC/title=${1:字符串}",
+      "TOC/abstract",
+      "TOC/abstractEn",
+      "TOC/TOC",
+      "TOC/symbols",
+      "appendices={${1:键值列表}}",
+      "appendices/chapterLeveltrue,false",
+      "appendices/title=${1:字符串}",
+      "appendices/TOCTitle=${1:字符串}",
+      "publications={${1:键值列表}}",
+      "publications/sorting",
+      "publications/omit",
+      "publications/maxbibnames=${1:正整数}",
+      "publications/minbibnames=${1:正整数}",
+      "misc={${1:键值列表}}",
+      "misc/arialFont=${1:字符串}",
+      "misc/tabularFontSize=${1:其他字号}",
+      "misc/autoref={${1:键值列表}}",
+      "misc/hideLinks",
+      "misc/floatSeparation=${1:实数}",
+      "misc/algorithmSeparation=${1:实数}",
+      "misc/tabularRowSeparation=${1:实数}",
+      "const={${1:键值列表}}",
+      "const/autoref={${1:键值列表}}",
+      "const/style/substituteSymbol=${1:字符串}",
+      "const/info={${1:键值列表}}",
+      "const/heading={${1:键值列表}}"
     ]
   },
-  "macros": {
-    "BITSetup{}": {
-      "snippet": "BITSetup{${1:键值对}}"
-    },
-    "addpub{}": {
-      "snippet": "addpub{${1:bibid}}"
-    },
-    "addpubs{}": {
-      "snippet": "addpubs{${1:bibid}}"
-    },
-    "Author": {},
-    "Author[]": {
-      "snippet": "Author[${1:n}]"
-    },
-    "Author[][]": {
-      "snippet": "Author[${1:n}][${2:覆盖普通模式下内容}]"
-    },
-    "Author[][][]": {
-      "snippet": "Author[${1:n}][${2:覆盖普通模式下内容}][${3:覆盖盲审模式下内容}]"
-    },
-    "AuthorEn": {},
-    "AuthorEn[]": {
-      "snippet": "AuthorEn[${1:n}]"
-    },
-    "AuthorEn[][]": {
-      "snippet": "AuthorEn[${1:n}][${2:覆盖普通模式下内容}]"
-    },
-    "AuthorEn[][][]": {
-      "snippet": "AuthorEn[${1:n}][${2:覆盖普通模式下内容}][${3:覆盖盲审模式下内容}]"
-    },
-    "MakeCover": {},
-    "MakeOriginality": {},
-    "MakePaperBack": {},
-    "MakeTitle": {},
-    "MakeTOC": {},
-    "pubsection{}": {
-      "snippet": "pubsection{${1:text}}"
-    },
-    "SecretInfo{}": {
-      "snippet": "SecretInfo{${1:arg}}"
-    },
-    "SecretInfo{}[]": {
-      "snippet": "SecretInfo{${1:arg}}[${2:opt}]"
-    },
-    "arabicHeiti{}": {
-      "snippet": "arabicHeiti{${1:arg}}"
-    },
-    "arialfamily": {},
-    "BigStar": {},
-    "circled[]{}": {
-      "snippet": "circled[${2:opt}]{${1:arg}}"
-    },
-    "circled{}": {
-      "snippet": "circled{${1:arg}}"
-    },
-    "dunderline[]{}{}": {
-      "snippet": "dunderline[${3:opt}]{${1:arg1}}{${2:arg2}}"
-    },
-    "dunderline{}{}": {
-      "snippet": "dunderline{${1:arg1}}{${2:arg2}}"
-    },
-    "thepub": {}
-  },
-  "envs": {
-    "abstractEn": {},
-    "acknowledgements": {},
-    "algo": {},
-    "algo[]": {
-      "name": "algo",
-      "snippet": "[${1:留数定理}]"
-    },
-    "appendices": {},
-    "axi": {},
-    "axi[]": {
-      "name": "axi",
-      "snippet": "[${1:留数定理}]"
-    },
-    "bibprint": {},
-    "case": {},
-    "case[]": {
-      "name": "case",
-      "snippet": "[${1:留数定理}]"
-    },
-    "conclusion": {},
-    "conj": {},
-    "conj[]": {
-      "name": "conj",
-      "snippet": "[${1:留数定理}]"
-    },
-    "cor": {},
-    "cor[]": {
-      "name": "cor",
-      "snippet": "[${1:留数定理}]"
-    },
-    "defn": {},
-    "defn[]": {
-      "name": "defn",
-      "snippet": "[${1:留数定理}]"
-    },
-    "exmp": {},
-    "exmp[]": {
-      "name": "exmp",
-      "snippet": "[${1:留数定理}]"
-    },
-    "lem": {},
-    "lem[]": {
-      "name": "lem",
-      "snippet": "[${1:留数定理}]"
-    },
-    "prop": {},
-    "prop[]": {
-      "name": "prop",
-      "snippet": "[${1:留数定理}]"
-    },
-    "publications": {},
-    "rem": {},
-    "rem[]": {
-      "name": "rem",
-      "snippet": "[${1:留数定理}]"
-    },
-    "resume": {},
-    "symbols": {},
-    "them": {},
-    "them[]": {
-      "name": "them",
-      "snippet": "[${1:留数定理}]"
-    },
-    "blindPeerReview": {}
-  },
-  "options": [
-    "type=",
-    "blindPeerReview",
-    "quirks",
-    "twoside"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/bithesis#c"
+  ]
 }

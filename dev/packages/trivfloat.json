@@ -1,19 +1,33 @@
 {
-  "includes": {
-    "float": [],
-    "floatrow": [
-      "floatrow",
-      "floatrow=true"
+  "deps": [
+    {
+      "name": "float"
+    },
+    {
+      "name": "floatrow",
+      "if": "floatrow"
+    },
+    {
+      "name": "floatrow",
+      "if": "floatrow=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "trivfloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "trivfloat{${1:envname%envname}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/trivfloat#c": [
+      "floatrow"
     ]
   },
-  "macros": {
-    "trivfloat{}": {
-      "snippet": "trivfloat{${1:envname}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "floatrow"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/trivfloat#c"
+  ]
 }

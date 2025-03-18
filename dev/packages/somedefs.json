@@ -1,16 +1,32 @@
 {
-  "includes": {},
-  "macros": {
-    "UseAllDefinitions": {},
-    "UseSomeDefinitions": {},
-    "UseDefinition{}": {
-      "snippet": "UseDefinition{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "UseAllDefinitions",
+      "unusual": true
     },
-    "ProvidesDefinition{}": {
-      "snippet": "ProvidesDefinition{${1:definition}}"
+    {
+      "name": "UseSomeDefinitions",
+      "unusual": true
+    },
+    {
+      "name": "UseDefinition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "UseDefinition{${1:name}}"
+      }
+    },
+    {
+      "name": "ProvidesDefinition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesDefinition{${1:definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

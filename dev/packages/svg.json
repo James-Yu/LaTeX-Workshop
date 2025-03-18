@@ -1,0 +1,157 @@
+{
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "scrbase"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "trimspaces"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "ifplatform"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "transparent"
+    },
+    {
+      "name": "pgfsys"
+    }
+  ],
+  "macros": [
+    {
+      "name": "svgsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "svgsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/svg#c,\\svgsetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "svgpath",
+      "arg": {
+        "format": "{}",
+        "snippet": "svgpath{${1:path%URL}}"
+      }
+    },
+    {
+      "name": "includesvg",
+      "arg": {
+        "format": "{}",
+        "snippet": "includesvg{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includesvg",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includesvg[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includesvg"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includeinkscape",
+      "arg": {
+        "format": "{}",
+        "snippet": "includeinkscape{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includeinkscape",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includeinkscape[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includeinkscape"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/svg#c": [
+      "usexcolor=${1|true,on,yes,false,off,no|}",
+      "usetransparent=${1|true,on,yes,false,off,no|}",
+      "noxcolor",
+      "notransparent"
+    ],
+    "\\usepackage/svg#c,\\svgsetup#c": [
+      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi|}",
+      "inkscapepath=${2|svgdir,svgpath,svgsubdir,svgsubpath,basedir,basepath,jobdir,jobpath,basesubdir,basesubpath,jobsubdir,jobsubpath,${1:path}|}",
+      "inkscapeexe=${1:exec path}",
+      "inkscapeversion=${1|0,1,auto|}",
+      "inkscapename=${1:file name}",
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
+      "inkscapelatex",
+      "inkscapearea=${1|drawing,crop,page,nocrop|}",
+      "inkscapedpi=${1:integer}",
+      "inkscapeopt=${1:Inkscape option}",
+      "svgextension=${1:extension}",
+      "width=",
+      "height=",
+      "distort",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
+      "draft",
+      "lastpage"
+    ],
+    "\\includesvg": [
+      "inkscape=${2|false,off,no,true,on,yes,newer,onlynewer,forced,force,overwrite,pdf,eps,ps,png,latex,nolatex,drawing,page,${1:integer}dpi|}",
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
+      "inkscapelatex",
+      "inkscapearea=${1|drawing,crop,page,nocrop|}",
+      "inkscapedpi=${1:integer}",
+      "inkscapeopt=${1:Inkscape option}",
+      "svgextension=${1:extension}",
+      "width=",
+      "height=",
+      "distort",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
+      "draft",
+      "lastpage",
+      "angle=${1:degrees}",
+      "origin="
+    ],
+    "\\includeinkscape": [
+      "inkscapeformat=${1|pdf,aps,ps,png|}",
+      "inkscapelatex",
+      "width=",
+      "height=",
+      "distort",
+      "scale=${1:factor}",
+      "pretex=${1:code}",
+      "apptex=${1:code}",
+      "draft",
+      "lastpage",
+      "angle=${1:degrees}",
+      "origin="
+    ]
+  },
+  "args": [
+    "\\usepackage/svg#c",
+    "\\usepackage/svg#c,\\svgsetup#c"
+  ]
+}

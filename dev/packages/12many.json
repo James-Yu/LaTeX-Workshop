@@ -1,46 +1,126 @@
 {
-  "includes": {
-    "calc": [],
-    "keyval": []
-  },
-  "macros": {
-    "nto{}{}": {
-      "snippet": "nto{${1:num1}}{${2:num2}}"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "ito{}": {
-      "snippet": "ito{${1:num}}"
-    },
-    "oto{}": {
-      "snippet": "oto{${1:num}}"
-    },
-    "setOTMstyle{}": {
-      "snippet": "setOTMstyle{${1:style}}"
-    },
-    "setOTMstyle[]{}": {
-      "snippet": "setOTMstyle[${2:params}]{${1:style}}"
-    },
-    "newOTMstyle{}{}": {
-      "snippet": "newOTMstyle{${1:name}}{${2:definition}}"
-    },
-    "newOTMstyle[]{}{}": {
-      "snippet": "newOTMstyle[${3:params}]{${1:name}}{${2:definition}}"
-    },
-    "getOTMparameter{}": {
-      "snippet": "getOTMparameter{${1:param}}"
-    },
-    "renewOTMstyle{}{}": {
-      "snippet": "renewOTMstyle{${1:name}}{${2:definition}}"
-    },
-    "newOTMparameter{}{}{}": {
-      "snippet": "newOTMparameter{${1:style}}{${2:param}}{${3:value}}"
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "set",
-    "dots",
-    "nude",
-    "laue"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "nto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nto{${1:num1}}{${2:num2}}"
+      }
+    },
+    {
+      "name": "ito",
+      "arg": {
+        "format": "{}",
+        "snippet": "ito{${1:num}}"
+      }
+    },
+    {
+      "name": "oto",
+      "arg": {
+        "format": "{}",
+        "snippet": "oto{${1:num}}"
+      }
+    },
+    {
+      "name": "setOTMstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "setOTMstyle{${1:style}}"
+      }
+    },
+    {
+      "name": "setOTMstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setOTMstyle[${2:params%keyvals}]{${1:style}}"
+      }
+    },
+    {
+      "name": "newOTMstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newOTMstyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newOTMstyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOTMstyle[${3:params}]{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "getOTMparameter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "getOTMparameter{${1:param}}"
+      }
+    },
+    {
+      "name": "renewOTMstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewOTMstyle{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newOTMstyle",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOTMstyle[${3:params}]{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "newOTMparameter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newOTMparameter{${1:style}}{${2:param}}{${3:value}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/12many#c": [
+      "set",
+      "dots",
+      "nude",
+      "laue"
+    ],
+    "\\setOTMstyle/set": [
+      "var=${1:variable name}",
+      "naturals=${1:symbol}",
+      "where=${1:symbol}"
+    ],
+    "\\setOTMstyle/dots": [
+      "dots=${1:symbol}"
+    ],
+    "\\setOTMstyle/nude": [
+      "dots=${1:symbol}"
+    ],
+    "\\setOTMstyle/laue": [
+      "setminus=${1:symbol}",
+      "setplus=${1:symbol}",
+      "ybelow=",
+      "strokewidth=",
+      "innersidegap=",
+      "outersidegap="
+    ]
+  },
+  "args": [
+    "\\usepackage/12many#c"
+  ]
 }

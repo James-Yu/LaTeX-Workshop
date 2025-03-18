@@ -36,32 +36,27 @@ export const cache = {
     promises,
     getIncludedTeX,
     getIncludedBib,
+    getIncludedGlossaryBib,
     getFlsChildren,
     wait,
     reset,
     refreshCache,
     refreshCacheAggressive,
-    loadFlsFile,
-    _test: {
-        caches,
-        canCache,
-        isExcluded,
-        updateAST
-    }
+    loadFlsFile
 }
 
 // Listener for file changes: refreshes the cache if the file can be cached.
-lw.watcher.src.onChange((filePath: string) => {
-    if (canCache(filePath)) {
-        void refreshCache(filePath)
+lw.watcher.src.onChange(uri => {
+    if (canCache(uri.fsPath)) {
+        void refreshCache(uri.fsPath)
     }
 })
 
 // Listener for file deletions: removes the file from the cache if it exists.
-lw.watcher.src.onDelete((filePath: string) => {
-    if (get(filePath) === undefined) {
-        caches.delete(filePath)
-        logger.log(`Removed ${filePath} .`)
+lw.watcher.src.onDelete(uri => {
+    if (get(uri.fsPath) !== undefined) {
+        caches.delete(uri.fsPath)
+        logger.log(`Removed ${uri.fsPath} .`)
     }
 })
 
@@ -120,9 +115,10 @@ function add(filePath: string) {
         logger.log(`Ignored ${filePath} .`)
         return
     }
-    if (!lw.watcher.src.has(filePath)) {
+    const uri = vscode.Uri.file(filePath)
+    if (!lw.watcher.src.has(uri)) {
         logger.log(`Adding ${filePath} .`)
-        lw.watcher.src.add(filePath)
+        lw.watcher.src.add(uri)
     }
 }
 
@@ -236,10 +232,11 @@ let cachingFilesCount: number = 0
  */
 async function refreshCache(filePath: string, rootPath?: string): Promise<Promise<void> | undefined> {
     if (isExcluded(filePath)) {
-        logger.log(`Ignored ${filePath} .`)
+        logger.log(`File is excluded from caching: ${filePath} .`)
         return
     }
     if (!canCache(filePath)) {
+        logger.log(`File cannot be cached: ${filePath} .`)
         return
     }
     logger.log(`Caching ${filePath} .`)
@@ -254,6 +251,7 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
         elements: {},
         children: [],
         bibfiles: new Set(),
+        glossarybibfiles: new Set(),
         external: {}}
     caches.set(filePath, fileCache)
     rootPath = rootPath || lw.root.file.path
@@ -261,9 +259,9 @@ async function refreshCache(filePath: string, rootPath?: string): Promise<Promis
 
     promises.set(
         filePath,
-        updateAST(fileCache).then(() => {
-            updateElements(fileCache)
-        }).finally(() => {
+        updateAST(fileCache)
+        .then(() => updateElements(fileCache))
+        .finally(() => {
             lw.lint.label.check()
             cachingFilesCount--
             promises.delete(filePath)
@@ -379,7 +377,7 @@ async function updateChildren(fileCache: FileCache, rootPath: string | undefined
 async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
     const inputFileRegExp = new InputFileRegExp()
     while (true) {
-        const result = inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
+        const result = await inputFileRegExp.exec(fileCache.contentTrimmed, fileCache.filePath, rootPath)
         if (!result) {
             break
         }
@@ -398,7 +396,7 @@ async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
         })
         logger.log(`Input ${result.path} from ${fileCache.filePath} .`)
 
-        if (lw.watcher.src.has(result.path)) {
+        if (lw.watcher.src.has(vscode.Uri.file(result.path))) {
             continue
         }
         add(result.path)
@@ -432,7 +430,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
         }
 
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        const externalPath = utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
+        const externalPath = await utils.resolveFile([path.dirname(fileCache.filePath), path.dirname(rootPath), ...texDirs], result[2])
         if (!externalPath || !await lw.file.exists(externalPath) || path.relative(externalPath, rootPath) === '') {
             logger.log(`Failed resolving external ${result[2]} . Tried ${externalPath} ` +
                 (externalPath && path.relative(externalPath, rootPath) === '' ? ', which is root.' : '.'))
@@ -445,7 +443,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
             logger.log(`External document ${externalPath} from ${fileCache.filePath} .` + (result[1] ? ` Prefix is ${result[1]}`: ''))
         }
 
-        if (lw.watcher.src.has(externalPath)) {
+        if (lw.watcher.src.has(vscode.Uri.file(externalPath))) {
             continue
         }
         add(externalPath)
@@ -466,7 +464,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
  * @param {FileCache} fileCache - The cache object containing the file data and
  * metadata to be updated.
  */
-function updateElements(fileCache: FileCache): void {
+async function updateElements(fileCache: FileCache): Promise<void> {
     const start = performance.now()
     lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
@@ -477,7 +475,8 @@ function updateElements(fileCache: FileCache): void {
     lw.completion.macro.parse(fileCache)
     lw.completion.subsuperscript.parse(fileCache)
     lw.completion.input.parseGraphicsPath(fileCache)
-    updateBibfiles(fileCache)
+    await updateBibfiles(fileCache)
+    await updateGlossaryBibFiles(fileCache)
     const elapsed = performance.now() - start
     logger.log(`Updated elements in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }
@@ -496,7 +495,7 @@ function updateElements(fileCache: FileCache): void {
  * @param {FileCache} fileCache - The file cache object to update with
  * bibliography files.
  */
-function updateBibfiles(fileCache: FileCache) {
+async function updateBibfiles(fileCache: FileCache) {
     const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(?:\\subfix{)?([\s\S]+?)(?:\})?}|(?:\\putbib)\[(?:\\subfix{)?([\s\S]+?)(?:\})?\]/gm
 
     let result: RegExpExecArray | null
@@ -504,16 +503,52 @@ function updateBibfiles(fileCache: FileCache) {
         const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
         for (const bib of bibs) {
-            const bibPaths = lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
+            const bibPaths = await lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
             for (const bibPath of bibPaths) {
                 if (isExcluded(bibPath)) {
                     continue
                 }
                 fileCache.bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${fileCache.filePath} .`)
-                if (!lw.watcher.bib.has(bibPath)) {
-                    lw.watcher.bib.add(bibPath)
+                const bibUri = vscode.Uri.file(bibPath)
+                if (!lw.watcher.bib.has(bibUri)) {
+                    lw.watcher.bib.add(bibUri)
                 }
+            }
+        }
+    }
+}
+
+/**
+ * Updates the glossary files associated with a given file cache.
+ *
+ * This function parses the content of a file cache to find `\GlsXtrLoadResources``
+ * using a regular expression. It extracts the  file paths specified in these
+ * macros, resolves their full paths, and adds them to the set of glossary
+ * files in the file cache. If a glossary file is not excluded, it logs the
+ * action, adds the file to the cache, and ensures that it is being watched for
+ * changes.
+ *
+ * @param {FileCache} fileCache - The file cache object to update with
+ * bibliography files.
+ */
+async function updateGlossaryBibFiles(fileCache: FileCache) {
+    const glossaryReg = /\\GlsXtrLoadResources\s*\[.*?src=\{([^}]+)\}.*?\]/gs
+
+    let result: RegExpExecArray | null
+    while ((result = glossaryReg.exec(fileCache.contentTrimmed)) !== null) {
+        const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
+
+        for (const bib of bibs) {
+            const bibPath = await utils.resolveFile([path.dirname(fileCache.filePath)], bib, '.bib')
+            if (!bibPath || isExcluded(bibPath)) {
+                continue
+            }
+            fileCache.glossarybibfiles.add(bibPath)
+            logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
+            const bibUri = vscode.Uri.file(bibPath)
+            if (!lw.watcher.bib.has(bibUri)) {
+                lw.watcher.bib.add(bibUri)
             }
         }
     }
@@ -549,13 +584,14 @@ async function loadFlsFile(filePath: string): Promise<void> {
     const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
 
     for (const inputFile of ioFiles.input) {
+        const inputUri = vscode.Uri.file(inputFile)
         // Drop files that are also listed as OUTPUT or should be ignored
         if (ioFiles.output.includes(inputFile) ||
             isExcluded(inputFile) ||
             !await lw.file.exists(inputFile)) {
             continue
         }
-        if (inputFile === filePath || lw.watcher.src.has(inputFile)) {
+        if (inputFile === filePath || lw.watcher.src.has(inputUri)) {
             // Drop the current rootFile often listed as INPUT
             // Drop any file that is already watched as it is handled by
             // onWatchedFileChange.
@@ -581,7 +617,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
             } else {
                 logger.log(`Cache not finished on ${filePath} when parsing fls.`)
             }
-        } else if (!lw.watcher.src.has(inputFile) && !['.aux', '.out'].includes(inputExt)) {
+        } else if (!lw.watcher.src.has(inputUri) && !['.aux', '.out'].includes(inputExt)) {
             // Watch non-tex files. aux and out are excluded because they are auto-generated during the building process
             add(inputFile)
         }
@@ -668,7 +704,7 @@ async function parseAuxFile(filePath: string, srcDir: string) {
         }
         const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => { return bib.trim() })
         for (const bib of bibs) {
-            const bibPaths = lw.file.getBibPath(bib, srcDir)
+            const bibPaths = await lw.file.getBibPath(bib, srcDir)
             for (const bibPath of bibPaths) {
                 if (isExcluded(bibPath)) {
                     continue
@@ -677,37 +713,38 @@ async function parseAuxFile(filePath: string, srcDir: string) {
                     get(lw.root.file.path)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                if (!lw.watcher.bib.has(bibPath)) {
-                    lw.watcher.bib.add(bibPath)
+                const bibUri = vscode.Uri.file(bibPath)
+                if (!lw.watcher.bib.has(bibUri)) {
+                    lw.watcher.bib.add(bibUri)
                 }
             }
         }
     }
 }
 
-
 /**
- * Retrieves a list of included bibliography files for a given file, ensuring
+ * Retrieves a list of included bib files for a given file, ensuring
  * uniqueness.
  *
  * This function processes a specified file path to extract and return all
- * associated bibliography files. It starts with the provided file path (or the
+ * associated bib files. It starts with the provided file path (or the
  * root file path if not specified) and checks its cache entry. If the cache
- * entry exists, the function collects the bibliography files associated with
+ * entry exists, the function collects the bib files associated with
  * the file and its children. The function ensures that the same file is not
  * processed multiple times by keeping track of checked files. The result is an
- * array of unique bibliography file paths.
+ * array of unique bib file paths.
  *
+ * @param {string} [bibType] - The type of .bib file to search for.
  * @param {string} [filePath] - The path to the file to check for included
- * bibliography files. Defaults to the root file path if not provided.
- * @param {string[]} [includedBib=[]] - An array to accumulate the bibliography
+ * bib files. Defaults to the root file path if not provided.
+ * @param {string[]} [includedBib=[]] - An array to accumulate the bib
  * files found.
  * @param {string[]} [checkedTeX=[]] - An array to store the paths of TeX files
  * already checked.
- * @returns {string[]} - An array of unique bibliography file paths included in
+ * @returns {string[]} - An array of unique bib file paths included in
  * the specified file and its children.
  */
-function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTeX: string[] = []): string[] {
+function getIncludedBibGeneric(bibType: 'bibtex' | 'glossary', filePath?: string, includedBib: string[] = [], checkedTeX: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
@@ -717,16 +754,46 @@ function getIncludedBib(filePath?: string, includedBib: string[] = [], checkedTe
         return []
     }
     checkedTeX.push(filePath)
-    includedBib.push(...fileCache.bibfiles)
+    if (bibType === 'bibtex') {
+        includedBib.push(...fileCache.bibfiles)
+    } else if (bibType === 'glossary') {
+        includedBib.push(...fileCache.glossarybibfiles)
+    }
     for (const child of fileCache.children) {
         if (checkedTeX.includes(child.filePath)) {
             // Already parsed
             continue
         }
-        getIncludedBib(child.filePath, includedBib, checkedTeX)
+        getIncludedBibGeneric(bibType, child.filePath, includedBib, checkedTeX)
     }
     // Make sure to return an array with unique entries
     return Array.from(new Set(includedBib))
+}
+
+/**
+ * Retrieves a list of included bibliography files for a given file, ensuring
+ * uniqueness.
+ *
+ * @param {string} [filePath] - The path to the file to check for included
+ * bibliography files.
+ * @returns {string[]} - An array of unique bibliography file paths included in
+ * the specified file and its children.
+ */
+function getIncludedBib(filePath?: string): string[] {
+    return getIncludedBibGeneric('bibtex', filePath)
+}
+
+/**
+ * Retrieves a list of included glossary bib files for a given file, ensuring
+ * uniqueness.
+ *
+ * @param {string} [filePath] - The path to the file to check for included
+ * bibliography files.
+ * @returns {string[]} - An array of unique glossary bib file paths included in
+ * the specified file and its children.
+ */
+function getIncludedGlossaryBib(filePath?: string): string[] {
+    return getIncludedBibGeneric('glossary', filePath)
 }
 
 /**

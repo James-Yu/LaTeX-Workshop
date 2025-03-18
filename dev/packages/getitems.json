@@ -1,25 +1,56 @@
 {
-  "includes": {
-    "environ": [],
-    "trimspaces": []
-  },
-  "macros": {
-    "gatheritems{}": {
-      "snippet": "gatheritems{${1:text to parse}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "thenumgathereditems": {},
-    "gathereditem{}": {
-      "snippet": "gathereditem{${1:item number}}"
+    {
+      "name": "trimspaces"
+    }
+  ],
+  "macros": [
+    {
+      "name": "gatheritems",
+      "arg": {
+        "format": "{}",
+        "snippet": "gatheritems{${1:text to parse%text}}"
+      }
     },
-    "loopthroughitemswithcommand{}": {
-      "snippet": "loopthroughitemswithcommand{${1:macro}}"
+    {
+      "name": "thenumgathereditems",
+      "unusual": true
     },
-    "thecurrentitemnumber": {},
-    "ifgatherbeginningofloop": {},
-    "gatherbeginningoflooptrue": {},
-    "gatherbeginningofloopfalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "gathereditem",
+      "arg": {
+        "format": "{}",
+        "snippet": "gathereditem{${1:item number}}"
+      }
+    },
+    {
+      "name": "loopthroughitemswithcommand",
+      "arg": {
+        "format": "{}",
+        "snippet": "loopthroughitemswithcommand{${1:macro}}"
+      }
+    },
+    {
+      "name": "thecurrentitemnumber",
+      "unusual": true
+    },
+    {
+      "name": "ifgatherbeginningofloop",
+      "unusual": true
+    },
+    {
+      "name": "gatherbeginningoflooptrue",
+      "unusual": true
+    },
+    {
+      "name": "gatherbeginningofloopfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

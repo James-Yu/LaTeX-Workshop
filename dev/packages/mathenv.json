@@ -1,69 +1,149 @@
 {
-  "includes": {
-    "mdwtab": []
-  },
-  "macros": {
-    "eqnumber": {},
-    "eqnumber[]": {
-      "snippet": "eqnumber[${1:text}]"
-    },
-    "eqaopenskip": {},
-    "eqacloseskip": {},
-    "eqacolskip": {},
-    "eqainskip": {},
-    "eqastyle": {},
-    "newmatrix{}{}": {
-      "snippet": "newmatrix{${1:envname}}{${2:genmatrix args}}"
+  "deps": [
+    {
+      "name": "mdwtab"
     }
-  },
-  "envs": {
-    "eqnarray[]": {
+  ],
+  "macros": [
+    {
+      "name": "eqnumber"
+    },
+    {
+      "name": "eqnumber",
+      "arg": {
+        "format": "[]",
+        "snippet": "eqnumber[${1:text%plain}]"
+      }
+    },
+    {
+      "name": "eqaopenskip",
+      "unusual": true
+    },
+    {
+      "name": "eqacloseskip",
+      "unusual": true
+    },
+    {
+      "name": "eqacolskip",
+      "unusual": true
+    },
+    {
+      "name": "eqainskip",
+      "unusual": true
+    },
+    {
+      "name": "eqastyle",
+      "unusual": true
+    },
+    {
+      "name": "newmatrix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newmatrix{${1:envname}}{${2:genmatrix args}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "eqnarray",
-      "snippet": "[${1:cols}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:cols}]"
+      }
     },
-    "eqnarray*[]": {
+    {
       "name": "eqnarray*",
-      "snippet": "[${1:cols}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:cols}]"
+      }
     },
-    "eqlines": {},
-    "eqlines*": {},
-    "eqnalign": {},
-    "eqnalign[]": {
+    {
+      "name": "eqlines"
+    },
+    {
+      "name": "eqlines*"
+    },
+    {
+      "name": "eqnalign"
+    },
+    {
       "name": "eqnalign",
-      "snippet": "[${1:cols}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:cols}]"
+      }
     },
-    "spliteqn": {},
-    "spliteqn*": {},
-    "subsplit": {},
-    "pmatrix": {},
-    "dmatrix{}{}": {
+    {
+      "name": "spliteqn"
+    },
+    {
+      "name": "spliteqn*"
+    },
+    {
+      "name": "subsplit"
+    },
+    {
+      "name": "pmatrix"
+    },
+    {
       "name": "dmatrix",
-      "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      }
     },
-    "smatrix": {},
-    "smatrix*": {},
-    "spmatrix": {},
-    "spmatrix*": {},
-    "sdmatrix{}{}": {
+    {
+      "name": "smatrix"
+    },
+    {
+      "name": "smatrix*"
+    },
+    {
+      "name": "spmatrix"
+    },
+    {
+      "name": "spmatrix*"
+    },
+    {
       "name": "sdmatrix",
-      "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      }
     },
-    "sdmatrix*{}{}": {
+    {
       "name": "sdmatrix*",
-      "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:ldelim}}{${2:rdelim}}"
+      }
     },
-    "genmatrix{}{}{}{}{}": {
+    {
       "name": "genmatrix",
-      "snippet": "{${1:matrix-style}}{${2:outer-style}}{${3:spacing}}{${4:ldelim}}{${5:rdelim}}"
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "{${1:matrix-style}}{${2:outer-style}}{${3:spacing}}{${4:ldelim}}{${5:rdelim}}"
+      }
     },
-    "script": {},
-    "script[]": {
+    {
+      "name": "script"
+    },
+    {
       "name": "script",
-      "snippet": "[${1:cols}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:cols}]"
+      }
     },
-    "cases": {},
-    "smcases": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "cases"
+    },
+    {
+      "name": "smcases"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

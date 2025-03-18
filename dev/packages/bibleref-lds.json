@@ -1,15 +1,30 @@
 {
-  "includes": {
-    "bibleref-mouth": [],
-    "ifthen": [],
-    "hyperref": []
-  },
-  "macros": {
-    "provideldsdotorgstyle{}{}{}{}{}{}{}{}{}{}": {
-      "snippet": "provideldsdotorgstyle{${1:name}}{${2:bkstyle}}{${3:bkchsep}}{${4:chvsep}}{${5:bksep}}{${6:chsep}}{${7:vsep}}{${8:rangesep}}{${9:chstyle}}{${10:versestyle}}"
+  "deps": [
+    {
+      "name": "bibleref-mouth"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "hyperref"
     }
+  ],
+  "macros": [
+    {
+      "name": "provideldsdotorgstyle",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}{}",
+        "snippet": "provideldsdotorgstyle{${1:name}}{${2:bkstyle}}{${3:bkchsep}}{${4:chvsep}}{${5:bksep}}{${6:chsep}}{${7:vsep}}{${8:rangesep}}{${9:chstyle}}{${10:versestyle}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setbiblestyle#c": [
+      "lds",
+      "lds.org"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

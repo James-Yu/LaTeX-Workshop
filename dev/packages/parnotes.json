@@ -1,47 +1,94 @@
 {
-  "includes": {},
-  "macros": {
-    "parnote{}": {
-      "snippet": "parnote{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "parnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "parnote{${1:text}}"
+      }
     },
-    "parnote[]{}": {
-      "snippet": "parnote[${2:label}]{${1:text}}"
+    {
+      "name": "parnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "parnote[${2:label}]{${1:text}}"
+      }
     },
-    "parnotes": {},
-    "parnotereset": {},
-    "parnoteclear": {},
-    "parnoteref{}": {
-      "snippet": "parnoteref{${1:label}}"
+    {
+      "name": "parnotes"
     },
-    "parnotemark{}": {
-      "snippet": "parnotemark{${1:text}}"
+    {
+      "name": "parnotereset"
     },
-    "parnotefmt{}": {
-      "snippet": "parnotefmt{${1:text}}"
+    {
+      "name": "parnoteclear"
     },
-    "theparnotemark": {},
-    "parnotevskip": {},
-    "parnoteintercmd": {},
-    "parnotecusmarkfmt{}": {
-      "snippet": "parnotecusmarkfmt{${1:mark}}"
+    {
+      "name": "parnoteref",
+      "arg": {
+        "format": "{}",
+        "snippet": "parnoteref{${1:label}}"
+      }
+    },
+    {
+      "name": "parnotemark",
+      "arg": {
+        "format": "{}",
+        "snippet": "parnotemark{${1:text}}"
+      }
+    },
+    {
+      "name": "parnotefmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "parnotefmt{${1:text}}"
+      }
+    },
+    {
+      "name": "theparnotemark",
+      "unusual": true
+    },
+    {
+      "name": "parnotevskip",
+      "unusual": true
+    },
+    {
+      "name": "parnoteintercmd",
+      "unusual": true
+    },
+    {
+      "name": "parnotecusmarkfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "parnotecusmarkfmt{${1:mark}}"
+      }
     }
-  },
-  "envs": {
-    "autopn": {}
-  },
-  "options": [
-    "restart",
-    "reset",
-    "roman",
-    "alph",
-    "symbol",
-    "breakwithin",
-    "indentafter",
-    "narrower",
-    "nomultiple",
-    "notesrm",
-    "notesit",
-    "notessf"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "autopn"
+    }
+  ],
+  "keys": {
+    "\\usepackage/parnotes#c": [
+      "restart",
+      "reset",
+      "roman",
+      "alph",
+      "symbol",
+      "breakwithin",
+      "indentafter",
+      "narrower",
+      "nomultiple",
+      "notesrm",
+      "notesit",
+      "notessf"
+    ]
+  },
+  "args": [
+    "\\usepackage/parnotes#c"
+  ]
 }

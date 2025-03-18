@@ -1,88 +1,206 @@
 {
-  "includes": {
-    "multicol": [],
-    "glossary-tree": []
-  },
-  "macros": {
-    "glsxtrbookindexcols": {},
-    "glsxtrbookindexcolspread": {},
-    "glsxtrbookindexmulticolsenv": {},
-    "glsxtrbookindexname{}": {
-      "snippet": "glsxtrbookindexname{${1:label}}"
+  "deps": [
+    {
+      "name": "multicol"
     },
-    "glsxtrbookindexsubname{}": {
-      "snippet": "glsxtrbookindexsubname{${1:label}}"
-    },
-    "glsxtrbookindexprelocation{}": {
-      "snippet": "glsxtrbookindexprelocation{${1:label}}"
-    },
-    "glsxtrbookindexsubprelocation{}": {
-      "snippet": "glsxtrbookindexsubprelocation{${1:label}}"
-    },
-    "glsxtrbookindexlocation{}{}": {
-      "snippet": "glsxtrbookindexlocation{${1:label}}{${2:location list}}"
-    },
-    "glsxtrbookindexsublocation{}{}": {
-      "snippet": "glsxtrbookindexsublocation{${1:label}}{${2:location list}}"
-    },
-    "glsxtrbookindexparentchildsep": {},
-    "glsxtrbookindexparentsubchildsep": {},
-    "glsxtrbookindexbetween{}{}": {
-      "snippet": "glsxtrbookindexbetween{${1:label1}}{${2:label2}}"
-    },
-    "glsxtrbookindexsubbetween{}{}": {
-      "snippet": "glsxtrbookindexsubbetween{${1:label1}}{${2:label2}}"
-    },
-    "glsxtrbookindexsubsubbetween{}{}": {
-      "snippet": "glsxtrbookindexsubsubbetween{${1:label1}}{${2:label2}}"
-    },
-    "glsxtrbookindexsubsubatendgroup{}": {
-      "snippet": "glsxtrbookindexsubsubatendgroup{${1:sub-sub-label}}"
-    },
-    "glsxtrbookindexsubatendgroup{}": {
-      "snippet": "glsxtrbookindexsubatendgroup{${1:sub-label}}"
-    },
-    "glsxtrbookindexatendgroup{}": {
-      "snippet": "glsxtrbookindexatendgroup{${1:label}}"
-    },
-    "glsxtrbookindexbookmark{}{}": {
-      "snippet": "glsxtrbookindexbookmark{${1:group title}}{${2:name}}"
-    },
-    "glsxtrbookindexformatheader{}": {
-      "snippet": "glsxtrbookindexformatheader{${1:group title}}"
-    },
-    "glsxtrbookindexmarkentry{}": {
-      "snippet": "glsxtrbookindexmarkentry{${1:label}}"
-    },
-    "glsxtrbookindexfirstmark": {},
-    "glsxtrbookindexlastmark": {},
-    "glsxtrbookindexfirstmarkfmt{}": {
-      "snippet": "glsxtrbookindexfirstmarkfmt{${1:label}}"
-    },
-    "glsxtrbookindexlastmarkfmt{}": {
-      "snippet": "glsxtrbookindexlastmarkfmt{${1:label}}"
-    },
-    "glsxtrbookindexbookmarkprefix": {},
-    "glsxtrbookindexgroupskip": {},
-    "glsxtrbookindexthepage": {},
-    "glsxtrbookindexpregroupskip{}": {
-      "snippet": "glsxtrbookindexpregroupskip{${1:skip}}"
-    },
-    "glsxtrbookindexformatsubheader{}{}{}{}{}": {
-      "snippet": "glsxtrbookindexformatsubheader{${1:prev-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:title}}"
-    },
-    "glsxtrbookindexpostgroupskip": {},
-    "glsxtrbookindexpresubgroupskip{}{}{}": {
-      "snippet": "glsxtrbookindexpresubgroupskip{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "glsxtrbookindexpostsubgroupskip{}{}": {
-      "snippet": "glsxtrbookindexpostsubgroupskip{${1:arg1}}{${2:arg2}}"
-    },
-    "glsxtrbookindexsubbookmark{}{}{}": {
-      "snippet": "glsxtrbookindexsubbookmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "glossary-tree"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "glsxtrbookindexcols",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexcolspread",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexmulticolsenv",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexname{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubname",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexsubname{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexprelocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexprelocation{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubprelocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexsubprelocation{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexlocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexlocation{${1:label}}{${2:location list}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsublocation",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexsublocation{${1:label}}{${2:location list}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexparentchildsep",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexparentsubchildsep",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexbetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexbetween{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubbetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexsubbetween{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubsubbetween",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexsubsubbetween{${1:label1%ref}}{${2:label2%ref}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubsubatendgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexsubsubatendgroup{${1:sub-sub-label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexsubatendgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexsubatendgroup{${1:sub-label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexatendgroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexatendgroup{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexbookmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glsxtrbookindexbookmark{${1:group title}}{${2:name}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexformatheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexformatheader{${1:group title}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexmarkentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexmarkentry{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexfirstmark",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexlastmark",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexfirstmarkfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexfirstmarkfmt{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexlastmarkfmt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexlastmarkfmt{${1:label}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexbookmarkprefix",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexgroupskip",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexthepage",
+      "unusual": true
+    },
+    {
+      "name": "glsxtrbookindexpregroupskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "glsxtrbookindexpregroupskip{${1:skip}}"
+      }
+    },
+    {
+      "name": "glsxtrbookindexformatsubheader",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "glsxtrbookindexformatsubheader{${1:prev-level}}{${2:level}}{${3:parent-label}}{${4:group-label}}{${5:title%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

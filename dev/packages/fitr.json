@@ -1,91 +1,195 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "xcolor": [],
-    "eforms": [],
-    "calc": [],
-    "collectbox": []
-  },
-  "macros": {
-    "jdRect": {},
-    "jdRect[]": {
-      "snippet": "jdRect[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "jdRect*{}": {
-      "snippet": "jdRect*{${1:content}}"
+    {
+      "name": "ifpdf"
     },
-    "jdRect*[]{}": {
-      "snippet": "jdRect*[${2:options}]{${1:content}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifxetex"
     },
-    "restoreOverlayPresets": {},
-    "viewMagWinOff": {},
-    "viewMagWinOn": {},
-    "allowFXDefault": {},
-    "overlayPresets": {},
-    "allowFXcode": {},
-    "FitRbboxB{}{}": {
-      "snippet": "FitRbboxB{${1:width}}{${2:height}}"
+    {
+      "name": "ifluatex"
     },
-    "FRblinkonjmpfalse": {},
-    "FRblinkonjmptrue": {},
-    "FRblinkonrestorefalse": {},
-    "FRblinkonrestoretrue": {},
-    "FRusedljsfalse": {},
-    "FRusedljstrue": {},
-    "ifFRblinkonjmp": {},
-    "ifFRblinkonrestore": {},
-    "ifFRusedljs": {},
-    "ifviewMagWin": {},
-    "pbJmpLnkPresets": {},
-    "setFitRDest{}{}{}": {
-      "snippet": "setFitRDest{${1:width}}{${2:height}}{${3:name}}"
+    {
+      "name": "xcolor"
     },
-    "themagCnt": {},
-    "viewMagWinfalse": {},
-    "viewMagWintrue": {}
-  },
-  "envs": {},
-  "options": [
-    "pdftex",
-    "luatex",
-    "dvips",
-    "dvipsone",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "preview",
-    "!preview",
-    "viewMagWin",
-    "!viewMagWin",
-    "gonative",
-    "blinkonjmp",
-    "!blinkonjmp",
-    "blinkonrestore",
-    "!blinkonrestore",
-    "blink",
-    "!blink"
+    {
+      "name": "eforms"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "collectbox"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "jdRect"
+    },
+    {
+      "name": "jdRect",
+      "arg": {
+        "format": "[]",
+        "snippet": "jdRect[${1:options%keyvals}]",
+        "keys": [
+          "\\jdRect,\\jdRect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jdRect*",
+      "arg": {
+        "format": "{}",
+        "snippet": "jdRect*{${1:content%text}}"
+      }
+    },
+    {
+      "name": "jdRect*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "jdRect*[${2:options%keyvals}]{${1:content%text}}",
+        "keys": [
+          "\\jdRect,\\jdRect*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "restoreOverlayPresets"
+    },
+    {
+      "name": "viewMagWinOff"
+    },
+    {
+      "name": "viewMagWinOn"
+    },
+    {
+      "name": "allowFXDefault",
+      "unusual": true
+    },
+    {
+      "name": "overlayPresets",
+      "unusual": true
+    },
+    {
+      "name": "allowFXcode",
+      "unusual": true
+    },
+    {
+      "name": "FitRbboxB",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FitRbboxB{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "FRblinkonjmpfalse",
+      "unusual": true
+    },
+    {
+      "name": "FRblinkonjmptrue",
+      "unusual": true
+    },
+    {
+      "name": "FRblinkonrestorefalse",
+      "unusual": true
+    },
+    {
+      "name": "FRblinkonrestoretrue",
+      "unusual": true
+    },
+    {
+      "name": "FRusedljsfalse",
+      "unusual": true
+    },
+    {
+      "name": "FRusedljstrue",
+      "unusual": true
+    },
+    {
+      "name": "ifFRblinkonjmp",
+      "unusual": true
+    },
+    {
+      "name": "ifFRblinkonrestore",
+      "unusual": true
+    },
+    {
+      "name": "ifFRusedljs",
+      "unusual": true
+    },
+    {
+      "name": "ifviewMagWin",
+      "unusual": true
+    },
+    {
+      "name": "pbJmpLnkPresets",
+      "unusual": true
+    },
+    {
+      "name": "setFitRDest",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setFitRDest{${1:width}}{${2:height}}{${3:name}}"
+      }
+    },
+    {
+      "name": "themagCnt",
+      "unusual": true
+    },
+    {
+      "name": "viewMagWinfalse",
+      "unusual": true
+    },
+    {
+      "name": "viewMagWintrue",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fitr#c": [
+      "pdftex",
+      "luatex",
+      "dvips",
+      "dvipsone",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "preview",
+      "!preview",
+      "viewMagWin",
+      "!viewMagWin",
+      "gonative",
+      "blinkonjmp",
+      "!blinkonjmp",
+      "blinkonrestore",
+      "!blinkonrestore",
+      "blink",
+      "!blink"
+    ],
+    "\\jdRect,\\jdRect*": [
       "lift=",
       "shift=",
       "width=",
       "height=",
-      "ref=",
+      "ref=${1|t,c,b|}",
       "adddestw=",
       "adddesth=",
       "button",
-      "link=",
+      "link=${1|jmp,restore|}",
       "nodest",
       "dest=${1:name}",
       "allowFX"
     ]
+  },
+  "args": [
+    "\\usepackage/fitr#c"
   ]
 }

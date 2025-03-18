@@ -1,43 +1,84 @@
 {
-  "includes": {
-    "xetex": [],
-    "fontspec": [],
-    "xunicode": [],
-    "kvoptions": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "setsampletext{}": {
-      "snippet": "setsampletext{${1:text}}"
+  "deps": [
+    {
+      "name": "xetex"
     },
-    "printfont{}{}": {
-      "snippet": "printfont{${1:font}}{${2:license}}"
+    {
+      "name": "fontspec"
     },
-    "printfont[]{}{}": {
-      "snippet": "printfont[${3:options}]{${1:font}}{${2:license}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xunicode"
     },
-    "sampletext{}": {
-      "snippet": "sampletext{${1:arg}}"
+    {
+      "name": "kvoptions"
     },
-    "sampletext[]{}": {
-      "snippet": "sampletext[${2:opt}]{${1:arg}}"
-    },
-    "samplefeature{}": {
-      "snippet": "samplefeature{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "size={${1:size1,size2,...}}",
-    "features={${1:feat1,feat2,...}}",
-    "featuresize=${1:fontsize csname}"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setsampletext",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsampletext{${1:text}}"
+      }
+    },
+    {
+      "name": "printfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printfont{${1:font}}{${2:license}}"
+      }
+    },
+    {
+      "name": "printfont",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "printfont[${3:options%keyvals}]{${1:font}}{${2:license}}",
+        "keys": [
+          "\\printfont,\\samplefeature"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sampletext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sampletext{${1:arg}}"
+      }
+    },
+    {
+      "name": "sampletext",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sampletext[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "samplefeature",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "samplefeature{${1:options%keyvals}}",
+        "keys": [
+          "\\printfont,\\samplefeature"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fontbook#c": [
+      "size={${1:size1,size2,...}}",
+      "features={${1:feat1,feat2,...}}",
+      "featuresize=${1:fontsize csname}"
+    ],
+    "\\printfont,\\samplefeature": [
       "Alternate=${1:feature}",
       "Annotation=",
       "AutoFakeBold=${1:number}",
@@ -50,32 +91,32 @@
       "BoldSlantedFont=${1:font name}",
       "BoldSwashFeatures={${1:features}}",
       "BoldSwashFont=${1:font name}",
-      "CJKShape=",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
       "CharacterVariant={${1:glyph num list}:${2:variety num}}",
-      "CharacterWidth=",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
       "Color=",
       "Colour=",
-      "Contextuals=",
-      "Diacritics=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
       "Extension=${1:extension}",
       "FakeBold=${1:number}",
       "FakeSlant=${1:number}",
       "FakeStretch=${1:number}",
       "Font=${1:font name}",
       "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
-      "Fractions=",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
       "HyphenChar=${1:character}",
       "IgnoreFontspecFile",
       "ItalicFeatures={${1:features}}",
       "ItalicFont=${1:font name}",
-      "Kerning=",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
       "Language=${1:language}",
       "LetterSpace=${1:number}",
-      "Letters=",
-      "Ligatures=",
-      "LocalForms=",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
       "NFSSFamily=${1:font family}",
-      "Numbers=",
+      "Numbers=${1|Uppercase,Lowercase,Lining,OldStyle,Proportional,Monospaced,SlashedZero,Arabic,ResetAll|}",
       "OpticalSize=${1:size}",
       "Ornament=",
       "Path=${1:file path}",
@@ -90,7 +131,7 @@
       "SlantedFont=${1:font name}",
       "SmallCapsFeatures={${1:features}}",
       "SmallCapsFont=${1:font name}",
-      "Style=",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
       "StylisticAlternates=${1:feature}",
       "StylisticSet=${1:set number}",
       "SwashFeatures={${1:features}}",
@@ -98,11 +139,14 @@
       "UprightFeatures={${1:features}}",
       "UprightFont=${1:font name}",
       "Variant=${1:integer}",
-      "Vertical=",
-      "VerticalPosition=",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
       "WordSpace=${1:number}",
       "Mapping=${1:xetex-only feature}",
       "Renderer=${1:renderer}"
     ]
+  },
+  "args": [
+    "\\usepackage/fontbook#c"
   ]
 }

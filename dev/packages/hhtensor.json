@@ -1,26 +1,51 @@
 {
-  "includes": {
-    "ushort": [],
-    "amsmath": []
-  },
-  "macros": {
-    "matr{}": {
-      "snippet": "matr{${1:symbol}}"
+  "deps": [
+    {
+      "name": "ushort"
     },
-    "tens{}{}": {
-      "snippet": "tens{${1:symbol}}{${2:step}}"
-    },
-    "dcdot": {},
-    "trans": {},
-    "origvec{}": {
-      "snippet": "origvec{${1:symbol}}"
+    {
+      "name": "amsmath"
     }
-  },
-  "envs": {},
-  "options": [
-    "bold",
-    "uline",
-    "arrow"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "matr",
+      "arg": {
+        "format": "{}",
+        "snippet": "matr{${1:symbol}}"
+      }
+    },
+    {
+      "name": "tens",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tens{${1:symbol}}{${2:step}}"
+      }
+    },
+    {
+      "name": "dcdot"
+    },
+    {
+      "name": "trans"
+    },
+    {
+      "name": "origvec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "origvec{${1:symbol}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hhtensor#c": [
+      "bold",
+      "uline",
+      "arrow"
+    ]
+  },
+  "args": [
+    "\\usepackage/hhtensor#c"
+  ]
 }

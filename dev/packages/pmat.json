@@ -1,29 +1,44 @@
 {
-  "includes": {},
-  "macros": {
-    "pmat{}{}{}": {
-      "snippet": "pmat{${1:ldelim}}{${2:vline-spec}}{${3:rdelim}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pmatcross"
     },
-    "endpmat": {},
-    "pmatcross": {},
-    "pmatnocross": {},
-    "pmatget{}": {
-      "snippet": "pmatget{${1:parameter 0-6}}"
+    {
+      "name": "pmatnocross"
     },
-    "pmatset{}{}": {
-      "snippet": "pmatset{${1:parameter 0-6}}{${2:value}}"
+    {
+      "name": "pmatget",
+      "arg": {
+        "format": "{}",
+        "snippet": "pmatget{${1:parameter 0-6}}"
+      }
+    },
+    {
+      "name": "pmatset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pmatset{${1:parameter 0-6}}{${2:value}}"
+      }
     }
-  },
-  "envs": {
-    "pmat{}{}{}": {
-      "name": "pmat",
-      "snippet": "{${1:ldelim}}{${2:vline-spec}}{${3:rdelim}}"
-    }
-  },
-  "options": [
-    "debug",
-    "cross",
-    "nocross"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "pmat",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:ldelim}}{${2:vline-spec}}{${3:rdelim}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pmat#c": [
+      "debug",
+      "cross",
+      "nocross"
+    ]
+  },
+  "args": [
+    "\\usepackage/pmat#c"
+  ]
 }

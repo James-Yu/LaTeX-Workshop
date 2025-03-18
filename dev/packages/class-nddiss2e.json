@@ -1,112 +1,256 @@
 {
-  "includes": {
-    "class-book": [],
-    "ifthen": [],
-    "exscale": [],
-    "etoolbox": [],
-    "xpatch": [],
-    "ifpdf": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "hyperref": [],
-    "longtable": [],
-    "threeparttable": [],
-    "threeparttablex": [],
-    "xspace": [],
-    "indentfirst": [],
-    "tabularx": [],
-    "enumitem": [],
-    "latexsym": [],
-    "textcase": [],
-    "epsfig": [],
-    "color": [],
-    "graphicx": [],
-    "natbib": [],
-    "amsmath": [],
-    "float": [],
-    "booktabs": [],
-    "rotating": [],
-    "url": [],
-    "setspace": [],
-    "pdflscape": [],
-    "metalogo": []
-  },
-  "macros": {
-    "secondadvisor{}": {
-      "snippet": "secondadvisor{${1:name}}",
-      "option": "twoadvisors"
+  "deps": [
+    {
+      "name": "class-book"
     },
-    "acknowledgename": {},
-    "advisor{}": {
-      "snippet": "advisor{${1:name}}"
+    {
+      "name": "ifthen"
     },
-    "clearemptydoublepage": {},
-    "copyrightholder{}": {
-      "snippet": "copyrightholder{${1:name}}"
+    {
+      "name": "exscale"
     },
-    "copyrightlicense{}": {
-      "snippet": "copyrightlicense{${1:license}}"
+    {
+      "name": "etoolbox"
     },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
+    {
+      "name": "xpatch"
     },
-    "dedicationname": {},
-    "degaward{}": {
-      "snippet": "degaward{${1:degree}}"
+    {
+      "name": "ifpdf"
     },
-    "degdate{}": {
-      "snippet": "degdate{${1:date}}"
+    {
+      "name": "ifluatex"
     },
-    "department{}": {
-      "snippet": "department{${1:department}}"
+    {
+      "name": "ifxetex"
     },
-    "dissfiledate": {},
-    "dissfileversion": {},
-    "makecopyright": {},
-    "makepublicdomain": {},
-    "nddiss": {},
-    "normalspacing": {},
-    "prefacename": {},
-    "scaption{}": {
-      "snippet": "scaption{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "shortcaption": {},
-    "sym{}{}": {
-      "snippet": "sym{${1:symbol}}{${2:definition}}"
+    {
+      "name": "longtable"
     },
-    "symbolsname": {},
-    "timenow": {},
-    "unnumchapter{}": {
-      "snippet": "unnumchapter{${1:title}}"
+    {
+      "name": "threeparttable"
     },
-    "usedtextsize": {},
-    "work{}": {
-      "snippet": "work{${1:Thesis|Dissertation}}"
+    {
+      "name": "threeparttablex"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "indentfirst"
+    },
+    {
+      "name": "tabularx"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "latexsym"
+    },
+    {
+      "name": "textcase"
+    },
+    {
+      "name": "epsfig"
+    },
+    {
+      "name": "color"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "natbib"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "url"
+    },
+    {
+      "name": "setspace"
+    },
+    {
+      "name": "pdflscape"
+    },
+    {
+      "name": "metalogo"
     }
-  },
-  "envs": {
-    "acknowledge": {},
-    "copyrightpage": {},
-    "dedication": {},
-    "preface": {},
-    "symbols": {}
-  },
-  "options": [
-    "draft",
-    "review",
-    "final",
-    "numrefs",
-    "textrefs",
-    "nonatbib",
-    "nocenter",
-    "openbib",
-    "sort",
-    "compress",
-    "sort&compress",
-    "twoadvisors",
-    "12pt",
-    "noinfo",
-    "twoside"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "secondadvisor",
+      "if": "twoadvisors",
+      "arg": {
+        "format": "{}",
+        "snippet": "secondadvisor{${1:name}}"
+      }
+    },
+    {
+      "name": "acknowledgename",
+      "unusual": true
+    },
+    {
+      "name": "advisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "advisor{${1:name}}"
+      }
+    },
+    {
+      "name": "clearemptydoublepage",
+      "unusual": true
+    },
+    {
+      "name": "copyrightholder",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightholder{${1:name}}"
+      }
+    },
+    {
+      "name": "copyrightlicense",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightlicense{${1:license}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightyear{${1:year}}"
+      }
+    },
+    {
+      "name": "dedicationname",
+      "unusual": true
+    },
+    {
+      "name": "degaward",
+      "arg": {
+        "format": "{}",
+        "snippet": "degaward{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "degdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "degdate{${1:date}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:department%text}}"
+      }
+    },
+    {
+      "name": "makecopyright"
+    },
+    {
+      "name": "makepublicdomain"
+    },
+    {
+      "name": "nddiss",
+      "unusual": true
+    },
+    {
+      "name": "normalspacing",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "sym",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sym{${1:symbol%formula}}{${2:definition%text}}"
+      }
+    },
+    {
+      "name": "symbolsname",
+      "unusual": true
+    },
+    {
+      "name": "timenow",
+      "unusual": true
+    },
+    {
+      "name": "unnumchapter",
+      "arg": {
+        "format": "{}",
+        "snippet": "unnumchapter{${1:title}}"
+      }
+    },
+    {
+      "name": "usedtextsize",
+      "unusual": true
+    },
+    {
+      "name": "work",
+      "arg": {
+        "format": "{}",
+        "snippet": "work{${1:Thesis|Dissertation%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledge"
+    },
+    {
+      "name": "copyrightpage",
+      "unusual": true
+    },
+    {
+      "name": "dedication"
+    },
+    {
+      "name": "preface"
+    },
+    {
+      "name": "symbols"
+    }
+  ],
+  "keys": {
+    "\\documentclass/nddiss2e#c": [
+      "draft",
+      "review",
+      "final",
+      "numrefs",
+      "textrefs",
+      "nonatbib",
+      "nocenter",
+      "openbib",
+      "sort",
+      "compress",
+      "sort&compress",
+      "twoadvisors",
+      "12pt",
+      "noinfo",
+      "twoside"
+    ]
+  },
+  "args": [
+    "\\documentclass/nddiss2e#c"
+  ]
 }

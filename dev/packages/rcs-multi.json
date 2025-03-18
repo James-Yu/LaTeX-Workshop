@@ -1,69 +1,190 @@
 {
-  "includes": {},
-  "macros": {
-    "rcsrev": {},
-    "rcsdate": {},
-    "rcsauthor": {},
-    "rcsfilerev": {},
-    "rcsfiledate": {},
-    "rcsfileauthor": {},
-    "rcsmainfilename": {},
-    "rcssetmainfile": {},
-    "rcskw{}": {
-      "snippet": "rcskw{${1:keyword}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "rcsid",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsid{$%<Id%>$}"
+      }
     },
-    "rcskwdef{}{}": {
-      "snippet": "rcskwdef{${1:keyword}}{${2:value}}"
+    {
+      "name": "rcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcs{$%<keyword%>$}"
+      }
     },
-    "rcsyear": {},
-    "rcsfileyear": {},
-    "rcsmonth": {},
-    "rcsfilemonth": {},
-    "rcsday": {},
-    "rcsfileday": {},
-    "rcshour": {},
-    "rcsfilehour": {},
-    "rcsminute": {},
-    "rcsfileminute": {},
-    "rcssecond": {},
-    "rcsfilesecond": {},
-    "rcstime": {},
-    "rcsfiletime": {},
-    "rcspdfdate": {},
-    "rcstoday": {},
-    "rcsfiletoday": {},
-    "rcsRegisterAuthor{}{}": {
-      "snippet": "rcsRegisterAuthor{${1:author}}{${2:full name}}"
+    {
+      "name": "rcskwsave",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcskwsave{$%<keyword%>$}"
+      }
     },
-    "rcsFullAuthor{}": {
-      "snippet": "rcsFullAuthor{${1:author name or macro}}"
+    {
+      "name": "rcsrev"
     },
-    "rcsFullAuthor*{}": {
-      "snippet": "rcsFullAuthor*{${1:author name or macro}}"
+    {
+      "name": "rcsdate"
     },
-    "rcsRegisterRevision{}{}": {
-      "snippet": "rcsRegisterRevision{${1:revision number}}{${2:tag name}}"
+    {
+      "name": "rcsauthor"
     },
-    "rcsFullRevision{}": {
-      "snippet": "rcsFullRevision{${1:revision number or macro}}"
+    {
+      "name": "rcsfilerev"
     },
-    "rcsFullRevision*{}": {
-      "snippet": "rcsFullRevision*{${1:revision number or macro}}"
+    {
+      "name": "rcsfiledate"
     },
-    "rcsnolinkurl{}": {
-      "snippet": "rcsnolinkurl{${1:macro}}"
+    {
+      "name": "rcsfileauthor"
     },
-    "rcsfilename": {},
-    "rcsfileurl": {},
-    "rcsmainfileurl": {},
-    "rcsmainurl": {},
-    "rcsname": {},
-    "rcsurl": {},
-    "filedate": {},
-    "filerev": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "rcsmainfilename"
+    },
+    {
+      "name": "rcssetmainfile"
+    },
+    {
+      "name": "rcskw",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcskw{${1:keyword}}"
+      }
+    },
+    {
+      "name": "rcskwdef",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rcskwdef{${1:keyword}}{${2:value}}"
+      }
+    },
+    {
+      "name": "rcsyear"
+    },
+    {
+      "name": "rcsfileyear"
+    },
+    {
+      "name": "rcsmonth"
+    },
+    {
+      "name": "rcsfilemonth"
+    },
+    {
+      "name": "rcsday"
+    },
+    {
+      "name": "rcsfileday"
+    },
+    {
+      "name": "rcshour"
+    },
+    {
+      "name": "rcsfilehour"
+    },
+    {
+      "name": "rcsminute"
+    },
+    {
+      "name": "rcsfileminute"
+    },
+    {
+      "name": "rcssecond"
+    },
+    {
+      "name": "rcsfilesecond"
+    },
+    {
+      "name": "rcstime"
+    },
+    {
+      "name": "rcsfiletime"
+    },
+    {
+      "name": "rcspdfdate"
+    },
+    {
+      "name": "rcstoday"
+    },
+    {
+      "name": "rcsfiletoday"
+    },
+    {
+      "name": "rcsRegisterAuthor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rcsRegisterAuthor{${1:author}}{${2:full name}}"
+      }
+    },
+    {
+      "name": "rcsFullAuthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsFullAuthor{${1:author name or macro}}"
+      }
+    },
+    {
+      "name": "rcsFullAuthor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsFullAuthor*{${1:author name or macro}}"
+      }
+    },
+    {
+      "name": "rcsRegisterRevision",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rcsRegisterRevision{${1:revision number}}{${2:tag name}}"
+      }
+    },
+    {
+      "name": "rcsFullRevision",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsFullRevision{${1:revision number or macro}}"
+      }
+    },
+    {
+      "name": "rcsFullRevision*",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsFullRevision*{${1:revision number or macro}}"
+      }
+    },
+    {
+      "name": "rcsnolinkurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcsnolinkurl{${1:macro}}"
+      }
+    },
+    {
+      "name": "rcsfilename"
+    },
+    {
+      "name": "rcsfileurl",
+      "unusual": true
+    },
+    {
+      "name": "rcsmainfileurl",
+      "unusual": true
+    },
+    {
+      "name": "rcsmainurl",
+      "unusual": true
+    },
+    {
+      "name": "rcsname",
+      "unusual": true
+    },
+    {
+      "name": "rcsurl",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

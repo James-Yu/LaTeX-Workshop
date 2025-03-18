@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "rhino": {},
-    "rhino[]": {
-      "snippet": "rhino[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "rhinohookbackground": {},
-    "rhinohookbelly": {},
-    "rhinohookbody": {},
-    "rhinohookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rhino"
+    },
+    {
+      "name": "rhino",
+      "arg": {
+        "format": "[]",
+        "snippet": "rhino[${1:options%keyvals}]",
+        "keys": [
+          "\\rhino#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rhinohookbackground",
+      "unusual": true
+    },
+    {
+      "name": "rhinohookbelly",
+      "unusual": true
+    },
+    {
+      "name": "rhinohookbody",
+      "unusual": true
+    },
+    {
+      "name": "rhinohookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\rhino#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -146,5 +181,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

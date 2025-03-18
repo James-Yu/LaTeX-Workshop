@@ -1,79 +1,148 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryintersections": [],
-    "tikzlibrarydecorations.text": []
-  },
-  "macros": {
-    "KNUfakelogo{}": {
-      "snippet": "KNUfakelogo{${1:scale}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "KNUfakelogo[]{}": {
-      "snippet": "KNUfakelogo[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalc"
     },
-    "KNUfakelogoBlue{}": {
-      "snippet": "KNUfakelogoBlue{${1:scale}}"
+    {
+      "name": "tikzlibraryintersections"
     },
-    "KNUfakelogoBlue[]{}": {
-      "snippet": "KNUfakelogoBlue[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarydecorations.text"
+    }
+  ],
+  "macros": [
+    {
+      "name": "KNUfakelogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "KNUfakelogo{${1:scale}}"
+      }
     },
-    "KNUfakelogoGreen{}": {
-      "snippet": "KNUfakelogoGreen{${1:scale}}"
+    {
+      "name": "KNUfakelogo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "KNUfakelogo[${2:options}]{${1:scale}}",
+        "keys": [
+          "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "KNUfakelogoGreen[]{}": {
-      "snippet": "KNUfakelogoGreen[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogo*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "KNUfakelogo*[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KNUfakelogoBlack{}": {
-      "snippet": "KNUfakelogoBlack{${1:scale}}"
+    {
+      "name": "KNUfakelogoBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "KNUfakelogoBlue{${1:scale}}"
+      }
     },
-    "KNUfakelogoBlack[]{}": {
-      "snippet": "KNUfakelogoBlack[${2:options}]{${1:scale}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogoBlue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "KNUfakelogoBlue[${2:options}]{${1:scale}}",
+        "keys": [
+          "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "KNUfakelogoColor{}{}{}": {
-      "snippet": "KNUfakelogoColor{${1:scale}}{${2:inner circ colour}}{${3:outer ring colour}}"
+    {
+      "name": "KNUfakelogoBlue*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "KNUfakelogoBlue*[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
     },
-    "KNUfakelogoColor[]{}{}[][]{}": {
-      "snippet": "KNUfakelogoColor[${4:options}]{${1:scale}}{${2:inner circ colour}}[${5:inner text colour}][${6:outer text colour}]{${3:outer ring colour}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "KNUfakelogoGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "KNUfakelogoGreen{${1:scale}}"
+      }
     },
-    "KBOX": {},
-    "KCIRCLE": {},
-    "KFILL": {},
-    "KNU": {},
-    "KNUdef": {},
-    "KNUeng": {},
-    "KNUengfont": {},
-    "KNUko": {},
-    "KNUkor": {},
-    "KNUkorfont": {},
-    "KNUkorsize": {},
-    "KNUmainfont": {},
-    "KNUmainsize": {},
-    "KNUyearfont": {},
-    "KROOF": {},
-    "KTEXT": {},
-    "KWHITE": {}
-  },
-  "envs": {
-    "KNUfakeLogoBlackENV": {},
-    "KNUfakeLogoBlueENV": {},
-    "KNUfakeLogoColorENV": {},
-    "KNUfakeLogoENV": {},
-    "KNUfakeLogoGreenENV": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "KNUfakelogoGreen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "KNUfakelogoGreen[${2:options}]{${1:scale}}",
+        "keys": [
+          "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "KNUfakelogoGreen*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "KNUfakelogoGreen*[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
+    },
+    {
+      "name": "KNUfakelogoBlack",
+      "arg": {
+        "format": "{}",
+        "snippet": "KNUfakelogoBlack{${1:scale}}"
+      }
+    },
+    {
+      "name": "KNUfakelogoBlack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "KNUfakelogoBlack[${2:options}]{${1:scale}}",
+        "keys": [
+          "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "KNUfakelogoBlack*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "KNUfakelogoBlack*[${2:options}]{${1:scale}}(${3:%<SW coor%>})(${4:%<NE coor%>})"
+      }
+    },
+    {
+      "name": "KNUfakelogoColor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "KNUfakelogoColor{${1:scale}}{${2:inner circ colour}}{${3:outer ring colour}}"
+      }
+    },
+    {
+      "name": "KNUfakelogoColor",
+      "arg": {
+        "format": "[]{}{}[][]{}",
+        "snippet": "KNUfakelogoColor[${4:options}]{${1:scale}}{${2:inner circ colour}}[${5:inner text colour}][${6:outer text colour}]{${3:outer ring colour}}",
+        "keys": [
+          "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "KNUfakelogoColor*",
+      "arg": {
+        "format": "[]{}{}[][]()()",
+        "snippet": "KNUfakelogoColor*[${3:options}]{${1:scale}}{${2:bg and inner colour}}[${4:inner text  colour}][${5:outer text/ring colour}](${6:%<SW coordinate%>})(${7:%<NE coordinate%>})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\KNUfakelogo#c,\\KNUfakelogoBlue#c,\\KNUfakelogoGreen#c,\\KNUfakelogoBlack#c,\\KNUfakelogoColor#c": [
       "x=${1:<dimen> or <coord>}",
       "y=${1:<dimen> or <coord>}",
       "z=${1:<dimen> or <coord>}",
@@ -114,8 +183,8 @@
       "thick",
       "very thick",
       "ultra thick",
-      "line cap=",
-      "line join=",
+      "line cap=${1|round,rect,butt|}",
+      "line join=${1|round,bevel,miter|}",
       "miter limit=${1:factor}",
       "dash pattern=${1:dash pattern}",
       "dash phase=${1:dash phase}",
@@ -147,7 +216,7 @@
       "nonzero rule",
       "even odd rule",
       "shade",
-      "shading=",
+      "shading=${1|axis,radial,ball|}",
       "shading angle=${1:degrees}",
       "inner sep=",
       "inner xsep=",
@@ -165,14 +234,14 @@
       "node font=${1:font commands}",
       "font=${1:font commands}",
       "text width=",
-      "align=",
+      "align=${1|left,flush left,right,flush right,center,flush center,justify|}",
       "text height=",
       "text depth=",
       "transform shape",
       "transform shape nonlinear",
       "pos=${1:fraction}",
       "auto",
-      "auto=",
+      "auto=${1|left,right,false|}",
       "swap",
       "sloped",
       "allow upside down",
@@ -225,5 +294,6 @@
       "reset cm",
       "transform canvas={${1:options}}"
     ]
-  ]
+  },
+  "args": []
 }

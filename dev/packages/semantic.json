@@ -1,0 +1,201 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathlig",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mathlig{${1:characters}}{${2:ligature commands%formula}}"
+      }
+    },
+    {
+      "name": "mathligson"
+    },
+    {
+      "name": "mathligsoff"
+    },
+    {
+      "name": "mathligprotect",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathligprotect{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "inference",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "inference{${1:line1 \\\\ ... \\\\ lineN%formula}}{${2:conclusion%formula}}"
+      }
+    },
+    {
+      "name": "inference",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "inference[${3:name}]{${1:line1 \\\\ ... \\\\ lineN%formula}}{${2:conclusion%formula}}"
+      }
+    },
+    {
+      "name": "inference*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "inference*{${1:line1 \\\\ ... \\\\ lineN%formula}}{${2:conclusion%formula}}"
+      }
+    },
+    {
+      "name": "inference*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "inference*[${3:name}]{${1:line1 \\\\ ... \\\\ lineN%formula}}{${2:conclusion%formula}}"
+      }
+    },
+    {
+      "name": "setpremisesend",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpremisesend{${1:length}}"
+      }
+    },
+    {
+      "name": "setpremisesspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpremisesspace{${1:length}}"
+      }
+    },
+    {
+      "name": "setnamespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "setnamespace{${1:length}}"
+      }
+    },
+    {
+      "name": "predicate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "predicate{${1:formula}}"
+      }
+    },
+    {
+      "name": "predicatebegin",
+      "unusual": true
+    },
+    {
+      "name": "predicateend",
+      "unusual": true
+    },
+    {
+      "name": "compiler",
+      "arg": {
+        "format": "{}",
+        "snippet": "compiler{${1:source,machine,target}}"
+      }
+    },
+    {
+      "name": "interpreter",
+      "arg": {
+        "format": "{}",
+        "snippet": "interpreter{${1:source,language}}"
+      }
+    },
+    {
+      "name": "program",
+      "arg": {
+        "format": "{}",
+        "snippet": "program{${1:program,language}}"
+      }
+    },
+    {
+      "name": "machine",
+      "arg": {
+        "format": "{}",
+        "snippet": "machine{${1:machine}}"
+      }
+    },
+    {
+      "name": "reservestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "reservestyle{${1:macro%cmd}}{${2:formatting%definition}}"
+      }
+    },
+    {
+      "name": "reservestyle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "reservestyle[${3:spacing cmd}]{${1:macro%cmd}}{${2:formatting%definition}}"
+      }
+    },
+    {
+      "name": "comp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "comp{${1:command%plain}}{${2:environment%formula}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "eval{${1:command%plain}}{${2:environment%formula}}"
+      }
+    },
+    {
+      "name": "evalsymbol"
+    },
+    {
+      "name": "evalsymbol",
+      "arg": {
+        "format": "[]",
+        "snippet": "evalsymbol[${1:superscript%formula}]"
+      }
+    },
+    {
+      "name": "compsymbol"
+    },
+    {
+      "name": "compsymbol",
+      "arg": {
+        "format": "[]",
+        "snippet": "compsymbol[${1:superscript%formula}]"
+      }
+    },
+    {
+      "name": "exe",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "exe{${1:program}}{${2:data%formula}}"
+      }
+    },
+    {
+      "name": "exe",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "exe{${1:program}}[${3:machine%formula}]{${2:data%formula}}"
+      }
+    },
+    {
+      "name": "TestForConflict",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TestForConflict{${1:command list}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/semantic#c": [
+      "ligature",
+      "inference",
+      "tdiagram",
+      "reserved",
+      "shorthand"
+    ]
+  },
+  "args": [
+    "\\usepackage/semantic#c"
+  ]
+}

@@ -1,29 +1,50 @@
 {
-  "includes": {
-    "infwarerr": [],
-    "keyval": []
-  },
-  "macros": {
-    "pdfcryptsetup{}": {
-      "snippet": "pdfcryptsetup{${1:options}}"
+  "deps": [
+    {
+      "name": "infwarerr"
     },
-    "nopdfcrypt": {},
-    "pdfcrypt": {}
-  },
-  "envs": {},
-  "options": [
-    "owner=${1:owner password}",
-    "user=${1:user password}",
-    "print",
-    "copy",
-    "edit",
-    "annotate",
-    "all",
-    "none",
-    "debug",
-    "set",
-    "pdftex",
-    "vtex"
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "pdfcryptsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfcryptsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/pdfcrypt#c,\\pdfcryptsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nopdfcrypt"
+    },
+    {
+      "name": "pdfcrypt",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pdfcrypt#c,\\pdfcryptsetup": [
+      "owner=${1:owner password}",
+      "user=${1:user password}",
+      "print",
+      "copy",
+      "edit",
+      "annotate",
+      "all",
+      "none",
+      "debug",
+      "set",
+      "pdftex",
+      "vtex"
+    ]
+  },
+  "args": [
+    "\\usepackage/pdfcrypt#c,\\pdfcryptsetup"
+  ]
 }

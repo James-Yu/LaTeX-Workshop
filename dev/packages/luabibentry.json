@@ -1,16 +1,26 @@
 {
-  "includes": {
-    "ifluatex": []
-  },
-  "macros": {
-    "bibentry{}": {
-      "snippet": "bibentry{${1:entry}}"
-    },
-    "setupbibentry{}": {
-      "snippet": "setupbibentry{${1:bib file}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "bibentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibentry{${1:entry}}"
+      }
+    },
+    {
+      "name": "setupbibentry",
+      "arg": {
+        "format": "{}",
+        "snippet": "setupbibentry{${1:bib file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,99 +1,254 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tikz": [],
-    "xstring": [],
-    "etextools": []
-  },
-  "macros": {
-    "com{}": {
-      "snippet": "com{${1:text}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "com[]{}": {
-      "snippet": "com[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "jus{}": {
-      "snippet": "jus{${1:text}}"
+    {
+      "name": "xstring"
     },
-    "jus[]{}": {
-      "snippet": "jus[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "startblock{}": {
-      "snippet": "startblock{${1:text}}"
-    },
-    "startblock[]{}": {
-      "snippet": "startblock[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "finishblock{}": {
-      "snippet": "finishblock{${1:text}}"
-    },
-    "finishblock[]{}": {
-      "snippet": "finishblock[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "ribbonpagebreak": {},
-    "continueblock{}": {
-      "snippet": "continueblock{${1:text}}"
-    },
-    "continueblock[]{}": {
-      "snippet": "continueblock[${2:options}]{${1:text}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "moveribbons{}": {
-      "snippet": "moveribbons{${1:ribbon1,ribbon2,...}}"
-    },
-    "swapribbons{}{}": {
-      "snippet": "swapribbons{${1:name1,name2,...}}{${2:name'1,name'2,...}}"
-    },
-    "moveboxes{}": {
-      "snippet": "moveboxes{${1:box1,box2,...}}"
-    },
-    "extendboxes{}": {
-      "snippet": "extendboxes{${1:box1,box2,...}}"
-    },
-    "jusColor": {},
-    "comColor": {},
-    "ribColor": {},
-    "varribColor": {},
-    "ribTextColor": {},
-    "boxTextColor": {},
-    "guideTextColor": {},
-    "defaultStepHeight": {},
-    "defaultRowHeight": {},
-    "ribTextVOffset": {},
-    "boxTextVOffset": {},
-    "boxTextHOffset": {},
-    "guideTextVOffset": {},
-    "roundingRadius": {},
-    "boxRoundingRadius": {},
-    "blockLineWidth": {},
-    "boxLineWidth": {},
-    "shadowHeight": {},
-    "shadowColor": {},
-    "zigzagHeight": {},
-    "zigzagLength": {},
-    "twistiness": {}
-  },
-  "envs": {
-    "ribbonproof": {},
-    "ribbonproof[]": {
-      "name": "ribbonproof",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "etextools"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "com",
+      "arg": {
+        "format": "{}",
+        "snippet": "com{${1:text}}"
+      }
+    },
+    {
+      "name": "com",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "com[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "jus",
+      "arg": {
+        "format": "{}",
+        "snippet": "jus{${1:text}}"
+      }
+    },
+    {
+      "name": "jus",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "jus[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "startblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "startblock{${1:text}}"
+      }
+    },
+    {
+      "name": "startblock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "startblock[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock",
+          "\\startblock"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "finishblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "finishblock{${1:text}}"
+      }
+    },
+    {
+      "name": "finishblock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "finishblock[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\com,\\jus,\\startblock,\\finishblock"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ribbonpagebreak"
+    },
+    {
+      "name": "continueblock",
+      "arg": {
+        "format": "{}",
+        "snippet": "continueblock{${1:text}}"
+      }
+    },
+    {
+      "name": "continueblock",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "continueblock[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\continueblock"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "moveribbons",
+      "arg": {
+        "format": "{}",
+        "snippet": "moveribbons{${1:ribbon1,ribbon2,...}}"
+      }
+    },
+    {
+      "name": "swapribbons",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "swapribbons{${1:name1,name2,...}}{${2:name'1,name'2,...}}"
+      }
+    },
+    {
+      "name": "moveboxes",
+      "arg": {
+        "format": "{}",
+        "snippet": "moveboxes{${1:box1,box2,...}}"
+      }
+    },
+    {
+      "name": "extendboxes",
+      "arg": {
+        "format": "{}",
+        "snippet": "extendboxes{${1:box1,box2,...}}"
+      }
+    },
+    {
+      "name": "jusColor",
+      "unusual": true
+    },
+    {
+      "name": "comColor",
+      "unusual": true
+    },
+    {
+      "name": "ribColor",
+      "unusual": true
+    },
+    {
+      "name": "varribColor",
+      "unusual": true
+    },
+    {
+      "name": "ribTextColor",
+      "unusual": true
+    },
+    {
+      "name": "boxTextColor",
+      "unusual": true
+    },
+    {
+      "name": "guideTextColor",
+      "unusual": true
+    },
+    {
+      "name": "defaultStepHeight",
+      "unusual": true
+    },
+    {
+      "name": "defaultRowHeight",
+      "unusual": true
+    },
+    {
+      "name": "ribTextVOffset",
+      "unusual": true
+    },
+    {
+      "name": "boxTextVOffset",
+      "unusual": true
+    },
+    {
+      "name": "boxTextHOffset",
+      "unusual": true
+    },
+    {
+      "name": "guideTextVOffset",
+      "unusual": true
+    },
+    {
+      "name": "roundingRadius",
+      "unusual": true
+    },
+    {
+      "name": "boxRoundingRadius",
+      "unusual": true
+    },
+    {
+      "name": "blockLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "boxLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "shadowHeight",
+      "unusual": true
+    },
+    {
+      "name": "shadowColor",
+      "unusual": true
+    },
+    {
+      "name": "zigzagHeight",
+      "unusual": true
+    },
+    {
+      "name": "zigzagLength",
+      "unusual": true
+    },
+    {
+      "name": "twistiness",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ribbonproof"
+    },
+    {
+      "name": "ribbonproof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ribbonproof}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{ribbonproof}": [
+      "extra height=${1:integer}",
+      "start ribbons={${1:ribbon1,ribbon2,...}}",
+      "start boxes={${1:box1,box2,...}}",
+      "draw grid"
+    ],
+    "\\com,\\jus,\\startblock,\\finishblock": [
       "height=${1:integer}",
       "finish ribbons={${1:name1,name2,...}}",
       "start ribbons={${1:ribbon1,ribbon2,...}}",
@@ -102,29 +257,17 @@
       "extra left=${1:integer}",
       "extra right=${1:integer}"
     ],
-    [
-      "height=${1:integer}",
-      "finish ribbons={${1:name1,name2,...}}",
-      "start ribbons={${1:ribbon1,ribbon2,...}}",
-      "finish boxes={${1:name1,name2,...}}",
-      "start boxes={${1:box1,box2,...}}",
-      "extra left=${1:integer}",
-      "extra right=${1:integer}",
+    "\\startblock": [
       "fit ribbons={${1:name1,name2,...}}",
       "fit boxes={${1:name1,name2,...}}"
     ],
-    [
+    "\\continueblock": [
       "height=${1:integer}",
       "start ribbons={${1:ribbon1,ribbon2,...}}",
       "start boxes={${1:box1,box2,...}}",
       "jagged",
       "repeat labels"
-    ],
-    [
-      "extra height=${1:integer}",
-      "start ribbons={${1:ribbon1,ribbon2,...}}",
-      "start boxes={${1:box1,box2,...}}",
-      "draw grid"
     ]
-  ]
+  },
+  "args": []
 }

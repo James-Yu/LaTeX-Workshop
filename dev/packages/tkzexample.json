@@ -1,48 +1,82 @@
 {
-  "includes": {
-    "calc": [],
-    "mdframed": [],
-    "fancyvrb": []
-  },
-  "macros": {
-    "commenthandler": {},
-    "fileexample": {},
-    "iftkzcodesaved": {},
-    "killienc": {},
-    "tkzcodesavedfalse": {},
-    "tkzcodesavedtrue": {},
-    "tkzexamplebox": {},
-    "tkzexamplewidth": {},
-    "tkzFileSavedPrefix": {},
-    "tkzltxexamplebox": {},
-    "tkzltxexamplewidth": {},
-    "tkzref": {},
-    "tkzSavedCode": {},
-    "tkzSavedCode[]": {
-      "snippet": "tkzSavedCode[${1:prefix=prefix}]"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "typesetcomment": {},
-    "typesetcommentnum": {}
-  },
-  "envs": {
-    "tkzexample[]": {
-      "name": "tkzexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "mdframed"
     },
-    "tkzltxexample[]": {
-      "name": "tkzltxexample",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "fancyvrb"
     }
-  },
-  "options": [
-    "saved"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tkzexamplebox",
+      "unusual": true
+    },
+    {
+      "name": "tkzexamplewidth",
+      "unusual": true
+    },
+    {
+      "name": "tkzFileSavedPrefix",
+      "unusual": true
+    },
+    {
+      "name": "tkzltxexamplebox",
+      "unusual": true
+    },
+    {
+      "name": "tkzltxexamplewidth",
+      "unusual": true
+    },
+    {
+      "name": "tkzref",
+      "unusual": true
+    },
+    {
+      "name": "tkzSavedCode",
+      "unusual": true
+    },
+    {
+      "name": "tkzSavedCode",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzSavedCode[${1:prefix=prefix}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tkzexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{tkzexample}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzltxexample",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{tkzltxexample}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tkzexample#c": [
+      "saved"
+    ],
+    "\\begin{tkzexample}#c": [
       "execute code",
       "show num",
       "overhang",
@@ -76,7 +110,7 @@
       "latex=",
       "vbox"
     ],
-    [
+    "\\begin{tkzltxexample}#c": [
       "width=",
       "code=",
       "show num",
@@ -101,5 +135,8 @@
       "leave comments",
       "vbox"
     ]
+  },
+  "args": [
+    "\\usepackage/tkzexample#c"
   ]
 }

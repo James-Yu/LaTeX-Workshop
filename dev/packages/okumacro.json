@@ -1,124 +1,320 @@
 {
-  "includes": {
-    "platex": []
-  },
-  "macros": {
-    "rubyfamily": {},
-    "kanjistrut": {},
-    "ruby{}{}": {
-      "snippet": "ruby{${1:kanji}}{${2:ruby}}"
-    },
-    "ruby[]{}{}": {
-      "snippet": "ruby[${3:dimen}]{${1:kanji}}{${2:ruby}}"
-    },
-    "kenten{}": {
-      "snippet": "kenten{${1:text}}"
-    },
-    "kintou{}{}": {
-      "snippet": "kintou{${1:length}}{${2:characters}}"
-    },
-    "myallowbreak": {},
-    "mytt": {},
-    "yen": {
-      "detail": "¥",
-      "documentation": "YEN SIGN"
-    },
-    "BS": {},
-    "asciibar": {},
-    "removept{}{}": {
-      "snippet": "removept{${1:dimen register}}{${2:cmd}}"
-    },
-    "okukeytop{}": {
-      "snippet": "okukeytop{${1:text}}"
-    },
-    "keytop{}": {
-      "snippet": "keytop{${1:text}}"
-    },
-    "RETMARK": {},
-    "okureturn": {},
-    "return": {},
-    "upkey": {},
-    "downkey": {},
-    "rightkey": {},
-    "leftkey": {},
-    "MARU{}": {
-      "snippet": "MARU{${1:text}}"
-    },
-    "PiC": {},
-    "PiCTeX": {},
-    "JTeX": {},
-    "JLaTeX": {},
-    "JBibTeX": {},
-    "pTeXsT": {},
-    "iTeX": {},
-    "MlTeX": {},
-    "namelistlabel{}": {
-      "snippet": "namelistlabel{${1:text}}"
-    },
-    "SHUTTEN{}": {
-      "snippet": "SHUTTEN{${1:text}}"
-    },
-    "EXAMPLEWIDTH": {},
-    "INEX": {},
-    "OUTEX": {},
-    "ENDEX": {},
-    "ENDEXC{}": {
-      "snippet": "ENDEXC{${1:text}}"
-    },
-    "whichpage{}": {
-      "snippet": "whichpage{${1:label}}"
-    },
-    "migiake{}": {
-      "snippet": "migiake{${1:length}}"
-    },
-    "rightfig{}{}{}": {
-      "snippet": "rightfig{${1:space}}{${2:numlines}}{${3:object}}"
-    },
-    "shaderule": {},
-    "sankoumark": {},
-    "toimark": {},
-    "eps": {},
-    "LEQQ": {},
-    "GEQQ": {},
-    "APPROX": {},
-    "FRAC{}{}": {
-      "snippet": "FRAC{${1:num}}{${2:denom}}"
-    },
-    "hk": {},
-    "hx": {},
-    "ANGLE{}": {
-      "snippet": "ANGLE{${1:text}}"
+  "deps": [
+    {
+      "name": "platex"
     }
-  },
-  "envs": {
-    "dangerous": {},
-    "namelist{}": {
+  ],
+  "macros": [
+    {
+      "name": "rubyfamily",
+      "unusual": true
+    },
+    {
+      "name": "kanjistrut",
+      "unusual": true
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ruby{${1:kanji}}{${2:ruby}}"
+      }
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ruby[${3:dimen}]{${1:kanji}}{${2:ruby}}"
+      }
+    },
+    {
+      "name": "kenten",
+      "arg": {
+        "format": "{}",
+        "snippet": "kenten{${1:text}}"
+      }
+    },
+    {
+      "name": "kintou",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "kintou{${1:length}}{${2:characters}}"
+      }
+    },
+    {
+      "name": "myallowbreak",
+      "unusual": true
+    },
+    {
+      "name": "mytt",
+      "unusual": true
+    },
+    {
+      "name": "yen",
+      "detail": "¥ (\"amsfonts\" command)",
+      "doc": "Yen sign"
+    },
+    {
+      "name": "BS"
+    },
+    {
+      "name": "asciibar"
+    },
+    {
+      "name": "removept",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "removept{${1:dimen register}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "okukeytop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "okukeytop{${1:text}}"
+      }
+    },
+    {
+      "name": "keytop",
+      "arg": {
+        "format": "{}",
+        "snippet": "keytop{${1:text}}"
+      }
+    },
+    {
+      "name": "RETMARK",
+      "unusual": true
+    },
+    {
+      "name": "okureturn",
+      "unusual": true
+    },
+    {
+      "name": "return"
+    },
+    {
+      "name": "upkey"
+    },
+    {
+      "name": "downkey"
+    },
+    {
+      "name": "rightkey"
+    },
+    {
+      "name": "leftkey"
+    },
+    {
+      "name": "MARU",
+      "arg": {
+        "format": "{}",
+        "snippet": "MARU{${1:text}}"
+      }
+    },
+    {
+      "name": "PiC"
+    },
+    {
+      "name": "PiCTeX"
+    },
+    {
+      "name": "JTeX"
+    },
+    {
+      "name": "JLaTeX"
+    },
+    {
+      "name": "JBibTeX"
+    },
+    {
+      "name": "pTeXsT"
+    },
+    {
+      "name": "iTeX"
+    },
+    {
+      "name": "MlTeX"
+    },
+    {
+      "name": "namelistlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "namelistlabel{${1:text}}"
+      }
+    },
+    {
+      "name": "SHUTTEN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SHUTTEN{${1:text}}"
+      }
+    },
+    {
+      "name": "EXAMPLEWIDTH",
+      "unusual": true
+    },
+    {
+      "name": "INEX",
+      "unusual": true
+    },
+    {
+      "name": "OUTEX",
+      "unusual": true
+    },
+    {
+      "name": "ENDEX",
+      "unusual": true
+    },
+    {
+      "name": "ENDEXC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ENDEXC{${1:text}}"
+      }
+    },
+    {
+      "name": "whichpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "whichpage{${1:label}}"
+      }
+    },
+    {
+      "name": "migiake",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "migiake{${1:length}}"
+      }
+    },
+    {
+      "name": "rightfig",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "rightfig{${1:space}}{${2:numlines}}{${3:object%text}}"
+      }
+    },
+    {
+      "name": "shaderule",
+      "unusual": true
+    },
+    {
+      "name": "sankoumark",
+      "unusual": true
+    },
+    {
+      "name": "toimark",
+      "unusual": true
+    },
+    {
+      "name": "eps"
+    },
+    {
+      "name": "LEQQ"
+    },
+    {
+      "name": "GEQQ"
+    },
+    {
+      "name": "APPROX"
+    },
+    {
+      "name": "FRAC",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FRAC{${1:num}}{${2:denom}}"
+      }
+    },
+    {
+      "name": "hk",
+      "unusual": true
+    },
+    {
+      "name": "hx",
+      "unusual": true
+    },
+    {
+      "name": "ANGLE",
+      "arg": {
+        "format": "{}",
+        "snippet": "ANGLE{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "dangerous"
+    },
+    {
       "name": "namelist",
-      "snippet": "{${1:widest label}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest label}}"
+      }
     },
-    "mybibliography{}": {
+    {
       "name": "mybibliography",
-      "snippet": "{${1:widest label}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest label}}"
+      }
     },
-    "FRAME": {},
-    "okuscreen": {},
-    "okuscreen[]": {
+    {
+      "name": "FRAME"
+    },
+    {
       "name": "okuscreen",
-      "snippet": "[${1:roundness}]"
+      "unusual": true
     },
-    "screen": {},
-    "screen[]": {
+    {
+      "name": "okuscreen",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:roundness}]"
+      }
+    },
+    {
+      "name": "screen"
+    },
+    {
       "name": "screen",
-      "snippet": "[${1:roundness}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:roundness}]"
+      }
     },
-    "EXAMPLE": {},
-    "IN": {},
-    "OUT": {},
-    "okushadebox": {},
-    "shadebox": {},
-    "sankou": {},
-    "toi": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "EXAMPLE",
+      "unusual": true
+    },
+    {
+      "name": "IN",
+      "unusual": true
+    },
+    {
+      "name": "OUT",
+      "unusual": true
+    },
+    {
+      "name": "okushadebox",
+      "unusual": true
+    },
+    {
+      "name": "shadebox"
+    },
+    {
+      "name": "sankou"
+    },
+    {
+      "name": "toi"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

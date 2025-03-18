@@ -1,166 +1,460 @@
 {
-  "includes": {
-    "pgfkeys": [],
-    "array": [],
-    "xcolor": [],
-    "colortbl": [],
-    "l3keys2e": [],
-    "aliascnt": [],
-    "etoolbox": [],
-    "tcolorboxlibraryhooks": []
-  },
-  "macros": {
-    "pseudoset{}": {
-      "snippet": "pseudoset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pgfkeys"
     },
-    "pseudodefinestyle{}{}": {
-      "snippet": "pseudodefinestyle{${1:name}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "array"
     },
-    "cn{}": {
-      "snippet": "cn{${1:name}}"
+    {
+      "name": "xcolor"
     },
-    "cnfont": {},
-    "ct{}": {
-      "snippet": "ct{${1:name}}"
+    {
+      "name": "colortbl"
     },
-    "ctfont": {},
-    "fn{}": {
-      "snippet": "fn{${1:name}}"
+    {
+      "name": "l3keys2e"
     },
-    "fnfont": {},
-    "id{}": {
-      "snippet": "id{${1:name}}"
+    {
+      "name": "aliascnt"
     },
-    "idfont": {},
-    "kw{}": {
-      "snippet": "kw{${1:name}}"
+    {
+      "name": "etoolbox"
     },
-    "kwfont": {},
-    "pr{}": {
-      "snippet": "pr{${1:name}}"
-    },
-    "prfont": {},
-    "pseudocn{}": {
-      "snippet": "pseudocn{${1:name}}"
-    },
-    "pseudoct{}": {
-      "snippet": "pseudoct{${1:name}}"
-    },
-    "pseudofn{}": {
-      "snippet": "pseudofn{${1:name}}"
-    },
-    "pseudoid{}": {
-      "snippet": "pseudoid{${1:name}}"
-    },
-    "pseudokw{}": {
-      "snippet": "pseudokw{${1:name}}"
-    },
-    "pseudopr{}": {
-      "snippet": "pseudopr{${1:name}}"
-    },
-    "pseudost{}": {
-      "snippet": "pseudost{${1:string}}"
-    },
-    "st{}": {
-      "snippet": "st{${1:string}}"
-    },
-    "stfont": {},
-    "tn{}": {
-      "snippet": "tn{${1:text}}"
-    },
-    "DeclarePseudoComment{}{}": {
-      "snippet": "DeclarePseudoComment{${1:cmd}}{${2:comment}}"
-    },
-    "DeclarePseudoConstant{}{}": {
-      "snippet": "DeclarePseudoConstant{${1:cmd}}{${2:constant}}"
-    },
-    "DeclarePseudoFunction{}{}": {
-      "snippet": "DeclarePseudoFunction{${1:cmd}}{${2:function}}"
-    },
-    "DeclarePseudoIdentifier{}{}": {
-      "snippet": "DeclarePseudoIdentifier{${1:cmd}}{${2:identifier}}"
-    },
-    "DeclarePseudoKeyword{}{}": {
-      "snippet": "DeclarePseudoKeyword{${1:cmd}}{${2:keyword}}"
-    },
-    "DeclarePseudoNormal{}{}": {
-      "snippet": "DeclarePseudoNormal{${1:cmd}}{${2:text}}"
-    },
-    "DeclarePseudoProcedure{}{}": {
-      "snippet": "DeclarePseudoProcedure{${1:cmd}}{${2:procedure}}"
-    },
-    "DeclarePseudoString{}{}": {
-      "snippet": "DeclarePseudoString{${1:cmd}}{${2:string}}"
-    },
-    "RestorePseudoBackslash": {},
-    "RestorePseudoEq": {},
-    "rng": {},
-    "dts": {},
-    "eqs": {},
-    "nf": {},
-    "pseudobol": {},
-    "pseudodimcolor": {},
-    "pseudoeol": {},
-    "pseudofont": {},
-    "pseudohdpreamble": {},
-    "pseudohl": {},
-    "pseudohlcolor": {},
-    "pseudohpad": {},
-    "pseudoindent": {},
-    "pseudoindentlength": {},
-    "pseudolabel": {},
-    "pseudolabelalign": {},
-    "pseudopos": {},
-    "pseudopreamble": {},
-    "pseudoprefix": {},
-    "pseudosavelabel": {},
-    "pseudosetup": {},
-    "thepseudoenv": {},
-    "thepseudoline": {},
-    "pseudodate": {},
-    "pseudoversion": {},
-    "aboverulesep": {},
-    "belowrulesep": {},
-    "heavyrulewidth": {},
-    "lightrulewidth": {},
-    "pseudoeq": {},
-    "pseudoslash": {}
-  },
-  "envs": {
-    "pseudo": {},
-    "pseudo[]": {
-      "name": "pseudo",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pseudo[][]": {
-      "name": "pseudo",
-      "snippet": "[${1:options}][${2:line options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pseudo*": {},
-    "pseudo*[]": {
-      "name": "pseudo*",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pseudo*[][]": {
-      "name": "pseudo*",
-      "snippet": "[${1:options}][${2:line options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tcolorboxlibraryhooks"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pseudoset",
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudoset{${1:options%keyvals}}",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pseudodefinestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pseudodefinestyle{${1:name%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "cn",
+      "arg": {
+        "format": "{}",
+        "snippet": "cn{${1:name}}"
+      }
+    },
+    {
+      "name": "cnfont",
+      "unusual": true
+    },
+    {
+      "name": "ct",
+      "arg": {
+        "format": "{}",
+        "snippet": "ct{${1:name}}"
+      }
+    },
+    {
+      "name": "ctfont",
+      "unusual": true
+    },
+    {
+      "name": "fn",
+      "arg": {
+        "format": "{}",
+        "snippet": "fn{${1:name}}"
+      }
+    },
+    {
+      "name": "fn",
+      "arg": {
+        "format": "{}()",
+        "snippet": "fn{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "fnfont",
+      "unusual": true
+    },
+    {
+      "name": "hd",
+      "arg": {
+        "format": "{}()",
+        "snippet": "hd{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "id",
+      "arg": {
+        "format": "{}",
+        "snippet": "id{${1:name}}"
+      }
+    },
+    {
+      "name": "idfont",
+      "unusual": true
+    },
+    {
+      "name": "kw",
+      "arg": {
+        "format": "{}",
+        "snippet": "kw{${1:name}}"
+      }
+    },
+    {
+      "name": "kwfont",
+      "unusual": true
+    },
+    {
+      "name": "pr",
+      "arg": {
+        "format": "{}",
+        "snippet": "pr{${1:name}}"
+      }
+    },
+    {
+      "name": "pr",
+      "arg": {
+        "format": "{}()",
+        "snippet": "pr{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "prfont",
+      "unusual": true
+    },
+    {
+      "name": "pseudocn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudocn{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudoct",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudoct{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudofn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudofn{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudofn",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "pseudofn{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "pseudohd",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "pseudohd{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "pseudoid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudoid{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudokw",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudokw{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudopr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudopr{${1:name}}"
+      }
+    },
+    {
+      "name": "pseudopr",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "pseudopr{${1:name}}(${2:arguments%formula})"
+      }
+    },
+    {
+      "name": "pseudost",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pseudost{${1:string}}"
+      }
+    },
+    {
+      "name": "st",
+      "arg": {
+        "format": "{}",
+        "snippet": "st{${1:string}}"
+      }
+    },
+    {
+      "name": "stfont",
+      "unusual": true
+    },
+    {
+      "name": "tn",
+      "arg": {
+        "format": "{}",
+        "snippet": "tn{${1:text}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoComment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoComment{${1:cmd}}{${2:comment}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoConstant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoConstant{${1:cmd}}{${2:constant}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoFunction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoFunction{${1:cmd}}{${2:function}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoIdentifier",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoIdentifier{${1:cmd}}{${2:identifier}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoKeyword",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoKeyword{${1:cmd}}{${2:keyword}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoNormal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoNormal{${1:cmd}}{${2:text}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoProcedure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoProcedure{${1:cmd}}{${2:procedure}}"
+      }
+    },
+    {
+      "name": "DeclarePseudoString",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclarePseudoString{${1:cmd}}{${2:string}}"
+      }
+    },
+    {
+      "name": "RestorePseudoBackslash"
+    },
+    {
+      "name": "RestorePseudoEq"
+    },
+    {
+      "name": "rng"
+    },
+    {
+      "name": "dts"
+    },
+    {
+      "name": "eqs"
+    },
+    {
+      "name": "nf",
+      "unusual": true
+    },
+    {
+      "name": "pseudobol",
+      "unusual": true
+    },
+    {
+      "name": "pseudodimcolor",
+      "unusual": true
+    },
+    {
+      "name": "pseudoeol",
+      "unusual": true
+    },
+    {
+      "name": "pseudofont",
+      "unusual": true
+    },
+    {
+      "name": "pseudohdpreamble",
+      "unusual": true
+    },
+    {
+      "name": "pseudohl",
+      "unusual": true
+    },
+    {
+      "name": "pseudohlcolor",
+      "unusual": true
+    },
+    {
+      "name": "pseudohpad",
+      "unusual": true
+    },
+    {
+      "name": "pseudoindent",
+      "unusual": true
+    },
+    {
+      "name": "pseudoindentlength",
+      "unusual": true
+    },
+    {
+      "name": "pseudolabel",
+      "unusual": true
+    },
+    {
+      "name": "pseudolabelalign",
+      "unusual": true
+    },
+    {
+      "name": "pseudopos",
+      "unusual": true
+    },
+    {
+      "name": "pseudopreamble",
+      "unusual": true
+    },
+    {
+      "name": "pseudoprefix",
+      "unusual": true
+    },
+    {
+      "name": "pseudosavelabel",
+      "unusual": true
+    },
+    {
+      "name": "pseudosetup",
+      "unusual": true
+    },
+    {
+      "name": "thepseudoenv",
+      "unusual": true
+    },
+    {
+      "name": "thepseudoline",
+      "unusual": true
+    },
+    {
+      "name": "aboverulesep",
+      "unusual": true
+    },
+    {
+      "name": "belowrulesep",
+      "unusual": true
+    },
+    {
+      "name": "heavyrulewidth",
+      "unusual": true
+    },
+    {
+      "name": "lightrulewidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "pseudo"
+    },
+    {
+      "name": "pseudo",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pseudo",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:options%keyvals}][${2:line options}]",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pseudo*"
+    },
+    {
+      "name": "pseudo*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pseudo*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:options%keyvals}][${2:line options}]",
+        "keys": [
+          "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\pseudoset#c,\\begin{pseudo}#c,\\begin{pseudo*}#c,\\pseudodefinestyle#c": [
       "begin-tabular=${1:commands}",
       "bol=${1:commands}",
       "bol-append=${1:commands}",
@@ -208,7 +502,7 @@
       "line-height=${1:factor}",
       "partopsep=",
       "pause",
-      "pos=",
+      "pos=${1|t,b|}",
       "preamble=${1:columns}",
       "prefix=${1:commands}",
       "prevdepth=",
@@ -225,6 +519,16 @@
       "topsep=",
       "${1:key}<${2:overlay specification}>=${3:value}",
       "%pseudostyle"
+    ],
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\newtcbtheorem,\\renewtcbtheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
+      "pseudo/boxed",
+      "pseudo/booktabs",
+      "pseudo/boxruled",
+      "pseudo/filled",
+      "pseudo/init=${1:commands}",
+      "pseudo/ruled",
+      "pseudo/tworuled"
     ]
-  ]
+  },
+  "args": []
 }

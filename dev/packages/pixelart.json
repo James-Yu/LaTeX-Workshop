@@ -1,83 +1,189 @@
 {
-  "includes": {
-    "iftex": [],
-    "luacode": [],
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "pixelart{}": {
-      "snippet": "pixelart{${1:pixels}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "pixelart[]{}": {
-      "snippet": "pixelart[${2:options}]{${1:pixels}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "luacode"
     },
-    "tikzpixelart{}{}": {
-      "snippet": "tikzpixelart{${1:coord}}{${2:pixels}}"
+    {
+      "name": "tikz"
     },
-    "tikzpixelart[]{}{}": {
-      "snippet": "tikzpixelart[${3:options}]{${1:coord}}{${2:pixels}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setpixelartdefault{}": {
-      "snippet": "setpixelartdefault{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartlogo": {},
-    "pixelartlogo[]": {
-      "snippet": "pixelartlogo[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartheart": {},
-    "pixelartheart[]": {
-      "snippet": "pixelartheart[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartname": {},
-    "pixelartname[]": {
-      "snippet": "pixelartname[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartlogobw": {},
-    "pixelartlogobw[]": {
-      "snippet": "pixelartlogobw[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartheartbw": {},
-    "pixelartheartbw[]": {
-      "snippet": "pixelartheartbw[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pixelartnamebw": {},
-    "pixelartnamebw[]": {
-      "snippet": "pixelartnamebw[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "newpixelartcolors{}{}": {
-      "snippet": "newpixelartcolors{${1:name}}{${2:keyvals}}"
-    },
-    "renewpixelartcolors{}{}": {
-      "snippet": "renewpixelartcolors{${1:name}}{${2:keyvals}}"
-    },
-    "setpixelartdebugon": {},
-    "setpixelartdebugoff": {}
-  },
-  "envs": {},
-  "options": [
-    "draft"
+    {
+      "name": "tikzlibrarypatterns"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pixelart",
+      "arg": {
+        "format": "{}",
+        "snippet": "pixelart{${1:pixels}}"
+      }
+    },
+    {
+      "name": "pixelart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pixelart[${2:options%keyvals}]{${1:pixels}}",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzpixelart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tikzpixelart{${1:coord}}{${2:pixels}}"
+      }
+    },
+    {
+      "name": "tikzpixelart",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "tikzpixelart[${3:options%keyvals}]{${1:coord}}{${2:pixels}}",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setpixelartdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpixelartdefault{${1:options%keyvals}}",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartlogo",
+      "unusual": true
+    },
+    {
+      "name": "pixelartlogo",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartlogo[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartheart",
+      "unusual": true
+    },
+    {
+      "name": "pixelartheart",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartheart[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartname",
+      "unusual": true
+    },
+    {
+      "name": "pixelartname",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartname[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartlogobw",
+      "unusual": true
+    },
+    {
+      "name": "pixelartlogobw",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartlogobw[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartheartbw",
+      "unusual": true
+    },
+    {
+      "name": "pixelartheartbw",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartheartbw[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pixelartnamebw",
+      "unusual": true
+    },
+    {
+      "name": "pixelartnamebw",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pixelartnamebw[${1:options%keyvals}]",
+        "keys": [
+          "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newpixelartcolors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newpixelartcolors{${1:name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "renewpixelartcolors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewpixelartcolors{${1:name}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "setpixelartdebugon"
+    },
+    {
+      "name": "setpixelartdebugoff"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pixelart#c": [
+      "draft"
+    ],
+    "\\pixelart,\\tikzpixelart,\\setpixelartdefault,\\pixelartlogo,\\pixelartheart,\\pixelartname,\\pixelartlogobw,\\pixelartheartbw,\\pixelartnamebw": [
       "colors=${1:options}",
       "draft",
       "margin=",
@@ -87,5 +193,8 @@
       "style=${1:keyword}",
       "tikz={${1:TikZ keys}}"
     ]
+  },
+  "args": [
+    "\\usepackage/pixelart#c"
   ]
 }

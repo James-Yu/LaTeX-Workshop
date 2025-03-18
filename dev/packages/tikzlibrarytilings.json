@@ -1,40 +1,82 @@
 {
-  "includes": {
-    "tikzlibraryspath3": []
-  },
-  "macros": {
-    "DefineTile{}{}{}": {
-      "snippet": "DefineTile{${1:name}}{${2:sides}}{${3:vertices}}"
-    },
-    "BakeTile{}": {
-      "snippet": "BakeTile{${1:name}}"
-    },
-    "TilingDecomposition{}{}{}": {
-      "snippet": "TilingDecomposition{${1:type}}{${2:level}}{${3:seed}}"
-    },
-    "TilingDecomposition[]{}{}{}": {
-      "snippet": "TilingDecomposition[${4:TikZ keys}]{${1:type}}{${2:level}}{${3:seed}}"
-    },
-    "SetTilingPath{}": {
-      "snippet": "SetTilingPath{${1:arg}}"
-    },
-    "TransformAlongSide{}{}": {
-      "snippet": "TransformAlongSide{${1:arg1}}{${2:arg2}}"
-    },
-    "TransformAlongSide*{}{}": {
-      "snippet": "TransformAlongSide*{${1:arg1}}{${2:arg2}}"
-    },
-    "CoordinatesAtVertices{}": {
-      "snippet": "CoordinatesAtVertices{${1:arg}}"
-    },
-    "UseTile{}": {
-      "snippet": "UseTile{${1:arg}}"
-    },
-    "UseTile[]{}": {
-      "snippet": "UseTile[${2:opt}]{${1:arg}}"
+  "deps": [
+    {
+      "name": "tikzlibraryspath3"
     }
+  ],
+  "macros": [
+    {
+      "name": "DefineTile",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DefineTile{${1:name%specialDef}}{${2:sides}}{${3:vertices}}"
+      }
+    },
+    {
+      "name": "BakeTile",
+      "arg": {
+        "format": "{}",
+        "snippet": "BakeTile{${1:name%keyvals}}",
+        "keys": [
+          "\\BakeTile#c,\\pic#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TilingDecomposition",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TilingDecomposition{${1:type%keyvals}}{${2:level}}{${3:seed}}",
+        "keys": [
+          "\\TilingDecomposition#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TilingDecomposition",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "TilingDecomposition[${4:TikZ keys}]{${1:type%keyvals}}{${2:level}}{${3:seed}}",
+        "keys": [
+          "\\TilingDecomposition#c"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\BakeTile#c,\\pic#c": [
+      "%penrosetilename"
+    ],
+    "\\TilingDecomposition#c": [
+      "kite",
+      "rhombus",
+      "pentagon",
+      "ktriangle",
+      "rtriangle"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every tile/.style={${1:TikZ keys}}",
+      "tile ${1:<n>}/.style={${2:TikZ keys}}",
+      "every circle arc/.style={${1:TikZ keys}}",
+      "every long arc/.style={${1:TikZ keys}}",
+      "tiling step=",
+      "first tile/.style={${1:TikZ keys}}"
+    ],
+    "\\pic#c": [
+      "align with=${1:tile} along ${2:edge}",
+      "align with=${1:tile} along ${2:edge} using ${3:number}"
+    ],
+    "\\path#c": [
+      "save tiling path=${1:edge}"
+    ],
+    "\\tikzset#c": [
+      "clone tiling side path={${1:target}}{${2:source}}",
+      "clone tile path={${1:target}}{${2:source}}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

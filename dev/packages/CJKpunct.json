@@ -1,32 +1,50 @@
 {
-  "includes": {},
-  "macros": {
-    "punctstyle{}": {
-      "snippet": "punctstyle{${1:style}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "punctstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "punctstyle{${1:style%keyvals}}",
+        "keys": [
+          "\\punctstyle"
+        ],
+        "keyPos": 0
+      }
     },
-    "CJKpunctallowbreakbetweenpuncts": {},
-    "CJKpunctnobreakbetweenpuncts": {},
-    "CJKpunctsetkern{}{}{}": {
-      "snippet": "CJKpunctsetkern{${1:标点1}}{${2:标点2}}{${3:间距}}"
+    {
+      "name": "CJKpunctallowbreakbetweenpuncts"
     },
-    "CJKpunctmapfamily{}{}{}{}{}": {
-      "snippet": "CJKpunctmapfamily{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:punct family}}"
+    {
+      "name": "CJKpunctnobreakbetweenpuncts"
     },
-    "CJKnormalout": {},
-    "CJKosymbol{}": {
-      "snippet": "CJKosymbol{${1:n}}"
+    {
+      "name": "CJKpunctsetkern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "CJKpunctsetkern{${1:标点1}}{${2:标点2}}{${3:间距}}"
+      }
     },
-    "CJKopunctsymbol{}": {
-      "snippet": "CJKopunctsymbol{${1:n}}"
-    },
-    "CJKplainout": {},
-    "CJKpunctstyle{}": {
-      "snippet": "CJKpunctstyle{${1:style}}"
-    },
-    "fileversion": {},
-    "filedate": {}
+    {
+      "name": "CJKpunctmapfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "CJKpunctmapfamily{${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:punct family}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\punctstyle": [
+      "banjiao",
+      "quanjiao",
+      "kaiming",
+      "hangmobanjiao",
+      "CCT",
+      "plain"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

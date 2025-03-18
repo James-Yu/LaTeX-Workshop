@@ -1,21 +1,36 @@
 {
-  "includes": {
-    "texapi": []
-  },
-  "macros": {
-    "yaxversion": {},
-    "setparameterlist{}{}": {
-      "snippet": "setparameterlist{${1:parameters}}{${2:keyvals}}"
-    },
-    "setparameterlist{}[]{}": {
-      "snippet": "setparameterlist{${1:parameters}}[${2:optional macro}]{${3:keyvals}}"
-    },
-    "endval": {},
-    "letyaxcommand{}": {
-      "snippet": "letyaxcommand{${1:cmd}}"
+  "deps": [
+    {
+      "name": "texapi"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "yaxversion",
+      "unusual": true
+    },
+    {
+      "name": "setparameterlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setparameterlist{${1:parameters}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "setparameterlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setparameterlist{${1:parameters}}[${3:optional macro}]{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "endval",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

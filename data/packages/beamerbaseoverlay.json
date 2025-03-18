@@ -1,412 +1,826 @@
 {
-  "includes": {},
-  "macros": {
-    "only<>{}": {
-      "snippet": "only<${2:overlay specification}>{${1:text}}"
-    },
-    "only{}<>": {
-      "snippet": "only{${1:text}}<${2:overlay specification}>"
-    },
-    "only{}": {
-      "snippet": "only{${1:text}}"
-    },
-    "alt<>{}{}": {
-      "snippet": "alt<${3:overlay specification}>{${1:default text}}{${2:alternative text}}"
-    },
-    "alt{}{}<>": {
-      "snippet": "alt{${1:default text}}{${2:alternative text}}<${3:overlay specification}>"
-    },
-    "alt{}{}": {
-      "snippet": "alt{${1:default text}}{${2:alternative text}}"
-    },
-    "altenv": {},
-    "endaltenv": {},
-    "action<>{}": {
-      "snippet": "action<${2:action specification}>{${1:text}}"
-    },
-    "action{}": {
-      "snippet": "action{${1:text}}"
-    },
-    "actionenv": {},
-    "endactionenv": {},
-    "temporal{}{}{}": {
-      "snippet": "temporal{${1:before slide text}}{${2:default text}}{${3:after slide text}}"
-    },
-    "temporal<>{}{}{}": {
-      "snippet": "temporal<${4:overlay specification}>{${1:before slide text}}{${2:default text}}{${3:after slide text}}"
-    },
-    "beameroriginal{}": {
-      "snippet": "beameroriginal{${1:command}}"
-    },
-    "newenvironment<>{}{}{}": {
-      "snippet": "newenvironment<${4:}>{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "newenvironment<>{}[]{}{}": {
-      "snippet": "newenvironment<${5:}>{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "newenvironment<>{}[][]{}{}": {
-      "snippet": "newenvironment<${6:}>{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "renewenvironment<>{}{}{}": {
-      "snippet": "renewenvironment<${4:}>{${1:envname}}{${2:begdef}}{${3:enddef}}"
-    },
-    "renewenvironment<>{}[]{}{}": {
-      "snippet": "renewenvironment<${5:}>{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
-    },
-    "renewenvironment<>{}[][]{}{}": {
-      "snippet": "renewenvironment<${6:}>{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
-    },
-    "newcommand<>{}[][]{}": {
-      "snippet": "newcommand<${5:}>{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "newcommand<>{}[]{}": {
-      "snippet": "newcommand<${4:}>{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "newcommand<>{}{}": {
-      "snippet": "newcommand<${3:}>{${1:cmd}}{${2:def}}"
-    },
-    "renewcommand<>{}[][]{}": {
-      "snippet": "renewcommand<${5:}>{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "renewcommand<>{}[]{}": {
-      "snippet": "renewcommand<${4:}>{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "renewcommand<>{}{}": {
-      "snippet": "renewcommand<${3:}>{${1:cmd}}{${2:def}}"
-    },
-    "opaqueness<>{}": {
-      "snippet": "opaqueness<${2:overlay specification}>{${1:percentage of opaqueness}}"
-    },
-    "setbeamercovered{}": {
-      "snippet": "setbeamercovered{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pause": {},
-    "pause[]": {
-      "snippet": "pause[${1:number}]"
-    },
-    "music": {},
-    "beamerpause": {},
-    "onslide": {},
-    "onslide<>": {
-      "snippet": "onslide<${1:overlay specification}>"
-    },
-    "onslide<>{}": {
-      "snippet": "onslide<${2:overlay specification}>{${1:text}}"
-    },
-    "onslide*<>": {
-      "snippet": "onslide*<${1:overlay specification}>"
-    },
-    "onslide*<>{}": {
-      "snippet": "onslide*<${2:overlay specification}>{${1:text}}"
-    },
-    "item<>": {
-      "snippet": "item<${1:alert specification}>"
-    },
-    "item<>[]": {
-      "snippet": "item<${2:alert specification}>[${1:item label}]"
-    },
-    "item[]<>": {
-      "snippet": "item[${1:item label}]<${2:alert specification}>"
-    },
-    "beamerdefaultoverlayspecification{}": {
-      "snippet": "beamerdefaultoverlayspecification{${1:default overlay specification}}"
-    },
-    "uncover{}": {
-      "snippet": "uncover{${1:text}}"
-    },
-    "uncover<>{}": {
-      "snippet": "uncover<${2:overlay specification}>{${1:text}}"
-    },
-    "visible{}": {
-      "snippet": "visible{${1:text}}"
-    },
-    "visible<>{}": {
-      "snippet": "visible<${2:overlay specification}>{${1:text}}"
-    },
-    "invisible{}": {
-      "snippet": "invisible{${1:text}}"
-    },
-    "invisible<>{}": {
-      "snippet": "invisible<${2:overlay specification}>{${1:text}}"
-    },
-    "color<>{}": {
-      "snippet": "color<${2:overlay specification}>{${1:color}}"
-    },
-    "textbf<>{}": {
-      "snippet": "textbf<${2:overlay specification}>{${1:text}}"
-    },
-    "textit<>{}": {
-      "snippet": "textit<${2:overlay specification}>{${1:text}}"
-    },
-    "textmd<>{}": {
-      "snippet": "textmd<${2:overlay specification}>{${1:text}}"
-    },
-    "textnormal<>{}": {
-      "snippet": "textnormal<${2:overlay specification}>{${1:text}}"
-    },
-    "textrm<>{}": {
-      "snippet": "textrm<${2:overlay specification}>{${1:text}}"
-    },
-    "textsc<>{}": {
-      "snippet": "textsc<${2:overlay specification}>{${1:text}}"
-    },
-    "textsf<>{}": {
-      "snippet": "textsf<${2:overlay specification}>{${1:text}}"
-    },
-    "textsl<>{}": {
-      "snippet": "textsl<${2:overlay specification}>{${1:text}}"
-    },
-    "texttt<>{}": {
-      "snippet": "texttt<${2:overlay specification}>{${1:text}}"
-    },
-    "textup<>{}": {
-      "snippet": "textup<${2:overlay specification}>{${1:text}}"
-    },
-    "hypertarget<>{}{}": {
-      "snippet": "hypertarget<${3:overlay specification}>{${1:target name}}{${2:anchor text}}"
-    },
-    "hyperlink<>{}{}": {
-      "snippet": "hyperlink<${3:overlay specification}>{${1:target name}}{${2:link text}}"
-    },
-    "emph<>{}": {
-      "snippet": "emph<${2:overlay specification}>{${1:text}}"
-    },
-    "transblindshorizontal[]": {
-      "snippet": "transblindshorizontal[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transblindshorizontal<>[]": {
-      "snippet": "transblindshorizontal<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transblindsvertical[]": {
-      "snippet": "transblindsvertical[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transblindsvertical<>[]": {
-      "snippet": "transblindsvertical<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transboxin[]": {
-      "snippet": "transboxin[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transboxin<>[]": {
-      "snippet": "transboxin<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transboxout[]": {
-      "snippet": "transboxout[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transboxout<>[]": {
-      "snippet": "transboxout<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transcover[]": {
-      "snippet": "transcover[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transcover<>[]": {
-      "snippet": "transcover<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transdissolve[]": {
-      "snippet": "transdissolve[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transdissolve<>[]": {
-      "snippet": "transdissolve<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transfade[]": {
-      "snippet": "transfade[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transfade<>[]": {
-      "snippet": "transfade<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transglitter[]": {
-      "snippet": "transglitter[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transglitter<>[]": {
-      "snippet": "transglitter<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transpush[]": {
-      "snippet": "transpush[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transpush<>[]": {
-      "snippet": "transpush<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transreplace[]": {
-      "snippet": "transreplace[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transreplace<>[]": {
-      "snippet": "transreplace<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transsplitverticalin[]": {
-      "snippet": "transsplitverticalin[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transsplitverticalin<>[]": {
-      "snippet": "transsplitverticalin<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transsplitverticalout[]": {
-      "snippet": "transsplitverticalout[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transsplitverticalout<>[]": {
-      "snippet": "transsplitverticalout<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transsplithorizontalin[]": {
-      "snippet": "transsplithorizontalin[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transsplithorizontalin<>[]": {
-      "snippet": "transsplithorizontalin<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transsplithorizontalout[]": {
-      "snippet": "transsplithorizontalout[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transsplithorizontalout<>[]": {
-      "snippet": "transsplithorizontalout<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transuncover[]": {
-      "snippet": "transuncover[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transuncover<>[]": {
-      "snippet": "transuncover<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transwipe[]": {
-      "snippet": "transwipe[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transwipe<>[]": {
-      "snippet": "transwipe<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transfly[]": {
-      "snippet": "transfly[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "transfly<>[]": {
-      "snippet": "transfly<${2:overlay specification}>[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 1
-    },
-    "transduration{}": {
-      "snippet": "transduration{${1:number of seconds}}"
-    },
-    "transduration<>{}": {
-      "snippet": "transduration<${2:overlay specification}>{${1:number of seconds}}"
-    },
-    "animate<>": {
-      "snippet": "animate<${1:overlay specification}>"
-    },
-    "label<>{}": {
-      "snippet": "label<${2:overlay specification}>{${1:key}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "only<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "only<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "only",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "only{${1:text}}<${2:overlay specification}>"
+      }
+    },
+    {
+      "name": "only",
+      "arg": {
+        "format": "{}",
+        "snippet": "only{${1:text}}"
+      }
+    },
+    {
+      "name": "alt<overlay specification>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alt<overlay specification>{${1:default text%text}}{${2:alternative text%text}}"
+      }
+    },
+    {
+      "name": "alt",
+      "arg": {
+        "format": "{}{}<>",
+        "snippet": "alt{${1:default text%text}}{${2:alternative text%text}}<${3:overlay specification}>"
+      }
+    },
+    {
+      "name": "alt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alt{${1:default text%text}}{${2:alternative text%text}}"
+      }
+    },
+    {
+      "name": "action<action specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "action<action specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "action",
+      "arg": {
+        "format": "{}",
+        "snippet": "action{${1:text}}"
+      }
+    },
+    {
+      "name": "temporal",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "temporal{${1:before slide text%text}}{${2:default text%text}}{${3:after slide text%text}}"
+      }
+    },
+    {
+      "name": "temporal<overlay specification>",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "temporal<overlay specification>{${1:before slide text%text}}{${2:default text%text}}{${3:after slide text%text}}"
+      }
+    },
+    {
+      "name": "beameroriginal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "beameroriginal{${1:command}}"
+      }
+    },
+    {
+      "name": "newenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newenvironment<>{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "newenvironment<>{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "newenvironment<>{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewenvironment<>{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "renewenvironment<>{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewenvironment<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "renewenvironment<>{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newcommand<>{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newcommand<>{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newcommand<>{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "renewcommand<>{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewcommand<>{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewcommand<>",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewcommand<>{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "opaqueness<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "opaqueness<overlay specification>{${1:percentage of opaqueness}}"
+      }
+    },
+    {
+      "name": "setbeamercovered",
+      "arg": {
+        "format": "{}",
+        "snippet": "setbeamercovered{${1:options%keyvals}}",
+        "keys": [
+          "\\setbeamercovered"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pause"
+    },
+    {
+      "name": "pause",
+      "arg": {
+        "format": "[]",
+        "snippet": "pause[${1:number}]"
+      }
+    },
+    {
+      "name": "music",
+      "unusual": true
+    },
+    {
+      "name": "beamerpause",
+      "unusual": true
+    },
+    {
+      "name": "onslide"
+    },
+    {
+      "name": "onslide<overlay specification>"
+    },
+    {
+      "name": "onslide<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "onslide<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "onslide*<overlay specification>"
+    },
+    {
+      "name": "onslide*<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "onslide*<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "item<alert specification>"
+    },
+    {
+      "name": "item<alert specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "item<alert specification>[${1:item label}]"
+      }
+    },
+    {
+      "name": "item",
+      "arg": {
+        "format": "[]<>",
+        "snippet": "item[${1:item label}]<${2:alert specification}>"
+      }
+    },
+    {
+      "name": "beamerdefaultoverlayspecification",
+      "arg": {
+        "format": "{}",
+        "snippet": "beamerdefaultoverlayspecification{${1:default overlay specification}}"
+      }
+    },
+    {
+      "name": "uncover",
+      "arg": {
+        "format": "{}",
+        "snippet": "uncover{${1:text}}"
+      }
+    },
+    {
+      "name": "uncover<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "uncover<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "visible",
+      "arg": {
+        "format": "{}",
+        "snippet": "visible{${1:text}}"
+      }
+    },
+    {
+      "name": "visible<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "visible<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "invisible",
+      "arg": {
+        "format": "{}",
+        "snippet": "invisible{${1:text}}"
+      }
+    },
+    {
+      "name": "invisible<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "invisible<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "color<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "color<overlay specification>{${1:color}}"
+      }
+    },
+    {
+      "name": "textbf<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textbf<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textit<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textit<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textmd<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textmd<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textnormal<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textnormal<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textrm<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textrm<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textsc<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsc<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textsf<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsf<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textsl<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsl<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "texttt<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "texttt<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "textup<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "textup<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "hypertarget<overlay specification>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hypertarget<overlay specification>{${1:target name}}{${2:anchor text%text}}"
+      }
+    },
+    {
+      "name": "hyperlink<overlay specification>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hyperlink<overlay specification>{${1:target name}}{${2:link text%text}}"
+      }
+    },
+    {
+      "name": "emph<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "emph<overlay specification>{${1:text}}"
+      }
+    },
+    {
+      "name": "transblindshorizontal",
+      "arg": {
+        "format": "[]",
+        "snippet": "transblindshorizontal[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transblindshorizontal<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transblindshorizontal<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transblindsvertical",
+      "arg": {
+        "format": "[]",
+        "snippet": "transblindsvertical[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transblindsvertical<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transblindsvertical<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transboxin",
+      "arg": {
+        "format": "[]",
+        "snippet": "transboxin[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transboxin<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transboxin<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transboxout",
+      "arg": {
+        "format": "[]",
+        "snippet": "transboxout[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transboxout<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transboxout<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transcover",
+      "arg": {
+        "format": "[]",
+        "snippet": "transcover[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transcover<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transcover<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transdissolve",
+      "arg": {
+        "format": "[]",
+        "snippet": "transdissolve[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transdissolve<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transdissolve<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transfade",
+      "arg": {
+        "format": "[]",
+        "snippet": "transfade[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transfade<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transfade<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transglitter",
+      "arg": {
+        "format": "[]",
+        "snippet": "transglitter[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transglitter<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transglitter<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transpush",
+      "arg": {
+        "format": "[]",
+        "snippet": "transpush[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transpush<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transpush<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transreplace",
+      "arg": {
+        "format": "[]",
+        "snippet": "transreplace[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transreplace<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transreplace<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transsplitverticalin",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplitverticalin[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transsplitverticalin<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplitverticalin<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transsplitverticalout",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplitverticalout[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transsplitverticalout<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplitverticalout<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transsplithorizontalin",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplithorizontalin[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transsplithorizontalin<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplithorizontalin<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transsplithorizontalout",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplithorizontalout[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transsplithorizontalout<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transsplithorizontalout<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transuncover",
+      "arg": {
+        "format": "[]",
+        "snippet": "transuncover[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transuncover<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transuncover<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transwipe",
+      "arg": {
+        "format": "[]",
+        "snippet": "transwipe[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transwipe<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transwipe<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transfly",
+      "arg": {
+        "format": "[]",
+        "snippet": "transfly[${1:options%keyvals}]",
+        "keys": [
+          "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "transfly<overlay specification>",
+      "arg": {
+        "format": "[]",
+        "snippet": "transfly<overlay specification>[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "transduration",
+      "arg": {
+        "format": "{}",
+        "snippet": "transduration{${1:number of seconds}}"
+      }
+    },
+    {
+      "name": "transduration<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "transduration<overlay specification>{${1:number of seconds}}"
+      }
+    },
+    {
+      "name": "animate<overlay specification>"
+    },
+    {
+      "name": "label<overlay specification>",
+      "arg": {
+        "format": "{}",
+        "snippet": "label<overlay specification>{${1:key%labeldef}}"
+      }
     }
-  },
-  "envs": {
-    "altenv{}{}{}{}": {
+  ],
+  "envs": [
+    {
       "name": "altenv",
-      "snippet": "{${1:begin text}}{${2:end text}}{${3:alternate begin text}}{${4:alternate end text}}"
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:begin text%text}}{${2:end text%text}}{${3:alternate begin text%text}}{${4:alternate end text%text}}"
+      }
     },
-    "altenv<>{}{}{}{}": {
+    {
       "name": "altenv",
-      "snippet": "<${5:overlay specification}>{${1:begin text}}{${2:end text}}{${3:alternate begin text}}{${4:alternate end text}}"
+      "arg": {
+        "format": "<>{}{}{}{}",
+        "snippet": "<${5:overlay specification}>{${1:begin text%text}}{${2:end text%text}}{${3:alternate begin text%text}}{${4:alternate end text%text}}"
+      }
     },
-    "altenv{}{}{}{}<>": {
+    {
       "name": "altenv",
-      "snippet": "{${1:begin text}}{${2:end text}}{${3:alternate begin text}}{${4:alternate end text}}<${5:overlay specification}>"
+      "arg": {
+        "format": "{}{}{}{}<>",
+        "snippet": "{${1:begin text%text}}{${2:end text%text}}{${3:alternate begin text%text}}{${4:alternate end text%text}}<${5:overlay specification}>"
+      }
     },
-    "actionenv": {},
-    "actionenv<>": {
+    {
+      "name": "actionenv"
+    },
+    {
       "name": "actionenv",
-      "snippet": "<${1:action specification}>"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:action specification}>"
+      }
     },
-    "visibleenv": {},
-    "visibleenv<>": {
+    {
+      "name": "visibleenv"
+    },
+    {
       "name": "visibleenv",
-      "snippet": "<${1:overlay specification}>"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
     },
-    "invisibleenv": {},
-    "invisibleenv<>": {
+    {
+      "name": "invisibleenv"
+    },
+    {
       "name": "invisibleenv",
-      "snippet": "<${1:overlay specification}>"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
     },
-    "uncoverenv": {},
-    "uncoverenv<>": {
+    {
+      "name": "uncoverenv"
+    },
+    {
       "name": "uncoverenv",
-      "snippet": "<${1:overlay specification}>"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
     },
-    "onlyenv": {},
-    "onlyenv<>": {
+    {
+      "name": "onlyenv"
+    },
+    {
       "name": "onlyenv",
-      "snippet": "<${1:overlay specification}>"
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
     },
-    "overlayarea{}{}": {
+    {
       "name": "overlayarea",
-      "snippet": "{${1:area width}}{${2:area height}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:area width%l}}{${2:area height%l}}"
+      }
     },
-    "overprint": {},
-    "overprint[]": {
+    {
+      "name": "overprint"
+    },
+    {
       "name": "overprint",
-      "snippet": "[${1:area width}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:area width%l}]"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\setbeamercovered": [
       "invisible",
       "transparent",
       "transparent=${1:opaqueness}",
@@ -415,9 +829,10 @@
       "still covered=${1:not yet list}",
       "again covered=${1:once more list}"
     ],
-    [
+    "\\transblindshorizontal,\\transblindsvertical,\\transboxin,\\transboxout,\\transcover,\\transdissolve,\\transfade,\\transglitter,\\transpush,\\transreplace,\\transsplitverticalin,\\transsplitverticalout,\\transsplithorizontalin,\\transsplithorizontalout,\\transuncover,\\transwipe,\\transfly": [
       "direction=${1:degrees}",
       "duration=${1:seconds}"
     ]
-  ]
+  },
+  "args": []
 }

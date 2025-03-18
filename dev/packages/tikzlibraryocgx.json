@@ -1,10 +1,24 @@
 {
-  "includes": {
-    "ocgx": [],
-    "tikzlibrarycalc": []
+  "deps": [
+    {
+      "name": "ocgx"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\tikzset#c,\\begin{tikzpicture}#c,\\begin{scope}#c,\\node#c": [
+      "ocg={${1:options}}",
+      "switch ocg={${1:ocg list}}",
+      "show ocg={${1:ocg list}}",
+      "hide ocg={${1:ocg list}}",
+      "actions ocg={${1:ocg list1}}{${2:ocg list2}}{${3:ocg list3}}",
+      "switch ocg with mark on={${1:ocg ref}}{${2:ocg list}}",
+      "switch ocg with mark off={${1:ocg ref}}{${2:ocg list}}"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -9,7 +9,7 @@ async function runTestSuites(fixture: 'testground' | 'multiroot' | 'unittest') {
         const extensionTestsPath = fixture === 'unittest' ? path.resolve(__dirname, './units/index') : path.resolve(__dirname, './suites/index')
 
         await runTests({
-            version: '1.88.0',
+            version: '1.96.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
@@ -34,7 +34,7 @@ async function main() {
         await runTestSuites('unittest')
         await runTestSuites('testground')
         await runTestSuites('multiroot')
-    } catch (err) {
+    } catch (_) {
         console.error('Failed to run tests')
         process.exit(1)
     }

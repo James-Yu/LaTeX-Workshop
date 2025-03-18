@@ -1,90 +1,216 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tikz": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarycalc": [],
-    "subfiles": [],
-    "pbox": [],
-    "multirow": [],
-    "tabularx": [],
-    "colortbl": [],
-    "array": [],
-    "relsize": []
-  },
-  "macros": {
-    "lakediagramgreen[]": {
-      "snippet": "lakediagramgreen[${1:scale}]"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "lakediagramblue[]": {
-      "snippet": "lakediagramblue[${1:scale}]"
+    {
+      "name": "tikz"
     },
-    "isolated[]": {
-      "snippet": "isolated[${1:scale}]"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "headwater[]": {
-      "snippet": "headwater[${1:scale}]"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "primary[]": {
-      "snippet": "primary[${1:scale}]"
+    {
+      "name": "subfiles"
     },
-    "secondary[]": {
-      "snippet": "secondary[${1:scale}]"
+    {
+      "name": "pbox"
     },
-    "secondarypluswatershed[]": {
-      "snippet": "secondarypluswatershed[${1:scale}]"
+    {
+      "name": "multirow"
     },
-    "connectivitydiagram[]": {
-      "snippet": "connectivitydiagram[${1:scale}]"
+    {
+      "name": "tabularx"
     },
-    "secondaryprofile[]{}": {
-      "snippet": "secondaryprofile[${2:scale}]{${1:color}}"
+    {
+      "name": "colortbl"
     },
-    "secondaryprofileflatequal[]{}": {
-      "snippet": "secondaryprofileflatequal[${2:scale}]{${1:color}}"
+    {
+      "name": "array"
     },
-    "primaryprofileflatequal[]{}": {
-      "snippet": "primaryprofileflatequal[${2:scale}]{${1:color}}"
-    },
-    "headwaterprofileflatequal[]{}": {
-      "snippet": "headwaterprofileflatequal[${2:scale}]{${1:color}}"
-    },
-    "isolatedprofileflatequal[]{}": {
-      "snippet": "isolatedprofileflatequal[${2:scale}]{${1:color}}"
-    },
-    "headwaterprofile[]{}": {
-      "snippet": "headwaterprofile[${2:scale}]{${1:color}}"
-    },
-    "primaryprofile[]{}": {
-      "snippet": "primaryprofile[${2:scale}]{${1:color}}"
-    },
-    "isolatedprofile[]{}": {
-      "snippet": "isolatedprofile[${2:scale}]{${1:color}}"
-    },
-    "primaryprofileplus": {},
-    "secondaryprofileplus": {},
-    "primaryprofileblue": {},
-    "primaryprofilegreen": {},
-    "isolatedflux[]{}": {
-      "snippet": "isolatedflux[${2:scale}]{${1:text}}"
-    },
-    "isolatedwireframe[]": {
-      "snippet": "isolatedwireframe[${1:scale}]"
-    },
-    "secondarywireframe[]": {
-      "snippet": "secondarywireframe[${1:scale}]"
-    },
-    "watershedconnectivity[]": {
-      "snippet": "watershedconnectivity[${1:scale}]"
-    },
-    "incrementalcumulativeloads[]": {
-      "snippet": "incrementalcumulativeloads[${1:scale}]"
-    },
-    "retentiontrapping[]": {
-      "snippet": "retentiontrapping[${1:scale}]"
+    {
+      "name": "relsize"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "mystrut",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "mystrut(${1:height},${2:depth})"
+      }
+    },
+    {
+      "name": "lakediagramgreen",
+      "arg": {
+        "format": "[]",
+        "snippet": "lakediagramgreen[${1:scale}]"
+      }
+    },
+    {
+      "name": "lakediagramblue",
+      "arg": {
+        "format": "[]",
+        "snippet": "lakediagramblue[${1:scale}]"
+      }
+    },
+    {
+      "name": "isolated",
+      "arg": {
+        "format": "[]",
+        "snippet": "isolated[${1:scale}]"
+      }
+    },
+    {
+      "name": "headwater",
+      "arg": {
+        "format": "[]",
+        "snippet": "headwater[${1:scale}]"
+      }
+    },
+    {
+      "name": "primary",
+      "arg": {
+        "format": "[]",
+        "snippet": "primary[${1:scale}]"
+      }
+    },
+    {
+      "name": "secondary",
+      "arg": {
+        "format": "[]",
+        "snippet": "secondary[${1:scale}]"
+      }
+    },
+    {
+      "name": "secondarypluswatershed",
+      "arg": {
+        "format": "[]",
+        "snippet": "secondarypluswatershed[${1:scale}]"
+      }
+    },
+    {
+      "name": "connectivitydiagram",
+      "arg": {
+        "format": "[]",
+        "snippet": "connectivitydiagram[${1:scale}]"
+      }
+    },
+    {
+      "name": "secondaryprofile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "secondaryprofile[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "secondaryprofileflatequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "secondaryprofileflatequal[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "primaryprofileflatequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "primaryprofileflatequal[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "headwaterprofileflatequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "headwaterprofileflatequal[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "isolatedprofileflatequal",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isolatedprofileflatequal[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "headwaterprofile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "headwaterprofile[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "primaryprofile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "primaryprofile[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "isolatedprofile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isolatedprofile[${2:scale}]{${1:color}}"
+      }
+    },
+    {
+      "name": "primaryprofileplus"
+    },
+    {
+      "name": "secondaryprofileplus"
+    },
+    {
+      "name": "primaryprofileblue"
+    },
+    {
+      "name": "primaryprofilegreen"
+    },
+    {
+      "name": "isolatedflux",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "isolatedflux[${2:scale}]{${1:text}}"
+      }
+    },
+    {
+      "name": "isolatedwireframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "isolatedwireframe[${1:scale}]"
+      }
+    },
+    {
+      "name": "secondarywireframe",
+      "arg": {
+        "format": "[]",
+        "snippet": "secondarywireframe[${1:scale}]"
+      }
+    },
+    {
+      "name": "watershedconnectivity",
+      "arg": {
+        "format": "[]",
+        "snippet": "watershedconnectivity[${1:scale}]"
+      }
+    },
+    {
+      "name": "incrementalcumulativeloads",
+      "arg": {
+        "format": "[]",
+        "snippet": "incrementalcumulativeloads[${1:scale}]"
+      }
+    },
+    {
+      "name": "retentiontrapping",
+      "arg": {
+        "format": "[]",
+        "snippet": "retentiontrapping[${1:scale}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,44 +1,98 @@
 {
-  "includes": {},
-  "macros": {
-    "newmultienvironment{}{}": {
-      "snippet": "newmultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newmultienvironment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newmultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+      }
     },
-    "newmultienvironment{}[]{}": {
-      "snippet": "newmultienvironment{${1:envname}}[${2:args}]{${3:env,env=arg,...}}"
+    {
+      "name": "newmultienvironment",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newmultienvironment{${1:envname}}[${3:args}]{${2:env,env=arg,...}}"
+      }
     },
-    "newmultienvironment{}[][]{}": {
-      "snippet": "newmultienvironment{${1:envname}}[${2:args}][${3:default}]{${4:env,env=arg,...}}"
+    {
+      "name": "newmultienvironment",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newmultienvironment{${1:envname}}[${3:args}][${4:default}]{${2:env,env=arg,...}}"
+      }
     },
-    "renewmultienvironment{}{}": {
-      "snippet": "renewmultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+    {
+      "name": "renewmultienvironment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewmultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+      }
     },
-    "renewmultienvironment{}[]{}": {
-      "snippet": "renewmultienvironment{${1:envname}}[${2:args}]{${3:env,env=arg,...}}"
+    {
+      "name": "renewmultienvironment",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewmultienvironment{${1:envname}}[${3:args}]{${2:env,env=arg,...}}"
+      }
     },
-    "renewmultienvironment{}[][]{}": {
-      "snippet": "renewmultienvironment{${1:envname}}[${2:args}][${3:default}]{${4:env,env=arg,...}}"
+    {
+      "name": "renewmultienvironment",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "renewmultienvironment{${1:envname}}[${3:args}][${4:default}]{${2:env,env=arg,...}}"
+      }
     },
-    "providemultienvironment{}{}": {
-      "snippet": "providemultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+    {
+      "name": "providemultienvironment",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "providemultienvironment{${1:envname}}{${2:env,env=arg,...}}"
+      }
     },
-    "providemultienvironment{}[]{}": {
-      "snippet": "providemultienvironment{${1:envname}}[${2:args}]{${3:env,env=arg,...}}"
+    {
+      "name": "providemultienvironment",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providemultienvironment{${1:envname}}[${3:args}]{${2:env,env=arg,...}}"
+      }
     },
-    "providemultienvironment{}[][]{}": {
-      "snippet": "providemultienvironment{${1:envname}}[${2:args}][${3:default}]{${4:env,env=arg,...}}"
+    {
+      "name": "providemultienvironment",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "providemultienvironment{${1:envname}}[${3:args}][${4:default}]{${2:env,env=arg,...}}"
+      }
     }
-  },
-  "envs": {
-    "multienv{}": {
+  ],
+  "envs": [
+    {
       "name": "multienv",
-      "snippet": "{${1:env,env=arg,key=value,...}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:env,env=arg,key=value,...%keyvals}}",
+        "keys": [
+          "\\begin{multienv}#c,\\begin{multienv*}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "multienv*{}": {
+    {
       "name": "multienv*",
-      "snippet": "{${1:env,env=arg,key=value,...}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:env,env=arg,key=value,...%keyvals}}",
+        "keys": [
+          "\\begin{multienv}#c,\\begin{multienv*}#c"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{multienv}#c,\\begin{multienv*}#c": [
+      "add code={${1:code before}}{${2:code after}}"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

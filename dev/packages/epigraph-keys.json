@@ -1,52 +1,99 @@
 {
-  "includes": {
-    "enumitem": [],
-    "pgfkeys": [],
-    "conditionals": [],
-    "microtype": []
-  },
-  "macros": {
-    "epigraph{}": {
-      "snippet": "epigraph{${1:text}}"
+  "deps": [
+    {
+      "name": "enumitem"
     },
-    "epigraph[]{}": {
-      "snippet": "epigraph[${2:keyvals}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "qitem{}": {
-      "snippet": "qitem{${1:text}}"
+    {
+      "name": "conditionals"
     },
-    "qitem[]{}": {
-      "snippet": "qitem[${2:keyvals}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "microtype"
+    }
+  ],
+  "macros": [
+    {
+      "name": "epigraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "epigraph{${1:text}}"
+      }
     },
-    "expblank{}": {
-      "snippet": "expblank{${1:arg}}"
+    {
+      "name": "epigraph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "epigraph[${2:keyvals}]{${1:text}}",
+        "keys": [
+          "\\epigraph,\\qitem"
+        ],
+        "keyPos": 0
+      }
     },
-    "expgiven{}": {
-      "snippet": "expgiven{${1:arg}}"
+    {
+      "name": "qitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "qitem{${1:text}}"
+      }
     },
-    "expnil{}": {
-      "snippet": "expnil{${1:arg}}"
+    {
+      "name": "qitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "qitem[${2:keyvals}]{${1:text}}",
+        "keys": [
+          "\\epigraph,\\qitem"
+        ],
+        "keyPos": 0
+      }
     },
-    "beforeepigraphskip": {},
-    "afterepigraphskip": {},
-    "epigraphtextindent": {},
-    "epigraphauthorsourceindent": {},
-    "epigraphtextwidth": {},
-    "epigraphstyle": {},
-    "epigraphdash": {},
-    "epigraphquotefont": {},
-    "epigraphtranslationfont": {}
-  },
-  "envs": {
-    "epigraphs": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "beforeepigraphskip",
+      "unusual": true
+    },
+    {
+      "name": "afterepigraphskip",
+      "unusual": true
+    },
+    {
+      "name": "epigraphtextindent",
+      "unusual": true
+    },
+    {
+      "name": "epigraphauthorsourceindent",
+      "unusual": true
+    },
+    {
+      "name": "epigraphtextwidth",
+      "unusual": true
+    },
+    {
+      "name": "epigraphstyle",
+      "unusual": true
+    },
+    {
+      "name": "epigraphdash",
+      "unusual": true
+    },
+    {
+      "name": "epigraphquotefont",
+      "unusual": true
+    },
+    {
+      "name": "epigraphtranslationfont",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "epigraphs"
+    }
+  ],
+  "keys": {
+    "\\epigraph,\\qitem": [
       "author={${1:author}}",
       "source={${1:source}}",
       "translation={${1:translation text}}",
@@ -61,5 +108,6 @@
       "translation style=${1:font commands}",
       "dash={${1:dash code}}"
     ]
-  ]
+  },
+  "args": []
 }

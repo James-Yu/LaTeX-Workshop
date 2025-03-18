@@ -1,56 +1,123 @@
 {
-  "includes": {},
-  "macros": {
-    "DeclareCaption{}{}{}": {
-      "snippet": "DeclareCaption{${1:caption}}{${2:language}}{${3:definition}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "DeclareCaption",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareCaption{${1:caption%cmd}}{${2:language}}{${3:definition}}"
+      }
     },
-    "DeclareCaption{}{}[]{}": {
-      "snippet": "DeclareCaption{${1:caption}}{${2:language}}[${3:args}]{${4:definition}}"
+    {
+      "name": "DeclareCaption",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "DeclareCaption{${1:caption%cmd}}{${2:language}}[${4:args}]{${3:definition}}"
+      }
     },
-    "DeclareCaption{}{}[][]{}": {
-      "snippet": "DeclareCaption{${1:caption}}{${2:language}}[${3:args}][${4:default}]{${5:definition}}"
+    {
+      "name": "DeclareCaption",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "DeclareCaption{${1:caption%cmd}}{${2:language}}[${4:args}][${5:default}]{${3:definition}}"
+      }
     },
-    "ProvideCaption{}{}{}": {
-      "snippet": "ProvideCaption{${1:caption}}{${2:language}}{${3:definition}}"
+    {
+      "name": "ProvideCaption",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ProvideCaption{${1:caption%cmd}}{${2:language}}{${3:definition}}"
+      }
     },
-    "ProvideCaption{}{}[]{}": {
-      "snippet": "ProvideCaption{${1:caption}}{${2:language}}[${3:args}]{${4:definition}}"
+    {
+      "name": "ProvideCaption",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "ProvideCaption{${1:caption%cmd}}{${2:language}}[${4:args}]{${3:definition}}"
+      }
     },
-    "ProvideCaption{}{}[][]{}": {
-      "snippet": "ProvideCaption{${1:caption}}{${2:language}}[${3:args}][${4:default}]{${5:definition}}"
+    {
+      "name": "ProvideCaption",
+      "arg": {
+        "format": "{}{}[][]{}",
+        "snippet": "ProvideCaption{${1:caption%cmd}}{${2:language}}[${4:args}][${5:default}]{${3:definition}}"
+      }
     },
-    "UseCaption{}{}": {
-      "snippet": "UseCaption{${1:language}}{${2:caption}}"
+    {
+      "name": "UseCaption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "UseCaption{${1:language}}{${2:caption}}"
+      }
     },
-    "DeclareCaptionDefault{}{}": {
-      "snippet": "DeclareCaptionDefault{${1:caption}}{${2:definition}}"
+    {
+      "name": "DeclareCaptionDefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareCaptionDefault{${1:caption%cmd}}{${2:definition}}"
+      }
     },
-    "DeclareCaptionDefault{}[]{}": {
-      "snippet": "DeclareCaptionDefault{${1:caption}}[${2:args}]{${3:definition}}"
+    {
+      "name": "DeclareCaptionDefault",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "DeclareCaptionDefault{${1:caption%cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "DeclareCaptionDefault{}[][]{}": {
-      "snippet": "DeclareCaptionDefault{${1:caption}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "DeclareCaptionDefault",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "DeclareCaptionDefault{${1:caption%cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "ProvideCaptionDefault{}{}": {
-      "snippet": "ProvideCaptionDefault{${1:caption}}{${2:definition}}"
+    {
+      "name": "ProvideCaptionDefault",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ProvideCaptionDefault{${1:caption%cmd}}{${2:definition}}"
+      }
     },
-    "ProvideCaptionDefault{}[]{}": {
-      "snippet": "ProvideCaptionDefault{${1:caption}}[${2:args}]{${3:definition}}"
+    {
+      "name": "ProvideCaptionDefault",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "ProvideCaptionDefault{${1:caption%cmd}}[${3:args}]{${2:definition}}"
+      }
     },
-    "ProvideCaptionDefault{}[][]{}": {
-      "snippet": "ProvideCaptionDefault{${1:caption}}[${2:args}][${3:default}]{${4:definition}}"
+    {
+      "name": "ProvideCaptionDefault",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "ProvideCaptionDefault{${1:caption%cmd}}[${3:args}][${4:default}]{${2:definition}}"
+      }
     },
-    "BeforeAtBeginDocument{}": {
-      "snippet": "BeforeAtBeginDocument{${1:code}}"
+    {
+      "name": "BeforeAtBeginDocument",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BeforeAtBeginDocument{${1:code}}"
+      }
     },
-    "AfterAtBeginDocument{}": {
-      "snippet": "AfterAtBeginDocument{${1:code}}"
+    {
+      "name": "AfterAtBeginDocument",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AfterAtBeginDocument{${1:code}}"
+      }
     },
-    "BeforeAtEndDocument{}": {
-      "snippet": "BeforeAtEndDocument{${1:code}}"
+    {
+      "name": "BeforeAtEndDocument",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BeforeAtEndDocument{${1:code}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

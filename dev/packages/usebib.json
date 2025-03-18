@@ -1,29 +1,70 @@
 {
-  "includes": {
-    "url": [],
-    "keyval": []
-  },
-  "macros": {
-    "bibinput{}": {
-      "snippet": "bibinput{${1:bib file}}"
+  "deps": [
+    {
+      "name": "url"
     },
-    "newbibfield{}": {
-      "snippet": "newbibfield{${1:field}}"
-    },
-    "newbibignore{}": {
-      "snippet": "newbibignore{${1:type}}"
-    },
-    "usebibentry{}{}": {
-      "snippet": "usebibentry{${1:citekey}}{${2:field}}"
-    },
-    "usebibentryurl{}": {
-      "snippet": "usebibentryurl{${1:citekey}}"
-    },
-    "usebibentryurl[]{}": {
-      "snippet": "usebibentryurl[${2:delim}]{${1:citekey}}"
+    {
+      "name": "keyval"
     }
+  ],
+  "macros": [
+    {
+      "name": "bibinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "bibinput{${1:bib file}}"
+      }
+    },
+    {
+      "name": "newbibfield",
+      "arg": {
+        "format": "{}",
+        "snippet": "newbibfield{${1:field}}"
+      }
+    },
+    {
+      "name": "newbibignore",
+      "arg": {
+        "format": "{}",
+        "snippet": "newbibignore{${1:type}}"
+      }
+    },
+    {
+      "name": "usebibentry",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "usebibentry{${1:citekey}}{${2:field%keyvals}}",
+        "keys": [
+          "\\usebibentry#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usebibentryurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "usebibentryurl{${1:citekey}}"
+      }
+    },
+    {
+      "name": "usebibentryurl",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usebibentryurl[${2:delim}]{${1:citekey}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usebibentry#c": [
+      "title",
+      "year",
+      "note",
+      "isbn",
+      "%usebibfield"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

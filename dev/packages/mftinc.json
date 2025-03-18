@@ -1,75 +1,160 @@
 {
-  "includes": {
-    "chngpage": [],
-    "keyval": [],
-    "lineno": [],
-    "rawfonts": []
-  },
-  "macros": {
-    "setmftdefaults{}": {
-      "snippet": "setmftdefaults{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "chngpage"
     },
-    "mftinput{}": {
-      "snippet": "mftinput{${1:file}}"
+    {
+      "name": "keyval"
     },
-    "mfcomment": {},
-    "fonttable{}": {
-      "snippet": "fonttable{${1:font name}}"
+    {
+      "name": "lineno"
     },
-    "fonttable[]{}": {
-      "snippet": "fonttable[${2:options}]{${1:font name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "rawfonts"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setmftdefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmftdefaults{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{explaincode},\\setmftdefaults",
+          "\\fonttable,\\setmftdefaults"
+        ],
+        "keyPos": 0
+      }
     },
-    "centerlargechars": {},
-    "chartline": {},
-    "chartstrut": {},
-    "endchart": {},
-    "evenline": {},
-    "hex{}": {
-      "snippet": "hex{${1:arg}}"
+    {
+      "name": "mftinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "mftinput{${1:file}}"
+      }
     },
-    "morechart": {},
-    "next": {},
-    "oct{}": {
-      "snippet": "oct{${1:arg}}"
+    {
+      "name": "mfcomment"
     },
-    "oddline": {},
-    "reposition": {},
-    "setdigs": {},
-    "table": {},
-    "testrow": {},
-    "ifskipping": {},
-    "skippingtrue": {},
-    "skippingfalse": {}
-  },
-  "envs": {
-    "explaincode": {},
-    "explaincode[]": {
+    {
+      "name": "fonttable",
+      "arg": {
+        "format": "{}",
+        "snippet": "fonttable{${1:font name}}"
+      }
+    },
+    {
+      "name": "fonttable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fonttable[${2:options%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\fonttable,\\setmftdefaults"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "centerlargechars",
+      "unusual": true
+    },
+    {
+      "name": "chartline",
+      "unusual": true
+    },
+    {
+      "name": "chartstrut",
+      "unusual": true
+    },
+    {
+      "name": "endchart",
+      "unusual": true
+    },
+    {
+      "name": "evenline",
+      "unusual": true
+    },
+    {
+      "name": "hex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hex{${1:arg}}"
+      }
+    },
+    {
+      "name": "morechart",
+      "unusual": true
+    },
+    {
+      "name": "oct",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "oct{${1:arg}}"
+      }
+    },
+    {
+      "name": "oddline",
+      "unusual": true
+    },
+    {
+      "name": "reposition",
+      "unusual": true
+    },
+    {
+      "name": "setdigs",
+      "unusual": true
+    },
+    {
+      "name": "table",
+      "unusual": true
+    },
+    {
+      "name": "testrow",
+      "unusual": true
+    },
+    {
+      "name": "ifskipping",
+      "unusual": true
+    },
+    {
+      "name": "skippingtrue",
+      "unusual": true
+    },
+    {
+      "name": "skippingfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "explaincode"
+    },
+    {
       "name": "explaincode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]",
+        "keys": [
+          "\\begin{explaincode},\\setmftdefaults"
+        ],
+        "keyPos": 0
+      }
     },
-    "wrapcomment": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "toprule=",
-      "bottomrule=",
-      "tablewidth=",
-      "charrange={${1:range}}"
-    ],
-    [
-      "tablewidth=",
-      "charrange={${1:range}}"
-    ],
-    [
+    {
+      "name": "wrapcomment"
+    }
+  ],
+  "keys": {
+    "\\begin{explaincode},\\setmftdefaults": [
       "toprule=",
       "bottomrule="
+    ],
+    "\\fonttable,\\setmftdefaults": [
+      "tablewidth=",
+      "charrange={${1:range}}"
     ]
-  ]
+  },
+  "args": []
 }

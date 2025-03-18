@@ -1,29 +1,48 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "quotingsetup{}": {
-      "snippet": "quotingsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "quotingfont": {}
-  },
-  "envs": {
-    "quoting": {},
-    "quoting[]": {
-      "name": "quoting",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "indentfirst=",
+  ],
+  "macros": [
+    {
+      "name": "quotingsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "quotingsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{quoting},\\quotingsetup,\\usepackage/quoting#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "quotingfont",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "quoting"
+    },
+    {
+      "name": "quoting",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{quoting},\\quotingsetup,\\usepackage/quoting#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{quoting},\\quotingsetup,\\usepackage/quoting#c": [
+      "indentfirst=${1|auto,true,false|}",
       "font={${1:format names}}",
       "font+={${1:format names}}",
       "begintext=${1:text}",
@@ -36,5 +55,8 @@
       "noorphanafter",
       "noorphans"
     ]
+  },
+  "args": [
+    "\\begin{quoting},\\quotingsetup,\\usepackage/quoting#c"
   ]
 }

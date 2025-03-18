@@ -1,96 +1,299 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "hg{}": {
-      "snippet": "hg{${1:words}}"
-    },
-    "hangul": {},
-    "endhangul": {},
-    "jamoword{}": {
-      "snippet": "jamoword{${1:words}}"
-    },
-    "frcc{}": {
-      "snippet": "frcc{${1:char}}"
-    },
-    "rq": {},
-    "zeroisx": {},
-    "zeroisrq": {},
-    "frdash": {},
-    "frendash": {},
-    "fremdash": {},
-    "frkhangulfont": {},
-    "frkhangulfontfeature": {},
-    "activatefrcccmds": {},
-    "setpmhangulfont{}": {
-      "snippet": "setpmhangulfont{${1:font name}}"
-    },
-    "setpmhangulfont{}[]": {
-      "snippet": "setpmhangulfont{${1:font name}}[${2:font features}]"
-    },
-    "setpmhangulfont[]{}": {
-      "snippet": "setpmhangulfont[${2:font features}]{${1:font name}}"
-    },
-    "AddRule{}{}": {
-      "snippet": "AddRule{${1:cho|jung|jong}}{${2:keyvals}}"
-    },
-    "jamoul{}{}": {
-      "snippet": "jamoul{${1:ulem csname}}{${2:jamo text}}"
-    },
-    "frccg": {},
-    "frccG": {},
-    "frccn": {},
-    "frccd": {},
-    "frccD": {},
-    "frccr": {},
-    "frccm": {},
-    "frccb": {},
-    "frccB": {},
-    "frccs": {},
-    "frccS": {},
-    "frccq": {},
-    "frccQ": {},
-    "frccj": {},
-    "frccJ": {},
-    "frccc": {},
-    "frcck": {},
-    "frcct": {},
-    "frccp": {},
-    "frcch": {},
-    "frccz": {},
-    "frccX": {},
-    "frccv": {},
-    "frcca": {},
-    "frccai": {},
-    "frccia": {},
-    "frcciai": {},
-    "frcce": {},
-    "frccei": {},
-    "frccie": {},
-    "frcciei": {},
-    "frcco": {},
-    "frccoi": {},
-    "frccio": {},
-    "frccoa": {},
-    "frccoai": {},
-    "frccu": {},
-    "frccui": {},
-    "frcciu": {},
-    "frccue": {},
-    "frccuei": {},
-    "frcci": {},
-    "frccy": {},
-    "frccyi": {}
-  },
-  "envs": {
-    "jamotext": {}
-  },
-  "options": [
-    "zeroisx",
-    "hangulfont=${1:font name}",
-    "hangulfontfeature=${1:font feature}",
-    "frcccmds"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "hg",
+      "arg": {
+        "format": "{}",
+        "snippet": "hg{${1:words}}"
+      }
+    },
+    {
+      "name": "hangul"
+    },
+    {
+      "name": "endhangul"
+    },
+    {
+      "name": "jamoword",
+      "arg": {
+        "format": "{}",
+        "snippet": "jamoword{${1:words}}"
+      }
+    },
+    {
+      "name": "frcc",
+      "arg": {
+        "format": "{}",
+        "snippet": "frcc{${1:char}}"
+      }
+    },
+    {
+      "name": "rq"
+    },
+    {
+      "name": "zeroisx"
+    },
+    {
+      "name": "zeroisrq"
+    },
+    {
+      "name": "frdash"
+    },
+    {
+      "name": "frendash"
+    },
+    {
+      "name": "fremdash"
+    },
+    {
+      "name": "frkhangulfont",
+      "unusual": true
+    },
+    {
+      "name": "frkhangulfontfeature",
+      "unusual": true
+    },
+    {
+      "name": "activatefrcccmds"
+    },
+    {
+      "name": "setpmhangulfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpmhangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setpmhangulfont",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setpmhangulfont{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "AddRule",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddRule{${1:cho|${3:jung}|jong}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "jamoul",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "jamoul{${1:ulem csname}}{${2:jamo text}}"
+      }
+    },
+    {
+      "name": "RenewVowels",
+      "arg": {
+        "format": "{}",
+        "snippet": "RenewVowels{${1:vowels}}"
+      }
+    },
+    {
+      "name": "RenewLeadingZero",
+      "arg": {
+        "format": "{}",
+        "snippet": "RenewLeadingZero{${1:arg}}"
+      }
+    },
+    {
+      "name": "frccg",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccG",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccn",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccd",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccD",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccr",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccm",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccb",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccB",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccs",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccS",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccq",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccQ",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccj",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccJ",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccc",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcck",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcct",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccp",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcch",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccz",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccX",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccv",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcca",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccai",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccia",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcciai",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcce",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccei",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccie",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcciei",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcco",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccoi",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccio",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccoa",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccoai",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccu",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccui",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcciu",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccue",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccuei",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frcci",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccy",
+      "if": "frcccmds"
+    },
+    {
+      "name": "frccyi",
+      "if": "frcccmds"
+    }
+  ],
+  "envs": [
+    {
+      "name": "jamotext"
+    }
+  ],
+  "keys": {
+    "\\usepackage/pmhanguljamo-frkim#c": [
+      "zeroisx",
+      "hangulfont=${1:font name}",
+      "hangulfontfeature=${1:font feature}",
+      "frcccmds"
+    ]
+  },
+  "args": [
+    "\\usepackage/pmhanguljamo-frkim#c"
+  ]
 }

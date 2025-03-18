@@ -1,70 +1,181 @@
 {
-  "includes": {
-    "amsgen": []
-  },
-  "macros": {
-    "operatorname{}": {
-      "snippet": "operatorname{${1:name}}"
-    },
-    "operatorname*{}": {
-      "snippet": "operatorname*{${1:name}}"
-    },
-    "operatornamewithlimits{}": {
-      "snippet": "operatornamewithlimits{${1:name}}"
-    },
-    "qopname{}{}{}": {
-      "snippet": "qopname{${1:arg}}{${2:m or o}}{${3:name}}"
-    },
-    "DeclareMathOperator{}{}": {
-      "snippet": "DeclareMathOperator{${1:command}}{${2:definition}}"
-    },
-    "DeclareMathOperator*{}{}": {
-      "snippet": "DeclareMathOperator*{${1:command}}{${2:definition}}"
-    },
-    "operatorfont": {},
-    "arccos": {},
-    "arcsin": {},
-    "arctan": {},
-    "arg": {},
-    "cos": {},
-    "cosh": {},
-    "cot": {},
-    "coth": {},
-    "csc": {},
-    "deg": {},
-    "det": {},
-    "dim": {},
-    "exp": {},
-    "gcd": {},
-    "hom": {},
-    "inf": {},
-    "injlim": {},
-    "ker": {},
-    "lg": {},
-    "lim": {},
-    "liminf": {},
-    "limsup": {},
-    "ln": {},
-    "log": {},
-    "max": {},
-    "min": {},
-    "Pr": {},
-    "projlim": {},
-    "sec": {},
-    "sin": {},
-    "sinh": {},
-    "sup": {},
-    "tan": {},
-    "tanh": {},
-    "varinjlim": {},
-    "varprojlim": {},
-    "varliminf": {},
-    "varlimsup": {}
-  },
-  "envs": {},
-  "options": [
-    "namelimits",
-    "nonamelimits"
+  "deps": [
+    {
+      "name": "amsgen"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "operatorname",
+      "arg": {
+        "format": "{}",
+        "snippet": "operatorname{${1:name}}"
+      }
+    },
+    {
+      "name": "operatorname*",
+      "arg": {
+        "format": "{}",
+        "snippet": "operatorname*{${1:name}}"
+      }
+    },
+    {
+      "name": "operatornamewithlimits",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "operatornamewithlimits{${1:name}}"
+      }
+    },
+    {
+      "name": "qopname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "qopname{${1:arg}}{${2:m or o}}{${3:name}}"
+      }
+    },
+    {
+      "name": "DeclareMathOperator",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareMathOperator{${1:command}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "DeclareMathOperator*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareMathOperator*{${1:command}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "operatorfont",
+      "unusual": true
+    },
+    {
+      "name": "arccos"
+    },
+    {
+      "name": "arcsin"
+    },
+    {
+      "name": "arctan"
+    },
+    {
+      "name": "arg"
+    },
+    {
+      "name": "cos"
+    },
+    {
+      "name": "cosh"
+    },
+    {
+      "name": "cot"
+    },
+    {
+      "name": "coth"
+    },
+    {
+      "name": "csc"
+    },
+    {
+      "name": "deg"
+    },
+    {
+      "name": "det"
+    },
+    {
+      "name": "dim"
+    },
+    {
+      "name": "exp"
+    },
+    {
+      "name": "gcd"
+    },
+    {
+      "name": "hom"
+    },
+    {
+      "name": "inf"
+    },
+    {
+      "name": "injlim"
+    },
+    {
+      "name": "ker"
+    },
+    {
+      "name": "lg"
+    },
+    {
+      "name": "lim"
+    },
+    {
+      "name": "liminf"
+    },
+    {
+      "name": "limsup"
+    },
+    {
+      "name": "ln"
+    },
+    {
+      "name": "log"
+    },
+    {
+      "name": "max"
+    },
+    {
+      "name": "min"
+    },
+    {
+      "name": "Pr"
+    },
+    {
+      "name": "projlim"
+    },
+    {
+      "name": "sec"
+    },
+    {
+      "name": "sin"
+    },
+    {
+      "name": "sinh"
+    },
+    {
+      "name": "sup"
+    },
+    {
+      "name": "tan"
+    },
+    {
+      "name": "tanh"
+    },
+    {
+      "name": "varinjlim"
+    },
+    {
+      "name": "varprojlim"
+    },
+    {
+      "name": "varliminf"
+    },
+    {
+      "name": "varlimsup"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/amsopn#c": [
+      "namelimits",
+      "nonamelimits"
+    ]
+  },
+  "args": [
+    "\\usepackage/amsopn#c"
+  ]
 }

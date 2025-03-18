@@ -1,0 +1,761 @@
+{
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "pstricks"
+    }
+  ],
+  "macros": [
+    {
+      "name": "putsol"
+    },
+    {
+      "name": "normalnames"
+    },
+    {
+      "name": "reversednames"
+    },
+    {
+      "name": "Dr"
+    },
+    {
+      "name": "Prof"
+    },
+    {
+      "name": "ProfDr"
+    },
+    {
+      "name": "pieces",
+      "arg": {
+        "format": "{}",
+        "snippet": "pieces{${1:pieces}}"
+      }
+    },
+    {
+      "name": "pieces",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pieces[${2:white+black}]{${1:pieces}}"
+      }
+    },
+    {
+      "name": "fen",
+      "arg": {
+        "format": "{}",
+        "snippet": "fen{${1:pieces}}"
+      }
+    },
+    {
+      "name": "fen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fen[${2:white+black}]{${1:pieces}}"
+      }
+    },
+    {
+      "name": "stipulation",
+      "arg": {
+        "format": "{}",
+        "snippet": "stipulation{${1:stipulation}}"
+      }
+    },
+    {
+      "name": "stip",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "stip{${1:stipulation}}"
+      }
+    },
+    {
+      "name": "city",
+      "arg": {
+        "format": "{}",
+        "snippet": "city{${1:city}}"
+      }
+    },
+    {
+      "name": "specialdiagnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "specialdiagnum{${1:number}}"
+      }
+    },
+    {
+      "name": "sourcenr",
+      "arg": {
+        "format": "{}",
+        "snippet": "sourcenr{${1:number}}"
+      }
+    },
+    {
+      "name": "source",
+      "arg": {
+        "format": "{}",
+        "snippet": "source{${1:source}}"
+      }
+    },
+    {
+      "name": "issue",
+      "arg": {
+        "format": "{}",
+        "snippet": "issue{${1:number}}"
+      }
+    },
+    {
+      "name": "pages",
+      "arg": {
+        "format": "{}",
+        "snippet": "pages{${1:pages}}"
+      }
+    },
+    {
+      "name": "day",
+      "arg": {
+        "format": "{}",
+        "snippet": "day{${1:day}}"
+      }
+    },
+    {
+      "name": "month",
+      "arg": {
+        "format": "{}",
+        "snippet": "month{${1:month}}"
+      }
+    },
+    {
+      "name": "months",
+      "arg": {
+        "format": "{}",
+        "snippet": "months{${1:months}}"
+      }
+    },
+    {
+      "name": "year",
+      "arg": {
+        "format": "{}",
+        "snippet": "year{${1:year}}"
+      }
+    },
+    {
+      "name": "tournament",
+      "arg": {
+        "format": "{}",
+        "snippet": "tournament{${1:name}}"
+      }
+    },
+    {
+      "name": "tourn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tourn{${1:name}}"
+      }
+    },
+    {
+      "name": "award",
+      "arg": {
+        "format": "{}",
+        "snippet": "award{${1:name}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "dedication{${1:text}}"
+      }
+    },
+    {
+      "name": "dedic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dedic{${1:text}}"
+      }
+    },
+    {
+      "name": "condition",
+      "arg": {
+        "format": "{}",
+        "snippet": "condition{${1:text}}"
+      }
+    },
+    {
+      "name": "cond",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cond{${1:text}}"
+      }
+    },
+    {
+      "name": "twins",
+      "arg": {
+        "format": "{}",
+        "snippet": "twins{${1:text}}"
+      }
+    },
+    {
+      "name": "remark",
+      "arg": {
+        "format": "{}",
+        "snippet": "remark{${1:text}}"
+      }
+    },
+    {
+      "name": "rem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "rem{${1:text}}"
+      }
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "{}",
+        "snippet": "solution{${1:text}}"
+      }
+    },
+    {
+      "name": "sol",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sol{${1:text}}"
+      }
+    },
+    {
+      "name": "judgement",
+      "arg": {
+        "format": "{}",
+        "snippet": "judgement{${1:text}}"
+      }
+    },
+    {
+      "name": "comment",
+      "arg": {
+        "format": "{}",
+        "snippet": "comment{${1:text}}"
+      }
+    },
+    {
+      "name": "themes",
+      "arg": {
+        "format": "{}",
+        "snippet": "themes{${1:text}}"
+      }
+    },
+    {
+      "name": "verticalcylinder"
+    },
+    {
+      "name": "horizontalcylinder"
+    },
+    {
+      "name": "noframe"
+    },
+    {
+      "name": "noinnerframe"
+    },
+    {
+      "name": "gridchess"
+    },
+    {
+      "name": "stdgrid",
+      "unusual": true
+    },
+    {
+      "name": "diagleft"
+    },
+    {
+      "name": "diagcenter"
+    },
+    {
+      "name": "diagright"
+    },
+    {
+      "name": "widedias"
+    },
+    {
+      "name": "dianamestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "dianamestyle{${1:option%keyvals}}",
+        "keys": [
+          "\\dianamestyle#c,\\solnamestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "solnamestyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "solnamestyle{${1:option%keyvals}}",
+        "keys": [
+          "\\dianamestyle#c,\\solnamestyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "diagnumbering",
+      "arg": {
+        "format": "{}",
+        "snippet": "diagnumbering{${1:numstyle%keyvals}}",
+        "keys": [
+          "\\diagnumbering#c,\\setmonthstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmonthstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonthstyle{${1:numstyle%keyvals}}",
+        "keys": [
+          "\\diagnumbering#c,\\setmonthstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nocomputer"
+    },
+    {
+      "name": "showcomputer"
+    },
+    {
+      "name": "notcomputerproofedsymbol",
+      "unusual": true
+    },
+    {
+      "name": "computerproofedsymbol",
+      "unusual": true
+    },
+    {
+      "name": "selectelchfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectelchfont{${1:type%keyvals}}",
+        "keys": [
+          "\\selectelchfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "diagramx",
+      "unusual": true
+    },
+    {
+      "name": "diagramxi",
+      "unusual": true
+    },
+    {
+      "name": "diagramxii",
+      "unusual": true
+    },
+    {
+      "name": "diagnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "diagnum{${1:number}}"
+      }
+    },
+    {
+      "name": "diagnum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "diagnum[${2:prefix}]{${1:number}}"
+      }
+    },
+    {
+      "name": "spacelayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "spacelayout{${1:type%keyvals}}",
+        "keys": [
+          "\\spacelayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "allwhite"
+    },
+    {
+      "name": "switchcolors"
+    },
+    {
+      "name": "nofields",
+      "arg": {
+        "format": "{}",
+        "snippet": "nofields{${1:list of squares}}"
+      }
+    },
+    {
+      "name": "nosquares",
+      "arg": {
+        "format": "{}",
+        "snippet": "nosquares{${1:list of squares}}"
+      }
+    },
+    {
+      "name": "fieldframe",
+      "arg": {
+        "format": "{}",
+        "snippet": "fieldframe{${1:list of fields}}"
+      }
+    },
+    {
+      "name": "magic",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "magic{${1:list of fields}}"
+      }
+    },
+    {
+      "name": "gridlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "gridlines{${1:list of lines}}"
+      }
+    },
+    {
+      "name": "swL"
+    },
+    {
+      "name": "ssL"
+    },
+    {
+      "name": "wNr"
+    },
+    {
+      "name": "nNr"
+    },
+    {
+      "name": "sNr"
+    },
+    {
+      "name": "wGh"
+    },
+    {
+      "name": "nGh"
+    },
+    {
+      "name": "sGh"
+    },
+    {
+      "name": "Imi"
+    },
+    {
+      "name": "wC"
+    },
+    {
+      "name": "nC"
+    },
+    {
+      "name": "sC"
+    },
+    {
+      "name": "wE"
+    },
+    {
+      "name": "sE"
+    },
+    {
+      "name": "nE"
+    },
+    {
+      "name": "wX"
+    },
+    {
+      "name": "sX"
+    },
+    {
+      "name": "nX"
+    },
+    {
+      "name": "set"
+    },
+    {
+      "name": "ra"
+    },
+    {
+      "name": "lra"
+    },
+    {
+      "name": "OO"
+    },
+    {
+      "name": "OOO"
+    },
+    {
+      "name": "x"
+    },
+    {
+      "name": "any"
+    },
+    {
+      "name": "DefinePieces",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DefinePieces{${1:color letters}}{${2:piece letters}}{${3:rotation letters}}"
+      }
+    },
+    {
+      "name": "develop"
+    },
+    {
+      "name": "makeaindex"
+    },
+    {
+      "name": "authorindex"
+    },
+    {
+      "name": "makesindex"
+    },
+    {
+      "name": "sourceindex"
+    },
+    {
+      "name": "maketindex"
+    },
+    {
+      "name": "themeindex"
+    },
+    {
+      "name": "solpar"
+    },
+    {
+      "name": "after",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "after{${1:arg}}"
+      }
+    },
+    {
+      "name": "authorfont",
+      "unusual": true
+    },
+    {
+      "name": "awardfont",
+      "unusual": true
+    },
+    {
+      "name": "cityfont",
+      "unusual": true
+    },
+    {
+      "name": "Co",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Co{${1:arg}}"
+      }
+    },
+    {
+      "name": "correction",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "correction{${1:arg}}"
+      }
+    },
+    {
+      "name": "dedicfont",
+      "unusual": true
+    },
+    {
+      "name": "DefaultDiagramSize",
+      "unusual": true
+    },
+    {
+      "name": "defaultelchfont",
+      "unusual": true
+    },
+    {
+      "name": "elchfont",
+      "unusual": true
+    },
+    {
+      "name": "fidealbum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fidealbum{${1:arg}}"
+      }
+    },
+    {
+      "name": "further",
+      "unusual": true
+    },
+    {
+      "name": "ifimitator",
+      "unusual": true
+    },
+    {
+      "name": "imitatorfalse",
+      "unusual": true
+    },
+    {
+      "name": "imitatortrue",
+      "unusual": true
+    },
+    {
+      "name": "labelfont",
+      "unusual": true
+    },
+    {
+      "name": "legendfont",
+      "unusual": true
+    },
+    {
+      "name": "nodiagnumbering",
+      "unusual": true
+    },
+    {
+      "name": "normalboardwidth",
+      "unusual": true
+    },
+    {
+      "name": "nowidedias",
+      "unusual": true
+    },
+    {
+      "name": "remfont",
+      "unusual": true
+    },
+    {
+      "name": "rla",
+      "unusual": true
+    },
+    {
+      "name": "setboardwidth",
+      "unusual": true
+    },
+    {
+      "name": "showlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showlabel{${1:arg}}"
+      }
+    },
+    {
+      "name": "showtypis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showtypis{${1:arg}}"
+      }
+    },
+    {
+      "name": "solafterdiagram",
+      "unusual": true
+    },
+    {
+      "name": "solhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "solhead{${1:arg}}"
+      }
+    },
+    {
+      "name": "sourcefont",
+      "unusual": true
+    },
+    {
+      "name": "spacehorizontal",
+      "unusual": true
+    },
+    {
+      "name": "stipfont",
+      "unusual": true
+    },
+    {
+      "name": "textproblem",
+      "unusual": true
+    },
+    {
+      "name": "thediag",
+      "unusual": true
+    },
+    {
+      "name": "topdist",
+      "unusual": true
+    },
+    {
+      "name": "version",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "version{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "diagram"
+    },
+    {
+      "name": "diagram",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:<cols>x<${2:rows}>}]"
+      }
+    },
+    {
+      "name": "stereodiagram"
+    },
+    {
+      "name": "spacediagram"
+    },
+    {
+      "name": "figurine"
+    }
+  ],
+  "keys": {
+    "\\usepackage/diagram#c": [
+      "10pt",
+      "11pt",
+      "12pt"
+    ],
+    "\\dianamestyle#c,\\solnamestyle#c": [
+      "fullname",
+      "sirname",
+      "short",
+      "noname"
+    ],
+    "\\diagnumbering#c,\\setmonthstyle#c": [
+      "arabic",
+      "Roman",
+      "roman",
+      "Alph",
+      "alph"
+    ],
+    "\\selectelchfont": [
+      "pk",
+      "fs"
+    ],
+    "\\spacelayout": [
+      "vertical",
+      "horizontal"
+    ]
+  },
+  "args": [
+    "\\usepackage/diagram#c"
+  ]
+}

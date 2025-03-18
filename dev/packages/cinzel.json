@@ -1,28 +1,59 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "cinzel": {},
-    "textcinzel{}": {
-      "snippet": "textcinzel{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "cinzelblack": {},
-    "textcinzelblack{}": {
-      "snippet": "textcinzelblack{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "cinzelfamily": {}
-  },
-  "envs": {},
-  "options": [
-    "type1",
-    "black",
-    "default"
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "cinzel"
+    },
+    {
+      "name": "textcinzel",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcinzel{${1:text}}"
+      }
+    },
+    {
+      "name": "cinzelblack"
+    },
+    {
+      "name": "textcinzelblack",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcinzelblack{${1:text}}"
+      }
+    },
+    {
+      "name": "cinzelfamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cinzel#c": [
+      "type1",
+      "black",
+      "default"
+    ]
+  },
+  "args": [
+    "\\usepackage/cinzel#c"
+  ]
 }

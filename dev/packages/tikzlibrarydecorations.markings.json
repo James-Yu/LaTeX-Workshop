@@ -1,22 +1,40 @@
 {
-  "includes": {
-    "tikzlibrarydecorations": []
-  },
-  "macros": {
-    "arrow{}": {
-      "snippet": "arrow{${1:arrow end tip}}"
-    },
-    "arrow[]{}": {
-      "snippet": "arrow[${2:options}]{${1:arrow end tip}}"
-    },
-    "arrowreversed{}": {
-      "snippet": "arrowreversed{${1:arrow end tip}}"
-    },
-    "arrowreversed[]{}": {
-      "snippet": "arrowreversed[${2:options}]{${1:arrow end tip}}"
+  "deps": [
+    {
+      "name": "tikzlibrarydecorations"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrow{${1:arrow end tip}}"
+      }
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "arrow[${2:options%keyvals}]{${1:arrow end tip}}"
+      }
+    },
+    {
+      "name": "arrowreversed",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrowreversed{${1:arrow end tip}}"
+      }
+    },
+    {
+      "name": "arrowreversed",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "arrowreversed[${2:options%keyvals}]{${1:arrow end tip}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

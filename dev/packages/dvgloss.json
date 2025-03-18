@@ -1,73 +1,205 @@
 {
-  "includes": {},
-  "macros": {
-    "gl{}{}": {
-      "snippet": "gl{${1:gloss}}{${2:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "gl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gl{${1:gloss}}{${2:text%plain}}"
+      }
     },
-    "ft{}": {
-      "snippet": "ft{${1:translation text}}"
+    {
+      "name": "ft",
+      "arg": {
+        "format": "{}",
+        "snippet": "ft{${1:translation text%text}}"
+      }
     },
-    "lb{}": {
-      "snippet": "lb{${1:label text}}"
+    {
+      "name": "lb",
+      "arg": {
+        "format": "{}",
+        "snippet": "lb{${1:label text%text}}"
+      }
     },
-    "glescape": {},
-    "glossword{}{}": {
-      "snippet": "glossword{${1:word1}}{${2:word2}}"
+    {
+      "name": "glescape",
+      "unusual": true
     },
-    "aboveglftskip": {},
-    "aboveglskip": {},
-    "addtokens{}": {
-      "snippet": "addtokens{${1:arg}}"
+    {
+      "name": "glossword",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "glossword{${1:word1}}{${2:word2}}"
+      }
     },
-    "betweenglskip": {},
-    "checkspecial{}": {
-      "snippet": "checkspecial{${1:arg}}"
+    {
+      "name": "aboveglftskip",
+      "unusual": true
     },
-    "dvglspecials": {},
-    "everygla": {},
-    "everyglb": {},
-    "fixglstrut": {},
-    "glhangindent": {},
-    "glspace": {},
-    "glstrut": {},
-    "glstrutdepth": {},
-    "glstrutheight": {},
-    "ifnotin{}{}": {
-      "snippet": "ifnotin{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "aboveglskip",
+      "unusual": true
     },
-    "ifspecial": {},
-    "istchar": {},
-    "makespecial{}": {
-      "snippet": "makespecial{${1:arg}}"
+    {
+      "name": "addtokens",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtokens{${1:arg}}"
+      }
     },
-    "noglstrut": {},
-    "pop{}": {
-      "snippet": "pop{${1:arg}}"
+    {
+      "name": "betweenglskip",
+      "unusual": true
     },
-    "popoff{}": {
-      "snippet": "popoff{${1:arg}}"
+    {
+      "name": "checkspecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "checkspecial{${1:arg}}"
+      }
     },
-    "restchars": {},
-    "specialfalse": {},
-    "specialtrue": {},
-    "split{}": {
-      "snippet": "split{${1:arg}}"
+    {
+      "name": "dvglspecials",
+      "unusual": true
     },
-    "ssplit{}{}": {
-      "snippet": "ssplit{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "everygla",
+      "unusual": true
     },
-    "ta{}": {
-      "snippet": "ta{${1:arg}}"
+    {
+      "name": "everyglb",
+      "unusual": true
     },
-    "tb{}": {
-      "snippet": "tb{${1:arg}}"
+    {
+      "name": "fixglstrut",
+      "unusual": true
     },
-    "withinglskip": {},
-    "zipper{}": {
-      "snippet": "zipper{${1:arg}}"
+    {
+      "name": "glhangindent",
+      "unusual": true
+    },
+    {
+      "name": "glspace",
+      "unusual": true
+    },
+    {
+      "name": "glstrut",
+      "unusual": true
+    },
+    {
+      "name": "glstrutdepth",
+      "unusual": true
+    },
+    {
+      "name": "glstrutheight",
+      "unusual": true
+    },
+    {
+      "name": "ifnotin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifnotin{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ifspecial",
+      "unusual": true
+    },
+    {
+      "name": "istchar",
+      "unusual": true
+    },
+    {
+      "name": "makespecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makespecial{${1:arg}}"
+      }
+    },
+    {
+      "name": "noglstrut",
+      "unusual": true
+    },
+    {
+      "name": "pop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pop{${1:arg}}"
+      }
+    },
+    {
+      "name": "popoff",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "popoff{${1:arg}}"
+      }
+    },
+    {
+      "name": "restchars",
+      "unusual": true
+    },
+    {
+      "name": "specialfalse",
+      "unusual": true
+    },
+    {
+      "name": "specialtrue",
+      "unusual": true
+    },
+    {
+      "name": "split",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "split{${1:arg}}"
+      }
+    },
+    {
+      "name": "ssplit",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ssplit{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ta{${1:arg}}"
+      }
+    },
+    {
+      "name": "tb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tb{${1:arg}}"
+      }
+    },
+    {
+      "name": "withinglskip",
+      "unusual": true
+    },
+    {
+      "name": "zipper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zipper{${1:arg}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

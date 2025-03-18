@@ -1,29 +1,53 @@
 {
-  "includes": {
-    "amsmath": [],
-    "xkeyval": [],
-    "newpxmath": []
-  },
-  "macros": {
-    "mathfrak{}": {
-      "snippet": "mathfrak{${1:text}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "varmathfrak{}": {
-      "snippet": "varmathfrak{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "varmathscr{}": {
-      "snippet": "varmathscr{${1:text}}"
-    },
-    "varaleph": {},
-    "varsum": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "nonpxmath",
-    "noslant"
+    {
+      "name": "newpxmath"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathfrak{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "varmathfrak",
+      "arg": {
+        "format": "{}",
+        "snippet": "varmathfrak{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "varmathscr",
+      "arg": {
+        "format": "{}",
+        "snippet": "varmathscr{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "varaleph"
+    },
+    {
+      "name": "varsum"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/eulerpx#c": [
+      "scale=${1:factor}",
+      "nonpxmath",
+      "noslant"
+    ]
+  },
+  "args": [
+    "\\usepackage/eulerpx#c"
+  ]
 }

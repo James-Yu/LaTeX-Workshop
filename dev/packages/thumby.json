@@ -1,50 +1,108 @@
 {
-  "includes": {
-    "tikz": [],
-    "perltex": [],
-    "bophook": []
-  },
-  "macros": {
-    "thumbyNumberFormat{}": {
-      "snippet": "thumbyNumberFormat{${1:format}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "thumbySides{}": {
-      "snippet": "thumbySides{${1:one or two}}"
+    {
+      "name": "perltex"
     },
-    "thumbyBackground{}": {
-      "snippet": "thumbyBackground{${1:color}}"
-    },
-    "thumbyForeground{}": {
-      "snippet": "thumbyForeground{${1:color}}"
-    },
-    "thumbyPageHeight{}": {
-      "snippet": "thumbyPageHeight{${1:points}}"
-    },
-    "thumbyThumbWidth{}": {
-      "snippet": "thumbyThumbWidth{${1:points}}"
-    },
-    "thumbySetup": {},
-    "thumbyTotalChapters{}": {
-      "snippet": "thumbyTotalChapters{${1:number}}"
-    },
-    "thumbychapnum": {},
-    "thumbyprintthumb{}{}": {
-      "snippet": "thumbyprintthumb{${1:number}}{${2:left or right}}"
-    },
-    "thumbyprintthumbleft{}": {
-      "snippet": "thumbyprintthumbleft{${1:number}}"
-    },
-    "thumbyprintthumbright{}": {
-      "snippet": "thumbyprintthumbright{${1:number}}"
+    {
+      "name": "bophook"
     }
-  },
-  "envs": {},
-  "options": [
-    "minitoc",
-    "box",
-    "filledbox",
-    "oval",
-    "filledoval"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "thumbyNumberFormat",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyNumberFormat{${1:format}}"
+      }
+    },
+    {
+      "name": "thumbySides",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbySides{${1:one or two}}"
+      }
+    },
+    {
+      "name": "thumbyBackground",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyBackground{${1:color}}"
+      }
+    },
+    {
+      "name": "thumbyForeground",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyForeground{${1:color}}"
+      }
+    },
+    {
+      "name": "thumbyPageHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyPageHeight{${1:points}}"
+      }
+    },
+    {
+      "name": "thumbyThumbWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyThumbWidth{${1:points}}"
+      }
+    },
+    {
+      "name": "thumbySetup"
+    },
+    {
+      "name": "thumbyTotalChapters",
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyTotalChapters{${1:number}}"
+      }
+    },
+    {
+      "name": "thumbychapnum",
+      "unusual": true
+    },
+    {
+      "name": "thumbyprintthumb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "thumbyprintthumb{${1:number}}{${2:left or right}}"
+      }
+    },
+    {
+      "name": "thumbyprintthumbleft",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyprintthumbleft{${1:number}}"
+      }
+    },
+    {
+      "name": "thumbyprintthumbright",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thumbyprintthumbright{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/thumb#c": [
+      "minitoc",
+      "box",
+      "filledbox",
+      "oval",
+      "filledoval"
+    ]
+  },
+  "args": [
+    "\\usepackage/thumb#c"
+  ]
 }

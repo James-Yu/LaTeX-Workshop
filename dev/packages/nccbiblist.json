@@ -1,20 +1,31 @@
 {
-  "includes": {
-    "topsection": []
-  },
-  "macros": {
-    "bibliststyle": {}
-  },
-  "envs": {
-    "biblist{}": {
-      "name": "biblist",
-      "snippet": "{${1:prototype}}"
-    },
-    "biblist[]{}": {
-      "name": "biblist",
-      "snippet": "[${2:starting num}]{${1:prototype}}"
+  "deps": [
+    {
+      "name": "topsection"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "bibliststyle",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "biblist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:prototype}}"
+      }
+    },
+    {
+      "name": "biblist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:starting num}]{${1:prototype}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

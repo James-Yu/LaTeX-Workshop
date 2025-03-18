@@ -1,23 +1,38 @@
 {
-  "includes": {},
-  "macros": {
-    "dofilebyline{}": {
-      "snippet": "dofilebyline{${1:file}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "dofilebyline",
+      "arg": {
+        "format": "{}",
+        "snippet": "dofilebyline{${1:file}}"
+      }
     },
-    "dofilebyline*{}": {
-      "snippet": "dofilebyline*{${1:file}}"
+    {
+      "name": "dofilebyline*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dofilebyline*{${1:file}}"
+      }
     }
-  },
-  "envs": {
-    "parse lines{}": {
+  ],
+  "envs": [
+    {
       "name": "parse lines",
-      "snippet": "{${1:one-parameter-macro}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:one-parameter-macro}}"
+      }
     },
-    "parse lines[]{}": {
+    {
       "name": "parse lines",
-      "snippet": "[${2:initialization}]{${1:one-parameter-macro}}"
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:initialization}]{${1:one-parameter-macro}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

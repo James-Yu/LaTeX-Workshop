@@ -1,42 +1,86 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "tikz": [],
-    "tikzlibraryexternal": [],
-    "standalone": [],
-    "hep-plot": [
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryexternal"
+    },
+    {
+      "name": "standalone"
+    },
+    {
+      "name": "hep-plot",
+      "if": "plot"
+    },
+    {
+      "name": "hep-plot",
+      "if": "plot=true"
+    },
+    {
+      "name": "hep-feynman",
+      "if": "feynman"
+    },
+    {
+      "name": "hep-feynman",
+      "if": "feynman=true"
+    }
+  ],
+  "macros": [
+    {
+      "name": "graphicpath",
+      "arg": {
+        "format": "{}",
+        "snippet": "graphicpath{${1:path%definition}}"
+      }
+    },
+    {
+      "name": "includetikz",
+      "arg": {
+        "format": "{}",
+        "snippet": "includetikz{${1:file}}"
+      }
+    },
+    {
+      "name": "includetikz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includetikz[${2:width%plain}]{${1:file}}"
+      }
+    },
+    {
+      "name": "includetikz*",
+      "arg": {
+        "format": "{}",
+        "snippet": "includetikz*{${1:file}}"
+      }
+    },
+    {
+      "name": "includetikz*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includetikz*[${2:width%plain}]{${1:file}}"
+      }
+    },
+    {
+      "name": "includefeynman",
+      "arg": {
+        "format": "{}",
+        "snippet": "includefeynman{${1:file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hep-graphic#c": [
       "plot",
-      "plot=true"
-    ],
-    "hep-feynman": [
-      "feynman",
-      "feynman=true"
+      "feynman"
     ]
   },
-  "macros": {
-    "graphicpath{}": {
-      "snippet": "graphicpath{${1:path}}"
-    },
-    "includetikz{}": {
-      "snippet": "includetikz{${1:file}}"
-    },
-    "includetikz[]{}": {
-      "snippet": "includetikz[${2:width}]{${1:file}}"
-    },
-    "includetikz*{}": {
-      "snippet": "includetikz*{${1:file}}"
-    },
-    "includetikz*[]{}": {
-      "snippet": "includetikz*[${2:width}]{${1:file}}"
-    },
-    "includefeynman{}": {
-      "snippet": "includefeynman{${1:file}}"
-    }
-  },
-  "envs": {},
-  "options": [
-    "plot",
-    "feynman"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/hep-graphic#c"
+  ]
 }

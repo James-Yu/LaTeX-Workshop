@@ -105,7 +105,9 @@ abstract class InputAbstract implements CompletionProvider {
                         suggestions.push(item)
                     }
                 })
-            } catch (error) {}
+            } catch (err) {
+                logger.logError(`Error reading directory ${dir} .` ,err)
+            }
         })
         return suggestions
     }

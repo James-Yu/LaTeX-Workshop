@@ -1,41 +1,78 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "xkeyval": [],
-    "ifetex": []
-  },
-  "macros": {
-    "Figure{}": {
-      "snippet": "Figure{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "Figure[]{}": {
-      "snippet": "Figure[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "Figure*{}": {
-      "snippet": "Figure*{${1:imagefile}}"
-    },
-    "Figure*[]{}": {
-      "snippet": "Figure*[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "easyfigdefault{}": {
-      "snippet": "easyfigdefault{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "easyfigdefault*{}": {
-      "snippet": "easyfigdefault*{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifetex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "{}",
+        "snippet": "Figure{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "Figure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Figure[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\Figure,\\Figure*,\\easyfigdefault,\\easyfigdefault*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Figure*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Figure*{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "Figure*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Figure*[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\Figure,\\Figure*,\\easyfigdefault,\\easyfigdefault*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "easyfigdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "easyfigdefault{${1:options%keyvals}}",
+        "keys": [
+          "\\Figure,\\Figure*,\\easyfigdefault,\\easyfigdefault*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "easyfigdefault*",
+      "arg": {
+        "format": "{}",
+        "snippet": "easyfigdefault*{${1:options%keyvals}}",
+        "keys": [
+          "\\Figure,\\Figure*,\\easyfigdefault,\\easyfigdefault*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Figure,\\Figure*,\\easyfigdefault,\\easyfigdefault*": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -45,7 +82,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -102,7 +139,7 @@
       "sep=",
       "rndcornersbox",
       "rndfbox",
-      "valign=",
+      "valign=${1|T,M,B,t,m,b|}",
       "raise=",
       "set height=",
       "set depth=",
@@ -186,7 +223,7 @@
       "execute=${1:code}",
       "Execute=${1:code}",
       "phantom",
-      "phantom=",
+      "phantom=${1|h,v|}",
       "gobble",
       "discard",
       "content=${1:new content}",
@@ -202,5 +239,6 @@
       "here",
       "twocolumn"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,447 +1,1349 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "defaultL": {},
-    "defaultP": {},
-    "defaultS": {},
-    "cL": {},
-    "cP": {},
-    "cS": {},
-    "co": {},
-    "parity": {},
-    "llog": {},
-    "poly": {},
-    "polylog": {},
-    "qpoly": {},
-    "qlog": {},
-    "MOD": {},
-    "Mod": {},
-    "CVP": {},
-    "SAT": {},
-    "MaxSAT": {},
-    "AC": {
-      "detail": "∿",
-      "documentation": "SINE WAVE, alternating current"
-    },
-    "A": {
-      "detail": "𝐴",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL A"
-    },
-    "ACC": {},
-    "AH": {},
-    "AL": {},
-    "AlgP": {},
-    "AM": {},
-    "AMEXP": {},
-    "Amp": {},
-    "AmpMP": {},
-    "AmpPBQP": {},
-    "AP": {},
-    "APP": {},
-    "APX": {},
-    "AUCSPACE": {},
-    "AuxPDA": {},
-    "AVBPP": {},
-    "AvE": {},
-    "AvP": {},
-    "AW": {},
-    "AWPP": {},
-    "betaP": {},
-    "BH": {},
-    "BP": {},
-    "BPE": {},
-    "BPEE": {},
-    "BPHSPACE": {},
-    "BPL": {},
-    "BPP": {},
-    "BPPOBDD": {},
-    "BPPpath": {},
-    "BPQP": {},
-    "BPSPACE": {},
-    "BPTIME": {},
-    "BQNC": {},
-    "BQNP": {},
-    "BQP": {},
-    "BQPOBDD": {},
-    "BQTIME": {},
-    "C": {
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
-    },
-    "cc": {},
-    "CeL": {},
-    "CeP": {},
-    "CFL": {},
-    "CH": {},
-    "CkP": {},
-    "CLOG": {},
-    "CNP": {},
-    "coAM": {},
-    "coBPP": {},
-    "coCeP": {},
-    "cofrIP": {},
-    "Coh": {},
-    "coMA": {},
-    "compIP": {},
-    "compNP": {},
-    "coNE": {},
-    "coNEXP": {},
-    "coNL": {},
-    "coNP": {},
-    "coNQP": {},
-    "coRE": {},
-    "coRNC": {},
-    "coRP": {},
-    "coSL": {},
-    "coUCC": {},
-    "coUP": {},
-    "CP": {},
-    "CSIZE": {},
-    "CSL": {},
-    "CZK": {},
-    "D": {
-      "detail": "𝐷",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL D"
-    },
-    "DCFL": {},
-    "DET": {},
-    "DiffAC": {},
-    "DisNP": {},
-    "DistNP": {},
-    "DP": {},
-    "DQP": {},
-    "DSPACE": {},
-    "DTIME": {},
-    "DTISP": {},
-    "Dyn": {},
-    "DynFO": {},
-    "E": {
-      "detail": "𝐸",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL E"
-    },
-    "EE": {},
-    "EEE": {},
-    "EESPACE": {},
-    "EEXP": {},
-    "EH": {},
-    "EL": {},
-    "ELEMENTARY": {},
-    "ELkP": {},
-    "EPTAS": {},
-    "EQBP": {},
-    "EQP": {},
-    "EQTIME": {},
-    "ESPACE": {},
-    "ExistsBPP": {},
-    "ExistsNISZK": {},
-    "EXP": {},
-    "EXPSPACE": {},
-    "FBQP": {},
-    "Few": {},
-    "FewP": {},
-    "FH": {},
-    "FNL": {},
-    "FNP": {},
-    "FO": {},
-    "FOLL": {},
-    "FP": {},
-    "FPR": {},
-    "FPRAS": {},
-    "FPT": {},
-    "FPTAS": {},
-    "FPTnu": {},
-    "FPTsu": {},
-    "FQMA": {},
-    "frIP": {},
-    "FTAPE": {},
-    "FTIME": {},
-    "G": {
-      "detail": "𝐺",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL G"
-    },
-    "GA": {},
-    "GANSPACE": {},
-    "Gap": {},
-    "GapAC": {},
-    "GapL": {},
-    "GapP": {},
-    "GC": {},
-    "GCSL": {},
-    "GI": {},
-    "GPCD": {},
-    "Heur": {},
-    "HeurBPP": {},
-    "HeurBPTIME": {},
-    "HkP": {},
-    "HSPACE": {},
-    "HVSZK": {},
-    "IC": {},
-    "IP": {},
-    "IPP": {},
-    "K": {
-      "detail": "𝐾",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL K"
-    },
-    "kBQBP": {},
-    "kBWBP": {},
-    "kEQBP": {},
-    "kPBP": {},
-    "KT": {},
-    "LIN": {},
-    "LkP": {},
-    "LOGCFL": {},
-    "LogFew": {},
-    "LogFewNL": {},
-    "LOGNP": {},
-    "LOGSNP": {},
-    "LWPP": {},
-    "M": {
-      "detail": "𝑀",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL M"
-    },
-    "MA": {},
-    "MAC": {},
-    "MAE": {},
-    "MAEXP": {},
-    "mAL": {},
-    "MaxNP": {},
-    "MaxPB": {},
-    "MaxSNP": {},
-    "mcoNL": {},
-    "MinPB": {},
-    "MIP": {},
-    "MkP": {},
-    "mL": {},
-    "mNC": {},
-    "mNL": {},
-    "mNP": {},
-    "ModkL": {},
-    "ModkP": {},
-    "ModP": {},
-    "ModZkL": {},
-    "mP": {},
-    "MP": {},
-    "MPC": {},
-    "mTC": {},
-    "NAuxPDA": {},
-    "NC": {},
-    "NE": {},
-    "NEE": {},
-    "NEEE": {},
-    "NEEXP": {},
-    "NEXP": {},
-    "NIPZK": {},
-    "NIQPZK": {},
-    "NIQSZK": {},
-    "NISZK": {},
-    "NL": {},
-    "NLIN": {},
-    "NLOG": {},
-    "NP": {},
-    "NPC": {},
-    "NPI": {},
-    "NPMV": {},
-    "NPMVsel": {},
-    "NPO": {},
-    "NPOPB": {},
-    "NPSPACE": {},
-    "NPSV": {},
-    "NPSVsel": {},
-    "NQP": {},
-    "NSPACE": {},
-    "NT": {},
-    "NTIME": {},
-    "OBDD": {},
-    "OCQ": {},
-    "Opt": {},
-    "OptP": {},
-    "p": {
-      "detail": "𝑝",
-      "documentation": "MATHEMATICAL ITALIC SMALL P"
-    },
-    "PAC": {},
-    "PBP": {},
-    "PCD": {},
-    "Pclose": {},
-    "PCP": {},
-    "PermUP": {},
-    "PEXP": {},
-    "PF": {},
-    "PFCHK": {},
-    "PH": {},
-    "PhP": {},
-    "PINC": {},
-    "PIO": {},
-    "PKC": {},
-    "PL": {},
-    "PLF": {},
-    "PLL": {},
-    "PLS": {},
-    "POBDD": {},
-    "PODN": {},
-    "polyL": {},
-    "PostBQP": {},
-    "PP": {},
-    "PPA": {},
-    "PPAD": {},
-    "PPADS": {},
-    "Ppoly": {},
-    "PPP": {},
-    "PPSPACE": {},
-    "PQUERY": {},
-    "PR": {},
-    "PrHSPACE": {},
-    "Promise": {},
-    "PromiseBPP": {},
-    "PromiseBQP": {},
-    "PromiseP": {},
-    "PromiseRP": {},
-    "promiseBPP": {},
-    "promiseBQP": {},
-    "promiseP": {},
-    "promiseRP": {},
-    "PrSPACE": {},
-    "PSel": {},
-    "PSK": {},
-    "PSPACE": {},
-    "PT": {},
-    "PTAPE": {},
-    "PTAS": {},
-    "PTWK": {},
-    "PZK": {},
-    "QAC": {},
-    "QACC": {},
-    "QAM": {},
-    "QCFL": {},
-    "QCMA": {},
-    "QH": {},
-    "QIP": {},
-    "QMA": {},
-    "QMAM": {},
-    "QMIP": {},
-    "QMIPle": {},
-    "QMIPne": {},
-    "QNC": {},
-    "QP": {},
-    "QPLIN": {},
-    "Qpoly": {},
-    "QPSPACE": {},
-    "QSZK": {},
-    "R": {
-      "detail": "𝑅",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL R"
-    },
-    "RE": {},
-    "REG": {},
-    "RevSPACE": {},
-    "RHL": {},
-    "RHSPACE": {},
-    "RL": {},
-    "RNC": {},
-    "RNP": {},
-    "RP": {},
-    "RPP": {},
-    "RSPACE": {},
-    "SAC": {},
-    "SAPTIME": {},
-    "SBP": {},
-    "SC": {},
-    "SE": {},
-    "SEH": {},
-    "Sel": {},
-    "SelfNP": {},
-    "SF": {},
-    "SIZE": {},
-    "SKC": {},
-    "SL": {},
-    "SLICEWISEPSPACE": {},
-    "SNP": {},
-    "SOE": {},
-    "SP": {},
-    "SPACE": {},
-    "spanP": {},
-    "SPARSE": {},
-    "SPL": {},
-    "SPP": {},
-    "SUBEXP": {},
-    "symP": {},
-    "SZK": {},
-    "TALLY": {},
-    "TC": {},
-    "TFNP": {},
-    "ThC": {},
-    "TreeBQP": {},
-    "TREEREGULAR": {},
-    "UAP": {},
-    "UCC": {},
-    "UE": {},
-    "UL": {},
-    "UP": {},
-    "US": {},
-    "VNC": {},
-    "VNP": {},
-    "VP": {},
-    "VQP": {},
-    "W": {
-      "detail": "𝑊",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL W"
-    },
-    "WAPP": {},
-    "WPP": {},
-    "XORMIP": {},
-    "XP": {},
-    "XPuniform": {},
-    "YACC": {},
-    "ZPE": {},
-    "ZPP": {},
-    "ZPTIME": {},
-    "newclass{}{}": {
-      "snippet": "newclass{${1:cmd}}{${2:class_name}}"
-    },
-    "renewclass{}{}": {
-      "snippet": "renewclass{${1:cmd}}{${2:class_name}}"
-    },
-    "class{}": {
-      "snippet": "class{${1:class_name}}"
-    },
-    "ComplexityFont": {},
-    "newlang{}{}": {
-      "snippet": "newlang{${1:cmd}}{${2:language_name}}"
-    },
-    "renewlang{}{}": {
-      "snippet": "renewlang{${1:cmd}}{${2:language_name}}"
-    },
-    "lang{}": {
-      "snippet": "lang{${1:language_name}}"
-    },
-    "newfunc{}{}": {
-      "snippet": "newfunc{${1:cmd}}{${2:function_name}}"
-    },
-    "renewfunc{}{}": {
-      "snippet": "renewfunc{${1:cmd}}{${2:function_name}}"
-    },
-    "func{}": {
-      "snippet": "func{${1:function_name}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "full",
-    "basic",
-    "disableredefinitions",
-    "sanserif",
-    "roman",
-    "bold",
-    "typewriter",
-    "italic",
-    "caps",
-    "slant",
-    "classfont=",
-    "langfont=",
-    "funcfont=",
-    "small"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "defaultL",
+      "unusual": true
+    },
+    {
+      "name": "defaultP",
+      "unusual": true
+    },
+    {
+      "name": "defaultS",
+      "unusual": true
+    },
+    {
+      "name": "cL",
+      "unusual": true
+    },
+    {
+      "name": "cP",
+      "unusual": true
+    },
+    {
+      "name": "cS",
+      "unusual": true
+    },
+    {
+      "name": "co"
+    },
+    {
+      "name": "parity"
+    },
+    {
+      "name": "llog"
+    },
+    {
+      "name": "poly"
+    },
+    {
+      "name": "polylog"
+    },
+    {
+      "name": "qpoly"
+    },
+    {
+      "name": "qlog"
+    },
+    {
+      "name": "MOD"
+    },
+    {
+      "name": "Mod"
+    },
+    {
+      "name": "CVP"
+    },
+    {
+      "name": "SAT"
+    },
+    {
+      "name": "MaxSAT"
+    },
+    {
+      "name": "AC"
+    },
+    {
+      "name": "A",
+      "unusual": true
+    },
+    {
+      "name": "ACC"
+    },
+    {
+      "name": "AH"
+    },
+    {
+      "name": "AL"
+    },
+    {
+      "name": "AlgP",
+      "unusual": true
+    },
+    {
+      "name": "AM"
+    },
+    {
+      "name": "AMEXP"
+    },
+    {
+      "name": "Amp",
+      "unusual": true
+    },
+    {
+      "name": "AmpMP",
+      "unusual": true
+    },
+    {
+      "name": "AmpPBQP",
+      "unusual": true
+    },
+    {
+      "name": "AP"
+    },
+    {
+      "name": "APP",
+      "unusual": true
+    },
+    {
+      "name": "APX",
+      "unusual": true
+    },
+    {
+      "name": "AUCSPACE",
+      "unusual": true
+    },
+    {
+      "name": "AuxPDA",
+      "unusual": true
+    },
+    {
+      "name": "AVBPP",
+      "unusual": true
+    },
+    {
+      "name": "AvE",
+      "unusual": true
+    },
+    {
+      "name": "AvP",
+      "unusual": true
+    },
+    {
+      "name": "AW",
+      "unusual": true
+    },
+    {
+      "name": "AWPP",
+      "unusual": true
+    },
+    {
+      "name": "betaP",
+      "unusual": true
+    },
+    {
+      "name": "BH"
+    },
+    {
+      "name": "BP",
+      "unusual": true
+    },
+    {
+      "name": "BPE"
+    },
+    {
+      "name": "BPEE"
+    },
+    {
+      "name": "BPHSPACE",
+      "unusual": true
+    },
+    {
+      "name": "BPL",
+      "unusual": true
+    },
+    {
+      "name": "BPP"
+    },
+    {
+      "name": "BPPOBDD",
+      "unusual": true
+    },
+    {
+      "name": "BPPpath",
+      "unusual": true
+    },
+    {
+      "name": "BPQP",
+      "unusual": true
+    },
+    {
+      "name": "BPSPACE"
+    },
+    {
+      "name": "BPTIME"
+    },
+    {
+      "name": "BQNC",
+      "unusual": true
+    },
+    {
+      "name": "BQNP",
+      "unusual": true
+    },
+    {
+      "name": "BQP"
+    },
+    {
+      "name": "BQPOBDD",
+      "unusual": true
+    },
+    {
+      "name": "BQTIME"
+    },
+    {
+      "name": "C"
+    },
+    {
+      "name": "cc"
+    },
+    {
+      "name": "CeL"
+    },
+    {
+      "name": "CeP"
+    },
+    {
+      "name": "CFL"
+    },
+    {
+      "name": "CH"
+    },
+    {
+      "name": "CkP"
+    },
+    {
+      "name": "CLOG",
+      "unusual": true
+    },
+    {
+      "name": "CNP",
+      "unusual": true
+    },
+    {
+      "name": "coAM"
+    },
+    {
+      "name": "coBPP"
+    },
+    {
+      "name": "coCeP"
+    },
+    {
+      "name": "cofrIP",
+      "unusual": true
+    },
+    {
+      "name": "Coh",
+      "unusual": true
+    },
+    {
+      "name": "coMA"
+    },
+    {
+      "name": "compIP",
+      "unusual": true
+    },
+    {
+      "name": "compNP",
+      "unusual": true
+    },
+    {
+      "name": "coNE"
+    },
+    {
+      "name": "coNEXP"
+    },
+    {
+      "name": "coNL"
+    },
+    {
+      "name": "coNP"
+    },
+    {
+      "name": "coNQP"
+    },
+    {
+      "name": "coRE"
+    },
+    {
+      "name": "coRNC"
+    },
+    {
+      "name": "coRP"
+    },
+    {
+      "name": "coSL"
+    },
+    {
+      "name": "coUCC",
+      "unusual": true
+    },
+    {
+      "name": "coUP"
+    },
+    {
+      "name": "CP",
+      "unusual": true
+    },
+    {
+      "name": "CSIZE"
+    },
+    {
+      "name": "CSL",
+      "unusual": true
+    },
+    {
+      "name": "CZK",
+      "unusual": true
+    },
+    {
+      "name": "D"
+    },
+    {
+      "name": "DCFL",
+      "unusual": true
+    },
+    {
+      "name": "DET"
+    },
+    {
+      "name": "DiffAC",
+      "unusual": true
+    },
+    {
+      "name": "DisNP",
+      "unusual": true
+    },
+    {
+      "name": "DistNP",
+      "unusual": true
+    },
+    {
+      "name": "DP",
+      "unusual": true
+    },
+    {
+      "name": "DQP",
+      "unusual": true
+    },
+    {
+      "name": "DSPACE"
+    },
+    {
+      "name": "DTIME"
+    },
+    {
+      "name": "DTISP"
+    },
+    {
+      "name": "Dyn",
+      "unusual": true
+    },
+    {
+      "name": "DynFO"
+    },
+    {
+      "name": "E"
+    },
+    {
+      "name": "EE"
+    },
+    {
+      "name": "EEE"
+    },
+    {
+      "name": "EESPACE"
+    },
+    {
+      "name": "EEXP"
+    },
+    {
+      "name": "EH"
+    },
+    {
+      "name": "EL",
+      "unusual": true
+    },
+    {
+      "name": "ELEMENTARY",
+      "unusual": true
+    },
+    {
+      "name": "ELkP",
+      "unusual": true
+    },
+    {
+      "name": "EPTAS"
+    },
+    {
+      "name": "EQBP",
+      "unusual": true
+    },
+    {
+      "name": "EQP",
+      "unusual": true
+    },
+    {
+      "name": "EQTIME",
+      "unusual": true
+    },
+    {
+      "name": "ESPACE"
+    },
+    {
+      "name": "ExistsBPP",
+      "unusual": true
+    },
+    {
+      "name": "ExistsNISZK",
+      "unusual": true
+    },
+    {
+      "name": "EXP"
+    },
+    {
+      "name": "EXPSPACE"
+    },
+    {
+      "name": "FBQP",
+      "unusual": true
+    },
+    {
+      "name": "Few",
+      "unusual": true
+    },
+    {
+      "name": "FewP",
+      "unusual": true
+    },
+    {
+      "name": "FH",
+      "unusual": true
+    },
+    {
+      "name": "FNL"
+    },
+    {
+      "name": "FNP"
+    },
+    {
+      "name": "FO",
+      "unusual": true
+    },
+    {
+      "name": "FOLL",
+      "unusual": true
+    },
+    {
+      "name": "FP"
+    },
+    {
+      "name": "FPR",
+      "unusual": true
+    },
+    {
+      "name": "FPRAS"
+    },
+    {
+      "name": "FPT",
+      "unusual": true
+    },
+    {
+      "name": "FPTAS",
+      "unusual": true
+    },
+    {
+      "name": "FPTnu",
+      "unusual": true
+    },
+    {
+      "name": "FPTsu",
+      "unusual": true
+    },
+    {
+      "name": "FQMA"
+    },
+    {
+      "name": "frIP",
+      "unusual": true
+    },
+    {
+      "name": "FTAPE",
+      "unusual": true
+    },
+    {
+      "name": "FTIME",
+      "unusual": true
+    },
+    {
+      "name": "G",
+      "unusual": true
+    },
+    {
+      "name": "GA"
+    },
+    {
+      "name": "GANSPACE",
+      "unusual": true
+    },
+    {
+      "name": "Gap"
+    },
+    {
+      "name": "GapAC"
+    },
+    {
+      "name": "GapL"
+    },
+    {
+      "name": "GapP"
+    },
+    {
+      "name": "GC",
+      "unusual": true
+    },
+    {
+      "name": "GCSL",
+      "unusual": true
+    },
+    {
+      "name": "GI"
+    },
+    {
+      "name": "GPCD",
+      "unusual": true
+    },
+    {
+      "name": "Heur"
+    },
+    {
+      "name": "HeurBPP"
+    },
+    {
+      "name": "HeurBPTIME"
+    },
+    {
+      "name": "HkP"
+    },
+    {
+      "name": "HSPACE"
+    },
+    {
+      "name": "HVSZK",
+      "unusual": true
+    },
+    {
+      "name": "IC",
+      "unusual": true
+    },
+    {
+      "name": "IP"
+    },
+    {
+      "name": "IPP",
+      "unusual": true
+    },
+    {
+      "name": "K"
+    },
+    {
+      "name": "kBQBP"
+    },
+    {
+      "name": "kBWBP"
+    },
+    {
+      "name": "kEQBP"
+    },
+    {
+      "name": "kPBP"
+    },
+    {
+      "name": "KT"
+    },
+    {
+      "name": "LIN"
+    },
+    {
+      "name": "LkP"
+    },
+    {
+      "name": "LOGCFL",
+      "unusual": true
+    },
+    {
+      "name": "LogFew"
+    },
+    {
+      "name": "LogFewNL"
+    },
+    {
+      "name": "LOGNP",
+      "unusual": true
+    },
+    {
+      "name": "LOGSNP",
+      "unusual": true
+    },
+    {
+      "name": "LWPP",
+      "unusual": true
+    },
+    {
+      "name": "M"
+    },
+    {
+      "name": "MA"
+    },
+    {
+      "name": "MAC"
+    },
+    {
+      "name": "MAE"
+    },
+    {
+      "name": "MAEXP"
+    },
+    {
+      "name": "mAL"
+    },
+    {
+      "name": "MaxNP"
+    },
+    {
+      "name": "MaxPB"
+    },
+    {
+      "name": "MaxSNP"
+    },
+    {
+      "name": "mcoNL"
+    },
+    {
+      "name": "MinPB"
+    },
+    {
+      "name": "MIP"
+    },
+    {
+      "name": "MkP"
+    },
+    {
+      "name": "mL"
+    },
+    {
+      "name": "mNC"
+    },
+    {
+      "name": "mNL"
+    },
+    {
+      "name": "mNP"
+    },
+    {
+      "name": "ModkL"
+    },
+    {
+      "name": "ModkP"
+    },
+    {
+      "name": "ModP"
+    },
+    {
+      "name": "ModZkL"
+    },
+    {
+      "name": "mP"
+    },
+    {
+      "name": "MP"
+    },
+    {
+      "name": "MPC"
+    },
+    {
+      "name": "mTC"
+    },
+    {
+      "name": "NAuxPDA",
+      "unusual": true
+    },
+    {
+      "name": "NC"
+    },
+    {
+      "name": "NE"
+    },
+    {
+      "name": "NEE"
+    },
+    {
+      "name": "NEEE"
+    },
+    {
+      "name": "NEEXP"
+    },
+    {
+      "name": "NEXP"
+    },
+    {
+      "name": "NIPZK",
+      "unusual": true
+    },
+    {
+      "name": "NIQPZK",
+      "unusual": true
+    },
+    {
+      "name": "NIQSZK",
+      "unusual": true
+    },
+    {
+      "name": "NISZK",
+      "unusual": true
+    },
+    {
+      "name": "NL"
+    },
+    {
+      "name": "NLIN"
+    },
+    {
+      "name": "NLOG",
+      "unusual": true
+    },
+    {
+      "name": "NP"
+    },
+    {
+      "name": "NPC"
+    },
+    {
+      "name": "NPI"
+    },
+    {
+      "name": "NPMV",
+      "unusual": true
+    },
+    {
+      "name": "NPMVsel",
+      "unusual": true
+    },
+    {
+      "name": "NPO",
+      "unusual": true
+    },
+    {
+      "name": "NPOPB",
+      "unusual": true
+    },
+    {
+      "name": "NPSPACE"
+    },
+    {
+      "name": "NPSV",
+      "unusual": true
+    },
+    {
+      "name": "NPSVsel",
+      "unusual": true
+    },
+    {
+      "name": "NQP"
+    },
+    {
+      "name": "NSPACE"
+    },
+    {
+      "name": "NT",
+      "unusual": true
+    },
+    {
+      "name": "NTIME"
+    },
+    {
+      "name": "OBDD",
+      "unusual": true
+    },
+    {
+      "name": "OCQ",
+      "unusual": true
+    },
+    {
+      "name": "Opt"
+    },
+    {
+      "name": "OptP"
+    },
+    {
+      "name": "p"
+    },
+    {
+      "name": "PAC"
+    },
+    {
+      "name": "PBP",
+      "unusual": true
+    },
+    {
+      "name": "PCD"
+    },
+    {
+      "name": "Pclose"
+    },
+    {
+      "name": "PCP"
+    },
+    {
+      "name": "PermUP",
+      "unusual": true
+    },
+    {
+      "name": "PEXP"
+    },
+    {
+      "name": "PF",
+      "unusual": true
+    },
+    {
+      "name": "PFCHK",
+      "unusual": true
+    },
+    {
+      "name": "PH"
+    },
+    {
+      "name": "PhP",
+      "unusual": true
+    },
+    {
+      "name": "PINC",
+      "unusual": true
+    },
+    {
+      "name": "PIO",
+      "unusual": true
+    },
+    {
+      "name": "PKC",
+      "unusual": true
+    },
+    {
+      "name": "PL"
+    },
+    {
+      "name": "PLF",
+      "unusual": true
+    },
+    {
+      "name": "PLL",
+      "unusual": true
+    },
+    {
+      "name": "PLS",
+      "unusual": true
+    },
+    {
+      "name": "POBDD"
+    },
+    {
+      "name": "PODN",
+      "unusual": true
+    },
+    {
+      "name": "polyL",
+      "unusual": true
+    },
+    {
+      "name": "PostBQP",
+      "unusual": true
+    },
+    {
+      "name": "PP"
+    },
+    {
+      "name": "PPA",
+      "unusual": true
+    },
+    {
+      "name": "PPAD",
+      "unusual": true
+    },
+    {
+      "name": "PPADS",
+      "unusual": true
+    },
+    {
+      "name": "Ppoly"
+    },
+    {
+      "name": "PPP",
+      "unusual": true
+    },
+    {
+      "name": "PPSPACE"
+    },
+    {
+      "name": "PQUERY",
+      "unusual": true
+    },
+    {
+      "name": "PR",
+      "unusual": true
+    },
+    {
+      "name": "PrHSPACE"
+    },
+    {
+      "name": "Promise"
+    },
+    {
+      "name": "PromiseBPP"
+    },
+    {
+      "name": "PromiseBQP"
+    },
+    {
+      "name": "PromiseP"
+    },
+    {
+      "name": "PromiseRP"
+    },
+    {
+      "name": "promiseBPP"
+    },
+    {
+      "name": "promiseBQP"
+    },
+    {
+      "name": "promiseP"
+    },
+    {
+      "name": "promiseRP"
+    },
+    {
+      "name": "PrSPACE"
+    },
+    {
+      "name": "PSel"
+    },
+    {
+      "name": "PSK",
+      "unusual": true
+    },
+    {
+      "name": "PSPACE"
+    },
+    {
+      "name": "PT"
+    },
+    {
+      "name": "PTAPE",
+      "unusual": true
+    },
+    {
+      "name": "PTAS"
+    },
+    {
+      "name": "PTWK"
+    },
+    {
+      "name": "PZK",
+      "unusual": true
+    },
+    {
+      "name": "QAC"
+    },
+    {
+      "name": "QACC"
+    },
+    {
+      "name": "QAM"
+    },
+    {
+      "name": "QCFL"
+    },
+    {
+      "name": "QCMA"
+    },
+    {
+      "name": "QH"
+    },
+    {
+      "name": "QIP"
+    },
+    {
+      "name": "QMA"
+    },
+    {
+      "name": "QMAM"
+    },
+    {
+      "name": "QMIP"
+    },
+    {
+      "name": "QMIPle",
+      "unusual": true
+    },
+    {
+      "name": "QMIPne",
+      "unusual": true
+    },
+    {
+      "name": "QNC"
+    },
+    {
+      "name": "QP"
+    },
+    {
+      "name": "QPLIN",
+      "unusual": true
+    },
+    {
+      "name": "Qpoly",
+      "unusual": true
+    },
+    {
+      "name": "QPSPACE"
+    },
+    {
+      "name": "QSZK",
+      "unusual": true
+    },
+    {
+      "name": "R"
+    },
+    {
+      "name": "RE"
+    },
+    {
+      "name": "REG"
+    },
+    {
+      "name": "RevSPACE",
+      "unusual": true
+    },
+    {
+      "name": "RHL",
+      "unusual": true
+    },
+    {
+      "name": "RHSPACE",
+      "unusual": true
+    },
+    {
+      "name": "RL"
+    },
+    {
+      "name": "RNC"
+    },
+    {
+      "name": "RNP",
+      "unusual": true
+    },
+    {
+      "name": "RP"
+    },
+    {
+      "name": "RPP",
+      "unusual": true
+    },
+    {
+      "name": "RSPACE"
+    },
+    {
+      "name": "SAC"
+    },
+    {
+      "name": "SAPTIME",
+      "unusual": true
+    },
+    {
+      "name": "SBP",
+      "unusual": true
+    },
+    {
+      "name": "SC"
+    },
+    {
+      "name": "SE"
+    },
+    {
+      "name": "SEH"
+    },
+    {
+      "name": "Sel",
+      "unusual": true
+    },
+    {
+      "name": "SelfNP",
+      "unusual": true
+    },
+    {
+      "name": "SF",
+      "unusual": true
+    },
+    {
+      "name": "SIZE"
+    },
+    {
+      "name": "SKC"
+    },
+    {
+      "name": "SL"
+    },
+    {
+      "name": "SLICEWISEPSPACE",
+      "unusual": true
+    },
+    {
+      "name": "SNP",
+      "unusual": true
+    },
+    {
+      "name": "SOE",
+      "unusual": true
+    },
+    {
+      "name": "SP",
+      "unusual": true
+    },
+    {
+      "name": "SPACE"
+    },
+    {
+      "name": "spanP",
+      "unusual": true
+    },
+    {
+      "name": "SPARSE"
+    },
+    {
+      "name": "SPL"
+    },
+    {
+      "name": "SPP"
+    },
+    {
+      "name": "SUBEXP"
+    },
+    {
+      "name": "symP",
+      "unusual": true
+    },
+    {
+      "name": "SZK"
+    },
+    {
+      "name": "TALLY",
+      "unusual": true
+    },
+    {
+      "name": "TC"
+    },
+    {
+      "name": "TFNP",
+      "unusual": true
+    },
+    {
+      "name": "ThC",
+      "unusual": true
+    },
+    {
+      "name": "TreeBQP",
+      "unusual": true
+    },
+    {
+      "name": "TREEREGULAR",
+      "unusual": true
+    },
+    {
+      "name": "UAP",
+      "unusual": true
+    },
+    {
+      "name": "UCC",
+      "unusual": true
+    },
+    {
+      "name": "UE",
+      "unusual": true
+    },
+    {
+      "name": "UL",
+      "unusual": true
+    },
+    {
+      "name": "UP"
+    },
+    {
+      "name": "US",
+      "unusual": true
+    },
+    {
+      "name": "VNC",
+      "unusual": true
+    },
+    {
+      "name": "VNP",
+      "unusual": true
+    },
+    {
+      "name": "VP",
+      "unusual": true
+    },
+    {
+      "name": "VQP",
+      "unusual": true
+    },
+    {
+      "name": "W"
+    },
+    {
+      "name": "WAPP",
+      "unusual": true
+    },
+    {
+      "name": "WPP",
+      "unusual": true
+    },
+    {
+      "name": "XORMIP"
+    },
+    {
+      "name": "XP",
+      "unusual": true
+    },
+    {
+      "name": "XPuniform",
+      "unusual": true
+    },
+    {
+      "name": "YACC",
+      "unusual": true
+    },
+    {
+      "name": "ZPE"
+    },
+    {
+      "name": "ZPP"
+    },
+    {
+      "name": "ZPTIME"
+    },
+    {
+      "name": "newclass",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newclass{${1:cmd}}{${2:class_name%definition}}"
+      }
+    },
+    {
+      "name": "renewclass",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewclass{${1:cmd}}{${2:class_name%definition}}"
+      }
+    },
+    {
+      "name": "class",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "class{${1:class_name}}"
+      }
+    },
+    {
+      "name": "ComplexityFont",
+      "unusual": true
+    },
+    {
+      "name": "newlang",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newlang{${1:cmd}}{${2:language_name%definition}}"
+      }
+    },
+    {
+      "name": "renewlang",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewlang{${1:cmd}}{${2:language_name%definition}}"
+      }
+    },
+    {
+      "name": "lang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lang{${1:language_name}}"
+      }
+    },
+    {
+      "name": "newfunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfunc{${1:cmd}}{${2:function_name%definition}}"
+      }
+    },
+    {
+      "name": "renewfunc",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewfunc{${1:cmd}}{${2:function_name%definition}}"
+      }
+    },
+    {
+      "name": "func",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "func{${1:function_name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/complexity#c": [
+      "full",
+      "basic",
+      "disableredefinitions",
+      "sanserif",
+      "roman",
+      "bold",
+      "typewriter",
+      "italic",
+      "caps",
+      "slant",
+      "classfont=${1|sanserif,roman,bold,typewriter,italic,caps,slant|}",
+      "langfont=${1|sanserif,roman,bold,typewriter,italic,caps,slant|}",
+      "funcfont=${1|sanserif,roman,bold,typewriter,italic,caps,slant|}",
+      "small"
+    ]
+  },
+  "args": [
+    "\\usepackage/complexity#c"
+  ]
 }

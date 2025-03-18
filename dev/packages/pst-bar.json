@@ -1,53 +1,100 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-plot": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "readpsbardata{}{}": {
-      "snippet": "readpsbardata{${1:macro}}{${2:filename}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "readpsbardata[]{}{}": {
-      "snippet": "readpsbardata[${3:options}]{${1:macro}}{${2:filename}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-plot"
     },
-    "psbarchart{}": {
-      "snippet": "psbarchart{${1:data macro}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "readpsbardata",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "readpsbardata{${1:macro%cmd}}{${2:filename%file}}"
+      }
     },
-    "psbarchart[]{}": {
-      "snippet": "psbarchart[${2:options}]{${1:data macro}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "readpsbardata",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "readpsbardata[${3:options%keyvals}]{${1:macro%cmd}}{${2:filename%file}}",
+        "keys": [
+          "\\readpsbardata#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "newpsbarstyle{}{}": {
-      "snippet": "newpsbarstyle{${1:name}}{${2:definition}}"
+    {
+      "name": "psbarchart",
+      "arg": {
+        "format": "{}",
+        "snippet": "psbarchart{${1:data macro}}"
+      }
     },
-    "psbarlabel{}": {
-      "snippet": "psbarlabel{${1:label}}"
+    {
+      "name": "psbarchart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psbarchart[${2:options%keyvals}]{${1:data macro}}",
+        "keys": [
+          "\\psbarchart#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "psbarlabelsep": {},
-    "setbarstyle{}": {
-      "snippet": "setbarstyle{${1:style}}"
+    {
+      "name": "newpsbarstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newpsbarstyle{${1:name}}{${2:definition}}"
+      }
     },
-    "trimb": {},
-    "trimc": {},
-    "PSTBarLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psbarlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "psbarlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "psbarlabelsep",
+      "unusual": true
+    },
+    {
+      "name": "psbarscale",
+      "arg": {
+        "format": "(){}",
+        "snippet": "psbarscale(${2:scale}){${1:PostScript code}}"
+      }
+    },
+    {
+      "name": "setbarstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setbarstyle{${1:style}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\readpsbardata#c": [
       "header"
     ],
-    [
-      "chartstyle=",
+    "\\psbarchart#c": [
+      "chartstyle=${1|cluster,stack,block|}",
       "barstyle={${1:style list}}",
       "barcolsep=${1:factor}",
       "barsep=${1:factor}",
       "barlabelrot=${1:degrees}",
-      "orientation="
+      "orientation=${1|vertical,horizontal|}"
     ]
-  ]
+  },
+  "args": []
 }

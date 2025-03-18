@@ -1,37 +1,100 @@
 {
-  "includes": {
-    "tcolorbox": [],
-    "tcolorboxlibraryfitting": [],
-    "tcolorboxlibraryskins": [],
-    "fontawesome5": [],
-    "simplekv": [],
-    "xstring": []
-  },
-  "macros": {
-    "CreationBoite{}{}{}{}": {
-      "snippet": "CreationBoite{${1:envname}}{${2:compteur}}{${3:icône}}{${4:libéllés}}"
+  "deps": [
+    {
+      "name": "tcolorbox"
     },
-    "CreationBoite[]{}{}{}{}": {
-      "snippet": "CreationBoite[${5:color}]{${1:envname}}{${2:compteur}}{${3:icône}}{${4:libéllés}}"
+    {
+      "name": "tcolorboxlibraryfitting"
     },
-    "ParamBoites[]": {
-      "snippet": "ParamBoites[${1:clés}]"
+    {
+      "name": "tcolorboxlibraryskins"
     },
-    "margeboite": {},
-    "margeinttitreboite": {},
-    "eptraitboite": {},
-    "policetitreboite": {},
-    "policesoustitreboite": {},
-    "couleursoustitreboite": {},
-    "tailleiconeboite": {},
-    "TitreBoite": {},
-    "SousTitreBoite": {},
-    "LogoCoinDroit": {},
-    "CreerCompteur{}": {
-      "snippet": "CreerCompteur{${1:counter}}"
+    {
+      "name": "fontawesome5"
+    },
+    {
+      "name": "simplekv"
+    },
+    {
+      "name": "xstring"
     }
+  ],
+  "macros": [
+    {
+      "name": "CreationBoite",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "CreationBoite{${1:envname}}{${2:compteur}}{${3:icône}}{${4:libéllés}}"
+      }
+    },
+    {
+      "name": "CreationBoite",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "CreationBoite[${5:color}]{${1:envname}}{${2:compteur}}{${3:icône}}{${4:libéllés}}"
+      }
+    },
+    {
+      "name": "ParamBoites",
+      "arg": {
+        "format": "[]",
+        "snippet": "ParamBoites[${1:clés%keyvals}]"
+      }
+    },
+    {
+      "name": "margeboite",
+      "unusual": true
+    },
+    {
+      "name": "margeinttitreboite",
+      "unusual": true
+    },
+    {
+      "name": "eptraitboite",
+      "unusual": true
+    },
+    {
+      "name": "policetitreboite",
+      "unusual": true
+    },
+    {
+      "name": "policesoustitreboite",
+      "unusual": true
+    },
+    {
+      "name": "couleursoustitreboite",
+      "unusual": true
+    },
+    {
+      "name": "tailleiconeboite",
+      "unusual": true
+    },
+    {
+      "name": "TitreBoite",
+      "unusual": true
+    },
+    {
+      "name": "SousTitreBoite",
+      "unusual": true
+    },
+    {
+      "name": "LogoCoinDroit",
+      "unusual": true
+    },
+    {
+      "name": "CreerCompteur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CreerCompteur{${1:counter}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tcbset": [
+      "baseboite/.style={${1:options}}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

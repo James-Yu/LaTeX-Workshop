@@ -1,50 +1,80 @@
 {
-  "includes": {
-    "listings": [],
-    "times": [],
-    "color": [
-      "color"
-    ]
-  },
-  "macros": {
-    "vdmnotcovered{}": {
-      "snippet": "vdmnotcovered{${1:VDM specification}}"
-    }
-  },
-  "envs": {
-    "vdmsl": {},
-    "vdmsl[]": {
-      "name": "vdmsl",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "listings"
     },
-    "vdmpp": {},
-    "vdmpp[]": {
-      "name": "vdmpp",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "times"
     },
-    "vdmrt": {},
-    "vdmrt[]": {
-      "name": "vdmrt",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "color",
+      "if": "color"
     }
-  },
-  "options": [
-    "color",
-    "notimes"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "vdmnotcovered",
+      "arg": {
+        "format": "{}",
+        "snippet": "vdmnotcovered{${1:VDM specification}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "vdmsl"
+    },
+    {
+      "name": "vdmsl",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vdmsl},\\begin{vdmpp},\\begin{vdmrt}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vdmpp"
+    },
+    {
+      "name": "vdmpp",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vdmsl},\\begin{vdmpp},\\begin{vdmrt}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vdmrt"
+    },
+    {
+      "name": "vdmrt",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vdmsl},\\begin{vdmpp},\\begin{vdmrt}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/vdmlisting#c": [
+      "color",
+      "notimes"
+    ],
+    "\\begin{vdmsl},\\begin{vdmpp},\\begin{vdmrt}": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
       "lineskip=",
-      "boxpos=",
+      "boxpos=${1|b,c,t|}",
       "print",
       "showlines",
       "emptylines=${1:number}",
@@ -100,7 +130,7 @@
       "showspaces",
       "showstringspaces",
       "formfeed=${1:tokens}",
-      "numbers=",
+      "numbers=${1|none,left,right|}",
       "stepnumber=${1:number}",
       "numberfirstline",
       "numberstyle=${1:style}",
@@ -228,5 +258,8 @@
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
     ]
+  },
+  "args": [
+    "\\usepackage/vdmlisting#c"
   ]
 }

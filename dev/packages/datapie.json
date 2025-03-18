@@ -1,62 +1,191 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "datatool": [],
-    "tikz": []
-  },
-  "macros": {
-    "DTLpiechart{}{}{}": {
-      "snippet": "DTLpiechart{${1:settings}}{${2:db}}{${3:values}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "DTLpiechart[]{}{}{}": {
-      "snippet": "DTLpiechart[${4:condition}]{${1:settings}}{${2:db}}{${3:values}}"
+    {
+      "name": "datatool"
     },
-    "DTLpievariable": {},
-    "DTLpiepercent": {},
-    "DTLdisplayinnerlabel{}": {
-      "snippet": "DTLdisplayinnerlabel{${1:text}}"
-    },
-    "DTLdisplayouterlabel{}": {
-      "snippet": "DTLdisplayouterlabel{${1:text}}"
-    },
-    "DTLsetpiesegmentcolor{}{}": {
-      "snippet": "DTLsetpiesegmentcolor{${1:index}}{${2:color}}"
-    },
-    "DTLdopiesegmentcolor{}": {
-      "snippet": "DTLdopiesegmentcolor{${1:index}}"
-    },
-    "DTLdocurrentpiesegmentcolor": {},
-    "DTLpieoutlinecolor": {},
-    "DTLpieoutlinewidth": {},
-    "DTLpieatbegintikz": {},
-    "DTLpieatendtikz": {},
-    "DTLcolorpiechartfalse": {},
-    "DTLcolorpiecharttrue": {},
-    "DTLcutawayratio": {},
-    "DTLgetpiesegmentcolor{}": {
-      "snippet": "DTLgetpiesegmentcolor{${1:index}}"
-    },
-    "DTLinnerratio": {},
-    "DTLouterratio": {},
-    "DTLradius": {},
-    "DTLrotateinnerfalse": {},
-    "DTLrotateinnertrue": {},
-    "DTLrotateouterfalse": {},
-    "DTLrotateoutertrue": {},
-    "DTLstartangle": {},
-    "ifDTLcolorpiechart": {},
-    "ifDTLrotateinner": {},
-    "ifDTLrotateouter": {},
-    "theDTLpieroundvar": {}
-  },
-  "envs": {},
-  "options": [
-    "color",
-    "gray",
-    "rotateinner",
-    "norotateinner",
-    "rotateouter",
-    "norotateouter"
+    {
+      "name": "tikz"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "DTLpiechart",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTLpiechart{${1:settings%keyvals}}{${2:db%special}}{${3:values}}",
+        "keys": [
+          "\\DTLpiechart"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DTLpiechart",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "DTLpiechart[${4:condition}]{${1:settings%keyvals}}{${2:db%special}}{${3:values}}",
+        "keys": [
+          "\\DTLpiechart"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DTLpievariable",
+      "unusual": true
+    },
+    {
+      "name": "DTLpiepercent",
+      "unusual": true
+    },
+    {
+      "name": "DTLdisplayinnerlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTLdisplayinnerlabel{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLdisplayouterlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTLdisplayouterlabel{${1:text}}"
+      }
+    },
+    {
+      "name": "DTLsetpiesegmentcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTLsetpiesegmentcolor{${1:index}}{${2:color}}"
+      }
+    },
+    {
+      "name": "DTLdopiesegmentcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "DTLdopiesegmentcolor{${1:index}}"
+      }
+    },
+    {
+      "name": "DTLdocurrentpiesegmentcolor"
+    },
+    {
+      "name": "DTLpieoutlinecolor",
+      "unusual": true
+    },
+    {
+      "name": "DTLpieoutlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "DTLpieatbegintikz"
+    },
+    {
+      "name": "DTLpieatendtikz"
+    },
+    {
+      "name": "DTLcolorpiechartfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLcolorpiecharttrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLcutawayratio",
+      "unusual": true
+    },
+    {
+      "name": "DTLgetpiesegmentcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTLgetpiesegmentcolor{${1:index}}"
+      }
+    },
+    {
+      "name": "DTLinnerratio",
+      "unusual": true
+    },
+    {
+      "name": "DTLouterratio",
+      "unusual": true
+    },
+    {
+      "name": "DTLradius",
+      "unusual": true
+    },
+    {
+      "name": "DTLrotateinnerfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLrotateinnertrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLrotateouterfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLrotateoutertrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLstartangle",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLcolorpiechart",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLrotateinner",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLrotateouter",
+      "unusual": true
+    },
+    {
+      "name": "theDTLpieroundvar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/datapie#c": [
+      "color",
+      "gray",
+      "rotateinner",
+      "norotateinner",
+      "rotateouter",
+      "norotateouter"
+    ],
+    "\\DTLpiechart": [
+      "variable=${1:\\var}",
+      "start=${1:angle}",
+      "radius=",
+      "innerratio=${1:factor}",
+      "outerratio=${1:factor}",
+      "cutawayratio=${1:factor}",
+      "inneroffset=",
+      "outeroffset=",
+      "cutawayoffset=",
+      "cutaway={${1:num1,num2,...}}",
+      "cutaway={${1:range1,range2,...}}",
+      "innerlabel=${1:text}",
+      "outerlabel=${1:text}",
+      "rotateinner",
+      "rotateouter"
+    ]
+  },
+  "args": [
+    "\\usepackage/datapie#c"
+  ]
 }

@@ -1,0 +1,1931 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "IgnoreSpacesOn"
+    },
+    {
+      "name": "IgnoreSpacesOff"
+    },
+    {
+      "name": "Functional",
+      "arg": {
+        "format": "{}",
+        "snippet": "Functional{${1:options%keyvals}}",
+        "keys": [
+          "\\Functional"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "prgReturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "prgReturn{${1:tokens}}"
+      }
+    },
+    {
+      "name": "prgPrint",
+      "arg": {
+        "format": "{}",
+        "snippet": "prgPrint{${1:tokens}}"
+      }
+    },
+    {
+      "name": "gResultTl"
+    },
+    {
+      "name": "prgDo",
+      "arg": {
+        "format": "{}",
+        "snippet": "prgDo{${1:code}}"
+      }
+    },
+    {
+      "name": "prgRunOneArgCode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prgRunOneArgCode{${1:arg1}}{${2:code}}"
+      }
+    },
+    {
+      "name": "prgRunTwoArgCode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "prgRunTwoArgCode{${1:arg1}}{${2:arg2}}{${3:code}}"
+      }
+    },
+    {
+      "name": "prgRunThreeArgCode",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "prgRunThreeArgCode{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:code}}"
+      }
+    },
+    {
+      "name": "prgRunFourArgCode",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "prgRunFourArgCode{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:code}}"
+      }
+    },
+    {
+      "name": "evalWhole",
+      "arg": {
+        "format": "{}",
+        "snippet": "evalWhole{${1:tokens}}"
+      }
+    },
+    {
+      "name": "evalNone",
+      "arg": {
+        "format": "{}",
+        "snippet": "evalNone{${1:tokens}}"
+      }
+    },
+    {
+      "name": "expName",
+      "arg": {
+        "format": "{}",
+        "snippet": "expName{${1:csname}}"
+      }
+    },
+    {
+      "name": "expWhole",
+      "arg": {
+        "format": "{}",
+        "snippet": "expWhole{${1:tokens}}"
+      }
+    },
+    {
+      "name": "unExpand",
+      "arg": {
+        "format": "{}",
+        "snippet": "unExpand{${1:tokens}}"
+      }
+    },
+    {
+      "name": "onlyName",
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyName{${1:tokens}}"
+      }
+    },
+    {
+      "name": "onlyValue",
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyValue{${1:tokens}}"
+      }
+    },
+    {
+      "name": "useOne",
+      "arg": {
+        "format": "{}",
+        "snippet": "useOne{${1:arg}}"
+      }
+    },
+    {
+      "name": "gobbleOne",
+      "arg": {
+        "format": "{}",
+        "snippet": "gobbleOne{${1:arg}}"
+      }
+    },
+    {
+      "name": "useGobble",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "useGobble{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "gobbleUse",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gobbleUse{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "cTrueBool"
+    },
+    {
+      "name": "cFalseBool"
+    },
+    {
+      "name": "lTmpaBool"
+    },
+    {
+      "name": "lTmpbBool"
+    },
+    {
+      "name": "lTmpcBool"
+    },
+    {
+      "name": "lTmpiBool"
+    },
+    {
+      "name": "lTmpjBool"
+    },
+    {
+      "name": "lTmpkBool"
+    },
+    {
+      "name": "gTmpaBool"
+    },
+    {
+      "name": "gTmpbBool"
+    },
+    {
+      "name": "gTmpcBool"
+    },
+    {
+      "name": "gTmpiBool"
+    },
+    {
+      "name": "gTmpjBool"
+    },
+    {
+      "name": "gTmpkBool"
+    },
+    {
+      "name": "boolLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "boolLog {${1:bool expr}}"
+      }
+    },
+    {
+      "name": "boolShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "boolShow {${1:bool expr}}"
+      }
+    },
+    {
+      "name": "cSpaceTl"
+    },
+    {
+      "name": "cEmptyTl"
+    },
+    {
+      "name": "lTmpaTl"
+    },
+    {
+      "name": "lTmpbTl"
+    },
+    {
+      "name": "lTmpcTl"
+    },
+    {
+      "name": "lTmpiTl"
+    },
+    {
+      "name": "lTmpjTl"
+    },
+    {
+      "name": "lTmpkTl"
+    },
+    {
+      "name": "gTmpaTl"
+    },
+    {
+      "name": "gTmpbTl"
+    },
+    {
+      "name": "gTmpcTl"
+    },
+    {
+      "name": "gTmpiTl"
+    },
+    {
+      "name": "gTmpjTl"
+    },
+    {
+      "name": "gTmpkTl"
+    },
+    {
+      "name": "tlToStr ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlToStr {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlLog {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlShow {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlTrimSpaces ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlTrimSpaces {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlCount ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlCount {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlHead ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlHead {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlTail ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlTail {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlItem ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlItem {${1:tokens}} {${2:int expr}}"
+      }
+    },
+    {
+      "name": "tlRandItem ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlRandItem {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlMapInline ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlMapInline {${1:tokens}} {${2:inline function}}"
+      }
+    },
+    {
+      "name": "tlIfEmpty ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlIfEmpty {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlIfEmptyT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfEmptyT {${1:tokens}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "tlIfEmptyF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfEmptyF {${1:tokens}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "tlIfEmptyTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfEmptyTF {${1:tokens}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "tlIfBlank ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlIfBlank {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlIfBlankT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfBlankT {${1:tokens}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "tlIfBlankF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfBlankF {${1:tokens}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "tlIfBlankTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfBlankTF {${1:tokens}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "tlIfEq ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfEq {${1:tokens1}} {${2:tokens2}}"
+      }
+    },
+    {
+      "name": "tlIfEqT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfEqT {${1:tokens1}} {${2:tokens2}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "tlIfEqF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfEqF {${1:tokens1}} {${2:tokens2}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "tlIfEqTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "tlIfEqTF {${1:tokens1}} {${2:tokens2}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "tlIfIn ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfIn {${1:tokens1}} {${2:tokens2}}"
+      }
+    },
+    {
+      "name": "tlIfInT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfInT {${1:tokens1}} {${2:tokens2}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "tlIfInF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfInF {${1:tokens1}} {${2:tokens2}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "tlIfInTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "tlIfInTF {${1:tokens1}} {${2:tokens2}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "tlIfSingle ",
+      "arg": {
+        "format": "{}",
+        "snippet": "tlIfSingle {${1:tokens}}"
+      }
+    },
+    {
+      "name": "tlIfSingleT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfSingleT {${1:tokens}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "tlIfSingleF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "tlIfSingleF {${1:tokens}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "tlIfSingleTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "tlIfSingleTF {${1:tokens}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "cAmpersandStr"
+    },
+    {
+      "name": "cAtsignStr"
+    },
+    {
+      "name": "cBackslashStr"
+    },
+    {
+      "name": "cLeftBraceStr"
+    },
+    {
+      "name": "cRightBraceStr"
+    },
+    {
+      "name": "cCircumflexStr"
+    },
+    {
+      "name": "cColonStr"
+    },
+    {
+      "name": "cDollarStr"
+    },
+    {
+      "name": "cHashStr"
+    },
+    {
+      "name": "cPercentStr"
+    },
+    {
+      "name": "cTildeStr"
+    },
+    {
+      "name": "cUnderscoreStr"
+    },
+    {
+      "name": "cZeroStr"
+    },
+    {
+      "name": "lTmpaStr"
+    },
+    {
+      "name": "lTmpbStr"
+    },
+    {
+      "name": "lTmpcStr"
+    },
+    {
+      "name": "lTmpiStr"
+    },
+    {
+      "name": "lTmpjStr"
+    },
+    {
+      "name": "lTmpkStr"
+    },
+    {
+      "name": "gTmpaStr"
+    },
+    {
+      "name": "gTmpbStr"
+    },
+    {
+      "name": "gTmpcStr"
+    },
+    {
+      "name": "gTmpiStr"
+    },
+    {
+      "name": "gTmpjStr"
+    },
+    {
+      "name": "gTmpkStr"
+    },
+    {
+      "name": "strLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "strLog {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "strShow {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strCount ",
+      "arg": {
+        "format": "{}",
+        "snippet": "strCount {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strSize ",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "strSize {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strHead ",
+      "arg": {
+        "format": "{}",
+        "snippet": "strHead {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strTail ",
+      "arg": {
+        "format": "{}",
+        "snippet": "strTail {${1:tokens}}"
+      }
+    },
+    {
+      "name": "strItem ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "strItem {${1:tokens}} {${2:int expr}}"
+      }
+    },
+    {
+      "name": "strMapInline ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "strMapInline {${1:tokens}} {${2:inline function}}"
+      }
+    },
+    {
+      "name": "strIfEq ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "strIfEq {${1:tokens1}} {${2:tokens2}}"
+      }
+    },
+    {
+      "name": "strIfEqT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "strIfEqT {${1:tokens1}} {${2:tokens2}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "strIfEqF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "strIfEqF {${1:tokens1}} {${2:tokens2}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "strIfEqTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "strIfEqTF {${1:tokens1}} {${2:tokens2}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "strIfIn ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "strIfIn {${1:tokens1}} {${2:tokens2}}"
+      }
+    },
+    {
+      "name": "strIfInT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "strIfInT {${1:tokens1}} {${2:tokens2}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "strIfInF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "strIfInF {${1:tokens1}} {${2:tokens2}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "strIfInTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "strIfInTF {${1:tokens1}} {${2:tokens2}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "cZeroInt"
+    },
+    {
+      "name": "cOneInt"
+    },
+    {
+      "name": "cMaxInt"
+    },
+    {
+      "name": "cMaxRegisterInt"
+    },
+    {
+      "name": "cMaxCharInt"
+    },
+    {
+      "name": "lTmpaInt"
+    },
+    {
+      "name": "lTmpbInt"
+    },
+    {
+      "name": "lTmpcInt"
+    },
+    {
+      "name": "lTmpiInt"
+    },
+    {
+      "name": "lTmpjInt"
+    },
+    {
+      "name": "lTmpkInt"
+    },
+    {
+      "name": "gTmpaInt"
+    },
+    {
+      "name": "gTmpbInt"
+    },
+    {
+      "name": "gTmpcInt"
+    },
+    {
+      "name": "gTmpiInt"
+    },
+    {
+      "name": "gTmpjInt"
+    },
+    {
+      "name": "gTmpkInt"
+    },
+    {
+      "name": "intEval ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intEval {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intMathAdd ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathAdd {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathSub ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathSub {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathMult ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathMult {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathDiv ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathDiv {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathDivTruncate ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathDivTruncate {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathSign ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intMathSign {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intMathAbs ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intMathAbs {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intMathMax ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathMax {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathMin ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathMin {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathMod ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathMod {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intMathRand ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intMathRand {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "intLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intLog {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intShow {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intReplicate ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intReplicate {${1:int expr}} {${2:tokens}}"
+      }
+    },
+    {
+      "name": "intStepInline ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "intStepInline {${1:init value}} {${2:step}} {${3:final value}} {${4:code}}"
+      }
+    },
+    {
+      "name": "intStepOneInline ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "intStepOneInline {${1:init value}} {${2:final value}} {${3:code}}"
+      }
+    },
+    {
+      "name": "intIfOdd ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intIfOdd {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intIfOddT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intIfOddT {${1:int expr}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "intIfOddF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intIfOddF {${1:int expr}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "intIfOddTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "intIfOddTF {${1:int expr}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "intIfEven ",
+      "arg": {
+        "format": "{}",
+        "snippet": "intIfEven {${1:int expr}}"
+      }
+    },
+    {
+      "name": "intIfEvenT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intIfEvenT {${1:int expr}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "intIfEvenF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "intIfEvenF {${1:int expr}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "intIfEvenTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "intIfEvenTF {${1:int expr}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "cZeroFp"
+    },
+    {
+      "name": "cMinusZeroFp"
+    },
+    {
+      "name": "cOneFp"
+    },
+    {
+      "name": "cInfFp"
+    },
+    {
+      "name": "cMinusInfFp"
+    },
+    {
+      "name": "cEFp"
+    },
+    {
+      "name": "cPiFp"
+    },
+    {
+      "name": "cOneDegreeFp"
+    },
+    {
+      "name": "lTmpaFp"
+    },
+    {
+      "name": "lTmpbFp"
+    },
+    {
+      "name": "lTmpcFp"
+    },
+    {
+      "name": "lTmpiFp"
+    },
+    {
+      "name": "lTmpjFp"
+    },
+    {
+      "name": "lTmpkFp"
+    },
+    {
+      "name": "gTmpaFp"
+    },
+    {
+      "name": "gTmpbFp"
+    },
+    {
+      "name": "gTmpcFp"
+    },
+    {
+      "name": "gTmpiFp"
+    },
+    {
+      "name": "gTmpjFp"
+    },
+    {
+      "name": "gTmpkFp"
+    },
+    {
+      "name": "fpEval ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpEval {${1:fp expr}}"
+      }
+    },
+    {
+      "name": "fpMathAdd ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathAdd {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpMathSub ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathSub {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpMathMult ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathMult {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpMathDiv ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathDiv {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpMathSign ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpMathSign {${1:fp expr}}"
+      }
+    },
+    {
+      "name": "fpMathAbs ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpMathAbs {${1:fp expr}}"
+      }
+    },
+    {
+      "name": "fpMathMax ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathMax {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpMathMin ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fpMathMin {${1:fp expr1}} {${2:fp expr2}}"
+      }
+    },
+    {
+      "name": "fpLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpLog {${1:fp expr}}"
+      }
+    },
+    {
+      "name": "fpShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fpShow {${1:fp expr}}"
+      }
+    },
+    {
+      "name": "fpStepInline ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "fpStepInline {${1:init value}} {${2:step}} {${3:final value}} {${4:code}}"
+      }
+    },
+    {
+      "name": "cMaxDim"
+    },
+    {
+      "name": "cZeroDim"
+    },
+    {
+      "name": "lTmpaDim"
+    },
+    {
+      "name": "lTmpbDim"
+    },
+    {
+      "name": "lTmpcDim"
+    },
+    {
+      "name": "lTmpiDim"
+    },
+    {
+      "name": "lTmpjDim"
+    },
+    {
+      "name": "lTmpkDim"
+    },
+    {
+      "name": "gTmpaDim"
+    },
+    {
+      "name": "gTmpbDim"
+    },
+    {
+      "name": "gTmpcDim"
+    },
+    {
+      "name": "gTmpiDim"
+    },
+    {
+      "name": "gTmpjDim"
+    },
+    {
+      "name": "gTmpkDim"
+    },
+    {
+      "name": "dimEval ",
+      "arg": {
+        "format": "{}",
+        "snippet": "dimEval {${1:dim expr}}"
+      }
+    },
+    {
+      "name": "dimMathAdd ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "dimMathAdd {${1:dim expr1}} {${2:dim expr2}}"
+      }
+    },
+    {
+      "name": "dimMathSub ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "dimMathSub {${1:dim expr1}} {${2:dim expr2}}"
+      }
+    },
+    {
+      "name": "dimMathRatio ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "dimMathRatio {${1:dim expr1}} {${2:dim expr2}}"
+      }
+    },
+    {
+      "name": "dimMathSign ",
+      "arg": {
+        "format": "{}",
+        "snippet": "dimMathSign {${1:dim expr}}"
+      }
+    },
+    {
+      "name": "dimMathAbs ",
+      "arg": {
+        "format": "{}",
+        "snippet": "dimMathAbs {${1:dim expr}}"
+      }
+    },
+    {
+      "name": "dimMathMax ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "dimMathMax {${1:dim expr1}} {${2:dim expr2}}"
+      }
+    },
+    {
+      "name": "dimMathMin ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "dimMathMin {${1:dim expr1}} {${2:dim expr2}}"
+      }
+    },
+    {
+      "name": "dimLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "dimLog {${1:dim expr}}"
+      }
+    },
+    {
+      "name": "dimShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "dimShow {${1:dim expr}}"
+      }
+    },
+    {
+      "name": "dimStepInline ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "dimStepInline {${1:init value}} {${2:step}} {${3:final value}} {${4:code}}"
+      }
+    },
+    {
+      "name": "cEmptyClist"
+    },
+    {
+      "name": "lTmpaClist"
+    },
+    {
+      "name": "lTmpbClist"
+    },
+    {
+      "name": "lTmpcClist"
+    },
+    {
+      "name": "lTmpiClist"
+    },
+    {
+      "name": "lTmpjClist"
+    },
+    {
+      "name": "lTmpkClist"
+    },
+    {
+      "name": "gTmpaClist"
+    },
+    {
+      "name": "gTmpbClist"
+    },
+    {
+      "name": "gTmpcClist"
+    },
+    {
+      "name": "gTmpiClist"
+    },
+    {
+      "name": "gTmpjClist"
+    },
+    {
+      "name": "gTmpkClist"
+    },
+    {
+      "name": "clistJoin ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistJoin {${1:comma list}} {${2:separator}}"
+      }
+    },
+    {
+      "name": "clistJoinExtended ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "clistJoinExtended {${1:comma list}} {${2:sep for 2}} {${3:sep for >2}} {${4:sep for final 2}}"
+      }
+    },
+    {
+      "name": "clistLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "clistLog {${1:comma list}}"
+      }
+    },
+    {
+      "name": "clistShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "clistShow {${1:comma list}}"
+      }
+    },
+    {
+      "name": "clistCount ",
+      "arg": {
+        "format": "{}",
+        "snippet": "clistCount {${1:comma list}}"
+      }
+    },
+    {
+      "name": "clistItem ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistItem {${1:comma list}} {${2:int expr}}"
+      }
+    },
+    {
+      "name": "clistRandItem ",
+      "arg": {
+        "format": "{}",
+        "snippet": "clistRandItem {${1:comma list}}"
+      }
+    },
+    {
+      "name": "clistMapInline ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistMapInline {${1:comma list}} {${2:inline function}}"
+      }
+    },
+    {
+      "name": "clistIfEmpty ",
+      "arg": {
+        "format": "{}",
+        "snippet": "clistIfEmpty {${1:comma list}}"
+      }
+    },
+    {
+      "name": "clistIfEmptyT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistIfEmptyT {${1:comma list}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "clistIfEmptyF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistIfEmptyF {${1:comma list}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "clistIfEmptyTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "clistIfEmptyTF {${1:comma list}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "clistIfIn ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "clistIfIn {${1:comma list}} {${2:item}}"
+      }
+    },
+    {
+      "name": "clistIfInT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "clistIfInT {${1:comma list}} {${2:item}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "clistIfInF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "clistIfInF {${1:comma list}} {${2:item}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "clistIfInTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "clistIfInTF {${1:comma list}} {${2:item}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "cEmptySeq"
+    },
+    {
+      "name": "lTmpaSeq"
+    },
+    {
+      "name": "lTmpbSeq"
+    },
+    {
+      "name": "lTmpcSeq"
+    },
+    {
+      "name": "lTmpiSeq"
+    },
+    {
+      "name": "lTmpjSeq"
+    },
+    {
+      "name": "lTmpkSeq"
+    },
+    {
+      "name": "gTmpaSeq"
+    },
+    {
+      "name": "gTmpbSeq"
+    },
+    {
+      "name": "gTmpcSeq"
+    },
+    {
+      "name": "gTmpiSeq"
+    },
+    {
+      "name": "gTmpjSeq"
+    },
+    {
+      "name": "gTmpkSeq"
+    },
+    {
+      "name": "cEmptyProp"
+    },
+    {
+      "name": "lTmpaProp"
+    },
+    {
+      "name": "lTmpbProp"
+    },
+    {
+      "name": "lTmpcProp"
+    },
+    {
+      "name": "lTmpiProp"
+    },
+    {
+      "name": "lTmpjProp"
+    },
+    {
+      "name": "lTmpkProp"
+    },
+    {
+      "name": "gTmpaProp"
+    },
+    {
+      "name": "gTmpbProp"
+    },
+    {
+      "name": "gTmpcProp"
+    },
+    {
+      "name": "gTmpiProp"
+    },
+    {
+      "name": "gTmpjProp"
+    },
+    {
+      "name": "gTmpkProp"
+    },
+    {
+      "name": "lTmpaRegex"
+    },
+    {
+      "name": "lTmpbRegex"
+    },
+    {
+      "name": "lTmpcRegex"
+    },
+    {
+      "name": "lTmpiRegex"
+    },
+    {
+      "name": "lTmpjRegex"
+    },
+    {
+      "name": "lTmpkRegex"
+    },
+    {
+      "name": "gTmpaRegex"
+    },
+    {
+      "name": "gTmpbRegex"
+    },
+    {
+      "name": "gTmpcRegex"
+    },
+    {
+      "name": "gTmpiRegex"
+    },
+    {
+      "name": "gTmpjRegex"
+    },
+    {
+      "name": "gTmpkRegex"
+    },
+    {
+      "name": "regexLog ",
+      "arg": {
+        "format": "{}",
+        "snippet": "regexLog {${1:regex}}"
+      }
+    },
+    {
+      "name": "regexShow ",
+      "arg": {
+        "format": "{}",
+        "snippet": "regexShow {${1:regex}}"
+      }
+    },
+    {
+      "name": "regexMatch ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "regexMatch {${1:regex}} {${2:tokens}}"
+      }
+    },
+    {
+      "name": "regexMatchT ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "regexMatchT {${1:regex}} {${2:tokens}} {${3:true code}}"
+      }
+    },
+    {
+      "name": "regexMatchF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "regexMatchF {${1:regex}} {${2:tokens}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "regexMatchTF ",
+      "arg": {
+        "format": "{} {} {} {}",
+        "snippet": "regexMatchTF {${1:regex}} {${2:tokens}} {${3:true code}} {${4:false code}}"
+      }
+    },
+    {
+      "name": "x",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "x{${1:hh}}"
+      }
+    },
+    {
+      "name": "a",
+      "unusual": true
+    },
+    {
+      "name": "e",
+      "unusual": true
+    },
+    {
+      "name": "f",
+      "unusual": true
+    },
+    {
+      "name": "n",
+      "unusual": true
+    },
+    {
+      "name": "r",
+      "unusual": true
+    },
+    {
+      "name": "t",
+      "unusual": true
+    },
+    {
+      "name": "d",
+      "unusual": true
+    },
+    {
+      "name": "h",
+      "unusual": true
+    },
+    {
+      "name": "s",
+      "unusual": true
+    },
+    {
+      "name": "v",
+      "unusual": true
+    },
+    {
+      "name": "w",
+      "unusual": true
+    },
+    {
+      "name": "D",
+      "unusual": true
+    },
+    {
+      "name": "H",
+      "unusual": true
+    },
+    {
+      "name": "N",
+      "unusual": true
+    },
+    {
+      "name": "S",
+      "unusual": true
+    },
+    {
+      "name": "V",
+      "unusual": true
+    },
+    {
+      "name": "W",
+      "unusual": true
+    },
+    {
+      "name": "K",
+      "unusual": true
+    },
+    {
+      "name": "c",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "c{${1:regex}}"
+      }
+    },
+    {
+      "name": "cC",
+      "unusual": true
+    },
+    {
+      "name": "cB",
+      "unusual": true
+    },
+    {
+      "name": "cE",
+      "unusual": true
+    },
+    {
+      "name": "cM",
+      "unusual": true
+    },
+    {
+      "name": "cT",
+      "unusual": true
+    },
+    {
+      "name": "cP",
+      "unusual": true
+    },
+    {
+      "name": "cU",
+      "unusual": true
+    },
+    {
+      "name": "cD",
+      "unusual": true
+    },
+    {
+      "name": "cS",
+      "unusual": true
+    },
+    {
+      "name": "cL",
+      "unusual": true
+    },
+    {
+      "name": "cO",
+      "unusual": true
+    },
+    {
+      "name": "cA",
+      "unusual": true
+    },
+    {
+      "name": "u",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "u{${1:var name}}"
+      }
+    },
+    {
+      "name": "ur",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ur{${1:var name}}"
+      }
+    },
+    {
+      "name": "b",
+      "unusual": true
+    },
+    {
+      "name": "B",
+      "unusual": true
+    },
+    {
+      "name": "A",
+      "unusual": true
+    },
+    {
+      "name": "Z",
+      "unusual": true
+    },
+    {
+      "name": "z",
+      "unusual": true
+    },
+    {
+      "name": "G",
+      "unusual": true
+    },
+    {
+      "name": "charSetLccode ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "charSetLccode {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "charSetUccode ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "charSetUccode {${1:int expr1}} {${2:int expr2}}"
+      }
+    },
+    {
+      "name": "charValueLccode ",
+      "arg": {
+        "format": "{}",
+        "snippet": "charValueLccode {${1:int expr}}"
+      }
+    },
+    {
+      "name": "charValueUccode ",
+      "arg": {
+        "format": "{}",
+        "snippet": "charValueUccode {${1:int expr}}"
+      }
+    },
+    {
+      "name": "textExpand ",
+      "arg": {
+        "format": "{}",
+        "snippet": "textExpand {${1:text}}"
+      }
+    },
+    {
+      "name": "textLowercase ",
+      "arg": {
+        "format": "{}",
+        "snippet": "textLowercase {${1:text}}"
+      }
+    },
+    {
+      "name": "textUppercase ",
+      "arg": {
+        "format": "{}",
+        "snippet": "textUppercase {${1:text}}"
+      }
+    },
+    {
+      "name": "textTitlecase ",
+      "arg": {
+        "format": "{}",
+        "snippet": "textTitlecase {${1:text}}"
+      }
+    },
+    {
+      "name": "textTitlecaseFirst ",
+      "arg": {
+        "format": "{}",
+        "snippet": "textTitlecaseFirst {${1:text}}"
+      }
+    },
+    {
+      "name": "textLangLowercase ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "textLangLowercase {${1:language}} {${2:text}}"
+      }
+    },
+    {
+      "name": "textLangUppercase ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "textLangUppercase {${1:language}} {${2:text}}"
+      }
+    },
+    {
+      "name": "textLangTitlecase ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "textLangTitlecase {${1:language}} {${2:text}}"
+      }
+    },
+    {
+      "name": "textLangTitlecaseFirst ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "textLangTitlecaseFirst {${1:language}} {${2:text}}"
+      }
+    },
+    {
+      "name": "fileInput ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fileInput {${1:file name}}"
+      }
+    },
+    {
+      "name": "fileIfExistInput ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fileIfExistInput {${1:file name}}"
+      }
+    },
+    {
+      "name": "fileIfExistInputF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fileIfExistInputF {${1:file name}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "fileIfExist ",
+      "arg": {
+        "format": "{}",
+        "snippet": "fileIfExist {${1:file name}}"
+      }
+    },
+    {
+      "name": "fileIfExistT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fileIfExistT {${1:file name}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "fileIfExistF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "fileIfExistF {${1:file name}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "fileIfExistTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "fileIfExistTF {${1:file name}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "qNoValue"
+    },
+    {
+      "name": "legacyIf ",
+      "arg": {
+        "format": "{}",
+        "snippet": "legacyIf {${1:name}}"
+      }
+    },
+    {
+      "name": "legacyIfT ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "legacyIfT {${1:name}} {${2:true code}}"
+      }
+    },
+    {
+      "name": "legacyIfF ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "legacyIfF {${1:name}} {${2:false code}}"
+      }
+    },
+    {
+      "name": "legacyIfTF ",
+      "arg": {
+        "format": "{} {} {}",
+        "snippet": "legacyIfTF {${1:name}} {${2:true code}} {${3:false code}}"
+      }
+    },
+    {
+      "name": "legacyIfSetTrue ",
+      "arg": {
+        "format": "{}",
+        "snippet": "legacyIfSetTrue {${1:name}}"
+      }
+    },
+    {
+      "name": "legacyIfSetFalse ",
+      "arg": {
+        "format": "{}",
+        "snippet": "legacyIfSetFalse {${1:name}}"
+      }
+    },
+    {
+      "name": "legacyIfSet ",
+      "arg": {
+        "format": "{} {}",
+        "snippet": "legacyIfSet {${1:name}} {${2:bool expr}}"
+      }
+    },
+    {
+      "name": "clistMapBreak",
+      "unusual": true
+    },
+    {
+      "name": "clistVarSort",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "clistVarSort{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "cNoValueTl",
+      "unusual": true
+    },
+    {
+      "name": "expOnce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "expOnce{${1:arg}}"
+      }
+    },
+    {
+      "name": "expPartial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "expPartial{${1:arg}}"
+      }
+    },
+    {
+      "name": "fileInputStop",
+      "unusual": true
+    },
+    {
+      "name": "prgLocal",
+      "unusual": true
+    },
+    {
+      "name": "noExpand",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "noExpand{${1:tokens}}"
+      }
+    },
+    {
+      "name": "onlyOnce",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyOnce{${1:tokens}}"
+      }
+    },
+    {
+      "name": "onlyPartial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyPartial{${1:tokens}}"
+      }
+    },
+    {
+      "name": "prgBreak",
+      "unusual": true
+    },
+    {
+      "name": "prgBreakDo",
+      "unusual": true
+    },
+    {
+      "name": "propMapBreak",
+      "unusual": true
+    },
+    {
+      "name": "seqJoin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seqJoin{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "seqJoinExtended",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "seqJoinExtended{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "seqMapBreak",
+      "unusual": true
+    },
+    {
+      "name": "seqVarSort",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seqVarSort{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "sortReturnSame",
+      "unusual": true
+    },
+    {
+      "name": "sortReturnSwapped",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\Functional": [
+      "scoping",
+      "tracing"
+    ]
+  },
+  "args": []
+}

@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "10.1.0",
+  "version": "10.8.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -12,7 +12,7 @@
     "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
   },
   "engines": {
-    "vscode": "^1.88.0"
+    "vscode": "^1.96.0"
   },
   "categories": [
     "Programming Languages",
@@ -148,11 +148,18 @@
       },
       {
         "id": "cpp_embedded_latex",
-        "configuration": "./syntax/latex-cpp-embedded-language-configuration.json"
+        "configuration": "./syntax/latex-cpp-embedded-language-configuration.json",
+        "aliases": []
       },
       {
         "id": "markdown_latex_combined",
-        "configuration": "./syntax/markdown-latex-combined-language-configuration.json"
+        "configuration": "./syntax/markdown-latex-combined-language-configuration.json",
+        "aliases": []
+      },
+      {
+        "id": "latex_workshop_log",
+        "aliases": [],
+        "configuration": "./syntax/latex-workshop-log-language-configuration.json"
       }
     ],
     "grammars": [
@@ -260,6 +267,11 @@
         "embeddedLanguages": {
           "source.r": "r"
         }
+      },
+      {
+        "language": "latex_workshop_log",
+        "scopeName": "text.latex_workshop.log",
+        "path": "./syntax/LaTeX-Workshop-Log.tmLanguage.json"
       }
     ],
     "snippets": [
@@ -1029,6 +1041,7 @@
               "args": [
                 "--synctex",
                 "--keep-logs",
+                "--print",
                 "%DOC%.tex"
               ],
               "env": {}
@@ -1087,6 +1100,15 @@
           "type": "string",
           "default": "%DIR%",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located. Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to %DIR% (default value) or %DIR_W32%, the extension will try to parse the last LaTeX tools used and look for `-out-directory=` and `-outdir=`, and automatically determine the output directory. This means that you can safely ignore this config if you use `latexmk` and do not manually `mv` the output files in your recipe."
+        },
+        "latex-workshop.latex.extraExts": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "The list of extra file extensions to be considered as LaTeX files. The extension will parse these files for references and to provide intellisense."
         },
         "latex-workshop.latex.jobname": {
           "scope": "resource",
@@ -1492,7 +1514,7 @@
           ],
           "markdownDescription": "PDF viewer used for [View on PDF] link on \\ref."
         },
-        "latex-workshop.viewer.pdf.internal.port": {
+        "latex-workshop.view.pdf.internal.port": {
           "scope": "window",
           "type": "number",
           "default": 0,
@@ -1506,9 +1528,9 @@
             "ctrl-click",
             "double-click"
           ],
-          "markdownDescription": " Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click."
+          "markdownDescription": "Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click."
         },
-        "latex-workshop.viewer.pdf.internal.keyboardEvent": {
+        "latex-workshop.view.pdf.internal.keyboardEvent": {
           "scope": "window",
           "type": "string",
           "default": "auto",
@@ -1567,6 +1589,12 @@
           "default": 0,
           "markdownDescription": "The default trim percentage of the PDF viewer. This should be an integer between 0 and 99, indicating the portion of PDF to be trimmed. For example, setting the value to `10` means that 10% of the height and width of PDF pages are trimmed off."
         },
+        "latex-workshop.view.pdf.toolbar.hide.timeout": {
+          "scope": "window",
+          "type": "number",
+          "default": 1,
+          "markdownDescription": "The timeout delay in second to hide the toolbar. Setting this value to zero will disable toolbar hiding."
+        },
         "latex-workshop.view.pdf.scrollMode": {
           "scope": "window",
           "type": "number",
@@ -1584,6 +1612,12 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Define if the hand tool is enabled by default in the PDF viewer."
+        },
+        "latex-workshop.view.pdf.invert": {
+          "scope": "window",
+          "type": "number",
+          "default": 0,
+          "markdownDescription": "Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.enabled": {
           "scope": "window",
@@ -1603,83 +1637,91 @@
             "Disable the invert filter"
           ]
         },
-        "latex-workshop.view.pdf.invert": {
-          "scope": "window",
-          "type": "number",
-          "default": 0,
-          "markdownDescription": " Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
-        },
         "latex-workshop.view.pdf.invertMode.brightness": {
           "scope": "window",
           "type": "number",
           "default": 1,
-          "markdownDescription": " Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2."
+          "markdownDescription": "Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2."
         },
         "latex-workshop.view.pdf.invertMode.grayscale": {
           "scope": "window",
           "type": "number",
           "default": 0.6,
-          "markdownDescription": " Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.hueRotate": {
           "scope": "window",
           "type": "number",
           "default": 180,
-          "markdownDescription": " Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360."
+          "markdownDescription": "Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360."
         },
         "latex-workshop.view.pdf.invertMode.sepia": {
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": " Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.color.light.pageColorsForeground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": " The foreground color of the PDF document 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
+          "markdownDescription": "The foreground color of the PDF document 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.pageColorsBackground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": " The background color of the PDF document 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
+          "markdownDescription": "The background color of the PDF document 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.backgroundColor": {
           "scope": "window",
           "type": "string",
           "default": "#ffffff",
-          "markdownDescription": " The background color of the viewer 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
+          "markdownDescription": "The background color of the viewer 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.light.pageBorderColor": {
           "scope": "window",
           "type": "string",
           "default": "lightgrey",
-          "markdownDescription": " The border color of the PDF pages 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
+          "markdownDescription": "The border color of the PDF pages 1) in tab viewer when the vscode color theme is light, and 2) in browser when the OS theme is light. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageColorsForeground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": " The foreground color of the PDF document 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
+          "markdownDescription": "The foreground color of the PDF document 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageColorsBackground": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": " The background color of the PDF document 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
+          "markdownDescription": "The background color of the PDF document 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.backgroundColor": {
           "scope": "window",
           "type": "string",
           "default": "#ffffff",
-          "markdownDescription": " The background color of the viewer 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
+          "markdownDescription": "The background color of the viewer 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
         },
         "latex-workshop.view.pdf.color.dark.pageBorderColor": {
           "scope": "window",
           "type": "string",
           "default": "lightgrey",
-          "markdownDescription": " The border color of the PDF pages 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
+          "markdownDescription": "The border color of the PDF pages 1) in tab viewer when the vscode color theme is dark, and 2) in browser when the OS theme is dark. The string must represent a color in HTML."
+        },
+        "latex-workshop.view.pdf.reload.transition": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "none",
+            "fade"
+          ],
+          "default": "fade",
+          "markdownDescription": "The transition animation between PDF page reloads.",
+          "enumDescriptions": [
+            "No transition animation",
+            "Fading transition animation"
+          ]
         },
         "latex-workshop.synctex.path": {
           "scope": "window",
@@ -1819,7 +1861,7 @@
           "scope": "resource",
           "type": "number",
           "default": 1000,
-          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `#latex-workshop.texcount.run#` is set to `onSave`."
+          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `#latex-workshop.texcount.autorun#` is set to `onSave`."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "scope": "window",
@@ -1880,6 +1922,25 @@
             "Show publication titles in the inline mode.",
             "Show publication authors in the inline mode."
           ]
+        },
+        "latex-workshop.intellisense.citation.filterText": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "bibtex key",
+              "title",
+              "other fields"
+            ],
+            "enumDescriptions": [
+              "BibTeX keys.",
+              "Publication titles.",
+              "Other BibTeX fields except for title, order preserved as defined in BibTeX."
+            ]
+          },
+          "default": ["bibtex key", "title", "other fields"],
+          "markdownDescription": "Defines what contents are used to filter citation entries when user types characters in inline mode. Sorting is somewhat controlled by the order of contents defined by this config."
         },
         "latex-workshop.intellisense.citation.format": {
           "scope": "resource",
@@ -1992,6 +2053,12 @@
           "default": true,
           "markdownDescription": "Auto-complete commands and environments from used packages."
         },
+        "latex-workshop.intellisense.package.unusual": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Auto-complete less used commands and environments from used packages. This config is only effective when `#latex-workshop.intellisense.package.enabled#` is set to `true`."
+        },
         "latex-workshop.intellisense.package.extra": {
           "scope": "window",
           "type": "array",
@@ -2014,7 +2081,7 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `#latex-workshop.intellisense.package.enabled#` is true. You can use only 2 placeholders: `%WORKSPACE_FOLDER%`, `%RELATIVE_DIR%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for their definitions."
+          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `#latex-workshop.intellisense.package.enabled#` is true."
         },
         "latex-workshop.intellisense.package.dirs": {
           "scope": "window",
@@ -2023,7 +2090,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. Files found in these directories have a higher priority over the default ones. LaTeX-Workshop bundles a limited number of package macro/env suggestions. Additional ones can be downloaded from https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FJames-Yu%2FLaTeX-Workshop%2Ftree%2Fmaster%2Fdev%2Fpackages . For custom packages, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with- to learn how to generate these files. This setting is only relevant when `#latex-workshop.intellisense.package.env.enabled#` is true."
+          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. Files found in these directories have a higher priority over the default ones. LaTeX-Workshop bundles a limited number of package macro/env suggestions. Additional ones can be downloaded from https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FJames-Yu%2FLaTeX-Workshop%2Ftree%2Fmaster%2Fdev%2Fpackages . For custom packages, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with- to learn how to generate these files. This setting is only relevant when `#latex-workshop.intellisense.package.env.enabled#` is true. You can use only 2 placeholders: `%WORKSPACE_FOLDER%`, `%RELATIVE_DIR%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for their definitions."
         },
         "latex-workshop.intellisense.includegraphics.preview.enabled": {
           "scope": "window",
@@ -2033,8 +2100,14 @@
         },
         "latex-workshop.message.badbox.show": {
           "scope": "window",
-          "type": "boolean",
-          "default": true,
+          "type": "string",
+          "enum": [
+            "both",
+            "overfull",
+            "underfull",
+            "none"
+          ],
+          "default": "both",
           "markdownDescription": "Show badbox information in the problems panel."
         },
         "latex-workshop.message.biberlog.exclude": {
@@ -2098,7 +2171,7 @@
           "scope": "window",
           "type": "string",
           "default": "latexindent",
-          "markdownDescription": "Define the location of the latexindent executable file."
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.path#`."
         },
         "latex-workshop.latexindent.args": {
           "scope": "resource",
@@ -2112,7 +2185,66 @@
             "%TMPFILE%",
             "-y=defaultIndent: '%INDENT%'"
           ],
+          "markdownDeprecationMessage": "This config is renamed to `#latex-workshop.formatting.latexindent.args#`."
+        },
+        "latex-workshop.formatting.latex": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "none",
+            "latexindent",
+            "tex-fmt"
+          ],
+          "enumDescriptions": [
+            "Do not use any formatter.",
+            "Use `latexindent` to format the LaTeX document.",
+            "Use `tex-fmt` to format the LaTeX document."
+          ],
+          "default": "none",
+          "markdownDescription": "Define the program to format the LaTeX document."
+        },
+        "latex-workshop.formatting.latexindent.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "latexindent",
+          "markdownDescription": "Define the location of the latexindent executable file."
+        },
+        "latex-workshop.formatting.latexindent.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-c",
+            "%DIR%/",
+            "%TMPFILE%",
+            "-y=defaultIndent: '%INDENT%'"
+          ],
           "markdownDescription": "Define the command line arguments for latexindent. In the addition to the placeholders defined at https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders, the following placeholders are accepted\n- %TMPFILE%: The full path of the raw TeX file to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: The indent character of the file, typically `\t`, `' '`, `' '`.\n\nNote that the option `-c` requires a trailing slash."
+        },
+        "latex-workshop.formatting.tex-fmt.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "tex-fmt",
+          "markdownDescription": "Define the location of the tex-fmt executable file."
+        },
+        "latex-workshop.formatting.tex-fmt.doNotWrap": {
+          "scope": "window",
+          "type": "boolean",
+          "default": true,
+          "markdownDeprecationMessage": "This configuration has been extended to `#latex-workshop.formatting.tex-fmt.args#` and has no effect."
+        },
+        "latex-workshop.formatting.tex-fmt.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "--nowrap"
+          ],
+          "markdownDescription": "Define the command line arguments for tex-fmt. Refer to https://github.com/WGUNDERWOOD/tex-fmt?tab=readme-ov-file#usage for more information about the arguments. Note that `--stdin` is added by the extension, so no need to add it again. For key-value arguments, separate the key and value in two strings, e.g., [\"--tab\", \"4\"]."
         },
         "latex-workshop.docker.enabled": {
           "scope": "window",
@@ -2554,8 +2686,8 @@
     "clean": "rimraf out/ .eslintcache",
     "compile": "tsc -p tsconfig.json && tsc -p viewer/tsconfig.json",
     "coverage": "c8 --check-coverage npm run test --src out/src/",
-    "lint": "eslint --cache --ext .ts,.js .",
-    "lint:fix": "eslint --fix --cache --ext .ts,.js .",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --fix --cache .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
     "watch-src": "tsc -watch -p tsconfig.json",
@@ -2563,44 +2695,46 @@
     "update-grammar": "node ./dev/update-grammar.mjs"
   },
   "dependencies": {
-    "cross-spawn": "7.0.3",
-    "glob": "10.3.15",
-    "iconv-lite": "0.6.3",
-    "latex-utensils": "6.2.0",
-    "mathjax-full": "3.2.2",
-    "micromatch": "4.0.5",
-    "pdfjs-dist": "4.3.136",
-    "tmp": "0.2.3",
-    "vsls": "1.0.4753",
-    "workerpool": "9.1.1",
-    "ws": "8.17.1"
+    "cross-spawn": "^7.0.6",
+    "glob": "^11.0.0",
+    "iconv-lite": "^0.6.3",
+    "latex-utensils": "^6.2.0",
+    "mathjax-full": "^3.2.2",
+    "micromatch": "^4.0.8",
+    "pdfjs-dist": "4.10.38",
+    "tmp": "^0.2.3",
+    "workerpool": "^9.2.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@types/cross-spawn": "6.0.6",
-    "@types/glob": "8.1.0",
-    "@types/micromatch": "4.0.7",
-    "@types/mocha": "10.0.6",
-    "@types/node": "18.15.3",
-    "@types/sinon": "17.0.3",
-    "@types/tmp": "0.2.6",
-    "@types/vscode": "1.88.0",
-    "@types/ws": "8.5.10",
-    "@typescript-eslint/eslint-plugin": "7.9.0",
-    "@typescript-eslint/parser": "7.9.0",
-    "@unified-latex/unified-latex-types": "1.7.1",
-    "@unified-latex/unified-latex-util-arguments": "1.7.1",
-    "@unified-latex/unified-latex-util-parse": "1.7.1",
-    "@unified-latex/unified-latex-util-to-string": "1.7.1",
-    "@vscode/test-electron": "2.3.10",
-    "@vscode/vsce": "2.29.0",
-    "c8": "9.1.0",
-    "esbuild": "0.21.2",
-    "eslint": "8.56.0",
-    "mocha": "10.4.0",
-    "rimraf": "5.0.7",
-    "sinon": "18.0.0",
-    "textmate-bailout": "1.1.0",
-    "typescript": "5.4.5",
-    "vscode-extend-language": "0.2.2"
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "@types/cross-spawn": "^6.0.6",
+    "@types/glob": "^8.1.0",
+    "@types/micromatch": "^4.0.9",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.17.11",
+    "@types/node-fetch": "^2.6.12",
+    "@types/sinon": "^17.0.3",
+    "@types/tmp": "^0.2.6",
+    "@types/vscode": "^1.96.0",
+    "@types/ws": "^8.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "@unified-latex/unified-latex-types": "1.8.0",
+    "@unified-latex/unified-latex-util-arguments": "1.8.1",
+    "@unified-latex/unified-latex-util-parse": "1.8.1",
+    "@unified-latex/unified-latex-util-to-string": "1.8.1",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.1",
+    "c8": "^10.1.3",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.17.0",
+    "mocha": "^11.0.1",
+    "node-fetch": "^2.7.0",
+    "rimraf": "^6.0.1",
+    "sinon": "^19.0.2",
+    "textmate-bailout": "^1.1.0",
+    "typescript": "^5.7.2",
+    "vscode-extend-language": "0.3.0"
   }
 }

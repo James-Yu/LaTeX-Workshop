@@ -1,31 +1,65 @@
 {
-  "includes": {
-    "moreverb": []
-  },
-  "macros": {
-    "dumpname{}": {
-      "snippet": "dumpname{${1:name}}"
-    },
-    "dumpfontsize{}": {
-      "snippet": "dumpfontsize{${1:size cmd}}"
-    },
-    "dumpwidth": {},
-    "thedumpcount": {},
-    "dumptocname{}": {
-      "snippet": "dumptocname{${1:name}}"
-    },
-    "listofdumps": {},
-    "dcaption{}": {
-      "snippet": "dcaption{${1:text}}"
-    },
-    "inputdump{}{}": {
-      "snippet": "inputdump{${1:file}}{${2:caption}}"
-    },
-    "inputdump[]{}{}": {
-      "snippet": "inputdump[${3:pos}]{${1:file}}{${2:caption}}"
+  "deps": [
+    {
+      "name": "moreverb"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "dumpname",
+      "arg": {
+        "format": "{}",
+        "snippet": "dumpname{${1:name%text}}"
+      }
+    },
+    {
+      "name": "dumpfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "dumpfontsize{${1:size cmd}}"
+      }
+    },
+    {
+      "name": "dumpwidth",
+      "unusual": true
+    },
+    {
+      "name": "thedumpcount",
+      "unusual": true
+    },
+    {
+      "name": "dumptocname",
+      "arg": {
+        "format": "{}",
+        "snippet": "dumptocname{${1:name%text}}"
+      }
+    },
+    {
+      "name": "listofdumps"
+    },
+    {
+      "name": "dcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "dcaption{${1:text}}"
+      }
+    },
+    {
+      "name": "inputdump",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "inputdump{${1:file}}{${2:caption%text}}"
+      }
+    },
+    {
+      "name": "inputdump",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "inputdump[${3:pos}]{${1:file}}{${2:caption%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,19 +1,35 @@
 {
-  "includes": {
-    "scrbase": [],
-    "scrlfile": [],
-    "iftex": [],
-    "tocbasic": []
-  },
-  "macros": {
-    "TOCclone{}{}": {
-      "snippet": "TOCclone{${1:source ext}}{${2:destination ext}}"
+  "deps": [
+    {
+      "name": "scrbase"
     },
-    "TOCclone[]{}{}": {
-      "snippet": "TOCclone[${3:list heading}]{${1:source ext}}{${2:destination ext}}"
+    {
+      "name": "scrlfile"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "tocbasic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "TOCclone",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TOCclone{${1:source ext}}{${2:destination ext}}"
+      }
+    },
+    {
+      "name": "TOCclone",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "TOCclone[${3:list heading}]{${1:source ext}}{${2:destination ext}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,868 +1,2558 @@
 {
-  "includes": {},
-  "macros": {
-    "prn{}": {
-      "snippet": "prn{${1:arg}}"
-    },
-    "prnb{}": {
-      "snippet": "prnb{${1:arg}}"
-    },
-    "prnbb{}": {
-      "snippet": "prnbb{${1:arg}}"
-    },
-    "prnbbb{}": {
-      "snippet": "prnbbb{${1:arg}}"
-    },
-    "prnbbbb{}": {
-      "snippet": "prnbbbb{${1:arg}}"
-    },
-    "sqpr{}": {
-      "snippet": "sqpr{${1:arg}}"
-    },
-    "sqprb{}": {
-      "snippet": "sqprb{${1:arg}}"
-    },
-    "sqprbb{}": {
-      "snippet": "sqprbb{${1:arg}}"
-    },
-    "sqprbbb{}": {
-      "snippet": "sqprbbb{${1:arg}}"
-    },
-    "sqprbbbb{}": {
-      "snippet": "sqprbbbb{${1:arg}}"
-    },
-    "crl{}": {
-      "snippet": "crl{${1:arg}}"
-    },
-    "crlb{}": {
-      "snippet": "crlb{${1:arg}}"
-    },
-    "crlbb{}": {
-      "snippet": "crlbb{${1:arg}}"
-    },
-    "crlbbb{}": {
-      "snippet": "crlbbb{${1:arg}}"
-    },
-    "crlbbbb{}": {
-      "snippet": "crlbbbb{${1:arg}}"
-    },
-    "ngl{}": {
-      "snippet": "ngl{${1:arg}}"
-    },
-    "nglb{}": {
-      "snippet": "nglb{${1:arg}}"
-    },
-    "nglbb{}": {
-      "snippet": "nglbb{${1:arg}}"
-    },
-    "nglbbb{}": {
-      "snippet": "nglbbb{${1:arg}}"
-    },
-    "nglbbbb{}": {
-      "snippet": "nglbbbb{${1:arg}}"
-    },
-    "flr{}": {
-      "snippet": "flr{${1:arg}}"
-    },
-    "flrb{}": {
-      "snippet": "flrb{${1:arg}}"
-    },
-    "flrbb{}": {
-      "snippet": "flrbb{${1:arg}}"
-    },
-    "flrbbb{}": {
-      "snippet": "flrbbb{${1:arg}}"
-    },
-    "flrbbbb{}": {
-      "snippet": "flrbbbb{${1:arg}}"
-    },
-    "ceil{}": {
-      "snippet": "ceil{${1:arg}}"
-    },
-    "ceilb{}": {
-      "snippet": "ceilb{${1:arg}}"
-    },
-    "ceilbb{}": {
-      "snippet": "ceilbb{${1:arg}}"
-    },
-    "ceilbbb{}": {
-      "snippet": "ceilbbb{${1:arg}}"
-    },
-    "ceilbbbb{}": {
-      "snippet": "ceilbbbb{${1:arg}}"
-    },
-    "abs{}": {
-      "snippet": "abs{${1:arg}}"
-    },
-    "absb{}": {
-      "snippet": "absb{${1:arg}}"
-    },
-    "absbb{}": {
-      "snippet": "absbb{${1:arg}}"
-    },
-    "absbbb{}": {
-      "snippet": "absbbb{${1:arg}}"
-    },
-    "absbbbb{}": {
-      "snippet": "absbbbb{${1:arg}}"
-    },
-    "nrm{}": {
-      "snippet": "nrm{${1:arg}}"
-    },
-    "nrmb{}": {
-      "snippet": "nrmb{${1:arg}}"
-    },
-    "nrmbb{}": {
-      "snippet": "nrmbb{${1:arg}}"
-    },
-    "nrmbbb{}": {
-      "snippet": "nrmbbb{${1:arg}}"
-    },
-    "nrmbbbb{}": {
-      "snippet": "nrmbbbb{${1:arg}}"
-    },
-    "Bprn{}": {
-      "snippet": "Bprn{${1:arg}}"
-    },
-    "Bprnb{}": {
-      "snippet": "Bprnb{${1:arg}}"
-    },
-    "Bprnbb{}": {
-      "snippet": "Bprnbb{${1:arg}}"
-    },
-    "Bprnbbb{}": {
-      "snippet": "Bprnbbb{${1:arg}}"
-    },
-    "Bprnbbbb{}": {
-      "snippet": "Bprnbbbb{${1:arg}}"
-    },
-    "Bsqpr{}": {
-      "snippet": "Bsqpr{${1:arg}}"
-    },
-    "Bsqprb{}": {
-      "snippet": "Bsqprb{${1:arg}}"
-    },
-    "Bsqprbb{}": {
-      "snippet": "Bsqprbb{${1:arg}}"
-    },
-    "Bsqprbbb{}": {
-      "snippet": "Bsqprbbb{${1:arg}}"
-    },
-    "Bsqprbbbb{}": {
-      "snippet": "Bsqprbbbb{${1:arg}}"
-    },
-    "Bcrl{}": {
-      "snippet": "Bcrl{${1:arg}}"
-    },
-    "Bcrlb{}": {
-      "snippet": "Bcrlb{${1:arg}}"
-    },
-    "Bcrlbb{}": {
-      "snippet": "Bcrlbb{${1:arg}}"
-    },
-    "Bcrlbbb{}": {
-      "snippet": "Bcrlbbb{${1:arg}}"
-    },
-    "Bcrlbbbb{}": {
-      "snippet": "Bcrlbbbb{${1:arg}}"
-    },
-    "Bngl{}": {
-      "snippet": "Bngl{${1:arg}}"
-    },
-    "Bnglb{}": {
-      "snippet": "Bnglb{${1:arg}}"
-    },
-    "Bnglbb{}": {
-      "snippet": "Bnglbb{${1:arg}}"
-    },
-    "Bnglbbb{}": {
-      "snippet": "Bnglbbb{${1:arg}}"
-    },
-    "Bnglbbbb{}": {
-      "snippet": "Bnglbbbb{${1:arg}}"
-    },
-    "Bflr{}": {
-      "snippet": "Bflr{${1:arg}}"
-    },
-    "Bflrb{}": {
-      "snippet": "Bflrb{${1:arg}}"
-    },
-    "Bflrbb{}": {
-      "snippet": "Bflrbb{${1:arg}}"
-    },
-    "Bflrbbb{}": {
-      "snippet": "Bflrbbb{${1:arg}}"
-    },
-    "Bflrbbbb{}": {
-      "snippet": "Bflrbbbb{${1:arg}}"
-    },
-    "Bceil{}": {
-      "snippet": "Bceil{${1:arg}}"
-    },
-    "Bceilb{}": {
-      "snippet": "Bceilb{${1:arg}}"
-    },
-    "Bceilbb{}": {
-      "snippet": "Bceilbb{${1:arg}}"
-    },
-    "Bceilbbb{}": {
-      "snippet": "Bceilbbb{${1:arg}}"
-    },
-    "Bceilbbbb{}": {
-      "snippet": "Bceilbbbb{${1:arg}}"
-    },
-    "Babs{}": {
-      "snippet": "Babs{${1:arg}}"
-    },
-    "Babsb{}": {
-      "snippet": "Babsb{${1:arg}}"
-    },
-    "Babsbb{}": {
-      "snippet": "Babsbb{${1:arg}}"
-    },
-    "Babsbbb{}": {
-      "snippet": "Babsbbb{${1:arg}}"
-    },
-    "Babsbbbb{}": {
-      "snippet": "Babsbbbb{${1:arg}}"
-    },
-    "Bnrm{}": {
-      "snippet": "Bnrm{${1:arg}}"
-    },
-    "Bnrmb{}": {
-      "snippet": "Bnrmb{${1:arg}}"
-    },
-    "Bnrmbb{}": {
-      "snippet": "Bnrmbb{${1:arg}}"
-    },
-    "Bnrmbbb{}": {
-      "snippet": "Bnrmbbb{${1:arg}}"
-    },
-    "Bnrmbbbb{}": {
-      "snippet": "Bnrmbbbb{${1:arg}}"
-    },
-    "nrp{}": {
-      "snippet": "nrp{${1:arg}}"
-    },
-    "nrpb{}": {
-      "snippet": "nrpb{${1:arg}}"
-    },
-    "nrpbb{}": {
-      "snippet": "nrpbb{${1:arg}}"
-    },
-    "nrpbbb{}": {
-      "snippet": "nrpbbb{${1:arg}}"
-    },
-    "nrpbbbb{}": {
-      "snippet": "nrpbbbb{${1:arg}}"
-    },
-    "rpqs{}": {
-      "snippet": "rpqs{${1:arg}}"
-    },
-    "rpqsb{}": {
-      "snippet": "rpqsb{${1:arg}}"
-    },
-    "rpqsbb{}": {
-      "snippet": "rpqsbb{${1:arg}}"
-    },
-    "rpqsbbb{}": {
-      "snippet": "rpqsbbb{${1:arg}}"
-    },
-    "rpqsbbbb{}": {
-      "snippet": "rpqsbbbb{${1:arg}}"
-    },
-    "Bnrp{}": {
-      "snippet": "Bnrp{${1:arg}}"
-    },
-    "Bnrpb{}": {
-      "snippet": "Bnrpb{${1:arg}}"
-    },
-    "Bnrpbb{}": {
-      "snippet": "Bnrpbb{${1:arg}}"
-    },
-    "Bnrpbbb{}": {
-      "snippet": "Bnrpbbb{${1:arg}}"
-    },
-    "Bnrpbbbb{}": {
-      "snippet": "Bnrpbbbb{${1:arg}}"
-    },
-    "Brpqs{}": {
-      "snippet": "Brpqs{${1:arg}}"
-    },
-    "Brpqsb{}": {
-      "snippet": "Brpqsb{${1:arg}}"
-    },
-    "Brpqsbb{}": {
-      "snippet": "Brpqsbb{${1:arg}}"
-    },
-    "Brpqsbbb{}": {
-      "snippet": "Brpqsbbb{${1:arg}}"
-    },
-    "Brpqsbbbb{}": {
-      "snippet": "Brpqsbbbb{${1:arg}}"
-    },
-    "stgt{}": {
-      "snippet": "stgt{${1:arg}}"
-    },
-    "stgtb{}": {
-      "snippet": "stgtb{${1:arg}}"
-    },
-    "stgtbb{}": {
-      "snippet": "stgtbb{${1:arg}}"
-    },
-    "stgtbbb{}": {
-      "snippet": "stgtbbb{${1:arg}}"
-    },
-    "stgtbbbb{}": {
-      "snippet": "stgtbbbb{${1:arg}}"
-    },
-    "Bstgt{}": {
-      "snippet": "Bstgt{${1:arg}}"
-    },
-    "Bstgtb{}": {
-      "snippet": "Bstgtb{${1:arg}}"
-    },
-    "Bstgtbb{}": {
-      "snippet": "Bstgtbb{${1:arg}}"
-    },
-    "Bstgtbbb{}": {
-      "snippet": "Bstgtbbb{${1:arg}}"
-    },
-    "Bstgtbbbb{}": {
-      "snippet": "Bstgtbbbb{${1:arg}}"
-    },
-    "bigb": {},
-    "bigbb": {},
-    "bigbbb": {},
-    "llgg{}": {
-      "snippet": "llgg{${1:arg}}"
-    },
-    "llggb{}": {
-      "snippet": "llggb{${1:arg}}"
-    },
-    "llggbb{}": {
-      "snippet": "llggbb{${1:arg}}"
-    },
-    "llggbbb{}": {
-      "snippet": "llggbbb{${1:arg}}"
-    },
-    "llggbbbb{}": {
-      "snippet": "llggbbbb{${1:arg}}"
-    },
-    "Bllgg{}": {
-      "snippet": "Bllgg{${1:arg}}"
-    },
-    "Bllggb{}": {
-      "snippet": "Bllggb{${1:arg}}"
-    },
-    "Bllggbb{}": {
-      "snippet": "Bllggbb{${1:arg}}"
-    },
-    "Bllggbbb{}": {
-      "snippet": "Bllggbbb{${1:arg}}"
-    },
-    "Bllggbbbb{}": {
-      "snippet": "Bllggbbbb{${1:arg}}"
-    },
-    "valentine{}": {
-      "snippet": "valentine{${1:arg}}"
-    },
-    "diamondsgbf{}": {
-      "snippet": "diamondsgbf{${1:arg}}"
-    },
-    "bnom{}{}": {
-      "snippet": "bnom{${1:above}}{${2:below}}"
-    },
-    "bnomb{}{}": {
-      "snippet": "bnomb{${1:above}}{${2:below}}"
-    },
-    "bnombb{}{}": {
-      "snippet": "bnombb{${1:above}}{${2:below}}"
-    },
-    "bnombbb{}{}": {
-      "snippet": "bnombbb{${1:above}}{${2:below}}"
-    },
-    "bnombbbb{}{}": {
-      "snippet": "bnombbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnom{}{}": {
-      "snippet": "Bbnom{${1:above}}{${2:below}}"
-    },
-    "Bbnomb{}{}": {
-      "snippet": "Bbnomb{${1:above}}{${2:below}}"
-    },
-    "Bbnombb{}{}": {
-      "snippet": "Bbnombb{${1:above}}{${2:below}}"
-    },
-    "Bbnombbb{}{}": {
-      "snippet": "Bbnombbb{${1:above}}{${2:below}}"
-    },
-    "Bbnombbbb{}{}": {
-      "snippet": "Bbnombbbb{${1:above}}{${2:below}}"
-    },
-    "bnomsq{}{}": {
-      "snippet": "bnomsq{${1:above}}{${2:below}}"
-    },
-    "bnomsqb{}{}": {
-      "snippet": "bnomsqb{${1:above}}{${2:below}}"
-    },
-    "bnomsqbb{}{}": {
-      "snippet": "bnomsqbb{${1:above}}{${2:below}}"
-    },
-    "bnomsqbbb{}{}": {
-      "snippet": "bnomsqbbb{${1:above}}{${2:below}}"
-    },
-    "bnomsqbbbb{}{}": {
-      "snippet": "bnomsqbbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomsq{}{}": {
-      "snippet": "Bbnomsq{${1:above}}{${2:below}}"
-    },
-    "Bbnomsqb{}{}": {
-      "snippet": "Bbnomsqb{${1:above}}{${2:below}}"
-    },
-    "Bbnomsqbb{}{}": {
-      "snippet": "Bbnomsqbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomsqbbb{}{}": {
-      "snippet": "Bbnomsqbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomsqbbbb{}{}": {
-      "snippet": "Bbnomsqbbbb{${1:above}}{${2:below}}"
-    },
-    "bnomcrl{}{}": {
-      "snippet": "bnomcrl{${1:above}}{${2:below}}"
-    },
-    "bnomcrlb{}{}": {
-      "snippet": "bnomcrlb{${1:above}}{${2:below}}"
-    },
-    "bnomcrlbb{}{}": {
-      "snippet": "bnomcrlbb{${1:above}}{${2:below}}"
-    },
-    "bnomcrlbbb{}{}": {
-      "snippet": "bnomcrlbbb{${1:above}}{${2:below}}"
-    },
-    "bnomcrlbbbb{}{}": {
-      "snippet": "bnomcrlbbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomcrl{}{}": {
-      "snippet": "Bbnomcrl{${1:above}}{${2:below}}"
-    },
-    "Bbnomcrlb{}{}": {
-      "snippet": "Bbnomcrlb{${1:above}}{${2:below}}"
-    },
-    "Bbnomcrlbb{}{}": {
-      "snippet": "Bbnomcrlbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomcrlbbb{}{}": {
-      "snippet": "Bbnomcrlbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomcrlbbbb{}{}": {
-      "snippet": "Bbnomcrlbbbb{${1:above}}{${2:below}}"
-    },
-    "bnomngl{}{}": {
-      "snippet": "bnomngl{${1:above}}{${2:below}}"
-    },
-    "bnomnglb{}{}": {
-      "snippet": "bnomnglb{${1:above}}{${2:below}}"
-    },
-    "bnomnglbb{}{}": {
-      "snippet": "bnomnglbb{${1:above}}{${2:below}}"
-    },
-    "bnomnglbbb{}{}": {
-      "snippet": "bnomnglbbb{${1:above}}{${2:below}}"
-    },
-    "bnomnglbbbb{}{}": {
-      "snippet": "bnomnglbbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomngl{}{}": {
-      "snippet": "Bbnomngl{${1:above}}{${2:below}}"
-    },
-    "Bbnomnglb{}{}": {
-      "snippet": "Bbnomnglb{${1:above}}{${2:below}}"
-    },
-    "Bbnomnglbb{}{}": {
-      "snippet": "Bbnomnglbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomnglbbb{}{}": {
-      "snippet": "Bbnomnglbbb{${1:above}}{${2:below}}"
-    },
-    "Bbnomnglbbbb{}{}": {
-      "snippet": "Bbnomnglbbbb{${1:above}}{${2:below}}"
-    },
-    "Dprn{}": {
-      "snippet": "Dprn{${1:arg}}"
-    },
-    "Dsqpr{}": {
-      "snippet": "Dsqpr{${1:arg}}"
-    },
-    "Dcrl{}": {
-      "snippet": "Dcrl{${1:arg}}"
-    },
-    "Dngl{}": {
-      "snippet": "Dngl{${1:arg}}"
-    },
-    "Dceil{}": {
-      "snippet": "Dceil{${1:arg}}"
-    },
-    "Dabs{}": {
-      "snippet": "Dabs{${1:arg}}"
-    },
-    "Dnrm{}": {
-      "snippet": "Dnrm{${1:arg}}"
-    },
-    "Dflr{}": {
-      "snippet": "Dflr{${1:arg}}"
-    },
-    "Dstgt{}": {
-      "snippet": "Dstgt{${1:arg}}"
-    },
-    "lprn": {},
-    "lprnb": {},
-    "lprnbb": {},
-    "lprnbbb": {},
-    "lprnbbbb": {},
-    "lsqpr": {},
-    "lsqprb": {},
-    "lsqprbb": {},
-    "lsqprbbb": {},
-    "lsqprbbbb": {},
-    "lcrl": {},
-    "lcrlb": {},
-    "lcrlbb": {},
-    "lcrlbbb": {},
-    "lcrlbbbb": {},
-    "lceilb": {},
-    "lceilbb": {},
-    "lceilbbb": {},
-    "lceilbbbb": {},
-    "lflr": {},
-    "lflrb": {},
-    "lflrbb": {},
-    "lflrbbb": {},
-    "lflrbbbb": {},
-    "lngl": {},
-    "lnglb": {},
-    "lnglbb": {},
-    "lnglbbb": {},
-    "lnglbbbb": {},
-    "labs": {},
-    "labsb": {},
-    "labsbb": {},
-    "labsbbb": {},
-    "labsbbbb": {},
-    "lnrm": {},
-    "lnrmb": {},
-    "lnrmbb": {},
-    "lnrmbbb": {},
-    "lnrmbbbb": {},
-    "Lprn": {},
-    "Lprnb": {},
-    "Lprnbb": {},
-    "Lprnbbb": {},
-    "Lprnbbbb": {},
-    "Lsqpr": {},
-    "Lsqprb": {},
-    "Lsqprbb": {},
-    "Lsqprbbb": {},
-    "Lsqprbbbb": {},
-    "Lcrl": {},
-    "Lcrlb": {},
-    "Lcrlbb": {},
-    "Lcrlbbb": {},
-    "Lcrlbbbb": {},
-    "Lceilb": {},
-    "Lceilbb": {},
-    "Lceilbbb": {},
-    "Lceilbbbb": {},
-    "Lflr": {},
-    "Lflrb": {},
-    "Lflrbb": {},
-    "Lflrbbb": {},
-    "Lflrbbbb": {},
-    "Lngl": {},
-    "Lnglb": {},
-    "Lnglbb": {},
-    "Lnglbbb": {},
-    "Lnglbbbb": {},
-    "Labs": {},
-    "Labsb": {},
-    "Labsbb": {},
-    "Labsbbb": {},
-    "Labsbbbb": {},
-    "Lnrm": {},
-    "Lnrmb": {},
-    "Lnrmbb": {},
-    "Lnrmbbb": {},
-    "Lnrmbbbb": {},
-    "rprn": {},
-    "rprnb": {},
-    "rprnbb": {},
-    "rprnbbb": {},
-    "rprnbbbb": {},
-    "rsqpr": {},
-    "rsqprb": {},
-    "rsqprbb": {},
-    "rsqprbbb": {},
-    "rsqprbbbb": {},
-    "rcrl": {},
-    "rcrlb": {},
-    "rcrlbb": {},
-    "rcrlbbb": {},
-    "rcrlbbbb": {},
-    "rceilb": {},
-    "rceilbb": {},
-    "rceilbbb": {},
-    "rceilbbbb": {},
-    "rflr": {},
-    "rflrb": {},
-    "rflrbb": {},
-    "rflrbbb": {},
-    "rflrbbbb": {},
-    "rngl": {},
-    "rnglb": {},
-    "rnglbb": {},
-    "rnglbbb": {},
-    "rnglbbbb": {},
-    "rabs": {},
-    "rabsb": {},
-    "rabsbb": {},
-    "rabsbbb": {},
-    "rabsbbbb": {},
-    "rnrm": {},
-    "rnrmb": {},
-    "rnrmbb": {},
-    "rnrmbbb": {},
-    "rnrmbbbb": {},
-    "Rprn": {},
-    "Rprnb": {},
-    "Rprnbb": {},
-    "Rprnbbb": {},
-    "Rprnbbbb": {},
-    "Rsqpr": {},
-    "Rsqprb": {},
-    "Rsqprbb": {},
-    "Rsqprbbb": {},
-    "Rsqprbbbb": {},
-    "Rcrl": {},
-    "Rcrlb": {},
-    "Rcrlbb": {},
-    "Rcrlbbb": {},
-    "Rcrlbbbb": {},
-    "Rceilb": {},
-    "Rceilbb": {},
-    "Rceilbbb": {},
-    "Rceilbbbb": {},
-    "Rflr": {},
-    "Rflrb": {},
-    "Rflrbb": {},
-    "Rflrbbb": {},
-    "Rflrbbbb": {},
-    "Rngl": {},
-    "Rnglb": {},
-    "Rnglbb": {},
-    "Rnglbbb": {},
-    "Rnglbbbb": {},
-    "Rabs": {},
-    "Rabsb": {},
-    "Rabsbb": {},
-    "Rabsbbb": {},
-    "Rabsbbbb": {},
-    "Rnrm": {},
-    "Rnrmb": {},
-    "Rnrmbb": {},
-    "Rnrmbbb": {},
-    "Rnrmbbbb": {},
-    "Blprn": {},
-    "Blprnb": {},
-    "Blprnbb": {},
-    "Blprnbbb": {},
-    "Blprnbbbb": {},
-    "Blsqpr": {},
-    "Blsqprb": {},
-    "Blsqprbb": {},
-    "Blsqprbbb": {},
-    "Blsqprbbbb": {},
-    "Blcrl": {},
-    "Blcrlb": {},
-    "Blcrlbb": {},
-    "Blcrlbbb": {},
-    "Blcrlbbbb": {},
-    "Blceil": {},
-    "Blceilb": {},
-    "Blceilbb": {},
-    "Blceilbbb": {},
-    "Blceilbbbb": {},
-    "Blflr": {},
-    "Blflrb": {},
-    "Blflrbb": {},
-    "Blflrbbb": {},
-    "Blflrbbbb": {},
-    "Blngl": {},
-    "Blnglb": {},
-    "Blnglbb": {},
-    "Blnglbbb": {},
-    "Blnglbbbb": {},
-    "Blabs": {},
-    "Blabsb": {},
-    "Blabsbb": {},
-    "Blabsbbb": {},
-    "Blabsbbbb": {},
-    "Blnrm": {},
-    "Blnrmb": {},
-    "Blnrmbb": {},
-    "Blnrmbbb": {},
-    "Blnrmbbbb": {},
-    "BLprn": {},
-    "BLprnb": {},
-    "BLprnbb": {},
-    "BLprnbbb": {},
-    "BLprnbbbb": {},
-    "BLsqpr": {},
-    "BLsqprb": {},
-    "BLsqprbb": {},
-    "BLsqprbbb": {},
-    "BLsqprbbbb": {},
-    "BLcrl": {},
-    "BLcrlb": {},
-    "BLcrlbb": {},
-    "BLcrlbbb": {},
-    "BLcrlbbbb": {},
-    "BLceil": {},
-    "BLceilb": {},
-    "BLceilbb": {},
-    "BLceilbbb": {},
-    "BLceilbbbb": {},
-    "BLflr": {},
-    "BLflrb": {},
-    "BLflrbb": {},
-    "BLflrbbb": {},
-    "BLflrbbbb": {},
-    "BLngl": {},
-    "BLnglb": {},
-    "BLnglbb": {},
-    "BLnglbbb": {},
-    "BLnglbbbb": {},
-    "BLabs": {},
-    "BLabsb": {},
-    "BLabsbb": {},
-    "BLabsbbb": {},
-    "BLabsbbbb": {},
-    "BLnrm": {},
-    "BLnrmb": {},
-    "BLnrmbb": {},
-    "BLnrmbbb": {},
-    "BLnrmbbbb": {},
-    "Brprn": {},
-    "Brprnb": {},
-    "Brprnbb": {},
-    "Brprnbbb": {},
-    "Brprnbbbb": {},
-    "Brsqpr": {},
-    "Brsqprb": {},
-    "Brsqprbb": {},
-    "Brsqprbbb": {},
-    "Brsqprbbbb": {},
-    "Brcrl": {},
-    "Brcrlb": {},
-    "Brcrlbb": {},
-    "Brcrlbbb": {},
-    "Brcrlbbbb": {},
-    "Brceil": {},
-    "Brceilb": {},
-    "Brceilbb": {},
-    "Brceilbbb": {},
-    "Brceilbbbb": {},
-    "Brflr": {},
-    "Brflrb": {},
-    "Brflrbb": {},
-    "Brflrbbb": {},
-    "Brflrbbbb": {},
-    "Brngl": {},
-    "Brnglb": {},
-    "Brnglbb": {},
-    "Brnglbbb": {},
-    "Brnglbbbb": {},
-    "Brabs": {},
-    "Brabsb": {},
-    "Brabsbb": {},
-    "Brabsbbb": {},
-    "Brabsbbbb": {},
-    "Brnrm": {},
-    "Brnrmb": {},
-    "Brnrmbb": {},
-    "Brnrmbbb": {},
-    "Brnrmbbbb": {},
-    "BRprn": {},
-    "BRprnb": {},
-    "BRprnbb": {},
-    "BRprnbbb": {},
-    "BRprnbbbb": {},
-    "BRsqpr": {},
-    "BRsqprb": {},
-    "BRsqprbb": {},
-    "BRsqprbbb": {},
-    "BRsqprbbbb": {},
-    "BRcrl": {},
-    "BRcrlb": {},
-    "BRcrlbb": {},
-    "BRcrlbbb": {},
-    "BRcrlbbbb": {},
-    "BRceil": {},
-    "BRceilb": {},
-    "BRceilbb": {},
-    "BRceilbbb": {},
-    "BRceilbbbb": {},
-    "BRflr": {},
-    "BRflrb": {},
-    "BRflrbb": {},
-    "BRflrbbb": {},
-    "BRflrbbbb": {},
-    "BRngl": {},
-    "BRnglb": {},
-    "BRnglbb": {},
-    "BRnglbbb": {},
-    "BRnglbbbb": {},
-    "BRabs": {},
-    "BRabsb": {},
-    "BRabsbb": {},
-    "BRabsbbb": {},
-    "BRabsbbbb": {},
-    "BRnrm": {},
-    "BRnrmb": {},
-    "BRnrmbb": {},
-    "BRnrmbbb": {},
-    "BRnrmbbbb": {},
-    "lstgt": {},
-    "lstgtb": {},
-    "lstgtbb": {},
-    "lstgtbbb": {},
-    "lstgtbbbb": {},
-    "Blstgt": {},
-    "Blstgtb": {},
-    "Blstgtbb": {},
-    "Blstgtbbb": {},
-    "Blstgtbbbb": {},
-    "rstgt": {},
-    "rstgtb": {},
-    "rstgtbb": {},
-    "rstgtbbb": {},
-    "rstgtbbbb": {},
-    "Brstgt": {},
-    "Brstgtb": {},
-    "Brstgtbb": {},
-    "Brstgtbbb": {},
-    "Brstgtbbbb": {},
-    "mylen": {},
-    "length{}": {
-      "snippet": "length{${1:arg}}"
-    },
-    "getlength{}": {
-      "snippet": "getlength{${1:arg}}"
-    },
-    "myhearts": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [],
+  "macros": [
+    {
+      "name": "prn",
+      "arg": {
+        "format": "{}",
+        "snippet": "prn{${1:arg}}"
+      }
+    },
+    {
+      "name": "prnb",
+      "arg": {
+        "format": "{}",
+        "snippet": "prnb{${1:arg}}"
+      }
+    },
+    {
+      "name": "prnbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "prnbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "prnbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "prnbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "prnbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "prnbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "sqpr",
+      "arg": {
+        "format": "{}",
+        "snippet": "sqpr{${1:arg}}"
+      }
+    },
+    {
+      "name": "sqprb",
+      "arg": {
+        "format": "{}",
+        "snippet": "sqprb{${1:arg}}"
+      }
+    },
+    {
+      "name": "sqprbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "sqprbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "sqprbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "sqprbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "sqprbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "sqprbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "crl",
+      "arg": {
+        "format": "{}",
+        "snippet": "crl{${1:arg}}"
+      }
+    },
+    {
+      "name": "crlb",
+      "arg": {
+        "format": "{}",
+        "snippet": "crlb{${1:arg}}"
+      }
+    },
+    {
+      "name": "crlbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "crlbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "crlbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "crlbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "crlbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "crlbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "ngl",
+      "arg": {
+        "format": "{}",
+        "snippet": "ngl{${1:arg}}"
+      }
+    },
+    {
+      "name": "nglb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nglb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nglbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nglbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nglbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nglbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nglbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nglbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "flr",
+      "arg": {
+        "format": "{}",
+        "snippet": "flr{${1:arg}}"
+      }
+    },
+    {
+      "name": "flrb",
+      "arg": {
+        "format": "{}",
+        "snippet": "flrb{${1:arg}}"
+      }
+    },
+    {
+      "name": "flrbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "flrbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "flrbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "flrbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "flrbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "flrbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceil{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceilb",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceilb{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceilbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceilbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceilbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceilbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceilbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceilbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "abs{${1:arg}}"
+      }
+    },
+    {
+      "name": "absb",
+      "arg": {
+        "format": "{}",
+        "snippet": "absb{${1:arg}}"
+      }
+    },
+    {
+      "name": "absbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "absbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "absbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "absbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "absbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "absbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrm{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrmb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrmb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrmbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrmbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrmbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrmbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrmbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrmbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bprn",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bprn{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bprnb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bprnb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bprnbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bprnbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bprnbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bprnbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bprnbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bprnbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bsqpr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bsqpr{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bsqprb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bsqprb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bsqprbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bsqprbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bsqprbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bsqprbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bsqprbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bsqprbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bcrl{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcrlb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bcrlb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcrlbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bcrlbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcrlbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bcrlbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bcrlbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bcrlbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bngl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bngl{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnglb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnglb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnglbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnglbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnglbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnglbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnglbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnglbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bflr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bflr{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bflrb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bflrb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bflrbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bflrbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bflrbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bflrbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bflrbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bflrbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bceil{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bceilb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bceilb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bceilbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bceilbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bceilbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bceilbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bceilbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bceilbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Babs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Babs{${1:arg}}"
+      }
+    },
+    {
+      "name": "Babsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Babsb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Babsbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Babsbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Babsbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Babsbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Babsbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Babsbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrm{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrmb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrmb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrmbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrmbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrmbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrmbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrmbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrmbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrp",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrp{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrpb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrpb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrpbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrpbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrpbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrpbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "nrpbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "nrpbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "rpqs",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpqs{${1:arg}}"
+      }
+    },
+    {
+      "name": "rpqsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpqsb{${1:arg}}"
+      }
+    },
+    {
+      "name": "rpqsbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpqsbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "rpqsbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpqsbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "rpqsbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "rpqsbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrp",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrp{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrpb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrpb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrpbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrpbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrpbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrpbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bnrpbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bnrpbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Brpqs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brpqs{${1:arg}}"
+      }
+    },
+    {
+      "name": "Brpqsb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brpqsb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Brpqsbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brpqsbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Brpqsbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brpqsbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Brpqsbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brpqsbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "stgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "stgt{${1:arg}}"
+      }
+    },
+    {
+      "name": "stgtb",
+      "arg": {
+        "format": "{}",
+        "snippet": "stgtb{${1:arg}}"
+      }
+    },
+    {
+      "name": "stgtbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "stgtbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "stgtbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "stgtbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "stgtbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "stgtbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bstgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bstgt{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bstgtb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bstgtb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bstgtbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bstgtbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bstgtbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bstgtbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bstgtbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bstgtbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "bigb"
+    },
+    {
+      "name": "bigbb"
+    },
+    {
+      "name": "bigbbb"
+    },
+    {
+      "name": "llgg",
+      "arg": {
+        "format": "{}",
+        "snippet": "llgg{${1:arg}}"
+      }
+    },
+    {
+      "name": "llggb",
+      "arg": {
+        "format": "{}",
+        "snippet": "llggb{${1:arg}}"
+      }
+    },
+    {
+      "name": "llggbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "llggbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "llggbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "llggbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "llggbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "llggbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bllgg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bllgg{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bllggb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bllggb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bllggbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bllggbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bllggbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bllggbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "Bllggbbbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bllggbbbb{${1:arg}}"
+      }
+    },
+    {
+      "name": "valentine",
+      "arg": {
+        "format": "{}",
+        "snippet": "valentine{${1:arg}}"
+      }
+    },
+    {
+      "name": "diamondsgbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "diamondsgbf{${1:arg}}"
+      }
+    },
+    {
+      "name": "bnom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnom{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnombb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnombb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnombbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnombbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnombbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnombbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnom{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnombb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnombb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnombbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnombbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnombbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnombbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomsq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomsq{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomsqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomsqb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomsqbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomsqbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomsqbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomsqbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomsqbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomsqbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomsq",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomsq{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomsqb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomsqb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomsqbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomsqbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomsqbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomsqbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomsqbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomsqbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomcrl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomcrl{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomcrlb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomcrlb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomcrlbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomcrlbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomcrlbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomcrlbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomcrlbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomcrlbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomcrl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomcrl{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomcrlb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomcrlb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomcrlbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomcrlbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomcrlbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomcrlbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomcrlbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomcrlbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomngl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomngl{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomnglb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomnglb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomnglbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomnglbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomnglbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomnglbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "bnomnglbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnomnglbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomngl",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomngl{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomnglb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomnglb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomnglbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomnglbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomnglbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomnglbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Bbnomnglbbbb",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Bbnomnglbbbb{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "Dprn",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dprn{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dsqpr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dsqpr{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dcrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dcrl{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dngl",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dngl{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dceil{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dabs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dabs{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dnrm",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dnrm{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dflr",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dflr{${1:arg}}"
+      }
+    },
+    {
+      "name": "Dstgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dstgt{${1:arg}}"
+      }
+    },
+    {
+      "name": "lprn",
+      "unusual": true
+    },
+    {
+      "name": "lprnb",
+      "unusual": true
+    },
+    {
+      "name": "lprnbb",
+      "unusual": true
+    },
+    {
+      "name": "lprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "lprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lsqpr",
+      "unusual": true
+    },
+    {
+      "name": "lsqprb",
+      "unusual": true
+    },
+    {
+      "name": "lsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "lsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "lsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lcrl",
+      "unusual": true
+    },
+    {
+      "name": "lcrlb",
+      "unusual": true
+    },
+    {
+      "name": "lcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "lcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "lcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lceilb",
+      "unusual": true
+    },
+    {
+      "name": "lceilbb",
+      "unusual": true
+    },
+    {
+      "name": "lceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "lceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lflr",
+      "unusual": true
+    },
+    {
+      "name": "lflrb",
+      "unusual": true
+    },
+    {
+      "name": "lflrbb",
+      "unusual": true
+    },
+    {
+      "name": "lflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "lflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lngl",
+      "unusual": true
+    },
+    {
+      "name": "lnglb",
+      "unusual": true
+    },
+    {
+      "name": "lnglbb",
+      "unusual": true
+    },
+    {
+      "name": "lnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "lnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "labs",
+      "unusual": true
+    },
+    {
+      "name": "labsb",
+      "unusual": true
+    },
+    {
+      "name": "labsbb",
+      "unusual": true
+    },
+    {
+      "name": "labsbbb",
+      "unusual": true
+    },
+    {
+      "name": "labsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lnrm",
+      "unusual": true
+    },
+    {
+      "name": "lnrmb",
+      "unusual": true
+    },
+    {
+      "name": "lnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "lnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "lnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lprn",
+      "unusual": true
+    },
+    {
+      "name": "Lprnb",
+      "unusual": true
+    },
+    {
+      "name": "Lprnbb",
+      "unusual": true
+    },
+    {
+      "name": "Lprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lsqpr",
+      "unusual": true
+    },
+    {
+      "name": "Lsqprb",
+      "unusual": true
+    },
+    {
+      "name": "Lsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "Lsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lcrl",
+      "unusual": true
+    },
+    {
+      "name": "Lcrlb",
+      "unusual": true
+    },
+    {
+      "name": "Lcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "Lcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lceilb",
+      "unusual": true
+    },
+    {
+      "name": "Lceilbb",
+      "unusual": true
+    },
+    {
+      "name": "Lceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lflr",
+      "unusual": true
+    },
+    {
+      "name": "Lflrb",
+      "unusual": true
+    },
+    {
+      "name": "Lflrbb",
+      "unusual": true
+    },
+    {
+      "name": "Lflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lngl",
+      "unusual": true
+    },
+    {
+      "name": "Lnglb",
+      "unusual": true
+    },
+    {
+      "name": "Lnglbb",
+      "unusual": true
+    },
+    {
+      "name": "Lnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Labs",
+      "unusual": true
+    },
+    {
+      "name": "Labsb",
+      "unusual": true
+    },
+    {
+      "name": "Labsbb",
+      "unusual": true
+    },
+    {
+      "name": "Labsbbb",
+      "unusual": true
+    },
+    {
+      "name": "Labsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lnrm",
+      "unusual": true
+    },
+    {
+      "name": "Lnrmb",
+      "unusual": true
+    },
+    {
+      "name": "Lnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "Lnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "Lnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rprn",
+      "unusual": true
+    },
+    {
+      "name": "rprnb",
+      "unusual": true
+    },
+    {
+      "name": "rprnbb",
+      "unusual": true
+    },
+    {
+      "name": "rprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "rprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rsqpr",
+      "unusual": true
+    },
+    {
+      "name": "rsqprb",
+      "unusual": true
+    },
+    {
+      "name": "rsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "rsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "rsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rcrl",
+      "unusual": true
+    },
+    {
+      "name": "rcrlb",
+      "unusual": true
+    },
+    {
+      "name": "rcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "rcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "rcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rceilb",
+      "unusual": true
+    },
+    {
+      "name": "rceilbb",
+      "unusual": true
+    },
+    {
+      "name": "rceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "rceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rflr",
+      "unusual": true
+    },
+    {
+      "name": "rflrb",
+      "unusual": true
+    },
+    {
+      "name": "rflrbb",
+      "unusual": true
+    },
+    {
+      "name": "rflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "rflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rngl",
+      "unusual": true
+    },
+    {
+      "name": "rnglb",
+      "unusual": true
+    },
+    {
+      "name": "rnglbb",
+      "unusual": true
+    },
+    {
+      "name": "rnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "rnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rabs",
+      "unusual": true
+    },
+    {
+      "name": "rabsb",
+      "unusual": true
+    },
+    {
+      "name": "rabsbb",
+      "unusual": true
+    },
+    {
+      "name": "rabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "rabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rnrm",
+      "unusual": true
+    },
+    {
+      "name": "rnrmb",
+      "unusual": true
+    },
+    {
+      "name": "rnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "rnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "rnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rprn",
+      "unusual": true
+    },
+    {
+      "name": "Rprnb",
+      "unusual": true
+    },
+    {
+      "name": "Rprnbb",
+      "unusual": true
+    },
+    {
+      "name": "Rprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rsqpr",
+      "unusual": true
+    },
+    {
+      "name": "Rsqprb",
+      "unusual": true
+    },
+    {
+      "name": "Rsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "Rsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rcrl",
+      "unusual": true
+    },
+    {
+      "name": "Rcrlb",
+      "unusual": true
+    },
+    {
+      "name": "Rcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "Rcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rceilb",
+      "unusual": true
+    },
+    {
+      "name": "Rceilbb",
+      "unusual": true
+    },
+    {
+      "name": "Rceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rflr",
+      "unusual": true
+    },
+    {
+      "name": "Rflrb",
+      "unusual": true
+    },
+    {
+      "name": "Rflrbb",
+      "unusual": true
+    },
+    {
+      "name": "Rflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rngl",
+      "unusual": true
+    },
+    {
+      "name": "Rnglb",
+      "unusual": true
+    },
+    {
+      "name": "Rnglbb",
+      "unusual": true
+    },
+    {
+      "name": "Rnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rabs",
+      "unusual": true
+    },
+    {
+      "name": "Rabsb",
+      "unusual": true
+    },
+    {
+      "name": "Rabsbb",
+      "unusual": true
+    },
+    {
+      "name": "Rabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rnrm",
+      "unusual": true
+    },
+    {
+      "name": "Rnrmb",
+      "unusual": true
+    },
+    {
+      "name": "Rnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "Rnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "Rnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blprn",
+      "unusual": true
+    },
+    {
+      "name": "Blprnb",
+      "unusual": true
+    },
+    {
+      "name": "Blprnbb",
+      "unusual": true
+    },
+    {
+      "name": "Blprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blsqpr",
+      "unusual": true
+    },
+    {
+      "name": "Blsqprb",
+      "unusual": true
+    },
+    {
+      "name": "Blsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "Blsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blcrl",
+      "unusual": true
+    },
+    {
+      "name": "Blcrlb",
+      "unusual": true
+    },
+    {
+      "name": "Blcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "Blcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blceil",
+      "unusual": true
+    },
+    {
+      "name": "Blceilb",
+      "unusual": true
+    },
+    {
+      "name": "Blceilbb",
+      "unusual": true
+    },
+    {
+      "name": "Blceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blflr",
+      "unusual": true
+    },
+    {
+      "name": "Blflrb",
+      "unusual": true
+    },
+    {
+      "name": "Blflrbb",
+      "unusual": true
+    },
+    {
+      "name": "Blflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blngl",
+      "unusual": true
+    },
+    {
+      "name": "Blnglb",
+      "unusual": true
+    },
+    {
+      "name": "Blnglbb",
+      "unusual": true
+    },
+    {
+      "name": "Blnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blabs",
+      "unusual": true
+    },
+    {
+      "name": "Blabsb",
+      "unusual": true
+    },
+    {
+      "name": "Blabsbb",
+      "unusual": true
+    },
+    {
+      "name": "Blabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blnrm",
+      "unusual": true
+    },
+    {
+      "name": "Blnrmb",
+      "unusual": true
+    },
+    {
+      "name": "Blnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "Blnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLprn",
+      "unusual": true
+    },
+    {
+      "name": "BLprnb",
+      "unusual": true
+    },
+    {
+      "name": "BLprnbb",
+      "unusual": true
+    },
+    {
+      "name": "BLprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLsqpr",
+      "unusual": true
+    },
+    {
+      "name": "BLsqprb",
+      "unusual": true
+    },
+    {
+      "name": "BLsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "BLsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLcrl",
+      "unusual": true
+    },
+    {
+      "name": "BLcrlb",
+      "unusual": true
+    },
+    {
+      "name": "BLcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "BLcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLceil",
+      "unusual": true
+    },
+    {
+      "name": "BLceilb",
+      "unusual": true
+    },
+    {
+      "name": "BLceilbb",
+      "unusual": true
+    },
+    {
+      "name": "BLceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLflr",
+      "unusual": true
+    },
+    {
+      "name": "BLflrb",
+      "unusual": true
+    },
+    {
+      "name": "BLflrbb",
+      "unusual": true
+    },
+    {
+      "name": "BLflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLngl",
+      "unusual": true
+    },
+    {
+      "name": "BLnglb",
+      "unusual": true
+    },
+    {
+      "name": "BLnglbb",
+      "unusual": true
+    },
+    {
+      "name": "BLnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLabs",
+      "unusual": true
+    },
+    {
+      "name": "BLabsb",
+      "unusual": true
+    },
+    {
+      "name": "BLabsbb",
+      "unusual": true
+    },
+    {
+      "name": "BLabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLnrm",
+      "unusual": true
+    },
+    {
+      "name": "BLnrmb",
+      "unusual": true
+    },
+    {
+      "name": "BLnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "BLnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "BLnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brprn",
+      "unusual": true
+    },
+    {
+      "name": "Brprnb",
+      "unusual": true
+    },
+    {
+      "name": "Brprnbb",
+      "unusual": true
+    },
+    {
+      "name": "Brprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brsqpr",
+      "unusual": true
+    },
+    {
+      "name": "Brsqprb",
+      "unusual": true
+    },
+    {
+      "name": "Brsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "Brsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brcrl",
+      "unusual": true
+    },
+    {
+      "name": "Brcrlb",
+      "unusual": true
+    },
+    {
+      "name": "Brcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "Brcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brceil",
+      "unusual": true
+    },
+    {
+      "name": "Brceilb",
+      "unusual": true
+    },
+    {
+      "name": "Brceilbb",
+      "unusual": true
+    },
+    {
+      "name": "Brceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brflr",
+      "unusual": true
+    },
+    {
+      "name": "Brflrb",
+      "unusual": true
+    },
+    {
+      "name": "Brflrbb",
+      "unusual": true
+    },
+    {
+      "name": "Brflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brngl",
+      "unusual": true
+    },
+    {
+      "name": "Brnglb",
+      "unusual": true
+    },
+    {
+      "name": "Brnglbb",
+      "unusual": true
+    },
+    {
+      "name": "Brnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brabs",
+      "unusual": true
+    },
+    {
+      "name": "Brabsb",
+      "unusual": true
+    },
+    {
+      "name": "Brabsbb",
+      "unusual": true
+    },
+    {
+      "name": "Brabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brnrm",
+      "unusual": true
+    },
+    {
+      "name": "Brnrmb",
+      "unusual": true
+    },
+    {
+      "name": "Brnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "Brnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRprn",
+      "unusual": true
+    },
+    {
+      "name": "BRprnb",
+      "unusual": true
+    },
+    {
+      "name": "BRprnbb",
+      "unusual": true
+    },
+    {
+      "name": "BRprnbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRprnbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRsqpr",
+      "unusual": true
+    },
+    {
+      "name": "BRsqprb",
+      "unusual": true
+    },
+    {
+      "name": "BRsqprbb",
+      "unusual": true
+    },
+    {
+      "name": "BRsqprbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRsqprbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRcrl",
+      "unusual": true
+    },
+    {
+      "name": "BRcrlb",
+      "unusual": true
+    },
+    {
+      "name": "BRcrlbb",
+      "unusual": true
+    },
+    {
+      "name": "BRcrlbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRcrlbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRceil",
+      "unusual": true
+    },
+    {
+      "name": "BRceilb",
+      "unusual": true
+    },
+    {
+      "name": "BRceilbb",
+      "unusual": true
+    },
+    {
+      "name": "BRceilbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRceilbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRflr",
+      "unusual": true
+    },
+    {
+      "name": "BRflrb",
+      "unusual": true
+    },
+    {
+      "name": "BRflrbb",
+      "unusual": true
+    },
+    {
+      "name": "BRflrbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRflrbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRngl",
+      "unusual": true
+    },
+    {
+      "name": "BRnglb",
+      "unusual": true
+    },
+    {
+      "name": "BRnglbb",
+      "unusual": true
+    },
+    {
+      "name": "BRnglbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRnglbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRabs",
+      "unusual": true
+    },
+    {
+      "name": "BRabsb",
+      "unusual": true
+    },
+    {
+      "name": "BRabsbb",
+      "unusual": true
+    },
+    {
+      "name": "BRabsbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRabsbbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRnrm",
+      "unusual": true
+    },
+    {
+      "name": "BRnrmb",
+      "unusual": true
+    },
+    {
+      "name": "BRnrmbb",
+      "unusual": true
+    },
+    {
+      "name": "BRnrmbbb",
+      "unusual": true
+    },
+    {
+      "name": "BRnrmbbbb",
+      "unusual": true
+    },
+    {
+      "name": "lstgt",
+      "unusual": true
+    },
+    {
+      "name": "lstgtb",
+      "unusual": true
+    },
+    {
+      "name": "lstgtbb",
+      "unusual": true
+    },
+    {
+      "name": "lstgtbbb",
+      "unusual": true
+    },
+    {
+      "name": "lstgtbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blstgt",
+      "unusual": true
+    },
+    {
+      "name": "Blstgtb",
+      "unusual": true
+    },
+    {
+      "name": "Blstgtbb",
+      "unusual": true
+    },
+    {
+      "name": "Blstgtbbb",
+      "unusual": true
+    },
+    {
+      "name": "Blstgtbbbb",
+      "unusual": true
+    },
+    {
+      "name": "rstgt",
+      "unusual": true
+    },
+    {
+      "name": "rstgtb",
+      "unusual": true
+    },
+    {
+      "name": "rstgtbb",
+      "unusual": true
+    },
+    {
+      "name": "rstgtbbb",
+      "unusual": true
+    },
+    {
+      "name": "rstgtbbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brstgt",
+      "unusual": true
+    },
+    {
+      "name": "Brstgtb",
+      "unusual": true
+    },
+    {
+      "name": "Brstgtbb",
+      "unusual": true
+    },
+    {
+      "name": "Brstgtbbb",
+      "unusual": true
+    },
+    {
+      "name": "Brstgtbbbb",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

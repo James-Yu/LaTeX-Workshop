@@ -1,49 +1,119 @@
 {
-  "includes": {
-    "pict2e": []
-  },
-  "macros": {
-    "askmapi{}{}{}{}{}": {
-      "snippet": "askmapi{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmapii{}{}{}{}{}": {
-      "snippet": "askmapii{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmapiii{}{}{}{}{}": {
-      "snippet": "askmapiii{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmapiiialt{}{}{}{}{}": {
-      "snippet": "askmapiiialt{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmapiv{}{}{}{}{}": {
-      "snippet": "askmapiv{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmapv{}{}{}{}{}": {
-      "snippet": "askmapv{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
-    },
-    "askmap{}{}{}{}{}{}": {
-      "snippet": "askmap{${1:num}}{${2:output var}}{${3:input vars}}{${4:options}}{${5:func vals}}{${6:pic cmds}}"
-    },
-    "askmapunitlength": {},
-    "askmapsversion": {},
-    "askmapsdate": {},
-    "askmapindexsize": {},
-    "askmapcontentsize": {},
-    "askmapbitcombinationsize": {},
-    "askmapvarsep": {},
-    "askmapargumentstring{}": {
-      "snippet": "askmapargumentstring{${1:arg}}"
-    },
-    "askmapgetchar{}": {
-      "snippet": "askmapgetchar{${1:arg}}"
-    },
-    "askmapgetonechar{}{}": {
-      "snippet": "askmapgetonechar{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "pict2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "disablef"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "askmapi",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapi{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapii",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapii{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapiii",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapiii{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapiiialt",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapiiialt{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapiv",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapiv{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapv",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "askmapv{${1:output var}}{${2:input vars}}{${3:options}}{${4:func vals}}{${5:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmap",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "askmap{${1:num}}{${2:output var}}{${3:input vars}}{${4:options}}{${5:func vals}}{${6:pic cmds}}"
+      }
+    },
+    {
+      "name": "askmapunitlength",
+      "unusual": true
+    },
+    {
+      "name": "askmapsversion",
+      "unusual": true
+    },
+    {
+      "name": "askmapsdate",
+      "unusual": true
+    },
+    {
+      "name": "askmapindexsize",
+      "unusual": true
+    },
+    {
+      "name": "askmapcontentsize",
+      "unusual": true
+    },
+    {
+      "name": "askmapbitcombinationsize",
+      "unusual": true
+    },
+    {
+      "name": "askmapvarsep",
+      "unusual": true
+    },
+    {
+      "name": "askmapargumentstring",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "askmapargumentstring{${1:arg}}"
+      }
+    },
+    {
+      "name": "askmapgetchar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "askmapgetchar{${1:arg}}"
+      }
+    },
+    {
+      "name": "askmapgetonechar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "askmapgetonechar{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/askmaps#c": [
+      "disablef"
+    ]
+  },
+  "args": [
+    "\\usepackage/askmaps#c"
+  ]
 }

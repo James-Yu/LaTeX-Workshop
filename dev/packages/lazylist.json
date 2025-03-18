@@ -1,109 +1,252 @@
 {
-  "includes": {},
-  "macros": {
-    "Identity{}": {
-      "snippet": "Identity{${1:arg}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "Identity",
+      "arg": {
+        "format": "{}",
+        "snippet": "Identity{${1:arg}}"
+      }
     },
-    "Error": {},
-    "First{}{}": {
-      "snippet": "First{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Error"
     },
-    "Second{}{}": {
-      "snippet": "Second{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "First",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "First{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "Compose{}{}{}": {
-      "snippet": "Compose{${1:func1}}{${2:func2}}{${3:arg}}"
+    {
+      "name": "Second",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Second{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "Twiddle{}{}{}": {
-      "snippet": "Twiddle{${1:func}}{${2:arg1}}{${3:arg2}}"
+    {
+      "name": "Compose",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Compose{${1:func1}}{${2:func2}}{${3:arg}}"
+      }
     },
-    "True{}{}": {
-      "snippet": "True{${1:true}}{${2:false}}"
+    {
+      "name": "Twiddle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Twiddle{${1:func}}{${2:arg1}}{${3:arg2}}"
+      }
     },
-    "False{}{}": {
-      "snippet": "False{${1:true}}{${2:false}}"
+    {
+      "name": "True",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "True{${1:true}}{${2:false}}"
+      }
     },
-    "Not{}{}{}": {
-      "snippet": "Not{${1:func}}{${2:true}}{${3:false}}"
+    {
+      "name": "False",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "False{${1:true}}{${2:false}}"
+      }
     },
-    "And{}{}": {
-      "snippet": "And{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Not",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Not{${1:func}}{${2:true}}{${3:false}}"
+      },
+      "detail": "⫬",
+      "doc": "Double stroke not sign"
     },
-    "Or{}{}": {
-      "snippet": "Or{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "And",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "And{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "Lift{}{}{}{}": {
-      "snippet": "Lift{${1:predicate}}{${2:func1}}{${3:func2}}{${4:arg}}"
+    {
+      "name": "Or",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Or{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "Lessthan{}{}{}{}": {
-      "snippet": "Lessthan{${1:num1}}{${2:num2}}{${3:true}}{${4:false}}"
+    {
+      "name": "Lift",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Lift{${1:predicate}}{${2:func1}}{${3:func2}}{${4:arg}}"
+      }
     },
-    "gobblefalse": {},
-    "gobbletrue": {},
-    "TeXif{}{}{}": {
-      "snippet": "TeXif{${1:if-statement}}{${2:true}}{${3:false}}"
+    {
+      "name": "Lessthan",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Lessthan{${1:num1}}{${2:num2}}{${3:true}}{${4:false}}"
+      }
     },
-    "Nil": {},
-    "Cons{}{}": {
-      "snippet": "Cons{${1:head}}{${2:tail}}"
+    {
+      "name": "gobblefalse",
+      "unusual": true
     },
-    "Stream{}": {
-      "snippet": "Stream{${1:item}}"
+    {
+      "name": "gobbletrue",
+      "unusual": true
     },
-    "Singleton{}": {
-      "snippet": "Singleton{${1:item}}"
+    {
+      "name": "TeXif",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TeXif{${1:if-statement}}{${2:true}}{${3:false}}"
+      }
     },
-    "Head{}": {
-      "snippet": "Head{${1:list}}"
+    {
+      "name": "Nil"
     },
-    "Tail{}": {
-      "snippet": "Tail{${1:list}}"
+    {
+      "name": "Cons",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Cons{${1:head}}{${2:tail}}"
+      }
     },
-    "Foldl{}{}{}": {
-      "snippet": "Foldl{${1:func}}{${2:arg}}{${3:list}}"
+    {
+      "name": "Stream",
+      "arg": {
+        "format": "{}",
+        "snippet": "Stream{${1:item}}"
+      }
     },
-    "Foldr{}{}{}": {
-      "snippet": "Foldr{${1:func}}{${2:arg}}{${3:list}}"
+    {
+      "name": "Singleton",
+      "arg": {
+        "format": "{}",
+        "snippet": "Singleton{${1:item}}"
+      }
     },
-    "Cat{}{}": {
-      "snippet": "Cat{${1:list1}}{${2:list2}}"
+    {
+      "name": "Head",
+      "arg": {
+        "format": "{}",
+        "snippet": "Head{${1:list}}"
+      }
     },
-    "Reverse{}": {
-      "snippet": "Reverse{${1:list}}"
+    {
+      "name": "Tail",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tail{${1:list}}"
+      }
     },
-    "All{}{}": {
-      "snippet": "All{${1:predicate}}{${2:list}}"
+    {
+      "name": "Foldl",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Foldl{${1:func}}{${2:arg}}{${3:list}}"
+      }
     },
-    "Some{}{}": {
-      "snippet": "Some{${1:predicate}}{${2:list}}"
+    {
+      "name": "Foldr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Foldr{${1:func}}{${2:arg}}{${3:list}}"
+      }
     },
-    "Isempty{}": {
-      "snippet": "Isempty{${1:list}}"
+    {
+      "name": "Cat",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Cat{${1:list1}}{${2:list2}}"
+      }
     },
-    "Filter{}{}": {
-      "snippet": "Filter{${1:predicate}}{${2:list}}"
+    {
+      "name": "Reverse",
+      "arg": {
+        "format": "{}",
+        "snippet": "Reverse{${1:list}}"
+      }
     },
-    "Map{}{}": {
-      "snippet": "Map{${1:func}}{${2:list}}"
+    {
+      "name": "All",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "All{${1:predicate}}{${2:list}}"
+      }
     },
-    "Insert{}{}{}": {
-      "snippet": "Insert{${1:order}}{${2:item}}{${3:list}}"
+    {
+      "name": "Some",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Some{${1:predicate}}{${2:list}}"
+      }
     },
-    "Insertsort{}{}": {
-      "snippet": "Insertsort{${1:order}}{${2:list}}"
+    {
+      "name": "Isempty",
+      "arg": {
+        "format": "{}",
+        "snippet": "Isempty{${1:list}}"
+      }
     },
-    "Unlistize{}": {
-      "snippet": "Unlistize{${1:list}}"
+    {
+      "name": "Filter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Filter{${1:predicate}}{${2:list}}"
+      }
     },
-    "Commaize{}{}": {
-      "snippet": "Commaize{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Map",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Map{${1:func}}{${2:list}}"
+      }
     },
-    "Listize[]": {
-      "snippet": "Listize[${1:a,b,c,...}]"
+    {
+      "name": "Insert",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Insert{${1:order}}{${2:item}}{${3:list}}"
+      }
     },
-    "Show": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Insertsort",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Insertsort{${1:order}}{${2:list}}"
+      }
+    },
+    {
+      "name": "Unlistize",
+      "arg": {
+        "format": "{}",
+        "snippet": "Unlistize{${1:list}}"
+      }
+    },
+    {
+      "name": "Commaize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Commaize{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "Listize",
+      "arg": {
+        "format": "[]",
+        "snippet": "Listize[${1:a,b,c,...}]"
+      }
+    },
+    {
+      "name": "Show"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

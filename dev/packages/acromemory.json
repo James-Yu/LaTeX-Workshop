@@ -1,97 +1,257 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "eforms": [],
-    "aeb-comment": [],
-    "icon-appr": [],
-    "multido": [],
-    "graphicx": []
-  },
-  "macros": {
-    "isPackage": {},
-    "amEmbedTiles{}{}{}": {
-      "snippet": "amEmbedTiles{${1:name}}{${2:n-tiles}}{${3:imagefile}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "insertTiles{}{}{}{}": {
-      "snippet": "insertTiles{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
+    {
+      "name": "eforms"
     },
-    "messageBox{}{}": {
-      "snippet": "messageBox{${1:width}}{${2:height}}"
+    {
+      "name": "aeb-comment"
     },
-    "messageBox[]{}{}": {
-      "snippet": "messageBox[${3:eforms parameters}]{${1:width}}{${2:height}}"
+    {
+      "name": "icon-appr"
     },
-    "playItAgain{}{}": {
-      "snippet": "playItAgain{${1:width}}{${2:height}}"
+    {
+      "name": "multido"
     },
-    "playItAgain[]{}{}": {
-      "snippet": "playItAgain[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "insertTilesL{}{}{}{}": {
-      "snippet": "insertTilesL{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
-    },
-    "insertTilesR{}{}{}{}": {
-      "snippet": "insertTilesR{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
-    },
-    "tryItAgain{}{}": {
-      "snippet": "tryItAgain{${1:width}}{${2:height}}"
-    },
-    "tryItAgain[]{}{}": {
-      "snippet": "tryItAgain[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "helpImage{}{}": {
-      "snippet": "helpImage{${1:width}}{${2:height}}"
-    },
-    "helpImage[]{}{}": {
-      "snippet": "helpImage[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "rolloverHelpButton{}{}": {
-      "snippet": "rolloverHelpButton{${1:width}}{${2:height}}"
-    },
-    "rolloverHelpButton[]{}{}": {
-      "snippet": "rolloverHelpButton[${3:eforms parameters}]{${1:width}}{${2:height}}"
-    },
-    "initFirstiMsg": {},
-    "initFirstiiMsg": {},
-    "acromemoryifalse": {},
-    "acromemoryitrue": {},
-    "amIconObjs": {},
-    "amIconPic{}{}{}{}": {
-      "snippet": "amIconPic{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "amImageHt": {},
-    "amImageWd": {},
-    "AMIndxList": {},
-    "amNumImages": {},
-    "amTileHt": {},
-    "amtileKVs{}": {
-      "snippet": "amtileKVs{${1:arg1}}"
-    },
-    "amTileWd": {},
-    "bDebug": {},
-    "iconPresets": {},
-    "ifacromemoryi": {},
-    "ifincludehelp": {},
-    "imageImportPath": {},
-    "includehelpfalse": {},
-    "includehelptrue": {},
-    "insertTilesii{}{}{}{}{}": {
-      "snippet": "insertTilesii{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "memDebug": {},
-    "muAction": {},
-    "nTotalTiles": {},
-    "RanIdentifier": {},
-    "theHelpCaption{}": {
-      "snippet": "theHelpCaption{${1:arg1}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {},
-  "options": [
-    "acromemory1",
-    "acromemory2",
-    "includehelp",
-    "draft"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "isPackage"
+    },
+    {
+      "name": "amEmbedTiles",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "amEmbedTiles{${1:name}}{${2:n-tiles}}{${3:imagefile}}"
+      }
+    },
+    {
+      "name": "insertTiles",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "insertTiles{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
+      }
+    },
+    {
+      "name": "messageBox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "messageBox{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "messageBox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "messageBox[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "playItAgain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "playItAgain{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "playItAgain",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "playItAgain[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "insertTilesL",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "insertTilesL{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
+      }
+    },
+    {
+      "name": "insertTilesR",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "insertTilesR{${1:name}}{${2:width}}{${3:n-rows}}{${4:n-cols}}"
+      }
+    },
+    {
+      "name": "tryItAgain",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tryItAgain{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "tryItAgain",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "tryItAgain[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "helpImage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "helpImage{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "helpImage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "helpImage[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "rolloverHelpButton",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rolloverHelpButton{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "rolloverHelpButton",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "rolloverHelpButton[${3:eforms parameters}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "initFirstiMsg",
+      "unusual": true
+    },
+    {
+      "name": "initFirstiiMsg",
+      "unusual": true
+    },
+    {
+      "name": "acromemoryifalse",
+      "unusual": true
+    },
+    {
+      "name": "acromemoryitrue",
+      "unusual": true
+    },
+    {
+      "name": "amIconObjs",
+      "unusual": true
+    },
+    {
+      "name": "amIconPic",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "amIconPic{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "amImageHt",
+      "unusual": true
+    },
+    {
+      "name": "amImageWd",
+      "unusual": true
+    },
+    {
+      "name": "AMIndxList",
+      "unusual": true
+    },
+    {
+      "name": "amNumImages",
+      "unusual": true
+    },
+    {
+      "name": "amTileHt",
+      "unusual": true
+    },
+    {
+      "name": "amtileKVs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "amtileKVs{${1:arg1}}"
+      }
+    },
+    {
+      "name": "amTileWd",
+      "unusual": true
+    },
+    {
+      "name": "bDebug",
+      "unusual": true
+    },
+    {
+      "name": "iconPresets",
+      "unusual": true
+    },
+    {
+      "name": "ifacromemoryi",
+      "unusual": true
+    },
+    {
+      "name": "ifincludehelp",
+      "unusual": true
+    },
+    {
+      "name": "imageImportPath",
+      "unusual": true
+    },
+    {
+      "name": "includehelpfalse",
+      "unusual": true
+    },
+    {
+      "name": "includehelptrue",
+      "unusual": true
+    },
+    {
+      "name": "insertTilesii",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "insertTilesii{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "memDebug",
+      "unusual": true
+    },
+    {
+      "name": "muAction",
+      "unusual": true
+    },
+    {
+      "name": "nTotalTiles",
+      "unusual": true
+    },
+    {
+      "name": "RanIdentifier",
+      "unusual": true
+    },
+    {
+      "name": "theHelpCaption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "theHelpCaption{${1:arg1}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/acromemory#c": [
+      "acromemory1",
+      "acromemory2",
+      "includehelp",
+      "draft"
+    ]
+  },
+  "args": [
+    "\\usepackage/acromemory#c"
+  ]
 }

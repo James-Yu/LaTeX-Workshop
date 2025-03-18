@@ -1,28 +1,37 @@
 {
-  "includes": {},
-  "macros": {
-    "sepnum{}{}{}{}": {
-      "snippet": "sepnum{${1:symbol}}{${2:whole-part-sep}}{${3:frac-part-sep}}{${4:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "sepnum",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "sepnum{${1:symbol}}{${2:whole-part-sep}}{${3:frac-part-sep}}{${4:number}}"
+      }
     },
-    "sepnumform{}{}{}{}": {
-      "snippet": "sepnumform{${1:symbol}}{${2:whole-part-sep}}{${3:frac-part-sep}}{${4:counter}}"
+    {
+      "name": "sepnumform",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "sepnumform{${1:symbol}}{${2:whole-part-sep}}{${3:frac-part-sep}}{${4:counter}}"
+      }
     },
-    "printnum{}": {
-      "snippet": "printnum{${1:number}}"
+    {
+      "name": "printnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "printnum{${1:number}}"
+      }
     },
-    "printnumKomma": {},
-    "printnumTrenner": {},
-    "sepnumReturnElseFi{}": {
-      "snippet": "sepnumReturnElseFi{${1:arg}}"
+    {
+      "name": "printnumKomma",
+      "unusual": true
     },
-    "sepnumReturnFi{}": {
-      "snippet": "sepnumReturnFi{${1:arg}}"
-    },
-    "sepnumReturnOrFi{}": {
-      "snippet": "sepnumReturnOrFi{${1:arg}}"
+    {
+      "name": "printnumTrenner",
+      "unusual": true
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,14 +1,24 @@
 {
-  "includes": {},
-  "macros": {
-    "kvsetkeys{}{}": {
-      "snippet": "kvsetkeys{${1:family}}{${2:keyvals}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "kvsetkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "kvsetkeys{${1:family}}{${2:keyvals}}"
+      }
     },
-    "kvsetknownkeys{}{}{}": {
-      "snippet": "kvsetknownkeys{${1:family}}{${2:cmd}}{${3:keyvals}}"
+    {
+      "name": "kvsetknownkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "kvsetknownkeys{${1:family}}{${2:cmd}}{${3:keyvals}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

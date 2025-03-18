@@ -1,20 +1,77 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "outlinei": {},
-    "outlineii": {},
-    "outlineiii": {},
-    "outlineiiii": {}
-  },
-  "envs": {
-    "outline": {},
-    "outline[]": {
-      "name": "outline",
-      "snippet": "[${1:style}]"
+  "deps": [
+    {
+      "name": "ifthen"
     }
+  ],
+  "macros": [
+    {
+      "name": "1",
+      "arg": {
+        "format": "[]",
+        "snippet": "1[${1:label}]"
+      }
+    },
+    {
+      "name": "2",
+      "arg": {
+        "format": "[]",
+        "snippet": "2[${1:label}]"
+      }
+    },
+    {
+      "name": "3",
+      "arg": {
+        "format": "[]",
+        "snippet": "3[${1:label}]"
+      }
+    },
+    {
+      "name": "4",
+      "arg": {
+        "format": "[]",
+        "snippet": "4[${1:label}]"
+      }
+    },
+    {
+      "name": "outlinei",
+      "unusual": true
+    },
+    {
+      "name": "outlineii",
+      "unusual": true
+    },
+    {
+      "name": "outlineiii",
+      "unusual": true
+    },
+    {
+      "name": "outlineiiii",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "outline"
+    },
+    {
+      "name": "outline",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:style%keyvals}]",
+        "keys": [
+          "\\begin{outline}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{outline}#c": [
+      "enumerate",
+      "itemize",
+      "description"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

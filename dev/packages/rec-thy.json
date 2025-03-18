@@ -1,740 +1,1861 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "iftex": [],
-    "ifpdf": [],
-    "suffix": [],
-    "ifmtarg": [],
-    "xifthen": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "pict2e": [],
-    "picture": [],
-    "mathrsfs": [],
-    "mathtools": [],
-    "enumitem": [],
-    "bbm": []
-  },
-  "macros": {
-    "step": {
-      "option": "steps"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "step[]": {
-      "snippet": "step[${1:label}]",
-      "option": "steps"
+    {
+      "name": "iftex"
     },
-    "abs{}": {
-      "snippet": "abs{${1:arg}}"
+    {
+      "name": "ifpdf"
     },
-    "Acompat": {},
-    "Adegrees": {},
-    "Adegreesjump": {},
-    "Aeq": {},
-    "Aequiv": {},
-    "Ageq": {},
-    "Agneq": {},
-    "Agtr": {},
-    "Aincompat": {},
-    "Aleq": {},
-    "Aless": {},
-    "Alneq": {},
-    "AREAdegrees": {},
-    "aut": {},
-    "Azero": {},
-    "Azeroj": {},
-    "Azerojj": {},
-    "Azerojjj": {},
-    "Azeron{}": {
-      "snippet": "Azeron{${1:arg}}"
+    {
+      "name": "suffix"
     },
-    "Azerosym": {},
-    "baire": {},
-    "Baire": {},
-    "bpfuncs": {},
-    "bstrs": {},
-    "cantor": {},
-    "card{}": {
-      "snippet": "card{${1:arg}}"
+    {
+      "name": "ifmtarg"
     },
-    "case[]": {
-      "snippet": "case[${1:label}]"
+    {
+      "name": "xifthen"
     },
-    "CBderiv[}{}": {
-      "snippet": "CBderiv[sup}{${1:arg}}"
+    {
+      "name": "xkeyval"
     },
-    "CBderiv{}": {
-      "snippet": "CBderiv{${1:arg}}"
+    {
+      "name": "etoolbox"
     },
-    "cbstrs": {},
-    "ce": {},
-    "CEA": {},
-    "CEA[]": {
-      "snippet": "CEA[${1:n}]"
+    {
+      "name": "pict2e"
     },
-    "ceil*{}": {
-      "snippet": "ceil*{${1:arg}}"
+    {
+      "name": "picture"
     },
-    "ceil{}": {
-      "snippet": "ceil{${1:arg}}"
+    {
+      "name": "mathrsfs"
     },
-    "cequiv": {},
-    "code{}": {
-      "snippet": "code{${1:string}}"
+    {
+      "name": "mathtools"
     },
-    "compat": {},
-    "compose": {},
-    "computable": {},
-    "Computable": {},
-    "computablyEnumerable": {},
-    "ComputablyEnumerable": {},
-    "concat": {},
-    "concat[]": {
-      "snippet": "concat[${1:arg}]"
+    {
+      "name": "enumitem"
     },
-    "conv": {},
-    "conv[]": {
-      "snippet": "conv[${1:sub}]"
-    },
-    "converge": {},
-    "converge[]": {
-      "snippet": "converge[${1:sub}]"
-    },
-    "cornerquote{}": {
-      "snippet": "cornerquote{${1:arg}}"
-    },
-    "cross": {},
-    "Cross": {},
-    "CrossOrig": {},
-    "crossOrig": {},
-    "decode{}{}": {
-      "snippet": "decode{${1:arg}}{${2:sub}}"
-    },
-    "deltain[]{}": {
-      "snippet": "deltain[${2:sup}]{${1:sub}}"
-    },
-    "deltain{}": {
-      "snippet": "deltain{${1:sub}}"
-    },
-    "DeltaN{}": {
-      "snippet": "DeltaN{${1:sub}}"
-    },
-    "DeltaOneN[]{}": {
-      "snippet": "DeltaOneN[${2:sup}]{${1:sub}}"
-    },
-    "DeltaOneN{}": {
-      "snippet": "DeltaOneN{${1:sub}}"
-    },
-    "DeltaZeroN[]{}": {
-      "snippet": "DeltaZeroN[${2:sup}]{${1:sub}}"
-    },
-    "DeltaZeroN{}": {
-      "snippet": "DeltaZeroN{${1:sub}}"
-    },
-    "deltazn[]{}": {
-      "snippet": "deltazn[${2:sup}]{${1:sub}}"
-    },
-    "deltazn{}": {
-      "snippet": "deltazn{${1:sub}}"
-    },
-    "diverge": {},
-    "dom": {},
-    "EmptyStr": {},
-    "ensuretext{}": {
-      "snippet": "ensuretext{${1:text}}"
-    },
-    "entersat{}": {
-      "snippet": "entersat{${1:arg}}"
-    },
-    "eq": {},
-    "eq*": {},
-    "eqae": {},
-    "eqdef": {
-      "detail": "≝",
-      "documentation": "equals by definition"
-    },
-    "eset": {},
-    "estr": {},
-    "existsinf": {},
-    "existsuniq": {},
-    "FinParFuncs{}{}": {
-      "snippet": "FinParFuncs{${1:domain}}{${2:range}}"
-    },
-    "finsets": {},
-    "finSsets": {},
-    "floor*{}": {
-      "snippet": "floor*{${1:arg}}"
-    },
-    "floor{}": {
-      "snippet": "floor{${1:arg}}"
-    },
-    "forall*": {},
-    "forallae": {},
-    "forces": {},
-    "forces*": {},
-    "forces*[]": {
-      "snippet": "forces*[${1:sub}]"
-    },
-    "forces[]": {
-      "snippet": "forces[${1:sub}]"
-    },
-    "fpmapsfrom": {},
-    "fpmapsto": {},
-    "godelnum{}": {
-      "snippet": "godelnum{${1:arg}}"
-    },
-    "godelpair{}{}": {
-      "snippet": "godelpair{${1:arg}}{${2:sub}}"
-    },
-    "hgt{}": {
-      "snippet": "hgt{${1:arg}}"
-    },
-    "Hop[]{}": {
-      "snippet": "Hop[${2:sub2}]{${1:sub1}}"
-    },
-    "Hop{}": {
-      "snippet": "Hop{${1:sub}}"
-    },
-    "hyp": {},
-    "HYP": {},
-    "iffdef": {},
-    "incompat": {},
-    "infsubset": {},
-    "infsubset*": {},
-    "infsupset": {},
-    "infsupset*": {},
-    "isect": {},
-    "Isect": {},
-    "jjjump{}": {
-      "snippet": "jjjump{${1:arg}}"
-    },
-    "jjump{}": {
-      "snippet": "jjump{${1:arg}}"
-    },
-    "join": {},
-    "jump{}": {
-      "snippet": "jump{${1:arg}}"
-    },
-    "jumpn{}{}": {
-      "snippet": "jumpn{${1:arg}}{${2:sup}}"
-    },
-    "kleeneO": {},
-    "kleeneO*": {},
-    "kleeneO*[]": {
-      "snippet": "kleeneO*[${1:sub}]"
-    },
-    "kleeneO[]": {
-      "snippet": "kleeneO[${1:sub}]"
-    },
-    "kleeneOSYM": {},
-    "Land": {},
-    "leftof": {},
-    "leftofeq": {},
-    "lh{}": {
-      "snippet": "lh{${1:arg}}"
-    },
-    "LLand": {},
-    "llangle": {
-      "detail": "⦉",
-      "documentation": "Z NOTATION LEFT BINDING BRACKET"
-    },
-    "LLor": {},
-    "logic{}{}": {
-      "snippet": "logic{${1:sub1}}{${2:sub2}}"
-    },
-    "Lor": {},
-    "Low": {},
-    "Low[]": {
-      "snippet": "Low[${1:sup}]"
-    },
-    "LowN[]{}": {
-      "snippet": "LowN[${2:sup}]{${1:sub}}"
-    },
-    "lowN[]{}": {
-      "snippet": "lowN[${2:sup}]{${1:sub}}"
-    },
-    "LowN{}": {
-      "snippet": "LowN{${1:sub}}"
-    },
-    "lowN{}": {
-      "snippet": "lowN{${1:sub}}"
-    },
-    "majsubset": {},
-    "majsupset": {},
-    "maps{}{}": {
-      "snippet": "maps{${1:arg1}}{${2:arg2}}"
-    },
-    "meet": {},
-    "Meet": {},
-    "MnJoin": {},
-    "module{}[]{}": {
-      "snippet": "module{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "module{}{}": {
-      "snippet": "module{${1:letter}}{${2:sub}}"
-    },
-    "murec{}{}": {
-      "snippet": "murec{${1:var}}{${2:condition}}"
-    },
-    "myhalign": {},
-    "nAeq": {},
-    "nAgeq": {},
-    "nAincompat": {},
-    "nAleq": {},
-    "ncequiv": {},
-    "nconv": {},
-    "nconv[]": {
-      "snippet": "nconv[${1:sub}]"
-    },
-    "ndownarrow": {},
-    "neqae": {},
-    "nexistsinf": {},
-    "nexistsuniq": {},
-    "nforall": {},
-    "nforallae": {},
-    "nin": {
-      "detail": "∉",
-      "documentation": "negated set membership"
-    },
-    "nleftof": {},
-    "nleftofeq": {},
-    "nprecsucc": {},
-    "nrightof": {},
-    "nrightofeq": {},
-    "nSearrow": {},
-    "nsubfun": {},
-    "nsubfuneq": {},
-    "nsubset": {
-      "detail": "⊄",
-      "documentation": "no variant [slash negation]"
-    },
-    "nsuccprec": {},
-    "nsupfun": {},
-    "nsupfuneq": {},
-    "nsupset": {
-      "detail": "⊅",
-      "documentation": "no variant [slash negation]"
-    },
-    "nTeq": {},
-    "nTequiv": {},
-    "nTgeq": {},
-    "nTincompat": {},
-    "nTleq": {},
-    "Oabs*{}": {
-      "snippet": "Oabs*{${1:arg}}"
-    },
-    "Oabs{}": {
-      "snippet": "Oabs{${1:arg}}"
-    },
-    "Oadd": {},
-    "Ofunc{}": {
-      "snippet": "Ofunc{${1:arg}}"
-    },
-    "Ogeq": {},
-    "Ogtr": {},
-    "Ohgt*{}": {
-      "snippet": "Ohgt*{${1:arg}}"
-    },
-    "Ohgt{}": {
-      "snippet": "Ohgt{${1:arg}}"
-    },
-    "Oleq": {},
-    "Oless": {},
-    "Olim{}{}": {
-      "snippet": "Olim{${1:arg}}{${2:sub}}"
-    },
-    "Omul": {},
-    "Ongeq": {},
-    "Ongtr": {},
-    "Onleq": {},
-    "Onless": {},
-    "Oplus": {},
-    "Opred{}": {
-      "snippet": "Opred{${1:arg}}"
-    },
-    "Ord": {},
-    "ordpair{}{}": {
-      "snippet": "ordpair{${1:arg1}}{${2:arg2}}"
-    },
-    "Ouniq": {},
-    "overbar{}": {
-      "snippet": "overbar{${1:arg}}"
-    },
-    "pair{}{}": {
-      "snippet": "pair{${1:arg1}}{${2:arg2}}"
-    },
-    "ParFuncs{}{}": {
-      "snippet": "ParFuncs{${1:domain}}{${2:range}}"
-    },
-    "piin[]{}": {
-      "snippet": "piin[${2:sup}]{${1:sub}}"
-    },
-    "piin{}": {
-      "snippet": "piin{${1:sub}}"
-    },
-    "PiN[]{}": {
-      "snippet": "PiN[${2:sup}]{${1:sub}}"
-    },
-    "PiN{}": {
-      "snippet": "PiN{${1:sub}}"
-    },
-    "PiOneN[]{}": {
-      "snippet": "PiOneN[${2:sup}]{${1:sub}}"
-    },
-    "PiOneN{}": {
-      "snippet": "PiOneN{${1:sub}}"
-    },
-    "PiZeroN[]{}": {
-      "snippet": "PiZeroN[${2:sup}]{${1:sub}}"
-    },
-    "PiZeroN{}": {
-      "snippet": "PiZeroN{${1:sub}}"
-    },
-    "pizn[]{}": {
-      "snippet": "pizn[${2:sup}]{${1:sub}}"
-    },
-    "pizn{}": {
-      "snippet": "pizn{${1:sub}}"
-    },
-    "pmapsfrom": {},
-    "pmapsto": {},
-    "powset[]{}": {
-      "snippet": "powset[${2:sub}]{${1:arg}}"
-    },
-    "powset{}": {
-      "snippet": "powset{${1:arg}}"
-    },
-    "precsucc": {},
-    "PriorityTree": {},
-    "PriorityTreeModule{}[]{}": {
-      "snippet": "PriorityTreeModule{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "PriorityTreeModule{}{}": {
-      "snippet": "PriorityTreeModule{${1:letter}}{${2:sub}}"
-    },
-    "promptdif": {},
-    "promptminus": {},
-    "promptsetminus": {},
-    "pruneTree{}": {
-      "snippet": "pruneTree{${1:arg}}"
-    },
-    "quotient{}{}": {
-      "snippet": "quotient{${1:arg1}}{${2:arg2}}"
-    },
-    "re": {},
-    "REA": {},
-    "REA[]": {
-      "snippet": "REA[${1:n}]"
-    },
-    "REAop*[]{}{}": {
-      "snippet": "REAop*[${3:sub2}]{${1:sub1}}{${2:sup}}"
-    },
-    "REAop*{}{}": {
-      "snippet": "REAop*{${1:sub}}{${2:sup}}"
-    },
-    "REAop[]{}{}": {
-      "snippet": "REAop[${3:sub2}]{${1:sub1}}{${2:sup}}"
-    },
-    "REAop{}{}": {
-      "snippet": "REAop{${1:sub}}{${2:sup}}"
-    },
-    "recf[]{}": {
-      "snippet": "recf[${2:sub2}]{${1:sub1}}"
-    },
-    "recf{}": {
-      "snippet": "recf{${1:sub}}"
-    },
-    "recfnl[]{}{}{}": {
-      "snippet": "recfnl[${4:sub2}]{${1:sub1}}{${2:arg1}}{${3:arg2}}"
-    },
-    "recfnl{}{}{}": {
-      "snippet": "recfnl{${1:sub}}{${2:arg1}}{${3:arg2}}"
-    },
-    "recthyVersion": {},
-    "recursive": {},
-    "Recursive": {},
-    "recursivelyEnumerable": {},
-    "RecursivelyEnumerable": {},
-    "REdegrees": {},
-    "refreq{}": {
-      "snippet": "refreq{${1:arg}}"
-    },
-    "req*{}[]{}": {
-      "snippet": "req*{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "req*{}{}": {
-      "snippet": "req*{${1:letter}}{${2:sub}}"
-    },
-    "req{}[]{}": {
-      "snippet": "req{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "req{}{}": {
-      "snippet": "req{${1:letter}}{${2:sub}}"
-    },
-    "require{}[]{}": {
-      "snippet": "require{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "require{}{}": {
-      "snippet": "require{${1:letter}}{${2:sub}}"
-    },
-    "REset[]{}": {
-      "snippet": "REset[${2:sub2}]{${1:sub1}}"
-    },
-    "REset{}": {
-      "snippet": "REset{${1:sub}}"
-    },
-    "restr{}": {
-      "snippet": "restr{${1:arg}}"
-    },
-    "rightof": {},
-    "rightofeq": {},
-    "rng": {},
-    "rrangle": {
-      "detail": "⦊",
-      "documentation": "Z NOTATION RIGHT BINDING BRACKET"
-    },
-    "Searrow": {
-      "detail": "⇘",
-      "documentation": "se pointing double arrow"
-    },
-    "set{}{}": {
-      "snippet": "set{${1:left}}{${2:right}}"
-    },
-    "setbefore": {},
-    "setcmp{}": {
-      "snippet": "setcmp{${1:arg}}"
-    },
-    "setcol{}{}": {
-      "snippet": "setcol{${1:arg}}{${2:sup}}"
-    },
-    "setdiff": {},
-    "sigmain[]{}": {
-      "snippet": "sigmain[${2:sup}]{${1:sub}}"
-    },
-    "sigmain{}": {
-      "snippet": "sigmain{${1:sub}}"
-    },
-    "SigmaN[]{}": {
-      "snippet": "SigmaN[${2:sup}]{${1:sub}}"
-    },
-    "SigmaN{}": {
-      "snippet": "SigmaN{${1:sub}}"
-    },
-    "SigmaOneN[]{}": {
-      "snippet": "SigmaOneN[${2:sup}]{${1:sub}}"
-    },
-    "SigmaOneN{}": {
-      "snippet": "SigmaOneN{${1:sub}}"
-    },
-    "SigmaZeroN[]{}": {
-      "snippet": "SigmaZeroN[${2:sup}]{${1:sub}}"
-    },
-    "SigmaZeroN{}": {
-      "snippet": "SigmaZeroN{${1:sub}}"
-    },
-    "sigmazn[]{}": {
-      "snippet": "sigmazn[${2:sup}]{${1:sub}}"
-    },
-    "sigmazn{}": {
-      "snippet": "sigmazn{${1:sub}}"
-    },
-    "splitby": {},
-    "splitof": {},
-    "ssetsOfsize": {},
-    "st": {},
-    "str{}": {
-      "snippet": "str{${1:string}}"
-    },
-    "strcD": {},
-    "strcDa": {},
-    "StrcE": {},
-    "StrcE*": {},
-    "StrcL*{}": {
-      "snippet": "StrcL*{${1:arg}}"
-    },
-    "StrcL{}": {
-      "snippet": "StrcL{${1:arg}}"
-    },
-    "strcR": {},
-    "strcRa": {},
-    "StrcStarL{}": {
-      "snippet": "StrcStarL{${1:arg}}"
-    },
-    "strpred{}": {
-      "snippet": "strpred{${1:arg}}"
-    },
-    "strucE": {},
-    "subfun": {},
-    "subfuneq": {},
-    "subfunneq": {},
-    "subsetnaeq": {},
-    "succprec": {},
-    "supfun": {},
-    "supfuneq": {},
-    "supfunneq": {},
-    "supsetnaeq": {},
-    "symbf{}": {
-      "snippet": "symbf{${1:text}}"
-    },
-    "symdiff": {},
-    "Tcompat": {},
-    "Tdeg{}": {
-      "snippet": "Tdeg{${1:arg}}"
-    },
-    "Tdegrees": {},
-    "Tdegreesjump": {},
-    "Tdegvar{}": {
-      "snippet": "Tdegvar{${1:arg}}"
-    },
-    "Teq": {},
-    "Tequiv": {},
-    "Tgeq": {},
-    "Tgneq": {},
-    "Tgtr": {},
-    "thiscase": {},
-    "Tincompat": {},
-    "Tjoin": {},
-    "TJoin": {},
-    "Tjump{}": {
-      "snippet": "Tjump{${1:arg}}"
-    },
-    "Tleq": {},
-    "Tless": {},
-    "Tlneq": {},
-    "Tmeet": {},
-    "tpath": {},
-    "tpath[]": {
-      "snippet": "tpath[${1:sub}]"
-    },
-    "Tplus": {},
-    "TPlus": {},
-    "TreeExt": {},
-    "TreeExtNeq": {},
-    "TreeMod{}{}": {
-      "snippet": "TreeMod{${1:arg1}}{${2:arg2}}"
-    },
-    "TreeMul": {},
-    "Tsetjoin": {},
-    "TsetJoin": {},
-    "ttgeq": {},
-    "ttgneq": {},
-    "ttgtr": {},
-    "ttleq": {},
-    "ttless": {},
-    "ttlneq": {},
-    "ttngeq": {},
-    "ttnleq": {},
-    "ttSYM": {},
-    "Tzero": {},
-    "Tzerosym": {},
-    "union": {},
-    "Union": {},
-    "use{}": {
-      "snippet": "use{${1:arg}}"
-    },
-    "utilde{}": {
-      "snippet": "utilde{${1:arg}}"
-    },
-    "wck": {},
-    "wforces": {},
-    "wjump{}": {
-      "snippet": "wjump{${1:arg}}"
-    },
-    "wstrs": {},
-    "xor": {},
-    "zeroj": {},
-    "zerojj": {},
-    "zerojjj": {},
-    "zeron{}": {
-      "snippet": "zeron{${1:sup}}"
-    },
-    "zerow{}": {
-      "snippet": "zerow{${1:arg}}"
+    {
+      "name": "bbm"
     }
-  },
-  "envs": {
-    "steps": {
-      "option": "steps"
-    },
-    "steps[]": {
-      "name": "steps",
-      "snippet": "[${1:heading}]",
-      "option": "steps"
-    },
-    "pfcases*": {},
-    "pfcases": {},
-    "pfcasesnonum": {},
-    "pfcasesnumbered": {},
-    "require*{}[]{}": {
-      "name": "require*",
-      "snippet": "{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "require*{}{}": {
-      "name": "require*",
-      "snippet": "{${1:letter}}{${2:sub}}"
-    },
-    "require{}[]{}": {
-      "name": "require",
-      "snippet": "{${1:letter}}[${2:sup}]{${3:sub}}"
-    },
-    "require{}{}": {
-      "name": "require",
-      "snippet": "{${1:letter}}{${2:sub}}"
-    },
-    "requirement{}": {
-      "name": "requirement",
-      "snippet": "{${1:tag}}"
-    },
-    "requirements*": {},
-    "requirements": {},
-    "requirements<>": {
-      "name": "requirements",
-      "snippet": "<${1:overlay specification}>"
-    }
-  },
-  "options": [
-    "nomath",
-    "nosymb",
-    "nosets",
-    "noquants",
-    "nospaces",
-    "nostrings",
-    "notrees",
-    "nopair",
-    "nosetrels",
-    "noordinalnotations",
-    "nosyntax",
-    "noshortsyntax",
-    "noforcing",
-    "nodegrees",
-    "nocomputations",
-    "nostructresets",
-    "noreqhelper",
-    "nosubfun",
-    "nopfcases",
-    "noprioritytrees",
-    "nohyperreqs",
-    "nooperators",
-    "nofixtype",
-    "nodoubleangles",
-    "steps",
-    "noshortO",
-    "altcompat",
-    "norsfs",
-    "nobbm",
-    "modulescr=${1:csname}",
-    "pfcasefont=${1:csname}",
-    "reqscr=${1:csname}",
-    "recfnlsym=${1:csname}",
-    "recfsym=${1:csname}",
-    "usesym=${1:csname}",
-    "emptystr=${1:csname}",
-    "concatsym=${1:csname}",
-    "lstrdelim=${1:csname}",
-    "rstrdelim=${1:csname}",
-    "lcodedelim=${1:csname}",
-    "rcodedelim=${1:csname}",
-    "lpairdelim=${1:csname}",
-    "rpairdelim=${1:csname}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "step",
+      "if": "steps"
+    },
+    {
+      "name": "step",
+      "if": "steps",
+      "arg": {
+        "format": "[]",
+        "snippet": "step[${1:label%text}]"
+      }
+    },
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "abs{${1:arg}}"
+      }
+    },
+    {
+      "name": "Acompat"
+    },
+    {
+      "name": "Adegrees"
+    },
+    {
+      "name": "Adegreesjump",
+      "unusual": true
+    },
+    {
+      "name": "Aeq"
+    },
+    {
+      "name": "Aequiv",
+      "unusual": true
+    },
+    {
+      "name": "Ageq"
+    },
+    {
+      "name": "Agneq"
+    },
+    {
+      "name": "Agtr"
+    },
+    {
+      "name": "Aincompat"
+    },
+    {
+      "name": "Aleq"
+    },
+    {
+      "name": "Aless"
+    },
+    {
+      "name": "Alneq"
+    },
+    {
+      "name": "AREAdegrees"
+    },
+    {
+      "name": "aut"
+    },
+    {
+      "name": "Azero",
+      "unusual": true
+    },
+    {
+      "name": "Azeroj",
+      "unusual": true
+    },
+    {
+      "name": "Azerojj",
+      "unusual": true
+    },
+    {
+      "name": "Azerojjj",
+      "unusual": true
+    },
+    {
+      "name": "Azeron",
+      "arg": {
+        "format": "{}",
+        "snippet": "Azeron{${1:arg}}"
+      }
+    },
+    {
+      "name": "Azerosym",
+      "unusual": true
+    },
+    {
+      "name": "baire"
+    },
+    {
+      "name": "Baire"
+    },
+    {
+      "name": "bpfuncs"
+    },
+    {
+      "name": "bstrs"
+    },
+    {
+      "name": "cantor"
+    },
+    {
+      "name": "card",
+      "arg": {
+        "format": "{}",
+        "snippet": "card{${1:arg}}"
+      }
+    },
+    {
+      "name": "case",
+      "arg": {
+        "format": "[]",
+        "snippet": "case[${1:label}]"
+      }
+    },
+    {
+      "name": "CBderiv",
+      "arg": {
+        "format": "[sup}{}",
+        "snippet": "CBderiv[sup}{${1:arg}}"
+      }
+    },
+    {
+      "name": "CBderiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "CBderiv{${1:arg}}"
+      }
+    },
+    {
+      "name": "cbstrs"
+    },
+    {
+      "name": "ce"
+    },
+    {
+      "name": "CEA"
+    },
+    {
+      "name": "CEA"
+    },
+    {
+      "name": "CEA",
+      "arg": {
+        "format": "[]",
+        "snippet": "CEA[${1:n}]"
+      }
+    },
+    {
+      "name": "ceil*",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceil*{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceil{${1:arg}}"
+      }
+    },
+    {
+      "name": "cequiv"
+    },
+    {
+      "name": "code",
+      "arg": {
+        "format": "{}",
+        "snippet": "code{${1:string}}"
+      }
+    },
+    {
+      "name": "compat"
+    },
+    {
+      "name": "compose"
+    },
+    {
+      "name": "computable"
+    },
+    {
+      "name": "Computable"
+    },
+    {
+      "name": "computablyEnumerable"
+    },
+    {
+      "name": "ComputablyEnumerable"
+    },
+    {
+      "name": "concat"
+    },
+    {
+      "name": "concat",
+      "arg": {
+        "format": "[]",
+        "snippet": "concat[${1:arg}]"
+      }
+    },
+    {
+      "name": "conv"
+    },
+    {
+      "name": "conv",
+      "arg": {
+        "format": "[]",
+        "snippet": "conv[${1:sub}]"
+      }
+    },
+    {
+      "name": "converge",
+      "unusual": true
+    },
+    {
+      "name": "converge",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "converge[${1:sub}]"
+      }
+    },
+    {
+      "name": "cornerquote",
+      "arg": {
+        "format": "{}",
+        "snippet": "cornerquote{${1:arg}}"
+      }
+    },
+    {
+      "name": "cross"
+    },
+    {
+      "name": "Cross"
+    },
+    {
+      "name": "CrossOrig",
+      "unusual": true
+    },
+    {
+      "name": "crossOrig",
+      "unusual": true
+    },
+    {
+      "name": "decode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "decode{${1:arg}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "deltain",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "deltain[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "deltain",
+      "arg": {
+        "format": "{}",
+        "snippet": "deltain{${1:sub}}"
+      }
+    },
+    {
+      "name": "DeltaN",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeltaN{${1:sub}}"
+      }
+    },
+    {
+      "name": "DeltaOneN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeltaOneN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "DeltaOneN",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeltaOneN{${1:sub}}"
+      }
+    },
+    {
+      "name": "DeltaZeroN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeltaZeroN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "DeltaZeroN",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeltaZeroN{${1:sub}}"
+      }
+    },
+    {
+      "name": "deltazn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "deltazn[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "deltazn",
+      "arg": {
+        "format": "{}",
+        "snippet": "deltazn{${1:sub}}"
+      }
+    },
+    {
+      "name": "diverge"
+    },
+    {
+      "name": "dom"
+    },
+    {
+      "name": "EmptyStr"
+    },
+    {
+      "name": "ensuretext",
+      "arg": {
+        "format": "{}",
+        "snippet": "ensuretext{${1:text}}"
+      }
+    },
+    {
+      "name": "entersat",
+      "arg": {
+        "format": "{}",
+        "snippet": "entersat{${1:arg}}"
+      }
+    },
+    {
+      "name": "eq"
+    },
+    {
+      "name": "eq*"
+    },
+    {
+      "name": "eqae",
+      "unusual": true
+    },
+    {
+      "name": "eqdef",
+      "detail": "≝",
+      "doc": "Equals by definition"
+    },
+    {
+      "name": "eset"
+    },
+    {
+      "name": "estr"
+    },
+    {
+      "name": "existsinf"
+    },
+    {
+      "name": "existsuniq"
+    },
+    {
+      "name": "FinParFuncs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FinParFuncs{${1:domain}}{${2:range}}"
+      }
+    },
+    {
+      "name": "finsets"
+    },
+    {
+      "name": "finSsets",
+      "unusual": true
+    },
+    {
+      "name": "floor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "floor*{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor",
+      "arg": {
+        "format": "{}",
+        "snippet": "floor{${1:arg}}"
+      }
+    },
+    {
+      "name": "forall*"
+    },
+    {
+      "name": "forallae"
+    },
+    {
+      "name": "forces"
+    },
+    {
+      "name": "forces",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "forces(${1:sup})"
+      }
+    },
+    {
+      "name": "forces",
+      "arg": {
+        "format": "()[]",
+        "snippet": "forces(${2:sup})[${1:sub}]"
+      }
+    },
+    {
+      "name": "forces*"
+    },
+    {
+      "name": "forces*",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "forces*(${1:sup})"
+      }
+    },
+    {
+      "name": "forces*",
+      "arg": {
+        "format": "()[]",
+        "snippet": "forces*(${2:sup})[${1:sub}]"
+      }
+    },
+    {
+      "name": "forces*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "forces*[${1:sub}]"
+      }
+    },
+    {
+      "name": "forces",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "forces[${1:sub}]"
+      }
+    },
+    {
+      "name": "fpmapsfrom"
+    },
+    {
+      "name": "fpmapsto"
+    },
+    {
+      "name": "godelnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "godelnum{${1:arg}}"
+      }
+    },
+    {
+      "name": "hgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "hgt{${1:arg}}"
+      }
+    },
+    {
+      "name": "Hop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Hop[${2:sub2}]{${1:sub1}}"
+      }
+    },
+    {
+      "name": "Hop",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "Hop[${2:sub2}]{${1:sub1}}(${3:arg})"
+      }
+    },
+    {
+      "name": "Hop",
+      "arg": {
+        "format": "{}",
+        "snippet": "Hop{${1:sub}}"
+      }
+    },
+    {
+      "name": "Hop",
+      "arg": {
+        "format": "{}()",
+        "snippet": "Hop{${1:sub}}(${2:arg})"
+      }
+    },
+    {
+      "name": "hyp",
+      "unusual": true
+    },
+    {
+      "name": "HYP"
+    },
+    {
+      "name": "iffdef"
+    },
+    {
+      "name": "incompat"
+    },
+    {
+      "name": "infsubset"
+    },
+    {
+      "name": "infsubset*"
+    },
+    {
+      "name": "infsupset"
+    },
+    {
+      "name": "infsupset*"
+    },
+    {
+      "name": "isect"
+    },
+    {
+      "name": "Isect"
+    },
+    {
+      "name": "jjjump",
+      "arg": {
+        "format": "{}",
+        "snippet": "jjjump{${1:arg}}"
+      }
+    },
+    {
+      "name": "jjump",
+      "arg": {
+        "format": "{}",
+        "snippet": "jjump{${1:arg}}"
+      }
+    },
+    {
+      "name": "join"
+    },
+    {
+      "name": "jump",
+      "arg": {
+        "format": "{}",
+        "snippet": "jump{${1:arg}}"
+      }
+    },
+    {
+      "name": "jumpn",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "jumpn{${1:arg}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "kleeneO"
+    },
+    {
+      "name": "kleeneO",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "kleeneO(${1:sup})"
+      }
+    },
+    {
+      "name": "kleeneO",
+      "arg": {
+        "format": "()[]",
+        "snippet": "kleeneO(${2:sup})[${1:sub}]"
+      }
+    },
+    {
+      "name": "kleeneO*"
+    },
+    {
+      "name": "kleeneO*",
+      "unusual": true,
+      "arg": {
+        "format": "()",
+        "snippet": "kleeneO*(${1:sup})"
+      }
+    },
+    {
+      "name": "kleeneO*",
+      "arg": {
+        "format": "()[]",
+        "snippet": "kleeneO*(${2:sup})[${1:sub}]"
+      }
+    },
+    {
+      "name": "kleeneO*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kleeneO*[${1:sub}]"
+      }
+    },
+    {
+      "name": "kleeneO",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "kleeneO[${1:sub}]"
+      }
+    },
+    {
+      "name": "kleeneOSYM",
+      "unusual": true
+    },
+    {
+      "name": "Land"
+    },
+    {
+      "name": "leftof"
+    },
+    {
+      "name": "leftofeq"
+    },
+    {
+      "name": "lh",
+      "arg": {
+        "format": "{}",
+        "snippet": "lh{${1:arg}}"
+      }
+    },
+    {
+      "name": "LLand"
+    },
+    {
+      "name": "llangle",
+      "detail": "⦉ (\"oz\" command)",
+      "doc": "Z notation left binding bracket"
+    },
+    {
+      "name": "LLor"
+    },
+    {
+      "name": "logic",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "logic{${1:sub1}}{${2:sub2}}"
+      }
+    },
+    {
+      "name": "Lor"
+    },
+    {
+      "name": "Low"
+    },
+    {
+      "name": "Low",
+      "arg": {
+        "format": "[]",
+        "snippet": "Low[${1:sup%formula}]"
+      }
+    },
+    {
+      "name": "LowN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "LowN[${2:sup%formula}]{${1:sub%formula}}"
+      }
+    },
+    {
+      "name": "lowN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lowN[${2:sup%formula}]{${1:sub%formula}}"
+      }
+    },
+    {
+      "name": "LowN",
+      "arg": {
+        "format": "{}",
+        "snippet": "LowN{${1:sub%formula}}"
+      }
+    },
+    {
+      "name": "lowN",
+      "arg": {
+        "format": "{}",
+        "snippet": "lowN{${1:sub%formula}}"
+      }
+    },
+    {
+      "name": "majsubset"
+    },
+    {
+      "name": "majsupset"
+    },
+    {
+      "name": "maps",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "maps{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "meet"
+    },
+    {
+      "name": "Meet"
+    },
+    {
+      "name": "MnJoin",
+      "unusual": true
+    },
+    {
+      "name": "module",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "module{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "module",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "module{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "murec",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "murec{${1:var%formula}}{${2:condition%formula}}"
+      }
+    },
+    {
+      "name": "nAeq"
+    },
+    {
+      "name": "nAgeq"
+    },
+    {
+      "name": "nAincompat",
+      "unusual": true
+    },
+    {
+      "name": "nAleq"
+    },
+    {
+      "name": "ncequiv"
+    },
+    {
+      "name": "nconv"
+    },
+    {
+      "name": "nconv",
+      "arg": {
+        "format": "[]",
+        "snippet": "nconv[${1:sub}]"
+      }
+    },
+    {
+      "name": "ndownarrow",
+      "unusual": true
+    },
+    {
+      "name": "neqae",
+      "unusual": true
+    },
+    {
+      "name": "nexistsinf"
+    },
+    {
+      "name": "nexistsuniq"
+    },
+    {
+      "name": "nforall"
+    },
+    {
+      "name": "nforallae"
+    },
+    {
+      "name": "nin"
+    },
+    {
+      "name": "nleftof"
+    },
+    {
+      "name": "nleftofeq"
+    },
+    {
+      "name": "nprecsucc"
+    },
+    {
+      "name": "nrightof"
+    },
+    {
+      "name": "nrightofeq"
+    },
+    {
+      "name": "nSearrow"
+    },
+    {
+      "name": "nsubfun"
+    },
+    {
+      "name": "nsubfuneq"
+    },
+    {
+      "name": "nsubset",
+      "detail": "⊄ (\"wrisym\" command)",
+      "doc": "Not subset, variant [slash negation]"
+    },
+    {
+      "name": "nsuccprec"
+    },
+    {
+      "name": "nsupfun"
+    },
+    {
+      "name": "nsupfuneq"
+    },
+    {
+      "name": "nsupset",
+      "detail": "⊅ (\"wrisym\" command)",
+      "doc": "Not superset, variant [slash negation]"
+    },
+    {
+      "name": "nTeq"
+    },
+    {
+      "name": "nTequiv"
+    },
+    {
+      "name": "nTgeq"
+    },
+    {
+      "name": "nTincompat"
+    },
+    {
+      "name": "nTleq"
+    },
+    {
+      "name": "Oabs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Oabs*{${1:arg}}"
+      }
+    },
+    {
+      "name": "Oabs",
+      "arg": {
+        "format": "{}",
+        "snippet": "Oabs{${1:arg}}"
+      }
+    },
+    {
+      "name": "Oadd"
+    },
+    {
+      "name": "Ofunc",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ofunc{${1:arg}}"
+      }
+    },
+    {
+      "name": "Ogeq"
+    },
+    {
+      "name": "Ogtr"
+    },
+    {
+      "name": "Ohgt*",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ohgt*{${1:arg}}"
+      }
+    },
+    {
+      "name": "Ohgt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ohgt{${1:arg}}"
+      }
+    },
+    {
+      "name": "Oleq"
+    },
+    {
+      "name": "Oless"
+    },
+    {
+      "name": "Olim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Olim{${1:arg}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "Omul"
+    },
+    {
+      "name": "Ongeq"
+    },
+    {
+      "name": "Ongtr"
+    },
+    {
+      "name": "Onleq"
+    },
+    {
+      "name": "Onless"
+    },
+    {
+      "name": "Oplus"
+    },
+    {
+      "name": "Opred",
+      "arg": {
+        "format": "{}",
+        "snippet": "Opred{${1:arg}}"
+      }
+    },
+    {
+      "name": "Ord"
+    },
+    {
+      "name": "ordpair",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ordpair{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "Ouniq"
+    },
+    {
+      "name": "overbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "overbar{${1:arg}}"
+      },
+      "detail": " ̅",
+      "doc": "Overbar embellishment"
+    },
+    {
+      "name": "pair",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pair{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ParFuncs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ParFuncs{${1:domain}}{${2:range}}"
+      }
+    },
+    {
+      "name": "piin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "piin[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "piin",
+      "arg": {
+        "format": "{}",
+        "snippet": "piin{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PiN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiN",
+      "arg": {
+        "format": "{}",
+        "snippet": "PiN{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiOneN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PiOneN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiOneN",
+      "arg": {
+        "format": "{}",
+        "snippet": "PiOneN{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiZeroN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PiZeroN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "PiZeroN",
+      "arg": {
+        "format": "{}",
+        "snippet": "PiZeroN{${1:sub}}"
+      }
+    },
+    {
+      "name": "pizn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pizn[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "pizn",
+      "arg": {
+        "format": "{}",
+        "snippet": "pizn{${1:sub}}"
+      }
+    },
+    {
+      "name": "pmapsfrom"
+    },
+    {
+      "name": "pmapsto"
+    },
+    {
+      "name": "powset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "powset[${2:sub}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "powset",
+      "arg": {
+        "format": "{}",
+        "snippet": "powset{${1:arg}}"
+      }
+    },
+    {
+      "name": "precsucc"
+    },
+    {
+      "name": "PriorityTree"
+    },
+    {
+      "name": "PriorityTreeModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "PriorityTreeModule{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "PriorityTreeModule",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PriorityTreeModule{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "promptdif",
+      "unusual": true
+    },
+    {
+      "name": "promptminus",
+      "unusual": true
+    },
+    {
+      "name": "promptsetminus",
+      "unusual": true
+    },
+    {
+      "name": "pruneTree",
+      "arg": {
+        "format": "{}",
+        "snippet": "pruneTree{${1:arg}}"
+      }
+    },
+    {
+      "name": "quotient",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "quotient{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "re"
+    },
+    {
+      "name": "REA"
+    },
+    {
+      "name": "REA"
+    },
+    {
+      "name": "REA",
+      "arg": {
+        "format": "[]",
+        "snippet": "REA[${1:n}]"
+      }
+    },
+    {
+      "name": "REAop*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "REAop*[${3:sub2}]{${1:sub1}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "REAop*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "REAop*{${1:sub}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "REAop",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "REAop[${3:sub2}]{${1:sub1}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "REAop",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "REAop{${1:sub}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "recf",
+      "arg": {
+        "format": "(){}",
+        "snippet": "recf(${2:sup}){${1:sub}}"
+      }
+    },
+    {
+      "name": "recf",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "recf[${2:sub2}](${3:sup}){${1:sub1}}"
+      }
+    },
+    {
+      "name": "recf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "recf[${2:sub2}]{${1:sub1}}"
+      }
+    },
+    {
+      "name": "recf",
+      "arg": {
+        "format": "{}",
+        "snippet": "recf{${1:sub}}"
+      }
+    },
+    {
+      "name": "recfnl",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "recfnl[${4:sub2}]{${1:sub1}}{${2:arg1}}{${3:arg2}}"
+      }
+    },
+    {
+      "name": "recfnl",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "recfnl{${1:sub}}{${2:arg1}}{${3:arg2}}"
+      }
+    },
+    {
+      "name": "recursive"
+    },
+    {
+      "name": "Recursive"
+    },
+    {
+      "name": "recursivelyEnumerable"
+    },
+    {
+      "name": "RecursivelyEnumerable"
+    },
+    {
+      "name": "REdegrees"
+    },
+    {
+      "name": "refreq",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "refreq{${1:arg}}"
+      }
+    },
+    {
+      "name": "req*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "req*{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "req*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "req*{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "req",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "req{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "req",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "req{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "require",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "require{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "require",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "require{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "REset",
+      "arg": {
+        "format": "(){}",
+        "snippet": "REset(${2:sup}){${1:sub}}"
+      }
+    },
+    {
+      "name": "REset",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "REset[${2:sub2}](${3:sup}){${1:sub1}}"
+      }
+    },
+    {
+      "name": "REset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "REset[${2:sub2}]{${1:sub1}}"
+      }
+    },
+    {
+      "name": "REset",
+      "arg": {
+        "format": "{}",
+        "snippet": "REset{${1:sub}}"
+      }
+    },
+    {
+      "name": "restr",
+      "arg": {
+        "format": "{}",
+        "snippet": "restr{${1:arg}}"
+      }
+    },
+    {
+      "name": "rightof"
+    },
+    {
+      "name": "rightofeq"
+    },
+    {
+      "name": "rng"
+    },
+    {
+      "name": "rrangle",
+      "detail": "⦊ (\"oz\" command)",
+      "doc": "Z notation right binding bracket"
+    },
+    {
+      "name": "Searrow",
+      "detail": "⇘ (\"txfonts\" command)",
+      "doc": "Se pointing double arrow"
+    },
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "set{${1:left}}{${2:right}}"
+      }
+    },
+    {
+      "name": "setbefore",
+      "unusual": true
+    },
+    {
+      "name": "setcmp",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcmp{${1:arg}}"
+      }
+    },
+    {
+      "name": "setcol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setcol{${1:arg}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "setdiff"
+    },
+    {
+      "name": "sigmain",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sigmain[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "sigmain",
+      "arg": {
+        "format": "{}",
+        "snippet": "sigmain{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "SigmaN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaN",
+      "arg": {
+        "format": "{}",
+        "snippet": "SigmaN{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaOneN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "SigmaOneN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaOneN",
+      "arg": {
+        "format": "{}",
+        "snippet": "SigmaOneN{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaZeroN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "SigmaZeroN[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "SigmaZeroN",
+      "arg": {
+        "format": "{}",
+        "snippet": "SigmaZeroN{${1:sub}}"
+      }
+    },
+    {
+      "name": "sigmazn",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sigmazn[${2:sup}]{${1:sub}}"
+      }
+    },
+    {
+      "name": "sigmazn",
+      "arg": {
+        "format": "{}",
+        "snippet": "sigmazn{${1:sub}}"
+      }
+    },
+    {
+      "name": "ssetsOfsize",
+      "unusual": true
+    },
+    {
+      "name": "st",
+      "unusual": true
+    },
+    {
+      "name": "str",
+      "arg": {
+        "format": "{}",
+        "snippet": "str{${1:string}}"
+      }
+    },
+    {
+      "name": "strcD"
+    },
+    {
+      "name": "strcDa"
+    },
+    {
+      "name": "strcR"
+    },
+    {
+      "name": "strcRa"
+    },
+    {
+      "name": "strpred",
+      "arg": {
+        "format": "{}",
+        "snippet": "strpred{${1:arg}}"
+      }
+    },
+    {
+      "name": "subfun"
+    },
+    {
+      "name": "subfuneq"
+    },
+    {
+      "name": "subfunneq"
+    },
+    {
+      "name": "subsetnaeq",
+      "unusual": true
+    },
+    {
+      "name": "succprec"
+    },
+    {
+      "name": "supfun"
+    },
+    {
+      "name": "supfuneq"
+    },
+    {
+      "name": "supfunneq"
+    },
+    {
+      "name": "supsetnaeq",
+      "unusual": true
+    },
+    {
+      "name": "symbf",
+      "arg": {
+        "format": "{}",
+        "snippet": "symbf{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "symdiff"
+    },
+    {
+      "name": "Tcompat"
+    },
+    {
+      "name": "Tdeg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tdeg{${1:arg}}"
+      }
+    },
+    {
+      "name": "Tdegrees"
+    },
+    {
+      "name": "Tdegreesjump",
+      "unusual": true
+    },
+    {
+      "name": "Tdegvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tdegvar{${1:arg}}"
+      }
+    },
+    {
+      "name": "Teq"
+    },
+    {
+      "name": "Tequiv"
+    },
+    {
+      "name": "Tgeq"
+    },
+    {
+      "name": "Tgneq"
+    },
+    {
+      "name": "Tgtr"
+    },
+    {
+      "name": "thiscase",
+      "unusual": true
+    },
+    {
+      "name": "Tincompat"
+    },
+    {
+      "name": "Tjoin"
+    },
+    {
+      "name": "TJoin"
+    },
+    {
+      "name": "Tjump",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tjump{${1:arg}}"
+      }
+    },
+    {
+      "name": "Tleq"
+    },
+    {
+      "name": "Tless"
+    },
+    {
+      "name": "Tlneq"
+    },
+    {
+      "name": "Tmeet"
+    },
+    {
+      "name": "tpath"
+    },
+    {
+      "name": "tpath",
+      "arg": {
+        "format": "[]",
+        "snippet": "tpath[${1:sub}]"
+      }
+    },
+    {
+      "name": "Tplus"
+    },
+    {
+      "name": "TPlus"
+    },
+    {
+      "name": "TreeExt"
+    },
+    {
+      "name": "TreeExtNeq"
+    },
+    {
+      "name": "TreeMod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TreeMod{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "TreeMul"
+    },
+    {
+      "name": "Tsetjoin",
+      "unusual": true
+    },
+    {
+      "name": "TsetJoin",
+      "unusual": true
+    },
+    {
+      "name": "ttgeq"
+    },
+    {
+      "name": "ttgneq"
+    },
+    {
+      "name": "ttgtr"
+    },
+    {
+      "name": "ttleq"
+    },
+    {
+      "name": "ttless"
+    },
+    {
+      "name": "ttlneq"
+    },
+    {
+      "name": "ttngeq"
+    },
+    {
+      "name": "ttnleq"
+    },
+    {
+      "name": "ttSYM"
+    },
+    {
+      "name": "Tzero"
+    },
+    {
+      "name": "Tzerosym",
+      "unusual": true
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "Union"
+    },
+    {
+      "name": "use",
+      "arg": {
+        "format": "{}",
+        "snippet": "use{${1:arg}}"
+      }
+    },
+    {
+      "name": "utilde",
+      "arg": {
+        "format": "{}",
+        "snippet": "utilde{${1:arg}}"
+      }
+    },
+    {
+      "name": "wck"
+    },
+    {
+      "name": "wforces"
+    },
+    {
+      "name": "wjump",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "wjump{${1:arg}}"
+      }
+    },
+    {
+      "name": "wstrs"
+    },
+    {
+      "name": "xor"
+    },
+    {
+      "name": "zeroj"
+    },
+    {
+      "name": "zerojj"
+    },
+    {
+      "name": "zerojjj"
+    },
+    {
+      "name": "zeron",
+      "arg": {
+        "format": "{}",
+        "snippet": "zeron{${1:sup}}"
+      }
+    },
+    {
+      "name": "zerow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "zerow{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "steps",
+      "if": "steps"
+    },
+    {
+      "name": "steps",
+      "if": "steps",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "pfcases*"
+    },
+    {
+      "name": "pfcases"
+    },
+    {
+      "name": "pfcasesnonum",
+      "unusual": true
+    },
+    {
+      "name": "pfcasesnumbered",
+      "unusual": true
+    },
+    {
+      "name": "require*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "require*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "require",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:letter}}[${3:sup%formula}]{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "require",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:letter}}{${2:sub%formula}}"
+      }
+    },
+    {
+      "name": "requirement",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tag}}"
+      }
+    },
+    {
+      "name": "requirements*",
+      "unusual": true
+    },
+    {
+      "name": "requirements"
+    },
+    {
+      "name": "requirements",
+      "arg": {
+        "format": "<>",
+        "snippet": "<${1:overlay specification}>"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/rec-thy#c": [
+      "nomath",
+      "nosymb",
+      "nosets",
+      "noquants",
+      "nospaces",
+      "nostrings",
+      "notrees",
+      "nopair",
+      "nosetrels",
+      "noordinalnotations",
+      "nosyntax",
+      "noshortsyntax",
+      "noforcing",
+      "nodegrees",
+      "nocomputations",
+      "nostructresets",
+      "noreqhelper",
+      "nosubfun",
+      "nopfcases",
+      "noprioritytrees",
+      "nohyperreqs",
+      "nooperators",
+      "nofixtype",
+      "nodoubleangles",
+      "steps",
+      "noshortO",
+      "altcompat",
+      "norsfs",
+      "nobbm",
+      "modulescr=${1:csname}",
+      "pfcasefont=${1:csname}",
+      "reqscr=${1:csname}",
+      "recfnlsym=${1:csname}",
+      "recfsym=${1:csname}",
+      "usesym=${1:csname}",
+      "emptystr=${1:csname}",
+      "concatsym=${1:csname}",
+      "lstrdelim=${1:csname}",
+      "rstrdelim=${1:csname}",
+      "lcodedelim=${1:csname}",
+      "rcodedelim=${1:csname}",
+      "lpairdelim=${1:csname}",
+      "rpairdelim=${1:csname}"
+    ]
+  },
+  "args": [
+    "\\usepackage/rec-thy#c"
+  ]
 }

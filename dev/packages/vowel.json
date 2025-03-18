@@ -1,0 +1,161 @@
+{
+  "deps": [],
+  "macros": [
+    {
+      "name": "putcvowel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "putcvowel{${1:symbol}}{${2:num}}"
+      }
+    },
+    {
+      "name": "putcvowel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "putcvowel[${3:dot pos%keyvals}]{${1:symbol}}{${2:num}}",
+        "keys": [
+          "\\putcvowel,\\putvowel"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "putvowel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "putvowel{${1:symbol}}{${2:x%l}}{${3:y%l}}"
+      }
+    },
+    {
+      "name": "putvowel",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "putvowel[${4:dot pos%keyvals}]{${1:symbol}}{${2:x%l}}{${3:y%l}}",
+        "keys": [
+          "\\putcvowel,\\putvowel"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "super",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "super{${1:text}}"
+      }
+    },
+    {
+      "name": "vowelhunit",
+      "unusual": true
+    },
+    {
+      "name": "vowelvunit",
+      "unusual": true
+    },
+    {
+      "name": "vowelsep",
+      "unusual": true
+    },
+    {
+      "name": "vowelline",
+      "unusual": true
+    },
+    {
+      "name": "vowelsymbol",
+      "unusual": true
+    },
+    {
+      "name": "diagrate",
+      "unusual": true
+    },
+    {
+      "name": "ifrectdgm",
+      "unusual": true
+    },
+    {
+      "name": "rectdgmtrue",
+      "unusual": true
+    },
+    {
+      "name": "rectdgmfalse",
+      "unusual": true
+    },
+    {
+      "name": "iftriangledgm",
+      "unusual": true
+    },
+    {
+      "name": "triangledgmtrue",
+      "unusual": true
+    },
+    {
+      "name": "triangledgmfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifthreelevel",
+      "unusual": true
+    },
+    {
+      "name": "threeleveltrue",
+      "unusual": true
+    },
+    {
+      "name": "threelevelfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifnoerase",
+      "unusual": true
+    },
+    {
+      "name": "noerasetrue",
+      "unusual": true
+    },
+    {
+      "name": "noerasefalse",
+      "unusual": true
+    },
+    {
+      "name": "diagline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "diagline{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "vowel"
+    },
+    {
+      "name": "vowel",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{vowel}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{vowel}": [
+      "plain",
+      "simple",
+      "standard",
+      "ipanew",
+      "rectangle",
+      "triangle",
+      "three"
+    ],
+    "\\putcvowel,\\putvowel": [
+      "l",
+      "r"
+    ]
+  },
+  "args": []
+}

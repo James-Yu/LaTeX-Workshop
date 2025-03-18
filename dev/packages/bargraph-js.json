@@ -1,130 +1,312 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": [],
-    "eforms": []
-  },
-  "macros": {
-    "nbars": {},
-    "bargap": {},
-    "bardimen": {},
-    "presetsbarfor{}{}{}": {
-      "snippet": "presetsbarfor{${1:bg name}}{${2:bar name}}{${3:eforms parameters}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "barfor{}": {
-      "snippet": "barfor{${1:bar name}}"
+    {
+      "name": "xcolor"
     },
-    "presetinputfor{}{}": {
-      "snippet": "presetinputfor{${1:bgenv name}}{${2:bg name.bar name}}"
-    },
-    "inputFor{}{}{}{}{}": {
-      "snippet": "inputFor{${1:bgenv name}}{${2:bg name}}{${3:bar name}}{${4:width}}{${5:height}}"
-    },
-    "inputFor[]{}{}{}{}{}": {
-      "snippet": "inputFor[${6:eforms parameters}]{${1:bgenv name}}{${2:bg name}}{${3:bar name}}{${4:width}}{${5:height}}"
-    },
-    "hs{}": {
-      "snippet": "hs{${1:skip}}"
-    },
-    "vs{}": {
-      "snippet": "vs{${1:skip}}"
-    },
-    "barLabelsTU{}": {
-      "snippet": "barLabelsTU{${1:JS code}}"
-    },
-    "barLabelsNoTU{}": {
-      "snippet": "barLabelsNoTU{${1:JS code}}"
-    },
-    "isdynamic": {},
-    "scaleFactorDef{}": {
-      "snippet": "scaleFactorDef{${1:factor}}"
-    },
-    "displaysfFor{}{}{}": {
-      "snippet": "displaysfFor{${1:bgenv name}}{${2:width}}{${3:height}}"
-    },
-    "displaysfFor[]{}{}{}": {
-      "snippet": "displaysfFor[${4:eforms parameters}]{${1:bgenv name}}{${2:width}}{${3:height}}"
-    },
-    "manualsfFor{}{}{}": {
-      "snippet": "manualsfFor{${1:bgenv name}}{${2:width}}{${3:height}}"
-    },
-    "manualsfFor[]{}{}{}": {
-      "snippet": "manualsfFor[${4:eforms parameters}]{${1:bgenv name}}{${2:width}}{${3:height}}"
-    },
-    "labelFld{}{}{}{}": {
-      "snippet": "labelFld{${1:text}}{${2:bg name.bar name}}{${3:width}}{${4:height}}"
-    },
-    "labelFld[]{}{}{}{}": {
-      "snippet": "labelFld[${5:eforms parameters}]{${1:text}}{${2:bg name.bar name}}{${3:width}}{${4:height}}"
-    },
-    "barDefColor": {},
-    "barforCommon{}": {
-      "snippet": "barforCommon{${1:arg}}"
-    },
-    "barLabelsNoTUJS": {},
-    "barLabelsNoTUJSDef": {},
-    "barNum": {},
-    "bgtoks": {},
-    "cntbars": {},
-    "dybarforCommon{}": {
-      "snippet": "dybarforCommon{${1:arg}}"
-    },
-    "expbarfor{}": {
-      "snippet": "expbarfor{${1:arg}}"
-    },
-    "getBarName": {},
-    "hmrk": {},
-    "horizontalbarsfalse": {},
-    "horizontalbarstrue": {},
-    "ifhorizontalbars": {},
-    "ifisbgenv": {},
-    "isbgenvfalse": {},
-    "isbgenvtrue": {},
-    "oBgEnvs": {},
-    "priorpresetinputfor{}{}": {
-      "snippet": "priorpresetinputfor{${1:arg1}}{${2:arg2}}"
-    },
-    "simpleBarLabels": {},
-    "txtBgValues": {},
-    "usebarlabel": {}
-  },
-  "envs": {
-    "bargraphenv{}": {
-      "name": "bargraphenv",
-      "snippet": "{${1:bgenv name}}"
-    },
-    "bargraphenv[]{}": {
-      "name": "bargraphenv",
-      "snippet": "[${2:options}]{${1:bgenv name}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bargraph{}": {
-      "name": "bargraph",
-      "snippet": "{${1:bg name}}"
-    },
-    "bargraph[]{}": {
-      "name": "bargraph",
-      "snippet": "[${2:options}]{${1:bg name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "eforms"
     }
-  },
-  "options": [
-    "dynamic"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "nbars",
+      "unusual": true
+    },
+    {
+      "name": "bargap",
+      "unusual": true
+    },
+    {
+      "name": "bardimen",
+      "unusual": true
+    },
+    {
+      "name": "presetsbarfor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "presetsbarfor{${1:bg name}}{${2:bar name}}{${3:eforms parameters}}"
+      }
+    },
+    {
+      "name": "barfor",
+      "arg": {
+        "format": "{}",
+        "snippet": "barfor{${1:bar name}}"
+      }
+    },
+    {
+      "name": "presetinputfor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "presetinputfor{${1:bgenv name}}{${2:bg name.bar name}}"
+      }
+    },
+    {
+      "name": "inputFor",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "inputFor{${1:bgenv name}}{${2:bg name}}{${3:bar name}}{${4:width}}{${5:height}}"
+      }
+    },
+    {
+      "name": "inputFor",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "inputFor[${6:eforms parameters}]{${1:bgenv name}}{${2:bg name}}{${3:bar name}}{${4:width}}{${5:height}}"
+      }
+    },
+    {
+      "name": "populateCommaData",
+      "arg": {
+        "format": "()",
+        "snippet": "populateCommaData(${1:\"%<bgenv name%>\"},${2:\"%<bg name%>\"},${3:%<str},${4:validate%>})"
+      }
+    },
+    {
+      "name": "hs",
+      "arg": {
+        "format": "{}",
+        "snippet": "hs{${1:skip}}"
+      }
+    },
+    {
+      "name": "vs",
+      "arg": {
+        "format": "{}",
+        "snippet": "vs{${1:skip}}"
+      }
+    },
+    {
+      "name": "barLabelsTU",
+      "arg": {
+        "format": "{}",
+        "snippet": "barLabelsTU{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "barLabelsNoTU",
+      "arg": {
+        "format": "{}",
+        "snippet": "barLabelsNoTU{${1:JS code%definition}}"
+      }
+    },
+    {
+      "name": "isdynamic"
+    },
+    {
+      "name": "scaleFactorDef",
+      "arg": {
+        "format": "{}",
+        "snippet": "scaleFactorDef{${1:factor}}"
+      }
+    },
+    {
+      "name": "displaysfFor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "displaysfFor{${1:bgenv name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "displaysfFor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "displaysfFor[${4:eforms parameters}]{${1:bgenv name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "manualsfFor",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "manualsfFor{${1:bgenv name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "manualsfFor",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "manualsfFor[${4:eforms parameters}]{${1:bgenv name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "labelFld",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "labelFld{${1:text}}{${2:bg name.bar name}}{${3:width}}{${4:height}}"
+      }
+    },
+    {
+      "name": "labelFld",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "labelFld[${5:eforms parameters}]{${1:text}}{${2:bg name.bar name}}{${3:width}}{${4:height}}"
+      }
+    },
+    {
+      "name": "barDefColor",
+      "unusual": true
+    },
+    {
+      "name": "barforCommon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "barforCommon{${1:arg}}"
+      }
+    },
+    {
+      "name": "barLabelsNoTUJS",
+      "unusual": true
+    },
+    {
+      "name": "barLabelsNoTUJSDef",
+      "unusual": true
+    },
+    {
+      "name": "barNum",
+      "unusual": true
+    },
+    {
+      "name": "bgtoks",
+      "unusual": true
+    },
+    {
+      "name": "cntbars",
+      "unusual": true
+    },
+    {
+      "name": "dybarforCommon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dybarforCommon{${1:arg}}"
+      }
+    },
+    {
+      "name": "expbarfor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "expbarfor{${1:arg}}"
+      }
+    },
+    {
+      "name": "getBarName",
+      "unusual": true
+    },
+    {
+      "name": "hmrk",
+      "unusual": true
+    },
+    {
+      "name": "horizontalbarsfalse",
+      "unusual": true
+    },
+    {
+      "name": "horizontalbarstrue",
+      "unusual": true
+    },
+    {
+      "name": "ifhorizontalbars",
+      "unusual": true
+    },
+    {
+      "name": "ifisbgenv",
+      "unusual": true
+    },
+    {
+      "name": "isbgenvfalse",
+      "unusual": true
+    },
+    {
+      "name": "isbgenvtrue",
+      "unusual": true
+    },
+    {
+      "name": "oBgEnvs",
+      "unusual": true
+    },
+    {
+      "name": "priorpresetinputfor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "priorpresetinputfor{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "simpleBarLabels",
+      "unusual": true
+    },
+    {
+      "name": "txtBgValues",
+      "unusual": true
+    },
+    {
+      "name": "usebarlabel",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "bargraphenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bgenv name}}"
+      }
+    },
+    {
+      "name": "bargraphenv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:bgenv name}}",
+        "keys": [
+          "\\begin{bargraphenv}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bargraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:bg name}}"
+      }
+    },
+    {
+      "name": "bargraph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:bg name}}",
+        "keys": [
+          "\\begin{bargraph}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/bargraph-js#c": [
+      "dynamic"
+    ],
+    "\\begin{bargraphenv}": [
       "width=",
       "height=",
-      "o=",
-      "origin=",
+      "o=${1|horiz,vert|}",
+      "origin=${1|0,.5|}",
       "showaxis"
     ],
-    [
+    "\\begin{bargraph}": [
       "nbars=${1:number}",
       "gap=${1:number}",
       "bardimen=${1:number}"
     ]
+  },
+  "args": [
+    "\\usepackage/bargraph-js#c"
   ]
 }

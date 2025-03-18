@@ -1,27 +1,43 @@
 {
-  "includes": {
-    "ltxcmds": [],
-    "letltxmacro": [],
-    "xifthen": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "tablefootnote{}": {
-      "snippet": "tablefootnote{${1:text}}"
+  "deps": [
+    {
+      "name": "ltxcmds"
     },
-    "tablefootnote[]{}": {
-      "snippet": "tablefootnote[${2:number}]{${1:text}}"
+    {
+      "name": "letltxmacro"
     },
-    "swtablemakefntext{}": {
-      "snippet": "swtablemakefntext{${1:text}}"
+    {
+      "name": "xifthen"
     },
-    "tablemakefntext{}": {
-      "snippet": "tablemakefntext{${1:text}}"
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tablefootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "tablefootnote{${1:text}}"
+      }
     },
-    "tfnendorigsidewaystable": {},
-    "tfnorigsidewaystable": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tablefootnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tablefootnote[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "swtablemakefntext",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "swtablemakefntext{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

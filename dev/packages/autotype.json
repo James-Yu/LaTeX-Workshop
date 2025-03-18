@@ -1,37 +1,59 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "autotypelangoptions{}{}": {
-      "snippet": "autotypelangoptions{${1:language}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+  "deps": [
+    {
+      "name": "luatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "autotypelangoptions",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "autotypelangoptions{${1:language}}{${2:options%keyvals}}",
+        "keys": [
+          "\\autotypelangoptions"
+        ],
+        "keyPos": 1
+      }
     },
-    "autotypefontoptions{}{}": {
-      "snippet": "autotypefontoptions{${1:font}}{${2:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 1
+    {
+      "name": "autotypefontoptions",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "autotypefontoptions{${1:font}}{${2:options%keyvals}}",
+        "keys": [
+          "\\autotypefontoptions"
+        ],
+        "keyPos": 1
+      }
     },
-    "noligbreak{}": {
-      "snippet": "noligbreak{${1:text}}"
+    {
+      "name": "noligbreak",
+      "arg": {
+        "format": "{}",
+        "snippet": "noligbreak{${1:text}}"
+      }
     },
-    "autotypelongs": {},
-    "autotyperounds": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "hyphenation=",
-      "mark-hyph=",
-      "ligbreak=",
-      "long-s="
+    {
+      "name": "autotypelongs"
+    },
+    {
+      "name": "autotyperounds"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\autotypelangoptions": [
+      "hyphenation=${1|default,primary,weighted|}",
+      "mark-hyph=${1|on,off|}",
+      "ligbreak=${1|on,off|}",
+      "long-s=${1|on,off|}"
     ],
-    [
+    "\\autotypefontoptions": [
       "long-s-codepoint=${1:codepoint}",
       "round-s-codepoint=${1:codepoint}",
       "final-round-s-codepoint=${1:codepoint}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,30 +1,49 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "BinaryTree[]{}{}": {
-      "snippet": "BinaryTree[${3:options}]{${1:path spec}}{${2:depth}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "btreeset{}": {
-      "snippet": "btreeset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "btreesetexternal{}": {
-      "snippet": "btreesetexternal{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "BinaryTree",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "BinaryTree[${3:options%keyvals}]{${1:path spec}}{${2:depth}}",
+        "keys": [
+          "\\BinaryTree#c,\\btreeset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "btreeset",
+      "arg": {
+        "format": "{}",
+        "snippet": "btreeset{${1:options%keyvals}}",
+        "keys": [
+          "\\BinaryTree#c,\\btreeset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "btreesetexternal",
+      "arg": {
+        "format": "{}",
+        "snippet": "btreesetexternal{${1:options%keyvals}}",
+        "keys": [
+          "\\btreesetexternal#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\BinaryTree#c,\\btreeset#c": [
       "default",
-      "grow=",
+      "grow=${1|up,down,left,right,none|}",
       "root label anchor=",
       "left label anchor=",
       "right label anchor=",
@@ -55,8 +74,9 @@
       "external/use automatic file name",
       "external/file name=${1:file}"
     ],
-    [
+    "\\btreesetexternal#c": [
       "use automatic file name"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,42 +1,82 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "sufigures": {},
-    "infigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "oldstyle",
-    "tabular",
-    "proportional",
-    "semibold",
-    "medium",
-    "light"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnums{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnums{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinf{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/CormorantGaramond#c": [
+      "scaled=${1:factor}",
+      "type1",
+      "lining",
+      "oldstyle",
+      "tabular",
+      "proportional",
+      "semibold",
+      "medium",
+      "light"
+    ]
+  },
+  "args": [
+    "\\usepackage/CormorantGaramond#c"
+  ]
 }

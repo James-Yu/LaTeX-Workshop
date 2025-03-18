@@ -1,33 +1,59 @@
 {
-  "includes": {
-    "fancyvrb": [],
-    "ifluatex": [],
-    "shellesc": []
-  },
-  "macros": {
-    "CheckRubikState": {},
-    "CheckState": {},
-    "RRfiledate": {},
-    "RRfileversion": {},
-    "RubikRotation[]{}": {
-      "snippet": "RubikRotation[${2:integer}]{${1:sequence}}"
+  "deps": [
+    {
+      "name": "fancyvrb"
     },
-    "RubikRotation{}": {
-      "snippet": "RubikRotation{${1:sequence}}"
+    {
+      "name": "ifluatex"
     },
-    "Rubikrotation": {},
-    "SaveRubikState{}": {
-      "snippet": "SaveRubikState{${1:filename}}"
+    {
+      "name": "shellesc"
+    }
+  ],
+  "macros": [
+    {
+      "name": "CheckState"
     },
-    "ShowErrors": {},
-    "ShowRubikErrors": {},
-    "next": {},
-    "rubikpercentchar": {},
-    "rubikperlcmd": {},
-    "rubikperlname": {},
-    "rubikrotation": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "RubikRotation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "RubikRotation[${2:integer}]{${1:sequence}}"
+      }
+    },
+    {
+      "name": "RubikRotation",
+      "arg": {
+        "format": "{}",
+        "snippet": "RubikRotation{${1:sequence}}"
+      }
+    },
+    {
+      "name": "SaveRubikState",
+      "arg": {
+        "format": "{}",
+        "snippet": "SaveRubikState{${1:filename%file}}"
+      }
+    },
+    {
+      "name": "ShowErrors"
+    },
+    {
+      "name": "rubikpercentchar",
+      "unusual": true
+    },
+    {
+      "name": "rubikperlcmd"
+    },
+    {
+      "name": "rubikperlname"
+    },
+    {
+      "name": "rubikrotation",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

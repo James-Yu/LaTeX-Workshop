@@ -1,18 +1,31 @@
 {
-  "includes": {
-    "array": []
-  },
-  "macros": {
-    "subproofhorizspace": {},
-    "intersubproofvertspace": {}
-  },
-  "envs": {
-    "logicproof{}": {
-      "name": "logicproof",
-      "snippet": "{${1:cols}}"
+  "deps": [
+    {
+      "name": "array"
+    }
+  ],
+  "macros": [
+    {
+      "name": "subproofhorizspace",
+      "unusual": true
     },
-    "subproof": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "intersubproofvertspace",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "logicproof",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "subproof"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,24 +1,24 @@
 {
-  "includes": {
-    "pgfrcs": [],
-    "pgfkeys": [],
-    "pgfmath": []
-  },
-  "macros": {
-    "foreach{}": {
-      "snippet": "foreach{${1:cmd}}"
+  "deps": [
+    {
+      "name": "pgfrcs"
     },
-    "foreach[]{}": {
-      "snippet": "foreach[${2:options}]{${1:cmd}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "breakforeach": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pgfmath"
+    }
+  ],
+  "macros": [
+    {
+      "name": "breakforeach",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\foreach#c": [
       "var=${1:variable}",
       "evaluate=${1:variable}",
       "evaluate=${1:variable} as ${2:macro}",
@@ -30,5 +30,6 @@
       "parse",
       "expand list"
     ]
-  ]
+  },
+  "args": []
 }

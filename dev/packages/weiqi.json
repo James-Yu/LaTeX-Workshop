@@ -1,106 +1,246 @@
 {
-  "includes": {
-    "l3draw": []
-  },
-  "macros": {
-    "newweiqi": {},
-    "newweiqi[]": {
-      "snippet": "newweiqi[${1:尺寸}]"
+  "deps": [
+    {
+      "name": "l3draw"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newweiqi"
     },
-    "weiqisize{}": {
-      "snippet": "weiqisize{${1:尺寸}}"
+    {
+      "name": "newweiqi",
+      "arg": {
+        "format": "[]",
+        "snippet": "newweiqi[${1:尺寸}]"
+      }
     },
-    "weiqiblack{}": {
-      "snippet": "weiqiblack{${1:坐标}}"
+    {
+      "name": "weiqisize",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqisize{${1:尺寸}}"
+      }
     },
-    "weiqiblack[]{}": {
-      "snippet": "weiqiblack[${2:标签}]{${1:坐标}}"
+    {
+      "name": "weiqiblack",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqiblack{${1:坐标}}"
+      }
     },
-    "weiqiwhite{}": {
-      "snippet": "weiqiwhite{${1:坐标}}"
+    {
+      "name": "weiqiblack",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "weiqiblack[${2:标签}]{${1:坐标}}"
+      }
     },
-    "weiqiwhite[]{}": {
-      "snippet": "weiqiwhite[${2:标签}]{${1:坐标}}"
+    {
+      "name": "weiqiwhite",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqiwhite{${1:坐标}}"
+      }
     },
-    "weiqidie{}": {
-      "snippet": "weiqidie{${1:坐标}}"
+    {
+      "name": "weiqiwhite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "weiqiwhite[${2:标签}]{${1:坐标}}"
+      }
     },
-    "showweiqi": {},
-    "showweiqi[]": {
-      "snippet": "showweiqi[${1:区间}]"
+    {
+      "name": "weiqidie",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqidie{${1:坐标}}"
+      }
     },
-    "weiqilabel{}": {
-      "snippet": "weiqilabel{${1:坐标}}"
+    {
+      "name": "showweiqi"
     },
-    "weiqilabel[]{}": {
-      "snippet": "weiqilabel[${2:标签}]{${1:坐标}}"
+    {
+      "name": "showweiqi",
+      "arg": {
+        "format": "[]",
+        "snippet": "showweiqi[${1:区间}]"
+      }
     },
-    "clearlabel": {},
-    "weiqired{}": {
-      "snippet": "weiqired{${1:坐标}}"
+    {
+      "name": "weiqilabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqilabel{${1:坐标}}"
+      }
     },
-    "weiqigreen{}": {
-      "snippet": "weiqigreen{${1:坐标}}"
+    {
+      "name": "weiqilabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "weiqilabel[${2:标签}]{${1:坐标}}"
+      }
     },
-    "weiqiblue{}": {
-      "snippet": "weiqiblue{${1:坐标}}"
+    {
+      "name": "clearlabel"
     },
-    "clearpoint": {},
-    "weiqirotate": {},
-    "weiqirotate[]": {
-      "snippet": "weiqirotate[${1:角度}]"
+    {
+      "name": "weiqired",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqired{${1:坐标}}"
+      }
     },
-    "weiqimirror": {},
-    "weiqimirror[]": {
-      "snippet": "weiqimirror[${1:镜像轴}]"
+    {
+      "name": "weiqigreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqigreen{${1:坐标}}"
+      }
     },
-    "weiqiposition": {},
-    "weiqiposition[]": {
-      "snippet": "weiqiposition[${1:角度}]"
+    {
+      "name": "weiqiblue",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqiblue{${1:坐标}}"
+      }
     },
-    "weiqiscale": {},
-    "weiqiscale[]": {
-      "snippet": "weiqiscale[${1:比例}]"
+    {
+      "name": "clearpoint"
     },
-    "weiqiminsize{}{}": {
-      "snippet": "weiqiminsize{${1:宽度}}{${2:高度}}"
+    {
+      "name": "weiqirotate"
     },
-    "nonelocmode": {},
-    "normallocmode": {},
-    "sgflocmode": {},
-    "saveweiqi": {},
-    "saveweiqi[]": {
-      "snippet": "saveweiqi[${1:序号}]"
+    {
+      "name": "weiqirotate",
+      "arg": {
+        "format": "[]",
+        "snippet": "weiqirotate[${1:角度}]"
+      }
     },
-    "useweiqi": {},
-    "useweiqi[]": {
-      "snippet": "useweiqi[${1:序号}]"
+    {
+      "name": "weiqimirror"
     },
-    "weiqichange{}": {
-      "snippet": "weiqichange{${1:坐标}}"
+    {
+      "name": "weiqimirror",
+      "arg": {
+        "format": "[]",
+        "snippet": "weiqimirror[${1:镜像轴}]"
+      }
     },
-    "weiqiremove{}": {
-      "snippet": "weiqiremove{${1:坐标}}"
+    {
+      "name": "weiqiposition"
     },
-    "resetnumber": {},
-    "resetnumber[]": {
-      "snippet": "resetnumber[${1:起点}]"
+    {
+      "name": "weiqiposition",
+      "arg": {
+        "format": "[]",
+        "snippet": "weiqiposition[${1:角度}]"
+      }
     },
-    "weiqisgf{}": {
-      "snippet": "weiqisgf{${1:文本}}"
+    {
+      "name": "weiqiscale"
     },
-    "weiqisgf[]{}": {
-      "snippet": "weiqisgf[${2:标签}]{${1:文本}}"
+    {
+      "name": "weiqiscale",
+      "arg": {
+        "format": "[]",
+        "snippet": "weiqiscale[${1:比例}]"
+      }
     },
-    "inputsgf{}": {
-      "snippet": "inputsgf{${1:文件}}"
+    {
+      "name": "weiqiminsize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "weiqiminsize{${1:宽度}}{${2:高度}}"
+      }
     },
-    "inputsgf[]{}": {
-      "snippet": "inputsgf[${2:起点}]{${1:文件}}"
+    {
+      "name": "nonelocmode"
     },
-    "weiqidata": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "normallocmode"
+    },
+    {
+      "name": "sgflocmode"
+    },
+    {
+      "name": "saveweiqi"
+    },
+    {
+      "name": "saveweiqi",
+      "arg": {
+        "format": "[]",
+        "snippet": "saveweiqi[${1:序号}]"
+      }
+    },
+    {
+      "name": "useweiqi"
+    },
+    {
+      "name": "useweiqi",
+      "arg": {
+        "format": "[]",
+        "snippet": "useweiqi[${1:序号}]"
+      }
+    },
+    {
+      "name": "weiqichange",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqichange{${1:坐标}}"
+      }
+    },
+    {
+      "name": "weiqiremove",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqiremove{${1:坐标}}"
+      }
+    },
+    {
+      "name": "resetnumber"
+    },
+    {
+      "name": "resetnumber",
+      "arg": {
+        "format": "[]",
+        "snippet": "resetnumber[${1:起点}]"
+      }
+    },
+    {
+      "name": "weiqisgf",
+      "arg": {
+        "format": "{}",
+        "snippet": "weiqisgf{${1:文本}}"
+      }
+    },
+    {
+      "name": "weiqisgf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "weiqisgf[${2:标签}]{${1:文本}}"
+      }
+    },
+    {
+      "name": "inputsgf",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputsgf{${1:文件}}"
+      }
+    },
+    {
+      "name": "inputsgf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inputsgf[${2:起点}]{${1:文件}}"
+      }
+    },
+    {
+      "name": "weiqidata"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

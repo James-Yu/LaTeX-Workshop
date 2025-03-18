@@ -1,31 +1,109 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "multido": []
-  },
-  "macros": {
-    "addtomoirelisttype{}": {
-      "snippet": "addtomoirelisttype{${1:name}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psRandomDotPatterns": {},
-    "psRandomDotPatterns[]": {
-      "snippet": "psRandomDotPatterns[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
     },
-    "psGlassPattern": {},
-    "psGlassPattern[]": {
-      "snippet": "psGlassPattern[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "multido"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psmoire",
+      "arg": {
+        "format": "()",
+        "snippet": "psmoire(${1:x},${2:y})"
+      }
     },
-    "variablesMoirages": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psmoire",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psmoire[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psmoire#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addtomoirelisttype",
+      "arg": {
+        "format": "{}",
+        "snippet": "addtomoirelisttype{${1:name}}"
+      }
+    },
+    {
+      "name": "psRandomDotPatterns"
+    },
+    {
+      "name": "psRandomDotPatterns",
+      "arg": {
+        "format": "[]",
+        "snippet": "psRandomDotPatterns[${1:options%keyvals}]",
+        "keys": [
+          "\\psRandomDotPatterns#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psRandomDot",
+      "arg": {
+        "format": "()",
+        "snippet": "psRandomDot(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psRandomDot",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psRandomDot[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psRandomDot#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psGlassPattern"
+    },
+    {
+      "name": "psGlassPattern",
+      "arg": {
+        "format": "[]",
+        "snippet": "psGlassPattern[${1:options%keyvals}]",
+        "keys": [
+          "\\psGlassPattern#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "variablesMoirages",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psmoire#c": [
+      "type=${1|Fresnel,linear,radial,circle,square,Newton,Bouasse,Gauss,dot,chess|}",
+      "rotate=${1:degrees}",
+      "Rmax=${1:length in cm}",
+      "scale=${1:factor}",
+      "Alpha=${1:degrees}",
+      "E=${1:distance in cm}",
+      "n=${1:number}",
+      "T=${1:distance in mm}",
+      "linewidth=",
+      "linecolor=",
+      "dotstyle=${1:style}",
+      "dotsize="
+    ],
+    "\\psRandomDotPatterns#c": [
       "NumberDots=${1:integer}",
       "coefficients=${1:a b θ x0 y0}",
       "srand=${1:random seed}",
@@ -35,7 +113,19 @@
       "fillcolor=",
       "unit=${1:number}"
     ],
-    [
+    "\\psRandomDot#c": [
+      "hole=${1|round,square|}",
+      "r=${1:radius in pts}",
+      "p=${1:distance in pts}",
+      "rotate=${1:degrees}",
+      "k=${1:dispersion factor}",
+      "symbole=${1:digit or letter}",
+      "PSfont=${1:PS font name}",
+      "fontsize=${1:size in pts}",
+      "vadjust=${1:number}",
+      "hadjust=${1:number}"
+    ],
+    "\\psGlassPattern#c": [
       "function=${1:function}",
       "layers",
       "linecolor=",
@@ -45,5 +135,6 @@
       "unit=${1:number}",
       "algebraic"
     ]
-  ]
+  },
+  "args": []
 }

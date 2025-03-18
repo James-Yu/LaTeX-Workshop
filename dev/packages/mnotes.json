@@ -1,57 +1,127 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "soul": [],
-    "marginnote": [],
-    "tikz": [],
-    "ifoddpage": [],
-    "sidenotes": []
-  },
-  "macros": {
-    "MNOTE{}": {
-      "snippet": "MNOTE{${1:text}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "MNOTE[]{}": {
-      "snippet": "MNOTE[${2:TikZ options}]{${1:text}}"
+    {
+      "name": "soul"
     },
-    "Mnewauthor{}{}": {
-      "snippet": "Mnewauthor{${1:name}}{${2:TikZ options}}"
+    {
+      "name": "marginnote"
     },
-    "Mnewauthor[]{}{}": {
-      "snippet": "Mnewauthor[${3:initials}]{${1:name}}{${2:TikZ options}}"
+    {
+      "name": "tikz"
     },
-    "HideMNOTES": {},
-    "ShowMNOTES": {},
-    "ReverseMNConnect": {},
-    "mnotespaperwidth": {},
-    "MNOTEWIDTH": {},
-    "MNCOLOUR": {},
-    "MNFONT": {},
-    "MNOTEon{}": {
-      "snippet": "MNOTEon{${1:text}}"
+    {
+      "name": "ifoddpage"
     },
-    "MNOTEon[]{}": {
-      "snippet": "MNOTEon[${2:TikZ options}]{${1:text}}"
-    },
-    "mnoteseastlink{}": {
-      "snippet": "mnoteseastlink{${1:TikZ options}}"
-    },
-    "mnoteswestlink{}": {
-      "snippet": "mnoteswestlink{${1:TikZ options}}"
+    {
+      "name": "sidenotes"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale",
-    "scale=${1:factor}",
-    "mnwidth=",
-    "boxcolour=",
-    "hide",
-    "sidenotes",
-    "basic",
-    "reverseconnect",
-    "centre",
-    "fontsize=${1:number}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "MNOTE",
+      "arg": {
+        "format": "{}",
+        "snippet": "MNOTE{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "MNOTE",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MNOTE[${2:TikZ options}]{${1:text%todo}}"
+      }
+    },
+    {
+      "name": "Mnewauthor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Mnewauthor{${1:name}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "Mnewauthor",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Mnewauthor[${3:initials}]{${1:name}}{${2:TikZ options}}"
+      }
+    },
+    {
+      "name": "HideMNOTES"
+    },
+    {
+      "name": "ShowMNOTES"
+    },
+    {
+      "name": "ReverseMNConnect"
+    },
+    {
+      "name": "mnotespaperwidth",
+      "unusual": true
+    },
+    {
+      "name": "MNOTEWIDTH",
+      "unusual": true
+    },
+    {
+      "name": "MNCOLOUR",
+      "unusual": true
+    },
+    {
+      "name": "MNFONT",
+      "unusual": true
+    },
+    {
+      "name": "MNOTEon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MNOTEon{${1:text}}"
+      }
+    },
+    {
+      "name": "MNOTEon",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MNOTEon[${2:TikZ options}]{${1:text}}"
+      }
+    },
+    {
+      "name": "mnoteseastlink",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mnoteseastlink{${1:TikZ options}}"
+      }
+    },
+    {
+      "name": "mnoteswestlink",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mnoteswestlink{${1:TikZ options}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/mnotes#c": [
+      "scale",
+      "scale=${1:factor}",
+      "mnwidth=",
+      "boxcolour=",
+      "hide",
+      "sidenotes",
+      "basic",
+      "reverseconnect",
+      "centre",
+      "fontsize=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/mnotes#c"
+  ]
 }

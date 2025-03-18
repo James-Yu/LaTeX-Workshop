@@ -1,25 +1,53 @@
 {
-  "includes": {},
-  "macros": {
-    "savenotes": {},
-    "spewnotes": {},
-    "makesavenoteenv{}": {
-      "snippet": "makesavenoteenv{${1:environment}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "savenotes",
+      "unusual": true
     },
-    "makesavenoteenv[]{}": {
-      "snippet": "makesavenoteenv[${2:new_envname}]{${1:environment}}"
+    {
+      "name": "spewnotes",
+      "unusual": true
     },
-    "footnotehyperwarnfalse": {}
-  },
-  "envs": {
-    "savenotes": {},
-    "footnote": {},
-    "footnote[]": {
+    {
+      "name": "makesavenoteenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "makesavenoteenv{${1:environment}}"
+      }
+    },
+    {
+      "name": "makesavenoteenv",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "makesavenoteenv[${2:new_envname%envname}]{${1:environment}}"
+      }
+    },
+    {
+      "name": "footnotehyperwarnfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "savenotes"
+    },
+    {
+      "name": "footnote"
+    },
+    {
       "name": "footnote",
-      "snippet": "[${1:number}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
     },
-    "footnotetext": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "footnotetext"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

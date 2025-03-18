@@ -1,31 +1,64 @@
 {
-  "includes": {},
-  "macros": {
-    "xcomment{}": {
-      "snippet": "xcomment{${1:envname list}}"
-    },
-    "xcommentchar": {},
-    "rescanfile{}": {
-      "snippet": "rescanfile{${1:arg}}"
-    },
-    "norescanfile": {},
-    "envirsep": {},
-    "newxcomment{}": {
-      "snippet": "newxcomment{${1:envname}}"
-    },
-    "newxcomment[]{}": {
-      "snippet": "newxcomment[${2:envname list}]{${1:envname}}"
-    },
-    "nofloat{}": {
-      "snippet": "nofloat{${1:envname list}}"
-    }
-  },
-  "envs": {
-    "xcomment{}": {
+  "deps": [],
+  "macros": [
+    {
       "name": "xcomment",
-      "snippet": "{${1:envname list}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "xcomment{${1:envname list}}"
+      }
+    },
+    {
+      "name": "xcommentchar",
+      "unusual": true
+    },
+    {
+      "name": "rescanfile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "rescanfile{${1:arg}}"
+      }
+    },
+    {
+      "name": "norescanfile",
+      "unusual": true
+    },
+    {
+      "name": "envirsep",
+      "unusual": true
+    },
+    {
+      "name": "newxcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "newxcomment{${1:envname}}"
+      }
+    },
+    {
+      "name": "newxcomment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newxcomment[${2:envname list}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "nofloat",
+      "arg": {
+        "format": "{}",
+        "snippet": "nofloat{${1:envname list}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "xcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:envname list}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

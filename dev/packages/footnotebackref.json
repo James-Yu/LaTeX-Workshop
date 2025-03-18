@@ -1,17 +1,33 @@
 {
-  "includes": {
-    "letltxmacro": [],
-    "hyperref": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "BackrefFootnoteTag": {},
-    "theBackrefHyperFootnoteCounter": {}
-  },
-  "envs": {},
-  "options": [
-    "symbol=${1:symbol}",
-    "numberlinked"
+  "deps": [
+    {
+      "name": "letltxmacro"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "BackrefFootnoteTag",
+      "unusual": true
+    },
+    {
+      "name": "theBackrefHyperFootnoteCounter",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/footnotebackref#c": [
+      "symbol=${1:symbol}",
+      "numberlinked"
+    ]
+  },
+  "args": [
+    "\\usepackage/footnotebackref#c"
+  ]
 }

@@ -1,28 +1,55 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "rsnumber{}": {
-      "snippet": "rsnumber{${1:number}}"
-    },
-    "rsnumber[]{}": {
-      "snippet": "rsnumber[${2:text}]{${1:number}}"
-    },
-    "rsphrase{}": {
-      "snippet": "rsphrase{${1:number}}"
-    },
-    "rsphrase[]{}": {
-      "snippet": "rsphrase[${2:text}]{${1:number}}"
-    },
-    "iflanguage{}{}{}": {
-      "snippet": "iflanguage{${1:language}}{${2:true}}{${3:false}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {},
-  "options": [
-    "strict",
-    "adapted"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rsnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "rsnumber{${1:number}}"
+      }
+    },
+    {
+      "name": "rsnumber",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rsnumber[${2:text}]{${1:number}}"
+      }
+    },
+    {
+      "name": "rsphrase",
+      "arg": {
+        "format": "{}",
+        "snippet": "rsphrase{${1:number}}"
+      }
+    },
+    {
+      "name": "rsphrase",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rsphrase[${2:text}]{${1:number}}"
+      }
+    },
+    {
+      "name": "iflanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iflanguage{${1:language}}{${2:true}}{${3:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/rsphrase#c": [
+      "strict",
+      "adapted"
+    ]
+  },
+  "args": [
+    "\\usepackage/rsphrase#c"
+  ]
 }

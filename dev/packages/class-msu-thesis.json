@@ -1,147 +1,227 @@
 {
-  "includes": {
-    "class-memoir": [],
-    "etoolbox": [],
-    "textpos": [],
-    "pdflscape": [
-      "lscape"
-    ],
-    "tikz": [
-      "lscape"
+  "deps": [
+    {
+      "name": "class-memoir"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "textpos"
+    },
+    {
+      "name": "pdflscape",
+      "if": "lscape"
+    },
+    {
+      "name": "tikz",
+      "if": "lscape"
+    }
+  ],
+  "macros": [
+    {
+      "name": "abbrev",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "abbrev{${1:abbreviation}}{${2:explanation%text}}"
+      }
+    },
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "dedication{${1:text}}"
+      }
+    },
+    {
+      "name": "dualmajor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dualmajor{${1:major1%text}}{${2:major2%text}}"
+      }
+    },
+    {
+      "name": "fieldofstudy",
+      "arg": {
+        "format": "{}",
+        "snippet": "fieldofstudy{${1:field%text}}"
+      }
+    },
+    {
+      "name": "listofabbreviations",
+      "unusual": true
+    },
+    {
+      "name": "listabbreviationsname",
+      "unusual": true
+    },
+    {
+      "name": "listalgorithmname",
+      "unusual": true
+    },
+    {
+      "name": "makebibliographypage",
+      "unusual": true
+    },
+    {
+      "name": "makecopyrightpage"
+    },
+    {
+      "name": "makecopyrightpage*"
+    },
+    {
+      "name": "makededicationpage"
+    },
+    {
+      "name": "maketitlepage"
+    },
+    {
+      "name": "msuabbrevdelim"
+    },
+    {
+      "name": "msuabbrevfont"
+    },
+    {
+      "name": "msuabbrevwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "msuabbrevwidth{${1:width}}"
+      }
+    },
+    {
+      "name": "msuappendixdelim",
+      "unusual": true
+    },
+    {
+      "name": "msuappendixnumformat",
+      "unusual": true
+    },
+    {
+      "name": "msucaptiondelim"
+    },
+    {
+      "name": "msutocdelim",
+      "unusual": true
+    },
+    {
+      "name": "setabstractnamespace",
+      "arg": {
+        "format": "{}",
+        "snippet": "setabstractnamespace{${1:factor}}"
+      }
+    },
+    {
+      "name": "themsutocdepth",
+      "unusual": true
+    },
+    {
+      "name": "usememdefaultlineskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "abbreviations"
+    },
+    {
+      "name": "appendix"
+    }
+  ],
+  "keys": {
+    "\\documentclass/msu-thesis#c": [
+      "PhD",
+      "DEd",
+      "DMA",
+      "DNP",
+      "MA",
+      "MS",
+      "MAT",
+      "MBA",
+      "MFA",
+      "MIPS",
+      "MHRL",
+      "MMus",
+      "MPH",
+      "MPP",
+      "MSW",
+      "MURP",
+      "lscape",
+      "boldtoc",
+      "plaintoc",
+      "mixedtoc",
+      "chapterbib",
+      "bibassection",
+      "chapterapp",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "25pt",
+      "30pt",
+      "36pt",
+      "48pt",
+      "60pt",
+      "9pt",
+      "a3paper",
+      "a4paper",
+      "a5paper",
+      "a6paper",
+      "a7paper",
+      "article",
+      "b3paper",
+      "b4paper",
+      "b5paper",
+      "b6paper",
+      "b7paper",
+      "broadsheetpaper",
+      "crownvopaper",
+      "dbillpaper",
+      "demyvopaper",
+      "draft",
+      "ebook",
+      "executivepaper",
+      "extrafontsizes",
+      "final",
+      "fleqn",
+      "foolscapvopaper",
+      "fullptlayout",
+      "imperialvopaper",
+      "landscape",
+      "largecrownvopaper",
+      "largepostvopaper",
+      "ledgerpaper",
+      "legalpaper",
+      "leqno",
+      "letterpaper",
+      "mcrownvopaper",
+      "mdemyvopaper",
+      "mediumvopaper",
+      "mlargecrownvopaper",
+      "ms",
+      "msmallroyalvopaper",
+      "oldfontcommands",
+      "oldpaper",
+      "onecolumn",
+      "oneside",
+      "openany",
+      "openbib",
+      "openleft",
+      "openright",
+      "postvopaper",
+      "pottvopaper",
+      "royalvopaper",
+      "showtrims",
+      "smalldemyvopaper",
+      "smallroyalvopaper",
+      "statementpaper",
+      "superroyalvopaper",
+      "twocolumn",
+      "twoside"
     ]
   },
-  "macros": {
-    "abbrev{}{}": {
-      "snippet": "abbrev{${1:abbreviation}}{${2:explanation}}"
-    },
-    "bibpagename": {},
-    "bibtocname": {},
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
-    },
-    "dualmajor{}{}": {
-      "snippet": "dualmajor{${1:major1}}{${2:major2}}"
-    },
-    "fieldofstudy{}": {
-      "snippet": "fieldofstudy{${1:field}}"
-    },
-    "listofabbreviations": {},
-    "listabbreviationsname": {},
-    "listalgorithmname": {},
-    "makebibliographypage": {},
-    "makecopyrightpage": {},
-    "makecopyrightpage*": {},
-    "makededicationpage": {},
-    "maketitlepage": {},
-    "msuabbrevdelim": {},
-    "msuabbrevfont": {},
-    "msuabbrevwidth{}": {
-      "snippet": "msuabbrevwidth{${1:width}}"
-    },
-    "msuappendixnumformat": {},
-    "msucaptiondelim": {},
-    "msutocdelim": {},
-    "setabstractnamespace{}": {
-      "snippet": "setabstractnamespace{${1:factor}}"
-    },
-    "themsutocdepth": {},
-    "usememdefaultlineskip": {}
-  },
-  "envs": {
-    "abbreviations": {},
-    "appendix": {}
-  },
-  "options": [
-    "PhD",
-    "DEd",
-    "DMA",
-    "DNP",
-    "MA",
-    "MS",
-    "MAT",
-    "MBA",
-    "MFA",
-    "MIPS",
-    "MHRL",
-    "MMus",
-    "MPH",
-    "MPP",
-    "MSW",
-    "MURP",
-    "lscape",
-    "boldtoc",
-    "plaintoc",
-    "mixedtoc",
-    "chapterbib",
-    "bibassection",
-    "chapterapp",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "25pt",
-    "30pt",
-    "36pt",
-    "48pt",
-    "60pt",
-    "9pt",
-    "a3paper",
-    "a4paper",
-    "a5paper",
-    "a6paper",
-    "a7paper",
-    "article",
-    "b3paper",
-    "b4paper",
-    "b5paper",
-    "b6paper",
-    "b7paper",
-    "broadsheetpaper",
-    "crownvopaper",
-    "dbillpaper",
-    "demyvopaper",
-    "draft",
-    "ebook",
-    "executivepaper",
-    "extrafontsizes",
-    "final",
-    "fleqn",
-    "foolscapvopaper",
-    "fullptlayout",
-    "imperialvopaper",
-    "landscape",
-    "largecrownvopaper",
-    "largepostvopaper",
-    "ledgerpaper",
-    "legalpaper",
-    "leqno",
-    "letterpaper",
-    "mcrownvopaper",
-    "mdemyvopaper",
-    "mediumvopaper",
-    "mlargecrownvopaper",
-    "ms",
-    "msmallroyalvopaper",
-    "oldfontcommands",
-    "oldpaper",
-    "onecolumn",
-    "oneside",
-    "openany",
-    "openbib",
-    "openleft",
-    "openright",
-    "postvopaper",
-    "pottvopaper",
-    "royalvopaper",
-    "showtrims",
-    "smalldemyvopaper",
-    "smallroyalvopaper",
-    "statementpaper",
-    "superroyalvopaper",
-    "twocolumn",
-    "twoside"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/msu-thesis#c"
+  ]
 }

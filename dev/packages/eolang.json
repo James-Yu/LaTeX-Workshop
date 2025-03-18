@@ -1,75 +1,179 @@
 {
-  "includes": {
-    "stmaryrd": [],
-    "amsmath": [],
-    "amssymb": [],
-    "fancyvrb": [],
-    "iexec": [],
-    "pgfopts": [],
-    "ifluatex": [],
-    "ifxetex": [],
-    "pdftexcmds": [],
-    "xstring": [],
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarydecorations": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarymath": [],
-    "tikzlibraryarrows.meta": [],
-    "hyperref": [],
-    "trimclip": [],
-    "shellesc": []
-  },
-  "macros": {
-    "phiq{}": {
-      "snippet": "phiq{${1:expression}}"
+  "deps": [
+    {
+      "name": "stmaryrd"
     },
-    "eolang": {},
-    "phic": {},
-    "xmir": {},
-    "phiSlot{}": {
-      "snippet": "phiSlot{${1:arg}}"
+    {
+      "name": "amsmath"
     },
-    "phiConst": {},
-    "phiWave": {},
-    "phiDotted": {},
-    "phiOset{}{}": {
-      "snippet": "phiOset{${1:over}}{${2:arg}}"
+    {
+      "name": "amssymb"
     },
-    "phiUset{}{}": {
-      "snippet": "phiUset{${1:under}}{${2:arg}}"
+    {
+      "name": "fancyvrb"
     },
-    "phiMany{}{}{}": {
-      "snippet": "phiMany{${1:arg}}{${2:under}}{${3:over}}"
+    {
+      "name": "iexec"
     },
-    "phiSaveTo{}": {
-      "snippet": "phiSaveTo{${1:name}}"
+    {
+      "name": "pgfopts"
     },
-    "sodgSaveTo{}": {
-      "snippet": "sodgSaveTo{${1:name}}"
+    {
+      "name": "ifluatex"
     },
-    "eoAnon{}": {
-      "snippet": "eoAnon{${1:content}}"
+    {
+      "name": "ifxetex"
     },
-    "eoAnon[]{}": {
-      "snippet": "eoAnon[${2:substitution}]{${1:content}}"
+    {
+      "name": "pdftexcmds"
     },
-    "phiEOL": {}
-  },
-  "envs": {
-    "phiquation": {},
-    "phiquation*": {},
-    "sodg": {},
-    "phicture": {}
-  },
-  "options": [
-    "tmpdir=${1:path}",
-    "nocomments",
-    "anonymous",
-    "noshell"
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryshapes"
+    },
+    {
+      "name": "tikzlibrarydecorations"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarymath"
+    },
+    {
+      "name": "tikzlibraryarrows.meta"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "trimclip"
+    },
+    {
+      "name": "shellesc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "phiq",
+      "arg": {
+        "format": "{}",
+        "snippet": "phiq{${1:expression%formula}}"
+      }
+    },
+    {
+      "name": "eolang"
+    },
+    {
+      "name": "phic"
+    },
+    {
+      "name": "xmir"
+    },
+    {
+      "name": "phiSlot",
+      "arg": {
+        "format": "{}",
+        "snippet": "phiSlot{${1:arg}}"
+      }
+    },
+    {
+      "name": "phiConst"
+    },
+    {
+      "name": "phiWave"
+    },
+    {
+      "name": "phiDotted"
+    },
+    {
+      "name": "phiOset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "phiOset{${1:over}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "phiUset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "phiUset{${1:under}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "phiMany",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "phiMany{${1:arg}}{${2:under}}{${3:over}}"
+      }
+    },
+    {
+      "name": "phiSaveTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "phiSaveTo{${1:name}}"
+      }
+    },
+    {
+      "name": "sodgSaveTo",
+      "arg": {
+        "format": "{}",
+        "snippet": "sodgSaveTo{${1:name}}"
+      }
+    },
+    {
+      "name": "eoAnon",
+      "arg": {
+        "format": "{}",
+        "snippet": "eoAnon{${1:content}}"
+      }
+    },
+    {
+      "name": "eoAnon",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eoAnon[${2:substitution}]{${1:content}}"
+      }
+    },
+    {
+      "name": "phiEOL",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "phiquation"
+    },
+    {
+      "name": "phiquation*"
+    },
+    {
+      "name": "sodg"
+    }
+  ],
+  "keys": {
+    "\\usepackage/eolang#c": [
+      "tmpdir=${1:path}",
+      "nocomments",
+      "anonymous",
+      "noshell"
+    ]
+  },
+  "args": [
+    "\\usepackage/eolang#c"
+  ]
 }

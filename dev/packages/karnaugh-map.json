@@ -1,53 +1,117 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "keyval": [],
-    "xstring": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarymatrix": []
-  },
-  "macros": {
-    "autoterms": {},
-    "autoterms[]": {
-      "snippet": "autoterms[${1:content}]"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "indeterminants{}": {
-      "snippet": "indeterminants{${1:cells}}"
+    {
+      "name": "keyval"
     },
-    "manualterms{}": {
-      "snippet": "manualterms{${1:content}}"
+    {
+      "name": "xstring"
     },
-    "maxterms{}": {
-      "snippet": "maxterms{${1:cells}}"
+    {
+      "name": "tikz"
     },
-    "minterms{}": {
-      "snippet": "minterms{${1:cells}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "terms{}{}": {
-      "snippet": "terms{${1:cells}}{${2:content}}"
-    },
-    "implicant{}{}": {
-      "snippet": "implicant{${1:northwest cell}}{${2:southeast cell}}"
-    },
-    "implicant{}{}[]": {
-      "snippet": "implicant{${1:northwest cell}}{${2:southeast cell}}[${3:submaps}]"
-    },
-    "implicantedge{}{}{}{}": {
-      "snippet": "implicantedge{${1:NWNW}}{${2:NWSE}}{${3:SENW}}{${4:SESE}}"
-    },
-    "implicantedge{}{}{}{}[]": {
-      "snippet": "implicantedge{${1:NWNW}}{${2:NWSE}}{${3:SENW}}{${4:SESE}}[${5:submaps}]"
-    },
-    "implicantcorner": {},
-    "implicantcorner[]": {
-      "snippet": "implicantcorner[${1:submaps}]"
+    {
+      "name": "tikzlibrarymatrix"
     }
-  },
-  "envs": {},
-  "options": [
-    "implicantcolors={${1:list of colors}}",
-    "label="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "autoterms"
+    },
+    {
+      "name": "autoterms",
+      "arg": {
+        "format": "[]",
+        "snippet": "autoterms[${1:content}]"
+      }
+    },
+    {
+      "name": "indeterminants",
+      "arg": {
+        "format": "{}",
+        "snippet": "indeterminants{${1:cells}}"
+      }
+    },
+    {
+      "name": "manualterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "manualterms{${1:content}}"
+      }
+    },
+    {
+      "name": "maxterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "maxterms{${1:cells}}"
+      }
+    },
+    {
+      "name": "minterms",
+      "arg": {
+        "format": "{}",
+        "snippet": "minterms{${1:cells}}"
+      }
+    },
+    {
+      "name": "terms",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "terms{${1:cells}}{${2:content}}"
+      }
+    },
+    {
+      "name": "implicant",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "implicant{${1:northwest cell}}{${2:southeast cell}}"
+      }
+    },
+    {
+      "name": "implicant",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "implicant{${1:northwest cell}}{${2:southeast cell}}[${3:submaps}]"
+      }
+    },
+    {
+      "name": "implicantedge",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "implicantedge{${1:NWNW}}{${2:NWSE}}{${3:SENW}}{${4:SESE}}"
+      }
+    },
+    {
+      "name": "implicantedge",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "implicantedge{${1:NWNW}}{${2:NWSE}}{${3:SENW}}{${4:SESE}}[${5:submaps}]"
+      }
+    },
+    {
+      "name": "implicantcorner"
+    },
+    {
+      "name": "implicantcorner",
+      "arg": {
+        "format": "[]",
+        "snippet": "implicantcorner[${1:submaps}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/karnaugh-map#c,\\begin{karnaugh-map}": [
+      "implicantcolors={${1:list of colors}}",
+      "label=${1|middle,corner|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/karnaugh-map#c,\\begin{karnaugh-map}"
+  ]
 }

@@ -1,0 +1,273 @@
+{
+  "deps": [
+    {
+      "name": "chessfss"
+    },
+    {
+      "name": "lambda"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "pstricks",
+      "if": "ps"
+    },
+    {
+      "name": "pst-node",
+      "if": "ps"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newgame"
+    },
+    {
+      "name": "mainline",
+      "arg": {
+        "format": "{}",
+        "snippet": "mainline{${1:moves}}"
+      }
+    },
+    {
+      "name": "variation",
+      "arg": {
+        "format": "{}",
+        "snippet": "variation{${1:moves}}"
+      }
+    },
+    {
+      "name": "showboard"
+    },
+    {
+      "name": "hidemoves",
+      "arg": {
+        "format": "{}",
+        "snippet": "hidemoves{${1:moves}}"
+      }
+    },
+    {
+      "name": "storegame",
+      "arg": {
+        "format": "{}",
+        "snippet": "storegame{${1:name}}"
+      }
+    },
+    {
+      "name": "restoregame",
+      "arg": {
+        "format": "{}",
+        "snippet": "restoregame{${1:name}}"
+      }
+    },
+    {
+      "name": "savegame",
+      "arg": {
+        "format": "{}",
+        "snippet": "savegame{${1:name}}"
+      }
+    },
+    {
+      "name": "loadgame",
+      "arg": {
+        "format": "{}",
+        "snippet": "loadgame{${1:name}}"
+      }
+    },
+    {
+      "name": "notationon"
+    },
+    {
+      "name": "notationoff"
+    },
+    {
+      "name": "showinverseboard"
+    },
+    {
+      "name": "wmove",
+      "arg": {
+        "format": "{}",
+        "snippet": "wmove{${1:move}}"
+      }
+    },
+    {
+      "name": "bmove",
+      "arg": {
+        "format": "{}",
+        "snippet": "bmove{${1:move}}"
+      }
+    },
+    {
+      "name": "lastmove",
+      "arg": {
+        "format": "{}",
+        "snippet": "lastmove{${1:move}}"
+      }
+    },
+    {
+      "name": "showonlywhite"
+    },
+    {
+      "name": "showonlyblack"
+    },
+    {
+      "name": "showonly",
+      "arg": {
+        "format": "{}",
+        "snippet": "showonly{${1:piece1,piece2,...}}"
+      }
+    },
+    {
+      "name": "showallbut",
+      "arg": {
+        "format": "{}",
+        "snippet": "showallbut{${1:piece1,piece2,...}}"
+      }
+    },
+    {
+      "name": "fenboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "fenboard{${1:instructions}}"
+      }
+    },
+    {
+      "name": "styleA"
+    },
+    {
+      "name": "styleB"
+    },
+    {
+      "name": "styleC"
+    },
+    {
+      "name": "variationstyle"
+    },
+    {
+      "name": "mainlinestyle"
+    },
+    {
+      "name": "longmoves"
+    },
+    {
+      "name": "shortmoves"
+    },
+    {
+      "name": "newskaklanguage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newskaklanguage{${1:language}}{${2:pieces}}"
+      }
+    },
+    {
+      "name": "skaklanguage",
+      "arg": {
+        "format": "[]",
+        "snippet": "skaklanguage[${1:language}]"
+      }
+    },
+    {
+      "name": "boardasfen"
+    },
+    {
+      "name": "EnPassantSquare",
+      "unusual": true
+    },
+    {
+      "name": "variationcurrent",
+      "unusual": true
+    },
+    {
+      "name": "continuevariation",
+      "unusual": true
+    },
+    {
+      "name": "continuevariationcurrent",
+      "unusual": true
+    },
+    {
+      "name": "tinyboard"
+    },
+    {
+      "name": "smallboard"
+    },
+    {
+      "name": "normalboard"
+    },
+    {
+      "name": "largeboard"
+    },
+    {
+      "name": "movecomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "movecomment{${1:moves}}"
+      }
+    },
+    {
+      "name": "showall"
+    },
+    {
+      "name": "showonlypawns"
+    },
+    {
+      "name": "showmoveron"
+    },
+    {
+      "name": "showmoveroff"
+    },
+    {
+      "name": "printarrow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printarrow{${1:from}}{${2:to}}"
+      }
+    },
+    {
+      "name": "highlight",
+      "arg": {
+        "format": "{}",
+        "snippet": "highlight{${1:square list}}"
+      }
+    },
+    {
+      "name": "highlight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "highlight[${2:marker}]{${1:square list}}"
+      }
+    },
+    {
+      "name": "printknightmove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printknightmove{${1:from}}{${2:to}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/skak#c": [
+      "tiny",
+      "small",
+      "normal",
+      "large",
+      "notation",
+      "mover",
+      "moveroff",
+      "notationoff",
+      "ps",
+      "psoff",
+      "english",
+      "styleA",
+      "styleB",
+      "styleC"
+    ]
+  },
+  "args": [
+    "\\usepackage/skak#c"
+  ]
+}

@@ -1,23 +1,38 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "zref-savepos": []
-  },
-  "macros": {
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "tabpoint": {},
-    "tabpoint[]": {
-      "snippet": "tabpoint[${1:offset}]"
+    {
+      "name": "zref-savepos"
+    }
+  ],
+  "macros": [
+    {
+      "name": "<"
     },
-    "tabto": {},
-    "tableft": {},
-    "thesaveposcnt": {},
-    "theuseposcnt": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "tabpoint",
+      "unusual": true
+    },
+    {
+      "name": "tabpoint",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "tabpoint[${1:offset}]"
+      }
+    },
+    {
+      "name": "tabto",
+      "unusual": true
+    },
+    {
+      "name": "tableft",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

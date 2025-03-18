@@ -1,13 +1,19 @@
 {
-  "includes": {
-    "amsfonts": []
-  },
-  "macros": {
-    "CMath{}": {
-      "snippet": "CMath{${1:text}}"
+  "deps": [
+    {
+      "name": "amsfonts"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "CMath",
+      "arg": {
+        "format": "{}",
+        "snippet": "CMath{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

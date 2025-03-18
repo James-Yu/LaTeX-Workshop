@@ -1,93 +1,186 @@
 {
-  "includes": {
-    "genealogytree": [],
-    "hyperref": []
-  },
-  "macros": {
-    "gprKeys{}": {
-      "snippet": "gprKeys{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "genealogytree"
     },
-    "gprName{}": {
-      "snippet": "gprName{${1:name}}"
-    },
-    "gprName*{}": {
-      "snippet": "gprName*{${1:name}}"
-    },
-    "gprRef{}": {
-      "snippet": "gprRef{${1:name}}"
-    },
-    "gprRef[]{}": {
-      "snippet": "gprRef[${2:id}]{${1:name}}"
-    },
-    "gprRef*{}": {
-      "snippet": "gprRef*{${1:name}}"
-    },
-    "gprRef*[]{}": {
-      "snippet": "gprRef*[${2:id}]{${1:name}}"
-    },
-    "gprYear{}": {
-      "snippet": "gprYear{${1:year}}"
-    },
-    "gprYear*{}": {
-      "snippet": "gprYear*{${1:year}}"
-    },
-    "gprYears{}": {
-      "snippet": "gprYears{${1:year range}}"
-    },
-    "gprYears*{}": {
-      "snippet": "gprYears*{${1:year range}}"
-    },
-    "gprHeader": {},
-    "gprID": {},
-    "gprStyledName": {},
-    "gprFullName": {},
-    "gprGivenName": {},
-    "gprPatronymic": {},
-    "gprSurname": {},
-    "gprByname": {},
-    "gprSpouse": {}
-  },
-  "envs": {
-    "gprProfile{}": {
-      "name": "gprProfile",
-      "snippet": "{${1:name}}"
-    },
-    "gprProfile{}[]": {
-      "name": "gprProfile",
-      "snippet": "{${1:name}}[${2:life events}]"
-    },
-    "gprProfile[]{}": {
-      "name": "gprProfile",
-      "snippet": "[${2:options}]{${1:name}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gprProfile[]{}[]": {
-      "name": "gprProfile",
-      "snippet": "[${2:options}]{${1:name}}[${3:life events}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gprProfile*{}": {
-      "name": "gprProfile*",
-      "snippet": "{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "gprProfile*{}[]": {
-      "name": "gprProfile*",
-      "snippet": "{${1:options}}[${2:life events}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "gprKeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprKeys{${1:options%keyvals}}",
+        "keys": [
+          "\\gprKeys"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gprName",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprName{${1:name}}"
+      }
+    },
+    {
+      "name": "gprName*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprName*{${1:name}}"
+      }
+    },
+    {
+      "name": "gprRef",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprRef{${1:name}}"
+      }
+    },
+    {
+      "name": "gprRef",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gprRef[${2:id}]{${1:name}}"
+      }
+    },
+    {
+      "name": "gprRef*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprRef*{${1:name}}"
+      }
+    },
+    {
+      "name": "gprRef*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gprRef*[${2:id}]{${1:name}}"
+      }
+    },
+    {
+      "name": "gprYear",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprYear{${1:year}}"
+      }
+    },
+    {
+      "name": "gprYear*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprYear*{${1:year}}"
+      }
+    },
+    {
+      "name": "gprYears",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprYears{${1:year range}}"
+      }
+    },
+    {
+      "name": "gprYears*",
+      "arg": {
+        "format": "{}",
+        "snippet": "gprYears*{${1:year range}}"
+      }
+    },
+    {
+      "name": "gprHeader"
+    },
+    {
+      "name": "gprID"
+    },
+    {
+      "name": "gprStyledName"
+    },
+    {
+      "name": "gprFullName"
+    },
+    {
+      "name": "gprGivenName"
+    },
+    {
+      "name": "gprPatronymic"
+    },
+    {
+      "name": "gprSurname"
+    },
+    {
+      "name": "gprByname"
+    },
+    {
+      "name": "gprSpouse"
+    }
+  ],
+  "envs": [
+    {
+      "name": "gprProfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "gprProfile",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:life events}]"
+      }
+    },
+    {
+      "name": "gprProfile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:name}}",
+        "keys": [
+          "\\begin{gprProfile},\\begin{gprProfile*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gprProfile",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:name}}[${3:life events}]",
+        "keys": [
+          "\\begin{gprProfile},\\begin{gprProfile*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gprProfile*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{gprProfile},\\begin{gprProfile*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gprProfile*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:options%keyvals}}[${2:life events}]",
+        "keys": [
+          "\\begin{gprProfile},\\begin{gprProfile*}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\gprKeys": [
       "name part order=${1:list}",
-      "name type=",
+      "name type=${1|given and surname,nordic historical|}",
       "auto id",
       "auto id prefix=${1:prefix}",
       "begin profile=${1:code}",
@@ -116,7 +209,7 @@
       "include unknown in index",
       "include ambiguous in index"
     ],
-    [
+    "\\begin{gprProfile},\\begin{gprProfile*}": [
       "id=",
       "fullname=",
       "givenname=",
@@ -126,5 +219,6 @@
       "life events=",
       "no index"
     ]
-  ]
+  },
+  "args": []
 }

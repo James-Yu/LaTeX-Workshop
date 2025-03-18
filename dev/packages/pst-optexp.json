@@ -1,150 +1,1751 @@
 {
-  "includes": {
-    "ifthen": [],
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-node": [],
-    "pst-plot": [],
-    "multido": [],
-    "pst-eucl": [],
-    "pst-intersect": [],
-    "pstricks-add": [],
-    "environ": []
-  },
-  "macros": {
-    "oenode{}{}": {
-      "snippet": "oenode{${1:node}}{${2:comp}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "oenodeRefA{}": {
-      "snippet": "oenodeRefA{${1:comp}}"
+    {
+      "name": "pstricks"
     },
-    "oenodeRefB{}": {
-      "snippet": "oenodeRefB{${1:comp}}"
+    {
+      "name": "pst-xkey"
     },
-    "oenodeTrefA{}": {
-      "snippet": "oenodeTrefA{${1:comp}}"
+    {
+      "name": "pst-node"
     },
-    "oenodeTrefB{}": {
-      "snippet": "oenodeTrefB{${1:comp}}"
+    {
+      "name": "pst-plot"
     },
-    "oenodeCenter{}": {
-      "snippet": "oenodeCenter{${1:comp}}"
+    {
+      "name": "multido"
     },
-    "oenodeLabel{}": {
-      "snippet": "oenodeLabel{${1:comp}}"
+    {
+      "name": "pst-eucl"
     },
-    "oenodeExt{}": {
-      "snippet": "oenodeExt{${1:comp}}"
+    {
+      "name": "pst-intersect"
     },
-    "oenodeIfc{}{}": {
-      "snippet": "oenodeIfc{${1:number}}{${2:comp}}"
+    {
+      "name": "pstricks-add"
     },
-    "oenodeIn{}": {
-      "snippet": "oenodeIn{${1:comp}}"
-    },
-    "oenodeOut{}": {
-      "snippet": "oenodeOut{${1:comp}}"
-    },
-    "oenodeRotref{}": {
-      "snippet": "oenodeRotref{${1:comp}}"
-    },
-    "oenodeBeam{}": {
-      "snippet": "oenodeBeam{${1:number}}"
-    },
-    "oenodeBeamUp{}": {
-      "snippet": "oenodeBeamUp{${1:number}}"
-    },
-    "oenodeBeamLow{}": {
-      "snippet": "oenodeBeamLow{${1:number}}"
-    },
-    "oeBeamCenter{}": {
-      "snippet": "oeBeamCenter{${1:number}}"
-    },
-    "oeBeamVec{}": {
-      "snippet": "oeBeamVec{${1:number}}"
-    },
-    "oeBeamVecUp{}": {
-      "snippet": "oeBeamVecUp{${1:number}}"
-    },
-    "oeBeamVecLow{}": {
-      "snippet": "oeBeamVecLow{${1:number}}"
-    },
-    "oeBeamVecMedian{}": {
-      "snippet": "oeBeamVecMedian{${1:number}}"
-    },
-    "backlayer{}": {
-      "snippet": "backlayer{${1:code}}"
-    },
-    "frontlayer{}": {
-      "snippet": "frontlayer{${1:code}}"
-    },
-    "newOptexpDipole{}": {
-      "snippet": "newOptexpDipole{${1:name}}"
-    },
-    "newOptexpDipole{}{}": {
-      "snippet": "newOptexpDipole{${1:name}}{${2:default args}}"
-    },
-    "newOptexpDipole[]{}": {
-      "snippet": "newOptexpDipole[${2:options}]{${1:name}}"
-    },
-    "newOptexpDipole[]{}{}": {
-      "snippet": "newOptexpDipole[${3:options}]{${1:name}}{${2:default args}}"
-    },
-    "newOptexpTripole{}": {
-      "snippet": "newOptexpTripole{${1:name}}"
-    },
-    "newOptexpTripole{}{}": {
-      "snippet": "newOptexpTripole{${1:name}}{${2:default args}}"
-    },
-    "newOptexpTripole[]{}": {
-      "snippet": "newOptexpTripole[${2:options}]{${1:name}}"
-    },
-    "newOptexpTripole[]{}{}": {
-      "snippet": "newOptexpTripole[${3:options}]{${1:name}}{${2:default args}}"
-    },
-    "newOptexpFiberDipole{}": {
-      "snippet": "newOptexpFiberDipole{${1:name}}"
-    },
-    "newOptexpFiberDipole{}{}": {
-      "snippet": "newOptexpFiberDipole{${1:name}}{${2:default args}}"
-    },
-    "newOptexpFiberDipole[]{}": {
-      "snippet": "newOptexpFiberDipole[${2:options}]{${1:name}}"
-    },
-    "newOptexpFiberDipole[]{}{}": {
-      "snippet": "newOptexpFiberDipole[${3:options}]{${1:name}}{${2:default args}}"
-    },
-    "newOptexpElecDipole{}": {
-      "snippet": "newOptexpElecDipole{${1:name}}"
-    },
-    "newOptexpElecDipole{}{}": {
-      "snippet": "newOptexpElecDipole{${1:name}}{${2:default args}}"
-    },
-    "newOptexpElecDipole[]{}": {
-      "snippet": "newOptexpElecDipole[${2:options}]{${1:name}}"
-    },
-    "newOptexpElecDipole[]{}{}": {
-      "snippet": "newOptexpElecDipole[${3:options}]{${1:name}}{${2:default args}}"
-    },
-    "newOptexpComp{}": {
-      "snippet": "newOptexpComp{${1:definition}}"
-    },
-    "newOptexpCompAmb{}": {
-      "snippet": "newOptexpCompAmb{${1:definition}}"
-    },
-    "newOptexpElecComp{}": {
-      "snippet": "newOptexpElecComp{${1:definition}}"
-    },
-    "newOptexpFiberComp{}": {
-      "snippet": "newOptexpFiberComp{${1:definition}}"
-    },
-    "oelabel{}": {
-      "snippet": "oelabel{${1:label}}"
+    {
+      "name": "environ"
     }
-  },
-  "envs": {
-    "optexp": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "lens",
+      "arg": {
+        "format": "()()",
+        "snippet": "lens(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "lens",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "lens(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "lens",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "lens[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "lens",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "lens[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "asphericlens",
+      "arg": {
+        "format": "()()",
+        "snippet": "asphericlens(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "asphericlens",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "asphericlens(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "asphericlens",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "asphericlens[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "asphericlens",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "asphericlens[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optplate",
+      "arg": {
+        "format": "()()",
+        "snippet": "optplate(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optplate",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optplate(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optplate",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optplate[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optplate",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optplate[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optretplate",
+      "arg": {
+        "format": "()()",
+        "snippet": "optretplate(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optretplate",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optretplate(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optretplate",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optretplate[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optretplate",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optretplate[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "pinhole",
+      "arg": {
+        "format": "()()",
+        "snippet": "pinhole(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "pinhole",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pinhole(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "pinhole",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pinhole[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "pinhole",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pinhole[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optbox",
+      "arg": {
+        "format": "()()",
+        "snippet": "optbox(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optbox",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optbox(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optbox",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optbox[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optbox",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optbox[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optarrowcomp",
+      "arg": {
+        "format": "()()",
+        "snippet": "optarrowcomp(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optarrowcomp",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optarrowcomp(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optarrowcomp",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optarrowcomp[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optarrowcomp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optarrowcomp[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optbarcomp",
+      "arg": {
+        "format": "()()",
+        "snippet": "optbarcomp(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optbarcomp",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optbarcomp(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optbarcomp",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optbarcomp[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optbarcomp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optbarcomp[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optsource",
+      "arg": {
+        "format": "()()",
+        "snippet": "optsource(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optsource",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optsource(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optsource",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optsource[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optsource",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optsource[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "crystal",
+      "arg": {
+        "format": "()()",
+        "snippet": "crystal(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "crystal",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "crystal(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "crystal",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "crystal[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "crystal",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "crystal[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optdiode",
+      "arg": {
+        "format": "()()",
+        "snippet": "optdiode(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optdiode",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optdiode(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optdiode",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optdiode[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optdiode",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optdiode[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "doveprism",
+      "arg": {
+        "format": "()()",
+        "snippet": "doveprism(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "doveprism",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "doveprism(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "doveprism",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "doveprism[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "doveprism",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "doveprism[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "glanthompson",
+      "arg": {
+        "format": "()()",
+        "snippet": "glanthompson(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "glanthompson",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "glanthompson(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "glanthompson",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "glanthompson[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "glanthompson",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "glanthompson[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "polarization",
+      "arg": {
+        "format": "()()",
+        "snippet": "polarization(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "polarization",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "polarization(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "polarization",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "polarization[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "polarization",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "polarization[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optwedge",
+      "arg": {
+        "format": "()()",
+        "snippet": "optwedge(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optwedge",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optwedge(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optwedge",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optwedge[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optwedge",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optwedge[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "axicon",
+      "arg": {
+        "format": "()()",
+        "snippet": "axicon(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "axicon",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "axicon(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "axicon",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "axicon[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "axicon",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "axicon[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "mirror",
+      "arg": {
+        "format": "()()()",
+        "snippet": "mirror(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "mirror",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "mirror(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "mirror",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "mirror[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "mirror",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "mirror[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "parabolicmirror",
+      "arg": {
+        "format": "()()",
+        "snippet": "parabolicmirror(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "parabolicmirror",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "parabolicmirror(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "parabolicmirror",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "parabolicmirror[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "parabolicmirror",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "parabolicmirror[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "oapmirror",
+      "arg": {
+        "format": "()()()",
+        "snippet": "oapmirror(${1:in})(${2:center})(${3:focus})"
+      }
+    },
+    {
+      "name": "oapmirror",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "oapmirror(${2:in})(${3:center})(${4:focus}){${1:label}}"
+      }
+    },
+    {
+      "name": "oapmirror",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "oapmirror[${1:options%keyvals}](${2:in})(${3:center})(${4:focus})"
+      }
+    },
+    {
+      "name": "oapmirror",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "oapmirror[${2:options%keyvals}](${3:in})(${4:center})(${5:focus}){${1:label}}"
+      }
+    },
+    {
+      "name": "beamsplitter",
+      "arg": {
+        "format": "()()()",
+        "snippet": "beamsplitter(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "beamsplitter",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "beamsplitter(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "beamsplitter",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "beamsplitter[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "beamsplitter",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "beamsplitter[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optgrating",
+      "arg": {
+        "format": "()()()",
+        "snippet": "optgrating(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "optgrating",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "optgrating(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optgrating",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "optgrating[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "optgrating",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "optgrating[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "transmissiongrating",
+      "arg": {
+        "format": "()()()",
+        "snippet": "transmissiongrating(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "transmissiongrating",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "transmissiongrating(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "transmissiongrating",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "transmissiongrating[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "transmissiongrating",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "transmissiongrating[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optaom",
+      "arg": {
+        "format": "()()()",
+        "snippet": "optaom(${1:in})(${2:trans})(${3:diff})"
+      }
+    },
+    {
+      "name": "optaom",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "optaom(${2:in})(${3:trans})(${4:diff}){${1:label}}"
+      }
+    },
+    {
+      "name": "optaom",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "optaom[${1:options%keyvals}](${2:in})(${3:trans})(${4:diff})"
+      }
+    },
+    {
+      "name": "optaom",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "optaom[${2:options%keyvals}](${3:in})(${4:trans})(${5:diff}){${1:label}}"
+      }
+    },
+    {
+      "name": "optprism",
+      "arg": {
+        "format": "()()()",
+        "snippet": "optprism(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "optprism",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "optprism(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optprism",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "optprism[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "optprism",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "optprism[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "rightangleprism",
+      "arg": {
+        "format": "()()()",
+        "snippet": "rightangleprism(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "rightangleprism",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "rightangleprism(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "rightangleprism",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "rightangleprism[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "rightangleprism",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "rightangleprism[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "pentaprism",
+      "arg": {
+        "format": "()()()",
+        "snippet": "pentaprism(${1:in})(${2:center})(${3:out})"
+      }
+    },
+    {
+      "name": "pentaprism",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "pentaprism(${2:in})(${3:center})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "pentaprism",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "pentaprism[${1:options%keyvals}](${2:in})(${3:center})(${4:out})"
+      }
+    },
+    {
+      "name": "pentaprism",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "pentaprism[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfiber",
+      "arg": {
+        "format": "()()",
+        "snippet": "optfiber(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optfiber",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optfiber(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfiber",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optfiber[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optfiber",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optfiber[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optamp",
+      "arg": {
+        "format": "()()",
+        "snippet": "optamp(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optamp",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optamp(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optamp",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optamp[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optamp",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optamp[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optmzm",
+      "arg": {
+        "format": "()()",
+        "snippet": "optmzm(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optmzm",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optmzm(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optmzm",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optmzm[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optmzm",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optmzm[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "polcontrol",
+      "arg": {
+        "format": "()()",
+        "snippet": "polcontrol(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "polcontrol",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "polcontrol(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "polcontrol",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "polcontrol[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "polcontrol",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "polcontrol[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optisolator",
+      "arg": {
+        "format": "()()",
+        "snippet": "optisolator(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optisolator",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optisolator(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optisolator",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optisolator[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optisolator",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optisolator[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optswitch",
+      "arg": {
+        "format": "()()",
+        "snippet": "optswitch(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optswitch",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optswitch(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optswitch",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optswitch[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optswitch",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optswitch[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberdelayline",
+      "arg": {
+        "format": "()()",
+        "snippet": "fiberdelayline(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "fiberdelayline",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "fiberdelayline(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberdelayline",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "fiberdelayline[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "fiberdelayline",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "fiberdelayline[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfiberpolarizer",
+      "arg": {
+        "format": "()()",
+        "snippet": "optfiberpolarizer(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optfiberpolarizer",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optfiberpolarizer(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfiberpolarizer",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optfiberpolarizer[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optfiberpolarizer",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optfiberpolarizer[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcirculator",
+      "arg": {
+        "format": "()()()",
+        "snippet": "optcirculator(${1:left})(${2:right})(${3:bottom})"
+      }
+    },
+    {
+      "name": "optcirculator",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "optcirculator(${2:left})(${3:right})(${4:bottom}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcirculator",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "optcirculator[${1:options%keyvals}](${2:left})(${3:right})(${4:bottom})"
+      }
+    },
+    {
+      "name": "optcirculator",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "optcirculator[${2:options%keyvals}](${3:left})(${4:right})(${5:bottom}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "()()",
+        "snippet": "optcoupler(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optcoupler(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "optcoupler(${1:tl})(${2:bl})(${3:tr})(${4:br})"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "optcoupler(${2:tl})(${3:bl})(${4:tr})(${5:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optcoupler[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optcoupler[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "optcoupler[${1:options%keyvals}](${2:tl})(${3:bl})(${4:tr})(${5:br})"
+      }
+    },
+    {
+      "name": "optcoupler",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "optcoupler[${2:options%keyvals}](${3:tl})(${4:bl})(${5:tr})(${6:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "wdmcoupler",
+      "arg": {
+        "format": "()()",
+        "snippet": "wdmcoupler(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "wdmcoupler",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "wdmcoupler(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "wdmcoupler",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "wdmcoupler[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "wdmcoupler",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "wdmcoupler[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "wdmsplitter",
+      "arg": {
+        "format": "()()",
+        "snippet": "wdmsplitter(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "wdmsplitter",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "wdmsplitter(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "wdmsplitter",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "wdmsplitter[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "wdmsplitter",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "wdmsplitter[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "()()",
+        "snippet": "fiberbox(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "fiberbox(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "fiberbox(${1:tl})(${2:bl})(${3:tr})(${4:br})"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "fiberbox(${2:tl})(${3:bl})(${4:tr})(${5:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "fiberbox[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "fiberbox[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "fiberbox[${1:options%keyvals}](${2:tl})(${3:bl})(${4:tr})(${5:br})"
+      }
+    },
+    {
+      "name": "fiberbox",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "fiberbox[${2:options%keyvals}](${3:tl})(${4:bl})(${5:tr})(${6:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "eleccoupler",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "eleccoupler(${1:tl})(${2:bl})(${3:tr})(${4:br})"
+      }
+    },
+    {
+      "name": "eleccoupler",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "eleccoupler(${2:tl})(${3:bl})(${4:tr})(${5:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "eleccoupler",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "eleccoupler[${1:options%keyvals}](${2:tl})(${3:bl})(${4:tr})(${5:br})"
+      }
+    },
+    {
+      "name": "eleccoupler",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "eleccoupler[${2:options%keyvals}](${3:tl})(${4:bl})(${5:tr})(${6:br}){${1:label}}"
+      }
+    },
+    {
+      "name": "elecsynthesizer",
+      "arg": {
+        "format": "()()",
+        "snippet": "elecsynthesizer(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "elecsynthesizer",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "elecsynthesizer(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "elecsynthesizer",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "elecsynthesizer[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "elecsynthesizer",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "elecsynthesizer[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "elecmixer",
+      "arg": {
+        "format": "()()()",
+        "snippet": "elecmixer(${1:left})(${2:right})(${3:bottom})"
+      }
+    },
+    {
+      "name": "elecmixer",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "elecmixer(${2:left})(${3:right})(${4:bottom}){${1:label}}"
+      }
+    },
+    {
+      "name": "elecmixer",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "elecmixer[${1:options%keyvals}](${2:left})(${3:right})(${4:bottom})"
+      }
+    },
+    {
+      "name": "elecmixer",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "elecmixer[${2:options%keyvals}](${3:left})(${4:right})(${5:bottom}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfilter",
+      "arg": {
+        "format": "()()",
+        "snippet": "optfilter(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optfilter",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optfilter(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optfilter",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optfilter[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optfilter",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optfilter[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fibercollimator",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "fibercollimator(${1:in})(${2:A})(${3:B})(${4:out})"
+      }
+    },
+    {
+      "name": "fibercollimator",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "fibercollimator(${2:in})(${3:A})(${4:B})(${5:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "fibercollimator",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "fibercollimator[${1:options%keyvals}](${2:in})(${3:A})(${4:B})(${5:out})"
+      }
+    },
+    {
+      "name": "fibercollimator",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "fibercollimator[${2:options%keyvals}](${3:in})(${4:A})(${5:B})(${6:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optdetector",
+      "arg": {
+        "format": "()()",
+        "snippet": "optdetector(${1:in})(${2:out})"
+      }
+    },
+    {
+      "name": "optdetector",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optdetector(${2:in})(${3:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "optdetector",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "optdetector[${1:options%keyvals}](${2:in})(${3:out})"
+      }
+    },
+    {
+      "name": "optdetector",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optdetector[${2:options%keyvals}](${3:in})(${4:out}){${1:label}}"
+      }
+    },
+    {
+      "name": "oenode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "oenode{${1:node}}{${2:comp}}"
+      }
+    },
+    {
+      "name": "oenodeRefA",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeRefA{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeRefB",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeRefB{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeTrefA",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeTrefA{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeTrefB",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeTrefB{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeCenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeCenter{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeLabel{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeExt",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeExt{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeIfc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "oenodeIfc{${1:number}}{${2:comp}}"
+      }
+    },
+    {
+      "name": "oenodeIn",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeIn{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeOut",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeOut{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeRotref",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeRotref{${1:comp}}"
+      }
+    },
+    {
+      "name": "oenodeBeam",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeBeam{${1:number}}"
+      }
+    },
+    {
+      "name": "oenodeBeamUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeBeamUp{${1:number}}"
+      }
+    },
+    {
+      "name": "oenodeBeamLow",
+      "arg": {
+        "format": "{}",
+        "snippet": "oenodeBeamLow{${1:number}}"
+      }
+    },
+    {
+      "name": "oeBeamCenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "oeBeamCenter{${1:number}}"
+      }
+    },
+    {
+      "name": "oeBeamVec",
+      "arg": {
+        "format": "{}",
+        "snippet": "oeBeamVec{${1:number}}"
+      }
+    },
+    {
+      "name": "oeBeamVecUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "oeBeamVecUp{${1:number}}"
+      }
+    },
+    {
+      "name": "oeBeamVecLow",
+      "arg": {
+        "format": "{}",
+        "snippet": "oeBeamVecLow{${1:number}}"
+      }
+    },
+    {
+      "name": "oeBeamVecMedian",
+      "arg": {
+        "format": "{}",
+        "snippet": "oeBeamVecMedian{${1:number}}"
+      }
+    },
+    {
+      "name": "optplane",
+      "arg": {
+        "format": "()",
+        "snippet": "optplane(${1:center})"
+      }
+    },
+    {
+      "name": "optplane",
+      "arg": {
+        "format": "[]()",
+        "snippet": "optplane[${1:options%keyvals}](${2:center})"
+      }
+    },
+    {
+      "name": "backlayer",
+      "arg": {
+        "format": "{}",
+        "snippet": "backlayer{${1:code}}"
+      }
+    },
+    {
+      "name": "frontlayer",
+      "arg": {
+        "format": "{}",
+        "snippet": "frontlayer{${1:code}}"
+      }
+    },
+    {
+      "name": "optdipole",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "optdipole(${2:in})(${3:out}){${1:comp}}"
+      }
+    },
+    {
+      "name": "optdipole",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "optdipole(${3:in})(${4:out}){${1:comp}}{${2:label}}"
+      }
+    },
+    {
+      "name": "optdipole",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "optdipole[${2:options%keyvals}](${3:in})(${4:out}){${1:comp}}"
+      }
+    },
+    {
+      "name": "optdipole",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "optdipole[${3:options%keyvals}](${4:in})(${5:out}){${1:comp}}{${2:label}}"
+      }
+    },
+    {
+      "name": "opttripole",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "opttripole(${2:in})(${3:center})(${4:out}){${1:comp}}"
+      }
+    },
+    {
+      "name": "opttripole",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "opttripole(${3:in})(${4:center})(${5:out}){${1:comp}}{${2:label}}"
+      }
+    },
+    {
+      "name": "opttripole",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "opttripole[${2:options%keyvals}](${3:in})(${4:center})(${5:out}){${1:comp}}"
+      }
+    },
+    {
+      "name": "opttripole",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "opttripole[${3:options%keyvals}](${4:in})(${5:center})(${6:out}){${1:comp}}{${2:label}}"
+      }
+    },
+    {
+      "name": "newOptexpDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpDipole{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newOptexpDipole{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newOptexpDipole[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOptexpDipole[${3:options%keyvals}]{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpTripole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpTripole{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpTripole",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newOptexpTripole{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpTripole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newOptexpTripole[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpTripole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOptexpTripole[${3:options%keyvals}]{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpFiberDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpFiberDipole{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpFiberDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newOptexpFiberDipole{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpFiberDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newOptexpFiberDipole[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpFiberDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOptexpFiberDipole[${3:options%keyvals}]{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpElecDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpElecDipole{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpElecDipole",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newOptexpElecDipole{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpElecDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newOptexpElecDipole[${2:options%keyvals}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newOptexpElecDipole",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newOptexpElecDipole[${3:options%keyvals}]{${1:name}}{${2:default args}}"
+      }
+    },
+    {
+      "name": "newOptexpComp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpComp{${1:definition}}"
+      }
+    },
+    {
+      "name": "newOptexpCompAmb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpCompAmb{${1:definition}}"
+      }
+    },
+    {
+      "name": "newOptexpElecComp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpElecComp{${1:definition}}"
+      }
+    },
+    {
+      "name": "newOptexpFiberComp",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "newOptexpFiberComp{${1:definition}}"
+      }
+    },
+    {
+      "name": "oelabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "oelabel{${1:label}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "optexp"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -1,0 +1,474 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "pdftexcmds"
+    },
+    {
+      "name": "advice"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mmzset",
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzset{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mmznext",
+      "arg": {
+        "format": "{}",
+        "snippet": "mmznext{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nommzkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nommzkeys{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mmz",
+      "arg": {
+        "format": "{}",
+        "snippet": "mmz{${1:code%text}}"
+      }
+    },
+    {
+      "name": "mmz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mmz[${2:options%keyvals}]{${1:code%text}}",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nommz",
+      "arg": {
+        "format": "{}",
+        "snippet": "nommz{${1:code%text}}"
+      }
+    },
+    {
+      "name": "nommz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nommz[${2:options%keyvals}]{${1:code%text}}",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mmzContext",
+      "unusual": true
+    },
+    {
+      "name": "mmzContextExtra",
+      "unusual": true
+    },
+    {
+      "name": "mmzNoRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzNoRef{${1:label}}"
+      }
+    },
+    {
+      "name": "mmzForceNoRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzForceNoRef{${1:label}}"
+      }
+    },
+    {
+      "name": "mmzAbort"
+    },
+    {
+      "name": "mmzUnmemoizable"
+    },
+    {
+      "name": "ifmmzUnmemoizable",
+      "unusual": true
+    },
+    {
+      "name": "Memoize",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Memoize{${1:key%plain}}{${2:code}}"
+      }
+    },
+    {
+      "name": "mmzAtBeginMemoization",
+      "unusual": true
+    },
+    {
+      "name": "mmzAtEndMemoization",
+      "unusual": true
+    },
+    {
+      "name": "mmzAtEndMemoizationExtra",
+      "unusual": true
+    },
+    {
+      "name": "mmzAfterMemoization",
+      "unusual": true
+    },
+    {
+      "name": "mmzAfterMemoizationExtra",
+      "unusual": true
+    },
+    {
+      "name": "mmzCMemo",
+      "unusual": true
+    },
+    {
+      "name": "mmzCCMemo",
+      "unusual": true
+    },
+    {
+      "name": "ifmemoize",
+      "unusual": true
+    },
+    {
+      "name": "memoizetrue",
+      "unusual": true
+    },
+    {
+      "name": "memoizefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifmemoizing",
+      "unusual": true
+    },
+    {
+      "name": "ifinmemoize",
+      "unusual": true
+    },
+    {
+      "name": "mmzSingleExternDriver",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzSingleExternDriver{${1:code}}"
+      }
+    },
+    {
+      "name": "mmzExternalizeBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mmzExternalizeBox{${1:box}}{${2:token register}}"
+      }
+    },
+    {
+      "name": "ifmmzkeepexterns",
+      "unusual": true
+    },
+    {
+      "name": "mmzkeepexternstrue",
+      "unusual": true
+    },
+    {
+      "name": "mmzkeepexternsfalse",
+      "unusual": true
+    },
+    {
+      "name": "IfMemoizing",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "IfMemoizing{${1:name}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "IfMemoizing",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "IfMemoizing[${4:offset}]{${1:name}}{${2:true code}}{${3:false code}}"
+      }
+    },
+    {
+      "name": "memoizinggrouplevel",
+      "unusual": true
+    },
+    {
+      "name": "mmzRegularPages",
+      "unusual": true
+    },
+    {
+      "name": "mmzExternPages",
+      "unusual": true
+    },
+    {
+      "name": "mmzExtraPages",
+      "unusual": true
+    },
+    {
+      "name": "mmzTracingOn",
+      "unusual": true
+    },
+    {
+      "name": "mmzTracingOff",
+      "unusual": true
+    },
+    {
+      "name": "mmzThisContext",
+      "unusual": true
+    },
+    {
+      "name": "mmzMemo",
+      "unusual": true
+    },
+    {
+      "name": "mmzSource",
+      "unusual": true
+    },
+    {
+      "name": "mmzResource",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzResource{${1:file}}"
+      }
+    },
+    {
+      "name": "mmzIncludeExtern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "mmzIncludeExtern{${1:seq}}{${2:\\hbox|\\vbox}}{${3:width}}{${4:height}}{${5:depth}}{${6:left}}{${7:bot}}{${8:right}}{${9:top}}"
+      }
+    },
+    {
+      "name": "mmzLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mmzLabel{${1:key%plain}}{${2:value}}"
+      }
+    },
+    {
+      "name": "mmzEndMemo",
+      "unusual": true
+    },
+    {
+      "name": "mmzOutputDirectory",
+      "unusual": true
+    },
+    {
+      "name": "mmzUsedCMemo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzUsedCMemo{${1:filename}}"
+      }
+    },
+    {
+      "name": "mmzUsedCCMemo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzUsedCCMemo{${1:filename}}"
+      }
+    },
+    {
+      "name": "mmzUsedExtern",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzUsedExtern{${1:filename}}"
+      }
+    },
+    {
+      "name": "mmzNewCMemo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzNewCMemo{${1:filename}}"
+      }
+    },
+    {
+      "name": "mmzNewCCMemo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzNewCCMemo{${1:filename}}"
+      }
+    },
+    {
+      "name": "mmzNewExtern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mmzNewExtern{${1:filename}}{${2:page num}}{${3:width}}{${4:height}}"
+      }
+    },
+    {
+      "name": "mmzPrefix",
+      "arg": {
+        "format": "{}",
+        "snippet": "mmzPrefix{${1:path prefix}}"
+      }
+    },
+    {
+      "name": "mmzAutoInit",
+      "unusual": true
+    },
+    {
+      "name": "mmzPgfAtBeginMemoization",
+      "unusual": true
+    },
+    {
+      "name": "mmzPgfAtEndMemoization",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "memoize"
+    },
+    {
+      "name": "memoize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nomemoize"
+    },
+    {
+      "name": "nomemoize",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c",
+          "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/memoize#c": [
+      "options={${1:options}}"
+    ],
+    "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c": [
+      "enable",
+      "disable",
+      "normal",
+      "readonly",
+      "recompile"
+    ],
+    "\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c": [
+      "verbatim",
+      "verb",
+      "no verbatim",
+      "padding left=",
+      "padding right=",
+      "padding top=",
+      "padding bottom=",
+      "padding=",
+      "context=${1:tokens}",
+      "clear context",
+      "meaning to context={${1:command/env list}}",
+      "csname meaning to context=${1:csname}",
+      "key meaning to context=${1:key path}",
+      "key value to context=${1:key path}",
+      "padding to context",
+      "per overlay",
+      "capture=${1|hbox,vbox|}",
+      "driver=${1:code}",
+      "at begin memoization=${1:code}",
+      "at end memoization=${1:code}",
+      "after memoization=${1:code}",
+      "integrated driver=${1:name}",
+      "trace",
+      "include source in cmemo",
+      "include context in ccmemo",
+      "direct ccmemo input",
+      "memo dir=${1:directory}",
+      "no memo dir",
+      "prefix=${1:prefix}",
+      "mkdir",
+      "mkdir command=${1:system command}",
+      "output-directory=${1:directory}",
+      "extract={${1:extraction method}}",
+      "perl extraction command=${1:system command}",
+      "perl extraction options=${1:options}",
+      "python extraction command=${1:system command}",
+      "python extraction options=${1:options}",
+      "tex extraction command=${1:system command}",
+      "tex extraction options=${1:options}",
+      "tex extraction script=${1:TeX code}",
+      "record=${1:record type}",
+      "no record",
+      "makefile=${1:filename}",
+      "sh=${1:filename}",
+      "bat=${1:filename}",
+      "activation=${1|immediate,deferred|}",
+      "activate deferred",
+      "activate={${1:command/env list}}",
+      "deactivate={${1:command/env list}}",
+      "activate csname=${1:csname}",
+      "deactivate csname=${1:csname}",
+      "activate key={${1:list of key names}}",
+      "deactivate key={${1:list of key names}}",
+      "try activate",
+      "force activate",
+      "auto={${1:command or env}}{${2:keylist}}",
+      "auto csname={${1:csname}}{${2:keylist}}",
+      "auto key={${1:key}}{${2:keylist}}",
+      "auto'={${1:command or env}}{${2:keylist}}",
+      "auto csname'={${1:csname}}{${2:keylist}}",
+      "auto key'={${1:key}}{${2:keylist}}",
+      "manual",
+      "ignore spaces",
+      "biblatex={${1:additional configuration}}",
+      "biblatex ccmemo cite=${1|nocite,replicate|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/memoize#c",
+    "\\usepackage/memoize#c,\\mmzset#c,\\mmznext#c,\\nommzkeys#c,\\mmz#c,\\begin{memoize}#c,\\nommz#c,\\begin{nomemoize}#c"
+  ]
+}

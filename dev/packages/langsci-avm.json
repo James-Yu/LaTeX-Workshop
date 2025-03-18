@@ -1,72 +1,136 @@
 {
-  "includes": {
-    "array": [],
-    "tikz": [
-      "tikz"
-    ],
-    "etoolbox": [
-      "lfg"
-    ],
-    "unicode-math": [
-      "lfg"
-    ]
-  },
-  "macros": {
-    "avm{}": {
-      "snippet": "avm{${1:structure}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "avm[]{}": {
-      "snippet": "avm[${2:options}]{${1:structure}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz",
+      "if": "tikz"
     },
-    "lframe": {},
-    "rframe": {},
-    "tag{}": {
-      "snippet": "tag{${1:identifier}}"
+    {
+      "name": "etoolbox",
+      "if": "lfg"
     },
-    "type{}": {
-      "snippet": "type{${1:type}}"
-    },
-    "type*{}": {
-      "snippet": "type*{${1:type}}"
-    },
-    "id{}{}": {
-      "snippet": "id{${1:id}}{${2:structure}}"
-    },
-    "punk{}{}": {
-      "snippet": "punk{${1:attribute}}{${2:type}}"
-    },
-    "shuffle": {
-      "detail": "⧢",
-      "documentation": "SHUFFLE PRODUCT"
-    },
-    "avmsetup{}": {
-      "snippet": "avmsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "avmdefinestyle{}{}": {
-      "snippet": "avmdefinestyle{${1:name}}{${2:settings}}"
-    },
-    "avmdefinecommand{}{}": {
-      "snippet": "avmdefinecommand{${1:name}}{${2:settings}}"
-    },
-    "avmdefinecommand{}[]{}": {
-      "snippet": "avmdefinecommand{${1:name}}[${2:label}]{${3:settings}}"
+    {
+      "name": "unicode-math",
+      "if": "lfg"
     }
-  },
-  "envs": {},
-  "options": [
-    "tikz",
-    "lfg"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "avm",
+      "arg": {
+        "format": "{}",
+        "snippet": "avm{${1:structure}}"
+      }
+    },
+    {
+      "name": "avm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "avm[${2:options%keyvals}]{${1:structure}}",
+        "keys": [
+          "\\avm,\\avmsetup,\\avmdefinestyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "lframe"
+    },
+    {
+      "name": "rframe"
+    },
+    {
+      "name": "tag",
+      "arg": {
+        "format": "{}",
+        "snippet": "tag{${1:identifier}}"
+      }
+    },
+    {
+      "name": "type",
+      "arg": {
+        "format": "{}",
+        "snippet": "type{${1:type}}"
+      }
+    },
+    {
+      "name": "type*",
+      "arg": {
+        "format": "{}",
+        "snippet": "type*{${1:type}}"
+      }
+    },
+    {
+      "name": "id",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "id{${1:id}}{${2:structure}}"
+      }
+    },
+    {
+      "name": "punk",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "punk{${1:attribute}}{${2:type}}"
+      }
+    },
+    {
+      "name": "shuffle",
+      "detail": "⧢",
+      "doc": "Shuffle product"
+    },
+    {
+      "name": "avmsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "avmsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\avm,\\avmsetup,\\avmdefinestyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "avmdefinestyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "avmdefinestyle{${1:name}}{${2:settings%keyvals}}",
+        "keys": [
+          "\\avm,\\avmsetup,\\avmdefinestyle"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "avmdefinecommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "avmdefinecommand{${1:name}}{${2:settings%keyvals}}"
+      }
+    },
+    {
+      "name": "avmdefinecommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "avmdefinecommand{${1:name}}[${3:label}]{${2:settings%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/langsci-avm#c": [
+      "tikz",
+      "lfg"
+    ],
+    "\\avm,\\avmsetup,\\avmdefinestyle": [
+      "pic",
+      "picname=${1:name}",
       "framewidth=",
       "framesep=",
       "id align=${1:token}",
-      "id position=",
+      "id position=${1|south-west,south-east|}",
       "style=${1:name}",
       "align",
       "stretch=${1:factor}",
@@ -82,5 +146,8 @@
       "switch=${1:token}",
       "customise=${1:settings}"
     ]
+  },
+  "args": [
+    "\\usepackage/langsci-avm#c"
   ]
 }

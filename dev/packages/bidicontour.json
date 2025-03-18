@@ -1,27 +1,53 @@
 {
-  "includes": {
-    "color": [],
-    "trig": []
-  },
-  "macros": {
-    "bidicontourlength{}": {
-      "snippet": "bidicontourlength{${1:length}}"
+  "deps": [
+    {
+      "name": "color"
     },
-    "bidicontournumber{}": {
-      "snippet": "bidicontournumber{${1:number}}"
-    },
-    "bidicontour{}{}": {
-      "snippet": "bidicontour{${1:color}}{${2:length}}"
-    },
-    "bidicontour[]{}{}": {
-      "snippet": "bidicontour[${3:number}]{${1:color}}{${2:length}}"
+    {
+      "name": "trig"
     }
-  },
-  "envs": {},
-  "options": [
-    "auto",
-    "outline",
-    "copies"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "bidicontourlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bidicontourlength{${1:length}}"
+      }
+    },
+    {
+      "name": "bidicontournumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bidicontournumber{${1:number}}"
+      }
+    },
+    {
+      "name": "bidicontour",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bidicontour{${1:color}}{${2:length}}"
+      }
+    },
+    {
+      "name": "bidicontour",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "bidicontour[${3:number}]{${1:color}}{${2:length}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/bidicontour#c": [
+      "auto",
+      "outline",
+      "copies"
+    ]
+  },
+  "args": [
+    "\\usepackage/bidicontour#c"
+  ]
 }

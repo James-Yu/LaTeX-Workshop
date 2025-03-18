@@ -1,44 +1,122 @@
 {
-  "includes": {},
-  "macros": {
-    "usetheme{}": {
-      "snippet": "usetheme{${1:beamertheme}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "usetheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "usetheme{${1:beamertheme}}"
+      }
     },
-    "usetheme[]{}": {
-      "snippet": "usetheme[${2:options}]{${1:beamertheme}}"
+    {
+      "name": "usetheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usetheme[${2:options%keyvals}]{${1:beamertheme}}"
+      }
     },
-    "usecolortheme{}": {
-      "snippet": "usecolortheme{${1:beamer color theme}}"
+    {
+      "name": "usecolortheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "usecolortheme{${1:beamer color theme}}"
+      }
     },
-    "usecolortheme[]{}": {
-      "snippet": "usecolortheme[${2:options}]{${1:beamer color theme}}"
+    {
+      "name": "usecolortheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usecolortheme[${2:options%keyvals}]{${1:beamer color theme}}"
+      }
     },
-    "usefonttheme{}": {
-      "snippet": "usefonttheme{${1:beamer font theme}}"
+    {
+      "name": "usefonttheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "usefonttheme{${1:beamer font theme}}"
+      }
     },
-    "usefonttheme[]{}": {
-      "snippet": "usefonttheme[${2:options}]{${1:beamer font theme}}"
+    {
+      "name": "usefonttheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usefonttheme[${2:options%keyvals}]{${1:beamer font theme}}"
+      }
     },
-    "useoutertheme{}": {
-      "snippet": "useoutertheme{${1:beamer outer theme}}"
+    {
+      "name": "useoutertheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "useoutertheme{${1:beamer outer theme}}"
+      }
     },
-    "useoutertheme[]{}": {
-      "snippet": "useoutertheme[${2:options}]{${1:beamer outer theme}}"
+    {
+      "name": "useoutertheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useoutertheme[${2:options%keyvals}]{${1:beamer outer theme}}"
+      }
     },
-    "useinnertheme{}": {
-      "snippet": "useinnertheme{${1:beamer inner theme}}"
+    {
+      "name": "useinnertheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "useinnertheme{${1:beamer inner theme}}"
+      }
     },
-    "useinnertheme[]{}": {
-      "snippet": "useinnertheme[${2:options}]{${1:beamer inner theme}}"
-    },
-    "beamersidebarwidth": {},
-    "beamerheadheight": {},
-    "inserttitleindicator": {},
-    "insertauthorindicator": {},
-    "insertinstituteindicator": {},
-    "insertdateindicator": {}
+    {
+      "name": "useinnertheme",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useinnertheme[${2:options%keyvals}]{${1:beamer inner theme}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\useinnertheme/rounded": [
+      "shadow"
+    ],
+    "\\useoutertheme/miniframes": [
+      "footline=${1|empty,authorinstitute,authortitle,institutetitle,authorinstitutetitle|}",
+      "subsection"
+    ],
+    "\\useoutertheme/smoothbars": [
+      "subsection"
+    ],
+    "\\useoutertheme/sidebar": [
+      "height=",
+      "hideothersubsections",
+      "hideallsubsections",
+      "left",
+      "right",
+      "width="
+    ],
+    "\\useoutertheme/tree": [
+      "hooks"
+    ],
+    "\\usecolortheme/structure": [
+      "rgb={${1:r,g,b}}",
+      "RGB={${1:r,g,b}}",
+      "cmyk={${1:c,m,y,k}}",
+      "cmy={${1:c,m,y}}",
+      "hsb={${1:h,s,b}}",
+      "named="
+    ],
+    "\\usecolortheme/albatross,\\usecolortheme/monarca": [
+      "overlystylish"
+    ],
+    "\\usefonttheme/serif": [
+      "stillsansserifmath",
+      "stillsansserifsmall",
+      "stillsansseriflarge",
+      "stillsansseriftext",
+      "onlymath"
+    ],
+    "\\usefonttheme/structurebold,\\usefonttheme/structureitalicserif,\\usefonttheme/structuresmallcapsserif": [
+      "onlysmall",
+      "onlylarge"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -37,6 +37,8 @@ export type FileCache = {
     }[],
     /** The array of the paths of `.bib` files referenced from the LaTeX file */
     bibfiles: Set<string>,
+    /** The array of the paths of `.bib` files listed by `\GlsXtrLoadResources` to provide glossary entries */
+    glossarybibfiles: Set<string>,
     /** A dictionary of external documents provided by `\externaldocument` of
      * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
     external: {[filePath: string]: string},
@@ -123,6 +125,10 @@ export interface LaTeXLinter {
     parseLog(log: string, filePath?: string): void
 }
 
+export interface LaTeXFormatter {
+    formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined>
+}
+
 export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }
 
 export type TeXElement = {
@@ -143,10 +149,48 @@ export type TeXMathEnv = {
     envname: string
 }
 
-export type Package = {
+export type PackageRaw = {
+    deps: DependencyRaw[],
+    macros: MacroRaw[],
+    envs: EnvironmentRaw[],
+    keys: { [key: string]: string[] },
+    args: string[]
+}
+
+export type DependencyRaw = {
+    name: string,
+    if?: string
+}
+
+export type EnvironmentRaw = {
+    name: string,
+    arg?: { format: string, snippet: string, keys?: string[], keyPos?: number },
+    if?: string,
+    unusual?: boolean
+}
+
+export type MacroRaw = {
+    name: string,
+    arg?: { format: string, snippet: string, keys?: string[], keyPos?: number },
+    if?: string,
+    unusual?: boolean,
+    detail?: string,
+    doc?: string
+}
+
+export type EnvironmentInfo = EnvironmentRaw & {
+    package: string,
+    detail: string
+}
+
+export type MacroInfo = MacroRaw & {
+    package: string
+}
+
+export type PackageObsolete = {
     includes: {[key: string]: string[]},
-    macros: {[key: string]: Macro},
-    envs: {[key: string]: Environment},
+    macros: {[key: string]: any},
+    envs: {[key: string]: any},
     options: string[],
     keyvals: string[][]
 }
@@ -183,45 +227,6 @@ export interface CitationItem extends CompletionItem {
 }
 
 export enum EnvSnippetType { AsName, AsMacro, ForBegin }
-
-export type Environment = {
-    /** Name of the environment, what comes inside \begin{...} */
-    name: string,
-    /** To be inserted after \begin{..} */
-    snippet?: string,
-    /** The option of package below that activates this env */
-    option?: string,
-    /** Possible options of this env */
-    keyvals?: string[],
-    /** The index of keyval list in package .json file. Should not be used */
-    keyvalindex?: number,
-    /** The index of argument which have the keyvals */
-    keyvalpos?: number,
-    /** The package providing the environment */
-    package?: string,
-    detail?: string
-}
-
-export type Macro = {
-    /** Name of the macro without the leading \ and with argument signature */
-    macro?: string,
-    /** Snippet to be inserted after the leading \ */
-    snippet?: string,
-    /** The option of package below that activates this cmd */
-    option?: string,
-    /** Possible options of this env */
-    keyvals?: string[],
-    /** The index of keyval list in package .json file. Should not be used */
-    keyvalindex?: number,
-    /** The index of argument which have the keyvals */
-    keyvalpos?: number,
-    detail?: string,
-    documentation?: string,
-    /** The package providing the environment */
-    package?: string,
-    /** The action to be executed after inserting the snippet */
-    postAction?: string
-}
 
 export interface ReferenceItem extends CompletionItem {
     /** The file that defines the ref. */

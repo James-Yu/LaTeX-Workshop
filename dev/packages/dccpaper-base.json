@@ -1,149 +1,410 @@
 {
-  "includes": {
-    "babel": [],
-    "etoolbox": [],
-    "xpatch": [],
-    "iftex": [],
-    "fontenc": [],
-    "baskervillef": [],
-    "newtxmath": [],
-    "GoSans": [],
-    "graphicx": [],
-    "xcolor": [],
-    "calc": [],
-    "ifpdf": [],
-    "atbegshi": [],
-    "titlesec": [],
-    "array": [],
-    "booktabs": [],
-    "caption": [],
-    "footmisc": [],
-    "hyperref": [],
-    "hyperxmp": []
-  },
-  "macros": {
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
+  "deps": [
+    {
+      "name": "babel"
     },
-    "affil{}": {
-      "snippet": "affil{${1:name}}"
+    {
+      "name": "etoolbox"
     },
-    "Affilfont": {},
-    "affilsep": {},
-    "afterabstract": {},
-    "authblksep": {},
-    "Authfont": {},
-    "AuthorBlock": {},
-    "BBA": {},
-    "conference{}": {
-      "snippet": "conference{${1:name of conference}}"
+    {
+      "name": "xpatch"
     },
-    "conference*{}": {
-      "snippet": "conference*{${1:name of conference}}"
+    {
+      "name": "iftex"
     },
-    "doi{}": {
-      "snippet": "doi{${1:DOI}}"
+    {
+      "name": "fontenc"
     },
-    "email{}": {
-      "snippet": "email{${1:email address}}"
+    {
+      "name": "baskervillef"
     },
-    "fixspaces": {},
-    "FixTextHeight": {},
-    "flushleftright": {},
-    "HeadTitle": {},
-    "issue{}": {
-      "snippet": "issue{${1:number}}"
+    {
+      "name": "newtxmath"
     },
-    "MainAuthor": {},
-    "nofixspaces": {},
-    "NormalFoot": {},
-    "NormalHead": {},
-    "oldBBA": {},
-    "OrigLineBreak": {},
-    "OtherMainAuthors": {},
-    "ProperTitle": {},
-    "RaggedParindent": {},
-    "raggedyright": {},
-    "raggedyright[]": {
-      "snippet": "raggedyright[${1:length}]"
+    {
+      "name": "GoSans"
     },
-    "received{}": {
-      "snippet": "received{${1:date}}"
+    {
+      "name": "graphicx"
     },
-    "revised{}": {
-      "snippet": "revised{${1:date}}"
+    {
+      "name": "xcolor"
     },
-    "submitted{}": {
-      "snippet": "submitted{${1:date}}"
+    {
+      "name": "calc"
     },
-    "subno{}": {
-      "snippet": "subno{${1:number}}"
+    {
+      "name": "ifpdf"
     },
-    "theauthors": {},
-    "theauthorsinblock": {},
-    "theblock": {},
-    "thecorrespondence": {},
-    "thedoi": {},
-    "theissue": {},
-    "thelastpage": {},
-    "thesectionpars": {},
-    "thesubno": {},
-    "thevolume": {},
-    "title[]{}": {
-      "snippet": "title[${2:name}]{${1:full version}}"
+    {
+      "name": "atbegshi"
     },
-    "TitleFoot": {},
-    "TitleHead": {},
-    "Version": {},
-    "volume{}": {
-      "snippet": "volume{${1:number}}"
+    {
+      "name": "titlesec"
     },
-    "captionsbritish": {},
-    "datebritish": {},
-    "extrasbritish": {},
-    "noextrasbritish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "array"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "booktabs"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "widequote": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "caption"
+    },
+    {
+      "name": "footmisc"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "hyperxmp"
+    }
+  ],
+  "macros": [
+    {
+      "name": "accepted",
+      "arg": {
+        "format": "{}",
+        "snippet": "accepted{${1:date}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "{}",
+        "snippet": "affil{${1:name}}"
+      }
+    },
+    {
+      "name": "Affilfont",
+      "unusual": true
+    },
+    {
+      "name": "affilsep",
+      "unusual": true
+    },
+    {
+      "name": "afterabstract",
+      "unusual": true
+    },
+    {
+      "name": "authblksep",
+      "unusual": true
+    },
+    {
+      "name": "Authfont",
+      "unusual": true
+    },
+    {
+      "name": "AuthorBlock",
+      "unusual": true
+    },
+    {
+      "name": "conference",
+      "arg": {
+        "format": "{}",
+        "snippet": "conference{${1:name of conference}}"
+      }
+    },
+    {
+      "name": "conference*",
+      "arg": {
+        "format": "{}",
+        "snippet": "conference*{${1:name of conference}}"
+      }
+    },
+    {
+      "name": "doi",
+      "arg": {
+        "format": "{}",
+        "snippet": "doi{${1:DOI}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email address%URL}}"
+      }
+    },
+    {
+      "name": "FixTextHeight",
+      "unusual": true
+    },
+    {
+      "name": "flushleftright",
+      "unusual": true
+    },
+    {
+      "name": "HeadTitle",
+      "unusual": true
+    },
+    {
+      "name": "issue",
+      "arg": {
+        "format": "{}",
+        "snippet": "issue{${1:number}}"
+      }
+    },
+    {
+      "name": "MainAuthor",
+      "unusual": true
+    },
+    {
+      "name": "NormalFoot",
+      "unusual": true
+    },
+    {
+      "name": "NormalHead",
+      "unusual": true
+    },
+    {
+      "name": "OtherMainAuthors",
+      "unusual": true
+    },
+    {
+      "name": "ProperTitle",
+      "unusual": true
+    },
+    {
+      "name": "RaggedParindent",
+      "unusual": true
+    },
+    {
+      "name": "raggedyright",
+      "unusual": true
+    },
+    {
+      "name": "raggedyright",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "raggedyright[${1:length}]"
+      }
+    },
+    {
+      "name": "received",
+      "arg": {
+        "format": "{}",
+        "snippet": "received{${1:date}}"
+      }
+    },
+    {
+      "name": "revised",
+      "arg": {
+        "format": "{}",
+        "snippet": "revised{${1:date}}"
+      }
+    },
+    {
+      "name": "submitted",
+      "arg": {
+        "format": "{}",
+        "snippet": "submitted{${1:date}}"
+      }
+    },
+    {
+      "name": "subno",
+      "arg": {
+        "format": "{}",
+        "snippet": "subno{${1:number}}"
+      }
+    },
+    {
+      "name": "thecorrespondence",
+      "unusual": true
+    },
+    {
+      "name": "thedoi",
+      "unusual": true
+    },
+    {
+      "name": "theissue",
+      "unusual": true
+    },
+    {
+      "name": "thelastpage",
+      "unusual": true
+    },
+    {
+      "name": "thesubno",
+      "unusual": true
+    },
+    {
+      "name": "thevolume",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:name%text}]{${1:full version%text}}"
+      }
+    },
+    {
+      "name": "TitleFoot",
+      "unusual": true
+    },
+    {
+      "name": "TitleHead",
+      "unusual": true
+    },
+    {
+      "name": "volume",
+      "arg": {
+        "format": "{}",
+        "snippet": "volume{${1:number}}"
+      }
+    },
+    {
+      "name": "captionsbritish",
+      "unusual": true
+    },
+    {
+      "name": "datebritish",
+      "unusual": true
+    },
+    {
+      "name": "extrasbritish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbritish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "widequote",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

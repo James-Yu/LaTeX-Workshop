@@ -1,89 +1,165 @@
 {
-  "includes": {
-    "graphicx": [],
-    "hyperref": [],
-    "amsmath": [],
-    "subcaption": [],
-    "enumitem": [],
-    "verbatim": [],
-    "ulem": [],
-    "mdframed": [],
-    "tikz": []
-  },
-  "macros": {
-    "set{}{}": {
-      "snippet": "set{${1:attribute}}{${2:value}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "get{}": {
-      "snippet": "get{${1:attribute}}"
+    {
+      "name": "hyperref"
     },
-    "mn{}": {
-      "snippet": "mn{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "amsmath"
     },
-    "alt{}": {
-      "snippet": "alt{${1:term}}"
+    {
+      "name": "subcaption"
     },
-    "deprecated{}": {
-      "snippet": "deprecated{${1:term}}"
+    {
+      "name": "enumitem"
     },
-    "domain{}": {
-      "snippet": "domain{${1:domain}}"
+    {
+      "name": "verbatim"
     },
-    "mncite{}": {
-      "snippet": "mncite{${1:key}}"
+    {
+      "name": "ulem"
     },
-    "mncite[]{}": {
-      "snippet": "mncite[${2:add. text}]{${1:key}}"
+    {
+      "name": "mdframed"
     },
-    "mncite{}[]": {
-      "snippet": "mncite{${1:key}}[${2:localities}]"
-    },
-    "mncite[]{}[]": {
-      "snippet": "mncite[${2:add. text}]{${1:key}}[${3:localities}]"
-    },
-    "att{}": {
-      "snippet": "att{${1:arg}}"
-    },
-    "att[]{}": {
-      "snippet": "att[${2:opt}]{${1:arg}}"
-    },
-    "lxRDFa{}": {
-      "snippet": "lxRDFa{${1:arg}}"
-    },
-    "lxRDFa[]{}": {
-      "snippet": "lxRDFa[${2:opt}]{${1:arg}}"
-    },
-    "lxRDF{}": {
-      "snippet": "lxRDF{${1:arg}}"
-    },
-    "lxRDF[]{}": {
-      "snippet": "lxRDF[${2:opt}]{${1:arg}}"
+    {
+      "name": "tikz"
     }
-  },
-  "envs": {
-    "example": {},
-    "note": {},
-    "source": {},
-    "key": {},
-    "requirement": {},
-    "recommendation": {},
-    "permission": {},
-    "specification": {},
-    "verification": {},
-    "import": {},
-    "tip": {},
-    "important": {},
-    "caution": {},
-    "warning": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "set{${1:attribute%specialDef}}{${2:value}}"
+      }
+    },
+    {
+      "name": "get",
+      "arg": {
+        "format": "{}",
+        "snippet": "get{${1:attribute%keyvals}}",
+        "keys": [
+          "\\get#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mn",
+      "arg": {
+        "format": "{}",
+        "snippet": "mn{${1:keyvals}}",
+        "keys": [
+          "\\mn#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "alt",
+      "arg": {
+        "format": "{}",
+        "snippet": "alt{${1:term%text}}"
+      }
+    },
+    {
+      "name": "deprecated",
+      "arg": {
+        "format": "{}",
+        "snippet": "deprecated{${1:term%text}}"
+      }
+    },
+    {
+      "name": "domain",
+      "arg": {
+        "format": "{}",
+        "snippet": "domain{${1:domain%text}}"
+      }
+    },
+    {
+      "name": "mncite",
+      "arg": {
+        "format": "{}",
+        "snippet": "mncite{${1:key}}"
+      }
+    },
+    {
+      "name": "mncite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mncite[${2:add. text%text}]{${1:key}}"
+      }
+    },
+    {
+      "name": "mncite",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "mncite{${1:key}}[${2:localities}]"
+      }
+    },
+    {
+      "name": "mncite",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "mncite[${2:add. text%text}]{${1:key}}[${3:localities}]"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "example"
+    },
+    {
+      "name": "note"
+    },
+    {
+      "name": "source"
+    },
+    {
+      "name": "key"
+    },
+    {
+      "name": "requirement"
+    },
+    {
+      "name": "recommendation"
+    },
+    {
+      "name": "permission"
+    },
+    {
+      "name": "specification"
+    },
+    {
+      "name": "verification"
+    },
+    {
+      "name": "import"
+    },
+    {
+      "name": "tip"
+    },
+    {
+      "name": "important"
+    },
+    {
+      "name": "caution"
+    },
+    {
+      "name": "warning"
+    }
+  ],
+  "keys": {
+    "\\get#c": [
+      "%metanormaattribute"
+    ],
+    "\\mn#c": [
       "heading=${1:heading}",
       "level=${1:level}",
-      "obligation=",
+      "obligation=${1|informative,normative|}",
       "language=${1:lang code}",
       "script=${1:script name}",
       "reviewer=\"${1:name}\"",
@@ -91,5 +167,6 @@
       "to=${1:anchor}",
       "date=${1:date}"
     ]
-  ]
+  },
+  "args": []
 }

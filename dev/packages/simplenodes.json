@@ -1,44 +1,91 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "color": []
-  },
-  "macros": {
-    "simplenode{}{}": {
-      "snippet": "simplenode{${1:name}}{${2:text}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "examplenode{}{}": {
-      "snippet": "examplenode{${1:name}}{${2:text}}"
+    {
+      "name": "tikz"
     },
-    "alertnode{}{}": {
-      "snippet": "alertnode{${1:name}}{${2:text}}"
+    {
+      "name": "tikzlibrarymath"
     },
-    "warnnode{}{}": {
-      "snippet": "warnnode{${1:name}}{${2:text}}"
-    },
-    "link{}{}": {
-      "snippet": "link{${1:name1}}{${2:name2}}"
-    },
-    "gettikzxy{}{}{}": {
-      "snippet": "gettikzxy{${1:(${4:x,y})}}{${2:xcmd}}{${3:ycmd}}"
-    },
-    "mynode{}{}": {
-      "snippet": "mynode{${1:draw color}}{${2:fill color}}"
-    },
-    "myline{}{}": {
-      "snippet": "myline{${1:anchor1}}{${2:anchor2}}"
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [
-    "align=",
-    "width=",
-    "minheight=",
-    "innersep=",
-    "outersep=",
-    "thickness="
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "simplenode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "simplenode{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "examplenode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "examplenode{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "alertnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alertnode{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "warnnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "warnnode{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "link",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "link{${1:name1}}{${2:name2}}"
+      }
+    },
+    {
+      "name": "gettikzxy",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gettikzxy{${1:(${4:x},${5:y})}}{${2:xcmd%cmd}}{${3:ycmd%cmd}}"
+      }
+    },
+    {
+      "name": "mynode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mynode{${1:draw color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "myline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "myline{${1:anchor1}}{${2:anchor2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/simplenodes#c": [
+      "align=${1|left,flush left,right,flush right,center,flush center,justify|}",
+      "width=",
+      "minheight=",
+      "innersep=",
+      "outersep=",
+      "thickness="
+    ]
+  },
+  "args": [
+    "\\usepackage/simplenodes#c"
+  ]
 }

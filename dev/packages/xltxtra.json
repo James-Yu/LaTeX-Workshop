@@ -1,43 +1,97 @@
 {
-  "includes": {
-    "xetex": [],
-    "fontspec": [],
-    "realscripts": [],
-    "metalogo": []
-  },
-  "macros": {
-    "textsuperscript*{}": {
-      "snippet": "textsuperscript*{${1:text}}"
+  "deps": [
+    {
+      "name": "xetex"
     },
-    "textsubscript*{}": {
-      "snippet": "textsubscript*{${1:text}}"
+    {
+      "name": "fontspec"
     },
-    "realsubscript{}": {
-      "snippet": "realsubscript{${1:text}}"
+    {
+      "name": "realscripts"
     },
-    "realsuperscript{}": {
-      "snippet": "realsuperscript{${1:text}}"
-    },
-    "fakesubscript{}": {
-      "snippet": "fakesubscript{${1:text}}"
-    },
-    "fakesuperscript{}": {
-      "snippet": "fakesuperscript{${1:text}}"
-    },
-    "vfrac{}{}": {
-      "snippet": "vfrac{${1:numerator}}{${2:denominator}}"
-    },
-    "namedglyph{}": {
-      "snippet": "namedglyph{${1:glyphname}}"
-    },
-    "showhyphens": {},
-    "XeTeX": {},
-    "XeLaTeX": {}
-  },
-  "envs": {},
-  "options": [
-    "no-sscript",
-    "no-logos"
+    {
+      "name": "metalogo"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "textsuperscript*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperscript*{${1:text}}"
+      }
+    },
+    {
+      "name": "textsubscript*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsubscript*{${1:text}}"
+      }
+    },
+    {
+      "name": "realsubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "realsubscript{${1:text}}"
+      }
+    },
+    {
+      "name": "realsuperscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "realsuperscript{${1:text}}"
+      }
+    },
+    {
+      "name": "fakesubscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fakesubscript{${1:text}}"
+      }
+    },
+    {
+      "name": "fakesuperscript",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fakesuperscript{${1:text}}"
+      }
+    },
+    {
+      "name": "vfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "namedglyph",
+      "arg": {
+        "format": "{}",
+        "snippet": "namedglyph{${1:glyphname}}"
+      }
+    },
+    {
+      "name": "showhyphens"
+    },
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "XeLaTeX"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xltxtra#c": [
+      "no-sscript",
+      "no-logos"
+    ]
+  },
+  "args": [
+    "\\usepackage/xltxtra#c"
+  ]
 }

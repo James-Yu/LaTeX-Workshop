@@ -1,17 +1,34 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xstring": []
-  },
-  "macros": {
-    "shortifyAMSjournalname{}": {
-      "snippet": "shortifyAMSjournalname{${1:journal}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "shortifiedAMSjournalname": {},
-    "givenAMSjournalname": {},
-    "firstletter": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "xstring"
+    }
+  ],
+  "macros": [
+    {
+      "name": "shortifyAMSjournalname",
+      "arg": {
+        "format": "{}",
+        "snippet": "shortifyAMSjournalname{${1:journal}}"
+      }
+    },
+    {
+      "name": "shortifiedAMSjournalname",
+      "unusual": true
+    },
+    {
+      "name": "givenAMSjournalname",
+      "unusual": true
+    },
+    {
+      "name": "firstletter",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

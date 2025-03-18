@@ -1,28 +1,43 @@
 {
-  "includes": {
-    "kvoptions": []
-  },
-  "macros": {
-    "doxitem{}{}{}": {
-      "snippet": "doxitem{${1:name}}{${2:envname}}{${3:index category}}"
-    },
-    "doxitem[]{}{}{}": {
-      "snippet": "doxitem[${4:options}]{${1:name}}{${2:envname}}{${3:index category}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "noprint",
-    "noindex",
-    "macrolike",
-    "idxtype="
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "doxitem",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "doxitem{${1:name}}{${2:envname}}{${3:index category}}"
+      }
+    },
+    {
+      "name": "doxitem",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "doxitem[${4:options%keyvals}]{${1:name}}{${2:envname}}{${3:index category}}",
+        "keys": [
+          "\\doxitem"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dox#c": [
+      "noprint",
+      "noindex",
+      "macrolike",
+      "idxtype="
+    ],
+    "\\doxitem": [
       "idxtype=",
       "macrolike"
     ]
+  },
+  "args": [
+    "\\usepackage/dox#c"
   ]
 }

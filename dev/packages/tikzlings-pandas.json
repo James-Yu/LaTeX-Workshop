@@ -1,28 +1,63 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlings-addons": []
-  },
-  "macros": {
-    "panda": {},
-    "panda[]": {
-      "snippet": "panda[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pandahookbackground": {},
-    "pandahookbelly": {},
-    "pandahookbody": {},
-    "pandahookforeground": {},
-    "tikzlinghookbackground": {},
-    "tikzlinghookbelly": {},
-    "tikzlinghookbody": {},
-    "tikzlinghookforeground": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "tikzlings-addons"
+    }
+  ],
+  "macros": [
+    {
+      "name": "panda"
+    },
+    {
+      "name": "panda",
+      "arg": {
+        "format": "[]",
+        "snippet": "panda[${1:options%keyvals}]",
+        "keys": [
+          "\\panda#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pandahookbackground",
+      "unusual": true
+    },
+    {
+      "name": "pandahookbelly",
+      "unusual": true
+    },
+    {
+      "name": "pandahookbody",
+      "unusual": true
+    },
+    {
+      "name": "pandahookforeground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbackground",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbelly",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookbody",
+      "unusual": true
+    },
+    {
+      "name": "tikzlinghookforeground",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\panda#c": [
       "body=",
       "eye=",
       "pupil=",
@@ -145,5 +180,6 @@
       "xshift=",
       "yshift="
     ]
-  ]
+  },
+  "args": []
 }

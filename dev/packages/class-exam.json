@@ -1,857 +1,2341 @@
 {
-  "includes": {
-    "ifthen": []
-  },
-  "macros": {
-    "addpoints": {},
-    "addquestionobject": {},
-    "answerclearance": {},
-    "answerline": {},
-    "answerline[]": {
-      "snippet": "answerline[${1:answer}]"
-    },
-    "answerlinelength": {},
-    "answerskip": {},
-    "begingradingrange{}": {
-      "snippet": "begingradingrange{${1:range name}}"
-    },
-    "bhpgword{}": {
-      "snippet": "bhpgword{${1:text}}"
-    },
-    "bhpword{}": {
-      "snippet": "bhpword{${1:text}}"
-    },
-    "bhqword{}": {
-      "snippet": "bhqword{${1:text}}"
-    },
-    "bhsword{}": {
-      "snippet": "bhsword{${1:text}}"
-    },
-    "bhtword{}": {
-      "snippet": "bhtword{${1:text}}"
-    },
-    "bonusgradetable": {},
-    "bonusgradetable[]": {
-      "snippet": "bonusgradetable[${1:h or v}]"
-    },
-    "bonusgradetable[][]": {
-      "snippet": "bonusgradetable[${1:h or v}][${2:type}]"
-    },
-    "bonuspart": {},
-    "bonuspart[]": {
-      "snippet": "bonuspart[${1:points}]"
-    },
-    "bonuspointformat{}": {
-      "snippet": "bonuspointformat{${1:format commands}}"
-    },
-    "bonuspointname{}": {
-      "snippet": "bonuspointname{${1:text}}"
-    },
-    "bonuspointpoints{}{}": {
-      "snippet": "bonuspointpoints{${1:singular text}}{${2:plural text}}"
-    },
-    "bonuspoints": {},
-    "bonuspointsinrange{}": {
-      "snippet": "bonuspointsinrange{${1:range name}}"
-    },
-    "bonuspointsofquestion{}": {
-      "snippet": "bonuspointsofquestion{${1:number}}"
-    },
-    "bonuspointsonpage{}": {
-      "snippet": "bonuspointsonpage{${1:page number}}"
-    },
-    "bonuspointtable": {},
-    "bonuspointtable[]": {
-      "snippet": "bonuspointtable[${1:h or v}]"
-    },
-    "bonuspointtable[][]": {
-      "snippet": "bonuspointtable[${1:h or v}][${2:type}]"
-    },
-    "bonusqformat{}": {
-      "snippet": "bonusqformat{${1:format spec}}"
-    },
-    "bonusquestion": {},
-    "bonusquestion[]": {
-      "snippet": "bonusquestion[${1:points}]"
-    },
-    "bonussubpart": {},
-    "bonussubpart[]": {
-      "snippet": "bonussubpart[${1:points}]"
-    },
-    "bonussubsubpart": {},
-    "bonussubsubpart[]": {
-      "snippet": "bonussubsubpart[${1:points}]"
-    },
-    "bonustitledquestion{}": {
-      "snippet": "bonustitledquestion{${1:title}}"
-    },
-    "bonustitledquestion{}[]": {
-      "snippet": "bonustitledquestion{${1:title}}[${2:points}]"
-    },
-    "bonustotalformat{}": {
-      "snippet": "bonustotalformat{${1:format commands}}"
-    },
-    "boxedpoints": {},
-    "bracketedpoints": {},
-    "bvpgword{}": {
-      "snippet": "bvpgword{${1:text}}"
-    },
-    "bvpword{}": {
-      "snippet": "bvpword{${1:text}}"
-    },
-    "bvqword{}": {
-      "snippet": "bvqword{${1:text}}"
-    },
-    "bvsword{}": {
-      "snippet": "bvsword{${1:text}}"
-    },
-    "bvtword{}": {
-      "snippet": "bvtword{${1:text}}"
-    },
-    "cancelspace": {},
-    "cancelspacefalse": {},
-    "cancelspacetrue": {},
-    "cellwidth{}": {
-      "snippet": "cellwidth{${1:length}}"
-    },
-    "cfoot[]{}": {
-      "snippet": "cfoot[${2:first page text}]{${1:text}}"
-    },
-    "cfoot{}": {
-      "snippet": "cfoot{${1:text}}"
-    },
-    "chbpword{}": {
-      "snippet": "chbpword{${1:text}}"
-    },
-    "chead[]{}": {
-      "snippet": "chead[${2:first page text}]{${1:text}}"
-    },
-    "chead{}": {
-      "snippet": "chead{${1:text}}"
-    },
-    "checkboxchar{}": {
-      "snippet": "checkboxchar{${1:symbol}}"
-    },
-    "checkboxeshook": {},
-    "checkedchar{}": {
-      "snippet": "checkedchar{${1:symbol}}"
-    },
-    "choice": {},
-    "choicelabel": {},
-    "choiceshook": {},
-    "chpgword{}": {
-      "snippet": "chpgword{${1:text}}"
-    },
-    "chpword{}": {
-      "snippet": "chpword{${1:text}}"
-    },
-    "chqword{}": {
-      "snippet": "chqword{${1:text}}"
-    },
-    "chsword{}": {
-      "snippet": "chsword{${1:text}}"
-    },
-    "chtword{}": {
-      "snippet": "chtword{${1:text}}"
-    },
-    "colorfbox{}{}": {
-      "snippet": "colorfbox{${1:color}}{${2:text}}"
-    },
-    "colorfillwithdottedlines": {},
-    "colorfillwithlines": {},
-    "colorgrids": {},
-    "colorsolutionboxes": {},
-    "combinedgradetable": {},
-    "combinedgradetable[]": {
-      "snippet": "combinedgradetable[${1:h or v}]"
-    },
-    "combinedgradetable[][]": {
-      "snippet": "combinedgradetable[${1:h or v}][${2:type}]"
-    },
-    "combinedpointtable": {},
-    "combinedpointtable[]": {
-      "snippet": "combinedpointtable[${1:h or v}]"
-    },
-    "combinedpointtable[][]": {
-      "snippet": "combinedpointtable[${1:h or v}][${2:type}]"
-    },
-    "ContinuedQuestion": {},
-    "CorrectChoice": {},
-    "correctchoice": {},
-    "CorrectChoiceEmphasis{}": {
-      "snippet": "CorrectChoiceEmphasis{${1:format commands}}"
-    },
-    "correctchoiceemphasis{}": {
-      "snippet": "correctchoiceemphasis{${1:format commands}}"
-    },
-    "covercfoot[]{}": {
-      "snippet": "covercfoot[${2:first page text}]{${1:text}}"
-    },
-    "covercfoot{}": {
-      "snippet": "covercfoot{${1:text}}"
-    },
-    "coverchead[]{}": {
-      "snippet": "coverchead[${2:first page text}]{${1:text}}"
-    },
-    "coverchead{}": {
-      "snippet": "coverchead{${1:text}}"
-    },
-    "coverextrafootheight[]{}": {
-      "snippet": "coverextrafootheight[${2:first page height}]{${1:height}}"
-    },
-    "coverextrafootheight{}": {
-      "snippet": "coverextrafootheight{${1:height}}"
-    },
-    "coverextraheadheight[]{}": {
-      "snippet": "coverextraheadheight[${2:first page height}]{${1:height}}"
-    },
-    "coverextraheadheight{}": {
-      "snippet": "coverextraheadheight{${1:height}}"
-    },
-    "coverfirstpagefooter{}{}{}": {
-      "snippet": "coverfirstpagefooter{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverfirstpagefootrule": {},
-    "coverfirstpageheader{}{}{}": {
-      "snippet": "coverfirstpageheader{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverfirstpageheadrule": {},
-    "coverfooter{}{}{}": {
-      "snippet": "coverfooter{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverfootrule": {},
-    "coverheader{}{}{}": {
-      "snippet": "coverheader{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverheadrule": {},
-    "coverlfoot[]{}": {
-      "snippet": "coverlfoot[${2:first page text}]{${1:text}}"
-    },
-    "coverlfoot{}": {
-      "snippet": "coverlfoot{${1:text}}"
-    },
-    "coverlhead[]{}": {
-      "snippet": "coverlhead[${2:first page text}]{${1:text}}"
-    },
-    "coverlhead{}": {
-      "snippet": "coverlhead{${1:text}}"
-    },
-    "coverrfoot[]{}": {
-      "snippet": "coverrfoot[${2:first page text}]{${1:text}}"
-    },
-    "coverrfoot{}": {
-      "snippet": "coverrfoot{${1:text}}"
-    },
-    "coverrhead[]{}": {
-      "snippet": "coverrhead[${2:first page text}]{${1:text}}"
-    },
-    "coverrhead{}": {
-      "snippet": "coverrhead{${1:text}}"
-    },
-    "coverrunningfooter{}{}{}": {
-      "snippet": "coverrunningfooter{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverrunningfootrule": {},
-    "coverrunningheader{}{}{}": {
-      "snippet": "coverrunningheader{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "coverrunningheadrule": {},
-    "cvbpword{}": {
-      "snippet": "cvbpword{${1:text}}"
-    },
-    "cvpgword{}": {
-      "snippet": "cvpgword{${1:text}}"
-    },
-    "cvpword{}": {
-      "snippet": "cvpword{${1:text}}"
-    },
-    "cvqword{}": {
-      "snippet": "cvqword{${1:text}}"
-    },
-    "cvsword{}": {
-      "snippet": "cvsword{${1:text}}"
-    },
-    "cvtword{}": {
-      "snippet": "cvtword{${1:text}}"
-    },
-    "dottedlinefillheight": {},
-    "droppoints": {},
-    "droptotalbonuspoints": {},
-    "droptotalpoints": {},
-    "endgradingrange{}": {
-      "snippet": "endgradingrange{${1:range name}}"
-    },
-    "extrafootheight[]{}": {
-      "snippet": "extrafootheight[${2:first page height}]{${1:height}}"
-    },
-    "extrafootheight{}": {
-      "snippet": "extrafootheight{${1:height}}"
-    },
-    "extraheadheight[]{}": {
-      "snippet": "extraheadheight[${2:first page height}]{${1:height}}"
-    },
-    "extraheadheight{}": {
-      "snippet": "extraheadheight{${1:height}}"
-    },
-    "extrawidth{}": {
-      "snippet": "extrawidth{${1:width}}"
-    },
-    "filedate": {},
-    "fileversion": {},
-    "fillin": {},
-    "fillin[]": {
-      "snippet": "fillin[${1:answer}]"
-    },
-    "fillin[][]": {
-      "snippet": "fillin[${1:answer}][${2:length}]"
-    },
-    "fillinlinelength": {},
-    "fillwithdottedlines{}": {
-      "snippet": "fillwithdottedlines{${1:length}}"
-    },
-    "fillwithgrid{}": {
-      "snippet": "fillwithgrid{${1:length}}"
-    },
-    "fillwithlines{}": {
-      "snippet": "fillwithlines{${1:length}}"
-    },
-    "firstpagefooter{}{}{}": {
-      "snippet": "firstpagefooter{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "firstpagefootrule": {},
-    "firstpageheader{}{}{}": {
-      "snippet": "firstpageheader{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "firstpageheadrule": {},
-    "firstqinrange{}": {
-      "snippet": "firstqinrange{${1:range name}}"
-    },
-    "footer{}{}{}": {
-      "snippet": "footer{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "footrule": {},
-    "framedsolutions": {},
-    "fullwidth{}": {
-      "snippet": "fullwidth{${1:text}}"
-    },
-    "gradetable": {},
-    "gradetable[]": {
-      "snippet": "gradetable[${1:h or v}]"
-    },
-    "gradetable[][]": {
-      "snippet": "gradetable[${1:h or v}][${2:type}]"
-    },
-    "gradetablestretch{}": {
-      "snippet": "gradetablestretch{${1:factor}}"
-    },
-    "greeknum{}": {
-      "snippet": "greeknum{${1:counter}}"
-    },
-    "gridlinewidth": {},
-    "gridsize": {},
-    "half": {},
-    "header{}{}{}": {
-      "snippet": "header{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "headrule": {},
-    "hpgword{}": {
-      "snippet": "hpgword{${1:text}}"
-    },
-    "hpword{}": {
-      "snippet": "hpword{${1:text}}"
-    },
-    "hqword{}": {
-      "snippet": "hqword{${1:text}}"
-    },
-    "hsword{}": {
-      "snippet": "hsword{${1:text}}"
-    },
-    "htword{}": {
-      "snippet": "htword{${1:text}}"
-    },
-    "ifcontinuation{}{}": {
-      "snippet": "ifcontinuation{${1:true text}}{${2:false text}}"
-    },
-    "ifincomplete{}{}": {
-      "snippet": "ifincomplete{${1:true text}}{${2:false text}}"
-    },
-    "iflastpage{}{}": {
-      "snippet": "iflastpage{${1:true text}}{${2:false text}}"
-    },
-    "ifprintanswers": {},
-    "ifsolutionsreseteqcounter": {},
-    "IncompleteQuestion": {},
-    "lastqinrange{}": {
-      "snippet": "lastqinrange{${1:range name}}"
-    },
-    "lfoot[]{}": {
-      "snippet": "lfoot[${2:first page text}]{${1:text}}"
-    },
-    "lfoot{}": {
-      "snippet": "lfoot{${1:text}}"
-    },
-    "lhead[]{}": {
-      "snippet": "lhead[${2:first page text}]{${1:text}}"
-    },
-    "lhead{}": {
-      "snippet": "lhead{${1:text}}"
-    },
-    "linefill": {},
-    "linefillheight": {},
-    "linefillthickness": {},
-    "makeemptybox{}": {
-      "snippet": "makeemptybox{${1:length}}"
-    },
-    "marginbonuspointname{}": {
-      "snippet": "marginbonuspointname{${1:text}}"
-    },
-    "marginpointname{}": {
-      "snippet": "marginpointname{${1:text}}"
-    },
-    "marginpointssep": {},
-    "marksnotpoints": {},
-    "multicolumnbonusgradetable{}": {
-      "snippet": "multicolumnbonusgradetable{${1:numcols}}"
-    },
-    "multicolumnbonusgradetable{}[]": {
-      "snippet": "multicolumnbonusgradetable{${1:numcols}}[${2:type}]"
-    },
-    "multicolumnbonuspointtable{}": {
-      "snippet": "multicolumnbonuspointtable{${1:numcols}}"
-    },
-    "multicolumnbonuspointtable{}[]": {
-      "snippet": "multicolumnbonuspointtable{${1:numcols}}[${2:type}]"
-    },
-    "multicolumncombinedgradetable{}": {
-      "snippet": "multicolumncombinedgradetable{${1:numcols}}"
-    },
-    "multicolumncombinedgradetable{}[]": {
-      "snippet": "multicolumncombinedgradetable{${1:numcols}}[${2:type}]"
-    },
-    "multicolumncombinedpointtable{}": {
-      "snippet": "multicolumncombinedpointtable{${1:numcols}}"
-    },
-    "multicolumncombinedpointtable{}[]": {
-      "snippet": "multicolumncombinedpointtable{${1:numcols}}[${2:type}]"
-    },
-    "multicolumngradetable{}": {
-      "snippet": "multicolumngradetable{${1:numcols}}"
-    },
-    "multicolumngradetable{}[]": {
-      "snippet": "multicolumngradetable{${1:numcols}}[${2:type}]"
-    },
-    "multicolumnpartialbonusgradetable{}{}": {
-      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}"
-    },
-    "multicolumnpartialbonusgradetable{}{}[]": {
-      "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}[${3:type}]"
-    },
-    "multicolumnpartialbonuspointtable{}{}": {
-      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}"
-    },
-    "multicolumnpartialbonuspointtable{}{}[]": {
-      "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}[${3:type}]"
-    },
-    "multicolumnpartialcombinedgradetable{}{}": {
-      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}"
-    },
-    "multicolumnpartialcombinedgradetable{}{}[]": {
-      "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}[${3:type}]"
-    },
-    "multicolumnpartialcombinedpointtable{}{}": {
-      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}"
-    },
-    "multicolumnpartialcombinedpointtable{}{}[]": {
-      "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}[${3:type}]"
-    },
-    "multicolumnpartialgradetable{}{}": {
-      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}"
-    },
-    "multicolumnpartialgradetable{}{}[]": {
-      "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}[${3:type}]"
-    },
-    "multicolumnpartialpointtable{}{}": {
-      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}"
-    },
-    "multicolumnpartialpointtable{}{}[]": {
-      "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}[${3:type}]"
-    },
-    "multicolumnpointtable{}": {
-      "snippet": "multicolumnpointtable{${1:numcols}}"
-    },
-    "multicolumnpointtable{}[]": {
-      "snippet": "multicolumnpointtable{${1:numcols}}[${2:type}]"
-    },
-    "multirowbonusgradetable{}": {
-      "snippet": "multirowbonusgradetable{${1:numrows}}"
-    },
-    "multirowbonusgradetable{}[]": {
-      "snippet": "multirowbonusgradetable{${1:numrows}}[${2:type}]"
-    },
-    "multirowbonuspointtable{}": {
-      "snippet": "multirowbonuspointtable{${1:numrows}}"
-    },
-    "multirowbonuspointtable{}[]": {
-      "snippet": "multirowbonuspointtable{${1:numrows}}[${2:type}]"
-    },
-    "multirowcombinedgradetable{}": {
-      "snippet": "multirowcombinedgradetable{${1:numrows}}"
-    },
-    "multirowcombinedgradetable{}[]": {
-      "snippet": "multirowcombinedgradetable{${1:numrows}}[${2:type}]"
-    },
-    "multirowcombinedpointtable{}": {
-      "snippet": "multirowcombinedpointtable{${1:numrows}}"
-    },
-    "multirowcombinedpointtable{}[]": {
-      "snippet": "multirowcombinedpointtable{${1:numrows}}[${2:type}]"
-    },
-    "multirowgradetable{}": {
-      "snippet": "multirowgradetable{${1:numrows}}"
-    },
-    "multirowgradetable{}[]": {
-      "snippet": "multirowgradetable{${1:numrows}}[${2:type}]"
-    },
-    "multirowpartialbonusgradetable{}{}": {
-      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}"
-    },
-    "multirowpartialbonusgradetable{}{}[]": {
-      "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}[${3:type}]"
-    },
-    "multirowpartialbonuspointtable{}{}": {
-      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}"
-    },
-    "multirowpartialbonuspointtable{}{}[]": {
-      "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}[${3:type}]"
-    },
-    "multirowpartialcombinedgradetable{}{}": {
-      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}"
-    },
-    "multirowpartialcombinedgradetable{}{}[]": {
-      "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}[${3:type}]"
-    },
-    "multirowpartialcombinedpointtable{}{}": {
-      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}"
-    },
-    "multirowpartialcombinedpointtable{}{}[]": {
-      "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}[${3:type}]"
-    },
-    "multirowpartialgradetable{}{}": {
-      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}"
-    },
-    "multirowpartialgradetable{}{}[]": {
-      "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}[${3:type}]"
-    },
-    "multirowpartialpointtable{}{}": {
-      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}"
-    },
-    "multirowpartialpointtable{}{}[]": {
-      "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}[${3:type}]"
-    },
-    "multirowpointtable{}": {
-      "snippet": "multirowpointtable{${1:numrows}}"
-    },
-    "multirowpointtable{}[]": {
-      "snippet": "multirowpointtable{${1:numrows}}[${2:type}]"
-    },
-    "noaddpoints": {},
-    "nobonusqformat": {},
-    "noboxedpoints": {},
-    "nobracketedpoints": {},
-    "nocancelspace": {},
-    "nocolorfillwithdottedlines": {},
-    "nocolorfillwithlines": {},
-    "nocolorgrids": {},
-    "nocolorsolutionboxes": {},
-    "nocoverfirstpagefootrule": {},
-    "nocoverfirstpageheadrule": {},
-    "nocoverfootrule": {},
-    "nocoverheadrule": {},
-    "nocoverrunningfootrule": {},
-    "nocoverrunningheadrule": {},
-    "nofirstpagefootrule": {},
-    "nofirstpageheadrule": {},
-    "nofootrule": {},
-    "noheadrule": {},
-    "nomorequestions": {},
-    "nopointsinleftmargin": {},
-    "nopointsinmargin": {},
-    "nopointsinrightmargin": {},
-    "noprintanswers": {},
-    "noqformat": {},
-    "noquestionsonthispage": {},
-    "norunningfootrule": {},
-    "norunningheadrule": {},
-    "nosolutionsreseteqcounter": {},
-    "nounstarredvspace": {},
-    "numbonuspoints": {},
-    "numcoverpages": {},
-    "numpages": {},
-    "numparts": {},
-    "numpoints": {},
-    "numqinrange{}": {
-      "snippet": "numqinrange{${1:range name}}"
-    },
-    "numquestions": {},
-    "numsubparts": {},
-    "numsubsubparts": {},
-    "oddeven{}{}": {
-      "snippet": "oddeven{${1:odd text}}{${2:even text}}"
-    },
-    "part": {},
-    "part[]": {
-      "snippet": "part[${1:points}]"
-    },
-    "partialbonusgradetable{}": {
-      "snippet": "partialbonusgradetable{${1:range name}}"
-    },
-    "partialbonusgradetable{}[]": {
-      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}]"
-    },
-    "partialbonusgradetable{}[][]": {
-      "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partialbonuspointtable{}": {
-      "snippet": "partialbonuspointtable{${1:range name}}"
-    },
-    "partialbonuspointtable{}[]": {
-      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}]"
-    },
-    "partialbonuspointtable{}[][]": {
-      "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partialcombinedgradetable{}": {
-      "snippet": "partialcombinedgradetable{${1:range name}}"
-    },
-    "partialcombinedgradetable{}[]": {
-      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}]"
-    },
-    "partialcombinedgradetable{}[][]": {
-      "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partialcombinedpointtable{}": {
-      "snippet": "partialcombinedpointtable{${1:range name}}"
-    },
-    "partialcombinedpointtable{}[]": {
-      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}]"
-    },
-    "partialcombinedpointtable{}[][]": {
-      "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partialgradetable{}": {
-      "snippet": "partialgradetable{${1:range name}}"
-    },
-    "partialgradetable{}[]": {
-      "snippet": "partialgradetable{${1:range name}}[${2:h or v}]"
-    },
-    "partialgradetable{}[][]": {
-      "snippet": "partialgradetable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partialpointtable{}": {
-      "snippet": "partialpointtable{${1:range name}}"
-    },
-    "partialpointtable{}[]": {
-      "snippet": "partialpointtable{${1:range name}}[${2:h or v}]"
-    },
-    "partialpointtable{}[][]": {
-      "snippet": "partialpointtable{${1:range name}}[${2:h or v}][${3:type}]"
-    },
-    "partlabel": {},
-    "partshook": {},
-    "PgInfo{}{}": {
-      "snippet": "PgInfo{${1:question label}}{${2:page}}"
-    },
-    "pointformat{}": {
-      "snippet": "pointformat{${1:format commands}}"
-    },
-    "pointname{}": {
-      "snippet": "pointname{${1:text}}"
-    },
-    "pointpoints{}{}": {
-      "snippet": "pointpoints{${1:singular text}}{${2:plural text}}"
-    },
-    "points": {},
-    "pointsdroppedatright": {},
-    "pointsinleftmargin": {},
-    "pointsinmargin": {},
-    "pointsinrange{}": {
-      "snippet": "pointsinrange{${1:range name}}"
-    },
-    "pointsinrightmargin": {},
-    "pointsofquestion{}": {
-      "snippet": "pointsofquestion{${1:number}}"
-    },
-    "pointsonpage{}": {
-      "snippet": "pointsonpage{${1:page number}}"
-    },
-    "pointstwosided": {},
-    "pointstwosidedreversed": {},
-    "pointtable": {},
-    "pointtable[]": {
-      "snippet": "pointtable[${1:h or v}]"
-    },
-    "pointtable[][]": {
-      "snippet": "pointtable[${1:h or v}][${2:type}]"
-    },
-    "printanswers": {},
-    "printanswersfalse": {},
-    "printanswerstrue": {},
-    "qformat{}": {
-      "snippet": "qformat{${1:format spec}}"
-    },
-    "question": {
-      "detail": "?",
-      "documentation": "QUESTION MARK"
-    },
-    "question[]": {
-      "snippet": "question[${1:points}]"
-    },
-    "questionlabel": {},
-    "questionshook": {},
-    "rfoot[]{}": {
-      "snippet": "rfoot[${2:first page text}]{${1:text}}"
-    },
-    "rfoot{}": {
-      "snippet": "rfoot{${1:text}}"
-    },
-    "rhead[]{}": {
-      "snippet": "rhead[${2:first page text}]{${1:text}}"
-    },
-    "rhead{}": {
-      "snippet": "rhead{${1:text}}"
-    },
-    "rightpointsmargin": {},
-    "runningfooter{}{}{}": {
-      "snippet": "runningfooter{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "runningfootrule": {},
-    "runningheader{}{}{}": {
-      "snippet": "runningheader{${1:left}}{${2:center}}{${3:right}}"
-    },
-    "runningheadrule": {},
-    "settabletotalbonuspoints{}": {
-      "snippet": "settabletotalbonuspoints{${1:number}}"
-    },
-    "settabletotalpoints{}": {
-      "snippet": "settabletotalpoints{${1:number}}"
-    },
-    "shadedsolutions": {},
-    "SolutionEmphasis{}": {
-      "snippet": "SolutionEmphasis{${1:format commands}}"
-    },
-    "solutionsreseteqcounter": {},
-    "solutionsreseteqcounterfalse": {},
-    "solutionsreseteqcountertrue": {},
-    "solutiontitle": {},
-    "subpart": {},
-    "subpart[]": {
-      "snippet": "subpart[${1:points}]"
-    },
-    "subpartlabel": {},
-    "subpartshook": {},
-    "subsubpart": {},
-    "subsubpart[]": {
-      "snippet": "subsubpart[${1:points}]"
-    },
-    "subsubpartlabel": {},
-    "subsubpartshook": {},
-    "thechoice": {},
-    "themarginpoints": {},
-    "thenumparts": {},
-    "thenumquestions": {},
-    "thenumsubparts": {},
-    "thenumsubsubparts": {},
-    "thepartno": {},
-    "thepoints": {},
-    "thequestion": {},
-    "thequestiontitle": {},
-    "thesubpart": {},
-    "thesubsubpart": {},
-    "titledquestion{}": {
-      "snippet": "titledquestion{${1:title}}"
-    },
-    "titledquestion{}[]": {
-      "snippet": "titledquestion{${1:title}}[${2:points}]"
-    },
-    "totalbonuspoints": {},
-    "totalformat{}": {
-      "snippet": "totalformat{${1:format commands}}"
-    },
-    "totalnumpages": {},
-    "totalpoints": {},
-    "unframedsolutions": {},
-    "unstarredvspace": {},
-    "uplevel{}": {
-      "snippet": "uplevel{${1:text}}"
-    },
-    "usehorizontalhalf": {},
-    "useslantedhalf": {},
-    "vpgword{}": {
-      "snippet": "vpgword{${1:text}}"
-    },
-    "vpword{}": {
-      "snippet": "vpword{${1:text}}"
-    },
-    "vqword{}": {
-      "snippet": "vqword{${1:text}}"
-    },
-    "vsword{}": {
-      "snippet": "vsword{${1:text}}"
-    },
-    "vtword{}": {
-      "snippet": "vtword{${1:text}}"
+  "deps": [
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {
-    "checkboxes": {},
-    "choices": {},
-    "coverpages": {},
-    "EnvFullwidth": {},
-    "EnvUplevel": {},
-    "examframed": {},
-    "examleftbar": {},
-    "oneparcheckboxes": {},
-    "oneparchoices": {},
-    "parts": {},
-    "questions": {},
-    "solution": {},
-    "solution[]": {
-      "name": "solution",
-      "snippet": "[${1:space}]"
-    },
-    "solutionbox{}": {
-      "name": "solutionbox",
-      "snippet": "{${1:size}}"
-    },
-    "solutionorbox": {},
-    "solutionorbox[]": {
-      "name": "solutionorbox",
-      "snippet": "[${1:space}]"
-    },
-    "solutionordottedlines": {},
-    "solutionordottedlines[]": {
-      "name": "solutionordottedlines",
-      "snippet": "[${1:space}]"
-    },
-    "solutionorgrid": {},
-    "solutionorgrid[]": {
-      "name": "solutionorgrid",
-      "snippet": "[${1:space}]"
-    },
-    "solutionorlines": {},
-    "solutionorlines[]": {
-      "name": "solutionorlines",
-      "snippet": "[${1:space}]"
-    },
-    "subparts": {},
-    "subsubparts": {},
-    "TheSolution": {}
-  },
-  "options": [
-    "answers",
-    "cancelspace",
-    "addpoints",
-    "solutionsreseteqcounter"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "addpoints"
+    },
+    {
+      "name": "addquestionobject"
+    },
+    {
+      "name": "answerclearance",
+      "unusual": true
+    },
+    {
+      "name": "answerline"
+    },
+    {
+      "name": "answerline",
+      "arg": {
+        "format": "[]",
+        "snippet": "answerline[${1:answer%text}]"
+      }
+    },
+    {
+      "name": "answerlinelength",
+      "unusual": true
+    },
+    {
+      "name": "answerskip",
+      "unusual": true
+    },
+    {
+      "name": "begingradingrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "begingradingrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "bhpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhpword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhpword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhqword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhsword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhsword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhtword{${1:text}}"
+      }
+    },
+    {
+      "name": "bhtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bhtword{${1:text}}"
+      }
+    },
+    {
+      "name": "bonusgradetable"
+    },
+    {
+      "name": "bonusgradetable",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonusgradetable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "bonusgradetable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "bonusgradetable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bonuspart"
+    },
+    {
+      "name": "bonuspart",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonuspart[${1:points}]"
+      }
+    },
+    {
+      "name": "bonuspointformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonuspointformat{${1:format commands}}"
+      }
+    },
+    {
+      "name": "bonuspointname",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonuspointname{${1:text}}"
+      }
+    },
+    {
+      "name": "bonuspointpoints",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bonuspointpoints{${1:singular text%text}}{${2:plural text%text}}"
+      }
+    },
+    {
+      "name": "bonuspoints",
+      "unusual": true
+    },
+    {
+      "name": "bonuspointsinrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonuspointsinrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "bonuspointsofquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonuspointsofquestion{${1:number}}"
+      }
+    },
+    {
+      "name": "bonuspointsonpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonuspointsonpage{${1:page number}}"
+      }
+    },
+    {
+      "name": "bonuspointtable"
+    },
+    {
+      "name": "bonuspointtable",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonuspointtable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "bonuspointtable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "bonuspointtable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "bonusqformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonusqformat{${1:format spec}}"
+      }
+    },
+    {
+      "name": "bonusquestion"
+    },
+    {
+      "name": "bonusquestion",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonusquestion[${1:points}]"
+      }
+    },
+    {
+      "name": "bonussubpart"
+    },
+    {
+      "name": "bonussubpart",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonussubpart[${1:points}]"
+      }
+    },
+    {
+      "name": "bonussubsubpart"
+    },
+    {
+      "name": "bonussubsubpart",
+      "arg": {
+        "format": "[]",
+        "snippet": "bonussubsubpart[${1:points}]"
+      }
+    },
+    {
+      "name": "bonustitledquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonustitledquestion{${1:title%text}}"
+      }
+    },
+    {
+      "name": "bonustitledquestion",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "bonustitledquestion{${1:title%text}}[${2:points}]"
+      }
+    },
+    {
+      "name": "bonustotalformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "bonustotalformat{${1:format commands}}"
+      }
+    },
+    {
+      "name": "boxedpoints"
+    },
+    {
+      "name": "bracketedpoints"
+    },
+    {
+      "name": "bvpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bvpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "bvpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bvpword{${1:text}}"
+      }
+    },
+    {
+      "name": "bvqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bvqword{${1:text}}"
+      }
+    },
+    {
+      "name": "bvsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bvsword{${1:text}}"
+      }
+    },
+    {
+      "name": "bvtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bvtword{${1:text}}"
+      }
+    },
+    {
+      "name": "cancelspace"
+    },
+    {
+      "name": "cancelspacefalse",
+      "unusual": true
+    },
+    {
+      "name": "cancelspacetrue",
+      "unusual": true
+    },
+    {
+      "name": "cellwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "cellwidth{${1:length}}"
+      }
+    },
+    {
+      "name": "cfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "cfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "cfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "chbpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chbpword{${1:text}}"
+      }
+    },
+    {
+      "name": "chead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "chead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "chead",
+      "arg": {
+        "format": "{}",
+        "snippet": "chead{${1:text}}"
+      }
+    },
+    {
+      "name": "checkboxchar",
+      "arg": {
+        "format": "{}",
+        "snippet": "checkboxchar{${1:symbol}}"
+      }
+    },
+    {
+      "name": "checkboxeshook",
+      "unusual": true
+    },
+    {
+      "name": "checkedchar",
+      "arg": {
+        "format": "{}",
+        "snippet": "checkedchar{${1:symbol}}"
+      }
+    },
+    {
+      "name": "choice"
+    },
+    {
+      "name": "choicelabel",
+      "unusual": true
+    },
+    {
+      "name": "choiceshook",
+      "unusual": true
+    },
+    {
+      "name": "chpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "chpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chpword{${1:text}}"
+      }
+    },
+    {
+      "name": "chqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chqword{${1:text}}"
+      }
+    },
+    {
+      "name": "chsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chsword{${1:text}}"
+      }
+    },
+    {
+      "name": "chtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chtword{${1:text}}"
+      }
+    },
+    {
+      "name": "colorfbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "colorfbox{${1:color}}{${2:text}}"
+      }
+    },
+    {
+      "name": "colorfillwithdottedlines"
+    },
+    {
+      "name": "colorfillwithlines"
+    },
+    {
+      "name": "colorgrids"
+    },
+    {
+      "name": "colorsolutionboxes"
+    },
+    {
+      "name": "combinedgradetable"
+    },
+    {
+      "name": "combinedgradetable",
+      "arg": {
+        "format": "[]",
+        "snippet": "combinedgradetable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "combinedgradetable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "combinedgradetable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "combinedpointtable"
+    },
+    {
+      "name": "combinedpointtable",
+      "arg": {
+        "format": "[]",
+        "snippet": "combinedpointtable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "combinedpointtable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "combinedpointtable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ContinuedQuestion"
+    },
+    {
+      "name": "CorrectChoice"
+    },
+    {
+      "name": "correctchoice",
+      "unusual": true
+    },
+    {
+      "name": "CorrectChoiceEmphasis",
+      "arg": {
+        "format": "{}",
+        "snippet": "CorrectChoiceEmphasis{${1:format commands}}"
+      }
+    },
+    {
+      "name": "correctchoiceemphasis",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "correctchoiceemphasis{${1:format commands}}"
+      }
+    },
+    {
+      "name": "covercfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "covercfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "covercfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "covercfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "coverchead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverchead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "coverchead",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverchead{${1:text}}"
+      }
+    },
+    {
+      "name": "coverextrafootheight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverextrafootheight[${2:first page height%l}]{${1:height}}"
+      }
+    },
+    {
+      "name": "coverextrafootheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverextrafootheight{${1:height}}"
+      }
+    },
+    {
+      "name": "coverextraheadheight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverextraheadheight[${2:first page height%l}]{${1:height}}"
+      }
+    },
+    {
+      "name": "coverextraheadheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverextraheadheight{${1:height}}"
+      }
+    },
+    {
+      "name": "coverfirstpagefooter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverfirstpagefooter{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverfirstpagefootrule",
+      "unusual": true
+    },
+    {
+      "name": "coverfirstpageheader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverfirstpageheader{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverfirstpageheadrule",
+      "unusual": true
+    },
+    {
+      "name": "coverfooter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverfootrule",
+      "unusual": true
+    },
+    {
+      "name": "coverheader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverheader{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverheadrule",
+      "unusual": true
+    },
+    {
+      "name": "coverlfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverlfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "coverlfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverlfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "coverlhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverlhead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "coverlhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverlhead{${1:text}}"
+      }
+    },
+    {
+      "name": "coverrfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverrfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "coverrfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverrfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "coverrhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverrhead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "coverrhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverrhead{${1:text}}"
+      }
+    },
+    {
+      "name": "coverrunningfooter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverrunningfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverrunningfootrule",
+      "unusual": true
+    },
+    {
+      "name": "coverrunningheader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "coverrunningheader{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "coverrunningheadrule",
+      "unusual": true
+    },
+    {
+      "name": "cvbpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvbpword{${1:text}}"
+      }
+    },
+    {
+      "name": "cvpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "cvpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvpword{${1:text}}"
+      }
+    },
+    {
+      "name": "cvqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvqword{${1:text}}"
+      }
+    },
+    {
+      "name": "cvsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvsword{${1:text}}"
+      }
+    },
+    {
+      "name": "cvtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cvtword{${1:text}}"
+      }
+    },
+    {
+      "name": "dottedlinefillheight",
+      "unusual": true
+    },
+    {
+      "name": "droppoints"
+    },
+    {
+      "name": "droptotalbonuspoints"
+    },
+    {
+      "name": "droptotalpoints"
+    },
+    {
+      "name": "endgradingrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "endgradingrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "extrafootheight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "extrafootheight[${2:first page height%l}]{${1:height}}"
+      }
+    },
+    {
+      "name": "extrafootheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "extrafootheight{${1:height}}"
+      }
+    },
+    {
+      "name": "extraheadheight",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "extraheadheight[${2:first page height%l}]{${1:height}}"
+      }
+    },
+    {
+      "name": "extraheadheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "extraheadheight{${1:height}}"
+      }
+    },
+    {
+      "name": "extrawidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "extrawidth{${1:width}}"
+      }
+    },
+    {
+      "name": "fillin"
+    },
+    {
+      "name": "fillin",
+      "arg": {
+        "format": "[]",
+        "snippet": "fillin[${1:answer%text}]"
+      }
+    },
+    {
+      "name": "fillin",
+      "arg": {
+        "format": "[][]",
+        "snippet": "fillin[${1:answer%text}][${2:length}]"
+      }
+    },
+    {
+      "name": "fillinlinelength",
+      "unusual": true
+    },
+    {
+      "name": "fillwithdottedlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "fillwithdottedlines{${1:length}}"
+      }
+    },
+    {
+      "name": "fillwithgrid",
+      "arg": {
+        "format": "{}",
+        "snippet": "fillwithgrid{${1:length}}"
+      }
+    },
+    {
+      "name": "fillwithlines",
+      "arg": {
+        "format": "{}",
+        "snippet": "fillwithlines{${1:length}}"
+      }
+    },
+    {
+      "name": "firstpagefooter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "firstpagefooter{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "firstpagefootrule"
+    },
+    {
+      "name": "firstpageheader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "firstpageheader{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "firstpageheadrule"
+    },
+    {
+      "name": "firstqinrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "firstqinrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "footer",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "footer{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "footrule"
+    },
+    {
+      "name": "framedsolutions"
+    },
+    {
+      "name": "fullwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "fullwidth{${1:text}}"
+      }
+    },
+    {
+      "name": "gradetable"
+    },
+    {
+      "name": "gradetable",
+      "arg": {
+        "format": "[]",
+        "snippet": "gradetable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "gradetable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "gradetable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "gradetablestretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "gradetablestretch{${1:factor}}"
+      }
+    },
+    {
+      "name": "greeknum",
+      "arg": {
+        "format": "{}",
+        "snippet": "greeknum{${1:counter}}"
+      }
+    },
+    {
+      "name": "gridlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "gridsize",
+      "unusual": true
+    },
+    {
+      "name": "half"
+    },
+    {
+      "name": "header",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "header{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "headrule"
+    },
+    {
+      "name": "hpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "hpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hpword{${1:text}}"
+      }
+    },
+    {
+      "name": "hqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hqword{${1:text}}"
+      }
+    },
+    {
+      "name": "hsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hsword{${1:text}}"
+      }
+    },
+    {
+      "name": "htword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "htword{${1:text}}"
+      }
+    },
+    {
+      "name": "ifcontinuation",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifcontinuation{${1:true text%text}}{${2:false text%text}}"
+      }
+    },
+    {
+      "name": "ifincomplete",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ifincomplete{${1:true text%text}}{${2:false text%text}}"
+      }
+    },
+    {
+      "name": "iflastpage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "iflastpage{${1:true text%text}}{${2:false text%text}}"
+      }
+    },
+    {
+      "name": "ifprintanswers"
+    },
+    {
+      "name": "IncompleteQuestion"
+    },
+    {
+      "name": "lastqinrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "lastqinrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "lfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "lfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "lfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "lhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lhead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "lhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "lhead{${1:text}}"
+      }
+    },
+    {
+      "name": "linefill",
+      "unusual": true
+    },
+    {
+      "name": "linefillheight",
+      "unusual": true
+    },
+    {
+      "name": "linefillthickness",
+      "unusual": true
+    },
+    {
+      "name": "makeemptybox",
+      "arg": {
+        "format": "{}",
+        "snippet": "makeemptybox{${1:length}}"
+      }
+    },
+    {
+      "name": "marginbonuspointname",
+      "arg": {
+        "format": "{}",
+        "snippet": "marginbonuspointname{${1:text}}"
+      }
+    },
+    {
+      "name": "marginpointname",
+      "arg": {
+        "format": "{}",
+        "snippet": "marginpointname{${1:text}}"
+      }
+    },
+    {
+      "name": "marginpointssep",
+      "unusual": true
+    },
+    {
+      "name": "marksnotpoints"
+    },
+    {
+      "name": "multicolumnbonusgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumnbonusgradetable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumnbonusgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumnbonusgradetable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multicolumnbonuspointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumnbonuspointtable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumnbonuspointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumnbonuspointtable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multicolumncombinedgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumncombinedgradetable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumncombinedgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumncombinedgradetable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multicolumncombinedpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumncombinedpointtable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumncombinedpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumncombinedpointtable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multicolumngradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumngradetable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumngradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumngradetable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multicolumnpartialbonusgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialbonusgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialbonusgradetable{${1:numcols}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpartialbonuspointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialbonuspointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialbonuspointtable{${1:numcols}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpartialcombinedgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialcombinedgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialcombinedgradetable{${1:numcols}}{${2:rangename}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpartialcombinedpointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialcombinedpointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialcombinedpointtable{${1:numcols}}{${2:rangename}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpartialgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialgradetable{${1:numcols}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpartialpointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multicolumnpartialpointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multicolumnpartialpointtable{${1:numcols}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multicolumnpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multicolumnpointtable{${1:numcols}}"
+      }
+    },
+    {
+      "name": "multicolumnpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multicolumnpointtable{${1:numcols}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowbonusgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowbonusgradetable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowbonusgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowbonusgradetable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowbonuspointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowbonuspointtable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowbonuspointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowbonuspointtable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowcombinedgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowcombinedgradetable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowcombinedgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowcombinedgradetable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowcombinedpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowcombinedpointtable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowcombinedpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowcombinedpointtable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowgradetable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowgradetable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "multirowpartialbonusgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multirowpartialbonusgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialbonusgradetable{${1:numrows}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpartialbonuspointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multirowpartialbonuspointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialbonuspointtable{${1:numrows}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpartialcombinedgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}"
+      }
+    },
+    {
+      "name": "multirowpartialcombinedgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialcombinedgradetable{${1:numrows}}{${2:rangename}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpartialcombinedpointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}"
+      }
+    },
+    {
+      "name": "multirowpartialcombinedpointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialcombinedpointtable{${1:numrows}}{${2:rangename}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpartialgradetable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multirowpartialgradetable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialgradetable{${1:numrows}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpartialpointtable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}"
+      }
+    },
+    {
+      "name": "multirowpartialpointtable",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "multirowpartialpointtable{${1:numrows}}{${2:range name}}[${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "multirowpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "multirowpointtable{${1:numrows}}"
+      }
+    },
+    {
+      "name": "multirowpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "multirowpointtable{${1:numrows}}[${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "noaddpoints"
+    },
+    {
+      "name": "nobonusqformat"
+    },
+    {
+      "name": "noboxedpoints"
+    },
+    {
+      "name": "nobracketedpoints"
+    },
+    {
+      "name": "nocancelspace"
+    },
+    {
+      "name": "nocolorfillwithdottedlines",
+      "unusual": true
+    },
+    {
+      "name": "nocolorfillwithlines",
+      "unusual": true
+    },
+    {
+      "name": "nocolorgrids",
+      "unusual": true
+    },
+    {
+      "name": "nocolorsolutionboxes"
+    },
+    {
+      "name": "nocoverfirstpagefootrule",
+      "unusual": true
+    },
+    {
+      "name": "nocoverfirstpageheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nocoverfootrule",
+      "unusual": true
+    },
+    {
+      "name": "nocoverheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nocoverrunningfootrule",
+      "unusual": true
+    },
+    {
+      "name": "nocoverrunningheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nofirstpagefootrule",
+      "unusual": true
+    },
+    {
+      "name": "nofirstpageheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nofootrule",
+      "unusual": true
+    },
+    {
+      "name": "noheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nomorequestions"
+    },
+    {
+      "name": "nopointsinleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "nopointsinmargin"
+    },
+    {
+      "name": "nopointsinrightmargin",
+      "unusual": true
+    },
+    {
+      "name": "noprintanswers"
+    },
+    {
+      "name": "noqformat"
+    },
+    {
+      "name": "noquestionsonthispage"
+    },
+    {
+      "name": "norunningfootrule",
+      "unusual": true
+    },
+    {
+      "name": "norunningheadrule",
+      "unusual": true
+    },
+    {
+      "name": "nosolutionsreseteqcounter"
+    },
+    {
+      "name": "nounstarredvspace"
+    },
+    {
+      "name": "numbonuspoints"
+    },
+    {
+      "name": "numcoverpages"
+    },
+    {
+      "name": "numpages"
+    },
+    {
+      "name": "numparts"
+    },
+    {
+      "name": "numpoints"
+    },
+    {
+      "name": "numqinrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "numqinrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "numquestions"
+    },
+    {
+      "name": "numsubparts"
+    },
+    {
+      "name": "numsubsubparts"
+    },
+    {
+      "name": "oddeven",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "oddeven{${1:odd text%text}}{${2:even text%text}}"
+      }
+    },
+    {
+      "name": "part"
+    },
+    {
+      "name": "part",
+      "arg": {
+        "format": "[]",
+        "snippet": "part[${1:points}]"
+      }
+    },
+    {
+      "name": "partialbonusgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialbonusgradetable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialbonusgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialbonusgradetable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialbonusgradetable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partialbonuspointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialbonuspointtable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialbonuspointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialbonuspointtable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialbonuspointtable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partialcombinedgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialcombinedgradetable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialcombinedgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialcombinedgradetable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialcombinedgradetable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partialcombinedpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialcombinedpointtable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialcombinedpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialcombinedpointtable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialcombinedpointtable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partialgradetable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialgradetable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialgradetable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialgradetable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialgradetable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialgradetable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partialpointtable",
+      "arg": {
+        "format": "{}",
+        "snippet": "partialpointtable{${1:range name}}"
+      }
+    },
+    {
+      "name": "partialpointtable",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "partialpointtable{${1:range name}}[${2:h or v}]"
+      }
+    },
+    {
+      "name": "partialpointtable",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "partialpointtable{${1:range name}}[${2:h or v}][${3:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "partlabel",
+      "unusual": true
+    },
+    {
+      "name": "partshook",
+      "unusual": true
+    },
+    {
+      "name": "PgInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PgInfo{${1:question label}}{${2:page}}"
+      }
+    },
+    {
+      "name": "pointformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "pointformat{${1:format commands}}"
+      }
+    },
+    {
+      "name": "pointname",
+      "arg": {
+        "format": "{}",
+        "snippet": "pointname{${1:text}}"
+      }
+    },
+    {
+      "name": "pointpoints",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pointpoints{${1:singular text%text}}{${2:plural text%text}}"
+      }
+    },
+    {
+      "name": "points"
+    },
+    {
+      "name": "pointsdroppedatright"
+    },
+    {
+      "name": "pointsinleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "pointsinmargin"
+    },
+    {
+      "name": "pointsinrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "pointsinrange{${1:range name}}"
+      }
+    },
+    {
+      "name": "pointsinrightmargin"
+    },
+    {
+      "name": "pointsofquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "pointsofquestion{${1:number}}"
+      }
+    },
+    {
+      "name": "pointsonpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "pointsonpage{${1:page number}}"
+      }
+    },
+    {
+      "name": "pointstwosided"
+    },
+    {
+      "name": "pointstwosidedreversed"
+    },
+    {
+      "name": "pointtable"
+    },
+    {
+      "name": "pointtable",
+      "arg": {
+        "format": "[]",
+        "snippet": "pointtable[${1:h or v}]"
+      }
+    },
+    {
+      "name": "pointtable",
+      "arg": {
+        "format": "[][]",
+        "snippet": "pointtable[${1:h or v}][${2:type%keyvals}]",
+        "keys": [
+          "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "printanswers"
+    },
+    {
+      "name": "printanswersfalse",
+      "unusual": true
+    },
+    {
+      "name": "printanswerstrue",
+      "unusual": true
+    },
+    {
+      "name": "qformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "qformat{${1:format spec}}"
+      }
+    },
+    {
+      "name": "question",
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "question",
+      "arg": {
+        "format": "[]",
+        "snippet": "question[${1:points}]"
+      },
+      "detail": "?",
+      "doc": "Question mark"
+    },
+    {
+      "name": "questionlabel",
+      "unusual": true
+    },
+    {
+      "name": "questionshook",
+      "unusual": true
+    },
+    {
+      "name": "rfoot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rfoot[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rfoot",
+      "arg": {
+        "format": "{}",
+        "snippet": "rfoot{${1:text}}"
+      }
+    },
+    {
+      "name": "rhead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rhead[${2:first page text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "rhead{${1:text}}"
+      }
+    },
+    {
+      "name": "rightpointsmargin",
+      "unusual": true
+    },
+    {
+      "name": "runningfooter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "runningfooter{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "runningfootrule"
+    },
+    {
+      "name": "runningheader",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "runningheader{${1:left%text}}{${2:center%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "runningheadrule"
+    },
+    {
+      "name": "settabletotalbonuspoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "settabletotalbonuspoints{${1:number}}"
+      }
+    },
+    {
+      "name": "settabletotalpoints",
+      "arg": {
+        "format": "{}",
+        "snippet": "settabletotalpoints{${1:number}}"
+      }
+    },
+    {
+      "name": "shadedsolutions"
+    },
+    {
+      "name": "SolutionEmphasis",
+      "arg": {
+        "format": "{}",
+        "snippet": "SolutionEmphasis{${1:format commands}}"
+      }
+    },
+    {
+      "name": "solutionsreseteqcounter"
+    },
+    {
+      "name": "solutiontitle",
+      "unusual": true
+    },
+    {
+      "name": "subpart"
+    },
+    {
+      "name": "subpart",
+      "arg": {
+        "format": "[]",
+        "snippet": "subpart[${1:points}]"
+      }
+    },
+    {
+      "name": "subpartlabel",
+      "unusual": true
+    },
+    {
+      "name": "subpartshook",
+      "unusual": true
+    },
+    {
+      "name": "subsubpart"
+    },
+    {
+      "name": "subsubpart",
+      "arg": {
+        "format": "[]",
+        "snippet": "subsubpart[${1:points}]"
+      }
+    },
+    {
+      "name": "subsubpartlabel",
+      "unusual": true
+    },
+    {
+      "name": "subsubpartshook",
+      "unusual": true
+    },
+    {
+      "name": "thechoice"
+    },
+    {
+      "name": "themarginpoints"
+    },
+    {
+      "name": "thenumparts",
+      "unusual": true
+    },
+    {
+      "name": "thenumquestions",
+      "unusual": true
+    },
+    {
+      "name": "thenumsubparts",
+      "unusual": true
+    },
+    {
+      "name": "thenumsubsubparts",
+      "unusual": true
+    },
+    {
+      "name": "thepartno"
+    },
+    {
+      "name": "thepoints"
+    },
+    {
+      "name": "thequestion"
+    },
+    {
+      "name": "thequestiontitle"
+    },
+    {
+      "name": "thesubpart"
+    },
+    {
+      "name": "thesubsubpart"
+    },
+    {
+      "name": "titledquestion",
+      "arg": {
+        "format": "{}",
+        "snippet": "titledquestion{${1:title%text}}"
+      }
+    },
+    {
+      "name": "titledquestion",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "titledquestion{${1:title%text}}[${2:points}]"
+      }
+    },
+    {
+      "name": "totalbonuspoints"
+    },
+    {
+      "name": "totalformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "totalformat{${1:format commands}}"
+      }
+    },
+    {
+      "name": "totalnumpages"
+    },
+    {
+      "name": "totalpoints"
+    },
+    {
+      "name": "unframedsolutions"
+    },
+    {
+      "name": "unstarredvspace"
+    },
+    {
+      "name": "uplevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "uplevel{${1:text}}"
+      }
+    },
+    {
+      "name": "usehorizontalhalf"
+    },
+    {
+      "name": "useslantedhalf"
+    },
+    {
+      "name": "vpgword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "vpgword{${1:text}}"
+      }
+    },
+    {
+      "name": "vpword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "vpword{${1:text}}"
+      }
+    },
+    {
+      "name": "vqword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "vqword{${1:text}}"
+      }
+    },
+    {
+      "name": "vsword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "vsword{${1:text}}"
+      }
+    },
+    {
+      "name": "vtword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "vtword{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "checkboxes"
+    },
+    {
+      "name": "choices"
+    },
+    {
+      "name": "coverpages"
+    },
+    {
+      "name": "EnvFullwidth"
+    },
+    {
+      "name": "EnvUplevel"
+    },
+    {
+      "name": "examframed",
+      "unusual": true
+    },
+    {
+      "name": "examleftbar",
+      "unusual": true
+    },
+    {
+      "name": "oneparcheckboxes"
+    },
+    {
+      "name": "oneparchoices"
+    },
+    {
+      "name": "parts"
+    },
+    {
+      "name": "questions"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "solution",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    },
+    {
+      "name": "solutionbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:size%l}}"
+      }
+    },
+    {
+      "name": "solutionorbox"
+    },
+    {
+      "name": "solutionorbox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    },
+    {
+      "name": "solutionordottedlines"
+    },
+    {
+      "name": "solutionordottedlines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    },
+    {
+      "name": "solutionorgrid"
+    },
+    {
+      "name": "solutionorgrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    },
+    {
+      "name": "solutionorlines"
+    },
+    {
+      "name": "solutionorlines",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:space%l}]"
+      }
+    },
+    {
+      "name": "subparts"
+    },
+    {
+      "name": "subsubparts"
+    },
+    {
+      "name": "TheSolution",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/exam#c": [
+      "answers",
+      "cancelspace",
+      "addpoints",
+      "solutionsreseteqcounter"
+    ],
+    "\\gradetable,\\multirowgradetable,\\multicolumngradetable,\\pointtable,\\multirowpointtable,\\multicolumnpointtable,\\partialgradetable,\\partialpointtable,\\multirowpartialgradetable,\\multirowpartialpointtable,\\multicolumnpartialgradetable,\\multicolumnpartialpointtable,\\bonusgradetable,\\bonuspointtable,\\combinedgradetable,\\combinedpointtable,\\multicolumnbonusgradetable,\\multicolumnbonuspointtable,\\multicolumncombinedgradetable,\\multicolumncombinedpointtable,\\multicolumnpartialbonusgradetable,\\multicolumnpartialbonuspointtable,\\multicolumnpartialcombinedgradetable,\\multicolumnpartialcombinedpointtable,\\multirowbonusgradetable,\\multirowbonuspointtable,\\multirowcombinedgradetable,\\multirowcombinedpointtable,\\multirowpartialbonusgradetable,\\multirowpartialbonuspointtable,\\multirowpartialcombinedgradetable,\\multirowpartialcombinedpointtable,\\partialbonusgradetable,\\partialbonuspointtable,\\partialcombinedgradetable,\\partialcombinedpointtable": [
+      "questions",
+      "pages"
+    ]
+  },
+  "args": [
+    "\\documentclass/exam#c"
+  ]
 }

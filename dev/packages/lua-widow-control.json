@@ -1,34 +1,35 @@
 {
-  "includes": {
-    "luatex": [],
-    "microtype": []
-  },
-  "macros": {
-    "lwcsetup{}": {
-      "snippet": "lwcsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "lwcenable": {},
-    "lwcdisable": {},
-    "lwcemergencystretch": {},
-    "lwcdisablecmd{}": {
-      "snippet": "lwcdisablecmd{${1:cmd}}"
+    {
+      "name": "microtype"
     }
-  },
-  "envs": {},
-  "options": [
-    "microtype"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "lwcsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "lwcsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\lwcsetup,\\usepackage/lua-widow-control#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\lwcsetup,\\usepackage/lua-widow-control#c": [
       "disable",
       "enable",
       "disablecmds={${1:\\macro1,\\macro2,...}}",
       "emergencystretch=",
       "widowpenalty=${1:integer}",
       "orphanpenalty=${1:integer}",
-      "nobreak=",
+      "nobreak=${1|keep,split,warn|}",
       "max-cost=${1:integer}",
       "draft",
       "showcosts",
@@ -38,6 +39,13 @@
       "default",
       "strict",
       "balanced"
+    ],
+    "\\usepackage/lua-widow-control#c": [
+      "microtype"
     ]
+  },
+  "args": [
+    "\\lwcsetup,\\usepackage/lua-widow-control#c",
+    "\\usepackage/lua-widow-control#c"
   ]
 }

@@ -1,310 +1,660 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "thmtools": [],
-    "thm-restate": [],
-    "catchfile": [],
-    "pgfkeys": [],
-    "hyperref": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "includeExternalAppendix[]{}": {
-      "snippet": "includeExternalAppendix[${2:category}]{${1:file}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "includeExternalAppendix{}": {
-      "snippet": "includeExternalAppendix{${1:file}}"
+    {
+      "name": "thmtools"
     },
-    "newEndProof[]{}": {
-      "snippet": "newEndProof[${2:options}]{${1:envname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "thm-restate"
     },
-    "newEndProof{}": {
-      "snippet": "newEndProof{${1:envname}}"
+    {
+      "name": "catchfile"
     },
-    "newEndThm[]{}{}": {
-      "snippet": "newEndThm[${3:options}]{${1:envname}}{${2:old envname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeys"
     },
-    "newEndThm{}{}": {
-      "snippet": "newEndThm{${1:envname}}{${2:old envname}}"
+    {
+      "name": "hyperref"
     },
-    "pratendAddLabel": {},
-    "pratendRef{}": {
-      "snippet": "pratendRef{${1:label}}"
-    },
-    "pratendSectionlikeCref": {},
-    "pratendSetGlobal{}": {
-      "snippet": "pratendSetGlobal{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pratendSetLocal{}": {
-      "snippet": "pratendSetLocal{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "printProofs": {},
-    "printProofs[]": {
-      "snippet": "printProofs[${1:category}]"
-    },
-    "textEnd[]{}": {
-      "snippet": "textEnd[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "textEnd{}": {
-      "snippet": "textEnd{${1:text}}"
-    },
-    "allattheendfalse": {},
-    "allattheendtrue": {},
-    "appendtofile{}{}": {
-      "snippet": "appendtofile{${1:file}}{${2:code}}"
-    },
-    "appendwrite": {},
-    "bothfalse": {},
-    "bothtrue": {},
-    "category": {},
-    "currcounterval": {},
-    "eraseIfNeeded{}": {
-      "snippet": "eraseIfNeeded{${1:category}}"
-    },
-    "externalAppendixfalse": {},
-    "externalAppendixtrue": {},
-    "fileContent": {},
-    "ifallattheend": {},
-    "ifboth": {},
-    "ifexternalAppendix": {},
-    "iflinktoproof": {},
-    "ifpratendOptcreateShortEnv": {},
-    "ifpratendOptdisablePatchSection": {},
-    "ifproofend": {},
-    "ifproofhere": {},
-    "ifrestatedbefore": {},
-    "ifrestatethm": {},
-    "linktoprooffalse": {},
-    "linktoprooftrue": {},
-    "makeallother": {},
-    "pratendcountercurrent": {},
-    "pratendcustomrestate": {},
-    "pratendDisableDebugSynctex": {},
-    "pratendEnableDebugSynctex": {},
-    "pratendGeneratePrefixFile{}": {
-      "snippet": "pratendGeneratePrefixFile{${1:prefix}}"
-    },
-    "pratendLabelProofSection": {},
-    "pratendlastoptions": {},
-    "pratendtextlink": {},
-    "pratendtextproof": {},
-    "prefixPrAtEndFiles": {},
-    "proofendfalse": {},
-    "proofendtrue": {},
-    "proofherefalse": {},
-    "proofheretrue": {},
-    "restatedbeforefalse": {},
-    "restatedbeforetrue": {},
-    "restatethmfalse": {},
-    "restatethmtrue": {},
-    "temprest": {},
-    "thecounterAllProofEnd": {}
-  },
-  "envs": {
-    "proofE": {
-      "option": "createShortEnv"
-    },
-    "proofE[]": {
-      "name": "proofE",
-      "snippet": "[${1:options}]",
-      "option": "createShortEnv",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "thmE": {
-      "option": "createShortEnv=true"
-    },
-    "thmE[]": {
-      "name": "thmE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "thmE[][]": {
-      "name": "thmE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "lemmaE": {
-      "option": "createShortEnv=true"
-    },
-    "lemmaE[]": {
-      "name": "lemmaE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "lemmaE[][]": {
-      "name": "lemmaE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "theoremE": {
-      "option": "createShortEnv=true"
-    },
-    "theoremE[]": {
-      "name": "theoremE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "theoremE[][]": {
-      "name": "theoremE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "corollaryE": {
-      "option": "createShortEnv=true"
-    },
-    "corollaryE[]": {
-      "name": "corollaryE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "corollaryE[][]": {
-      "name": "corollaryE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "propositionE": {
-      "option": "createShortEnv=true"
-    },
-    "propositionE[]": {
-      "name": "propositionE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "propositionE[][]": {
-      "name": "propositionE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "propertyE": {
-      "option": "createShortEnv=true"
-    },
-    "propertyE[]": {
-      "name": "propertyE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "propertyE[][]": {
-      "name": "propertyE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "factE": {
-      "option": "createShortEnv=true"
-    },
-    "factE[]": {
-      "name": "factE",
-      "snippet": "[${1:title}]",
-      "option": "createShortEnv=true"
-    },
-    "factE[][]": {
-      "name": "factE",
-      "snippet": "[${1:title}][${2:options}]",
-      "option": "createShortEnv=true",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "proofED": {
-      "option": "createShortEnv=true"
-    },
-    "thmED": {
-      "option": "createShortEnv=true"
-    },
-    "lemmaED": {
-      "option": "createShortEnv=true"
-    },
-    "theoremED": {
-      "option": "createShortEnv=true"
-    },
-    "corollaryED": {
-      "option": "createShortEnv=true"
-    },
-    "propositionED": {
-      "option": "createShortEnv=true"
-    },
-    "propertyED": {
-      "option": "createShortEnv=true"
-    },
-    "factED": {
-      "option": "createShortEnv=true"
-    },
-    "textAtEnd": {},
-    "textAtEnd[]": {
-      "name": "textAtEnd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "proofEnd": {},
-    "proofEnd[]": {
-      "name": "proofEnd",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "theoremEnd{}": {
-      "name": "theoremEnd",
-      "snippet": "{${1:theorem-env}}"
-    },
-    "theoremEnd{}[]": {
-      "name": "theoremEnd",
-      "snippet": "{${1:theorem-env}}[${2:title}]"
-    },
-    "theoremEnd[]{}": {
-      "name": "theoremEnd",
-      "snippet": "[${2:options}]{${1:theorem-env}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "theoremEnd[]{}[]": {
-      "name": "theoremEnd",
-      "snippet": "[${2:options}]{${1:theorem-env}}[${3:title}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "theoremEndRestateBefore{}{}": {
-      "name": "theoremEndRestateBefore",
-      "snippet": "{${1:theorem-env}}{${2:name}}"
-    },
-    "theoremEndRestateBefore{}[]{}": {
-      "name": "theoremEndRestateBefore",
-      "snippet": "{${1:theorem-env}}[${2:title}]{${3:name}}"
-    },
-    "proofEndDebug": {},
-    "proofEndOrig": {},
-    "theoremEndDebug": {},
-    "theoremEndOrig": {}
-  },
-  "options": [
-    "conf={${1:configuration}}",
-    "disablePatchSection",
-    "commandRef=${1:csname}",
-    "createShortEnv"
+    {
+      "name": "kvoptions"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includeExternalAppendix",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includeExternalAppendix[${2:category}]{${1:file}}"
+      }
+    },
+    {
+      "name": "includeExternalAppendix",
+      "arg": {
+        "format": "{}",
+        "snippet": "includeExternalAppendix{${1:file}}"
+      }
+    },
+    {
+      "name": "newEndProof",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newEndProof[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newEndProof",
+      "arg": {
+        "format": "{}",
+        "snippet": "newEndProof{${1:envname}}"
+      }
+    },
+    {
+      "name": "newEndThm",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newEndThm[${3:options%keyvals}]{${1:envname}}{${2:old envname}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newEndThm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newEndThm{${1:envname}}{${2:old envname}}"
+      }
+    },
+    {
+      "name": "pratendAddLabel"
+    },
+    {
+      "name": "pratendRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pratendRef{${1:label}}"
+      }
+    },
+    {
+      "name": "pratendSectionlikeCref",
+      "unusual": true
+    },
+    {
+      "name": "pratendSetGlobal",
+      "arg": {
+        "format": "{}",
+        "snippet": "pratendSetGlobal{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pratendSetLocal",
+      "arg": {
+        "format": "{}",
+        "snippet": "pratendSetLocal{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "printProofs"
+    },
+    {
+      "name": "printProofs",
+      "arg": {
+        "format": "[]",
+        "snippet": "printProofs[${1:category}]"
+      }
+    },
+    {
+      "name": "textEnd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textEnd[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "textEnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "textEnd{${1:text}}"
+      }
+    },
+    {
+      "name": "appendtofile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "appendtofile{${1:file}}{${2:code}}"
+      }
+    },
+    {
+      "name": "category",
+      "unusual": true
+    },
+    {
+      "name": "eraseIfNeeded",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "eraseIfNeeded{${1:category}}"
+      }
+    },
+    {
+      "name": "fileContent",
+      "unusual": true
+    },
+    {
+      "name": "makeallother",
+      "unusual": true
+    },
+    {
+      "name": "pratendcountercurrent",
+      "unusual": true
+    },
+    {
+      "name": "pratendcustomrestate",
+      "unusual": true
+    },
+    {
+      "name": "pratendDisableDebugSynctex",
+      "unusual": true
+    },
+    {
+      "name": "pratendEnableDebugSynctex",
+      "unusual": true
+    },
+    {
+      "name": "pratendGeneratePrefixFile",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pratendGeneratePrefixFile{${1:prefix}}"
+      }
+    },
+    {
+      "name": "pratendLabelProofSection",
+      "unusual": true
+    },
+    {
+      "name": "pratendlastoptions",
+      "unusual": true
+    },
+    {
+      "name": "pratendtextlink",
+      "unusual": true
+    },
+    {
+      "name": "pratendtextproof",
+      "unusual": true
+    },
+    {
+      "name": "prefixPrAtEndFiles",
+      "unusual": true
+    },
+    {
+      "name": "thecounterAllProofEnd",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "proofE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "proofE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv"
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "thmE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "lemmaE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "theoremE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "corollaryE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "propositionE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "propertyE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv=true"
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:title%text}]"
+      }
+    },
+    {
+      "name": "factE",
+      "if": "createShortEnv=true",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:title%text}][${2:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "textAtEnd"
+    },
+    {
+      "name": "textAtEnd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "proofEnd"
+    },
+    {
+      "name": "proofEnd",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "theoremEnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:theorem-env}}"
+      }
+    },
+    {
+      "name": "theoremEnd",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:theorem-env}}[${2:title%text}]"
+      }
+    },
+    {
+      "name": "theoremEnd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:theorem-env}}",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "theoremEnd",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:options%keyvals}]{${1:theorem-env}}[${3:title%text}]",
+        "keys": [
+          "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "theoremEndRestateBefore",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:theorem-env}}{${2:name}}"
+      }
+    },
+    {
+      "name": "theoremEndRestateBefore",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:theorem-env}}[${3:title%text}]{${2:name}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/proof-at-the-end#c": [
+      "conf={${1:configuration}}",
+      "disablePatchSection",
+      "commandRef=${1:csname}",
+      "createShortEnv"
+    ],
+    "\\begin{proofE}#c,\\begin{thmE}#c,\\begin{lemmaE}#c,\\begin{theoremE}#c,\\begin{corollaryE}#c,\\begin{propositionE}#c,\\begin{propertyE}#c,\\begin{factE}#c,\\begin{theoremEnd}#c,\\begin{proofEnd}#c,\\begin{textAtEnd}#c,\\newEndThm#c,\\newEndProof#c,\\textEnd#c,\\pratendSetGlobal#c,\\pratendSetLocal#c": [
       "category=${1:category}",
       "proof here",
       "no proof here",
@@ -342,5 +692,8 @@
       "text link external appendix",
       "only external appendix"
     ]
+  },
+  "args": [
+    "\\usepackage/proof-at-the-end#c"
   ]
 }

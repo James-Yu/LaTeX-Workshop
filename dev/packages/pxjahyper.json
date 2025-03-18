@@ -1,71 +1,112 @@
 {
-  "includes": {
-    "platex": [],
-    "keyval": [],
-    "ltxcmds": [],
-    "etoolbox": [],
-    "bxjatoucs": [],
-    "pxjahyper-enc": [
-      "tounicode"
-    ],
-    "uplatex": [
-      "bigcode"
-    ]
-  },
-  "macros": {
-    "pxjahypersetup{}": {
-      "snippet": "pxjahypersetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "platex"
     },
-    "Ux{}": {
-      "snippet": "Ux{${1:Unicode 符号値 16 進}}"
+    {
+      "name": "keyval"
     },
-    "pxDeclarePdfTextCommand{}{}{}": {
-      "snippet": "pxDeclarePdfTextCommand{${1:cmd}}{${2:jis}}{${3:ucs}}"
+    {
+      "name": "ltxcmds"
     },
-    "pxDeclarePdfTextComposite{}{}{}{}": {
-      "snippet": "pxDeclarePdfTextComposite{${1:cmd}}{${2:arg}}{${3:jis}}{${4:ucs}}"
+    {
+      "name": "etoolbox"
     },
-    "pxHyperrefUnicodePatched": {}
-  },
-  "envs": {},
-  "options": [
-    "dvipdfmx",
-    "dvipdfm",
-    "dvips",
-    "nodvidriver",
-    "resetdvidriver",
-    "autodvidriver",
-    "tounicode",
-    "notounicode",
-    "out2uni",
-    "noout2uni",
-    "convbkmk",
-    "noconvbkmk",
-    "papersize",
-    "nopapersize",
-    "charcmds",
-    "nocharcmds",
-    "bigcode",
-    "nobigcode",
-    "jacommentline",
-    "nojacommentline",
-    "disablecmds",
-    "nodisablecmds",
-    "otfutf",
-    "nootfutf",
-    "otfcid",
-    "nootfcid",
-    "otfmacros",
-    "nootfmacros",
-    "force-unicode"
+    {
+      "name": "bxjatoucs"
+    },
+    {
+      "name": "pxjahyper-enc",
+      "if": "tounicode"
+    },
+    {
+      "name": "uplatex",
+      "if": "bigcode"
+    }
   ],
-  "keyvals": [
-    [
-      "fallback=",
+  "macros": [
+    {
+      "name": "pxjahypersetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "pxjahypersetup{${1:options%keyvals}}",
+        "keys": [
+          "\\pxjahypersetup#c,\\usepackage/pxjahyper#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Ux",
+      "arg": {
+        "format": "{}",
+        "snippet": "Ux{${1:Unicode 符号値 16 進}}"
+      }
+    },
+    {
+      "name": "pxDeclarePdfTextCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pxDeclarePdfTextCommand{${1:cmd}}{${2:jis}}{${3:ucs}}"
+      }
+    },
+    {
+      "name": "pxDeclarePdfTextComposite",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pxDeclarePdfTextComposite{${1:cmd}}{${2:arg}}{${3:jis}}{${4:ucs}}"
+      }
+    },
+    {
+      "name": "pxjahyperBadCharacter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pxjahyperBadCharacter{${1:label}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pxjahyper#c": [
+      "dvipdfmx",
+      "dvipdfm",
+      "dvips",
+      "nodvidriver",
+      "resetdvidriver",
+      "tounicode",
+      "notounicode",
+      "out2uni",
+      "noout2uni",
+      "convbkmk",
+      "noconvbkmk",
+      "papersize",
+      "nopapersize",
+      "charcmds",
+      "nocharcmds",
+      "bigcode",
+      "nobigcode",
+      "jacommentline",
+      "nojacommentline",
+      "disablecmds",
+      "nodisablecmds",
+      "otfutf",
+      "nootfutf",
+      "otfcid",
+      "nootfcid",
+      "otfmacros",
+      "nootfmacros"
+    ],
+    "\\pxjahypersetup#c,\\usepackage/pxjahyper#c": [
+      "fallback=${1|geta,delete|}",
+      "fallback-warn",
+      "fallback-cidm",
       "extjis",
       "ajhankaku-chars"
     ]
+  },
+  "args": [
+    "\\usepackage/pxjahyper#c",
+    "\\pxjahypersetup#c,\\usepackage/pxjahyper#c"
   ]
 }

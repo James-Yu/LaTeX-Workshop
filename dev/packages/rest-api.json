@@ -1,101 +1,260 @@
 {
-  "includes": {
-    "fontenc": [],
-    "tabularx": [],
-    "colortbl": [],
-    "transparent": [],
-    "xcolor": [],
-    "color": [],
-    "xifthen": [],
-    "xstring": [],
-    "tikz": [],
-    "mdframed": [],
-    "array": [],
-    "verbatim": [],
-    "listings": []
-  },
-  "macros": {
-    "bodyFormat": {},
-    "breakRoute": {},
-    "getDeleteBorderColor": {},
-    "getDeleteColor": {},
-    "getDeleteLightColor": {},
-    "getGetBorderColor": {},
-    "getGetColor": {},
-    "getGetLightColor": {},
-    "getPostBorderColor": {},
-    "getPostColor": {},
-    "getPostLightColor": {},
-    "getPutBorderColor": {},
-    "getPutColor": {},
-    "getPutLightColor": {},
-    "method": {},
-    "methodBorderColor": {},
-    "methodColor": {},
-    "methodJson": {},
-    "methodLightColor": {},
-    "methodXml": {},
-    "noBreakRoute": {},
-    "noRouteParameter{}": {
-      "snippet": "noRouteParameter{${1:text}}"
+  "deps": [
+    {
+      "name": "fontenc"
     },
-    "noRouteResponse{}": {
-      "snippet": "noRouteResponse{${1:text}}"
+    {
+      "name": "tabularx"
     },
-    "printDescription": {},
-    "routeBreakValue": {},
-    "routeDescription": {},
-    "routeParamItem{}{}": {
-      "snippet": "routeParamItem{${1:name}}{${2:description}}"
+    {
+      "name": "colortbl"
     },
-    "urlPath": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "transparent"
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "xcolor"
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "apiRoute{}{}{}": {
+    {
+      "name": "color"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "mdframed"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "verbatim"
+    },
+    {
+      "name": "listings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "bodyFormat",
+      "unusual": true
+    },
+    {
+      "name": "breakRoute"
+    },
+    {
+      "name": "getDeleteBorderColor"
+    },
+    {
+      "name": "getDeleteColor"
+    },
+    {
+      "name": "getDeleteLightColor"
+    },
+    {
+      "name": "getGetBorderColor"
+    },
+    {
+      "name": "getGetColor"
+    },
+    {
+      "name": "getGetLightColor"
+    },
+    {
+      "name": "getPostBorderColor"
+    },
+    {
+      "name": "getPostColor"
+    },
+    {
+      "name": "getPostLightColor"
+    },
+    {
+      "name": "getPutBorderColor"
+    },
+    {
+      "name": "getPutColor"
+    },
+    {
+      "name": "getPutLightColor"
+    },
+    {
+      "name": "method",
+      "unusual": true
+    },
+    {
+      "name": "methodBorderColor"
+    },
+    {
+      "name": "methodColor"
+    },
+    {
+      "name": "methodJson"
+    },
+    {
+      "name": "methodLightColor"
+    },
+    {
+      "name": "methodXml"
+    },
+    {
+      "name": "noBreakRoute"
+    },
+    {
+      "name": "noRouteParameter",
+      "arg": {
+        "format": "{}",
+        "snippet": "noRouteParameter{${1:text}}"
+      }
+    },
+    {
+      "name": "noRouteResponse",
+      "arg": {
+        "format": "{}",
+        "snippet": "noRouteResponse{${1:text}}"
+      }
+    },
+    {
+      "name": "printDescription",
+      "unusual": true
+    },
+    {
+      "name": "routeBreakValue"
+    },
+    {
+      "name": "routeDescription",
+      "unusual": true
+    },
+    {
+      "name": "routeParamItem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "routeParamItem{${1:name}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "urlPath",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
       "name": "apiRoute",
-      "snippet": "{${1:method}}{${2:path}}{${3:description}}"
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:method}}{${2:path}}{${3:description%text}}"
+      }
     },
-    "routeParameter": {},
-    "routeRequest{}": {
+    {
+      "name": "routeParameter"
+    },
+    {
       "name": "routeRequest",
-      "snippet": "{${1:path}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path}}"
+      }
     },
-    "routeRequestBody": {},
-    "routeResponse{}": {
+    {
+      "name": "routeRequestBody"
+    },
+    {
       "name": "routeResponse",
-      "snippet": "{${1:path}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:path}}"
+      }
     },
-    "routeResponseItem{}{}": {
+    {
       "name": "routeResponseItem",
-      "snippet": "{${1:status code}}{${2:description}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:status code}}{${2:description%text}}"
+      }
     },
-    "routeResponseItemBody": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "routeResponseItemBody"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

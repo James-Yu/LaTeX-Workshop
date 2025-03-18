@@ -1,26 +1,62 @@
 {
-  "includes": {
-    "amsmath": [],
-    "environ": []
-  },
-  "macros": {
-    "ConteqExplStyle{}": {
-      "snippet": "ConteqExplStyle{${1:explanation}}"
+  "deps": [
+    {
+      "name": "amsmath"
     },
-    "ConteqSetDefaultLayout{}": {
-      "snippet": "ConteqSetDefaultLayout{${1:layout}}"
-    },
-    "ConteqDefineLayout{}{}{}{}{}{}{}": {
-      "snippet": "ConteqDefineLayout{${1:name}}{${2:before}}{${3:left}}{${4:right1}}{${5:right2}}{${6:sep}}{${7:after}}"
+    {
+      "name": "environ"
     }
-  },
-  "envs": {
-    "conteq": {},
-    "conteq[]": {
+  ],
+  "macros": [
+    {
+      "name": "ConteqExplStyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ConteqExplStyle{${1:explanation}}"
+      }
+    },
+    {
+      "name": "ConteqSetDefaultLayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ConteqSetDefaultLayout{${1:layout%keyvals}}"
+      }
+    },
+    {
+      "name": "ConteqDefineLayout",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "ConteqDefineLayout{${1:name}}{${2:before}}{${3:left}}{${4:right1}}{${5:right2}}{${6:sep}}{${7:after}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "conteq"
+    },
+    {
       "name": "conteq",
-      "snippet": "[${1:layout}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:layout%keyvals}]",
+        "keys": [
+          "\\begin{conteq}#c,\\ConteqSetDefaultLayout#c"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{conteq}#c,\\ConteqSetDefaultLayout#c": [
+      "plain",
+      "explline",
+      "headline",
+      "onecolumn",
+      "oneline"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

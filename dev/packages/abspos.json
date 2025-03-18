@@ -1,0 +1,54 @@
+{
+  "deps": [
+    {
+      "name": "atbegshi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "absposset",
+      "arg": {
+        "format": "{}",
+        "snippet": "absposset{${1:options%keyvals}}",
+        "keys": [
+          "\\absposset#c,\\absput#c,\\absputcoffin#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "absput",
+      "arg": {
+        "format": "{}",
+        "snippet": "absput{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "absput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "absput[${2:options%keyvals}]{${1:contents%text}}",
+        "keys": [
+          "\\absposset#c,\\absput#c,\\absputcoffin#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\absposset#c,\\absput#c,\\absputcoffin#c": [
+      "angle=${1:degrees}",
+      "h=${1|l,hc,r|}",
+      "pg=${1:page-coffin}",
+      "pg-h=${1|l,hc,r|}",
+      "pg-v=${1|t,vc,b,H,T,B|}",
+      "scale=${1:factor}",
+      "v=${1|t,vc,b,H,T,B|}",
+      "width=",
+      "x=",
+      "y="
+    ]
+  },
+  "args": []
+}

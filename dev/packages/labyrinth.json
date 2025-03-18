@@ -1,61 +1,143 @@
 {
-  "includes": {
-    "calc": [],
-    "xkeyval": [],
-    "picture": []
-  },
-  "macros": {
-    "h": {
-      "detail": "h",
-      "documentation": "LATIN SMALL LETTER H"
+  "deps": [
+    {
+      "name": "calc"
     },
-    "labyrinthset{}": {
-      "snippet": "labyrinthset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xkeyval"
     },
-    "plus": {
+    {
+      "name": "picture"
+    }
+  ],
+  "macros": [
+    {
+      "name": "h",
+      "unusual": true
+    },
+    {
+      "name": "labyrinthset",
+      "arg": {
+        "format": "{}",
+        "snippet": "labyrinthset{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{labyrinth},\\labyrinthset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "putsymbol",
+      "arg": {
+        "format": "(){}",
+        "snippet": "putsymbol(${2:x},${3:y}){${1:symbol}}"
+      }
+    },
+    {
+      "name": "plus",
+      "unusual": true,
       "detail": "+",
-      "documentation": "PLUS SIGN"
+      "doc": "Plus sign"
     },
-    "minus": {
+    {
+      "name": "minus",
+      "unusual": true,
       "detail": "−",
-      "documentation": "MINUS SIGN"
+      "doc": "Minus sign"
     },
-    "ast": {
+    {
+      "name": "ast",
+      "unusual": true,
       "detail": "∗",
-      "documentation": "ASTERISK OPERATOR (Hodge star operator)"
+      "doc": "Asterisk operator (hodge star operator)"
     },
-    "solutionset{}": {
-      "snippet": "solutionset{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "labyrinthsolution",
+      "arg": {
+        "format": "(){}",
+        "snippet": "labyrinthsolution(${2:x},${3:y}){${1:solution code}}"
+      }
     },
-    "solutionpath": {},
-    "truncdiv{}{}": {
-      "snippet": "truncdiv{${1:num1}}{${2:num2}}"
+    {
+      "name": "labyrinthsolution",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "labyrinthsolution[${2:options%keyvals}](${3:x},${4:y}){${1:solution code}}",
+        "keys": [
+          "\\labyrinthsolution,\\solutionset,\\autosolution"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "solutionset",
+      "arg": {
+        "format": "{}",
+        "snippet": "solutionset{${1:options%keyvals}}",
+        "keys": [
+          "\\labyrinthsolution,\\solutionset,\\autosolution"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "autosolution",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "autosolution(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:first direction}}"
+      }
+    },
+    {
+      "name": "autosolution",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "autosolution[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:first direction}}",
+        "keys": [
+          "\\labyrinthsolution,\\solutionset,\\autosolution"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "solutionpath",
+      "unusual": true
+    },
+    {
+      "name": "truncdiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "truncdiv{${1:num1}}{${2:num2}}"
+      }
     }
-  },
-  "envs": {
-    "labyrinth{}{}": {
+  ],
+  "envs": [
+    {
       "name": "labyrinth",
-      "snippet": "{${1:width}}{${2:height}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width%plain}}{${2:height%plain}}"
+      }
     },
-    "labyrinth[]{}{}": {
+    {
       "name": "labyrinth",
-      "snippet": "[${3:options}]{${1:width}}{${2:height}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:options%keyvals}]{${1:width%plain}}{${2:height%plain}}",
+        "keys": [
+          "\\begin{labyrinth},\\labyrinthset"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\begin{labyrinth},\\labyrinthset": [
       "unit=",
       "thickness=",
       "centered"
     ],
-    [
+    "\\labyrinthsolution,\\solutionset,\\autosolution": [
       "hidden",
       "thicklines",
       "up=${1:symbol}",
@@ -66,5 +148,6 @@
       "vcorr=",
       "font=${1:font commands}"
     ]
-  ]
+  },
+  "args": []
 }

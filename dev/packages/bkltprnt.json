@@ -1,37 +1,87 @@
 {
-  "includes": {},
-  "macros": {
-    "bookletpage": {},
-    "leftpagenumber": {},
-    "rightpagenumber": {},
-    "target{}{}{}": {
-      "snippet": "target{${1:mag}}{${2:width}}{${3:height}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "bookletpage",
+      "unusual": true
     },
-    "source{}{}{}": {
-      "snippet": "source{${1:mag}}{${2:width}}{${3:height}}"
+    {
+      "name": "leftpagenumber",
+      "unusual": true
     },
-    "setpdftargetpages": {},
-    "setdvipstargetpages": {},
-    "targetBooklet": {},
-    "targettopbottom": {},
-    "twoupemptypage": {},
-    "twoupclearpage": {},
-    "TwoupWrites": {},
-    "twouparticle": {},
-    "twoupplain": {},
-    "twouplandscape": {},
-    "twouponetoone": {}
-  },
-  "envs": {},
-  "options": [
-    "four",
-    "eight",
-    "sixteen",
-    "thirtytwo",
-    "twouparticle",
-    "largetypeblock",
-    "1to1",
-    "landscape"
+    {
+      "name": "rightpagenumber",
+      "unusual": true
+    },
+    {
+      "name": "target",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "target{${1:mag}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "source",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "source{${1:mag}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "setpdftargetpages"
+    },
+    {
+      "name": "setdvipstargetpages"
+    },
+    {
+      "name": "targetBooklet",
+      "unusual": true
+    },
+    {
+      "name": "targettopbottom",
+      "unusual": true
+    },
+    {
+      "name": "twoupemptypage"
+    },
+    {
+      "name": "twoupclearpage"
+    },
+    {
+      "name": "TwoupWrites",
+      "unusual": true
+    },
+    {
+      "name": "twouparticle",
+      "unusual": true
+    },
+    {
+      "name": "twoupplain",
+      "unusual": true
+    },
+    {
+      "name": "twouplandscape",
+      "unusual": true
+    },
+    {
+      "name": "twouponetoone",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/bkltprnt#c": [
+      "four",
+      "eight",
+      "sixteen",
+      "thirtytwo",
+      "twouparticle",
+      "largetypeblock",
+      "1to1",
+      "landscape"
+    ]
+  },
+  "args": [
+    "\\usepackage/bkltprnt#c"
+  ]
 }

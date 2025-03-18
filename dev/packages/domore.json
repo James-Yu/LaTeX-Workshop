@@ -1,25 +1,56 @@
 {
-  "includes": {},
-  "macros": {
-    "StopDoing": {},
-    "setdo[]{}": {
-      "snippet": "setdo[${2:digit}]{${1:do}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "StopDoing",
+      "unusual": true
     },
-    "setdo[][]{}": {
-      "snippet": "setdo[${2:digit}][${3:default}]{${1:do}}"
+    {
+      "name": "setdo",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setdo[${2:digit}]{${1:do%definition}}"
+      }
     },
-    "DoWithAllOf{}{}": {
-      "snippet": "DoWithAllOf{${1:repeat}}{${2:<arg1><arg2>...<${3:argN}>}}"
+    {
+      "name": "setdo",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "setdo[${2:digit}][${3:default}]{${1:do%definition}}"
+      }
     },
-    "DoWithAllIn{}{}": {
-      "snippet": "DoWithAllIn{${1:repeat}}{${2:list macro}}"
+    {
+      "name": "DoWithAllOf",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DoWithAllOf{${1:repeat}}{${2:<arg1><arg2>...<${3:argN}>}}"
+      }
     },
-    "ifltx": {},
-    "PushCatMakeLetterAt": {},
-    "PopLetterCatAt": {},
-    "plainpkginfo": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "DoWithAllIn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DoWithAllIn{${1:repeat}}{${2:list macro}}"
+      }
+    },
+    {
+      "name": "ifltx",
+      "unusual": true
+    },
+    {
+      "name": "PushCatMakeLetterAt",
+      "unusual": true
+    },
+    {
+      "name": "PopLetterCatAt",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

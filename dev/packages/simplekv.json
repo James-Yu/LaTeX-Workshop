@@ -1,38 +1,80 @@
 {
-  "includes": {},
-  "macros": {
-    "setKV[]{}": {
-      "snippet": "setKV[${2:keygroup name}]{${1:key1=val1,key2=val2,...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setKV[${2:keygroup name}]{${1:key1=val1,key2=val2,...}}"
+      }
     },
-    "setKVdefault[]{}": {
-      "snippet": "setKVdefault[${2:keygroup name}]{${1:key1=val1,key2=val2,...}}"
+    {
+      "name": "setKVdefault",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setKVdefault[${2:keygroup name}]{${1:key1=val1,key2=val2,...}}"
+      }
     },
-    "useKV[]{}": {
-      "snippet": "useKV[${2:keygroup}]{${1:key}}"
+    {
+      "name": "useKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useKV[${2:keygroup}]{${1:key%plain}}"
+      }
     },
-    "restoreKV[]": {
-      "snippet": "restoreKV[${1:keygroup}]"
+    {
+      "name": "restoreKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "restoreKV[${1:keygroup}]"
+      }
     },
-    "useKVdefault[]": {
-      "snippet": "useKVdefault[${1:keygroup}]"
+    {
+      "name": "useKVdefault",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "useKVdefault[${1:keygroup}]"
+      }
     },
-    "ifboolKV[]{}{}{}": {
-      "snippet": "ifboolKV[${4:keygroup}]{${1:key}}{${2:true code}}{${3:false code}}"
+    {
+      "name": "ifboolKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ifboolKV[${4:keygroup}]{${1:key%plain}}{${2:true code}}{${3:false code}}"
+      }
     },
-    "showKV[]{}": {
-      "snippet": "showKV[${2:keygroup}]{${1:key}}"
+    {
+      "name": "showKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "showKV[${2:keygroup}]{${1:key%plain}}"
+      }
     },
-    "defKV[]{}": {
-      "snippet": "defKV[${2:keygroup}]{${1:key1=code1,key2=code2,...}}"
+    {
+      "name": "defKV",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "defKV[${2:keygroup}]{${1:key1=code1,key2=code2,...}}"
+      }
     },
-    "testboolKV{}{}{}": {
-      "snippet": "testboolKV{${1:arg}}{${2:true code}}{${3:false code}}"
-    },
-    "skvname": {},
-    "skvver": {},
-    "skvdate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "testboolKV",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "testboolKV{${1:arg}}{${2:true code}}{${3:false code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

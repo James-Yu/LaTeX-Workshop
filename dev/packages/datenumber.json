@@ -1,69 +1,166 @@
 {
-  "includes": {},
-  "macros": {
-    "setstartyear{}": {
-      "snippet": "setstartyear{${1:year}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setstartyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "setstartyear{${1:year}}"
+      }
     },
-    "thestartyear": {},
-    "thedatenumber": {},
-    "thedateyear": {},
-    "thedatemonth": {},
-    "thedateday": {},
-    "thedatedayname": {},
-    "setdatenumber{}{}{}": {
-      "snippet": "setdatenumber{${1:year}}{${2:month}}{${3:day}}"
+    {
+      "name": "thestartyear"
     },
-    "setdatebynumber{}": {
-      "snippet": "setdatebynumber{${1:number}}"
+    {
+      "name": "thedatenumber"
     },
-    "nextdate": {},
-    "prevdate": {},
-    "setdate{}{}{}": {
-      "snippet": "setdate{${1:year}}{${2:month}}{${3:day}}"
+    {
+      "name": "thedateyear"
     },
-    "setdatetoday": {},
-    "datemonthname": {},
-    "datedayname": {},
-    "datedate": {},
-    "setmydatenumber{}{}{}{}": {
-      "snippet": "setmydatenumber{${1:numbercount}}{${2:year}}{${3:month}}{${4:day}}"
+    {
+      "name": "thedatemonth"
     },
-    "setmydatebynumber{}{}{}{}": {
-      "snippet": "setmydatebynumber{${1:number}}{${2:yearcount}}{${3:monthcount}}{${4:daycount}}"
+    {
+      "name": "thedateday"
     },
-    "mynextdate{}{}{}": {
-      "snippet": "mynextdate{${1:yearcount}}{${2:monthcount}}{${3:daycount}}"
+    {
+      "name": "thedatedayname"
     },
-    "setmonthname{}": {
-      "snippet": "setmonthname{${1:number}}"
+    {
+      "name": "setdatenumber",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setdatenumber{${1:year}}{${2:month}}{${3:day}}"
+      }
     },
-    "setdayname{}": {
-      "snippet": "setdayname{${1:number}}"
+    {
+      "name": "setdatebynumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdatebynumber{${1:number}}"
+      }
     },
-    "setdaynamebynumber{}": {
-      "snippet": "setdaynamebynumber{${1:number}}"
+    {
+      "name": "nextdate"
     },
-    "dateselectlanguage{}": {
-      "snippet": "dateselectlanguage{${1:language}}"
+    {
+      "name": "prevdate"
     },
-    "ifleapyear{}": {
-      "snippet": "ifleapyear{${1:year}}"
+    {
+      "name": "setdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setdate{${1:year}}{${2:month}}{${3:day}}"
+      }
     },
-    "ifvaliddate{}{}{}": {
-      "snippet": "ifvaliddate{${1:year}}{${2:month}}{${3:day}}"
+    {
+      "name": "setdatetoday"
     },
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "english",
-    "USenglish",
-    "french",
-    "italian",
-    "spanish",
-    "german",
-    "ngerman"
+    {
+      "name": "datemonthname"
+    },
+    {
+      "name": "datedayname"
+    },
+    {
+      "name": "datedate"
+    },
+    {
+      "name": "setmydatenumber",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "setmydatenumber{${1:numbercount}}{${2:year}}{${3:month}}{${4:day}}"
+      }
+    },
+    {
+      "name": "setmydatebynumber",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "setmydatebynumber{${1:number}}{${2:yearcount}}{${3:monthcount}}{${4:daycount}}"
+      }
+    },
+    {
+      "name": "mynextdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mynextdate{${1:yearcount}}{${2:monthcount}}{${3:daycount}}"
+      }
+    },
+    {
+      "name": "mynextdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mynextdate{${1:yearcount}}{${2:monthcount}}{${3:daycount}}"
+      }
+    },
+    {
+      "name": "setmonthname",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonthname{${1:number}}"
+      }
+    },
+    {
+      "name": "setdayname",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdayname{${1:number}}"
+      }
+    },
+    {
+      "name": "setdaynamebynumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdaynamebynumber{${1:number}}"
+      }
+    },
+    {
+      "name": "dateselectlanguage",
+      "arg": {
+        "format": "{}",
+        "snippet": "dateselectlanguage{${1:language%keyvals}}",
+        "keys": [
+          "\\dateselectlanguage#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifleapyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "ifleapyear{${1:year}}"
+      }
+    },
+    {
+      "name": "ifvaliddate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifvaliddate{${1:year}}{${2:month}}{${3:day}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/datenumber#c": [
+      "english",
+      "USenglish",
+      "french",
+      "italian",
+      "spanish",
+      "german",
+      "ngerman"
+    ],
+    "\\dateselectlanguage#c": [
+      "english",
+      "USenglish",
+      "french",
+      "spanish",
+      "german",
+      "ngerman"
+    ]
+  },
+  "args": [
+    "\\usepackage/datenumber#c"
+  ]
 }

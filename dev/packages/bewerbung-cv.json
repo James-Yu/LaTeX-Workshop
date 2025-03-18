@@ -1,164 +1,464 @@
 {
-  "includes": {
-    "xcolor": [],
-    "lastpage": []
+  "deps": [
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "lastpage"
+    }
+  ],
+  "macros": [
+    {
+      "name": "acadtitle"
+    },
+    {
+      "name": "addresscity"
+    },
+    {
+      "name": "addressstreet"
+    },
+    {
+      "name": "cvdoubleitem",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "cvdoubleitem[${5:Abstände%l}]{${1:Kopfzeile1%text}}{${2:Text1%text}}{${3:Kopfzeile2%text}}{${4:Text2%text}}"
+      }
+    },
+    {
+      "name": "cvdoubleitem",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "cvdoubleitem{${1:Kopfzeile1%text}}{${2:Text1%text}}{${3:Kopfzeile2%text}}{${4:Text2%text}}"
+      }
+    },
+    {
+      "name": "cventry",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}",
+        "snippet": "cventry[${7:Abstände%l}]{${1:Monat/Jahr%text}}{${2:Bezeichnung%text}}{${3:Ergänzung%text}}{${4:Inhalt%text}}{${5:}}{${6:}}"
+      }
+    },
+    {
+      "name": "cventry",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "cventry{${1:Monat/Jahr%text}}{${2:Bezeichnung%text}}{${3:Ergänzung%text}}{${4:Inhalt%text}}{${5:}}{${6:}}"
+      }
+    },
+    {
+      "name": "cvitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "cvitem[${3:Abstände%l}]{${1:Kopfzeile%text}}{${2:Text%text}}"
+      }
+    },
+    {
+      "name": "cvitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cvitem{${1:Kopfzeile%text}}{${2:Text%text}}"
+      }
+    },
+    {
+      "name": "cvitemwithcomment",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "cvitemwithcomment[${4:Abstände%l}]{${1:Kopfzeile%text}}{${2:Text%text}}{${3:Kommentar%text}}"
+      }
+    },
+    {
+      "name": "cvitemwithcomment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cvitemwithcomment{${1:Kopfzeile%text}}{${2:Text%text}}{${3:Kommentar%text}}"
+      }
+    },
+    {
+      "name": "cvlanguage",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cvlanguage{${1:Sprache}}{${2:Kenntnisse}}{${3:Kommentar}}"
+      }
+    },
+    {
+      "name": "cvlistdoubleitem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "cvlistdoubleitem[${3:Abstände%l}]{${1:Artikel1%text}}{${2:Artikel2%text}}"
+      }
+    },
+    {
+      "name": "cvlistdoubleitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cvlistdoubleitem{${1:Artikel1%text}}{${2:Artikel2%text}}"
+      }
+    },
+    {
+      "name": "cvlistitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cvlistitem[${2:Abstände%l}]{${1:Eintrag%text}}"
+      }
+    },
+    {
+      "name": "cvlistitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "cvlistitem{${1:Eintrag%text}}"
+      }
+    },
+    {
+      "name": "cvquote"
+    },
+    {
+      "name": "email"
+    },
+    {
+      "name": "emaillink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "emaillink[${2:link text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "emaillink",
+      "arg": {
+        "format": "{}",
+        "snippet": "emaillink{${1:URL}}"
+      }
+    },
+    {
+      "name": "extrainfo"
+    },
+    {
+      "name": "familyname"
+    },
+    {
+      "name": "faxnr"
+    },
+    {
+      "name": "firstname"
+    },
+    {
+      "name": "homepage"
+    },
+    {
+      "name": "httplink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "httplink[${2:link text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "httplink",
+      "arg": {
+        "format": "{}",
+        "snippet": "httplink{${1:URL}}"
+      }
+    },
+    {
+      "name": "link",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "link[${2:link text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "link",
+      "arg": {
+        "format": "{}",
+        "snippet": "link{${1:URL}}"
+      }
+    },
+    {
+      "name": "mobile"
+    },
+    {
+      "name": "phonenr"
+    },
+    {
+      "name": "photo",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "photo[${3:frame type%keyvals}]{${1:width}}{${2:imagefile}}",
+        "keys": [
+          "\\photo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "photo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "photo{${1:width}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "totalpagemark"
+    },
+    {
+      "name": "acadtitlestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "acadtitlestyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "address",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "address{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "addressstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addressstyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "addresssymbol",
+      "unusual": true
+    },
+    {
+      "name": "afterelementsvspace",
+      "unusual": true
+    },
+    {
+      "name": "afterquotevspace",
+      "unusual": true
+    },
+    {
+      "name": "aftersecvspace",
+      "unusual": true
+    },
+    {
+      "name": "aftersubsecvspace",
+      "unusual": true
+    },
+    {
+      "name": "aftertitlevspace",
+      "unusual": true
+    },
+    {
+      "name": "allbordercolors",
+      "unusual": true
+    },
+    {
+      "name": "beforesecvspace",
+      "unusual": true
+    },
+    {
+      "name": "beforesubsecvspace",
+      "unusual": true
+    },
+    {
+      "name": "citebordercolor",
+      "unusual": true
+    },
+    {
+      "name": "dbitemmaincolwidth",
+      "unusual": true
+    },
+    {
+      "name": "emailsymbol",
+      "unusual": true
+    },
+    {
+      "name": "familynamestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "familynamestyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "faxsymbol",
+      "unusual": true
+    },
+    {
+      "name": "filebordercolor",
+      "unusual": true
+    },
+    {
+      "name": "firstnamestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "firstnamestyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "footerwidth",
+      "unusual": true
+    },
+    {
+      "name": "fsymbol",
+      "unusual": true
+    },
+    {
+      "name": "hintscolwidth",
+      "unusual": true
+    },
+    {
+      "name": "hintstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "hintstyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "homepagesymbol",
+      "unusual": true
+    },
+    {
+      "name": "infocolwidth",
+      "unusual": true
+    },
+    {
+      "name": "komacvinfocolextrawidth",
+      "unusual": true
+    },
+    {
+      "name": "linkbordercolor",
+      "unusual": true
+    },
+    {
+      "name": "listdbitemmaincolwidth",
+      "unusual": true
+    },
+    {
+      "name": "listitemmaincolwidth",
+      "unusual": true
+    },
+    {
+      "name": "listitemsymbol",
+      "unusual": true
+    },
+    {
+      "name": "listitemsymbolwidth",
+      "unusual": true
+    },
+    {
+      "name": "maincolwidth",
+      "unusual": true
+    },
+    {
+      "name": "menubordercolor",
+      "unusual": true
+    },
+    {
+      "name": "mframepicshift",
+      "unusual": true
+    },
+    {
+      "name": "mobilesymbol",
+      "unusual": true
+    },
+    {
+      "name": "mycolor",
+      "unusual": true
+    },
+    {
+      "name": "pdfauthor",
+      "unusual": true
+    },
+    {
+      "name": "pdfkeywords",
+      "unusual": true
+    },
+    {
+      "name": "pdfsubject",
+      "unusual": true
+    },
+    {
+      "name": "pdftitle",
+      "unusual": true
+    },
+    {
+      "name": "phonesymbol",
+      "unusual": true
+    },
+    {
+      "name": "quotestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "quotestyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "quotewidth",
+      "unusual": true
+    },
+    {
+      "name": "runbordercolor",
+      "unusual": true
+    },
+    {
+      "name": "sectionstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sectionstyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "sepcolwidth",
+      "unusual": true
+    },
+    {
+      "name": "sepinfocolwidth",
+      "unusual": true
+    },
+    {
+      "name": "subsectionstyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subsectionstyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "titlesepwidth",
+      "unusual": true
+    },
+    {
+      "name": "titlestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "titlestyle{${1:arg}}"
+      }
+    },
+    {
+      "name": "urlbordercolor",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "compactdesc"
+    },
+    {
+      "name": "compactenum"
+    },
+    {
+      "name": "compactitem"
+    }
+  ],
+  "keys": {
+    "\\photo": [
+      "frame",
+      "mframe"
+    ]
   },
-  "macros": {
-    "acadtitle": {},
-    "addresscity": {},
-    "addressstreet": {},
-    "cvdoubleitem[]{}{}{}{}": {
-      "snippet": "cvdoubleitem[${5:Abstände}]{${1:Kopfzeile1}}{${2:Text1}}{${3:Kopfzeile2}}{${4:Text2}}"
-    },
-    "cvdoubleitem{}{}{}{}": {
-      "snippet": "cvdoubleitem{${1:Kopfzeile1}}{${2:Text1}}{${3:Kopfzeile2}}{${4:Text2}}"
-    },
-    "cventry[]{}{}{}{}{}{}": {
-      "snippet": "cventry[${7:Abstände}]{${1:Monat/Jahr}}{${2:Bezeichnung}}{${3:Ergänzung}}{${4:Inhalt}}{${5:}}{${6:}}"
-    },
-    "cventry{}{}{}{}{}{}": {
-      "snippet": "cventry{${1:Monat/Jahr}}{${2:Bezeichnung}}{${3:Ergänzung}}{${4:Inhalt}}{${5:}}{${6:}}"
-    },
-    "cvitem[]{}{}": {
-      "snippet": "cvitem[${3:Abstände}]{${1:Kopfzeile}}{${2:Text}}"
-    },
-    "cvitem{}{}": {
-      "snippet": "cvitem{${1:Kopfzeile}}{${2:Text}}"
-    },
-    "cvitemwithcomment[]{}{}{}": {
-      "snippet": "cvitemwithcomment[${4:Abstände}]{${1:Kopfzeile}}{${2:Text}}{${3:Kommentar}}"
-    },
-    "cvitemwithcomment{}{}{}": {
-      "snippet": "cvitemwithcomment{${1:Kopfzeile}}{${2:Text}}{${3:Kommentar}}"
-    },
-    "cvlanguage{}{}{}": {
-      "snippet": "cvlanguage{${1:Sprache}}{${2:Kenntnisse}}{${3:Kommentar}}"
-    },
-    "cvlistdoubleitem[]{}{}": {
-      "snippet": "cvlistdoubleitem[${3:Abstände}]{${1:Artikel1}}{${2:Artikel2}}"
-    },
-    "cvlistdoubleitem{}{}": {
-      "snippet": "cvlistdoubleitem{${1:Artikel1}}{${2:Artikel2}}"
-    },
-    "cvlistitem[]{}": {
-      "snippet": "cvlistitem[${2:Abstände}]{${1:Eintrag}}"
-    },
-    "cvlistitem{}": {
-      "snippet": "cvlistitem{${1:Eintrag}}"
-    },
-    "cvquote": {},
-    "email": {},
-    "emaillink[]{}": {
-      "snippet": "emaillink[${2:link text}]{${1:URL}}"
-    },
-    "emaillink{}": {
-      "snippet": "emaillink{${1:URL}}"
-    },
-    "extrainfo": {},
-    "familyname": {},
-    "faxnr": {},
-    "firstname": {},
-    "homepage": {},
-    "httplink[]{}": {
-      "snippet": "httplink[${2:link text}]{${1:URL}}"
-    },
-    "httplink{}": {
-      "snippet": "httplink{${1:URL}}"
-    },
-    "link[]{}": {
-      "snippet": "link[${2:link text}]{${1:URL}}"
-    },
-    "link{}": {
-      "snippet": "link{${1:URL}}"
-    },
-    "mobile": {},
-    "phonenr": {},
-    "photo[]{}{}": {
-      "snippet": "photo[${3:frame type}]{${1:width}}{${2:imagefile}}"
-    },
-    "photo{}{}": {
-      "snippet": "photo{${1:width}}{${2:imagefile}}"
-    },
-    "totalpagemark": {},
-    "acadtitlestyle{}": {
-      "snippet": "acadtitlestyle{${1:arg}}"
-    },
-    "address{}{}": {
-      "snippet": "address{${1:arg1}}{${2:arg2}}"
-    },
-    "addressstyle{}": {
-      "snippet": "addressstyle{${1:arg}}"
-    },
-    "addresssymbol": {},
-    "afterelementsvspace": {},
-    "afterquotevspace": {},
-    "aftersecvspace": {},
-    "aftersubsecvspace": {},
-    "aftertitlevspace": {},
-    "allbordercolors": {},
-    "beforesecvspace": {},
-    "beforesubsecvspace": {},
-    "citebordercolor": {},
-    "dbitemmaincolwidth": {},
-    "emailsymbol": {},
-    "familynamestyle{}": {
-      "snippet": "familynamestyle{${1:arg}}"
-    },
-    "faxsymbol": {},
-    "filebordercolor": {},
-    "firstnamestyle{}": {
-      "snippet": "firstnamestyle{${1:arg}}"
-    },
-    "footerwidth": {},
-    "fsymbol": {},
-    "hintscolwidth": {},
-    "hintstyle{}": {
-      "snippet": "hintstyle{${1:arg}}"
-    },
-    "homepagesymbol": {},
-    "infocolwidth": {},
-    "komacvinfocolextrawidth": {},
-    "linkbordercolor": {},
-    "listdbitemmaincolwidth": {},
-    "listitemmaincolwidth": {},
-    "listitemsymbol": {},
-    "listitemsymbolwidth": {},
-    "maincolwidth": {},
-    "menubordercolor": {},
-    "mframepicshift": {},
-    "mobilesymbol": {},
-    "mycolor": {},
-    "origsection": {},
-    "origsubsection": {},
-    "pdfauthor": {},
-    "pdfkeywords": {},
-    "pdfsubject": {},
-    "pdftitle": {},
-    "phonesymbol": {},
-    "quotestyle{}": {
-      "snippet": "quotestyle{${1:arg}}"
-    },
-    "quotewidth": {},
-    "runbordercolor": {},
-    "sectionstyle{}": {
-      "snippet": "sectionstyle{${1:arg}}"
-    },
-    "sepcolwidth": {},
-    "sepinfocolwidth": {},
-    "subsectionstyle{}": {
-      "snippet": "subsectionstyle{${1:arg}}"
-    },
-    "titlesepwidth": {},
-    "titlestyle{}": {
-      "snippet": "titlestyle{${1:arg}}"
-    },
-    "urlbordercolor": {}
-  },
-  "envs": {
-    "compactdesc": {},
-    "compactenum": {},
-    "compactitem": {}
-  },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

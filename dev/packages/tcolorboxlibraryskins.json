@@ -1,66 +1,151 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzfill.image": []
-  },
-  "macros": {
-    "tcboxedtitlewidth": {},
-    "tcboxedtitleheight": {},
-    "tcbstartdraftmode": {},
-    "tcbstopdraftmode": {},
-    "tcbinterruptdraftmode": {},
-    "tcbcontinuedraftmode": {},
-    "tcbline": {},
-    "tcbline*": {},
-    "tcboverlaplower": {},
-    "tcbincludegraphics{}": {
-      "snippet": "tcbincludegraphics{${1:imagefile}}"
-    },
-    "tcbincludegraphics[]{}": {
-      "snippet": "tcbincludegraphics[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "imagename": {},
-    "tcbincludepdf{}": {
-      "snippet": "tcbincludepdf{${1:file}}"
-    },
-    "tcbincludepdf[]{}": {
-      "snippet": "tcbincludepdf[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "imagepage": {},
-    "pdfpages": {},
-    "tcbsettowidthofnode{}{}": {
-      "snippet": "tcbsettowidthofnode{${1:register}}{${2:node}}"
-    },
-    "tcbsetmacrotowidthofnode{}{}": {
-      "snippet": "tcbsetmacrotowidthofnode{${1:macro}}{${2:node}}"
-    },
-    "tcbsettoheightofnode{}{}": {
-      "snippet": "tcbsettoheightofnode{${1:register}}{${2:node}}"
-    },
-    "tcbsetmacrotoheightofnode{}{}": {
-      "snippet": "tcbsetmacrotoheightofnode{${1:macro}}{${2:node}}"
-    },
-    "tcbhypernode{}{}": {
-      "snippet": "tcbhypernode{${1:macro}}{${2:node}}"
+  "deps": [
+    {
+      "name": "tikzfill.image"
     }
-  },
-  "envs": {
-    "tcbclipframe": {},
-    "tcbinvclipframe": {},
-    "tcbclipinterior": {},
-    "tcbcliptitle": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "tcboxedtitlewidth"
+    },
+    {
+      "name": "tcboxedtitleheight"
+    },
+    {
+      "name": "tcbstartdraftmode",
+      "unusual": true
+    },
+    {
+      "name": "tcbstopdraftmode",
+      "unusual": true
+    },
+    {
+      "name": "tcbinterruptdraftmode",
+      "unusual": true
+    },
+    {
+      "name": "tcbcontinuedraftmode",
+      "unusual": true
+    },
+    {
+      "name": "tcbline"
+    },
+    {
+      "name": "tcbline*"
+    },
+    {
+      "name": "tcboverlaplower"
+    },
+    {
+      "name": "tcbincludegraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "tcbincludegraphics{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "tcbincludegraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tcbincludegraphics[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\tcbset,\\tcbincludegraphics,\\tcbincludepdf",
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "imagename"
+    },
+    {
+      "name": "tcbincludepdf",
+      "arg": {
+        "format": "{}",
+        "snippet": "tcbincludepdf{${1:file}}"
+      }
+    },
+    {
+      "name": "tcbincludepdf",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tcbincludepdf[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\tcbset,\\tcbincludegraphics,\\tcbincludepdf",
+          "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "imagepage"
+    },
+    {
+      "name": "pdfpages"
+    },
+    {
+      "name": "tcbsettowidthofnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tcbsettowidthofnode{${1:register}}{${2:node}}"
+      }
+    },
+    {
+      "name": "tcbsetmacrotowidthofnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tcbsetmacrotowidthofnode{${1:macro%cmd}}{${2:node}}"
+      }
+    },
+    {
+      "name": "tcbsettoheightofnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tcbsettoheightofnode{${1:register}}{${2:node}}"
+      }
+    },
+    {
+      "name": "tcbsetmacrotoheightofnode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tcbsetmacrotoheightofnode{${1:macro%cmd}}{${2:node}}"
+      }
+    },
+    {
+      "name": "tcbhypernode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tcbhypernode{${1:macro}}{${2:node}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tcbclipframe"
+    },
+    {
+      "name": "tcbinvclipframe"
+    },
+    {
+      "name": "tcbclipinterior"
+    },
+    {
+      "name": "tcbcliptitle"
+    }
+  ],
+  "keys": {
+    "\\path#c,\\draw#c": [
+      "tcb fill frame",
+      "tcb fill interior",
+      "tcb fill title"
+    ],
+    "\\tcbset,\\tcbincludegraphics,\\tcbincludepdf": [
       "graphics options={${1:graphics options}}",
       "graphics directory=${1:directory}",
       "graphics pages=${1:selection}",
-      "graphics orientation=",
+      "graphics orientation=${1|as-is,landscape,landscape*,portrait,portrait*|}"
+    ],
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
       "frame style={${1:TikZ options}}",
       "frame style image=${1:file name}",
       "frame style tile={${1:graphics options}}{${2:file}}",
@@ -106,7 +191,7 @@
       "attach boxed title to bottom*={${1:boxtitle options}}",
       "flip title",
       "flip title={${1:boxtitle options}}",
-      "boxed title size=",
+      "boxed title size=${1|title,standard,copy|}",
       "boxed title style={${1:options}}",
       "no boxed title style",
       "hbox boxed title",
@@ -292,5 +377,6 @@
       "alert=<${1:overlay spec}>",
       "beamer alerted/.style={${1:options}}"
     ]
-  ]
+  },
+  "args": []
 }

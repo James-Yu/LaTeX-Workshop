@@ -1,175 +1,452 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "cochineal": [],
-    "sourcesanspro": [],
-    "DejaVuSansMono": [],
-    "url": [],
-    "microtype": [],
-    "scalefnt": [],
-    "textcase": [],
-    "ragged2e": [],
-    "translator": [],
-    "doclicense": [],
-    "etoc": [],
-    "scrlayer-scrpage": [],
-    "csquotes": [],
-    "totpages": [],
-    "refcount": [],
-    "xcolor": [],
-    "graphicx": [],
-    "hyperref": [],
-    "pdfpages": [],
-    "enumitem": [],
-    "covington": [],
-    "caption": [],
-    "booktabs": [],
-    "multirow": [],
-    "varioref": [],
-    "prettyref": [],
-    "biblatex": [
-      "biblatex",
-      "biblatex=true"
-    ],
-    "MinionPro": [
-      "expertfonts",
-      "expertfonts=true"
-    ],
-    "MyriadPro": [
-      "expertfonts",
-      "expertfonts=true"
-    ],
-    "draftwatermark": [
-      "draftmark",
-      "draftmark=true",
-      "draftmark=firstpage"
-    ]
-  },
-  "macros": {
-    "mkbibdateunified{}{}{}": {
-      "snippet": "mkbibdateunified{${1:arg1}}{${2:arg2}}{${3:arg3}}",
-      "option": "biblatex=true"
+  "deps": [
+    {
+      "name": "class-scrartcl"
     },
-    "aff*[]{}": {
-      "snippet": "aff*[${2:m|f}]{${1:affiliation}}"
+    {
+      "name": "cochineal"
     },
-    "aff*{}": {
-      "snippet": "aff*{${1:affiliation}}"
+    {
+      "name": "sourcesanspro"
     },
-    "aff[]{}": {
-      "snippet": "aff[${2:m|f}]{${1:affiliation}}"
+    {
+      "name": "DejaVuSansMono"
     },
-    "aff{}": {
-      "snippet": "aff{${1:affiliation}}"
+    {
+      "name": "url"
     },
-    "AfterInputencOrAtEndPreamble{}": {
-      "snippet": "AfterInputencOrAtEndPreamble{${1:code}}"
+    {
+      "name": "microtype"
     },
-    "author[]{}": {
-      "snippet": "author[${2:short names}]{${1:names}}"
+    {
+      "name": "scalefnt"
     },
-    "backmatter": {},
-    "computelastpage": {},
-    "Concept{}": {
-      "snippet": "Concept{${1:text}}"
+    {
+      "name": "textcase"
     },
-    "condbreak{}": {
-      "snippet": "condbreak{${1:length}}"
+    {
+      "name": "ragged2e"
     },
-    "edboardAL{}": {
-      "snippet": "edboardAL{${1:name}}"
+    {
+      "name": "translator"
     },
-    "edboardGL{}": {
-      "snippet": "edboardGL{${1:name}}"
+    {
+      "name": "doclicense"
     },
-    "edboardHL{}": {
-      "snippet": "edboardHL{${1:name}}"
+    {
+      "name": "etoc"
     },
-    "Expression{}": {
-      "snippet": "Expression{${1:text}}"
+    {
+      "name": "scrlayer-scrpage"
     },
-    "footnumwidth": {},
-    "frontmatter": {},
-    "impressum": {},
-    "includefinalpaper[]{}": {
-      "snippet": "includefinalpaper[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "csquotes"
     },
-    "includefinalpaper{}": {
-      "snippet": "includefinalpaper{${1:file}}"
+    {
+      "name": "totpages"
     },
-    "issue{}{}": {
-      "snippet": "issue{${1:number}}{${2:year}}"
+    {
+      "name": "refcount"
     },
-    "issueeditors{}": {
-      "snippet": "issueeditors{${1:names}}"
+    {
+      "name": "xcolor"
     },
-    "issuesubtitle{}": {
-      "snippet": "issuesubtitle{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "issuetitle{}": {
-      "snippet": "issuetitle{${1:text}}"
+    {
+      "name": "hyperref"
     },
-    "jedboard{}": {
-      "snippet": "jedboard{${1:name}}"
+    {
+      "name": "pdfpages"
     },
-    "jeditors{}": {
-      "snippet": "jeditors{${1:name}}"
+    {
+      "name": "enumitem"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:word1,word2,...}}"
+    {
+      "name": "covington"
     },
-    "lastpageref": {},
-    "ljobname": {},
-    "mainmatter": {},
-    "makeissuetitle": {},
-    "maxfn": {},
-    "Meaning{}": {
-      "snippet": "Meaning{${1:text}}"
+    {
+      "name": "caption"
     },
-    "motto[]{}": {
-      "snippet": "motto[${2:source}]{${1:text}}"
+    {
+      "name": "booktabs"
     },
-    "motto{}": {
-      "snippet": "motto{${1:text}}"
+    {
+      "name": "multirow"
     },
-    "olddots": {},
-    "startpage{}": {
-      "snippet": "startpage{${1:number}}"
+    {
+      "name": "varioref"
     },
-    "startpageref": {},
-    "techboard{}": {
-      "snippet": "techboard{${1:name}}"
+    {
+      "name": "prettyref"
     },
-    "thestartpage": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
+    {
+      "name": "isodate"
     },
-    "urlprefix": {},
-    "versal{}": {
-      "snippet": "versal{${1:text}}"
+    {
+      "name": "biblatex",
+      "if": "biblatex"
     },
-    "wlgurl": {}
-  },
-  "envs": {},
-  "options": [
-    "biblatex",
-    "covington",
-    "expertfonts",
-    "titlepage=",
-    "preprint",
-    "peerrev",
-    "type=",
-    "draftmark=",
-    "issueeditor",
-    "issueeditor"
+    {
+      "name": "biblatex",
+      "if": "biblatex=true"
+    },
+    {
+      "name": "MinionPro",
+      "if": "expertfonts"
+    },
+    {
+      "name": "MyriadPro",
+      "if": "expertfonts"
+    },
+    {
+      "name": "MinionPro",
+      "if": "expertfonts=true"
+    },
+    {
+      "name": "MyriadPro",
+      "if": "expertfonts=true"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draftmark"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draftmark=true"
+    },
+    {
+      "name": "draftwatermark",
+      "if": "draftmark=firstpage"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "mkbibdateunified",
+      "if": "biblatex",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mkbibdateunified{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "mkbibdateunified",
+      "if": "biblatex=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mkbibdateunified{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "aff*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "aff*[${2:m|f}]{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "aff*",
+      "arg": {
+        "format": "{}",
+        "snippet": "aff*{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "aff",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "aff[${2:m|f}]{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "aff",
+      "arg": {
+        "format": "{}",
+        "snippet": "aff{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "AfterInputencOrAtEndPreamble",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AfterInputencOrAtEndPreamble{${1:code}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:short names}]{${1:names}}"
+      }
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "computelastpage",
+      "unusual": true
+    },
+    {
+      "name": "Concept",
+      "arg": {
+        "format": "{}",
+        "snippet": "Concept{${1:text}}"
+      }
+    },
+    {
+      "name": "condbreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "condbreak{${1:length}}"
+      }
+    },
+    {
+      "name": "edboardAL",
+      "arg": {
+        "format": "{}",
+        "snippet": "edboardAL{${1:name}}"
+      }
+    },
+    {
+      "name": "edboardGL",
+      "arg": {
+        "format": "{}",
+        "snippet": "edboardGL{${1:name}}"
+      }
+    },
+    {
+      "name": "edboardHL",
+      "arg": {
+        "format": "{}",
+        "snippet": "edboardHL{${1:name}}"
+      }
+    },
+    {
+      "name": "Expression",
+      "arg": {
+        "format": "{}",
+        "snippet": "Expression{${1:text}}"
+      }
+    },
+    {
+      "name": "footnumwidth",
+      "unusual": true
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "impressum",
+      "unusual": true
+    },
+    {
+      "name": "includefinalpaper",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includefinalpaper[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\includefinalpaper"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includefinalpaper",
+      "arg": {
+        "format": "{}",
+        "snippet": "includefinalpaper{${1:file}}"
+      }
+    },
+    {
+      "name": "issue",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "issue{${1:number}}{${2:year}}"
+      }
+    },
+    {
+      "name": "issueeditors",
+      "arg": {
+        "format": "{}",
+        "snippet": "issueeditors{${1:names}}"
+      }
+    },
+    {
+      "name": "issuesubtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "issuesubtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "issuetitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "issuetitle{${1:text}}"
+      }
+    },
+    {
+      "name": "jedboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "jedboard{${1:name}}"
+      }
+    },
+    {
+      "name": "jeditors",
+      "arg": {
+        "format": "{}",
+        "snippet": "jeditors{${1:name}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:word1,word2,...%text}}"
+      }
+    },
+    {
+      "name": "lastpageref",
+      "unusual": true
+    },
+    {
+      "name": "ljobname",
+      "unusual": true
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "makeissuetitle"
+    },
+    {
+      "name": "maxfn",
+      "unusual": true
+    },
+    {
+      "name": "Meaning",
+      "arg": {
+        "format": "{}",
+        "snippet": "Meaning{${1:text}}"
+      }
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "motto[${2:source}]{${1:text}}"
+      }
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "{}",
+        "snippet": "motto{${1:text}}"
+      }
+    },
+    {
+      "name": "startpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "startpage{${1:number}}"
+      }
+    },
+    {
+      "name": "startpageref",
+      "unusual": true
+    },
+    {
+      "name": "techboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "techboard{${1:name}}"
+      }
+    },
+    {
+      "name": "thestartpage",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "urlprefix",
+      "unusual": true
+    },
+    {
+      "name": "versal",
+      "arg": {
+        "format": "{}",
+        "snippet": "versal{${1:text}}"
+      }
+    },
+    {
+      "name": "wlgurl",
+      "unusual": true
+    },
+    {
+      "name": "weblink",
+      "arg": {
+        "format": "{}",
+        "snippet": "weblink{${1:URL}}"
+      }
+    },
+    {
+      "name": "weblink",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "weblink{${1:URL}}[${2:date}]"
+      }
+    },
+    {
+      "name": "SetURLDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetURLDate{${1:date}}"
+      }
+    },
+    {
+      "name": "urldate",
+      "arg": {
+        "format": "{}",
+        "snippet": "urldate{${1:date}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/univie-ling-wlg#c": [
+      "biblatex",
+      "covington",
+      "expertfonts",
+      "titlepage=${1|none,specialprint,issue|}",
+      "preprint",
+      "peerrev",
+      "type=${1|paper,review|}",
+      "draftmark=${1|true,false,firstpage|}"
+    ],
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c": [
+      "issueeditor",
+      "issueeditor"
+    ],
+    "\\includefinalpaper": [
       "author=${1:name}",
       "title=${1:text}",
       "subtitle=${1:text}"
     ]
+  },
+  "args": [
+    "\\documentclass/univie-ling-wlg#c",
+    "\\usepackage/biblatex#c,\\ExecuteBibliographyOptions#c"
   ]
 }

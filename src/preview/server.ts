@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as http from 'http'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
-import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
@@ -74,7 +73,7 @@ function getPort(): number {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${getPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -96,11 +95,14 @@ function getValidOrigin(): string {
 function initialize(hostname?: string): http.Server {
     if (hostname) { // We must have created one.
         state.httpServer.close()
+        state.address = undefined
     }
     const httpServer = http.createServer((request, response) => handler(request, response))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+    const viewerPort = configuration.get('view.pdf.internal.port') as number
     httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
+        // Double set state to ensure the server is set
+        state.httpServer = httpServer
         const address = state.httpServer.address()
         if (address && typeof address !== 'string') {
             state.address = address
@@ -109,7 +111,7 @@ function initialize(hostname?: string): http.Server {
                 logger.log(`BE AWARE: YOU ARE PUBLIC TO ${hostname} !`)
             }
             state.validOriginUri = await obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
-            logger.log(`valdOrigin is ${getValidOrigin()}`)
+            logger.log(`validOrigin is ${getValidOrigin()}`)
             initializeWsServer(httpServer, getValidOrigin())
             // if (initializeResolve) {
             //     initializeResolve(undefined)
@@ -205,11 +207,13 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
         }
         if (!lw.viewer.isViewing(fileUri) && !isVsls) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
+            response.writeHead(404)
+            response.end()
             return
         }
         try {
-            const buf: Buffer = Buffer.from(await vscode.workspace.fs.readFile(fileUri))
-            sendOkResponse(response, buf, 'application/pdf')
+            const content = await vscode.workspace.fs.readFile(fileUri)
+            sendOkResponse(response, Buffer.from(content), 'application/pdf')
             logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
         } catch (e) {
             logger.logError(`Error reading PDF ${fileUri.toString(true)}`, e)
@@ -220,8 +224,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (request.url.endsWith('/config.json')) {
         const params = lw.viewer.getParams()
-        const content = JSON.stringify(params)
-        sendOkResponse(response, Buffer.from(content), 'application/json')
+        sendOkResponse(response, Buffer.from(JSON.stringify(params)), 'application/json')
         return
     }
     let root: string
@@ -291,18 +294,17 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             break
         }
     }
-    fs.readFile(fileName, (err, content) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                response.writeHead(404)
-            } else {
-                response.writeHead(500)
-            }
-            response.end()
+    try {
+        const content = await vscode.workspace.fs.readFile(vscode.Uri.file(fileName))
+        sendOkResponse(response, Buffer.from(content), contentType, false)
+    } catch (err) {
+        if (typeof (err as any).code === 'string' && (err as any).code === 'FileNotFound') {
+            response.writeHead(404)
         } else {
-            sendOkResponse(response, content, contentType, false)
+            response.writeHead(500)
         }
-    })
+        response.end()
+    }
 }
 
 /**

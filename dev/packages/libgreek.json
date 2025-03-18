@@ -1,297 +1,693 @@
 {
-  "includes": {
-    "kvoptions": []
-  },
-  "macros": {
-    "libgreeksetup{}": {
-      "snippet": "libgreeksetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "libgreekup{}": {
-      "snippet": "libgreekup{${1:text}}",
-      "option": "alphabets"
-    },
-    "libgreekit{}": {
-      "snippet": "libgreekit{${1:text}}",
-      "option": "alphabets"
-    },
-    "Alpha": {},
-    "alphatonos": {},
-    "Beta": {},
-    "Chi": {},
-    "digamma": {
-      "detail": "ϝ",
-      "documentation": "GREEK SMALL LETTER DIGAMMA"
-    },
-    "Digamma": {
-      "detail": "Ϝ",
-      "documentation": "capital digamma"
-    },
-    "Epsilon": {},
-    "epsilontonos": {},
-    "Eta": {},
-    "etatonos": {},
-    "Iota": {},
-    "iotadieresis": {},
-    "iotadieresistonos": {},
-    "iotatonos": {},
-    "Kappa": {},
-    "koppa": {
-      "detail": "ϟ",
-      "documentation": "GREEK SMALL LETTER KOPPA"
-    },
-    "Mu": {},
-    "Nu": {},
-    "omegatonos": {},
-    "Omicron": {},
-    "omicron": {},
-    "omicrontonos": {},
-    "Rho": {},
-    "sampi": {
-      "detail": "ϡ",
-      "documentation": "GREEK SMALL LETTER SAMPI"
-    },
-    "Sampi": {
-      "detail": "Ϡ",
-      "documentation": "capital sampi"
-    },
-    "Tau": {},
-    "upsilondieresis": {},
-    "upsilondieresistonos": {},
-    "upsilontonos": {},
-    "varSigma": {
-      "detail": "𝛴",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL SIGMA"
-    },
-    "varvarsigma": {},
-    "Zeta": {},
-    "Alphait": {},
-    "alphait": {},
-    "alphatonosit": {},
-    "alphatonosup": {},
-    "Alphaup": {},
-    "alphaup": {
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "Betait": {},
-    "betait": {},
-    "Betaup": {},
-    "betaup": {
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "Chiit": {},
-    "chiit": {},
-    "Chiup": {},
-    "chiup": {
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "Deltait": {},
-    "deltait": {},
-    "Deltaup": {},
-    "deltaup": {
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "digammait": {},
-    "Digammait": {},
-    "digammaup": {},
-    "Digammaup": {},
-    "Epsilonit": {},
-    "epsilonit": {},
-    "epsilontonosit": {},
-    "epsilontonosup": {},
-    "Epsilonup": {},
-    "epsilonup": {
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "Etait": {},
-    "etait": {},
-    "etatonosit": {},
-    "etatonosup": {},
-    "Etaup": {},
-    "etaup": {
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "Gammait": {},
-    "gammait": {},
-    "Gammaup": {},
-    "gammaup": {
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "iotadieresisit": {},
-    "iotadieresistonosit": {},
-    "iotadieresistonosup": {},
-    "iotadieresisup": {},
-    "Iotait": {},
-    "iotait": {},
-    "iotatonosit": {},
-    "iotatonosup": {},
-    "Iotaup": {},
-    "iotaup": {
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "Kappait": {},
-    "kappait": {},
-    "Kappaup": {},
-    "kappaup": {
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "koppait": {},
-    "koppaup": {},
-    "Lambdait": {},
-    "lambdait": {},
-    "Lambdaup": {},
-    "lambdaup": {
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "Muit": {},
-    "muit": {},
-    "Muup": {},
-    "muup": {
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "Nuit": {},
-    "nuit": {},
-    "Nuup": {},
-    "nuup": {
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "Omegait": {},
-    "omegait": {},
-    "omegatonosit": {},
-    "omegatonosup": {},
-    "Omegaup": {},
-    "omegaup": {
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "Omicronit": {},
-    "omicronit": {},
-    "omicrontonosit": {},
-    "omicrontonosup": {},
-    "Omicronup": {},
-    "omicronup": {},
-    "Phiit": {},
-    "phiit": {},
-    "Phiup": {},
-    "phiup": {
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "Piit": {},
-    "piit": {},
-    "Piup": {},
-    "piup": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "Psiit": {},
-    "psiit": {},
-    "Psiup": {},
-    "psiup": {
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "Rhoit": {},
-    "rhoit": {},
-    "Rhoup": {},
-    "rhoup": {
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "Sampiit": {},
-    "sampiit": {},
-    "Sampiup": {},
-    "sampiup": {},
-    "Sigmait": {},
-    "sigmait": {},
-    "Sigmaup": {},
-    "sigmaup": {
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "Tauit": {},
-    "tauit": {},
-    "Tauup": {},
-    "tauup": {
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "Thetait": {},
-    "thetait": {},
-    "Thetaup": {},
-    "thetaup": {
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "upsilondieresisit": {},
-    "upsilondieresistonosit": {},
-    "upsilondieresistonosup": {},
-    "upsilondieresisup": {},
-    "Upsilonit": {},
-    "upsilonit": {},
-    "upsilontonosit": {},
-    "upsilontonosup": {},
-    "Upsilonup": {},
-    "upsilonup": {
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "varsigmait": {},
-    "varSigmait": {},
-    "varsigmaup": {
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "varSigmaup": {},
-    "varvarsigmait": {},
-    "varvarsigmaup": {},
-    "Xiit": {},
-    "xiit": {},
-    "Xiup": {},
-    "xiup": {
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "Zetait": {},
-    "zetait": {},
-    "Zetaup": {},
-    "zetaup": {
-      "detail": "ζ",
-      "documentation": "ze greek"
+  "deps": [
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "libertinus",
-    "serif",
-    "libertine",
-    "sans",
-    "biolinum",
-    "upshape=${1:shape}",
-    "itshape=${1:shape}",
-    "scale=${1:factor}",
-    "series=${1:series}",
-    "boldseries=${1:series}",
-    "alphabets"
   ],
-  "keyvals": [
-    [
-      "style=",
-      "greek=",
-      "Greek="
+  "macros": [
+    {
+      "name": "libgreeksetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "libgreeksetup{${1:options%keyvals}}",
+        "keys": [
+          "\\libgreeksetup,\\usepackage/libgreek#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "libgreekup",
+      "if": "alphabets",
+      "arg": {
+        "format": "{}",
+        "snippet": "libgreekup{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "libgreekit",
+      "if": "alphabets",
+      "arg": {
+        "format": "{}",
+        "snippet": "libgreekit{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "Alpha"
+    },
+    {
+      "name": "alphatonos"
+    },
+    {
+      "name": "Beta"
+    },
+    {
+      "name": "Chi"
+    },
+    {
+      "name": "digamma"
+    },
+    {
+      "name": "Digamma"
+    },
+    {
+      "name": "Epsilon"
+    },
+    {
+      "name": "epsilontonos"
+    },
+    {
+      "name": "Eta"
+    },
+    {
+      "name": "etatonos"
+    },
+    {
+      "name": "Iota"
+    },
+    {
+      "name": "iotadieresis"
+    },
+    {
+      "name": "iotadieresistonos"
+    },
+    {
+      "name": "iotatonos"
+    },
+    {
+      "name": "Kappa"
+    },
+    {
+      "name": "koppa"
+    },
+    {
+      "name": "Mu"
+    },
+    {
+      "name": "Nu"
+    },
+    {
+      "name": "omegatonos"
+    },
+    {
+      "name": "Omicron"
+    },
+    {
+      "name": "omicron"
+    },
+    {
+      "name": "omicrontonos"
+    },
+    {
+      "name": "Rho"
+    },
+    {
+      "name": "sampi"
+    },
+    {
+      "name": "Sampi"
+    },
+    {
+      "name": "Tau"
+    },
+    {
+      "name": "upsilondieresis"
+    },
+    {
+      "name": "upsilondieresistonos"
+    },
+    {
+      "name": "upsilontonos"
+    },
+    {
+      "name": "varSigma"
+    },
+    {
+      "name": "varvarsigma"
+    },
+    {
+      "name": "Zeta"
+    },
+    {
+      "name": "Alphait",
+      "unusual": true
+    },
+    {
+      "name": "alphait",
+      "unusual": true
+    },
+    {
+      "name": "alphatonosit",
+      "unusual": true
+    },
+    {
+      "name": "alphatonosup",
+      "unusual": true
+    },
+    {
+      "name": "Alphaup",
+      "unusual": true
+    },
+    {
+      "name": "alphaup",
+      "unusual": true
+    },
+    {
+      "name": "Betait",
+      "unusual": true
+    },
+    {
+      "name": "betait",
+      "unusual": true
+    },
+    {
+      "name": "Betaup",
+      "unusual": true
+    },
+    {
+      "name": "betaup",
+      "unusual": true
+    },
+    {
+      "name": "Chiit",
+      "unusual": true
+    },
+    {
+      "name": "chiit",
+      "unusual": true
+    },
+    {
+      "name": "Chiup",
+      "unusual": true
+    },
+    {
+      "name": "chiup",
+      "unusual": true
+    },
+    {
+      "name": "Deltait",
+      "unusual": true
+    },
+    {
+      "name": "deltait",
+      "unusual": true
+    },
+    {
+      "name": "Deltaup",
+      "unusual": true
+    },
+    {
+      "name": "deltaup",
+      "unusual": true
+    },
+    {
+      "name": "digammait",
+      "unusual": true
+    },
+    {
+      "name": "Digammait",
+      "unusual": true
+    },
+    {
+      "name": "digammaup",
+      "unusual": true
+    },
+    {
+      "name": "Digammaup",
+      "unusual": true
+    },
+    {
+      "name": "Epsilonit",
+      "unusual": true
+    },
+    {
+      "name": "epsilonit",
+      "unusual": true
+    },
+    {
+      "name": "epsilontonosit",
+      "unusual": true
+    },
+    {
+      "name": "epsilontonosup",
+      "unusual": true
+    },
+    {
+      "name": "Epsilonup",
+      "unusual": true
+    },
+    {
+      "name": "epsilonup",
+      "unusual": true
+    },
+    {
+      "name": "Etait",
+      "unusual": true
+    },
+    {
+      "name": "etait",
+      "unusual": true
+    },
+    {
+      "name": "etatonosit",
+      "unusual": true
+    },
+    {
+      "name": "etatonosup",
+      "unusual": true
+    },
+    {
+      "name": "Etaup",
+      "unusual": true
+    },
+    {
+      "name": "etaup",
+      "unusual": true
+    },
+    {
+      "name": "Gammait",
+      "unusual": true
+    },
+    {
+      "name": "gammait",
+      "unusual": true
+    },
+    {
+      "name": "Gammaup",
+      "unusual": true
+    },
+    {
+      "name": "gammaup",
+      "unusual": true
+    },
+    {
+      "name": "iotadieresisit",
+      "unusual": true
+    },
+    {
+      "name": "iotadieresistonosit",
+      "unusual": true
+    },
+    {
+      "name": "iotadieresistonosup",
+      "unusual": true
+    },
+    {
+      "name": "iotadieresisup",
+      "unusual": true
+    },
+    {
+      "name": "Iotait",
+      "unusual": true
+    },
+    {
+      "name": "iotait",
+      "unusual": true
+    },
+    {
+      "name": "iotatonosit",
+      "unusual": true
+    },
+    {
+      "name": "iotatonosup",
+      "unusual": true
+    },
+    {
+      "name": "Iotaup",
+      "unusual": true
+    },
+    {
+      "name": "iotaup",
+      "unusual": true
+    },
+    {
+      "name": "Kappait",
+      "unusual": true
+    },
+    {
+      "name": "kappait",
+      "unusual": true
+    },
+    {
+      "name": "Kappaup",
+      "unusual": true
+    },
+    {
+      "name": "kappaup",
+      "unusual": true
+    },
+    {
+      "name": "koppait",
+      "unusual": true
+    },
+    {
+      "name": "koppaup",
+      "unusual": true
+    },
+    {
+      "name": "Lambdait",
+      "unusual": true
+    },
+    {
+      "name": "lambdait",
+      "unusual": true
+    },
+    {
+      "name": "Lambdaup",
+      "unusual": true
+    },
+    {
+      "name": "lambdaup",
+      "unusual": true
+    },
+    {
+      "name": "Muit",
+      "unusual": true
+    },
+    {
+      "name": "muit",
+      "unusual": true
+    },
+    {
+      "name": "Muup",
+      "unusual": true
+    },
+    {
+      "name": "muup",
+      "unusual": true
+    },
+    {
+      "name": "Nuit",
+      "unusual": true
+    },
+    {
+      "name": "nuit",
+      "unusual": true
+    },
+    {
+      "name": "Nuup",
+      "unusual": true
+    },
+    {
+      "name": "nuup",
+      "unusual": true
+    },
+    {
+      "name": "Omegait",
+      "unusual": true
+    },
+    {
+      "name": "omegait",
+      "unusual": true
+    },
+    {
+      "name": "omegatonosit",
+      "unusual": true
+    },
+    {
+      "name": "omegatonosup",
+      "unusual": true
+    },
+    {
+      "name": "Omegaup",
+      "unusual": true
+    },
+    {
+      "name": "omegaup",
+      "unusual": true
+    },
+    {
+      "name": "Omicronit",
+      "unusual": true
+    },
+    {
+      "name": "omicronit",
+      "unusual": true
+    },
+    {
+      "name": "omicrontonosit",
+      "unusual": true
+    },
+    {
+      "name": "omicrontonosup",
+      "unusual": true
+    },
+    {
+      "name": "Omicronup",
+      "unusual": true
+    },
+    {
+      "name": "omicronup",
+      "unusual": true
+    },
+    {
+      "name": "Phiit",
+      "unusual": true
+    },
+    {
+      "name": "phiit",
+      "unusual": true
+    },
+    {
+      "name": "Phiup",
+      "unusual": true
+    },
+    {
+      "name": "phiup",
+      "unusual": true
+    },
+    {
+      "name": "Piit",
+      "unusual": true
+    },
+    {
+      "name": "piit",
+      "unusual": true
+    },
+    {
+      "name": "Piup",
+      "unusual": true
+    },
+    {
+      "name": "piup",
+      "unusual": true
+    },
+    {
+      "name": "Psiit",
+      "unusual": true
+    },
+    {
+      "name": "psiit",
+      "unusual": true
+    },
+    {
+      "name": "Psiup",
+      "unusual": true
+    },
+    {
+      "name": "psiup",
+      "unusual": true
+    },
+    {
+      "name": "Rhoit",
+      "unusual": true
+    },
+    {
+      "name": "rhoit",
+      "unusual": true
+    },
+    {
+      "name": "Rhoup",
+      "unusual": true
+    },
+    {
+      "name": "rhoup",
+      "unusual": true
+    },
+    {
+      "name": "Sampiit",
+      "unusual": true
+    },
+    {
+      "name": "sampiit",
+      "unusual": true
+    },
+    {
+      "name": "Sampiup",
+      "unusual": true
+    },
+    {
+      "name": "sampiup",
+      "unusual": true
+    },
+    {
+      "name": "Sigmait",
+      "unusual": true
+    },
+    {
+      "name": "sigmait",
+      "unusual": true
+    },
+    {
+      "name": "Sigmaup",
+      "unusual": true
+    },
+    {
+      "name": "sigmaup",
+      "unusual": true
+    },
+    {
+      "name": "Tauit",
+      "unusual": true
+    },
+    {
+      "name": "tauit",
+      "unusual": true
+    },
+    {
+      "name": "Tauup",
+      "unusual": true
+    },
+    {
+      "name": "tauup",
+      "unusual": true
+    },
+    {
+      "name": "Thetait",
+      "unusual": true
+    },
+    {
+      "name": "thetait",
+      "unusual": true
+    },
+    {
+      "name": "Thetaup",
+      "unusual": true
+    },
+    {
+      "name": "thetaup",
+      "unusual": true
+    },
+    {
+      "name": "upsilondieresisit",
+      "unusual": true
+    },
+    {
+      "name": "upsilondieresistonosit",
+      "unusual": true
+    },
+    {
+      "name": "upsilondieresistonosup",
+      "unusual": true
+    },
+    {
+      "name": "upsilondieresisup",
+      "unusual": true
+    },
+    {
+      "name": "Upsilonit",
+      "unusual": true
+    },
+    {
+      "name": "upsilonit",
+      "unusual": true
+    },
+    {
+      "name": "upsilontonosit",
+      "unusual": true
+    },
+    {
+      "name": "upsilontonosup",
+      "unusual": true
+    },
+    {
+      "name": "Upsilonup",
+      "unusual": true
+    },
+    {
+      "name": "upsilonup",
+      "unusual": true
+    },
+    {
+      "name": "varsigmait",
+      "unusual": true
+    },
+    {
+      "name": "varSigmait",
+      "unusual": true
+    },
+    {
+      "name": "varsigmaup",
+      "unusual": true
+    },
+    {
+      "name": "varSigmaup",
+      "unusual": true
+    },
+    {
+      "name": "varvarsigmait",
+      "unusual": true
+    },
+    {
+      "name": "varvarsigmaup",
+      "unusual": true
+    },
+    {
+      "name": "Xiit",
+      "unusual": true
+    },
+    {
+      "name": "xiit",
+      "unusual": true
+    },
+    {
+      "name": "Xiup",
+      "unusual": true
+    },
+    {
+      "name": "xiup",
+      "unusual": true
+    },
+    {
+      "name": "Zetait",
+      "unusual": true
+    },
+    {
+      "name": "zetait",
+      "unusual": true
+    },
+    {
+      "name": "Zetaup",
+      "unusual": true
+    },
+    {
+      "name": "zetaup",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/libgreek#c": [
+      "libertinus",
+      "serif",
+      "libertine",
+      "sans",
+      "biolinum",
+      "upshape=${1:shape}",
+      "itshape=${1:shape}",
+      "scale=${1:factor}",
+      "series=${1:series}",
+      "boldseries=${1:series}",
+      "alphabets"
+    ],
+    "\\libgreeksetup,\\usepackage/libgreek#c": [
+      "style=${1|ISO,French,TeX|}",
+      "greek=${1|up,it|}",
+      "Greek=${1|up,it|}"
     ]
+  },
+  "args": [
+    "\\usepackage/libgreek#c",
+    "\\libgreeksetup,\\usepackage/libgreek#c"
   ]
 }

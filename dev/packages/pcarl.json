@@ -1,17 +1,32 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "offamily": {},
-    "textof{}": {
-      "snippet": "textof{${1:text}}"
-    },
-    "offamilydefault": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "offamily"
+    },
+    {
+      "name": "textof",
+      "arg": {
+        "format": "{}",
+        "snippet": "textof{${1:text}}"
+      }
+    },
+    {
+      "name": "offamilydefault",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pcarl#c": [
+      "scaled=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/pcarl#c"
+  ]
 }

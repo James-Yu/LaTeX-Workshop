@@ -1,160 +1,442 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfkeyssetvalue{}{}": {
-      "snippet": "pgfkeyssetvalue{${1:full key}}{${2:token text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfkeyssetvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeyssetvalue{${1:full key}}{${2:token text}}"
+      }
     },
-    "pgfkeyssetevalue{}{}": {
-      "snippet": "pgfkeyssetevalue{${1:full key}}{${2:token text}}"
+    {
+      "name": "pgfkeyssetevalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeyssetevalue{${1:full key}}{${2:token text}}"
+      }
     },
-    "pgfkeysaddvalue{}{}{}": {
-      "snippet": "pgfkeysaddvalue{${1:full key}}{${2:prefix code}}{${3:append code}}"
+    {
+      "name": "pgfkeysaddvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysaddvalue{${1:full key}}{${2:prefix code}}{${3:append code}}"
+      }
     },
-    "pgfkeyslet{}{}": {
-      "snippet": "pgfkeyslet{${1:full key}}{${2:macro}}"
+    {
+      "name": "pgfkeyslet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeyslet{${1:full key}}{${2:macro}}"
+      }
     },
-    "pgfkeysgetvalue{}{}": {
-      "snippet": "pgfkeysgetvalue{${1:full key}}{${2:macro}}"
+    {
+      "name": "pgfkeysgetvalue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysgetvalue{${1:full key}}{${2:macro}}"
+      }
     },
-    "pgfkeysvalueof{}": {
-      "snippet": "pgfkeysvalueof{${1:full key}}"
+    {
+      "name": "pgfkeysvalueof",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysvalueof{${1:full key}}"
+      }
     },
-    "pgfkeysifdefined{}{}{}": {
-      "snippet": "pgfkeysifdefined{${1:full key}}{${2:true}}{${3:false}}"
+    {
+      "name": "pgfkeysifdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysifdefined{${1:full key}}{${2:true}}{${3:false}}"
+      }
     },
-    "pgfkeysifassignable{}{}{}": {
-      "snippet": "pgfkeysifassignable{${1:full key}}{${2:true}}{${3:false}}"
+    {
+      "name": "pgfkeysifassignable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysifassignable{${1:full key}}{${2:true}}{${3:false}}"
+      }
     },
-    "pgfkeys{}": {
-      "snippet": "pgfkeys{${1:key list}}"
+    {
+      "name": "pgfkeys",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeys{${1:key list%keyvals}}"
+      }
     },
-    "pgfqkeys{}{}": {
-      "snippet": "pgfqkeys{${1:default path}}{${2:key list}}"
+    {
+      "name": "pgfqkeys",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfqkeys{${1:default path}}{${2:key list%keyvals}}"
+      }
     },
-    "pgfkeysalso{}": {
-      "snippet": "pgfkeysalso{${1:key list}}"
+    {
+      "name": "pgfkeysalso",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysalso{${1:key list%keyvals}}"
+      }
     },
-    "pgfqkeysalso{}{}": {
-      "snippet": "pgfqkeysalso{${1:default path}}{${2:key list}}"
+    {
+      "name": "pgfqkeysalso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfqkeysalso{${1:default path}}{${2:key list%keyvals}}"
+      }
     },
-    "pgfeov": {},
-    "pgfkeysdef{}{}": {
-      "snippet": "pgfkeysdef{${1:key}}{${2:code}}"
+    {
+      "name": "pgfeov",
+      "unusual": true
     },
-    "pgfkeysedef{}{}": {
-      "snippet": "pgfkeysedef{${1:key}}{${2:code}}"
+    {
+      "name": "pgfkeysdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysdef{${1:key%plain}}{${2:code}}"
+      }
     },
-    "pgfkeysdefnargs{}{}{}": {
-      "snippet": "pgfkeysdefnargs{${1:key}}{${2:arg count}}{${3:code}}"
+    {
+      "name": "pgfkeysedef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysedef{${1:key%plain}}{${2:code}}"
+      }
     },
-    "pgfkeysedefnargs{}{}{}": {
-      "snippet": "pgfkeysedefnargs{${1:key}}{${2:arg count}}{${3:code}}"
+    {
+      "name": "pgfkeysdefnargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysdefnargs{${1:key%plain}}{${2:arg count}}{${3:code}}"
+      }
     },
-    "pgfkeysdefargs{}{}{}": {
-      "snippet": "pgfkeysdefargs{${1:key}}{${2:arg pattern}}{${3:code}}"
+    {
+      "name": "pgfkeysedefnargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysedefnargs{${1:key%plain}}{${2:arg count}}{${3:code}}"
+      }
     },
-    "pgfkeysedefargs{}{}{}": {
-      "snippet": "pgfkeysedefargs{${1:key}}{${2:arg pattern}}{${3:code}}"
+    {
+      "name": "pgfkeysdefargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysdefargs{${1:key%plain}}{${2:arg pattern}}{${3:code}}"
+      }
     },
-    "pgfkeysdefaultpath": {},
-    "pgfkeyscurrentpath": {},
-    "pgfkeyscurrentname": {},
-    "pgfkeyscurrentkey": {},
-    "pgfkeyscurrentkeyRAW": {},
-    "pgfkeyscurrentvalue": {},
-    "pgfkeysnovalue": {},
-    "pgfkeysvaluerequired": {},
-    "pgfkeysaddhandleonlyexistingexception{}": {
-      "snippet": "pgfkeysaddhandleonlyexistingexception{${1:handler key}}"
+    {
+      "name": "pgfkeysedefargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysedefargs{${1:key%plain}}{${2:arg pattern}}{${3:code}}"
+      }
     },
-    "usepgfkeyslibrary{}": {
-      "snippet": "usepgfkeyslibrary{${1:library}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfkeysdefaultpath",
+      "unusual": true
     },
-    "pgfkeysfiltered{}": {
-      "snippet": "pgfkeysfiltered{${1:key-value list}}"
+    {
+      "name": "pgfkeyscurrentpath",
+      "unusual": true
     },
-    "pgfqkeysfiltered{}{}": {
-      "snippet": "pgfqkeysfiltered{${1:default path}}{${2:key-value list}}"
+    {
+      "name": "pgfkeyscurrentname",
+      "unusual": true
     },
-    "pgfkeysalsofrom{}": {
-      "snippet": "pgfkeysalsofrom{${1:macro}}"
+    {
+      "name": "pgfkeyscurrentkey",
+      "unusual": true
     },
-    "pgfkeysalsofiltered{}": {
-      "snippet": "pgfkeysalsofiltered{${1:key-value list}}"
+    {
+      "name": "pgfkeyscurrentkeyRAW",
+      "unusual": true
     },
-    "pgfkeysalsofilteredfrom{}": {
-      "snippet": "pgfkeysalsofilteredfrom{${1:macro}}"
+    {
+      "name": "pgfkeyscurrentvalue",
+      "unusual": true
     },
-    "pgfkeysactivatefamiliesandfilteroptions{}{}": {
-      "snippet": "pgfkeysactivatefamiliesandfilteroptions{${1:family list}}{${2:key-value list}}"
+    {
+      "name": "pgfkeysnovalue",
+      "unusual": true
     },
-    "pgfqkeysactivatefamiliesandfilteroptions{}{}{}": {
-      "snippet": "pgfqkeysactivatefamiliesandfilteroptions{${1:family list}}{${2:default path}}{${3:key-value list}}"
+    {
+      "name": "pgfkeysvaluerequired",
+      "unusual": true
     },
-    "pgfkeysactivatesinglefamilyandfilteroptions{}{}": {
-      "snippet": "pgfkeysactivatesinglefamilyandfilteroptions{${1:family name}}{${2:key-value list}}"
+    {
+      "name": "pgfkeysaddhandleonlyexistingexception",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysaddhandleonlyexistingexception{${1:handler key}}"
+      }
     },
-    "pgfqkeysactivatesinglefamilyandfilteroptions{}{}{}": {
-      "snippet": "pgfqkeysactivatesinglefamilyandfilteroptions{${1:family name}}{${2:default path}}{${3:key-value list}}"
+    {
+      "name": "usepgfkeyslibrary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usepgfkeyslibrary{${1:library%keyvals}}",
+        "keys": [
+          "\\usepgfkeyslibrary#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "pgfkeysinterruptkeyfilter": {},
-    "endpgfkeysinterruptkeyfilter": {},
-    "pgfkeyssavekeyfilterstateto{}": {
-      "snippet": "pgfkeyssavekeyfilterstateto{${1:macro}}"
+    {
+      "name": "pgfkeysfiltered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysfiltered{${1:key-value list}}"
+      }
     },
-    "pgfkeysinstallkeyfilter{}{}": {
-      "snippet": "pgfkeysinstallkeyfilter{${1:full key}}{${2:optional args}}"
+    {
+      "name": "pgfqkeysfiltered",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfqkeysfiltered{${1:default path}}{${2:key-value list}}"
+      }
     },
-    "pgfkeysinstallkeyfilterhandler{}{}": {
-      "snippet": "pgfkeysinstallkeyfilterhandler{${1:full key}}{${2:optional args}}"
+    {
+      "name": "pgfkeysalsofrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysalsofrom{${1:macro}}"
+      }
     },
-    "pgfkeysactivatefamily{}": {
-      "snippet": "pgfkeysactivatefamily{${1:family name}}"
+    {
+      "name": "pgfkeysalsofiltered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysalsofiltered{${1:key-value list}}"
+      }
     },
-    "pgfkeysdeactivatefamily{}": {
-      "snippet": "pgfkeysdeactivatefamily{${1:family name}}"
+    {
+      "name": "pgfkeysalsofilteredfrom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysalsofilteredfrom{${1:macro}}"
+      }
     },
-    "pgfkeysactivatefamilies{}{}": {
-      "snippet": "pgfkeysactivatefamilies{${1:family list}}{${2:deactivate macro name}}"
+    {
+      "name": "pgfkeysactivatefamiliesandfilteroptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysactivatefamiliesandfilteroptions{${1:family list}}{${2:key-value list}}"
+      }
     },
-    "pgfkeysiffamilydefined{}{}{}": {
-      "snippet": "pgfkeysiffamilydefined{${1:family}}{${2:true}}{${3:false}}"
+    {
+      "name": "pgfqkeysactivatefamiliesandfilteroptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfqkeysactivatefamiliesandfilteroptions{${1:family list}}{${2:default path}}{${3:key-value list}}"
+      }
     },
-    "pgfkeysisfamilyactive{}": {
-      "snippet": "pgfkeysisfamilyactive{${1:family}}"
+    {
+      "name": "pgfkeysactivatesinglefamilyandfilteroptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysactivatesinglefamilyandfilteroptions{${1:family name}}{${2:key-value list}}"
+      }
     },
-    "pgfkeysgetfamily{}{}": {
-      "snippet": "pgfkeysgetfamily{${1:full key}}{${2:result macro}}"
+    {
+      "name": "pgfqkeysactivatesinglefamilyandfilteroptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfqkeysactivatesinglefamilyandfilteroptions{${1:family name}}{${2:default path}}{${3:key-value list}}"
+      }
     },
-    "pgfkeyssetfamily{}{}": {
-      "snippet": "pgfkeyssetfamily{${1:full key}}{${2:family}}"
+    {
+      "name": "pgfkeysinterruptkeyfilter",
+      "unusual": true
     },
-    "pgfkeyssplitpath": {},
-    "pgfkeyscasenumber": {},
-    "pgfkeyscurrentkeyfilter": {},
-    "pgfkeyscurrentkeyfilterargs": {},
-    "pgfkeyscurrentkeyfilterhandler": {},
-    "pgfkeyscurrentkeyfilterhandlerargs": {},
-    "ifpgfkeysaddeddefaultpath": {},
-    "pgfkeysaddeddefaultpathtrue": {},
-    "pgfkeysaddeddefaultpathfalse": {},
-    "ifpgfkeyssuccess": {},
-    "pgfkeyssuccesstrue": {},
-    "pgfkeyssuccessfalse": {},
-    "ifpgfkeysfilteringisactive": {},
-    "pgfkeysfilteringisactivetrue": {},
-    "pgfkeysfilteringisactivefalse": {},
-    "ifpgfkeysfiltercontinue": {},
-    "pgfkeysfiltercontinuetrue": {},
-    "pgfkeysfiltercontinuefalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "endpgfkeysinterruptkeyfilter",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyssavekeyfilterstateto",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeyssavekeyfilterstateto{${1:macro}}"
+      }
+    },
+    {
+      "name": "pgfkeysinstallkeyfilter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysinstallkeyfilter{${1:full key}}{${2:optional args}}"
+      }
+    },
+    {
+      "name": "pgfkeysinstallkeyfilterhandler",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysinstallkeyfilterhandler{${1:full key}}{${2:optional args}}"
+      }
+    },
+    {
+      "name": "pgfkeysactivatefamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysactivatefamily{${1:family name}}"
+      }
+    },
+    {
+      "name": "pgfkeysdeactivatefamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysdeactivatefamily{${1:family name}}"
+      }
+    },
+    {
+      "name": "pgfkeysactivatefamilies",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysactivatefamilies{${1:family list}}{${2:deactivate macro name%cmd}}"
+      }
+    },
+    {
+      "name": "pgfkeysiffamilydefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysiffamilydefined{${1:family}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfkeysisfamilyactive",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfkeysisfamilyactive{${1:family}}"
+      }
+    },
+    {
+      "name": "pgfkeysgetfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeysgetfamily{${1:full key}}{${2:result macro}}"
+      }
+    },
+    {
+      "name": "pgfkeyssetfamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfkeyssetfamily{${1:full key}}{${2:family}}"
+      }
+    },
+    {
+      "name": "pgfkeyssplitpath",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyscasenumber",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyscurrentkeyfilter",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyscurrentkeyfilterargs",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyscurrentkeyfilterhandler",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyscurrentkeyfilterhandlerargs",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfkeysaddeddefaultpath",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysaddeddefaultpathtrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysaddeddefaultpathfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfkeyssuccess",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyssuccesstrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeyssuccessfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfkeysfilteringisactive",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysfilteringisactivetrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysfilteringisactivefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpgfkeysfiltercontinue",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysfiltercontinuetrue",
+      "unusual": true
+    },
+    {
+      "name": "pgfkeysfiltercontinuefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepgfkeyslibrary#c": [
       "filtered"
     ]
-  ]
+  },
+  "args": []
 }

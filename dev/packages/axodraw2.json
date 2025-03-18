@@ -1,472 +1,3173 @@
 {
-  "includes": {
-    "color": [],
-    "graphicx": [],
-    "ifthen": [],
-    "ifxetex": [],
-    "keyval": []
-  },
-  "macros": {
-    "B": {
-      "option": "v1compatible",
-      "detail": "𝐵",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL B"
+  "deps": [
+    {
+      "name": "color"
     },
-    "G": {
-      "option": "v1compatible",
-      "detail": "𝐺",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL G"
+    {
+      "name": "graphicx"
     },
-    "C": {
-      "option": "v1compatible",
-      "detail": "𝐶",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL C"
+    {
+      "name": "ifthen"
     },
-    "Curve{}": {
-      "snippet": "Curve{${1:(${2:x1,y1})(${3:x2,y2})...}}"
+    {
+      "name": "ifxetex"
     },
-    "DashCurve{}{}": {
-      "snippet": "DashCurve{${1:(${3:x1,y1})(${4:x2,y2})...}}{${2:dashsize}}"
-    },
-    "Polygon{}{}": {
-      "snippet": "Polygon{${1:(${3:x1,y1}),(${4:x2,y2}),...}}{${2:color}}"
-    },
-    "FilledPolygon{}{}": {
-      "snippet": "FilledPolygon{${1:(${3:x1,y1}),(${4:x2,y2}),...}}{${2:color}}"
-    },
-    "SetPFont{}{}": {
-      "snippet": "SetPFont{${1:postscript font}}{${2:size}}"
-    },
-    "SetDashSize{}": {
-      "snippet": "SetDashSize{${1:number}}"
-    },
-    "SetLineSep{}": {
-      "snippet": "SetLineSep{${1:number}}"
-    },
-    "SetSep{}": {
-      "snippet": "SetSep{${1:number}}"
-    },
-    "SetWidth{}": {
-      "snippet": "SetWidth{${1:number}}"
-    },
-    "SetArrowAspect{}": {
-      "snippet": "SetArrowAspect{${1:number}}"
-    },
-    "SetArrowInset{}": {
-      "snippet": "SetArrowInset{${1:number}}"
-    },
-    "SetArrowPosition{}": {
-      "snippet": "SetArrowPosition{${1:number}}"
-    },
-    "SetArrowScale{}": {
-      "snippet": "SetArrowScale{${1:number}}"
-    },
-    "DefaultArrowScale{}": {
-      "snippet": "DefaultArrowScale{${1:number}}"
-    },
-    "SetArrowStroke{}": {
-      "snippet": "SetArrowStroke{${1:number}}"
-    },
-    "SetArrowSize{}": {
-      "snippet": "SetArrowSize{${1:number}}"
-    },
-    "canvasScaleOnept": {},
-    "canvasScaleObjectScale": {},
-    "canvasScaleUnitLength": {},
-    "SetScale{}": {
-      "snippet": "SetScale{${1:number}}"
-    },
-    "SetTextScale{}": {
-      "snippet": "SetTextScale{${1:number}}"
-    },
-    "SetCanvasScale{}": {
-      "snippet": "SetCanvasScale{${1:number}}"
-    },
-    "ifPSTextScalesLikeGraphics": {},
-    "PSTextScalesLikeGraphicsfalse": {},
-    "PSTextScalesLikeGraphicstrue": {},
-    "SetColor{}": {
-      "snippet": "SetColor{${1:color}}"
-    },
-    "SetObjectScale{}": {
-      "snippet": "SetObjectScale{${1:number}}"
-    },
-    "textGreenYellow": {},
-    "textYellow": {},
-    "textGoldenrod": {},
-    "textDandelion": {},
-    "textApricot": {},
-    "textPeach": {},
-    "textMelon": {},
-    "textYellowOrange": {},
-    "textOrange": {},
-    "textBurntOrange": {},
-    "textBittersweet": {},
-    "textRedOrange": {},
-    "textMahogany": {},
-    "textMaroon": {},
-    "textBrickRed": {},
-    "textRed": {},
-    "textOrangeRed": {},
-    "textRubineRed": {},
-    "textWildStrawberry": {},
-    "textSalmon": {},
-    "textCarnationPink": {},
-    "textMagenta": {},
-    "textVioletRed": {},
-    "textRhodamine": {},
-    "textMulberry": {},
-    "textRedViolet": {},
-    "textFuchsia": {},
-    "textLavender": {},
-    "textThistle": {},
-    "textOrchid": {},
-    "textDarkOrchid": {},
-    "textPurple": {},
-    "textPlum": {},
-    "textViolet": {},
-    "textRoyalPurple": {},
-    "textBlueViolet": {},
-    "textPeriwinkle": {},
-    "textCadetBlue": {},
-    "textCornflowerBlue": {},
-    "textMidnightBlue": {},
-    "textNavyBlue": {},
-    "textRoyalBlue": {},
-    "textBlue": {},
-    "textCerulean": {},
-    "textCyan": {},
-    "textProcessBlue": {},
-    "textSkyBlue": {},
-    "textTurquoise": {},
-    "textTealBlue": {},
-    "textAquamarine": {},
-    "textBlueGreen": {},
-    "textEmerald": {},
-    "textJungleGreen": {},
-    "textSeaGreen": {},
-    "textGreen": {},
-    "textForestGreen": {},
-    "textPineGreen": {},
-    "textLimeGreen": {},
-    "textYellowGreen": {},
-    "textSpringGreen": {},
-    "textOliveGreen": {},
-    "textRawSienna": {},
-    "textSepia": {},
-    "textBrown": {},
-    "textTan": {},
-    "textGray": {},
-    "textBlack": {},
-    "textWhite": {},
-    "textLightYellow": {},
-    "textLightRed": {},
-    "textLightBlue": {},
-    "textLightGray": {},
-    "textVeryLightBlue": {},
-    "GreenYellow{}": {
-      "snippet": "GreenYellow{${1:text}}"
-    },
-    "Yellow{}": {
-      "snippet": "Yellow{${1:text}}"
-    },
-    "Goldenrod{}": {
-      "snippet": "Goldenrod{${1:text}}"
-    },
-    "Dandelion{}": {
-      "snippet": "Dandelion{${1:text}}"
-    },
-    "Apricot{}": {
-      "snippet": "Apricot{${1:text}}"
-    },
-    "Peach{}": {
-      "snippet": "Peach{${1:text}}"
-    },
-    "Melon{}": {
-      "snippet": "Melon{${1:text}}"
-    },
-    "YellowOrange{}": {
-      "snippet": "YellowOrange{${1:text}}"
-    },
-    "Orange{}": {
-      "snippet": "Orange{${1:text}}"
-    },
-    "BurntOrange{}": {
-      "snippet": "BurntOrange{${1:text}}"
-    },
-    "Bittersweet{}": {
-      "snippet": "Bittersweet{${1:text}}"
-    },
-    "RedOrange{}": {
-      "snippet": "RedOrange{${1:text}}"
-    },
-    "Mahogany{}": {
-      "snippet": "Mahogany{${1:text}}"
-    },
-    "Maroon{}": {
-      "snippet": "Maroon{${1:text}}"
-    },
-    "BrickRed{}": {
-      "snippet": "BrickRed{${1:text}}"
-    },
-    "Red{}": {
-      "snippet": "Red{${1:text}}"
-    },
-    "OrangeRed{}": {
-      "snippet": "OrangeRed{${1:text}}"
-    },
-    "RubineRed{}": {
-      "snippet": "RubineRed{${1:text}}"
-    },
-    "WildStrawberry{}": {
-      "snippet": "WildStrawberry{${1:text}}"
-    },
-    "Salmon{}": {
-      "snippet": "Salmon{${1:text}}"
-    },
-    "CarnationPink{}": {
-      "snippet": "CarnationPink{${1:text}}"
-    },
-    "Magenta{}": {
-      "snippet": "Magenta{${1:text}}"
-    },
-    "VioletRed{}": {
-      "snippet": "VioletRed{${1:text}}"
-    },
-    "Rhodamine{}": {
-      "snippet": "Rhodamine{${1:text}}"
-    },
-    "Mulberry{}": {
-      "snippet": "Mulberry{${1:text}}"
-    },
-    "RedViolet{}": {
-      "snippet": "RedViolet{${1:text}}"
-    },
-    "Fuchsia{}": {
-      "snippet": "Fuchsia{${1:text}}"
-    },
-    "Lavender{}": {
-      "snippet": "Lavender{${1:text}}"
-    },
-    "Thistle{}": {
-      "snippet": "Thistle{${1:text}}"
-    },
-    "Orchid{}": {
-      "snippet": "Orchid{${1:text}}"
-    },
-    "DarkOrchid{}": {
-      "snippet": "DarkOrchid{${1:text}}"
-    },
-    "Purple{}": {
-      "snippet": "Purple{${1:text}}"
-    },
-    "Plum{}": {
-      "snippet": "Plum{${1:text}}"
-    },
-    "Violet{}": {
-      "snippet": "Violet{${1:text}}"
-    },
-    "RoyalPurple{}": {
-      "snippet": "RoyalPurple{${1:text}}"
-    },
-    "BlueViolet{}": {
-      "snippet": "BlueViolet{${1:text}}"
-    },
-    "Periwinkle{}": {
-      "snippet": "Periwinkle{${1:text}}"
-    },
-    "CadetBlue{}": {
-      "snippet": "CadetBlue{${1:text}}"
-    },
-    "CornflowerBlue{}": {
-      "snippet": "CornflowerBlue{${1:text}}"
-    },
-    "MidnightBlue{}": {
-      "snippet": "MidnightBlue{${1:text}}"
-    },
-    "NavyBlue{}": {
-      "snippet": "NavyBlue{${1:text}}"
-    },
-    "RoyalBlue{}": {
-      "snippet": "RoyalBlue{${1:text}}"
-    },
-    "Blue{}": {
-      "snippet": "Blue{${1:text}}"
-    },
-    "Cerulean{}": {
-      "snippet": "Cerulean{${1:text}}"
-    },
-    "Cyan{}": {
-      "snippet": "Cyan{${1:text}}"
-    },
-    "ProcessBlue{}": {
-      "snippet": "ProcessBlue{${1:text}}"
-    },
-    "SkyBlue{}": {
-      "snippet": "SkyBlue{${1:text}}"
-    },
-    "Turquoise{}": {
-      "snippet": "Turquoise{${1:text}}"
-    },
-    "TealBlue{}": {
-      "snippet": "TealBlue{${1:text}}"
-    },
-    "Aquamarine{}": {
-      "snippet": "Aquamarine{${1:text}}"
-    },
-    "BlueGreen{}": {
-      "snippet": "BlueGreen{${1:text}}"
-    },
-    "Emerald{}": {
-      "snippet": "Emerald{${1:text}}"
-    },
-    "JungleGreen{}": {
-      "snippet": "JungleGreen{${1:text}}"
-    },
-    "SeaGreen{}": {
-      "snippet": "SeaGreen{${1:text}}"
-    },
-    "Green{}": {
-      "snippet": "Green{${1:text}}"
-    },
-    "ForestGreen{}": {
-      "snippet": "ForestGreen{${1:text}}"
-    },
-    "PineGreen{}": {
-      "snippet": "PineGreen{${1:text}}"
-    },
-    "LimeGreen{}": {
-      "snippet": "LimeGreen{${1:text}}"
-    },
-    "YellowGreen{}": {
-      "snippet": "YellowGreen{${1:text}}"
-    },
-    "SpringGreen{}": {
-      "snippet": "SpringGreen{${1:text}}"
-    },
-    "OliveGreen{}": {
-      "snippet": "OliveGreen{${1:text}}"
-    },
-    "RawSienna{}": {
-      "snippet": "RawSienna{${1:text}}"
-    },
-    "Sepia{}": {
-      "snippet": "Sepia{${1:text}}"
-    },
-    "Brown{}": {
-      "snippet": "Brown{${1:text}}"
-    },
-    "Tan{}": {
-      "snippet": "Tan{${1:text}}"
-    },
-    "Gray{}": {
-      "snippet": "Gray{${1:text}}"
-    },
-    "Black{}": {
-      "snippet": "Black{${1:text}}"
-    },
-    "White{}": {
-      "snippet": "White{${1:text}}"
-    },
-    "LightYellow{}": {
-      "snippet": "LightYellow{${1:text}}"
-    },
-    "LightRed{}": {
-      "snippet": "LightRed{${1:text}}"
-    },
-    "LightBlue{}": {
-      "snippet": "LightBlue{${1:text}}"
-    },
-    "LightGray{}": {
-      "snippet": "LightGray{${1:text}}"
-    },
-    "VeryLightBlue{}": {
-      "snippet": "VeryLightBlue{${1:text}}"
-    },
-    "AXOputPDF{}": {
-      "snippet": "AXOputPDF{${1:pdf code}}"
-    },
-    "AXOputPS{}": {
-      "snippet": "AXOputPS{${1:ps code}}"
-    },
-    "AXOspecial{}": {
-      "snippet": "AXOspecial{${1:ps code}}"
-    },
-    "AssignDecDiv{}{}{}": {
-      "snippet": "AssignDecDiv{${1:variable}}{${2:integer1}}{${3:integer2}}"
-    },
-    "IfColor{}{}": {
-      "snippet": "IfColor{${1:arg1}}{${2:arg2}}"
-    },
-    "SetTmpBoxTwo{}{}": {
-      "snippet": "SetTmpBoxTwo{${1:contents1}}{${2:contents2}}"
-    },
-    "SetTmpBox{}": {
-      "snippet": "SetTmpBox{${1:contents}}"
-    },
-    "UseCurrentPSFont": {},
-    "axoarrowsize": {},
-    "axocanvas": {},
-    "axofontsize": {},
-    "axohelp": {},
-    "axominusone": {},
-    "axoone": {},
-    "axoscale": {},
-    "axoscalePT": {},
-    "axoscaleTT": {},
-    "axotextscale": {},
-    "axounitlength": {},
-    "axowidth": {},
-    "axoxo": {},
-    "axoxoff": {},
-    "axoyo": {},
-    "axoyoff": {},
-    "axozero": {},
-    "contentspdf": {},
-    "contentspdfNoOffset": {},
-    "defWithOption{}{}{}": {
-      "snippet": "defWithOption{${1:csname}}{${2:args}}{${3:definition}}"
-    },
-    "defineaxofont{}{}": {
-      "snippet": "defineaxofont{${1:user-visible font name}}{${2:LaTeX font name}}"
-    },
-    "eind": {},
-    "getaxohelp{}{}": {
-      "snippet": "getaxohelp{${1:csname}}{${2:spec}}"
-    },
-    "getoneline{}{}": {
-      "snippet": "getoneline{${1:csname}}{${2:input stream num}}"
-    },
-    "newcolor{}{}": {
-      "snippet": "newcolor{${1:color}}{${2:CMYK}}"
-    },
-    "pfontC": {},
-    "pfontN": {},
-    "tmpfh": {},
-    "useX{}": {
-      "snippet": "useX{${1:point name}}"
-    },
-    "useY{}": {
-      "snippet": "useY{${1:point name}}"
-    },
-    "ifAXONotImplemented": {},
-    "AXONotImplementedtrue": {},
-    "AXONotImplementedfalse": {},
-    "tmpX": {},
-    "tmpY": {},
-    "bpinsp": {},
-    "ptinsp": {}
-  },
-  "envs": {
-    "OLDpicture": {}
-  },
-  "options": [
-    "v1compatible",
-    "canvasScaleIs1pt",
-    "canvasScaleIsObjectScale",
-    "canvasScaleIsUnitLength",
-    "PSTextScalesIndependently",
-    "PSTextScalesLikeGraphics"
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "B2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "G2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "C2Text",
+      "if": "v1compatible"
+    },
+    {
+      "name": "AxoGrid",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "AxoGrid(${3:x},${4:y})(${5:xsize},${6:ysize})(${7:xdivs},${8:ydivs}){${1:color}}{${2:linewidth}}"
+      }
+    },
+    {
+      "name": "Line",
+      "arg": {
+        "format": "()()",
+        "snippet": "Line(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "Line",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "Line[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DoubleLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DoubleLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashDoubleLine[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Arc",
+      "arg": {
+        "format": "()()",
+        "snippet": "Arc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "Arc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "Arc[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CArc",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "CArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "CArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "CArc[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "DoubleArc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DoubleArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DoubleArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DoubleCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DoubleCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashArc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleArc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashDoubleArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashDoubleCArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Bezier",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "Bezier(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})(${7:x4},${8:y4})"
+      }
+    },
+    {
+      "name": "Bezier",
+      "arg": {
+        "format": "[]()()()()",
+        "snippet": "Bezier[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4})",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleBezier",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "DoubleBezier(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleBezier",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "DoubleBezier[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashBezier",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "DashBezier(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3})(${8:x4},${9:y4}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashBezier",
+      "arg": {
+        "format": "[]()()()(){}",
+        "snippet": "DashBezier[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleBezier",
+      "arg": {
+        "format": "()()()(){}{}",
+        "snippet": "DashDoubleBezier(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3})(${9:x4},${10:y4}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleBezier",
+      "arg": {
+        "format": "[]()()()(){}{}",
+        "snippet": "DashDoubleBezier[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3})(${10:x4},${11:y4}){${1:linesep}}{${2:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier",
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Curve",
+      "arg": {
+        "format": "{}",
+        "snippet": "Curve{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})...}}"
+      }
+    },
+    {
+      "name": "DashCurve",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DashCurve{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})...}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "Gluon",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "Gluon(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "Gluon",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "Gluon[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleGluon",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGluon(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluon",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGluon[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashGluon",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGluon(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluon",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGluon[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleGluon",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGluon(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluon",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGluon[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GluonArc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "GluonArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "GluonArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "GlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "GlueArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "GlueArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "GluonArcn(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "GluonArcn[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "GlueArcn(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "GlueArcn[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGluonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGluonArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGlueArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGlueArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGluonArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGluonArcn[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGlueArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGlueArcn[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DashGluonArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGluonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGluonArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGlueArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGlueArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGluonArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGluonArcn[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGlueArcn(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGlueArcn[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArc",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGluonArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGluonArc[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGlueArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGlueArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGlueArc[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGluonArcn(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGluonArcn[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGlueArcn(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGlueArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGlueArcn[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "GluonCirc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "GluonCirc(${3:x},${4:y})(${5:radius},${6:phase}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "GluonCirc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "GluonCirc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleGluonCirc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleGluonCirc(${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleGluonCirc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashGluonCirc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashGluonCirc(${4:x},${5:y})(${6:radius},${7:phase}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashGluonCirc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleGluonCirc",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleGluonCirc(${5:x},${6:y})(${7:radius},${8:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleGluonCirc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleGluonCirc[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:phase}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Photon",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "Photon(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "Photon",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "Photon[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoublePhoton",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoublePhoton(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoublePhoton",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoublePhoton[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashPhoton",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashPhoton(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashPhoton",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashPhoton[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoublePhoton",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoublePhoton(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoublePhoton",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoublePhoton[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PhotonArc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "PhotonArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "PhotonArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "PhotonArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoublePhotonArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoublePhotonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoublePhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoublePhotonArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashPhotonArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashPhotonArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashPhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashPhotonArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoublePhotonArc",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoublePhotonArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoublePhotonArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoublePhotonArc[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ZigZag",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "ZigZag(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "ZigZag",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "ZigZag[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleZigZag",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleZigZag(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleZigZag[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashZigZag",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashZigZag(${4:x1},${5:y1})(${6:x2},${7:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashZigZag[${4:options%keyvals}](${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleZigZag",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleZigZag(${5:x1},${6:y1})(${7:x2},${8:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleZigZag",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleZigZag[${5:options%keyvals}](${6:x1},${7:y1})(${8:x2},${9:y2}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ZigZagArc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "ZigZagArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:amplitude}}{${2:number}}"
+      }
+    },
+    {
+      "name": "ZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "ZigZagArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DoubleZigZagArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DoubleZigZagArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}"
+      }
+    },
+    {
+      "name": "DoubleZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DoubleZigZagArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashZigZagArc",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "DashZigZagArc(${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}"
+      }
+    },
+    {
+      "name": "DashZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "DashZigZagArc[${4:options%keyvals}](${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DashDoubleZigZagArc",
+      "arg": {
+        "format": "()(){}{}{}{}",
+        "snippet": "DashDoubleZigZagArc(${5:x},${6:y})(${7:radius},${8:start-angle},${9:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}"
+      }
+    },
+    {
+      "name": "DashDoubleZigZagArc",
+      "arg": {
+        "format": "[]()(){}{}{}{}",
+        "snippet": "DashDoubleZigZagArc[${5:options%keyvals}](${6:x},${7:y})(${8:radius},${9:start-angle},${10:end-angle}){${1:amplitude}}{${2:number}}{${3:linesep}}{${4:dashsize}}",
+        "keys": [
+          "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc",
+          "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Vertex",
+      "arg": {
+        "format": "(){}",
+        "snippet": "Vertex(${2:x},${3:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "FCirc",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "FCirc(${2:x},${3:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "ECirc",
+      "arg": {
+        "format": "(){}",
+        "snippet": "ECirc(${2:x},${3:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "BCirc",
+      "arg": {
+        "format": "(){}",
+        "snippet": "BCirc(${2:x},${3:y}){${1:radius}}"
+      }
+    },
+    {
+      "name": "GCirc",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "GCirc(${3:x},${4:y}){${1:radius}}{${2:grayscale}}"
+      }
+    },
+    {
+      "name": "CCirc",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "CCirc(${4:x},${5:y}){${1:radius}}{${2:bound color}}{${3:fill color}}"
+      }
+    },
+    {
+      "name": "Oval",
+      "arg": {
+        "format": "()()()",
+        "snippet": "Oval(${1:x},${2:y})(${3:half-height},${4:half-width})(${5:angle})"
+      }
+    },
+    {
+      "name": "FOval",
+      "arg": {
+        "format": "()()()",
+        "snippet": "FOval(${1:x},${2:y})(${3:half-height},${4:half-width})(${5:angle})"
+      }
+    },
+    {
+      "name": "GOval",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "GOval(${2:x},${3:y})(${4:half-height},${5:half-width})(${6:angle}){${1:grayscale}}"
+      }
+    },
+    {
+      "name": "COval",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "COval(${3:x},${4:y})(${5:half-height},${6:half-width})(${7:angle}){${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "EBox",
+      "arg": {
+        "format": "()()",
+        "snippet": "EBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "FBox",
+      "arg": {
+        "format": "()()",
+        "snippet": "FBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "BBox",
+      "arg": {
+        "format": "()()",
+        "snippet": "BBox(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "GBox",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "GBox(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CBox",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "CBox(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "EBoxc",
+      "arg": {
+        "format": "()()",
+        "snippet": "EBoxc(${1:x},${2:y})(${3:width},${4:height})"
+      }
+    },
+    {
+      "name": "Boxc",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "Boxc(${1:x},${2:y})(${3:width},${4:height})"
+      }
+    },
+    {
+      "name": "FBoxc",
+      "arg": {
+        "format": "()()",
+        "snippet": "FBoxc(${1:x},${2:y})(${3:width},${4:height})"
+      }
+    },
+    {
+      "name": "BBoxc",
+      "arg": {
+        "format": "()()",
+        "snippet": "BBoxc(${1:x},${2:y})(${3:width},${4:height})"
+      }
+    },
+    {
+      "name": "GBoxc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "GBoxc(${2:x},${3:y})(${4:width},${5:height}){${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CBoxc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "CBoxc(${3:x},${4:y})(${5:width},${6:height}){${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "RotatedBox",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "RotatedBox(${3:x},${4:y})(${5:width},${6:height}){${1:angle}}{${2:color}}"
+      }
+    },
+    {
+      "name": "FilledRotatedBox",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "FilledRotatedBox(${3:x},${4:y})(${5:width},${6:height}){${1:angle}}{${2:color}}"
+      }
+    },
+    {
+      "name": "ETri",
+      "arg": {
+        "format": "()()()",
+        "snippet": "ETri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
+    },
+    {
+      "name": "FTri",
+      "arg": {
+        "format": "()()()",
+        "snippet": "FTri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
+    },
+    {
+      "name": "BTri",
+      "arg": {
+        "format": "()()()",
+        "snippet": "BTri(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:x3},${6:y3})"
+      }
+    },
+    {
+      "name": "GTri",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "GTri(${2:x1},${3:y1})(${4:x2},${5:y2})(${6:x3},${7:y3}){${1:grayscale}}"
+      }
+    },
+    {
+      "name": "CTri",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "CTri(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:bound color}}{${2:fill color}}"
+      }
+    },
+    {
+      "name": "Polygon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Polygon{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
+      }
+    },
+    {
+      "name": "FilledPolygon",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FilledPolygon{${1:(${3:x1},${4:y1}),(${5:x2},${6:y2}),...}}{${2:color}}"
+      }
+    },
+    {
+      "name": "LinAxis",
+      "arg": {
+        "format": "()()()",
+        "snippet": "LinAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:divs},${6:subdivs},${7:hashsize},${8:offset},${9:width})"
+      }
+    },
+    {
+      "name": "LogAxis",
+      "arg": {
+        "format": "()()()",
+        "snippet": "LogAxis(${1:x1},${2:y1})(${3:x2},${4:y2})(${5:divs},${6:hashsize},${7:offset},${8:width})"
+      }
+    },
+    {
+      "name": "Text",
+      "arg": {
+        "format": "(){}",
+        "snippet": "Text(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "Text",
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "Text(${3:x},${4:y})[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "Text",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "Text(${2:x},${3:y})(${4:angle}){${1:text}}"
+      }
+    },
+    {
+      "name": "Text",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "Text(${3:x},${4:y})(${5:angle})[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rText",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "rText(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "rText",
+      "unusual": true,
+      "arg": {
+        "format": "()[]{}",
+        "snippet": "rText(${3:x},${4:y})[${2:mode}]{${1:text}}"
+      }
+    },
+    {
+      "name": "rText",
+      "unusual": true,
+      "arg": {
+        "format": "()[][]{}",
+        "snippet": "rText(${4:x},${5:y})[${2:mode}][${3:rotation}]{${1:text}}"
+      }
+    },
+    {
+      "name": "RText",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "RText(${2:x},${3:y})(${4:angle}){${1:text}}"
+      }
+    },
+    {
+      "name": "RText",
+      "unusual": true,
+      "arg": {
+        "format": "()[](){}",
+        "snippet": "RText(${3:x},${4:y})[${2:pos}](${5:angle}){${1:text}}"
+      }
+    },
+    {
+      "name": "SetPFont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetPFont{${1:postscript font%keyvals}}{${2:size}}",
+        "keys": [
+          "\\SetPFont#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PText",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "PText(${2:x},${3:y})(${4:angle}){${1:text}}"
+      }
+    },
+    {
+      "name": "PText",
+      "arg": {
+        "format": "()()[]{}",
+        "snippet": "PText(${3:x},${4:y})(${5:angle})[${2:pos}]{${1:text}}"
+      }
+    },
+    {
+      "name": "BText",
+      "arg": {
+        "format": "(){}",
+        "snippet": "BText(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "GText",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "GText(${3:x},${4:y}){${1:grayscale}}{${2:text}}"
+      }
+    },
+    {
+      "name": "CText",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "CText(${4:x},${5:y}){${1:bound color}}{${2:fill color}}{${3:text}}"
+      }
+    },
+    {
+      "name": "BTwoText",
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "BTwoText(${3:x},${4:y}){${1:text1%text}}{${2:text2%text}}"
+      }
+    },
+    {
+      "name": "GTwoText",
+      "arg": {
+        "format": "(){}{}{}",
+        "snippet": "GTwoText(${4:x},${5:y}){${1:grayscale}}{${2:text1%text}}{${3:text2%text}}"
+      }
+    },
+    {
+      "name": "CTwoText",
+      "arg": {
+        "format": "(){}{}{}{}",
+        "snippet": "CTwoText(${5:x},${6:y}){${1:bound color}}{${2:fill color}}{${3:text1%text}}{${4:text2%text}}"
+      }
+    },
+    {
+      "name": "ArrowLine",
+      "arg": {
+        "format": "()()",
+        "snippet": "ArrowLine(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "ArrowLine",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "ArrowLine[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "LongArrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "LongArrow(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "LongArrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "LongArrow[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "ArrowDoubleLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDoubleLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDoubleLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "DashArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashArrowLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashArrowLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDashLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleLine",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashArrowDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashArrowDoubleLine[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleLine",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "ArrowDashDoubleLine(${3:x1},${4:y1})(${5:x2},${6:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleLine",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "ArrowDashDoubleLine[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashLongArrowLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrowLine",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashLongArrowLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongArrowDashLine(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongArrowDashLine[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDash",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongArrowDash(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDash",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongArrowDash[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrow",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashLongArrow(${2:x1},${3:y1})(${4:x2},${5:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashLongArrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashLongArrow[${2:options%keyvals}](${3:x1},${4:y1})(${5:x2},${6:y2}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "LongArrowArcn(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "LongArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "LongArrowArcn[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "ArrowArcn(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "ArrowArcn[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "LongArrowArc",
+      "arg": {
+        "format": "()()",
+        "snippet": "LongArrowArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "LongArrowArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "LongArrowArc[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArc",
+      "arg": {
+        "format": "()()",
+        "snippet": "ArrowArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowArc",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "ArrowArc[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "ArrowCArc(${1:x},${2:y})(${3:radius},${4:start-angle},${5:end-angle})"
+      }
+    },
+    {
+      "name": "ArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "ArrowCArc[${1:options%keyvals}](${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle})"
+      }
+    },
+    {
+      "name": "DashArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashArrowArcn(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashArrowArcn[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArcn",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDashArcn(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArcn",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDashArcn[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashArrowArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashArrowArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "DashArrowCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "DashArrowCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDashArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDashCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongDashArrowArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongDashArrowArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongDashArrowCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongDashArrowCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongDashArrowCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashArc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongArrowDashArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongArrowDashArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "LongArrowDashCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "LongArrowDashCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "LongArrowDashCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleArc",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDoubleArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleArc",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDoubleArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "ArrowDoubleCArc(${2:x},${3:y})(${4:radius},${5:start-angle},${6:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "ArrowDoubleCArc[${2:options%keyvals}](${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleArc",
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "ArrowDashDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleArc",
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "ArrowDashDoubleArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "ArrowDashDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "ArrowDashDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "ArrowDashDoubleCArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashArrowDoubleArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashArrowDoubleArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}{}",
+        "snippet": "DashArrowDoubleCArc(${3:x},${4:y})(${5:radius},${6:start-angle},${7:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "DashArrowDoubleCArc",
+      "unusual": true,
+      "arg": {
+        "format": "[]()(){}{}",
+        "snippet": "DashArrowDoubleCArc[${3:options%keyvals}](${4:x},${5:y})(${6:radius},${7:start-angle},${8:end-angle}){${1:linesep}}{${2:dashsize}}"
+      }
+    },
+    {
+      "name": "SetDashSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetDashSize{${1:number}}"
+      }
+    },
+    {
+      "name": "SetLineSep",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetLineSep{${1:number}}"
+      }
+    },
+    {
+      "name": "SetSep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetSep{${1:number}}"
+      }
+    },
+    {
+      "name": "SetWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetWidth{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowAspect",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowAspect{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowInset",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowInset{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowPosition",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowPosition{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowScale{${1:number}}"
+      }
+    },
+    {
+      "name": "DefaultArrowScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DefaultArrowScale{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowStroke",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowStroke{${1:number}}"
+      }
+    },
+    {
+      "name": "SetArrowSize",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetArrowSize{${1:number}}"
+      }
+    },
+    {
+      "name": "canvasScaleOnept"
+    },
+    {
+      "name": "canvasScaleObjectScale"
+    },
+    {
+      "name": "canvasScaleUnitLength"
+    },
+    {
+      "name": "SetScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetScale{${1:number}}"
+      }
+    },
+    {
+      "name": "SetTextScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetTextScale{${1:number}}"
+      }
+    },
+    {
+      "name": "SetCanvasScale",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetCanvasScale{${1:number}}"
+      }
+    },
+    {
+      "name": "ifPSTextScalesLikeGraphics",
+      "unusual": true
+    },
+    {
+      "name": "PSTextScalesLikeGraphicsfalse"
+    },
+    {
+      "name": "PSTextScalesLikeGraphicstrue"
+    },
+    {
+      "name": "SetOffset",
+      "arg": {
+        "format": "()",
+        "snippet": "SetOffset(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "SetScaledOffset",
+      "arg": {
+        "format": "()",
+        "snippet": "SetScaledOffset(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "SetColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetColor{${1:color}}"
+      }
+    },
+    {
+      "name": "SetObjectScale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetObjectScale{${1:number}}"
+      }
+    },
+    {
+      "name": "textGreenYellow"
+    },
+    {
+      "name": "textYellow"
+    },
+    {
+      "name": "textGoldenrod"
+    },
+    {
+      "name": "textDandelion"
+    },
+    {
+      "name": "textApricot"
+    },
+    {
+      "name": "textPeach"
+    },
+    {
+      "name": "textMelon"
+    },
+    {
+      "name": "textYellowOrange"
+    },
+    {
+      "name": "textOrange"
+    },
+    {
+      "name": "textBurntOrange"
+    },
+    {
+      "name": "textBittersweet"
+    },
+    {
+      "name": "textRedOrange"
+    },
+    {
+      "name": "textMahogany"
+    },
+    {
+      "name": "textMaroon"
+    },
+    {
+      "name": "textBrickRed"
+    },
+    {
+      "name": "textRed"
+    },
+    {
+      "name": "textOrangeRed"
+    },
+    {
+      "name": "textRubineRed"
+    },
+    {
+      "name": "textWildStrawberry"
+    },
+    {
+      "name": "textSalmon"
+    },
+    {
+      "name": "textCarnationPink"
+    },
+    {
+      "name": "textMagenta"
+    },
+    {
+      "name": "textVioletRed"
+    },
+    {
+      "name": "textRhodamine"
+    },
+    {
+      "name": "textMulberry"
+    },
+    {
+      "name": "textRedViolet"
+    },
+    {
+      "name": "textFuchsia"
+    },
+    {
+      "name": "textLavender"
+    },
+    {
+      "name": "textThistle"
+    },
+    {
+      "name": "textOrchid"
+    },
+    {
+      "name": "textDarkOrchid"
+    },
+    {
+      "name": "textPurple"
+    },
+    {
+      "name": "textPlum"
+    },
+    {
+      "name": "textViolet"
+    },
+    {
+      "name": "textRoyalPurple"
+    },
+    {
+      "name": "textBlueViolet"
+    },
+    {
+      "name": "textPeriwinkle"
+    },
+    {
+      "name": "textCadetBlue"
+    },
+    {
+      "name": "textCornflowerBlue"
+    },
+    {
+      "name": "textMidnightBlue"
+    },
+    {
+      "name": "textNavyBlue"
+    },
+    {
+      "name": "textRoyalBlue"
+    },
+    {
+      "name": "textBlue"
+    },
+    {
+      "name": "textCerulean"
+    },
+    {
+      "name": "textCyan"
+    },
+    {
+      "name": "textProcessBlue"
+    },
+    {
+      "name": "textSkyBlue"
+    },
+    {
+      "name": "textTurquoise"
+    },
+    {
+      "name": "textTealBlue"
+    },
+    {
+      "name": "textAquamarine"
+    },
+    {
+      "name": "textBlueGreen"
+    },
+    {
+      "name": "textEmerald"
+    },
+    {
+      "name": "textJungleGreen"
+    },
+    {
+      "name": "textSeaGreen"
+    },
+    {
+      "name": "textGreen"
+    },
+    {
+      "name": "textForestGreen"
+    },
+    {
+      "name": "textPineGreen"
+    },
+    {
+      "name": "textLimeGreen"
+    },
+    {
+      "name": "textYellowGreen"
+    },
+    {
+      "name": "textSpringGreen"
+    },
+    {
+      "name": "textOliveGreen"
+    },
+    {
+      "name": "textRawSienna"
+    },
+    {
+      "name": "textSepia"
+    },
+    {
+      "name": "textBrown"
+    },
+    {
+      "name": "textTan"
+    },
+    {
+      "name": "textGray"
+    },
+    {
+      "name": "textBlack"
+    },
+    {
+      "name": "textWhite"
+    },
+    {
+      "name": "textLightYellow"
+    },
+    {
+      "name": "textLightRed"
+    },
+    {
+      "name": "textLightBlue"
+    },
+    {
+      "name": "textLightGray"
+    },
+    {
+      "name": "textVeryLightBlue"
+    },
+    {
+      "name": "GreenYellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "GreenYellow{${1:text}}"
+      }
+    },
+    {
+      "name": "Yellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "Yellow{${1:text}}"
+      }
+    },
+    {
+      "name": "Goldenrod",
+      "arg": {
+        "format": "{}",
+        "snippet": "Goldenrod{${1:text}}"
+      }
+    },
+    {
+      "name": "Dandelion",
+      "arg": {
+        "format": "{}",
+        "snippet": "Dandelion{${1:text}}"
+      }
+    },
+    {
+      "name": "Apricot",
+      "arg": {
+        "format": "{}",
+        "snippet": "Apricot{${1:text}}"
+      }
+    },
+    {
+      "name": "Peach",
+      "arg": {
+        "format": "{}",
+        "snippet": "Peach{${1:text}}"
+      }
+    },
+    {
+      "name": "Melon",
+      "arg": {
+        "format": "{}",
+        "snippet": "Melon{${1:text}}"
+      }
+    },
+    {
+      "name": "YellowOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "YellowOrange{${1:text}}"
+      }
+    },
+    {
+      "name": "Orange",
+      "arg": {
+        "format": "{}",
+        "snippet": "Orange{${1:text}}"
+      }
+    },
+    {
+      "name": "BurntOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "BurntOrange{${1:text}}"
+      }
+    },
+    {
+      "name": "Bittersweet",
+      "arg": {
+        "format": "{}",
+        "snippet": "Bittersweet{${1:text}}"
+      }
+    },
+    {
+      "name": "RedOrange",
+      "arg": {
+        "format": "{}",
+        "snippet": "RedOrange{${1:text}}"
+      }
+    },
+    {
+      "name": "Mahogany",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mahogany{${1:text}}"
+      }
+    },
+    {
+      "name": "Maroon",
+      "arg": {
+        "format": "{}",
+        "snippet": "Maroon{${1:text}}"
+      }
+    },
+    {
+      "name": "BrickRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "BrickRed{${1:text}}"
+      }
+    },
+    {
+      "name": "Red",
+      "arg": {
+        "format": "{}",
+        "snippet": "Red{${1:text}}"
+      }
+    },
+    {
+      "name": "OrangeRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "OrangeRed{${1:text}}"
+      }
+    },
+    {
+      "name": "RubineRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "RubineRed{${1:text}}"
+      }
+    },
+    {
+      "name": "WildStrawberry",
+      "arg": {
+        "format": "{}",
+        "snippet": "WildStrawberry{${1:text}}"
+      }
+    },
+    {
+      "name": "Salmon",
+      "arg": {
+        "format": "{}",
+        "snippet": "Salmon{${1:text}}"
+      }
+    },
+    {
+      "name": "CarnationPink",
+      "arg": {
+        "format": "{}",
+        "snippet": "CarnationPink{${1:text}}"
+      }
+    },
+    {
+      "name": "Magenta",
+      "arg": {
+        "format": "{}",
+        "snippet": "Magenta{${1:text}}"
+      }
+    },
+    {
+      "name": "VioletRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "VioletRed{${1:text}}"
+      }
+    },
+    {
+      "name": "Rhodamine",
+      "arg": {
+        "format": "{}",
+        "snippet": "Rhodamine{${1:text}}"
+      }
+    },
+    {
+      "name": "Mulberry",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mulberry{${1:text}}"
+      }
+    },
+    {
+      "name": "RedViolet",
+      "arg": {
+        "format": "{}",
+        "snippet": "RedViolet{${1:text}}"
+      }
+    },
+    {
+      "name": "Fuchsia",
+      "arg": {
+        "format": "{}",
+        "snippet": "Fuchsia{${1:text}}"
+      }
+    },
+    {
+      "name": "Lavender",
+      "arg": {
+        "format": "{}",
+        "snippet": "Lavender{${1:text}}"
+      }
+    },
+    {
+      "name": "Thistle",
+      "arg": {
+        "format": "{}",
+        "snippet": "Thistle{${1:text}}"
+      }
+    },
+    {
+      "name": "Orchid",
+      "arg": {
+        "format": "{}",
+        "snippet": "Orchid{${1:text}}"
+      }
+    },
+    {
+      "name": "DarkOrchid",
+      "arg": {
+        "format": "{}",
+        "snippet": "DarkOrchid{${1:text}}"
+      }
+    },
+    {
+      "name": "Purple",
+      "arg": {
+        "format": "{}",
+        "snippet": "Purple{${1:text}}"
+      }
+    },
+    {
+      "name": "Plum",
+      "arg": {
+        "format": "{}",
+        "snippet": "Plum{${1:text}}"
+      }
+    },
+    {
+      "name": "Violet",
+      "arg": {
+        "format": "{}",
+        "snippet": "Violet{${1:text}}"
+      }
+    },
+    {
+      "name": "RoyalPurple",
+      "arg": {
+        "format": "{}",
+        "snippet": "RoyalPurple{${1:text}}"
+      }
+    },
+    {
+      "name": "BlueViolet",
+      "arg": {
+        "format": "{}",
+        "snippet": "BlueViolet{${1:text}}"
+      }
+    },
+    {
+      "name": "Periwinkle",
+      "arg": {
+        "format": "{}",
+        "snippet": "Periwinkle{${1:text}}"
+      }
+    },
+    {
+      "name": "CadetBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "CadetBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "CornflowerBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "CornflowerBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "MidnightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "MidnightBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "NavyBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "NavyBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "RoyalBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "RoyalBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "Blue",
+      "arg": {
+        "format": "{}",
+        "snippet": "Blue{${1:text}}"
+      }
+    },
+    {
+      "name": "Cerulean",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cerulean{${1:text}}"
+      }
+    },
+    {
+      "name": "Cyan",
+      "arg": {
+        "format": "{}",
+        "snippet": "Cyan{${1:text}}"
+      }
+    },
+    {
+      "name": "ProcessBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProcessBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "SkyBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "SkyBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "Turquoise",
+      "arg": {
+        "format": "{}",
+        "snippet": "Turquoise{${1:text}}"
+      }
+    },
+    {
+      "name": "TealBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "TealBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "Aquamarine",
+      "arg": {
+        "format": "{}",
+        "snippet": "Aquamarine{${1:text}}"
+      }
+    },
+    {
+      "name": "BlueGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "BlueGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "Emerald",
+      "arg": {
+        "format": "{}",
+        "snippet": "Emerald{${1:text}}"
+      }
+    },
+    {
+      "name": "JungleGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "JungleGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "SeaGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "SeaGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "Green",
+      "arg": {
+        "format": "{}",
+        "snippet": "Green{${1:text}}"
+      }
+    },
+    {
+      "name": "ForestGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "ForestGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "PineGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "PineGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "LimeGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "LimeGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "YellowGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "YellowGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "SpringGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "SpringGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "OliveGreen",
+      "arg": {
+        "format": "{}",
+        "snippet": "OliveGreen{${1:text}}"
+      }
+    },
+    {
+      "name": "RawSienna",
+      "arg": {
+        "format": "{}",
+        "snippet": "RawSienna{${1:text}}"
+      }
+    },
+    {
+      "name": "Sepia",
+      "arg": {
+        "format": "{}",
+        "snippet": "Sepia{${1:text}}"
+      }
+    },
+    {
+      "name": "Brown",
+      "arg": {
+        "format": "{}",
+        "snippet": "Brown{${1:text}}"
+      }
+    },
+    {
+      "name": "Tan",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tan{${1:text}}"
+      }
+    },
+    {
+      "name": "Gray",
+      "arg": {
+        "format": "{}",
+        "snippet": "Gray{${1:text}}"
+      }
+    },
+    {
+      "name": "Black",
+      "arg": {
+        "format": "{}",
+        "snippet": "Black{${1:text}}"
+      }
+    },
+    {
+      "name": "White",
+      "arg": {
+        "format": "{}",
+        "snippet": "White{${1:text}}"
+      }
+    },
+    {
+      "name": "LightYellow",
+      "arg": {
+        "format": "{}",
+        "snippet": "LightYellow{${1:text}}"
+      }
+    },
+    {
+      "name": "LightRed",
+      "arg": {
+        "format": "{}",
+        "snippet": "LightRed{${1:text}}"
+      }
+    },
+    {
+      "name": "LightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "LightBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "LightGray",
+      "arg": {
+        "format": "{}",
+        "snippet": "LightGray{${1:text}}"
+      }
+    },
+    {
+      "name": "VeryLightBlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "VeryLightBlue{${1:text}}"
+      }
+    },
+    {
+      "name": "AXOputPDF",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AXOputPDF{${1:pdf code}}"
+      }
+    },
+    {
+      "name": "AXOputPS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AXOputPS{${1:ps code}}"
+      }
+    },
+    {
+      "name": "AXOspecial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AXOspecial{${1:ps code}}"
+      }
+    },
+    {
+      "name": "AssignDecDiv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "AssignDecDiv{${1:variable}}{${2:integer1}}{${3:integer2}}"
+      }
+    },
+    {
+      "name": "AxoPut",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "AxoPut(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "SetPoint",
+      "unusual": true,
+      "arg": {
+        "format": "{}()",
+        "snippet": "SetPoint{${1:name}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "SetTmpBoxTwo",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetTmpBoxTwo{${1:contents1}}{${2:contents2}}"
+      }
+    },
+    {
+      "name": "SetTmpBox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetTmpBox{${1:contents}}"
+      }
+    },
+    {
+      "name": "UseCurrentPSFont",
+      "unusual": true
+    },
+    {
+      "name": "axoarrowsize",
+      "unusual": true
+    },
+    {
+      "name": "axocanvas",
+      "unusual": true
+    },
+    {
+      "name": "axofontsize",
+      "unusual": true
+    },
+    {
+      "name": "axohelp",
+      "unusual": true
+    },
+    {
+      "name": "axominusone",
+      "unusual": true
+    },
+    {
+      "name": "axoone",
+      "unusual": true
+    },
+    {
+      "name": "axoparray",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "axoparray(${2:x},${3:y}){${1:arg}}"
+      }
+    },
+    {
+      "name": "axoscale",
+      "unusual": true
+    },
+    {
+      "name": "axoscalePT",
+      "unusual": true
+    },
+    {
+      "name": "axoscaleTT",
+      "unusual": true
+    },
+    {
+      "name": "axotextscale",
+      "unusual": true
+    },
+    {
+      "name": "axounitlength",
+      "unusual": true
+    },
+    {
+      "name": "axowidth",
+      "unusual": true
+    },
+    {
+      "name": "axoxo",
+      "unusual": true
+    },
+    {
+      "name": "axoxoff",
+      "unusual": true
+    },
+    {
+      "name": "axoyo",
+      "unusual": true
+    },
+    {
+      "name": "axoyoff",
+      "unusual": true
+    },
+    {
+      "name": "axozero",
+      "unusual": true
+    },
+    {
+      "name": "contentspdf",
+      "unusual": true
+    },
+    {
+      "name": "contentspdfNoOffset",
+      "unusual": true
+    },
+    {
+      "name": "defWithOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "defWithOption{${1:csname}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "defineaxofont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defineaxofont{${1:user-visible font name}}{${2:LaTeX font name}}"
+      }
+    },
+    {
+      "name": "getaxohelp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getaxohelp{${1:csname}}{${2:spec}}"
+      }
+    },
+    {
+      "name": "getoneline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getoneline{${1:csname}}{${2:input stream num}}"
+      }
+    },
+    {
+      "name": "newcolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newcolor{${1:color%specialDef}}{${2:CMYK}}"
+      }
+    },
+    {
+      "name": "putLen",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "putLen(${2:x},${3:y}){${1:text}}"
+      }
+    },
+    {
+      "name": "useX",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "useX{${1:point name}}"
+      }
+    },
+    {
+      "name": "useY",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "useY{${1:point name}}"
+      }
+    },
+    {
+      "name": "ifAXONotImplemented",
+      "unusual": true
+    },
+    {
+      "name": "AXONotImplementedtrue",
+      "unusual": true
+    },
+    {
+      "name": "AXONotImplementedfalse",
+      "unusual": true
+    },
+    {
+      "name": "bpinsp",
+      "unusual": true
+    },
+    {
+      "name": "ptinsp",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "axopicture",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "axopicture",
+      "arg": {
+        "format": "()()",
+        "snippet": "(${1:x},${2:y})(${3:xoffset},${4:yoffset})"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/axodraw2#c": [
+      "v1compatible",
+      "canvasScaleIs1pt",
+      "canvasScaleIsObjectScale",
+      "canvasScaleIsUnitLength",
+      "PSTextScalesIndependently",
+      "PSTextScalesLikeGraphics"
+    ],
+    "\\SetPFont#c": [
+      "AvantGarde-Book",
+      "AvantGarde-BookOblique",
+      "AvantGarde-Demi",
+      "AvantGarde-DemiOblique",
+      "Bookman-Demi",
+      "Bookman-DemiItalic",
+      "Bookman-Light",
+      "Bookman-LightItalic",
+      "Courier",
+      "Courier-Bold",
+      "Courier-BoldOblique",
+      "Courier-Oblique",
+      "Helvetica",
+      "Helvetica-Bold",
+      "Helvetica-BoldOblique",
+      "Helvetica-Narrow",
+      "Helvetica-NarrowBold",
+      "Helvetica-NarrowBoldOblique",
+      "Helvetica-NarrowOblique",
+      "Helvetica-Oblique",
+      "NewCenturySchlbk-Bold",
+      "NewCenturySchlbk-BoldItalic",
+      "NewCenturySchlbk-Italic",
+      "NewCenturySchlbk-Roman",
+      "Palatino-Bold",
+      "Palatino-BoldItalic",
+      "Palatino-Italic",
+      "Palatino-Roman",
+      "Symbol",
+      "Times-Bold",
+      "Times-BoldItalic",
+      "Times-Italic",
+      "Times-Roman",
+      "ZapfChancery-MediumItalic",
+      "ZapfDingbats"
+    ],
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\Gluon,\\DoubleGluon,\\DashGluon,\\DashDoubleGluon,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\DashGluonCirc,\\DashDoubleGluonCirc,\\Photon,\\DoublePhoton,\\DashPhoton,\\DashDoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\DashZigZag,\\DashDoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDashArcn,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
+      "color=",
+      "colour=",
+      "dsize=${1:number}",
+      "dashsize=${1:number}",
+      "sep=${1:number}",
+      "linesep=${1:number}",
+      "width=${1:number}"
+    ],
+    "\\Line,\\DoubleLine,\\Arc,\\DoubleArc,\\Bezier,\\DoubleBezier,\\Gluon,\\DoubleGluon,\\GluonArc,\\DoubleGluonArc,\\GluonCirc,\\DoubleGluonCirc,\\Photon,\\DoublePhoton,\\PhotonArc,\\DoublePhotonArc,\\ZigZag,\\DoubleZigZag,\\ZigZagArc,\\DoubleZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\LongArrowArcn,\\ArrowArcn,\\LongArrowArc,\\ArrowArc,\\ArrowDoubleArc": [
+      "dash"
+    ],
+    "\\Line,\\DashLine,\\Arc,\\DashArc,\\Bezier,\\DashBezier,\\Gluon,\\DashGluon,\\GluonArc,\\DashGluonArc,\\GluonCirc,\\DashGluonCirc,\\Photon,\\DashPhoton,\\PhotonArc,\\DashPhotonArc,\\ZigZag,\\DashZigZag,\\ZigZagArc,\\DashZigZagArc,\\ArrowLine,\\LongArrow,\\ArrowDashLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc": [
+      "double"
+    ],
+    "\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\GluonArc,\\DoubleGluonArc,\\DashGluonArc,\\DashDoubleGluonArc,\\PhotonArc,\\DoublePhotonArc,\\DashPhotonArc,\\DashDoublePhotonArc,\\ZigZagArc,\\DoubleZigZagArc,\\DashZigZagArc,\\DashDoubleZigZagArc,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
+      "clock",
+      "clockwise"
+    ],
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier": [
+      "arrow"
+    ],
+    "\\Line,\\DoubleLine,\\DashLine,\\DashDoubleLine,\\Arc,\\DoubleArc,\\DashArc,\\DashDoubleArc,\\Bezier,\\DoubleBezier,\\DashBezier,\\DashDoubleBezier,\\ArrowLine,\\LongArrow,\\ArrowDoubleLine,\\ArrowDashLine,\\ArrowDashDoubleLine,\\LongArrowDashLine,\\LongArrowArc,\\ArrowArc,\\ArrowDashArc,\\LongArrowDashArc,\\ArrowDoubleArc,\\ArrowDashDoubleArc": [
+      "flip",
+      "arrowpos=${1:number}",
+      "arrowaspect=${1:number}",
+      "arrowlength=${1:number}",
+      "arrowheight=${1:number}",
+      "arrowinset=${1:number}",
+      "arrowscale=${1:number}",
+      "arrowstroke=${1:number}",
+      "arrowwidth=${1:number}",
+      "inset=${1:number}"
+    ]
+  },
+  "args": [
+    "\\usepackage/axodraw2#c"
+  ]
 }

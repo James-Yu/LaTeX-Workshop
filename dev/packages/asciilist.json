@@ -1,89 +1,252 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "trimspaces": []
-  },
-  "macros": {
-    "AsciiListFromFile{}{}": {
-      "snippet": "AsciiListFromFile{${1:item chars}}{${2:file}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "AsciiListFromFile[]{}{}": {
-      "snippet": "AsciiListFromFile[${3:environments}]{${1:item chars}}{${2:file}}"
-    },
-    "AsciiListFromFiles{}{}": {
-      "snippet": "AsciiListFromFiles{${1:item chars}}{${2:file list}}"
-    },
-    "AsciiListFromFiles[]{}{}": {
-      "snippet": "AsciiListFromFiles[${3:environments}]{${1:item chars}}{${2:file list}}"
-    },
-    "AsciiListSetAutochars{}": {
-      "snippet": "AsciiListSetAutochars{${1:chars}}"
-    },
-    "UP": {},
-    "UP[]": {
-      "snippet": "UP[${1:integer}]"
-    },
-    "UPTO{}": {
-      "snippet": "UPTO{${1:integer}}"
-    },
-    "AsciiDocListFromFile{}": {
-      "snippet": "AsciiDocListFromFile{${1:file}}"
-    },
-    "AsciiDocListFromFile[]{}": {
-      "snippet": "AsciiDocListFromFile[${2:char1=env1,...}]{${1:file}}"
-    },
-    "AsciiDocListFromFiles{}": {
-      "snippet": "AsciiDocListFromFiles{${1:file list}}"
-    },
-    "AsciiDocListFromFiles[]{}": {
-      "snippet": "AsciiDocListFromFiles[${2:char1=env1,...}]{${1:file list}}"
-    },
-    "AsciiListRegisterEnv{}{}{}{}": {
-      "snippet": "AsciiListRegisterEnv{${1:envname}}{${2:begindef}}{${3:enddef}}{${4:itemdef}}"
-    },
-    "AsciiListRegisterDescEnv{}": {
-      "snippet": "AsciiListRegisterDescEnv{${1:envname}}"
-    },
-    "AsciiListEndArg{}": {
-      "snippet": "AsciiListEndArg{${1:command}}"
-    },
-    "AsciiListEndOArg{}": {
-      "snippet": "AsciiListEndOArg{${1:command}}"
-    },
-    "AsciiListSetEnvironments{}": {
-      "snippet": "AsciiListSetEnvironments{${1:environments}}"
-    },
-    "NewAsciiListEnv{}{}": {
-      "snippet": "NewAsciiListEnv{${1:item chars}}{${2:envname}}"
-    },
-    "NewAsciiListEnv[]{}{}": {
-      "snippet": "NewAsciiListEnv[${3:environments}]{${1:item chars}}{${2:envname}}"
-    },
-    "AsciiDocListSetEnvironments{}": {
-      "snippet": "AsciiDocListSetEnvironments{${1:char1=env1,...}}"
-    },
-    "NewAsciiDocListEnv{}": {
-      "snippet": "NewAsciiDocListEnv{${1:envname}}"
-    },
-    "NewAsciiDocListEnv[]{}": {
-      "snippet": "NewAsciiDocListEnv[${2:char1=env1,...}]{${1:envname}}"
+    {
+      "name": "trimspaces"
     }
-  },
-  "envs": {
-    "AsciiList{}": {
-      "name": "AsciiList",
-      "snippet": "{${1:item chars}}"
+  ],
+  "macros": [
+    {
+      "name": "AsciiListFromFile",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AsciiListFromFile{${1:item chars}}{${2:file}}"
+      }
     },
-    "AsciiList[]{}": {
-      "name": "AsciiList",
-      "snippet": "[${2:environments}]{${1:item chars}}"
+    {
+      "name": "AsciiListFromFile",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "AsciiListFromFile[${3:environments%keyvals}]{${1:item chars}}{${2:file}}",
+        "keys": [
+          "\\begin{AsciiList}#c,\\AsciiListFromFile#c,\\AsciiListFromFiles#c,\\AsciiListSetEnvironments#c,\\NewAsciiListEnv#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "AsciiDocList": {},
-    "AsciiDocList[]": {
+    {
+      "name": "AsciiListFromFiles",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AsciiListFromFiles{${1:item chars}}{${2:file list%file}}"
+      }
+    },
+    {
+      "name": "AsciiListFromFiles",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "AsciiListFromFiles[${3:environments%keyvals}]{${1:item chars}}{${2:file list%file}}",
+        "keys": [
+          "\\begin{AsciiList}#c,\\AsciiListFromFile#c,\\AsciiListFromFiles#c,\\AsciiListSetEnvironments#c,\\NewAsciiListEnv#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AsciiListSetAutochars",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiListSetAutochars{${1:chars}}"
+      }
+    },
+    {
+      "name": "UP"
+    },
+    {
+      "name": "UP",
+      "arg": {
+        "format": "[]",
+        "snippet": "UP[${1:integer}]"
+      }
+    },
+    {
+      "name": "UPTO",
+      "arg": {
+        "format": "{}",
+        "snippet": "UPTO{${1:integer}}"
+      }
+    },
+    {
+      "name": "AsciiDocListFromFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiDocListFromFile{${1:file}}"
+      }
+    },
+    {
+      "name": "AsciiDocListFromFile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "AsciiDocListFromFile[${2:char1=env1,...%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{AsciiDocList}#c,\\AsciiDocListFromFile#c,\\AsciiDocListFromFiles#c,\\AsciiDocListSetEnvironments#c,\\NewAsciiDocListEnv#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AsciiDocListFromFiles",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiDocListFromFiles{${1:file list%file}}"
+      }
+    },
+    {
+      "name": "AsciiDocListFromFiles",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "AsciiDocListFromFiles[${2:char1=env1,...%keyvals}]{${1:file list%file}}",
+        "keys": [
+          "\\begin{AsciiDocList}#c,\\AsciiDocListFromFile#c,\\AsciiDocListFromFiles#c,\\AsciiDocListSetEnvironments#c,\\NewAsciiDocListEnv#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AsciiListRegisterEnv",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "AsciiListRegisterEnv{${1:envname%specialDef}}{${2:begindef%definition}}{${3:enddef%definition}}{${4:itemdef%definition}}"
+      }
+    },
+    {
+      "name": "AsciiListRegisterDescEnv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiListRegisterDescEnv{${1:envname%specialDef}}"
+      }
+    },
+    {
+      "name": "AsciiListEndArg",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiListEndArg{${1:command}}"
+      }
+    },
+    {
+      "name": "AsciiListEndOArg",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiListEndOArg{${1:command}}"
+      }
+    },
+    {
+      "name": "AsciiListSetEnvironments",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiListSetEnvironments{${1:environments%keyvals}}"
+      }
+    },
+    {
+      "name": "NewAsciiListEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewAsciiListEnv{${1:item chars}}{${2:envname}}"
+      }
+    },
+    {
+      "name": "NewAsciiListEnv",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "NewAsciiListEnv[${3:environments%keyvals}]{${1:item chars}}{${2:envname}}"
+      }
+    },
+    {
+      "name": "AsciiDocListSetEnvironments",
+      "arg": {
+        "format": "{}",
+        "snippet": "AsciiDocListSetEnvironments{${1:char1=env1,...%keyvals}}"
+      }
+    },
+    {
+      "name": "NewAsciiDocListEnv",
+      "arg": {
+        "format": "{}",
+        "snippet": "NewAsciiDocListEnv{${1:envname}}"
+      }
+    },
+    {
+      "name": "NewAsciiDocListEnv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NewAsciiDocListEnv[${2:char1=env1,...%keyvals}]{${1:envname}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "AsciiList",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:item chars}}"
+      }
+    },
+    {
+      "name": "AsciiList",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:environments%keyvals}]{${1:item chars}}",
+        "keys": [
+          "\\begin{AsciiList}#c,\\AsciiListFromFile#c,\\AsciiListFromFiles#c,\\AsciiListSetEnvironments#c,\\NewAsciiListEnv#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AsciiDocList"
+    },
+    {
       "name": "AsciiDocList",
-      "snippet": "[${1:char1=env1,...}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:char1=env1,...%keyvals}]",
+        "keys": [
+          "\\begin{AsciiDocList}#c,\\AsciiDocListFromFile#c,\\AsciiDocListFromFiles#c,\\AsciiDocListSetEnvironments#c,\\NewAsciiDocListEnv#c"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{AsciiList}#c,\\AsciiListFromFile#c,\\AsciiListFromFiles#c,\\AsciiListSetEnvironments#c,\\NewAsciiListEnv#c": [
+      "chapter",
+      "section",
+      "subsection",
+      "subsubsection",
+      "section*",
+      "subsection*",
+      "subsubsection*",
+      "paragraph",
+      "Heading",
+      "Heading*",
+      "description",
+      "Description",
+      "itemize",
+      "enumerate",
+      "compactenum",
+      "compactenum<${1:label}>",
+      "compactitem",
+      "compactitem<${1:label}>",
+      "compactdesc",
+      "CompactDesc",
+      "Heading",
+      "Heading<${1:level}>",
+      "Heading*",
+      "Heading*<${1:level}>",
+      "%asciiregisteredenv"
+    ],
+    "\\begin{AsciiDocList}#c,\\AsciiDocListFromFile#c,\\AsciiDocListFromFiles#c,\\AsciiDocListSetEnvironments#c,\\NewAsciiDocListEnv#c": [
+      "*=${1:envname}",
+      "-=${1:envname}",
+      "!=${1:envname}",
+      "/=${1:envname}",
+      "+=${1:envname}",
+      "?=${1:envname}",
+      ";=${1:envname}"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

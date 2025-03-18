@@ -1,130 +1,282 @@
 {
-  "includes": {
-    "tikz": [],
-    "simplekv": [],
-    "xintexpr": [],
-    "xinttools": [],
-    "xstring": [],
-    "listofitems": [],
-    "csvsimple-l3": []
-  },
-  "macros": {
-    "PixelArtTikz{}": {
-      "snippet": "PixelArtTikz{${1:file}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "PixelArtTikz[]{}": {
-      "snippet": "PixelArtTikz[${2:clés}]{${1:file}}"
+    {
+      "name": "simplekv"
     },
-    "PixelArtTikz[]<>{}": {
-      "snippet": "PixelArtTikz[${2:clés}]<${3:TikZ options}>{${1:file}}"
+    {
+      "name": "xintexpr"
     },
-    "PixelArtTikz*{}": {
-      "snippet": "PixelArtTikz*{${1:file}}"
+    {
+      "name": "xinttools"
     },
-    "PixelArtTikz*[]{}": {
-      "snippet": "PixelArtTikz*[${2:clés}]{${1:file}}"
+    {
+      "name": "xstring"
     },
-    "MiniPixelArt{}": {
-      "snippet": "MiniPixelArt{${1:liste des couleurs}}"
+    {
+      "name": "listofitems"
     },
-    "MiniPixelArt{}<>": {
-      "snippet": "MiniPixelArt{${1:liste des couleurs}}<${2:TikZ options}>"
-    },
-    "MiniPixelArt[]{}": {
-      "snippet": "MiniPixelArt[${2:clés}]{${1:liste des couleurs}}"
-    },
-    "MiniPixelArt[]{}<>": {
-      "snippet": "MiniPixelArt[${2:clés}]{${1:liste des couleurs}}<${3:TikZ options}>"
-    },
-    "PixlArtTikz{}": {
-      "snippet": "PixlArtTikz{${1:file}}"
-    },
-    "PixlArtTikz[]{}": {
-      "snippet": "PixlArtTikz[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "PixlArtTikz[]<>{}": {
-      "snippet": "PixlArtTikz[${2:options}]<${3:TikZ options}>{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "PixlArtTikz*{}": {
-      "snippet": "PixlArtTikz*{${1:file}}"
-    },
-    "PixlArtTikz*[]{}": {
-      "snippet": "PixlArtTikz*[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "MiniPixlArt{}": {
-      "snippet": "MiniPixlArt{${1:list of colors}}"
-    },
-    "MiniPixlArt{}<>": {
-      "snippet": "MiniPixlArt{${1:list of colors}}<${2:TikZ options}>"
-    },
-    "MiniPixlArt[]{}": {
-      "snippet": "MiniPixlArt[${2:options}]{${1:list of colors}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "MiniPixlArt[]{}<>": {
-      "snippet": "MiniPixlArt[${2:options}]{${1:list of colors}}<${3:TikZ options}>",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "DessineCarrePA{}{}{}": {
-      "snippet": "DessineCarrePA{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "DrawSquarePA{}{}{}": {
-      "snippet": "DrawSquarePA{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "minipaunit": {},
-    "PATchiffres": {},
-    "PATcouleurs": {},
-    "PATlettres": {},
-    "PATtaille": {},
-    "PATunit": {},
-    "pixchf": {},
-    "pixcnt": {},
-    "pixcol": {},
-    "pixpos": {}
-  },
-  "envs": {
-    "EnvPixelArtTikz{}": {
-      "name": "EnvPixelArtTikz",
-      "snippet": "{${1:file}}"
-    },
-    "EnvPixelArtTikz[]{}": {
-      "name": "EnvPixelArtTikz",
-      "snippet": "[${2:clés}]{${1:file}}"
-    },
-    "EnvPixelArtTikz[]<>{}": {
-      "name": "EnvPixelArtTikz",
-      "snippet": "[${2:clés}]<${3:TikZ options}>{${1:file}}"
-    },
-    "EnvPixlArtTikz{}": {
-      "name": "EnvPixlArtTikz",
-      "snippet": "{${1:file}}"
-    },
-    "EnvPixlArtTikz[]{}": {
-      "name": "EnvPixlArtTikz",
-      "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "EnvPixlArtTikz[]<>{}": {
-      "name": "EnvPixlArtTikz",
-      "snippet": "[${2:options}]<${3:TikZ options}>{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "csvsimple-l3"
     }
-  },
-  "options": [
-    "csvii"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "PixelArtTikz",
+      "arg": {
+        "format": "{}",
+        "snippet": "PixelArtTikz{${1:file}}"
+      }
+    },
+    {
+      "name": "PixelArtTikz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PixelArtTikz[${2:clés%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PixelArtTikz",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "PixelArtTikz[${2:clés%keyvals}]<${3:TikZ options}>{${1:file}}",
+        "keys": [
+          "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PixelArtTikz*",
+      "arg": {
+        "format": "{}",
+        "snippet": "PixelArtTikz*{${1:file}}"
+      }
+    },
+    {
+      "name": "PixelArtTikz*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PixelArtTikz*[${2:clés%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MiniPixelArt",
+      "arg": {
+        "format": "{}",
+        "snippet": "MiniPixelArt{${1:liste des couleurs}}"
+      }
+    },
+    {
+      "name": "MiniPixelArt",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "MiniPixelArt{${1:liste des couleurs}}<${2:TikZ options}>"
+      }
+    },
+    {
+      "name": "MiniPixelArt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MiniPixelArt[${2:clés%keyvals}]{${1:liste des couleurs}}",
+        "keys": [
+          "\\MiniPixelArt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MiniPixelArt",
+      "arg": {
+        "format": "[]{}<>",
+        "snippet": "MiniPixelArt[${2:clés%keyvals}]{${1:liste des couleurs}}<${3:TikZ options}>",
+        "keys": [
+          "\\MiniPixelArt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PixlArtTikz{${1:file}}"
+      }
+    },
+    {
+      "name": "PixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PixlArtTikz[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "PixlArtTikz[${2:options%keyvals}]<${3:TikZ options}>{${1:file}}",
+        "keys": [
+          "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PixlArtTikz*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PixlArtTikz*{${1:file}}"
+      }
+    },
+    {
+      "name": "PixlArtTikz*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PixlArtTikz*[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MiniPixlArt",
+      "arg": {
+        "format": "{}",
+        "snippet": "MiniPixlArt{${1:list of colors}}"
+      }
+    },
+    {
+      "name": "MiniPixlArt",
+      "arg": {
+        "format": "{}<>",
+        "snippet": "MiniPixlArt{${1:list of colors}}<${2:TikZ options}>"
+      }
+    },
+    {
+      "name": "MiniPixlArt",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "MiniPixlArt[${2:options%keyvals}]{${1:list of colors}}",
+        "keys": [
+          "\\MiniPixlArt"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MiniPixlArt",
+      "arg": {
+        "format": "[]{}<>",
+        "snippet": "MiniPixlArt[${2:options%keyvals}]{${1:list of colors}}<${3:TikZ options}>",
+        "keys": [
+          "\\MiniPixlArt"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "EnvPixelArtTikz",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "EnvPixelArtTikz",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:clés%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EnvPixelArtTikz",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:clés%keyvals}]<${3:TikZ options}>{${1:file}}",
+        "keys": [
+          "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EnvPixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "EnvPixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "EnvPixlArtTikz",
+      "unusual": true,
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:options%keyvals}]<${3:TikZ options}>{${1:file}}",
+        "keys": [
+          "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/PixelArtTikz#c": [
+      "csvii"
+    ],
+    "\\PixelArtTikz,\\PixelArtTikz*,\\begin{EnvPixelArtTikz}": [
+      "Codes=${1:chaîne}",
+      "Couleurs={${1:couleur1,couleur2,...}}",
+      "Symboles={${1:symbol1,symbol2,...}}",
+      "Correction",
+      "Symb",
+      "BordCases",
+      "Style=${1:font commands}",
+      "Unite=${1:nombre}"
+    ],
+    "\\MiniPixelArt": [
+      "Unite=",
+      "Bord"
+    ],
+    "\\PixlArtTikz,\\PixlArtTikz*,\\begin{EnvPixlArtTikz}": [
       "Codes=${1:string}",
       "Colors={${1:color1,color2,...}}",
       "Symbols={${1:symbol1,symbol2,...}}",
@@ -134,9 +286,12 @@
       "Style=${1:font commands}",
       "Unit=${1:number}"
     ],
-    [
+    "\\MiniPixlArt": [
       "Unit=",
       "Border"
     ]
+  },
+  "args": [
+    "\\usepackage/PixelArtTikz#c"
   ]
 }

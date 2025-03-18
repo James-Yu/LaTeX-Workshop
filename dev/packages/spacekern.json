@@ -1,20 +1,27 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "luatexbase": []
-  },
-  "macros": {
-    "semicolon": {
-      "detail": ";",
-      "documentation": "SEMICOLON p:"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "redef": {},
-    "tmp": {}
-  },
-  "envs": {},
-  "options": [
-    "noiwkern",
-    "noredef"
+    {
+      "name": "luatexbase"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "semicolon",
+      "detail": ";",
+      "doc": "Semicolon p:"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/spacekern#c": [
+      "noiwkern",
+      "noredef"
+    ]
+  },
+  "args": [
+    "\\usepackage/spacekern#c"
+  ]
 }

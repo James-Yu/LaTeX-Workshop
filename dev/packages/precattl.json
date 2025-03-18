@@ -1,23 +1,39 @@
 {
-  "includes": {},
-  "macros": {
-    "precattlExec{}": {
-      "snippet": "precattlExec{${1:token list}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "precattlExec",
+      "arg": {
+        "format": "{}",
+        "snippet": "precattlExec{${1:token list}}"
+      }
     },
-    "precattlSet{}{}": {
-      "snippet": "precattlSet{${1:cmd}}{${2:token list}}"
+    {
+      "name": "execinside",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "execinside{${1:arg}}"
+      }
     },
-    "execinside{}": {
-      "snippet": "execinside{${1:arg}}"
+    {
+      "name": "execinsideSet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "execinsideSet{${1:cmd}}{${2:arg}}"
+      }
     },
-    "execinsideSet{}{}": {
-      "snippet": "execinsideSet{${1:cmd}}{${2:arg}}"
-    },
-    "execinsideGset{}{}": {
-      "snippet": "execinsideGset{${1:cmd}}{${2:arg}}"
+    {
+      "name": "execinsideGset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "execinsideGset{${1:cmd}}{${2:arg}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

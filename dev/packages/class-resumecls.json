@@ -1,94 +1,187 @@
 {
-  "includes": {
-    "class-ctexart": [],
-    "xeCJK": [],
-    "geometry": [],
-    "hyperref": [],
-    "tabularx": [],
-    "color": [],
-    "fancyhdr": [],
-    "natbib": []
-  },
-  "macros": {
-    "heading{}": {
-      "snippet": "heading{${1:text}}"
+  "deps": [
+    {
+      "name": "class-ctexart"
     },
-    "entry{}{}{}": {
-      "snippet": "entry{${1:indent}}{${2:cols}}{${3:content}}"
+    {
+      "name": "xeCJK"
     },
-    "name{}": {
-      "snippet": "name{${1:name}}"
+    {
+      "name": "geometry"
     },
-    "organization{}": {
-      "snippet": "organization{${1:organization}}"
+    {
+      "name": "hyperref"
     },
-    "address{}": {
-      "snippet": "address{${1:address}}"
+    {
+      "name": "tabularx"
     },
-    "mobile{}": {
-      "snippet": "mobile{${1:number}}"
+    {
+      "name": "color"
     },
-    "mail{}": {
-      "snippet": "mail{${1:email}}"
+    {
+      "name": "fancyhdr"
     },
-    "homepage{}": {
-      "snippet": "homepage{${1:URL}}"
-    },
-    "leftfooter{}": {
-      "snippet": "leftfooter{${1:text}}"
-    },
-    "rightfooter{}": {
-      "snippet": "rightfooter{${1:text}}"
-    },
-    "ifrclscolor": {},
-    "rclscolortrue": {},
-    "rclscolorfalse": {},
-    "rclsaddress": {},
-    "rclshomepage": {},
-    "rclsleftfooter": {},
-    "rclsmail": {},
-    "rclsmobile": {},
-    "rclsname": {},
-    "rclsorganization": {},
-    "rclsrightfooter": {}
-  },
-  "envs": {},
-  "options": [
-    "color",
-    "GBK",
-    "UTF8",
-    "zhmap=",
-    "zihao=",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=",
-    "linespread=${1:number}",
-    "fontset=",
-    "punct=",
-    "space=",
-    "autoindent=",
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "natbib"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "heading",
+      "arg": {
+        "format": "{}",
+        "snippet": "heading{${1:text}}"
+      }
+    },
+    {
+      "name": "entry",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "entry{${1:indent%l}}{${2:cols}}{${3:content%text}}"
+      }
+    },
+    {
+      "name": "name",
+      "arg": {
+        "format": "{}",
+        "snippet": "name{${1:name}}"
+      }
+    },
+    {
+      "name": "organization",
+      "arg": {
+        "format": "{}",
+        "snippet": "organization{${1:organization%text}}"
+      }
+    },
+    {
+      "name": "address",
+      "arg": {
+        "format": "{}",
+        "snippet": "address{${1:address%text}}"
+      }
+    },
+    {
+      "name": "mobile",
+      "arg": {
+        "format": "{}",
+        "snippet": "mobile{${1:number}}"
+      }
+    },
+    {
+      "name": "mail",
+      "arg": {
+        "format": "{}",
+        "snippet": "mail{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "homepage",
+      "arg": {
+        "format": "{}",
+        "snippet": "homepage{${1:URL}}"
+      }
+    },
+    {
+      "name": "leftfooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "leftfooter{${1:text}}"
+      }
+    },
+    {
+      "name": "rightfooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "rightfooter{${1:text}}"
+      }
+    },
+    {
+      "name": "ifrclscolor",
+      "unusual": true
+    },
+    {
+      "name": "rclscolortrue",
+      "unusual": true
+    },
+    {
+      "name": "rclscolorfalse",
+      "unusual": true
+    },
+    {
+      "name": "rclsaddress",
+      "unusual": true
+    },
+    {
+      "name": "rclshomepage",
+      "unusual": true
+    },
+    {
+      "name": "rclsleftfooter",
+      "unusual": true
+    },
+    {
+      "name": "rclsmail",
+      "unusual": true
+    },
+    {
+      "name": "rclsmobile",
+      "unusual": true
+    },
+    {
+      "name": "rclsname",
+      "unusual": true
+    },
+    {
+      "name": "rclsorganization",
+      "unusual": true
+    },
+    {
+      "name": "rclsrightfooter",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/resumecls#c": [
+      "color",
+      "GBK",
+      "UTF8",
+      "zhmap=${1|true,false,zhmCJK|}",
+      "zihao=${1|-4,5,false|}",
+      "heading",
+      "sub3section",
+      "sub4section",
+      "scheme=${1|chinese,plain|}",
+      "linespread=${1:number}",
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+      "space=${1|true,false,auto|}",
+      "autoindent=",
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/resumecls#c"
+  ]
 }

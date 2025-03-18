@@ -1,1061 +1,2424 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "class-book": [],
-    "calc": [],
-    "xargs": [],
-    "ifthen": [],
-    "iftex": [],
-    "pgffor": [],
-    "xint": [],
-    "xinttools": [],
-    "listofitems": [],
-    "xkeyval": [],
-    "etoolbox": [],
-    "atbegshi": [],
-    "hyperref": [],
-    "eso-pic": [],
-    "environ": [],
-    "numprint": [],
-    "trimclip": [],
-    "xcolor": [],
-    "pagecolor": [],
-    "colorspace": [],
-    "graphicx": [],
-    "adjustbox": [],
-    "textpos": [],
-    "fancyvrb": [],
-    "tikz": [],
-    "rotating": [],
-    "fancyhdr": [],
-    "pdfpages": [],
-    "geometry": []
-  },
-  "macros": {
-    "bindingoffset": {},
-    "bleed": {},
-    "bleedblockheight": {},
-    "bleedblockwidth": {},
-    "blockheight": {},
-    "blockwidth": {},
-    "BookAuthors": {},
-    "BookEdition": {},
-    "BookFonts": {},
-    "BookFullInfoPage": {},
-    "BookFullInfoPage[]": {
-      "snippet": "BookFullInfoPage[${1:text}]"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "BookInfo": {},
-    "BookInfoPage": {},
-    "BookInfoPage[]": {
-      "snippet": "BookInfoPage[${1:text}]"
+    {
+      "name": "class-book"
     },
-    "BookSoftwareInfoPage": {},
-    "BookSoftwareInfoPage[]": {
-      "snippet": "BookSoftwareInfoPage[${1:text}]"
+    {
+      "name": "calc"
     },
-    "BookTitle": {},
-    "BookType": {},
-    "BookVersion": {},
-    "BookYear": {},
-    "ByNotice": {},
-    "captionblockcell[]{}": {
-      "snippet": "captionblockcell[${2:options}]{${1:caption}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xargs"
     },
-    "captionblockcell{}": {
-      "snippet": "captionblockcell{${1:caption}}"
+    {
+      "name": "ifthen"
     },
-    "captioncell[]{}": {
-      "snippet": "captioncell[${2:options}]{${1:caption}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "iftex"
     },
-    "captioncell{}": {
-      "snippet": "captioncell{${1:caption}}"
+    {
+      "name": "pgffor"
     },
-    "captioncellspacing": {},
-    "captionclearpage": {},
-    "captionformat{}": {
-      "snippet": "captionformat{${1:text}}"
+    {
+      "name": "xint"
     },
-    "captionsize": {},
-    "CellContentOptions{}": {
-      "snippet": "CellContentOptions{${1:arg}}"
+    {
+      "name": "xinttools"
     },
-    "cellheight": {},
-    "celloffsetleft": {},
-    "celloffsettop": {},
-    "cellparentheight": {},
-    "cellparentwidth": {},
-    "cellwidth": {},
-    "clearancebottom": {},
-    "clearanceleft": {},
-    "clearanceright": {},
-    "clearancetop": {},
-    "clearcaption": {},
-    "clearfoldoutedge": {},
-    "clearfoldoutfold": {},
-    "clearfoldoutgutter": {},
-    "clearimage": {},
-    "cleartoleftpage": {},
-    "cliptocellbleeds": {},
-    "cliptocellclearances": {},
-    "CopyrightNotice": {},
-    "coverboardgrow": {},
-    "coverflap": {},
-    "defaultfoldout": {},
-    "emptypage": {},
-    "emptypage[]": {
-      "snippet": "emptypage[${1:pagestyle}]"
+    {
+      "name": "listofitems"
     },
-    "flatfold": {},
-    "foldmarkoffset": {},
-    "foldmarksfalse": {},
-    "foldmarkstrue": {},
-    "foldoutwidth": {},
-    "GenerateTemplate": {},
-    "GenerateTemplate[]": {
-      "snippet": "GenerateTemplate[${1:unit}]"
+    {
+      "name": "xkeyval"
     },
-    "gsavecell[]{}{}{}{}": {
-      "snippet": "gsavecell[${5:valign}]{${1:name}}{${2:width}}{${3:height}}{${4:content}}"
+    {
+      "name": "etoolbox"
     },
-    "gsavecell{}{}{}{}": {
-      "snippet": "gsavecell{${1:name}}{${2:width}}{${3:height}}{${4:content}}"
+    {
+      "name": "atbegshi"
     },
-    "gutteroffset": {},
-    "iffoldmarks": {},
-    "ifwriteimagelist": {},
-    "imageblockheight": {},
-    "imageblockoffsettop": {},
-    "imageblockwidth": {},
-    "imagecell[]{}{}": {
-      "snippet": "imagecell[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "hyperref"
     },
-    "imagecell{}{}": {
-      "snippet": "imagecell{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "eso-pic"
     },
-    "ImageHalfPageL*[]{}{}": {
-      "snippet": "ImageHalfPageL*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "environ"
     },
-    "ImageHalfPageL*{}{}": {
-      "snippet": "ImageHalfPageL*{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "numprint"
     },
-    "ImageHalfPageL[]{}{}": {
-      "snippet": "ImageHalfPageL[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "trimclip"
     },
-    "ImageHalfPageL{}{}": {
-      "snippet": "ImageHalfPageL{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "xcolor"
     },
-    "ImageHalfPageLCaption{}": {
-      "snippet": "ImageHalfPageLCaption{${1:text}}"
+    {
+      "name": "pagecolor"
     },
-    "ImageHalfPageR*[]{}{}": {
-      "snippet": "ImageHalfPageR*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "colorspace"
     },
-    "ImageHalfPageR*{}{}": {
-      "snippet": "ImageHalfPageR*{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "graphicx"
     },
-    "ImageHalfPageR[]{}{}": {
-      "snippet": "ImageHalfPageR[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "adjustbox"
     },
-    "ImageHalfPageR{}{}": {
-      "snippet": "ImageHalfPageR{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "textpos"
     },
-    "ImageHalfPageRCaption{}": {
-      "snippet": "ImageHalfPageRCaption{${1:text}}"
+    {
+      "name": "fancyvrb"
     },
-    "imageoffsetleft": {},
-    "imageoffsettop": {},
-    "ImagePage*[]{}{}": {
-      "snippet": "ImagePage*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
     },
-    "ImagePage*{}{}": {
-      "snippet": "ImagePage*{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "rotating"
     },
-    "ImagePage[]{}{}": {
-      "snippet": "ImagePage[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "fancyhdr"
     },
-    "ImagePage{}{}": {
-      "snippet": "ImagePage{${1:caption}}{${2:imagefile}}"
+    {
+      "name": "pdfpages"
     },
-    "ImagePageCaption{}": {
-      "snippet": "ImagePageCaption{${1:text}}"
-    },
-    "ImagePageClear*[]{}{}": {
-      "snippet": "ImagePageClear*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClear*{}{}": {
-      "snippet": "ImagePageClear*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClear[]{}{}": {
-      "snippet": "ImagePageClear[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClear{}{}": {
-      "snippet": "ImagePageClear{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearB*[]{}{}": {
-      "snippet": "ImagePageClearB*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearB*{}{}": {
-      "snippet": "ImagePageClearB*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearB[]{}{}": {
-      "snippet": "ImagePageClearB[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearB{}{}": {
-      "snippet": "ImagePageClearB{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearBCaption{}": {
-      "snippet": "ImagePageClearBCaption{${1:text}}"
-    },
-    "ImagePageClearCaption{}": {
-      "snippet": "ImagePageClearCaption{${1:text}}"
-    },
-    "ImagePageClearL*[]{}{}": {
-      "snippet": "ImagePageClearL*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearL*{}{}": {
-      "snippet": "ImagePageClearL*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearL[]{}{}": {
-      "snippet": "ImagePageClearL[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearL{}{}": {
-      "snippet": "ImagePageClearL{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearLCaption{}": {
-      "snippet": "ImagePageClearLCaption{${1:text}}"
-    },
-    "ImagePageClearR*[]{}{}": {
-      "snippet": "ImagePageClearR*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearR*{}{}": {
-      "snippet": "ImagePageClearR*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearR[]{}{}": {
-      "snippet": "ImagePageClearR[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearR{}{}": {
-      "snippet": "ImagePageClearR{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearRCaption{}": {
-      "snippet": "ImagePageClearRCaption{${1:text}}"
-    },
-    "ImagePageClearT*[]{}{}": {
-      "snippet": "ImagePageClearT*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearT*{}{}": {
-      "snippet": "ImagePageClearT*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearT[]{}{}": {
-      "snippet": "ImagePageClearT[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageClearT{}{}": {
-      "snippet": "ImagePageClearT{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageClearTCaption{}": {
-      "snippet": "ImagePageClearTCaption{${1:text}}"
-    },
-    "ImagePageFill*[]{}{}": {
-      "snippet": "ImagePageFill*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFill*{}{}": {
-      "snippet": "ImagePageFill*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFill[]{}{}": {
-      "snippet": "ImagePageFill[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFill{}{}": {
-      "snippet": "ImagePageFill{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFillCaption{}": {
-      "snippet": "ImagePageFillCaption{${1:text}}"
-    },
-    "ImagePageFit*[]{}{}": {
-      "snippet": "ImagePageFit*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFit*{}{}": {
-      "snippet": "ImagePageFit*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFit[]{}{}": {
-      "snippet": "ImagePageFit[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFit{}{}": {
-      "snippet": "ImagePageFit{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitB*[]{}{}": {
-      "snippet": "ImagePageFitB*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitB*{}{}": {
-      "snippet": "ImagePageFitB*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitB[]{}{}": {
-      "snippet": "ImagePageFitB[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitB{}{}": {
-      "snippet": "ImagePageFitB{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitBCaption{}": {
-      "snippet": "ImagePageFitBCaption{${1:text}}"
-    },
-    "ImagePageFitCaption{}": {
-      "snippet": "ImagePageFitCaption{${1:text}}"
-    },
-    "ImagePageFitL*[]{}{}": {
-      "snippet": "ImagePageFitL*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitL*{}{}": {
-      "snippet": "ImagePageFitL*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitL[]{}{}": {
-      "snippet": "ImagePageFitL[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitL{}{}": {
-      "snippet": "ImagePageFitL{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitLCaption{}": {
-      "snippet": "ImagePageFitLCaption{${1:text}}"
-    },
-    "ImagePageFitR*[]{}{}": {
-      "snippet": "ImagePageFitR*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitR*{}{}": {
-      "snippet": "ImagePageFitR*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitR[]{}{}": {
-      "snippet": "ImagePageFitR[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitR{}{}": {
-      "snippet": "ImagePageFitR{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitRCaption{}": {
-      "snippet": "ImagePageFitRCaption{${1:text}}"
-    },
-    "ImagePageFitT*[]{}{}": {
-      "snippet": "ImagePageFitT*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitT*{}{}": {
-      "snippet": "ImagePageFitT*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitT[]{}{}": {
-      "snippet": "ImagePageFitT[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImagePageFitT{}{}": {
-      "snippet": "ImagePageFitT{${1:caption}}{${2:imagefile}}"
-    },
-    "ImagePageFitTCaption{}": {
-      "snippet": "ImagePageFitTCaption{${1:text}}"
-    },
-    "ImagePageTemplate{}{}": {
-      "snippet": "ImagePageTemplate{${1:name}}{${2:code}}"
-    },
-    "imagescale": {},
-    "ImageSpread*[]{}{}": {
-      "snippet": "ImageSpread*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpread*{}{}": {
-      "snippet": "ImageSpread*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpread[]{}{}": {
-      "snippet": "ImageSpread[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpread{}{}": {
-      "snippet": "ImageSpread{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadB*[]{}{}": {
-      "snippet": "ImageSpreadB*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadB*{}{}": {
-      "snippet": "ImageSpreadB*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadB[]{}{}": {
-      "snippet": "ImageSpreadB[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadB{}{}": {
-      "snippet": "ImageSpreadB{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadBCaption{}": {
-      "snippet": "ImageSpreadBCaption{${1:text}}"
-    },
-    "ImageSpreadCaption{}": {
-      "snippet": "ImageSpreadCaption{${1:text}}"
-    },
-    "ImageSpreadFill*[]{}{}": {
-      "snippet": "ImageSpreadFill*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFill*{}{}": {
-      "snippet": "ImageSpreadFill*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFill[]{}{}": {
-      "snippet": "ImageSpreadFill[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFill{}{}": {
-      "snippet": "ImageSpreadFill{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFillCaption{}": {
-      "snippet": "ImageSpreadFillCaption{${1:text}}"
-    },
-    "ImageSpreadFit*[]{}{}": {
-      "snippet": "ImageSpreadFit*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFit*{}{}": {
-      "snippet": "ImageSpreadFit*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFit[]{}{}": {
-      "snippet": "ImageSpreadFit[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFit{}{}": {
-      "snippet": "ImageSpreadFit{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitB*[]{}{}": {
-      "snippet": "ImageSpreadFitB*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitB*{}{}": {
-      "snippet": "ImageSpreadFitB*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitB[]{}{}": {
-      "snippet": "ImageSpreadFitB[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitB{}{}": {
-      "snippet": "ImageSpreadFitB{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitBCaption{}": {
-      "snippet": "ImageSpreadFitBCaption{${1:text}}"
-    },
-    "ImageSpreadFitCaption{}": {
-      "snippet": "ImageSpreadFitCaption{${1:text}}"
-    },
-    "ImageSpreadFitL*[]{}{}": {
-      "snippet": "ImageSpreadFitL*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitL*{}{}": {
-      "snippet": "ImageSpreadFitL*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitL[]{}{}": {
-      "snippet": "ImageSpreadFitL[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitL{}{}": {
-      "snippet": "ImageSpreadFitL{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitLCaption{}": {
-      "snippet": "ImageSpreadFitLCaption{${1:text}}"
-    },
-    "ImageSpreadFitR*[]{}{}": {
-      "snippet": "ImageSpreadFitR*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitR*{}{}": {
-      "snippet": "ImageSpreadFitR*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitR[]{}{}": {
-      "snippet": "ImageSpreadFitR[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitR{}{}": {
-      "snippet": "ImageSpreadFitR{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitRCaption{}": {
-      "snippet": "ImageSpreadFitRCaption{${1:text}}"
-    },
-    "ImageSpreadFitT*[]{}{}": {
-      "snippet": "ImageSpreadFitT*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitT*{}{}": {
-      "snippet": "ImageSpreadFitT*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitT[]{}{}": {
-      "snippet": "ImageSpreadFitT[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadFitT{}{}": {
-      "snippet": "ImageSpreadFitT{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadFitTCaption{}": {
-      "snippet": "ImageSpreadFitTCaption{${1:text}}"
-    },
-    "ImageSpreadL*[]{}{}": {
-      "snippet": "ImageSpreadL*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadL*{}{}": {
-      "snippet": "ImageSpreadL*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadL[]{}{}": {
-      "snippet": "ImageSpreadL[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadL{}{}": {
-      "snippet": "ImageSpreadL{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadLCaption{}": {
-      "snippet": "ImageSpreadLCaption{${1:text}}"
-    },
-    "ImageSpreadR*[]{}{}": {
-      "snippet": "ImageSpreadR*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadR*{}{}": {
-      "snippet": "ImageSpreadR*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadR[]{}{}": {
-      "snippet": "ImageSpreadR[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadR{}{}": {
-      "snippet": "ImageSpreadR{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadRCaption{}": {
-      "snippet": "ImageSpreadRCaption{${1:text}}"
-    },
-    "ImageSpreadT*[]{}{}": {
-      "snippet": "ImageSpreadT*[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadT*{}{}": {
-      "snippet": "ImageSpreadT*{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadT[]{}{}": {
-      "snippet": "ImageSpreadT[${3:options}]{${1:caption}}{${2:imagefile}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "ImageSpreadT{}{}": {
-      "snippet": "ImageSpreadT{${1:caption}}{${2:imagefile}}"
-    },
-    "ImageSpreadTCaption{}": {
-      "snippet": "ImageSpreadTCaption{${1:text}}"
-    },
-    "InitPages": {},
-    "ISBN": {},
-    "jacketflap": {},
-    "jacketflapback": {},
-    "jacketflapfront": {},
-    "jacketwrap": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
-    },
-    "LATEX": {},
-    "layoutmode": {},
-    "License": {},
-    "maxdim{}{}": {
-      "snippet": "maxdim{${1:dimen1}}{${2:dimen2}}"
-    },
-    "mindim{}{}": {
-      "snippet": "mindim{${1:dimen1}}{${2:dimen2}}"
-    },
-    "OtherSoftware": {},
-    "pageblockheight": {},
-    "pageblockwidth": {},
-    "pagefold": {},
-    "pagefoldpanelfolds": {},
-    "pagefoldpanels": {},
-    "PageInfo": {},
-    "PageInfo[]": {
-      "snippet": "PageInfo[${1:unit}]"
-    },
-    "pagetextheight": {},
-    "pagetextwidth": {},
-    "pdfboxesset[]{}{}": {
-      "snippet": "pdfboxesset[${3:bleed}]{${1:bleedboxwidth}}{${2:bleedboxheight}}"
-    },
-    "pdfboxesset{}{}": {
-      "snippet": "pdfboxesset{${1:bleedboxwidth}}{${2:bleedboxheight}}"
-    },
-    "pdfcommentcell[]{}": {
-      "snippet": "pdfcommentcell[${2:options}]{${1:comment}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "pdfcommentcell{}": {
-      "snippet": "pdfcommentcell{${1:comment}}"
-    },
-    "pdfpagecount{}": {
-      "snippet": "pdfpagecount{${1:.pdf file}}"
-    },
-    "pdfpagelayout": {},
-    "pdfspinewidth{}{}{}": {
-      "snippet": "pdfspinewidth{${1:paper-thickness}}{${2:cover-thickness}}{${3:.pdf file}}"
-    },
-    "pdfspreadstopages{}": {
-      "snippet": "pdfspreadstopages{${1:.pdf file}}"
-    },
-    "pdfspreadstopages[]{}": {
-      "snippet": "pdfspreadstopages[${2:delta}]{${1:.pdf file}}"
-    },
-    "rcaptioncell[]{}": {
-      "snippet": "rcaptioncell[${2:options}]{${1:caption}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "rcaptioncell{}": {
-      "snippet": "rcaptioncell{${1:caption}}"
-    },
-    "ReInitPages": {},
-    "ChangeLayout{}": {
-      "snippet": "ChangeLayout{${1:mode}}"
-    },
-    "resetImageHalfPageLCaption": {},
-    "resetImageHalfPageRCaption": {},
-    "resetImagePageCaption": {},
-    "resetImagePageClearBCaption": {},
-    "resetImagePageClearCaption": {},
-    "resetImagePageClearLCaption": {},
-    "resetImagePageClearRCaption": {},
-    "resetImagePageClearTCaption": {},
-    "resetImagePageFillCaption": {},
-    "resetImagePageFitBCaption": {},
-    "resetImagePageFitCaption": {},
-    "resetImagePageFitLCaption": {},
-    "resetImagePageFitRCaption": {},
-    "resetImagePageFitTCaption": {},
-    "resetImageSpreadBCaption": {},
-    "resetImageSpreadCaption": {},
-    "resetImageSpreadFillCaption": {},
-    "resetImageSpreadFitBCaption": {},
-    "resetImageSpreadFitCaption": {},
-    "resetImageSpreadFitLCaption": {},
-    "resetImageSpreadFitRCaption": {},
-    "resetImageSpreadFitTCaption": {},
-    "resetImageSpreadLCaption": {},
-    "resetImageSpreadRCaption": {},
-    "resetImageSpreadTCaption": {},
-    "resetimagetweaks": {},
-    "ResettableMacro{}[][]{}": {
-      "snippet": "ResettableMacro{${1:name}}[${2:args}][${3:default}]{${4:code}}"
-    },
-    "ResettableMacro{}[]{}": {
-      "snippet": "ResettableMacro{${1:name}}[${2:args}]{${3:code}}"
-    },
-    "ResettableMacro{}{}": {
-      "snippet": "ResettableMacro{${1:name}}{${2:code}}"
-    },
-    "savecell[]{}{}{}{}": {
-      "snippet": "savecell[${5:valign}]{${1:name}}{${2:width}}{${3:height}}{${4:content}}"
-    },
-    "savecell{}{}{}{}": {
-      "snippet": "savecell{${1:name}}{${2:width}}{${3:height}}{${4:content}}"
-    },
-    "setcliptocellbleeds{}": {
-      "snippet": "setcliptocellbleeds{${1:size}}"
-    },
-    "SoftwareInfo": {},
-    "SoftwareNotice": {},
-    "spinefold": {},
-    "spinewidth": {},
-    "subject{}": {
-      "snippet": "subject{${1:subject}}"
-    },
-    "TEX": {},
-    "ThanksTo": {},
-    "tweakimageoffsetleft{}": {
-      "snippet": "tweakimageoffsetleft{${1:length}}"
-    },
-    "tweakimageoffsettop{}": {
-      "snippet": "tweakimageoffsettop{${1:length}}"
-    },
-    "tweakimagescale{}": {
-      "snippet": "tweakimagescale{${1:factor}}"
-    },
-    "usecell*{}{}{}{}": {
-      "snippet": "usecell*{${1:name}}{${2:top,left}}{${3:width}}{${4:height}}"
-    },
-    "usecell{}{}{}{}": {
-      "snippet": "usecell{${1:name}}{${2:top,left}}{${3:width}}{${4:height}}"
-    },
-    "usespreadpage*[]{}": {
-      "snippet": "usespreadpage*[${2:page-num}]{${1:name}}"
-    },
-    "usespreadpage*{}": {
-      "snippet": "usespreadpage*{${1:name}}"
-    },
-    "usespreadpage[]{}": {
-      "snippet": "usespreadpage[${2:page-num}]{${1:name}}"
-    },
-    "usespreadpage{}": {
-      "snippet": "usespreadpage{${1:name}}"
-    },
-    "vcaptioncell[]{}": {
-      "snippet": "vcaptioncell[${2:options}]{${1:caption}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "vcaptioncell{}": {
-      "snippet": "vcaptioncell{${1:caption}}"
-    },
-    "writeimagelisttrue": {},
-    "writeimagelistfalse": {},
-    "blocklayoutfalse": {},
-    "blocklayouttrue": {},
-    "coverlayoutfalse": {},
-    "coverlayouttrue": {},
-    "coverlikelayoutfalse": {},
-    "coverlikelayouttrue": {},
-    "endpaperlayoutfalse": {},
-    "endpaperlayouttrue": {},
-    "foldinmark": {},
-    "foldinmark[]": {
-      "snippet": "foldinmark[${1:baseline}]"
-    },
-    "foldoutmark": {},
-    "foldoutmark[]": {
-      "snippet": "foldoutmark[${1:baseline}]"
-    },
-    "hardcoverlayoutfalse": {},
-    "hardcoverlayouttrue": {},
-    "ifblocklayout": {},
-    "ifcoverlayout": {},
-    "ifcoverlikelayout": {},
-    "ifendpaperlayout": {},
-    "ifhardcoverlayout": {},
-    "ifjacketlayout": {},
-    "ifsoftcoverlayout": {},
-    "ifspreadlayout": {},
-    "jacketlayoutfalse": {},
-    "jacketlayouttrue": {},
-    "pagefoldpanelslen": {},
-    "pdfcover{}": {
-      "snippet": "pdfcover{${1:.pdf file}}"
-    },
-    "pdfcoverback{}": {
-      "snippet": "pdfcoverback{${1:.pdf file}}"
-    },
-    "pdfcoverfront{}": {
-      "snippet": "pdfcoverfront{${1:.pdf file}}"
-    },
-    "pdfendpaper{}": {
-      "snippet": "pdfendpaper{${1:.pdf file}}"
-    },
-    "pdfweb{}{}": {
-      "snippet": "pdfweb{${1:file1}}{${2:file2}}"
-    },
-    "ResetFoldMarks": {},
-    "restorepdfboxes": {},
-    "restorepdfboxes[]": {
-      "snippet": "restorepdfboxes[${1:opt}]"
-    },
-    "ShowMarks": {},
-    "ShowMarks[]": {
-      "snippet": "ShowMarks[${1:unit}]"
-    },
-    "softcoverlayoutfalse": {},
-    "softcoverlayouttrue": {},
-    "spreadlayoutfalse": {},
-    "spreadlayouttrue": {},
-    "storepdfboxes": {},
-    "storepdfboxes[]": {
-      "snippet": "storepdfboxes[${1:opt}]"
-    },
-    "thefoldoutpanel": {}
-  },
-  "envs": {
-    "adjustcell{}{}{}": {
-      "name": "adjustcell",
-      "snippet": "{${1:adjustbox options}}{${2:width}}{${3:height}}"
-    },
-    "adjustcell[]{}{}{}": {
-      "name": "adjustcell",
-      "snippet": "[${4:valign}]{${1:adjustbox options}}{${2:width}}{${3:height}}"
-    },
-    "adjustcell*{}{}{}": {
-      "name": "adjustcell*",
-      "snippet": "{${1:adjustbox options}}{${2:width}}{${3:height}}"
-    },
-    "adjustcell*[]{}{}{}": {
-      "name": "adjustcell*",
-      "snippet": "[${4:valign}]{${1:adjustbox options}}{${2:width}}{${3:height}}"
-    },
-    "backcover": {},
-    "backflap": {},
-    "bottomup": {},
-    "bottomup[]": {
-      "name": "bottomup",
-      "snippet": "[${1:valign}]"
-    },
-    "cell{}{}{}": {
-      "name": "cell",
-      "snippet": "{${1:left,top}}{${2:width}}{${3:height}}"
-    },
-    "cell*{}{}{}": {
-      "name": "cell*",
-      "snippet": "{${1:left,top}}{${2:width}}{${3:height}}"
-    },
-    "CellContent{}": {
-      "name": "CellContent",
-      "snippet": "{${1:name}}"
-    },
-    "CellContent[]{}": {
-      "name": "CellContent",
-      "snippet": "[${2:parent-align}]{${1:name}}"
-    },
-    "CellContent*{}{}{}": {
-      "name": "CellContent*",
-      "snippet": "{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "CellContent*[]{}{}{}": {
-      "name": "CellContent*",
-      "snippet": "[${4:parent-align}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "cliptocell": {},
-    "cliptocell[]": {
-      "name": "cliptocell",
-      "snippet": "[${1:size}]"
-    },
-    "foldout": {},
-    "foldout[]": {
-      "name": "foldout",
-      "snippet": "[${1:fold-spec}]"
-    },
-    "foldoutcell": {},
-    "foldoutcell[]": {
-      "name": "foldoutcell",
-      "snippet": "[${1:number}]"
-    },
-    "foldoutcell*": {},
-    "foldoutcell*[]": {
-      "name": "foldoutcell*",
-      "snippet": "[${1:<${2:from}>-<${3:to}>}]"
-    },
-    "frontcover": {},
-    "frontflap": {},
-    "inlinecell{}{}": {
-      "name": "inlinecell",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "inlinecell[]{}{}": {
-      "name": "inlinecell",
-      "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
-    },
-    "inlinecell*{}{}": {
-      "name": "inlinecell*",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "inlinecell*[]{}{}": {
-      "name": "inlinecell*",
-      "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
-    },
-    "leftpage": {},
-    "leftside": {},
-    "leftside*": {},
-    "minipagecell{}{}": {
-      "name": "minipagecell",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "minipagecell[]{}{}": {
-      "name": "minipagecell",
-      "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
-    },
-    "minipagecell*{}{}": {
-      "name": "minipagecell*",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "minipagecell*[]{}{}": {
-      "name": "minipagecell*",
-      "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
-    },
-    "MinipageCellContent{}": {
-      "name": "MinipageCellContent",
-      "snippet": "{${1:name}}"
-    },
-    "MinipageCellContent[]{}": {
-      "name": "MinipageCellContent",
-      "snippet": "[${2:parent-align}]{${1:name}}"
-    },
-    "MinipageCellContent*{}{}{}": {
-      "name": "MinipageCellContent*",
-      "snippet": "{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "MinipageCellContent*[]{}{}{}": {
-      "name": "MinipageCellContent*",
-      "snippet": "[${4:parent-align}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "page": {},
-    "pagebleedcell": {},
-    "pagecell": {},
-    "pagecell*": {},
-    "paperbleedcell": {},
-    "papercell": {},
-    "rightside": {},
-    "rightside*": {},
-    "spine": {},
-    "spreadtopages": {},
-    "spreadtopages[]": {
-      "name": "spreadtopages",
-      "snippet": "[${1:page-count}]"
-    },
-    "spreadtopages*{}": {
-      "name": "spreadtopages*",
-      "snippet": "{${1:name}}"
-    },
-    "spreadtopages*[]{}": {
-      "name": "spreadtopages*",
-      "snippet": "[${2:page-count}]{${1:name}}"
-    },
-    "textcell": {},
-    "topdown": {},
-    "topdown[]": {
-      "name": "topdown",
-      "snippet": "[${1:valign}]"
-    },
-    "vspine": {},
-    "zinlinecell": {},
-    "zinlinecell[]": {
-      "name": "zinlinecell",
-      "snippet": "[${1:valign}]"
-    },
-    "zinlinecell*": {},
-    "zinlinecell*[]": {
-      "name": "zinlinecell*",
-      "snippet": "[${1:valign}]"
-    },
-    "resizedpages{}{}": {
-      "name": "resizedpages",
-      "snippet": "{${1:width}}{${2:height}}"
-    },
-    "resizedpages[]{}{}": {
-      "name": "resizedpages",
-      "snippet": "[${3:bleed}]{${1:width}}{${2:height}}"
-    },
-    "shipoutbgcell": {}
-  },
-  "options": [
-    "blockwidth=",
-    "blockheight=",
-    "bindingoffset=",
-    "gutteroffset=",
-    "bleed=",
-    "flatfold=",
-    "pagefold=",
-    "foldout=${1:fold-spec}",
-    "layoutmode=",
-    "block",
-    "endpaper",
-    "cover",
-    "jacket",
-    "spinewidth=",
-    "spinefold=",
-    "coverboardgrow=",
-    "coverflap=",
-    "jacketwrap=",
-    "jacketflap=",
-    "jacketflapfront=",
-    "jacketflapback=",
-    "clearimage=",
-    "imageblockwidth=",
-    "imageblockheight=",
-    "imageblockoffsettop=",
-    "pdfpagelayout=",
-    "SinglePage",
-    "OneColumn",
-    "TwoColumnRight",
-    "TwoColumnLeft",
-    "TwoPageRight",
-    "TwoPageLeft",
-    "nofoldmarks",
-    "foldmarksize=",
-    "geometrynodefaults",
-    "roundprintedlengthsto=${1:number}"
+    {
+      "name": "geometry"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "bindingoffset"
+    },
+    {
+      "name": "bleed"
+    },
+    {
+      "name": "bleedblockheight"
+    },
+    {
+      "name": "bleedblockwidth"
+    },
+    {
+      "name": "blockheight"
+    },
+    {
+      "name": "blockwidth"
+    },
+    {
+      "name": "BookAuthors"
+    },
+    {
+      "name": "BookEdition"
+    },
+    {
+      "name": "BookFonts"
+    },
+    {
+      "name": "BookFullInfoPage"
+    },
+    {
+      "name": "BookFullInfoPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "BookFullInfoPage[${1:text}]"
+      }
+    },
+    {
+      "name": "BookInfo"
+    },
+    {
+      "name": "BookInfoPage"
+    },
+    {
+      "name": "BookInfoPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "BookInfoPage[${1:text}]"
+      }
+    },
+    {
+      "name": "BookSoftwareInfoPage"
+    },
+    {
+      "name": "BookSoftwareInfoPage",
+      "arg": {
+        "format": "[]",
+        "snippet": "BookSoftwareInfoPage[${1:text}]"
+      }
+    },
+    {
+      "name": "BookTitle"
+    },
+    {
+      "name": "BookType"
+    },
+    {
+      "name": "BookVersion"
+    },
+    {
+      "name": "BookYear"
+    },
+    {
+      "name": "ByNotice"
+    },
+    {
+      "name": "captionblockcell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captionblockcell[${2:options%keyvals}]{${1:caption%text}}",
+        "keys": [
+          "\\captionblockcell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "captionblockcell",
+      "arg": {
+        "format": "{}",
+        "snippet": "captionblockcell{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "captioncell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captioncell[${2:options%keyvals}]{${1:caption%text}}",
+        "keys": [
+          "\\captioncell,\\rcaptioncell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "captioncell",
+      "arg": {
+        "format": "{}",
+        "snippet": "captioncell{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "captioncellspacing"
+    },
+    {
+      "name": "captionclearpage"
+    },
+    {
+      "name": "captionformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "captionformat{${1:text}}"
+      }
+    },
+    {
+      "name": "captionsize",
+      "unusual": true
+    },
+    {
+      "name": "CellContentOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CellContentOptions{${1:arg}}"
+      }
+    },
+    {
+      "name": "cellheight"
+    },
+    {
+      "name": "celloffsetleft"
+    },
+    {
+      "name": "celloffsettop"
+    },
+    {
+      "name": "cellparentheight"
+    },
+    {
+      "name": "cellparentwidth"
+    },
+    {
+      "name": "cellwidth"
+    },
+    {
+      "name": "clearancebottom"
+    },
+    {
+      "name": "clearanceleft"
+    },
+    {
+      "name": "clearanceright"
+    },
+    {
+      "name": "clearancetop"
+    },
+    {
+      "name": "clearcaption"
+    },
+    {
+      "name": "clearfoldoutedge"
+    },
+    {
+      "name": "clearfoldoutfold"
+    },
+    {
+      "name": "clearfoldoutgutter"
+    },
+    {
+      "name": "clearimage"
+    },
+    {
+      "name": "cleartoleftpage"
+    },
+    {
+      "name": "cliptocellbleeds",
+      "unusual": true
+    },
+    {
+      "name": "cliptocellclearances",
+      "unusual": true
+    },
+    {
+      "name": "CopyrightNotice"
+    },
+    {
+      "name": "coverboardgrow"
+    },
+    {
+      "name": "coverflap"
+    },
+    {
+      "name": "defaultfoldout"
+    },
+    {
+      "name": "emptypage"
+    },
+    {
+      "name": "emptypage",
+      "arg": {
+        "format": "[]",
+        "snippet": "emptypage[${1:pagestyle}]"
+      }
+    },
+    {
+      "name": "flatfold"
+    },
+    {
+      "name": "foldmarkoffset"
+    },
+    {
+      "name": "foldmarksfalse"
+    },
+    {
+      "name": "foldmarkstrue"
+    },
+    {
+      "name": "foldoutwidth"
+    },
+    {
+      "name": "GenerateTemplate"
+    },
+    {
+      "name": "GenerateTemplate",
+      "arg": {
+        "format": "[]",
+        "snippet": "GenerateTemplate[${1:unit}]"
+      }
+    },
+    {
+      "name": "gsavecell",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "gsavecell[${5:valign}]{${1:name}}{${2:width}}{${3:height}}{${4:content%text}}"
+      }
+    },
+    {
+      "name": "gsavecell",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "gsavecell{${1:name}}{${2:width}}{${3:height}}{${4:content%text}}"
+      }
+    },
+    {
+      "name": "gutteroffset"
+    },
+    {
+      "name": "iffoldmarks"
+    },
+    {
+      "name": "ifwriteimagelist",
+      "unusual": true
+    },
+    {
+      "name": "imageblockheight"
+    },
+    {
+      "name": "imageblockoffsettop"
+    },
+    {
+      "name": "imageblockwidth"
+    },
+    {
+      "name": "imagecell",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "imagecell[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "imagecell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "imagecell{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageL*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageHalfPageL*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageHalfPageL*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageHalfPageL*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageL",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageHalfPageL[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageHalfPageL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageHalfPageL{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageLCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageHalfPageLCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageR*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageHalfPageR*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageHalfPageR*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageHalfPageR*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageR",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageHalfPageR[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageHalfPageR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageHalfPageR{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageHalfPageRCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageHalfPageRCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "imageoffsetleft"
+    },
+    {
+      "name": "imageoffsettop"
+    },
+    {
+      "name": "ImagePage*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePage*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePage*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePage*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePage",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePage[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePage{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageClear*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClear*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClear*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClear*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClear",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClear[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClear",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClear{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearB*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearB*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearB*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearB*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearB[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearB{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearBCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageClearBCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageClearCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageClearCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageClearL*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearL*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearL*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearL*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearL",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearL[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearL{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearLCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageClearLCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageClearR*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearR*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearR*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearR*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearR",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearR[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearR{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearRCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageClearRCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageClearT*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearT*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearT*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearT*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageClearT[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageClearT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageClearT{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageClearTCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageClearTCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFill*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFill*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFill*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFill*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFill",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFill[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFill{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFillCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFillCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFit*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFit*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFit*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFit*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFit[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFit{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitB*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitB*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitB*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitB*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitB[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitB{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitBCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFitBCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFitCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFitCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFitL*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitL*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitL*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitL*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitL",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitL[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitL{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitLCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFitLCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFitR*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitR*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitR*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitR*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitR",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitR[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitR{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitRCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFitRCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageFitT*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitT*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitT*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitT*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImagePageFitT[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImagePageFitT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageFitT{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImagePageFitTCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImagePageFitTCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImagePageTemplate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImagePageTemplate{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "imagescale"
+    },
+    {
+      "name": "ImageSpread*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpread*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpread*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpread*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpread",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpread[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpread{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadB*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadB*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadB*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadB*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadB[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadB{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadBCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadBCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFill*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFill*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFill*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFill*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFill",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFill[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFill",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFill{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFillCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFillCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFit*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFit*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFit*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFit*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFit",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFit[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFit",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFit{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitB*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitB*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitB*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitB*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitB",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitB[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitB",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitB{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitBCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFitBCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFitCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitL*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitL*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitL*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitL*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitL",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitL[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitL{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitLCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFitLCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitR*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitR*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitR*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitR*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitR",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitR[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitR{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitRCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFitRCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitT*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitT*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitT*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitT*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadFitT[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadFitT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadFitT{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadFitTCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadFitTCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadL*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadL*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadL*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadL*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadL",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadL[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadL",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadL{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadLCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadLCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadR*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadR*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadR*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadR*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadR",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadR[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadR",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadR{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadRCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadRCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "ImageSpreadT*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadT*[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadT*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadT*{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadT",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ImageSpreadT[${3:options%keyvals}]{${1:caption%text}}{${2:imagefile}}",
+        "keys": [
+          "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ImageSpreadT",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ImageSpreadT{${1:caption%text}}{${2:imagefile}}"
+      }
+    },
+    {
+      "name": "ImageSpreadTCaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "ImageSpreadTCaption{${1:text}}"
+      }
+    },
+    {
+      "name": "InitPages"
+    },
+    {
+      "name": "ISBN"
+    },
+    {
+      "name": "jacketflap"
+    },
+    {
+      "name": "jacketflapback"
+    },
+    {
+      "name": "jacketflapfront"
+    },
+    {
+      "name": "jacketwrap"
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "LATEX"
+    },
+    {
+      "name": "layoutmode"
+    },
+    {
+      "name": "License"
+    },
+    {
+      "name": "maxdim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "maxdim{${1:dimen1%l}}{${2:dimen2%l}}"
+      }
+    },
+    {
+      "name": "mindim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mindim{${1:dimen1%l}}{${2:dimen2%l}}"
+      }
+    },
+    {
+      "name": "OtherSoftware"
+    },
+    {
+      "name": "pageblockheight"
+    },
+    {
+      "name": "pageblockwidth"
+    },
+    {
+      "name": "pagefold"
+    },
+    {
+      "name": "pagefoldpanelfolds"
+    },
+    {
+      "name": "pagefoldpanels"
+    },
+    {
+      "name": "PageInfo"
+    },
+    {
+      "name": "PageInfo",
+      "arg": {
+        "format": "[]",
+        "snippet": "PageInfo[${1:unit}]"
+      }
+    },
+    {
+      "name": "pagetextheight"
+    },
+    {
+      "name": "pagetextwidth"
+    },
+    {
+      "name": "pdfboxesset",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pdfboxesset[${3:bleed}]{${1:bleedboxwidth}}{${2:bleedboxheight}}"
+      }
+    },
+    {
+      "name": "pdfboxesset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pdfboxesset{${1:bleedboxwidth}}{${2:bleedboxheight}}"
+      }
+    },
+    {
+      "name": "pdfcommentcell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pdfcommentcell[${2:options%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\pdfcommentcell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pdfcommentcell",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfcommentcell{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "pdfpagecount",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfpagecount{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfpagelayout"
+    },
+    {
+      "name": "pdfspinewidth",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pdfspinewidth{${1:paper-thickness}}{${2:cover-thickness}}{${3:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfspreadstopages",
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfspreadstopages{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfspreadstopages",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pdfspreadstopages[${2:delta}]{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "rcaptioncell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rcaptioncell[${2:options%keyvals}]{${1:caption%text}}",
+        "keys": [
+          "\\captioncell,\\rcaptioncell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rcaptioncell",
+      "arg": {
+        "format": "{}",
+        "snippet": "rcaptioncell{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "ReInitPages"
+    },
+    {
+      "name": "ChangeLayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "ChangeLayout{${1:mode%keyvals}}",
+        "keys": [
+          "\\ChangeLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetImageHalfPageLCaption"
+    },
+    {
+      "name": "resetImageHalfPageRCaption"
+    },
+    {
+      "name": "resetImagePageCaption"
+    },
+    {
+      "name": "resetImagePageClearBCaption"
+    },
+    {
+      "name": "resetImagePageClearCaption"
+    },
+    {
+      "name": "resetImagePageClearLCaption"
+    },
+    {
+      "name": "resetImagePageClearRCaption"
+    },
+    {
+      "name": "resetImagePageClearTCaption"
+    },
+    {
+      "name": "resetImagePageFillCaption"
+    },
+    {
+      "name": "resetImagePageFitBCaption"
+    },
+    {
+      "name": "resetImagePageFitCaption"
+    },
+    {
+      "name": "resetImagePageFitLCaption"
+    },
+    {
+      "name": "resetImagePageFitRCaption"
+    },
+    {
+      "name": "resetImagePageFitTCaption"
+    },
+    {
+      "name": "resetImageSpreadBCaption"
+    },
+    {
+      "name": "resetImageSpreadCaption"
+    },
+    {
+      "name": "resetImageSpreadFillCaption"
+    },
+    {
+      "name": "resetImageSpreadFitBCaption"
+    },
+    {
+      "name": "resetImageSpreadFitCaption"
+    },
+    {
+      "name": "resetImageSpreadFitLCaption"
+    },
+    {
+      "name": "resetImageSpreadFitRCaption"
+    },
+    {
+      "name": "resetImageSpreadFitTCaption"
+    },
+    {
+      "name": "resetImageSpreadLCaption"
+    },
+    {
+      "name": "resetImageSpreadRCaption"
+    },
+    {
+      "name": "resetImageSpreadTCaption"
+    },
+    {
+      "name": "resetimagetweaks"
+    },
+    {
+      "name": "ResettableMacro",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "ResettableMacro{${1:name}}[${3:args}][${4:default}]{${2:code}}"
+      }
+    },
+    {
+      "name": "ResettableMacro",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "ResettableMacro{${1:name}}[${3:args}]{${2:code}}"
+      }
+    },
+    {
+      "name": "ResettableMacro",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ResettableMacro{${1:name}}{${2:code}}"
+      }
+    },
+    {
+      "name": "savecell",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "savecell[${5:valign}]{${1:name}}{${2:width}}{${3:height}}{${4:content%text}}"
+      }
+    },
+    {
+      "name": "savecell",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "savecell{${1:name}}{${2:width}}{${3:height}}{${4:content%text}}"
+      }
+    },
+    {
+      "name": "setcliptocellbleeds",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcliptocellbleeds{${1:size}}"
+      }
+    },
+    {
+      "name": "SoftwareInfo"
+    },
+    {
+      "name": "SoftwareNotice"
+    },
+    {
+      "name": "spinefold"
+    },
+    {
+      "name": "spinewidth"
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "subject{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "TEX"
+    },
+    {
+      "name": "ThanksTo"
+    },
+    {
+      "name": "tweakimageoffsetleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "tweakimageoffsetleft{${1:length}}"
+      }
+    },
+    {
+      "name": "tweakimageoffsettop",
+      "arg": {
+        "format": "{}",
+        "snippet": "tweakimageoffsettop{${1:length}}"
+      }
+    },
+    {
+      "name": "tweakimagescale",
+      "arg": {
+        "format": "{}",
+        "snippet": "tweakimagescale{${1:factor}}"
+      }
+    },
+    {
+      "name": "usecell*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "usecell*{${1:name}}{${2:top,left}}{${3:width}}{${4:height}}"
+      }
+    },
+    {
+      "name": "usecell",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "usecell{${1:name}}{${2:top,left}}{${3:width}}{${4:height}}"
+      }
+    },
+    {
+      "name": "usespreadpage*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usespreadpage*[${2:page-num}]{${1:name}}"
+      }
+    },
+    {
+      "name": "usespreadpage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "usespreadpage*{${1:name}}"
+      }
+    },
+    {
+      "name": "usespreadpage",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usespreadpage[${2:page-num}]{${1:name}}"
+      }
+    },
+    {
+      "name": "usespreadpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "usespreadpage{${1:name}}"
+      }
+    },
+    {
+      "name": "vcaptioncell",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "vcaptioncell[${2:options%keyvals}]{${1:caption%text}}",
+        "keys": [
+          "\\vcaptioncell"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "vcaptioncell",
+      "arg": {
+        "format": "{}",
+        "snippet": "vcaptioncell{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "writeimagelisttrue",
+      "unusual": true
+    },
+    {
+      "name": "writeimagelistfalse"
+    },
+    {
+      "name": "foldinmark",
+      "unusual": true
+    },
+    {
+      "name": "foldinmark",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "foldinmark[${1:baseline}]"
+      }
+    },
+    {
+      "name": "foldoutmark",
+      "unusual": true
+    },
+    {
+      "name": "foldoutmark",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "foldoutmark[${1:baseline}]"
+      }
+    },
+    {
+      "name": "ifblocklayout",
+      "unusual": true
+    },
+    {
+      "name": "ifcoverlayout",
+      "unusual": true
+    },
+    {
+      "name": "ifcoverlikelayout",
+      "unusual": true
+    },
+    {
+      "name": "ifendpaperlayout",
+      "unusual": true
+    },
+    {
+      "name": "ifhardcoverlayout",
+      "unusual": true
+    },
+    {
+      "name": "ifjacketlayout",
+      "unusual": true
+    },
+    {
+      "name": "ifsoftcoverlayout",
+      "unusual": true
+    },
+    {
+      "name": "ifspreadlayout",
+      "unusual": true
+    },
+    {
+      "name": "pdfcover",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfcover{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfcoverback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfcoverback{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfcoverfront",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfcoverfront{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfendpaper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfendpaper{${1:.pdf file%file}}"
+      }
+    },
+    {
+      "name": "pdfweb",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pdfweb{${1:file1%file}}{${2:file2%file}}"
+      }
+    },
+    {
+      "name": "ResetFoldMarks",
+      "unusual": true
+    },
+    {
+      "name": "restorepdfboxes",
+      "unusual": true
+    },
+    {
+      "name": "restorepdfboxes",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "restorepdfboxes[${1:opt}]"
+      }
+    },
+    {
+      "name": "ShowMarks",
+      "unusual": true
+    },
+    {
+      "name": "ShowMarks",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "ShowMarks[${1:unit}]"
+      }
+    },
+    {
+      "name": "storepdfboxes",
+      "unusual": true
+    },
+    {
+      "name": "storepdfboxes",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "storepdfboxes[${1:opt}]"
+      }
+    },
+    {
+      "name": "thefoldoutpanel",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "adjustcell",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:adjustbox options%keyvals}}{${2:width}}{${3:height}}",
+        "keys": [
+          "\\begin{adjustcell},\\begin{adjustcell*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adjustcell",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:valign}]{${1:adjustbox options%keyvals}}{${2:width}}{${3:height}}",
+        "keys": [
+          "\\begin{adjustcell},\\begin{adjustcell*}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "adjustcell*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:adjustbox options%keyvals}}{${2:width}}{${3:height}}",
+        "keys": [
+          "\\begin{adjustcell},\\begin{adjustcell*}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adjustcell*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:valign}]{${1:adjustbox options%keyvals}}{${2:width}}{${3:height}}",
+        "keys": [
+          "\\begin{adjustcell},\\begin{adjustcell*}"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "backcover"
+    },
+    {
+      "name": "backflap"
+    },
+    {
+      "name": "bottomup"
+    },
+    {
+      "name": "bottomup",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:valign}]"
+      }
+    },
+    {
+      "name": "cell",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left,top}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cell*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:left,top}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "CellContent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "CellContent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parent-align}]{${1:name}}"
+      }
+    },
+    {
+      "name": "CellContent*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "CellContent*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:parent-align}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "cliptocell"
+    },
+    {
+      "name": "cliptocell",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size}]"
+      }
+    },
+    {
+      "name": "foldout"
+    },
+    {
+      "name": "foldout",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:fold-spec}]"
+      }
+    },
+    {
+      "name": "foldoutcell"
+    },
+    {
+      "name": "foldoutcell",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "foldoutcell*"
+    },
+    {
+      "name": "foldoutcell*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:<from>-<${2:to}>}]"
+      }
+    },
+    {
+      "name": "frontcover"
+    },
+    {
+      "name": "frontflap"
+    },
+    {
+      "name": "inlinecell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "inlinecell",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "inlinecell*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "inlinecell*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "leftpage"
+    },
+    {
+      "name": "leftside"
+    },
+    {
+      "name": "leftside*"
+    },
+    {
+      "name": "minipagecell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "minipagecell",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "minipagecell*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "minipagecell*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:valign}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "MinipageCellContent",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "MinipageCellContent",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:parent-align}]{${1:name}}"
+      }
+    },
+    {
+      "name": "MinipageCellContent*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "MinipageCellContent*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:parent-align}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "page"
+    },
+    {
+      "name": "pagebleedcell"
+    },
+    {
+      "name": "pagecell"
+    },
+    {
+      "name": "pagecell*"
+    },
+    {
+      "name": "paperbleedcell"
+    },
+    {
+      "name": "papercell"
+    },
+    {
+      "name": "rightside"
+    },
+    {
+      "name": "rightside*"
+    },
+    {
+      "name": "spine"
+    },
+    {
+      "name": "spreadtopages"
+    },
+    {
+      "name": "spreadtopages",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:page-count}]"
+      }
+    },
+    {
+      "name": "spreadtopages*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "spreadtopages*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:page-count}]{${1:name}}"
+      }
+    },
+    {
+      "name": "textcell"
+    },
+    {
+      "name": "topdown"
+    },
+    {
+      "name": "topdown",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:valign}]"
+      }
+    },
+    {
+      "name": "vspine"
+    },
+    {
+      "name": "zinlinecell"
+    },
+    {
+      "name": "zinlinecell",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:valign}]"
+      }
+    },
+    {
+      "name": "zinlinecell*"
+    },
+    {
+      "name": "zinlinecell*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:valign}]"
+      }
+    },
+    {
+      "name": "resizedpages",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "resizedpages",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:bleed}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "shipoutbgcell",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/photobook#c": [
+      "blockwidth=",
+      "blockheight=",
+      "bindingoffset=",
+      "gutteroffset=",
+      "bleed=",
+      "flatfold=",
+      "pagefold=${1|in,out|}",
+      "foldout=${1:fold-spec}",
+      "layoutmode=${1|block,spread,endpaper,cover,jacket|}",
+      "block",
+      "endpaper",
+      "cover",
+      "jacket",
+      "spinewidth=",
+      "spinefold=",
+      "coverboardgrow=",
+      "coverflap=",
+      "jacketwrap=",
+      "jacketflap=",
+      "jacketflapfront=",
+      "jacketflapback=",
+      "clearimage=",
+      "imageblockwidth=",
+      "imageblockheight=",
+      "imageblockoffsettop=",
+      "pdfpagelayout=${1|SinglePage,OneColumn,TwoColumnRight,TwoColumnLeft,TwoPageRight,TwoPageLeft|}",
+      "SinglePage",
+      "OneColumn",
+      "TwoColumnRight",
+      "TwoColumnLeft",
+      "TwoPageRight",
+      "TwoPageLeft",
+      "nofoldmarks",
+      "foldmarksize=",
+      "geometrynodefaults",
+      "roundprintedlengthsto=${1:number}"
+    ],
+    "\\captionblockcell": [
       "left",
       "right",
-      "align=",
-      "valign=",
+      "align=${1|flushleft,center,flushright|}",
+      "valign=${1|t,c,b|}",
       "clearance=",
       "constraintoparent",
       "clearparent=",
@@ -1063,16 +2426,16 @@
       "width=",
       "showbox"
     ],
-    [
+    "\\captioncell,\\rcaptioncell": [
       "over",
       "top",
       "center",
       "bottom",
       "under",
-      "align=",
+      "align=${1|flushleft,center,flushright|}",
       "margin="
     ],
-    [
+    "\\imagecell,\\ImageHalfPageL,\\ImageHalfPageL*,\\ImageHalfPageR,\\ImageHalfPageR*,\\ImagePage,\\ImagePage*,\\ImagePageClear,\\ImagePageClear*,\\ImagePageClearB,\\ImagePageClearB*,\\ImagePageClearL,\\ImagePageClearL*,\\ImagePageClearR,\\ImagePageClearR*,\\ImagePageClearT,\\ImagePageClearT*,\\ImagePageFill,\\ImagePageFill*,\\ImagePageFit,\\ImagePageFit*,\\ImagePageFitB,\\ImagePageFitB*,\\ImagePageFitL,\\ImagePageFitL*,\\ImagePageFitR,\\ImagePageFitR*,\\ImagePageFitT,\\ImagePageFitT*,\\ImageSpread,\\ImageSpread*,\\ImageSpreadB,\\ImageSpreadB*,\\ImageSpreadFill,\\ImageSpreadFill*,\\ImageSpreadFit,\\ImageSpreadFit*,\\ImageSpreadFitB,\\ImageSpreadFitB*,\\ImageSpreadFitL,\\ImageSpreadFitL*,\\ImageSpreadFitR,\\ImageSpreadFitR*,\\ImageSpreadFitT,\\ImageSpreadFitT*,\\ImageSpreadL,\\ImageSpreadL*,\\ImageSpreadR,\\ImageSpreadR*,\\ImageSpreadT,\\ImageSpreadT*": [
       "fit",
       "fill",
       "center",
@@ -1086,15 +2449,26 @@
       "offsettop=",
       "offsetleft=",
       "scale=${1:factor}",
-      "captionalign=",
+      "captionalign=${1|t,c,b|}",
       "captionclearparent="
     ],
-    [
+    "\\vcaptioncell": [
+      "bottomup",
+      "topdown",
+      "before",
+      "left",
+      "center",
+      "right",
+      "after",
+      "align=${1|flushleft,center,flushright|}",
+      "margin="
+    ],
+    "\\pdfcommentcell": [
       "avatar=${1:avatar}",
       "style=${1:style}",
       "subject=${1:subject}",
       "author=${1:author}",
-      "icon=",
+      "icon=${1|Comment,Key,Note,Help,NewParagraph,Paragraph,Insert,Check,Circle,Cross,Star,RightArrow,RightPointer,UpArrow,UpLeftArrow,CrossHairs|}",
       "color=${1:color}",
       "opacity=",
       "open",
@@ -1107,16 +2481,183 @@
       "id=",
       "deadline=${1:deadline}"
     ],
-    [
-      "bottomup",
-      "topdown",
-      "before",
-      "left",
+    "\\begin{adjustcell},\\begin{adjustcell*}": [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}",
+      "intent",
+      "maskarray",
+      "ocobjnum",
+      "ocobjref",
+      "resetcolor",
+      "resolution",
+      "xmpfile",
+      "Trim=",
+      "Viewport=",
+      "Clip=",
+      "Clip*=",
+      "rndcorners=",
+      "margin=",
+      "margin*=",
+      "padding=",
+      "padding*=",
+      "vspace=",
+      "vspace*=",
+      "min width=",
+      "max width=",
+      "min height=",
+      "max height=",
+      "min totalheight=",
+      "max totalheight=",
+      "min size={${1:width}}{${2:height}}",
+      "max size={${1:width}}{${2:height}}",
+      "min totalsize={${1:width}}{${2:totalheight}}",
+      "max totalsize={${1:width}}{${2:totalheight}}",
+      "warn width",
+      "warn width=",
+      "scale={${1:h-factor}}{${2:v-factor}}",
+      "reflect",
+      "fbox",
+      "fbox=",
+      "frame",
+      "frame=",
+      "cfbox=",
+      "cframe=",
+      "rndframe=",
+      "rndcornersbox",
+      "rndfbox",
+      "valign=${1|T,M,B,t,m,b|}",
+      "raise=",
+      "set height=",
+      "set depth=",
+      "set vsize={${1:height}}{${2:depth}}",
       "center",
+      "center=",
       "right",
-      "after",
-      "align=",
-      "margin="
+      "right=",
+      "left",
+      "left=",
+      "inner",
+      "inner=",
+      "outer",
+      "outer=",
+      "pagecenter",
+      "pagecenter=",
+      "pageleftalign",
+      "pageleftalign=",
+      "pagerightalign",
+      "pagerightalign=",
+      "pageinner",
+      "pageinner=",
+      "pageouter",
+      "pageouter=",
+      "textareacenter",
+      "textareacenter=",
+      "textarealeftalign",
+      "textarealeftalign=",
+      "textarearightalign",
+      "textarearightalign=",
+      "textareainner",
+      "textareainner=",
+      "textareaouter",
+      "textareaouter=",
+      "noindent",
+      "leavevmode",
+      "lap=",
+      "rlap",
+      "llap",
+      "clap",
+      "color=",
+      "color*=${1:color macro}",
+      "fgcolor=",
+      "fgcolor*=${1:color macro}",
+      "bgcolor=",
+      "bgcolor*=${1:color macro}",
+      "bgimage=",
+      "bgimage*=",
+      "fgimage=",
+      "fgimage*=",
+      "background=",
+      "background*=",
+      "foreground=",
+      "foreground*=",
+      "dpi=${1:number}",
+      "pxdim=",
+      "minipage=",
+      "varwidth=",
+      "tabular=[${1:position}]{${2:col spec}}",
+      "tabular*=[${1:position}]{${2:width}}{${3:col spec}}",
+      "array=[${1:position}]{${2:col spec}}",
+      "stack",
+      "stack=",
+      "innerenv=${1:envname}",
+      "innercode={${1:begin code}}{${2:end code}}",
+      "caption=",
+      "captionabove=",
+      "captionbelow=",
+      "label=",
+      "figure",
+      "figure=${1:placement}",
+      "float=",
+      "nofloat=${1:float type}",
+      "rotate=",
+      "env=",
+      "addcode={${1:code before}}{${2:code after}}",
+      "Addcode={${1:code before}}{${2:code after}}",
+      "appcode=${1:code after}",
+      "precode=${1:code before}",
+      "Precode={${1:code before}}",
+      "execute=${1:code}",
+      "Execute=${1:code}",
+      "phantom",
+      "phantom=${1|h,v|}",
+      "gobble",
+      "discard",
+      "content=${1:new content}",
+      "gstore=${1:box register}",
+      "gstore*=${1:box register}",
+      "gstore width=${1:length register}",
+      "gstore height=${1:length register}",
+      "gstore depth=${1:length register}",
+      "gstore totalheight=${1:length register}",
+      "gstore sizes=",
+      "process"
+    ],
+    "\\ChangeLayout": [
+      "block",
+      "spread",
+      "endpaper",
+      "cover",
+      "jacket"
     ]
+  },
+  "args": [
+    "\\documentclass/photobook#c"
   ]
 }

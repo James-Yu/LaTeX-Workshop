@@ -1,63 +1,88 @@
 {
-  "includes": {
-    "ifthen": [],
-    "pgfkeys": [],
-    "appendixnumberbeamer": [],
-    "etoolbox": [],
-    "calc": [],
-    "numprint": []
-  },
-  "macros": {
-    "htfconfig{}": {
-      "snippet": "htfconfig{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "htfcheckauthor": {},
-    "htfcheckinstit": {},
-    "htfcheckboth": {},
-    "htfchecknone": {},
-    "htfframenrboxwidth": {},
-    "htfprogress": {},
-    "htfprintmessage": {},
-    "htfupdateprogress": {},
-    "htfObsoleteCMD": {},
-    "htfnotitle": {},
-    "htfshorttitle": {},
-    "htflongtitle": {},
-    "htfnoauthinst": {},
-    "htfonlyauthor": {},
-    "htfonlyinstitute": {},
-    "htfinstitutepths": {},
-    "htfauthorpths": {},
-    "htfauthinst": {},
-    "htfnodate": {},
-    "htfshortdate": {},
-    "htflongdate": {},
-    "htfnoframenrs": {},
-    "htfcounterframenrs": {},
-    "htffractionframenrs": {},
-    "htfpercentframenrs": {},
-    "htfcolonsep": {},
-    "htfcommasep": {},
-    "htfsepspace": {}
-  },
-  "envs": {},
-  "options": [
-    "onecol",
-    "twocols",
-    "threecols",
-    "countappendixframes",
-    "nofun"
+    {
+      "name": "pgfkeys"
+    },
+    {
+      "name": "appendixnumberbeamer"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "numprint"
+    }
   ],
-  "keyvals": [
-    [
-      "cols=",
-      "title=",
-      "authinst=",
-      "date=",
-      "framenrs=",
-      "atsep="
+  "macros": [
+    {
+      "name": "htfconfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "htfconfig{${1:keyvals}}",
+        "keys": [
+          "\\htfconfig"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "htfcheckauthor",
+      "unusual": true
+    },
+    {
+      "name": "htfcheckinstit",
+      "unusual": true
+    },
+    {
+      "name": "htfcheckboth",
+      "unusual": true
+    },
+    {
+      "name": "htfchecknone",
+      "unusual": true
+    },
+    {
+      "name": "htfframenrboxwidth",
+      "unusual": true
+    },
+    {
+      "name": "htfprogress",
+      "unusual": true
+    },
+    {
+      "name": "htfprintmessage",
+      "unusual": true
+    },
+    {
+      "name": "htfupdateprogress",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hackthefootline#c": [
+      "onecol",
+      "twocols",
+      "threecols",
+      "countappendixframes",
+      "nofun"
+    ],
+    "\\htfconfig": [
+      "cols=${1|one,two,three,none|}",
+      "title=${1|short,long,none|}",
+      "authinst=${1|onlyauthor,onlyinst,instpths,authpths,both,none|}",
+      "date=${1|short,long,none|}",
+      "framenrs=${1|counter,fraction,percent,none|}",
+      "atsep=${1|colon,comma,space|}"
     ]
+  },
+  "args": [
+    "\\usepackage/hackthefootline#c"
   ]
 }

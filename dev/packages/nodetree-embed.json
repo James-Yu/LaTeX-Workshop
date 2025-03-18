@@ -1,86 +1,172 @@
 {
-  "includes": {
-    "luatex": [],
-    "xcolor": [],
-    "mdframed": [],
-    "fontspec": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "NodetreeSet{}": {
-      "snippet": "NodetreeSet{${1:options}}"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "nodetreeset{}": {
-      "snippet": "nodetreeset{${1:options}}"
+    {
+      "name": "xcolor"
     },
-    "NodetreeEmbedCmd{}": {
-      "snippet": "NodetreeEmbedCmd{${1:TeX markup}}"
+    {
+      "name": "mdframed"
     },
-    "NodetreeEmbedCmd[]{}": {
-      "snippet": "NodetreeEmbedCmd[${2:options}]{${1:TeX markup}}"
+    {
+      "name": "fontspec"
     },
-    "NodetreeEmbedInput{}": {
-      "snippet": "NodetreeEmbedInput{${1:file}}"
-    },
-    "NodetreeEmbedInput[]{}": {
-      "snippet": "NodetreeEmbedInput[${2:options}]{${1:file}}"
-    },
-    "nodetreeterminalemulator{}": {
-      "snippet": "nodetreeterminalemulator{${1:file}}"
-    },
-    "nodetreeterminalemulator[]{}": {
-      "snippet": "nodetreeterminalemulator[${2:options}]{${1:file}}"
-    },
-    "NodetreeSetOption[]{}": {
-      "snippet": "NodetreeSetOption[${2:option}]{${1:value}}"
-    },
-    "nodetreeoption[]{}": {
-      "snippet": "nodetreeoption[${2:option}]{${1:value}}"
-    },
-    "NodetreeResetOption{}": {
-      "snippet": "NodetreeResetOption{${1:option}}"
-    },
-    "NodetreeReset": {},
-    "nodetreereset": {},
-    "NodetreeRegisterCallback{}": {
-      "snippet": "NodetreeRegisterCallback{${1:callbacks}}"
-    },
-    "nodetreeregister{}": {
-      "snippet": "nodetreeregister{${1:callbacks}}"
-    },
-    "NodetreeUnregisterCallback{}": {
-      "snippet": "NodetreeUnregisterCallback{${1:callbacks}}"
-    },
-    "nodetreeunregister{}": {
-      "snippet": "nodetreeunregister{${1:callbacks}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {
-    "NodetreeEmbedView": {},
-    "NodetreeEmbedView[]": {
-      "name": "NodetreeEmbedView",
-      "snippet": "[${1:options}]"
-    },
-    "NodetreeEmbedEnv": {},
-    "NodetreeEmbedEnv[]": {
-      "name": "NodetreeEmbedEnv",
-      "snippet": "[${1:options}]"
-    }
-  },
-  "options": [
-    "channel=${1:output channel}",
-    "callback={${1:callbacks}}",
-    "verbosity=${1:integer}",
-    "color=",
-    "unit=",
-    "decimalplaces=${1:integer}",
-    "theme=",
-    "thememode=",
-    "font=${1:font name}",
-    "fontsize=${1:fontsize cmd}",
-    "firstline=${1:integer}",
-    "lastline=${1:integer}",
-    "showmarkup"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "NodetreeSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeSet{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeEmbedCmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeEmbedCmd{${1:TeX markup}}"
+      }
+    },
+    {
+      "name": "NodetreeEmbedCmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NodetreeEmbedCmd[${2:options%keyvals}]{${1:TeX markup}}",
+        "keys": [
+          "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeEmbedInput",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeEmbedInput{${1:file}}"
+      }
+    },
+    {
+      "name": "NodetreeEmbedInput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NodetreeEmbedInput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeSetOption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "NodetreeSetOption[${2:option%keyvals}]{${1:value}}",
+        "keys": [
+          "\\NodetreeSetOption,\\nodetreeoption,\\NodetreeResetOption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeResetOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeResetOption{${1:option%keyvals}}",
+        "keys": [
+          "\\NodetreeSetOption,\\nodetreeoption,\\NodetreeResetOption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeReset"
+    },
+    {
+      "name": "NodetreeRegisterCallback",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeRegisterCallback{${1:callbacks}}"
+      }
+    },
+    {
+      "name": "NodetreeUnregisterCallback",
+      "arg": {
+        "format": "{}",
+        "snippet": "NodetreeUnregisterCallback{${1:callbacks}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "NodetreeEmbedView"
+    },
+    {
+      "name": "NodetreeEmbedView",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NodetreeEmbedEnv"
+    },
+    {
+      "name": "NodetreeEmbedEnv",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator": [
+      "channel=${1:output channel}",
+      "callback={${1:callbacks}}",
+      "verbosity=${1:integer}",
+      "color=${1|colored,no|}",
+      "unit=${1|pt,pc,in,bp,cm,mm,dd,cc,sp,ex,em|}",
+      "decimalplaces=${1:integer}",
+      "theme=${1|bwdark,bwlight,monokaisoda|}",
+      "thememode=${1|dark,light|}",
+      "font=${1:font name}",
+      "fontsize=${1:fontsize cmd}",
+      "firstline=${1:integer}",
+      "lastline=${1:integer}",
+      "showmarkup"
+    ],
+    "\\NodetreeSetOption,\\nodetreeoption,\\NodetreeResetOption": [
+      "channel",
+      "callback",
+      "verbosity",
+      "color",
+      "unit",
+      "decimalplaces",
+      "theme",
+      "thememode",
+      "font",
+      "fontsize",
+      "firstline",
+      "lastline",
+      "showmarkup"
+    ]
+  },
+  "args": [
+    "\\usepackage/nodetree-embed#c,\\NodetreeSet,\\begin{NodetreeEmbedView},\\begin{NodetreeEmbedEnv},\\NodetreeEmbedCmd,\\NodetreeEmbedInput,\\nodetreeterminalemulator"
+  ]
 }

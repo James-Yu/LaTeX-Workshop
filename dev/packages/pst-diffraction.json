@@ -1,37 +1,65 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-3dplot": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psdiffractionRectangle": {},
-    "psdiffractionRectangle[]": {
-      "snippet": "psdiffractionRectangle[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psdiffractionCircular": {},
-    "psdiffractionCircular[]": {
-      "snippet": "psdiffractionCircular[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "pst-3dplot"
     },
-    "psdiffractionTriangle": {},
-    "psdiffractionTriangle[]": {
-      "snippet": "psdiffractionTriangle[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psdiffractionRectangle"
     },
-    "PSTDiffractionLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psdiffractionRectangle",
+      "arg": {
+        "format": "[]",
+        "snippet": "psdiffractionRectangle[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionRectangle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psdiffractionCircular"
+    },
+    {
+      "name": "psdiffractionCircular",
+      "arg": {
+        "format": "[]",
+        "snippet": "psdiffractionCircular[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionCircular"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psdiffractionTriangle"
+    },
+    {
+      "name": "psdiffractionTriangle",
+      "arg": {
+        "format": "[]",
+        "snippet": "psdiffractionTriangle[${1:options%keyvals}]",
+        "keys": [
+          "\\psdiffractionTriangle"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psdiffractionRectangle": [
       "a=${1:area}",
       "Alpha=${1:number}",
-      "colorMode=",
+      "colorMode=${1|0,1,2,3|}",
       "contrast=${1:number}",
       "f=${1:focal length}",
       "IIID",
@@ -41,8 +69,8 @@
       "s=${1:distance}",
       "twoSlit"
     ],
-    [
-      "colorMode=",
+    "\\psdiffractionCircular": [
+      "colorMode=${1|0,1,2,3|}",
       "contrast=${1:number}",
       "d=${1:distance}",
       "f=${1:focal length}",
@@ -52,8 +80,8 @@
       "r=${1:radius}",
       "twoHole"
     ],
-    [
-      "colorMode=",
+    "\\psdiffractionTriangle": [
+      "colorMode=${1|0,1,2,3|}",
       "contrast=${1:number}",
       "f=${1:focal length}",
       "h=${1:height}",
@@ -61,5 +89,6 @@
       "IIID",
       "lambda=${1:wavelength in nm}"
     ]
-  ]
+  },
+  "args": []
 }

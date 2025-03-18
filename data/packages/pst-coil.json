@@ -1,169 +1,578 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psCoil{}{}": {
-      "snippet": "psCoil{${1:angle1}}{${2:angle2}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psCoil[]{}{}": {
-      "snippet": "psCoil[${3:options}]{${1:angle1}}{${2:angle2}}"
+    {
+      "name": "pst-node"
     },
-    "psCoil*{}{}": {
-      "snippet": "psCoil*{${1:angle1}}{${2:angle2}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pscoil",
+      "arg": {
+        "format": "()()",
+        "snippet": "pscoil(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "psCoil*[]{}{}": {
-      "snippet": "psCoil*[${3:options}]{${1:angle1}}{${2:angle2}}"
+    {
+      "name": "pscoil",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pscoil{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nccoil{}{}": {
-      "snippet": "nccoil{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pscoil",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pscoil[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nccoil{}{}{}": {
-      "snippet": "nccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pscoil",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pscoil[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "nccoil[]{}{}": {
-      "snippet": "nccoil[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pscoil*",
+      "arg": {
+        "format": "()()",
+        "snippet": "pscoil*(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "nccoil[]{}{}{}": {
-      "snippet": "nccoil[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pscoil*",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pscoil*{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nccoil*{}{}": {
-      "snippet": "nccoil*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pscoil*",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pscoil*[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nccoil*{}{}{}": {
-      "snippet": "nccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pscoil*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pscoil*[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "nccoil*[]{}{}": {
-      "snippet": "nccoil*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "psCoil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psCoil{${1:angle1}}{${2:angle2}}"
+      }
     },
-    "nccoil*[]{}{}{}": {
-      "snippet": "nccoil*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "psCoil",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psCoil[${3:options%keyvals}]{${1:angle1}}{${2:angle2}}"
+      }
     },
-    "nczigzag{}{}": {
-      "snippet": "nczigzag{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "psCoil*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psCoil*{${1:angle1}}{${2:angle2}}"
+      }
     },
-    "nczigzag{}{}{}": {
-      "snippet": "nczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "psCoil*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psCoil*[${3:options%keyvals}]{${1:angle1}}{${2:angle2}}"
+      }
     },
-    "nczigzag[]{}{}": {
-      "snippet": "nczigzag[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pszigzag",
+      "arg": {
+        "format": "()()",
+        "snippet": "pszigzag(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "nczigzag[]{}{}{}": {
-      "snippet": "nczigzag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pszigzag",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pszigzag{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nczigzag*{}{}": {
-      "snippet": "nczigzag*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pszigzag",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pszigzag[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "nczigzag*{}{}{}": {
-      "snippet": "nczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pszigzag",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pszigzag[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "nczigzag*[]{}{}": {
-      "snippet": "nczigzag*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pszigzag*",
+      "arg": {
+        "format": "()()",
+        "snippet": "pszigzag*(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "nczigzag*[]{}{}{}": {
-      "snippet": "nczigzag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pszigzag*",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pszigzag*{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pccoil{}{}": {
-      "snippet": "pccoil{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pszigzag*",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pszigzag*[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pccoil{}{}{}": {
-      "snippet": "pccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pszigzag*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pszigzag*[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "pccoil[]{}{}": {
-      "snippet": "pccoil[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pssin",
+      "arg": {
+        "format": "()()",
+        "snippet": "pssin(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "pccoil[]{}{}{}": {
-      "snippet": "pccoil[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pssin",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pssin{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pccoil*{}{}": {
-      "snippet": "pccoil*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pssin",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pssin[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pccoil*{}{}{}": {
-      "snippet": "pccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pssin",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pssin[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "pccoil*[]{}{}": {
-      "snippet": "pccoil*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pssin*",
+      "arg": {
+        "format": "()()",
+        "snippet": "pssin*(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
     },
-    "pccoil*[]{}{}{}": {
-      "snippet": "pccoil*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pssin*",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "pssin*{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pczigzag{}{}": {
-      "snippet": "pczigzag{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pssin*",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "pssin*[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
     },
-    "pczigzag{}{}{}": {
-      "snippet": "pczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pssin*",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "pssin*[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
     },
-    "pczigzag[]{}{}": {
-      "snippet": "pczigzag[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nccoil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nccoil{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pczigzag[]{}{}{}": {
-      "snippet": "pczigzag[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nccoil",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pczigzag*{}{}": {
-      "snippet": "pczigzag*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nccoil",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nccoil[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pczigzag*{}{}{}": {
-      "snippet": "pczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nccoil",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "nccoil[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pczigzag*[]{}{}": {
-      "snippet": "pczigzag*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nccoil*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nccoil*{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pczigzag*[]{}{}{}": {
-      "snippet": "pczigzag*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nccoil*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "ncsin{}{}": {
-      "snippet": "ncsin{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nccoil*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nccoil*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "ncsin{}{}{}": {
-      "snippet": "ncsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nccoil*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "nccoil*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "ncsin[]{}{}": {
-      "snippet": "ncsin[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nczigzag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nczigzag{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "ncsin[]{}{}{}": {
-      "snippet": "ncsin[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nczigzag",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "ncsin*{}{}": {
-      "snippet": "ncsin*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nczigzag",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nczigzag[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "ncsin*{}{}{}": {
-      "snippet": "ncsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nczigzag",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "nczigzag[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "ncsin*[]{}{}": {
-      "snippet": "ncsin*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nczigzag*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nczigzag*{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "ncsin*[]{}{}{}": {
-      "snippet": "ncsin*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nczigzag*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pcsin{}{}": {
-      "snippet": "pcsin{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "nczigzag*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nczigzag*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pcsin{}{}{}": {
-      "snippet": "pcsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "nczigzag*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "nczigzag*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pcsin[]{}{}": {
-      "snippet": "pcsin[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pccoil",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pccoil{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pcsin[]{}{}{}": {
-      "snippet": "pcsin[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pccoil",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pccoil{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pcsin*{}{}": {
-      "snippet": "pcsin*{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pccoil",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pccoil[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pcsin*{}{}{}": {
-      "snippet": "pcsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pccoil",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pccoil[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "pcsin*[]{}{}": {
-      "snippet": "pcsin*[${3:options}]{${1:nodeA}}{${2:nodeB}}"
+    {
+      "name": "pccoil*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pccoil*{${1:nodeA}}{${2:nodeB}}"
+      }
     },
-    "pcsin*[]{}{}{}": {
-      "snippet": "pcsin*[${4:options}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+    {
+      "name": "pccoil*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pccoil*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
     },
-    "PSTcoilsLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pccoil*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pccoil*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pccoil*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pccoil*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pczigzag{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pczigzag{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pczigzag[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pczigzag[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pczigzag*{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pczigzag*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pczigzag*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pczigzag*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pczigzag*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ncsin{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ncsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ncsin[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ncsin[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ncsin*{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ncsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ncsin*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "ncsin*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ncsin*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pcsin{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pcsin{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pcsin[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pcsin[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pcsin*{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pcsin*{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pcsin*[${3:options%keyvals}]{${1:nodeA}}{${2:nodeB}}"
+      }
+    },
+    {
+      "name": "pcsin*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pcsin*[${4:options%keyvals}]{${1:arrows}}{${2:nodeA}}{${3:nodeB}}"
+      }
+    },
+    {
+      "name": "psAltCoil",
+      "arg": {
+        "format": "()()",
+        "snippet": "psAltCoil(${1:x0},${2:y0})(${3:x1},${4:y1})"
+      }
+    },
+    {
+      "name": "psAltCoil",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "psAltCoil{${1:arrows}}(${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "psAltCoil",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psAltCoil[${1:options%keyvals}](${2:x0},${3:y0})(${4:x1},${5:y1})"
+      }
+    },
+    {
+      "name": "psAltCoil",
+      "arg": {
+        "format": "[]{}()()",
+        "snippet": "psAltCoil[${2:options%keyvals}]{${1:arrows}}(${3:x0},${4:y0})(${5:x1},${6:y1})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

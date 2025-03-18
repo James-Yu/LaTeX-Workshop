@@ -1,118 +1,249 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "class-amsart": [],
-    "microtype": [],
-    "fancyhdr": [],
-    "xcolor": [],
-    "lastpage": [],
-    "collect": [],
-    "footmisc": [],
-    "hyperref": [],
-    "mathdesign": [],
-    "lsabon": [],
-    "natbib": []
-  },
-  "macros": {
-    "AddtoEndMatter{}": {
-      "snippet": "AddtoEndMatter{${1:bibliography commands}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "articleentry{}{}{}{}": {
-      "snippet": "articleentry{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "class-amsart"
     },
-    "authornote{}": {
-      "snippet": "authornote{${1:note}}"
+    {
+      "name": "microtype"
     },
-    "copyrightnote{}": {
-      "snippet": "copyrightnote{${1:copyright statement}}"
+    {
+      "name": "fancyhdr"
     },
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
+    {
+      "name": "xcolor"
     },
-    "doinumber{}": {
-      "snippet": "doinumber{${1:DOI}}"
+    {
+      "name": "lastpage"
     },
-    "ECSelect{}": {
-      "snippet": "ECSelect{${1:level1,level2,...}}"
+    {
+      "name": "collect"
     },
-    "EditorialComment[]{}": {
-      "snippet": "EditorialComment[${2:level}]{${1:comments}}"
+    {
+      "name": "footmisc"
     },
-    "EditorialComment{}": {
-      "snippet": "EditorialComment{${1:comments}}"
+    {
+      "name": "hyperref"
     },
-    "endpage{}": {
-      "snippet": "endpage{${1:number}}"
+    {
+      "name": "mathdesign"
     },
-    "issuenumber{}": {
-      "snippet": "issuenumber{${1:number(s)}}"
+    {
+      "name": "lsabon"
     },
-    "manuscriptid{}": {
-      "snippet": "manuscriptid{${1:id}}"
-    },
-    "onlinedate{}": {
-      "snippet": "onlinedate{${1:date}}"
-    },
-    "papernumber{}": {
-      "snippet": "papernumber{${1:number}}"
-    },
-    "paperUrl{}": {
-      "snippet": "paperUrl{${1:URL}}"
-    },
-    "prevpaper{}": {
-      "snippet": "prevpaper{${1:previous paper}}"
-    },
-    "publicationmonth[]{}": {
-      "snippet": "publicationmonth[${2:abbrev month(s)}]{${1:month(s)}}"
-    },
-    "publicationmonth{}": {
-      "snippet": "publicationmonth{${1:month(s)}}"
-    },
-    "publicationyear{}": {
-      "snippet": "publicationyear{${1:year}}"
-    },
-    "rpdefault": {},
-    "startpage{}": {
-      "snippet": "startpage{${1:number}}"
-    },
-    "TC[]{}": {
-      "snippet": "TC[${2:level}]{${1:text}}"
-    },
-    "TC{}": {
-      "snippet": "TC{${1:text}}"
-    },
-    "TCSelect[]{}": {
-      "snippet": "TCSelect[${2:color}]{${1:level1,level2,...}}"
-    },
-    "TCSelect{}": {
-      "snippet": "TCSelect{${1:level1,level2,...}}"
-    },
-    "titlenote{}": {
-      "snippet": "titlenote{${1:note}}"
-    },
-    "volumenumber{}": {
-      "snippet": "volumenumber{${1:number(s)}}"
+    {
+      "name": "natbib"
     }
-  },
-  "envs": {
-    "notes{}": {
-      "name": "notes",
-      "snippet": "{${1:title}}"
-    }
-  },
-  "options": [
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "manuscript",
-    "screen",
-    "preprint",
-    "forthcoming",
-    "bodyfont=",
-    "rpfont=",
-    "natbib"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "AddtoEndMatter",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddtoEndMatter{${1:bibliography commands}}"
+      }
+    },
+    {
+      "name": "authornote",
+      "arg": {
+        "format": "{}",
+        "snippet": "authornote{${1:note%text}}"
+      }
+    },
+    {
+      "name": "copyrightnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightnote{${1:copyright statement%text}}"
+      }
+    },
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightyear{${1:year}}"
+      }
+    },
+    {
+      "name": "doinumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "doinumber{${1:DOI}}"
+      }
+    },
+    {
+      "name": "ECSelect",
+      "arg": {
+        "format": "{}",
+        "snippet": "ECSelect{${1:level1,level2,...}}"
+      }
+    },
+    {
+      "name": "EditorialComment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "EditorialComment[${2:level}]{${1:comments%text}}"
+      }
+    },
+    {
+      "name": "EditorialComment",
+      "arg": {
+        "format": "{}",
+        "snippet": "EditorialComment{${1:comments%text}}"
+      }
+    },
+    {
+      "name": "endpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "endpage{${1:number}}"
+      }
+    },
+    {
+      "name": "issuenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "issuenumber{${1:number(${2:s})}}"
+      }
+    },
+    {
+      "name": "manuscriptid",
+      "arg": {
+        "format": "{}",
+        "snippet": "manuscriptid{${1:id}}"
+      }
+    },
+    {
+      "name": "onlinedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "onlinedate{${1:date}}"
+      }
+    },
+    {
+      "name": "papernumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "papernumber{${1:number}}"
+      }
+    },
+    {
+      "name": "paperUrl",
+      "arg": {
+        "format": "{}",
+        "snippet": "paperUrl{${1:URL}}"
+      }
+    },
+    {
+      "name": "prevpaper",
+      "arg": {
+        "format": "{}",
+        "snippet": "prevpaper{${1:previous paper%definition}}"
+      }
+    },
+    {
+      "name": "publicationmonth",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "publicationmonth[${2:abbrev month(${3:s})}]{${1:month(${4:s})}}"
+      }
+    },
+    {
+      "name": "publicationmonth",
+      "arg": {
+        "format": "{}",
+        "snippet": "publicationmonth{${1:month(${2:s})}}"
+      }
+    },
+    {
+      "name": "publicationyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "publicationyear{${1:year}}"
+      }
+    },
+    {
+      "name": "rpdefault",
+      "unusual": true
+    },
+    {
+      "name": "startpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "startpage{${1:number}}"
+      }
+    },
+    {
+      "name": "TC",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TC[${2:level}]{${1:text}}"
+      }
+    },
+    {
+      "name": "TC",
+      "arg": {
+        "format": "{}",
+        "snippet": "TC{${1:text}}"
+      }
+    },
+    {
+      "name": "TCSelect",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TCSelect[${2:color}]{${1:level1,level2,...}}"
+      }
+    },
+    {
+      "name": "TCSelect",
+      "arg": {
+        "format": "{}",
+        "snippet": "TCSelect{${1:level1,level2,...}}"
+      }
+    },
+    {
+      "name": "titlenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlenote{${1:note%text}}"
+      }
+    },
+    {
+      "name": "volumenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "volumenumber{${1:number(${2:s})}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "notes",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/resphilosophica#c": [
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "manuscript",
+      "screen",
+      "preprint",
+      "forthcoming",
+      "bodyfont=${1|auto,sabon,cm|}",
+      "rpfont=${1|auto,imprintshadow,cm|}",
+      "natbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/resphilosophica#c"
+  ]
 }

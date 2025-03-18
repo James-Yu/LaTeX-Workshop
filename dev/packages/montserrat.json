@@ -1,88 +1,197 @@
 {
-  "includes": {
-    "fontaxes": [],
-    "fontenc": [],
-    "mweights": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "montserratalt": {},
-    "defigures": {},
-    "textde{}": {
-      "snippet": "textde{${1:text}}"
+  "deps": [
+    {
+      "name": "fontaxes"
     },
-    "textdenominators{}": {
-      "snippet": "textdenominators{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "infigures": {},
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
+    {
+      "name": "mweights"
     },
-    "textinferior{}": {
-      "snippet": "textinferior{${1:text}}"
-    },
-    "nufigures": {},
-    "textnu{}": {
-      "snippet": "textnu{${1:text}}"
-    },
-    "textnumerators{}": {
-      "snippet": "textnumerators{${1:text}}"
-    },
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
-    },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
-    },
-    "DH": {},
-    "NG": {},
-    "dj": {},
-    "ng": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textquotedbl": {},
-    "DJ": {},
-    "th": {},
-    "TH": {},
-    "dh": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "guillemetleft": {},
-    "guillemetright": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "lining",
-    "osf",
-    "oldstyle",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "black",
-    "extrabold",
-    "semibold",
-    "bold",
-    "medium",
-    "regular",
-    "thin",
-    "extralight",
-    "light",
-    "alternates",
-    "defaultfam"
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "montserratalt"
+    },
+    {
+      "name": "defigures"
+    },
+    {
+      "name": "textde",
+      "arg": {
+        "format": "{}",
+        "snippet": "textde{${1:text}}"
+      }
+    },
+    {
+      "name": "textdenominators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textdenominators{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "textin{${1:text}}"
+      }
+    },
+    {
+      "name": "textinferior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textinferior{${1:text}}"
+      }
+    },
+    {
+      "name": "nufigures"
+    },
+    {
+      "name": "textnu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textnu{${1:text}}"
+      }
+    },
+    {
+      "name": "textnumerators",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textnumerators{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "Hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "hwithstroke",
+      "unusual": true
+    },
+    {
+      "name": "textogonekcentered",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/montserrat#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "lining",
+      "osf",
+      "oldstyle",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "black",
+      "extrabold",
+      "semibold",
+      "bold",
+      "medium",
+      "regular",
+      "thin",
+      "extralight",
+      "light",
+      "alternates",
+      "defaultfam"
+    ]
+  },
+  "args": [
+    "\\usepackage/montserrat#c"
+  ]
 }

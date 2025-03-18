@@ -1,179 +1,411 @@
 {
-  "includes": {},
-  "macros": {
-    "switchcolumn": {},
-    "switchcolumn[]": {
-      "snippet": "switchcolumn[${1:column}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "switchcolumn"
     },
-    "switchcolumn*[]": {
-      "snippet": "switchcolumn*[${1:text}]"
+    {
+      "name": "switchcolumn",
+      "arg": {
+        "format": "[]",
+        "snippet": "switchcolumn[${1:column}]"
+      }
     },
-    "switchcolumn[]*[]": {
-      "snippet": "switchcolumn[${1:column}]*[${2:text}]"
+    {
+      "name": "switchcolumn*",
+      "arg": {
+        "format": "[]",
+        "snippet": "switchcolumn*[${1:text}]"
+      }
     },
-    "thecolumn": {},
-    "definecolumnpreamble{}{}": {
-      "snippet": "definecolumnpreamble{${1:column}}{${2:preamble}}"
+    {
+      "name": "switchcolumn",
+      "arg": {
+        "format": "[]*[]",
+        "snippet": "switchcolumn[${1:column}]*[${2:text}]"
+      }
     },
-    "ensurevspace{}": {
-      "snippet": "ensurevspace{${1:length}}"
+    {
+      "name": "thecolumn"
     },
-    "columnratio{}": {
-      "snippet": "columnratio{${1:ratio 0,...,ratio k}}"
+    {
+      "name": "definecolumnpreamble",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "definecolumnpreamble{${1:column}}{${2:preamble}}"
+      }
     },
-    "columnratio{}[]": {
-      "snippet": "columnratio{${1:ratio 0,...,ratio k}}[${2:ratio' 0,...,ratio' k}]"
+    {
+      "name": "ensurevspace",
+      "arg": {
+        "format": "{}",
+        "snippet": "ensurevspace{${1:length}}"
+      }
     },
-    "setcolumnwidth{}": {
-      "snippet": "setcolumnwidth{${1:gap 0,...,gap k}}"
+    {
+      "name": "columnratio",
+      "arg": {
+        "format": "{}",
+        "snippet": "columnratio{${1:ratio 0,...,ratio k}}"
+      }
     },
-    "setcolumnwidth{}[]": {
-      "snippet": "setcolumnwidth{${1:gap 0,...,gap k}}[${2:gap' 0,...,gap' k}]"
+    {
+      "name": "columnratio",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "columnratio{${1:ratio 0,...,ratio k}}[${2:ratio' 0,...,ratio' k}]"
+      }
     },
-    "twosided": {},
-    "twosided[]": {
-      "snippet": "twosided[${1:t1t2...tk}]"
+    {
+      "name": "setcolumnwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcolumnwidth{${1:gap 0,...,gap k}}"
+      }
     },
-    "marginparthreshold{}": {
-      "snippet": "marginparthreshold{${1:columns}}"
+    {
+      "name": "setcolumnwidth",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setcolumnwidth{${1:gap 0,...,gap k}}[${2:gap' 0,...,gap' k}]"
+      }
     },
-    "marginparthreshold{}[]": {
-      "snippet": "marginparthreshold{${1:columns}}[${2:columns'}]"
+    {
+      "name": "twosided"
     },
-    "globalcounter{}": {
-      "snippet": "globalcounter{${1:counter}}"
+    {
+      "name": "twosided",
+      "arg": {
+        "format": "[]",
+        "snippet": "twosided[${1:t1t2...tk}]"
+      }
     },
-    "globalcounter*": {},
-    "localcounter{}": {
-      "snippet": "localcounter{${1:counter}}"
+    {
+      "name": "marginparthreshold",
+      "arg": {
+        "format": "{}",
+        "snippet": "marginparthreshold{${1:columns}}"
+      }
     },
-    "definethecounter{}{}{}": {
-      "snippet": "definethecounter{${1:counter}}{${2:column}}{${3:definition}}"
+    {
+      "name": "marginparthreshold",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "marginparthreshold{${1:columns}}[${2:columns'}]"
+      }
     },
-    "synccounter{}": {
-      "snippet": "synccounter{${1:counter}}"
+    {
+      "name": "globalcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "globalcounter{${1:counter}}"
+      }
     },
-    "syncallcounters": {},
-    "footnotelayout{}": {
-      "snippet": "footnotelayout{${1:layout}}"
+    {
+      "name": "globalcounter*"
     },
-    "footnote*{}": {
-      "snippet": "footnote*{${1:text}}"
+    {
+      "name": "localcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "localcounter{${1:counter}}"
+      }
     },
-    "footnote*[]{}": {
-      "snippet": "footnote*[${2:number}]{${1:text}}"
+    {
+      "name": "definethecounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definethecounter{${1:counter}}{${2:column}}{${3:definition}}"
+      }
     },
-    "footnotemark*": {},
-    "footnotemark*[]": {
-      "snippet": "footnotemark*[${1:number}]"
+    {
+      "name": "synccounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "synccounter{${1:counter}}"
+      }
     },
-    "footnotetext*{}": {
-      "snippet": "footnotetext*{${1:text}}"
+    {
+      "name": "syncallcounters"
     },
-    "footnotetext*[]{}": {
-      "snippet": "footnotetext*[${2:number}]{${1:text}}"
+    {
+      "name": "footnotelayout",
+      "arg": {
+        "format": "{}",
+        "snippet": "footnotelayout{${1:layout}}"
+      }
     },
-    "fncounteradjustment": {},
-    "nofncounteradjustment": {},
-    "belowfootnoteskip": {},
-    "columncolor{}": {
-      "snippet": "columncolor{${1:color}}"
+    {
+      "name": "footnote*",
+      "arg": {
+        "format": "{}",
+        "snippet": "footnote*{${1:text}}"
+      }
     },
-    "columncolor{}[]": {
-      "snippet": "columncolor{${1:color}}[${2:column}]"
+    {
+      "name": "footnote*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "footnote*[${2:number}]{${1:text}}"
+      }
     },
-    "columncolor[]{}": {
-      "snippet": "columncolor[${2:mode}]{${1:color}}"
+    {
+      "name": "footnotemark*",
+      "unusual": true
     },
-    "columncolor[]{}[]": {
-      "snippet": "columncolor[${2:mode}]{${1:color}}[${3:column}]"
+    {
+      "name": "footnotemark*",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "footnotemark*[${1:number}]"
+      }
     },
-    "normalcolumncolor": {},
-    "normalcolumncolor[]": {
-      "snippet": "normalcolumncolor[${1:column}]"
+    {
+      "name": "footnotetext*",
+      "arg": {
+        "format": "{}",
+        "snippet": "footnotetext*{${1:text}}"
+      }
     },
-    "coloredwordhyphenated": {},
-    "nocoloredwordhyphenated": {},
-    "colseprulecolor{}": {
-      "snippet": "colseprulecolor{${1:color}}"
+    {
+      "name": "footnotetext*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "footnotetext*[${2:number}]{${1:text}}"
+      }
     },
-    "colseprulecolor{}[]": {
-      "snippet": "colseprulecolor{${1:color}}[${2:column}]"
+    {
+      "name": "fncounteradjustment"
     },
-    "colseprulecolor[]{}": {
-      "snippet": "colseprulecolor[${2:mode}]{${1:color}}"
+    {
+      "name": "nofncounteradjustment"
     },
-    "colseprulecolor[]{}[]": {
-      "snippet": "colseprulecolor[${2:mode}]{${1:color}}[${3:column}]"
+    {
+      "name": "belowfootnoteskip"
     },
-    "normalcolseprulecolor": {},
-    "normalcolseprulecolor[]": {
-      "snippet": "normalcolseprulecolor[${1:column}]"
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "columncolor{${1:color}}"
+      }
     },
-    "backgroundcolor{}{}": {
-      "snippet": "backgroundcolor{${1:region}}{${2:color}}"
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "columncolor{${1:color}}[${2:column}]"
+      }
     },
-    "backgroundcolor{}[]{}": {
-      "snippet": "backgroundcolor{${1:region}}[${2:mode}]{${3:color}}"
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "columncolor[${2:mode}]{${1:color}}"
+      }
     },
-    "nobackgroundcolor{}": {
-      "snippet": "nobackgroundcolor{${1:region}}"
+    {
+      "name": "columncolor",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "columncolor[${2:mode}]{${1:color}}[${3:column}]"
+      }
     },
-    "resetbackgroundcolor": {},
-    "pagerim": {},
-    "addcontentsonly{}{}": {
-      "snippet": "addcontentsonly{${1:file}}{${2:column}}"
+    {
+      "name": "normalcolumncolor"
     },
-    "flushpage": {}
-  },
-  "envs": {
-    "paracol{}": {
-      "name": "paracol",
-      "snippet": "{${1:number}}"
+    {
+      "name": "normalcolumncolor",
+      "arg": {
+        "format": "[]",
+        "snippet": "normalcolumncolor[${1:column}]"
+      }
     },
-    "paracol{}[]": {
-      "name": "paracol",
-      "snippet": "{${1:number}}[${2:text}]"
+    {
+      "name": "coloredwordhyphenated"
     },
-    "paracol[]{}": {
-      "name": "paracol",
-      "snippet": "[${2:numleft}]{${1:number}}"
+    {
+      "name": "nocoloredwordhyphenated"
     },
-    "paracol[]{}[]": {
-      "name": "paracol",
-      "snippet": "[${2:numleft}]{${1:number}}[${3:text}]"
+    {
+      "name": "colseprulecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "colseprulecolor{${1:color}}"
+      }
     },
-    "column": {},
-    "column*": {},
-    "column*[]": {
-      "name": "column*",
-      "snippet": "[${1:text}]"
+    {
+      "name": "colseprulecolor",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "colseprulecolor{${1:color}}[${2:column}]"
+      }
     },
-    "nthcolumn{}": {
-      "name": "nthcolumn",
-      "snippet": "{${1:column}}"
+    {
+      "name": "colseprulecolor",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "colseprulecolor[${2:mode}]{${1:color}}"
+      }
     },
-    "nthcolumn*{}": {
-      "name": "nthcolumn*",
-      "snippet": "{${1:column}}"
+    {
+      "name": "colseprulecolor",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "colseprulecolor[${2:mode}]{${1:color}}[${3:column}]"
+      }
     },
-    "nthcolumn*{}[]": {
-      "name": "nthcolumn*",
-      "snippet": "{${1:column}}[${2:text}]"
+    {
+      "name": "normalcolseprulecolor"
     },
-    "leftcolumn": {},
-    "leftcolumn*": {},
-    "leftcolumn*[]": {
-      "name": "leftcolumn*",
-      "snippet": "[${1:text}]"
+    {
+      "name": "normalcolseprulecolor",
+      "arg": {
+        "format": "[]",
+        "snippet": "normalcolseprulecolor[${1:column}]"
+      }
     },
-    "rightcolumn": {},
-    "rightcolumn*": {},
-    "rightcolumn*[]": {
-      "name": "rightcolumn*",
-      "snippet": "[${1:text}]"
+    {
+      "name": "backgroundcolor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "backgroundcolor{${1:region}}{${2:color}}"
+      }
+    },
+    {
+      "name": "backgroundcolor",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "backgroundcolor{${1:region}}[${3:mode}]{${2:color}}"
+      }
+    },
+    {
+      "name": "nobackgroundcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "nobackgroundcolor{${1:region}}"
+      }
+    },
+    {
+      "name": "resetbackgroundcolor"
+    },
+    {
+      "name": "pagerim"
+    },
+    {
+      "name": "addcontentsonly",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addcontentsonly{${1:file%keyvals}}{${2:column}}",
+        "keys": [
+          "\\addcontentsonly"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "flushpage"
     }
+  ],
+  "envs": [
+    {
+      "name": "paracol",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "paracol",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:number}}[${2:text}]"
+      }
+    },
+    {
+      "name": "paracol",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:numleft}]{${1:number}}"
+      }
+    },
+    {
+      "name": "paracol",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "[${2:numleft}]{${1:number}}[${3:text}]"
+      }
+    },
+    {
+      "name": "column"
+    },
+    {
+      "name": "column*"
+    },
+    {
+      "name": "column*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "nthcolumn",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column}}"
+      }
+    },
+    {
+      "name": "nthcolumn*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:column}}"
+      }
+    },
+    {
+      "name": "nthcolumn*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:column}}[${2:text}]"
+      }
+    },
+    {
+      "name": "leftcolumn"
+    },
+    {
+      "name": "leftcolumn*"
+    },
+    {
+      "name": "leftcolumn*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    },
+    {
+      "name": "rightcolumn"
+    },
+    {
+      "name": "rightcolumn*"
+    },
+    {
+      "name": "rightcolumn*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\addcontentsonly": [
+      "toc",
+      "lof",
+      "lot"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

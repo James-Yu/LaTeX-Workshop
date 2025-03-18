@@ -1,61 +1,139 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "nnlayer{}": {
-      "snippet": "nnlayer{${1:number}}"
-    },
-    "nnlayer[]{}": {
-      "snippet": "nnlayer[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "nnlayerNoText{}": {
-      "snippet": "nnlayerNoText{${1:arg}}"
-    },
-    "ifnnlayerHasBias": {},
-    "nnlayerHasBiastrue": {},
-    "nnlayerHasBiasfalse": {},
-    "nnlayerTitle": {},
-    "nnlayerText": {},
-    "nnlayerBias": {},
-    "nnlayerColor": {},
-    "nnlayerBiasColor": {},
-    "thenumlayers": {},
-    "thenninputlayer": {},
-    "thelastnnsize": {},
-    "iffullyconnectednnInout": {},
-    "fullyconnectednnInouttrue": {},
-    "fullyconnectednnInoutfalse": {},
-    "fullyconnectednnInput": {},
-    "fullyconnectednnOutput": {},
-    "fullyconnectednnLayersep": {},
-    "fullyconnectednnBiasX": {},
-    "fullyconnectednnBiasY": {},
-    "fullyconnectednnTitleY": {},
-    "fullyconnectednnTextWidth": {}
-  },
-  "envs": {
-    "fullyconnectednn": {},
-    "fullyconnectednn[]": {
-      "name": "fullyconnectednn",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "title=${1:text}",
-      "text=${1:text}",
-      "hasbias",
-      "bias=",
-      "color=",
-      "biascolor="
-    ],
-    [
+  ],
+  "macros": [
+    {
+      "name": "nnlayer",
+      "arg": {
+        "format": "{}",
+        "snippet": "nnlayer{${1:number}}"
+      }
+    },
+    {
+      "name": "nnlayer",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nnlayer[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\nnlayer#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nnlayerNoText",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nnlayerNoText{${1:arg}}"
+      }
+    },
+    {
+      "name": "ifnnlayerHasBias",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerHasBiastrue",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerHasBiasfalse",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerTitle",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerText",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerBias",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerColor",
+      "unusual": true
+    },
+    {
+      "name": "nnlayerBiasColor",
+      "unusual": true
+    },
+    {
+      "name": "thenumlayers",
+      "unusual": true
+    },
+    {
+      "name": "thenninputlayer",
+      "unusual": true
+    },
+    {
+      "name": "thelastnnsize",
+      "unusual": true
+    },
+    {
+      "name": "iffullyconnectednnInout",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnInouttrue",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnInoutfalse",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnInput",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnOutput",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnLayersep",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnBiasX",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnBiasY",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnTitleY",
+      "unusual": true
+    },
+    {
+      "name": "fullyconnectednnTextWidth",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "fullyconnectednn"
+    },
+    {
+      "name": "fullyconnectednn",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{fullyconnectednn}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{fullyconnectednn}#c": [
       "input=",
       "output=",
       "layersep=${1:number}",
@@ -64,6 +142,15 @@
       "titley=${1:number}",
       "inout",
       "text width="
+    ],
+    "\\nnlayer#c": [
+      "title=${1:text}",
+      "text=${1:text}",
+      "hasbias",
+      "bias=",
+      "color=",
+      "biascolor="
     ]
-  ]
+  },
+  "args": []
 }

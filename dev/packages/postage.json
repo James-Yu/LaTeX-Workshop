@@ -1,30 +1,48 @@
 {
-  "includes": {
-    "graphicx": [],
-    "tikz": [],
-    "calc": [],
-    "keyval": []
-  },
-  "macros": {
-    "includestamp{}": {
-      "snippet": "includestamp{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "includestamp[]{}": {
-      "snippet": "includestamp[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "style=",
+  ],
+  "macros": [
+    {
+      "name": "includestamp",
+      "arg": {
+        "format": "{}",
+        "snippet": "includestamp{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includestamp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includestamp[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includestamp"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\includestamp": [
+      "style=${1|normal,compact|}",
       "normal",
       "compact",
       "page=${1:number}",
       "row=${1:number}",
       "column=${1:number}"
     ]
-  ]
+  },
+  "args": []
 }

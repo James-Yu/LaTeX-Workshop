@@ -1,14 +1,22 @@
 {
-  "includes": {
-    "scrextend": [],
-    "scrlogo": []
-  },
-  "macros": {
-    "generatefontfile{}": {
-      "snippet": "generatefontfile{${1:file name}}"
+  "deps": [
+    {
+      "name": "scrextend"
+    },
+    {
+      "name": "scrlogo"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "generatefontfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "generatefontfile{${1:file name%file}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -20,19 +20,11 @@ export const root = {
         langId: undefined as string | undefined,
     },
     find,
-    getWorkspace,
-    _test: {
-        getIndicator,
-        getWorkspace,
-        findFromMagic,
-        findFromActive,
-        findFromRoot,
-        findInWorkspace
-    }
+    getWorkspace
 }
 
-lw.watcher.src.onDelete(filePath => {
-    if (filePath !== root.file.path) {
+lw.watcher.src.onDelete(uri => {
+    if (uri.fsPath !== root.file.path) {
         return
     }
     root.file = { path: undefined, langId: undefined }
@@ -163,6 +155,7 @@ async function findFromMagic(): Promise<string | undefined> {
         return
     }
 
+    logger.log('Try finding root from magic comment.')
     const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
     const fileStack: string[] = []
     let content: string | undefined = vscode.window.activeTextEditor.document.getText()
@@ -212,6 +205,7 @@ function findFromRoot(): string | undefined {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
+    logger.log('Try finding root from current root.')
     if (lw.cache.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
         return root.file.path
     }
@@ -227,7 +221,7 @@ function findFromRoot(): string | undefined {
  *
  * @returns {string | undefined} The root file path, or undefined if not found.
  */
-function findFromActive(): string | undefined {
+async function findFromActive(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
@@ -235,10 +229,11 @@ function findFromActive(): string | undefined {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
+    logger.log('Try finding root from active editor.')
     const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
     const result = content.match(getIndicator())
     if (result) {
-        const rootFilePath = findSubfiles(content)
+        const rootFilePath = await findSubfiles(content)
         const activeFilePath = vscode.window.activeTextEditor.document.fileName
         if (rootFilePath) {
             root.subfiles.path = activeFilePath
@@ -262,13 +257,13 @@ function findFromActive(): string | undefined {
  * @returns {string | undefined} The root file path for subfiles, or undefined
  * if not found.
  */
-function findSubfiles(content: string): string | undefined {
+async function findSubfiles(content: string): Promise<string | undefined> {
     const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
     const result = content.match(regex)
     if (!result) {
         return
     }
-    const filePath = utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
+    const filePath = await utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
     if (filePath) {
         logger.log(`Found subfile root ${filePath} from active.`)
     }
@@ -288,7 +283,7 @@ function findSubfiles(content: string): string | undefined {
  */
 async function findInWorkspace(): Promise<string | undefined> {
     const workspace = getWorkspace()
-    logger.log(`Current workspaceRootDir: ${workspace ? workspace.toString(true) : ''} .`)
+    logger.log(`Try finding root from current workspaceRootDir: ${workspace ? workspace.toString(true) : ''} .`)
 
     if (!workspace) {
         return
@@ -332,6 +327,8 @@ async function findInWorkspace(): Promise<string | undefined> {
             logger.log(`Found files that might be root, choose the first one: ${candidates} .`)
             return candidates[0]
         }
-    } catch (e) {}
+    } catch (err) {
+        logger.logError('Error finding root file in workspace', err)
+    }
     return
 }

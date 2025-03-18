@@ -1,26 +1,43 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "PstLightThreeDGraphic{}": {
-      "snippet": "PstLightThreeDGraphic{${1:graphic}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstLightThreeDGraphic[]{}": {
-      "snippet": "PstLightThreeDGraphic[${2:options}]{${1:graphic}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstLightThreeDGraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "PstLightThreeDGraphic{${1:graphic}}"
+      }
     },
-    "PstLightThreeDText{}": {
-      "snippet": "PstLightThreeDText{${1:text}}"
+    {
+      "name": "PstLightThreeDGraphic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PstLightThreeDGraphic[${2:options%keyvals}]{${1:graphic}}"
+      }
     },
-    "PstLightThreeDText[]{}": {
-      "snippet": "PstLightThreeDText[${2:options}]{${1:text}}"
+    {
+      "name": "PstLightThreeDText",
+      "arg": {
+        "format": "{}",
+        "snippet": "PstLightThreeDText{${1:text}}"
+      }
     },
-    "PSTLightThreeDLoaded": {},
-    "FileVersion": {},
-    "FileDate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "PstLightThreeDText",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PstLightThreeDText[${2:options%keyvals}]{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

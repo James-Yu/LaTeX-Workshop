@@ -1,91 +1,192 @@
 {
-  "includes": {
-    "graphicx": [],
-    "xkeyval": [],
-    "atbegshi": [],
-    "eforms": [],
-    "ocg": [],
-    "transparent": [],
-    "eso-pic": []
-  },
-  "macros": {
-    "keytip{}": {
-      "snippet": "keytip{${1:keyword}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "tooltip{}{}": {
-      "snippet": "tooltip{${1:text}}{${2:keyword or pagenumber}}"
+    {
+      "name": "xkeyval"
     },
-    "tooltip*{}{}": {
-      "snippet": "tooltip*{${1:text}}{${2:keyword or pagenumber}}"
+    {
+      "name": "atbegshi"
     },
-    "TooltipExtratext": {},
-    "TooltipFilename": {},
-    "tooltipanim{}{}{}": {
-      "snippet": "tooltipanim{${1:text}}{${2:start}}{${3:end}}"
+    {
+      "name": "eforms"
     },
-    "tooltipanim*{}{}{}": {
-      "snippet": "tooltipanim*{${1:text}}{${2:start}}{${3:end}}"
+    {
+      "name": "ocg"
     },
-    "delayinterval": {},
-    "TooltipRefmark": {},
-    "FindTipNumber{}": {
-      "snippet": "FindTipNumber{${1:arg1}}"
+    {
+      "name": "transparent"
     },
-    "SaveTooltipExtratext": {},
-    "TipNumber": {},
-    "TipNumberA": {},
-    "TipNumberB": {},
-    "TooltipHidden": {},
-    "TooltipPages": {},
-    "TooltipPage{}{}": {
-      "snippet": "TooltipPage{${1:arg1}}{${2:arg2}}"
-    },
-    "act": {},
-    "checkTipNumber{}": {
-      "snippet": "checkTipNumber{${1:arg1}}"
-    },
-    "eqIconDefaults": {},
-    "eqIconFTT{}{}{}{}": {
-      "snippet": "eqIconFTT{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "everyeqIcon{}": {
-      "snippet": "everyeqIcon{${1:arg1}}"
-    },
-    "fancytempA": {},
-    "fancytempAA": {},
-    "fancytempAAA": {},
-    "fancytempB": {},
-    "fancytooltipsdebugmsg": {},
-    "frametip": {},
-    "oldref{}": {
-      "snippet": "oldref{${1:label}}"
-    },
-    "templabel": {},
-    "tooltipname{}{}": {
-      "snippet": "tooltipname{${1:arg1}}{${2:arg2}}"
-    },
-    "tooltippage": {}
-  },
-  "envs": {},
-  "options": [
-    "createtips",
-    "dvips",
-    "noextratext",
-    "movetips",
-    "mouseover",
-    "inactive",
-    "active",
-    "fg",
-    "filename=${1:file name}",
-    "pages=${1:number}",
-    "blur",
-    "blur=${1:factor}",
-    "fixcolor",
-    "preview",
-    "previewall",
-    "nosoap",
-    "tooltipmark=",
-    "debug"
+    {
+      "name": "eso-pic"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "keytip",
+      "arg": {
+        "format": "{}",
+        "snippet": "keytip{${1:keyword}}"
+      }
+    },
+    {
+      "name": "tooltip",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tooltip{${1:text}}{${2:keyword or pagenumber}}"
+      }
+    },
+    {
+      "name": "tooltip*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tooltip*{${1:text}}{${2:keyword or pagenumber}}"
+      }
+    },
+    {
+      "name": "TooltipExtratext",
+      "unusual": true
+    },
+    {
+      "name": "TooltipFilename",
+      "unusual": true
+    },
+    {
+      "name": "tooltipanim",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tooltipanim{${1:text}}{${2:start}}{${3:end}}"
+      }
+    },
+    {
+      "name": "tooltipanim*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tooltipanim*{${1:text}}{${2:start}}{${3:end}}"
+      }
+    },
+    {
+      "name": "delayinterval",
+      "unusual": true
+    },
+    {
+      "name": "TooltipRefmark",
+      "unusual": true
+    },
+    {
+      "name": "FindTipNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FindTipNumber{${1:arg1}}"
+      }
+    },
+    {
+      "name": "SaveTooltipExtratext",
+      "unusual": true
+    },
+    {
+      "name": "TipNumber",
+      "unusual": true
+    },
+    {
+      "name": "TipNumberA",
+      "unusual": true
+    },
+    {
+      "name": "TipNumberB",
+      "unusual": true
+    },
+    {
+      "name": "TooltipHidden",
+      "unusual": true
+    },
+    {
+      "name": "TooltipPages",
+      "unusual": true
+    },
+    {
+      "name": "TooltipPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TooltipPage{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "checkTipNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "checkTipNumber{${1:arg1}}"
+      }
+    },
+    {
+      "name": "eqIconDefaults",
+      "unusual": true
+    },
+    {
+      "name": "eqIconFTT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "eqIconFTT{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "everyeqIcon",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "everyeqIcon{${1:arg1}}"
+      }
+    },
+    {
+      "name": "fancytooltipsdebugmsg",
+      "unusual": true
+    },
+    {
+      "name": "frametip",
+      "unusual": true
+    },
+    {
+      "name": "tooltipname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tooltipname{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "tooltippage",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fancytooltips#c": [
+      "createtips",
+      "dvips",
+      "noextratext",
+      "movetips",
+      "mouseover",
+      "inactive",
+      "active",
+      "fg",
+      "filename=${1:file name}",
+      "pages=${1:number}",
+      "blur",
+      "blur=${1:factor}",
+      "fixcolor",
+      "preview",
+      "previewall",
+      "nosoap",
+      "tooltipmark=${1|1,2,3,4|}",
+      "debug"
+    ]
+  },
+  "args": [
+    "\\usepackage/fancytooltips#c"
+  ]
 }

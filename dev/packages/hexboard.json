@@ -1,112 +1,277 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshapes.geometric": [],
-    "xstring": []
-  },
-  "macros": {
-    "argiii": {},
-    "belowIa": {},
-    "colorA": {},
-    "colorB": {},
-    "hexboard{}": {
-      "snippet": "hexboard{${1:number}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "hexbottomsubborder{}{}": {
-      "snippet": "hexbottomsubborder{${1:start}}{${2:end}}"
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "hexcell{}{}": {
-      "snippet": "hexcell{${1:x}}{${2:y}}"
-    },
-    "hexcellshaded[]{}{}": {
-      "snippet": "hexcellshaded[${3:color}]{${1:x}}{${2:y}}"
-    },
-    "hexcellshaded{}{}": {
-      "snippet": "hexcellshaded{${1:x}}{${2:y}}"
-    },
-    "hexconnect{}{}{}{}": {
-      "snippet": "hexconnect{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
-    },
-    "hexcontent{}{}{}": {
-      "snippet": "hexcontent{${1:x}}{${2:y}}{${3:content}}"
-    },
-    "hexcoord{}{}": {
-      "snippet": "hexcoord{${1:x}}{${2:y}}"
-    },
-    "hexcounter{}{}{}": {
-      "snippet": "hexcounter{${1:x}}{${2:y}}{${3:player}}"
-    },
-    "hexcounterlabel{}{}{}{}": {
-      "snippet": "hexcounterlabel{${1:x}}{${2:y}}{${3:player}}{${4:content}}"
-    },
-    "hexdot{}{}": {
-      "snippet": "hexdot{${1:x}}{${2:y}}"
-    },
-    "hexedgewidth": {},
-    "hexgrid{}{}": {
-      "snippet": "hexgrid{${1:columns}}{${2:rows}}"
-    },
-    "hexgridnolabel{}{}": {
-      "snippet": "hexgridnolabel{${1:columns}}{${2:rows}}"
-    },
-    "hexlinewidth": {},
-    "hexmove{}{}": {
-      "snippet": "hexmove{${1:x}}{${2:y}}"
-    },
-    "hexmovenumber": {},
-    "hexreducing{}{}": {
-      "snippet": "hexreducing{${1:columns}}{${2:rows}}"
-    },
-    "hexreducingnoborder{}{}": {
-      "snippet": "hexreducingnoborder{${1:columns}}{${2:rows}}"
-    },
-    "hexscale{}": {
-      "snippet": "hexscale{${1:number}}"
-    },
-    "hexshadedsubrow{}{}{}": {
-      "snippet": "hexshadedsubrow{${1:start}}{${2:end}}{${3:row}}"
-    },
-    "hexsize": {},
-    "hexskipmove": {},
-    "hexsubrow{}{}{}": {
-      "snippet": "hexsubrow{${1:start}}{${2:end}}{${3:row}}"
-    },
-    "hexthinline": {},
-    "hexthismover": {},
-    "Ia": {},
-    "Iaend": {},
-    "Ib": {},
-    "leftofIa": {},
-    "leftofxchor": {},
-    "setcolorA{}": {
-      "snippet": "setcolorA{${1:color}}"
-    },
-    "setcolorB{}": {
-      "snippet": "setcolorB{${1:color}}"
-    },
-    "testA": {},
-    "thehexedge": {},
-    "thehexlabelling": {},
-    "thehexletternum": {},
-    "thehexmovecount": {},
-    "thehexmoveskips": {},
-    "thiscolor": {},
-    "xchor": {},
-    "ychor": {}
-  },
-  "envs": {
-    "hexpicture": {},
-    "hexgame": {},
-    "hexgame[]": {
-      "name": "hexgame",
-      "snippet": "[${1:number}]"
-    },
-    "hexgamelabels": {},
-    "hexgamelabels[]": {
-      "name": "hexgamelabels",
-      "snippet": "[${1:number}]"
+    {
+      "name": "xstring"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "belowIa",
+      "unusual": true
+    },
+    {
+      "name": "colorA"
+    },
+    {
+      "name": "colorB"
+    },
+    {
+      "name": "hexboard",
+      "arg": {
+        "format": "{}",
+        "snippet": "hexboard{${1:number}}"
+      }
+    },
+    {
+      "name": "hexbottomsubborder",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexbottomsubborder{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "hexcell",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexcell{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexcellshaded",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "hexcellshaded[${3:color}]{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexcellshaded",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexcellshaded{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexconnect",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "hexconnect{${1:x1}}{${2:y1}}{${3:x2}}{${4:y2}}"
+      }
+    },
+    {
+      "name": "hexcontent",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hexcontent{${1:x}}{${2:y}}{${3:content}}"
+      }
+    },
+    {
+      "name": "hexcoord",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexcoord{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexcounter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hexcounter{${1:x}}{${2:y}}{${3:player}}"
+      }
+    },
+    {
+      "name": "hexcounterlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "hexcounterlabel{${1:x}}{${2:y}}{${3:player}}{${4:content}}"
+      }
+    },
+    {
+      "name": "hexdot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexdot{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexedgewidth",
+      "unusual": true
+    },
+    {
+      "name": "hexgrid",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexgrid{${1:columns}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "hexgridnolabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexgridnolabel{${1:columns}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "hexlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "hexmove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexmove{${1:x}}{${2:y}}"
+      }
+    },
+    {
+      "name": "hexmovenumber",
+      "unusual": true
+    },
+    {
+      "name": "hexreducing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexreducing{${1:columns}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "hexreducingnoborder",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hexreducingnoborder{${1:columns}}{${2:rows}}"
+      }
+    },
+    {
+      "name": "hexscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "hexscale{${1:number}}"
+      }
+    },
+    {
+      "name": "hexshadedsubrow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hexshadedsubrow{${1:start}}{${2:end}}{${3:row}}"
+      }
+    },
+    {
+      "name": "hexsize",
+      "unusual": true
+    },
+    {
+      "name": "hexskipmove"
+    },
+    {
+      "name": "hexsubrow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "hexsubrow{${1:start}}{${2:end}}{${3:row}}"
+      }
+    },
+    {
+      "name": "hexthinline",
+      "unusual": true
+    },
+    {
+      "name": "hexthismover",
+      "unusual": true
+    },
+    {
+      "name": "Ia",
+      "unusual": true
+    },
+    {
+      "name": "Iaend",
+      "unusual": true
+    },
+    {
+      "name": "Ib",
+      "unusual": true
+    },
+    {
+      "name": "leftofIa",
+      "unusual": true
+    },
+    {
+      "name": "leftofxchor",
+      "unusual": true
+    },
+    {
+      "name": "setcolorA",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcolorA{${1:color}}"
+      }
+    },
+    {
+      "name": "setcolorB",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcolorB{${1:color}}"
+      }
+    },
+    {
+      "name": "thehexedge",
+      "unusual": true
+    },
+    {
+      "name": "thehexlabelling",
+      "unusual": true
+    },
+    {
+      "name": "thehexletternum",
+      "unusual": true
+    },
+    {
+      "name": "thehexmovecount",
+      "unusual": true
+    },
+    {
+      "name": "thehexmoveskips",
+      "unusual": true
+    },
+    {
+      "name": "thiscolor",
+      "unusual": true
+    },
+    {
+      "name": "xchor"
+    },
+    {
+      "name": "ychor"
+    }
+  ],
+  "envs": [
+    {
+      "name": "hexpicture"
+    },
+    {
+      "name": "hexgame"
+    },
+    {
+      "name": "hexgame",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    },
+    {
+      "name": "hexgamelabels"
+    },
+    {
+      "name": "hexgamelabels",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:number}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

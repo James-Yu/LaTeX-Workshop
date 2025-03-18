@@ -1,32 +1,55 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": [],
-    "iftex": [],
-    "etoolbox": [],
-    "ifthen": [],
-    "trace": []
-  },
-  "macros": {
-    "textfnscript{}": {
-      "snippet": "textfnscript{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "textSuperscript{}": {
-      "snippet": "textSuperscript{${1:text}}"
+    {
+      "name": "xcolor"
     },
-    "supsStyle": {}
-  },
-  "envs": {},
-  "options": [
-    "notitlepatch",
-    "supscale=${1:factor}",
-    "supscolor=",
-    "supsraised=",
-    "supsfam=${1:family}",
-    "supsotf=${1:.otf file}",
-    "supsLspaced=",
-    "supsRspaced=",
-    "supspaced="
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "trace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "textfnscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "textfnscript{${1:text}}"
+      }
+    },
+    {
+      "name": "textSuperscript",
+      "arg": {
+        "format": "{}",
+        "snippet": "textSuperscript{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/superiors#c": [
+      "notitlepatch",
+      "supscale=${1:factor}",
+      "supscolor=",
+      "supsraised=",
+      "supsfam=${1:family}",
+      "supsotf=${1:.otf file}",
+      "supsLspaced=",
+      "supsRspaced=",
+      "supspaced="
+    ]
+  },
+  "args": [
+    "\\usepackage/superiors#c"
+  ]
 }

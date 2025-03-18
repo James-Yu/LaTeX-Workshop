@@ -1,37 +1,51 @@
 {
-  "includes": {},
-  "macros": {
-    "mathbold{}": {
-      "snippet": "mathbold{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbold{${1:text%plain}}"
+      }
     },
-    "upOmega": {
+    {
+      "name": "upOmega",
       "detail": "Ω",
-      "documentation": "capital omega, greek"
+      "doc": "\\omega (-slantedgreek), \\mathrm{\\omega}, capital omega, greek"
     },
-    "upDelta": {
+    {
+      "name": "upDelta",
       "detail": "Δ",
-      "documentation": "capital del greek"
+      "doc": "\\delta (-slantedgreek), \\mathrm{\\delta}, capital delta, greek"
     },
-    "hslash": {
-      "detail": "ℏ",
-      "documentation": "Planck's h over 2pi"
+    {
+      "name": "hslash",
+      "detail": "ℏ (\"amssymb fourier arevmath\" command)",
+      "doc": "=\\hbar (wrisym), #\\hbar, planck's h over 2pi"
     },
-    "mathcomma": {
-      "option": "icomma"
+    {
+      "name": "mathcomma",
+      "if": "icomma"
     },
-    "domathcomma": {
-      "option": "icomma"
+    {
+      "name": "domathcomma",
+      "if": "icomma",
+      "unusual": true
     }
-  },
-  "envs": {},
-  "options": [
-    "small",
-    "euler-digits",
-    "euler-hat-accent",
-    "OT1",
-    "T1",
-    "LY1",
-    "icomma"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/eulervm#c": [
+      "small",
+      "euler-digits",
+      "euler-hat-accent",
+      "OT1",
+      "T1",
+      "LY1",
+      "icomma"
+    ]
+  },
+  "args": [
+    "\\usepackage/eulervm#c"
+  ]
 }

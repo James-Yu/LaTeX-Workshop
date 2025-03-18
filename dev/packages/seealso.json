@@ -1,52 +1,100 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "seepage{}{}": {
-      "snippet": "seepage{${1:entry}}{${2:page number}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "seealsopage{}{}": {
-      "snippet": "seealsopage{${1:entry}}{${2:page number}}"
-    },
-    "seenopage{}{}": {
-      "snippet": "seenopage{${1:entry}}{${2:page number}}"
-    },
-    "seealsonopage{}{}": {
-      "snippet": "seealsonopage{${1:entry}}{${2:page number}}"
-    },
-    "see{}{}": {
-      "snippet": "see{${1:entry}}{${2:page number}}"
-    },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:entry}}{${2:page number}}"
-    },
-    "SeealsoPrintList": {},
-    "DeclareSeealsoMacro{}": {
-      "snippet": "DeclareSeealsoMacro{${1:cmd}}"
-    },
-    "seealsosetup{}": {
-      "snippet": "seealsosetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "seealsosetup[]{}": {
-      "snippet": "seealsosetup[${2:seelists}]{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "SeealsoGobble{}": {
-      "snippet": "SeealsoGobble{${1:char}}"
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [
-    "override",
-    "activecr"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "seepage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seepage{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seealsopage",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seealsopage{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seenopage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seenopage{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seealsonopage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seealsonopage{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "see{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "seealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seealso{${1:entry}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "SeealsoPrintList",
+      "unusual": true
+    },
+    {
+      "name": "seealsosetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "seealsosetup{${1:options%keyvals}}",
+        "keys": [
+          "\\seealsosetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "seealsosetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "seealsosetup[${2:seelists}]{${1:options%keyvals}}",
+        "keys": [
+          "\\seealsosetup"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "SeealsoGobble",
+      "arg": {
+        "format": "{}",
+        "snippet": "SeealsoGobble{${1:char}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/seealso#c": [
+      "override",
+      "activecr"
+    ],
+    "\\seealsosetup": [
       "name=${1:name}",
       "listsep=${1:sep}",
       "itemsep=${1:sep}",
@@ -54,5 +102,8 @@
       "itemformat=${1:format code}",
       "pageformat=${1:format code}"
     ]
+  },
+  "args": [
+    "\\usepackage/seealso#c"
   ]
 }

@@ -1,99 +1,197 @@
 {
-  "includes": {
-    "xetex": [],
-    "polyglossia": [],
-    "fontspec": [],
-    "xkeyval": [],
-    "ifxetex": [],
-    "ucharclasses": [],
-    "titlesec": [],
-    "amsthm": [],
-    "xpatch": [],
-    "amsfonts": [],
-    "amssymb": [],
-    "amsmath": [],
-    "enumerate": [],
-    "chngcntr": [],
-    "hyperref": []
-  },
-  "macros": {
-    "thecorollary": {
-      "option": "feature=2"
+  "deps": [
+    {
+      "name": "xetex"
     },
-    "theproperty": {
-      "option": "feature=2"
+    {
+      "name": "polyglossia"
     },
-    "tobangla{}": {
-      "snippet": "tobangla{${1:counter}}"
+    {
+      "name": "fontspec"
     },
-    "numtobangla{}": {
-      "snippet": "numtobangla{${1:number}}"
+    {
+      "name": "xkeyval"
     },
-    "thetheorem": {},
-    "theexample": {},
-    "theproblem": {},
-    "bengalifont": {},
-    "bengalifonttt": {}
-  },
-  "envs": {
-    "corollary": {
-      "option": "feature=2"
+    {
+      "name": "ifxetex"
     },
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]",
-      "option": "feature=2"
+    {
+      "name": "ucharclasses"
     },
-    "property": {
-      "option": "feature=2"
+    {
+      "name": "titlesec"
     },
-    "property[]": {
-      "name": "property",
-      "snippet": "[${1:heading}]",
-      "option": "feature=2"
+    {
+      "name": "amsthm"
     },
-    "hint": {
-      "option": "feature=2"
+    {
+      "name": "xpatch"
     },
-    "hint[]": {
-      "name": "hint",
-      "snippet": "[${1:heading}]",
-      "option": "feature=2"
+    {
+      "name": "amsfonts"
     },
-    "remarks": {
-      "option": "feature=2"
+    {
+      "name": "amssymb"
     },
-    "remarks[]": {
-      "name": "remarks",
-      "snippet": "[${1:heading}]",
-      "option": "feature=2"
+    {
+      "name": "amsmath"
     },
-    "motive": {
-      "option": "feature=2"
+    {
+      "name": "enumerate"
     },
-    "solution": {},
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:heading}]"
+    {
+      "name": "chngcntr"
     },
-    "problem": {},
-    "problem[]": {
-      "name": "problem",
-      "snippet": "[${1:heading}]"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "latin": {}
-  },
-  "options": [
-    "banglamainfont=${1:font name}",
-    "banglattfont=${1:font name}",
-    "feature=",
-    "changecounternumbering="
+    {
+      "name": "hyperref"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "thecorollary",
+      "if": "feature=2",
+      "unusual": true
+    },
+    {
+      "name": "theproperty",
+      "if": "feature=2",
+      "unusual": true
+    },
+    {
+      "name": "tobangla",
+      "arg": {
+        "format": "{}",
+        "snippet": "tobangla{${1:counter}}"
+      }
+    },
+    {
+      "name": "numtobangla",
+      "arg": {
+        "format": "{}",
+        "snippet": "numtobangla{${1:number}}"
+      }
+    },
+    {
+      "name": "thetheorem",
+      "unusual": true
+    },
+    {
+      "name": "theexample",
+      "unusual": true
+    },
+    {
+      "name": "theproblem",
+      "unusual": true
+    },
+    {
+      "name": "bengalifont",
+      "unusual": true
+    },
+    {
+      "name": "bengalifonttt",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "corollary",
+      "if": "feature=2"
+    },
+    {
+      "name": "corollary",
+      "if": "feature=2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "property",
+      "if": "feature=2"
+    },
+    {
+      "name": "property",
+      "if": "feature=2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "hint",
+      "if": "feature=2"
+    },
+    {
+      "name": "hint",
+      "if": "feature=2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "remarks",
+      "if": "feature=2"
+    },
+    {
+      "name": "remarks",
+      "if": "feature=2",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "motive",
+      "if": "feature=2"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "problem"
+    },
+    {
+      "name": "problem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "theorem"
+    },
+    {
+      "name": "theorem",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "latin",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/latexbangla#c": [
+      "banglamainfont=${1:font name}",
+      "banglattfont=${1:font name}",
+      "feature=${1|0,1,2|}",
+      "changecounternumbering="
+    ]
+  },
+  "args": [
+    "\\usepackage/latexbangla#c"
+  ]
 }

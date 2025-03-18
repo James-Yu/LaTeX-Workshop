@@ -1,40 +1,110 @@
 {
-  "includes": {
-    "tikzlibraryspath3": []
-  },
-  "macros": {
-    "BakePenroseTile{}": {
-      "snippet": "BakePenroseTile{${1:name}}"
-    },
-    "PenroseDecomposition{}{}{}": {
-      "snippet": "PenroseDecomposition{${1:type}}{${2:level}}{${3:seed}}"
-    },
-    "PenroseDecomposition[]{}{}{}": {
-      "snippet": "PenroseDecomposition[${4:TikZ keys}]{${1:type}}{${2:level}}{${3:seed}}"
-    },
-    "DefineTile{}{}{}": {
-      "snippet": "DefineTile{${1:name}}{${2:sides}}{${3:coordinates}}"
-    },
-    "SetPenrosePath{}": {
-      "snippet": "SetPenrosePath{${1:arg}}"
-    },
-    "UsePenroseTile{}": {
-      "snippet": "UsePenroseTile{${1:arg}}"
-    },
-    "UsePenroseTile[]{}": {
-      "snippet": "UsePenroseTile[${2:opt}]{${1:arg}}"
-    },
-    "TransformAlongSide{}{}": {
-      "snippet": "TransformAlongSide{${1:arg1}}{${2:arg2}}"
-    },
-    "CoordinatesAtVertices{}": {
-      "snippet": "CoordinatesAtVertices{${1:arg}}"
-    },
-    "MakePenroseTile{}": {
-      "snippet": "MakePenroseTile{${1:name}}"
+  "deps": [
+    {
+      "name": "tikzlibraryspath3"
     }
+  ],
+  "macros": [
+    {
+      "name": "BakePenroseTile",
+      "arg": {
+        "format": "{}",
+        "snippet": "BakePenroseTile{${1:name%keyvals}}",
+        "keys": [
+          "\\BakePenroseTile#c,\\pic#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PenroseDecomposition",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "PenroseDecomposition{${1:type%keyvals}}{${2:level}}{${3:seed}}",
+        "keys": [
+          "\\PenroseDecomposition#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PenroseDecomposition",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "PenroseDecomposition[${4:TikZ keys}]{${1:type%keyvals}}{${2:level}}{${3:seed}}",
+        "keys": [
+          "\\PenroseDecomposition#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DefineTile",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DefineTile{${1:name%specialDef}}{${2:sides}}{${3:coordinates}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every Penrose tile/.style={${1:TikZ keys}}",
+      "Penrose tile ${1:<n>}/.style={${2:TikZ keys}}",
+      "every Penrose pic/.style={${1:TikZ keys}}",
+      "every kite/.style={${1:TikZ keys}}",
+      "every dart/.style={${1:TikZ keys}}",
+      "every thin rhombus/.style={${1:TikZ keys}}",
+      "every thick rhombus/.style={${1:TikZ keys}}",
+      "every pentagon 5/.style={${1:TikZ keys}}",
+      "every pentagon 3/.style={${1:TikZ keys}}",
+      "every pentagon 2/.style={${1:TikZ keys}}",
+      "every pentagram/.style={${1:TikZ keys}}",
+      "every boat/.style={${1:TikZ keys}}",
+      "every diamond/.style={${1:TikZ keys}}",
+      "every golden triangle/.style={${1:TikZ keys}}",
+      "every reverse golden triangle/.style={${1:TikZ keys}}",
+      "every golden gnomon/.style={${1:TikZ keys}}",
+      "every reverse golden gnomon/.style={${1:TikZ keys}}",
+      "every circle arc/.style={${1:TikZ keys}}",
+      "every long arc/.style={${1:TikZ keys}}",
+      "Penrose step="
+    ],
+    "\\BakePenroseTile#c,\\pic#c": [
+      "kite",
+      "dart",
+      "thin rhombus",
+      "thick rhombus",
+      "pentagon 5",
+      "pentagon 3",
+      "pentagon 2",
+      "pentagram",
+      "boat",
+      "diamond",
+      "golden triangle",
+      "reverse golden triangle",
+      "golden gnomon",
+      "reverse golden gnomon",
+      "%penrosetilename"
+    ],
+    "\\pic#c": [
+      "align with=${1:tile} along ${2:edge}",
+      "align with=${1:tile} along ${2:edge} using ${3:number}"
+    ],
+    "\\PenroseDecomposition#c": [
+      "kite",
+      "rhombus",
+      "pentagon",
+      "ktriangle",
+      "rtriangle"
+    ],
+    "\\path#c": [
+      "save Penrose path=${1:edge}"
+    ],
+    "\\tikzset#c": [
+      "clone Penrose side path={${1:target}}{${2:source}}",
+      "clone Penrose tile path={${1:target}}{${2:source}}"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

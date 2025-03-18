@@ -1,182 +1,229 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "mathbold{}": {
-      "snippet": "mathbold{${1:text}}"
-    },
-    "upGamma": {
-      "detail": "Γ",
-      "documentation": "capital gamma, greek"
-    },
-    "upDelta": {
-      "detail": "Δ",
-      "documentation": "capital del greek"
-    },
-    "upTheta": {
-      "detail": "Θ",
-      "documentation": "capital greek"
-    },
-    "upLambda": {
-      "detail": "Λ",
-      "documentation": "capital lambda, greek"
-    },
-    "upXi": {
-      "detail": "Ξ",
-      "documentation": "capital greek"
-    },
-    "upPi": {
-      "detail": "Π",
-      "documentation": "capital pi, greek"
-    },
-    "upSigma": {
-      "detail": "Σ",
-      "documentation": "capital sigma, greek"
-    },
-    "upUpsilon": {
-      "detail": "ϒ",
-      "documentation": "GREEK UPSILON WITH HOOK SYMBOL"
-    },
-    "upPhi": {
-      "detail": "Φ",
-      "documentation": "capital phi, greek"
-    },
-    "upPsi": {
-      "detail": "Ψ",
-      "documentation": "capital psi, greek"
-    },
-    "upOmega": {
-      "detail": "Ω",
-      "documentation": "capital omega, greek"
-    },
-    "upalpha": {
-      "detail": "α",
-      "documentation": "alpha, greek"
-    },
-    "upbeta": {
-      "detail": "β",
-      "documentation": "be greek"
-    },
-    "upgamma": {
-      "detail": "γ",
-      "documentation": "gamma, greek"
-    },
-    "updelta": {
-      "detail": "δ",
-      "documentation": "del greek"
-    },
-    "upepsilon": {
-      "detail": "ε",
-      "documentation": "rounded epsilon, greek"
-    },
-    "upzeta": {
-      "detail": "ζ",
-      "documentation": "ze greek"
-    },
-    "upeta": {
-      "detail": "η",
-      "documentation": "e greek"
-    },
-    "uptheta": {
-      "detail": "θ",
-      "documentation": "straigh greek"
-    },
-    "upiota": {
-      "detail": "ι",
-      "documentation": "io greek"
-    },
-    "upkappa": {
-      "detail": "κ",
-      "documentation": "kappa, greek"
-    },
-    "uplambda": {
-      "detail": "λ",
-      "documentation": "lambda, greek"
-    },
-    "upmu": {
-      "detail": "μ",
-      "documentation": "mu, greek"
-    },
-    "upnu": {
-      "detail": "ν",
-      "documentation": "nu, greek"
-    },
-    "upxi": {
-      "detail": "ξ",
-      "documentation": "greek"
-    },
-    "uppi": {
-      "detail": "π",
-      "documentation": "pi, greek"
-    },
-    "uprho": {
-      "detail": "ρ",
-      "documentation": "rho, greek"
-    },
-    "upsigma": {
-      "detail": "σ",
-      "documentation": "sigma, greek"
-    },
-    "uptau": {
-      "detail": "τ",
-      "documentation": "greek"
-    },
-    "upupsilon": {
-      "detail": "υ",
-      "documentation": "upsilon, greek"
-    },
-    "upphi": {
-      "detail": "ϕ",
-      "documentation": "GREEK PHI SYMBOL (straight)"
-    },
-    "upchi": {
-      "detail": "χ",
-      "documentation": "chi, greek"
-    },
-    "uppsi": {
-      "detail": "ψ",
-      "documentation": "psi, greek"
-    },
-    "upomega": {
-      "detail": "ω",
-      "documentation": "omega, greek"
-    },
-    "upvarepsilon": {
-      "detail": "ϵ",
-      "documentation": "GREEK LUNATE EPSILON SYMBOL"
-    },
-    "upvartheta": {
-      "detail": "ϑ",
-      "documentation": "curly or open theta"
-    },
-    "upvarpi": {
-      "detail": "ϖ",
-      "documentation": "GREEK PI SYMBOL (pomega)"
-    },
-    "upvarphi": {
-      "detail": "φ",
-      "documentation": "curly or open phi, greek"
-    },
-    "upvarrho": {
-      "detail": "ϱ",
-      "documentation": "GREEK RHO SYMBOL (round)"
-    },
-    "upvarsigma": {
-      "detail": "ς",
-      "documentation": "terminal sigma, greek"
-    },
-    "ProcessOptionsWithKV{}": {
-      "snippet": "ProcessOptionsWithKV{${1:family}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "scaled",
-    "scaled=${1:factor}",
-    "slantedGreek",
-    "roman",
-    "sans"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathbold",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbold{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "upGamma",
+      "detail": "Γ",
+      "doc": "\\gamma (-slantedgreek), \\mathrm{\\gamma}, capital gamma, greek"
+    },
+    {
+      "name": "upDelta",
+      "detail": "Δ",
+      "doc": "\\delta (-slantedgreek), \\mathrm{\\delta}, capital delta, greek"
+    },
+    {
+      "name": "upTheta",
+      "detail": "Θ",
+      "doc": "\\theta (-slantedgreek), \\mathrm{\\theta}, capital theta, greek"
+    },
+    {
+      "name": "upLambda",
+      "detail": "Λ",
+      "doc": "\\lambda (-slantedgreek), \\mathrm{\\lambda}, capital lambda, greek"
+    },
+    {
+      "name": "upXi",
+      "detail": "Ξ",
+      "doc": "\\xi (-slantedgreek), \\mathrm{\\xi}, capital xi, greek"
+    },
+    {
+      "name": "upPi",
+      "detail": "Π",
+      "doc": "\\pi (-slantedgreek), \\mathrm{\\pi}, capital pi, greek"
+    },
+    {
+      "name": "upSigma",
+      "detail": "Σ",
+      "doc": "\\sigma (-slantedgreek), \\mathrm{\\sigma}, capital sigma, greek"
+    },
+    {
+      "name": "upUpsilon",
+      "detail": "ϒ",
+      "doc": "\\mathrm{\\upsilon}, greek upsilon with hook symbol"
+    },
+    {
+      "name": "upPhi",
+      "detail": "Φ",
+      "doc": "\\phi (-slantedgreek), \\mathrm{\\phi}, capital phi, greek"
+    },
+    {
+      "name": "upPsi",
+      "detail": "Ψ",
+      "doc": "\\psi (-slantedgreek), \\mathrm{\\psi}, capital psi, greek"
+    },
+    {
+      "name": "upOmega",
+      "detail": "Ω",
+      "doc": "\\omega (-slantedgreek), \\mathrm{\\omega}, capital omega, greek"
+    },
+    {
+      "name": "upalpha",
+      "detail": "α",
+      "doc": "\\mathrm{\\alpha} (omlmathrm), \\alphaup (kpfonts mathdesign), \\upalpha (upgreek), alpha, greek"
+    },
+    {
+      "name": "upbeta",
+      "detail": "β",
+      "doc": "\\mathrm{\\beta} (omlmathrm), \\betaup (kpfonts mathdesign), \\upbeta (upgreek), beta, greek"
+    },
+    {
+      "name": "upgamma",
+      "detail": "γ",
+      "doc": "\\mathrm{\\gamma} (omlmathrm), \\gammaup (kpfonts mathdesign), \\upgamma (upgreek), gamma, greek"
+    },
+    {
+      "name": "updelta",
+      "detail": "δ",
+      "doc": "\\mathrm{\\delta} (omlmathrm), \\deltaup (kpfonts mathdesign), \\updelta (upgreek), delta, greek"
+    },
+    {
+      "name": "upepsilon",
+      "detail": "ε",
+      "doc": "\\mathrm{\\varepsilon} (omlmathrm), \\varepsilonup (kpfonts mathdesign), \\upepsilon (upgreek), rounded epsilon, greek"
+    },
+    {
+      "name": "upzeta",
+      "detail": "ζ",
+      "doc": "\\mathrm{\\zeta} (omlmathrm), \\zetaup (kpfonts mathdesign), \\upzeta (upgreek), zeta, greek"
+    },
+    {
+      "name": "upeta",
+      "detail": "η",
+      "doc": "\\mathrm{\\eta} (omlmathrm), \\etaup (kpfonts mathdesign), \\upeta (upgreek), eta, greek"
+    },
+    {
+      "name": "uptheta",
+      "detail": "θ",
+      "doc": "\\mathrm{\\theta} (omlmathrm), \\thetaup (kpfonts mathdesign), straight theta, \\uptheta (upgreek), theta, greek"
+    },
+    {
+      "name": "upiota",
+      "detail": "ι",
+      "doc": "\\mathrm{\\iota} (omlmathrm), \\iotaup (kpfonts mathdesign), \\upiota (upgreek), iota, greek"
+    },
+    {
+      "name": "upkappa",
+      "detail": "κ",
+      "doc": "\\mathrm{\\kappa} (omlmathrm), \\kappaup (kpfonts mathdesign), \\upkappa (upgreek), kappa, greek"
+    },
+    {
+      "name": "uplambda",
+      "detail": "λ",
+      "doc": "\\mathrm{\\lambda} (omlmathrm), \\lambdaup (kpfonts mathdesign), \\uplambda (upgreek), lambda, greek"
+    },
+    {
+      "name": "upmu",
+      "detail": "μ",
+      "doc": "\\mathrm{\\mu} (omlmathrm), \\muup (kpfonts mathdesign), \\upmu (upgreek), mu, greek"
+    },
+    {
+      "name": "upnu",
+      "detail": "ν",
+      "doc": "\\mathrm{\\nu} (omlmathrm), \\nuup (kpfonts mathdesign), \\upnu (upgreek), nu, greek"
+    },
+    {
+      "name": "upxi",
+      "detail": "ξ",
+      "doc": "\\mathrm{\\xi} (omlmathrm), \\xiup (kpfonts mathdesign), \\upxi (upgreek), xi, greek"
+    },
+    {
+      "name": "uppi",
+      "detail": "π",
+      "doc": "\\mathrm{\\pi} (omlmathrm), \\piup (kpfonts mathdesign), \\uppi (upgreek), pi, greek"
+    },
+    {
+      "name": "uprho",
+      "detail": "ρ",
+      "doc": "\\mathrm{\\rho} (omlmathrm), \\rhoup (kpfonts mathdesign), \\uprho (upgreek), rho, greek"
+    },
+    {
+      "name": "upsigma",
+      "detail": "σ",
+      "doc": "\\mathrm{\\sigma} (omlmathrm), \\sigmaup (kpfonts mathdesign), \\upsigma (upgreek), sigma, greek"
+    },
+    {
+      "name": "uptau",
+      "detail": "τ",
+      "doc": "\\mathrm{\\tau} (omlmathrm), \\tauup (kpfonts mathdesign), \\uptau (upgreek), tau, greek"
+    },
+    {
+      "name": "upupsilon",
+      "detail": "υ",
+      "doc": "\\mathrm{\\upsilon} (omlmathrm), \\upsilonup (kpfonts mathdesign), \\upupsilon (upgreek), upsilon, greek"
+    },
+    {
+      "name": "upphi",
+      "detail": "ϕ",
+      "doc": "\\mathrm{\\phi} (omlmathrm), \\phiup (kpfonts mathdesign), greek phi symbol (straight)"
+    },
+    {
+      "name": "upchi",
+      "detail": "χ",
+      "doc": "\\mathrm{\\chi} (omlmathrm), \\chiup (kpfonts mathdesign), \\upchi (upgreek), chi, greek"
+    },
+    {
+      "name": "uppsi",
+      "detail": "ψ",
+      "doc": "\\mathrm{\\psi} (omlmathrm), \\psiup (kpfonts mathdesign), \\uppsi (upgreek), psi, greek"
+    },
+    {
+      "name": "upomega",
+      "detail": "ω",
+      "doc": "\\mathrm{\\omega} (omlmathrm), \\omegaup (kpfonts mathdesign), \\upomega (upgreek), omega, greek"
+    },
+    {
+      "name": "upvarepsilon",
+      "detail": "ϵ",
+      "doc": "\\mathrm{\\epsilon} (omlmathrm), \\epsilonup (kpfonts mathdesign), greek lunate epsilon symbol"
+    },
+    {
+      "name": "upvartheta",
+      "detail": "ϑ",
+      "doc": "\\mathrm{\\vartheta} (omlmathrm), \\varthetaup (kpfonts mathdesign), curly or open theta"
+    },
+    {
+      "name": "upvarpi",
+      "detail": "ϖ",
+      "doc": "\\mathrm{\\varpi} (omlmathrm), \\varpiup (kpfonts mathdesign), greek pi symbol (pomega)"
+    },
+    {
+      "name": "upvarphi",
+      "detail": "φ",
+      "doc": "\\mathrm{\\varphi} (omlmathrm), \\varphiup (kpfonts mathdesign), \\upvarphi (upgreek), curly or open phi, greek"
+    },
+    {
+      "name": "upvarrho",
+      "detail": "ϱ",
+      "doc": "\\mathrm{\\varrho} (omlmathrm), \\varrhoup (kpfonts mathdesign), greek rho symbol (round)"
+    },
+    {
+      "name": "upvarsigma",
+      "detail": "ς",
+      "doc": "\\mathrm{\\varsigma} (omlmathrm), \\varsigmaup (kpfonts mathdesign), \\upvarsigma (upgreek), terminal sigma, greek"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hvmaths#c": [
+      "scaled",
+      "scaled=${1:factor}",
+      "slantedGreek",
+      "roman",
+      "sans"
+    ]
+  },
+  "args": [
+    "\\usepackage/hvmaths#c"
+  ]
 }

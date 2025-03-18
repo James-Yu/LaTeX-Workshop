@@ -1,27 +1,43 @@
 {
-  "includes": {
-    "underscore": [],
-    "l3keys2e": []
-  },
-  "macros": {
-    "WaOsetup{}": {
-      "snippet": "WaOsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "underscore"
     },
-    "WaOparameters": {},
-    "WaOignorenext": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "check=",
-      "orphans=",
-      "widows=",
+    {
+      "name": "l3keys2e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "WaOsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "WaOsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\WaOsetup,\\usepackage/widows-and-orphans#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "WaOparameters"
+    },
+    {
+      "name": "WaOignorenext"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\WaOsetup,\\usepackage/widows-and-orphans#c": [
+      "check=${1|warning,error,info,none|}",
+      "orphans=${1|prevent,avoid,default|}",
+      "widows=${1|prevent,avoid,default|}",
       "prevent-all",
       "avoid-all",
       "default-all"
     ]
+  },
+  "args": [
+    "\\WaOsetup,\\usepackage/widows-and-orphans#c"
   ]
 }

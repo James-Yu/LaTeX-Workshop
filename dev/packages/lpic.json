@@ -1,46 +1,107 @@
 {
-  "includes": {
-    "epsfig": [],
-    "rotating": [],
-    "calc": [],
-    "ifthen": [],
-    "color": []
-  },
-  "macros": {
-    "lbl{}": {
-      "snippet": "lbl{${1:coords;LaTeX content}}"
+  "deps": [
+    {
+      "name": "epsfig"
     },
-    "lbl[]{}": {
-      "snippet": "lbl[${2:pos}]{${1:coords;LaTeX content}}"
+    {
+      "name": "rotating"
     },
-    "lpunitlength": {},
-    "lpmarginright": {},
-    "lpmarginleft": {},
-    "lpmargintop": {},
-    "lpmarginbottom": {},
-    "lpbgsep": {},
-    "lpgridthickness": {},
-    "lpframethickness": {},
-    "lplblframethickness": {},
-    "lpfigframethickness": {},
-    "thelpgridstep": {},
-    "thelpcoordstep": {}
-  },
-  "envs": {
-    "lpic{}": {
-      "name": "lpic",
-      "snippet": "{${1:filename(${2:x,y})}}"
+    {
+      "name": "calc"
     },
-    "lpic[]{}": {
-      "name": "lpic",
-      "snippet": "[${2:options}]{${1:filename(${3:x,y})}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "color"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "lbl",
+      "arg": {
+        "format": "{}",
+        "snippet": "lbl{${1:coords;LaTeX content}}"
+      }
+    },
+    {
+      "name": "lbl",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "lbl[${2:pos}]{${1:coords;LaTeX content}}"
+      }
+    },
+    {
+      "name": "lpunitlength",
+      "unusual": true
+    },
+    {
+      "name": "lpmarginright",
+      "unusual": true
+    },
+    {
+      "name": "lpmarginleft",
+      "unusual": true
+    },
+    {
+      "name": "lpmargintop",
+      "unusual": true
+    },
+    {
+      "name": "lpmarginbottom",
+      "unusual": true
+    },
+    {
+      "name": "lpbgsep",
+      "unusual": true
+    },
+    {
+      "name": "lpgridthickness",
+      "unusual": true
+    },
+    {
+      "name": "lpframethickness",
+      "unusual": true
+    },
+    {
+      "name": "lplblframethickness",
+      "unusual": true
+    },
+    {
+      "name": "lpfigframethickness",
+      "unusual": true
+    },
+    {
+      "name": "thelpgridstep",
+      "unusual": true
+    },
+    {
+      "name": "thelpcoordstep",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "lpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:filename(${2:x},${3:y})}}"
+      }
+    },
+    {
+      "name": "lpic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options}]{${1:filename(${3:x},${4:y})}}",
+        "keys": [
+          "\\begin{lpic}#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\begin{lpic}#c": [
       "l(${1:length})",
       "r(${1:length})",
       "t(${1:length})",
@@ -55,5 +116,6 @@
       "nolbl",
       "nofigure"
     ]
-  ]
+  },
+  "args": []
 }

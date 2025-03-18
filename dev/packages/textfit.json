@@ -1,28 +1,61 @@
 {
-  "includes": {},
-  "macros": {
-    "scaletoheight{}{}": {
-      "snippet": "scaletoheight{${1:height}}{${2:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "scaletoheight",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scaletoheight{${1:height}}{${2:content%text}}"
+      }
     },
-    "scaletowidth{}{}": {
-      "snippet": "scaletowidth{${1:width}}{${2:content}}"
+    {
+      "name": "scaletowidth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "scaletowidth{${1:width}}{${2:content%text}}"
+      }
     },
-    "ifScalebyMagsteps": {},
-    "ScalebyMagstepstrue": {},
-    "ScalebyMagstepsfalse": {},
-    "ifNoisyFitting": {},
-    "NoisyFittingtrue": {},
-    "NoisyFittingfalse": {},
-    "magsteps": {},
-    "Fontname": {},
-    "docdate": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [
-    "noisy",
-    "magstep"
+    {
+      "name": "ifScalebyMagsteps",
+      "unusual": true
+    },
+    {
+      "name": "ScalebyMagstepstrue",
+      "unusual": true
+    },
+    {
+      "name": "ScalebyMagstepsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifNoisyFitting",
+      "unusual": true
+    },
+    {
+      "name": "NoisyFittingtrue",
+      "unusual": true
+    },
+    {
+      "name": "NoisyFittingfalse",
+      "unusual": true
+    },
+    {
+      "name": "magsteps",
+      "unusual": true
+    },
+    {
+      "name": "Fontname",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/textfit#c": [
+      "noisy",
+      "magstep"
+    ]
+  },
+  "args": [
+    "\\usepackage/textfit#c"
+  ]
 }

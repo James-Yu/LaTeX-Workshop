@@ -1,29 +1,47 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "rand": {},
-    "reinitrand[]": {
-      "snippet": "reinitrand[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "chgrand[]": {
-      "snippet": "chgrand[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "rand"
+    },
+    {
+      "name": "reinitrand",
+      "arg": {
+        "format": "[]",
+        "snippet": "reinitrand[${1:options%keyvals}]",
+        "keys": [
+          "\\reinitrand,\\chgrand,\\usepackage/lcg#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "chgrand",
+      "arg": {
+        "format": "[]",
+        "snippet": "chgrand[${1:options%keyvals}]",
+        "keys": [
+          "\\reinitrand,\\chgrand,\\usepackage/lcg#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\reinitrand,\\chgrand,\\usepackage/lcg#c": [
       "counter=${1:counter}",
       "first=${1:integer}",
       "last=${1:integer}",
       "seed=${1:integer}",
       "quiet"
     ]
+  },
+  "args": [
+    "\\reinitrand,\\chgrand,\\usepackage/lcg#c"
   ]
 }

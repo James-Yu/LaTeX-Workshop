@@ -1,137 +1,317 @@
 {
-  "includes": {
-    "graphics": []
-  },
-  "macros": {
-    "printreturnlabels{}{}": {
-      "snippet": "printreturnlabels{${1:number}}{${2:text}}"
-    },
-    "SetEnvelope{}{}": {
-      "snippet": "SetEnvelope{${1:width}}{${2:height}}"
-    },
-    "SetEnvelope[]{}{}": {
-      "snippet": "SetEnvelope[${3:top margin}]{${1:width}}{${2:height}}"
-    },
-    "SetLabel{}{}{}{}{}{}{}": {
-      "snippet": "SetLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
-    },
-    "SetBigLabel{}{}{}{}{}{}{}": {
-      "snippet": "SetBigLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
-    },
-    "AtBeginLabels{}": {
-      "snippet": "AtBeginLabels{${1:commands}}"
-    },
-    "AtBeginLabelPage{}": {
-      "snippet": "AtBeginLabelPage{${1:commands}}"
-    },
-    "EnvelopeLeftMargin": {},
-    "FirstLabel{}{}": {
-      "snippet": "FirstLabel{${1:row}}{${2:column}}"
-    },
-    "suppresslabels": {},
-    "resumelabels": {},
-    "suppressonelabel": {},
-    "resumeonelabel": {},
-    "ChangeEnvelope{}{}": {
-      "snippet": "ChangeEnvelope{${1:width}}{${2:height}}"
-    },
-    "ChangeEnvelope[]{}{}": {
-      "snippet": "ChangeEnvelope[${3:top margin}]{${1:width}}{${2:height}}"
-    },
-    "ChangeLabel{}{}{}{}{}{}{}": {
-      "snippet": "ChangeLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
-    },
-    "ChangeBigLabel{}{}{}{}{}{}{}": {
-      "snippet": "ChangeBigLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
-    },
-    "re{}": {
-      "snippet": "re{${1:subject}}"
-    },
-    "ReName": {},
-    "PSwait": {},
-    "EnvelopeHeight": {},
-    "EnvelopeTopMargin": {},
-    "EnvelopeWidth": {},
-    "FromAddressHeight": {},
-    "FromAddressLeftMargin": {},
-    "FromAddressTopMargin": {},
-    "FromAddressWidth": {},
-    "LabelHeight": {},
-    "LabelLeftMargin": {},
-    "LabelRightMargin": {},
-    "LabelTopMargin": {},
-    "LabelWidth": {},
-    "PrintAddress{}": {
-      "snippet": "PrintAddress{${1:text}}"
-    },
-    "PrintBarCode{}": {
-      "snippet": "PrintBarCode{${1:code}}"
-    },
-    "PrintBigLabel{}{}": {
-      "snippet": "PrintBigLabel{${1:return address}}{${2:address}}"
-    },
-    "PrintEnvelope{}{}": {
-      "snippet": "PrintEnvelope{${1:return address}}{${2:address}}"
-    },
-    "PrintLabel{}": {
-      "snippet": "PrintLabel{${1:text}}"
-    },
-    "printonelabel": {},
-    "PrintReturnAddress{}": {
-      "snippet": "PrintReturnAddress{${1:text}}"
-    },
-    "PSautotray": {},
-    "PSEnvelopeTray": {},
-    "recontents": {},
-    "theLabelCountCol": {},
-    "theLabelCountRow": {},
-    "theLabelMaxCol": {},
-    "theLabelMaxRow": {},
-    "theLabelOffsetCol": {},
-    "theLabelOffsetRow": {},
-    "ToAddressLeftMargin": {},
-    "ToAddressTopMargin": {},
-    "ToAddressWidth": {}
-  },
-  "envs": {},
-  "options": [
-    "businessenvelope",
-    "executiveenvelope",
-    "bookletenvelope",
-    "personalenvelope",
-    "c6envelope",
-    "c65envelope",
-    "c5envelope",
-    "dlenvelope",
-    "avery5160label",
-    "avery5161label",
-    "avery5162label",
-    "avery5163label",
-    "avery5164label",
-    "herma4625label",
-    "avery5262label",
-    "avery5163biglabel",
-    "avery5164biglabel",
-    "rotateenvelopes",
-    "norotateenvelopes",
-    "centerenvelopes",
-    "leftenvelopes",
-    "rightenvelopes",
-    "customenvelopes",
-    "printbarcodes",
-    "noprintbarcodes",
-    "alwaysbarcodes",
-    "noalwaysbarcodes",
-    "capaddress",
-    "nocapaddress",
-    "printreturnaddress",
-    "noprintreturnaddress",
-    "pswait",
-    "nopswait",
-    "psautotray",
-    "nopsautotray",
-    "re",
-    "nore"
+  "deps": [
+    {
+      "name": "graphics"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "printreturnlabels",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "printreturnlabels{${1:number}}{${2:text}}"
+      }
+    },
+    {
+      "name": "SetEnvelope",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetEnvelope{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "SetEnvelope",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "SetEnvelope[${3:top margin}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "SetLabel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "SetLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
+      }
+    },
+    {
+      "name": "SetBigLabel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "SetBigLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
+      }
+    },
+    {
+      "name": "AtBeginLabels",
+      "arg": {
+        "format": "{}",
+        "snippet": "AtBeginLabels{${1:commands}}"
+      }
+    },
+    {
+      "name": "AtBeginLabelPage",
+      "arg": {
+        "format": "{}",
+        "snippet": "AtBeginLabelPage{${1:commands}}"
+      }
+    },
+    {
+      "name": "EnvelopeLeftMargin",
+      "unusual": true
+    },
+    {
+      "name": "FirstLabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FirstLabel{${1:row}}{${2:column}}"
+      }
+    },
+    {
+      "name": "suppresslabels"
+    },
+    {
+      "name": "resumelabels"
+    },
+    {
+      "name": "suppressonelabel"
+    },
+    {
+      "name": "resumeonelabel"
+    },
+    {
+      "name": "ChangeEnvelope",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ChangeEnvelope{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ChangeEnvelope",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ChangeEnvelope[${3:top margin}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ChangeLabel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "ChangeLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
+      }
+    },
+    {
+      "name": "ChangeBigLabel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "ChangeBigLabel{${1:W}}{${2:H}}{${3:t}}{${4:l}}{${5:r}}{${6:Nc}}{${7:Nr}}"
+      }
+    },
+    {
+      "name": "re",
+      "arg": {
+        "format": "{}",
+        "snippet": "re{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "ReName",
+      "unusual": true
+    },
+    {
+      "name": "PSwait",
+      "unusual": true
+    },
+    {
+      "name": "EnvelopeHeight",
+      "unusual": true
+    },
+    {
+      "name": "EnvelopeTopMargin",
+      "unusual": true
+    },
+    {
+      "name": "EnvelopeWidth",
+      "unusual": true
+    },
+    {
+      "name": "FromAddressHeight",
+      "unusual": true
+    },
+    {
+      "name": "FromAddressLeftMargin",
+      "unusual": true
+    },
+    {
+      "name": "FromAddressTopMargin",
+      "unusual": true
+    },
+    {
+      "name": "FromAddressWidth",
+      "unusual": true
+    },
+    {
+      "name": "LabelHeight",
+      "unusual": true
+    },
+    {
+      "name": "LabelLeftMargin",
+      "unusual": true
+    },
+    {
+      "name": "LabelRightMargin",
+      "unusual": true
+    },
+    {
+      "name": "LabelTopMargin",
+      "unusual": true
+    },
+    {
+      "name": "LabelWidth",
+      "unusual": true
+    },
+    {
+      "name": "PrintAddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintAddress{${1:text}}"
+      }
+    },
+    {
+      "name": "PrintBarCode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintBarCode{${1:code}}"
+      }
+    },
+    {
+      "name": "PrintBigLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PrintBigLabel{${1:return address}}{${2:address}}"
+      }
+    },
+    {
+      "name": "PrintEnvelope",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PrintEnvelope{${1:return address}}{${2:address}}"
+      }
+    },
+    {
+      "name": "PrintLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "printonelabel",
+      "unusual": true
+    },
+    {
+      "name": "PrintReturnAddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PrintReturnAddress{${1:text}}"
+      }
+    },
+    {
+      "name": "PSautotray",
+      "unusual": true
+    },
+    {
+      "name": "PSEnvelopeTray",
+      "unusual": true
+    },
+    {
+      "name": "recontents",
+      "unusual": true
+    },
+    {
+      "name": "theLabelCountCol",
+      "unusual": true
+    },
+    {
+      "name": "theLabelCountRow",
+      "unusual": true
+    },
+    {
+      "name": "theLabelMaxCol",
+      "unusual": true
+    },
+    {
+      "name": "theLabelMaxRow",
+      "unusual": true
+    },
+    {
+      "name": "theLabelOffsetCol",
+      "unusual": true
+    },
+    {
+      "name": "theLabelOffsetRow",
+      "unusual": true
+    },
+    {
+      "name": "ToAddressLeftMargin",
+      "unusual": true
+    },
+    {
+      "name": "ToAddressTopMargin",
+      "unusual": true
+    },
+    {
+      "name": "ToAddressWidth",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/envlab#c": [
+      "businessenvelope",
+      "executiveenvelope",
+      "bookletenvelope",
+      "personalenvelope",
+      "c6envelope",
+      "c65envelope",
+      "c5envelope",
+      "dlenvelope",
+      "avery5160label",
+      "avery5161label",
+      "avery5162label",
+      "avery5163label",
+      "avery5164label",
+      "herma4625label",
+      "avery5262label",
+      "avery5163biglabel",
+      "avery5164biglabel",
+      "rotateenvelopes",
+      "norotateenvelopes",
+      "centerenvelopes",
+      "leftenvelopes",
+      "rightenvelopes",
+      "customenvelopes",
+      "printbarcodes",
+      "noprintbarcodes",
+      "alwaysbarcodes",
+      "noalwaysbarcodes",
+      "capaddress",
+      "nocapaddress",
+      "printreturnaddress",
+      "noprintreturnaddress",
+      "pswait",
+      "nopswait",
+      "psautotray",
+      "nopsautotray",
+      "re",
+      "nore"
+    ]
+  },
+  "args": [
+    "\\usepackage/envlab#c"
+  ]
 }

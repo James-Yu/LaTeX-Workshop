@@ -1,28 +1,41 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "emf": {},
-    "mathemf{}": {
-      "snippet": "mathemf{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "boondox",
-    "cmr",
-    "calligra",
-    "frcursive",
-    "fourier",
-    "miama",
-    "chorus",
-    "rsfs",
-    "cal",
-    "U0",
-    "u0",
-    "text=${1:text}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "emf"
+    },
+    {
+      "name": "mathemf",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathemf{${1:text%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/emf#c": [
+      "scale=${1:factor}",
+      "boondox",
+      "cmr",
+      "calligra",
+      "frcursive",
+      "fourier",
+      "miama",
+      "chorus",
+      "rsfs",
+      "cal",
+      "U0",
+      "u0",
+      "text=${1:text}"
+    ]
+  },
+  "args": [
+    "\\usepackage/emf#c"
+  ]
 }

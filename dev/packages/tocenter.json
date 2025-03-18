@@ -1,26 +1,52 @@
 {
-  "includes": {},
-  "macros": {
-    "ToCenter{}{}": {
-      "snippet": "ToCenter{${1:width}}{${2:height}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ToCenter",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ToCenter{${1:width}}{${2:height}}"
+      }
     },
-    "ToCenter[]{}{}": {
-      "snippet": "ToCenter[${3:hfm}]{${1:width}}{${2:height}}"
+    {
+      "name": "ToCenter",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ToCenter[${3:hfm}]{${1:width}}{${2:height}}"
+      }
     },
-    "ToCenter*{}{}": {
-      "snippet": "ToCenter*{${1:width}}{${2:height}}"
+    {
+      "name": "ToCenter*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ToCenter*{${1:width}}{${2:height}}"
+      }
     },
-    "FromMargins{}{}{}{}": {
-      "snippet": "FromMargins{${1:left}}{${2:right}}{${3:top}}{${4:bottom}}"
+    {
+      "name": "FromMargins",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FromMargins{${1:left%l}}{${2:right%l}}{${3:top%l}}{${4:bottom%l}}"
+      }
     },
-    "FromMargins[]{}{}{}{}": {
-      "snippet": "FromMargins[${5:hfm}]{${1:left}}{${2:right}}{${3:top}}{${4:bottom}}"
+    {
+      "name": "FromMargins",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "FromMargins[${5:hfm}]{${1:left%l}}{${2:right%l}}{${3:top%l}}{${4:bottom%l}}"
+      }
     },
-    "FromMargins*{}{}{}{}": {
-      "snippet": "FromMargins*{${1:left}}{${2:right}}{${3:top}}{${4:bottom}}"
+    {
+      "name": "FromMargins*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FromMargins*{${1:left%l}}{${2:right%l}}{${3:top%l}}{${4:bottom%l}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

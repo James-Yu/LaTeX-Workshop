@@ -1,27 +1,48 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "luacode": [],
-    "tikz": [],
-    "luamplib": []
-  },
-  "macros": {
-    "luaplot{}": {
-      "snippet": "luaplot{${1:function}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "luaplot[]{}": {
-      "snippet": "luaplot[${2:options}]{${1:function}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "luacode"
     },
-    "luatikzpath{}{}{}{}": {
-      "snippet": "luatikzpath{${1:function}}{${2:xmin}}{${3:xmax}}{${4:plot points}}"
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "luamplib"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "luaplot",
+      "arg": {
+        "format": "{}",
+        "snippet": "luaplot{${1:function%definition}}"
+      }
+    },
+    {
+      "name": "luaplot",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "luaplot[${2:options%keyvals}]{${1:function%definition}}",
+        "keys": [
+          "\\luaplot"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "luatikzpath",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "luatikzpath{${1:function%definition}}{${2:xmin}}{${3:xmax}}{${4:plot points}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\luaplot": [
       "xmin=${1:number}",
       "xmax=${1:number}",
       "ymin=${1:number}",
@@ -33,5 +54,6 @@
       "plotsty={'${1:style1,style2,...}'}",
       "plotoptions={${1:MetaPost code}}"
     ]
-  ]
+  },
+  "args": []
 }

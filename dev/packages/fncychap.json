@@ -1,134 +1,315 @@
 {
-  "includes": {
-    "color": [
-      "Bjornstrup"
+  "deps": [
+    {
+      "name": "color",
+      "if": "Bjornstrup"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mghrulefill",
+      "arg": {
+        "format": "{}",
+        "snippet": "mghrulefill{${1:width}}"
+      }
+    },
+    {
+      "name": "ChNameUpperCase"
+    },
+    {
+      "name": "ChNameLowerCase"
+    },
+    {
+      "name": "ChNameAsIs"
+    },
+    {
+      "name": "ChTitleUpperCase"
+    },
+    {
+      "name": "ChTitleLowerCase"
+    },
+    {
+      "name": "ChTitleAsIs"
+    },
+    {
+      "name": "ChRuleWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "ChRuleWidth{${1:width}}"
+      }
+    },
+    {
+      "name": "ChNameVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "ChNameVar{${1:code}}"
+      }
+    },
+    {
+      "name": "ChNumVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "ChNumVar{${1:code}}"
+      }
+    },
+    {
+      "name": "ChTitleVar",
+      "arg": {
+        "format": "{}",
+        "snippet": "ChTitleVar{${1:code}}"
+      }
+    },
+    {
+      "name": "TheAlphaChapter"
+    },
+    {
+      "name": "DOCH",
+      "unusual": true
+    },
+    {
+      "name": "DOTI",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DOTI{${1:arg}}"
+      }
+    },
+    {
+      "name": "DOTIS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DOTIS{${1:arg}}"
+      }
+    },
+    {
+      "name": "mylen",
+      "unusual": true
+    },
+    {
+      "name": "myhi",
+      "unusual": true
+    },
+    {
+      "name": "px",
+      "unusual": true
+    },
+    {
+      "name": "py",
+      "unusual": true
+    },
+    {
+      "name": "pxx",
+      "unusual": true
+    },
+    {
+      "name": "pyy",
+      "unusual": true
+    },
+    {
+      "name": "RW",
+      "unusual": true
+    },
+    {
+      "name": "CNV",
+      "unusual": true
+    },
+    {
+      "name": "CNoV",
+      "unusual": true
+    },
+    {
+      "name": "CTV",
+      "unusual": true
+    },
+    {
+      "name": "FmN",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FmN{${1:arg}}"
+      }
+    },
+    {
+      "name": "FmTi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FmTi{${1:arg}}"
+      }
+    },
+    {
+      "name": "bl",
+      "if": "PetersLenny",
+      "unusual": true
+    },
+    {
+      "name": "BL",
+      "if": "PetersLenny",
+      "arg": {
+        "format": "{}",
+        "snippet": "BL{${1:width}}"
+      }
+    },
+    {
+      "name": "br",
+      "if": "PetersLenny",
+      "unusual": true
+    },
+    {
+      "name": "BR",
+      "if": "PetersLenny",
+      "arg": {
+        "format": "{}",
+        "snippet": "BR{${1:width}}"
+      }
+    },
+    {
+      "name": "tl",
+      "if": "PetersLenny",
+      "unusual": true
+    },
+    {
+      "name": "TL",
+      "if": "PetersLenny",
+      "arg": {
+        "format": "{}",
+        "snippet": "TL{${1:width}}"
+      }
+    },
+    {
+      "name": "trr",
+      "if": "PetersLenny",
+      "unusual": true
+    },
+    {
+      "name": "TR",
+      "if": "PetersLenny",
+      "arg": {
+        "format": "{}",
+        "snippet": "TR{${1:width}}"
+      }
+    },
+    {
+      "name": "blrule",
+      "if": "PetersLenny",
+      "unusual": true
+    },
+    {
+      "name": "BLrule",
+      "if": "PetersLenny",
+      "arg": {
+        "format": "{}",
+        "snippet": "BLrule{${1:width}}"
+      }
+    },
+    {
+      "name": "backskip",
+      "if": "Glenn"
+    },
+    {
+      "name": "AlphaDecNo",
+      "if": "Bjarne"
+    },
+    {
+      "name": "AlphaNo",
+      "if": "Bjarne"
+    },
+    {
+      "name": "theAlphaCnt",
+      "if": "Bjarne"
+    },
+    {
+      "name": "theAlphaDecCnt",
+      "if": "Bjarne"
+    },
+    {
+      "name": "ifusecolor",
+      "unusual": true
+    },
+    {
+      "name": "usecolortrue",
+      "unusual": true
+    },
+    {
+      "name": "usecolorfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifUCN",
+      "unusual": true
+    },
+    {
+      "name": "UCNtrue",
+      "unusual": true
+    },
+    {
+      "name": "UCNfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifLCN",
+      "unusual": true
+    },
+    {
+      "name": "LCNtrue",
+      "unusual": true
+    },
+    {
+      "name": "LCNfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifinapp",
+      "unusual": true
+    },
+    {
+      "name": "inapptrue",
+      "unusual": true
+    },
+    {
+      "name": "inappfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifUCT",
+      "unusual": true
+    },
+    {
+      "name": "UCTtrue",
+      "unusual": true
+    },
+    {
+      "name": "UCTfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifLCT",
+      "unusual": true
+    },
+    {
+      "name": "LCTtrue",
+      "unusual": true
+    },
+    {
+      "name": "LCTfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fncychap#c": [
+      "Sonny",
+      "Lenny",
+      "PetersLenny",
+      "Bjornstrup",
+      "Glenn",
+      "Conny",
+      "Rejne",
+      "Bjarne"
     ]
   },
-  "macros": {
-    "mghrulefill{}": {
-      "snippet": "mghrulefill{${1:width}}"
-    },
-    "ChNameUpperCase": {},
-    "ChNameLowerCase": {},
-    "ChNameAsIs": {},
-    "ChTitleUpperCase": {},
-    "ChTitleLowerCase": {},
-    "ChTitleAsIs": {},
-    "ChRuleWidth{}": {
-      "snippet": "ChRuleWidth{${1:width}}"
-    },
-    "ChNameVar{}": {
-      "snippet": "ChNameVar{${1:code}}"
-    },
-    "ChNumVar{}": {
-      "snippet": "ChNumVar{${1:code}}"
-    },
-    "ChTitleVar{}": {
-      "snippet": "ChTitleVar{${1:code}}"
-    },
-    "TheAlphaChapter": {},
-    "DOCH": {},
-    "DOTI{}": {
-      "snippet": "DOTI{${1:arg}}"
-    },
-    "DOTIS{}": {
-      "snippet": "DOTIS{${1:arg}}"
-    },
-    "mylen": {},
-    "myhi": {},
-    "px": {},
-    "py": {},
-    "pxx": {},
-    "pyy": {},
-    "RW": {},
-    "CNV": {},
-    "CNoV": {},
-    "CTV": {},
-    "FmN{}": {
-      "snippet": "FmN{${1:arg}}"
-    },
-    "FmTi{}": {
-      "snippet": "FmTi{${1:arg}}"
-    },
-    "bl": {
-      "option": "PetersLenny"
-    },
-    "BL{}": {
-      "snippet": "BL{${1:width}}",
-      "option": "PetersLenny"
-    },
-    "br": {
-      "option": "PetersLenny"
-    },
-    "BR{}": {
-      "snippet": "BR{${1:width}}",
-      "option": "PetersLenny"
-    },
-    "tl": {
-      "option": "PetersLenny"
-    },
-    "TL{}": {
-      "snippet": "TL{${1:width}}",
-      "option": "PetersLenny"
-    },
-    "trr": {
-      "option": "PetersLenny"
-    },
-    "TR{}": {
-      "snippet": "TR{${1:width}}",
-      "option": "PetersLenny"
-    },
-    "blrule": {
-      "option": "PetersLenny"
-    },
-    "BLrule{}": {
-      "snippet": "BLrule{${1:width}}",
-      "option": "PetersLenny"
-    },
-    "backskip": {
-      "option": "Glenn"
-    },
-    "AlphaDecNo": {
-      "option": "Bjarne"
-    },
-    "AlphaNo": {
-      "option": "Bjarne"
-    },
-    "theAlphaCnt": {
-      "option": "Bjarne"
-    },
-    "theAlphaDecCnt": {
-      "option": "Bjarne"
-    },
-    "ifusecolor": {},
-    "usecolortrue": {},
-    "usecolorfalse": {},
-    "ifUCN": {},
-    "UCNtrue": {},
-    "UCNfalse": {},
-    "ifLCN": {},
-    "LCNtrue": {},
-    "LCNfalse": {},
-    "ifinapp": {},
-    "inapptrue": {},
-    "inappfalse": {},
-    "ifUCT": {},
-    "UCTtrue": {},
-    "UCTfalse": {},
-    "ifLCT": {},
-    "LCTtrue": {},
-    "LCTfalse": {}
-  },
-  "envs": {},
-  "options": [
-    "Sonny",
-    "Lenny",
-    "PetersLenny",
-    "Bjornstrup",
-    "Glenn",
-    "Conny",
-    "Rejne",
-    "Bjarne"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/fncychap#c"
+  ]
 }

@@ -1,42 +1,82 @@
 {
-  "includes": {
-    "pgf": [],
-    "expkv-opt": []
-  },
-  "macros": {
-    "cistercian{}": {
-      "snippet": "cistercian{${1:counter}}"
+  "deps": [
+    {
+      "name": "pgf"
     },
-    "cisterciannum{}": {
-      "snippet": "cisterciannum{${1:integer}}"
-    },
-    "cisterciannumE{}": {
-      "snippet": "cisterciannumE{${1:integer expression}}"
-    },
-    "cisterciansetup{}": {
-      "snippet": "cisterciansetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "cistercianredraw": {},
-    "cistercianredrawlazy": {},
-    "cistercianstyle{}{}": {
-      "snippet": "cistercianstyle{${1:keyname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "cistercianstyle*{}{}": {
-      "snippet": "cistercianstyle*{${1:keyname}}{${2:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 1
+    {
+      "name": "expkv-opt"
     }
-  },
-  "envs": {},
-  "options": [
-    "debug"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "cistercian",
+      "arg": {
+        "format": "{}",
+        "snippet": "cistercian{${1:counter}}"
+      }
+    },
+    {
+      "name": "cisterciannum",
+      "arg": {
+        "format": "{}",
+        "snippet": "cisterciannum{${1:integer}}"
+      }
+    },
+    {
+      "name": "cisterciannumE",
+      "arg": {
+        "format": "{}",
+        "snippet": "cisterciannumE{${1:integer expression}}"
+      }
+    },
+    {
+      "name": "cisterciansetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "cisterciansetup{${1:options%keyvals}}",
+        "keys": [
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*,\\usepackage/xistercian#c",
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cistercianredraw",
+      "unusual": true
+    },
+    {
+      "name": "cistercianredrawlazy",
+      "unusual": true
+    },
+    {
+      "name": "cistercianstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cistercianstyle{${1:keyname%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*,\\usepackage/xistercian#c",
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "cistercianstyle*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cistercianstyle*{${1:keyname%specialDef}}{${2:options%keyvals}}",
+        "keys": [
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*,\\usepackage/xistercian#c",
+          "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*,\\usepackage/xistercian#c": [
       "width=",
       "wd=",
       "height=",
@@ -59,8 +99,8 @@
       "s=",
       "fraction=${1:fraction}",
       "fr=${1:fraction}",
-      "orientation=",
-      "o=",
+      "orientation=${1|horizontal,h,vertical,v|}",
+      "o=${1|horizontal,h,vertical,v|}",
       "horizontal",
       "vertical",
       "alternate-5=${1:choice}",
@@ -71,7 +111,9 @@
       "9=${1:choice}",
       "font={${1:font setup}}",
       "f={${1:font setup}}",
-      "%cisterciankey",
+      "%cisterciankey"
+    ],
+    "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*": [
       "redraw={${1:feature list}}",
       "redraw +={${1:feature list}}",
       "redraw",
@@ -80,6 +122,13 @@
       "r +={${1:feature list}}",
       "r",
       "r!"
+    ],
+    "\\usepackage/xistercian#c": [
+      "debug"
     ]
+  },
+  "args": [
+    "\\cisterciansetup,\\cistercianstyle,\\cistercianstyle*,\\usepackage/xistercian#c",
+    "\\usepackage/xistercian#c"
   ]
 }

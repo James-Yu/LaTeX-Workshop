@@ -1,43 +1,101 @@
 {
-  "includes": {
-    "svn-prov": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "PushPreHook{}{}": {
-      "snippet": "PushPreHook{${1:hook}}{${2:balanced text}}"
+  "deps": [
+    {
+      "name": "svn-prov"
     },
-    "PopPreHook{}": {
-      "snippet": "PopPreHook{${1:hook}}"
-    },
-    "PushPostHook{}{}": {
-      "snippet": "PushPostHook{${1:hook}}{${2:balanced text}}"
-    },
-    "PopPostHook{}": {
-      "snippet": "PopPostHook{${1:hook}}"
-    },
-    "SavePreHook{}{}": {
-      "snippet": "SavePreHook{${1:hook}}{${2:command}}"
-    },
-    "SavePostHook{}{}": {
-      "snippet": "SavePostHook{${1:hook}}{${2:command}}"
-    },
-    "RestorePreHook{}{}": {
-      "snippet": "RestorePreHook{${1:hook}}{${2:command}}"
-    },
-    "RestorePostHook{}{}": {
-      "snippet": "RestorePostHook{${1:hook}}{${2:command}}"
-    },
-    "ClearPreHook{}": {
-      "snippet": "ClearPreHook{${1:hook}}"
-    },
-    "ClearPostHook{}": {
-      "snippet": "ClearPostHook{${1:hook}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "excludeor"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "PushPreHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PushPreHook{${1:hook}}{${2:balanced text}}"
+      }
+    },
+    {
+      "name": "PopPreHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PopPreHook{${1:hook}}"
+      }
+    },
+    {
+      "name": "PushPostHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PushPostHook{${1:hook}}{${2:balanced text}}"
+      }
+    },
+    {
+      "name": "PopPostHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PopPostHook{${1:hook}}"
+      }
+    },
+    {
+      "name": "SavePreHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SavePreHook{${1:hook}}{${2:command}}"
+      }
+    },
+    {
+      "name": "SavePostHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SavePostHook{${1:hook}}{${2:command}}"
+      }
+    },
+    {
+      "name": "RestorePreHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RestorePreHook{${1:hook}}{${2:command}}"
+      }
+    },
+    {
+      "name": "RestorePostHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RestorePostHook{${1:hook}}{${2:command}}"
+      }
+    },
+    {
+      "name": "ClearPreHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ClearPreHook{${1:hook}}"
+      }
+    },
+    {
+      "name": "ClearPostHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ClearPostHook{${1:hook}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/everyhook#c": [
+      "excludeor"
+    ]
+  },
+  "args": [
+    "\\usepackage/everyhook#c"
+  ]
 }

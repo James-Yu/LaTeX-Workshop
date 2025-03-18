@@ -1,18 +1,33 @@
 {
-  "includes": {
-    "ragged2e": [],
-    "paralist": [],
-    "multicol": []
-  },
-  "macros": {
-    "lettergroup{}": {
-      "snippet": "lettergroup{${1:text}}"
+  "deps": [
+    {
+      "name": "ragged2e"
     },
-    "newthought{}": {
-      "snippet": "newthought{${1:text}}"
+    {
+      "name": "paralist"
+    },
+    {
+      "name": "multicol"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "lettergroup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lettergroup{${1:text}}"
+      }
+    },
+    {
+      "name": "newthought",
+      "arg": {
+        "format": "{}",
+        "snippet": "newthought{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

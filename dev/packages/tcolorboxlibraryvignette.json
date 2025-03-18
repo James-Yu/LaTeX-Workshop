@@ -1,19 +1,28 @@
 {
-  "includes": {
-    "tcolorboxlibraryskins": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "tcbvignette{}": {
-      "snippet": "tcbvignette{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tcolorboxlibraryskins"
+    },
+    {
+      "name": "tikzlibraryfadings"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "tcbvignette",
+      "arg": {
+        "format": "{}",
+        "snippet": "tcbvignette{${1:options%keyvals}}",
+        "keys": [
+          "\\tcbvignette"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tcbvignette": [
       "xmin=",
       "xmax=",
       "ymin=",
@@ -40,11 +49,61 @@
       "lowered color=",
       "color from=${1:inner} to ${2:outer}",
       "base color=",
-      "draw method=",
+      "draw method=${1|direct,clipped|}",
       "fade in={${1:TikZ options}}",
       "fade out={${1:TikZ options}}",
       "semi fade in={${1:TikZ options}}",
       "semi fade out={${1:TikZ options}}"
+    ],
+    "\\tcbset": [
+      "vig/xmin=",
+      "vig/xmax=",
+      "vig/ymin=",
+      "vig/ymax=",
+      "vig/lower left corner={${1:x,y}}",
+      "vig/upper right corner={${1:x,y}}",
+      "vig/inside node=${1:name}",
+      "vig/outside node=${1:name}",
+      "vig/over node=${1:name}",
+      "vig/over node offset=",
+      "vig/north size=",
+      "vig/south size=",
+      "vig/east size=",
+      "vig/west size=",
+      "vig/vertical size=",
+      "vig/horizontal size=",
+      "vig/size=",
+      "vig/north style={${1:TikZ options}}",
+      "vig/south style={${1:TikZ options}}",
+      "vig/east style={${1:TikZ options}}",
+      "vig/west style={${1:TikZ options}}",
+      "vig/scope={${1:TikZ options}}",
+      "vig/raised color=",
+      "vig/lowered color=",
+      "vig/color from=${1:inner} to ${2:outer}",
+      "vig/base color=",
+      "vig/draw method=${1|direct,clipped|}",
+      "vig/fade in={${1:TikZ options}}",
+      "vig/fade out={${1:TikZ options}}",
+      "vig/semi fade in={${1:TikZ options}}",
+      "vig/semi fade out={${1:TikZ options}}"
+    ],
+    "\\tcbset,\\begin{tcolorbox},\\tcbsetforeverylayer,\\tcbox,\\newtcolorbox,\\renewtcolorbox,\\newtcbox,\\renewtcbox,\\tcolorboxenvironment,\\tcbsubtitle,\\tcbsidebyside,\\tcbsubskin,\\tcbincludegraphics,\\tcbincludepdf,\\begin{tcbraster},\\begin{tcbitemize},\\tcbitem,\\begin{tcboxedraster},\\begin{tcboxeditemize},\\begin{tcblisting},\\tcbinputlisting,\\newtcblisting,\\renewtcblisting,\\newtcbinputlisting,\\renewtcbinputlisting,\\NewTcbTheorem,\\newtcbtheorem,\\RenewTcbTheorem,\\renewtcbtheorem,\\ProvideTcbTheorem,\\DeclareTcbTheorem,\\tcboxmath,\\tcbhighmath,\\usetcboxarray,\\consumetcboxarray,\\posterbox,\\begin{posterboxenv},\\tcboxfit,\\newtcboxfit,\\renewtcboxfit,\\DeclareTColorBox,\\NewTColorBox,\\RenewTColorBox,\\ProvideTColorBox,\\DeclareTotalTColorBox,\\NewTotalTColorBox,\\RenewTotalTColorBox,\\ProvideTotalTColorBox,\\DeclareTCBox,\\NewTCBox,\\RenewTCBox,\\ProvideTCBox,\\DeclareTotalTCBox,\\NewTotalTCBox,\\RenewTotalTCBox,\\ProvideTotalTCBox,\\DeclareTCBListing,\\NewTCBListing,\\RenewTCBListing,\\ProvideTCBListing,\\DeclareTCBInputListing,\\NewTCBInputListing,\\RenewTCBInputListing,\\ProvideTCBInputListing,\\DeclareTCBoxFit,\\NewTCBoxFit,\\RenewTCBoxFit,\\ProvideTCBoxFit,\\DeclareTotalTCBoxFit,\\NewTotalTCBoxFit,\\RenewTotalTCBoxFit,\\ProvideTotalTCBoxFit,\\tcboxverb,\\begin{docCommand},\\begin{docCommand*},\\begin{docCommands},\\begin{docEnvironment},\\begin{docEnvironment*},\\begin{docEnvironments},\\begin{docKey},\\begin{docKey*},\\begin{docKeys},\\begin{docPathOperation},\\begin{docPathOperation*},\\begin{docPathOperations},\\docValue,\\docValue*,\\docAuxCommand,\\docAuxCommand*,\\docAuxEnvironment,\\docAuxEnvironment*,\\docAuxKey,\\docAuxKey*,\\docCounter,\\docCounter*,\\docLength,\\docLength*,\\docColor,\\docColor*,\\begin{dispExample*},\\begin{dispListing*},\\tcbdocmarginnote": [
+      "underlay vignette",
+      "underlay vignette={${1:vignette options}}",
+      "underlay raise shading vignette",
+      "underlay raise shading vignette={${1:vignette options}}",
+      "underlay raise fading vignette",
+      "underlay raise fading vignette={${1:vignette options}}",
+      "underlay shade in vignette",
+      "underlay shade in vignette={${1:vignette options}}",
+      "finish vignette",
+      "finish vignette={${1:vignette options}}",
+      "finish raised fading vignette",
+      "finish raised fading vignette={${1:vignette options}}",
+      "finish fading vignette",
+      "finish fading vignette={${1:vignette options}}"
     ]
-  ]
+  },
+  "args": []
 }

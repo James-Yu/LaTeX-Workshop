@@ -1,21 +1,47 @@
 {
-  "includes": {
-    "multido": [],
-    "pstricks": [],
-    "pst-calculate": [],
-    "ifluatex": [],
-    "xstring": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "makeSimpleRandomNumberList": {},
-    "makeRandomNumberList": {},
-    "getNumberFromList{}": {
-      "snippet": "getNumberFromList{${1:number}}"
+  "deps": [
+    {
+      "name": "multido"
     },
-    "PSTmathLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-calculate"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "defineRandIntervall",
+      "arg": {
+        "format": "(){}",
+        "snippet": "defineRandIntervall(${2:min},${3:max}){${1:number}}"
+      }
+    },
+    {
+      "name": "makeSimpleRandomNumberList"
+    },
+    {
+      "name": "makeRandomNumberList"
+    },
+    {
+      "name": "getNumberFromList",
+      "arg": {
+        "format": "{}",
+        "snippet": "getNumberFromList{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

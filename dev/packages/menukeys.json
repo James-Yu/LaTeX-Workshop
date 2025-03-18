@@ -1,149 +1,461 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "etoolbox": [],
-    "kvoptions": [],
-    "relsize": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshapes.symbols": [],
-    "tikzlibraryshadows": [],
-    "xcolor": [],
-    "xstring": []
-  },
-  "macros": {
-    "menu{}": {
-      "snippet": "menu{${1:text}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "menu[]{}": {
-      "snippet": "menu[${2:separator}]{${1:text}}"
+    {
+      "name": "etoolbox"
     },
-    "directory{}": {
-      "snippet": "directory{${1:path}}"
+    {
+      "name": "kvoptions"
     },
-    "directory[]{}": {
-      "snippet": "directory[${2:separator}]{${1:path}}"
+    {
+      "name": "relsize"
     },
-    "keys{}": {
-      "snippet": "keys{${1:keys}}"
+    {
+      "name": "tikz"
     },
-    "keys[]{}": {
-      "snippet": "keys[${2:separator}]{${1:keys}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "newmenustylesimple{}[]{}[][]{}": {
-      "snippet": "newmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    {
+      "name": "tikzlibraryshapes.symbols"
     },
-    "newmenustylesimple*{}[]{}[][]{}": {
-      "snippet": "newmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    {
+      "name": "tikzlibraryshadows"
     },
-    "renewmenustylesimple{}[]{}[][]{}": {
-      "snippet": "renewmenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
+    {
+      "name": "xcolor"
     },
-    "renewmenustylesimple*{}[]{}[][]{}": {
-      "snippet": "renewmenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
-    },
-    "providemenustylesimple{}[]{}[][]{}": {
-      "snippet": "providemenustylesimple{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
-    },
-    "providemenustylesimple*{}[]{}[][]{}": {
-      "snippet": "providemenustylesimple*{${1:name}}[${2:pre}]{${3:style}}[${4:sep}][${5:post}]{${6:theme}}"
-    },
-    "newmenustyle{}[]{}[]{}{}{}[]{}": {
-      "snippet": "newmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "newmenustyle*{}[]{}[]{}{}{}[]{}": {
-      "snippet": "newmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "renewmenustyle{}[]{}[]{}{}{}[]{}": {
-      "snippet": "renewmenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "renewmenustyle*{}[]{}[]{}{}{}[]{}": {
-      "snippet": "renewmenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "providemenustyle{}[]{}[]{}{}{}[]{}": {
-      "snippet": "providemenustyle{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "providemenustyle*{}[]{}[]{}{}{}[]{}": {
-      "snippet": "providemenustyle*{${1:name}}[${2:pre}]{${3:first}}[${4:sep}]{${5:mid}}{${6:last}}{${7:single}}[${8:post}]{${9:theme}}"
-    },
-    "CurrentMenuElement": {},
-    "usemenucolor{}": {
-      "snippet": "usemenucolor{${1:element}}"
-    },
-    "drawtikzfolder": {},
-    "drawtikzfolder[]": {
-      "snippet": "drawtikzfolder[${1:front fill color}]"
-    },
-    "drawtikzfolder[][]": {
-      "snippet": "drawtikzfolder[${1:front fill color}][${2:draw color}]"
-    },
-    "copymenustyle{}{}": {
-      "snippet": "copymenustyle{${1:copy}}{${2:original}}"
-    },
-    "changemenuelement{}{}{}": {
-      "snippet": "changemenuelement{${1:name}}{${2:element}}{${3:definition}}"
-    },
-    "changemenuelement*{}{}{}": {
-      "snippet": "changemenuelement*{${1:name}}{${2:element}}{${3:definition}}"
-    },
-    "changemenucolortheme{}{}": {
-      "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}"
-    },
-    "newmenucolortheme{}{}{}{}{}[][][]": {
-      "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
-    },
-    "copymenucolortheme{}{}": {
-      "snippet": "copymenucolortheme{${1:copy}}{${2:original}}"
-    },
-    "changemenucolor{}{}{}{}": {
-      "snippet": "changemenucolor{${1:name}}{${2:element}}{${3:model}}{${4:color definition}}"
-    },
-    "renewmenucolortheme{}{}{}{}{}[][][]": {
-      "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
-    },
-    "newmenumacro{}[]{}": {
-      "snippet": "newmenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
-    },
-    "renewmenumacro{}[]{}": {
-      "snippet": "renewmenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
-    },
-    "providemenumacro{}[]{}": {
-      "snippet": "providemenumacro{${1:macro}}[${2:input sep}]{${3:style}}"
-    },
-    "shift": {},
-    "capslock": {},
-    "tab": {},
-    "esc": {},
-    "oldesc": {},
-    "ctrl": {},
-    "Alt": {},
-    "AltGr": {},
-    "cmd": {},
-    "Space": {},
-    "SPACE": {},
-    "return": {},
-    "enter": {},
-    "winmenu": {},
-    "backspace": {},
-    "del": {},
-    "backdel": {},
-    "arrowkeyup": {},
-    "arrowkeydown": {},
-    "arrowkeyright": {},
-    "arrowkeyleft": {},
-    "arrowkey{}": {
-      "snippet": "arrowkey{${1:direction}}"
-    },
-    "ctrlname": {},
-    "delname": {},
-    "spacename": {}
-  },
-  "envs": {},
-  "options": [
-    "definemenumacros",
-    "definekeys",
-    "mackeys=",
-    "os="
+    {
+      "name": "xstring"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "menu",
+      "arg": {
+        "format": "{}",
+        "snippet": "menu{${1:text}}"
+      }
+    },
+    {
+      "name": "menu",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "menu[${2:separator}]{${1:text}}"
+      }
+    },
+    {
+      "name": "directory",
+      "arg": {
+        "format": "{}",
+        "snippet": "directory{${1:path}}"
+      }
+    },
+    {
+      "name": "directory",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "directory[${2:separator}]{${1:path}}"
+      }
+    },
+    {
+      "name": "keys",
+      "arg": {
+        "format": "{}",
+        "snippet": "keys{${1:keys}}"
+      }
+    },
+    {
+      "name": "keys",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "keys[${2:separator}]{${1:keys}}"
+      }
+    },
+    {
+      "name": "newmenustylesimple",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "newmenustylesimple{${1:name}}[${4:pre}]{${2:style}}[${5:sep}][${6:post}]{${3:theme}}"
+      }
+    },
+    {
+      "name": "newmenustylesimple*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "newmenustylesimple*{${1:name}}[${4:pre}]{${2:style}}[${5:sep}][${6:post}]{${3:theme}}"
+      }
+    },
+    {
+      "name": "renewmenustylesimple",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "renewmenustylesimple{${1:name}}[${4:pre}]{${2:style%keyvals}}[${5:sep}][${6:post}]{${3:theme}}",
+        "keys": [
+          "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewmenustylesimple*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "renewmenustylesimple*{${1:name}}[${4:pre}]{${2:style%keyvals}}[${5:sep}][${6:post}]{${3:theme}}"
+      }
+    },
+    {
+      "name": "providemenustylesimple",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "providemenustylesimple{${1:name}}[${4:pre}]{${2:style}}[${5:sep}][${6:post}]{${3:theme}}"
+      }
+    },
+    {
+      "name": "providemenustylesimple*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[][]{}",
+        "snippet": "providemenustylesimple*{${1:name}}[${4:pre}]{${2:style}}[${5:sep}][${6:post}]{${3:theme}}"
+      }
+    },
+    {
+      "name": "newmenustyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "newmenustyle{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single}}[${9:post}]{${6:theme}}"
+      }
+    },
+    {
+      "name": "newmenustyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "newmenustyle*{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single}}[${9:post}]{${6:theme}}"
+      }
+    },
+    {
+      "name": "renewmenustyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "renewmenustyle{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single%keyvals}}[${9:post}]{${6:theme}}",
+        "keys": [
+          "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro"
+        ],
+        "keyPos": 6
+      }
+    },
+    {
+      "name": "renewmenustyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "renewmenustyle*{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single%keyvals}}[${9:post}]{${6:theme}}"
+      }
+    },
+    {
+      "name": "providemenustyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "providemenustyle{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single}}[${9:post}]{${6:theme}}"
+      }
+    },
+    {
+      "name": "providemenustyle*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}{}{}[]{}",
+        "snippet": "providemenustyle*{${1:name}}[${7:pre}]{${2:first}}[${8:sep}]{${3:mid}}{${4:last}}{${5:single}}[${9:post}]{${6:theme}}"
+      }
+    },
+    {
+      "name": "CurrentMenuElement",
+      "unusual": true
+    },
+    {
+      "name": "usemenucolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usemenucolor{${1:element}}"
+      }
+    },
+    {
+      "name": "drawtikzfolder",
+      "unusual": true
+    },
+    {
+      "name": "drawtikzfolder",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "drawtikzfolder[${1:front fill color%color}]"
+      }
+    },
+    {
+      "name": "drawtikzfolder",
+      "unusual": true,
+      "arg": {
+        "format": "[][]",
+        "snippet": "drawtikzfolder[${1:front fill color%color}][${2:draw color%color}]"
+      }
+    },
+    {
+      "name": "copymenustyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copymenustyle{${1:copy}}{${2:original}}"
+      }
+    },
+    {
+      "name": "changemenuelement",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "changemenuelement{${1:name}}{${2:element%keyvals}}{${3:definition}}",
+        "keys": [
+          "\\changemenuelement,\\changemenuelement*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "changemenuelement*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "changemenuelement*{${1:name}}{${2:element%keyvals}}{${3:definition}}",
+        "keys": [
+          "\\changemenuelement,\\changemenuelement*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "changemenucolortheme",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "changemenucolortheme{${1:name}}{${2:color theme}}"
+      }
+    },
+    {
+      "name": "newmenucolortheme",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][][]",
+        "snippet": "newmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
+      }
+    },
+    {
+      "name": "copymenucolortheme",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copymenucolortheme{${1:copy}}{${2:original}}"
+      }
+    },
+    {
+      "name": "changemenucolor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "changemenucolor{${1:name}}{${2:element%keyvals}}{${3:model}}{${4:color definition}}",
+        "keys": [
+          "\\changemenucolor"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewmenucolortheme",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}[][][]",
+        "snippet": "renewmenucolortheme{${1:name}}{${2:model}}{${3:bg}}{${4:br}}{${5:txt}}[${6:a}][${7:b}][${8:c}]"
+      }
+    },
+    {
+      "name": "newmenumacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newmenumacro{${1:macro%cmd}}[${3:input sep}]{${2:style%keyvals}}",
+        "keys": [
+          "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "renewmenumacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewmenumacro{${1:macro}}[${3:input sep}]{${2:style%keyvals}}",
+        "keys": [
+          "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "providemenumacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providemenumacro{${1:macro%cmd}}[${3:input sep}]{${2:style%keyvals}}",
+        "keys": [
+          "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "shift"
+    },
+    {
+      "name": "capslock"
+    },
+    {
+      "name": "tab"
+    },
+    {
+      "name": "esc"
+    },
+    {
+      "name": "oldesc"
+    },
+    {
+      "name": "ctrl"
+    },
+    {
+      "name": "Alt"
+    },
+    {
+      "name": "AltGr"
+    },
+    {
+      "name": "cmd"
+    },
+    {
+      "name": "Space"
+    },
+    {
+      "name": "SPACE"
+    },
+    {
+      "name": "return"
+    },
+    {
+      "name": "enter"
+    },
+    {
+      "name": "winmenu"
+    },
+    {
+      "name": "backspace"
+    },
+    {
+      "name": "del"
+    },
+    {
+      "name": "backdel"
+    },
+    {
+      "name": "arrowkeyup"
+    },
+    {
+      "name": "arrowkeydown"
+    },
+    {
+      "name": "arrowkeyright"
+    },
+    {
+      "name": "arrowkeyleft"
+    },
+    {
+      "name": "arrowkey",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrowkey{${1:direction%keyvals}}",
+        "keys": [
+          "\\arrowkey#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ctrlname",
+      "unusual": true
+    },
+    {
+      "name": "delname",
+      "unusual": true
+    },
+    {
+      "name": "spacename",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/menukeys#c": [
+      "definemenumacros",
+      "definekeys",
+      "mackeys=${1|text,symbols|}",
+      "os=${1|mac,win|}"
+    ],
+    "\\changemenuelement,\\changemenuelement*": [
+      "single",
+      "first",
+      "middle",
+      "last",
+      "pre",
+      "post",
+      "set",
+      "single"
+    ],
+    "\\changemenucolor": [
+      "bg",
+      "br",
+      "txt"
+    ],
+    "\\arrowkey#c": [
+      "^",
+      "v",
+      ">",
+      "<"
+    ],
+    "\\renewmenustylesimple,\\renewmenustyle,\\newmenumacro,\\renewmenumacro,\\providemenumacro": [
+      "menus",
+      "roundedmenus",
+      "angularmenus",
+      "roundedkeys",
+      "shadowedroundedkeys",
+      "angularkeys",
+      "shadowedangularkeys",
+      "typewriterkeys",
+      "paths",
+      "pathswithfolder",
+      "pathswithblackfolder",
+      "hyphenatepaths",
+      "hyphenatepathswithfolder",
+      "hyphenatepathswithblackfolder"
+    ]
+  },
+  "args": [
+    "\\usepackage/menukeys#c"
+  ]
 }

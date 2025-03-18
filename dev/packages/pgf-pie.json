@@ -1,38 +1,52 @@
 {
-  "includes": {
-    "tikz": [],
-    "scalefnt": []
-  },
-  "macros": {
-    "pie{}": {
-      "snippet": "pie{${1:num1/text1,num2/text2,...}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pie[]{}": {
-      "snippet": "pie[${2:options}]{${1:num1/text1,num2/text2,...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "scalefnt"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pie",
+      "arg": {
+        "format": "{}",
+        "snippet": "pie{${1:num1/text1,num2/text2,...}}"
+      }
+    },
+    {
+      "name": "pie",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pie[${2:options%keyvals}]{${1:num1/text1,num2/text2,...}}",
+        "keys": [
+          "\\pie#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pie#c": [
       "pos={${1:x,y}}",
       "rotate=${1:degrees}",
       "radius=${1:number}",
-      "color=",
+      "color=${3|${1:color},{${2:color1,color2,...}}|}",
       "explode=${1:number}",
-      "sum=",
+      "sum=${2|auto,${1:number}|}",
       "change direction",
       "before number={${1:code}}",
       "after number={${1:code}}",
       "hide number",
       "scale font",
-      "text=",
+      "text=${1|label,pin,inside,legend|}",
       "style={${1:TikZ options}}",
       "polar",
       "square",
       "cloud"
     ]
-  ]
+  },
+  "args": []
 }

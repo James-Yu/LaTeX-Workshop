@@ -1,40 +1,90 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "kvoptions": [],
-    "class-ctexbook": [],
-    "xeCJK": [],
-    "geometry": [],
-    "xeCJKfntef": [],
-    "array": [],
-    "graphicx": [],
-    "calc": [],
-    "tikz": [],
-    "xifthen": [],
-    "hyperref": [],
-    "textpos": []
-  },
-  "macros": {
-    "coversetup{}": {
-      "snippet": "coversetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "makecover": {},
-    "makecover[]": {
-      "snippet": "makecover[${1:pdf file}]"
+    {
+      "name": "kvoptions"
     },
-    "xingkai": {},
-    "zhkai": {},
-    "xbsong": {},
-    "dbsong": {}
-  },
-  "envs": {},
-  "options": [
-    "type="
+    {
+      "name": "class-ctexbook"
+    },
+    {
+      "name": "xeCJK"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "xeCJKfntef"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "textpos"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "coversetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "coversetup{${1:options%keyvals}}",
+        "keys": [
+          "\\coversetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "makecover"
+    },
+    {
+      "name": "makecover",
+      "arg": {
+        "format": "[]",
+        "snippet": "makecover[${1:pdf file%file}]"
+      }
+    },
+    {
+      "name": "xingkai",
+      "unusual": true
+    },
+    {
+      "name": "zhkai",
+      "unusual": true
+    },
+    {
+      "name": "xbsong",
+      "unusual": true
+    },
+    {
+      "name": "dbsong",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/buctcover#c": [
+      "type=${1|bachelor,master,doctor|}"
+    ],
+    "\\coversetup": [
       "class={${1:class}}",
       "studentid={${1:id number}}",
       "titleA={${1:text}}",
@@ -44,5 +94,8 @@
       "supervisor={${1:导师姓名, 教授}}",
       "date={${1:YYYY-MM-DD}}"
     ]
+  },
+  "args": [
+    "\\documentclass/buctcover#c"
   ]
 }

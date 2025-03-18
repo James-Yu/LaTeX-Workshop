@@ -1,23 +1,39 @@
 {
-  "includes": {
-    "graphicx": [],
-    "pstricks": []
-  },
-  "macros": {
-    "psvectorian{}": {
-      "snippet": "psvectorian{${1:number}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "psvectorian[]{}": {
-      "snippet": "psvectorian[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pstricks"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psvectorian",
+      "arg": {
+        "format": "{}",
+        "snippet": "psvectorian{${1:number}}"
+      }
     },
-    "psvectorianDefaultColor": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "psvectorian",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psvectorian[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\psvectorian"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psvectorianDefaultColor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psvectorian": [
       "scale=${1:factor}",
       "opacity=${1:factor}",
       "width=",
@@ -26,5 +42,6 @@
       "flip",
       "mirror"
     ]
-  ]
+  },
+  "args": []
 }

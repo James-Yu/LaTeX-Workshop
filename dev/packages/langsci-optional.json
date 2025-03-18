@@ -1,231 +1,527 @@
 {
-  "includes": {
-    "pbox": [],
-    "fancyvrb": [],
-    "array": [],
-    "tabularx": [],
-    "ulem": [],
-    "calc": [],
-    "colortbl": [],
-    "todonotes": [],
-    "pifont": []
-  },
-  "macros": {
-    "oneline{}": {
-      "snippet": "oneline{${1:content}}"
+  "deps": [
+    {
+      "name": "pbox"
     },
-    "centerfit{}": {
-      "snippet": "centerfit{${1:content}}"
+    {
+      "name": "fancyvrb"
     },
-    "intline{}{}": {
-      "snippet": "intline{${1:width}}{${2:raise}}"
+    {
+      "name": "array"
     },
-    "dline{}{}{}": {
-      "snippet": "dline{${1:y}}{${2:xslope}}{${3:length}}"
+    {
+      "name": "tabularx"
     },
-    "rotheight": {},
-    "rotwidth": {},
-    "rotatehead{}": {
-      "snippet": "rotatehead{${1:content}}"
+    {
+      "name": "ulem"
     },
-    "rotatehead[]{}": {
-      "snippet": "rotatehead[${2:width}]{${1:content}}"
+    {
+      "name": "calc"
     },
-    "langinfo{}{}{}": {
-      "snippet": "langinfo{${1:entry}}{${2:text1}}{${3:text2}}"
+    {
+      "name": "colortbl"
     },
-    "langinfoverb{}{}{}": {
-      "snippet": "langinfoverb{${1:entry}}{${2:text1}}{${3:text2}}"
+    {
+      "name": "todonotes"
     },
-    "fitpagewidth{}": {
-      "snippet": "fitpagewidth{${1:content}}"
-    },
-    "fittable{}": {
-      "snippet": "fittable{${1:content}}"
-    },
-    "aeiou": {},
-    "aeiouEO": {},
-    "fulllength": {},
-    "ulp{}{}": {
-      "snippet": "ulp{${1:text}}{${2:extra length}}"
-    },
-    "ule{}": {
-      "snippet": "ule{${1:text}}"
-    },
-    "fullllength": {},
-    "soutp{}{}": {
-      "snippet": "soutp{${1:text}}{${2:extra length}}"
-    },
-    "soute{}": {
-      "snippet": "soute{${1:text}}"
-    },
-    "longrule": {},
-    "shadecell": {},
-    "eabox{}": {
-      "snippet": "eabox{${1:content}}"
-    },
-    "eabox[]{}": {
-      "snippet": "eabox[${2:vspace}]{${1:content}}"
-    },
-    "exbox{}": {
-      "snippet": "exbox{${1:content}}"
-    },
-    "exbox[]{}": {
-      "snippet": "exbox[${2:vspace}]{${1:content}}"
-    },
-    "rephrase{}{}": {
-      "snippet": "rephrase{${1:replaced text}}{${2:new text}}"
-    },
-    "missref{}": {
-      "snippet": "missref{${1:reference}}"
-    },
-    "missref[]{}": {
-      "snippet": "missref[${2:options}]{${1:reference}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "phonrule{}{}{}": {
-      "snippet": "phonrule{${1:left}}{${2:right}}{${3:arg}}"
-    },
-    "featurebox{}": {
-      "snippet": "featurebox{${1:content}}"
-    },
-    "connect{}{}": {
-      "snippet": "connect{${1:node1}}{${2:node2}}"
-    },
-    "thelsConnectTempGroup": {},
-    "ConnectTail{}": {
-      "snippet": "ConnectTail{${1:text}}"
-    },
-    "ConnectTail{}[]": {
-      "snippet": "ConnectTail{${1:text}}[${2:counter}]"
-    },
-    "lsConnectTempPosition": {},
-    "ConnectHead{}": {
-      "snippet": "ConnectHead{${1:text}}"
-    },
-    "ConnectHead{}[]": {
-      "snippet": "ConnectHead{${1:text}}[${2:counter}]"
-    },
-    "ConnectHead[]{}": {
-      "snippet": "ConnectHead[${2:dist}]{${1:text}}"
-    },
-    "ConnectHead[]{}[]": {
-      "snippet": "ConnectHead[${2:dist}]{${1:text}}[${3:counter}]"
-    },
-    "ConnectHead*{}": {
-      "snippet": "ConnectHead*{${1:text}}"
-    },
-    "ConnectHead*{}[]": {
-      "snippet": "ConnectHead*{${1:text}}[${2:counter}]"
-    },
-    "ConnectHead*[]{}": {
-      "snippet": "ConnectHead*[${2:dist}]{${1:text}}"
-    },
-    "ConnectHead*[]{}[]": {
-      "snippet": "ConnectHead*[${2:dist}]{${1:text}}[${3:counter}]"
-    },
-    "noabstract": {},
-    "LSfrac{}": {
-      "snippet": "LSfrac{${1:n/m}}"
-    },
-    "hitie{}{}": {
-      "snippet": "hitie{${1:arg1}}{${2:arg2}}"
-    },
-    "hitier{}{}": {
-      "snippet": "hitier{${1:arg1}}{${2:arg2}}"
-    },
-    "hitier[]{}{}": {
-      "snippet": "hitier[${3:right}]{${1:arg1}}{${2:arg2}}"
-    },
-    "hitiel{}{}": {
-      "snippet": "hitiel{${1:arg1}}{${2:arg2}}"
-    },
-    "hitiel[]{}{}": {
-      "snippet": "hitiel[${3:left}]{${1:arg1}}{${2:arg2}}"
-    },
-    "prmbrs": {},
-    "primebars": {},
-    "obar{}": {
-      "snippet": "obar{${1:arg}}"
-    },
-    "mbar{}": {
-      "snippet": "mbar{${1:arg}}"
-    },
-    "ibar{}": {
-      "snippet": "ibar{${1:arg}}"
-    },
-    "iibar{}": {
-      "snippet": "iibar{${1:arg}}"
-    },
-    "spec{}": {
-      "snippet": "spec{${1:arg}}"
-    },
-    "langscicheckmark": {},
-    "langscicross": {},
-    "citegen{}": {
-      "snippet": "citegen{${1:bibid}}"
-    },
-    "citegen[]{}": {
-      "snippet": "citegen[${2:postnote}]{${1:bibid}}"
-    },
-    "citeapo{}": {
-      "snippet": "citeapo{${1:bibid}}"
-    },
-    "citeapo[]{}": {
-      "snippet": "citeapo[${2:postnote}]{${1:bibid}}"
-    },
-    "protectedex{}": {
-      "snippet": "protectedex{${1:text}}"
-    },
-    "largerpage": {},
-    "largerpage[]": {
-      "snippet": "largerpage[${1:factor}]"
-    },
-    "tablevspace": {},
-    "biberror{}": {
-      "snippet": "biberror{${1:text}}"
-    },
-    "lsptoprule": {},
-    "lspbottomrule": {},
-    "REF{}": {
-      "snippet": "REF{${1:label}}"
-    },
-    "glottocodes{}": {
-      "snippet": "glottocodes{${1:arg}}"
-    },
-    "keywords{}": {
-      "snippet": "keywords{${1:arg}}"
-    },
-    "ob": {},
-    "cb": {},
-    "op": {},
-    "cp": {},
-    "db": {},
-    "AffiliationsWithoutIndexing": {},
-    "AffiliationsWithIndexing": {},
-    "licencebox{}{}": {
-      "snippet": "licencebox{${1:factor}}{${2:text}}"
+    {
+      "name": "pifont"
     }
-  },
-  "envs": {
-    "fitverb": {},
-    "widetabular{}": {
-      "name": "widetabular",
-      "snippet": "{${1:preamble}}"
+  ],
+  "macros": [
+    {
+      "name": "oneline",
+      "arg": {
+        "format": "{}",
+        "snippet": "oneline{${1:content%text}}"
+      }
     },
-    "widetabular[]{}": {
-      "name": "widetabular",
-      "snippet": "[${2:width factor}]{${1:preamble}}"
+    {
+      "name": "centerfit",
+      "arg": {
+        "format": "{}",
+        "snippet": "centerfit{${1:content%text}}"
+      }
     },
-    "indentquote{}": {
+    {
+      "name": "intline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "intline{${1:width}}{${2:raise%l}}"
+      }
+    },
+    {
+      "name": "dline",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dline{${1:y}}{${2:xslope}}{${3:length%plain}}"
+      }
+    },
+    {
+      "name": "rotheight",
+      "unusual": true
+    },
+    {
+      "name": "rotwidth",
+      "unusual": true
+    },
+    {
+      "name": "rotatehead",
+      "arg": {
+        "format": "{}",
+        "snippet": "rotatehead{${1:content%text}}"
+      }
+    },
+    {
+      "name": "rotatehead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rotatehead[${2:width}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "langinfo",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "langinfo{${1:entry}}{${2:text1}}{${3:text2}}"
+      }
+    },
+    {
+      "name": "langinfoverb",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "langinfoverb{${1:entry}}{${2:text1}}{${3:text2}}"
+      }
+    },
+    {
+      "name": "fitpagewidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "fitpagewidth{${1:content%text}}"
+      }
+    },
+    {
+      "name": "fittable",
+      "arg": {
+        "format": "{}",
+        "snippet": "fittable{${1:content%text}}"
+      }
+    },
+    {
+      "name": "aeiou"
+    },
+    {
+      "name": "aeiouEO"
+    },
+    {
+      "name": "fulllength",
+      "unusual": true
+    },
+    {
+      "name": "ulp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ulp{${1:text}}{${2:extra length}}"
+      }
+    },
+    {
+      "name": "ule",
+      "arg": {
+        "format": "{}",
+        "snippet": "ule{${1:text}}"
+      }
+    },
+    {
+      "name": "fullllength",
+      "unusual": true
+    },
+    {
+      "name": "soutp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "soutp{${1:text}}{${2:extra length}}"
+      }
+    },
+    {
+      "name": "soute",
+      "arg": {
+        "format": "{}",
+        "snippet": "soute{${1:text}}"
+      }
+    },
+    {
+      "name": "longrule"
+    },
+    {
+      "name": "shadecell"
+    },
+    {
+      "name": "eabox",
+      "arg": {
+        "format": "{}",
+        "snippet": "eabox{${1:content%text}}"
+      }
+    },
+    {
+      "name": "eabox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eabox[${2:vspace%l}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "exbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "exbox{${1:content%text}}"
+      }
+    },
+    {
+      "name": "exbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "exbox[${2:vspace%l}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "rephrase",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rephrase{${1:replaced text%plain}}{${2:new text%text}}"
+      }
+    },
+    {
+      "name": "missref",
+      "arg": {
+        "format": "{}",
+        "snippet": "missref{${1:reference%text}}"
+      }
+    },
+    {
+      "name": "missref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "missref[${2:options%keyvals}]{${1:reference%text}}",
+        "keys": [
+          "\\missref"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "phonrule",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "phonrule{${1:left}}{${2:right}}{${3:arg}}"
+      }
+    },
+    {
+      "name": "featurebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "featurebox{${1:content%text}}"
+      }
+    },
+    {
+      "name": "connect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "connect{${1:node1}}{${2:node2}}"
+      }
+    },
+    {
+      "name": "ConnectTail",
+      "arg": {
+        "format": "{}",
+        "snippet": "ConnectTail{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ConnectTail",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ConnectTail{${1:text%plain}}[${2:counter}]"
+      }
+    },
+    {
+      "name": "ConnectHead",
+      "arg": {
+        "format": "{}",
+        "snippet": "ConnectHead{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ConnectHead",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ConnectHead{${1:text%plain}}[${2:counter}]"
+      }
+    },
+    {
+      "name": "ConnectHead",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ConnectHead[${2:dist%l}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ConnectHead",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ConnectHead[${2:dist%l}]{${1:text%plain}}[${3:counter}]"
+      }
+    },
+    {
+      "name": "ConnectHead*",
+      "arg": {
+        "format": "{}",
+        "snippet": "ConnectHead*{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ConnectHead*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "ConnectHead*{${1:text%plain}}[${2:counter}]"
+      }
+    },
+    {
+      "name": "ConnectHead*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ConnectHead*[${2:dist%l}]{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "ConnectHead*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "ConnectHead*[${2:dist%l}]{${1:text%plain}}[${3:counter}]"
+      }
+    },
+    {
+      "name": "noabstract",
+      "unusual": true
+    },
+    {
+      "name": "LSfrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "LSfrac{${1:n/m}}"
+      }
+    },
+    {
+      "name": "hitie",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hitie{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hitier",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hitier{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hitier",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "hitier[${3:right}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hitiel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "hitiel{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hitiel",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "hitiel[${3:left}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "prmbrs",
+      "unusual": true
+    },
+    {
+      "name": "primebars",
+      "unusual": true
+    },
+    {
+      "name": "obar",
+      "arg": {
+        "format": "{}",
+        "snippet": "obar{${1:arg}}"
+      },
+      "detail": "⌽",
+      "doc": "\\aplvert{\\circle} (wasysym), \\obar (stmaryrd), apl functional symbol circle stile, circle with vertical bar"
+    },
+    {
+      "name": "mbar",
+      "arg": {
+        "format": "{}",
+        "snippet": "mbar{${1:arg}}"
+      }
+    },
+    {
+      "name": "ibar",
+      "arg": {
+        "format": "{}",
+        "snippet": "ibar{${1:arg}}"
+      }
+    },
+    {
+      "name": "iibar",
+      "arg": {
+        "format": "{}",
+        "snippet": "iibar{${1:arg}}"
+      }
+    },
+    {
+      "name": "spec",
+      "arg": {
+        "format": "{}",
+        "snippet": "spec{${1:arg}}"
+      }
+    },
+    {
+      "name": "langscicheckmark"
+    },
+    {
+      "name": "langscicross"
+    },
+    {
+      "name": "citegen",
+      "arg": {
+        "format": "{}",
+        "snippet": "citegen{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citegen",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citegen[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeapo",
+      "arg": {
+        "format": "{}",
+        "snippet": "citeapo{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citeapo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citeapo[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "protectedex",
+      "arg": {
+        "format": "{}",
+        "snippet": "protectedex{${1:text}}"
+      }
+    },
+    {
+      "name": "largerpage"
+    },
+    {
+      "name": "largerpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "largerpage[${1:factor}]"
+      }
+    },
+    {
+      "name": "tablevspace"
+    },
+    {
+      "name": "biberror",
+      "arg": {
+        "format": "{}",
+        "snippet": "biberror{${1:text}}"
+      }
+    },
+    {
+      "name": "lsptoprule"
+    },
+    {
+      "name": "lspbottomrule"
+    },
+    {
+      "name": "REF",
+      "arg": {
+        "format": "{}",
+        "snippet": "REF{${1:label}}"
+      }
+    },
+    {
+      "name": "ob"
+    },
+    {
+      "name": "cb"
+    },
+    {
+      "name": "op"
+    },
+    {
+      "name": "cp"
+    },
+    {
+      "name": "db"
+    },
+    {
+      "name": "AffiliationsWithoutIndexing"
+    },
+    {
+      "name": "AffiliationsWithIndexing"
+    },
+    {
+      "name": "licencebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "licencebox{${1:factor}}{${2:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "fitverb"
+    },
+    {
+      "name": "widetabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    },
+    {
+      "name": "widetabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:width factor}]{${1:preamble}}"
+      }
+    },
+    {
       "name": "indentquote",
-      "snippet": "{${1:indent}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:indent%l}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\missref": [
       "disable",
       "color=",
       "backgroundcolor=",
@@ -251,5 +547,6 @@
       "inlinepar",
       "noinlinepar"
     ]
-  ]
+  },
+  "args": []
 }

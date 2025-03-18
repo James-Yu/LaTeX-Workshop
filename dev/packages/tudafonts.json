@@ -1,25 +1,49 @@
 {
-  "includes": {
-    "iftex": [],
-    "anyfontsize": [],
-    "inputenc": [],
-    "XCharter": [],
-    "microtype": [],
-    "fontspec": [],
-    "roboto": [],
-    "roboto-mono": []
-  },
-  "macros": {
-    "accentfont": {},
-    "textaccent{}": {
-      "snippet": "textaccent{${1:text}}"
+  "deps": [
+    {
+      "name": "iftex"
     },
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [
-    "T1"
+    {
+      "name": "anyfontsize"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "XCharter"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "roboto"
+    },
+    {
+      "name": "roboto-mono"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "accentfont"
+    },
+    {
+      "name": "textaccent",
+      "arg": {
+        "format": "{}",
+        "snippet": "textaccent{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tudafonts#c": [
+      "T1"
+    ]
+  },
+  "args": [
+    "\\usepackage/tudafonts#c"
+  ]
 }

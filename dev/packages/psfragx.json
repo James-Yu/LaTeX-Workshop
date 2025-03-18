@@ -1,89 +1,211 @@
 {
-  "includes": {
-    "graphicx": [],
-    "psfrag": [],
-    "overpic": []
-  },
-  "macros": {
-    "includegraphicx{}": {
-      "snippet": "includegraphicx{${1:imagefile}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "includegraphicx[]{}": {
-      "snippet": "includegraphicx[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "psfrag"
     },
-    "iflanguage{}{}{}": {
-      "snippet": "iflanguage{${1:language}}{${2:true}}{${3:false}}"
-    },
-    "allmetacomments": {},
-    "selectedmetacomments": {},
-    "copypfxfromto{}{}": {
-      "snippet": "copypfxfromto{${1:EPS file}}{${2:PFX file}}"
-    },
-    "setpfxinput{}": {
-      "snippet": "setpfxinput{${1:file}}"
-    },
-    "setpfxoutput{}": {
-      "snippet": "setpfxoutput{${1:file}}"
-    },
-    "copypfxlines": {},
-    "pfxinput{}": {
-      "snippet": "pfxinput{${1:file}}"
-    },
-    "ovpinput{}": {
-      "snippet": "ovpinput{${1:file}}"
-    },
-    "overpix": {},
-    "endoverpix": {},
-    "onlylanguage{}": {
-      "snippet": "onlylanguage{${1:language}}"
-    },
-    "endonlylanguage": {},
-    "providecolorcommands": {},
-    "Beforepfxinput": {},
-    "Afterpfxinput": {},
-    "Beforeovpinput": {},
-    "Afterovpinput": {}
-  },
-  "envs": {
-    "overpix{}": {
-      "name": "overpix",
-      "snippet": "{${1:imagefile}}"
-    },
-    "overpix[]{}": {
-      "name": "overpix",
-      "snippet": "[${2:options}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "overpix[]<>{}": {
-      "name": "overpix",
-      "snippet": "[${2:options}]<${3:fg overpic}>{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "overpix[]<>[]{}": {
-      "name": "overpix",
-      "snippet": "[${2:options}]<${4:fg overpic}>[${3:bg overpic}]{${1:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "onlylanguage{}": {
-      "name": "onlylanguage",
-      "snippet": "{${1:language}}"
+    {
+      "name": "overpic"
     }
-  },
-  "options": [
-    "sub",
-    "nosub",
-    "allcom",
-    "selcom",
-    "ovp",
-    "noovp"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includegraphicx",
+      "arg": {
+        "format": "{}",
+        "snippet": "includegraphicx{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "includegraphicx",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includegraphicx[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includegraphicx",
+      "unusual": true,
+      "arg": {
+        "format": "[](){}",
+        "snippet": "includegraphicx[${2:options%keyvals}](${3:psfrags}){${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includegraphicx",
+      "unusual": true,
+      "arg": {
+        "format": "[]()<>{}",
+        "snippet": "includegraphicx[${2:options%keyvals}](${4:psfrags})<${3:fg overpic}>{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "includegraphicx",
+      "unusual": true,
+      "arg": {
+        "format": "[]()<>[]{}",
+        "snippet": "includegraphicx[${2:options%keyvals}](${5:psfrags})<${4:fg overpic}>[${3:bg overpic}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "iflanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iflanguage{${1:language}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "allmetacomments",
+      "unusual": true
+    },
+    {
+      "name": "selectedmetacomments",
+      "unusual": true
+    },
+    {
+      "name": "copypfxfromto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copypfxfromto{${1:EPS file}}{${2:PFX file}}"
+      }
+    },
+    {
+      "name": "setpfxinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setpfxinput{${1:file}}"
+      }
+    },
+    {
+      "name": "setpfxoutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setpfxoutput{${1:file}}"
+      }
+    },
+    {
+      "name": "copypfxlines",
+      "unusual": true
+    },
+    {
+      "name": "pfxinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pfxinput{${1:file}}"
+      }
+    },
+    {
+      "name": "ovpinput",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ovpinput{${1:file}}"
+      }
+    },
+    {
+      "name": "providecolorcommands",
+      "unusual": true
+    },
+    {
+      "name": "Beforepfxinput",
+      "unusual": true
+    },
+    {
+      "name": "Afterpfxinput",
+      "unusual": true
+    },
+    {
+      "name": "Beforeovpinput",
+      "unusual": true
+    },
+    {
+      "name": "Afterovpinput",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "overpix",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "overpix",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "overpix",
+      "arg": {
+        "format": "[]<>{}",
+        "snippet": "[${2:options%keyvals}]<${3:fg overpic}>{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "overpix",
+      "arg": {
+        "format": "[]<>[]{}",
+        "snippet": "[${2:options%keyvals}]<${4:fg overpic}>[${3:bg overpic}]{${1:imagefile}}",
+        "keys": [
+          "\\includegraphicx,\\begin{overpix}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "onlylanguage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:language}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/psfragx#c": [
+      "sub",
+      "nosub",
+      "allcom",
+      "selcom",
+      "ovp",
+      "noovp"
+    ],
+    "\\includegraphicx,\\begin{overpix}": [
       "pfx",
       "overwritepfx",
       "pfxadd={${1:psfrags}}",
@@ -107,7 +229,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -128,5 +250,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/psfragx#c"
   ]
 }

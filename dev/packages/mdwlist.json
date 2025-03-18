@@ -1,33 +1,69 @@
 {
-  "includes": {},
-  "macros": {
-    "desclabelstyle{}": {
-      "snippet": "desclabelstyle{${1:style}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "desclabelstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "desclabelstyle{${1:style}}"
+      }
     },
-    "desclabelwidth{}": {
-      "snippet": "desclabelwidth{${1:length}}"
+    {
+      "name": "desclabelwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "desclabelwidth{${1:length}}"
+      }
     },
-    "multilinelabel": {},
-    "nextlinelabel": {},
-    "pushlabel": {},
-    "resume{}": {
-      "snippet": "resume{${1:envname}}"
+    {
+      "name": "multilinelabel"
     },
-    "resume[]{}": {
-      "snippet": "resume[${2:magicname}]{${1:envname}}"
+    {
+      "name": "nextlinelabel"
     },
-    "suspend{}": {
-      "snippet": "suspend{${1:envname}}"
+    {
+      "name": "pushlabel"
     },
-    "suspend[]{}": {
-      "snippet": "suspend[${2:magicname}]{${1:envname}}"
+    {
+      "name": "resume",
+      "arg": {
+        "format": "{}",
+        "snippet": "resume{${1:envname}}"
+      }
+    },
+    {
+      "name": "resume",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "resume[${2:magicname}]{${1:envname}}"
+      }
+    },
+    {
+      "name": "suspend",
+      "arg": {
+        "format": "{}",
+        "snippet": "suspend{${1:envname}}"
+      }
+    },
+    {
+      "name": "suspend",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "suspend[${2:magicname}]{${1:envname}}"
+      }
     }
-  },
-  "envs": {
-    "description*": {},
-    "enumerate*": {},
-    "itemize*": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [
+    {
+      "name": "description*"
+    },
+    {
+      "name": "enumerate*"
+    },
+    {
+      "name": "itemize*"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

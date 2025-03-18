@@ -1,38 +1,65 @@
 {
-  "includes": {
-    "hyperref": []
-  },
-  "macros": {
-    "BarcodeField{}": {
-      "snippet": "BarcodeField{${1:label}}"
-    },
-    "BarcodeField[]{}": {
-      "snippet": "BarcodeField[${2:options}]{${1:label}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "qBarcodeFld": {},
-    "DefaultOptionsofBarcode": {},
-    "LayoutBarcodeField{}{}": {
-      "snippet": "LayoutBarcodeField{${1:arg1}}{${2:arg2}}"
-    },
-    "MakeBarcodeField{}{}": {
-      "snippet": "MakeBarcodeField{${1:arg1}}{${2:arg2}}"
+  "deps": [
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "BarcodeField",
+      "arg": {
+        "format": "{}",
+        "snippet": "BarcodeField{${1:label}}"
+      }
+    },
+    {
+      "name": "BarcodeField",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "BarcodeField[${2:options%keyvals}]{${1:label}}",
+        "keys": [
+          "\\BarcodeField"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "qBarcodeFld",
+      "unusual": true
+    },
+    {
+      "name": "DefaultOptionsofBarcode",
+      "unusual": true
+    },
+    {
+      "name": "LayoutBarcodeField",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LayoutBarcodeField{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "MakeBarcodeField",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MakeBarcodeField{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\BarcodeField": [
       "qr",
       "datamatrix",
       "pdf417",
       "symwidth=",
-      "symfactor=",
+      "symfactor=${1|1,2,3,4|}",
       "ecc=${1:integer}",
       "tsv={${1:field1,field2,...}}",
       "accesskey",
-      "align=",
+      "align=${1|0,1,2|}",
       "altname",
       "backgroundcolor=",
       "bordercolor=",
@@ -80,5 +107,6 @@
       "value",
       "width="
     ]
-  ]
+  },
+  "args": []
 }

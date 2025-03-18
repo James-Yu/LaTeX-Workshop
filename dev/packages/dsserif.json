@@ -1,72 +1,185 @@
 {
-  "includes": {
-    "xkeyval": []
-  },
-  "macros": {
-    "mathbfbb{}": {
-      "snippet": "mathbfbb{${1:text}}"
-    },
-    "mathbbb{}": {
-      "snippet": "mathbbb{${1:text}}"
-    },
-    "bbdotlessi": {
-      "option": "symbols"
-    },
-    "bbdotlessj": {
-      "option": "symbols"
-    },
-    "imathbb": {
-      "option": "symbols"
-    },
-    "jmathbb": {
-      "option": "symbols"
-    },
-    "bbGamma": {
-      "option": "symbols"
-    },
-    "bbDelta": {
-      "option": "symbols"
-    },
-    "bbTheta": {
-      "option": "symbols"
-    },
-    "bbLambda": {
-      "option": "symbols"
-    },
-    "bbPi": {
-      "option": "symbols"
-    },
-    "bbSigma": {
-      "option": "symbols"
-    },
-    "bbPhi": {
-      "option": "symbols"
-    },
-    "bbPsi": {
-      "option": "symbols"
-    },
-    "bbOmega": {
-      "option": "symbols"
-    },
-    "txtbbGamma": {},
-    "txtbbDelta": {},
-    "txtbbTheta": {},
-    "txtbbLambda": {},
-    "txtbbPi": {},
-    "txtbbSigma": {},
-    "txtbbPhi": {},
-    "txtbbPsi": {},
-    "txtbbOmega": {},
-    "txtbbdotlessi": {},
-    "txtbbdotlessj": {}
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "scaled=${1:factor}",
-    "bfbb",
-    "bbsymbols",
-    "symbols"
+  "deps": [
+    {
+      "name": "xkeyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mathbfbb",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbfbb{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mathbbb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mathbbb{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "bbdotlessi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbdotlessj",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "imathbb",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "jmathbb",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbGamma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbDelta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbTheta",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbLambda",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbSigma",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPhi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbPsi",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbOmega",
+      "if": "bbsymbols"
+    },
+    {
+      "name": "bbdotlessi",
+      "if": "symbols"
+    },
+    {
+      "name": "bbdotlessj",
+      "if": "symbols"
+    },
+    {
+      "name": "imathbb",
+      "if": "symbols"
+    },
+    {
+      "name": "jmathbb",
+      "if": "symbols"
+    },
+    {
+      "name": "bbGamma",
+      "if": "symbols"
+    },
+    {
+      "name": "bbDelta",
+      "if": "symbols"
+    },
+    {
+      "name": "bbTheta",
+      "if": "symbols"
+    },
+    {
+      "name": "bbLambda",
+      "if": "symbols"
+    },
+    {
+      "name": "bbPi",
+      "if": "symbols"
+    },
+    {
+      "name": "bbSigma",
+      "if": "symbols"
+    },
+    {
+      "name": "bbPhi",
+      "if": "symbols"
+    },
+    {
+      "name": "bbPsi",
+      "if": "symbols"
+    },
+    {
+      "name": "bbOmega",
+      "if": "symbols"
+    },
+    {
+      "name": "txtbbGamma",
+      "unusual": true
+    },
+    {
+      "name": "txtbbDelta",
+      "unusual": true
+    },
+    {
+      "name": "txtbbTheta",
+      "unusual": true
+    },
+    {
+      "name": "txtbbLambda",
+      "unusual": true
+    },
+    {
+      "name": "txtbbPi",
+      "unusual": true
+    },
+    {
+      "name": "txtbbSigma",
+      "unusual": true
+    },
+    {
+      "name": "txtbbPhi",
+      "unusual": true
+    },
+    {
+      "name": "txtbbPsi",
+      "unusual": true
+    },
+    {
+      "name": "txtbbOmega",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessi",
+      "unusual": true
+    },
+    {
+      "name": "txtbbdotlessj",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/dsserif#c": [
+      "scale=${1:factor}",
+      "scaled=${1:factor}",
+      "bfbb",
+      "bbsymbols",
+      "symbols"
+    ]
+  },
+  "args": [
+    "\\usepackage/dsserif#c"
+  ]
 }

@@ -33,7 +33,7 @@ class HoverProvider implements vscode.HoverProvider {
                 return graphicsHover
             }
         }
-        const token = tokenizer(document, position)
+        const token = document.getText(tokenizer(document, position))
         if (!token) {
             return
         }
@@ -92,7 +92,7 @@ function provideHoverOnMacro(token: string): vscode.Hover | undefined {
                 return
             }
             const doc = cmd.documentation
-            const packageName = cmd.package
+            const packageName = cmd.packageName
             if (packageName && packageName !== 'user-defined' && (!packageNames.includes(packageName))) {
                 packageNames.push(packageName)
             }

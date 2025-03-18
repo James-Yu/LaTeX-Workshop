@@ -1,75 +1,194 @@
 {
-  "includes": {
-    "environ": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "CurrentAudience": {},
-    "DefCurrentAudience{}": {
-      "snippet": "DefCurrentAudience{${1:audiences}}"
+  "deps": [
+    {
+      "name": "environ"
     },
-    "SetNewAudience{}": {
-      "snippet": "SetNewAudience{${1:audience}}"
-    },
-    "showto{}{}": {
-      "snippet": "showto{${1:audiences}}{${2:text}}"
-    },
-    "Footnote{}{}": {
-      "snippet": "Footnote{${1:audiences}}{${2:text}}"
-    },
-    "DefMultiaudienceCommand{}{}": {
-      "snippet": "DefMultiaudienceCommand{${1:new command}}{${2:old command}}"
-    },
-    "NewMultiaudienceSectionEnv{}{}": {
-      "snippet": "NewMultiaudienceSectionEnv{${1:envname}}{${2:command}}"
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {
-    "shownto{}": {
+  ],
+  "macros": [
+    {
+      "name": "CurrentAudience"
+    },
+    {
+      "name": "DefCurrentAudience",
+      "arg": {
+        "format": "{}",
+        "snippet": "DefCurrentAudience{${1:audiences}}"
+      }
+    },
+    {
+      "name": "SetNewAudience",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetNewAudience{${1:audience%specialDef}}"
+      }
+    },
+    {
+      "name": "showto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "showto{${1:audiences%keyvals}}{${2:text}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Footnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Footnote{${1:audiences%keyvals}}{${2:text}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DefMultiaudienceCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DefMultiaudienceCommand{${1:new command%cmd}}{${2:old command%definition}}"
+      }
+    },
+    {
+      "name": "NewMultiaudienceSectionEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewMultiaudienceSectionEnv{${1:envname}}{${2:command}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "shownto",
-      "snippet": "{${1:audiences}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:audiences%keyvals}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Section{}{}": {
+    {
       "name": "Section",
-      "snippet": "{${1:audiences}}{${2:title}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audiences%keyvals}}{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Section{}[]{}": {
+    {
       "name": "Section",
-      "snippet": "{${1:audiences}}[${2:short title}]{${3:title}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:audiences%keyvals}}[${3:short title}]{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subsection{}{}": {
+    {
       "name": "Subsection",
-      "snippet": "{${1:audiences}}{${2:title}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audiences%keyvals}}{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subsection{}[]{}": {
+    {
       "name": "Subsection",
-      "snippet": "{${1:audiences}}[${2:short title}]{${3:title}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:audiences%keyvals}}[${3:short title}]{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subsubsection{}{}": {
+    {
       "name": "Subsubsection",
-      "snippet": "{${1:audiences}}{${2:title}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audiences%keyvals}}{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subsubsection{}[]{}": {
+    {
       "name": "Subsubsection",
-      "snippet": "{${1:audiences}}[${2:short title}]{${3:title}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:audiences%keyvals}}[${3:short title}]{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Paragraph{}{}": {
+    {
       "name": "Paragraph",
-      "snippet": "{${1:audiences}}{${2:title}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audiences%keyvals}}{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Paragraph{}[]{}": {
+    {
       "name": "Paragraph",
-      "snippet": "{${1:audiences}}[${2:short title}]{${3:title}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:audiences%keyvals}}[${3:short title}]{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subparagraph{}{}": {
+    {
       "name": "Subparagraph",
-      "snippet": "{${1:audiences}}{${2:title}}"
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:audiences%keyvals}}{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "Subparagraph{}[]{}": {
+    {
       "name": "Subparagraph",
-      "snippet": "{${1:audiences}}[${2:short title}]{${3:title}}"
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "{${1:audiences%keyvals}}[${3:short title}]{${2:title}}",
+        "keys": [
+          "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c"
+        ],
+        "keyPos": 0
+      }
     }
+  ],
+  "keys": {
+    "\\begin{shownto}#c,\\showto#c,\\Footnote#c,\\begin{Section}#c,\\begin{Subsection}#c,\\begin{Subsubsection}#c,\\begin{Paragraph}#c,\\begin{Subparagraph}#c": [
+      "%audience"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

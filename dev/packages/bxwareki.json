@@ -1,50 +1,114 @@
 {
-  "includes": {},
-  "macros": {
-    "warekisetdate{}{}{}": {
-      "snippet": "warekisetdate{${1:year}}{${2:month}}{${3:day}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "warekisetdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "warekisetdate{${1:year}}{${2:month}}{${3:day}}"
+      }
     },
-    "warekisettoday": {},
-    "thewarekiyear": {},
-    "warekigengo": {},
-    "warekigengoinitial": {},
-    "warekiyear": {},
-    "warekidate": {},
-    "warekikanjidate": {},
-    "warekijkanjidate": {},
-    "warekicustomdate{}": {
-      "snippet": "warekicustomdate{${1:option}}"
+    {
+      "name": "warekisettoday"
     },
-    "WarekiIfCustomDateAvailable{}{}": {
-      "snippet": "WarekiIfCustomDateAvailable{${1:true}}{${2:false}}"
+    {
+      "name": "thewarekiyear",
+      "unusual": true
     },
-    "warekitoday": {},
-    "warekikanjitoday": {},
-    "warekijkanjitoday": {},
-    "WarekiUseNormalInterGlue": {},
-    "WarekiUseNoInterGlue": {},
-    "WarekiUseCustomInterGlue{}": {
-      "snippet": "WarekiUseCustomInterGlue{${1:text}}"
+    {
+      "name": "warekigengo"
     },
-    "WarekiKansuji{}": {
-      "snippet": "WarekiKansuji{${1:counter}}"
+    {
+      "name": "warekigengoinitial"
     },
-    "WarekiJKansuji{}": {
-      "snippet": "WarekiJKansuji{${1:counter}}"
+    {
+      "name": "warekiyear"
     },
-    "WarekiIfAvailable{}{}": {
-      "snippet": "WarekiIfAvailable{${1:true}}{${2:false}}"
+    {
+      "name": "warekidate"
     },
-    "WarekiResetUHandler": {},
-    "WarekiSetToday": {},
-    "WarekiSetUHandler{}": {
-      "snippet": "WarekiSetUHandler{${1:text}}"
+    {
+      "name": "warekikanjidate"
     },
-    "bxDebug{}": {
-      "snippet": "bxDebug{${1:arg}}"
+    {
+      "name": "warekijkanjidate"
+    },
+    {
+      "name": "warekicustomdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "warekicustomdate{${1:option%keyvals}}",
+        "keys": [
+          "\\warekicustomdate"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "WarekiIfCustomDateAvailable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "WarekiIfCustomDateAvailable{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "warekitoday"
+    },
+    {
+      "name": "warekikanjitoday"
+    },
+    {
+      "name": "warekijkanjitoday"
+    },
+    {
+      "name": "WarekiUseNormalInterGlue"
+    },
+    {
+      "name": "WarekiUseNoInterGlue"
+    },
+    {
+      "name": "WarekiUseCustomInterGlue",
+      "arg": {
+        "format": "{}",
+        "snippet": "WarekiUseCustomInterGlue{${1:text}}"
+      }
+    },
+    {
+      "name": "WarekiKansuji",
+      "arg": {
+        "format": "{}",
+        "snippet": "WarekiKansuji{${1:counter}}"
+      }
+    },
+    {
+      "name": "WarekiJKansuji",
+      "arg": {
+        "format": "{}",
+        "snippet": "WarekiJKansuji{${1:counter}}"
+      }
+    },
+    {
+      "name": "WarekiIfAvailable",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "WarekiIfAvailable{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "WarekiSetToday",
+      "unusual": true
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\warekicustomdate": [
+      "w",
+      "k",
+      "j",
+      "J",
+      "o"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

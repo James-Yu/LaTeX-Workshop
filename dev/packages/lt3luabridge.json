@@ -1,13 +1,19 @@
 {
-  "includes": {
-    "luatex": []
-  },
-  "macros": {
-    "luabridgeExecute{}": {
-      "snippet": "luabridgeExecute{${1:lua code}}"
+  "deps": [
+    {
+      "name": "luatex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "luabridgeExecute",
+      "arg": {
+        "format": "{}",
+        "snippet": "luabridgeExecute{${1:lua code%definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

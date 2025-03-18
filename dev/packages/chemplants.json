@@ -1,79 +1,183 @@
 {
-  "includes": {
-    "ifthen": [],
-    "tikz": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibraryhobby": [],
-    "tikzlibrarybending": []
+  "deps": [
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibraryhobby"
+    },
+    {
+      "name": "tikzlibrarybending"
+    }
+  ],
+  "macros": [
+    {
+      "name": "measure",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "measure{${1:(${4:x1},${5:y1})}}{${2:(${6:x2},${7:y2})}}{${3:label}}"
+      }
+    },
+    {
+      "name": "measure",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "measure[${4:anchor spec}]{${1:(${5:x1},${6:y1})}}{${2:(${7:x2},${8:y2})}}{${3:label}}"
+      }
+    },
+    {
+      "name": "setchpblockfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpblockfontsize{${1:fontsize%l}}"
+      }
+    },
+    {
+      "name": "setchpblockscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpblockscale{${1:factor}}"
+      }
+    },
+    {
+      "name": "setchpblockthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpblockthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchphiddencomponentstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchphiddencomponentstyle{${1:line pattern}}"
+      }
+    },
+    {
+      "name": "setchphiddenstreamstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchphiddenstreamstyle{${1:line pattern}}"
+      }
+    },
+    {
+      "name": "setchpinstrumentfontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpinstrumentfontsize{${1:fontsize%l}}"
+      }
+    },
+    {
+      "name": "setchpinstrumentscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpinstrumentscale{${1:factor}}"
+      }
+    },
+    {
+      "name": "setchpinstrumentthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpinstrumentthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchpmainstreamthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpmainstreamthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchpmeasurecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpmeasurecolor{${1:color}}"
+      }
+    },
+    {
+      "name": "setchpmeasurefontsize",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpmeasurefontsize{${1:fontsize%l}}"
+      }
+    },
+    {
+      "name": "setchpmeasurethickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpmeasurethickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchpmeasuretip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpmeasuretip{${1:line tip}}"
+      }
+    },
+    {
+      "name": "setchpsecondarystreamthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpsecondarystreamthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchpsignalthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpsignalthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchpstreamtip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpstreamtip{${1:arrow tip}}"
+      }
+    },
+    {
+      "name": "setchpunitscale",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpunitscale{${1:factor}}"
+      }
+    },
+    {
+      "name": "setchpunitthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchpunitthickness{${1:thickness%l}}"
+      }
+    },
+    {
+      "name": "setchputilitystreamthickness",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchputilitystreamthickness{${1:thickness%l}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\draw#c": [
+      "main stream",
+      "secondary stream",
+      "utility stream",
+      "hidden stream",
+      "signal",
+      "short signal"
+    ],
+    "\\pic#c": [
+      "hidden component"
+    ]
   },
-  "macros": {
-    "measure{}{}{}": {
-      "snippet": "measure{${1:(${4:x1,y1})}}{${2:(${5:x2,y2})}}{${3:label}}"
-    },
-    "measure[]{}{}{}": {
-      "snippet": "measure[${4:anchor spec}]{${1:(${5:x1,y1})}}{${2:(${6:x2,y2})}}{${3:label}}"
-    },
-    "setchpblockfontsize{}": {
-      "snippet": "setchpblockfontsize{${1:fontsize}}"
-    },
-    "setchpblockscale{}": {
-      "snippet": "setchpblockscale{${1:factor}}"
-    },
-    "setchpblockthickness{}": {
-      "snippet": "setchpblockthickness{${1:thickness}}"
-    },
-    "setchphiddencomponentstyle{}": {
-      "snippet": "setchphiddencomponentstyle{${1:line pattern}}"
-    },
-    "setchphiddenstreamstyle{}": {
-      "snippet": "setchphiddenstreamstyle{${1:line pattern}}"
-    },
-    "setchpinstrumentfontsize{}": {
-      "snippet": "setchpinstrumentfontsize{${1:fontsize}}"
-    },
-    "setchpinstrumentscale{}": {
-      "snippet": "setchpinstrumentscale{${1:factor}}"
-    },
-    "setchpinstrumentthickness{}": {
-      "snippet": "setchpinstrumentthickness{${1:thickness}}"
-    },
-    "setchpmainstreamthickness{}": {
-      "snippet": "setchpmainstreamthickness{${1:thickness}}"
-    },
-    "setchpmeasurecolor{}": {
-      "snippet": "setchpmeasurecolor{${1:color}}"
-    },
-    "setchpmeasurefontsize{}": {
-      "snippet": "setchpmeasurefontsize{${1:fontsize}}"
-    },
-    "setchpmeasurethickness{}": {
-      "snippet": "setchpmeasurethickness{${1:thickness}}"
-    },
-    "setchpmeasuretip{}": {
-      "snippet": "setchpmeasuretip{${1:line tip}}"
-    },
-    "setchpsecondarystreamthickness{}": {
-      "snippet": "setchpsecondarystreamthickness{${1:thickness}}"
-    },
-    "setchpsignalthickness{}": {
-      "snippet": "setchpsignalthickness{${1:thickness}}"
-    },
-    "setchpstreamtip{}": {
-      "snippet": "setchpstreamtip{${1:arrow tip}}"
-    },
-    "setchpunitscale{}": {
-      "snippet": "setchpunitscale{${1:factor}}"
-    },
-    "setchpunitthickness{}": {
-      "snippet": "setchpunitthickness{${1:thickness}}"
-    },
-    "setchputilitystreamthickness{}": {
-      "snippet": "setchputilitystreamthickness{${1:thickness}}"
-    },
-    "chpdate": {},
-    "chpversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

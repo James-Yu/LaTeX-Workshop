@@ -1,101 +1,221 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshadows": [],
-    "ifthen": []
-  },
-  "macros": {
-    "newthread{}{}": {
-      "snippet": "newthread{${1:name}}{${2:text}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "newthread[]{}{}": {
-      "snippet": "newthread[${3:color}]{${1:name}}{${2:text}}"
+    {
+      "name": "tikzlibraryshadows"
     },
-    "newinst{}{}": {
-      "snippet": "newinst{${1:name}}{${2:text}}"
-    },
-    "newinst[]{}{}": {
-      "snippet": "newinst[${3:edge distance}]{${1:name}}{${2:text}}"
-    },
-    "messcall{}{}{}": {
-      "snippet": "messcall{${1:caller}}{${2:function}}{${3:callee}}"
-    },
-    "messcall[]{}{}{}": {
-      "snippet": "messcall[${4:height}]{${1:caller}}{${2:function}}{${3:callee}}"
-    },
-    "mess{}{}{}": {
-      "snippet": "mess{${1:caller}}{${2:message}}{${3:callee}}"
-    },
-    "mess[]{}{}{}": {
-      "snippet": "mess[${4:delay}]{${1:caller}}{${2:message}}{${3:callee}}"
-    },
-    "prelevel": {},
-    "postlevel": {},
-    "setthreadbias{}": {
-      "snippet": "setthreadbias{${1:anchor}}"
-    },
-    "blockcolor": {},
-    "blockcomm": {},
-    "blockname": {},
-    "drawthread{}{}": {
-      "snippet": "drawthread{${1:anchor1}}{${2:anchor2}}"
-    },
-    "returnvalue": {},
-    "theblocklevel": {},
-    "thecallevel": {},
-    "thecallselflevel": {},
-    "theinstnum": {},
-    "thepreinst": {},
-    "theseqlevel": {},
-    "thethreadnum": {},
-    "threadbias": {}
-  },
-  "envs": {
-    "sequencediagram": {},
-    "call{}{}{}{}": {
-      "name": "call",
-      "snippet": "{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
-    },
-    "call[]{}{}{}{}": {
-      "name": "call",
-      "snippet": "[${5:height}]{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
-    },
-    "messcall{}{}{}": {
-      "name": "messcall",
-      "snippet": "{${1:caller}}{${2:function}}{${3:callee}}"
-    },
-    "messcall[]{}{}{}": {
-      "name": "messcall",
-      "snippet": "[${4:height}]{${1:caller}}{${2:function}}{${3:callee}}"
-    },
-    "sdblock{}{}": {
-      "name": "sdblock",
-      "snippet": "{${1:caption}}{${2:description}}"
-    },
-    "sdblock[]{}{}": {
-      "name": "sdblock",
-      "snippet": "[${3:color}]{${1:caption}}{${2:description}}"
-    },
-    "callself{}{}{}": {
-      "name": "callself",
-      "snippet": "{${1:caller}}{${2:function}}{${3:return value}}"
-    },
-    "callself[]{}{}{}": {
-      "name": "callself",
-      "snippet": "[${4:height}]{${1:caller}}{${2:function}}{${3:return value}}"
-    },
-    "callanother{}{}{}{}": {
-      "name": "callanother",
-      "snippet": "{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
-    },
-    "callanother[]{}{}{}{}": {
-      "name": "callanother",
-      "snippet": "[${5:height}]{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [
-    "underline",
-    "roundedcorners"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "newthread",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newthread{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "newthread",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newthread[${3:color}]{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "newinst",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newinst{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "newinst",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newinst[${3:edge distance}]{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mess{${1:caller}}{${2:message%text}}{${3:callee}}"
+      }
+    },
+    {
+      "name": "mess",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "mess[${4:delay}]{${1:caller}}{${2:message%text}}{${3:callee}}"
+      }
+    },
+    {
+      "name": "prelevel"
+    },
+    {
+      "name": "postlevel"
+    },
+    {
+      "name": "setthreadbias",
+      "arg": {
+        "format": "{}",
+        "snippet": "setthreadbias{${1:anchor%keyvals}}",
+        "keys": [
+          "\\setthreadbias#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "blockcolor",
+      "unusual": true
+    },
+    {
+      "name": "blockcomm",
+      "unusual": true
+    },
+    {
+      "name": "blockname",
+      "unusual": true
+    },
+    {
+      "name": "drawthread",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "drawthread{${1:anchor1}}{${2:anchor2}}"
+      }
+    },
+    {
+      "name": "returnvalue",
+      "unusual": true
+    },
+    {
+      "name": "theblocklevel",
+      "unusual": true
+    },
+    {
+      "name": "thecallevel",
+      "unusual": true
+    },
+    {
+      "name": "thecallselflevel",
+      "unusual": true
+    },
+    {
+      "name": "theinstnum",
+      "unusual": true
+    },
+    {
+      "name": "thepreinst",
+      "unusual": true
+    },
+    {
+      "name": "theseqlevel",
+      "unusual": true
+    },
+    {
+      "name": "thethreadnum",
+      "unusual": true
+    },
+    {
+      "name": "threadbias",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "sequencediagram"
+    },
+    {
+      "name": "call",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
+      }
+    },
+    {
+      "name": "call",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:height%plain}]{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
+      }
+    },
+    {
+      "name": "messcall",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:caller}}{${2:function}}{${3:callee}}"
+      }
+    },
+    {
+      "name": "messcall",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:height%plain}]{${1:caller}}{${2:function}}{${3:callee}}"
+      }
+    },
+    {
+      "name": "sdblock",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:caption%text}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "sdblock",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:color}]{${1:caption%text}}{${2:description%text}}"
+      }
+    },
+    {
+      "name": "callself",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:caller}}{${2:function}}{${3:return value}}"
+      }
+    },
+    {
+      "name": "callself",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "[${4:height%plain}]{${1:caller}}{${2:function}}{${3:return value}}"
+      }
+    },
+    {
+      "name": "callanother",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
+      }
+    },
+    {
+      "name": "callanother",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "[${5:height%plain}]{${1:caller}}{${2:function}}{${3:callee}}{${4:return value}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/pgf-umlsd#c": [
+      "underline",
+      "roundedcorners"
+    ],
+    "\\setthreadbias#c": [
+      "center",
+      "west",
+      "east"
+    ]
+  },
+  "args": [
+    "\\usepackage/pgf-umlsd#c"
+  ]
 }

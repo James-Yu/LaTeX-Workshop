@@ -1,402 +1,1436 @@
 {
-  "includes": {
-    "schwalbe": [],
-    "fontenc": [],
-    "inputenc": [],
-    "babel": [],
-    "eurosym": [],
-    "ifthen": [],
-    "times": [],
-    "multicol": [],
-    "url": [],
-    "paralist": [],
-    "afterpage": []
-  },
-  "macros": {
-    "Heft{}{}{}{}": {
-      "snippet": "Heft{${1:volume}}{${2:issue}}{${3:year}}{${4:page}}"
+  "deps": [
+    {
+      "name": "schwalbe"
     },
-    "Abteilung{}{}{}{}{}": {
-      "snippet": "Abteilung{${1:dept}}{${2:firstrefname}}{${3:lastrefname}}{${4:name}}{${5:email}}"
+    {
+      "name": "fontenc"
     },
-    "Abteilung*{}{}{}{}": {
-      "snippet": "Abteilung*{${1:dept}}{${2:firstrefname}}{${3:name}}{${4:email}}"
+    {
+      "name": "inputenc"
     },
-    "maerchenart{}": {
-      "snippet": "maerchenart{${1:text}}"
+    {
+      "name": "babel"
     },
-    "retroart{}": {
-      "snippet": "retroart{${1:text}}"
+    {
+      "name": "eurosym"
     },
-    "Loeser{}{}": {
-      "snippet": "Loeser{${1:short name}}{${2:name}}"
+    {
+      "name": "ifthen"
     },
-    "Loeser*{}{}": {
-      "snippet": "Loeser*{${1:short name}}{${2:name}}"
+    {
+      "name": "times"
     },
-    "ListeLoeserKuerzel": {},
-    "Loesung{}{}{}": {
-      "snippet": "Loesung{${1:nummer}}{${2:liste}}{${3:Lösung}}"
+    {
+      "name": "multicol"
     },
-    "Loesung*{}{}{}": {
-      "snippet": "Loesung*{${1:nummer}}{${2:liste}}{${3:Lösung}}"
+    {
+      "name": "url"
     },
-    "showsol": {},
-    "Buch{}{}": {
-      "snippet": "Buch{${1:authors}}{${2:title}}"
+    {
+      "name": "paralist"
     },
-    "Buch*": {},
-    "WebSite{}": {
-      "snippet": "WebSite{${1:URL}}"
+    {
+      "name": "afterpage"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Heft",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Heft{${1:volume}}{${2:issue}}{${3:year}}{${4:page}}"
+      }
     },
-    "TurnierAusschreibung{}": {
-      "snippet": "TurnierAusschreibung{${1:text}}"
+    {
+      "name": "Abteilung",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "Abteilung{${1:dept}}{${2:firstrefname}}{${3:lastrefname}}{${4:name}}{${5:email}}"
+      }
     },
-    "Nachruf{}": {
-      "snippet": "Nachruf{${1:text}}"
+    {
+      "name": "Abteilung*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Abteilung*{${1:dept}}{${2:firstrefname}}{${3:name}}{${4:email}}"
+      }
     },
-    "dauerkonto{}": {
-      "snippet": "dauerkonto{${1:text}}"
+    {
+      "name": "maerchenart",
+      "arg": {
+        "format": "{}",
+        "snippet": "maerchenart{${1:text}}"
+      }
     },
-    "loesungswettbewerb{}": {
-      "snippet": "loesungswettbewerb{${1:text}}"
+    {
+      "name": "retroart",
+      "arg": {
+        "format": "{}",
+        "snippet": "retroart{${1:text}}"
+      }
     },
-    "dh": {},
-    "ua": {},
-    "zB": {},
-    "su": {},
-    "ep": {},
-    "seedia": {},
-    "bsol": {},
-    "esol": {},
-    "figline": {},
-    "foto{}{}{}": {
-      "snippet": "foto{${1:Breite}}{${2:Hoehe}}{${3:Bildunterschrift}}"
+    {
+      "name": "Loeser",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Loeser{${1:short name}}{${2:name}}"
+      }
     },
-    "mal": {},
-    "MeasureNewpage": {},
-    "Briefkasten": {},
-    "Einladung{}": {
-      "snippet": "Einladung{${1:text}}"
+    {
+      "name": "Loeser*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Loeser*{${1:short name}}{${2:name}}"
+      }
     },
-    "Entscheid": {},
-    "Geburtstag{}": {
-      "snippet": "Geburtstag{${1:arg}}"
+    {
+      "name": "ListeLoeserKuerzel"
     },
-    "Inhalt": {},
-    "LoesungenBis": {},
-    "SchwalbeCopyright": {},
-    "Turnierberichte": {},
-    "Verstorben{}{}": {
-      "snippet": "Verstorben{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Loesung",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Loesung{${1:nummer}}{${2:liste}}{${3:Lösung}}"
+      }
     },
-    "aTurnier{}{}": {
-      "snippet": "aTurnier{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "Loesung*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Loesung*{${1:nummer}}{${2:liste}}{${3:Lösung}}"
+      }
     },
-    "aufsatz{}{}{}": {
-      "snippet": "aufsatz{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "showsol"
     },
-    "bTurnier{}": {
-      "snippet": "bTurnier{${1:arg}}"
+    {
+      "name": "Buch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Buch{${1:authors}}{${2:title%text}}"
+      }
     },
-    "eEntscheid{}": {
-      "snippet": "eEntscheid{${1:arg}}"
+    {
+      "name": "Buch*"
     },
-    "editorial{}": {
-      "snippet": "editorial{${1:arg}}"
+    {
+      "name": "WebSite",
+      "arg": {
+        "format": "{}",
+        "snippet": "WebSite{${1:URL}}"
+      }
     },
-    "turnier{}": {
-      "snippet": "turnier{${1:arg1}}"
+    {
+      "name": "TurnierAusschreibung",
+      "arg": {
+        "format": "{}",
+        "snippet": "TurnierAusschreibung{${1:text}}"
+      }
     },
-    "wK": {},
-    "Ruler": {},
-    "ShowRuler": {},
-    "DH": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
+    {
+      "name": "Nachruf",
+      "arg": {
+        "format": "{}",
+        "snippet": "Nachruf{${1:text}}"
+      }
     },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
+    {
+      "name": "dauerkonto",
+      "arg": {
+        "format": "{}",
+        "snippet": "dauerkonto{${1:text}}"
+      }
     },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "C{}": {
-      "snippet": "C{${1:arg}}"
+    {
+      "name": "loesungswettbewerb",
+      "arg": {
+        "format": "{}",
+        "snippet": "loesungswettbewerb{${1:text}}"
+      }
     },
-    "CYRA": {},
-    "cyra": {},
-    "CYRAE": {},
-    "cyrae": {},
-    "CYRB": {},
-    "cyrb": {},
-    "CYRC": {},
-    "cyrc": {},
-    "CYRCH": {},
-    "cyrch": {},
-    "CYRCHRDSC": {},
-    "cyrchrdsc": {},
-    "CYRCHVCRS": {},
-    "cyrchvcrs": {},
-    "CYRD": {},
-    "cyrd": {},
-    "cyrdash": {},
-    "CYRDJE": {},
-    "cyrdje": {},
-    "CYRDZE": {},
-    "cyrdze": {},
-    "CYRDZHE": {},
-    "cyrdzhe": {},
-    "CYRE": {},
-    "cyre": {},
-    "CYREREV": {},
-    "cyrerev": {},
-    "CYRERY": {},
-    "cyrery": {},
-    "CYRF": {},
-    "cyrf": {},
-    "CYRG": {},
-    "cyrg": {},
-    "CYRGHCRS": {},
-    "cyrghcrs": {},
-    "CYRGUP": {},
-    "cyrgup": {},
-    "CYRH": {},
-    "cyrh": {},
-    "CYRHDSC": {},
-    "cyrhdsc": {},
-    "CYRHRDSN": {},
-    "cyrhrdsn": {},
-    "CYRI": {},
-    "cyri": {},
-    "CYRIE": {},
-    "cyrie": {},
-    "CYRII": {},
-    "cyrii": {},
-    "CYRISHRT": {},
-    "cyrishrt": {},
-    "CYRJE": {},
-    "cyrje": {},
-    "CYRK": {},
-    "cyrk": {},
-    "CYRKBEAK": {},
-    "cyrkbeak": {},
-    "CYRKDSC": {},
-    "cyrkdsc": {},
-    "CYRKVCRS": {},
-    "cyrkvcrs": {},
-    "CYRL": {},
-    "cyrl": {},
-    "cyrlangle": {},
-    "CYRLJE": {},
-    "cyrlje": {},
-    "CYRM": {},
-    "cyrm": {},
-    "CYRN": {},
-    "cyrn": {},
-    "CYRNDSC": {},
-    "cyrndsc": {},
-    "CYRNG": {},
-    "cyrng": {},
-    "CYRNJE": {},
-    "cyrnje": {},
-    "CYRO": {},
-    "cyro": {},
-    "CYROTLD": {},
-    "cyrotld": {},
-    "CYRP": {},
-    "cyrp": {},
-    "CYRpalochka": {},
-    "CYRQ": {},
-    "cyrq": {},
-    "CYRR": {},
-    "cyrr": {},
-    "cyrrangle": {},
-    "CYRS": {},
-    "cyrs": {},
-    "CYRSCHWA": {},
-    "cyrschwa": {},
-    "CYRSDSC": {},
-    "cyrsdsc": {},
-    "CYRSFTSN": {},
-    "cyrsftsn": {},
-    "CYRSH": {},
-    "cyrsh": {},
-    "CYRSHCH": {},
-    "cyrshch": {},
-    "CYRSHHA": {},
-    "cyrshha": {},
-    "CYRT": {},
-    "cyrt": {},
-    "CYRTSHE": {},
-    "cyrtshe": {},
-    "CYRU": {},
-    "cyru": {},
-    "CYRUSHRT": {},
-    "cyrushrt": {},
-    "CYRV": {},
-    "cyrv": {},
-    "CYRW": {},
-    "cyrw": {},
-    "CYRY": {},
-    "cyry": {},
-    "CYRYA": {},
-    "cyrya": {},
-    "CYRYHCRS": {},
-    "cyryhcrs": {},
-    "CYRYI": {},
-    "cyryi": {},
-    "CYRYO": {},
-    "cyryo": {},
-    "CYRYU": {},
-    "cyryu": {},
-    "CYRZ": {},
-    "cyrz": {},
-    "CYRZDSC": {},
-    "cyrzdsc": {},
-    "CYRZH": {},
-    "cyrzh": {},
-    "CYRZHDSC": {},
-    "cyrzhdsc": {},
-    "f{}": {
-      "snippet": "f{${1:arg}}"
+    {
+      "name": "dh"
     },
-    "U{}": {
-      "snippet": "U{${1:arg}}"
+    {
+      "name": "ua"
     },
-    "asbuk{}": {
-      "snippet": "asbuk{${1:counter}}"
+    {
+      "name": "zB"
     },
-    "Asbuk{}": {
-      "snippet": "Asbuk{${1:counter}}"
+    {
+      "name": "su"
     },
-    "Russian": {},
-    "sh": {},
-    "ch": {},
-    "tg": {},
-    "ctg": {},
-    "arctg": {},
-    "arcctg": {},
-    "cth": {},
-    "cosec": {},
-    "Prob": {},
-    "Variance": {},
-    "NOD": {},
-    "nod": {},
-    "NOK": {},
-    "nok": {},
-    "Proj": {},
-    "cyrillicencoding": {},
-    "cyrillictext": {},
-    "cyr": {},
-    "textcyrillic{}": {
-      "snippet": "textcyrillic{${1:text}}"
+    {
+      "name": "ep"
     },
-    "dq": {},
-    "captionsrussian": {},
-    "daterussian": {},
-    "extrasrussian": {},
-    "noextrasrussian": {},
-    "cdash": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "tocname": {},
-    "authorname": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "acronymname": {},
-    "lstlistingname": {},
-    "lstlistlistingname": {},
-    "notesname": {},
-    "nomname": {},
-    "captionsgerman": {},
-    "dategerman": {},
-    "extrasgerman": {},
-    "noextrasgerman": {},
-    "tosstrue": {},
-    "tossfalse": {},
-    "mdqon": {},
-    "mdqoff": {},
-    "ck": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "captionsngerman": {},
-    "datengerman": {},
-    "extrasngerman": {},
-    "noextrasngerman": {},
-    "ntosstrue": {},
-    "ntossfalse": {}
-  },
-  "envs": {
-    "Editorial{}": {
-      "name": "Editorial",
-      "snippet": "{${1:heading}}"
+    {
+      "name": "seedia"
     },
-    "Editorial[]{}": {
-      "name": "Editorial",
-      "snippet": "[${2:short title}]{${1:title}}"
+    {
+      "name": "bsol"
     },
-    "aktuell": {},
-    "InformalEntscheid{}{}{}": {
-      "name": "InformalEntscheid",
-      "snippet": "{${1:dept}}{${2:year}}{${3:name}}"
+    {
+      "name": "esol"
     },
-    "Aufsatz": {},
-    "Titel": {},
-    "Untertitel": {},
-    "Urdrucke{}": {
-      "name": "Urdrucke",
-      "snippet": "{${1:number}}"
+    {
+      "name": "figline"
     },
-    "maerchenlexikon": {},
-    "retrolexikon": {},
-    "Loesungen": {},
-    "BuB": {},
-    "turnierberichte": {},
-    "Buecher": {},
-    "WebSites": {},
-    "Briefkasten": {},
-    "Turnierbericht{}{}": {
-      "name": "Turnierbericht",
-      "snippet": "{${1:tournament}}{${2:author}}"
+    {
+      "name": "foto",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "foto{${1:Breite}}{${2:Hoehe}}{${3:Bildunterschrift}}"
+      }
     },
-    "Entscheid{}": {
+    {
+      "name": "mal"
+    },
+    {
+      "name": "MeasureNewpage"
+    },
+    {
+      "name": "Briefkasten",
+      "unusual": true
+    },
+    {
+      "name": "Einladung",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Einladung{${1:text}}"
+      }
+    },
+    {
       "name": "Entscheid",
-      "snippet": "{${1:title}}"
+      "unusual": true
     },
-    "Loeserliste{}": {
+    {
+      "name": "Geburtstag",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Geburtstag{${1:arg}}"
+      }
+    },
+    {
+      "name": "Inhalt",
+      "unusual": true
+    },
+    {
+      "name": "LoesungenBis",
+      "unusual": true
+    },
+    {
+      "name": "SchwalbeCopyright",
+      "unusual": true
+    },
+    {
+      "name": "Turnierberichte",
+      "unusual": true
+    },
+    {
+      "name": "Verstorben",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Verstorben{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "aTurnier",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "aTurnier{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "aufsatz",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "aufsatz{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "bTurnier",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bTurnier{${1:arg}}"
+      }
+    },
+    {
+      "name": "eEntscheid",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "eEntscheid{${1:arg}}"
+      }
+    },
+    {
+      "name": "editorial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "editorial{${1:arg}}"
+      }
+    },
+    {
+      "name": "turnier",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "turnier{${1:arg1}}"
+      }
+    },
+    {
+      "name": "wK",
+      "unusual": true
+    },
+    {
+      "name": "Ruler",
+      "unusual": true
+    },
+    {
+      "name": "ShowRuler",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "C",
+      "arg": {
+        "format": "{}",
+        "snippet": "C{${1:arg}}"
+      }
+    },
+    {
+      "name": "CYRA"
+    },
+    {
+      "name": "cyra"
+    },
+    {
+      "name": "CYRAE"
+    },
+    {
+      "name": "cyrae"
+    },
+    {
+      "name": "CYRB"
+    },
+    {
+      "name": "cyrb"
+    },
+    {
+      "name": "CYRC"
+    },
+    {
+      "name": "cyrc"
+    },
+    {
+      "name": "CYRCH"
+    },
+    {
+      "name": "cyrch"
+    },
+    {
+      "name": "CYRCHRDSC"
+    },
+    {
+      "name": "cyrchrdsc"
+    },
+    {
+      "name": "CYRCHVCRS"
+    },
+    {
+      "name": "cyrchvcrs"
+    },
+    {
+      "name": "CYRD"
+    },
+    {
+      "name": "cyrd"
+    },
+    {
+      "name": "cyrdash"
+    },
+    {
+      "name": "CYRDJE"
+    },
+    {
+      "name": "cyrdje"
+    },
+    {
+      "name": "CYRDZE"
+    },
+    {
+      "name": "cyrdze"
+    },
+    {
+      "name": "CYRDZHE"
+    },
+    {
+      "name": "cyrdzhe"
+    },
+    {
+      "name": "CYRE"
+    },
+    {
+      "name": "cyre"
+    },
+    {
+      "name": "CYREREV"
+    },
+    {
+      "name": "cyrerev"
+    },
+    {
+      "name": "CYRERY"
+    },
+    {
+      "name": "cyrery"
+    },
+    {
+      "name": "CYRF"
+    },
+    {
+      "name": "cyrf"
+    },
+    {
+      "name": "CYRG"
+    },
+    {
+      "name": "cyrg"
+    },
+    {
+      "name": "CYRGHCRS"
+    },
+    {
+      "name": "cyrghcrs"
+    },
+    {
+      "name": "CYRGUP"
+    },
+    {
+      "name": "cyrgup"
+    },
+    {
+      "name": "CYRH"
+    },
+    {
+      "name": "cyrh"
+    },
+    {
+      "name": "CYRHDSC"
+    },
+    {
+      "name": "cyrhdsc"
+    },
+    {
+      "name": "CYRHRDSN"
+    },
+    {
+      "name": "cyrhrdsn"
+    },
+    {
+      "name": "CYRI"
+    },
+    {
+      "name": "cyri"
+    },
+    {
+      "name": "CYRIE"
+    },
+    {
+      "name": "cyrie"
+    },
+    {
+      "name": "CYRII"
+    },
+    {
+      "name": "cyrii"
+    },
+    {
+      "name": "CYRISHRT"
+    },
+    {
+      "name": "cyrishrt"
+    },
+    {
+      "name": "CYRJE"
+    },
+    {
+      "name": "cyrje"
+    },
+    {
+      "name": "CYRK"
+    },
+    {
+      "name": "cyrk"
+    },
+    {
+      "name": "CYRKBEAK"
+    },
+    {
+      "name": "cyrkbeak"
+    },
+    {
+      "name": "CYRKDSC"
+    },
+    {
+      "name": "cyrkdsc"
+    },
+    {
+      "name": "CYRKVCRS"
+    },
+    {
+      "name": "cyrkvcrs"
+    },
+    {
+      "name": "CYRL"
+    },
+    {
+      "name": "cyrl"
+    },
+    {
+      "name": "cyrlangle"
+    },
+    {
+      "name": "CYRLJE"
+    },
+    {
+      "name": "cyrlje"
+    },
+    {
+      "name": "CYRM"
+    },
+    {
+      "name": "cyrm"
+    },
+    {
+      "name": "CYRN"
+    },
+    {
+      "name": "cyrn"
+    },
+    {
+      "name": "CYRNDSC"
+    },
+    {
+      "name": "cyrndsc"
+    },
+    {
+      "name": "CYRNG"
+    },
+    {
+      "name": "cyrng"
+    },
+    {
+      "name": "CYRNJE"
+    },
+    {
+      "name": "cyrnje"
+    },
+    {
+      "name": "CYRO"
+    },
+    {
+      "name": "cyro"
+    },
+    {
+      "name": "CYROTLD"
+    },
+    {
+      "name": "cyrotld"
+    },
+    {
+      "name": "CYRP"
+    },
+    {
+      "name": "cyrp"
+    },
+    {
+      "name": "CYRpalochka"
+    },
+    {
+      "name": "CYRQ"
+    },
+    {
+      "name": "cyrq"
+    },
+    {
+      "name": "CYRR"
+    },
+    {
+      "name": "cyrr"
+    },
+    {
+      "name": "cyrrangle"
+    },
+    {
+      "name": "CYRS"
+    },
+    {
+      "name": "cyrs"
+    },
+    {
+      "name": "CYRSCHWA"
+    },
+    {
+      "name": "cyrschwa"
+    },
+    {
+      "name": "CYRSDSC"
+    },
+    {
+      "name": "cyrsdsc"
+    },
+    {
+      "name": "CYRSFTSN"
+    },
+    {
+      "name": "cyrsftsn"
+    },
+    {
+      "name": "CYRSH"
+    },
+    {
+      "name": "cyrsh"
+    },
+    {
+      "name": "CYRSHCH"
+    },
+    {
+      "name": "cyrshch"
+    },
+    {
+      "name": "CYRSHHA"
+    },
+    {
+      "name": "cyrshha"
+    },
+    {
+      "name": "CYRT"
+    },
+    {
+      "name": "cyrt"
+    },
+    {
+      "name": "CYRTSHE"
+    },
+    {
+      "name": "cyrtshe"
+    },
+    {
+      "name": "CYRU"
+    },
+    {
+      "name": "cyru"
+    },
+    {
+      "name": "CYRUSHRT"
+    },
+    {
+      "name": "cyrushrt"
+    },
+    {
+      "name": "CYRV"
+    },
+    {
+      "name": "cyrv"
+    },
+    {
+      "name": "CYRW"
+    },
+    {
+      "name": "cyrw"
+    },
+    {
+      "name": "CYRY"
+    },
+    {
+      "name": "cyry"
+    },
+    {
+      "name": "CYRYA"
+    },
+    {
+      "name": "cyrya"
+    },
+    {
+      "name": "CYRYHCRS"
+    },
+    {
+      "name": "cyryhcrs"
+    },
+    {
+      "name": "CYRYI"
+    },
+    {
+      "name": "cyryi"
+    },
+    {
+      "name": "CYRYO"
+    },
+    {
+      "name": "cyryo"
+    },
+    {
+      "name": "CYRYU"
+    },
+    {
+      "name": "cyryu"
+    },
+    {
+      "name": "CYRZ"
+    },
+    {
+      "name": "cyrz"
+    },
+    {
+      "name": "CYRZDSC"
+    },
+    {
+      "name": "cyrzdsc"
+    },
+    {
+      "name": "CYRZH"
+    },
+    {
+      "name": "cyrzh"
+    },
+    {
+      "name": "CYRZHDSC"
+    },
+    {
+      "name": "cyrzhdsc"
+    },
+    {
+      "name": "f",
+      "arg": {
+        "format": "{}",
+        "snippet": "f{${1:arg}}"
+      }
+    },
+    {
+      "name": "U",
+      "arg": {
+        "format": "{}",
+        "snippet": "U{${1:arg}}"
+      }
+    },
+    {
+      "name": "cyrdash"
+    },
+    {
+      "name": "asbuk",
+      "arg": {
+        "format": "{}",
+        "snippet": "asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Asbuk",
+      "arg": {
+        "format": "{}",
+        "snippet": "Asbuk{${1:counter}}"
+      }
+    },
+    {
+      "name": "Russian"
+    },
+    {
+      "name": "sh"
+    },
+    {
+      "name": "ch"
+    },
+    {
+      "name": "tg"
+    },
+    {
+      "name": "ctg"
+    },
+    {
+      "name": "arctg"
+    },
+    {
+      "name": "arcctg"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "cth"
+    },
+    {
+      "name": "cosec"
+    },
+    {
+      "name": "Prob"
+    },
+    {
+      "name": "Variance"
+    },
+    {
+      "name": "NOD"
+    },
+    {
+      "name": "nod"
+    },
+    {
+      "name": "NOK"
+    },
+    {
+      "name": "nok"
+    },
+    {
+      "name": "Proj"
+    },
+    {
+      "name": "cyrillicencoding",
+      "unusual": true
+    },
+    {
+      "name": "cyrillictext",
+      "unusual": true
+    },
+    {
+      "name": "cyr",
+      "unusual": true
+    },
+    {
+      "name": "textcyrillic",
+      "arg": {
+        "format": "{}",
+        "snippet": "textcyrillic{${1:text}}"
+      }
+    },
+    {
+      "name": "dq"
+    },
+    {
+      "name": "captionsrussian",
+      "unusual": true
+    },
+    {
+      "name": "daterussian",
+      "unusual": true
+    },
+    {
+      "name": "extrasrussian",
+      "unusual": true
+    },
+    {
+      "name": "noextrasrussian",
+      "unusual": true
+    },
+    {
+      "name": "CYRA",
+      "unusual": true
+    },
+    {
+      "name": "CYRB",
+      "unusual": true
+    },
+    {
+      "name": "CYRV",
+      "unusual": true
+    },
+    {
+      "name": "CYRG",
+      "unusual": true
+    },
+    {
+      "name": "CYRGUP",
+      "unusual": true
+    },
+    {
+      "name": "CYRD",
+      "unusual": true
+    },
+    {
+      "name": "CYRE",
+      "unusual": true
+    },
+    {
+      "name": "CYRIE",
+      "unusual": true
+    },
+    {
+      "name": "CYRZH",
+      "unusual": true
+    },
+    {
+      "name": "CYRZ",
+      "unusual": true
+    },
+    {
+      "name": "CYRI",
+      "unusual": true
+    },
+    {
+      "name": "CYRII",
+      "unusual": true
+    },
+    {
+      "name": "CYRYI",
+      "unusual": true
+    },
+    {
+      "name": "CYRISHRT",
+      "unusual": true
+    },
+    {
+      "name": "CYRK",
+      "unusual": true
+    },
+    {
+      "name": "CYRL",
+      "unusual": true
+    },
+    {
+      "name": "CYRM",
+      "unusual": true
+    },
+    {
+      "name": "CYRN",
+      "unusual": true
+    },
+    {
+      "name": "CYRO",
+      "unusual": true
+    },
+    {
+      "name": "CYRP",
+      "unusual": true
+    },
+    {
+      "name": "CYRR",
+      "unusual": true
+    },
+    {
+      "name": "CYRS",
+      "unusual": true
+    },
+    {
+      "name": "CYRT",
+      "unusual": true
+    },
+    {
+      "name": "CYRU",
+      "unusual": true
+    },
+    {
+      "name": "CYRF",
+      "unusual": true
+    },
+    {
+      "name": "CYRH",
+      "unusual": true
+    },
+    {
+      "name": "CYRC",
+      "unusual": true
+    },
+    {
+      "name": "CYRCH",
+      "unusual": true
+    },
+    {
+      "name": "CYRSH",
+      "unusual": true
+    },
+    {
+      "name": "CYRSHCH",
+      "unusual": true
+    },
+    {
+      "name": "CYRYU",
+      "unusual": true
+    },
+    {
+      "name": "CYRYA",
+      "unusual": true
+    },
+    {
+      "name": "CYRSFTSN",
+      "unusual": true
+    },
+    {
+      "name": "CYRERY",
+      "unusual": true
+    },
+    {
+      "name": "cyra",
+      "unusual": true
+    },
+    {
+      "name": "cyrb",
+      "unusual": true
+    },
+    {
+      "name": "cyrv",
+      "unusual": true
+    },
+    {
+      "name": "cyrg",
+      "unusual": true
+    },
+    {
+      "name": "cyrgup",
+      "unusual": true
+    },
+    {
+      "name": "cyrd",
+      "unusual": true
+    },
+    {
+      "name": "cyre",
+      "unusual": true
+    },
+    {
+      "name": "cyrie",
+      "unusual": true
+    },
+    {
+      "name": "cyrzh",
+      "unusual": true
+    },
+    {
+      "name": "cyrz",
+      "unusual": true
+    },
+    {
+      "name": "cyri",
+      "unusual": true
+    },
+    {
+      "name": "cyrii",
+      "unusual": true
+    },
+    {
+      "name": "cyryi",
+      "unusual": true
+    },
+    {
+      "name": "cyrishrt",
+      "unusual": true
+    },
+    {
+      "name": "cyrk",
+      "unusual": true
+    },
+    {
+      "name": "cyrl",
+      "unusual": true
+    },
+    {
+      "name": "cyrm",
+      "unusual": true
+    },
+    {
+      "name": "cyrn",
+      "unusual": true
+    },
+    {
+      "name": "cyro",
+      "unusual": true
+    },
+    {
+      "name": "cyrp",
+      "unusual": true
+    },
+    {
+      "name": "cyrr",
+      "unusual": true
+    },
+    {
+      "name": "cyrs",
+      "unusual": true
+    },
+    {
+      "name": "cyrt",
+      "unusual": true
+    },
+    {
+      "name": "cyru",
+      "unusual": true
+    },
+    {
+      "name": "cyrf",
+      "unusual": true
+    },
+    {
+      "name": "cyrh",
+      "unusual": true
+    },
+    {
+      "name": "cyrc",
+      "unusual": true
+    },
+    {
+      "name": "cyrch",
+      "unusual": true
+    },
+    {
+      "name": "cyrsh",
+      "unusual": true
+    },
+    {
+      "name": "cyrshch",
+      "unusual": true
+    },
+    {
+      "name": "cyryu",
+      "unusual": true
+    },
+    {
+      "name": "cyrya",
+      "unusual": true
+    },
+    {
+      "name": "cyrsftsn",
+      "unusual": true
+    },
+    {
+      "name": "cyrery",
+      "unusual": true
+    },
+    {
+      "name": "cdash",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "tocname",
+      "unusual": true
+    },
+    {
+      "name": "authorname",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "acronymname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistingname",
+      "unusual": true
+    },
+    {
+      "name": "lstlistlistingname",
+      "unusual": true
+    },
+    {
+      "name": "notesname",
+      "unusual": true
+    },
+    {
+      "name": "nomname",
+      "unusual": true
+    },
+    {
+      "name": "captionsgerman",
+      "unusual": true
+    },
+    {
+      "name": "dategerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasgerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasgerman",
+      "unusual": true
+    },
+    {
+      "name": "tosstrue",
+      "unusual": true
+    },
+    {
+      "name": "tossfalse",
+      "unusual": true
+    },
+    {
+      "name": "mdqon",
+      "unusual": true
+    },
+    {
+      "name": "mdqoff",
+      "unusual": true
+    },
+    {
+      "name": "ck",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "captionsngerman",
+      "unusual": true
+    },
+    {
+      "name": "datengerman",
+      "unusual": true
+    },
+    {
+      "name": "extrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "noextrasngerman",
+      "unusual": true
+    },
+    {
+      "name": "ntosstrue",
+      "unusual": true
+    },
+    {
+      "name": "ntossfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "Editorial",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "Editorial",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:short title%text}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "aktuell"
+    },
+    {
+      "name": "InformalEntscheid",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "{${1:dept}}{${2:year}}{${3:name}}"
+      }
+    },
+    {
+      "name": "Aufsatz"
+    },
+    {
+      "name": "Titel"
+    },
+    {
+      "name": "Untertitel"
+    },
+    {
+      "name": "Urdrucke",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:number}}"
+      }
+    },
+    {
+      "name": "maerchenlexikon"
+    },
+    {
+      "name": "retrolexikon"
+    },
+    {
+      "name": "Loesungen"
+    },
+    {
+      "name": "BuB"
+    },
+    {
+      "name": "turnierberichte"
+    },
+    {
+      "name": "Buecher"
+    },
+    {
+      "name": "WebSites"
+    },
+    {
+      "name": "Briefkasten"
+    },
+    {
+      "name": "Turnierbericht",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:tournament}}{${2:author}}"
+      }
+    },
+    {
+      "name": "Entscheid",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
       "name": "Loeserliste",
-      "snippet": "{${1:year}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:year}}"
+      }
     },
-    "Bericht": {},
-    "Gruss": {},
-    "Tagung": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Bericht",
+      "unusual": true
+    },
+    {
+      "name": "Gruss",
+      "unusual": true
+    },
+    {
+      "name": "Tagung",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

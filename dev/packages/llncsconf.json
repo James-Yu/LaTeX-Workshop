@@ -1,40 +1,65 @@
 {
-  "includes": {
-    "hyperref": [],
-    "ifthen": [],
-    "rcsinfo": [
-      "rcsinfo"
-    ],
-    "eso-pic": [
-      "svninfo"
-    ],
-    "svninfo": [
-      "svninfo"
+  "deps": [
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "rcsinfo",
+      "if": "rcsinfo"
+    },
+    {
+      "name": "eso-pic",
+      "if": "svninfo"
+    },
+    {
+      "name": "svninfo",
+      "if": "svninfo"
+    }
+  ],
+  "macros": [
+    {
+      "name": "conference",
+      "arg": {
+        "format": "{}",
+        "snippet": "conference{${1:conference name%text}}"
+      }
+    },
+    {
+      "name": "llncs",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "llncs{${1:text}}{${2:page number}}"
+      }
+    },
+    {
+      "name": "llncsdoi",
+      "arg": {
+        "format": "{}",
+        "snippet": "llncsdoi{${1:DOI}}"
+      }
+    },
+    {
+      "name": "copyrightnote"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/llncsconf#c": [
+      "crop",
+      "nocrop",
+      "rcsinfo",
+      "svninfo",
+      "accepted",
+      "submitted",
+      "intended",
+      "llncs",
+      "proceedings"
     ]
   },
-  "macros": {
-    "conference{}": {
-      "snippet": "conference{${1:conference name}}"
-    },
-    "llncs{}{}": {
-      "snippet": "llncs{${1:text}}{${2:page number}}"
-    },
-    "llncsdoi{}": {
-      "snippet": "llncsdoi{${1:DOI}}"
-    },
-    "copyrightnote": {}
-  },
-  "envs": {},
-  "options": [
-    "crop",
-    "nocrop",
-    "rcsinfo",
-    "svninfo",
-    "accepted",
-    "submitted",
-    "intended",
-    "llncs",
-    "proceedings"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/llncsconf#c"
+  ]
 }

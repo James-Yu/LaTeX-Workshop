@@ -1,246 +1,691 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifthen": [],
-    "babel": [],
-    "inputenc": [],
-    "fontenc": [],
-    "tgheros": [],
-    "amsmath": [],
-    "amssymb": [],
-    "newtxtext": [],
-    "newtxtt": [],
-    "newtxmath": [],
-    "geometry": [],
-    "setspace": [],
-    "ragged2e": [],
-    "lineno": [],
-    "multicol": [],
-    "float": [],
-    "flafter": [],
-    "graphicx": [],
-    "array": [],
-    "tabularx": [],
-    "longtable": [],
-    "etoolbox": [],
-    "cleveref": [],
-    "natbib": [],
-    "url": []
-  },
-  "macros": {
-    "captionsbritish": {
-      "option": "british"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "datebritish": {
-      "option": "british"
+    {
+      "name": "ifthen"
     },
-    "extrasbritish": {
-      "option": "british"
+    {
+      "name": "babel"
     },
-    "noextrasbritish": {
-      "option": "british"
+    {
+      "name": "inputenc"
     },
-    "title[]{}": {
-      "snippet": "title[${2:si title}]{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "sititle{}": {
-      "snippet": "sititle{${1:si title}}"
+    {
+      "name": "tgheros"
     },
-    "author[]{}": {
-      "snippet": "author[${2:affil number}]{${1:name}}"
+    {
+      "name": "amsmath"
     },
-    "author[][]{}": {
-      "snippet": "author[${2:affil number}][${3:email}]{${1:name}}"
+    {
+      "name": "amssymb"
     },
-    "author*{}{}": {
-      "snippet": "author*{${1:name}}{${2:email}}"
+    {
+      "name": "newtxtext"
     },
-    "author*[]{}{}": {
-      "snippet": "author*[${3:affil number}]{${1:name}}{${2:email}}"
+    {
+      "name": "newtxtt"
     },
-    "affiliation{}": {
-      "snippet": "affiliation{${1:address}}"
+    {
+      "name": "newtxmath"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:keyword1;keyword2;...}}"
+    {
+      "name": "geometry"
     },
-    "sifile{}{}{}": {
-      "snippet": "sifile{${1:file}}{${2:format}}{${3:short desc}}"
+    {
+      "name": "setspace"
     },
-    "sifile[]{}{}{}": {
-      "snippet": "sifile[${4:long desc}]{${1:file}}{${2:format}}{${3:short desc}}"
+    {
+      "name": "ragged2e"
     },
-    "sglcolfigure{}": {
-      "snippet": "sglcolfigure{${1:imagefile}}"
+    {
+      "name": "lineno"
     },
-    "sglcolscheme{}": {
-      "snippet": "sglcolscheme{${1:imagefile}}"
+    {
+      "name": "multicol"
     },
-    "dblcolfigure{}": {
-      "snippet": "dblcolfigure{${1:imagefile}}"
+    {
+      "name": "float"
     },
-    "dblcolscheme{}": {
-      "snippet": "dblcolscheme{${1:imagefile}}"
+    {
+      "name": "flafter"
     },
-    "fnpara": {},
-    "fnnormal": {},
-    "chem{}": {
-      "snippet": "chem{${1:formula}}"
+    {
+      "name": "graphicx"
     },
-    "unit{}": {
-      "snippet": "unit{${1:unit}}"
+    {
+      "name": "array"
     },
-    "CN{}": {
-      "snippet": "CN{${1:text}}"
+    {
+      "name": "tabularx"
     },
-    "IUPAC{}": {
-      "snippet": "IUPAC{${1:chemical compound}}"
+    {
+      "name": "longtable"
     },
-    "BreakHyph": {},
-    "DoIUPAC{}": {
-      "snippet": "DoIUPAC{${1:arg}}"
+    {
+      "name": "etoolbox"
     },
-    "FloatBarrier": {},
-    "MultiBreak": {},
-    "Prep": {},
-    "Updelta": {},
-    "Upgamma": {},
-    "Uplambda": {},
-    "Upomega": {},
-    "Upphi": {},
-    "Uppi": {},
-    "Uppsi": {},
-    "Upsigma": {},
-    "Uptheta": {},
-    "Upupsilon": {},
-    "Upxi": {},
-    "affiliations": {},
-    "allowhyphens": {},
-    "angstrom": {},
-    "authors": {},
-    "authorsep": {},
-    "background": {},
-    "beilstein": {},
-    "celsius": {},
-    "conclusion": {},
-    "degree": {},
-    "emails": {},
-    "emailsep": {},
-    "errorfootnote{}{}": {
-      "snippet": "errorfootnote{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "cleveref"
     },
-    "firstoptarg": {},
-    "floatcites": {},
-    "fudgefactor": {},
-    "longtablefootnote": {},
-    "makefootnoteparagraph": {},
-    "makehboxofhboxes": {},
-    "mpmakefootnoteparagraph": {},
-    "mynobreakdash": {},
-    "oneORnone": {},
-    "patchAmsMathEnvironmentForLineno{}": {
-      "snippet": "patchAmsMathEnvironmentForLineno{${1:arg1}}"
+    {
+      "name": "natbib"
     },
-    "patchAmsMathEnvironmentForOnecolumn{}": {
-      "snippet": "patchAmsMathEnvironmentForOnecolumn{${1:arg1}}"
-    },
-    "patchBothAmsMathEnvironmentsForLineno{}": {
-      "snippet": "patchBothAmsMathEnvironmentsForLineno{${1:arg1}}"
-    },
-    "patchBothAmsMathEnvironmentsForOnecolumn{}": {
-      "snippet": "patchBothAmsMathEnvironmentsForOnecolumn{${1:arg1}}"
-    },
-    "percent": {
-      "detail": "%",
-      "documentation": "PERCENT SIGN"
-    },
-    "permil": {},
-    "removehboxes": {},
-    "results": {},
-    "setdisplaywidth": {},
-    "testbx": {},
-    "testfnpara": {},
-    "themyfootnote": {},
-    "thesuppinfo": {},
-    "captionsamerican": {},
-    "dateamerican": {},
-    "extrasamerican": {},
-    "noextrasamerican": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {}
-  },
-  "envs": {
-    "acknowledgements": {},
-    "funding": {},
-    "suppinfo": {},
-    "scheme": {},
-    "sglcoltabular{}": {
-      "name": "sglcoltabular",
-      "snippet": "{${1:cols}}"
-    },
-    "sglcoltabularx{}": {
-      "name": "sglcoltabularx",
-      "snippet": "{${1:cols}}"
-    },
-    "dblcoltabular{}": {
-      "name": "dblcoltabular",
-      "snippet": "{${1:cols}}"
-    },
-    "dblcoltabularx{}": {
-      "name": "dblcoltabularx",
-      "snippet": "{${1:cols}}"
-    },
-    "widetext": {}
-  },
-  "options": [
-    "manuscript=",
-    "american",
-    "british",
-    "latin1",
-    "utf8",
-    "applemac",
-    "sectionnumbering",
-    "fnpara"
+    {
+      "name": "url"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "captionsbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "datebritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "extrasbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "noextrasbritish",
+      "if": "british",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:si title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "sititle",
+      "arg": {
+        "format": "{}",
+        "snippet": "sititle{${1:si title%text}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:affil number}]{${1:name}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "author[${2:affil number}][${3:email%URL}]{${1:name}}"
+      }
+    },
+    {
+      "name": "author*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "author*{${1:name}}{${2:email%URL}}"
+      }
+    },
+    {
+      "name": "author*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "author*[${3:affil number}]{${1:name}}{${2:email%URL}}"
+      }
+    },
+    {
+      "name": "affiliation",
+      "arg": {
+        "format": "{}",
+        "snippet": "affiliation{${1:address}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:keyword1;keyword2;...}}"
+      }
+    },
+    {
+      "name": "sifile",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sifile{${1:file}}{${2:format}}{${3:short desc%text}}"
+      }
+    },
+    {
+      "name": "sifile",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "sifile[${4:long desc%text}]{${1:file}}{${2:format}}{${3:short desc%text}}"
+      }
+    },
+    {
+      "name": "sglcolfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "sglcolfigure{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "sglcolscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "sglcolscheme{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "dblcolfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "dblcolfigure{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "dblcolscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "dblcolscheme{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "fnpara"
+    },
+    {
+      "name": "fnnormal"
+    },
+    {
+      "name": "chem",
+      "arg": {
+        "format": "{}",
+        "snippet": "chem{${1:formula}}"
+      }
+    },
+    {
+      "name": "unit",
+      "arg": {
+        "format": "{}",
+        "snippet": "unit{${1:unit%formula}}"
+      }
+    },
+    {
+      "name": "CN",
+      "arg": {
+        "format": "{}",
+        "snippet": "CN{${1:text}}"
+      }
+    },
+    {
+      "name": "IUPAC",
+      "arg": {
+        "format": "{}",
+        "snippet": "IUPAC{${1:chemical compound}}"
+      }
+    },
+    {
+      "name": "",
+      "arg": {
+        "format": "|",
+        "snippet": "|"
+      }
+    },
+    {
+      "name": "BreakHyph",
+      "unusual": true
+    },
+    {
+      "name": "DoIUPAC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DoIUPAC{${1:arg}}"
+      }
+    },
+    {
+      "name": "FloatBarrier",
+      "unusual": true
+    },
+    {
+      "name": "MultiBreak",
+      "unusual": true
+    },
+    {
+      "name": "Prep",
+      "unusual": true
+    },
+    {
+      "name": "Updelta",
+      "unusual": true
+    },
+    {
+      "name": "Upgamma",
+      "unusual": true
+    },
+    {
+      "name": "Uplambda",
+      "unusual": true
+    },
+    {
+      "name": "Upomega",
+      "unusual": true
+    },
+    {
+      "name": "Upphi",
+      "unusual": true
+    },
+    {
+      "name": "Uppi",
+      "unusual": true
+    },
+    {
+      "name": "Uppsi",
+      "unusual": true
+    },
+    {
+      "name": "Upsigma",
+      "unusual": true
+    },
+    {
+      "name": "Uptheta",
+      "unusual": true
+    },
+    {
+      "name": "Upupsilon",
+      "unusual": true
+    },
+    {
+      "name": "Upxi",
+      "unusual": true
+    },
+    {
+      "name": "affiliations",
+      "unusual": true
+    },
+    {
+      "name": "allowhyphens",
+      "unusual": true
+    },
+    {
+      "name": "angstrom",
+      "unusual": true
+    },
+    {
+      "name": "authors",
+      "unusual": true
+    },
+    {
+      "name": "authorsep",
+      "unusual": true
+    },
+    {
+      "name": "background",
+      "unusual": true
+    },
+    {
+      "name": "beilstein",
+      "unusual": true
+    },
+    {
+      "name": "celsius",
+      "unusual": true
+    },
+    {
+      "name": "conclusion",
+      "unusual": true
+    },
+    {
+      "name": "degree",
+      "unusual": true
+    },
+    {
+      "name": "emails",
+      "unusual": true
+    },
+    {
+      "name": "emailsep",
+      "unusual": true
+    },
+    {
+      "name": "errorfootnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "errorfootnote{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "firstoptarg",
+      "unusual": true
+    },
+    {
+      "name": "floatcites",
+      "unusual": true
+    },
+    {
+      "name": "fudgefactor",
+      "unusual": true
+    },
+    {
+      "name": "longtablefootnote",
+      "unusual": true
+    },
+    {
+      "name": "makefootnoteparagraph",
+      "unusual": true
+    },
+    {
+      "name": "makehboxofhboxes",
+      "unusual": true
+    },
+    {
+      "name": "mpmakefootnoteparagraph",
+      "unusual": true
+    },
+    {
+      "name": "mynobreakdash",
+      "unusual": true
+    },
+    {
+      "name": "oneORnone",
+      "unusual": true
+    },
+    {
+      "name": "patchAmsMathEnvironmentForLineno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchAmsMathEnvironmentForLineno{${1:arg1}}"
+      }
+    },
+    {
+      "name": "patchAmsMathEnvironmentForOnecolumn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchAmsMathEnvironmentForOnecolumn{${1:arg1}}"
+      }
+    },
+    {
+      "name": "patchBothAmsMathEnvironmentsForLineno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchBothAmsMathEnvironmentsForLineno{${1:arg1}}"
+      }
+    },
+    {
+      "name": "patchBothAmsMathEnvironmentsForOnecolumn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchBothAmsMathEnvironmentsForOnecolumn{${1:arg1}}"
+      }
+    },
+    {
+      "name": "percent",
+      "unusual": true,
+      "detail": "%",
+      "doc": "Percent sign"
+    },
+    {
+      "name": "permil",
+      "unusual": true
+    },
+    {
+      "name": "removehboxes",
+      "unusual": true
+    },
+    {
+      "name": "results",
+      "unusual": true
+    },
+    {
+      "name": "setdisplaywidth",
+      "unusual": true
+    },
+    {
+      "name": "testbx",
+      "unusual": true
+    },
+    {
+      "name": "testfnpara",
+      "unusual": true
+    },
+    {
+      "name": "themyfootnote",
+      "unusual": true
+    },
+    {
+      "name": "thesuppinfo",
+      "unusual": true
+    },
+    {
+      "name": "captionsamerican",
+      "unusual": true
+    },
+    {
+      "name": "dateamerican",
+      "unusual": true
+    },
+    {
+      "name": "extrasamerican",
+      "unusual": true
+    },
+    {
+      "name": "noextrasamerican",
+      "unusual": true
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [
+    {
+      "name": "acknowledgements"
+    },
+    {
+      "name": "funding"
+    },
+    {
+      "name": "suppinfo"
+    },
+    {
+      "name": "scheme"
+    },
+    {
+      "name": "sglcoltabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "sglcoltabularx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "dblcoltabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "dblcoltabularx",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "widetext",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\documentclass/beilstein#c": [
+      "manuscript=${1|bookreport,commentary,fullresearchpaper,letter,review,suppinfo|}",
+      "american",
+      "british",
+      "latin1",
+      "utf8",
+      "applemac",
+      "sectionnumbering",
+      "fnpara"
+    ]
+  },
+  "args": [
+    "\\documentclass/beilstein#c"
+  ]
 }

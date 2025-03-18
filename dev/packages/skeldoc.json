@@ -1,186 +1,413 @@
 {
-  "includes": {
-    "xcolor": [],
-    "tabularx": [],
-    "booktabs": [],
-    "hyperref": [],
-    "enotez": [],
-    "marginnote": [],
-    "enumitem": []
-  },
-  "macros": {
-    "skelset{}": {
-      "snippet": "skelset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "skelline": {},
-    "skelline[]": {
-      "snippet": "skelline[${1:width}]"
+    {
+      "name": "tabularx"
     },
-    "skelline{}": {
-      "snippet": "skelline{${1:note}}"
+    {
+      "name": "booktabs"
     },
-    "skelline[]{}": {
-      "snippet": "skelline[${2:width}]{${1:note}}"
+    {
+      "name": "hyperref"
     },
-    "skelref": {},
-    "skelref[]": {
-      "snippet": "skelref[${1:width}]"
+    {
+      "name": "enotez"
     },
-    "skelref{}": {
-      "snippet": "skelref{${1:note}}"
+    {
+      "name": "marginnote"
     },
-    "skelref[]{}": {
-      "snippet": "skelref[${2:width}]{${1:note}}"
+    {
+      "name": "enumitem"
+    }
+  ],
+  "macros": [
+    {
+      "name": "skelset",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelset{${1:options%keyvals}}",
+        "keys": [
+          "\\skelset"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelcite": {},
-    "skelcite[]": {
-      "snippet": "skelcite[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "skelline"
     },
-    "skelcite{}": {
-      "snippet": "skelcite{${1:note}}"
+    {
+      "name": "skelline",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelline[${1:width}]"
+      }
     },
-    "skelcite[]{}": {
-      "snippet": "skelcite[${2:options}]{${1:note}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "skelline",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelline{${1:note%text}}"
+      }
     },
-    "skelpar": {},
-    "skelpar[]": {
-      "snippet": "skelpar[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "skelline",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelline[${2:width}]{${1:note%text}}"
+      }
     },
-    "skelpar{}": {
-      "snippet": "skelpar{${1:note}}"
+    {
+      "name": "skelref"
     },
-    "skelpar[]{}": {
-      "snippet": "skelpar[${2:options}]{${1:note}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "skelref",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelref[${1:width}]"
+      }
     },
-    "skelfig": {},
-    "skelfig[]": {
-      "snippet": "skelfig[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "skelref",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelref{${1:note%text}}"
+      }
     },
-    "skelfig{}": {
-      "snippet": "skelfig{${1:note}}"
+    {
+      "name": "skelref",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelref[${2:width}]{${1:note%text}}"
+      }
     },
-    "skelfig[]{}": {
-      "snippet": "skelfig[${2:options}]{${1:note}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "skelcite"
     },
-    "skelcaption": {},
-    "skelcaption[]": {
-      "snippet": "skelcaption[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "skelcite",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelcite[${1:options%keyvals}]",
+        "keys": [
+          "\\skelcite#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelcaption{}": {
-      "snippet": "skelcaption{${1:note}}"
+    {
+      "name": "skelcite",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelcite{${1:note%text}}"
+      }
     },
-    "skelcaption[]{}": {
-      "snippet": "skelcaption[${2:options}]{${1:note}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "skelcite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelcite[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelcite#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelpars": {},
-    "skelpars[]": {
-      "snippet": "skelpars[${1:pars}]"
+    {
+      "name": "skelpar"
     },
-    "skelpars{}": {
-      "snippet": "skelpars{${1:note}}"
+    {
+      "name": "skelpar",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelpar[${1:options%keyvals}]",
+        "keys": [
+          "\\skelpar#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelpars[]{}": {
-      "snippet": "skelpars[${2:pars}]{${1:note}}"
+    {
+      "name": "skelpar",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelpar{${1:note%text}}"
+      }
     },
-    "skelitems": {},
-    "skelitems[]": {
-      "snippet": "skelitems[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelpar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelpar[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelpar#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelitems{}": {
-      "snippet": "skelitems{${1:note}}"
+    {
+      "name": "skelfig"
     },
-    "skelitems[]{}": {
-      "snippet": "skelitems[${2:options}]{${1:note}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelfig",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelfig[${1:options%keyvals}]",
+        "keys": [
+          "\\skelfig#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelenum": {},
-    "skelenum[]": {
-      "snippet": "skelenum[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelfig{${1:note%text}}"
+      }
     },
-    "skelenum{}": {
-      "snippet": "skelenum{${1:note}}"
+    {
+      "name": "skelfig",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelfig[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelfig#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelenum[]{}": {
-      "snippet": "skelenum[${2:options}]{${1:note}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelcaption"
     },
-    "skeltabular": {},
-    "skeltabular[]": {
-      "snippet": "skeltabular[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "skelcaption",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelcaption[${1:options%keyvals}]",
+        "keys": [
+          "\\skelcaption#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skeltabular{}": {
-      "snippet": "skeltabular{${1:note}}"
+    {
+      "name": "skelcaption",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelcaption{${1:note%text}}"
+      }
     },
-    "skeltabular[]{}": {
-      "snippet": "skeltabular[${2:options}]{${1:note}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "skelcaption",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelcaption[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelcaption#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelbib": {},
-    "skelbib[]": {
-      "snippet": "skelbib[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelpars"
     },
-    "skelbib{}": {
-      "snippet": "skelbib{${1:note}}"
+    {
+      "name": "skelpars",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelpars[${1:pars}]"
+      }
     },
-    "skelbib[]{}": {
-      "snippet": "skelbib[${2:options}]{${1:note}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "skelpars",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelpars{${1:note%text}}"
+      }
     },
-    "skelpseudo": {},
-    "skelpseudo[]": {
-      "snippet": "skelpseudo[${1:options}]",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "skelpars",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelpars[${2:pars}]{${1:note%text}}"
+      }
     },
-    "skelpseudo{}": {
-      "snippet": "skelpseudo{${1:note}}"
+    {
+      "name": "skelitems"
     },
-    "skelpseudo[]{}": {
-      "snippet": "skelpseudo[${2:options}]{${1:note}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "skelitems",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelitems[${1:options%keyvals}]",
+        "keys": [
+          "\\skelitems#c,\\skelenum#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "skelnote{}": {
-      "snippet": "skelnote{${1:note}}"
+    {
+      "name": "skelitems",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelitems{${1:note%text}}"
+      }
     },
-    "printskelnotes": {},
-    "skelversion": {},
-    "skeldate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "skelitems",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelitems[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelitems#c,\\skelenum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelenum"
+    },
+    {
+      "name": "skelenum",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelenum[${1:options%keyvals}]",
+        "keys": [
+          "\\skelitems#c,\\skelenum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelenum",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelenum{${1:note%text}}"
+      }
+    },
+    {
+      "name": "skelenum",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelenum[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelitems#c,\\skelenum#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skeltabular"
+    },
+    {
+      "name": "skeltabular",
+      "arg": {
+        "format": "[]",
+        "snippet": "skeltabular[${1:options%keyvals}]",
+        "keys": [
+          "\\skeltabular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skeltabular",
+      "arg": {
+        "format": "{}",
+        "snippet": "skeltabular{${1:note%text}}"
+      }
+    },
+    {
+      "name": "skeltabular",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skeltabular[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skeltabular#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelbib"
+    },
+    {
+      "name": "skelbib",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelbib[${1:options%keyvals}]",
+        "keys": [
+          "\\skelbib#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelbib",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelbib{${1:note%text}}"
+      }
+    },
+    {
+      "name": "skelbib",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelbib[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelbib#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelpseudo"
+    },
+    {
+      "name": "skelpseudo",
+      "arg": {
+        "format": "[]",
+        "snippet": "skelpseudo[${1:options%keyvals}]",
+        "keys": [
+          "\\skelpseudo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelpseudo",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelpseudo{${1:note%text}}"
+      }
+    },
+    {
+      "name": "skelpseudo",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "skelpseudo[${2:options%keyvals}]{${1:note%text}}",
+        "keys": [
+          "\\skelpseudo#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "skelnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "skelnote{${1:note%text}}"
+      }
+    },
+    {
+      "name": "printskelnotes"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\skelset": [
       "main-color=",
       "full-width=",
       "short-width=",
@@ -215,40 +442,53 @@
       "pseudo-head=",
       "pseudo-newlines={${1:cmd1,cmd2,...}}"
     ],
-    [
+    "\\skelcite#c": [
       "${1:width}",
       "width=",
       "left=${1:code}",
       "right=${1:code}"
     ],
-    [
+    "\\skelpar#c": [
       "${1:lines}",
       "lines=${1:integer}",
       "first-width=",
       "width=",
       "last-width="
     ],
-    [
+    "\\skelfig#c": [
       "${1:height}",
       "width=",
       "height="
     ],
-    [
+    "\\skelcaption#c": [
+      "${1:lines}",
+      "lines=${1:integer}",
+      "first-width=",
+      "width=",
+      "last-width="
+    ],
+    "\\skelitems#c,\\skelenum#c": [
       "${1:items}",
       "items=${1:integer}",
       "item-lines=${1:integer}"
     ],
-    [
+    "\\skeltabular#c": [
       "${1:rows}",
       "rows=${1:integer}",
       "colsep=",
       "stretch=${1:factor}"
     ],
-    [
+    "\\skelbib#c": [
+      "${1:items}",
+      "items=${1:integer}",
+      "item-lines=${1:integer}"
+    ],
+    "\\skelpseudo#c": [
       "${1:lines}",
       "lines=${1:integer}",
       "head=",
       "newlines={${1:cmd1,cmd2,...}}"
     ]
-  ]
+  },
+  "args": []
 }

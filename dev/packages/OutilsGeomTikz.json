@@ -1,138 +1,306 @@
 {
-  "includes": {
-    "tikz": [],
-    "pgffor": [],
-    "simplekv": [],
-    "xstring": [],
-    "nicefrac": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": []
+  "deps": [
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgffor"
+    },
+    {
+      "name": "simplekv"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "nicefrac"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    }
+  ],
+  "macros": [
+    {
+      "name": "tkzCrayon"
+    },
+    {
+      "name": "tkzCrayon",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzCrayon[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzCrayon"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzRegle"
+    },
+    {
+      "name": "tkzRegle",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzRegle[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzRegle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzRegleRepere"
+    },
+    {
+      "name": "tkzRegleRepere",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzRegleRepere[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzRegleRepere"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzEquerre"
+    },
+    {
+      "name": "tkzEquerre",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzEquerre[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzEquerre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzRapporteur"
+    },
+    {
+      "name": "tkzRapporteur",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzRapporteur[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzRapporteur"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzPourcenteur"
+    },
+    {
+      "name": "tkzPourcenteur",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzPourcenteur[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzPourcenteur"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzRequerre"
+    },
+    {
+      "name": "tkzRequerre",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzRequerre[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzRequerre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzRappEquerre"
+    },
+    {
+      "name": "tkzRappEquerre",
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzRappEquerre[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzRappEquerre"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzCompas",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tkzCompas{${1:pointe}}{${2:mine}}"
+      }
+    },
+    {
+      "name": "tkzCompas",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "tkzCompas[${3:clés%keyvals}]{${1:pointe}}{${2:mine}}",
+        "keys": [
+          "\\tkzCompas"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzMiniEquerre",
+      "unusual": true
+    },
+    {
+      "name": "tkzMiniEquerre",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzMiniEquerre[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzMiniEquerre,\\tkzMiniRegle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tkzMiniRegle",
+      "unusual": true
+    },
+    {
+      "name": "tkzMiniRegle",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "tkzMiniRegle[${1:clés%keyvals}]",
+        "keys": [
+          "\\tkzMiniEquerre,\\tkzMiniRegle"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tkzCrayon": [
+      "Longueur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur="
+    ],
+    "\\tkzRegle": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheValeurs",
+      "PosVal=${1|h,m,b,hb|}"
+    ],
+    "\\tkzRegleRepere": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheValeurs",
+      "Retourne"
+    ],
+    "\\tkzEquerre": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheValeurs",
+      "PetitCote"
+    ],
+    "\\tkzRapporteur": [
+      "Complet",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheAngles"
+    ],
+    "\\tkzPourcenteur": [
+      "Echelle=${1:nombre}",
+      "EchelleAngle=${1:nombre}",
+      "Couleur=",
+      "CouleurFond=",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "AfficheValeurs",
+      "Fond",
+      "Opacite=${1:factor}",
+      "Decoration"
+    ],
+    "\\tkzRequerre": [
+      "Longueur=${1:nombre}",
+      "Largeur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheValeurs"
+    ],
+    "\\tkzRappEquerre": [
+      "Largeur=${1:nombre}",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Echelle=${1:nombre}",
+      "EchelleValeurs=${1:nombre}",
+      "Couleur=",
+      "Fond",
+      "CouleurFond=",
+      "Opacite=${1:factor}",
+      "AfficheAngles",
+      "AfficheValeurs",
+      "Ombre"
+    ],
+    "\\tkzCompas": [
+      "AfficheCrayon",
+      "EchelleCrayon=${1:nombre}",
+      "CouleurCrayon=",
+      "LongueurCrayon=${1:nombre}",
+      "LongueurBranches=${1:nombre}",
+      "CouleurCompas=",
+      "Retourne",
+      "Echelle=${1:nombre}",
+      "UniteTikz=${1:unité}"
+    ],
+    "\\tkzMiniEquerre,\\tkzMiniRegle": [
+      "Echelle=${1:nombre}",
+      "Couleur=",
+      "Origine={(${1:x,y})}",
+      "Rotation=${1:degrees}",
+      "Ombre"
+    ]
   },
-  "macros": {
-    "tkzCrayon": {},
-    "tkzCrayon[]": {
-      "snippet": "tkzCrayon[${1:clés}]"
-    },
-    "tkzRegle": {},
-    "tkzRegle[]": {
-      "snippet": "tkzRegle[${1:clés}]"
-    },
-    "tkzRegleRepere": {},
-    "tkzRegleRepere[]": {
-      "snippet": "tkzRegleRepere[${1:clés}]"
-    },
-    "tkzEquerre": {},
-    "tkzEquerre[]": {
-      "snippet": "tkzEquerre[${1:clés}]"
-    },
-    "tkzRapporteur": {},
-    "tkzRapporteur[]": {
-      "snippet": "tkzRapporteur[${1:clés}]"
-    },
-    "tkzPourcenteur": {},
-    "tkzPourcenteur[]": {
-      "snippet": "tkzPourcenteur[${1:clés}]"
-    },
-    "tkzRequerre": {},
-    "tkzRequerre[]": {
-      "snippet": "tkzRequerre[${1:clés}]"
-    },
-    "tkzRappEquerre": {},
-    "tkzRappEquerre[]": {
-      "snippet": "tkzRappEquerre[${1:clés}]"
-    },
-    "tkzCompas{}{}": {
-      "snippet": "tkzCompas{${1:pointe}}{${2:mine}}"
-    },
-    "tkzCompas[]{}{}": {
-      "snippet": "tkzCompas[${3:clés}]{${1:pointe}}{${2:mine}}"
-    },
-    "tkzMiniEquerre": {},
-    "tkzMiniEquerre[]": {
-      "snippet": "tkzMiniEquerre[${1:clés}]"
-    },
-    "tkzMiniRegle": {},
-    "tkzMiniRegle[]": {
-      "snippet": "tkzMiniRegle[${1:clés}]"
-    },
-    "COMPAScouleur": {},
-    "COMPAScouleurcrayon": {},
-    "COMPASechelle": {},
-    "COMPASechellecrayon": {},
-    "COMPASLLB": {},
-    "COMPASLLC": {},
-    "COMPASunittikz": {},
-    "EQangle": {},
-    "EQcouleur": {},
-    "EQcouleurfond": {},
-    "EQechelle": {},
-    "EQlargeur": {},
-    "EQlongueur": {},
-    "EQopac": {},
-    "EQposOrigin": {},
-    "MiniEQangle": {},
-    "MiniEQcouleur": {},
-    "MiniEQechelle": {},
-    "MiniEQposOrigin": {},
-    "MiniREGLangle": {},
-    "MiniREGLcouleur": {},
-    "MiniREGLechelle": {},
-    "MiniREGLposOrigin": {},
-    "NodeTmpAngle{}{}": {
-      "snippet": "NodeTmpAngle{${1:arg1}}{${2:arg2}}"
-    },
-    "NodeTmpDist{}{}": {
-      "snippet": "NodeTmpDist{${1:arg1}}{${2:arg2}}"
-    },
-    "PENangle": {},
-    "PENcouleur": {},
-    "PENechelle": {},
-    "PENlongueur": {},
-    "PENposOrigin": {},
-    "RAPPangle": {},
-    "RAPPcouleur": {},
-    "RAPPcouleurfond": {},
-    "RAPPechangle": {},
-    "RAPPechelle": {},
-    "RAPPEQangle": {},
-    "RAPPEQcouleur": {},
-    "RAPPEQcouleurfond": {},
-    "RAPPEQechangle": {},
-    "RAPPEQechelle": {},
-    "RAPPEQlargeur": {},
-    "RAPPEQopac": {},
-    "RAPPEQposOrigin": {},
-    "RAPPopac": {},
-    "RAPPposOrigin": {},
-    "recupunitexencm": {},
-    "REGLangle": {},
-    "REGLcouleur": {},
-    "REGLcouleurfond": {},
-    "REGLechelle": {},
-    "REGLlargeur": {},
-    "REGLlongueur": {},
-    "REGLopac": {},
-    "REGLposOrigin": {},
-    "REGLposval": {},
-    "REQangle": {},
-    "REQcouleur": {},
-    "REQcouleurfond": {},
-    "REQechelle": {},
-    "REQlargeur": {},
-    "REQlongueur": {},
-    "REQopac": {},
-    "REQposOrigin": {},
-    "TmpUniteX": {},
-    "REGLREPechelle": {},
-    "REGLREPlongueur": {},
-    "REGLREPlargeur": {},
-    "REGLREPcouleur": {},
-    "REGLREPcouleurfond": {},
-    "REGLREPposOrigin": {},
-    "REGLREPangle": {},
-    "REGLREPopac": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

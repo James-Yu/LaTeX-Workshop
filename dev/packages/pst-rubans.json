@@ -1,28 +1,88 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-solides3d": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "pshelices[]": {
-      "snippet": "pshelices[${1:options}]"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psSpiralRing[]": {
-      "snippet": "psSpiralRing[${1:options}]"
+    {
+      "name": "pst-solides3d"
     },
-    "psSphericalSpiral[]": {
-      "snippet": "psSphericalSpiral[${1:options}]"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pshelices",
+      "arg": {
+        "format": "[]",
+        "snippet": "pshelices[${1:options%keyvals}]"
+      }
     },
-    "psSpiralParaboloid[]": {
-      "snippet": "psSpiralParaboloid[${1:options}]"
+    {
+      "name": "pshelices",
+      "arg": {
+        "format": "[]()",
+        "snippet": "pshelices[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
     },
-    "psSpiralCone[]": {
-      "snippet": "psSpiralCone[${1:options}]"
+    {
+      "name": "psSpiralRing",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSpiralRing[${1:options%keyvals}]"
+      }
     },
-    "PSTRubansLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psSpiralRing",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psSpiralRing[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "psSphericalSpiral",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSphericalSpiral[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psSphericalSpiral",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psSphericalSpiral[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "psSpiralParaboloid",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSpiralParaboloid[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psSpiralParaboloid",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psSpiralParaboloid[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    },
+    {
+      "name": "psSpiralCone",
+      "arg": {
+        "format": "[]",
+        "snippet": "psSpiralCone[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "psSpiralCone",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psSpiralCone[${1:options%keyvals}](${2:x},${3:y},${4:z})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

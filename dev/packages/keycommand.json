@@ -1,210 +1,508 @@
 {
-  "includes": {
-    "etex": [],
-    "kvsetkeys": [],
-    "xkeyval": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "newkeycommand{}[]{}": {
-      "snippet": "newkeycommand{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "newkeycommand{}[][]{}": {
-      "snippet": "newkeycommand{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "newkeycommand{}[][][]{}": {
-      "snippet": "newkeycommand{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "newkeycommand[]{}[]{}": {
-      "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "newkeycommand[]{}[][]{}": {
-      "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "newkeycommand[]{}[][][]{}": {
-      "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "newkeycommand*{}[]{}": {
-      "snippet": "newkeycommand*{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "newkeycommand*{}[][]{}": {
-      "snippet": "newkeycommand*{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "newkeycommand*{}[][][]{}": {
-      "snippet": "newkeycommand*{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "newkeycommand*[]{}[]{}": {
-      "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "newkeycommand*[]{}[][]{}": {
-      "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "newkeycommand*[]{}[][][]{}": {
-      "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "renewkeycommand{}[]{}": {
-      "snippet": "renewkeycommand{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "renewkeycommand{}[][]{}": {
-      "snippet": "renewkeycommand{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "renewkeycommand{}[][][]{}": {
-      "snippet": "renewkeycommand{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "renewkeycommand[]{}[]{}": {
-      "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "renewkeycommand[]{}[][]{}": {
-      "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "renewkeycommand[]{}[][][]{}": {
-      "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "renewkeycommand*{}[]{}": {
-      "snippet": "renewkeycommand*{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "renewkeycommand*{}[][]{}": {
-      "snippet": "renewkeycommand*{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "renewkeycommand*{}[][][]{}": {
-      "snippet": "renewkeycommand*{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "renewkeycommand*[]{}[]{}": {
-      "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "renewkeycommand*[]{}[][]{}": {
-      "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "renewkeycommand*[]{}[][][]{}": {
-      "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "providekeycommand{}[]{}": {
-      "snippet": "providekeycommand{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "providekeycommand{}[][]{}": {
-      "snippet": "providekeycommand{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "providekeycommand{}[][][]{}": {
-      "snippet": "providekeycommand{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "providekeycommand[]{}[]{}": {
-      "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "providekeycommand[]{}[][]{}": {
-      "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "providekeycommand[]{}[][][]{}": {
-      "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "providekeycommand*{}[]{}": {
-      "snippet": "providekeycommand*{${1:cmd}}[${2:keys=defaults}]{${3:def}}"
-    },
-    "providekeycommand*{}[][]{}": {
-      "snippet": "providekeycommand*{${1:cmd}}[${2:keys=defaults}][${3:args}]{${4:def}}"
-    },
-    "providekeycommand*{}[][][]{}": {
-      "snippet": "providekeycommand*{${1:cmd}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:def}}"
-    },
-    "providekeycommand*[]{}[]{}": {
-      "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
-    },
-    "providekeycommand*[]{}[][]{}": {
-      "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
-    },
-    "providekeycommand*[]{}[][][]{}": {
-      "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
-    },
-    "newkeyenvironment{}[]{}{}": {
-      "snippet": "newkeyenvironment{${1:envname}}[${2:keys=defaults}]{${3:begdef}}{${4:enddef}}"
-    },
-    "newkeyenvironment{}[][]{}{}": {
-      "snippet": "newkeyenvironment{${1:envname}}[${2:keys=defaults}][${3:args}]{${4:begdef}}{${5:enddef}}"
-    },
-    "newkeyenvironment{}[][][]{}{}": {
-      "snippet": "newkeyenvironment{${1:envname}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:begdef}}{${6:enddef}}"
-    },
-    "newkeyenvironment[]{}[]{}{}": {
-      "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
-    },
-    "newkeyenvironment[]{}[][]{}{}": {
-      "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "newkeyenvironment[]{}[][][]{}{}": {
-      "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "newkeyenvironment*{}[]{}{}": {
-      "snippet": "newkeyenvironment*{${1:envname}}[${2:keys=defaults}]{${3:begdef}}{${4:enddef}}"
-    },
-    "newkeyenvironment*{}[][]{}{}": {
-      "snippet": "newkeyenvironment*{${1:envname}}[${2:keys=defaults}][${3:args}]{${4:begdef}}{${5:enddef}}"
-    },
-    "newkeyenvironment*{}[][][]{}{}": {
-      "snippet": "newkeyenvironment*{${1:envname}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:begdef}}{${6:enddef}}"
-    },
-    "newkeyenvironment*[]{}[]{}{}": {
-      "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
-    },
-    "newkeyenvironment*[]{}[][]{}{}": {
-      "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "newkeyenvironment*[]{}[][][]{}{}": {
-      "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment{}[]{}{}": {
-      "snippet": "renewkeyenvironment{${1:envname}}[${2:keys=defaults}]{${3:begdef}}{${4:enddef}}"
-    },
-    "renewkeyenvironment{}[][]{}{}": {
-      "snippet": "renewkeyenvironment{${1:envname}}[${2:keys=defaults}][${3:args}]{${4:begdef}}{${5:enddef}}"
-    },
-    "renewkeyenvironment{}[][][]{}{}": {
-      "snippet": "renewkeyenvironment{${1:envname}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:begdef}}{${6:enddef}}"
-    },
-    "renewkeyenvironment[]{}[]{}{}": {
-      "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment[]{}[][]{}{}": {
-      "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment[]{}[][][]{}{}": {
-      "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment*{}[]{}{}": {
-      "snippet": "renewkeyenvironment*{${1:envname}}[${2:keys=defaults}]{${3:begdef}}{${4:enddef}}"
-    },
-    "renewkeyenvironment*{}[][]{}{}": {
-      "snippet": "renewkeyenvironment*{${1:envname}}[${2:keys=defaults}][${3:args}]{${4:begdef}}{${5:enddef}}"
-    },
-    "renewkeyenvironment*{}[][][]{}{}": {
-      "snippet": "renewkeyenvironment*{${1:envname}}[${2:keys=defaults}][${3:OptKey}][${4:args}]{${5:begdef}}{${6:enddef}}"
-    },
-    "renewkeyenvironment*[]{}[]{}{}": {
-      "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment*[]{}[][]{}{}": {
-      "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "renewkeyenvironment*[]{}[][][]{}{}": {
-      "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
-    },
-    "commandkey{}": {
-      "snippet": "commandkey{${1:key}}"
-    },
-    "getcommandkey{}": {
-      "snippet": "getcommandkey{${1:key}}"
-    },
-    "ifcommandkey{}{}{}": {
-      "snippet": "ifcommandkey{${1:key}}{${2:true}}{${3:false}}"
-    },
-    "showcommandkeys{}": {
-      "snippet": "showcommandkeys{${1:keys}}"
-    },
-    "showcommandkey{}": {
-      "snippet": "showcommandkey{${1:key}}"
-    },
-    "default": {},
-    "next": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "etex"
+    },
+    {
+      "name": "kvsetkeys"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "etoolbox"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newkeycommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newkeycommand{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newkeycommand{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "newkeycommand{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "newkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newkeycommand*{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "newkeycommand*{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "newkeycommand*{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "newkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewkeycommand{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "renewkeycommand{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "renewkeycommand{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "renewkeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "renewkeycommand*{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "renewkeycommand*{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "renewkeycommand*{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "renewkeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "renewkeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providekeycommand{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "providekeycommand{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "providekeycommand{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "providekeycommand[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "providekeycommand*{${1:cmd}}[${3:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "providekeycommand*{${1:cmd}}[${3:keys=defaults}][${4:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "arg": {
+        "format": "{}[][][]{}",
+        "snippet": "providekeycommand*{${1:cmd}}[${3:keys=defaults}][${4:OptKey}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}",
+        "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "providekeycommand*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}",
+        "snippet": "providekeycommand*[${3:short-unexpand}]{${1:cmd}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "newkeyenvironment{${1:envname}}[${4:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "newkeyenvironment{${1:envname}}[${4:keys=defaults}][${5:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "arg": {
+        "format": "{}[][][]{}{}",
+        "snippet": "newkeyenvironment{${1:envname}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}{}",
+        "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}{}",
+        "snippet": "newkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "newkeyenvironment*{${1:envname}}[${4:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "newkeyenvironment*{${1:envname}}[${4:keys=defaults}][${5:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "arg": {
+        "format": "{}[][][]{}{}",
+        "snippet": "newkeyenvironment*{${1:envname}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}{}",
+        "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "newkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}{}",
+        "snippet": "newkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "renewkeyenvironment{${1:envname}}[${4:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "renewkeyenvironment{${1:envname}}[${4:keys=defaults}][${5:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "arg": {
+        "format": "{}[][][]{}{}",
+        "snippet": "renewkeyenvironment{${1:envname}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}{}",
+        "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}{}",
+        "snippet": "renewkeyenvironment[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "renewkeyenvironment*{${1:envname}}[${4:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "renewkeyenvironment*{${1:envname}}[${4:keys=defaults}][${5:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "arg": {
+        "format": "{}[][][]{}{}",
+        "snippet": "renewkeyenvironment*{${1:envname}}[${4:keys=defaults}][${5:OptKey}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]{}{}",
+        "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "renewkeyenvironment*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][][]{}{}",
+        "snippet": "renewkeyenvironment*[${4:short-unexpand}]{${1:envname}}[${5:keys=defaults}][${6:OptKey}][${7:args}]{${2:begdef}}{${3:enddef}}"
+      }
+    },
+    {
+      "name": "commandkey",
+      "arg": {
+        "format": "{}",
+        "snippet": "commandkey{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "getcommandkey",
+      "arg": {
+        "format": "{}",
+        "snippet": "getcommandkey{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "ifcommandkey",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifcommandkey{${1:key%plain}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "showcommandkeys",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showcommandkeys{${1:keys%plain}}"
+      }
+    },
+    {
+      "name": "showcommandkey",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showcommandkey{${1:key%plain}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

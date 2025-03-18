@@ -1,0 +1,85 @@
+{
+    "name": "LaTeX Workshop log",
+    "patterns": [
+        {
+            "begin": "^\\[([0-9\\.:]*)\\]\\[(\\w*)\\](?:\\[(\\w*)\\])?\\s?",
+            "end":"$",
+            "beginCaptures": {
+                "1": {
+                    "name": "constant.numeric.timestamp.latex_workshop.log"
+                },
+                "2": {
+                    "name": "constant.language.latex_workshop.log"
+                },
+                "3": {
+                    "name": "constant.language.latex_workshop.log"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "#events"
+                },
+                {
+                    "include": "#variables"
+                },
+                {
+                    "include": "#message_with_brace_arguments"
+                },
+                {
+                    "include": "#message_with_bracket_arguments"
+                }
+            ]
+        }
+    ],
+    "repository": {
+        "events": {
+            "match": "\\G(BUILD_DONE|AUTO_BUILD_INITIATED|ROOT_FILE_CHANGED|ROOT_FILE_SEARCHED|FILE_PARSED|VIEWER_PAGE_LOADED|VIEWER_STATUS_CHANGED|FILE_WATCHED|FILE_CHANGED|FILE_REMOVED|DOCUMENT_CHANGED|STRUCTURE_UPDATED|AUTO_CLEANED)(?::\\s(.*))?",
+            "captures": {
+                "1": {
+                    "name": "support.function.latex_workshop.log"
+                },
+                "2": {
+                    "name": "string.latex_workshop.log"
+                }
+            },
+            "name": "meta.event.latex_workshop.log"
+        },
+         "variables": {
+            "match": "\\G(?:Set\\s)?(\\$?[\\w\\.-]+):\\s?(.*(?=\\s?\\.$)|.*(?=$))",
+            "captures": {
+                "1": {
+                    "name": "support.variable.latex_workshop.log"
+                },
+                "2": {
+                    "name": "string.latex_workshop.log"
+                }
+            },
+            "name": "meta.variable.latex_workshop.log"
+        },
+        "message_with_bracket_arguments": {
+            "match": "\\G([\\w\\s]+):\\s?\\[(.*)\\]",
+            "captures": {
+                "1": {
+                    "name": "entity.message.latex_workshop.log"
+                },
+                "2": {
+                    "name": "string.latex_workshop.log"
+                }
+            },
+            "name": "meta.message.latex_workshop.log"
+        },
+        "message_with_brace_arguments": {
+            "match": "\\G([\\w\\s]+):\\s?\\{(.*)\\}",
+            "captures": {
+                "1": {
+                    "name": "entity.message.latex_workshop.log"
+                },
+                "2": {
+                    "name": "string.latex_workshop.log"
+                }
+            },
+            "name": "meta.message.latex_workshop.log"
+        }
+    },
+    "scopeName": "text.latex_workshop.log"
+}

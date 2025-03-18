@@ -1,24 +1,43 @@
 {
-  "includes": {
-    "pst-plot": [],
-    "infix-RPN": []
-  },
-  "macros": {
-    "psPlot{}{}{}": {
-      "snippet": "psPlot{${1:x0}}{${2:x1}}{${3:infix expr}}"
+  "deps": [
+    {
+      "name": "pst-plot"
     },
-    "psPlot[]{}{}{infi": {
-      "snippet": "psPlot[${3:options}]{${1:x0}}{${2:x1}}{infi"
+    {
+      "name": "infix-RPN"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psPlot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "psPlot{${1:x0}}{${2:x1}}{${3:infix expr}}"
+      }
     },
-    "parametricPlot{}{}{}{}": {
-      "snippet": "parametricPlot{${1:t0}}{${2:t1}}{${3:x(${5:t})}}{${4:y(${6:t})}}"
+    {
+      "name": "psPlot",
+      "arg": {
+        "format": "[]{}{}{infi",
+        "snippet": "psPlot[${3:options%keyvals}]{${1:x0}}{${2:x1}}{infi"
+      }
     },
-    "parametricPlot[]{}{}{}{}": {
-      "snippet": "parametricPlot[${5:options}]{${1:t0}}{${2:t1}}{${3:x(${6:t})}}{${4:y(${7:t})}}"
+    {
+      "name": "parametricPlot",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "parametricPlot{${1:t0}}{${2:t1}}{${3:x(${5:t})}}{${4:y(${6:t})}}"
+      }
     },
-    "PSTPlotLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "parametricPlot",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "parametricPlot[${5:options}]{${1:t0}}{${2:t1}}{${3:x(${6:t})}}{${4:y(${7:t})}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,18 +1,32 @@
 {
-  "includes": {
-    "infwarerr": [],
-    "ltxcmds": [],
-    "etexcmds": []
-  },
-  "macros": {
-    "CatchFileDef{}{}{}": {
-      "snippet": "CatchFileDef{${1:cmd}}{${2:file}}{${3:setup}}"
+  "deps": [
+    {
+      "name": "infwarerr"
     },
-    "CatchFileEdef{}{}{}": {
-      "snippet": "CatchFileEdef{${1:cmd}}{${2:file}}{${3:setup}}"
+    {
+      "name": "ltxcmds"
+    },
+    {
+      "name": "etexcmds"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "CatchFileDef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "CatchFileDef{${1:cmd}}{${2:file}}{${3:setup}}"
+      }
+    },
+    {
+      "name": "CatchFileEdef",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "CatchFileEdef{${1:cmd}}{${2:file}}{${3:setup}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

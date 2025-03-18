@@ -35,6 +35,7 @@ export type ServerResponse = {
 }
 
 export type PdfViewerParams = {
+    toolbar: number,
     scale: string,
     trim: number,
     scrollMode: number,
@@ -65,13 +66,13 @@ export type PdfViewerParams = {
     codeColorTheme: 'light' | 'dark',
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
-    }
+    },
+    reloadTransition: 'none' | 'fade'
 }
 
 export type ClientRequest = {
     type: 'open',
-    pdfFileUri: string,
-    viewer: 'browser' | 'tab'
+    pdfFileUri: string
 } | {
     type: 'loaded',
     pdfFileUri: string

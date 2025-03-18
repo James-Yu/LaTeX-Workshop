@@ -1,240 +1,371 @@
 {
-  "includes": {
-    "tikz": []
-  },
-  "macros": {
-    "entity": {},
-    "entity[]": {
-      "snippet": "entity[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "entity"
     },
-    "value": {},
-    "value[]": {
-      "snippet": "value[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "entity",
+      "arg": {
+        "format": "[]",
+        "snippet": "entity[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "unary": {},
-    "unary[]": {
-      "snippet": "unary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "value"
     },
-    "role": {},
-    "role[]": {
-      "snippet": "role[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "value",
+      "arg": {
+        "format": "[]",
+        "snippet": "value[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "binary": {},
-    "binary[]": {
-      "snippet": "binary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "unary"
     },
-    "roles": {},
-    "roles[]": {
-      "snippet": "roles[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "unary",
+      "arg": {
+        "format": "[]",
+        "snippet": "unary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ternary": {},
-    "ternary[]": {
-      "snippet": "ternary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "role"
     },
-    "vunary": {},
-    "vunary[]": {
-      "snippet": "vunary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "role",
+      "arg": {
+        "format": "[]",
+        "snippet": "role[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "vrole": {},
-    "vrole[]": {
-      "snippet": "vrole[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "binary"
     },
-    "vbinary": {},
-    "vbinary[]": {
-      "snippet": "vbinary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "binary",
+      "arg": {
+        "format": "[]",
+        "snippet": "binary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "vroles": {},
-    "vroles[]": {
-      "snippet": "vroles[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "roles"
     },
-    "vternary": {},
-    "vternary[]": {
-      "snippet": "vternary[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "roles",
+      "arg": {
+        "format": "[]",
+        "snippet": "roles[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "plays": {},
-    "plays[]": {
-      "snippet": "plays[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ternary"
     },
-    "limits": {},
-    "limits[]": {
-      "snippet": "limits[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ternary",
+      "arg": {
+        "format": "[]",
+        "snippet": "ternary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "limitsto": {},
-    "limitsto[]": {
-      "snippet": "limitsto[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "vunary"
     },
-    "rules": {},
-    "constraintdeclare{}{}": {
-      "snippet": "constraintdeclare{${1:name}}{${2:path code}}"
+    {
+      "name": "vunary",
+      "arg": {
+        "format": "[]",
+        "snippet": "vunary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "constraintdeclarealias{}{}": {
-      "snippet": "constraintdeclarealias{${1:alias name}}{${2:existing name}}"
+    {
+      "name": "vrole"
     },
-    "constraintdeclareasnode{}{}": {
-      "snippet": "constraintdeclareasnode{${1:name}}{${2:TikZ code}}"
+    {
+      "name": "vrole",
+      "arg": {
+        "format": "[]",
+        "snippet": "vrole[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ormtext": {},
-    "ormbf": {},
-    "ormc": {},
-    "ormsup{}": {
-      "snippet": "ormsup{${1:text}}"
+    {
+      "name": "vbinary"
     },
-    "ormsub{}": {
-      "snippet": "ormsub{${1:text}}"
+    {
+      "name": "vbinary",
+      "arg": {
+        "format": "[]",
+        "snippet": "vbinary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ormind{}": {
-      "snippet": "ormind{${1:text}}"
+    {
+      "name": "vroles"
     },
-    "ormbraces{}": {
-      "snippet": "ormbraces{${1:text}}"
+    {
+      "name": "vroles",
+      "arg": {
+        "format": "[]",
+        "snippet": "vroles[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ormvalues{}": {
-      "snippet": "ormvalues{${1:text}}"
+    {
+      "name": "vternary"
     },
-    "ormleft{}": {
-      "snippet": "ormleft{${1:text}}"
+    {
+      "name": "vternary",
+      "arg": {
+        "format": "[]",
+        "snippet": "vternary[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "ormup{}": {
-      "snippet": "ormup{${1:text}}"
+    {
+      "name": "plays"
     },
-    "tkzorm": {},
-    "ormarrowup": {},
-    "ormarrowdown": {},
-    "ormarrowleft": {},
-    "ormarrowright": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "dash pattern=${1:dash pattern}",
-      "dash phase=${1:dash phase}",
-      "dash=${1:dash pattern} phase ${2:dash phase}",
-      "solid",
-      "dotted",
-      "dashed",
-      "dash dot",
-      "line width=",
-      "very thin",
-      "thin",
-      "semithick",
-      "thick",
-      "very thick",
-      "line cap=",
-      "line join=",
-      "miter limit=${1:factor}",
-      "help lines",
-      "anchor=",
-      "inner sep=",
-      "inner xsep=",
-      "inner ysep=",
-      "outer sep=",
-      "outer xsep=",
-      "outer ysep=",
-      "minimum height=",
-      "minimum width=",
-      "minimum size=",
-      "shape aspect=",
-      "text=%color",
-      "node font=",
-      "font=",
-      "text width=",
-      "align=",
-      "text height=",
-      "text depth=",
-      "anchor=",
-      "above=",
-      "below=",
-      "right=",
-      "left=",
-      "above=of ${1:node}",
-      "below=of ${1:node}",
-      "right=of ${1:node}",
-      "left=of ${1:node}",
-      "above left",
-      "above right",
-      "below left",
-      "below right",
-      "centered",
-      "pos=",
-      "midway",
-      "near start",
-      "near end",
-      "very near start",
-      "very near end",
-      "at start",
-      "at end",
-      "label=${1:angle}:${2:text}",
-      "shift=${1:coordinate}",
-      "xshift=",
-      "yshift=",
-      "scale=${1:scale}",
-      "xscale=${1:scale}",
-      "yscale=${1:scale}",
-      "xslant=${1:factor}",
-      "yslant=${1:factor}",
-      "rotate=${1:degree}",
-      "rotate around={${1:degree}:coordinate}",
-      "every picture",
-      "every scope",
-      "every node",
-      "->",
-      "<-",
-      "name path=",
-      "name=",
-      "sharp corners",
-      "rounded corners=",
-      "outline",
-      "color=",
-      "role name",
-      "index=",
-      "unique",
-      "unique=",
-      "skip unique=",
-      "uniqueness bar",
-      "skipped uniqueness bar",
-      "constraint dot",
-      "cdot",
-      "constraint=",
-      "rule=${1:mark}",
-      "duplicated",
-      "implied",
-      "zoomed",
-      "mandatory",
-      "mdot-idot",
-      "odot-iodot"
+    {
+      "name": "plays",
+      "arg": {
+        "format": "[]",
+        "snippet": "plays[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c",
+          "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "limits"
+    },
+    {
+      "name": "limits",
+      "arg": {
+        "format": "[]",
+        "snippet": "limits[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "limitsto"
+    },
+    {
+      "name": "limitsto",
+      "arg": {
+        "format": "[]",
+        "snippet": "limitsto[${1:options%keyvals}]",
+        "keys": [
+          "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rules"
+    },
+    {
+      "name": "constraintdeclare",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "constraintdeclare{${1:name}}{${2:path code}}"
+      }
+    },
+    {
+      "name": "constraintdeclarealias",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "constraintdeclarealias{${1:alias name}}{${2:existing name}}"
+      }
+    },
+    {
+      "name": "constraintdeclareasnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "constraintdeclareasnode{${1:name}}{${2:TikZ code}}"
+      }
+    },
+    {
+      "name": "ormtext"
+    },
+    {
+      "name": "ormbf"
+    },
+    {
+      "name": "ormc"
+    },
+    {
+      "name": "ormsup",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormsup{${1:text}}"
+      }
+    },
+    {
+      "name": "ormsub",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormsub{${1:text}}"
+      }
+    },
+    {
+      "name": "ormind",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormind{${1:text}}"
+      }
+    },
+    {
+      "name": "ormbraces",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormbraces{${1:text}}"
+      }
+    },
+    {
+      "name": "ormvalues",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormvalues{${1:text}}"
+      }
+    },
+    {
+      "name": "ormleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormleft{${1:text}}"
+      }
+    },
+    {
+      "name": "ormup",
+      "arg": {
+        "format": "{}",
+        "snippet": "ormup{${1:text}}"
+      }
+    },
+    {
+      "name": "tkzorm",
+      "unusual": true
+    },
+    {
+      "name": "ormarrowup",
+      "unusual": true
+    },
+    {
+      "name": "ormarrowdown",
+      "unusual": true
+    },
+    {
+      "name": "ormarrowleft",
+      "unusual": true
+    },
+    {
+      "name": "ormarrowright",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\node#c": [
+      "entity",
+      "value",
+      "power",
+      "power=",
+      "sequence",
+      "sequence=",
+      "roles",
+      "roles=${1:number}",
+      "role",
+      "role=${1:number}",
+      "vroles",
+      "vroles=${1:number}",
+      "vrole",
+      "vrole=${1:number}",
+      "relation",
+      "relationship",
+      "plays"
     ],
-    [
+    "\\begin{tikzpicture}#c": [
+      "every entity/.style={${1:TikZ options}}",
+      "every value/.style={${1:TikZ options}}",
+      "every object/.style={${1:TikZ options}}",
+      "every predicate/.style={${1:TikZ options}}",
+      "every relationship/.style={${1:TikZ options}}",
+      "every constraint/.style={${1:TikZ options}}",
+      "edge from parent/.style=${1|subtype,suptype|}",
+      "orm",
+      "orm-spacious",
+      "every orm line"
+    ],
+    "\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c,\\limits#c,\\limitsto#c": [
       "dash pattern=${1:dash pattern}",
       "dash phase=${1:dash phase}",
       "dash=${1:dash pattern} phase ${2:dash phase}",
@@ -248,8 +379,8 @@
       "semithick",
       "thick",
       "very thick",
-      "line cap=",
-      "line join=",
+      "line cap=${1|round,rect,butt|}",
+      "line join=${1|round,bevel,miter|}",
       "miter limit=${1:factor}",
       "help lines",
       "anchor=",
@@ -267,10 +398,10 @@
       "node font=",
       "font=",
       "text width=",
-      "align=",
+      "align=${1|left,flush left,right,flush right,center,flush center,justify|}",
       "text height=",
       "text depth=",
-      "anchor=",
+      "anchor=${1|north west,north,north east,west,center,east,mid west,mid,mid east,base west,base,base east,south west,south,south east,text|}",
       "above=",
       "below=",
       "right=",
@@ -314,6 +445,45 @@
       "rounded corners=",
       "outline",
       "color="
+    ],
+    "\\node#c,\\entity#c,\\value#c,\\unary#c,\\role#c,\\binary#c,\\roles#c,\\ternary#c,\\vunary#c,\\vrole#c,\\vbinary#c,\\vroles#c,\\vternary#c,\\plays#c": [
+      "role name",
+      "index=",
+      "unique",
+      "unique=",
+      "skip unique=",
+      "uniqueness bar",
+      "skipped uniqueness bar",
+      "constraint dot",
+      "cdot",
+      "constraint=${1|x,exclusive,unique,equal,mandatory,total required,or,preferred unique,subset,xor,partition,external,supset,irreflexive,antisymmetric,symmetric,intransitive,asymmetric,acyclic,purely reflexive,reflexive,strongly intransitive,acyclic intransitive,symmetric irreflexive,transitive,text|}",
+      "rule=${1:mark}",
+      "duplicated",
+      "implied",
+      "zoomed",
+      "mandatory",
+      "mdot-idot",
+      "odot-iodot"
+    ],
+    "\\draw#c": [
+      "limits",
+      "limits to",
+      "subtype",
+      "suptype",
+      "subinterface",
+      "supinterface",
+      "both required",
+      "both mandatory",
+      "relation",
+      "relationship",
+      "uniqueness bar",
+      "skipped uniqueness bar",
+      "implied"
+    ],
+    "\\begin{scope}#c": [
+      "duplicated model",
+      "implied model"
     ]
-  ]
+  },
+  "args": []
 }

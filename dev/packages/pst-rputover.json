@@ -1,25 +1,149 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "coverable{}": {
-      "snippet": "coverable{${1:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "coverable[]{}": {
-      "snippet": "coverable[${2:options}]{${1:stuff}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pst-node"
     },
-    "PSTRPUTOVERLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "rputover(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "rputover{${1:angle}}(${3:x0},${4:y0}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "rputover{${1:angle}}(${3:x0},${4:y0})(${5:x1},${6:y1}){${2:stuff}}"
+      }
+    },
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "rputover[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+        "keys": [
+          "\\rputover#c,\\pclineover#c,\\pcarrowC#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "[]{}(){}",
+        "snippet": "rputover[${3:options%keyvals}]{${1:angle}}(${4:x0},${5:y0}){${2:stuff}}",
+        "keys": [
+          "\\rputover#c,\\pclineover#c,\\pcarrowC#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rputover",
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "rputover[${3:options%keyvals}]{${1:angle}}(${4:x0},${5:y0})(${6:x1},${7:y1}){${2:stuff}}",
+        "keys": [
+          "\\rputover#c,\\pclineover#c,\\pcarrowC#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "coverable",
+      "arg": {
+        "format": "{}",
+        "snippet": "coverable{${1:stuff}}"
+      }
+    },
+    {
+      "name": "coverable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "coverable[${2:options%keyvals}]{${1:stuff}}",
+        "keys": [
+          "\\coverable#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pclineover",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pclineover(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "pclineover",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pclineover[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+        "keys": [
+          "\\pclineover#c,\\pcarrowC#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pcarrowC",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "pcarrowC(${2:x0},${3:y0})(${4:x1},${5:y1}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "pcarrowC",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "pcarrowC[${2:options%keyvals}](${3:x0},${4:y0})(${5:x1},${6:y1}){${1:stuff}}",
+        "keys": [
+          "\\pcarrowC#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\rputover#c,\\pclineover#c,\\pcarrowC#c": [
+      "autoangle",
+      "inverscl",
+      "boxpos=${1:pos}",
+      "fboxsep=",
+      "npos=${1:number}"
+    ],
+    "\\coverable#c": [
       "inverscl"
+    ],
+    "\\pclineover#c,\\pcarrowC#c": [
+      "absnodesep=",
+      "angleadd=${1:degrees}",
+      "arrows=${1:arrows}",
+      "offset="
+    ],
+    "\\pcarrowC#c": [
+      "addbars=${1:bars}",
+      "baroffset=",
+      "Cbarwidth=",
+      "tbarsize="
     ]
-  ]
+  },
+  "args": []
 }

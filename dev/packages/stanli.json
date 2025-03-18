@@ -1,149 +1,550 @@
 {
-  "includes": {
-    "ifthen": [],
-    "tikz": [],
-    "tikzlibraryshapes": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryautomata": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrary3d": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarypatterns": [],
-    "xargs": [],
-    "verbatim": []
-  },
-  "macros": {
-    "dsupport{}{}[]": {
-      "snippet": "dsupport{${1:2}}{${2:insertion point}}[${3:plane}]"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "setcoords{}{}": {
-      "snippet": "setcoords{${1:x angle}}{${2:y angle}}"
+    {
+      "name": "tikz"
     },
-    "setcoords{}{}[][][]": {
-      "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}]"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "setcoords{}{}[][][][]": {
-      "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}][${6:z angle}]"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "setaxis{}": {
-      "snippet": "setaxis{${1:2}}"
+    {
+      "name": "tikzlibraryautomata"
     },
-    "setaxis{}[][][][][][]": {
-      "snippet": "setaxis{${1:3}}[${2:Xlabel}][${3:Ylabel}][${4:Zlabel}][${5:xlabel}][${6:ylabel}][${7:zlabel}]"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "setaxis{}[][][]": {
-      "snippet": "setaxis{${1:4}}[${2:x orient.}][${3:y orient.}][${4:z orient.}]"
+    {
+      "name": "tikzlibrary3d"
     },
-    "showpoint": {},
-    "dscaling{}{}": {
-      "snippet": "dscaling{${1:type}}{${2:factor}}"
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
     },
-    "DaddonLength": {},
-    "DaxisDistance": {},
-    "DaxisLength": {},
-    "DbigLineWidth": {},
-    "DdimensioningBar": {},
-    "DforceDistance": {},
-    "DforceLength": {},
-    "DhelpVarA": {},
-    "DhelpVarB": {},
-    "DhelpVarC": {},
-    "DhingeAxialHeight": {},
-    "DhingeAxialLength": {},
-    "DhingeBigRadius": {},
-    "DhingeCornerLength": {},
-    "DhingeRadius": {},
-    "DhugeLineWidth": {},
-    "DlineloadDistance": {},
-    "DlineloadDistanceMM": {},
-    "DlineloadForce": {},
-    "DlineloadInterval": {},
-    "DlocalaxisLength": {},
-    "DnormalLineWidth": {},
-    "DnoteRadius": {},
-    "DscalingParameter": {},
-    "DshowPointParameter": {},
-    "DsmallLineWidth": {},
-    "DspringAmplitude": {},
-    "DspringLength": {},
-    "DspringPostLength": {},
-    "DspringPreLength": {},
-    "DspringSegmentLength": {},
-    "DsupportGap": {},
-    "DsupportLength": {},
-    "DtinyLineWidth": {},
-    "DxAngle": {},
-    "DxLength": {},
-    "DxNodePos": {},
-    "DxVarA": {},
-    "DxVarB": {},
-    "DyAngle": {},
-    "DyLength": {},
-    "DyNodePos": {},
-    "DyVarA": {},
-    "DyVarB": {},
-    "DzAngle": {},
-    "DzLength": {},
-    "DzNodePos": {},
-    "DzVarA": {},
-    "DzVarB": {},
-    "barAngle": {},
-    "barGap": {},
-    "bigLineWidth": {},
-    "colorGray": {},
-    "dimensioningBar": {},
-    "forceDistance": {},
-    "forceLength": {},
-    "hatchingAmplitude": {},
-    "hatchingAngle": {},
-    "hatchingLength": {},
-    "helpVarA": {},
-    "helpVarB": {},
-    "hingeAxialHeight": {},
-    "hingeAxialLength": {},
-    "hingeCornerLength": {},
-    "hingeRadius": {},
-    "hugeLineWidth": {},
-    "lineloadDistance": {},
-    "lineloadForce": {},
-    "lineloadInterval": {},
-    "momentAngle": {},
-    "momentDistance": {},
-    "normalLineWidth": {},
-    "pathdrawcolor": {},
-    "pathfillcolor": {},
-    "scalingParameter": {},
-    "smallLineWidth": {},
-    "springAmplitude": {},
-    "springLength": {},
-    "springPostLength": {},
-    "springPreLength": {},
-    "springSegmentLength": {},
-    "supportBasicHeight": {},
-    "supportBasicLength": {},
-    "supportGap": {},
-    "supportHatchingHeight": {},
-    "supportHatchingLength": {},
-    "supportHeight": {},
-    "supportLength": {},
-    "temperatureHeight": {},
-    "tinyLineWidth": {},
-    "tdplotmult{}{}{}": {
-      "snippet": "tdplotmult{${1:macro}}{${2:x}}{${3:y}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "tdplotresetrotatedcoordsorigin": {},
-    "tdplotsetrotatedcoordsorigin{}": {
-      "snippet": "tdplotsetrotatedcoordsorigin{${1:point}}"
+    {
+      "name": "tikzlibrarypatterns"
     },
-    "tdplotsetrotatedcoords{}{}{}": {
-      "snippet": "tdplotsetrotatedcoords{${1:angle1}}{${2:angle2}}{${3:angle3}}"
+    {
+      "name": "xargs"
     },
-    "tdplotsinandcos{}{}{}": {
-      "snippet": "tdplotsinandcos{${1:macor1}}{${2:macor2}}{${3:angle}}"
+    {
+      "name": "verbatim"
     }
+  ],
+  "macros": [
+    {
+      "name": "dsupport",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsupport{2}{${1:insertion point}}[${2:plane}]"
+      }
+    },
+    {
+      "name": "setcoords",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setcoords{${1:x angle}}{${2:y angle}}"
+      }
+    },
+    {
+      "name": "setcoords",
+      "arg": {
+        "format": "{}{}[][][]",
+        "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}]"
+      }
+    },
+    {
+      "name": "setcoords",
+      "arg": {
+        "format": "{}{}[][][][]",
+        "snippet": "setcoords{${1:x angle}}{${2:y angle}}[${3:x dir}][${4:y dir}][${5:z dir}][${6:z angle}]"
+      }
+    },
+    {
+      "name": "setaxis",
+      "arg": {
+        "format": "{}",
+        "snippet": "setaxis{1}"
+      }
+    },
+    {
+      "name": "setaxis",
+      "arg": {
+        "format": "{}",
+        "snippet": "setaxis{2}"
+      }
+    },
+    {
+      "name": "setaxis",
+      "arg": {
+        "format": "{}[][][][][][]",
+        "snippet": "setaxis{3}[${1:Xlabel}][${2:Ylabel}][${3:Zlabel}][${4:xlabel}][${5:ylabel}][${6:zlabel}]"
+      }
+    },
+    {
+      "name": "setaxis",
+      "arg": {
+        "format": "{}[][][]",
+        "snippet": "setaxis{4}[${1:x orient.}][${2:y orient.}][${3:z orient.}]"
+      }
+    },
+    {
+      "name": "showpoint"
+    },
+    {
+      "name": "dscaling",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dscaling{${1:type%keyvals}}{${2:factor}}",
+        "keys": [
+          "\\dscaling#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DaddonLength",
+      "unusual": true
+    },
+    {
+      "name": "DaxisDistance",
+      "unusual": true
+    },
+    {
+      "name": "DaxisLength",
+      "unusual": true
+    },
+    {
+      "name": "DbigLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DdimensioningBar",
+      "unusual": true
+    },
+    {
+      "name": "DforceDistance",
+      "unusual": true
+    },
+    {
+      "name": "DforceLength",
+      "unusual": true
+    },
+    {
+      "name": "DhelpVarA",
+      "unusual": true
+    },
+    {
+      "name": "DhelpVarB",
+      "unusual": true
+    },
+    {
+      "name": "DhelpVarC",
+      "unusual": true
+    },
+    {
+      "name": "DhingeAxialHeight",
+      "unusual": true
+    },
+    {
+      "name": "DhingeAxialLength",
+      "unusual": true
+    },
+    {
+      "name": "DhingeBigRadius",
+      "unusual": true
+    },
+    {
+      "name": "DhingeCornerLength",
+      "unusual": true
+    },
+    {
+      "name": "DhingeRadius",
+      "unusual": true
+    },
+    {
+      "name": "DhugeLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DlineloadDistance",
+      "unusual": true
+    },
+    {
+      "name": "DlineloadDistanceMM",
+      "unusual": true
+    },
+    {
+      "name": "DlineloadForce",
+      "unusual": true
+    },
+    {
+      "name": "DlineloadInterval",
+      "unusual": true
+    },
+    {
+      "name": "DlocalaxisLength",
+      "unusual": true
+    },
+    {
+      "name": "DnormalLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DnoteRadius",
+      "unusual": true
+    },
+    {
+      "name": "DscalingParameter",
+      "unusual": true
+    },
+    {
+      "name": "DshowPointParameter",
+      "unusual": true
+    },
+    {
+      "name": "DsmallLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DspringAmplitude",
+      "unusual": true
+    },
+    {
+      "name": "DspringLength",
+      "unusual": true
+    },
+    {
+      "name": "DspringPostLength",
+      "unusual": true
+    },
+    {
+      "name": "DspringPreLength",
+      "unusual": true
+    },
+    {
+      "name": "DspringSegmentLength",
+      "unusual": true
+    },
+    {
+      "name": "DsupportGap",
+      "unusual": true
+    },
+    {
+      "name": "DsupportLength",
+      "unusual": true
+    },
+    {
+      "name": "DtinyLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "DxAngle",
+      "unusual": true
+    },
+    {
+      "name": "DxLength",
+      "unusual": true
+    },
+    {
+      "name": "DxNodePos",
+      "unusual": true
+    },
+    {
+      "name": "DxVarA",
+      "unusual": true
+    },
+    {
+      "name": "DxVarB",
+      "unusual": true
+    },
+    {
+      "name": "DyAngle",
+      "unusual": true
+    },
+    {
+      "name": "DyLength",
+      "unusual": true
+    },
+    {
+      "name": "DyNodePos",
+      "unusual": true
+    },
+    {
+      "name": "DyVarA",
+      "unusual": true
+    },
+    {
+      "name": "DyVarB",
+      "unusual": true
+    },
+    {
+      "name": "DzAngle",
+      "unusual": true
+    },
+    {
+      "name": "DzLength",
+      "unusual": true
+    },
+    {
+      "name": "DzNodePos",
+      "unusual": true
+    },
+    {
+      "name": "DzVarA",
+      "unusual": true
+    },
+    {
+      "name": "DzVarB",
+      "unusual": true
+    },
+    {
+      "name": "barAngle",
+      "unusual": true
+    },
+    {
+      "name": "barGap",
+      "unusual": true
+    },
+    {
+      "name": "bigLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "colorGray",
+      "unusual": true
+    },
+    {
+      "name": "dimensioningBar",
+      "unusual": true
+    },
+    {
+      "name": "forceDistance",
+      "unusual": true
+    },
+    {
+      "name": "forceLength",
+      "unusual": true
+    },
+    {
+      "name": "hatchingAmplitude",
+      "unusual": true
+    },
+    {
+      "name": "hatchingAngle",
+      "unusual": true
+    },
+    {
+      "name": "hatchingLength",
+      "unusual": true
+    },
+    {
+      "name": "helpVarA",
+      "unusual": true
+    },
+    {
+      "name": "helpVarB",
+      "unusual": true
+    },
+    {
+      "name": "hingeAxialHeight",
+      "unusual": true
+    },
+    {
+      "name": "hingeAxialLength",
+      "unusual": true
+    },
+    {
+      "name": "hingeCornerLength",
+      "unusual": true
+    },
+    {
+      "name": "hingeRadius",
+      "unusual": true
+    },
+    {
+      "name": "hugeLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "lineloadDistance",
+      "unusual": true
+    },
+    {
+      "name": "lineloadForce",
+      "unusual": true
+    },
+    {
+      "name": "lineloadInterval",
+      "unusual": true
+    },
+    {
+      "name": "momentAngle",
+      "unusual": true
+    },
+    {
+      "name": "momentDistance",
+      "unusual": true
+    },
+    {
+      "name": "normalLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "pathdrawcolor",
+      "unusual": true
+    },
+    {
+      "name": "pathfillcolor",
+      "unusual": true
+    },
+    {
+      "name": "scalingParameter",
+      "unusual": true
+    },
+    {
+      "name": "smallLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "springAmplitude",
+      "unusual": true
+    },
+    {
+      "name": "springLength",
+      "unusual": true
+    },
+    {
+      "name": "springPostLength",
+      "unusual": true
+    },
+    {
+      "name": "springPreLength",
+      "unusual": true
+    },
+    {
+      "name": "springSegmentLength",
+      "unusual": true
+    },
+    {
+      "name": "supportBasicHeight",
+      "unusual": true
+    },
+    {
+      "name": "supportBasicLength",
+      "unusual": true
+    },
+    {
+      "name": "supportGap",
+      "unusual": true
+    },
+    {
+      "name": "supportHatchingHeight",
+      "unusual": true
+    },
+    {
+      "name": "supportHatchingLength",
+      "unusual": true
+    },
+    {
+      "name": "supportHeight",
+      "unusual": true
+    },
+    {
+      "name": "supportLength",
+      "unusual": true
+    },
+    {
+      "name": "temperatureHeight",
+      "unusual": true
+    },
+    {
+      "name": "tinyLineWidth",
+      "unusual": true
+    },
+    {
+      "name": "tdplotmult",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tdplotmult{${1:macro%cmd}}{${2:x}}{${3:y}}"
+      }
+    },
+    {
+      "name": "tdplotresetrotatedcoordsorigin",
+      "unusual": true
+    },
+    {
+      "name": "tdplotsetrotatedcoordsorigin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tdplotsetrotatedcoordsorigin{${1:point}}"
+      }
+    },
+    {
+      "name": "tdplotsetrotatedcoords",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tdplotsetrotatedcoords{${1:angle1}}{${2:angle2}}{${3:angle3}}"
+      }
+    },
+    {
+      "name": "tdplotsinandcos",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tdplotsinandcos{${1:macor1%cmd}}{${2:macor2%cmd}}{${3:angle}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\beam#c,\\dbeam#c": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "\\support#c": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "\\load#c": [
+      "1",
+      "2",
+      "3"
+    ],
+    "\\dimensioning#c": [
+      "1",
+      "2",
+      "3"
+    ],
+    "\\dload#c": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "\\dscaling#c": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

@@ -1,21 +1,55 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "pstSetAbsoluteOrigin": {},
-    "pstSetPostScriptOrigin": {},
-    "PSTabsposLoaded": {}
-  },
-  "envs": {},
-  "options": [
-    "notitlepage",
-    "absolute",
-    "lowerleft",
-    "relative",
-    "PostScript"
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-xkey"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "pstSetRelativeOrigin",
+      "arg": {
+        "format": "()",
+        "snippet": "pstSetRelativeOrigin(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "pstSetAbsoluteOrigin"
+    },
+    {
+      "name": "pstSetPostScriptOrigin"
+    },
+    {
+      "name": "pstPutAbs",
+      "arg": {
+        "format": "(){}",
+        "snippet": "pstPutAbs(${2:x},${3:y}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "pstPutAbs",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "pstPutAbs[${2:options%keyvals}](${3:x},${4:y}){${1:stuff}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pst-abspos#c": [
+      "notitlepage",
+      "absolute",
+      "lowerleft",
+      "relative",
+      "PostScript"
+    ]
+  },
+  "args": [
+    "\\usepackage/pst-abspos#c"
+  ]
 }

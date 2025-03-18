@@ -1,0 +1,208 @@
+{
+  "deps": [
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "verbatim"
+    },
+    {
+      "name": "fancyvrb"
+    },
+    {
+      "name": "newfile"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setenum",
+      "if": "extramath",
+      "arg": {
+        "format": "{}",
+        "snippet": "setenum{${1:arg}}"
+      }
+    },
+    {
+      "name": "setdesc",
+      "if": "extramath",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdesc{${1:arg}}"
+      }
+    },
+    {
+      "name": "setenum",
+      "if": "extramath=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "setenum{${1:arg}}"
+      }
+    },
+    {
+      "name": "setdesc",
+      "if": "extramath=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdesc{${1:arg}}"
+      }
+    },
+    {
+      "name": "spelitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "spelitem{${1:text}}"
+      }
+    },
+    {
+      "name": "spelitem",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "spelitem[${2:label%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "spelmacpp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "spelmacpp{${1:csname}}{${2:action}}"
+      }
+    },
+    {
+      "name": "spelmacpp",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "spelmacpp{${1:csname}}[${3:args}]{${2:action}}"
+      }
+    },
+    {
+      "name": "spelmacpp",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "spelmacpp{${1:csname}}[${3:args}][${4:default}]{${2:action}}"
+      }
+    },
+    {
+      "name": "spelenvpp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "spelenvpp{${1:envname}}{${2:action}}"
+      }
+    },
+    {
+      "name": "spelenvpp",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "spelenvpp{${1:envname}}[${3:args}]{${2:action}}"
+      }
+    },
+    {
+      "name": "spelenvpp",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "spelenvpp{${1:envname}}[${3:args}][${4:default}]{${2:action}}"
+      }
+    },
+    {
+      "name": "spelmacad",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "spelmacad{${1:csname}}{${2:text}}"
+      }
+    },
+    {
+      "name": "spelmacad",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "spelmacad{${1:csname}}[${3:args}]{${2:text}}"
+      }
+    },
+    {
+      "name": "spelmacad",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "spelmacad{${1:csname}}[${3:args}][${4:default}]{${2:text}}"
+      }
+    },
+    {
+      "name": "spelenvad",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "spelenvad{${1:envname}}{${2:begin text%text}}{${3:end text%text}}"
+      }
+    },
+    {
+      "name": "spelenvad",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "spelenvad{${1:envname}}[${4:args}]{${2:begin text%text}}{${3:end text%text}}"
+      }
+    },
+    {
+      "name": "spelenvad",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "spelenvad{${1:envname}}[${4:args}][${5:default}]{${2:begin text%text}}{${3:end text%text}}"
+      }
+    },
+    {
+      "name": "spelatex",
+      "unusual": true
+    },
+    {
+      "name": "spelpl",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "spelchunk"
+    },
+    {
+      "name": "spelchunk",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{spelchunk}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "spelchunkad"
+    }
+  ],
+  "keys": {
+    "\\usepackage/spelatex#c": [
+      "format=${1:type}",
+      "server=%URL%>",
+      "markervisibility=${1|none,onlygroups|}",
+      "disabled",
+      "extramath"
+    ],
+    "\\begin{spelchunk}": [
+      "arealink"
+    ]
+  },
+  "args": [
+    "\\usepackage/spelatex#c"
+  ]
+}

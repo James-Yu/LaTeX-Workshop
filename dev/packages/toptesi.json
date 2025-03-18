@@ -1,0 +1,768 @@
+{
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "scrextend"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "xspace"
+    },
+    {
+      "name": "topfront"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "topfront"
+    },
+    {
+      "name": "topcoman"
+    },
+    {
+      "name": "frontespizio",
+      "if": "tipotesi=frontespizio"
+    },
+    {
+      "name": "toptesi-scudo",
+      "if": "tipotesi=scudo"
+    },
+    {
+      "name": "toptesi-sss",
+      "if": "tipotesi=secondaria"
+    },
+    {
+      "name": "toptesi-sss",
+      "if": "tipotesi=sss"
+    }
+  ],
+  "macros": [
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "CandidateNames{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "corsodistudi",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "corsodistudi{${1:degree proper name%text}}"
+      }
+    },
+    {
+      "name": "giorno",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "giorno{${1:date}}"
+      }
+    },
+    {
+      "name": "luogo",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "luogo{${1:location}}"
+      }
+    },
+    {
+      "name": "NomeAteneo",
+      "if": "tipotesi=triennale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NomeAteneo{${1:university proper name%text}}"
+      }
+    },
+    {
+      "name": "NomeCorsoDiStudi",
+      "if": "tipotesi=triennale",
+      "unusual": true
+    },
+    {
+      "name": "NomeElaborato",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "NomeElaborato{${1:thesis name%text}}"
+      }
+    },
+    {
+      "name": "NomeRelatore",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NomeRelatore{${1:singular}}{${2:plural}}"
+      }
+    },
+    {
+      "name": "StrutturaDi",
+      "if": "tipotesi=triennale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "StrutturaDi{${1:name%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "{}",
+        "snippet": "TitoloListaCandidati{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "CandidateNames{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "corsodistudi",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "corsodistudi{${1:degree proper name%text}}"
+      }
+    },
+    {
+      "name": "giorno",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "giorno{${1:date}}"
+      }
+    },
+    {
+      "name": "luogo",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "luogo{${1:location}}"
+      }
+    },
+    {
+      "name": "NomeAteneo",
+      "if": "tipotesi=monografia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NomeAteneo{${1:university proper name%text}}"
+      }
+    },
+    {
+      "name": "NomeCorsoDiStudi",
+      "if": "tipotesi=monografia",
+      "unusual": true
+    },
+    {
+      "name": "NomeElaborato",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "NomeElaborato{${1:thesis name%text}}"
+      }
+    },
+    {
+      "name": "NomeRelatore",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NomeRelatore{${1:singular}}{${2:plural}}"
+      }
+    },
+    {
+      "name": "StrutturaDi",
+      "if": "tipotesi=monografia",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "StrutturaDi{${1:name%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "{}",
+        "snippet": "TitoloListaCandidati{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "CandidateNames",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "{}",
+        "snippet": "CandidateNames{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "TitoloListaCandidati",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "{}",
+        "snippet": "TitoloListaCandidati{${1:candidate list headings%text}}"
+      }
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "captionof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "captionof{${1:float type}}{${2:text}}"
+      }
+    },
+    {
+      "name": "english"
+    },
+    {
+      "name": "ExtendCaptions",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ExtendCaptions{${1:language}}{${2:summary title%text}}{${3:acknowledgements title%text}}"
+      }
+    },
+    {
+      "name": "figurespagetrue"
+    },
+    {
+      "name": "frontmatter"
+    },
+    {
+      "name": "goodpagebreak"
+    },
+    {
+      "name": "goodpagebreak",
+      "arg": {
+        "format": "[]",
+        "snippet": "goodpagebreak[${1:n}]"
+      }
+    },
+    {
+      "name": "indici"
+    },
+    {
+      "name": "indici",
+      "arg": {
+        "format": "[]",
+        "snippet": "indici[${1:pagestyle}]"
+      }
+    },
+    {
+      "name": "inglese"
+    },
+    {
+      "name": "italiano"
+    },
+    {
+      "name": "mainmatter"
+    },
+    {
+      "name": "nota",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nota[${2:mark}]{${1:text}}"
+      }
+    },
+    {
+      "name": "nota",
+      "arg": {
+        "format": "{}",
+        "snippet": "nota{${1:text}}"
+      }
+    },
+    {
+      "name": "NoteWhiteLine"
+    },
+    {
+      "name": "paginavuota"
+    },
+    {
+      "name": "ringraziamenti"
+    },
+    {
+      "name": "setbindingcorrection",
+      "arg": {
+        "format": "{}",
+        "snippet": "setbindingcorrection{${1:length}}"
+      }
+    },
+    {
+      "name": "sommario"
+    },
+    {
+      "name": "tablespagetrue"
+    },
+    {
+      "name": "tomo"
+    },
+    {
+      "name": "captionSD*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captionSD*[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captionSD*",
+      "arg": {
+        "format": "{}",
+        "snippet": "captionSD*{${1:text}}"
+      }
+    },
+    {
+      "name": "captionSD",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "captionSD[${2:short text%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "captionSD",
+      "arg": {
+        "format": "{}",
+        "snippet": "captionSD{${1:text}}"
+      }
+    },
+    {
+      "name": "SDcaption",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "SDcaption[${3:short text%text}]{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "SDcaption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SDcaption{${1:text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "SDimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "SDimage{${1:image commands}}"
+      }
+    },
+    {
+      "name": "acknowledgements",
+      "unusual": true
+    },
+    {
+      "name": "acknowledgename",
+      "unusual": true
+    },
+    {
+      "name": "allcontents",
+      "unusual": true
+    },
+    {
+      "name": "allcontents",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "allcontents[${1:pagestyle}]"
+      }
+    },
+    {
+      "name": "blankpagestyle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "blankpagestyle{${1:pagestyle}}"
+      }
+    },
+    {
+      "name": "captionwidth",
+      "unusual": true
+    },
+    {
+      "name": "chapterbibliographyfalse",
+      "unusual": true
+    },
+    {
+      "name": "chapterbibliographytrue",
+      "unusual": true
+    },
+    {
+      "name": "customfalse",
+      "unusual": true
+    },
+    {
+      "name": "emptypage",
+      "unusual": true
+    },
+    {
+      "name": "figurespagefalse",
+      "unusual": true
+    },
+    {
+      "name": "frontmatterfalse",
+      "unusual": true
+    },
+    {
+      "name": "frontmattertrue",
+      "unusual": true
+    },
+    {
+      "name": "fullwidth",
+      "unusual": true
+    },
+    {
+      "name": "headWarn",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "headWarn{${1:text}}"
+      }
+    },
+    {
+      "name": "ifchapterbibliography",
+      "unusual": true
+    },
+    {
+      "name": "ifcustom",
+      "unusual": true
+    },
+    {
+      "name": "ifempty",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ifempty{${1:arg}}"
+      }
+    },
+    {
+      "name": "iffigurespage",
+      "unusual": true
+    },
+    {
+      "name": "iffrontmatter",
+      "unusual": true
+    },
+    {
+      "name": "iflibro",
+      "unusual": true
+    },
+    {
+      "name": "ifNumberFloat",
+      "unusual": true
+    },
+    {
+      "name": "ifnumeriromani",
+      "unusual": true
+    },
+    {
+      "name": "iftablespage",
+      "unusual": true
+    },
+    {
+      "name": "iftoc",
+      "unusual": true
+    },
+    {
+      "name": "ifTOPfolioinhead",
+      "unusual": true
+    },
+    {
+      "name": "ifTOPnocenterfolio",
+      "unusual": true
+    },
+    {
+      "name": "ifTOPnocenterhead",
+      "unusual": true
+    },
+    {
+      "name": "ifTOPnumerazioneromana",
+      "unusual": true
+    },
+    {
+      "name": "interno",
+      "unusual": true
+    },
+    {
+      "name": "lapagina",
+      "unusual": true
+    },
+    {
+      "name": "librofalse",
+      "unusual": true
+    },
+    {
+      "name": "librotrue",
+      "unusual": true
+    },
+    {
+      "name": "NoValidTipo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NoValidTipo{${1:option}}"
+      }
+    },
+    {
+      "name": "NumberFloatfalse",
+      "unusual": true
+    },
+    {
+      "name": "NumberFloattrue",
+      "unusual": true
+    },
+    {
+      "name": "numeriromanifalse",
+      "unusual": true
+    },
+    {
+      "name": "numeriromanitrue",
+      "unusual": true
+    },
+    {
+      "name": "phantomsection",
+      "unusual": true
+    },
+    {
+      "name": "saveaddvspace",
+      "unusual": true
+    },
+    {
+      "name": "SDcapbox",
+      "unusual": true
+    },
+    {
+      "name": "SDcaptionwidth",
+      "unusual": true
+    },
+    {
+      "name": "SDfigbox",
+      "unusual": true
+    },
+    {
+      "name": "SDfigurewidth",
+      "unusual": true
+    },
+    {
+      "name": "SDlinewidth",
+      "unusual": true
+    },
+    {
+      "name": "SDtabular",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SDtabular{${1:image commands}}"
+      }
+    },
+    {
+      "name": "summary",
+      "unusual": true
+    },
+    {
+      "name": "summaryname",
+      "unusual": true
+    },
+    {
+      "name": "tablespagefalse",
+      "unusual": true
+    },
+    {
+      "name": "theNumberSD",
+      "unusual": true
+    },
+    {
+      "name": "tocfalse",
+      "unusual": true
+    },
+    {
+      "name": "toctrue",
+      "unusual": true
+    },
+    {
+      "name": "TOPfolioinheadfalse",
+      "unusual": true
+    },
+    {
+      "name": "TOPfolioinheadtrue",
+      "unusual": true
+    },
+    {
+      "name": "TOPnocenterfoliofalse",
+      "unusual": true
+    },
+    {
+      "name": "TOPnocenterfoliotrue",
+      "unusual": true
+    },
+    {
+      "name": "TOPnocenterheadfalse",
+      "unusual": true
+    },
+    {
+      "name": "TOPnocenterheadtrue",
+      "unusual": true
+    },
+    {
+      "name": "TOPnumerazioneromanafalse",
+      "unusual": true
+    },
+    {
+      "name": "TOPnumerazioneromanatrue",
+      "unusual": true
+    },
+    {
+      "name": "TOPsecnumdepth",
+      "unusual": true
+    },
+    {
+      "name": "TROF",
+      "unusual": true
+    },
+    {
+      "name": "TROFF",
+      "unusual": true
+    },
+    {
+      "name": "TRON",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=triennale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=triennale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=monografia"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=monografia",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=magistrale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=magistrale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=dottorale"
+    },
+    {
+      "name": "ThesisTitlePage",
+      "if": "tipotesi=dottorale",
+      "arg": {
+        "format": "*",
+        "snippet": "*"
+      }
+    },
+    {
+      "name": "citazioni"
+    },
+    {
+      "name": "dedica"
+    },
+    {
+      "name": "dedication",
+      "unusual": true
+    },
+    {
+      "name": "interlinea",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:factor}}"
+      }
+    },
+    {
+      "name": "pdfxmetadata"
+    },
+    {
+      "name": "wittysentences",
+      "unusual": true
+    },
+    {
+      "name": "SDbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:float type}}"
+      }
+    },
+    {
+      "name": "SDbox",
+      "arg": {
+        "format": "{}*",
+        "snippet": "{${1:float type}}*"
+      }
+    },
+    {
+      "name": "SDbox",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:float type}}[${2:width factor}]"
+      }
+    },
+    {
+      "name": "SDbox",
+      "arg": {
+        "format": "{}*[]",
+        "snippet": "{${1:float type}}*[${2:width factor}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/toptesi#c": [
+      "cucitura=",
+      "corpo=",
+      "chapterbib",
+      "evenboxes",
+      "libro",
+      "stile=${1|standard,classica,trieste|}",
+      "autoretitolo",
+      "oldstyle",
+      "nocenterfolio",
+      "nocenterhead",
+      "folioinhead",
+      "numerazioneromana",
+      "tipotesi=${1|topfront,frontespizio,triennale,monografia,magistrale,dottorale,scudo,secondaria,sss,custom|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/toptesi#c"
+  ]
+}

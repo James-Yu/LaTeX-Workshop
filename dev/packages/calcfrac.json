@@ -1,18 +1,23 @@
 {
-  "includes": {},
-  "macros": {
-    "cfdisp{}{}{}": {
-      "snippet": "cfdisp{${1:sign}}{${2:num1}}{${3:num2}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "cfdisp",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cfdisp{${1:sign}}{${2:num1}}{${3:num2}}"
+      }
     },
-    "calcfrac{}": {
-      "snippet": "calcfrac{${1:expression}}"
-    },
-    "calcfraconce": {},
-    "calcfracname": {},
-    "calcfracver": {},
-    "calcfracdate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "calcfrac",
+      "arg": {
+        "format": "{}",
+        "snippet": "calcfrac{${1:expression}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

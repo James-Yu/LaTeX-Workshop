@@ -1,111 +1,318 @@
 {
-  "includes": {
-    "moredefs": [],
-    "slemph": []
-  },
-  "macros": {
-    "nospacelist": {},
-    "newabbrev{}{}": {
-      "snippet": "newabbrev{${1:cmd}}{${2:initial}}"
+  "deps": [
+    {
+      "name": "moredefs"
     },
-    "newabbrev{}{}[]": {
-      "snippet": "newabbrev{${1:cmd}}{${2:initial}}[${3:subsequent}]"
-    },
-    "newname{}{}": {
-      "snippet": "newname{${1:cmd}}{${2:initial}}"
-    },
-    "newname{}{}[]": {
-      "snippet": "newname{${1:cmd}}{${2:initial}}[${3:subsequent}]"
-    },
-    "newbook{}{}": {
-      "snippet": "newbook{${1:cmd}}{${2:initial}}"
-    },
-    "newbook{}{}[]": {
-      "snippet": "newbook{${1:cmd}}{${2:initial}}[${3:subsequent}]"
-    },
-    "newwork{}{}{}": {
-      "snippet": "newwork{${1:cmd}}{${2:bib key}}{${3:initial}}"
-    },
-    "newwork{}{}{}[]": {
-      "snippet": "newwork{${1:cmd}}{${2:bib key}}{${3:initial}}[${4:subsequent}]"
-    },
-    "PM": {},
-    "AM": {},
-    "BC": {},
-    "AD": {},
-    "acromake{}{}{}": {
-      "snippet": "acromake{${1:csname}}{${2:initial text}}{${3:final text}}"
-    },
-    "ACRcnta": {},
-    "ACRcntb": {},
-    "AcromakePageref": {},
-    "ResetAbbrevs{}": {
-      "snippet": "ResetAbbrevs{${1:category list}}"
-    },
-    "NewAbbrevCategory{}": {
-      "snippet": "NewAbbrevCategory{${1:category name}}"
-    },
-    "TMFontAll": {},
-    "TMHookAll": {},
-    "TMResetAll": {},
-    "TMFontGeneric": {},
-    "TMFontName": {},
-    "TMFontBook": {},
-    "TMFontWork": {},
-    "TMHookGeneric": {},
-    "TMHookName": {},
-    "TMHookBook": {},
-    "TMHookWork": {},
-    "TMResetGeneric": {},
-    "TMResetName": {},
-    "TMResetBook": {},
-    "TMResetWork": {},
-    "NewUserAbbrevDefiner{}{}": {
-      "snippet": "NewUserAbbrevDefiner{${1:cmd}}{${2:category}}"
-    },
-    "NewUserAbbrevDefiner{}{}[]": {
-      "snippet": "NewUserAbbrevDefiner{${1:cmd}}{${2:category}}[${3:definer}]"
-    },
-    "TMDefineAbbrevStandard{}{}": {
-      "snippet": "TMDefineAbbrevStandard{${1:cmd}}{${2:initial}}"
-    },
-    "TMDefineAbbrevStandard{}{}[]": {
-      "snippet": "TMDefineAbbrevStandard{${1:cmd}}{${2:initial}}[${3:subsequent}]"
-    },
-    "TMInitialSuffix": {},
-    "TMSubsequentSuffix": {},
-    "DateMark{}": {
-      "snippet": "DateMark{${1:arg}}"
-    },
-    "ifTMInhibitSwitching": {},
-    "TMInhibitSwitchingtrue": {},
-    "TMInhibitSwitchingfalse": {},
-    "ifTMAlwaysLong": {},
-    "TMAlwaysLongtrue": {},
-    "TMAlwaysLongfalse": {},
-    "DateMarkSize": {},
-    "TMAcromakeDefiner{}{}{}{}": {
-      "snippet": "TMAcromakeDefiner{${1:category}}{${2:csname}}{${3:acronym}}{${4:fulltext}}"
-    },
-    "TMAcromakeSecondarySuffix": {},
-    "TMCurrentMacro": {},
-    "TMCurrentMacroRootname": {},
-    "TMHookAcromake": {},
-    "TMHookAcromakeHook": {},
-    "TMNewAbbrevAcromake{}{}{}{}": {
-      "snippet": "TMNewAbbrevAcromake{${1:csname-root}}{${2:csname-suffix}}{${3:category}}{${4:body}}"
-    },
-    "TMNewAbbrevPlain{}{}{}": {
-      "snippet": "TMNewAbbrevPlain{${1:cmd}}{${2:category}}{${3:body}}"
-    },
-    "TMNewAbbrevSwitcher{}{}{}{}{}": {
-      "snippet": "TMNewAbbrevSwitcher{${1:definer}}{${2:category}}{${3:csname}}{${4:initial}}{${5:subsequent}}"
-    },
-    "TMNewAbbrevSwitcherAcromake{}{}{}{}{}": {
-      "snippet": "TMNewAbbrevSwitcherAcromake{${1:definer}}{${2:category}}{${3:csname}}{${4:initial}}{${5:subsequent}}"
+    {
+      "name": "slemph"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "nospacelist",
+      "unusual": true
+    },
+    {
+      "name": "newabbrev",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newabbrev{${1:cmd}}{${2:initial%text}}"
+      }
+    },
+    {
+      "name": "newabbrev",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newabbrev{${1:cmd}}{${2:initial%text}}[${3:subsequent%text}]"
+      }
+    },
+    {
+      "name": "newname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newname{${1:cmd}}{${2:initial%text}}"
+      }
+    },
+    {
+      "name": "newname",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newname{${1:cmd}}{${2:initial%text}}[${3:subsequent%text}]"
+      }
+    },
+    {
+      "name": "newbook",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newbook{${1:cmd}}{${2:initial%text}}"
+      }
+    },
+    {
+      "name": "newbook",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newbook{${1:cmd}}{${2:initial%text}}[${3:subsequent%text}]"
+      }
+    },
+    {
+      "name": "newwork",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newwork{${1:cmd}}{${2:bib key}}{${3:initial%text}}"
+      }
+    },
+    {
+      "name": "newwork",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "newwork{${1:cmd}}{${2:bib key}}{${3:initial%text}}[${4:subsequent%text}]"
+      }
+    },
+    {
+      "name": "PM"
+    },
+    {
+      "name": "AM"
+    },
+    {
+      "name": "BC"
+    },
+    {
+      "name": "AD"
+    },
+    {
+      "name": "acromake",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "acromake{${1:csname}}{${2:initial text%text}}{${3:final text%text}}"
+      }
+    },
+    {
+      "name": "ACRcnta",
+      "unusual": true
+    },
+    {
+      "name": "ACRcntb",
+      "unusual": true
+    },
+    {
+      "name": "AcromakePageref",
+      "unusual": true
+    },
+    {
+      "name": "ResetAbbrevs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ResetAbbrevs{${1:category list}}"
+      }
+    },
+    {
+      "name": "NewAbbrevCategory",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NewAbbrevCategory{${1:category name}}"
+      }
+    },
+    {
+      "name": "TMFontAll",
+      "unusual": true
+    },
+    {
+      "name": "TMHookAll",
+      "unusual": true
+    },
+    {
+      "name": "TMResetAll",
+      "unusual": true
+    },
+    {
+      "name": "TMFontGeneric",
+      "unusual": true
+    },
+    {
+      "name": "TMFontName",
+      "unusual": true
+    },
+    {
+      "name": "TMFontBook",
+      "unusual": true
+    },
+    {
+      "name": "TMFontWork",
+      "unusual": true
+    },
+    {
+      "name": "TMHookGeneric",
+      "unusual": true
+    },
+    {
+      "name": "TMHookName",
+      "unusual": true
+    },
+    {
+      "name": "TMHookBook",
+      "unusual": true
+    },
+    {
+      "name": "TMHookWork",
+      "unusual": true
+    },
+    {
+      "name": "TMResetGeneric",
+      "unusual": true
+    },
+    {
+      "name": "TMResetName",
+      "unusual": true
+    },
+    {
+      "name": "TMResetBook",
+      "unusual": true
+    },
+    {
+      "name": "TMResetWork",
+      "unusual": true
+    },
+    {
+      "name": "NewUserAbbrevDefiner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewUserAbbrevDefiner{${1:cmd}}{${2:category}}"
+      }
+    },
+    {
+      "name": "NewUserAbbrevDefiner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "NewUserAbbrevDefiner{${1:cmd}}{${2:category}}[${3:definer}]"
+      }
+    },
+    {
+      "name": "TMDefineAbbrevStandard",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TMDefineAbbrevStandard{${1:cmd}}{${2:initial}}"
+      }
+    },
+    {
+      "name": "TMDefineAbbrevStandard",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "TMDefineAbbrevStandard{${1:cmd}}{${2:initial}}[${3:subsequent}]"
+      }
+    },
+    {
+      "name": "TMInitialSuffix",
+      "unusual": true
+    },
+    {
+      "name": "TMSubsequentSuffix",
+      "unusual": true
+    },
+    {
+      "name": "DateMark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DateMark{${1:arg}}"
+      }
+    },
+    {
+      "name": "ifTMInhibitSwitching",
+      "unusual": true
+    },
+    {
+      "name": "TMInhibitSwitchingtrue",
+      "unusual": true
+    },
+    {
+      "name": "TMInhibitSwitchingfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifTMAlwaysLong",
+      "unusual": true
+    },
+    {
+      "name": "TMAlwaysLongtrue",
+      "unusual": true
+    },
+    {
+      "name": "TMAlwaysLongfalse",
+      "unusual": true
+    },
+    {
+      "name": "DateMarkSize",
+      "unusual": true
+    },
+    {
+      "name": "TMAcromakeDefiner",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "TMAcromakeDefiner{${1:category}}{${2:csname}}{${3:acronym}}{${4:fulltext}}"
+      }
+    },
+    {
+      "name": "TMAcromakeSecondarySuffix",
+      "unusual": true
+    },
+    {
+      "name": "TMCurrentMacro",
+      "unusual": true
+    },
+    {
+      "name": "TMCurrentMacroRootname",
+      "unusual": true
+    },
+    {
+      "name": "TMHookAcromake",
+      "unusual": true
+    },
+    {
+      "name": "TMHookAcromakeHook",
+      "unusual": true
+    },
+    {
+      "name": "TMNewAbbrevAcromake",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "TMNewAbbrevAcromake{${1:csname-root}}{${2:csname-suffix}}{${3:category}}{${4:body}}"
+      }
+    },
+    {
+      "name": "TMNewAbbrevPlain",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TMNewAbbrevPlain{${1:cmd}}{${2:category}}{${3:body}}"
+      }
+    },
+    {
+      "name": "TMNewAbbrevSwitcher",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "TMNewAbbrevSwitcher{${1:definer}}{${2:category}}{${3:csname}}{${4:initial}}{${5:subsequent}}"
+      }
+    },
+    {
+      "name": "TMNewAbbrevSwitcherAcromake",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "TMNewAbbrevSwitcherAcromake{${1:definer}}{${2:category}}{${3:csname}}{${4:initial}}{${5:subsequent}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

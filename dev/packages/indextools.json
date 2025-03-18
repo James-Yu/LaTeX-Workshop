@@ -1,90 +1,220 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "pdftexcmds": [],
-    "xpatch": [],
-    "multicol": []
-  },
-  "macros": {
-    "makeindex[]": {
-      "snippet": "makeindex[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "indexsetup{}": {
-      "snippet": "indexsetup{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "ifxetex"
     },
-    "splitindexoptions{}": {
-      "snippet": "splitindexoptions{${1:splitindex option}}"
+    {
+      "name": "ifluatex"
     },
-    "index[]{}": {
-      "snippet": "index[${2:name}]{${1:entry}}"
+    {
+      "name": "pdftexcmds"
     },
-    "indexprologue{}": {
-      "snippet": "indexprologue{${1:text}}"
+    {
+      "name": "xpatch"
     },
-    "indexprologue[]{}": {
-      "snippet": "indexprologue[${2:spacing}]{${1:text}}"
-    },
-    "printindex": {},
-    "printindex[name": {},
-    "alsoname": {},
-    "innotenumber{}{}": {
-      "snippet": "innotenumber{${1:arg1}}{${2:arg2}}"
-    },
-    "innote{}": {
-      "snippet": "innote{${1:text}}"
-    },
-    "seealso{}{}": {
-      "snippet": "seealso{${1:text}}{${2:page}}"
-    },
-    "seename": {},
-    "see{}{}": {
-      "snippet": "see{${1:text}}{${2:page}}"
-    },
-    "nindex[]{}": {
-      "snippet": "nindex[${2:name}]{${1:entry}}",
-      "option": "notenumber"
-    },
-    "nindex{}": {
-      "snippet": "nindex{${1:entry}}",
-      "option": "notenumber"
-    },
-    "nnumberindex[]{}": {
-      "snippet": "nnumberindex[${2:name}]{${1:entry}}",
-      "option": "notenumber"
-    },
-    "nnumberindex{}": {
-      "snippet": "nnumberindex{${1:entry}}",
-      "option": "notenumber"
+    {
+      "name": "multicol"
     }
-  },
-  "envs": {},
-  "options": [
-    "makeindex",
-    "xindy",
-    "texindy",
-    "truexindy",
-    "upmendex",
-    "xindex",
-    "noautomatic",
-    "nonewpage",
-    "quiet",
-    "original",
-    "afterindex",
-    "innote",
-    "notenumber",
-    "splitindex"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "makeindex",
+      "arg": {
+        "format": "[]",
+        "snippet": "makeindex[${1:options%keyvals}]",
+        "keys": [
+          "\\makeindex"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "indexsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "indexsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\indexsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "splitindexoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "splitindexoptions{${1:splitindex option}}"
+      }
+    },
+    {
+      "name": "index",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "index[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "indexprologue",
+      "arg": {
+        "format": "{}",
+        "snippet": "indexprologue{${1:text}}"
+      }
+    },
+    {
+      "name": "indexprologue",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "indexprologue[${2:spacing}]{${1:text}}"
+      }
+    },
+    {
+      "name": "printindex"
+    },
+    {
+      "name": "printindex",
+      "arg": {
+        "format": "[name",
+        "snippet": "printindex[name"
+      }
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "innotenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "innotenumber{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "innote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "innote{${1:text}}"
+      }
+    },
+    {
+      "name": "seealso",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "seealso{${1:text}}{${2:page}}"
+      }
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "see",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "see{${1:text}}{${2:page}}"
+      }
+    },
+    {
+      "name": "nindex",
+      "if": "innote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nindex[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "nindex",
+      "if": "innote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nindex{${1:entry}}"
+      }
+    },
+    {
+      "name": "nnumberindex",
+      "if": "innote",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nnumberindex[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "nnumberindex",
+      "if": "innote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nnumberindex{${1:entry}}"
+      }
+    },
+    {
+      "name": "nindex",
+      "if": "notenumber",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nindex[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "nindex",
+      "if": "notenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nindex{${1:entry}}"
+      }
+    },
+    {
+      "name": "nnumberindex",
+      "if": "notenumber",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nnumberindex[${2:name}]{${1:entry}}"
+      }
+    },
+    {
+      "name": "nnumberindex",
+      "if": "notenumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nnumberindex{${1:entry}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/indextools#c": [
+      "makeindex",
+      "xindy",
+      "texindy",
+      "truexindy",
+      "upmendex",
+      "xindex",
+      "noautomatic",
+      "nonewpage",
+      "quiet",
+      "original",
+      "afterindex",
+      "innote",
+      "notenumber",
+      "splitindex"
+    ],
+    "\\makeindex": [
       "name=${1:name}",
       "title=${1:text}",
-      "program=",
+      "program=${1|makeindex,xindy,texindy,truexindy,upmendex,xindex|}",
       "options=${1:program options}",
       "noautomatic",
       "intoc",
@@ -92,7 +222,7 @@
       "columnsep=",
       "columnseprule"
     ],
-    [
+    "\\indexsetup": [
       "level=${1:section command}",
       "toclevel=${1:section csname}",
       "noclearpage",
@@ -100,5 +230,8 @@
       "headers={${1:left mark}}{${2:right mark}}",
       "othercode=${1:code}"
     ]
+  },
+  "args": [
+    "\\usepackage/indextools#c"
   ]
 }

@@ -1,36 +1,72 @@
 {
-  "includes": {
-    "zref-base": [],
-    "keyval": [],
-    "kvoptions": []
-  },
-  "macros": {
-    "zexternaldocument{}": {
-      "snippet": "zexternaldocument{${1:file}}"
+  "deps": [
+    {
+      "name": "zref-base"
     },
-    "zexternaldocument[]{}[]": {
-      "snippet": "zexternaldocument[${2:prefix}]{${1:file}}[${3:url}]"
+    {
+      "name": "keyval"
     },
-    "zexternaldocument*{}": {
-      "snippet": "zexternaldocument*{${1:file}}"
-    },
-    "zexternaldocument*[]{}[]": {
-      "snippet": "zexternaldocument*[${2:prefix}]{${1:file}}[${3:url}]"
-    },
-    "zxrsetup{}": {
-      "snippet": "zxrsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvoptions"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "zexternaldocument",
+      "arg": {
+        "format": "{}",
+        "snippet": "zexternaldocument{${1:file}}"
+      }
+    },
+    {
+      "name": "zexternaldocument",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "zexternaldocument[${2:prefix}]{${1:file}}[${3:url}]"
+      }
+    },
+    {
+      "name": "zexternaldocument*",
+      "arg": {
+        "format": "{}",
+        "snippet": "zexternaldocument*{${1:file}}"
+      }
+    },
+    {
+      "name": "zexternaldocument*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "zexternaldocument*[${2:prefix}]{${1:file}}[${3:url}]"
+      }
+    },
+    {
+      "name": "zxrsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "zxrsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\zxrsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\zxrsetup": [
       "ext=${1:extension}",
       "tozreflabel",
       "urluse",
       "verbose"
+    ],
+    "\\zref#c": [
+      "url",
+      "urluse",
+      "externaldocument",
+      "anchor",
+      "theotype",
+      "title"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,14 +1,32 @@
 {
-  "includes": {},
-  "macros": {
-    "makebox*{}{}": {
-      "snippet": "makebox*{${1:reference_text}}{${2:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "makebox*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "makebox*{${1:reference_text}}{${2:text}}"
+      }
     },
-    "makebox*{}[]{}": {
-      "snippet": "makebox*{${1:reference_text}}[${2:pos}]{${3:text}}"
+    {
+      "name": "makebox*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "makebox*{${1:reference_text}}[${3:pos%keyvals}]{${2:text}}",
+        "keys": [
+          "\\makebox*"
+        ],
+        "keyPos": 1
+      }
     }
+  ],
+  "envs": [],
+  "keys": {
+    "\\makebox*": [
+      "l",
+      "r",
+      "s"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

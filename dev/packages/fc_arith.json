@@ -1,179 +1,605 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifxetex": [],
-    "calc": [],
-    "eforms": [],
-    "popupmenu": []
-  },
-  "macros": {
-    "fcSettings": {},
-    "fcSettingsColor": {},
-    "fcOptionsMenuItem": {},
-    "fcMouseKPMenuItemTitle": {},
-    "fcToggleKeypadMenuItem": {},
-    "fcToggleKeypadMenuItemTitle": {},
-    "fcTouchKPMenuItem": {},
-    "fcTouchKPMenuItemTitle": {},
-    "fcMouseKPMenuItem": {},
-    "fcAboutFC": {},
-    "fcAboutFCTitle": {},
-    "amtChngMouToTou": {},
-    "arithProb": {},
-    "tBGNoBorder": {},
-    "monoSpaceFont": {},
-    "setDimOf{}{}{}": {
-      "snippet": "setDimOf{${1:field}}{${2:width}}{${3:height}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "inputRegion": {},
-    "inputRegion[]": {
-      "snippet": "inputRegion[${1:eform parameters}]"
+    {
+      "name": "ifxetex"
     },
-    "cBGNoBorder": {},
-    "startAgain": {},
-    "startAgain[]": {
-      "snippet": "startAgain[${1:eform parameters}]"
+    {
+      "name": "calc"
     },
-    "newCard": {},
-    "newCard[]": {
-      "snippet": "newCard[${1:eform parameters}]"
+    {
+      "name": "eforms"
     },
-    "tBGNoBorderI": {},
-    "fieldFont": {},
-    "alertbox": {},
-    "alertbox[]": {
-      "snippet": "alertbox[${1:eform parameters}]"
-    },
-    "Keypad": {},
-    "szNum": {},
-    "myNumPadI": {},
-    "kpBack": {},
-    "kpEnter": {},
-    "cbTiming": {},
-    "cbTiming[]": {
-      "snippet": "cbTiming[${1:eform parameters}]"
-    },
-    "fcNoTiming": {},
-    "ansField": {},
-    "ansField[]": {
-      "snippet": "ansField[${1:eform parameters}]"
-    },
-    "fmtAnswer": {},
-    "cbOperation": {},
-    "cbOperation[]": {
-      "snippet": "cbOperation[${1:eform parameters}]"
-    },
-    "cBGBorder": {},
-    "fcAddition": {},
-    "fcSubtraction": {},
-    "fcMultiplication": {},
-    "fcDivision": {},
-    "statsFields": {},
-    "statsFieldOpColor": {},
-    "statsFieldColor": {},
-    "DeclareArithParams{}": {
-      "snippet": "DeclareArithParams{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "timeUpMsg": {},
-    "rightMsg": {},
-    "wrongMsg": {},
-    "startAgainMsg": {},
-    "newCar": {},
-    "toggleKeypad": {},
-    "operation": {},
-    "numCorrect": {},
-    "numAttempted": {},
-    "percentCorrect": {},
-    "timedScores": {},
-    "fctCharWidth": {},
-    "fctInstr": {},
-    "fctTimeElapsed": {},
-    "fctPoints": {},
-    "fctLessThanV": {},
-    "fctLessThanVPoints": {},
-    "fctBtwnVAndX": {},
-    "fctBtwnVAndXPoints": {},
-    "fctBtwnXAndXV": {},
-    "fctBtwnXAndXVPoints": {},
-    "fctBtwnXVAndXX": {},
-    "fctBtwnXVAndXXPoints": {},
-    "fctBtwnXXAndXXV": {},
-    "fctBtwnXXAndXXVPoints": {},
-    "fctGtrXXV": {},
-    "fctGtrXXVPoints": {},
-    "fcAdditionName": {},
-    "fcSubtractionName": {},
-    "fcMultiplicationName": {},
-    "fcDivisionName": {},
-    "fcMenuFCMsg": {},
-    "toggleKeyPadBtnColor": {},
-    "toggleKeyPadBtnTooltip": {},
-    "fcSettingsTooltip": {},
-    "cbTimingToolip": {},
-    "cbOperationTooltip": {},
-    "timeScoresTooltip": {},
-    "fcOptTextWidth": {},
-    "fcOptTopRange": {},
-    "fcOptBottomRange": {},
-    "fcOptTopRangeDiv": {},
-    "fcOptBottomRangeDiv": {},
-    "fcOptTo": {},
-    "fcOptAllowNegNumber": {},
-    "fcOptDecimal": {},
-    "fcOptDecimalNone": {},
-    "fcSep": {},
-    "fcWidth": {},
-    "FCMenu": {},
-    "bFCa": {},
-    "bFCd": {},
-    "bFCm": {},
-    "bFCs": {},
-    "cbvOptChoices": {},
-    "eFCa": {},
-    "eFCd": {},
-    "eFCm": {},
-    "eFCs": {},
-    "fcAddBParams": {},
-    "fcAddTParams": {},
-    "fcAllowNegSub": {},
-    "fcDivBParams": {},
-    "fcDivQParams": {},
-    "fcMenu": {},
-    "fcMulBParams": {},
-    "fcMulTParams": {},
-    "fcOptionsMenuItemTitle": {},
-    "fcSubBParams": {},
-    "fcSubTParams": {},
-    "fcTimedScores": {},
-    "fcaddDecB": {},
-    "fcaddDecT": {},
-    "fcdivDecB": {},
-    "fcdivDecQ": {},
-    "fcmulDecB": {},
-    "fcmulDecT": {},
-    "fcsubDecB": {},
-    "fcsubDecT": {},
-    "isReadOnlyTiming": {},
-    "kpDec": {},
-    "kpMinus": {},
-    "newCardMsg": {},
-    "placeImageOpts": {},
-    "toggleKeyPadBtn": {}
-  },
-  "envs": {
-    "MenuFC": {}
-  },
-  "options": [
-    "allownegsub",
-    "nomenu",
-    "operations={${1:add, sub, mul, and/or div}}",
-    "showkeypadlink",
-    "notimedscores"
+    {
+      "name": "popupmenu"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "fcSettings",
+      "unusual": true
+    },
+    {
+      "name": "fcSettingsColor",
+      "unusual": true
+    },
+    {
+      "name": "fcOptionsMenuItem"
+    },
+    {
+      "name": "fcMouseKPMenuItemTitle",
+      "unusual": true
+    },
+    {
+      "name": "fcToggleKeypadMenuItem"
+    },
+    {
+      "name": "fcToggleKeypadMenuItemTitle",
+      "unusual": true
+    },
+    {
+      "name": "fcTouchKPMenuItem"
+    },
+    {
+      "name": "fcTouchKPMenuItemTitle",
+      "unusual": true
+    },
+    {
+      "name": "fcMouseKPMenuItem"
+    },
+    {
+      "name": "fcMouseKPMenuItemTitle",
+      "unusual": true
+    },
+    {
+      "name": "fcAboutFC"
+    },
+    {
+      "name": "fcAboutFCTitle",
+      "unusual": true
+    },
+    {
+      "name": "amtChngMouToTou",
+      "unusual": true
+    },
+    {
+      "name": "arithProb"
+    },
+    {
+      "name": "tBGNoBorder",
+      "unusual": true
+    },
+    {
+      "name": "monoSpaceFont",
+      "unusual": true
+    },
+    {
+      "name": "setDimOf",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setDimOf{${1:field%keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "inputRegion"
+    },
+    {
+      "name": "inputRegion",
+      "arg": {
+        "format": "[]",
+        "snippet": "inputRegion[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "cBGNoBorder",
+      "unusual": true
+    },
+    {
+      "name": "startAgain"
+    },
+    {
+      "name": "startAgain",
+      "arg": {
+        "format": "[]",
+        "snippet": "startAgain[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "newCard"
+    },
+    {
+      "name": "newCard",
+      "arg": {
+        "format": "[]",
+        "snippet": "newCard[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "tBGNoBorderI",
+      "unusual": true
+    },
+    {
+      "name": "fieldFont",
+      "unusual": true
+    },
+    {
+      "name": "alertbox"
+    },
+    {
+      "name": "alertbox",
+      "arg": {
+        "format": "[]",
+        "snippet": "alertbox[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "Keypad"
+    },
+    {
+      "name": "szNum",
+      "unusual": true
+    },
+    {
+      "name": "myNumPadI",
+      "unusual": true
+    },
+    {
+      "name": "kpBack",
+      "unusual": true
+    },
+    {
+      "name": "kpEnter",
+      "unusual": true
+    },
+    {
+      "name": "cbTiming"
+    },
+    {
+      "name": "cbTiming",
+      "arg": {
+        "format": "[]",
+        "snippet": "cbTiming[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "fcNoTiming",
+      "unusual": true
+    },
+    {
+      "name": "ansField"
+    },
+    {
+      "name": "ansField",
+      "arg": {
+        "format": "[]",
+        "snippet": "ansField[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "fmtAnswer",
+      "unusual": true
+    },
+    {
+      "name": "cbOperation"
+    },
+    {
+      "name": "cbOperation",
+      "arg": {
+        "format": "[]",
+        "snippet": "cbOperation[${1:eform parameters}]"
+      }
+    },
+    {
+      "name": "cBGBorder"
+    },
+    {
+      "name": "fcAddition",
+      "unusual": true
+    },
+    {
+      "name": "fcSubtraction",
+      "unusual": true
+    },
+    {
+      "name": "fcMultiplication",
+      "unusual": true
+    },
+    {
+      "name": "fcDivision",
+      "unusual": true
+    },
+    {
+      "name": "statsFields"
+    },
+    {
+      "name": "statsFieldOpColor",
+      "unusual": true
+    },
+    {
+      "name": "statsFieldColor",
+      "unusual": true
+    },
+    {
+      "name": "DeclareArithParams",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareArithParams{${1:keyvals}}",
+        "keys": [
+          "\\DeclareArithParams"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timeUpMsg",
+      "unusual": true
+    },
+    {
+      "name": "rightMsg",
+      "unusual": true
+    },
+    {
+      "name": "wrongMsg",
+      "unusual": true
+    },
+    {
+      "name": "startAgainMsg",
+      "unusual": true
+    },
+    {
+      "name": "newCar",
+      "unusual": true
+    },
+    {
+      "name": "toggleKeypad",
+      "unusual": true
+    },
+    {
+      "name": "operation",
+      "unusual": true
+    },
+    {
+      "name": "numCorrect",
+      "unusual": true
+    },
+    {
+      "name": "numAttempted",
+      "unusual": true
+    },
+    {
+      "name": "percentCorrect",
+      "unusual": true
+    },
+    {
+      "name": "timedScores",
+      "unusual": true
+    },
+    {
+      "name": "fctCharWidth",
+      "unusual": true
+    },
+    {
+      "name": "fctInstr",
+      "unusual": true
+    },
+    {
+      "name": "fctTimeElapsed",
+      "unusual": true
+    },
+    {
+      "name": "fctPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctLessThanV",
+      "unusual": true
+    },
+    {
+      "name": "fctLessThanVPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnVAndX",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnVAndXPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXAndXV",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXAndXVPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXVAndXX",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXVAndXXPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXXAndXXV",
+      "unusual": true
+    },
+    {
+      "name": "fctBtwnXXAndXXVPoints",
+      "unusual": true
+    },
+    {
+      "name": "fctGtrXXV",
+      "unusual": true
+    },
+    {
+      "name": "fctGtrXXVPoints",
+      "unusual": true
+    },
+    {
+      "name": "fcAdditionName",
+      "unusual": true
+    },
+    {
+      "name": "fcSubtractionName",
+      "unusual": true
+    },
+    {
+      "name": "fcMultiplicationName",
+      "unusual": true
+    },
+    {
+      "name": "fcDivisionName",
+      "unusual": true
+    },
+    {
+      "name": "fcMenuFCMsg",
+      "unusual": true
+    },
+    {
+      "name": "toggleKeyPadBtnColor",
+      "unusual": true
+    },
+    {
+      "name": "toggleKeyPadBtnTooltip",
+      "unusual": true
+    },
+    {
+      "name": "fcSettingsTooltip",
+      "unusual": true
+    },
+    {
+      "name": "cbTimingToolip",
+      "unusual": true
+    },
+    {
+      "name": "cbOperationTooltip",
+      "unusual": true
+    },
+    {
+      "name": "timeScoresTooltip",
+      "unusual": true
+    },
+    {
+      "name": "fcOptTextWidth",
+      "unusual": true
+    },
+    {
+      "name": "fcOptTopRange",
+      "unusual": true
+    },
+    {
+      "name": "fcOptBottomRange",
+      "unusual": true
+    },
+    {
+      "name": "fcOptTopRangeDiv",
+      "unusual": true
+    },
+    {
+      "name": "fcOptBottomRangeDiv",
+      "unusual": true
+    },
+    {
+      "name": "fcOptTo",
+      "unusual": true
+    },
+    {
+      "name": "fcOptAllowNegNumber",
+      "unusual": true
+    },
+    {
+      "name": "fcOptDecimal",
+      "unusual": true
+    },
+    {
+      "name": "fcOptDecimalNone",
+      "unusual": true
+    },
+    {
+      "name": "fcSep",
+      "unusual": true
+    },
+    {
+      "name": "fcWidth",
+      "unusual": true
+    },
+    {
+      "name": "FCMenu",
+      "unusual": true
+    },
+    {
+      "name": "bFCa",
+      "unusual": true
+    },
+    {
+      "name": "bFCd",
+      "unusual": true
+    },
+    {
+      "name": "bFCm",
+      "unusual": true
+    },
+    {
+      "name": "bFCs",
+      "unusual": true
+    },
+    {
+      "name": "cbvOptChoices",
+      "unusual": true
+    },
+    {
+      "name": "eFCa",
+      "unusual": true
+    },
+    {
+      "name": "eFCd",
+      "unusual": true
+    },
+    {
+      "name": "eFCm",
+      "unusual": true
+    },
+    {
+      "name": "eFCs",
+      "unusual": true
+    },
+    {
+      "name": "fcAddBParams",
+      "unusual": true
+    },
+    {
+      "name": "fcAddTParams",
+      "unusual": true
+    },
+    {
+      "name": "fcAllowNegSub",
+      "unusual": true
+    },
+    {
+      "name": "fcDivBParams",
+      "unusual": true
+    },
+    {
+      "name": "fcDivQParams",
+      "unusual": true
+    },
+    {
+      "name": "fcMenu",
+      "unusual": true
+    },
+    {
+      "name": "fcMulBParams",
+      "unusual": true
+    },
+    {
+      "name": "fcMulTParams",
+      "unusual": true
+    },
+    {
+      "name": "fcOptionsMenuItemTitle",
+      "unusual": true
+    },
+    {
+      "name": "fcSubBParams",
+      "unusual": true
+    },
+    {
+      "name": "fcSubTParams",
+      "unusual": true
+    },
+    {
+      "name": "fcTimedScores",
+      "unusual": true
+    },
+    {
+      "name": "fcaddDecB",
+      "unusual": true
+    },
+    {
+      "name": "fcaddDecT",
+      "unusual": true
+    },
+    {
+      "name": "fcdivDecB",
+      "unusual": true
+    },
+    {
+      "name": "fcdivDecQ",
+      "unusual": true
+    },
+    {
+      "name": "fcmulDecB",
+      "unusual": true
+    },
+    {
+      "name": "fcmulDecT",
+      "unusual": true
+    },
+    {
+      "name": "fcsubDecB",
+      "unusual": true
+    },
+    {
+      "name": "fcsubDecT",
+      "unusual": true
+    },
+    {
+      "name": "isReadOnlyTiming",
+      "unusual": true
+    },
+    {
+      "name": "kpDec",
+      "unusual": true
+    },
+    {
+      "name": "kpMinus",
+      "unusual": true
+    },
+    {
+      "name": "newCardMsg",
+      "unusual": true
+    },
+    {
+      "name": "placeImageOpts",
+      "unusual": true
+    },
+    {
+      "name": "toggleKeyPadBtn",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "MenuFC"
+    }
+  ],
+  "keys": {
+    "\\usepackage/fc_arith#c": [
+      "allownegsub",
+      "nomenu",
+      "operations={${1:add, sub, mul, and/or div}}",
+      "showkeypadlink",
+      "notimedscores"
+    ],
+    "": [
+      "top",
+      "operation",
+      "bottom",
+      "result",
+      "StartAgain",
+      "NewProblem",
+      "alertbox",
+      "TimeDelay",
+      "ansregion",
+      "ChooseOperation",
+      "fcSF"
+    ],
+    "\\DeclareArithParams": [
       "addT={[${1:a,b}]}",
       "addB={[${1:a,b}]}",
       "subT={[${1:a,b}]}",
@@ -182,14 +608,17 @@
       "mulB={[${1:a,b}]}",
       "divQ={[${1:a,b}]}",
       "divB={[${1:a,b}]}",
-      "addDecT=",
-      "addDecB=",
-      "subDecT=",
-      "subDecB=",
-      "mulDecT=",
-      "mulDecB=",
-      "divDecQ=",
-      "divDecB="
+      "addDecT=${1|none,1,2|}",
+      "addDecB=${1|none,1,2|}",
+      "subDecT=${1|none,1,2|}",
+      "subDecB=${1|none,1,2|}",
+      "mulDecT=${1|none,1,2|}",
+      "mulDecB=${1|none,1,2|}",
+      "divDecQ=${1|none,1,2|}",
+      "divDecB=${1|none,1,2|}"
     ]
+  },
+  "args": [
+    "\\usepackage/fc_arith#c"
   ]
 }

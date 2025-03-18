@@ -1,161 +1,403 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "calc": [],
-    "ifthen": []
-  },
-  "macros": {
-    "setgounit{}": {
-      "snippet": "setgounit{${1:length}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "stone{}{}{}": {
-      "snippet": "stone{${1:color}}{${2:column}}{${3:row}}"
+    {
+      "name": "pst-node"
     },
-    "stone[]{}{}{}": {
-      "snippet": "stone[${4:marker}]{${1:color}}{${2:column}}{${3:row}}"
+    {
+      "name": "calc"
     },
-    "move{}{}": {
-      "snippet": "move{${1:column}}{${2:row}}"
-    },
-    "move[]{}{}": {
-      "snippet": "move[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "move*{}{}": {
-      "snippet": "move*{${1:column}}{${2:row}}"
-    },
-    "move*[]{}{}": {
-      "snippet": "move*[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "pass": {},
-    "pass*": {},
-    "markpos{}{}{}": {
-      "snippet": "markpos{${1:marker}}{${2:column}}{${3:row}}"
-    },
-    "markma": {},
-    "marktr": {},
-    "markcr": {},
-    "marksq": {},
-    "marklb{}": {
-      "snippet": "marklb{${1:text}}"
-    },
-    "marksl": {},
-    "markdd": {},
-    "goline{}{}{}{}": {
-      "snippet": "goline{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
-    },
-    "goarrow{}{}{}{}": {
-      "snippet": "goarrow{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
-    },
-    "psgo": {},
-    "blackstone{}{}": {
-      "snippet": "blackstone{${1:column}}{${2:row}}"
-    },
-    "blackstone[]{}{}": {
-      "snippet": "blackstone[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "factor": {},
-    "golabelformat{}": {
-      "snippet": "golabelformat{${1:text}}"
-    },
-    "goxposition{}": {
-      "snippet": "goxposition{${1:column}}"
-    },
-    "goxunit": {},
-    "goyposition{}": {
-      "snippet": "goyposition{${1:row}}"
-    },
-    "goyunit": {},
-    "hatchangle": {},
-    "mdd{}{}{}{}": {
-      "snippet": "mdd{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
-    },
-    "movenostar{}{}": {
-      "snippet": "movenostar{${1:column}}{${2:row}}"
-    },
-    "movenostar[]{}{}": {
-      "snippet": "movenostar[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "movestar{}{}": {
-      "snippet": "movestar{${1:column}}{${2:row}}"
-    },
-    "movestar[]{}{}": {
-      "snippet": "movestar[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "nomark": {},
-    "passnostar": {},
-    "passstar": {},
-    "placesymbol{}{}{}": {
-      "snippet": "placesymbol{${1:symbol}}{${2:column}}{${3:row}}"
-    },
-    "pointbox{}": {
-      "snippet": "pointbox{${1:text}}"
-    },
-    "psgollx": {},
-    "psgollxval": {},
-    "psgolly": {},
-    "psgollyval": {},
-    "psgosetboardsizes": {},
-    "psgourx": {},
-    "psgourxval": {},
-    "psgoury": {},
-    "psgouryval": {},
-    "stmark": {},
-    "stmarkbox": {},
-    "theboardsize": {},
-    "thegomove": {},
-    "thegotmpc": {},
-    "tmplx": {},
-    "tmply": {},
-    "tmpxa": {},
-    "tmpxb": {},
-    "tmpya": {},
-    "tmpyb": {},
-    "toggleblackmove": {},
-    "whitestone{}{}": {
-      "snippet": "whitestone{${1:column}}{${2:row}}"
-    },
-    "whitestone[]{}{}": {
-      "snippet": "whitestone[${3:marker}]{${1:column}}{${2:row}}"
-    },
-    "xoffset": {},
-    "xpositionmarks{}{}": {
-      "snippet": "xpositionmarks{${1:counter}}{${2:value}}"
-    },
-    "ypos": {},
-    "ypositionmarks{}{}": {
-      "snippet": "ypositionmarks{${1:counter}}{${2:value}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "envs": {
-    "psgoboard": {},
-    "psgoboard[]": {
+  ],
+  "macros": [
+    {
+      "name": "setgounit",
+      "arg": {
+        "format": "{}",
+        "snippet": "setgounit{${1:length}}"
+      }
+    },
+    {
+      "name": "stone",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "stone{${1:color%plain}}{${2:column}}{${3:row}}"
+      }
+    },
+    {
+      "name": "stone",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "stone[${4:marker}]{${1:color%plain}}{${2:column}}{${3:row}}"
+      }
+    },
+    {
+      "name": "move",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "move{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "move",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "move[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "move*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "move*{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "move*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "move*[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "pass"
+    },
+    {
+      "name": "pass*"
+    },
+    {
+      "name": "markpos",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "markpos{${1:marker}}{${2:column}}{${3:row}}"
+      }
+    },
+    {
+      "name": "markma"
+    },
+    {
+      "name": "marktr"
+    },
+    {
+      "name": "markcr"
+    },
+    {
+      "name": "marksq"
+    },
+    {
+      "name": "marklb",
+      "arg": {
+        "format": "{}",
+        "snippet": "marklb{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "marksl"
+    },
+    {
+      "name": "markdd"
+    },
+    {
+      "name": "goline",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "goline{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
+      }
+    },
+    {
+      "name": "goarrow",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "goarrow{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
+      }
+    },
+    {
+      "name": "psgo",
+      "unusual": true
+    },
+    {
+      "name": "blackstone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "blackstone{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "blackstone",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "blackstone[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "factor",
+      "unusual": true
+    },
+    {
+      "name": "golabelformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "golabelformat{${1:text}}"
+      }
+    },
+    {
+      "name": "goxposition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "goxposition{${1:column}}"
+      }
+    },
+    {
+      "name": "goxunit",
+      "unusual": true
+    },
+    {
+      "name": "goyposition",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "goyposition{${1:row}}"
+      }
+    },
+    {
+      "name": "goyunit",
+      "unusual": true
+    },
+    {
+      "name": "hatchangle",
+      "unusual": true
+    },
+    {
+      "name": "mdd",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mdd{${1:column1}}{${2:row1}}{${3:column2}}{${4:row2}}"
+      }
+    },
+    {
+      "name": "movenostar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "movenostar{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "movenostar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "movenostar[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "movestar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "movestar{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "movestar",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "movestar[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "nomark",
+      "unusual": true
+    },
+    {
+      "name": "passnostar",
+      "unusual": true
+    },
+    {
+      "name": "passstar",
+      "unusual": true
+    },
+    {
+      "name": "placesymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "placesymbol{${1:symbol}}{${2:column}}{${3:row}}"
+      }
+    },
+    {
+      "name": "pointbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pointbox{${1:text}}"
+      }
+    },
+    {
+      "name": "psgollx",
+      "unusual": true
+    },
+    {
+      "name": "psgollxval",
+      "unusual": true
+    },
+    {
+      "name": "psgolly",
+      "unusual": true
+    },
+    {
+      "name": "psgollyval",
+      "unusual": true
+    },
+    {
+      "name": "psgosetboardsizes",
+      "unusual": true
+    },
+    {
+      "name": "psgourx",
+      "unusual": true
+    },
+    {
+      "name": "psgourxval",
+      "unusual": true
+    },
+    {
+      "name": "psgoury",
+      "unusual": true
+    },
+    {
+      "name": "psgouryval",
+      "unusual": true
+    },
+    {
+      "name": "stmark",
+      "unusual": true
+    },
+    {
+      "name": "stmarkbox",
+      "unusual": true
+    },
+    {
+      "name": "theboardsize",
+      "unusual": true
+    },
+    {
+      "name": "thegomove",
+      "unusual": true
+    },
+    {
+      "name": "thegotmpc",
+      "unusual": true
+    },
+    {
+      "name": "toggleblackmove",
+      "unusual": true
+    },
+    {
+      "name": "whitestone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "whitestone{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "whitestone",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "whitestone[${3:marker}]{${1:column}}{${2:row}}"
+      }
+    },
+    {
+      "name": "xoffset",
+      "unusual": true
+    },
+    {
+      "name": "xpositionmarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "xpositionmarks{${1:counter}}{${2:value}}"
+      }
+    },
+    {
+      "name": "ypos",
+      "unusual": true
+    },
+    {
+      "name": "ypositionmarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ypositionmarks{${1:counter}}{${2:value}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "psgoboard"
+    },
+    {
       "name": "psgoboard",
-      "snippet": "[${1:size}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size}]"
+      }
     },
-    "psgoboard*": {},
-    "psgoboard*[]": {
+    {
+      "name": "psgoboard*"
+    },
+    {
       "name": "psgoboard*",
-      "snippet": "[${1:size}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:size}]"
+      }
     },
-    "psgopartialboard{}": {
+    {
       "name": "psgopartialboard",
-      "snippet": "{${1:(${2:x1,y1})(${3:x2,y2})}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})}}"
+      }
     },
-    "psgopartialboard[]{}": {
+    {
       "name": "psgopartialboard",
-      "snippet": "[${2:size}]{${1:(${3:x1,y1})(${4:x2,y2})}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})}}"
+      }
     },
-    "psgopartialboard*{}": {
+    {
       "name": "psgopartialboard*",
-      "snippet": "{${1:(${2:x1,y1})(${3:x2,y2})}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:(${2:x1},${3:y1})(${4:x2},${5:y2})}}"
+      }
     },
-    "psgopartialboard*[]{}": {
+    {
       "name": "psgopartialboard*",
-      "snippet": "[${2:size}]{${1:(${3:x1,y1})(${4:x2,y2})}}"
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:size}]{${1:(${3:x1},${4:y1})(${5:x2},${6:y2})}}"
+      }
     },
-    "gomoves": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "gomoves",
+      "unusual": true
+    }
+  ],
+  "keys": {},
+  "args": []
 }

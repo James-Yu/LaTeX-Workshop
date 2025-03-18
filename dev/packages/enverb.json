@@ -1,0 +1,84 @@
+{
+  "deps": [
+    {
+      "name": "expkv-def"
+    }
+  ],
+  "macros": [
+    {
+      "name": "enverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "enverb{${1:keyvals}}",
+        "keys": [
+          "\\enverb,\\enverb*,\\enverbsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enverb",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "enverb{${1:keyvals}}[${2:keyvals%plain}]",
+        "keys": [
+          "\\enverb,\\enverb*,\\enverbsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enverb*",
+      "arg": {
+        "format": "{}",
+        "snippet": "enverb*{${1:keyvals}}",
+        "keys": [
+          "\\enverb,\\enverb*,\\enverbsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "enverbBody"
+    },
+    {
+      "name": "enverbExecute"
+    },
+    {
+      "name": "enverbListing",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "enverbListing{${1:env}}{${2:args}}"
+      }
+    },
+    {
+      "name": "enverbsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "enverbsetup{${1:keyvals}}",
+        "keys": [
+          "\\enverb,\\enverb*,\\enverbsetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\enverb,\\enverb*,\\enverbsetup": [
+      "ignore=${1:integer}",
+      "auto-ignore",
+      "more-ignore=${1:integer}",
+      "bol=${1:tokens}",
+      "bol+=${1:tokens}",
+      "+bol=${1:tokens}",
+      "eol=${1:tokens}",
+      "eol+=${1:tokens}",
+      "+eol=${1:tokens}",
+      "key-handler=${1:code}",
+      "key-set=${1:set}",
+      "oarg-not-enverb"
+    ]
+  },
+  "args": []
+}

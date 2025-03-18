@@ -1,154 +1,369 @@
 {
-  "includes": {},
-  "macros": {
-    "node{}{}": {
-      "snippet": "node{${1:nodename}}{${2:object}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "node",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "node{${1:nodename}}{${2:object%text}}"
+      }
     },
-    "nodepoint{}": {
-      "snippet": "nodepoint{${1:nodename}}"
+    {
+      "name": "nodepoint",
+      "arg": {
+        "format": "{}",
+        "snippet": "nodepoint{${1:nodename}}"
+      }
     },
-    "nodepoint{}[]": {
-      "snippet": "nodepoint{${1:nodename}}[${2:hshift}]"
+    {
+      "name": "nodepoint",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nodepoint{${1:nodename}}[${2:hshift%l}]"
+      }
     },
-    "nodepoint{}[][]": {
-      "snippet": "nodepoint{${1:nodename}}[${2:hshift}][${3:vshift}]"
+    {
+      "name": "nodepoint",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "nodepoint{${1:nodename}}[${2:hshift%l}][${3:vshift%l}]"
+      }
     },
-    "nodeconnect{}{}": {
-      "snippet": "nodeconnect{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "nodeconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nodeconnect{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "nodeconnect{}[]{}": {
-      "snippet": "nodeconnect{${1:fromnodename}}[${2:toloc}]{${3:tonodename}}"
+    {
+      "name": "nodeconnect",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "nodeconnect{${1:fromnodename}}[${3:toloc}]{${2:tonodename}}"
+      }
     },
-    "nodeconnect[]{}{}": {
-      "snippet": "nodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "nodeconnect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "nodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "nodeconnect[]{}[]{}": {
-      "snippet": "nodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+    {
+      "name": "nodeconnect",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "nodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+      }
     },
-    "anodeconnect{}{}": {
-      "snippet": "anodeconnect{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "anodeconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "anodeconnect{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "anodeconnect{}[]{}": {
-      "snippet": "anodeconnect{${1:fromnodename}}[${2:toloc}]{${3:tonodename}}"
+    {
+      "name": "anodeconnect",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "anodeconnect{${1:fromnodename}}[${3:toloc}]{${2:tonodename}}"
+      }
     },
-    "anodeconnect[]{}{}": {
-      "snippet": "anodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "anodeconnect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "anodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "anodeconnect[]{}[]{}": {
-      "snippet": "anodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+    {
+      "name": "anodeconnect",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "anodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+      }
     },
-    "aanodeconnect{}{}": {
-      "snippet": "aanodeconnect{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "aanodeconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "aanodeconnect{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "aanodeconnect{}[]{}": {
-      "snippet": "aanodeconnect{${1:fromnodename}}[${2:toloc}]{${3:tonodename}}"
+    {
+      "name": "aanodeconnect",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "aanodeconnect{${1:fromnodename}}[${3:toloc}]{${2:tonodename}}"
+      }
     },
-    "aanodeconnect[]{}{}": {
-      "snippet": "aanodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "aanodeconnect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "aanodeconnect[${3:fromloc}]{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "aanodeconnect[]{}[]{}": {
-      "snippet": "aanodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+    {
+      "name": "aanodeconnect",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "aanodeconnect[${3:fromloc}]{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}"
+      }
     },
-    "barnodeconnect{}{}": {
-      "snippet": "barnodeconnect{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "barnodeconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "barnodeconnect{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "barnodeconnect[]{}{}": {
-      "snippet": "barnodeconnect[${3:depth}]{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "barnodeconnect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "barnodeconnect[${3:depth%l}]{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "abarnodeconnect{}{}": {
-      "snippet": "abarnodeconnect{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "abarnodeconnect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "abarnodeconnect{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "abarnodeconnect[]{}{}": {
-      "snippet": "abarnodeconnect[${3:depth}]{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "abarnodeconnect",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "abarnodeconnect[${3:depth%l}]{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "nodecurve{}{}{}": {
-      "snippet": "nodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "nodecurve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "nodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "nodecurve[]{}[]{}{}": {
-      "snippet": "nodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "nodecurve",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "nodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "nodecurve[][]{}[][]{}{}": {
-      "snippet": "nodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "nodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}",
+        "snippet": "nodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "nodecurve[][]{}[][]{}{}[]": {
-      "snippet": "nodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}[${8:tdepth}]"
+    {
+      "name": "nodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}[]",
+        "snippet": "nodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}[${8:tdepth%l}]"
+      }
     },
-    "anodecurve{}{}{}": {
-      "snippet": "anodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "anodecurve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "anodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "anodecurve[]{}[]{}{}": {
-      "snippet": "anodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "anodecurve",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "anodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "anodecurve[][]{}[][]{}{}": {
-      "snippet": "anodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "anodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}",
+        "snippet": "anodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "anodecurve[][]{}[][]{}{}[]": {
-      "snippet": "anodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}[${8:tdepth}]"
+    {
+      "name": "anodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}[]",
+        "snippet": "anodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}[${8:tdepth%l}]"
+      }
     },
-    "aanodecurve{}{}{}": {
-      "snippet": "aanodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "aanodecurve",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "aanodecurve{${1:fromnodename}}{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "aanodecurve[]{}[]{}{}": {
-      "snippet": "aanodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "aanodecurve",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "aanodecurve[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "aanodecurve[][]{}[][]{}{}": {
-      "snippet": "aanodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}"
+    {
+      "name": "aanodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}",
+        "snippet": "aanodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}"
+      }
     },
-    "aanodecurve[][]{}[][]{}{}[]": {
-      "snippet": "aanodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth}}[${8:tdepth}]"
+    {
+      "name": "aanodecurve",
+      "arg": {
+        "format": "[][]{}[][]{}{}[]",
+        "snippet": "aanodecurve[${4:fromloc}][${5:fromang}]{${1:fromnodename}}[${6:toloc}][${7:toang}]{${2:tonodename}}{${3:fdepth%l}}[${8:tdepth%l}]"
+      }
     },
-    "nodetriangle{}{}": {
-      "snippet": "nodetriangle{${1:fromnodename}}{${2:tonodename}}"
+    {
+      "name": "nodetriangle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nodetriangle{${1:fromnodename}}{${2:tonodename}}"
+      }
     },
-    "delink{}{}{}": {
-      "snippet": "delink{${1:fromnodename}}{${2:tonodename}}{${3:length}}"
+    {
+      "name": "delink",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "delink{${1:fromnodename}}{${2:tonodename}}{${3:length}}"
+      }
     },
-    "delink{}[]{}{}": {
-      "snippet": "delink{${1:fromnodename}}[${2:toloc}]{${3:tonodename}}{${4:length}}"
+    {
+      "name": "delink",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "delink{${1:fromnodename}}[${4:toloc}]{${2:tonodename}}{${3:length}}"
+      }
     },
-    "delink[]{}{}{}": {
-      "snippet": "delink[${4:fromloc}]{${1:fromnodename}}{${2:tonodename}}{${3:length}}"
+    {
+      "name": "delink",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "delink[${4:fromloc}]{${1:fromnodename}}{${2:tonodename}}{${3:length}}"
+      }
     },
-    "delink[]{}[]{}{}": {
-      "snippet": "delink[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:length}}"
+    {
+      "name": "delink",
+      "arg": {
+        "format": "[]{}[]{}{}",
+        "snippet": "delink[${4:fromloc}]{${1:fromnodename}}[${5:toloc}]{${2:tonodename}}{${3:length}}"
+      }
     },
-    "nodebox{}": {
-      "snippet": "nodebox{${1:nodename}}"
+    {
+      "name": "nodebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "nodebox{${1:nodename}}"
+      }
     },
-    "nodecircle{}": {
-      "snippet": "nodecircle{${1:nodename}}"
+    {
+      "name": "nodecircle",
+      "arg": {
+        "format": "{}",
+        "snippet": "nodecircle{${1:nodename}}"
+      }
     },
-    "nodecircle[]{}": {
-      "snippet": "nodecircle[${2:depth}]{${1:nodename}}"
+    {
+      "name": "nodecircle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nodecircle[${2:depth%l}]{${1:nodename}}"
+      }
     },
-    "nodeoval{}": {
-      "snippet": "nodeoval{${1:nodename}}"
+    {
+      "name": "nodeoval",
+      "arg": {
+        "format": "{}",
+        "snippet": "nodeoval{${1:nodename}}"
+      }
     },
-    "nodemargin": {},
-    "treelinewidth": {},
-    "dashlength": {},
-    "arrowwidth": {},
-    "arrowlength": {},
-    "arrowinset": {},
-    "arrowhead{}{}{}": {
-      "snippet": "arrowhead{${1:width}}{${2:length}}{${3:inset}}"
+    {
+      "name": "nodemargin",
+      "unusual": true
     },
-    "makedash{}": {
-      "snippet": "makedash{${1:length}}"
+    {
+      "name": "treelinewidth",
+      "unusual": true
     },
-    "delinkcurve{}": {
-      "snippet": "delinkcurve{${1:arg}}"
+    {
+      "name": "dashlength",
+      "unusual": true
     },
-    "iftransparent": {},
-    "pscmd{}": {
-      "snippet": "pscmd{${1:PS code}}"
+    {
+      "name": "arrowwidth",
+      "unusual": true
     },
-    "thinline": {},
-    "transparentfalse": {},
-    "transparenttrue": {},
-    "wnum": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "arrowlength",
+      "unusual": true
+    },
+    {
+      "name": "arrowinset",
+      "unusual": true
+    },
+    {
+      "name": "arrowhead",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "arrowhead{${1:width}}{${2:length}}{${3:inset%l}}"
+      }
+    },
+    {
+      "name": "makedash",
+      "arg": {
+        "format": "{}",
+        "snippet": "makedash{${1:length}}"
+      }
+    },
+    {
+      "name": "delinkcurve",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "delinkcurve{${1:arg}}"
+      }
+    },
+    {
+      "name": "iftransparent",
+      "unusual": true
+    },
+    {
+      "name": "pscmd",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pscmd{${1:PS code}}"
+      }
+    },
+    {
+      "name": "thinline",
+      "unusual": true
+    },
+    {
+      "name": "transparentfalse",
+      "unusual": true
+    },
+    {
+      "name": "transparenttrue",
+      "unusual": true
+    },
+    {
+      "name": "wnum",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

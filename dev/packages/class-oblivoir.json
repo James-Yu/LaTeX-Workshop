@@ -1,65 +1,98 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "iftex": [],
-    "oblivoir-xl": [],
-    "moreverb": [
-      "moreverb"
-    ],
-    "lwarp": [
-      "lwarp"
-    ],
-    "xob-lwarp": [
-      "lwarp"
-    ],
-    "amsmath": [
-      "amsmath"
-    ],
-    "xob-amssymb": [
-      "amsmath"
-    ],
-    "bookmark": [
-      "bookmark"
-    ],
-    "ob-nokoreanappendix": [
-      "nokorean"
-    ],
-    "polyglossia": [
-      "polyglossia"
-    ],
-    "babel": [
-      "babelhangul"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "oblivoir-xl"
+    },
+    {
+      "name": "moreverb",
+      "if": "moreverb"
+    },
+    {
+      "name": "lwarp",
+      "if": "lwarp"
+    },
+    {
+      "name": "xob-lwarp",
+      "if": "lwarp"
+    },
+    {
+      "name": "amsmath",
+      "if": "amsmath"
+    },
+    {
+      "name": "xob-amssymb",
+      "if": "amsmath"
+    },
+    {
+      "name": "bookmark",
+      "if": "bookmark"
+    },
+    {
+      "name": "ob-nokoreanappendix",
+      "if": "nokorean"
+    },
+    {
+      "name": "polyglossia",
+      "if": "polyglossia"
+    },
+    {
+      "name": "babel",
+      "if": "babelhangul"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ifLuaOrXeTeX",
+      "unusual": true
+    },
+    {
+      "name": "MSNormalSize",
+      "if": "ms"
+    },
+    {
+      "name": "sethangulfont",
+      "if": "polyglossia",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "sethangulfont",
+      "if": "polyglossia",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sethangulfont{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "hangulfont",
+      "if": "polyglossia",
+      "unusual": true
+    },
+    {
+      "name": "hangulfonttt",
+      "if": "polyglossia",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/oblivoir#c": [
+      "cjk",
+      "dhucs",
+      "fontspec={${1:fontspec options}}",
+      "hyperref={${1:hyperref options}}",
+      "xcolor={${1:xcolor options}}"
     ]
   },
-  "macros": {
-    "ifLuaOrXeTeX": {},
-    "LuaOrXeTeXtrue": {},
-    "LuaOrXeTeXfalse": {},
-    "MSNormalSize": {
-      "option": "ms"
-    },
-    "sethangulfont{}": {
-      "snippet": "sethangulfont{${1:font name}}",
-      "option": "polyglossia"
-    },
-    "sethangulfont{}[]": {
-      "snippet": "sethangulfont{${1:font name}}[${2:font features}]",
-      "option": "polyglossia"
-    },
-    "hangulfont": {
-      "option": "polyglossia"
-    },
-    "hangulfonttt": {
-      "option": "polyglossia"
-    }
-  },
-  "envs": {},
-  "options": [
-    "cjk",
-    "dhucs",
-    "fontspec={${1:fontspec options}}",
-    "hyperref={${1:hyperref options}}",
-    "xcolor={${1:xcolor options}}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/oblivoir#c"
+  ]
 }

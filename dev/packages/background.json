@@ -1,53 +1,43 @@
 {
-  "includes": {
-    "tikz": [],
-    "everypage": [],
-    "afterpage": []
-  },
-  "macros": {
-    "backgroundsetup{}": {
-      "snippet": "backgroundsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "BgThispage": {},
-    "NoBgThispage": {},
-    "BgMaterial": {},
-    "SetBgContents{}": {
-      "snippet": "SetBgContents{${1:arg}}"
+    {
+      "name": "everypage"
     },
-    "SetBgColor{}": {
-      "snippet": "SetBgColor{${1:arg}}"
-    },
-    "SetBgAngle{}": {
-      "snippet": "SetBgAngle{${1:arg}}"
-    },
-    "SetBgOpacity{}": {
-      "snippet": "SetBgOpacity{${1:arg}}"
-    },
-    "SetBgScale{}": {
-      "snippet": "SetBgScale{${1:arg}}"
-    },
-    "SetBgPosition{}": {
-      "snippet": "SetBgPosition{${1:arg}}"
-    },
-    "SetBgAnchor{}": {
-      "snippet": "SetBgAnchor{${1:arg}}"
-    },
-    "SetBgHshift{}": {
-      "snippet": "SetBgHshift{${1:arg}}"
-    },
-    "SetBgVshift{}": {
-      "snippet": "SetBgVshift{${1:arg}}"
+    {
+      "name": "afterpage"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "pages=",
+  ],
+  "macros": [
+    {
+      "name": "backgroundsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "backgroundsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\backgroundsetup,\\usepackage/background#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "BgThispage"
+    },
+    {
+      "name": "NoBgThispage"
+    },
+    {
+      "name": "BgMaterial"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\backgroundsetup,\\usepackage/background#c": [
+      "pages=${1|all,some|}",
       "firstpage",
-      "placement=",
+      "placement=${1|center,top,bottom|}",
       "contents=",
       "color=",
       "angle=${1:degrees}",
@@ -59,5 +49,8 @@
       "hshift=",
       "vshift="
     ]
+  },
+  "args": [
+    "\\backgroundsetup,\\usepackage/background#c"
   ]
 }

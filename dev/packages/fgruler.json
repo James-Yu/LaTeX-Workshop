@@ -1,122 +1,322 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "etoolbox": [],
-    "xcolor": [],
-    "graphicx": [],
-    "eso-pic": []
-  },
-  "macros": {
-    "setfgruler{}": {
-      "snippet": "setfgruler{${1:options}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "fgruler*{}": {
-      "snippet": "fgruler*{${1:type}}"
+    {
+      "name": "etoolbox"
     },
-    "fgruler*[]{}": {
-      "snippet": "fgruler*[${2:options}]{${1:type}}"
+    {
+      "name": "xcolor"
     },
-    "fgruler{}{}{}": {
-      "snippet": "fgruler{${1:type}}{${2:hshift}}{${3:vshift}}"
+    {
+      "name": "graphicx"
     },
-    "fgruler[]{}{}{}": {
-      "snippet": "fgruler[${4:unit}]{${1:type}}{${2:hshift}}{${3:vshift}}"
-    },
-    "ruler{}{}": {
-      "snippet": "ruler{${1:type}}{${2:length}}"
-    },
-    "ruler[]{}{}": {
-      "snippet": "ruler[${3:unit}]{${1:type}}{${2:length}}"
-    },
-    "ruler*{}{}": {
-      "snippet": "ruler*{${1:type}}{${2:length}}"
-    },
-    "ruler*[]{}{}": {
-      "snippet": "ruler*[${3:unit}]{${1:type}}{${2:length}}"
-    },
-    "squareruler{}{}{}": {
-      "snippet": "squareruler{${1:type}}{${2:width}}{${3:height}}"
-    },
-    "squareruler[]{}{}{}": {
-      "snippet": "squareruler[${4:unit}]{${1:type}}{${2:width}}{${3:height}}"
-    },
-    "squareruler*{}{}{}": {
-      "snippet": "squareruler*{${1:type}}{${2:width}}{${3:height}}"
-    },
-    "squareruler*[]{}{}{}": {
-      "snippet": "squareruler*[${4:unit}]{${1:type}}{${2:width}}{${3:height}}"
-    },
-    "rulerparams{}{}{}{}{}": {
-      "snippet": "rulerparams{${1:markthick}}{${2:numfont}}{${3:color}}{${4:marklength}}{${5:numsep}}"
-    },
-    "rulerparamsfromfg": {},
-    "rulernorotatenum": {},
-    "rulerrotatenum": {},
-    "fgrulerstartnum{}": {
-      "snippet": "fgrulerstartnum{${1:number}}"
-    },
-    "fgrulerstartnumh{}": {
-      "snippet": "fgrulerstartnumh{${1:number}}"
-    },
-    "fgrulerstartnumv{}": {
-      "snippet": "fgrulerstartnumv{${1:number}}"
-    },
-    "fgrulernoborderline": {},
-    "fgrulerborderline": {},
-    "fgrulercaptioncm{}": {
-      "snippet": "fgrulercaptioncm{${1:caption}}"
-    },
-    "fgrulercaptionin{}": {
-      "snippet": "fgrulercaptionin{${1:caption}}"
-    },
-    "fgrulerdefnum{}": {
-      "snippet": "fgrulerdefnum{${1:definition}}"
-    },
-    "fgrulerratiocm{}{}": {
-      "snippet": "fgrulerratiocm{${1:ratio1}}{${2:ratio2}}"
-    },
-    "fgrulerratioin{}{}{}{}": {
-      "snippet": "fgrulerratioin{${1:ratio1}}{${2:ratio2}}{${3:ratio3}}{${4:ratio4}}"
-    },
-    "fgrulerthickcm{}{}{}": {
-      "snippet": "fgrulerthickcm{${1:thick1}}{${2:thick2}}{${3:thick3}}"
-    },
-    "fgrulerthickin{}{}{}{}{}": {
-      "snippet": "fgrulerthickin{${1:thick1}}{${2:thick2}}{${3:thick3}}{${4:thick4}}{${5:thick5}}"
-    },
-    "fgrulercolorcm{}{}{}": {
-      "snippet": "fgrulercolorcm{${1:color1}}{${2:color2}}{${3:color3}}"
-    },
-    "fgrulercolorin{}{}{}{}{}": {
-      "snippet": "fgrulercolorin{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}"
-    },
-    "fgrulerreset": {},
-    "fgrulerdefuser{}": {
-      "snippet": "fgrulerdefuser{${1:code}}"
-    },
-    "fgrulerdefusercm{}": {
-      "snippet": "fgrulerdefusercm{${1:code}}"
-    },
-    "fgrulerdefuserin{}": {
-      "snippet": "fgrulerdefuserin{${1:code}}"
-    },
-    "fgrulertype{}{}": {
-      "snippet": "fgrulertype{${1:unit}}{${2:type}}"
-    },
-    "thefgrulernum": {}
-  },
-  "envs": {},
-  "options": [
-    "unit=",
-    "type=",
-    "hshift=",
-    "vshift=",
-    "color=",
-    "numsep=",
-    "markthick=",
-    "numfont=${1:font commands}",
-    "showframe",
-    "nonefgrulers"
+    {
+      "name": "eso-pic"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setfgruler",
+      "arg": {
+        "format": "{}",
+        "snippet": "setfgruler{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/fgruler#c,\\setfgruler,\\fgruler*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fgruler*",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgruler*{${1:type}}"
+      }
+    },
+    {
+      "name": "fgruler*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fgruler*[${2:options%keyvals}]{${1:type}}",
+        "keys": [
+          "\\usepackage/fgruler#c,\\setfgruler,\\fgruler*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fgruler",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fgruler{${1:type%keyvals}}{${2:hshift%l}}{${3:vshift%l}}",
+        "keys": [
+          "\\fgruler,\\squareruler,\\squareruler*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fgruler",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "fgruler[${4:unit}]{${1:type%keyvals}}{${2:hshift%l}}{${3:vshift%l}}",
+        "keys": [
+          "\\fgruler,\\squareruler,\\squareruler*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ruler",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ruler{${1:type%keyvals}}{${2:length}}",
+        "keys": [
+          "\\ruler,\\ruler*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ruler",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ruler[${3:unit}]{${1:type%keyvals}}{${2:length}}",
+        "keys": [
+          "\\ruler,\\ruler*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ruler*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ruler*{${1:type%keyvals}}{${2:length}}",
+        "keys": [
+          "\\ruler,\\ruler*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ruler*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ruler*[${3:unit}]{${1:type%keyvals}}{${2:length}}",
+        "keys": [
+          "\\ruler,\\ruler*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "squareruler",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "squareruler{${1:type%keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "squareruler",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "squareruler[${4:unit}]{${1:type%keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "squareruler*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "squareruler*{${1:type%keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "squareruler*",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "squareruler*[${4:unit}]{${1:type%keyvals}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "rulerparams",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "rulerparams{${1:markthick%l}}{${2:numfont}}{${3:color}}{${4:marklength%l}}{${5:numsep%l}}"
+      }
+    },
+    {
+      "name": "rulerparamsfromfg"
+    },
+    {
+      "name": "rulernorotatenum"
+    },
+    {
+      "name": "rulerrotatenum"
+    },
+    {
+      "name": "fgrulerstartnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerstartnum{${1:number}}"
+      }
+    },
+    {
+      "name": "fgrulerstartnumh",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerstartnumh{${1:number}}"
+      }
+    },
+    {
+      "name": "fgrulerstartnumv",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerstartnumv{${1:number}}"
+      }
+    },
+    {
+      "name": "fgrulernoborderline"
+    },
+    {
+      "name": "fgrulerborderline"
+    },
+    {
+      "name": "fgrulercaptioncm",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulercaptioncm{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "fgrulercaptionin",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulercaptionin{${1:caption%text}}"
+      }
+    },
+    {
+      "name": "fgrulerdefnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerdefnum{${1:definition}}"
+      }
+    },
+    {
+      "name": "fgrulerratiocm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fgrulerratiocm{${1:ratio1}}{${2:ratio2}}"
+      }
+    },
+    {
+      "name": "fgrulerratioin",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "fgrulerratioin{${1:ratio1}}{${2:ratio2}}{${3:ratio3}}{${4:ratio4}}"
+      }
+    },
+    {
+      "name": "fgrulerthickcm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fgrulerthickcm{${1:thick1%l}}{${2:thick2%l}}{${3:thick3%l}}"
+      }
+    },
+    {
+      "name": "fgrulerthickin",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "fgrulerthickin{${1:thick1%l}}{${2:thick2%l}}{${3:thick3%l}}{${4:thick4%l}}{${5:thick5%l}}"
+      }
+    },
+    {
+      "name": "fgrulercolorcm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fgrulercolorcm{${1:color1}}{${2:color2}}{${3:color3}}"
+      }
+    },
+    {
+      "name": "fgrulercolorin",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "fgrulercolorin{${1:color1}}{${2:color2}}{${3:color3}}{${4:color4}}{${5:color5}}"
+      }
+    },
+    {
+      "name": "fgrulerreset"
+    },
+    {
+      "name": "fgrulerdefuser",
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerdefuser{${1:code}}"
+      }
+    },
+    {
+      "name": "fgrulerdefusercm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerdefusercm{${1:code}}"
+      }
+    },
+    {
+      "name": "fgrulerdefuserin",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "fgrulerdefuserin{${1:code}}"
+      }
+    },
+    {
+      "name": "fgrulertype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fgrulertype{${1:unit}}{${2:type}}"
+      }
+    },
+    {
+      "name": "thefgrulernum"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fgruler#c,\\setfgruler,\\fgruler*": [
+      "unit=${1|cm,in|}",
+      "type=${1|upperleft,upperright,lowerleft,lowerright,upperleftT,upperrightT,lowerleftT,lowerrightT,alledges,alledges*,alledgesT,alledgesT*,none,user|}",
+      "hshift=",
+      "vshift=",
+      "color=",
+      "numsep=",
+      "markthick=",
+      "numfont=${1:font commands}",
+      "showframe",
+      "nonefgrulers"
+    ],
+    "\\fgruler,\\squareruler,\\squareruler*": [
+      "upperleft",
+      "upperright",
+      "lowerleft",
+      "lowerright"
+    ],
+    "\\ruler,\\ruler*": [
+      "downright",
+      "downleft",
+      "upright",
+      "upleft",
+      "rightdown",
+      "rightup",
+      "leftdown",
+      "leftup",
+      "taperight",
+      "tapeleft"
+    ]
+  },
+  "args": [
+    "\\usepackage/fgruler#c,\\setfgruler,\\fgruler*"
+  ]
 }

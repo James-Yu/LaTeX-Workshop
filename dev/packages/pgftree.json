@@ -1,31 +1,77 @@
 {
-  "includes": {
-    "pgf": [],
-    "pgffor": [],
-    "pgfsubpic": []
-  },
-  "macros": {
-    "levelsep": {},
-    "subtreesep": {},
-    "leveldirection": {},
-    "siblingdirection": {},
-    "drawnode{}": {
-      "snippet": "drawnode{${1:label text}}"
+  "deps": [
+    {
+      "name": "pgf"
     },
-    "drawedge": {},
-    "pgftree{}": {
-      "snippet": "pgftree{${1:subtree}}"
+    {
+      "name": "pgffor"
     },
-    "nodename": {},
-    "pgfsubtree{}{}": {
-      "snippet": "pgfsubtree{${1:root}}{${2:subtrees}}"
-    },
-    "parentnodename": {},
-    "subtreeof{}": {
-      "snippet": "subtreeof{${1:name}}"
+    {
+      "name": "pgfsubpic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "levelsep",
+      "unusual": true
+    },
+    {
+      "name": "subtreesep",
+      "unusual": true
+    },
+    {
+      "name": "leveldirection",
+      "unusual": true
+    },
+    {
+      "name": "siblingdirection",
+      "unusual": true
+    },
+    {
+      "name": "drawnode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "drawnode{${1:label text}}"
+      }
+    },
+    {
+      "name": "drawedge",
+      "unusual": true
+    },
+    {
+      "name": "pgftree",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgftree{${1:subtree}}"
+      }
+    },
+    {
+      "name": "nodename",
+      "unusual": true
+    },
+    {
+      "name": "pgfsubtree",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfsubtree{${1:root}}{${2:subtrees}}"
+      }
+    },
+    {
+      "name": "parentnodename",
+      "unusual": true
+    },
+    {
+      "name": "subtreeof",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtreeof{${1:name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

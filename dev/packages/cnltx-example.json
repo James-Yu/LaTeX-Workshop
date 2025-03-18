@@ -1,281 +1,549 @@
 {
-  "includes": {
-    "cnltx-listings": [],
-    "cnltx-translations": [],
-    "mdframed": [],
-    "idxcmds": [],
-    "adjustbox": [],
-    "ifxetex": [],
-    "ulem": []
-  },
-  "macros": {
-    "code{}": {
-      "snippet": "code{${1:arg}}"
+  "deps": [
+    {
+      "name": "cnltx-listings"
     },
-    "verbcode": {
-      "snippet": "verbcode|${1:text}|"
+    {
+      "name": "cnltx-translations"
     },
-    "verbcode{}": {
-      "snippet": "verbcode{${1:verbatimSymbol}}"
+    {
+      "name": "mdframed"
     },
-    "cs{}": {
-      "snippet": "cs{${1:name}}"
+    {
+      "name": "idxcmds"
     },
-    "cs*{}": {
-      "snippet": "cs*{${1:name}}"
+    {
+      "name": "adjustbox"
     },
-    "csidx{}": {
-      "snippet": "csidx{${1:name}}"
+    {
+      "name": "ifxetex"
     },
-    "env{}": {
-      "snippet": "env{${1:name}}"
-    },
-    "env*{}": {
-      "snippet": "env*{${1:name}}"
-    },
-    "envidx{}": {
-      "snippet": "envidx{${1:name}}"
-    },
-    "beginend{}": {
-      "snippet": "beginend{${1:text}}"
-    },
-    "beginenv": {},
-    "beginenv*": {},
-    "endenv": {},
-    "endenv*": {},
-    "meta{}": {
-      "snippet": "meta{${1:meta}}"
-    },
-    "marg{}": {
-      "snippet": "marg{${1:arg}}"
-    },
-    "Marg{}": {
-      "snippet": "Marg{${1:arg}}"
-    },
-    "oarg{}": {
-      "snippet": "oarg{${1:arg}}"
-    },
-    "Oarg{}": {
-      "snippet": "Oarg{${1:arg}}"
-    },
-    "darg{}": {
-      "snippet": "darg{${1:arg}}"
-    },
-    "Darg{}": {
-      "snippet": "Darg{${1:arg}}"
-    },
-    "sarg": {},
-    "newarg{}{}{}": {
-      "snippet": "newarg{${1:cmd}}{${2:left delim}}{${3:right delim}}"
-    },
-    "newarg[]{}{}{}": {
-      "snippet": "newarg[${4:formatting}]{${1:cmd}}{${2:left delim}}{${3:right delim}}"
-    },
-    "option{}": {
-      "snippet": "option{${1:name}}"
-    },
-    "option*{}": {
-      "snippet": "option*{${1:name}}"
-    },
-    "optionidx{}": {
-      "snippet": "optionidx{${1:name}}"
-    },
-    "module{}": {
-      "snippet": "module{${1:name}}"
-    },
-    "module*{}": {
-      "snippet": "module*{${1:name}}"
-    },
-    "moduleidx{}": {
-      "snippet": "moduleidx{${1:name}}"
-    },
-    "key{}{}": {
-      "snippet": "key{${1:name}}{${2:value}}"
-    },
-    "key*{}{}": {
-      "snippet": "key*{${1:name}}{${2:value}}"
-    },
-    "keyis{}{}": {
-      "snippet": "keyis{${1:name}}{${2:value}}"
-    },
-    "keyis*{}{}": {
-      "snippet": "keyis*{${1:name}}{${2:value}}"
-    },
-    "choices{}": {
-      "snippet": "choices{${1:list of choices}}"
-    },
-    "choicekey{}{}": {
-      "snippet": "choicekey{${1:name}}{${2:list of choices}}"
-    },
-    "boolkey{}": {
-      "snippet": "boolkey{${1:name}}"
-    },
-    "default{}": {
-      "snippet": "default{${1:value}}"
-    },
-    "pkg{}": {
-      "snippet": "pkg{${1:package}}"
-    },
-    "pkg*{}": {
-      "snippet": "pkg*{${1:package}}"
-    },
-    "pkgidx{}": {
-      "snippet": "pkgidx{${1:package}}"
-    },
-    "cls{}": {
-      "snippet": "cls{${1:class}}"
-    },
-    "cls*{}": {
-      "snippet": "cls*{${1:class}}"
-    },
-    "clsidx{}": {
-      "snippet": "clsidx{${1:class}}"
-    },
-    "bnd{}": {
-      "snippet": "bnd{${1:bundle}}"
-    },
-    "bnd*{}": {
-      "snippet": "bnd*{${1:bundle}}"
-    },
-    "inputexample{}": {
-      "snippet": "inputexample{${1:file}}"
-    },
-    "inputexample[]{}": {
-      "snippet": "inputexample[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputsidebyside{}": {
-      "snippet": "inputsidebyside{${1:file}}"
-    },
-    "inputsidebyside[]{}": {
-      "snippet": "inputsidebyside[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "inputsourcecode{}": {
-      "snippet": "inputsourcecode{${1:file}}"
-    },
-    "inputsourcecode[]{}": {
-      "snippet": "inputsourcecode[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "implementation{}": {
-      "snippet": "implementation{${1:file}}"
-    },
-    "implementation[]{}": {
-      "snippet": "implementation[${2:options}]{${1:file}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "newinputsourcefilecmd{}": {
-      "snippet": "newinputsourcefilecmd{${1:cmd}}"
-    },
-    "newinputsourcefilecmd[]{}": {
-      "snippet": "newinputsourcefilecmd[${2:options}]{${1:cmd}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "newsourcecodeenv{}": {
-      "snippet": "newsourcecodeenv{${1:envname}}"
-    },
-    "newsourcecodeenv[]{}": {
-      "snippet": "newsourcecodeenv[${2:options}]{${1:envname}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "codefont": {},
-    "sourceformat": {},
-    "exampleformat": {},
-    "versionnoteformat": {},
-    "packageformat": {},
-    "classformat": {},
-    "argumentformat": {},
-    "indexcs{}": {
-      "snippet": "indexcs{${1:name}}"
-    },
-    "indexenv{}": {
-      "snippet": "indexenv{${1:name}}"
-    },
-    "MakePercentComment": {}
-  },
-  "envs": {
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sidebyside": {},
-    "sidebyside[]": {
-      "name": "sidebyside",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "sourcecode": {},
-    "sourcecode[]": {
-      "name": "sourcecode",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bash": {},
-    "bash[]": {
-      "name": "bash",
-      "snippet": "[${1:options}]"
+    {
+      "name": "ulem"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
-      "side-by-side",
-      "code-only",
-      "code-left",
-      "compile",
-      "code-sep={${1:definitions}}",
-      "pre-code={${1:definitions}}",
-      "after-code={${1:definitions}}",
-      "pre-output={${1:definitions}}",
-      "after-output={${1:definitions}}",
-      "add-frame-options={${1:mdframed options}}",
-      "frame-options={${1:mdframed options}}",
-      "add-local-frame={${1:mdframed options}}",
-      "local-frame={${1:mdframed options}}",
-      "gobble=${1:integer}",
-      "add-cmds={${1:list of csnames}}",
-      "add-silent-cmds={${1:list of csnames}}",
-      "listings-options={${1:listings options}}",
-      "add-listings-options={${1:listings options}}",
-      "add-sourcecode-options={${1:listings options}}",
-      "sourcecode-options={${1:listings options}}",
-      "add-envs={${1:list of envnames}}",
-      "add-silent-envs={${1:list of envnames}}",
-      "max-pages=${1:number}",
-      "max-height=",
-      "pages={${1:specs}}",
-      "runs=${1:number}",
-      "program=",
-      "file-ext=${1:extension}",
-      "exe-with={${1:options}}",
-      "graphics={${1:options}}",
-      "float",
-      "float-env=${1:envname}",
-      "caption={${1:text}}",
-      "float-pos={${1:float parameters}}",
-      "outside",
-      "add-frame",
-      "before-skip=",
-      "after-skip="
-    ],
-    [
+  ],
+  "macros": [
+    {
+      "name": "code",
+      "arg": {
+        "format": "{}",
+        "snippet": "code{${1:arg}}"
+      }
+    },
+    {
+      "name": "verbcode",
+      "arg": {
+        "format": "||",
+        "snippet": "verbcode|${1:text}|"
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:name}}"
+      }
+    },
+    {
+      "name": "cs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "cs*{${1:name}}"
+      }
+    },
+    {
+      "name": "csidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "csidx{${1:name}}"
+      }
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "env{${1:name}}"
+      }
+    },
+    {
+      "name": "env*",
+      "arg": {
+        "format": "{}",
+        "snippet": "env*{${1:name}}"
+      }
+    },
+    {
+      "name": "envidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "envidx{${1:name}}"
+      }
+    },
+    {
+      "name": "beginend",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "beginend{${1:text}}"
+      }
+    },
+    {
+      "name": "beginenv"
+    },
+    {
+      "name": "beginenv*"
+    },
+    {
+      "name": "endenv"
+    },
+    {
+      "name": "endenv*"
+    },
+    {
+      "name": "meta",
+      "arg": {
+        "format": "{}",
+        "snippet": "meta{${1:meta}}"
+      }
+    },
+    {
+      "name": "marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "marg{${1:arg}}"
+      }
+    },
+    {
+      "name": "Marg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Marg{${1:arg}}"
+      }
+    },
+    {
+      "name": "oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "oarg{${1:arg}}"
+      }
+    },
+    {
+      "name": "Oarg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Oarg{${1:arg}}"
+      }
+    },
+    {
+      "name": "darg",
+      "arg": {
+        "format": "{}",
+        "snippet": "darg{${1:arg}}"
+      }
+    },
+    {
+      "name": "Darg",
+      "arg": {
+        "format": "{}",
+        "snippet": "Darg{${1:arg}}"
+      }
+    },
+    {
+      "name": "sarg"
+    },
+    {
+      "name": "newarg",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newarg{${1:cmd}}{${2:left delim}}{${3:right delim}}"
+      }
+    },
+    {
+      "name": "newarg",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "newarg[${4:formatting}]{${1:cmd}}{${2:left delim}}{${3:right delim}}"
+      }
+    },
+    {
+      "name": "option",
+      "arg": {
+        "format": "{}",
+        "snippet": "option{${1:name}}"
+      }
+    },
+    {
+      "name": "option*",
+      "arg": {
+        "format": "{}",
+        "snippet": "option*{${1:name}}"
+      }
+    },
+    {
+      "name": "optionidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "optionidx{${1:name}}"
+      }
+    },
+    {
+      "name": "module",
+      "arg": {
+        "format": "{}",
+        "snippet": "module{${1:name}}"
+      }
+    },
+    {
+      "name": "module*",
+      "arg": {
+        "format": "{}",
+        "snippet": "module*{${1:name}}"
+      }
+    },
+    {
+      "name": "moduleidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "moduleidx{${1:name}}"
+      }
+    },
+    {
+      "name": "key",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "key{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "key*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "key*{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keyis",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keyis{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "keyis*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "keyis*{${1:name}}{${2:value}}"
+      }
+    },
+    {
+      "name": "choices",
+      "arg": {
+        "format": "{}",
+        "snippet": "choices{${1:list of choices}}"
+      }
+    },
+    {
+      "name": "choicekey",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "choicekey{${1:name}}{${2:list of choices}}"
+      }
+    },
+    {
+      "name": "boolkey",
+      "arg": {
+        "format": "{}",
+        "snippet": "boolkey{${1:name}}"
+      }
+    },
+    {
+      "name": "default",
+      "arg": {
+        "format": "{}",
+        "snippet": "default{${1:value}}"
+      }
+    },
+    {
+      "name": "pkg",
+      "arg": {
+        "format": "{}",
+        "snippet": "pkg{${1:package}}"
+      }
+    },
+    {
+      "name": "pkg*",
+      "arg": {
+        "format": "{}",
+        "snippet": "pkg*{${1:package}}"
+      }
+    },
+    {
+      "name": "pkgidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "pkgidx{${1:package}}"
+      }
+    },
+    {
+      "name": "cls",
+      "arg": {
+        "format": "{}",
+        "snippet": "cls{${1:class}}"
+      }
+    },
+    {
+      "name": "cls*",
+      "arg": {
+        "format": "{}",
+        "snippet": "cls*{${1:class}}"
+      }
+    },
+    {
+      "name": "clsidx",
+      "arg": {
+        "format": "{}",
+        "snippet": "clsidx{${1:class}}"
+      }
+    },
+    {
+      "name": "bnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "bnd{${1:bundle}}"
+      }
+    },
+    {
+      "name": "bnd*",
+      "arg": {
+        "format": "{}",
+        "snippet": "bnd*{${1:bundle}}"
+      }
+    },
+    {
+      "name": "bnd",
+      "arg": {
+        "format": "{}",
+        "snippet": "bnd{${1:bundle}}"
+      }
+    },
+    {
+      "name": "inputexample",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputexample{${1:file}}"
+      }
+    },
+    {
+      "name": "inputexample",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inputexample[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputsidebyside",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputsidebyside{${1:file}}"
+      }
+    },
+    {
+      "name": "inputsidebyside",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inputsidebyside[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "inputsourcecode",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputsourcecode{${1:file}}"
+      }
+    },
+    {
+      "name": "inputsourcecode",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "inputsourcecode[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "implementation",
+      "arg": {
+        "format": "{}",
+        "snippet": "implementation{${1:file}}"
+      }
+    },
+    {
+      "name": "implementation",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "implementation[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\implementation"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newinputsourcefilecmd",
+      "arg": {
+        "format": "{}",
+        "snippet": "newinputsourcefilecmd{${1:cmd}}"
+      }
+    },
+    {
+      "name": "newinputsourcefilecmd",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newinputsourcefilecmd[${2:options%keyvals}]{${1:cmd}}",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newsourcecodeenv",
+      "arg": {
+        "format": "{}",
+        "snippet": "newsourcecodeenv{${1:envname}}"
+      }
+    },
+    {
+      "name": "newsourcecodeenv",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newsourcecodeenv[${2:options%keyvals}]{${1:envname}}",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codefont",
+      "unusual": true
+    },
+    {
+      "name": "sourceformat",
+      "unusual": true
+    },
+    {
+      "name": "exampleformat",
+      "unusual": true
+    },
+    {
+      "name": "versionnoteformat",
+      "unusual": true
+    },
+    {
+      "name": "packageformat",
+      "unusual": true
+    },
+    {
+      "name": "classformat",
+      "unusual": true
+    },
+    {
+      "name": "argumentformat",
+      "unusual": true
+    },
+    {
+      "name": "indexcs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "indexcs{${1:name}}"
+      }
+    },
+    {
+      "name": "indexenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "indexenv{${1:name}}"
+      }
+    },
+    {
+      "name": "MakePercentComment",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sidebyside"
+    },
+    {
+      "name": "sidebyside",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sourcecode"
+    },
+    {
+      "name": "sourcecode",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bash"
+    },
+    {
+      "name": "bash",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\implementation": [
       "inputpath=${1:path}",
       "aboveskip=",
       "belowskip=",
       "lineskip=",
-      "boxpos=",
+      "boxpos=${1|b,c,t|}",
       "print",
       "showlines",
       "emptylines=${1:number}",
@@ -331,7 +599,7 @@
       "showspaces",
       "showstringspaces",
       "formfeed=${1:tokens}",
-      "numbers=",
+      "numbers=${1|none,left,right|}",
       "stepnumber=${1:number}",
       "numberfirstline",
       "numberstyle=${1:style}",
@@ -458,6 +726,63 @@
       "deletekeywordcomment={${1:keywords}}",
       "keywordcommentsemicolon={${1:keywords}}{${2:keywords}}{${3:keywords}}",
       "podcomment"
+    ],
+    "\\setcnltx#c,\\inputexample,\\inputsidebyside,\\inputsourcecode,\\newinputsourcefilecmd,\\begin{example},\\begin{sidebyside},\\begin{sourcecode},\\newsourcecodeenv": [
+      "side-by-side",
+      "code-only",
+      "code-left",
+      "compile",
+      "code-sep={${1:definitions}}",
+      "pre-code={${1:definitions}}",
+      "after-code={${1:definitions}}",
+      "pre-output={${1:definitions}}",
+      "after-output={${1:definitions}}",
+      "add-frame-options={${1:mdframed options}}",
+      "frame-options={${1:mdframed options}}",
+      "add-local-frame={${1:mdframed options}}",
+      "local-frame={${1:mdframed options}}",
+      "gobble=${1:integer}",
+      "add-cmds={${1:list of csnames}}",
+      "add-silent-cmds={${1:list of csnames}}",
+      "listings-options={${1:listings options}}",
+      "add-listings-options={${1:listings options}}",
+      "add-sourcecode-options={${1:listings options}}",
+      "sourcecode-options={${1:listings options}}",
+      "add-envs={${1:list of envnames}}",
+      "add-silent-envs={${1:list of envnames}}",
+      "max-pages=${1:number}",
+      "max-height=",
+      "pages={${1:specs}}",
+      "runs=${1:number}",
+      "program=${1|pdflatex,lualatex,xelatex,arara|}",
+      "file-ext=${1:extension}",
+      "exe-with={${1:options}}",
+      "graphics={${1:options}}",
+      "float",
+      "float-env=${1:envname}",
+      "caption={${1:text}}",
+      "float-pos={${1:float parameters}}",
+      "outside",
+      "add-frame",
+      "before-skip=",
+      "after-skip="
+    ],
+    "\\setcnltx#c": [
+      "title-format={${1:definitions}}",
+      "abstract-width=",
+      "abstract-format={${1:definitions}}",
+      "caption-font={${1:definitions}}",
+      "caption-label-font={${1:definitions}}",
+      "code-font={${1:definitions}}",
+      "source-format={${1:definitions}}",
+      "expl-format={${1:definitions}}",
+      "module-sep={${1:definitions}}",
+      "version-note-format={${1:definitions}}",
+      "pkg-format={${1:definitions}}",
+      "cls-format={${1:definitions}}",
+      "arg-format={${1:definitions}}",
+      "deafult-format={${1:definitions}}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,36 +1,93 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-3d": [],
-    "pst-tools": []
-  },
-  "macros": {
-    "PstCube{}{}{}": {
-      "snippet": "PstCube{${1:x length}}{${2:y length}}{${3:z length}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstCube[]{}{}{}": {
-      "snippet": "PstCube[${4:options}]{${1:x length}}{${2:y length}}{${3:z length}}"
+    {
+      "name": "pst-xkey"
     },
-    "PstDie": {},
-    "PstDie[]": {
-      "snippet": "PstDie[${1:options}]"
+    {
+      "name": "pst-3d"
     },
-    "PstObjectsThreeDFaceA": {},
-    "PstObjectsThreeDFaceB": {},
-    "PstObjectsThreeDFaceC": {},
-    "PstObjectsThreeDFaceD": {},
-    "PstObjectsThreeDFaceE": {},
-    "PstObjectsThreeDFaceF": {},
-    "PstObjectsThreeDFaceCenterA": {},
-    "PstObjectsThreeDFaceCenterB": {},
-    "PstObjectsThreeDFaceCenterC": {},
-    "PstObjectsThreeDFaceCenterD": {},
-    "PstObjectsThreeDFaceCenterE": {},
-    "PstObjectsThreeDFaceCenterF": {},
-    "PstObjectsThreeDLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pst-tools"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstCube",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "PstCube{${1:x length}}{${2:y length}}{${3:z length}}"
+      }
+    },
+    {
+      "name": "PstCube",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "PstCube[${4:options%keyvals}]{${1:x length}}{${2:y length}}{${3:z length}}"
+      }
+    },
+    {
+      "name": "PstDie"
+    },
+    {
+      "name": "PstDie",
+      "arg": {
+        "format": "[]",
+        "snippet": "PstDie[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "PstObjectsThreeDFaceA",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceB",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceC",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceD",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceE",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceF",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterA",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterB",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterC",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterD",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterE",
+      "unusual": true
+    },
+    {
+      "name": "PstObjectsThreeDFaceCenterF",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,18 +1,34 @@
 {
-  "includes": {
-    "luatexbase": [],
-    "luaotfload": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "setluaoption{}{}{}": {
-      "snippet": "setluaoption{${1:family}}{${2:option}}{${3:value}}"
+  "deps": [
+    {
+      "name": "luatexbase"
     },
-    "useluaoption{}{}": {
-      "snippet": "useluaoption{${1:family}}{${2:option}}"
+    {
+      "name": "luaotfload"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "setluaoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setluaoption{${1:family}}{${2:option%keyvals}}{${3:value}}"
+      }
+    },
+    {
+      "name": "useluaoption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "useluaoption{${1:family}}{${2:option%keyvals}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

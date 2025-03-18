@@ -1,0 +1,2598 @@
+{
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "aeb-comment"
+    },
+    {
+      "name": "eso-pic",
+      "if": "usetemplates"
+    },
+    {
+      "name": "graphicx",
+      "if": "usetemplates"
+    },
+    {
+      "name": "eso-pic",
+      "if": "leftpanel"
+    },
+    {
+      "name": "graphicx",
+      "if": "leftpanel"
+    },
+    {
+      "name": "eso-pic",
+      "if": "rightpanel"
+    },
+    {
+      "name": "graphicx",
+      "if": "rightpanel"
+    },
+    {
+      "name": "eso-pic",
+      "if": "leftpanelprt"
+    },
+    {
+      "name": "graphicx",
+      "if": "leftpanelprt"
+    },
+    {
+      "name": "eso-pic",
+      "if": "rightpanelprt"
+    },
+    {
+      "name": "graphicx",
+      "if": "rightpanelprt"
+    },
+    {
+      "name": "pifont",
+      "if": "pro"
+    },
+    {
+      "name": "pifont",
+      "if": "extended"
+    },
+    {
+      "name": "colortbl",
+      "if": "table"
+    },
+    {
+      "name": "pdfcolmk",
+      "if": "fixpdftex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ui",
+      "if": "useui",
+      "arg": {
+        "format": "{}",
+        "snippet": "ui{${1:keyvals}}",
+        "keys": [
+          "\\ui"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "screensize",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "screensize{${1:height}}{${2:width}}"
+      }
+    },
+    {
+      "name": "margins",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "margins{${1:left}}{${2:right}}{${3:top}}{${4:bottom}}"
+      }
+    },
+    {
+      "name": "margins",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "margins[${5:panel width}]{${1:left}}{${2:right}}{${3:top}}{${4:bottom}}"
+      }
+    },
+    {
+      "name": "setScreensizeFromGraphic",
+      "arg": {
+        "format": "{}",
+        "snippet": "setScreensizeFromGraphic{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "setScreensizeFromGraphic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setScreensizeFromGraphic[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\setScreensizeFromGraphic,\\template"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addtoWebHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "addtoWebHeight{${1:length}}"
+      }
+    },
+    {
+      "name": "addtoWebWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "addtoWebWidth{${1:length}}"
+      }
+    },
+    {
+      "name": "panelwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "panelwidth{${1:width}}"
+      }
+    },
+    {
+      "name": "lheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "lheader{${1:text}}"
+      }
+    },
+    {
+      "name": "cheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "cheader{${1:text}}"
+      }
+    },
+    {
+      "name": "rheader",
+      "arg": {
+        "format": "{}",
+        "snippet": "rheader{${1:text}}"
+      }
+    },
+    {
+      "name": "lfooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "lfooter{${1:text}}"
+      }
+    },
+    {
+      "name": "cfooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "cfooter{${1:text}}"
+      }
+    },
+    {
+      "name": "rfooter",
+      "arg": {
+        "format": "{}",
+        "snippet": "rfooter{${1:text}}"
+      }
+    },
+    {
+      "name": "headerformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "headerformat{${1:font commands}}"
+      }
+    },
+    {
+      "name": "footerformat",
+      "arg": {
+        "format": "{}",
+        "snippet": "footerformat{${1:font commands}}"
+      }
+    },
+    {
+      "name": "webheadwrapper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "webheadwrapper{${1:code}}"
+      }
+    },
+    {
+      "name": "webfootwrapper",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "webfootwrapper{${1:code}}"
+      }
+    },
+    {
+      "name": "clearHeaders"
+    },
+    {
+      "name": "restoreHeaders"
+    },
+    {
+      "name": "clearFooters"
+    },
+    {
+      "name": "restoreFooters"
+    },
+    {
+      "name": "headersOnSectionPage"
+    },
+    {
+      "name": "noHeadersOnSectionPage"
+    },
+    {
+      "name": "subject",
+      "arg": {
+        "format": "{}",
+        "snippet": "subject{${1:subject%text}}"
+      }
+    },
+    {
+      "name": "university",
+      "arg": {
+        "format": "{}",
+        "snippet": "university{${1:university%text}}"
+      }
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "version",
+      "arg": {
+        "format": "{}",
+        "snippet": "version{${1:version}}"
+      }
+    },
+    {
+      "name": "copyrightyears",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightyears{${1:years}}"
+      }
+    },
+    {
+      "name": "universityColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "universityColor{${1:color}}"
+      }
+    },
+    {
+      "name": "titleColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleColor{${1:color}}"
+      }
+    },
+    {
+      "name": "authorColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "authorColor{${1:color}}"
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:word1,word2,...%text}}"
+      }
+    },
+    {
+      "name": "topTitlePage"
+    },
+    {
+      "name": "titlepageTrailer"
+    },
+    {
+      "name": "optionalPageMatter",
+      "arg": {
+        "format": "{}",
+        "snippet": "optionalPageMatter{${1:content%text}}"
+      }
+    },
+    {
+      "name": "optionalPageMatter",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "optionalPageMatter[${2:vspace}]{${1:content%text}}"
+      }
+    },
+    {
+      "name": "nocopyright"
+    },
+    {
+      "name": "minimumskip",
+      "unusual": true
+    },
+    {
+      "name": "copyrightLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "revisionLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "revisionLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "versionLabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "versionLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "webtitle",
+      "unusual": true
+    },
+    {
+      "name": "webauthor",
+      "unusual": true
+    },
+    {
+      "name": "websubject",
+      "unusual": true
+    },
+    {
+      "name": "webkeywords",
+      "unusual": true
+    },
+    {
+      "name": "webuniversity",
+      "unusual": true
+    },
+    {
+      "name": "webemail",
+      "unusual": true
+    },
+    {
+      "name": "webversion",
+      "unusual": true
+    },
+    {
+      "name": "webcopyrightyears",
+      "unusual": true
+    },
+    {
+      "name": "directoryName",
+      "arg": {
+        "format": "{}",
+        "snippet": "directoryName{${1:name%text}}"
+      }
+    },
+    {
+      "name": "tocName",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocName{${1:name%text}}"
+      }
+    },
+    {
+      "name": "dirContentLink",
+      "arg": {
+        "format": "{}",
+        "snippet": "dirContentLink{${1:text}}"
+      }
+    },
+    {
+      "name": "formatWordDirectory",
+      "arg": {
+        "format": "{}",
+        "snippet": "formatWordDirectory{${1:font commands}}"
+      }
+    },
+    {
+      "name": "formatDirectoryItems",
+      "arg": {
+        "format": "{}",
+        "snippet": "formatDirectoryItems{${1:font commands}}"
+      }
+    },
+    {
+      "name": "removeDirTOC"
+    },
+    {
+      "name": "removeDirArticle"
+    },
+    {
+      "name": "addtoDirList",
+      "arg": {
+        "format": "{}",
+        "snippet": "addtoDirList{${1:new item%text}}"
+      }
+    },
+    {
+      "name": "dirTOCItem"
+    },
+    {
+      "name": "dirArticleItem"
+    },
+    {
+      "name": "priorDirMatter",
+      "arg": {
+        "format": "{}",
+        "snippet": "priorDirMatter{${1:content%text}}"
+      }
+    },
+    {
+      "name": "afterDirMatter",
+      "arg": {
+        "format": "{}",
+        "snippet": "afterDirMatter{${1:content%text}}"
+      }
+    },
+    {
+      "name": "priorDirList",
+      "arg": {
+        "format": "{}",
+        "snippet": "priorDirList{${1:content%text}}"
+      }
+    },
+    {
+      "name": "afterDirList",
+      "arg": {
+        "format": "{}",
+        "snippet": "afterDirList{${1:content%text}}"
+      }
+    },
+    {
+      "name": "directoryhook",
+      "arg": {
+        "format": "{}",
+        "snippet": "directoryhook{${1:code}}"
+      }
+    },
+    {
+      "name": "tocindent",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocindent{${1:indent}}"
+      }
+    },
+    {
+      "name": "widestNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "widestNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "tocColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "coverpagemargin",
+      "unusual": true
+    },
+    {
+      "name": "makeinlinetitle"
+    },
+    {
+      "name": "NaviBarOn"
+    },
+    {
+      "name": "NaviBarOff"
+    },
+    {
+      "name": "navibarTextColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "navibarTextColor{${1:color}}"
+      }
+    },
+    {
+      "name": "navibarBgColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "navibarBgColor{${1:color}}"
+      }
+    },
+    {
+      "name": "navibariconHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "navibariconHeight{${1:height}}"
+      }
+    },
+    {
+      "name": "navibariconWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "navibariconWidth{${1:width}}"
+      }
+    },
+    {
+      "name": "newNaviIcon",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "newNaviIcon{${1:cmd}}{${2:width}}{${3:height}}{${4:text}}{${5:action%definition}}"
+      }
+    },
+    {
+      "name": "newNaviIcon",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "newNaviIcon[${6:m|${7:j}|l}]{${1:cmd}}{${2:width}}{${3:height}}{${4:text}}{${5:action%definition}}"
+      }
+    },
+    {
+      "name": "insertnaviiconhere",
+      "arg": {
+        "format": "{}",
+        "snippet": "insertnaviiconhere{${1:code}}"
+      }
+    },
+    {
+      "name": "insertnaviiconhereafter",
+      "arg": {
+        "format": "{}",
+        "snippet": "insertnaviiconhereafter{${1:code}}"
+      }
+    },
+    {
+      "name": "ArrowUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "ArrowUp{${1:code}}"
+      }
+    },
+    {
+      "name": "ArrowDown",
+      "arg": {
+        "format": "{}",
+        "snippet": "ArrowDown{${1:code}}"
+      }
+    },
+    {
+      "name": "defaultpageheader"
+    },
+    {
+      "name": "directionIconTextColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "directionIconTextColor{${1:color}}"
+      }
+    },
+    {
+      "name": "directionIconBgColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "directionIconBgColor{${1:color}}"
+      }
+    },
+    {
+      "name": "panelNaviGroup"
+    },
+    {
+      "name": "ifeqforpaper",
+      "unusual": true
+    },
+    {
+      "name": "eqforpapertrue",
+      "unusual": true
+    },
+    {
+      "name": "eqforpaperfalse",
+      "unusual": true
+    },
+    {
+      "name": "useFullWidthForPaper"
+    },
+    {
+      "name": "prtscr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prtscr{${1:print text%text}}{${2:screen text%text}}"
+      }
+    },
+    {
+      "name": "NewPage"
+    },
+    {
+      "name": "template",
+      "arg": {
+        "format": "{}",
+        "snippet": "template{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "template",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "template[${2:options%keyvals}]{${1:imagefile}}",
+        "keys": [
+          "\\setScreensizeFromGraphic,\\template"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "textBgColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "textBgColor{${1:color}}"
+      }
+    },
+    {
+      "name": "AddToTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddToTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "paneltemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "paneltemplate{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "paneltemplate",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "paneltemplate[${2:options%keyvals}]{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "panelBgColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "panelBgColor{${1:color}}"
+      }
+    },
+    {
+      "name": "AddToPanelTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "AddToPanelTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "buildpanel",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildpanel{${1:content%text}}"
+      }
+    },
+    {
+      "name": "minPanelWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "minPanelWidth{${1:length}}"
+      }
+    },
+    {
+      "name": "disableTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "disableTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "enableTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "enableTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "disablePanelTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "disablePanelTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "enablePanelTemplate",
+      "arg": {
+        "format": "{}",
+        "snippet": "enablePanelTemplate{${1:template name}}"
+      }
+    },
+    {
+      "name": "ClearTextTemplate"
+    },
+    {
+      "name": "ClearPanelTemplate"
+    },
+    {
+      "name": "ClearBuildPanel"
+    },
+    {
+      "name": "ClearAllTemplates"
+    },
+    {
+      "name": "ClearTextTemplateBuffer"
+    },
+    {
+      "name": "ClearPanelTemplateBuffer"
+    },
+    {
+      "name": "aboveTopTitleSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "aboveTopTitleSkip{${1:skip}}"
+      }
+    },
+    {
+      "name": "noFinalDot"
+    },
+    {
+      "name": "tocPartTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocPartTitle{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "formatPartTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "formatPartTitle{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "restorePartTitleFormat"
+    },
+    {
+      "name": "noPartNumbers"
+    },
+    {
+      "name": "formatChapterNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "formatChapterNumber{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "formatChapterTitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "formatChapterTitle{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "DeclareDocInfo",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareDocInfo{${1:keyvals}}",
+        "keys": [
+          "\\DeclareDocInfo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclarePageLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclarePageLayout{${1:keyvals}}",
+        "keys": [
+          "\\DeclarePageLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "universityLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "universityLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titleLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "authorLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "authorLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "topTitlePageProportion",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "topTitlePageProportion{${1:factor}}"
+      }
+    },
+    {
+      "name": "DesignTitlePageTrailer",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "DesignTitlePageTrailer{${1:keyvals}}",
+        "keys": [
+          "\\DesignTitlePageTrailer"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selectTocDings",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectTocDings{${1:keyvals}}",
+        "keys": [
+          "\\selectTocDings"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selectColors",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectColors{${1:keyvals}}",
+        "keys": [
+          "\\selectColors"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "noSectionNumbers",
+      "if": "pro"
+    },
+    {
+      "name": "tocLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sectionLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "sectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subsectionLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subsubsectionLayout",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shadowhoffset",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowhoffset{${1:length}}"
+      }
+    },
+    {
+      "name": "shadowvoffset",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowvoffset{${1:length}}"
+      }
+    },
+    {
+      "name": "customSecHead",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsecHead",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSubsecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsubsecHead",
+      "if": "pro",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSubsubsecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "preparedLabel",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "preparedLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "prepared",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prepared{${1:date}}"
+      }
+    },
+    {
+      "name": "talkdate",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talkdate{${1:date}}"
+      }
+    },
+    {
+      "name": "webtalkdate",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "talkdateLabel",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talkdateLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "talksite",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talksite{${1:site}}"
+      }
+    },
+    {
+      "name": "customUniversity",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customUniversity{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customTitle",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customTitle{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customAuthor",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customAuthor{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customToc",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customToc{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "halignuniversity",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "haligntitle",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "halignauthor",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "halignsection",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsection",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsubsection",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "haligntoc",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "subsubDefaultDing",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubDefaultDing{${1:symbol}}"
+      }
+    },
+    {
+      "name": "sectionTitle",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "sectionAuthor",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "sectionUniversity",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "sectionToc",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "ifShadow",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "Shadowtrue",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "Shadowfalse",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "useSectionNumbers",
+      "if": "pro",
+      "unusual": true
+    },
+    {
+      "name": "dDingToc",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "ddDingToc",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ddDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dddDingToc",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dddDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dDingTocColor",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "ddDingTocColor",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ddDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "dddDingTocColor",
+      "if": "pro",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dddDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "DeclareDocInfo",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareDocInfo{${1:keyvals}}",
+        "keys": [
+          "\\DeclareDocInfo"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclarePageLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclarePageLayout{${1:keyvals}}",
+        "keys": [
+          "\\DeclarePageLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "universityLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "universityLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titleLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "titleLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "authorLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "authorLayout{${1:keyvals}}",
+        "keys": [
+          "\\universityLayout,\\titleLayout,\\authorLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "topTitlePageProportion",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "topTitlePageProportion{${1:factor}}"
+      }
+    },
+    {
+      "name": "DesignTitlePageTrailer",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "DesignTitlePageTrailer{${1:keyvals}}",
+        "keys": [
+          "\\DesignTitlePageTrailer"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selectTocDings",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectTocDings{${1:keyvals}}",
+        "keys": [
+          "\\selectTocDings"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "selectColors",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "selectColors{${1:keyvals}}",
+        "keys": [
+          "\\selectColors"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "noSectionNumbers",
+      "if": "extended"
+    },
+    {
+      "name": "tocLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "tocLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sectionLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "sectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subsectionLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "subsubsectionLayout",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsectionLayout{${1:keyvals}}",
+        "keys": [
+          "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "shadowhoffset",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowhoffset{${1:length}}"
+      }
+    },
+    {
+      "name": "shadowvoffset",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "shadowvoffset{${1:length}}"
+      }
+    },
+    {
+      "name": "customSecHead",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsecHead",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSubsecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customSubsubsecHead",
+      "if": "extended",
+      "arg": {
+        "format": "{}",
+        "snippet": "customSubsubsecHead{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "preparedLabel",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "preparedLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "prepared",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prepared{${1:date}}"
+      }
+    },
+    {
+      "name": "talkdate",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talkdate{${1:date}}"
+      }
+    },
+    {
+      "name": "webtalkdate",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "talkdateLabel",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talkdateLabel{${1:text}}"
+      }
+    },
+    {
+      "name": "talksite",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "talksite{${1:site}}"
+      }
+    },
+    {
+      "name": "customUniversity",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customUniversity{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customTitle",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customTitle{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customAuthor",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customAuthor{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "customToc",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "customToc{${1:TeX code}}"
+      }
+    },
+    {
+      "name": "halignuniversity",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "haligntitle",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "halignauthor",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "halignsection",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsection",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "halignsubsubsection",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "haligntoc",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "subsubDefaultDing",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubDefaultDing{${1:symbol}}"
+      }
+    },
+    {
+      "name": "sectionTitle",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "sectionAuthor",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "sectionUniversity",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "sectionToc",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "ifShadow",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "Shadowtrue",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "Shadowfalse",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "useSectionNumbers",
+      "if": "extended",
+      "unusual": true
+    },
+    {
+      "name": "dDingToc",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "ddDingToc",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ddDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dddDingToc",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dddDingToc{${1:symbol}}"
+      }
+    },
+    {
+      "name": "dDingTocColor",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "ddDingTocColor",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ddDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "dddDingTocColor",
+      "if": "extended",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dddDingTocColor{${1:color}}"
+      }
+    },
+    {
+      "name": "BGColorAndGraphic",
+      "unusual": true
+    },
+    {
+      "name": "BGColorAndGraphicFullWidth",
+      "unusual": true
+    },
+    {
+      "name": "InitLayout",
+      "unusual": true
+    },
+    {
+      "name": "aboveOPMvspace"
+    },
+    {
+      "name": "addToWebHWError"
+    },
+    {
+      "name": "addtofullwidthtemplateArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtofullwidthtemplateArgs{${1:arg}}"
+      }
+    },
+    {
+      "name": "addtopaneltemplateArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtopaneltemplateArgs{${1:arg}}"
+      }
+    },
+    {
+      "name": "addtotemplateArgs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addtotemplateArgs{${1:arg}}"
+      }
+    },
+    {
+      "name": "aebwritelastpage",
+      "unusual": true
+    },
+    {
+      "name": "allowTransparency",
+      "unusual": true
+    },
+    {
+      "name": "bWebCustomize",
+      "unusual": true
+    },
+    {
+      "name": "calculatefullwidth",
+      "unusual": true
+    },
+    {
+      "name": "centertextonpage",
+      "unusual": true
+    },
+    {
+      "name": "chkpanelgroup",
+      "unusual": true
+    },
+    {
+      "name": "clearfullwidthtemplateArgs",
+      "unusual": true
+    },
+    {
+      "name": "clearpaneltemplateArgs",
+      "unusual": true
+    },
+    {
+      "name": "cleartemplateArgs",
+      "unusual": true
+    },
+    {
+      "name": "currLeftMarg",
+      "unusual": true
+    },
+    {
+      "name": "currPanelWidth",
+      "unusual": true
+    },
+    {
+      "name": "currTopMarg",
+      "unusual": true
+    },
+    {
+      "name": "cyrCommand",
+      "unusual": true
+    },
+    {
+      "name": "disablePanels",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "disablePanels{${1:arg}}"
+      }
+    },
+    {
+      "name": "disableScreens",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "disableScreens{${1:arg}}"
+      }
+    },
+    {
+      "name": "eWebCustomize",
+      "unusual": true
+    },
+    {
+      "name": "forceSubSubNumbers",
+      "unusual": true
+    },
+    {
+      "name": "fullscreenwidth",
+      "unusual": true
+    },
+    {
+      "name": "fullscreenwidthadj",
+      "unusual": true
+    },
+    {
+      "name": "fullwidthtemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fullwidthtemplate{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "get",
+      "unusual": true
+    },
+    {
+      "name": "getDimsFromGraphic",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "getDimsFromGraphic{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "getargsii",
+      "unusual": true
+    },
+    {
+      "name": "getargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "getargs{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "hproportionwebauthor",
+      "unusual": true
+    },
+    {
+      "name": "hproportionwebtitle",
+      "unusual": true
+    },
+    {
+      "name": "hproportionwebuniversity",
+      "unusual": true
+    },
+    {
+      "name": "incby",
+      "unusual": true
+    },
+    {
+      "name": "inputWebCfg",
+      "unusual": true
+    },
+    {
+      "name": "insNaviBar",
+      "unusual": true
+    },
+    {
+      "name": "insertwebtoc",
+      "unusual": true
+    },
+    {
+      "name": "isChapter",
+      "unusual": true
+    },
+    {
+      "name": "listAddToPanelTemplates",
+      "unusual": true
+    },
+    {
+      "name": "listAddToTemplates",
+      "unusual": true
+    },
+    {
+      "name": "loadwebpro",
+      "unusual": true
+    },
+    {
+      "name": "makeFullwidthhead",
+      "unusual": true
+    },
+    {
+      "name": "maketitlepostamble",
+      "unusual": true
+    },
+    {
+      "name": "maketitlepreamble",
+      "unusual": true
+    },
+    {
+      "name": "marginsize",
+      "unusual": true
+    },
+    {
+      "name": "maxtextscreentext",
+      "unusual": true
+    },
+    {
+      "name": "newBottomMarg",
+      "unusual": true
+    },
+    {
+      "name": "newLeftMarg",
+      "unusual": true
+    },
+    {
+      "name": "newPanelWidth",
+      "unusual": true
+    },
+    {
+      "name": "newRightMarg",
+      "unusual": true
+    },
+    {
+      "name": "newTopMarg",
+      "unusual": true
+    },
+    {
+      "name": "nocopyrightNotice",
+      "unusual": true
+    },
+    {
+      "name": "nocopyrightsymbol",
+      "unusual": true
+    },
+    {
+      "name": "norevisionLabel",
+      "unusual": true
+    },
+    {
+      "name": "optionalpagematter",
+      "unusual": true
+    },
+    {
+      "name": "origpaperheight",
+      "unusual": true
+    },
+    {
+      "name": "origpaperwidth",
+      "unusual": true
+    },
+    {
+      "name": "panelIconGroup",
+      "unusual": true
+    },
+    {
+      "name": "panelNavigroupWidth",
+      "unusual": true
+    },
+    {
+      "name": "panelSep",
+      "unusual": true
+    },
+    {
+      "name": "panelgroupHeight",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "panelgroupHeight{${1:arg}}"
+      }
+    },
+    {
+      "name": "panelgroupSep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "panelgroupSep{${1:arg}}"
+      }
+    },
+    {
+      "name": "panelgroupWidth",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "panelgroupWidth{${1:arg}}"
+      }
+    },
+    {
+      "name": "panelrowsep",
+      "unusual": true
+    },
+    {
+      "name": "panelscreenwidth",
+      "unusual": true
+    },
+    {
+      "name": "panelsep",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "panelsep{${1:arg}}"
+      }
+    },
+    {
+      "name": "pdfLang",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pdfLang{${1:arg}}"
+      }
+    },
+    {
+      "name": "placePanelTemplateInLayer",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "placePanelTemplateInLayer[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "placePanelTemplateInLayer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "placePanelTemplateInLayer{${1:arg}}"
+      }
+    },
+    {
+      "name": "placeScreenNavibar",
+      "unusual": true
+    },
+    {
+      "name": "placeTemplateInLayer",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "placeTemplateInLayer[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "placeTemplateInLayer",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "placeTemplateInLayer{${1:arg}}"
+      }
+    },
+    {
+      "name": "popFromFullWidthPage",
+      "unusual": true
+    },
+    {
+      "name": "prtscrA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "prtscrA{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "prtscrV",
+      "unusual": true
+    },
+    {
+      "name": "pushToFullWidthPage",
+      "unusual": true
+    },
+    {
+      "name": "removehereaftericon",
+      "unusual": true
+    },
+    {
+      "name": "resetmargins",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "resetmargins[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "resetmargins",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "resetmargins{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "restoreElements",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "restoreElements{${1:arg}}"
+      }
+    },
+    {
+      "name": "restorePanels",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "restorePanels{${1:arg}}"
+      }
+    },
+    {
+      "name": "restoreSavedHead",
+      "unusual": true
+    },
+    {
+      "name": "restoreScreens",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "restoreScreens{${1:arg}}"
+      }
+    },
+    {
+      "name": "restorenormalsettings",
+      "unusual": true
+    },
+    {
+      "name": "saveClearElements",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "saveClearElements{${1:arg}}"
+      }
+    },
+    {
+      "name": "saveElements",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "saveElements{${1:arg}}"
+      }
+    },
+    {
+      "name": "setPageDevice",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "setPageDevice[${3:opt}]{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "setPageDevice",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setPageDevice{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "shortwebsubject",
+      "unusual": true
+    },
+    {
+      "name": "shortwebtitle",
+      "unusual": true
+    },
+    {
+      "name": "stdPanelBG",
+      "unusual": true
+    },
+    {
+      "name": "stdbldpanel",
+      "unusual": true
+    },
+    {
+      "name": "templatedefaults",
+      "unusual": true
+    },
+    {
+      "name": "textscreenwidth",
+      "unusual": true
+    },
+    {
+      "name": "thewebemail",
+      "unusual": true
+    },
+    {
+      "name": "tightsettings",
+      "unusual": true
+    },
+    {
+      "name": "titleauthorproportion",
+      "unusual": true
+    },
+    {
+      "name": "tocIndentByNumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tocIndentByNumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "tocindentByNumber",
+      "unusual": true
+    },
+    {
+      "name": "trailerFontSize",
+      "unusual": true
+    },
+    {
+      "name": "useStandardPanel",
+      "unusual": true
+    },
+    {
+      "name": "vspaceAfterDirName",
+      "unusual": true
+    },
+    {
+      "name": "webArg",
+      "unusual": true
+    },
+    {
+      "name": "webNotPaneledWarning",
+      "unusual": true
+    },
+    {
+      "name": "webSaveMargDim",
+      "unusual": true
+    },
+    {
+      "name": "webSaveSSDim",
+      "unusual": true
+    },
+    {
+      "name": "webdirectory",
+      "unusual": true
+    },
+    {
+      "name": "websetheadheight",
+      "unusual": true
+    },
+    {
+      "name": "webtableofcontents",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "forscreen"
+    },
+    {
+      "name": "forpaper"
+    },
+    {
+      "name": "Fullwidthtext",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/web#c": [
+      "noxcolor",
+      "dutch",
+      "french",
+      "german",
+      "italian",
+      "norsk",
+      "russian",
+      "spanish",
+      "dansk",
+      "polish",
+      "finnish",
+      "czech",
+      "catalan",
+      "brazil",
+      "turkish",
+      "dvips",
+      "dvipsone",
+      "dviwindo",
+      "textures",
+      "pdftex",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "luatex",
+      "forpaper",
+      "forcolorpaper",
+      "latexlayout",
+      "uselatexsectioning",
+      "weblikeclass",
+      "nodirectory",
+      "usedirectory",
+      "latextoc",
+      "nobullets",
+      "designi",
+      "designii",
+      "designiii",
+      "designiv",
+      "designv",
+      "designvi",
+      "designvii",
+      "designviii",
+      "designix",
+      "usesf",
+      "unicode",
+      "xhyperref",
+      "addtoHyOpts={${1:hyperref options}}",
+      "addtoHyOpts*={${1:hyperref options}}",
+      "useui",
+      "forceSubSubNumbers",
+      "centertitlepage",
+      "centertitlepagefull",
+      "pro",
+      "extended",
+      "draft",
+      "usetemplates",
+      "leftpanel",
+      "rightpanel",
+      "templatesforpaper",
+      "rightpanelprt",
+      "leftpanelprt",
+      "navibar",
+      "navibar*",
+      "tight",
+      "tight*",
+      "uselatexparts",
+      "uselatexchapters",
+      "natural",
+      "rgb",
+      "cmy",
+      "cmyk",
+      "hsb",
+      "gray",
+      "RGB",
+      "HTML",
+      "HSB",
+      "Gray",
+      "monochrome",
+      "dvipsnames",
+      "dvipsnames*",
+      "svgnames",
+      "svgnames*",
+      "x11names",
+      "x11names*",
+      "table",
+      "fixpdftex",
+      "hyperref",
+      "prologue",
+      "kernelfbox",
+      "xcdraw",
+      "noxcdraw",
+      "fixinclude",
+      "showerrors",
+      "hideerrors"
+    ],
+    "\\ui": [
+      "border=${1|visible,invisible|}",
+      "linewidth=${1|thin,medium,thick|}",
+      "highlight=${1|none,invert,outline,inset,push|}",
+      "bordercolor={${1:R G B}}",
+      "linestyle=${1|solid,dashed,underlined,beveled,inset|}",
+      "dasharray=${1:number}",
+      "linktxtcolor=",
+      "annotflags=${1|hidden,print,-print,noview,lock|}",
+      "fieldflags=${1|readonly,required,noexport,multiline,password,notoggleoff,radio,pushbutton,combo,edit,sort,fileselect,multiselect,nospellcheck,noscrolling,comb,radiosinunison,commitonchange,richtext|}",
+      "maxlength=${1:number}",
+      "tooltip={${1:text}}",
+      "default=${1:text}",
+      "value=${1:text}",
+      "rotate=${1|0,90,180,270|}",
+      "bgcolor={${1:R G B}}",
+      "uptxt={${1:text}}",
+      "downtxt={${1:text}}",
+      "rollovertxt={${1:text}}",
+      "normappr=${1:string}",
+      "rollappr=${1:string}",
+      "downappr=${1:string}",
+      "importicons=${1|yes,no|}",
+      "layout=${1|labelonly,icononly,icontop,iconbottom,iconleft,iconright,labelover|}",
+      "scalewhen=${1|always,never,iconbig,iconsmall|}",
+      "scale=${1|proportional,nonproportional|}",
+      "position={${1:x y}}",
+      "fitbounds",
+      "appr={${1:specs}}",
+      "align=${1|left,centered,right|}",
+      "textfont=${1:font name}",
+      "textsize=${1:number}",
+      "textcolor=${1:number}",
+      "autocenter=${1|yes,no|}",
+      "inline=${1|yes,no|}",
+      "presets=${1:\\cmd}",
+      "symbolchoice=${1|check,circle,cross,diamond,square,star|}",
+      "rectW=",
+      "rectH=",
+      "width=",
+      "height=",
+      "scalefactor=${1:factor}",
+      "goto={${1:KV-pairs}}",
+      "js={${1:script}}",
+      "mouseup={${1:script}}",
+      "mousedown={${1:script}}",
+      "onenter={${1:script}}",
+      "onexit={${1:script}}",
+      "onfocus={${1:script}}",
+      "onblur={${1:script}}",
+      "format={${1:script}}",
+      "keystroke={${1:script}}",
+      "validate={${1:script}}",
+      "calculate={${1:script}}",
+      "pageopen={${1:script}}",
+      "pageclose={${1:script}}",
+      "pagevisible={${1:script}}",
+      "pageinvisible={${1:script}}",
+      "lock={${1:KV-pairs}}"
+    ],
+    "\\setScreensizeFromGraphic,\\template": [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ],
+    "\\DeclareDocInfo": [
+      "title={${1:text}}",
+      "author={${1:name}}",
+      "university={${1:university}}",
+      "email=${1:email}",
+      "talksite={${1:site}}",
+      "talkdate=${1:date}",
+      "talkdateLabel={${1:text}}",
+      "version=${1:version}",
+      "versionLabel={${1:text}}",
+      "subject={${1:subject}}",
+      "keywords={${1:word1,word2,...}}",
+      "copyrightyears={${1:years}}",
+      "prepared=${1:date}",
+      "preparedLabel={${1:text}}",
+      "Title={${1:text}}",
+      "authors={${1:name1}}{${2:name2}}${3:...}",
+      "Subject={${1:subject}}",
+      "Keywords={${1:word1,word2,...}}",
+      "lang=${1:language}",
+      "copyrightStatus=${1|True,False|}",
+      "copyrightNotice={${1:text}}",
+      "copyrightInfoURL=${1:URL}",
+      "authortitle={${1:text}}",
+      "descriptionwriter={${1:text}}",
+      "customProperties={name=${1:name1},value=${2:value1}}${3:{name=name2,value=value2}...}",
+      "title={${1:text}}",
+      "author={${1:name}}",
+      "university={${1:university}}",
+      "email=${1:email}",
+      "talksite={${1:site}}",
+      "talkdate=${1:date}",
+      "talkdateLabel={${1:text}}",
+      "version=${1:version}",
+      "versionLabel={${1:text}}",
+      "subject={${1:subject}}",
+      "keywords={${1:word1,word2,...}}",
+      "copyrightyears={${1:years}}",
+      "prepared=${1:date}",
+      "preparedLabel={${1:text}}",
+      "Title={${1:text}}",
+      "authors={${1:name1}}{${2:name2}}${3:...}",
+      "Subject={${1:subject}}",
+      "Keywords={${1:word1,word2,...}}",
+      "lang=${1:language}",
+      "copyrightStatus=${1|True,False|}",
+      "copyrightNotice={${1:text}}",
+      "copyrightInfoURL=${1:URL}",
+      "authortitle={${1:text}}",
+      "descriptionwriter={${1:text}}",
+      "customProperties={name=${1:name1},value=${2:value1}}${3:{name=name2,value=value2}...}"
+    ],
+    "\\DeclarePageLayout": [
+      "design=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
+      "screensizeOf=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
+      "screensize={${1:height}}{${2:width}}",
+      "margins={${1:left}}{${2:right}}{${3:top}}{${4:bottom}}",
+      "headheight=",
+      "topmargin=",
+      "additionalheadsep=",
+      "marginparsep=",
+      "marginparwidth=",
+      "marginparpush=",
+      "footskip=",
+      "webfootskip=",
+      "panelwidth=",
+      "panelsep=",
+      "design=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
+      "screensizeOf=${1|designi,designii,designiii,designiv,designv,designvi,designvii,designviii,designix|}",
+      "screensize={${1:height}}{${2:width}}",
+      "margins={${1:left}}{${2:right}}{${3:top}}{${4:bottom}}",
+      "headheight=",
+      "topmargin=",
+      "additionalheadsep=",
+      "marginparsep=",
+      "marginparwidth=",
+      "marginparpush=",
+      "footskip=",
+      "webfootskip=",
+      "panelwidth=",
+      "panelsep="
+    ],
+    "\\universityLayout,\\titleLayout,\\authorLayout": [
+      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
+      "fontseries=${1|bfseries,mdseries|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
+      "halign=${1|l,c,r|}",
+      "color=",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "framecolor=",
+      "bgcolor=",
+      "shadowcolor=",
+      "beforeskip=",
+      "afterskip=",
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "hproportion=${1:factor}",
+      "xhalign=${1|l,c,r|}",
+      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
+      "fontseries=${1|bfseries,mdseries|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
+      "halign=${1|l,c,r|}",
+      "color=",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "framecolor=",
+      "bgcolor=",
+      "shadowcolor=",
+      "beforeskip=",
+      "afterskip=",
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "hproportion=${1:factor}",
+      "xhalign=${1|l,c,r|}"
+    ],
+    "\\DesignTitlePageTrailer": [
+      "ul=${1:text}",
+      "ur=${1:text}",
+      "ll=${1:text}",
+      "lr=${1:text}",
+      "textColor=",
+      "bgColor=",
+      "borderColor=",
+      "fboxsep=",
+      "fboxrule=",
+      "graphic=${1:imagefile}",
+      "namedgraphic=${1:name}",
+      "raise=",
+      "fontSize=${1:fontsize cmd}",
+      "formatting=${1:font commands}",
+      "ul=${1:text}",
+      "ur=${1:text}",
+      "ll=${1:text}",
+      "lr=${1:text}",
+      "textColor=",
+      "bgColor=",
+      "borderColor=",
+      "fboxsep=",
+      "fboxrule=",
+      "graphic=${1:imagefile}",
+      "namedgraphic=${1:name}",
+      "raise=",
+      "fontSize=${1:fontsize cmd}",
+      "formatting=${1:font commands}"
+    ],
+    "\\selectTocDings": [
+      "dDing=${1:symbol}",
+      "ddDing=${1:symbol}",
+      "dddDing=${1:symbol}",
+      "dDingColor=",
+      "ddDingColor=",
+      "dddDingColor=",
+      "dDing=${1:symbol}",
+      "ddDing=${1:symbol}",
+      "dddDing=${1:symbol}",
+      "dDingColor=",
+      "ddDingColor=",
+      "dddDingColor="
+    ],
+    "\\selectColors": [
+      "universityColor=",
+      "titleColor=",
+      "textBgColor=",
+      "panelBgColor=",
+      "urlColor=",
+      "linkColor=",
+      "fileColor=",
+      "universityColor=",
+      "titleColor=",
+      "textBgColor=",
+      "panelBgColor=",
+      "urlColor=",
+      "linkColor=",
+      "fileColor="
+    ],
+    "\\tocLayout,\\sectionLayout,\\subsectionLayout,\\subsubsectionLayout": [
+      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
+      "fontseries=${1|bfseries,mdseries|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
+      "halign=${1|l,c,r|}",
+      "ding=${1:symbol}",
+      "color=",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "framecolor=",
+      "bgcolor=",
+      "shadowcolor=",
+      "beforeskip=",
+      "afterskip=",
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "numdingcolor=",
+      "reset=${1|font,all|}",
+      "fontfamily=${1|rmfamily,sffamily,ttfamily|}",
+      "fontseries=${1|bfseries,mdseries|}",
+      "fontshape=${1|upshape,itshape,scshape,slshape|}",
+      "fontsize=${1|tiny,scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge|}",
+      "halign=${1|l,c,r|}",
+      "ding=${1:symbol}",
+      "color=",
+      "special=${1|shadow,framebox,colorbox,fcolorbox,frameboxfit,colorboxfit,fcolorboxfit,custom,default|}",
+      "framecolor=",
+      "bgcolor=",
+      "shadowcolor=",
+      "beforeskip=",
+      "afterskip=",
+      "usefont={${1:encoding}}{${2:family}}{${3:series}}{${4:shape}}{${5:size}}",
+      "numdingcolor=",
+      "reset=${1|font,all|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/web#c"
+  ]
+}

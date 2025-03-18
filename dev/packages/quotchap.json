@@ -1,47 +1,84 @@
 {
-  "includes": {
-    "color": []
-  },
-  "macros": {
-    "qauthor{}": {
-      "snippet": "qauthor{${1:author}}"
-    },
-    "qsetcnfont{}": {
-      "snippet": "qsetcnfont{${1:font family}}"
-    },
-    "quotefont": {},
-    "qauthorfont": {},
-    "chapnumfont": {},
-    "sectfont": {},
-    "chapterheadendvskip": {},
-    "chapterheadstartvskip": {}
-  },
-  "envs": {
-    "savequote": {},
-    "savequote[]": {
-      "name": "savequote",
-      "snippet": "[${1:width}]"
+  "deps": [
+    {
+      "name": "color"
     }
-  },
-  "options": [
-    "grey",
-    "nogrey",
-    "avantgarde",
-    "beramono",
-    "berasans",
-    "beraserif",
-    "biolinum",
-    "bookman",
-    "charter",
-    "courier",
-    "helvetica",
-    "kpfonts",
-    "libertine",
-    "lmodern",
-    "newcentury",
-    "palatino",
-    "times",
-    "utopia"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "qauthor",
+      "arg": {
+        "format": "{}",
+        "snippet": "qauthor{${1:author}}"
+      }
+    },
+    {
+      "name": "qsetcnfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "qsetcnfont{${1:font family}}"
+      }
+    },
+    {
+      "name": "quotefont",
+      "unusual": true
+    },
+    {
+      "name": "qauthorfont",
+      "unusual": true
+    },
+    {
+      "name": "chapnumfont",
+      "unusual": true
+    },
+    {
+      "name": "sectfont",
+      "unusual": true
+    },
+    {
+      "name": "chapterheadendvskip",
+      "unusual": true
+    },
+    {
+      "name": "chapterheadstartvskip",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "savequote"
+    },
+    {
+      "name": "savequote",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:width}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/quotchap#c": [
+      "grey",
+      "nogrey",
+      "avantgarde",
+      "beramono",
+      "berasans",
+      "beraserif",
+      "biolinum",
+      "bookman",
+      "charter",
+      "courier",
+      "helvetica",
+      "kpfonts",
+      "libertine",
+      "lmodern",
+      "newcentury",
+      "palatino",
+      "times",
+      "utopia"
+    ]
+  },
+  "args": [
+    "\\usepackage/quotchap#c"
+  ]
 }

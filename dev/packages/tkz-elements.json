@@ -1,22 +1,54 @@
 {
-  "includes": {
-    "luacode": []
-  },
-  "macros": {
-    "tkzGetNodes": {},
-    "tkzUseLua{}": {
-      "snippet": "tkzUseLua{${1:variable}}"
-    },
-    "tkzDN{}": {
-      "snippet": "tkzDN{${1:r}}"
-    },
-    "tkzDN[]{}": {
-      "snippet": "tkzDN[${2:n}]{${1:r}}"
+  "deps": [
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {
-    "tkzelements": {}
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "tkzGetNodes"
+    },
+    {
+      "name": "tkzUseLua",
+      "arg": {
+        "format": "{}",
+        "snippet": "tkzUseLua{${1:variable}}"
+      }
+    },
+    {
+      "name": "tkzDN",
+      "arg": {
+        "format": "{}",
+        "snippet": "tkzDN{${1:r}}"
+      }
+    },
+    {
+      "name": "tkzDN",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tkzDN[${2:n}]{${1:r}}"
+      }
+    },
+    {
+      "name": "tkzDrawLuaEllipse",
+      "arg": {
+        "format": "()",
+        "snippet": "tkzDrawLuaEllipse(${1:pt1},${2:pt2},${3:pt3})"
+      }
+    },
+    {
+      "name": "tkzDrawLuaEllipse",
+      "arg": {
+        "format": "[]()",
+        "snippet": "tkzDrawLuaEllipse[${1:options}](${2:pt1},${3:pt2},${4:pt3})"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "tkzelements"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

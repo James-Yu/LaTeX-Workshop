@@ -1,19 +1,33 @@
 {
-  "includes": {},
-  "macros": {
-    "lquote": {},
-    "rquote": {},
-    "inquote": {},
-    "quoted{}": {
-      "snippet": "quoted{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "lquote"
+    },
+    {
+      "name": "rquote"
+    },
+    {
+      "name": "inquote"
+    },
+    {
+      "name": "quoted",
+      "arg": {
+        "format": "{}",
+        "snippet": "quoted{${1:text}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "american",
-    "british",
-    "german",
-    "polish"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/quoted#c": [
+      "american",
+      "british",
+      "german",
+      "polish"
+    ]
+  },
+  "args": [
+    "\\usepackage/quoted#c"
+  ]
 }

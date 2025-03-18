@@ -1,312 +1,1010 @@
 {
-  "includes": {
-    "luatexbase": [],
-    "fontspec": [],
-    "kolabels-utf": [],
-    "konames-utf": [
-      "hangul"
+  "deps": [
+    {
+      "name": "luatexbase"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "kolabels-utf"
+    },
+    {
+      "name": "konames-utf",
+      "if": "hangul"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setmainhangulfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmainhangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmainhangulfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmainhangulfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmainhanjafont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmainhanjafont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmainhanjafont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmainhanjafont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmainfallbackfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmainfallbackfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmainfallbackfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmainfallbackfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setsanshangulfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsanshangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setsanshangulfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setsanshangulfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setsanshanjafont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsanshanjafont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setsanshanjafont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setsanshanjafont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setsansfallbackfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setsansfallbackfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setsansfallbackfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setsansfallbackfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmonohangulfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonohangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmonohangulfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmonohangulfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmonohanjafont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonohanjafont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmonohanjafont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmonohanjafont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmonofallbackfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonofallbackfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmonofallbackfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmonofallbackfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newhangulfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newhangulfontfamily{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newhangulfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newhangulfontfamily{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newhanjafontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newhanjafontfamily{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newhanjafontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newhanjafontfamily{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newfallbackfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfallbackfontfamily{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newfallbackfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newfallbackfontfamily{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newhangulfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newhangulfontface{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newhangulfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newhangulfontface{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newhanjafontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newhanjafontface{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newhanjafontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newhanjafontface{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newfallbackfontface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfallbackfontface{${1:command}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newfallbackfontface",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newfallbackfontface{${1:command}}[${3:font features%keyvals}]{${2:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "addhangulfontfeature",
+      "arg": {
+        "format": "{}",
+        "snippet": "addhangulfontfeature{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addhangulfontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addhangulfontfeatures{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addhanjafontfeature",
+      "arg": {
+        "format": "{}",
+        "snippet": "addhanjafontfeature{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addhanjafontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addhanjafontfeatures{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addfallbackfontfeature",
+      "arg": {
+        "format": "{}",
+        "snippet": "addfallbackfontfeature{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "addfallbackfontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addfallbackfontfeatures{${1:font features%keyvals}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hangulfontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "hangulfontspec{${1:font name}}"
+      }
+    },
+    {
+      "name": "hangulfontspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hangulfontspec[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adhochangulfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "adhochangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "adhochangulfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adhochangulfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hanjafontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "hanjafontspec{${1:font name}}"
+      }
+    },
+    {
+      "name": "hanjafontspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hanjafontspec[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adhochanjafont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "adhochanjafont{${1:font name}}"
+      }
+    },
+    {
+      "name": "adhochanjafont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adhochanjafont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fallbackfontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "fallbackfontspec{${1:font name}}"
+      }
+    },
+    {
+      "name": "fallbackfontspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "fallbackfontspec[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "adhocfallbackfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "adhocfallbackfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "adhocfallbackfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "adhocfallbackfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "registerpunctuations",
+      "arg": {
+        "format": "{}",
+        "snippet": "registerpunctuations{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "registerhangulpunctuations",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "registerhangulpunctuations{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "unregisterpunctuations",
+      "arg": {
+        "format": "{}",
+        "snippet": "unregisterpunctuations{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "unregisterhangulpunctuations",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "unregisterhangulpunctuations{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "registerbreakableafter",
+      "arg": {
+        "format": "{}",
+        "snippet": "registerbreakableafter{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "registerbreakablebefore",
+      "arg": {
+        "format": "{}",
+        "snippet": "registerbreakablebefore{${1:code1,code2,...}}"
+      }
+    },
+    {
+      "name": "typesetclassic"
+    },
+    {
+      "name": "typesetmodern"
+    },
+    {
+      "name": "typesetvertical"
+    },
+    {
+      "name": "inhibitglue"
+    },
+    {
+      "name": "verticaltypesetting"
+    },
+    {
+      "name": "dotemph",
+      "arg": {
+        "format": "{}",
+        "snippet": "dotemph{${1:character}}"
+      }
+    },
+    {
+      "name": "dotemphraise",
+      "unusual": true
+    },
+    {
+      "name": "dotemphchar",
+      "unusual": true
+    },
+    {
+      "name": "ruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ruby{${1:characters}}{${2:annotation}}"
+      }
+    },
+    {
+      "name": "rubyfont",
+      "unusual": true
+    },
+    {
+      "name": "rubysize",
+      "unusual": true
+    },
+    {
+      "name": "rubysep",
+      "unusual": true
+    },
+    {
+      "name": "rubynooverlap"
+    },
+    {
+      "name": "rubyoverlap"
+    },
+    {
+      "name": "xxruby",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "xxruby{${1:characters}}{${2:annotation}}"
+      }
+    },
+    {
+      "name": "basestr",
+      "unusual": true
+    },
+    {
+      "name": "rubystr",
+      "unusual": true
+    },
+    {
+      "name": "uline",
+      "arg": {
+        "format": "{}",
+        "snippet": "uline{${1:text}}"
+      }
+    },
+    {
+      "name": "sout",
+      "arg": {
+        "format": "{}",
+        "snippet": "sout{${1:text}}"
+      }
+    },
+    {
+      "name": "soutdown",
+      "unusual": true
+    },
+    {
+      "name": "uuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "uuline{${1:text}}"
+      }
+    },
+    {
+      "name": "xout",
+      "arg": {
+        "format": "{}",
+        "snippet": "xout{${1:text}}"
+      }
+    },
+    {
+      "name": "uwave",
+      "arg": {
+        "format": "{}",
+        "snippet": "uwave{${1:text}}"
+      }
+    },
+    {
+      "name": "dashuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "dashuline{${1:text}}"
+      }
+    },
+    {
+      "name": "dotuline",
+      "arg": {
+        "format": "{}",
+        "snippet": "dotuline{${1:text}}"
+      }
+    },
+    {
+      "name": "ulinedown",
+      "unusual": true
+    },
+    {
+      "name": "ulinewidth",
+      "unusual": true
+    },
+    {
+      "name": "markoverwith",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "markoverwith{${1:mark code}}{${2:text}}"
+      }
+    },
+    {
+      "name": "setmathhangulfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setmathhangulfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setmathhangulfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setmathhangulfont[${2:font features%keyvals}]{${1:font name}}",
+        "keys": [
+          "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setmathhangulblock",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setmathhangulblock{${1:begin}}{${2:end}}"
+      }
+    },
+    {
+      "name": "hellipsis"
+    },
+    {
+      "name": "ifluatexkorunningselectfont",
+      "unusual": true
+    },
+    {
+      "name": "japanese",
+      "unusual": true
+    },
+    {
+      "name": "korean",
+      "unusual": true
+    },
+    {
+      "name": "koreanlanguage",
+      "unusual": true
+    },
+    {
+      "name": "luatexkoautojosaattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkoclassicattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkodefaultfallbackfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkodefaulthangulfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkodefaulthanjafont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkodoluacode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "luatexkodoluacode{${1:lua code}}"
+      }
+    },
+    {
+      "name": "luatexkodotemphattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkodotemphcount",
+      "unusual": true
+    },
+    {
+      "name": "luatexkofallbackfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkofallbackfontattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkofallbackselectfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkogetrubybasechar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "luatexkogetrubybasechar{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "luatexkogetrubyrubychar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "luatexkogetrubyrubychar{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "luatexkohangulbyhangulattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulbyhangulfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulfontattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulnormalize",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulpunctuations",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohangulselectfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohanjabyhanjaattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohanjabyhanjafont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohanjafont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohanjafontattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohanjaselectfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkohorizboxmoveright",
+      "unusual": true
+    },
+    {
+      "name": "luatexkojosaactivate",
+      "unusual": true
+    },
+    {
+      "name": "luatexkojosaactive",
+      "unusual": true
+    },
+    {
+      "name": "luatexkolangCJK",
+      "unusual": true
+    },
+    {
+      "name": "luatexkoleaderstype",
+      "unusual": true
+    },
+    {
+      "name": "luatexkomarkoverwith",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "luatexkomarkoverwith{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "luatexkomonohangulfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkorotatebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "luatexkorotatebox{${1:arg}}"
+      }
+    },
+    {
+      "name": "luatexkorubyalloc",
+      "unusual": true
+    },
+    {
+      "name": "luatexkorubyattr",
+      "unusual": true
+    },
+    {
+      "name": "luatexkorubycount",
+      "unusual": true
+    },
+    {
+      "name": "luatexkorunningselectfontfalse",
+      "unusual": true
+    },
+    {
+      "name": "luatexkorunningselectfonttrue",
+      "unusual": true
+    },
+    {
+      "name": "luatexkoselectfont",
+      "unusual": true
+    },
+    {
+      "name": "luatexkostretchfactor",
+      "unusual": true
+    },
+    {
+      "name": "luatexkouhcinputencoding",
+      "unusual": true
+    },
+    {
+      "name": "luatexkoulinecount",
+      "unusual": true
+    },
+    {
+      "name": "luatexkounrotatebox",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "luatexkounrotatebox{${1:arg}}"
+      }
+    },
+    {
+      "name": "luatexkoxxruby",
+      "unusual": true
+    },
+    {
+      "name": "Schinese",
+      "unusual": true
+    },
+    {
+      "name": "Tchinese",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "vertical",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "verticaltypesetting"
+    },
+    {
+      "name": "horizontal",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:dimen%l}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/luatexko#c": [
+      "hangul",
+      "hanja"
+    ],
+    "\\setmainhangulfont,\\setmainhanjafont,\\setmainfallbackfont,\\setsanshangulfont,\\setsanshanjafont,\\setsansfallbackfont,\\setmonohangulfont,\\setmonohanjafont,\\setmonofallbackfont,\\newhangulfontfamily,\\newhanjafontfamily,\\newfallbackfontfamily,\\newhangulfontface,\\newhanjafontface,\\newfallbackfontface,\\addhangulfontfeature,\\addhangulfontfeatures,\\addhanjafontfeature,\\addhanjafontfeatures,\\addfallbackfontfeature,\\addfallbackfontfeatures,\\hangulfontspec,\\adhochangulfont,\\hanjafontspec,\\adhochanjafont,\\fallbackfontspec,\\adhocfallbackfont,\\setmathhangulfont": [
+      "InterHangul=",
+      "InterLatinCJK=",
+      "CharRaise=",
+      "RemoveClassicSpaces",
+      "CompressPunctuations",
+      "Expansion",
+      "Protrusion=",
+      "InterCharacter=",
+      "InterCharStretch=",
+      "Alternate=${1:feature}",
+      "Annotation=",
+      "AutoFakeBold=${1:number}",
+      "AutoFakeSlant=${1:number}",
+      "BoldFeatures={${1:features}}",
+      "BoldFont=${1:font name}",
+      "BoldItalicFeatures={${1:features}}",
+      "BoldItalicFont=${1:font name}",
+      "BoldSlantedFeatures={${1:features}}",
+      "BoldSlantedFont=${1:font name}",
+      "BoldSwashFeatures={${1:features}}",
+      "BoldSwashFont=${1:font name}",
+      "CJKShape=${1|Traditional,Simplified,JIS1978,JIS1983,JIS1990,Expert,NLC|}",
+      "CharacterVariant={${1:glyph num list}:${2:variety num}}",
+      "CharacterWidth=${1|Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll|}",
+      "Color=",
+      "Colour=",
+      "Contextuals=${1|Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll|}",
+      "Diacritics=${1|MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll|}",
+      "Extension=${1:extension}",
+      "FakeBold=${1:number}",
+      "FakeSlant=${1:number}",
+      "FakeStretch=${1:number}",
+      "Font=${1:font name}",
+      "FontFace={${1:series}}{${2:shape}}{${3:font name}}",
+      "Fractions=${1|On,Off,Reset,Alternate,ResetAll|}",
+      "HyphenChar=${1:character}",
+      "IgnoreFontspecFile",
+      "ItalicFeatures={${1:features}}",
+      "ItalicFont=${1:font name}",
+      "Kerning=${1|On,Off,Reset,Uppercase,ResetAll|}",
+      "Language=${1:language}",
+      "LetterSpace=${1:number}",
+      "Letters=${1|SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll|}",
+      "Ligatures=${1|Required,Common,Contextual,Rare,Discretionary,Historic,TeX|}",
+      "LocalForms=${1|On,Off,Reset|}",
+      "NFSSFamily=${1:font family}",
+      "Numbers=${1|Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll|}",
+      "OpticalSize=${1:size}",
+      "Ornament=",
+      "Path=${1:file path}",
+      "PunctuationSpace=${1:number}",
+      "RawFeature=${1:feature tag}",
+      "Scale=${1:number}",
+      "ScaleAgain=${1:number}",
+      "Script=${1:name}",
+      "Size=${1:number}",
+      "SizeFeatures={${1:features}}",
+      "SlantedFeatures={${1:features}}",
+      "SlantedFont=${1:font name}",
+      "SmallCapsFeatures={${1:features}}",
+      "SmallCapsFont=${1:font name}",
+      "Style=${1|Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll|}",
+      "StylisticAlternates=${1:feature}",
+      "StylisticSet=${1:set number}",
+      "SwashFeatures={${1:features}}",
+      "SwashFont=${1:font name}",
+      "UprightFeatures={${1:features}}",
+      "UprightFont=${1:font name}",
+      "Variant=${1:integer}",
+      "Vertical=${1|RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll|}",
+      "VerticalPosition=${1|Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll|}",
+      "WordSpace=${1:number}",
+      "Renderer=${1:renderer}"
     ]
   },
-  "macros": {
-    "setmainhangulfont{}": {
-      "snippet": "setmainhangulfont{${1:font name}}"
-    },
-    "setmainhangulfont[]{}": {
-      "snippet": "setmainhangulfont[${2:font features}]{${1:font name}}"
-    },
-    "setmainhanjafont{}": {
-      "snippet": "setmainhanjafont{${1:font name}}"
-    },
-    "setmainhanjafont[]{}": {
-      "snippet": "setmainhanjafont[${2:font features}]{${1:font name}}"
-    },
-    "setmainfallbackfont{}": {
-      "snippet": "setmainfallbackfont{${1:font name}}"
-    },
-    "setmainfallbackfont[]{}": {
-      "snippet": "setmainfallbackfont[${2:font features}]{${1:font name}}"
-    },
-    "setsanshangulfont{}": {
-      "snippet": "setsanshangulfont{${1:font name}}"
-    },
-    "setsanshangulfont[]{}": {
-      "snippet": "setsanshangulfont[${2:font features}]{${1:font name}}"
-    },
-    "setsanshanjafont{}": {
-      "snippet": "setsanshanjafont{${1:font name}}"
-    },
-    "setsanshanjafont[]{}": {
-      "snippet": "setsanshanjafont[${2:font features}]{${1:font name}}"
-    },
-    "setsansfallbackfont{}": {
-      "snippet": "setsansfallbackfont{${1:font name}}"
-    },
-    "setsansfallbackfont[]{}": {
-      "snippet": "setsansfallbackfont[${2:font features}]{${1:font name}}"
-    },
-    "setmonohangulfont{}": {
-      "snippet": "setmonohangulfont{${1:font name}}"
-    },
-    "setmonohangulfont[]{}": {
-      "snippet": "setmonohangulfont[${2:font features}]{${1:font name}}"
-    },
-    "setmonohanjafont{}": {
-      "snippet": "setmonohanjafont{${1:font name}}"
-    },
-    "setmonohanjafont[]{}": {
-      "snippet": "setmonohanjafont[${2:font features}]{${1:font name}}"
-    },
-    "setmonofallbackfont{}": {
-      "snippet": "setmonofallbackfont{${1:font name}}"
-    },
-    "setmonofallbackfont[]{}": {
-      "snippet": "setmonofallbackfont[${2:font features}]{${1:font name}}"
-    },
-    "newhangulfontfamily{}{}": {
-      "snippet": "newhangulfontfamily{${1:command}}{${2:font name}}"
-    },
-    "newhangulfontfamily{}[]{}": {
-      "snippet": "newhangulfontfamily{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "newhanjafontfamily{}{}": {
-      "snippet": "newhanjafontfamily{${1:command}}{${2:font name}}"
-    },
-    "newhanjafontfamily{}[]{}": {
-      "snippet": "newhanjafontfamily{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "newfallbackfontfamily{}{}": {
-      "snippet": "newfallbackfontfamily{${1:command}}{${2:font name}}"
-    },
-    "newfallbackfontfamily{}[]{}": {
-      "snippet": "newfallbackfontfamily{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "newhangulfontface{}{}": {
-      "snippet": "newhangulfontface{${1:command}}{${2:font name}}"
-    },
-    "newhangulfontface{}[]{}": {
-      "snippet": "newhangulfontface{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "newhanjafontface{}{}": {
-      "snippet": "newhanjafontface{${1:command}}{${2:font name}}"
-    },
-    "newhanjafontface{}[]{}": {
-      "snippet": "newhanjafontface{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "newfallbackfontface{}{}": {
-      "snippet": "newfallbackfontface{${1:command}}{${2:font name}}"
-    },
-    "newfallbackfontface{}[]{}": {
-      "snippet": "newfallbackfontface{${1:command}}[${2:font features}]{${3:font name}}"
-    },
-    "addhangulfontfeature{}": {
-      "snippet": "addhangulfontfeature{${1:font features}}"
-    },
-    "addhangulfontfeatures{}": {
-      "snippet": "addhangulfontfeatures{${1:font features}}"
-    },
-    "addhanjafontfeature{}": {
-      "snippet": "addhanjafontfeature{${1:font features}}"
-    },
-    "addhanjafontfeatures{}": {
-      "snippet": "addhanjafontfeatures{${1:font features}}"
-    },
-    "addfallbackfontfeature{}": {
-      "snippet": "addfallbackfontfeature{${1:font features}}"
-    },
-    "addfallbackfontfeatures{}": {
-      "snippet": "addfallbackfontfeatures{${1:font features}}"
-    },
-    "hangulfontspec{}": {
-      "snippet": "hangulfontspec{${1:font name}}"
-    },
-    "hangulfontspec[]{}": {
-      "snippet": "hangulfontspec[${2:font features}]{${1:font name}}"
-    },
-    "adhochangulfont{}": {
-      "snippet": "adhochangulfont{${1:font name}}"
-    },
-    "adhochangulfont[]{}": {
-      "snippet": "adhochangulfont[${2:font features}]{${1:font name}}"
-    },
-    "hanjafontspec{}": {
-      "snippet": "hanjafontspec{${1:font name}}"
-    },
-    "hanjafontspec[]{}": {
-      "snippet": "hanjafontspec[${2:font features}]{${1:font name}}"
-    },
-    "adhochanjafont{}": {
-      "snippet": "adhochanjafont{${1:font name}}"
-    },
-    "adhochanjafont[]{}": {
-      "snippet": "adhochanjafont[${2:font features}]{${1:font name}}"
-    },
-    "fallbackfontspec{}": {
-      "snippet": "fallbackfontspec{${1:font name}}"
-    },
-    "fallbackfontspec[]{}": {
-      "snippet": "fallbackfontspec[${2:font features}]{${1:font name}}"
-    },
-    "adhocfallbackfont{}": {
-      "snippet": "adhocfallbackfont{${1:font name}}"
-    },
-    "adhocfallbackfont[]{}": {
-      "snippet": "adhocfallbackfont[${2:font features}]{${1:font name}}"
-    },
-    "registerpunctuations{}": {
-      "snippet": "registerpunctuations{${1:code1,code2,...}}"
-    },
-    "registerhangulpunctuations{}": {
-      "snippet": "registerhangulpunctuations{${1:code1,code2,...}}"
-    },
-    "unregisterpunctuations{}": {
-      "snippet": "unregisterpunctuations{${1:code1,code2,...}}"
-    },
-    "unregisterhangulpunctuations{}": {
-      "snippet": "unregisterhangulpunctuations{${1:code1,code2,...}}"
-    },
-    "registerbreakableafter{}": {
-      "snippet": "registerbreakableafter{${1:code1,code2,...}}"
-    },
-    "registerbreakablebefore{}": {
-      "snippet": "registerbreakablebefore{${1:code1,code2,...}}"
-    },
-    "typesetclassic": {},
-    "typesetmodern": {},
-    "typesetvertical": {},
-    "inhibitglue": {},
-    "verticaltypesetting": {},
-    "dotemph{}": {
-      "snippet": "dotemph{${1:character}}"
-    },
-    "dotemphraise": {},
-    "dotemphchar": {},
-    "ruby{}{}": {
-      "snippet": "ruby{${1:characters}}{${2:annotation}}"
-    },
-    "rubyfont": {},
-    "rubysize": {},
-    "rubysep": {},
-    "rubynooverlap": {},
-    "rubyoverlap": {},
-    "xxruby{}{}": {
-      "snippet": "xxruby{${1:characters}}{${2:annotation}}"
-    },
-    "basestr": {},
-    "rubystr": {},
-    "uline{}": {
-      "snippet": "uline{${1:text}}"
-    },
-    "sout{}": {
-      "snippet": "sout{${1:text}}"
-    },
-    "soutdown": {},
-    "uuline{}": {
-      "snippet": "uuline{${1:text}}"
-    },
-    "xout{}": {
-      "snippet": "xout{${1:text}}"
-    },
-    "uwave{}": {
-      "snippet": "uwave{${1:text}}"
-    },
-    "dashuline{}": {
-      "snippet": "dashuline{${1:text}}"
-    },
-    "dotuline{}": {
-      "snippet": "dotuline{${1:text}}"
-    },
-    "ulinedown": {},
-    "ulinewidth": {},
-    "markoverwith{}{}": {
-      "snippet": "markoverwith{${1:mark code}}{${2:text}}"
-    },
-    "setmathhangulfont{}": {
-      "snippet": "setmathhangulfont{${1:font name}}"
-    },
-    "setmathhangulfont[]{}": {
-      "snippet": "setmathhangulfont[${2:font features}]{${1:font name}}"
-    },
-    "setmathhangulblock{}{}": {
-      "snippet": "setmathhangulblock{${1:begin}}{${2:end}}"
-    },
-    "hellipsis": {},
-    "ifluatexkorunningselectfont": {},
-    "japanese": {},
-    "korean": {},
-    "koreanlanguage": {},
-    "luatexkoautojosaattr": {},
-    "luatexkoclassicattr": {},
-    "luatexkodefaultfallbackfont": {},
-    "luatexkodefaulthangulfont": {},
-    "luatexkodefaulthanjafont": {},
-    "luatexkodoluacode{}": {
-      "snippet": "luatexkodoluacode{${1:lua code}}"
-    },
-    "luatexkodotemphattr": {},
-    "luatexkodotemphcount": {},
-    "luatexkofallbackfont": {},
-    "luatexkofallbackfontattr": {},
-    "luatexkofallbackselectfont": {},
-    "luatexkogetrubybasechar{}{}": {
-      "snippet": "luatexkogetrubybasechar{${1:arg1}}{${2:arg2}}"
-    },
-    "luatexkogetrubyrubychar{}{}": {
-      "snippet": "luatexkogetrubyrubychar{${1:arg1}}{${2:arg2}}"
-    },
-    "luatexkohangulbyhangulattr": {},
-    "luatexkohangulbyhangulfont": {},
-    "luatexkohangulfont": {},
-    "luatexkohangulfontattr": {},
-    "luatexkohangulnormalize": {},
-    "luatexkohangulpunctuations": {},
-    "luatexkohangulselectfont": {},
-    "luatexkohanjabyhanjaattr": {},
-    "luatexkohanjabyhanjafont": {},
-    "luatexkohanjafont": {},
-    "luatexkohanjafontattr": {},
-    "luatexkohanjaselectfont": {},
-    "luatexkohorizboxmoveright": {},
-    "luatexkojosaactivate": {},
-    "luatexkojosaactive": {},
-    "luatexkolangCJK": {},
-    "luatexkoleaderstype": {},
-    "luatexkomarkoverwith{}{}": {
-      "snippet": "luatexkomarkoverwith{${1:arg1}}{${2:arg2}}"
-    },
-    "luatexkomonohangulfont": {},
-    "luatexkorotatebox{}": {
-      "snippet": "luatexkorotatebox{${1:arg}}"
-    },
-    "luatexkorubyalloc": {},
-    "luatexkorubyattr": {},
-    "luatexkorubycount": {},
-    "luatexkorunningselectfontfalse": {},
-    "luatexkorunningselectfonttrue": {},
-    "luatexkoselectfont": {},
-    "luatexkostretchfactor": {},
-    "luatexkouhcinputencoding": {},
-    "luatexkoulinecount": {},
-    "luatexkounrotatebox{}": {
-      "snippet": "luatexkounrotatebox{${1:arg}}"
-    },
-    "luatexkoxxruby": {},
-    "Schinese": {},
-    "Tchinese": {}
-  },
-  "envs": {
-    "vertical{}": {
-      "name": "vertical",
-      "snippet": "{${1:dimen}}"
-    },
-    "verticaltypesetting": {},
-    "horizontal{}": {
-      "name": "horizontal",
-      "snippet": "{${1:dimen}}"
-    }
-  },
-  "options": [
-    "hangul",
-    "hanja"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/luatexko#c"
+  ]
 }

@@ -1,25 +1,45 @@
 {
-  "includes": {},
-  "macros": {
-    "tableofcontents[]": {
-      "snippet": "tableofcontents[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "tableofcontents",
+      "arg": {
+        "format": "[]",
+        "snippet": "tableofcontents[${1:options%keyvals}]",
+        "keys": [
+          "\\tableofcontents"
+        ],
+        "keyPos": 0
+      }
     },
-    "sectionintoc": {},
-    "inserttocsectionnumber": {},
-    "inserttocsection": {},
-    "subsectionintoc": {},
-    "inserttocsubsectionnumber": {},
-    "inserttocsubsection": {},
-    "subsubsectionintoc": {},
-    "inserttocsubsubsectionnumber": {},
-    "inserttocsubsubsection": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "inserttocsectionnumber",
+      "unusual": true
+    },
+    {
+      "name": "inserttocsection",
+      "unusual": true
+    },
+    {
+      "name": "inserttocsubsectionnumber",
+      "unusual": true
+    },
+    {
+      "name": "inserttocsubsection",
+      "unusual": true
+    },
+    {
+      "name": "inserttocsubsubsectionnumber",
+      "unusual": true
+    },
+    {
+      "name": "inserttocsubsubsection",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\tableofcontents": [
       "currentsection",
       "currentsubsection",
       "firstsection=${1:section number}",
@@ -34,5 +54,6 @@
       "subsectionstyle=${1:current}/${2:other in current}/${3:other}",
       "subsubsectionstyle=${1:current}/${2:other in current}/${3:other in other}/${4:other}"
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,23 +1,36 @@
 {
-  "includes": {
-    "tikzlings-bears": []
-  },
-  "macros": {
-    "bearwear[]": {
-      "snippet": "bearwear[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "bearwearsetup{}": {
-      "snippet": "bearwearsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "tikzlings-bears"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "bearwear",
+      "arg": {
+        "format": "[]",
+        "snippet": "bearwear[${1:options%keyvals}]",
+        "keys": [
+          "\\bearwear#c,\\bearwearsetup#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bearwearsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "bearwearsetup{${1:keyvals}}",
+        "keys": [
+          "\\bearwear#c,\\bearwearsetup#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\bearwear#c,\\bearwearsetup#c": [
       "long sleeves",
       "round neckline",
       "t-shirt",
@@ -37,5 +50,6 @@
       "body deco=",
       "shift="
     ]
-  ]
+  },
+  "args": []
 }

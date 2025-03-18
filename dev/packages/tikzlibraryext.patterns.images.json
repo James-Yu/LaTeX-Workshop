@@ -1,24 +1,37 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfsetupimageaspattern{}{}": {
-      "snippet": "pgfsetupimageaspattern{${1:name}}{${2:imagefile}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfsetupimageaspattern",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfsetupimageaspattern{${1:name}}{${2:imagefile}}"
+      }
     },
-    "pgfsetupimageaspattern[]{}{}": {
-      "snippet": "pgfsetupimageaspattern[${3:options}]{${1:name}}{${2:imagefile}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "pgfsetupimageaspattern",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfsetupimageaspattern[${3:options%keyvals}]{${1:name}}{${2:imagefile}}",
+        "keys": [
+          "\\pgfsetupimageaspattern"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgfsetupimageaspattern": [
       "height=",
       "width=",
       "page=${1:page number}",
       "interpolate",
       "mask=${1:mask name}"
+    ],
+    "\\node#c": [
+      "image as pattern={${1:options}}"
     ]
-  ]
+  },
+  "args": []
 }

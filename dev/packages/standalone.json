@@ -1,0 +1,165 @@
+{
+  "deps": [
+    {
+      "name": "adjustbox"
+    },
+    {
+      "name": "currfile"
+    },
+    {
+      "name": "filemod-expmin"
+    },
+    {
+      "name": "gincltex"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifxetex"
+    },
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "trimclip"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "includestandalone",
+      "arg": {
+        "format": "{}",
+        "snippet": "includestandalone{${1:file}}"
+      }
+    },
+    {
+      "name": "includestandalone",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includestandalone[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\includestandalone"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "standaloneconfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "standaloneconfig{${1:options%keyvals}}"
+      }
+    },
+    {
+      "name": "standaloneignore",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalone",
+      "unusual": true
+    },
+    {
+      "name": "standalonetrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifstandalonebeamer",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamertrue",
+      "unusual": true
+    },
+    {
+      "name": "standalonebeamerfalse",
+      "unusual": true
+    },
+    {
+      "name": "IfStandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfStandalone{${1:code for standalone}}{${2:code for main document}}"
+      }
+    },
+    {
+      "name": "onlyifstandalone",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyifstandalone{${1:code}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "standalone",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/standalone": [
+      "subpreambles",
+      "sort",
+      "print",
+      "comments",
+      "nocomments",
+      "obeyclassoptions"
+    ],
+    "\\usepackage/standalone,\\standaloneconfig,\\includestandalone": [
+      "group",
+      "mode=${1|tex,image,image|tex,build,buildmissing,buildnew|}",
+      "extension=${1:extension}",
+      "build={${1:build options}}"
+    ],
+    "\\includestandalone": [
+      "alt={${1:alt text}}",
+      "bb=${1:llx lly urx ury}",
+      "bbllx=",
+      "bblly=",
+      "bburx=",
+      "bbury=",
+      "natwidth=",
+      "natheight=",
+      "hiresbb",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
+      "viewport=${1:llx lly urx ury}",
+      "trim=${1:llx lly urx ury}",
+      "angle=${1:degrees}",
+      "origin=",
+      "width=",
+      "height=",
+      "totalheight=",
+      "keepaspectratio",
+      "scale=${1:factor}",
+      "clip",
+      "draft",
+      "type=${1:file type}",
+      "ext=${1:file extension}",
+      "read=${1:read-file extension}",
+      "command=",
+      "quiet",
+      "page=${1:page number}",
+      "interpolate",
+      "decodearray={${1:color array}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/standalone",
+    "\\usepackage/standalone,\\standaloneconfig,\\includestandalone"
+  ]
+}

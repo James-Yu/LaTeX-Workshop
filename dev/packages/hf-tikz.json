@@ -1,67 +1,120 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryshadings": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "tikzmarkin{}": {
-      "snippet": "tikzmarkin{${1:marker-id}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "tikzmarkin[]{}": {
-      "snippet": "tikzmarkin[${2:options}]{${1:marker-id}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryshadings"
     },
-    "tikzmarkend{}": {
-      "snippet": "tikzmarkend{${1:marker-id}}"
-    },
-    "thejumping": {
-      "option": "beamer"
-    },
-    "hfsetfillcolor{}": {
-      "snippet": "hfsetfillcolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "hfsetbordercolor{}": {
-      "snippet": "hfsetbordercolor{${1:color}}",
-      "option": "customcolors"
-    },
-    "ifshowmarkers": {
-      "option": "markings"
-    },
-    "showmarkerstrue": {
-      "option": "markings"
-    },
-    "showmarkersfalse": {
-      "option": "markings"
-    },
-    "fcol": {},
-    "bcol": {},
-    "savepointas{}{}": {
-      "snippet": "savepointas{${1:name}}{${2:point}}"
-    },
-    "oldsavepointas{}{}": {
-      "snippet": "oldsavepointas{${1:name}}{${2:point}}"
-    },
-    "pgfsyspdfmark{}{}{}": {
-      "snippet": "pgfsyspdfmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "oldpgfsyspdfmark{}{}{}": {
-      "snippet": "oldpgfsyspdfmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [
-    "nofill",
-    "customcolors",
-    "shade",
-    "beamer",
-    "norndcorners",
-    "markings"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "{}",
+        "snippet": "tikzmarkin{${1:marker-id}}"
+      }
+    },
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "tikzmarkin{${1:marker-id}}(${2:x1},${3:y1})(${4:x2},${5:y2})"
+      }
+    },
+    {
+      "name": "tikzmarkin",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tikzmarkin[${2:options%keyvals}]{${1:marker-id}}",
+        "keys": [
+          "\\tikzmarkin#c,\\tikzset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tikzmarkend",
+      "arg": {
+        "format": "{}",
+        "snippet": "tikzmarkend{${1:marker-id}}"
+      }
+    },
+    {
+      "name": "thejumping",
+      "if": "beamer",
+      "unusual": true
+    },
+    {
+      "name": "hfsetfillcolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "hfsetfillcolor{${1:color}}"
+      }
+    },
+    {
+      "name": "hfsetbordercolor",
+      "if": "customcolors",
+      "arg": {
+        "format": "{}",
+        "snippet": "hfsetbordercolor{${1:color}}"
+      }
+    },
+    {
+      "name": "ifshowmarkers",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "showmarkerstrue",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "showmarkersfalse",
+      "if": "markings",
+      "unusual": true
+    },
+    {
+      "name": "fcol",
+      "unusual": true
+    },
+    {
+      "name": "bcol",
+      "unusual": true
+    },
+    {
+      "name": "savepointas",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "savepointas{${1:name}}{${2:point}}"
+      }
+    },
+    {
+      "name": "pgfsyspdfmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfsyspdfmark{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hf-tikz#c": [
+      "nofill",
+      "customcolors",
+      "shade",
+      "beamer",
+      "norndcorners",
+      "markings"
+    ],
+    "\\tikzmarkin#c,\\tikzset#c": [
       "left offset=",
       "right offset=",
       "above offset=",
@@ -83,6 +136,12 @@
       "show markers",
       "marker size=",
       "marker color="
+    ],
+    "\\tikzset#c": [
+      "offset definition/.style={${1:style specs}}"
     ]
+  },
+  "args": [
+    "\\usepackage/hf-tikz#c"
   ]
 }

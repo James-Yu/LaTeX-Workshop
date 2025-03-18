@@ -1,67 +1,135 @@
 {
-  "includes": {
-    "xcolor": [],
-    "expkv": []
-  },
-  "macros": {
-    "pxpic{}": {
-      "snippet": "pxpic{${1:pixel list}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "pxpic[]{}": {
-      "snippet": "pxpic[${2:options}]{${1:pixel list}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pxpicsetup{}": {
-      "snippet": "pxpicsetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pxpicnewmode{}{}": {
-      "snippet": "pxpicnewmode{${1:name}}{${2:definition}}"
-    },
-    "pxpicsetmode{}{}": {
-      "snippet": "pxpicsetmode{${1:name}}{${2:definition}}"
-    },
-    "pxpicnewcolorlist{}{}": {
-      "snippet": "pxpicnewcolorlist{${1:name}}{${2:color list}}"
-    },
-    "pxpicsetcolorlist{}{}": {
-      "snippet": "pxpicsetcolorlist{${1:name}}{${2:color list}}"
-    },
-    "pxpicaddcolorlist{}{}": {
-      "snippet": "pxpicaddcolorlist{${1:name}}{${2:color list}}"
-    },
-    "pxpicforget{}": {
-      "snippet": "pxpicforget{${1:px}}"
-    },
-    "px": {},
-    "pxskip": {},
-    "pxpicHT": {},
-    "pxpicWD": {},
-    "pxpiclogo": {},
-    "pxpiclogo[]": {
-      "snippet": "pxpiclogo[${1:size}]"
+    {
+      "name": "expkv"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pxpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "pxpic{${1:pixel list}}"
+      }
+    },
+    {
+      "name": "pxpic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pxpic[${2:options%keyvals}]{${1:pixel list}}",
+        "keys": [
+          "\\pxpic,\\pxpicsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pxpicsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "pxpicsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\pxpic,\\pxpicsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pxpicnewmode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pxpicnewmode{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "pxpicsetmode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pxpicsetmode{${1:name}}{${2:definition}}"
+      }
+    },
+    {
+      "name": "pxpicnewcolorlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pxpicnewcolorlist{${1:name}}{${2:color list}}"
+      }
+    },
+    {
+      "name": "pxpicsetcolorlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pxpicsetcolorlist{${1:name}}{${2:color list}}"
+      }
+    },
+    {
+      "name": "pxpicaddcolorlist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pxpicaddcolorlist{${1:name}}{${2:color list}}"
+      }
+    },
+    {
+      "name": "pxpicforget",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pxpicforget{${1:px}}"
+      }
+    },
+    {
+      "name": "px"
+    },
+    {
+      "name": "pxskip"
+    },
+    {
+      "name": "pxpicHT",
+      "unusual": true
+    },
+    {
+      "name": "pxpicWD",
+      "unusual": true
+    },
+    {
+      "name": "pxpiclogo",
+      "unusual": true
+    },
+    {
+      "name": "pxpiclogo",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "pxpiclogo[${1:size}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pxpic,\\pxpicsetup": [
       "colors=${1:color list}",
       "colours=${1:color list}",
       "color-list=${1:choice}",
       "colour-list=${1:choice}",
-      "exp=",
-      "expansion=",
+      "exp=${1|full,none|}",
+      "expansion=${1|full,none|}",
       "file",
       "gap-hack=",
       "ht=",
-      "lines=",
-      "mode=",
+      "lines=${1|group,space,csv|}",
+      "mode=${1|px,named,rgb,cmy,cmyk,hsb,Hsb,tHsb,gray,RGB,HTML,HSB,Gray,wave|}",
       "size=",
       "skip=",
       "wd="
     ]
-  ]
+  },
+  "args": []
 }

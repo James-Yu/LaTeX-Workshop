@@ -1,74 +1,334 @@
 {
-  "includes": {
-    "tikz": [],
-    "lmodern": [],
-    "fix-cm": [],
-    "arevmath": [],
-    "marvosym": [],
-    "acronym": [],
-    "amssymb": [],
-    "xifthen": [],
-    "tikzlibraryshapes.geometric": [],
-    "tikzlibraryshapes.symbols": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "MilAir[]": {
-      "snippet": "MilAir[${1:options}]"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "MilMissile[]": {
-      "snippet": "MilMissile[${1:options}]"
+    {
+      "name": "lmodern"
     },
-    "MilLand[]": {
-      "snippet": "MilLand[${1:options}]"
+    {
+      "name": "fix-cm"
     },
-    "MilEquipment[]": {
-      "snippet": "MilEquipment[${1:options}]"
+    {
+      "name": "arevmath"
     },
-    "MilInstallation[]": {
-      "snippet": "MilInstallation[${1:options}]"
+    {
+      "name": "marvosym"
     },
-    "MilSeaSurface[]": {
-      "snippet": "MilSeaSurface[${1:options}]"
+    {
+      "name": "acronym"
     },
-    "MilSeaSubsurface[]": {
-      "snippet": "MilSeaSubsurface[${1:options}]"
+    {
+      "name": "amssymb"
     },
-    "MilMine[]": {
-      "snippet": "MilMine[${1:options}]"
+    {
+      "name": "xifthen"
     },
-    "MilSpace[]": {
-      "snippet": "MilSpace[${1:options}]"
+    {
+      "name": "tikzlibraryshapes.geometric"
     },
-    "MilActivity[]": {
-      "snippet": "MilActivity[${1:options}]"
+    {
+      "name": "tikzlibraryshapes.symbols"
     },
-    "MilDebris[]": {
-      "snippet": "MilDebris[${1:options}]"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "OwnShip[]": {
-      "snippet": "OwnShip[${1:options}]"
-    },
-    "clipfriendly": {},
-    "cliphostile": {},
-    "clipneutral": {},
-    "clipunknown": {},
-    "itemlength": {},
-    "theexitem": {}
-  },
-  "envs": {
-    "landgroup": {},
-    "landgroup[]": {
-      "name": "landgroup",
-      "snippet": "[${1:options}]"
-    },
-    "landheadquarters": {},
-    "landheadquarters[]": {
-      "name": "landheadquarters",
-      "snippet": "[${1:options}]"
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "MilAir",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilAir[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilAir",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilAir[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilAir",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilAir[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilMissile",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilMissile[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilMissile",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilMissile[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilMissile",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilMissile[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilLand",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilLand[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilLand",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilLand[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilLand",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilLand[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilEquipment",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilEquipment[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilEquipment",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilEquipment[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilEquipment",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilEquipment[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilInstallation",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilInstallation[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilInstallation",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilInstallation[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilInstallation",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilInstallation[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilSeaSurface",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilSeaSurface[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilSeaSurface",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilSeaSurface[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilSeaSurface",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilSeaSurface[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilSeaSubsurface",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilSeaSubsurface[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilSeaSubsurface",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilSeaSubsurface[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilSeaSubsurface",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilSeaSubsurface[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilMine",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilMine[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilMine",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilMine[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilMine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilMine[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilSpace",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilSpace[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilSpace",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilSpace[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilSpace",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilSpace[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilActivity",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilActivity[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilActivity",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilActivity[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilActivity",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilActivity[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "MilDebris",
+      "arg": {
+        "format": "[]",
+        "snippet": "MilDebris[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "MilDebris",
+      "arg": {
+        "format": "[]()",
+        "snippet": "MilDebris[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "MilDebris",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "MilDebris[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "OwnShip",
+      "arg": {
+        "format": "[]",
+        "snippet": "OwnShip[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "OwnShip",
+      "arg": {
+        "format": "[]()",
+        "snippet": "OwnShip[${1:options%keyvals}](${2:location})"
+      }
+    },
+    {
+      "name": "OwnShip",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "OwnShip[${2:options%keyvals}](${3:location})(${4:name}){${1:label}}"
+      }
+    },
+    {
+      "name": "clipfriendly",
+      "unusual": true
+    },
+    {
+      "name": "cliphostile",
+      "unusual": true
+    },
+    {
+      "name": "clipneutral",
+      "unusual": true
+    },
+    {
+      "name": "clipunknown",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "landgroup"
+    },
+    {
+      "name": "landgroup",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "landheadquarters"
+    },
+    {
+      "name": "landheadquarters",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

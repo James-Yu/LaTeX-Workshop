@@ -1,33 +1,60 @@
 {
-  "includes": {
-    "stex": [],
-    "tikzinput": []
-  },
-  "macros": {
-    "mhtikzinput{}": {
-      "snippet": "mhtikzinput{${1:file}}"
+  "deps": [
+    {
+      "name": "stex"
     },
-    "mhtikzinput[]{}": {
-      "snippet": "mhtikzinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "cmhtikzinput{}": {
-      "snippet": "cmhtikzinput{${1:file}}"
-    },
-    "cmhtikzinput[]{}": {
-      "snippet": "cmhtikzinput[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "libusetikzlibrary{}": {
-      "snippet": "libusetikzlibrary{${1:library}}"
+    {
+      "name": "tikzinput"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "mhtikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "mhtikzinput{${1:file}}"
+      }
+    },
+    {
+      "name": "mhtikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "mhtikzinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\mhtikzinput,\\cmhtikzinput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cmhtikzinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "cmhtikzinput{${1:file}}"
+      }
+    },
+    {
+      "name": "cmhtikzinput",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "cmhtikzinput[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\mhtikzinput,\\cmhtikzinput"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "libusetikzlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "libusetikzlibrary{${1:library}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\mhtikzinput,\\cmhtikzinput": [
       "mhrepos=${1:file path}",
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
@@ -38,7 +65,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -59,5 +86,6 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
-  ]
+  },
+  "args": []
 }

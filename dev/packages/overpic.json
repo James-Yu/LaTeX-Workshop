@@ -1,44 +1,70 @@
 {
-  "includes": {
-    "epic": [],
-    "graphicx": []
-  },
-  "macros": {
-    "setOverpic{}": {
-      "snippet": "setOverpic{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "epic"
+    },
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {
-    "overpic{}": {
-      "name": "overpic",
-      "snippet": "{${1:file}}"
-    },
-    "overpic[]{}": {
-      "name": "overpic",
-      "snippet": "[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "Overpic{}": {
-      "name": "Overpic",
-      "snippet": "{${1:tex-code}}"
-    },
-    "Overpic[]{}": {
-      "name": "Overpic",
-      "snippet": "[${2:options}]{${1:tex-code}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    }
-  },
-  "options": [
-    "abs",
-    "percent",
-    "permil"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "setOverpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "setOverpic{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{overpic},\\begin{Overpic},\\setOverpic"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "overpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:file}}"
+      }
+    },
+    {
+      "name": "overpic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\begin{overpic},\\begin{Overpic},\\setOverpic"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Overpic",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:tex-code}}"
+      }
+    },
+    {
+      "name": "Overpic",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:tex-code}}",
+        "keys": [
+          "\\begin{overpic},\\begin{Overpic},\\setOverpic"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/overpic#c": [
+      "abs",
+      "percent",
+      "permil"
+    ],
+    "\\begin{overpic},\\begin{Overpic},\\setOverpic": [
       "abs",
       "percent",
       "permil",
@@ -55,7 +81,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -76,5 +102,8 @@
       "interpolate",
       "decodearray={${1:color array}}"
     ]
+  },
+  "args": [
+    "\\usepackage/overpic#c"
   ]
 }

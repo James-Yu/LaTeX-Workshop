@@ -1,0 +1,427 @@
+{
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "siunitx"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarydatavisualization"
+    },
+    {
+      "name": "tikzlibraryfit"
+    }
+  ],
+  "macros": [
+    {
+      "name": "statisticssetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "statisticssetup{${1:options%keyvals}}",
+        "keys": [
+          "\\statisticssetup#c,\\StatsTable",
+          "\\statisticssetup#c,\\StatsGraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "statisticssetup",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "statisticssetup[${2:module}]{${1:options%keyvals}}",
+        "keys": [
+          "\\statisticssetup#c,\\StatsTable",
+          "\\statisticssetup#c,\\StatsGraph"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "StatsTable",
+      "arg": {
+        "format": "{}",
+        "snippet": "StatsTable{${1:data source}}"
+      }
+    },
+    {
+      "name": "StatsTable",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "StatsTable[${2:options%keyvals}]{${1:data source}}",
+        "keys": [
+          "\\statisticssetup#c,\\StatsTable"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "StatsTable",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "StatsTable{${1:data source}}[${2:options}]",
+        "keys": [
+          "\\statisticssetup#c,\\StatsTable"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "StatsTable",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "StatsTable[${2:options%keyvals}]{${1:data source}}[${3:options}]",
+        "keys": [
+          "\\statisticssetup#c,\\StatsTable"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "IN",
+      "unusual": true
+    },
+    {
+      "name": "currentcolumn",
+      "unusual": true
+    },
+    {
+      "name": "valuename",
+      "unusual": true
+    },
+    {
+      "name": "countname",
+      "unusual": true
+    },
+    {
+      "name": "freqname",
+      "unusual": true
+    },
+    {
+      "name": "iccname",
+      "unusual": true
+    },
+    {
+      "name": "icfname",
+      "unusual": true
+    },
+    {
+      "name": "dccname",
+      "unusual": true
+    },
+    {
+      "name": "dcfname",
+      "unusual": true
+    },
+    {
+      "name": "firsthline",
+      "unusual": true
+    },
+    {
+      "name": "lasthline",
+      "unusual": true
+    },
+    {
+      "name": "StatsGraph",
+      "arg": {
+        "format": "{}",
+        "snippet": "StatsGraph{${1:data source}}"
+      }
+    },
+    {
+      "name": "StatsGraph",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "StatsGraph[${2:options%keyvals}]{${1:data source}}",
+        "keys": [
+          "\\statisticssetup#c,\\StatsGraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "StatsGraph",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "StatsGraph{${1:data source}}[${2:options}]",
+        "keys": [
+          "\\statisticssetup#c,\\StatsGraph"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "StatsGraph",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "StatsGraph[${2:options%keyvals}]{${1:data source}}[${3:options}]",
+        "keys": [
+          "\\statisticssetup#c,\\StatsGraph"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ccountname",
+      "unusual": true
+    },
+    {
+      "name": "cfreqname",
+      "unusual": true
+    },
+    {
+      "name": "min",
+      "unusual": true
+    },
+    {
+      "name": "max",
+      "unusual": true
+    },
+    {
+      "name": "range",
+      "unusual": true
+    },
+    {
+      "name": "xstep",
+      "unusual": true
+    },
+    {
+      "name": "total",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\statisticssetup#c,\\StatsTable": [
+      "values",
+      "values=${1:row header text}",
+      "counts",
+      "counts=${1:row header text}",
+      "frequencies",
+      "frequencies=${1:row header text}",
+      "icc",
+      "icc=${1:row header text}",
+      "icf",
+      "icf=${1:row header text}",
+      "dcc",
+      "dcc=${1:row header text}",
+      "dcf",
+      "dcf=${1:row header text}",
+      "novalues",
+      "nocounts",
+      "nofrequencies",
+      "noicc",
+      "nodcc",
+      "noicf",
+      "nodcf",
+      "values/header=${1:row header text}",
+      "counts/header=${1:row header text}",
+      "frequencies/header=${1:row header text}",
+      "icc/header=${1:row header text}",
+      "icf/header=${1:row header text}",
+      "dcc/header=${1:row header text}",
+      "dcf/header=${1:row header text}",
+      "values/format=${1:formatting code}",
+      "counts/format=${1:formatting code}",
+      "frequencies/format=${1:formatting code}",
+      "icc/format=${1:formatting code}",
+      "icf/format=${1:formatting code}",
+      "dcc/format=${1:formatting code}",
+      "dcf/format=${1:formatting code}",
+      "allcounts/format=${1:formatting code}",
+      "allfreqs/format=${1:formatting code}",
+      "allfreqs/format/percent",
+      "allfreqs/format/real",
+      "digits=${1:integer}",
+      "showonly={${1:integer/range list}}",
+      "showonly/hidden=${1:formatting code}",
+      "showonly/shown=${1:formatting code}",
+      "maxcols={${1:integer list}}",
+      "tablesep=${1:TeX content}",
+      "preline=${1:array content}",
+      "postline=${1:array content}",
+      "outline=${1:array content}",
+      "newline=${1:array content}",
+      "coltype=${1:coltype}",
+      "headcoltype=${1:coltype}",
+      "frame=${1|none,clean,full|}",
+      "valign=${1|t,c,b|}"
+    ],
+    "\\statisticssetup#c,\\StatsGraph": [
+      "picture={${1:TikZ options}}",
+      "picture/reset",
+      "axissystem={${1:TikZ axis options}}",
+      "axissystem/reset",
+      "width=",
+      "height",
+      "tikzinfo'={${1:TikZ picture code}}",
+      "tikzinfo'/reset",
+      "tikzinfo={${1:TikZ picture code}}",
+      "tikzinfo/reset",
+      "style={${1:TikZ path options}}",
+      "style/reset",
+      "comb/style={${1:TikZ path options}}",
+      "comb/style/reset",
+      "histogram/style={${1:TikZ path options}}",
+      "histogram/style/reset",
+      "cumulative/style={${1:TikZ path options}}",
+      "cumulative/style/reset",
+      "showonly={${1:integer/range list}}",
+      "counts",
+      "counts=${1:label}",
+      "frequencies",
+      "frequencies=${1:label}",
+      "comb/counts",
+      "comb/counts=${1:label}",
+      "comb/frequencies",
+      "comb/frequencies=${1:label}",
+      "histogram/counts",
+      "histogram/counts=${1:label}",
+      "histogram/frequencies",
+      "histogram/frequencies=${1:label}",
+      "cumulative/counts",
+      "cumulative/counts=${1:label}",
+      "cumulative/frequencies",
+      "cumulative/frequencies=${1:label}",
+      "counts/label=${1:label}",
+      "frequencies/label=${1:label}",
+      "comb/counts/label=${1:label}",
+      "comb/frequencies/label=${1:label}",
+      "histogram/counts/label=${1:label}",
+      "histogram/frequencies/label=${1:label}",
+      "cumulative/counts/label=${1:label}",
+      "cumulative/frequencies/label=${1:label}",
+      "y/label=${1:label}",
+      "comb/y/label=${1:label}",
+      "histogram/y/label=${1:label}",
+      "cumulative/y/label=${1:label}",
+      "counts/axis={${1:TikZ axis options}}",
+      "frequencies/axis={${1:TikZ axis options}}",
+      "comb/counts/axis={${1:TikZ axis options}}",
+      "comb/frequencies/axis={${1:TikZ axis options}}",
+      "histogram/counts/axis={${1:TikZ axis options}}",
+      "histogram/frequencies/axis={${1:TikZ axis options}}",
+      "cumulative/counts/axis={${1:TikZ axis options}}",
+      "cumulative/frequencies/axis={${1:TikZ axis options}}",
+      "counts/axis/reset",
+      "frequencies/axis/reset",
+      "comb/counts/axis/reset",
+      "comb/frequencies/axis/reset",
+      "histogram/counts/axis/reset",
+      "histogram/frequencies/axis/reset",
+      "cumulative/counts/axis/reset",
+      "cumulative/frequencies/axis/reset",
+      "y/axis={${1:TikZ axis options}}",
+      "y/axis/reset",
+      "comb/axis={${1:TikZ axis options}}",
+      "comb/axis/reset",
+      "histogram/axis={${1:TikZ axis options}}",
+      "histogram/axis/reset",
+      "cumulative/axis={${1:TikZ axis options}}",
+      "cumulative/axis/reset",
+      "counts/format=${1:formatting code}",
+      "frequencies/format=${1:formatting code}",
+      "y/format=${1:formatting code}",
+      "comb/counts/format=${1:formatting code}",
+      "comb/frequencies/format=${1:formatting code}",
+      "comb/y/format=${1:formatting code}",
+      "histogram/counts/format=${1:formatting code}",
+      "histogram/frequencies/format=${1:formatting code}",
+      "histogram/y/format=${1:formatting code}",
+      "cumulative/counts/format=${1:formatting code}",
+      "cumulative/frequencies/format=${1:formatting code}",
+      "cumulative/y/format=${1:formatting code}",
+      "frequencies/format/real=${1:places}",
+      "comb/frequencies/format/real=${1:places}",
+      "histogram/frequencies/format/real=${1:places}",
+      "cumulative/frequencies/format/real=${1:places}",
+      "frequencies/format/percent=${1:places}",
+      "comb/frequencies/format/percent=${1:places}",
+      "histogram/frequencies/format/percent=${1:places}",
+      "cumulative/frequencies/format/percent=${1:places}",
+      "counts/margin=${1:expr}",
+      "frequencies/margin=${1:expr}",
+      "y/margin=${1:expr}",
+      "comb/counts/margin=${1:expr}",
+      "comb/frequencies/margin=${1:expr}",
+      "comb/y/margin=${1:expr}",
+      "histogram/counts/margin=${1:expr}",
+      "histogram/frequencies/margin=${1:expr}",
+      "histogram/y/margin=${1:expr}",
+      "cumulative/counts/margin=${1:expr}",
+      "cumulative/frequencies/margin=${1:expr}",
+      "cumulative/y/margin=${1:expr}",
+      "values/label=${1:label}",
+      "x/label=${1:label}",
+      "comb/values/label=${1:label}",
+      "comb/x/label=${1:label}",
+      "histogram/values/label=${1:label}",
+      "histogram/x/label=${1:label}",
+      "cumulative/values/label=${1:label}",
+      "cumulative/x/label=${1:label}",
+      "values/axis={${1:TikZ axis options}}",
+      "x/axis={${1:TikZ axis options}}",
+      "comb/values/axis={${1:TikZ axis options}}",
+      "comb/x/axis={${1:TikZ axis options}}",
+      "histogram/values/axis={${1:TikZ axis options}}",
+      "histogram/x/axis={${1:TikZ axis options}}",
+      "cumulative/values/axis={${1:TikZ axis options}}",
+      "cumulative/x/axis={${1:TikZ axis options}}",
+      "values/axis/reset",
+      "x/axis/reset",
+      "comb/values/axis/reset",
+      "comb/x/axis/reset",
+      "histogram/values/axis/reset",
+      "histogram/x/axis/reset",
+      "cumulative/values/axis/reset",
+      "cumulative/x/axis/reset",
+      "values/format=${1:formatting code}",
+      "x/format=${1:formatting code}",
+      "comb/values/format=${1:formatting code}",
+      "comb/x/format=${1:formatting code}",
+      "histogram/values/format=${1:formatting code}",
+      "histogram/x/format=${1:formatting code}",
+      "cumulative/values/format=${1:formatting code}",
+      "cumulative/x/format=${1:formatting code}",
+      "values/margin=${1:expr}",
+      "x/margin=${1:expr}",
+      "comb/values/margin=${1:expr}",
+      "comb/x/margin=${1:expr}",
+      "histogram/values/margin=${1:expr}",
+      "histogram/x/margin=${1:expr}",
+      "cumulative/values/margin=${1:expr}",
+      "cumulative/x/margin=${1:expr}",
+      "cumulative",
+      "decreasing",
+      "histogram/areas",
+      "histogram/areas/style={${1:TikZ node options}}",
+      "histogram/areas/style/reset",
+      "histogram/counts/autostep",
+      "histogram/counts/autostep=${1:fp expr}",
+      "histogram/frequencies/autostep",
+      "histogram/frequencies/autostep=${1:fp expr}",
+      "histogram/y/autostep",
+      "histogram/y/autostep=${1:fp expr}",
+      "histogram/legend={${1:legend keys}}",
+      "histogram/legend/x",
+      "histogram/legend/x=${1:fp expr}",
+      "histogram/legend/w",
+      "histogram/legend/w=${1:fp expr}",
+      "histogram/legend/y=${1:fp expr}",
+      "histogram/legend/h=${1:fp expr}",
+      "histogram/legend/area=${1:fp expr}",
+      "histogram/legend/options={${1:TikZ node options}}",
+      "histogram/legend/options/reset",
+      "histogram/legend/label=${1:TikZ label value}"
+    ]
+  },
+  "args": []
+}

@@ -1,170 +1,383 @@
 {
-  "includes": {
-    "class-book": [],
-    "url": []
-  },
-  "macros": {
-    "*{}": {
-      "snippet": "*{${1:index entry}}"
+  "deps": [
+    {
+      "name": "class-book"
     },
-    "<": {
-      "detail": "<",
-      "documentation": "LESS-THAN SIGN r:"
-    },
-    "activevert": {},
-    "actualchar": {},
-    "addbslash{}": {
-      "snippet": "addbslash{${1:arg}}"
-    },
-    "allowtthyphens": {},
-    "AmS": {},
-    "arg{}": {
-      "snippet": "arg{${1:arg}}"
-    },
-    "arrayargpatch": {},
-    "autoindex{}": {
-      "snippet": "autoindex{${1:entry}}"
-    },
-    "bslchar": {},
-    "bst{}": {
-      "snippet": "bst{${1:BibTeX style}}"
-    },
-    "cls{}": {
-      "snippet": "cls{${1:class}}"
-    },
-    "cn{}": {
-      "snippet": "cn{${1:csname}}"
-    },
-    "cnat": {},
-    "cnbang": {},
-    "cnbreak": {},
-    "cnm{}{}": {
-      "snippet": "cnm{${1:csname}}{${2:arg}}"
-    },
-    "cnmm{}{}{}": {
-      "snippet": "cnmm{${1:csname}}{${2:arg1}}{${3:arg2}}"
-    },
-    "cnmsm{}{}*{}": {
-      "snippet": "cnmsm{${1:csname}}{${2:arg1}}*{${3:arg2}}"
-    },
-    "cnom{}{}{}": {
-      "snippet": "cnom{${1:csname}}{${2:optarg}}{${3:arg}}"
-    },
-    "cnt{}": {
-      "snippet": "cnt{${1:counter}}"
-    },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "embrace{}": {
-      "snippet": "embrace{${1:text}}"
-    },
-    "encapchar": {},
-    "env{}": {
-      "snippet": "env{${1:envname}}"
-    },
-    "errexa": {},
-    "errexpl": {},
-    "errora{}": {
-      "snippet": "errora{${1:message}}"
-    },
-    "errorbullet": {},
-    "fn{}": {
-      "snippet": "fn{${1:file name}}"
-    },
-    "fnt{}": {
-      "snippet": "fnt{${1:font name}}"
-    },
-    "gloss{}": {
-      "snippet": "gloss{${1:arg}}"
-    },
-    "indexcs{}": {
-      "snippet": "indexcs{${1:cs}}"
-    },
-    "lbracechar": {},
-    "levelchar": {},
-    "mail{}": {
-      "snippet": "mail{${1:email}}"
-    },
-    "mdash": {},
-    "ncn{}": {
-      "snippet": "ncn{${1:csname}}"
-    },
-    "ndash": {},
-    "nobslash{}": {
-      "snippet": "nobslash{${1:arg}}"
-    },
-    "ntt": {},
-    "ommitude[]{}": {
-      "snippet": "ommitude[${2:optarg}]{${1:arg}}"
-    },
-    "ommitude{}": {
-      "snippet": "ommitude{${1:arg}}"
-    },
-    "openbox": {},
-    "opt{}": {
-      "snippet": "opt{${1:option}}"
-    },
-    "pkg{}": {
-      "snippet": "pkg{${1:package}}"
-    },
-    "qc{}": {
-      "snippet": "qc{${1:def}}"
-    },
-    "qcamp": {},
-    "qcat": {},
-    "qcbang": {},
-    "qedsymbol": {},
-    "qq{}": {
-      "snippet": "qq{${1:text}}"
-    },
-    "quotechar": {},
-    "rbracechar": {},
-    "secref{}": {
-      "snippet": "secref{${1:label}}"
-    },
-    "Textures": {},
-    "verbatimchar": {}
-  },
-  "envs": {
-    "ctab{}": {
-      "name": "ctab",
-      "snippet": "{${1:cols}}"
-    },
-    "ctab[]{}": {
-      "name": "ctab",
-      "snippet": "[${2:pos}]{${1:cols}}"
-    },
-    "error{}": {
-      "name": "error",
-      "snippet": "{${1:message}}"
-    },
-    "histnote": {}
-  },
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "openbib"
+    {
+      "name": "url"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "*",
+      "arg": {
+        "format": "{}",
+        "snippet": "*{${1:index entry}}"
+      }
+    },
+    {
+      "name": "activevert",
+      "unusual": true
+    },
+    {
+      "name": "actualchar",
+      "unusual": true
+    },
+    {
+      "name": "addbslash",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addbslash{${1:arg}}"
+      }
+    },
+    {
+      "name": "allowtthyphens",
+      "unusual": true
+    },
+    {
+      "name": "AmS"
+    },
+    {
+      "name": "arg",
+      "arg": {
+        "format": "{}",
+        "snippet": "arg{${1:arg}}"
+      }
+    },
+    {
+      "name": "arrayargpatch",
+      "unusual": true
+    },
+    {
+      "name": "autoindex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "autoindex{${1:entry}}"
+      }
+    },
+    {
+      "name": "bslchar",
+      "unusual": true
+    },
+    {
+      "name": "bst",
+      "arg": {
+        "format": "{}",
+        "snippet": "bst{${1:BibTeX style}}"
+      }
+    },
+    {
+      "name": "cls",
+      "arg": {
+        "format": "{}",
+        "snippet": "cls{${1:class}}"
+      }
+    },
+    {
+      "name": "cn",
+      "arg": {
+        "format": "{}",
+        "snippet": "cn{${1:csname}}"
+      }
+    },
+    {
+      "name": "cnat"
+    },
+    {
+      "name": "cnbang"
+    },
+    {
+      "name": "cnbreak",
+      "unusual": true
+    },
+    {
+      "name": "cnm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cnm{${1:csname}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "cnmm",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cnmm{${1:csname}}{${2:arg1}}{${3:arg2}}"
+      }
+    },
+    {
+      "name": "cnmsm",
+      "arg": {
+        "format": "{}{}*{}",
+        "snippet": "cnmsm{${1:csname}}{${2:arg1}}*{${3:arg2}}"
+      }
+    },
+    {
+      "name": "cnom",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cnom{${1:csname}}{${2:optarg}}{${3:arg}}"
+      }
+    },
+    {
+      "name": "cnt",
+      "arg": {
+        "format": "{}",
+        "snippet": "cnt{${1:counter}}"
+      }
+    },
+    {
+      "name": "cs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:csname}}"
+      }
+    },
+    {
+      "name": "embrace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "embrace{${1:text}}"
+      }
+    },
+    {
+      "name": "encapchar",
+      "unusual": true
+    },
+    {
+      "name": "env",
+      "arg": {
+        "format": "{}",
+        "snippet": "env{${1:envname}}"
+      }
+    },
+    {
+      "name": "errexa"
+    },
+    {
+      "name": "errexpl"
+    },
+    {
+      "name": "errora",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "errora{${1:message%text}}"
+      }
+    },
+    {
+      "name": "errorbullet",
+      "unusual": true
+    },
+    {
+      "name": "fn",
+      "arg": {
+        "format": "{}",
+        "snippet": "fn{${1:file name}}"
+      }
+    },
+    {
+      "name": "fnt",
+      "arg": {
+        "format": "{}",
+        "snippet": "fnt{${1:font name}}"
+      }
+    },
+    {
+      "name": "gloss",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gloss{${1:arg}}"
+      }
+    },
+    {
+      "name": "indexcs",
+      "arg": {
+        "format": "{}",
+        "snippet": "indexcs{${1:cs}}"
+      }
+    },
+    {
+      "name": "lbracechar",
+      "unusual": true
+    },
+    {
+      "name": "levelchar",
+      "unusual": true
+    },
+    {
+      "name": "mail",
+      "arg": {
+        "format": "{}",
+        "snippet": "mail{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "mdash"
+    },
+    {
+      "name": "ncn",
+      "arg": {
+        "format": "{}",
+        "snippet": "ncn{${1:csname}}"
+      }
+    },
+    {
+      "name": "ndash"
+    },
+    {
+      "name": "nobslash",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nobslash{${1:arg}}"
+      }
+    },
+    {
+      "name": "ntt",
+      "unusual": true
+    },
+    {
+      "name": "ommitude",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ommitude[${2:optarg}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "ommitude",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ommitude{${1:arg}}"
+      }
+    },
+    {
+      "name": "openbox",
+      "unusual": true
+    },
+    {
+      "name": "opt",
+      "arg": {
+        "format": "{}",
+        "snippet": "opt{${1:option}}"
+      }
+    },
+    {
+      "name": "pkg",
+      "arg": {
+        "format": "{}",
+        "snippet": "pkg{${1:package}}"
+      }
+    },
+    {
+      "name": "qc",
+      "arg": {
+        "format": "{}",
+        "snippet": "qc{${1:\\<${2:char}>}}"
+      }
+    },
+    {
+      "name": "qcamp"
+    },
+    {
+      "name": "qcat"
+    },
+    {
+      "name": "qcbang"
+    },
+    {
+      "name": "qedsymbol"
+    },
+    {
+      "name": "qq",
+      "arg": {
+        "format": "{}",
+        "snippet": "qq{${1:text}}"
+      }
+    },
+    {
+      "name": "quotechar",
+      "unusual": true
+    },
+    {
+      "name": "rbracechar",
+      "unusual": true
+    },
+    {
+      "name": "secref",
+      "arg": {
+        "format": "{}",
+        "snippet": "secref{${1:label}}"
+      }
+    },
+    {
+      "name": "Textures"
+    },
+    {
+      "name": "verbatimchar",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ctab",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    },
+    {
+      "name": "ctab",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pos}]{${1:cols}}"
+      }
+    },
+    {
+      "name": "error",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:message%text}}"
+      }
+    },
+    {
+      "name": "histnote"
+    }
+  ],
+  "keys": {
+    "\\documentclass/amsldoc#c": [
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/amsldoc#c"
+  ]
 }

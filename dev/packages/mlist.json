@@ -1,0 +1,330 @@
+{
+  "deps": [
+    {
+      "name": "ifmtarg"
+    },
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newvect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newvect{${1:macro%cmd}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "newvect",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newvect{${1:macro%cmd}}{${2:text%plain}}[${3:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newmatr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newmatr{${1:macro%cmd}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "newmatr",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newmatr{${1:macro%cmd}}{${2:text%plain}}[${3:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newfunc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newfunc{${1:macro%cmd}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "newfunc",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newfunc{${1:macro%cmd}}{${2:text%plain}}[${3:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "newmset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newmset{${1:macro%cmd}}{${2:text%plain}}"
+      }
+    },
+    {
+      "name": "newmset",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "newmset{${1:macro%cmd}}{${2:text%plain}}[${3:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "setR"
+    },
+    {
+      "name": "setC"
+    },
+    {
+      "name": "setN"
+    },
+    {
+      "name": "setZ"
+    },
+    {
+      "name": "vect",
+      "arg": {
+        "format": "{}",
+        "snippet": "vect{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "vect",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vect{${1:text%plain}}{${2:indices}}"
+      }
+    },
+    {
+      "name": "matr",
+      "arg": {
+        "format": "{}",
+        "snippet": "matr{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "matr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "matr{${1:text%plain}}{${2:entries}}"
+      }
+    },
+    {
+      "name": "func",
+      "arg": {
+        "format": "{}",
+        "snippet": "func{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "func",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "func{${1:text%plain}}{${2:arg}}"
+      }
+    },
+    {
+      "name": "mset",
+      "arg": {
+        "format": "{}",
+        "snippet": "mset{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mset{${1:text%plain}}{${2:dims}}"
+      }
+    },
+    {
+      "name": "MID"
+    },
+    {
+      "name": "LAST"
+    },
+    {
+      "name": "newmlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "newmlist{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "newmlist",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "newmlist{${1:macro%cmd}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "renewmlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "renewmlist{${1:macro%cmd}}"
+      }
+    },
+    {
+      "name": "renewmlist",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "renewmlist{${1:macro%cmd}}[${2:options%keyvals}]",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "mlistsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "mlistsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "mlistsub",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistsub{${1:arg}}{${2:sub}}"
+      }
+    },
+    {
+      "name": "mlistsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistsup{${1:arg}}{${2:sup}}"
+      }
+    },
+    {
+      "name": "mlistelem",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistelem{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlisthead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mlisthead{${1:arg}}"
+      }
+    },
+    {
+      "name": "mlistnowrap",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistnowrap{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistparen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistparen{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistbrack",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistbrack{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistbrace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistbrace{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistangle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistangle{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistheadparen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistheadparen{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistheadbrack",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistheadbrack{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistheadbrace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistheadbrace{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mlistheadangle",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mlistheadangle{${1:arg1}}{${2:arg2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\newvect,\\newmatr,\\newfunc,\\newmset,\\newmlist,\\renewmlist,\\mlistsetup": [
+      "headcmd=${1:macro}",
+      "elemcmd=${1:macro}",
+      "headhook=${1:code}",
+      "wrap={${1:open}}{${2:close}}",
+      "wrapone",
+      "wrapone={${1:open}}{${2:close}}",
+      "wrapcmd=${1:macro}",
+      "wraponecmd=${1:macro}",
+      "sep=${1:code}",
+      "sepsep=${1:code}",
+      "symbol=${1:symbol}",
+      "index={${1:indeices}}",
+      "elem={${1:args}}",
+      "dot=${1:code}",
+      "dots=${1:code}"
+    ]
+  },
+  "args": []
+}

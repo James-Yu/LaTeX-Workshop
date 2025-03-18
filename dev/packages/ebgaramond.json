@@ -1,60 +1,133 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "ebgaramond": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "tabularnums{}": {
-      "snippet": "tabularnums{${1:text}}"
+    {
+      "name": "ifluatex"
     },
-    "proportionalnums{}": {
-      "snippet": "proportionalnums{${1:text}}"
+    {
+      "name": "xkeyval"
     },
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "infigures": {},
-    "textinf{}": {
-      "snippet": "textinf{${1:text}}"
+    {
+      "name": "fontaxes"
     },
-    "swshape": {},
-    "textsw{}": {
-      "snippet": "textsw{${1:text}}"
-    },
-    "initials": {},
-    "textin{}": {
-      "snippet": "textin{${1:letter}}"
-    },
-    "ebgaramondlgr": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "type1",
-    "lining",
-    "nf",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "t",
-    "proportional",
-    "p",
-    "medium",
-    "m",
-    "semibold",
-    "sb",
-    "extrabold",
-    "eb"
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ebgaramond"
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "tabularnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "tabularnums{${1:text}}"
+      }
+    },
+    {
+      "name": "proportionalnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "proportionalnums{${1:text}}"
+      }
+    },
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textinf",
+      "arg": {
+        "format": "{}",
+        "snippet": "textinf{${1:text}}"
+      }
+    },
+    {
+      "name": "swshape"
+    },
+    {
+      "name": "textsw",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsw{${1:text}}"
+      }
+    },
+    {
+      "name": "initials"
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "textin{${1:letter%keyvals}}",
+        "keys": [
+          "\\textin"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ebgaramondlgr",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ebgaramond#c": [
+      "scaled=${1:factor}",
+      "type1",
+      "lining",
+      "nf",
+      "lf",
+      "oldstyle",
+      "osf",
+      "tabular",
+      "t",
+      "proportional",
+      "p",
+      "medium",
+      "m",
+      "semibold",
+      "sb",
+      "extrabold",
+      "eb"
+    ],
+    "\\textin": [
+      "A",
+      "D",
+      "F",
+      "G",
+      "L",
+      "N",
+      "O",
+      "Q",
+      "T",
+      "X"
+    ]
+  },
+  "args": [
+    "\\usepackage/ebgaramond#c"
+  ]
 }

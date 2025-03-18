@@ -1,58 +1,164 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "xpatch": []
-  },
-  "macros": {
-    "metricsymbols{}": {
-      "snippet": "metricsymbols{${1:symbols}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "metricsymbols*{}": {
-      "snippet": "metricsymbols*{${1:symbols}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "metricsymbols[]{}": {
-      "snippet": "metricsymbols[${2:number=higlighting}]{${1:symbols}}"
-    },
-    "metricsymbols*[]{}": {
-      "snippet": "metricsymbols*[${2:number=higlighting}]{${1:symbols}}"
-    },
-    "metrics{}{}": {
-      "snippet": "metrics{${1:symbols}}{${2:syllables}}"
-    },
-    "metrics[]{}{}": {
-      "snippet": "metrics[${3:number=higlighting}]{${1:symbols}}{${2:syllables}}"
-    },
-    "acct{}": {
-      "snippet": "acct{${1:vowel}}"
-    },
-    "brv{}": {
-      "snippet": "brv{${1:vowel}}"
-    },
-    "lng{}": {
-      "snippet": "lng{${1:vowel}}"
-    },
-    "bow{}": {
-      "snippet": "bow{${1:syllables}}"
-    },
-    "verseref{}": {
-      "snippet": "verseref{${1:reference}}"
-    },
-    "setmetrixvar{}{}": {
-      "snippet": "setmetrixvar{${1:variable}}{${2:value}}"
-    },
-    "usemetrixvar{}": {
-      "snippet": "usemetrixvar{${1:variable}}"
+    {
+      "name": "xpatch"
     }
-  },
-  "envs": {
-    "symbolline": {},
-    "metricverses": {},
-    "metricverses[]": {
+  ],
+  "macros": [
+    {
+      "name": "metricsymbols",
+      "arg": {
+        "format": "{}",
+        "snippet": "metricsymbols{${1:symbols}}"
+      }
+    },
+    {
+      "name": "metricsymbols*",
+      "arg": {
+        "format": "{}",
+        "snippet": "metricsymbols*{${1:symbols}}"
+      }
+    },
+    {
+      "name": "metricsymbols",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "metricsymbols[${2:number=higlighting}]{${1:symbols}}"
+      }
+    },
+    {
+      "name": "metricsymbols*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "metricsymbols*[${2:number=higlighting}]{${1:symbols}}"
+      }
+    },
+    {
+      "name": "metrics",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "metrics{${1:symbols}}{${2:syllables}}"
+      }
+    },
+    {
+      "name": "metrics",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "metrics[${3:number=higlighting}]{${1:symbols}}{${2:syllables}}"
+      }
+    },
+    {
+      "name": "acct",
+      "arg": {
+        "format": "{}",
+        "snippet": "acct{${1:vowel}}"
+      }
+    },
+    {
+      "name": "brv",
+      "arg": {
+        "format": "{}",
+        "snippet": "brv{${1:vowel}}"
+      }
+    },
+    {
+      "name": "lng",
+      "arg": {
+        "format": "{}",
+        "snippet": "lng{${1:vowel}}"
+      }
+    },
+    {
+      "name": "bow",
+      "arg": {
+        "format": "{}",
+        "snippet": "bow{${1:syllables}}"
+      }
+    },
+    {
+      "name": "verseref",
+      "arg": {
+        "format": "{}",
+        "snippet": "verseref{${1:reference}}"
+      }
+    },
+    {
+      "name": "setmetrixvar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setmetrixvar{${1:variable%keyvals}}{${2:value}}",
+        "keys": [
+          "\\setmetrixvar,\\usemetrixvar"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usemetrixvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "usemetrixvar{${1:variable%keyvals}}",
+        "keys": [
+          "\\setmetrixvar,\\usemetrixvar"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "symbolline"
+    },
+    {
+      "name": "metricverses"
+    },
+    {
       "name": "metricverses",
-      "snippet": "[${1:source}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:source}]"
+      }
     }
+  ],
+  "keys": {
+    "\\setmetrixvar,\\usemetrixvar": [
+      "symbollinewidth",
+      "bigsymbollinewidth",
+      "accentlinewidth",
+      "bowlinewidth",
+      "symbolsep",
+      "baseunit",
+      "bigbaseunit",
+      "shortsyllablelimit",
+      "gap",
+      "symbolshift",
+      "lngshift",
+      "lngshortening",
+      "lngminlength",
+      "brvshift",
+      "dotshift",
+      "itcorrection",
+      "accentxshift",
+      "bowshift",
+      "bowshortening",
+      "bowlooseness",
+      "symbolcolor",
+      "accentcolor",
+      "bowcolor",
+      "highlightcolor",
+      "fillcolor",
+      "arrow",
+      "breakgap",
+      "emptywidth",
+      "acute",
+      "grave"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

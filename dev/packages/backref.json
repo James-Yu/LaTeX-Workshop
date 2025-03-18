@@ -1,0 +1,134 @@
+{
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "kvsetkeys"
+    },
+    {
+      "name": "rerunfilecheck"
+    }
+  ],
+  "macros": [
+    {
+      "name": "backrefsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "backrefsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\backrefsetup#c,\\usepackage/backref#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifbackrefparscan",
+      "unusual": true
+    },
+    {
+      "name": "backrefparscanfalse"
+    },
+    {
+      "name": "backrefparscantrue"
+    },
+    {
+      "name": "backrefprint"
+    },
+    {
+      "name": "backcite",
+      "arg": {
+        "format": "{}{{}{}{}}",
+        "snippet": "backcite{${1:label}}{{${2:page num}}{${3:current label}}{${4:current anchor}}}"
+      }
+    },
+    {
+      "name": "backref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "backref{${1:backref list}}"
+      }
+    },
+    {
+      "name": "backrefalt",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "backrefalt{${1:num w/o dupes}}{${2:backref list w/o dupes}}{${3:num w/ dupes}}{${4:backref list w/ dupes}}"
+      }
+    },
+    {
+      "name": "backrefpagesname",
+      "unusual": true
+    },
+    {
+      "name": "backrefsectionsname",
+      "unusual": true
+    },
+    {
+      "name": "backrefsep",
+      "unusual": true
+    },
+    {
+      "name": "backreftwosep",
+      "unusual": true
+    },
+    {
+      "name": "backreflastsep",
+      "unusual": true
+    },
+    {
+      "name": "backrefentrycount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "backrefentrycount{${1:backref entry}}{${2:citation count}}"
+      }
+    },
+    {
+      "name": "backrefenglish",
+      "unusual": true
+    },
+    {
+      "name": "backrefgerman",
+      "unusual": true
+    },
+    {
+      "name": "backreffrench",
+      "unusual": true
+    },
+    {
+      "name": "backrefspanish",
+      "unusual": true
+    },
+    {
+      "name": "backrefbrazil",
+      "unusual": true
+    },
+    {
+      "name": "backrefafrikaans",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\backrefsetup#c,\\usepackage/backref#c": [
+      "ref",
+      "pageref",
+      "hyperref",
+      "hyperpageref",
+      "english",
+      "german",
+      "french",
+      "spanish",
+      "brazil",
+      "verbose",
+      "enable",
+      "disable"
+    ]
+  },
+  "args": [
+    "\\backrefsetup#c,\\usepackage/backref#c"
+  ]
+}

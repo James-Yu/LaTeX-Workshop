@@ -1,74 +1,190 @@
 {
-  "includes": {},
-  "macros": {
-    "postnote{}": {
-      "snippet": "postnote{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "postnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "postnote{${1:text}}"
+      }
     },
-    "postnote[]{}": {
-      "snippet": "postnote[${2:options}]{${1:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "postnote",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "postnote[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\postnote"
+        ],
+        "keyPos": 0
+      }
     },
-    "postnotesection{}": {
-      "snippet": "postnotesection{${1:text}}"
+    {
+      "name": "postnotesection",
+      "arg": {
+        "format": "{}",
+        "snippet": "postnotesection{${1:text}}"
+      }
     },
-    "postnotesection[]{}": {
-      "snippet": "postnotesection[${2:options}]{${1:text}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "postnotesection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "postnotesection[${2:options%keyvals}]{${1:text}}",
+        "keys": [
+          "\\postnotesection,\\postnotesectionx"
+        ],
+        "keyPos": 0
+      }
     },
-    "printpostnotes": {},
-    "postnoteref{}": {
-      "snippet": "postnoteref{${1:label}}"
+    {
+      "name": "printpostnotes"
     },
-    "postnoteref*{}": {
-      "snippet": "postnoteref*{${1:label}}"
+    {
+      "name": "postnoteref",
+      "arg": {
+        "format": "{}",
+        "snippet": "postnoteref{${1:label}}"
+      }
     },
-    "postnotezref{}": {
-      "snippet": "postnotezref{${1:label}}"
+    {
+      "name": "postnoteref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "postnoteref*{${1:label}}"
+      }
     },
-    "postnotezref*{}": {
-      "snippet": "postnotezref*{${1:label}}"
+    {
+      "name": "postnotezref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "postnotezref{${1:label}}"
+      }
     },
-    "postnotesetup{}": {
-      "snippet": "postnotesetup{${1:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "postnotezref*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "postnotezref*{${1:label}}"
+      }
     },
-    "pnhdchapfirst": {},
-    "pnhdchaplast": {},
-    "pnhdnamefirst": {},
-    "pnhdnamelast": {},
-    "pnhdnotes": {},
-    "pnhdpagefirst": {},
-    "pnhdpagelast": {},
-    "pnhdsectfirst": {},
-    "pnhdsectlast": {},
-    "pnhdtopage": {},
-    "pnhdtopages": {},
-    "pnheaderdefault": {},
-    "pnheading": {},
-    "pnidnextnote": {},
-    "pnthechapter": {},
-    "pnthechapternextnote": {},
-    "pnthepage": {},
-    "pnthesection": {},
-    "pnthesectionnextnote": {},
-    "pntitle": {},
-    "thepostnote": {},
-    "thepostnotesection": {},
-    "thepostnotetext": {},
-    "postnotesectionx{}": {
-      "snippet": "postnotesectionx{${1:text}}"
+    {
+      "name": "postnotesetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "postnotesetup{${1:options%keyvals}}",
+        "keys": [
+          "\\postnotesetup"
+        ],
+        "keyPos": 0
+      }
     },
-    "postnotesectionx[]{}": {
-      "snippet": "postnotesectionx[${2:options}]{${1:text}}"
+    {
+      "name": "pnhdchapfirst",
+      "unusual": true
+    },
+    {
+      "name": "pnhdchaplast",
+      "unusual": true
+    },
+    {
+      "name": "pnhdnamefirst",
+      "unusual": true
+    },
+    {
+      "name": "pnhdnamefirst",
+      "unusual": true
+    },
+    {
+      "name": "pnhdnamelast",
+      "unusual": true
+    },
+    {
+      "name": "pnhdnamelast",
+      "unusual": true
+    },
+    {
+      "name": "pnhdnotes",
+      "unusual": true
+    },
+    {
+      "name": "pnhdpagefirst",
+      "unusual": true
+    },
+    {
+      "name": "pnhdpagelast",
+      "unusual": true
+    },
+    {
+      "name": "pnhdsectfirst",
+      "unusual": true
+    },
+    {
+      "name": "pnhdsectlast",
+      "unusual": true
+    },
+    {
+      "name": "pnhdtopage",
+      "unusual": true
+    },
+    {
+      "name": "pnhdtopages",
+      "unusual": true
+    },
+    {
+      "name": "pnheaderdefault",
+      "unusual": true
+    },
+    {
+      "name": "pnheading",
+      "unusual": true
+    },
+    {
+      "name": "pnidnextnote",
+      "unusual": true
+    },
+    {
+      "name": "pnthechapter",
+      "unusual": true
+    },
+    {
+      "name": "pnthechapternextnote",
+      "unusual": true
+    },
+    {
+      "name": "pnthepage",
+      "unusual": true
+    },
+    {
+      "name": "pnthesection",
+      "unusual": true
+    },
+    {
+      "name": "pnthesectionnextnote",
+      "unusual": true
+    },
+    {
+      "name": "pntitle",
+      "unusual": true
+    },
+    {
+      "name": "thepostnote",
+      "unusual": true
+    },
+    {
+      "name": "thepostnotesection",
+      "unusual": true
+    },
+    {
+      "name": "thepostnotetext",
+      "unusual": true
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\postnote": [
       "mark=${1:number}",
       "markstr=${1:string}",
       "sortnum=${1:number}",
@@ -76,11 +192,11 @@
       "label=",
       "zlabel="
     ],
-    [
+    "\\postnotesection,\\postnotesectionx": [
       "name=${1:name}",
       "exp"
     ],
-    [
+    "\\postnotesetup": [
       "heading={${1:text}}",
       "format={${1:font commands}}",
       "listenv=${1:envname}",
@@ -89,10 +205,11 @@
       "pretextmark={${1:code}}",
       "posttextmark={${1:code}}",
       "postprintnote={${1:code}}",
-      "style=",
-      "hyperref=",
+      "style=${1|endnotes,pagenote|}",
+      "hyperref=${1|auto,true,false|}",
       "backlink",
       "sort"
     ]
-  ]
+  },
+  "args": []
 }

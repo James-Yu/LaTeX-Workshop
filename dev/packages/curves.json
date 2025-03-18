@@ -1,43 +1,171 @@
 {
-  "includes": {},
-  "macros": {
-    "csdiameter": {},
-    "curvelength": {},
-    "overhang": {},
-    "ifcurvewarn": {},
-    "curvewarntrue": {},
-    "curvewarnfalse": {},
-    "ifstraight": {},
-    "straighttrue": {},
-    "straightfalse": {},
-    "curvesymbol{}": {
-      "snippet": "curvesymbol{${1:symbol}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "csdiameter",
+      "unusual": true
     },
-    "curvedashes{}": {
-      "snippet": "curvedashes{${1:dash pattern}}"
+    {
+      "name": "curvelength",
+      "unusual": true
     },
-    "curvedashes[]{}": {
-      "snippet": "curvedashes[${2:length}]{${1:dash pattern}}"
+    {
+      "name": "overhang",
+      "unusual": true
     },
-    "diskpitchstretch": {},
-    "patternresolution": {},
-    "xscale": {},
-    "xscaley": {},
-    "yscale": {},
-    "yscalex": {},
-    "bigcircle{}": {
-      "snippet": "bigcircle{${1:diameter}}"
+    {
+      "name": "ifcurvewarn",
+      "unusual": true
     },
-    "bigcircle[]{}": {
-      "snippet": "bigcircle[${2:n}]{${1:diameter}}"
+    {
+      "name": "curvewarntrue"
+    },
+    {
+      "name": "curvewarnfalse"
+    },
+    {
+      "name": "ifstraight",
+      "unusual": true
+    },
+    {
+      "name": "straighttrue"
+    },
+    {
+      "name": "straightfalse"
+    },
+    {
+      "name": "curvesymbol",
+      "arg": {
+        "format": "{}",
+        "snippet": "curvesymbol{${1:symbol}}"
+      }
+    },
+    {
+      "name": "curvedashes",
+      "arg": {
+        "format": "{}",
+        "snippet": "curvedashes{${1:dash pattern}}"
+      }
+    },
+    {
+      "name": "curvedashes",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "curvedashes[${2:length}]{${1:dash pattern}}"
+      }
+    },
+    {
+      "name": "diskpitchstretch",
+      "unusual": true
+    },
+    {
+      "name": "patternresolution",
+      "unusual": true
+    },
+    {
+      "name": "xscale",
+      "unusual": true
+    },
+    {
+      "name": "xscaley",
+      "unusual": true
+    },
+    {
+      "name": "yscale",
+      "unusual": true
+    },
+    {
+      "name": "yscalex",
+      "unusual": true
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "(){}",
+        "snippet": "arc(${2:x},${3:y}){${1:angle}}"
+      }
+    },
+    {
+      "name": "arc",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "arc[${2:n}](${3:x},${4:y}){${1:angle}}"
+      }
+    },
+    {
+      "name": "bigcircle",
+      "arg": {
+        "format": "{}",
+        "snippet": "bigcircle{${1:diameter}}"
+      }
+    },
+    {
+      "name": "bigcircle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "bigcircle[${2:n}]{${1:diameter}}"
+      }
+    },
+    {
+      "name": "closecurve",
+      "arg": {
+        "format": "()",
+        "snippet": "closecurve(${1:coords})"
+      }
+    },
+    {
+      "name": "closecurve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "closecurve[${1:n}](${2:coords})"
+      }
+    },
+    {
+      "name": "curve",
+      "arg": {
+        "format": "()",
+        "snippet": "curve(${1:coords})"
+      }
+    },
+    {
+      "name": "curve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "curve[${1:n}](${2:coords})"
+      }
+    },
+    {
+      "name": "scaleput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "scaleput(${2:x},${3:y}){${1:object}}"
+      }
+    },
+    {
+      "name": "tagcurve",
+      "arg": {
+        "format": "()",
+        "snippet": "tagcurve(${1:coords})"
+      }
+    },
+    {
+      "name": "tagcurve",
+      "arg": {
+        "format": "[]()",
+        "snippet": "tagcurve[${1:n}](${2:coords})"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "dvips",
-    "emtex",
-    "xdvi",
-    "WML"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/curves#c": [
+      "dvips",
+      "emtex",
+      "xdvi",
+      "WML"
+    ]
+  },
+  "args": [
+    "\\usepackage/curves#c"
+  ]
 }

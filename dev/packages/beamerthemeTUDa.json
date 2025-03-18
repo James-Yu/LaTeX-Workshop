@@ -1,32 +1,66 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "tudafonts": [],
-    "tudarules": [],
-    "graphicx": [],
-    "trimclip": [],
-    "tudacolors": []
-  },
-  "macros": {
-    "filedate": {},
-    "fileversion": {},
-    "insertsmalllogo": {},
-    "logo*{}": {
-      "snippet": "logo*{${1:logo text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "setupTUDaFrame{}": {
-      "snippet": "setupTUDaFrame{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tudafonts"
     },
-    "titlegraphic*{}": {
-      "snippet": "titlegraphic*{${1:text}}"
+    {
+      "name": "tudarules"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "trimclip"
+    },
+    {
+      "name": "tudacolors"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "insertsmalllogo",
+      "unusual": true
+    },
+    {
+      "name": "logo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo*{${1:logo text%text}}"
+      }
+    },
+    {
+      "name": "setupTUDaFrame",
+      "arg": {
+        "format": "{}",
+        "snippet": "setupTUDaFrame{${1:options%keyvals}}",
+        "keys": [
+          "\\setupTUDaFrame"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "titlegraphic*",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlegraphic*{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usetheme/TUDa#c": [
+      "accentcolor=",
+      "colortitle",
+      "colorbacktitle",
+      "colorframetitle",
+      "colorback",
+      "logo="
+    ],
+    "\\setupTUDaFrame": [
       "logo",
       "logofile=${1:file}",
       "colorframetitle",
@@ -35,5 +69,6 @@
       "singleframebgcolor=",
       "headsepline"
     ]
-  ]
+  },
+  "args": []
 }

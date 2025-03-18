@@ -1,35 +1,96 @@
 {
-  "includes": {},
-  "macros": {
-    "collectbox{}{}": {
-      "snippet": "collectbox{${1:code}}{${2:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "collectbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "collectbox{${1:code}}{${2:content%text}}"
+      }
     },
-    "collectbox*{}{}": {
-      "snippet": "collectbox*{${1:code}}{${2:content}}"
+    {
+      "name": "collectbox*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "collectbox*{${1:code}}{${2:content%text}}"
+      }
     },
-    "collectbox[]{}[]{}": {
-      "snippet": "collectbox[${3:begin code}]{${1:code}}[${4:end code}]{${2:content}}"
+    {
+      "name": "collectbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "collectbox[${3:begin code}]{${1:code}}[${4:end code}]{${2:content%text}}"
+      }
     },
-    "collectbox*[]{}[]{}": {
-      "snippet": "collectbox*[${3:begin code}]{${1:code}}[${4:end code}]{${2:content}}"
+    {
+      "name": "collectbox*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "collectbox*[${3:begin code}]{${1:code}}[${4:end code}]{${2:content%text}}"
+      }
     },
-    "collectboxto{}{}{}": {
-      "snippet": "collectboxto{${1:register}}{${2:code}}{${3:content}}"
+    {
+      "name": "collectboxto",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "collectboxto{${1:register}}{${2:code}}{${3:content%text}}"
+      }
     },
-    "collectboxto{}[]{}[]{}": {
-      "snippet": "collectboxto{${1:register}}[${2:begin code}]{${3:code}}[${4:end code}]{${5:content}}"
+    {
+      "name": "collectboxto",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}[]{}",
+        "snippet": "collectboxto{${1:register}}[${4:begin code}]{${2:code}}[${5:end code}]{${3:content%text}}"
+      }
     },
-    "collectboxcheckenv{}": {
-      "snippet": "collectboxcheckenv{${1:arg}}"
+    {
+      "name": "collectboxcheckenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "collectboxcheckenv{${1:name}}"
+      }
     },
-    "collectedbox": {},
-    "BOXCONTENT": {},
-    "ifcollectboxenv": {},
-    "collectboxenvtrue": {},
-    "collectboxenvfalse": {},
-    "collectboxenvend": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "collectedbox",
+      "unusual": true
+    },
+    {
+      "name": "BOXCONTENT",
+      "unusual": true
+    },
+    {
+      "name": "ifcollectboxenv",
+      "unusual": true
+    },
+    {
+      "name": "collectboxenvtrue",
+      "unusual": true
+    },
+    {
+      "name": "collectboxenvfalse",
+      "unusual": true
+    },
+    {
+      "name": "collectboxcheckenv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "collectboxcheckenv{${1:arg}}"
+      }
+    },
+    {
+      "name": "collectboxenvend",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,84 +1,138 @@
 {
-  "includes": {
-    "lt3rawobjects": []
-  },
-  "macros": {
-    "newstyledcmd{}{}{}": {
-      "snippet": "newstyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "newstyledcmd{}{}[]{}": {
-      "snippet": "newstyledcmd{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "renewstyledcmd{}{}{}": {
-      "snippet": "renewstyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "renewstyledcmd{}{}[]{}": {
-      "snippet": "renewstyledcmd{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "providestyledcmd{}{}{}": {
-      "snippet": "providestyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "providestyledcmd{}{}[]{}": {
-      "snippet": "providestyledcmd{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "setGlobalStyle{}{}": {
-      "snippet": "setGlobalStyle{${1:cmd}}{${2:new style name}}"
-    },
-    "NewDocStyledCMD{}{}{}{}": {
-      "snippet": "NewDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
-    },
-    "RenewDocStyledCMD{}{}{}{}": {
-      "snippet": "RenewDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
-    },
-    "ProvideDocStyledCMD{}{}{}{}": {
-      "snippet": "ProvideDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
-    },
-    "newstyledcmdExp{}{}{}": {
-      "snippet": "newstyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "newstyledcmdExp{}{}[]{}": {
-      "snippet": "newstyledcmdExp{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "renewstyledcmdExp{}{}{}": {
-      "snippet": "renewstyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "renewstyledcmdExp{}{}[]{}": {
-      "snippet": "renewstyledcmdExp{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "providestyledcmdExp{}{}{}": {
-      "snippet": "providestyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
-    },
-    "providestyledcmdExp{}{}[]{}": {
-      "snippet": "providestyledcmdExp{${1:cmd}}{${2:style name}}[${3:args}]{${4:definition}}"
-    },
-    "AddCMDToGroup{}{}": {
-      "snippet": "AddCMDToGroup{${1:group name}}{${2:cmd1,cmd2,...}}"
-    },
-    "SetGroupStyle{}{}": {
-      "snippet": "SetGroupStyle{${1:group name}}{${2:style name}}"
-    },
-    "styBeginGroup{}": {
-      "snippet": "styBeginGroup{${1:group name}}"
-    },
-    "styEndGroup": {},
-    "styBeginStyle{}": {
-      "snippet": "styBeginStyle{${1:format name}}"
-    },
-    "styEndStyle": {},
-    "newGstyledcmd{}{}": {
-      "snippet": "newGstyledcmd{${1:cmd}}{${2:definition}}"
-    },
-    "newGstyledcmd{}[]{}": {
-      "snippet": "newGstyledcmd{${1:cmd}}[${2:args}]{${3:definition}}"
-    },
-    "NewGDocStyledCMD{}{}{}": {
-      "snippet": "NewGDocStyledCMD{${1:cmd}}{${2:xargs}}{${3:definition}}"
-    },
-    "setGroupStyle{}{}": {
-      "snippet": "setGroupStyle{${1:group name}}{${2:new default style}}"
+  "deps": [
+    {
+      "name": "lt3rawobjects"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "newstyledcmd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newstyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "newstyledcmd",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "newstyledcmd{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewstyledcmd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewstyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewstyledcmd",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "renewstyledcmd{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "providestyledcmd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "providestyledcmd{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "providestyledcmd",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "providestyledcmd{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "setGlobalStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setGlobalStyle{${1:cmd}}{${2:new style name}}"
+      }
+    },
+    {
+      "name": "NewDocStyledCMD",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "NewDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
+      }
+    },
+    {
+      "name": "RenewDocStyledCMD",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "RenewDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
+      }
+    },
+    {
+      "name": "ProvideDocStyledCMD",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ProvideDocStyledCMD{${1:cmd}}{${2:style name}}{${3:xargs}}{${4:definition}}"
+      }
+    },
+    {
+      "name": "newstyledcmdExp",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newstyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "newstyledcmdExp",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "newstyledcmdExp{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewstyledcmdExp",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewstyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewstyledcmdExp",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "renewstyledcmdExp{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "providestyledcmdExp",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "providestyledcmdExp{${1:cmd}}{${2:style name}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "providestyledcmdExp",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "providestyledcmdExp{${1:cmd}}{${2:style name}}[${4:args}]{${3:definition}}"
+      }
+    },
+    {
+      "name": "AddCMDToGroup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddCMDToGroup{${1:group name}}{${2:cmd1,cmd2,...}}"
+      }
+    },
+    {
+      "name": "SetGroupStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SetGroupStyle{${1:group name}}{${2:style name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

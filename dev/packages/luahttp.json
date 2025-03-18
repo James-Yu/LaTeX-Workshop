@@ -1,45 +1,95 @@
 {
-  "includes": {
-    "ifluatex": [],
-    "url": [],
-    "luapackageloader": []
-  },
-  "macros": {
-    "fetchJson{}": {
-      "snippet": "fetchJson{${1:URL}}"
+  "deps": [
+    {
+      "name": "ifluatex"
     },
-    "fetchJson{}[]": {
-      "snippet": "fetchJson{${1:URL}}[${2:key1,key2,...}]"
+    {
+      "name": "url"
     },
-    "fetchJsonUsingFile{}": {
-      "snippet": "fetchJsonUsingFile{${1:JSON file}}"
-    },
-    "fetchJsonUsingFile{}[]": {
-      "snippet": "fetchJsonUsingFile{${1:JSON file}}[${2:key1,key2,...}]"
-    },
-    "fetchJsonUsingQuery{}{}": {
-      "snippet": "fetchJsonUsingQuery{${1:URL}}{${2:key1,key2,...}}"
-    },
-    "fetchRss{}{}": {
-      "snippet": "fetchRss{${1:URL}}{${2:limit}}"
-    },
-    "fetchRss{}{}[]": {
-      "snippet": "fetchRss{${1:URL}}{${2:limit}}[${3:feedinfokey1,...}]"
-    },
-    "fetchRss{}{}[][]": {
-      "snippet": "fetchRss{${1:URL}}{${2:limit}}[${3:feedinfokey1,...}][${4:entrykey1,...}]"
-    },
-    "fetchImage{}": {
-      "snippet": "fetchImage{${1:URL}}"
-    },
-    "fetchImage{}[]": {
-      "snippet": "fetchImage{${1:URL}}[${2:width in cm}]"
-    },
-    "fetchImage{}[][]": {
-      "snippet": "fetchImage{${1:URL}}[${2:width in cm}][${3:height in cm}]"
+    {
+      "name": "luapackageloader"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "fetchJson",
+      "arg": {
+        "format": "{}",
+        "snippet": "fetchJson{${1:URL}}"
+      }
+    },
+    {
+      "name": "fetchJson",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "fetchJson{${1:URL}}[${2:key1,key2,...}]"
+      }
+    },
+    {
+      "name": "fetchJsonUsingFile",
+      "arg": {
+        "format": "{}",
+        "snippet": "fetchJsonUsingFile{${1:JSON file%file}}"
+      }
+    },
+    {
+      "name": "fetchJsonUsingFile",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "fetchJsonUsingFile{${1:JSON file%file}}[${2:key1,key2,...}]"
+      }
+    },
+    {
+      "name": "fetchJsonUsingQuery",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fetchJsonUsingQuery{${1:URL}}{${2:key1,key2,...}}"
+      }
+    },
+    {
+      "name": "fetchRss",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fetchRss{${1:URL}}{${2:limit}}"
+      }
+    },
+    {
+      "name": "fetchRss",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "fetchRss{${1:URL}}{${2:limit}}[${3:feedinfokey1,...}]"
+      }
+    },
+    {
+      "name": "fetchRss",
+      "arg": {
+        "format": "{}{}[][]",
+        "snippet": "fetchRss{${1:URL}}{${2:limit}}[${3:feedinfokey1,...}][${4:entrykey1,...}]"
+      }
+    },
+    {
+      "name": "fetchImage",
+      "arg": {
+        "format": "{}",
+        "snippet": "fetchImage{${1:URL}}"
+      }
+    },
+    {
+      "name": "fetchImage",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "fetchImage{${1:URL}}[${2:width in cm}]"
+      }
+    },
+    {
+      "name": "fetchImage",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "fetchImage{${1:URL}}[${2:width in cm}][${3:height in cm}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

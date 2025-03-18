@@ -1,55 +1,122 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "tikz": []
+  "deps": [
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "fancytab",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fancytab{${1:text}}{${2:number}}"
+      }
+    },
+    {
+      "name": "fancytab",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "fancytab[${3:HPos%keyvals}]{${1:text}}{${2:number}}",
+        "keys": [
+          "\\fancytab"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "fancytabsStyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsStyle{${1:style}}"
+      }
+    },
+    {
+      "name": "fancytabsHeight",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsHeight{${1:height}}"
+      }
+    },
+    {
+      "name": "fancytabsWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsWidth{${1:width}}"
+      }
+    },
+    {
+      "name": "fancytabsCount",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsCount{${1:integer}}"
+      }
+    },
+    {
+      "name": "fancytabsLeftColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsLeftColor{${1:color}}"
+      }
+    },
+    {
+      "name": "fancytabsRightColor",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsRightColor{${1:color}}"
+      }
+    },
+    {
+      "name": "fancytabsTop",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsTop{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "fancytabsTextVPos",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsTextVPos{${1:number}}"
+      }
+    },
+    {
+      "name": "fancytabsTextHPos",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsTextHPos{${1:number}}"
+      }
+    },
+    {
+      "name": "fancytabsGap",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsGap{${1:gap%l}}"
+      }
+    },
+    {
+      "name": "fancytabsFloor",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsFloor{${1:integer}}"
+      }
+    },
+    {
+      "name": "fancytabsRotate",
+      "arg": {
+        "format": "{}",
+        "snippet": "fancytabsRotate{${1:degrees}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\fancytab": [
+      "LEFT",
+      "RIGHT"
+    ]
   },
-  "macros": {
-    "fancytab{}{}": {
-      "snippet": "fancytab{${1:text}}{${2:number}}"
-    },
-    "fancytab[]{}{}": {
-      "snippet": "fancytab[${3:HPos}]{${1:text}}{${2:number}}"
-    },
-    "fancytabsStyle{}": {
-      "snippet": "fancytabsStyle{${1:style}}"
-    },
-    "fancytabsHeight{}": {
-      "snippet": "fancytabsHeight{${1:height}}"
-    },
-    "fancytabsWidth{}": {
-      "snippet": "fancytabsWidth{${1:width}}"
-    },
-    "fancytabsCount{}": {
-      "snippet": "fancytabsCount{${1:integer}}"
-    },
-    "fancytabsLeftColor{}": {
-      "snippet": "fancytabsLeftColor{${1:color}}"
-    },
-    "fancytabsRightColor{}": {
-      "snippet": "fancytabsRightColor{${1:color}}"
-    },
-    "fancytabsTop{}": {
-      "snippet": "fancytabsTop{${1:dimen}}"
-    },
-    "fancytabsTextVPos{}": {
-      "snippet": "fancytabsTextVPos{${1:number}}"
-    },
-    "fancytabsTextHPos{}": {
-      "snippet": "fancytabsTextHPos{${1:number}}"
-    },
-    "fancytabsGap{}": {
-      "snippet": "fancytabsGap{${1:gap}}"
-    },
-    "fancytabsFloor{}": {
-      "snippet": "fancytabsFloor{${1:integer}}"
-    },
-    "fancytabsRotate{}": {
-      "snippet": "fancytabsRotate{${1:degrees}}"
-    },
-    "multiplier": {},
-    "eastwest": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

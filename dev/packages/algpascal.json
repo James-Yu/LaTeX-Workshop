@@ -1,31 +1,66 @@
 {
-  "includes": {
-    "algorithmicx": []
-  },
-  "macros": {
-    "Begin": {},
-    "End": {},
-    "For{}{}": {
-      "snippet": "For{${1:assign}}{${2:expr}}"
-    },
-    "While{}": {
-      "snippet": "While{${1:expr}}"
-    },
-    "Repeat": {},
-    "Until{}": {
-      "snippet": "Until{${1:expr}}"
-    },
-    "If{}": {
-      "snippet": "If{${1:expr}}"
-    },
-    "Else": {},
-    "Procedure": {},
-    "Function": {},
-    "textkeyword{}": {
-      "snippet": "textkeyword{${1:text}}"
+  "deps": [
+    {
+      "name": "algorithmicx"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "Begin"
+    },
+    {
+      "name": "End"
+    },
+    {
+      "name": "For",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "For{${1:assign%formula}}{${2:expr%formula}}"
+      }
+    },
+    {
+      "name": "While",
+      "arg": {
+        "format": "{}",
+        "snippet": "While{${1:expr%formula}}"
+      }
+    },
+    {
+      "name": "Repeat"
+    },
+    {
+      "name": "Until",
+      "arg": {
+        "format": "{}",
+        "snippet": "Until{${1:expr%formula}}"
+      }
+    },
+    {
+      "name": "If",
+      "arg": {
+        "format": "{}",
+        "snippet": "If{${1:expr%formula}}"
+      }
+    },
+    {
+      "name": "Else"
+    },
+    {
+      "name": "Procedure"
+    },
+    {
+      "name": "Function"
+    },
+    {
+      "name": "textkeyword",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textkeyword{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

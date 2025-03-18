@@ -1,127 +1,303 @@
 {
-  "includes": {
-    "expkv-pop": [
-      "all"
-    ],
-    "expkv-cs": [
-      "all"
-    ],
-    "expkv-def": [
-      "all"
-    ],
-    "expkv-opt": [
+  "deps": [
+    {
+      "name": "expkv-pop",
+      "if": "all"
+    },
+    {
+      "name": "expkv-cs",
+      "if": "all"
+    },
+    {
+      "name": "expkv-def",
+      "if": "all"
+    },
+    {
+      "name": "expkv-opt",
+      "if": "all"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ekvdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvdef{${1:set}}{${2:key%plain}}{${3:code}}"
+      }
+    },
+    {
+      "name": "ekvdefNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvdefNoVal{${1:set}}{${2:key%plain}}{${3:code}}"
+      }
+    },
+    {
+      "name": "ekvlet",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvlet{${1:set}}{${2:key%plain}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "ekvletNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvletNoVal{${1:set}}{${2:key%plain}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "ekvletkv",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ekvletkv{${1:set1}}{${2:key1}}{${3:set2}}{${4:key2}}"
+      }
+    },
+    {
+      "name": "ekvletkvNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ekvletkvNoVal{${1:set1}}{${2:key1}}{${3:set2}}{${4:key2}}"
+      }
+    },
+    {
+      "name": "ekvdefunknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvdefunknown{${1:set}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ekvdefunknownNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvdefunknownNoVal{${1:set}}{${2:code}}"
+      }
+    },
+    {
+      "name": "ekvredirectunknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvredirectunknown{${1:set}}{${2:set-list}}"
+      }
+    },
+    {
+      "name": "ekvredirectunknownNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvredirectunknownNoVal{${1:set}}{${2:set-list}}"
+      }
+    },
+    {
+      "name": "ekvletunknown",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvletunknown{${1:set}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ekvletunknownNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvletunknownNoVal{${1:set}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "ekvifdefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ekvifdefined{${1:set}}{${2:key%plain}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ekvifdefinedNoVal",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "ekvifdefinedNoVal{${1:set}}{${2:key%plain}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "ekvifdefinedset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvifdefinedset{${1:set}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ekvsneak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvsneak{${1:after}}"
+      }
+    },
+    {
+      "name": "ekvsneakPre",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvsneakPre{${1:after}}"
+      }
+    },
+    {
+      "name": "ekvbreak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvbreak{${1:after}}"
+      }
+    },
+    {
+      "name": "ekvbreakPreSneak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvbreakPreSneak{${1:after}}"
+      }
+    },
+    {
+      "name": "ekvbreakPostSneak",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvbreakPostSneak{${1:after}}"
+      }
+    },
+    {
+      "name": "ekvmorekv",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvmorekv{${1:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvchangeset",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ekvchangeset{${1:new-set}}"
+      }
+    },
+    {
+      "name": "ekvset",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvset{${1:set}}{${2:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvsetSneaked",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvsetSneaked{${1:set}}{${2:sneak}}{${3:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvsetdef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvsetdef{${1:cmd}}{${2:set}}"
+      }
+    },
+    {
+      "name": "ekvsetSneakeddef",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvsetSneakeddef{${1:cmd}}{${2:set}}"
+      }
+    },
+    {
+      "name": "ekvsetdefSneaked",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvsetdefSneaked{${1:cmd}}{${2:set}}{${3:sneaked}}"
+      }
+    },
+    {
+      "name": "ekvcompile",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvcompile{${1:cmd}}{${2:set}}{${3:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvcompile*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvcompile*{${1:cmd}}{${2:set}}{${3:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvparse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ekvparse{${1:code1}}{${2:code2}}{${3:keyvals}}"
+      }
+    },
+    {
+      "name": "ekvoptarg",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvoptarg{${1:next}}{${2:default}}"
+      }
+    },
+    {
+      "name": "ekvoptargTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvoptargTF{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "ekvcsvloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekvcsvloop{${1:code}}{${2:csv-list}}"
+      }
+    },
+    {
+      "name": "ekverr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ekverr{${1:package}}{${2:message%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/expkv#c": [
       "all"
     ]
   },
-  "macros": {
-    "ekvdef{}{}{}": {
-      "snippet": "ekvdef{${1:set}}{${2:key}}{${3:code}}"
-    },
-    "ekvdefNoVal{}{}{}": {
-      "snippet": "ekvdefNoVal{${1:set}}{${2:key}}{${3:code}}"
-    },
-    "ekvlet{}{}{}": {
-      "snippet": "ekvlet{${1:set}}{${2:key}}{${3:cmd}}"
-    },
-    "ekvletNoVal{}{}{}": {
-      "snippet": "ekvletNoVal{${1:set}}{${2:key}}{${3:cmd}}"
-    },
-    "ekvletkv{}{}{}{}": {
-      "snippet": "ekvletkv{${1:set1}}{${2:key1}}{${3:set2}}{${4:key2}}"
-    },
-    "ekvletkvNoVal{}{}{}{}": {
-      "snippet": "ekvletkvNoVal{${1:set1}}{${2:key1}}{${3:set2}}{${4:key2}}"
-    },
-    "ekvdefunknown{}{}": {
-      "snippet": "ekvdefunknown{${1:set}}{${2:code}}"
-    },
-    "ekvdefunknownNoVal{}{}": {
-      "snippet": "ekvdefunknownNoVal{${1:set}}{${2:code}}"
-    },
-    "ekvredirectunknown{}{}": {
-      "snippet": "ekvredirectunknown{${1:set}}{${2:set-list}}"
-    },
-    "ekvredirectunknownNoVal{}{}": {
-      "snippet": "ekvredirectunknownNoVal{${1:set}}{${2:set-list}}"
-    },
-    "ekvletunknown{}{}": {
-      "snippet": "ekvletunknown{${1:set}}{${2:cmd}}"
-    },
-    "ekvletunknownNoVal{}{}": {
-      "snippet": "ekvletunknownNoVal{${1:set}}{${2:cmd}}"
-    },
-    "ekvifdefined{}{}{}{}": {
-      "snippet": "ekvifdefined{${1:set}}{${2:key}}{${3:true}}{${4:false}}"
-    },
-    "ekvifdefinedNoVal{}{}{}{}": {
-      "snippet": "ekvifdefinedNoVal{${1:set}}{${2:key}}{${3:true}}{${4:false}}"
-    },
-    "ekvifdefinedset{}{}{}": {
-      "snippet": "ekvifdefinedset{${1:set}}{${2:true}}{${3:false}}"
-    },
-    "ekvsneak{}": {
-      "snippet": "ekvsneak{${1:after}}"
-    },
-    "ekvsneakPre{}": {
-      "snippet": "ekvsneakPre{${1:after}}"
-    },
-    "ekvbreak{}": {
-      "snippet": "ekvbreak{${1:after}}"
-    },
-    "ekvbreakPreSneak{}": {
-      "snippet": "ekvbreakPreSneak{${1:after}}"
-    },
-    "ekvbreakPostSneak{}": {
-      "snippet": "ekvbreakPostSneak{${1:after}}"
-    },
-    "ekvmorekv{}": {
-      "snippet": "ekvmorekv{${1:keyvals}}"
-    },
-    "ekvchangeset{}": {
-      "snippet": "ekvchangeset{${1:new-set}}"
-    },
-    "ekvset{}{}": {
-      "snippet": "ekvset{${1:set}}{${2:keyvals}}"
-    },
-    "ekvsetSneaked{}{}{}": {
-      "snippet": "ekvsetSneaked{${1:set}}{${2:sneak}}{${3:keyvals}}"
-    },
-    "ekvsetdef{}{}": {
-      "snippet": "ekvsetdef{${1:cmd}}{${2:set}}"
-    },
-    "ekvsetSneakeddef{}{}": {
-      "snippet": "ekvsetSneakeddef{${1:cmd}}{${2:set}}"
-    },
-    "ekvsetdefSneaked{}{}{}": {
-      "snippet": "ekvsetdefSneaked{${1:cmd}}{${2:set}}{${3:sneaked}}"
-    },
-    "ekvcompile{}{}{}": {
-      "snippet": "ekvcompile{${1:cmd}}{${2:set}}{${3:keyvals}}"
-    },
-    "ekvcompile*{}{}{}": {
-      "snippet": "ekvcompile*{${1:cmd}}{${2:set}}{${3:keyvals}}"
-    },
-    "ekvparse{}{}{}": {
-      "snippet": "ekvparse{${1:code1}}{${2:code2}}{${3:keyvals}}"
-    },
-    "ekvoptarg{}{}": {
-      "snippet": "ekvoptarg{${1:next}}{${2:default}}"
-    },
-    "ekvoptargTF{}{}": {
-      "snippet": "ekvoptargTF{${1:true}}{${2:false}}"
-    },
-    "ekvcsvloop{}{}": {
-      "snippet": "ekvcsvloop{${1:code}}{${2:csv-list}}"
-    },
-    "ekverr{}{}": {
-      "snippet": "ekverr{${1:package}}{${2:message}}"
-    },
-    "ekvDate": {},
-    "ekvVersion": {}
-  },
-  "envs": {},
-  "options": [
-    "all"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/expkv#c"
+  ]
 }

@@ -1,71 +1,87 @@
 {
-  "includes": {
-    "iflang": [],
-    "iftex": [],
-    "fontspec": [],
-    "unicode-math": [],
-    "ifthen": [],
-    "newcomputermodern": [
+  "deps": [
+    {
+      "name": "iflang"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "newcomputermodern",
+      "if": "default"
+    },
+    {
+      "name": "newcomputermodern",
+      "if": "olddefault"
+    },
+    {
+      "name": "fourier-otf",
+      "if": "erewhon"
+    },
+    {
+      "name": "gfsneohellenicot",
+      "if": "gfsneohellenic"
+    },
+    {
+      "name": "libertinus-otf",
+      "if": "libertinus"
+    },
+    {
+      "name": "xcharter-otf",
+      "if": "xcharter"
+    }
+  ],
+  "macros": [
+    {
+      "name": "leftgrquotes",
+      "unusual": true
+    },
+    {
+      "name": "rightgrquotes",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/fontsetup#c": [
       "default",
-      "olddefault"
-    ],
-    "fourier-otf": [
-      "erewhon"
-    ],
-    "gfsneohellenicot": [
-      "gfsneohellenic"
-    ],
-    "libertinus-otf": [
-      "libertinus"
-    ],
-    "xcharter-otf": [
+      "upint",
+      "varnothing",
+      "newcmbb",
+      "olddefault",
+      "cambria",
+      "concrete",
+      "ebgaramond",
+      "erewhon",
+      "euler",
+      "fira",
+      "gfsartemisia",
+      "gfsdidotclassic",
+      "gfsdidot",
+      "gfsneohellenic",
+      "kerkis",
+      "libertinus",
+      "lucida",
+      "minion",
+      "msgaramond",
+      "oldstandard",
+      "palatino",
+      "stixtwo",
+      "talos",
+      "times",
       "xcharter"
     ]
   },
-  "macros": {
-    "defaultfont": {
-      "option": "gfsdidotclassic"
-    },
-    "latinfont": {
-      "option": "gfsdidotclassic"
-    },
-    "phifix": {
-      "option": "gfsdidot"
-    },
-    "leftgrquotes": {},
-    "rightgrquotes": {},
-    "greeksetup": {},
-    "cvfoursetup": {},
-    "ncmsetup": {}
-  },
-  "envs": {},
-  "options": [
-    "default",
-    "upint",
-    "varnothing",
-    "newcmbb",
-    "olddefault",
-    "cambria",
-    "concrete",
-    "ebgaramond",
-    "erewhon",
-    "euler",
-    "fira",
-    "gfsartemisia",
-    "gfsdidotclassic",
-    "gfsdidot",
-    "gfsneohellenic",
-    "kerkis",
-    "libertinus",
-    "lucida",
-    "minion",
-    "msgaramond",
-    "oldstandard",
-    "palatino",
-    "stixtwo",
-    "talos",
-    "times",
-    "xcharter"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/fontsetup#c"
+  ]
 }

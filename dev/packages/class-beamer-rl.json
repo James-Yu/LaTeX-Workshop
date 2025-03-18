@@ -1,139 +1,167 @@
 {
-  "includes": {
-    "luatex": [],
-    "ifluatex": [],
-    "class-beamer": [],
-    "babel": [],
-    "fontspec": []
-  },
-  "macros": {
-    "localfootnote{}": {
-      "snippet": "localfootnote{${1:text}}",
-      "option": "layout=footnotes"
+  "deps": [
+    {
+      "name": "luatex"
     },
-    "mainfootnote{}": {
-      "snippet": "mainfootnote{${1:text}}",
-      "option": "layout=footnotes"
+    {
+      "name": "ifluatex"
     },
-    "localfootnotetext": {
-      "option": "layout=footnotes"
+    {
+      "name": "class-beamer"
     },
-    "mainfootnotetext": {
-      "option": "layout=footnotes"
+    {
+      "name": "babel"
     },
-    "blacktriangleright": {
-      "detail": "▸",
-      "documentation": "righ filled"
-    },
-    "blacktriangleleft": {
-      "detail": "◂",
-      "documentation": "lef filled"
-    },
-    "redefbeamertemplate{}{}": {
-      "snippet": "redefbeamertemplate{${1:element}}{${2:option}}"
-    },
-    "oldpgfpicture": {},
-    "endoldpgfpicture": {},
-    "oldpgfuseshading": {}
-  },
-  "envs": {
-    "oldpgfpicture": {}
-  },
-  "options": [
-    "arabic",
-    "arabic={${1:\\babelprovide options}}",
-    "arabic-dz",
-    "arabic-dz={${1:\\babelprovide options}}",
-    "arabic-tn",
-    "arabic-tn={${1:\\babelprovide options}}",
-    "arabic-ma",
-    "arabic-ma={${1:\\babelprovide options}}",
-    "arabic-eg",
-    "arabic-eg={${1:\\babelprovide options}}",
-    "arabic-sa",
-    "arabic-sa={${1:\\babelprovide options}}",
-    "arabic-iq",
-    "arabic-iq={${1:\\babelprovide options}}",
-    "arabic-sy",
-    "arabic-sy={${1:\\babelprovide options}}",
-    "arabic-lb",
-    "arabic-lb={${1:\\babelprovide options}}",
-    "arabic-ps",
-    "arabic-ps={${1:\\babelprovide options}}",
-    "arabic-jo",
-    "arabic-jo={${1:\\babelprovide options}}",
-    "centralkurdish",
-    "centralkurdish={${1:\\babelprovide options}}",
-    "hebrew",
-    "hebrew={${1:\\babelprovide options}}",
-    "kashmiri",
-    "kashmiri={${1:\\babelprovide options}}",
-    "mazanderani",
-    "mazanderani={${1:\\babelprovide options}}",
-    "malayalam",
-    "malayalam={${1:\\babelprovide options}}",
-    "northernkurdish-arab",
-    "northernkurdish-arab={${1:\\babelprovide options}}",
-    "pashto",
-    "pashto={${1:\\babelprovide options}}",
-    "persian",
-    "persian={${1:\\babelprovide options}}",
-    "punjabi-arab",
-    "punjabi-arab={${1:\\babelprovide options}}",
-    "syriac",
-    "syriac={${1:\\babelprovide options}}",
-    "urdu",
-    "urdu={${1:\\babelprovide options}}",
-    "uyghur",
-    "uyghur={${1:\\babelprovide options}}",
-    "uzbek-arab",
-    "uzbek-arab={${1:\\babelprovide options}}",
-    "yiddish",
-    "yiddish={${1:\\babelprovide options}}",
-    "layout=",
-    "usepdftitle",
-    "envcountsect",
-    "notheorems",
-    "noamsthm",
-    "compress",
-    "t",
-    "c",
-    "leqno",
-    "fleqn",
-    "handout",
-    "trans",
-    "pdftex",
-    "nativepdf",
-    "pdfmark",
-    "dvips",
-    "dviwindo",
-    "dvipsone",
-    "vtex",
-    "ps2pdf",
-    "ignorenonframetext",
-    "noamssymb",
-    "bigger",
-    "smaller",
-    "8pt",
-    "9pt",
-    "10pt",
-    "11pt",
-    "12pt",
-    "14pt",
-    "17pt",
-    "20pt",
-    "draft",
-    "CJK",
-    "cjk",
-    "onlytextwidth",
-    "pgf={${1:pgf options}}",
-    "hyperref={${1:hyperref options}}",
-    "color={${1:color options}}",
-    "xcolor={${1:xcolor options}}",
-    "ucs",
-    "utf8x",
-    "utf8",
-    "aspectratio="
+    {
+      "name": "fontspec"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "localfootnote",
+      "if": "layout=footnotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "localfootnote{${1:text}}"
+      }
+    },
+    {
+      "name": "mainfootnote",
+      "if": "layout=footnotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "mainfootnote{${1:text}}"
+      }
+    },
+    {
+      "name": "localfootnotetext",
+      "if": "layout=footnotes",
+      "unusual": true
+    },
+    {
+      "name": "mainfootnotetext",
+      "if": "layout=footnotes",
+      "unusual": true
+    },
+    {
+      "name": "blacktriangleright",
+      "detail": "▶ (\"wasysym\" command)",
+      "doc": "\\blacktriangleright (fourier -mathabx), (large) right triangle, filled"
+    },
+    {
+      "name": "blacktriangleleft",
+      "detail": "◀ (\"wasysym\" command)",
+      "doc": "\\blacktriangleleft (fourier -mathabx), (large) left triangle, filled"
+    },
+    {
+      "name": "redefbeamertemplate",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "redefbeamertemplate{${1:element}}{${2:option}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/beamer-rl#c": [
+      "arabic",
+      "arabic={${1:\\babelprovide options}}",
+      "arabic-dz",
+      "arabic-dz={${1:\\babelprovide options}}",
+      "arabic-tn",
+      "arabic-tn={${1:\\babelprovide options}}",
+      "arabic-ma",
+      "arabic-ma={${1:\\babelprovide options}}",
+      "arabic-eg",
+      "arabic-eg={${1:\\babelprovide options}}",
+      "arabic-sa",
+      "arabic-sa={${1:\\babelprovide options}}",
+      "arabic-iq",
+      "arabic-iq={${1:\\babelprovide options}}",
+      "arabic-sy",
+      "arabic-sy={${1:\\babelprovide options}}",
+      "arabic-lb",
+      "arabic-lb={${1:\\babelprovide options}}",
+      "arabic-ps",
+      "arabic-ps={${1:\\babelprovide options}}",
+      "arabic-jo",
+      "arabic-jo={${1:\\babelprovide options}}",
+      "centralkurdish",
+      "centralkurdish={${1:\\babelprovide options}}",
+      "hebrew",
+      "hebrew={${1:\\babelprovide options}}",
+      "kashmiri",
+      "kashmiri={${1:\\babelprovide options}}",
+      "mazanderani",
+      "mazanderani={${1:\\babelprovide options}}",
+      "malayalam",
+      "malayalam={${1:\\babelprovide options}}",
+      "northernkurdish-arab",
+      "northernkurdish-arab={${1:\\babelprovide options}}",
+      "pashto",
+      "pashto={${1:\\babelprovide options}}",
+      "persian",
+      "persian={${1:\\babelprovide options}}",
+      "punjabi-arab",
+      "punjabi-arab={${1:\\babelprovide options}}",
+      "syriac",
+      "syriac={${1:\\babelprovide options}}",
+      "urdu",
+      "urdu={${1:\\babelprovide options}}",
+      "uyghur",
+      "uyghur={${1:\\babelprovide options}}",
+      "uzbek-arab",
+      "uzbek-arab={${1:\\babelprovide options}}",
+      "yiddish",
+      "yiddish={${1:\\babelprovide options}}",
+      "layout=${1|sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras|}",
+      "usepdftitle",
+      "envcountsect",
+      "notheorems",
+      "noamsthm",
+      "compress",
+      "t",
+      "c",
+      "leqno",
+      "fleqn",
+      "handout",
+      "trans",
+      "pdftex",
+      "nativepdf",
+      "pdfmark",
+      "dvips",
+      "dviwindo",
+      "dvipsone",
+      "vtex",
+      "ps2pdf",
+      "ignorenonframetext",
+      "noamssymb",
+      "bigger",
+      "smaller",
+      "8pt",
+      "9pt",
+      "10pt",
+      "11pt",
+      "12pt",
+      "14pt",
+      "17pt",
+      "20pt",
+      "draft",
+      "CJK",
+      "cjk",
+      "onlytextwidth",
+      "pgf={${1:pgf options}}",
+      "hyperref={${1:hyperref options}}",
+      "color={${1:color options}}",
+      "xcolor={${1:xcolor options}}",
+      "ucs",
+      "utf8x",
+      "utf8",
+      "aspectratio=${2|2013,1610,169,149,141,54,43,32,${1:xxxx}|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/beamer-rl#c"
+  ]
 }

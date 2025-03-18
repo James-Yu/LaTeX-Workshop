@@ -1,5 +1,210 @@
 # Change Log
 
+## [10.8.0] - 2025-03-04
+
+### Added
+- (#4502) Handle `ids` biblatex field.
+- (#4509) Add a config to control pdf reload transition animation.
+  - `latex-workshop.view.pdf.reload.transition`
+- (#4522) Add a config to control the filter text of citation suggestions.
+  - `intellisense.citation.filterText`
+
+
+### Fixed
+- (#4513) Allow PDF refresh on change during build if `-f` and `nonstopmode` are present.
+- (#4520) Trigger citation completion for `[a-zA-Z]*cquote`.
+- (#4528) Use double bracket to render `\ll(rr)bracket` in MathJaX.
+- (#4534) Improve doctex folding.
+
+## [10.7.5] - 2025-01-06
+
+### Fixed
+- The minimal supported VS Code version is December 2024 due to changes of PDF.js (particularly the use of css `round()`).
+
+## [10.7.4] - 2025-01-03
+
+### Fixed
+- (#4496) (Correct fix) PDF viewer trimming failed due to PDF.js CSS canvas style changes.
+
+## [10.7.3] - 2025-01-03
+
+### Fixed
+- (#4495) PDF viewer trimming failed due to PDF.js CSS canvas style changes.
+
+## [10.7.2] - 2025-01-03
+
+### Fixed
+- Upgrade PDF.js to v4.10.38.
+- Spread mode should correctly register synctex handler.
+- (#4437) PDF viewer can be blurry after rescaling
+- (#4491) Parse glossary bib files to populate intellisense.
+
+## [10.7.1] - 2024-12-24
+
+### Fixed
+- (#4317) Logs of failed xelatex compile should be parsed.
+- (#4474) Fix newline handling for tex-fmt input and output.
+- (#4476) Update LaTeX3 completion to `l3kernel` 2024-11-02.
+- (#4481) `\input` family file names can have double quotes.
+- (#4483) Update default arguments for tex-fmt to `--nowrap` instead of `--keep`.
+- (#4484) Disable open, print, save handlers of pdf viewer.
+
+## [10.7.0] - 2024-12-03
+
+### Added
+- Update pdf.js to v4.9.124.
+  - This version fixes #4468.
+
+## [10.6.1] - 2024-11-27
+
+### Fixed
+- Correct binary file polling comparison.
+- (#4469) PDF viewer spread misaligned due to bottom margin.
+
+## [10.6.0] - 2024-11-25
+
+### Added
+- Update pdf.js to v4.8.69.
+- (#4466) Handle LaTeX files with non `.tex` extension.
+  - This includes a new config item `latex.extraExts`.
+  - See https://github.com/James-Yu/LaTeX-Workshop/issues/4457#issuecomment-2491096409 for usage.
+
+### Fixed
+- Binary file watcher polling should not await.
+  - This fix will benefit PDF change watcher.
+- (#4448) Fix link highlighting in `\ref` and `\input` for non-word characters.
+- (#4459) Additional menu buttons in PDF viewer drop down menu no longer hide menu on click.
+
+## [10.5.6] - 2024-10-31
+
+### Fixed
+- Remove bottom 10px margin of last page in PDF viewer.
+- (#4449) Add a warning message when bibtex parser failed.
+
+## [10.5.5] - 2024-10-22
+
+### Fixed
+- Update `unified-latex` to version 1.8.1.
+
+## [10.5.4] - 2024-10-17
+
+### Fixed
+- (#4426) Code folding for DocTeX
+- (#4440) Remove `dev/packages/expl3.json`.
+- (#4441) Remove `%` components from macro suggestion snippets.
+
+## [10.5.3] - 2024-10-16
+
+### Fixed
+- Hide pdf viewer sidebar notification green dot.
+- (#4438) Fix link to `latex-workshop.texcount.autorun` setting.
+
+## [10.5.2] - 2024-10-14
+
+### Fixed
+- (#4436) Tweaked toolbar showing/hiding logic.
+
+## [10.5.1] - 2024-10-14
+
+### Fixed
+- Suggestions of packages defined in local class files can now be provided.
+- (#4430) Escape `$` when surround macros.
+- (#4432) Upgrade to PDF.js 4.7.76, tweak toolbar hiding.
+  - Add a config `view.pdf.toolbar.hide.timeout` to control toolbar hiding timeout.
+- (#4433) Stringify chunk before merging chunks during formatting breaks character at the end.
+- (#4434) Deduplicate package options.
+
+## [10.5.0] - 2024-10-08
+
+### Added
+- (#4423) A new flicker-free pdf refresh solution inspired by tamuratak/latex-toybox.
+- (#4427) Define tex-fmt arguments in `formatting.tex-fmt.args`
+  - This config replaces the previous `formatting.tex-fmt.doNotWrap`.
+
+### Fixed
+- (#3783) Fix a bug of incorrect suggestion when auto-completing inside `\\end{}`.
+- (#4420) Add `\left|..\right|` snippet.
+
+## [10.4.2] - 2024-10-02
+
+### Fixed
+- (#4404) Use short titles of `\caption` in outline.
+- (#4406) Add `--print` to `tectonic` tool to generate compile message.
+- (#4414) TextLayer in pdf viewer is rotated by pdf.js, so no further rotation.
+- (#4415) Disable flicker-free PDF refresh when spread mode is on.
+- (#4416) PDF viewer uses a l10n lang selector to determine translation.
+
+## [10.4.1] - 2024-09-20
+
+### Fixed
+- (#4397) When formatting a selection of `latex`, consider the leading spaces.
+- (#4401) Tweaked macro suggestion order, prioritize `\(` and degrade starred macros.
+
+### Upgraded
+- Upgrade to PDF.js 4.6.82
+
+## [10.4.0] - 2024-09-18
+
+### Added
+- (#4379) Support `tex-fmt` as another LaTeX formatter.
+  - There are a few config item changes related to `latexindent`.
+
+### Fixed
+- Macro suggestions filtered and sorted by both label and argument signature.
+- (#4347) `--max-print-line` should be added to string when magic tex argument is present under MikTeX.
+- (#4380) Wrong auto-completion after typing `\{`.
+
+## [10.3.2] - 2024-09-11
+
+### Fixed
+- (#4374) Extra brace in default macros.
+
+## [10.3.1] - 2024-09-10
+
+### Fixed
+- (#4372) Include macro name back into .json file snippets.
+  - This change may require re-generation of `.json` files using the new `parse-cwl.ts` script in `dev/` folder, even already done in version `10.3.0`.
+
+## [10.3.0] - 2024-09-09
+
+### Added
+- (#4359) Support file watching on virtual file systems
+- (#4363) `RequirePackage` and `RequirePackageWithOptions` suggests package names.
+- (#4364) Suggestion `keyvals` provide possible values if defined in `.cwl` files.
+- (#4368) Include base KOMA macro/env in KOMA art, book, rept.
+
+### Changed
+- (#4367) Adopt a new package intellisense file format.
+  - This change is necessary to make package suggestions extensible.
+  - You may need to regenerate package intellisense `.json` files using the new `parse-cwl.ts` script in `dev/` folder.
+
+### Fixed
+- (#4360) Parse `pdflatex --version` output correctly for MikTeX detection.
+- (#4369) Browser viewer should not wait for vscode panel `'restore_state'`.
+
+## [10.2.1] - 2024-08-30
+
+### Fixed
+- (#4354) Reverted #4347.
+  - #4347 was a local issue.
+
+## [10.2.0] - 2024-08-30
+
+### Added
+- Add bibTeX field content suggestions
+- (#4331) Add highlighting to the extension logs.
+- (#4338) Control showing over/underfull warning seperately by `message.badbox.show`.
+
+### Fixed
+- (#4304) Reveal PDF on SyncTeX if it's invisible instead of create a new tab.
+- (#4306) No PDF refresh on code-server.
+- (#4313) Include `(arg)` macro signature in package intellisense.
+- (#4334) PDF viewer position retained across vscode reloads.
+- (#4335) Handle bibtex parsing exception.
+- (#4336) Record past active latex editor instead of just file path.
+- (#4347) `%!TEX/%!BIB options` accept multiple bash args and handles spaces.
+- (#4339) Handle cwl package option in format `#keyvals:\geometry,\usepackage/geometry#c`.
+
 ## [10.1.0] - 2024-06-27
 
 ### Added

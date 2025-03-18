@@ -1,0 +1,243 @@
+{
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "varwidth"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarybending"
+    },
+    {
+      "name": "footnote",
+      "if": "footnote"
+    },
+    {
+      "name": "footnotehyper",
+      "if": "footnotehyper"
+    }
+  ],
+  "macros": [
+    {
+      "name": "WithArrowsOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "WithArrowsOptions{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{WithArrows},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\WithArrowsOptions,\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Arrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Arrow{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "Arrow",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Arrow[${2:options%keyvals}]{${1:label%plain}}",
+        "keys": [
+          "\\Arrow"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "MultiArrow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "MultiArrow{${1:row1,row2,...}}{${2:label%plain}}"
+      }
+    },
+    {
+      "name": "WithArrowsLastEnv",
+      "unusual": true
+    },
+    {
+      "name": "tag",
+      "arg": {
+        "format": "{}",
+        "snippet": "tag{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "tag*",
+      "arg": {
+        "format": "{}",
+        "snippet": "tag*{${1:label%plain}}"
+      }
+    },
+    {
+      "name": "notag"
+    },
+    {
+      "name": "tagnextline",
+      "unusual": true
+    },
+    {
+      "name": "WithArrowsRightX",
+      "unusual": true
+    },
+    {
+      "name": "WithArrowsNewStyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "WithArrowsNewStyle{${1:style name%specialDef}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "WithArrowsNbLines",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "WithArrows"
+    },
+    {
+      "name": "WithArrows",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DispWithArrows"
+    },
+    {
+      "name": "DispWithArrows",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DispWithArrows*"
+    },
+    {
+      "name": "DispWithArrows*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle",
+          "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/witharrows#c": [
+      "footnote",
+      "footnotehyper",
+      "beamer"
+    ],
+    "\\begin{WithArrows},\\WithArrowsOptions,\\WithArrowsNewStyle": [
+      "c",
+      "b",
+      "right-overlap"
+    ],
+    "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle": [
+      "tikz={${1:TikZ options}}",
+      "xoffset=",
+      "command-name=${1:csname}",
+      "code-before=${1:code}",
+      "code-after=${1:code}",
+      "format=${1:cols}",
+      "show-nodes",
+      "show-node-names",
+      "displaystyle",
+      "ll",
+      "lr",
+      "rl",
+      "rr",
+      "i",
+      "group",
+      "groups",
+      "up-and-down={${1:options}}",
+      "jot=",
+      "interline=",
+      "tikz-code={${1:code}}",
+      "start-adjust=",
+      "end-adjust=",
+      "adjust=",
+      "ygap=",
+      "ystart=",
+      "max-length-of-arrow=",
+      "%witharrowsstyle"
+    ],
+    "\\begin{WithArrows},\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle": [
+      "name=${1:node name}"
+    ],
+    "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsOptions,\\WithArrowsNewStyle": [
+      "wrap-lines",
+      "tagged-lines={${1:line1,line2,...}}",
+      "fleqn",
+      "mathindent=",
+      "subequations",
+      "standard-behaviour-with-items"
+    ],
+    "\\begin{DispWithArrows},\\begin{DispWithArrows*},\\WithArrowsNewStyle": [
+      "left-brace",
+      "left-brace={${1:content}}",
+      "replace-left-brace-by="
+    ],
+    "\\WithArrowsOptions,\\WithArrowsNewStyle": [
+      "xoffset-for-o-arrows=",
+      "up-and-down/width=",
+      "up-and-down/radius=",
+      "no-arrows"
+    ],
+    "\\Arrow": [
+      "jump=${1:integer}",
+      "xoffset=",
+      "tikz=",
+      "tikz-code={${1:code}}",
+      "ll",
+      "lr",
+      "rl",
+      "rr",
+      "i",
+      "new-group",
+      "o",
+      "up",
+      "up={${1:options}}",
+      "down",
+      "down={${1:options}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/witharrows#c"
+  ]
+}

@@ -1,22 +1,42 @@
 {
-  "includes": {
-    "biblatex-ext-tabular": [],
-    "longtable": []
-  },
-  "macros": {
-    "ecvbibhighlight{}{}{}": {
-      "snippet": "ecvbibhighlight{${1:last name}}{${2:first name}}{${3:first initial}}"
+  "deps": [
+    {
+      "name": "biblatex-ext-tabular"
     },
-    "defecvbibtabulartwocolumn{}{}{}{}{}": {
-      "snippet": "defecvbibtabulartwocolumn{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+    {
+      "name": "longtable"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ecvbibhighlight",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ecvbibhighlight{${1:last name}}{${2:first name}}{${3:first initial}}"
+      }
     },
-    "lastname": {},
-    "firstname": {},
-    "firstinit": {},
-    "bibnamedelima": {},
-    "bibnamedelimi": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "defecvbibtabulartwocolumn",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "defecvbibtabulartwocolumn{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "lastname",
+      "unusual": true
+    },
+    {
+      "name": "firstname",
+      "unusual": true
+    },
+    {
+      "name": "firstinit",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

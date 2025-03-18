@@ -1,79 +1,184 @@
 {
-  "includes": {},
-  "macros": {
-    "fourscripts{}{}{}{}{}": {
-      "snippet": "fourscripts{${1:arg}}{${2:lsup}}{${3:lsub}}{${4:rsup}}{${5:rsub}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "fourscripts",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "fourscripts{${1:arg}}{${2:lsup}}{${3:lsub}}{${4:rsup}}{${5:rsub}}"
+      }
     },
-    "lrsubscripts{}{}{}": {
-      "snippet": "lrsubscripts{${1:arg}}{${2:lsub}}{${3:rsub}}"
+    {
+      "name": "lrsubscripts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lrsubscripts{${1:arg}}{${2:lsub}}{${3:rsub}}"
+      }
     },
-    "lrsuperscripts{}{}{}": {
-      "snippet": "lrsuperscripts{${1:arg}}{${2:lsup}}{${3:rsup}}"
+    {
+      "name": "lrsuperscripts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lrsuperscripts{${1:arg}}{${2:lsup}}{${3:rsup}}"
+      }
     },
-    "twolscripts{}{}{}": {
-      "snippet": "twolscripts{${1:arg}}{${2:lsup}}{${3:lsub}}"
+    {
+      "name": "twolscripts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "twolscripts{${1:arg}}{${2:lsup}}{${3:lsub}}"
+      }
     },
-    "twolscripts[]{}{}{}": {
-      "snippet": "twolscripts[${4:skip}]{${1:arg}}{${2:lsup}}{${3:lsub}}"
+    {
+      "name": "twolscripts",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "twolscripts[${4:skip%l}]{${1:arg}}{${2:lsup}}{${3:lsub}}"
+      }
     },
-    "tworscripts{}{}{}": {
-      "snippet": "tworscripts{${1:arg}}{${2:rsup}}{${3:rsub}}"
+    {
+      "name": "tworscripts",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "tworscripts{${1:arg}}{${2:rsup}}{${3:rsub}}"
+      }
     },
-    "tworscripts[]{}{}{}": {
-      "snippet": "tworscripts[${4:skip}]{${1:arg}}{${2:rsup}}{${3:rsub}}"
+    {
+      "name": "tworscripts",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "tworscripts[${4:skip%l}]{${1:arg}}{${2:rsup}}{${3:rsub}}"
+      }
     },
-    "lsubscript{}{}": {
-      "snippet": "lsubscript{${1:arg}}{${2:lsub}}"
+    {
+      "name": "lsubscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lsubscript{${1:arg}}{${2:lsub}}"
+      }
     },
-    "lsubscript[]{}{}": {
-      "snippet": "lsubscript[${3:skip}]{${1:arg}}{${2:lsub}}"
+    {
+      "name": "lsubscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "lsubscript[${3:skip%l}]{${1:arg}}{${2:lsub}}"
+      }
     },
-    "lsuperscript{}{}": {
-      "snippet": "lsuperscript{${1:arg}}{${2:lsup}}"
+    {
+      "name": "lsuperscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lsuperscript{${1:arg}}{${2:lsup}}"
+      }
     },
-    "lsuperscript[]{}{}": {
-      "snippet": "lsuperscript[${3:skip}]{${1:arg}}{${2:lsup}}"
+    {
+      "name": "lsuperscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "lsuperscript[${3:skip%l}]{${1:arg}}{${2:lsup}}"
+      }
     },
-    "rsubscript{}{}": {
-      "snippet": "rsubscript{${1:arg}}{${2:rsub}}"
+    {
+      "name": "rsubscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rsubscript{${1:arg}}{${2:rsub}}"
+      }
     },
-    "rsubscript[]{}{}": {
-      "snippet": "rsubscript[${3:skip}]{${1:arg}}{${2:rsub}}"
+    {
+      "name": "rsubscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "rsubscript[${3:skip%l}]{${1:arg}}{${2:rsub}}"
+      }
     },
-    "rsuperscript{}{}": {
-      "snippet": "rsuperscript{${1:arg}}{${2:rsup}}"
+    {
+      "name": "rsuperscript",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rsuperscript{${1:arg}}{${2:rsup}}"
+      }
     },
-    "rsuperscript[]{}{}": {
-      "snippet": "rsuperscript[${3:skip}]{${1:arg}}{${2:rsup}}"
+    {
+      "name": "rsuperscript",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "rsuperscript[${3:skip%l}]{${1:arg}}{${2:rsup}}"
+      }
     },
-    "largerSkips": {},
-    "setDblLSkip{}": {
-      "snippet": "setDblLSkip{${1:skip}}"
+    {
+      "name": "largerSkips"
     },
-    "setDblRSkip{}": {
-      "snippet": "setDblRSkip{${1:skip}}"
+    {
+      "name": "setDblLSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setDblLSkip{${1:skip%l}}"
+      }
     },
-    "setSingleLSkip{}": {
-      "snippet": "setSingleLSkip{${1:skip}}"
+    {
+      "name": "setDblRSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setDblRSkip{${1:skip%l}}"
+      }
     },
-    "setSingleRSkip{}": {
-      "snippet": "setSingleRSkip{${1:skip}}"
+    {
+      "name": "setSingleLSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setSingleLSkip{${1:skip%l}}"
+      }
     },
-    "fourscriptsC{}{}{}{}{}{}{}": {
-      "snippet": "fourscriptsC{${1:arg}}{${2:lsup}}{${3:lsub}}{${4:rsup}}{${5:rsub}}{${6:lskip}}{${7:rskip}}"
+    {
+      "name": "setSingleRSkip",
+      "arg": {
+        "format": "{}",
+        "snippet": "setSingleRSkip{${1:skip%l}}"
+      }
     },
-    "lrsubscriptsC{}{}{}{}{}": {
-      "snippet": "lrsubscriptsC{${1:arg}}{${2:lsub}}{${3:rsub}}{${4:lskip}}{${5:rskip}}"
+    {
+      "name": "fourscriptsC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "fourscriptsC{${1:arg}}{${2:lsup}}{${3:lsub}}{${4:rsup}}{${5:rsub}}{${6:lskip%l}}{${7:rskip%l}}"
+      }
     },
-    "lrsuperscriptsC{}{}{}{}{}": {
-      "snippet": "lrsuperscriptsC{${1:arg}}{${2:lsup}}{${3:rsup}}{${4:lskip}}{${5:rskip}}"
+    {
+      "name": "lrsubscriptsC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "lrsubscriptsC{${1:arg}}{${2:lsub}}{${3:rsub}}{${4:lskip%l}}{${5:rskip%l}}"
+      }
     },
-    "dblleftscriptskip": {},
-    "dblrightscriptskip": {},
-    "singleleftscriptskip": {},
-    "singlerightscriptskip": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "lrsuperscriptsC",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "lrsuperscriptsC{${1:arg}}{${2:lsup}}{${3:rsup}}{${4:lskip%l}}{${5:rskip%l}}"
+      }
+    },
+    {
+      "name": "dblleftscriptskip",
+      "unusual": true
+    },
+    {
+      "name": "dblrightscriptskip",
+      "unusual": true
+    },
+    {
+      "name": "singleleftscriptskip",
+      "unusual": true
+    },
+    {
+      "name": "singlerightscriptskip",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

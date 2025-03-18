@@ -1,175 +1,401 @@
 {
-  "includes": {},
-  "macros": {
-    "dbNewDatabase{}{}": {
-      "snippet": "dbNewDatabase{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "dbNewDatabase",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbNewDatabase{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+      }
     },
-    "dbNewDatabase[]{}{}": {
-      "snippet": "dbNewDatabase[${3:base database}]{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+    {
+      "name": "dbNewDatabase",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dbNewDatabase[${3:base database}]{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+      }
     },
-    "dbNewDatabase*{}{}": {
-      "snippet": "dbNewDatabase*{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+    {
+      "name": "dbNewDatabase*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbNewDatabase*{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+      }
     },
-    "dbshow{}{}": {
-      "snippet": "dbshow{${1:style}}{${2:database}}"
+    {
+      "name": "dbNewDatabase*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbNewDatabase*{${1:database}}{${2:attr1=val1,attr2=val2,...}}"
+      }
     },
-    "dbclear{}": {
-      "snippet": "dbclear{${1:database}}"
+    {
+      "name": "dbshow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbshow{${1:style}}{${2:database}}"
+      }
     },
-    "dbNewStyle{}{}{}": {
-      "snippet": "dbNewStyle{${1:style}}{${2:database}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 2
+    {
+      "name": "dbclear",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbclear{${1:database}}"
+      }
     },
-    "dbNewStyle[]{}{}{}": {
-      "snippet": "dbNewStyle[${4:base styles}]{${1:style}}{${2:database}}{${3:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 3
+    {
+      "name": "dbNewStyle",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dbNewStyle{${1:style}}{${2:database}}{${3:options%keyvals}}",
+        "keys": [
+          "\\dbNewStyle#c"
+        ],
+        "keyPos": 2
+      }
     },
-    "dbdatesep{}": {
-      "snippet": "dbdatesep{${1:separator}}"
+    {
+      "name": "dbNewStyle",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "dbNewStyle[${4:base styles}]{${1:style}}{${2:database}}{${3:options%keyvals}}",
+        "keys": [
+          "\\dbNewStyle#c"
+        ],
+        "keyPos": 3
+      }
     },
-    "dbNewReviewPoints{}{}": {
-      "snippet": "dbNewReviewPoints{${1:name}}{${2:points}}"
+    {
+      "name": "dbdatesep",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbdatesep{${1:separator}}"
+      }
     },
-    "dbNewConditional{}{}{}": {
-      "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}"
+    {
+      "name": "dbNewReviewPoints",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbNewReviewPoints{${1:name}}{${2:points}}"
+      }
     },
-    "dbNewConditional{}{}{}[]": {
-      "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    {
+      "name": "dbNewConditional",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}"
+      }
     },
-    "dbNewConditional*{}{}{}": {
-      "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}"
+    {
+      "name": "dbNewConditional",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "dbNewConditional{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+      }
     },
-    "dbNewConditional*{}{}{}[]": {
-      "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    {
+      "name": "dbNewConditional*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}"
+      }
     },
-    "dbNewCond{}{}{}": {
-      "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}"
+    {
+      "name": "dbNewConditional*",
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "dbNewConditional*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+      }
     },
-    "dbNewCond{}{}{}[]": {
-      "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    {
+      "name": "dbNewCond",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}"
+      }
     },
-    "dbNewCond*{}{}{}": {
-      "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}"
+    {
+      "name": "dbNewCond",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "dbNewCond{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+      }
     },
-    "dbNewCond*{}{}{}[]": {
-      "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+    {
+      "name": "dbNewCond*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}"
+      }
     },
-    "dbNewRawFilter{}{}{}{}": {
-      "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+    {
+      "name": "dbNewCond*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}[]",
+        "snippet": "dbNewCond*{${1:name}}{${2:attr}}{${3:cond spec}}[${4:filter info}]"
+      }
     },
-    "dbNewRawFilter{}{}{}{}[]": {
-      "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+    {
+      "name": "dbNewRawFilter",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+      }
     },
-    "dbNewRawFilter*{}{}{}{}": {
-      "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+    {
+      "name": "dbNewRawFilter",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "dbNewRawFilter{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+      }
     },
-    "dbNewRawFilter*{}{}{}{}[]": {
-      "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+    {
+      "name": "dbNewRawFilter*",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}"
+      }
     },
-    "dbCombineConditionals{}{}": {
-      "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}"
+    {
+      "name": "dbNewRawFilter*",
+      "arg": {
+        "format": "{}{}{}{}[]",
+        "snippet": "dbNewRawFilter*{${1:name}}{${2:database}}{${3:attr}}{${4:cond spec}}[${5:filter info}]"
+      }
     },
-    "dbCombineConditionals{}{}[]": {
-      "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}[${3:filter info}]"
+    {
+      "name": "dbCombineConditionals",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}"
+      }
     },
-    "dbCombCond{}{}": {
-      "snippet": "dbCombCond{${1:name}}{${2:cond combination}}"
+    {
+      "name": "dbCombineConditionals",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dbCombineConditionals{${1:name}}{${2:cond combination}}[${3:filter info}]"
+      }
     },
-    "dbCombCond{}{}[]": {
-      "snippet": "dbCombCond{${1:name}}{${2:cond combination}}[${3:filter info}]"
+    {
+      "name": "dbCombCond",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbCombCond{${1:name}}{${2:cond combination}}"
+      }
     },
-    "dbitemkv{}": {
-      "snippet": "dbitemkv{${1:database}}"
+    {
+      "name": "dbCombCond",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dbCombCond{${1:name}}{${2:cond combination}}[${3:filter info}]"
+      }
     },
-    "dbitemkv{}[]": {
-      "snippet": "dbitemkv{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+    {
+      "name": "dbitemkv",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbitemkv{${1:database}}"
+      }
     },
-    "dbsave{}{}": {
-      "snippet": "dbsave{${1:attr}}{${2:data}}"
+    {
+      "name": "dbitemkv",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dbitemkv{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+      }
     },
-    "dbsave*{}{}": {
-      "snippet": "dbsave*{${1:attr}}{${2:data}}"
+    {
+      "name": "dbsave",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbsave{${1:attr}}{${2:data}}"
+      }
     },
-    "dbuse{}": {
-      "snippet": "dbuse{${1:attr}}"
+    {
+      "name": "dbsave*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbsave*{${1:attr}}{${2:data}}"
+      }
     },
-    "dbIfEmptyT{}": {
-      "snippet": "dbIfEmptyT{${1:true code}}"
+    {
+      "name": "dbuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbuse{${1:attr}}"
+      }
     },
-    "dbIfEmptyF{}": {
-      "snippet": "dbIfEmptyF{${1:false code}}"
+    {
+      "name": "dbIfEmptyT",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIfEmptyT{${1:true code}}"
+      }
     },
-    "dbIfEmptyTF{}{}": {
-      "snippet": "dbIfEmptyTF{${1:true code}}{${2:false code}}"
+    {
+      "name": "dbIfEmptyF",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIfEmptyF{${1:false code}}"
+      }
     },
-    "dbIfLastT{}": {
-      "snippet": "dbIfLastT{${1:true code}}"
+    {
+      "name": "dbIfEmptyTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIfEmptyTF{${1:true code}}{${2:false code}}"
+      }
     },
-    "dbIfLastF{}": {
-      "snippet": "dbIfLastF{${1:false code}}"
+    {
+      "name": "dbIfLastT",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIfLastT{${1:true code}}"
+      }
     },
-    "dbIfLastTF{}{}": {
-      "snippet": "dbIfLastTF{${1:true code}}{${2:false code}}"
+    {
+      "name": "dbIfLastF",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIfLastF{${1:false code}}"
+      }
     },
-    "dbIntAbs{}": {
-      "snippet": "dbIntAbs{${1:int expr}}"
+    {
+      "name": "dbIfLastTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIfLastTF{${1:true code}}{${2:false code}}"
+      }
     },
-    "dbIntSign{}": {
-      "snippet": "dbIntSign{${1:int expr}}"
+    {
+      "name": "dbIntAbs",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIntAbs{${1:int expr}}"
+      }
     },
-    "dbIntDivRound{}{}": {
-      "snippet": "dbIntDivRound{${1:int expr1}}{${2:int expr2}}"
+    {
+      "name": "dbIntSign",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbIntSign{${1:int expr}}"
+      }
     },
-    "dbIntDivTruncate{}{}": {
-      "snippet": "dbIntDivTruncate{${1:int expr1}}{${2:int expr2}}"
+    {
+      "name": "dbIntDivRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIntDivRound{${1:int expr1}}{${2:int expr2}}"
+      }
     },
-    "dbIntMax{}{}": {
-      "snippet": "dbIntMax{${1:int expr1}}{${2:int expr2}}"
+    {
+      "name": "dbIntDivTruncate",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIntDivTruncate{${1:int expr1}}{${2:int expr2}}"
+      }
     },
-    "dbIntMin{}{}": {
-      "snippet": "dbIntMin{${1:int expr1}}{${2:int expr2}}"
+    {
+      "name": "dbIntMax",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIntMax{${1:int expr1}}{${2:int expr2}}"
+      }
     },
-    "dbIntMod{}{}": {
-      "snippet": "dbIntMod{${1:int expr1}}{${2:int expr2}}"
+    {
+      "name": "dbIntMin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIntMin{${1:int expr1}}{${2:int expr2}}"
+      }
     },
-    "dbFpSign{}": {
-      "snippet": "dbFpSign{${1:fp expr}}"
+    {
+      "name": "dbIntMod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbIntMod{${1:int expr1}}{${2:int expr2}}"
+      }
     },
-    "dbval": {},
-    "dbtoday": {},
-    "dbDatabase": {},
-    "dbFilterName": {},
-    "dbFilterInfo": {},
-    "dbIndex": {},
-    "dbarabic": {},
-    "dbalph": {},
-    "dbAlph": {},
-    "dbroman": {},
-    "dbRoman": {}
-  },
-  "envs": {
-    "dbFilters{}": {
-      "name": "dbFilters",
-      "snippet": "{${1:database}}"
+    {
+      "name": "dbFpSign",
+      "arg": {
+        "format": "{}",
+        "snippet": "dbFpSign{${1:fp expr}}"
+      }
     },
-    "dbFilters*{}": {
-      "name": "dbFilters",
-      "snippet": "*{${1:database}}"
+    {
+      "name": "dbval"
     },
-    "dbitem{}": {
-      "name": "dbitem",
-      "snippet": "{${1:database}}"
+    {
+      "name": "dbtoday"
     },
-    "dbitem{}[]": {
-      "name": "dbitem",
-      "snippet": "{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+    {
+      "name": "dbDatabase"
+    },
+    {
+      "name": "dbFilterName"
+    },
+    {
+      "name": "dbFilterInfo"
+    },
+    {
+      "name": "dbIndex"
+    },
+    {
+      "name": "dbarabic"
+    },
+    {
+      "name": "dbalph"
+    },
+    {
+      "name": "dbAlph"
+    },
+    {
+      "name": "dbroman"
+    },
+    {
+      "name": "dbRoman"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [
+    {
+      "name": "dbFilters",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:database}}"
+      }
+    },
+    {
+      "name": "dbFilters",
+      "arg": {
+        "format": "*{}",
+        "snippet": "*{${1:database}}"
+      }
+    },
+    {
+      "name": "dbitem",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:database}}"
+      }
+    },
+    {
+      "name": "dbitem",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:database}}[${2:attr1=val1,attr2=val2,...}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\dbNewStyle#c": [
       "filter=${1:filter}",
       "raw-filter={${1:conditional expr}}",
       "sort={${1:attr spec1,attr spec2,...}}",
@@ -191,5 +417,6 @@
       "${1:<attr>}/format-code=${2:code}",
       "${1:<attr>}/zfill"
     ]
-  ]
+  },
+  "args": []
 }

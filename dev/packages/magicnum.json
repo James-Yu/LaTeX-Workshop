@@ -1,14 +1,106 @@
 {
-  "includes": {
-    "iftex": [],
-    "infwarerr": []
-  },
-  "macros": {
-    "magicnum{}": {
-      "snippet": "magicnum{${1:access key}}"
+  "deps": [
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "infwarerr"
     }
+  ],
+  "macros": [
+    {
+      "name": "magicnum",
+      "arg": {
+        "format": "{}",
+        "snippet": "magicnum{${1:access key%keyvals}}",
+        "keys": [
+          "\\magicnum#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\magicnum#c": [
+      "tex.catcode.escape",
+      "tex.catcode.begingroup",
+      "tex.catcode.endgroup",
+      "tex.catcode.math",
+      "tex.catcode.align",
+      "tex.catcode.eol",
+      "tex.catcode.parameter",
+      "tex.catcode.superscript",
+      "tex.catcode.subscript",
+      "tex.catcode.ignore",
+      "tex.catcode.space",
+      "tex.catcode.letter",
+      "tex.catcode.other",
+      "tex.catcode.active",
+      "tex.catcode.comment",
+      "tex.catcode.invalid",
+      "etex.grouptype.bottomlevel",
+      "etex.grouptype.simple",
+      "etex.grouptype.hbox",
+      "etex.grouptype.adjustedhbox",
+      "etex.grouptype.vbox",
+      "etex.grouptype.align",
+      "etex.grouptype.noalign",
+      "etex.grouptype.output",
+      "etex.grouptype.math",
+      "etex.grouptype.disc",
+      "etex.grouptype.insert",
+      "etex.grouptype.vcenter",
+      "etex.grouptype.mathchoice",
+      "etex.grouptype.semisimple",
+      "etex.grouptype.mathshift",
+      "etex.grouptype.mathleft",
+      "etex.iftype.none",
+      "etex.iftype.char",
+      "etex.iftype.cat",
+      "etex.iftype.num",
+      "etex.iftype.dim",
+      "etex.iftype.odd",
+      "etex.iftype.vmode",
+      "etex.iftype.hmode",
+      "etex.iftype.mmode",
+      "etex.iftype.inner",
+      "etex.iftype.void",
+      "etex.iftype.hbox",
+      "etex.iftype.vbox",
+      "etex.iftype.x",
+      "etex.iftype.eof",
+      "etex.iftype.true",
+      "etex.iftype.false",
+      "etex.iftype.case",
+      "etex.iftype.defined",
+      "etex.iftype.csname",
+      "etex.iftype.fontchar",
+      "etex.nodetype.none",
+      "etex.nodetype.char",
+      "etex.nodetype.hlist",
+      "etex.nodetype.vlist",
+      "etex.nodetype.rule",
+      "etex.nodetype.ins",
+      "etex.nodetype.mark",
+      "etex.nodetype.adjust",
+      "etex.nodetype.ligature",
+      "etex.nodetype.disc",
+      "etex.nodetype.whatsit",
+      "etex.nodetype.math",
+      "etex.nodetype.glue",
+      "etex.nodetype.kern",
+      "etex.nodetype.penalty",
+      "etex.nodetype.unset",
+      "etex.nodetype.maths",
+      "etex.interactionmode.batch",
+      "etex.interactionmode.nonstop",
+      "etex.interactionmode.scroll",
+      "etex.interactionmode.errorstop",
+      "luatex.pdfliteral.mode.setorigin",
+      "luatex.pdfliteral.mode.page",
+      "luatex.pdfliteral.mode.direct"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

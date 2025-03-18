@@ -1,78 +1,203 @@
 {
-  "includes": {
-    "longtable": [],
-    "ifthen": []
-  },
-  "macros": {
-    "skipday": {},
-    "calday{}": {
-      "snippet": "calday{${1:option list}}"
+  "deps": [
+    {
+      "name": "longtable"
     },
-    "calday[]{}": {
-      "snippet": "calday[${2:head}]{${1:option list}}"
-    },
-    "classday": {},
-    "noclassday": {},
-    "weeklytext{}": {
-      "snippet": "weeklytext{${1:text}}"
-    },
-    "options{}{}": {
-      "snippet": "options{${1:day}}{${2:option list}}"
-    },
-    "caltext{}{}": {
-      "snippet": "caltext{${1:day}}{${2:text}}"
-    },
-    "caltexton{}{}": {
-      "snippet": "caltexton{${1:day}}{${2:text}}"
-    },
-    "caltextnext{}": {
-      "snippet": "caltextnext{${1:text}}"
-    },
-    "calboxdepth": {},
-    "calwidth": {},
-    "calprintdate": {},
-    "calprintclass": {},
-    "addtotoks{}{}": {
-      "snippet": "addtotoks{${1:token box}}{${2:new tokens}}"
-    },
-    "advancedate": {},
-    "advancemonth": {},
-    "classdayfalse": {},
-    "classdaytrue": {},
-    "curdate": {},
-    "ifclassday": {},
-    "ifleap": {},
-    "ifnewmonth": {},
-    "leapfalse": {},
-    "leaptrue": {},
-    "monthlength": {},
-    "monthname": {},
-    "newmonthfalse": {},
-    "newmonthtrue": {},
-    "ordinal{}": {
-      "snippet": "ordinal{${1:register}}"
-    },
-    "ordinaldate": {},
-    "setdate{}": {
-      "snippet": "setdate{${1:mm/dd/yyyy}}"
-    },
-    "setleap": {},
-    "theclassnum": {},
-    "thedate": {},
-    "themonth": {},
-    "thetextdaycount": {},
-    "theyear": {},
-    "RCSID": {},
-    "docdate": {},
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {
-    "calendar{}{}": {
-      "name": "calendar",
-      "snippet": "{${1:mm/dd/yyyy}}{${2:number of weeks}}"
+    {
+      "name": "ifthen"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "skipday"
+    },
+    {
+      "name": "calday",
+      "arg": {
+        "format": "{}",
+        "snippet": "calday{${1:option list}}"
+      }
+    },
+    {
+      "name": "calday",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "calday[${2:head%text}]{${1:option list}}"
+      }
+    },
+    {
+      "name": "classday"
+    },
+    {
+      "name": "noclassday"
+    },
+    {
+      "name": "weeklytext",
+      "arg": {
+        "format": "{}",
+        "snippet": "weeklytext{${1:text}}"
+      }
+    },
+    {
+      "name": "options",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "options{${1:day}}{${2:option list}}"
+      }
+    },
+    {
+      "name": "caltext",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "caltext{${1:day}}{${2:text}}"
+      }
+    },
+    {
+      "name": "caltexton",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "caltexton{${1:day}}{${2:text}}"
+      }
+    },
+    {
+      "name": "caltextnext",
+      "arg": {
+        "format": "{}",
+        "snippet": "caltextnext{${1:text}}"
+      }
+    },
+    {
+      "name": "calboxdepth"
+    },
+    {
+      "name": "calwidth"
+    },
+    {
+      "name": "calprintdate",
+      "unusual": true
+    },
+    {
+      "name": "calprintclass",
+      "unusual": true
+    },
+    {
+      "name": "addtotoks",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "addtotoks{${1:token box}}{${2:new tokens}}"
+      }
+    },
+    {
+      "name": "advancedate",
+      "unusual": true
+    },
+    {
+      "name": "advancemonth",
+      "unusual": true
+    },
+    {
+      "name": "classdayfalse",
+      "unusual": true
+    },
+    {
+      "name": "classdaytrue",
+      "unusual": true
+    },
+    {
+      "name": "curdate",
+      "unusual": true
+    },
+    {
+      "name": "ifclassday",
+      "unusual": true
+    },
+    {
+      "name": "ifleap",
+      "unusual": true
+    },
+    {
+      "name": "ifnewmonth",
+      "unusual": true
+    },
+    {
+      "name": "leapfalse",
+      "unusual": true
+    },
+    {
+      "name": "leaptrue",
+      "unusual": true
+    },
+    {
+      "name": "monthlength",
+      "unusual": true
+    },
+    {
+      "name": "monthname",
+      "unusual": true
+    },
+    {
+      "name": "newmonthfalse",
+      "unusual": true
+    },
+    {
+      "name": "newmonthtrue",
+      "unusual": true
+    },
+    {
+      "name": "ordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinal{${1:register}}"
+      }
+    },
+    {
+      "name": "ordinaldate",
+      "unusual": true
+    },
+    {
+      "name": "setdate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setdate{${1:mm/dd/yyyy}}"
+      }
+    },
+    {
+      "name": "setleap",
+      "unusual": true
+    },
+    {
+      "name": "theclassnum",
+      "unusual": true
+    },
+    {
+      "name": "thedate",
+      "unusual": true
+    },
+    {
+      "name": "themonth",
+      "unusual": true
+    },
+    {
+      "name": "thetextdaycount",
+      "unusual": true
+    },
+    {
+      "name": "theyear",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "calendar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:mm/dd/yyyy}}{${2:number of weeks}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

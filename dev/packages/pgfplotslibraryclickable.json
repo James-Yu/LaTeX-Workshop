@@ -1,20 +1,46 @@
 {
-  "includes": {
-    "insdljs": [],
-    "eforms": []
-  },
-  "macros": {
-    "pgfplotsclickablecreate[]": {
-      "snippet": "pgfplotsclickablecreate[${1:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "insdljs"
     },
-    "pgfplotscatcodeDQ": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "eforms"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgfplotsclickablecreate",
+      "arg": {
+        "format": "[]",
+        "snippet": "pgfplotsclickablecreate[${1:keyvals}]",
+        "keys": [
+          "\\pgfplotsclickablecreate#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\begin{axis}#c,\\begin{loglogaxis}#c,\\begin{semilogxaxis}#c,\\begin{semilogyaxis}#c,\\addplot#c,\\addplot3#c,\\addplot+#c,\\pgfplotsset#c,\\begin{groupplot}#c,\\nextgroupplot#c,\\begin{smithchart}#c,\\begin{polaraxis}#c,\\begin{ternaryaxis}#c": [
+      "clickable coords={${1:displayed text}}",
+      "clickable coords code={${1:TeX code}}",
+      "clickable coords size=${1:max chars}",
+      "clickable",
+      "annot/js fillColor=${1:JavaScript color}",
+      "annot/point format={${1:sprintf-format}}",
+      "annot/point format 3d={${1:sprintf-format}}",
+      "annot/slope format={${1:sprintf-format}}",
+      "annot/printable",
+      "annot/font=${1:JavaScript font name}",
+      "annot/textSize=${1:size in pts}",
+      "annot/popup size generic=${1:number}",
+      "annot/popup size snap=${1:number}",
+      "annot/popup size=${1:number}",
+      "annot/snap dist=${1:size in pts}",
+      "annot/richtext"
+    ],
+    "\\pgfplotsclickablecreate#c": [
       "js fillColor=${1:JavaScript color}",
       "point format={${1:sprintf-format}}",
       "point format 3d={${1:sprintf-format}}",
@@ -36,5 +62,6 @@
       "ymax=${1:number}",
       "collected plots"
     ]
-  ]
+  },
+  "args": []
 }

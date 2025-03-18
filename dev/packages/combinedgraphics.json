@@ -1,37 +1,53 @@
 {
-  "includes": {
-    "keyval": [],
-    "graphicx": [],
-    "color": []
-  },
-  "macros": {
-    "includecombinedgraphics{}": {
-      "snippet": "includecombinedgraphics{${1:file}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "includecombinedgraphics[]{}": {
-      "snippet": "includecombinedgraphics[${2:options}]{${1:file}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "color"
     }
-  },
-  "envs": {},
-  "options": [
-    "textfontcmd=${1:font csname}",
-    "textcolorcmd=${1:color csname}",
-    "vecscale=${1:factor}",
-    "vecwidth=",
-    "vecheight=",
-    "vecinclude=${1:file name}",
-    "vecfirst"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "includecombinedgraphics",
+      "arg": {
+        "format": "{}",
+        "snippet": "includecombinedgraphics{${1:file}}"
+      }
+    },
+    {
+      "name": "includecombinedgraphics",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "includecombinedgraphics[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\includecombinedgraphics"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/combinedgraphics#c": [
+      "textfontcmd=${1:font csname}",
+      "textcolorcmd=${1:color csname}",
+      "vecscale=${1:factor}",
+      "vecwidth=",
+      "vecheight=",
+      "vecinclude=${1:file name}",
+      "vecfirst"
+    ],
+    "\\includecombinedgraphics": [
       "textfont=${1:font commands}",
       "textcolor=${1:color commands}",
       "vecscale=${1:factor}",
       "vecwidth=",
       "vecheight=",
-      "vecinclude=",
+      "vecinclude=${1|auto,true,false,overwrite|}",
       "vecfirst",
       "vecfile=${1:file name}",
       "angle=${1:degrees}",
@@ -47,5 +63,8 @@
       "width=",
       "keepaspectratio"
     ]
+  },
+  "args": [
+    "\\usepackage/combinedgraphics#c"
   ]
 }

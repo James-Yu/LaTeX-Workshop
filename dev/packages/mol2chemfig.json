@@ -1,61 +1,150 @@
 {
-  "includes": {
-    "xcolor": [],
-    "chemfig": [],
-    "twoopt": [],
-    "ifmtarg": [],
-    "calc": [],
-    "xstring": [],
-    "tikzlibrarydecorations": []
-  },
-  "macros": {
-    "mcfinput{}": {
-      "snippet": "mcfinput{${1:file}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "mcfpush{}{}{}{}": {
-      "snippet": "mcfpush{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+    {
+      "name": "chemfig"
     },
-    "mcfpush[]{}{}{}{}": {
-      "snippet": "mcfpush[${5:length}]{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+    {
+      "name": "twoopt"
     },
-    "mcfpush[][]{}{}{}{}": {
-      "snippet": "mcfpush[${5:length1}][${6:length2}]{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+    {
+      "name": "ifmtarg"
     },
-    "mcfabove{}{}": {
-      "snippet": "mcfabove{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "calc"
     },
-    "mcfaboveright{}{}{}": {
-      "snippet": "mcfaboveright{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "xstring"
     },
-    "mcfatomno{}": {
-      "snippet": "mcfatomno{${1:number}}"
+    {
+      "name": "tikzlibrarydecorations"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mcfinput",
+      "arg": {
+        "format": "{}",
+        "snippet": "mcfinput{${1:file}}"
+      }
     },
-    "mcfbelow{}{}": {
-      "snippet": "mcfbelow{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "mcfpush",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mcfpush{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+      }
     },
-    "mcfbelowright{}{}{}": {
-      "snippet": "mcfbelowright{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+    {
+      "name": "mcfpush",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "mcfpush[${5:length}]{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+      }
     },
-    "mcfcringle{}": {
-      "snippet": "mcfcringle{${1:arg}}"
+    {
+      "name": "mcfpush",
+      "arg": {
+        "format": "[][]{}{}{}{}",
+        "snippet": "mcfpush[${5:length1}][${6:length2}]{${1:anchor1}}{${2:angle1:dist1}}{${3:anchor2}}{${4:angle2:dist2}}"
+      }
     },
-    "mcfelmove[]{}{}{}{}": {
-      "snippet": "mcfelmove[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "mcfabove",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mcfabove{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "mcfelmove{}{}{}{}": {
-      "snippet": "mcfelmove{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+    {
+      "name": "mcfaboveright",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mcfaboveright{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
     },
-    "mcfleft{}{}": {
-      "snippet": "mcfleft{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "mcfatomno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mcfatomno{${1:number}}"
+      }
     },
-    "mcfminus": {},
-    "mcfplus": {},
-    "mcfright{}{}": {
-      "snippet": "mcfright{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "mcfbelow",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mcfbelow{${1:arg1}}{${2:arg2}}"
+      }
     },
-    "mcfvspace": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "mcfbelowright",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mcfbelowright{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "mcfcringle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mcfcringle{${1:arg}}"
+      }
+    },
+    {
+      "name": "mcfelmove",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "mcfelmove[${5:opt}]{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "mcfelmove",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mcfelmove{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
+      }
+    },
+    {
+      "name": "mcfleft",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mcfleft{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mcfminus",
+      "unusual": true
+    },
+    {
+      "name": "mcfplus",
+      "unusual": true
+    },
+    {
+      "name": "mcfright",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mcfright{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "mcfvspace",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

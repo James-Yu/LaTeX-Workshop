@@ -1,20 +1,34 @@
 {
-  "includes": {},
-  "macros": {
-    "barefootnote{}": {
-      "snippet": "barefootnote{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "barefootnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "barefootnote{${1:text}}"
+      }
     },
-    "partauthor": {}
-  },
-  "envs": {
-    "inchapterbibliography{}": {
-      "name": "inchapterbibliography",
-      "snippet": "{${1:widest label}}"
+    {
+      "name": "partauthor",
+      "unusual": true
     }
-  },
-  "options": [
-    "rhchapnum",
-    "rhchapsec"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "inchapterbibliography",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:widest label}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/amsbooka#c": [
+      "rhchapnum",
+      "rhchapsec"
+    ]
+  },
+  "args": [
+    "\\usepackage/amsbooka#c"
+  ]
 }

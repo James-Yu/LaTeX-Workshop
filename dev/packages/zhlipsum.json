@@ -1,40 +1,73 @@
 {
-  "includes": {
-    "l3keys2e": []
-  },
-  "macros": {
-    "zhlipsum": {},
-    "zhlipsum[]": {
-      "snippet": "zhlipsum[${1:paragraph}]"
-    },
-    "zhlipsum[][]": {
-      "snippet": "zhlipsum[${1:paragraph}][${2:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "zhlipsum*": {},
-    "zhlipsum*[]": {
-      "snippet": "zhlipsum*[${1:paragraph}]"
-    },
-    "zhlipsum*[][]": {
-      "snippet": "zhlipsum*[${1:paragraph}][${2:keyvals}]",
-      "keyvalindex": 0,
-      "keyvalpos": 1
-    },
-    "newzhlipsum{}{}": {
-      "snippet": "newzhlipsum{${1:name}}{${2:paragraphs list}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     }
-  },
-  "envs": {},
-  "options": [
-    "encoding="
   ],
-  "keyvals": [
-    [
-      "name=",
+  "macros": [
+    {
+      "name": "zhlipsum"
+    },
+    {
+      "name": "zhlipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "zhlipsum[${1:paragraph}]"
+      }
+    },
+    {
+      "name": "zhlipsum",
+      "arg": {
+        "format": "[][]",
+        "snippet": "zhlipsum[${1:paragraph}][${2:keyvals}]",
+        "keys": [
+          "\\zhlipsum,\\zhlipsum*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "zhlipsum*"
+    },
+    {
+      "name": "zhlipsum*",
+      "arg": {
+        "format": "[]",
+        "snippet": "zhlipsum*[${1:paragraph}]"
+      }
+    },
+    {
+      "name": "zhlipsum*",
+      "arg": {
+        "format": "[][]",
+        "snippet": "zhlipsum*[${1:paragraph}][${2:keyvals}]",
+        "keys": [
+          "\\zhlipsum,\\zhlipsum*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "newzhlipsum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newzhlipsum{${1:name}}{${2:paragraphs list%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/zhlipsum#c": [
+      "encoding=${1|utf8,gbk,big5|}"
+    ],
+    "\\zhlipsum,\\zhlipsum*": [
+      "name=${1|simp,trad,nanshanjing,xiangyu,zhufu,aspirin|}",
       "before=${1:content}",
       "after=${1:content}",
       "inter=${1:content}"
     ]
+  },
+  "args": [
+    "\\usepackage/zhlipsum#c"
   ]
 }

@@ -1,59 +1,103 @@
 {
-  "includes": {
-    "verbatim": [],
-    "readarray": []
-  },
-  "macros": {
-    "verbfilebox{}": {
-      "snippet": "verbfilebox{${1:file}}"
+  "deps": [
+    {
+      "name": "verbatim"
     },
-    "verbfilebox[]{}": {
-      "snippet": "verbfilebox[${2:pre-commands}]{${1:file}}"
-    },
-    "theverbbox": {},
-    "boxtopsep": {},
-    "boxbottomsep": {},
-    "addvbuffer{}": {
-      "snippet": "addvbuffer{${1:object}}"
-    },
-    "addvbuffer[]{}": {
-      "snippet": "addvbuffer[${2:length}]{${1:object}}"
-    },
-    "verbfilenobox{}": {
-      "snippet": "verbfilenobox{${1:file}}"
-    },
-    "verbfilenobox[]{}": {
-      "snippet": "verbfilenobox[${2:pre-commands}]{${1:file}}"
-    },
-    "savedverbbox": {},
-    "theVerbboxLineNo": {},
-    "verbatimboxVersionNumber": {}
-  },
-  "envs": {
-    "verbbox": {},
-    "verbbox[]": {
-      "name": "verbbox",
-      "snippet": "[${1:pre-commands}]"
-    },
-    "myverbbox{}": {
-      "name": "myverbbox",
-      "snippet": "{${1:token}}"
-    },
-    "myverbbox[]{}": {
-      "name": "myverbbox",
-      "snippet": "[${2:pre-commands}]{${1:token}}"
-    },
-    "verbnobox": {},
-    "verbnobox[]": {
-      "name": "verbnobox",
-      "snippet": "[${1:pre-commands}]"
-    },
-    "origverbbox": {},
-    "origverbbox[]": {
-      "name": "origverbbox",
-      "snippet": "[${1:pre-commands}]"
+    {
+      "name": "readarray"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "verbfilebox",
+      "arg": {
+        "format": "{}",
+        "snippet": "verbfilebox{${1:file}}"
+      }
+    },
+    {
+      "name": "verbfilebox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "verbfilebox[${2:pre-commands}]{${1:file}}"
+      }
+    },
+    {
+      "name": "theverbbox"
+    },
+    {
+      "name": "boxtopsep",
+      "unusual": true
+    },
+    {
+      "name": "boxbottomsep",
+      "unusual": true
+    },
+    {
+      "name": "addvbuffer",
+      "arg": {
+        "format": "{}",
+        "snippet": "addvbuffer{${1:object}}"
+      }
+    },
+    {
+      "name": "addvbuffer",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addvbuffer[${2:length}]{${1:object}}"
+      }
+    },
+    {
+      "name": "verbfilenobox",
+      "arg": {
+        "format": "{}",
+        "snippet": "verbfilenobox{${1:file}}"
+      }
+    },
+    {
+      "name": "verbfilenobox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "verbfilenobox[${2:pre-commands}]{${1:file}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "verbbox"
+    },
+    {
+      "name": "verbbox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-commands}]"
+      }
+    },
+    {
+      "name": "myverbbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:token%cmd}}"
+      }
+    },
+    {
+      "name": "myverbbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:pre-commands}]{${1:token%cmd}}"
+      }
+    },
+    {
+      "name": "verbnobox"
+    },
+    {
+      "name": "verbnobox",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pre-commands}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

@@ -17,8 +17,8 @@ lw.cache = cache
 import { root } from './core/root'
 lw.root = root
 import { parser } from './parse'
+void parser.parse.reset()
 lw.parser = parser
-void lw.parser.parse.reset()
 import { compile } from './compile'
 lw.compile = compile
 import { preview, server, viewer } from './preview'
@@ -85,8 +85,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         }
     }))
 
-    /** The previous active TeX document path. If this changed, root need to be re-searched */
-    let prevTeXDocumentPath: string | undefined
     let isLaTeXActive = false
     extensionContext.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -100,16 +98,22 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             logger.showStatus()
         }
+
         if (e && !lw.file.isUriScheme(e.document.uri)) {
             return
         }
-        if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== prevTeXDocumentPath) {
-            prevTeXDocumentPath = e.document.fileName
+
+        if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
             await lw.root.find()
             lw.lint.latex.root()
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
+
+        if (e && lw.file.hasTeXLangId(e.document.languageId)) {
+            lw.previousActive = e
+        }
+
         if (e && (
             lw.file.hasTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
@@ -146,7 +150,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     void lw.root.find().then(() => {
         lw.lint.latex.root()
         if (lw.file.hasTeXLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
-            prevTeXDocumentPath = vscode.window.activeTextEditor?.document.fileName
+            lw.previousActive = vscode.window.activeTextEditor
         }
     })
     conflictCheck()
@@ -310,7 +314,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
         vscode.languages.registerFoldingRangeProvider(latexSelector, lw.language.folding),
-        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding)
+        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding),
+        vscode.languages.registerFoldingRangeProvider(latexDoctexSelector, lw.language.doctexFolding)
     )
 
     const selectionLatex = configuration.get('selection.smart.latex.enabled', true)

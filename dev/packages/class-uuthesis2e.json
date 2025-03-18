@@ -1,286 +1,579 @@
 {
-  "includes": {},
-  "macros": {
-    "abstracttitlepage": {},
-    "approvaldepartment{}": {
-      "snippet": "approvaldepartment{${1:date}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "abstracttitlepage",
+      "unusual": true
     },
-    "boxx": {},
-    "chairtitle{}": {
-      "snippet": "chairtitle{${1:title}}"
+    {
+      "name": "approvaldepartment",
+      "arg": {
+        "format": "{}",
+        "snippet": "approvaldepartment{${1:department%text}}"
+      }
     },
-    "committeeapproval": {},
-    "committeechair{}": {
-      "snippet": "committeechair{${1:name}}"
+    {
+      "name": "boxx",
+      "unusual": true
     },
-    "copyrightpage": {},
-    "copyrightyear{}": {
-      "snippet": "copyrightyear{${1:year}}"
+    {
+      "name": "chairtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "chairtitle{${1:title%text}}"
+      }
     },
-    "CSREPORTTITLE": {},
-    "dedication{}": {
-      "snippet": "dedication{${1:text}}"
+    {
+      "name": "committeeapproval",
+      "unusual": true
     },
-    "dedicationfalse": {},
-    "dedicationpage": {},
-    "dedicationtrue": {},
-    "degree{}": {
-      "snippet": "degree{${1:degree title}}"
+    {
+      "name": "committeechair",
+      "arg": {
+        "format": "{}",
+        "snippet": "committeechair{${1:name}}"
+      }
     },
-    "department{}": {
-      "snippet": "department{${1:department}}"
+    {
+      "name": "copyrightpage"
     },
-    "departmentchair{}": {
-      "snippet": "departmentchair{${1:name}}"
+    {
+      "name": "copyrightyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "copyrightyear{${1:year}}"
+      }
     },
-    "descriptionmargin": {},
-    "doublespacedheadings": {},
-    "EMX": {},
-    "fifthfalse": {},
-    "fifthtrue": {},
-    "firstreader{}": {
-      "snippet": "firstreader{${1:name}}"
+    {
+      "name": "CSREPORTTITLE",
+      "unusual": true
     },
-    "fivelevels": {},
-    "fixmainheadingSKIP": {},
-    "fourlevels": {},
-    "fourthfalse": {},
-    "fourthreader{}": {
-      "snippet": "fourthreader{${1:name}}"
+    {
+      "name": "dedication",
+      "arg": {
+        "format": "{}",
+        "snippet": "dedication{${1:text}}"
+      }
     },
-    "fourthtrue": {},
-    "frontmatter{}{}{}": {
-      "snippet": "frontmatter{${1:required file}}{${2:file}}{${3:title}}"
+    {
+      "name": "dedicationpage"
     },
-    "graduatedean{}": {
-      "snippet": "graduatedean{${1:name}}"
+    {
+      "name": "degree",
+      "arg": {
+        "format": "{}",
+        "snippet": "degree{${1:degree title%text}}"
+      }
     },
-    "HFapproval": {},
-    "HFapprovalsmall": {},
-    "HFchapter": {},
-    "HFchapterHT": {},
-    "HFchapterSKIP": {},
-    "HFmainhead": {},
-    "HFmainheadHT": {},
-    "HFmainheadSKIP": {},
-    "HFparagraph": {},
-    "HFparagraphHT": {},
-    "HFpart": {},
-    "HFpartHT": {},
-    "HFpartSKIP": {},
-    "HFsection": {},
-    "HFsectionHT": {},
-    "HFsubsection": {},
-    "HFsubsectionHT": {},
-    "HFsubsubsection": {},
-    "HFsubsubsectionHT": {},
-    "HFsubsubsubsection": {},
-    "HFsubsubsubsectionHT": {},
-    "honorsadvisor{}": {
-      "snippet": "honorsadvisor{${1:name}}"
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:department%text}}"
+      }
     },
-    "honorsdepartment{}": {
-      "snippet": "honorsdepartment{${1:department}}"
+    {
+      "name": "departmentchair",
+      "arg": {
+        "format": "{}",
+        "snippet": "departmentchair{${1:name}}"
+      }
     },
-    "honorsdirector{}": {
-      "snippet": "honorsdirector{${1:name}}"
+    {
+      "name": "descriptionmargin",
+      "unusual": true
     },
-    "honorssupervisor{}": {
-      "snippet": "honorssupervisor{${1:name}}"
+    {
+      "name": "doublespacedheadings",
+      "unusual": true
     },
-    "HONORSTITLE": {},
-    "ifdedication": {},
-    "iffifth": {},
-    "iffourth": {},
-    "iflistoffigures": {},
-    "iflistoftables": {},
-    "ifnoisy": {},
-    "ifrawbibliography": {},
-    "listoffiguresfalse": {},
-    "listoffigurestrue": {},
-    "listoftablesfalse": {},
-    "listoftablestrue": {},
-    "mainheading{}": {
-      "snippet": "mainheading{${1:text}}"
+    {
+      "name": "EMX",
+      "unusual": true
     },
-    "mainheadingtext{}{}": {
-      "snippet": "mainheadingtext{${1:text}}{${2:formatting}}"
+    {
+      "name": "firstreader",
+      "arg": {
+        "format": "{}",
+        "snippet": "firstreader{${1:name}}"
+      }
     },
-    "mainheadingwidth": {},
-    "minilength": {},
-    "minusfourthline": {},
-    "minushalfline": {},
-    "minusline": {},
-    "noappendix": {},
-    "nohyphenation": {},
-    "noisyfalse": {},
-    "noisytrue": {},
-    "normalspace": {},
-    "optionalfront{}{}": {
-      "snippet": "optionalfront{${1:title}}{${2:content}}"
+    {
+      "name": "fivelevels"
     },
-    "pf": {},
-    "plusfourthline": {},
-    "plushalfline": {},
-    "plusline": {},
-    "preface{}{}": {
-      "snippet": "preface{${1:file}}{${2:title}}"
+    {
+      "name": "fourlevels"
     },
-    "prefacesection{}": {
-      "snippet": "prefacesection{${1:title}}"
+    {
+      "name": "fourthreader",
+      "arg": {
+        "format": "{}",
+        "snippet": "fourthreader{${1:name}}"
+      }
     },
-    "proof{}": {
-      "snippet": "proof{${1:text}}"
+    {
+      "name": "frontmatter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "frontmatter{${1:required file}}{${2:file}}{${3:title}}"
+      }
     },
-    "proofline{}": {
-      "snippet": "proofline{${1:heading}}"
+    {
+      "name": "graduatedean",
+      "arg": {
+        "format": "{}",
+        "snippet": "graduatedean{${1:name}}"
+      }
     },
-    "qed": {},
-    "rawbibliographyfalse": {},
-    "rawbibliographytrue": {},
-    "ReaderPerson{}": {
-      "snippet": "ReaderPerson{${1:text}}"
+    {
+      "name": "honorsadvisor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "honorsadvisor{${1:name}}"
+      }
     },
-    "readingapproval": {},
-    "reportitle": {},
-    "reportnumber{}": {
-      "snippet": "reportnumber{${1:number}}"
+    {
+      "name": "honorsdepartment",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "honorsdepartment{${1:department%text}}"
+      }
     },
-    "reporttitle": {},
-    "reporttitlepage": {},
-    "requiredfrontmatter{}": {
-      "snippet": "requiredfrontmatter{${1:file}}"
+    {
+      "name": "honorsdirector",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "honorsdirector{${1:name}}"
+      }
     },
-    "secondreader{}": {
-      "snippet": "secondreader{${1:name}}"
+    {
+      "name": "honorssupervisor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "honorssupervisor{${1:name}}"
+      }
     },
-    "singlespacedheadings": {},
-    "submitdate{}": {
-      "snippet": "submitdate{${1:date}}"
+    {
+      "name": "HONORSTITLE",
+      "unusual": true
     },
-    "subsubsubsection[]{}": {
-      "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
+    {
+      "name": "mainheading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "mainheading{${1:text}}"
+      }
     },
-    "subsubsubsection{}": {
-      "snippet": "subsubsubsection{${1:title}}"
+    {
+      "name": "mainheadingtext",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mainheadingtext{${1:text}}{${2:formatting}}"
+      }
     },
-    "testsize{}{}": {
-      "snippet": "testsize{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "mainheadingwidth",
+      "unusual": true
     },
-    "thechapter": {},
-    "theoldchapter": {},
-    "theoldtocdepth": {},
-    "theoremsetup": {},
-    "thesisTOC{}": {
-      "snippet": "thesisTOC{${1:text}}"
+    {
+      "name": "minilength",
+      "unusual": true
     },
-    "thesistype{}": {
-      "snippet": "thesistype{${1:thesis|dissertation}}"
+    {
+      "name": "minusfourthline",
+      "unusual": true
     },
-    "thesubsubsubsection": {},
-    "thirdreader{}": {
-      "snippet": "thirdreader{${1:name}}"
+    {
+      "name": "minushalfline",
+      "unusual": true
     },
-    "threelevels": {},
-    "titlepage": {},
-    "topicslabel{}": {
-      "snippet": "topicslabel{${1:text}}"
+    {
+      "name": "minusline",
+      "unusual": true
     },
-    "twopagefigure{}{}": {
-      "snippet": "twopagefigure{${1:caption}}{${2:label}}"
+    {
+      "name": "noappendix",
+      "unusual": true
     },
-    "ulabel{}{}": {
-      "snippet": "ulabel{${1:label}}{${2:message}}"
+    {
+      "name": "nohyphenation",
+      "unusual": true
     },
-    "uunumberline{}": {
-      "snippet": "uunumberline{${1:text}}"
+    {
+      "name": "normalspace",
+      "unusual": true
     },
-    "vita": {},
-    "captionlineskip": {},
-    "captionONfalse": {},
-    "captionONtrue": {},
-    "ifcaptionON": {},
-    "legend{}": {
-      "snippet": "legend{${1:text}}"
+    {
+      "name": "optionalfront",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "optionalfront{${1:title}}{${2:content%text}}"
+      }
     },
-    "bibname": {},
-    "doublespace": {},
-    "fixchapterheading": {},
-    "frontmatterformat": {},
-    "HFsectionSKIP": {},
-    "HFsubsectionSKIP": {},
-    "HFsubsubsectionSKIP": {},
-    "HFsubsubsubsectionSKIP": {},
-    "HideMakeUppercase": {},
-    "maintext": {},
-    "singlespace": {},
-    "tracingoff": {},
-    "tracingon": {},
-    "bfunderline{}": {
-      "snippet": "bfunderline{${1:text}}"
+    {
+      "name": "pf",
+      "unusual": true
     },
-    "chairdateapproved{}": {
-      "snippet": "chairdateapproved{${1:date}}"
+    {
+      "name": "plusfourthline",
+      "unusual": true
     },
-    "dissertationapproval": {},
-    "firstdateapproved{}": {
-      "snippet": "firstdateapproved{${1:date}}"
+    {
+      "name": "plushalfline",
+      "unusual": true
     },
-    "fourthdateapproved{}": {
-      "snippet": "fourthdateapproved{${1:date}}"
+    {
+      "name": "plusline",
+      "unusual": true
     },
-    "seconddateapproved{}": {
-      "snippet": "seconddateapproved{${1:date}}"
+    {
+      "name": "preface",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "preface{${1:file}}{${2:title}}"
+      }
     },
-    "thirddateapproved{}": {
-      "snippet": "thirddateapproved{${1:date}}"
+    {
+      "name": "prefacesection",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "prefacesection{${1:title}}"
+      }
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "{}",
+        "snippet": "proof{${1:text}}"
+      }
+    },
+    {
+      "name": "proofline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "proofline{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "qed"
+    },
+    {
+      "name": "ReaderPerson",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ReaderPerson{${1:text}}"
+      }
+    },
+    {
+      "name": "readingapproval",
+      "unusual": true
+    },
+    {
+      "name": "reportitle",
+      "unusual": true
+    },
+    {
+      "name": "reportnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "reportnumber{${1:number}}"
+      }
+    },
+    {
+      "name": "reporttitle",
+      "unusual": true
+    },
+    {
+      "name": "reporttitlepage",
+      "unusual": true
+    },
+    {
+      "name": "requiredfrontmatter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "requiredfrontmatter{${1:file}}"
+      }
+    },
+    {
+      "name": "secondreader",
+      "arg": {
+        "format": "{}",
+        "snippet": "secondreader{${1:name}}"
+      }
+    },
+    {
+      "name": "singlespacedheadings",
+      "unusual": true
+    },
+    {
+      "name": "submitdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "submitdate{${1:date}}"
+      }
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "subsubsubsection[${2:short title}]{${1:title}}"
+      }
+    },
+    {
+      "name": "subsubsubsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "subsubsubsection{${1:title}}"
+      }
+    },
+    {
+      "name": "thechapter",
+      "unusual": true
+    },
+    {
+      "name": "theoremsetup",
+      "unusual": true
+    },
+    {
+      "name": "thesisTOC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thesisTOC{${1:text}}"
+      }
+    },
+    {
+      "name": "thesistype",
+      "arg": {
+        "format": "{}",
+        "snippet": "thesistype{${1:thesis|dissertation}}"
+      }
+    },
+    {
+      "name": "thesubsubsubsection",
+      "unusual": true
+    },
+    {
+      "name": "thirdreader",
+      "arg": {
+        "format": "{}",
+        "snippet": "thirdreader{${1:name}}"
+      }
+    },
+    {
+      "name": "threelevels"
+    },
+    {
+      "name": "titlepage"
+    },
+    {
+      "name": "topicslabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "topicslabel{${1:text}}"
+      }
+    },
+    {
+      "name": "twopagefigure",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "twopagefigure{${1:caption%text}}{${2:label}}"
+      }
+    },
+    {
+      "name": "ulabel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ulabel{${1:label}}{${2:message%text}}"
+      }
+    },
+    {
+      "name": "uunumberline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "uunumberline{${1:text}}"
+      }
+    },
+    {
+      "name": "vita",
+      "unusual": true
+    },
+    {
+      "name": "captionlineskip",
+      "unusual": true
+    },
+    {
+      "name": "legend",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "legend{${1:text}}"
+      }
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "copyrightpage"
+    },
+    {
+      "name": "doublespace",
+      "unusual": true
+    },
+    {
+      "name": "fixchapterheading",
+      "unusual": true
+    },
+    {
+      "name": "frontmatterformat"
+    },
+    {
+      "name": "maintext"
+    },
+    {
+      "name": "optionalfront",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "optionalfront{${1:title}}{${2:content%text}}"
+      }
+    },
+    {
+      "name": "singlespace",
+      "unusual": true
+    },
+    {
+      "name": "thesisTOC",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "thesisTOC{${1:text}}"
+      }
+    },
+    {
+      "name": "titlepage"
+    },
+    {
+      "name": "tracingoff",
+      "unusual": true
+    },
+    {
+      "name": "tracingon",
+      "unusual": true
+    },
+    {
+      "name": "approvaldepartment",
+      "arg": {
+        "format": "{}",
+        "snippet": "approvaldepartment{${1:date}}"
+      }
+    },
+    {
+      "name": "bfunderline",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "bfunderline{${1:text}}"
+      }
+    },
+    {
+      "name": "chairdateapproved",
+      "arg": {
+        "format": "{}",
+        "snippet": "chairdateapproved{${1:date}}"
+      }
+    },
+    {
+      "name": "dissertationapproval"
+    },
+    {
+      "name": "firstdateapproved",
+      "arg": {
+        "format": "{}",
+        "snippet": "firstdateapproved{${1:date}}"
+      }
+    },
+    {
+      "name": "fourthdateapproved",
+      "arg": {
+        "format": "{}",
+        "snippet": "fourthdateapproved{${1:date}}"
+      }
+    },
+    {
+      "name": "seconddateapproved",
+      "arg": {
+        "format": "{}",
+        "snippet": "seconddateapproved{${1:date}}"
+      }
+    },
+    {
+      "name": "thirddateapproved",
+      "arg": {
+        "format": "{}",
+        "snippet": "thirddateapproved{${1:date}}"
+      }
     }
-  },
-  "envs": {
-    "epigraph": {},
-    "doublespace": {},
-    "Proof": {},
-    "singlespace": {},
-    "topics{}": {
-      "name": "topics",
-      "snippet": "{${1:template}}"
-    },
-    "theorem": {},
-    "theorem[]": {
-      "name": "theorem",
-      "snippet": "[${1:heading}]"
-    },
-    "proposition": {},
-    "proposition[]": {
-      "name": "proposition",
-      "snippet": "[${1:heading}]"
-    },
-    "corollary": {},
-    "corollary[]": {
-      "name": "corollary",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "11pt",
-    "12pt",
-    "Chicago",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "report",
-    "titlepage",
-    "notitlepage",
-    "openright",
-    "openany",
-    "onecolumn",
-    "twocolumn",
-    "leqno",
-    "fleqn",
-    "honors",
-    "csreport",
-    "openbib"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "epigraph"
+    },
+    {
+      "name": "doublespace"
+    },
+    {
+      "name": "Proof"
+    },
+    {
+      "name": "singlespace"
+    },
+    {
+      "name": "topics",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:template%text}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/uuthesis2e#c": [
+      "11pt",
+      "12pt",
+      "Chicago",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "report",
+      "titlepage",
+      "notitlepage",
+      "openright",
+      "openany",
+      "onecolumn",
+      "twocolumn",
+      "leqno",
+      "fleqn",
+      "honors",
+      "csreport",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/uuthesis2e#c"
+  ]
 }

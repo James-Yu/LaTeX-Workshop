@@ -1,27 +1,62 @@
 {
-  "includes": {
-    "infwarerr": [],
-    "kvdefinekeys": []
+  "deps": [
+    {
+      "name": "infwarerr"
+    },
+    {
+      "name": "kvdefinekeys"
+    }
+  ],
+  "macros": [
+    {
+      "name": "AppendGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "AppendGraphicsExtensions{${1:ext list}}"
+      }
+    },
+    {
+      "name": "AppendGraphicsExtensions*",
+      "arg": {
+        "format": "{}",
+        "snippet": "AppendGraphicsExtensions*{${1:ext list}}"
+      }
+    },
+    {
+      "name": "PrependGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrependGraphicsExtensions{${1:ext list}}"
+      }
+    },
+    {
+      "name": "PrependGraphicsExtensions*",
+      "arg": {
+        "format": "{}",
+        "snippet": "PrependGraphicsExtensions*{${1:ext list}}"
+      }
+    },
+    {
+      "name": "RemoveGraphicsExtensions",
+      "arg": {
+        "format": "{}",
+        "snippet": "RemoveGraphicsExtensions{${1:ext list}}"
+      }
+    },
+    {
+      "name": "PrintGraphicsExtensions"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\includegraphics": [
+      "AppendGraphicsExtensions={${1:ext-list}}",
+      "AppendGraphicsExtensions*={${1:ext-list}}",
+      "PrependGraphicsExtensions={${1:ext-list}}",
+      "PrependGraphicsExtensions*={${1:ext-list}}",
+      "RemoveGraphicsExtensions={${1:ext-list}}",
+      "PrintGraphicsExtensions"
+    ]
   },
-  "macros": {
-    "AppendGraphicsExtensions{}": {
-      "snippet": "AppendGraphicsExtensions{${1:ext list}}"
-    },
-    "AppendGraphicsExtensions*{}": {
-      "snippet": "AppendGraphicsExtensions*{${1:ext list}}"
-    },
-    "PrependGraphicsExtensions{}": {
-      "snippet": "PrependGraphicsExtensions{${1:ext list}}"
-    },
-    "PrependGraphicsExtensions*{}": {
-      "snippet": "PrependGraphicsExtensions*{${1:ext list}}"
-    },
-    "RemoveGraphicsExtensions{}": {
-      "snippet": "RemoveGraphicsExtensions{${1:ext list}}"
-    },
-    "PrintGraphicsExtensions": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

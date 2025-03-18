@@ -1,25 +1,69 @@
 {
-  "includes": {
-    "amssymb": [],
-    "sansmathaccent": []
+  "deps": [
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "sansmathaccent"
+    }
+  ],
+  "macros": [
+    {
+      "name": "setbeamerfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setbeamerfont{${1:beamer-font name}}{${2:attributes%keyvals}}",
+        "keys": [
+          "\\setbeamerfont,\\setbeamerfont*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "setbeamerfont*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setbeamerfont*{${1:beamer-font name}}{${2:attributes%keyvals}}",
+        "keys": [
+          "\\setbeamerfont,\\setbeamerfont*"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usebeamerfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "usebeamerfont{${1:beamer-font name}}"
+      }
+    },
+    {
+      "name": "usebeamerfont*",
+      "arg": {
+        "format": "{}",
+        "snippet": "usebeamerfont*{${1:beamer-font name}}"
+      }
+    },
+    {
+      "name": "Tiny"
+    },
+    {
+      "name": "TINY"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setbeamerfont,\\setbeamerfont*": [
+      "size=${1:size command}",
+      "size*={${1:size in pt}}{${2:baselineskip}}",
+      "shape=${1:shape command}",
+      "shape*={${1:shape attribute abbreviation}}",
+      "series=${1:series command}",
+      "series*={${1:series attribute abbreviation}}",
+      "family=${1:family command}",
+      "family*={${1:family name}}",
+      "parent={${1:parent list}}"
+    ]
   },
-  "macros": {
-    "setbeamerfont{}{}": {
-      "snippet": "setbeamerfont{${1:beamer-font name}}{${2:attributes}}"
-    },
-    "setbeamerfont*{}{}": {
-      "snippet": "setbeamerfont*{${1:beamer-font name}}{${2:attributes}}"
-    },
-    "usebeamerfont{}": {
-      "snippet": "usebeamerfont{${1:beamer-font name}}"
-    },
-    "usebeamerfont*{}": {
-      "snippet": "usebeamerfont*{${1:beamer-font name}}"
-    },
-    "Tiny": {},
-    "TINY": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

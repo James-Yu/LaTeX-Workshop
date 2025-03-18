@@ -1,40 +1,99 @@
 {
-  "includes": {
-    "keyval": [],
-    "tikz": [],
-    "tikzlibrarymath": [],
-    "tikzlibrarydecorations.pathreplacing": [],
-    "tikzlibrarycalligraphy": [],
-    "tikzlibrarybackgrounds": []
-  },
-  "macros": {
-    "pmdEmpty": {},
-    "pmdBrick[]{}{}{}": {
-      "snippet": "pmdBrick[${4:options}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "pmdDiagram{}": {
-      "snippet": "pmdDiagram{${1:bricks}}"
+    {
+      "name": "tikz"
     },
-    "pmdDiagram[]{}": {
-      "snippet": "pmdDiagram[${2:options}]{${1:bricks}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarymath"
     },
-    "pmdProduct{}{}{}": {
-      "snippet": "pmdProduct{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}"
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
     },
-    "pmdProduct[]{}{}{}": {
-      "snippet": "pmdProduct[${4:options}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarycalligraphy"
+    },
+    {
+      "name": "tikzlibrarybackgrounds"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pmdEmpty"
+    },
+    {
+      "name": "pmdBrick",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pmdBrick[${4:options%keyvals}]{${1:U-edges}}{${2:L-edges}}{${3:T-edges}}",
+        "keys": [
+          "\\pmdBrick#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pmdDiagram",
+      "arg": {
+        "format": "{}",
+        "snippet": "pmdDiagram{${1:bricks}}"
+      }
+    },
+    {
+      "name": "pmdDiagram",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pmdDiagram[${2:options%keyvals}]{${1:bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c,\\pmdProductTriple#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pmdProduct",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pmdProduct{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}"
+      }
+    },
+    {
+      "name": "pmdProduct",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "pmdProduct[${4:options%keyvals}]{${1:A-edges}}{${2:T-bricks}}{${3:B-bricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c,\\pmdProductTriple#c",
+          "\\pmdProduct#c,\\pmdProductTriple#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pmdProductTriple",
+      "arg": {
+        "format": "{}{}{}}{}{}",
+        "snippet": "pmdProductTriple{${1:ATedges}}{${2:ABedges}}{${3:Tbricks}}}{${4:Mbricks}}{${5:Bbricks}}"
+      }
+    },
+    {
+      "name": "pmdProductTriple",
+      "arg": {
+        "format": "[]{}{}{}}{}{}",
+        "snippet": "pmdProductTriple[${6:options%keyvals}]{${1:ATedges}}{${2:ABedges}}{${3:Tbricks}}}{${4:Mbricks}}{${5:Bbricks}}",
+        "keys": [
+          "\\pmdDiagram#c,\\pmdProduct#c,\\pmdProductTriple#c",
+          "\\pmdProduct#c,\\pmdProductTriple#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pmdBrick#c": [
       "degree=${1:integer}",
       "degree top=${1:integer}",
       "degree bottom=${1:integer}",
@@ -42,6 +101,24 @@
       "blank bottom=${1:integer}",
       "row sep=${1:integer}",
       "vertices={${1:\\draw options}}",
+      "no vertex bottom 1=${1:integer}",
+      "no vertex bottom 2=${1:integer}",
+      "no vertex bottom 3=${1:integer}",
+      "no vertex bottom 4=${1:integer}",
+      "no vertex bottom 5=${1:integer}",
+      "no vertex bottom 6=${1:integer}",
+      "no vertex bottom 7=${1:integer}",
+      "no vertex bottom 8=${1:integer}",
+      "no vertex bottom 9=${1:integer}",
+      "no vertex top 1=${1:integer}",
+      "no vertex top 2=${1:integer}",
+      "no vertex top 3=${1:integer}",
+      "no vertex top 4=${1:integer}",
+      "no vertex top 5=${1:integer}",
+      "no vertex top 6=${1:integer}",
+      "no vertex top 7=${1:integer}",
+      "no vertex top 8=${1:integer}",
+      "no vertex top 9=${1:integer}",
       "vertices options={${1:code}}",
       "labels",
       "labels top",
@@ -49,6 +126,24 @@
       "labels start=${1:integer}",
       "labels top start=${1:integer}",
       "labels bottom start=${1:integer}",
+      "no label bottom 1=${1:integer}",
+      "no label bottom 2=${1:integer}",
+      "no label bottom 3=${1:integer}",
+      "no label bottom 4=${1:integer}",
+      "no label bottom 5=${1:integer}",
+      "no label bottom 6=${1:integer}",
+      "no label bottom 7=${1:integer}",
+      "no label bottom 8=${1:integer}",
+      "no label bottom 9=${1:integer}",
+      "no label top 1=${1:integer}",
+      "no label top 2=${1:integer}",
+      "no label top 3=${1:integer}",
+      "no label top 4=${1:integer}",
+      "no label top 5=${1:integer}",
+      "no label top 6=${1:integer}",
+      "no label top 7=${1:integer}",
+      "no label top 8=${1:integer}",
+      "no label top 9=${1:integer}",
       "labels top draw={${1:\\draw options}}",
       "labels top node={${1:\\node options}}",
       "labels bottom draw={${1:\\draw options}}",
@@ -58,6 +153,10 @@
       "no dots",
       "dots draw={${1:\\draw options}}",
       "dots node={${1:\\node options}}",
+      "vertices top phantom",
+      "vertices bottom phantom",
+      "vertices top uncover={${1:overlay spec}}",
+      "vertices bottom uncover={${1:overlay spec}}",
       "levels=${1:integer}",
       "levels top=${1:integer}",
       "levels bottom=${1:integer}",
@@ -71,13 +170,15 @@
       "edges transversal={${1:\\draw options}}",
       "edges first",
       "transversals first",
+      "edges phantom",
+      "edges uncover={${1:overlay spec}}",
       "brace={${1:options}}",
       "brace draw={${1:\\draw options}}",
       "brace node={${1:\\node options}}",
       "decorate before={${1:code}}",
       "decorate after={${1:code}}"
     ],
-    [
+    "\\pmdDiagram#c,\\pmdProduct#c,\\pmdProductTriple#c": [
       "row sep=${1:integer}",
       "tikz={${1:TikZ options}}",
       "dots options={${1:code}}",
@@ -85,16 +186,13 @@
       "decorate before={${1:code}}",
       "decorate after={${1:code}}"
     ],
-    [
-      "row sep=${1:integer}",
-      "tikz={${1:TikZ options}}",
-      "dots options={${1:code}}",
-      "grid",
-      "decorate before={${1:code}}",
-      "decorate after={${1:code}}",
+    "\\pmdProduct#c,\\pmdProductTriple#c": [
       "diagram sep=${1:number}",
       "vertex sep=${1:number}",
-      "edges added={${1:\\draw options}}"
+      "edges added={${1:\\draw options}}",
+      "edges added phantom",
+      "edges added uncover={${1:overlay spec}}"
     ]
-  ]
+  },
+  "args": []
 }

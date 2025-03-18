@@ -1,41 +1,86 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "graphicx": [],
-    "array": [],
-    "xcolor": [],
-    "fontspec": [],
-    "newverbs": [],
-    "environ": [],
-    "zref-savepos": []
-  },
-  "macros": {
-    "KashidaOff": {},
-    "KashidaOn": {},
-    "KashidaHMFixOn": {},
-    "KashidaHMFixOff": {},
-    "discouragebadlinebreaks{}": {
-      "snippet": "discouragebadlinebreaks{${1:text}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "discouragebadlinebreaks[]{}": {
-      "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}]{${1:text}}"
+    {
+      "name": "graphicx"
     },
-    "discouragebadlinebreaks[][]{}": {
-      "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}][${3:kashidastretch}]{${1:text}}"
+    {
+      "name": "array"
     },
-    "TeXNegar": {}
-  },
-  "envs": {},
-  "options": [
-    "Minimal=",
-    "Kashida=",
-    "linebreakpenalty=${1:integer}",
-    "ligatures=",
-    "color=",
-    "Kashidafontfamily=",
-    "hboxrecursion=",
-    "vboxrecursion=",
-    "kashidastretch="
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "fontspec"
+    },
+    {
+      "name": "newverbs"
+    },
+    {
+      "name": "environ"
+    },
+    {
+      "name": "zref-savepos"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "KashidaOff"
+    },
+    {
+      "name": "KashidaOn"
+    },
+    {
+      "name": "KashidaHMFixOn",
+      "unusual": true
+    },
+    {
+      "name": "KashidaHMFixOff",
+      "unusual": true
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "{}",
+        "snippet": "discouragebadlinebreaks{${1:text}}"
+      }
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}]{${1:text}}"
+      }
+    },
+    {
+      "name": "discouragebadlinebreaks",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "discouragebadlinebreaks[${2:linebreakpenalty}][${3:kashidastretch}]{${1:text}}"
+      }
+    },
+    {
+      "name": "TeXNegar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/texnegar#c": [
+      "Minimal=${1|On,Off|}",
+      "Kashida=${1|glyph,leaders+glyph,leaders+hrule,Off,On|}",
+      "linebreakpenalty=${1:integer}",
+      "ligatures=${1|aalt,ccmp,dlig,fina,init,locl,medi,rlig,default|}",
+      "color=",
+      "Kashidafontfamily=${1|AdobeArab,Amiri,HMXKayhan,ScheherazadeNew,Scheherazade|}",
+      "hboxrecursion=${1|On,Off|}",
+      "vboxrecursion=${1|On,Off|}",
+      "kashidastretch=${1|kayhan,khorramshahr,kayhannavaar,kayhanpook,kayhansayeh,khoramshahr,khorramshahr,niloofar,paatch,riyaz,roya,shafigh,shafighKurd,shafighUzbek,shiraz,sols,tabriz,titr,titre,traffic,vahid,vosta,yaghut,yagut,yas,yekan,yermook,zar,ziba,default,noskip|}"
+    ]
+  },
+  "args": [
+    "\\usepackage/texnegar#c"
+  ]
 }

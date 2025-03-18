@@ -1,81 +1,231 @@
 {
-  "includes": {
-    "array": [],
-    "colortbl": [],
-    "varwidth": [],
-    "ifthen": [],
-    "graphicx": [],
-    "ifpdf": []
-  },
-  "macros": {
-    "niveau{}{}": {
-      "snippet": "niveau{${1:départ}}{${2:total}}"
+  "deps": [
+    {
+      "name": "array"
     },
-    "croit": {},
-    "decroit": {},
-    "constante": {},
-    "dbarre": {},
-    "discont{}{}{}": {
-      "snippet": "discont{${1:valeur gauche}}{${2:ou}}{${3:valeur droite}}"
+    {
+      "name": "colortbl"
     },
-    "discont[]{}{}{}": {
-      "snippet": "discont[${4:num}]{${1:valeur gauche}}{${2:ou}}{${3:valeur droite}}"
+    {
+      "name": "varwidth"
     },
-    "barre{}": {
-      "snippet": "barre{${1:math}}"
+    {
+      "name": "ifthen"
     },
-    "TVcenter{}": {
-      "snippet": "TVcenter{${1:math}}"
+    {
+      "name": "graphicx"
     },
-    "TVstretch{}": {
-      "snippet": "TVstretch{${1:valeur}}"
-    },
-    "TVarrowscale": {},
-    "ardown": {},
-    "arhor": {},
-    "arup": {},
-    "eastarrow": {},
-    "eastarrowi": {},
-    "eastarrowii": {},
-    "eastarrowiii": {},
-    "eastarrowiv": {},
-    "enearrow": {},
-    "enearrowi": {},
-    "enearrowii": {},
-    "enearrowiii": {},
-    "enearrowiv": {},
-    "esearrow": {},
-    "esearrowi": {},
-    "esearrowii": {},
-    "esearrowiii": {},
-    "esearrowiv": {},
-    "FlecheC": {},
-    "FlecheD": {},
-    "FlecheH": {},
-    "FlechesMPfalse": {},
-    "FlechesMPtrue": {},
-    "ifFlechesMP": {},
-    "TVarraycolsep": {},
-    "TVarraystretch": {},
-    "TVarrowscolstretch": {},
-    "TVbox": {},
-    "TVcolorLeftSep": {},
-    "TVcolorRightSep": {},
-    "TVextradepth": {},
-    "TVextraheight": {},
-    "TVmaxcolwidth": {},
-    "TVnl": {},
-    "TVtabularnewline": {}
-  },
-  "envs": {
-    "tabvar{}": {
-      "name": "tabvar",
-      "snippet": "{${1:cols}}"
+    {
+      "name": "ifpdf"
     }
-  },
-  "options": [
-    "FlechesMP",
-    "FlechesPS"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "niveau",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "niveau{${1:départ}}{${2:total}}"
+      }
+    },
+    {
+      "name": "croit"
+    },
+    {
+      "name": "decroit"
+    },
+    {
+      "name": "constante"
+    },
+    {
+      "name": "dbarre"
+    },
+    {
+      "name": "discont",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "discont{${1:valeur gauche}}{${2:ou}}{${3:valeur droite}}"
+      }
+    },
+    {
+      "name": "discont",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "discont[${4:num}]{${1:valeur gauche}}{${2:ou}}{${3:valeur droite}}"
+      }
+    },
+    {
+      "name": "barre",
+      "arg": {
+        "format": "{}",
+        "snippet": "barre{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "TVcenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "TVcenter{${1:math%formula}}"
+      }
+    },
+    {
+      "name": "TVstretch",
+      "arg": {
+        "format": "{}",
+        "snippet": "TVstretch{${1:valeur}}"
+      }
+    },
+    {
+      "name": "TVarrowscale"
+    },
+    {
+      "name": "eastarrow",
+      "unusual": true
+    },
+    {
+      "name": "eastarrowi",
+      "unusual": true
+    },
+    {
+      "name": "eastarrowii",
+      "unusual": true
+    },
+    {
+      "name": "eastarrowiii",
+      "unusual": true
+    },
+    {
+      "name": "eastarrowiv",
+      "unusual": true
+    },
+    {
+      "name": "enearrow",
+      "unusual": true
+    },
+    {
+      "name": "enearrowi",
+      "unusual": true
+    },
+    {
+      "name": "enearrowii",
+      "unusual": true
+    },
+    {
+      "name": "enearrowiii",
+      "unusual": true
+    },
+    {
+      "name": "enearrowiv",
+      "unusual": true
+    },
+    {
+      "name": "esearrow",
+      "unusual": true
+    },
+    {
+      "name": "esearrowi",
+      "unusual": true
+    },
+    {
+      "name": "esearrowii",
+      "unusual": true
+    },
+    {
+      "name": "esearrowiii",
+      "unusual": true
+    },
+    {
+      "name": "esearrowiv",
+      "unusual": true
+    },
+    {
+      "name": "FlecheC",
+      "unusual": true
+    },
+    {
+      "name": "FlecheD",
+      "unusual": true
+    },
+    {
+      "name": "FlecheH",
+      "unusual": true
+    },
+    {
+      "name": "FlechesMPfalse",
+      "unusual": true
+    },
+    {
+      "name": "FlechesMPtrue",
+      "unusual": true
+    },
+    {
+      "name": "ifFlechesMP",
+      "unusual": true
+    },
+    {
+      "name": "TVarraycolsep",
+      "unusual": true
+    },
+    {
+      "name": "TVarraystretch",
+      "unusual": true
+    },
+    {
+      "name": "TVarrowscolstretch",
+      "unusual": true
+    },
+    {
+      "name": "TVbox",
+      "unusual": true
+    },
+    {
+      "name": "TVcolorLeftSep",
+      "unusual": true
+    },
+    {
+      "name": "TVcolorRightSep",
+      "unusual": true
+    },
+    {
+      "name": "TVextradepth",
+      "unusual": true
+    },
+    {
+      "name": "TVextraheight",
+      "unusual": true
+    },
+    {
+      "name": "TVextraheight",
+      "unusual": true
+    },
+    {
+      "name": "TVmaxcolwidth",
+      "unusual": true
+    },
+    {
+      "name": "TVnl",
+      "unusual": true
+    },
+    {
+      "name": "TVtabularnewline",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "tabvar",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cols}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/tabvar#c": [
+      "FlechesMP",
+      "FlechesPS"
+    ]
+  },
+  "args": [
+    "\\usepackage/tabvar#c"
+  ]
 }

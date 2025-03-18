@@ -1,26 +1,50 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "textls{}": {
-      "snippet": "textls{${1:text}}"
-    },
-    "textls[]{}": {
-      "snippet": "textls[${2:amount}]{${1:text}}"
-    },
-    "textls*{}": {
-      "snippet": "textls*{${1:text}}"
-    },
-    "textls*[]{}": {
-      "snippet": "textls*[${2:amount}]{${1:text}}"
-    },
-    "lsstyle": {},
-    "lslig{}": {
-      "snippet": "lslig{${1:ligature}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "textls",
+      "arg": {
+        "format": "{}",
+        "snippet": "textls{${1:text}}"
+      }
+    },
+    {
+      "name": "textls",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textls[${2:amount}]{${1:text}}"
+      }
+    },
+    {
+      "name": "textls*",
+      "arg": {
+        "format": "{}",
+        "snippet": "textls*{${1:text}}"
+      }
+    },
+    {
+      "name": "textls*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "textls*[${2:amount}]{${1:text}}"
+      }
+    },
+    {
+      "name": "lsstyle"
+    },
+    {
+      "name": "lslig",
+      "arg": {
+        "format": "{}",
+        "snippet": "lslig{${1:ligature}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

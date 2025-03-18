@@ -1,79 +1,159 @@
 {
-  "includes": {
-    "keyval": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryfadings": []
-  },
-  "macros": {
-    "ProductBoxSet{}": {
-      "snippet": "ProductBoxSet{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "ProductBoxThreeDStartHook": {},
-    "ProductBoxThreeDEndHook": {}
-  },
-  "envs": {
-    "ProductBox": {},
-    "ProductBox[]": {
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibraryfadings"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ProductBoxSet",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProductBoxSet{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{ProductBox},\\ProductBoxSet"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ProductBoxThreeDStartHook",
+      "unusual": true
+    },
+    {
+      "name": "ProductBoxThreeDEndHook",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "ProductBox"
+    },
+    {
       "name": "ProductBox",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{ProductBox},\\ProductBoxSet"
+        ],
+        "keyPos": 0
+      }
     },
-    "FrontFace": {},
-    "FrontFace[]": {
+    {
+      "name": "FrontFace"
+    },
+    {
       "name": "FrontFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "BackFace": {},
-    "BackFace[]": {
+    {
+      "name": "BackFace"
+    },
+    {
       "name": "BackFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "LeftFace": {},
-    "LeftFace[]": {
+    {
+      "name": "LeftFace"
+    },
+    {
       "name": "LeftFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "RightFace": {},
-    "RightFace[]": {
+    {
+      "name": "RightFace"
+    },
+    {
       "name": "RightFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "TopFace": {},
-    "TopFace[]": {
+    {
+      "name": "TopFace"
+    },
+    {
       "name": "TopFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "BottomFace": {},
-    "BottomFace[]": {
+    {
+      "name": "BottomFace"
+    },
+    {
       "name": "BottomFace",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}"
+        ],
+        "keyPos": 0
+      }
     },
-    "Front": {},
-    "Back": {},
-    "Left": {},
-    "Right": {},
-    "Top": {},
-    "Bottom": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "Front"
+    },
+    {
+      "name": "Back"
+    },
+    {
+      "name": "Left"
+    },
+    {
+      "name": "Right"
+    },
+    {
+      "name": "Top"
+    },
+    {
+      "name": "Bottom"
+    }
+  ],
+  "keys": {
+    "\\begin{ProductBox},\\ProductBoxSet": [
       "style=${1:box style}",
       "3D",
       "3d",
@@ -103,7 +183,7 @@
       "clean",
       "clip"
     ],
-    [
+    "\\begin{FrontFace},\\begin{BackFace},\\begin{LeftFace},\\begin{RightFace},\\begin{TopFace},\\begin{BottomFace}": [
       "color=",
       "top color=",
       "bottom color=",
@@ -113,5 +193,6 @@
       "inner color=",
       "outer color="
     ]
-  ]
+  },
+  "args": []
 }

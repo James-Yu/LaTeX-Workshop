@@ -1,187 +1,829 @@
 {
-  "includes": {
-    "tikz": [],
-    "etoolbox": [],
-    "verbatim": [],
-    "tikzlibraryquotes": [],
-    "tikzlibraryfit": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibraryintersections": [],
-    "tikzlibrarybackgrounds": [],
-    "tikzlibraryshapes": [],
-    "pdfcomment": [
-      "tooltip"
-    ]
-  },
-  "macros": {
-    "sseqtooltip{}{}": {
-      "snippet": "sseqtooltip{${1:text}}{${2:tooltip text}}",
-      "option": "tooltip"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "printpage": {},
-    "printpage[]": {
-      "snippet": "printpage[${1:options}]"
+    {
+      "name": "etoolbox"
     },
-    "replacesource": {},
-    "replacesource[]": {
-      "snippet": "replacesource[${1:options}]"
+    {
+      "name": "verbatim"
     },
-    "replacetarget": {},
-    "replacetarget[]": {
-      "snippet": "replacetarget[${1:options}]"
+    {
+      "name": "tikzlibraryquotes"
     },
-    "replacestructlines": {},
-    "classoptions[]": {
-      "snippet": "classoptions[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryfit"
     },
-    "structline": {},
-    "structline[]": {
-      "snippet": "structline[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "structlineoptions[]": {
-      "snippet": "structlineoptions[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibraryintersections"
     },
-    "extension": {},
-    "extension[]": {
-      "snippet": "extension[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarybackgrounds"
     },
-    "extensionoptions[]": {
-      "snippet": "extensionoptions[${1:options}]"
+    {
+      "name": "tikzlibraryshapes"
     },
-    "xcoord": {},
-    "ycoord": {},
-    "isalive{}": {
-      "snippet": "isalive{${1:(${2:coord1})...(${3:coordN})}}"
-    },
-    "sseqset{}": {
-      "snippet": "sseqset{${1:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "Do{}{}": {
-      "snippet": "Do{${1:iterations}}{${2:loop body}}"
-    },
-    "DoUntilOutOfBounds{}": {
-      "snippet": "DoUntilOutOfBounds{${1:loop body}}"
-    },
-    "DoUntilOutOfBoundsThenNMore{}{}": {
-      "snippet": "DoUntilOutOfBoundsThenNMore{${1:extra iterations}}{${2:loop body}}"
-    },
-    "iteration": {},
-    "NewSseqCommand{}{}{}": {
-      "snippet": "NewSseqCommand{${1:macro}}{${2:args}}{${3:definition}}"
-    },
-    "DeclareSseqCommand{}{}{}": {
-      "snippet": "DeclareSseqCommand{${1:macro}}{${2:args}}{${3:definition}}"
-    },
-    "NewSseqGroup{}{}{}": {
-      "snippet": "NewSseqGroup{${1:macro}}{${2:args}}{${3:definition}}"
-    },
-    "DeclareSseqGroup{}{}{}": {
-      "snippet": "DeclareSseqGroup{${1:macro}}{${2:args}}{${3:definition}}"
-    },
-    "SseqCopyPage{}{}{}": {
-      "snippet": "SseqCopyPage{${1:macro}}{${2:spectral sequence name}}{${3:page}}"
-    },
-    "SseqNewFamily{}": {
-      "snippet": "SseqNewFamily{${1:family name}}"
-    },
-    "sseqnewfamily{}": {
-      "snippet": "sseqnewfamily{${1:family name}}"
-    },
-    "SseqParseInt{}{}": {
-      "snippet": "SseqParseInt{${1:macro}}{${2:integer expr}}"
-    },
-    "sseqparseint{}{}": {
-      "snippet": "sseqparseint{${1:macro}}{${2:integer expr}}"
-    },
-    "SseqIfEmptyTF{}{}{}": {
-      "snippet": "SseqIfEmptyTF{${1:expression}}{${2:true}}{${3:false}}"
-    },
-    "SseqIfEmptyT{}{}": {
-      "snippet": "SseqIfEmptyT{${1:expression}}{${2:true}}"
-    },
-    "SseqIfEmptyF{}{}": {
-      "snippet": "SseqIfEmptyF{${1:expression}}{${2:false}}"
-    },
-    "SseqNormalizeMonomial{}": {
-      "snippet": "SseqNormalizeMonomial{${1:monomial}}"
-    },
-    "result": {},
-    "SseqNormalizeMonomialSetVariables{}": {
-      "snippet": "SseqNormalizeMonomialSetVariables{${1:monomial}}"
-    },
-    "SseqAHSSNameHandler": {},
-    "savestack": {},
-    "restorestack": {},
-    "SseqNewClassPattern{}{}": {
-      "snippet": "SseqNewClassPattern{${1:name}}{${2:offsets}}"
-    },
-    "sseqnewclasspattern{}{}": {
-      "snippet": "sseqnewclasspattern{${1:name}}{${2:offsets}}"
-    },
-    "SseqOrientationNormal": {},
-    "SseqOrientationSideways": {},
-    "SseqOrientationToggle": {},
-    "source": {},
-    "sourcecoord": {},
-    "target": {},
-    "targetcoord": {},
-    "circleclassobjname": {},
-    "classname": {},
-    "coord": {},
-    "coordnopar": {},
-    "handledname": {},
-    "next": {},
-    "nodenum": {},
-    "oldclassname": {},
-    "page": {},
-    "partialcoord": {},
-    "rawindex": {},
-    "sourcename": {},
-    "sseqifempty": {},
-    "sseqpower{}{}": {
-      "snippet": "sseqpower{${1:arg1}}{${2:arg2}}"
-    },
-    "sseqpowerempty{}{}": {
-      "snippet": "sseqpowerempty{${1:arg1}}{${2:arg2}}"
-    },
-    "ymax": {},
-    "ymin": {},
-    "xmax": {},
-    "xmin": {}
-  },
-  "envs": {
-    "sseqdata": {},
-    "sseqdata[]": {
-      "name": "sseqdata",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "sseqpage": {},
-    "sseqpage[]": {
-      "name": "sseqpage",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 5,
-      "keyvalpos": 0
-    },
-    "quiet": {}
-  },
-  "options": [
-    "draft",
-    "tooltips"
+    {
+      "name": "pdfcomment",
+      "if": "tooltip"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "sseqtooltip",
+      "if": "tooltip",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sseqtooltip{${1:text}}{${2:tooltip text}}"
+      }
+    },
+    {
+      "name": "printpage"
+    },
+    {
+      "name": "printpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "printpage[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "class",
+      "arg": {
+        "format": "()",
+        "snippet": "class(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "class",
+      "arg": {
+        "format": "[]()",
+        "snippet": "class[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "replaceclass",
+      "arg": {
+        "format": "()",
+        "snippet": "replaceclass(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "replaceclass",
+      "arg": {
+        "format": "()",
+        "snippet": "replaceclass(${1:x},${2:y},${3:n})"
+      }
+    },
+    {
+      "name": "replaceclass",
+      "arg": {
+        "format": "[]()",
+        "snippet": "replaceclass[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "replaceclass",
+      "arg": {
+        "format": "[]()",
+        "snippet": "replaceclass[${1:options%keyvals}](${2:x},${3:y},${4:n})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "replacesource"
+    },
+    {
+      "name": "replacesource",
+      "arg": {
+        "format": "[]",
+        "snippet": "replacesource[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "replacetarget"
+    },
+    {
+      "name": "replacetarget",
+      "arg": {
+        "format": "[]",
+        "snippet": "replacetarget[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "replacestructlines"
+    },
+    {
+      "name": "replacestructlines",
+      "arg": {
+        "format": "()",
+        "snippet": "replacestructlines(${1:source coord})"
+      }
+    },
+    {
+      "name": "classoptions",
+      "arg": {
+        "format": "[]()",
+        "snippet": "classoptions[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\classoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "classoptions",
+      "arg": {
+        "format": "[]()",
+        "snippet": "classoptions[${1:options%keyvals}](${2:x},${3:y},${4:n})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\classoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "classoptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]()",
+        "snippet": "classoptions[${1:options%keyvals}](${2:class name})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\classoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "classoptions",
+      "arg": {
+        "format": "[]",
+        "snippet": "classoptions[${1:options%keyvals}]",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\classoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "structline"
+    },
+    {
+      "name": "structline",
+      "arg": {
+        "format": "[]",
+        "snippet": "structline[${1:options%keyvals}]",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\structline#c,\\structlineoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "structline",
+      "arg": {
+        "format": "()()",
+        "snippet": "structline(${1:source coord})(${2:target coord})"
+      }
+    },
+    {
+      "name": "structline",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "structline[${1:options%keyvals}](${2:source coord})(${3:target coord})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\structline#c,\\structlineoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "structlineoptions",
+      "arg": {
+        "format": "[]",
+        "snippet": "structlineoptions[${1:options%keyvals}]",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\structline#c,\\structlineoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "structlineoptions",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "structlineoptions[${1:options%keyvals}](${2:source coord})(${3:target coord})",
+        "keys": [
+          "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c",
+          "\\structline#c,\\structlineoptions#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "extension"
+    },
+    {
+      "name": "extension",
+      "arg": {
+        "format": "[]",
+        "snippet": "extension[${1:options%keyvals}]",
+        "keys": [
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "extension",
+      "arg": {
+        "format": "()()",
+        "snippet": "extension(${1:source coord})(${2:target coord})"
+      }
+    },
+    {
+      "name": "extension",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "extension[${1:options%keyvals}](${2:source coord})(${3:target coord})",
+        "keys": [
+          "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "extensionoptions",
+      "arg": {
+        "format": "[]",
+        "snippet": "extensionoptions[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "extensionoptions",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "extensionoptions[${1:options%keyvals}](${2:source coord})(${3:target coord})"
+      }
+    },
+    {
+      "name": "circleclasses",
+      "arg": {
+        "format": "()()",
+        "snippet": "circleclasses(${1:source coord})(${2:target coord})"
+      }
+    },
+    {
+      "name": "circleclasses",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "circleclasses[${1:options%keyvals}](${2:source coord})(${3:target coord})",
+        "keys": [
+          "\\circleclasses#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "xcoord"
+    },
+    {
+      "name": "ycoord"
+    },
+    {
+      "name": "isalive",
+      "arg": {
+        "format": "()",
+        "snippet": "isalive(${1:coord})"
+      }
+    },
+    {
+      "name": "isalive",
+      "arg": {
+        "format": "{}",
+        "snippet": "isalive{${1:(${2:coord1})...(${3:coordN})}}"
+      }
+    },
+    {
+      "name": "sseqset",
+      "arg": {
+        "format": "{}",
+        "snippet": "sseqset{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{sseqdata}#c,\\begin{sseqpage}#c,\\sseqset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "Do",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Do{${1:iterations}}{${2:loop body}}"
+      }
+    },
+    {
+      "name": "DoUntilOutOfBounds",
+      "arg": {
+        "format": "{}",
+        "snippet": "DoUntilOutOfBounds{${1:loop body}}"
+      }
+    },
+    {
+      "name": "DoUntilOutOfBoundsThenNMore",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DoUntilOutOfBoundsThenNMore{${1:extra iterations}}{${2:loop body}}"
+      }
+    },
+    {
+      "name": "iteration"
+    },
+    {
+      "name": "NewSseqCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "NewSseqCommand{${1:macro%cmd}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "DeclareSseqCommand",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareSseqCommand{${1:macro%cmd}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "NewSseqGroup",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "NewSseqGroup{${1:macro%cmd}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "DeclareSseqGroup",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DeclareSseqGroup{${1:macro%cmd}}{${2:args}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "SseqCopyPage",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SseqCopyPage{${1:macro%cmd}}{${2:spectral sequence name}}{${3:page}}"
+      }
+    },
+    {
+      "name": "SseqNewFamily",
+      "arg": {
+        "format": "{}",
+        "snippet": "SseqNewFamily{${1:family name}}"
+      }
+    },
+    {
+      "name": "SseqParseInt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SseqParseInt{${1:macro%cmd}}{${2:integer expr}}"
+      }
+    },
+    {
+      "name": "SseqIfEmptyTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SseqIfEmptyTF{${1:expression}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "SseqIfEmptyT",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SseqIfEmptyT{${1:expression}}{${2:true}}"
+      }
+    },
+    {
+      "name": "SseqIfEmptyF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SseqIfEmptyF{${1:expression}}{${2:false}}"
+      }
+    },
+    {
+      "name": "IfExistsTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}{}",
+        "snippet": "IfExistsTF{${1:page}}(${4:coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfExistsT",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfExistsT{${1:page}}(${3:coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "IfExistsF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfExistsF{${1:page}}(${3:coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "IfAliveTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}{}",
+        "snippet": "IfAliveTF{${1:page}}(${4:coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfAliveT",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfAliveT{${1:page}}(${3:coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "IfAliveF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfAliveF{${1:page}}(${3:coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "IfOutOfBoundsTF",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "IfOutOfBoundsTF(${3:coord}){${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "IfOutOfBoundsT",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "IfOutOfBoundsT(${2:coord}){${1:true}}"
+      }
+    },
+    {
+      "name": "IfOutOfBoundsF",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "IfOutOfBoundsF(${2:coord}){${1:false}}"
+      }
+    },
+    {
+      "name": "IfInBoundsTF",
+      "unusual": true,
+      "arg": {
+        "format": "(){}{}",
+        "snippet": "IfInBoundsTF(${3:coord}){${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "IfInBoundsT",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "IfInBoundsT(${2:coord}){${1:true}}"
+      }
+    },
+    {
+      "name": "IfInBoundsF",
+      "unusual": true,
+      "arg": {
+        "format": "(){}",
+        "snippet": "IfInBoundsF(${2:coord}){${1:false}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}{}",
+        "snippet": "IfValidDifferentialTF{${1:page}}(${4:coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "IfValidDifferentialTF{${1:page}}(${4:coord})(${5:target coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialT",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfValidDifferentialT{${1:page}}(${3:coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialT",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "IfValidDifferentialT{${1:page}}(${3:coord})(${4:target coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "IfValidDifferentialF{${1:page}}(${3:coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "IfValidDifferentialF",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "IfValidDifferentialF{${1:page}}(${3:coord})(${4:target coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}{}",
+        "snippet": "DrawIfValidDifferentialTF{${1:page}}(${4:coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}{}",
+        "snippet": "DrawIfValidDifferentialTF{${1:page}}(${4:coord})(${5:target coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialTF",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}{}",
+        "snippet": "DrawIfValidDifferentialTF[${4:options}]{${1:page}}(${5:coord})(${6:target coord}){${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialT",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "DrawIfValidDifferentialT{${1:page}}(${3:coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialT",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "DrawIfValidDifferentialT{${1:page}}(${3:coord})(${4:target coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialT",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "DrawIfValidDifferentialT[${3:options}]{${1:page}}(${4:coord})(${5:target coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialF",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "DrawIfValidDifferentialF{${1:page}}(${3:coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialF",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "DrawIfValidDifferentialF{${1:page}}(${3:coord})(${4:target coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferentialF",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "DrawIfValidDifferentialF[${3:options}]{${1:page}}(${4:coord})(${5:target coord}){${2:false}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferential",
+      "unusual": true,
+      "arg": {
+        "format": "{}(){}",
+        "snippet": "DrawIfValidDifferential{${1:page}}(${3:coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferential",
+      "unusual": true,
+      "arg": {
+        "format": "{}()(){}",
+        "snippet": "DrawIfValidDifferential{${1:page}}(${3:coord})(${4:target coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "DrawIfValidDifferential",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}()(){}",
+        "snippet": "DrawIfValidDifferential[${3:options}]{${1:page}}(${4:coord})(${5:target coord}){${2:true}}"
+      }
+    },
+    {
+      "name": "SseqNormalizeMonomial",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SseqNormalizeMonomial{${1:monomial}}"
+      }
+    },
+    {
+      "name": "result",
+      "unusual": true
+    },
+    {
+      "name": "SseqNormalizeMonomialSetVariables",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SseqNormalizeMonomialSetVariables{${1:monomial}}"
+      }
+    },
+    {
+      "name": "SseqAHSSNameHandler",
+      "unusual": true
+    },
+    {
+      "name": "parsecoordinate",
+      "arg": {
+        "format": "{}()",
+        "snippet": "parsecoordinate{${1:macro%cmd}}(${2:coord})"
+      }
+    },
+    {
+      "name": "getdtarget",
+      "arg": {
+        "format": "{}{}()",
+        "snippet": "getdtarget{${1:macro%cmd}}{${2:page}}(${3:source coord})"
+      }
+    },
+    {
+      "name": "parsedifferential",
+      "arg": {
+        "format": "{}()",
+        "snippet": "parsedifferential{${1:page}}(${2:differential coord})"
+      }
+    },
+    {
+      "name": "parsedifferential",
+      "arg": {
+        "format": "{}()()",
+        "snippet": "parsedifferential{${1:page}}(${2:differential coord})(${3:differential target})"
+      }
+    },
+    {
+      "name": "nameclass",
+      "arg": {
+        "format": "{}()",
+        "snippet": "nameclass{${1:name}}(${2:coord})"
+      }
+    },
+    {
+      "name": "tagclass",
+      "arg": {
+        "format": "{}()",
+        "snippet": "tagclass{${1:tag}}(${2:coord})"
+      }
+    },
+    {
+      "name": "gettag",
+      "arg": {
+        "format": "{}()",
+        "snippet": "gettag{${1:macro%cmd}}(${2:coord})"
+      }
+    },
+    {
+      "name": "pushstack",
+      "arg": {
+        "format": "()",
+        "snippet": "pushstack(${1:coord})"
+      }
+    },
+    {
+      "name": "savestack"
+    },
+    {
+      "name": "restorestack"
+    },
+    {
+      "name": "SseqNewClassPattern",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SseqNewClassPattern{${1:name}}{${2:offsets}}"
+      }
+    },
+    {
+      "name": "SseqOrientationNormal"
+    },
+    {
+      "name": "SseqOrientationSideways"
+    },
+    {
+      "name": "SseqOrientationToggle"
+    }
+  ],
+  "envs": [
+    {
+      "name": "sseqdata"
+    },
+    {
+      "name": "sseqdata",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sseqdata}#c,\\begin{sseqpage}#c,\\sseqset#c",
+          "\\begin{sseqdata}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "sseqpage"
+    },
+    {
+      "name": "sseqpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{sseqdata}#c,\\begin{sseqpage}#c,\\sseqset#c",
+          "\\begin{sseqpage}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "quiet",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/spectralsequences#c": [
+      "draft",
+      "tooltips"
+    ],
+    "\\class#c,\\d#c,\\structline#c,\\replaceclass#c,\\classoptions#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c": [
       "xshift=${1:integer}",
       "yshift=${1:integer}",
       "%color",
@@ -210,56 +852,16 @@
       "tag=${1:tag}",
       "insert=${1:integer}",
       "offset={(${1:x,y})}",
-      "tooltip=${1:text}",
+      "tooltip=${1:text}"
+    ],
+    "\\classoptions#c": [
       "page=${1:page}",
       "page=${1:page}--${2:page max}",
       "generation=${1:generation}",
       "generation=${1:generation}--${2:generation max}",
       "fill"
     ],
-    [
-      "xshift=${1:integer}",
-      "yshift=${1:integer}",
-      "%color",
-      "\"${1:text}\"",
-      "\"${1:text}\" ${2:TikZ options}",
-      "\"${1:text}\"'",
-      "\"${1:text}\"' ${2:TikZ options}",
-      "pin={${1:TikZ options}}",
-      "description",
-      "circlen=${1:integer}",
-      "newellipse",
-      "ellipse ratio=${1:ratio}",
-      "isosceles triangle",
-      "rectangle",
-      "diamond",
-      "semicircle",
-      "regular polygon",
-      "regular polygon sides=${1:integer}",
-      "minimum width=",
-      "minimum height=",
-      "minimum size=",
-      "inner sep=",
-      "outer sep=",
-      "name=${1:node name}",
-      "show name={${1:label options}}",
-      "tag=${1:tag}",
-      "insert=${1:integer}",
-      "offset={(${1:x,y})}",
-      "tooltip=${1:text}",
-      "source anchor=${1:anchor}",
-      "target anchor=${1:anchor}",
-      "shorten >=",
-      "shorten <=",
-      "bend left=${1:angle}",
-      "bend right=${1:angle}",
-      "in=${1:anchor}",
-      "out=${1:anchor}",
-      "page=${1:page}",
-      "page=${1:page}--${2:page max}",
-      "dashed"
-    ],
-    [
+    "\\d#c,\\structline#c,\\extension#c,\\doptions#c,\\structlineoptions#c,\\replacestructlines#c": [
       "source anchor=${1:anchor}",
       "target anchor=${1:anchor}",
       "shorten >=",
@@ -269,7 +871,36 @@
       "in=${1:anchor}",
       "out=${1:anchor}"
     ],
-    [
+    "\\structline#c,\\structlineoptions#c": [
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}",
+      "dashed"
+    ],
+    "\\circleclasses#c": [
+      "fit=${1:coords or nodes}",
+      "rounded rectangle",
+      "ellipse ratio=${1:ratio}",
+      "class style",
+      "permanent cycle style",
+      "transient cycle style",
+      "this page class style",
+      "differential style",
+      "struct line style",
+      "page=${1:page}",
+      "page=${1:page}--${2:page max}"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\path#c,\\draw#c,\\fill#c,\\filldraw#c,\\pattern#c,\\shade#c,\\shadedraw#c,\\clip#c,\\node#c,\\coordinate#c,\\nodepart#c": [
+      "background",
+      "page constraint={${1:predicate}}",
+      "page constraint or={${1:predicate}}",
+      "class style",
+      "permanent cycle style",
+      "transient cycle style",
+      "this page class style",
+      "differential style",
+      "struct line style"
+    ],
+    "\\begin{sseqdata}#c,\\begin{sseqpage}#c,\\sseqset#c": [
       "sseqs={${1:keys}}",
       "change sseqs={${1:keys}}",
       "sseq={${1:keys}}",
@@ -404,9 +1035,9 @@
       "x tick handler=${1:macro}",
       "y tick handler=${1:macro}",
       "tick handler=${1:macro}",
-      "x axis type=",
-      "y axis type=",
-      "axes type=",
+      "x axis type=${1|border,center,frame,none|}",
+      "y axis type=${1|border,center,frame,none|}",
+      "axes type=${1|border,center,frame,none|}",
       "no x axis",
       "no y axis",
       "no axes",
@@ -433,335 +1064,14 @@
       "clip",
       "rotate labels"
     ],
-    [
-      "sseqs={${1:keys}}",
-      "change sseqs={${1:keys}}",
-      "sseq={${1:keys}}",
-      "change sseq={${1:keys}}",
-      "classes={${1:keys}}",
-      "cycles={${1:keys}}",
-      "change classes={${1:keys}}",
-      "change cycles={${1:keys}}",
-      "permanent classes={${1:keys}}",
-      "permanent cycles={${1:keys}}",
-      "change permanent classes={${1:keys}}",
-      "change permanent cycles={${1:keys}}",
-      "transient classes={${1:keys}}",
-      "transient cycles={${1:keys}}",
-      "change transient classes={${1:keys}}",
-      "change transient cycles={${1:keys}}",
-      "this page classes={${1:keys}}",
-      "this page cycles={${1:keys}}",
-      "change this page classes={${1:keys}}",
-      "change this page cycles={${1:keys}}",
-      "edges={${1:keys}}",
-      "differentials={${1:keys}}",
-      "struct lines={${1:keys}}",
-      "change edges={${1:keys}}",
-      "change differentials={${1:keys}}",
-      "change struct lines={${1:keys}}",
-      "this page struct lines={${1:keys}}",
-      "change this page struct lines={${1:keys}}",
-      "tikz primitives={${1:keys}}",
-      "change tikz primitives={${1:keys}}",
-      "labels={${1:keys}}",
-      "change labels={${1:keys}}",
-      "class labels={${1:keys}}",
-      "inner class labels={${1:keys}}",
-      "outer class labels={${1:keys}}",
-      "change class labels={${1:keys}}",
-      "change inner class labels={${1:keys}}",
-      "change outer class labels={${1:keys}}",
-      "edge labels={${1:keys}}",
-      "differential labels={${1:keys}}",
-      "struct line labels={${1:keys}}",
-      "change edge labels={${1:keys}}",
-      "change differential labels={${1:keys}}",
-      "change struct line labels={${1:keys}}",
-      "label distance=",
-      "above label distance=",
-      "below label distance=",
-      "left label distance=",
-      "right label distance=",
-      "above left label distance=",
-      "above right label distance=",
-      "below left label distance=",
-      "below right label distance=",
-      "run off=${1:start tip}-${2:end tip}",
-      "run off struct lines=${1:start tip}-${2:end tip}",
-      "run off differentials=${1:start tip}-${2:end tip}",
-      "class label handler=${1:macro}",
-      "class name handler=${1:macro}",
-      "class name prefix=${1:prefix}",
-      "class name postfix=${1:postfix}",
-      "name=${1:sseq name}",
-      "page=${1:page}",
-      "page=${1:page}--${2:page max}",
-      "degree={${1:x degree}}{${2:y degree}}",
-      "cohomological Serre grading",
-      "homological Serre grading",
-      "Adams grading",
-      "strict degree",
-      "lax degree",
-      "no differentials",
-      "draw differentials",
-      "no struct lines",
-      "draw struct lines",
-      "no orphan edges",
-      "draw orphan edges",
-      "class pattern=${1:class pattern name}",
-      "class placement transform={${1:transform keys}}",
-      "add class placement transform={${1:transform keys}}",
-      "math nodes",
-      "scale=${1:factor}",
-      "xscale=${1:factor}",
-      "yscale=${1:factor}",
-      "xmirror",
-      "ymirror",
-      "rotate=${1:angle}",
-      "x range={${1:x min}}{${2:x max}}",
-      "y range={${1:y min}}{${2:y max}}",
-      "range check standard",
-      "range check sideways",
-      "range check off",
-      "grid=${1:grid type}",
-      "grid color=",
-      "grid step=${1:integer}",
-      "x grid step=${1:integer}",
-      "y grid step=${1:integer}",
-      "title=${1:text}",
-      "title style={${1:keys}}",
-      "x label=${1:text}",
-      "y label=${1:text}",
-      "x label style={${1:keys}}",
-      "y label style={${1:keys}}",
-      "label style={${1:keys}}",
-      "no title",
-      "draw title",
-      "no x label",
-      "no y label",
-      "no labels",
-      "draw x label",
-      "draw y label",
-      "draw labels",
-      "no x ticks",
-      "no y ticks",
-      "no ticks",
-      "draw x ticks",
-      "draw y ticks",
-      "draw ticks",
-      "x tick step=${1:integer}",
-      "y tick step=${1:integer}",
-      "tick step=${1:integer}",
-      "x tick offset=${1:integer}",
-      "y tick offset=${1:integer}",
-      "tick offset=${1:integer}",
-      "x major tick step=${1:integer}",
-      "y major tick step=${1:integer}",
-      "major tick step=${1:integer}",
-      "x minor tick step=${1:integer}",
-      "y minor tick step=${1:integer}",
-      "minor tick step=${1:integer}",
-      "x tick style={${1:keys}}",
-      "y tick style={${1:keys}}",
-      "tick style={${1:keys}}",
-      "x tick handler=${1:macro}",
-      "y tick handler=${1:macro}",
-      "tick handler=${1:macro}",
-      "x axis type=",
-      "y axis type=",
-      "axes type=",
-      "no x axis",
-      "no y axis",
-      "no axes",
-      "x axis origin=${1:x value}",
-      "y axis origin=${1:y value}",
-      "x axis gap=",
-      "y axis gap=",
-      "axes gap=",
-      "x tick gap=",
-      "y tick gap=",
-      "x axis extend start=",
-      "y axis extend start=",
-      "x axis extend end=",
-      "y axis extend end=",
-      "x axis tail=",
-      "y axis tail=",
-      "x axis clip padding=",
-      "y axis clip padding=",
-      "right clip padding=",
-      "left clip padding=",
-      "top clip padding=",
-      "bottom clip padding=",
-      "custom clip=${1:clip path}",
-      "clip",
-      "rotate labels",
+    "\\begin{sseqdata}#c": [
       "update existing"
     ],
-    [
-      "sseqs={${1:keys}}",
-      "change sseqs={${1:keys}}",
-      "sseq={${1:keys}}",
-      "change sseq={${1:keys}}",
-      "classes={${1:keys}}",
-      "cycles={${1:keys}}",
-      "change classes={${1:keys}}",
-      "change cycles={${1:keys}}",
-      "permanent classes={${1:keys}}",
-      "permanent cycles={${1:keys}}",
-      "change permanent classes={${1:keys}}",
-      "change permanent cycles={${1:keys}}",
-      "transient classes={${1:keys}}",
-      "transient cycles={${1:keys}}",
-      "change transient classes={${1:keys}}",
-      "change transient cycles={${1:keys}}",
-      "this page classes={${1:keys}}",
-      "this page cycles={${1:keys}}",
-      "change this page classes={${1:keys}}",
-      "change this page cycles={${1:keys}}",
-      "edges={${1:keys}}",
-      "differentials={${1:keys}}",
-      "struct lines={${1:keys}}",
-      "change edges={${1:keys}}",
-      "change differentials={${1:keys}}",
-      "change struct lines={${1:keys}}",
-      "this page struct lines={${1:keys}}",
-      "change this page struct lines={${1:keys}}",
-      "tikz primitives={${1:keys}}",
-      "change tikz primitives={${1:keys}}",
-      "labels={${1:keys}}",
-      "change labels={${1:keys}}",
-      "class labels={${1:keys}}",
-      "inner class labels={${1:keys}}",
-      "outer class labels={${1:keys}}",
-      "change class labels={${1:keys}}",
-      "change inner class labels={${1:keys}}",
-      "change outer class labels={${1:keys}}",
-      "edge labels={${1:keys}}",
-      "differential labels={${1:keys}}",
-      "struct line labels={${1:keys}}",
-      "change edge labels={${1:keys}}",
-      "change differential labels={${1:keys}}",
-      "change struct line labels={${1:keys}}",
-      "label distance=",
-      "above label distance=",
-      "below label distance=",
-      "left label distance=",
-      "right label distance=",
-      "above left label distance=",
-      "above right label distance=",
-      "below left label distance=",
-      "below right label distance=",
-      "run off=${1:start tip}-${2:end tip}",
-      "run off struct lines=${1:start tip}-${2:end tip}",
-      "run off differentials=${1:start tip}-${2:end tip}",
-      "class label handler=${1:macro}",
-      "class name handler=${1:macro}",
-      "class name prefix=${1:prefix}",
-      "class name postfix=${1:postfix}",
-      "name=${1:sseq name}",
-      "page=${1:page}",
-      "page=${1:page}--${2:page max}",
-      "degree={${1:x degree}}{${2:y degree}}",
-      "cohomological Serre grading",
-      "homological Serre grading",
-      "Adams grading",
-      "strict degree",
-      "lax degree",
-      "no differentials",
-      "draw differentials",
-      "no struct lines",
-      "draw struct lines",
-      "no orphan edges",
-      "draw orphan edges",
-      "class pattern=${1:class pattern name}",
-      "class placement transform={${1:transform keys}}",
-      "add class placement transform={${1:transform keys}}",
-      "math nodes",
-      "scale=${1:factor}",
-      "xscale=${1:factor}",
-      "yscale=${1:factor}",
-      "xmirror",
-      "ymirror",
-      "rotate=${1:angle}",
-      "x range={${1:x min}}{${2:x max}}",
-      "y range={${1:y min}}{${2:y max}}",
-      "range check standard",
-      "range check sideways",
-      "range check off",
-      "grid=${1:grid type}",
-      "grid color=",
-      "grid step=${1:integer}",
-      "x grid step=${1:integer}",
-      "y grid step=${1:integer}",
-      "title=${1:text}",
-      "title style={${1:keys}}",
-      "x label=${1:text}",
-      "y label=${1:text}",
-      "x label style={${1:keys}}",
-      "y label style={${1:keys}}",
-      "label style={${1:keys}}",
-      "no title",
-      "draw title",
-      "no x label",
-      "no y label",
-      "no labels",
-      "draw x label",
-      "draw y label",
-      "draw labels",
-      "no x ticks",
-      "no y ticks",
-      "no ticks",
-      "draw x ticks",
-      "draw y ticks",
-      "draw ticks",
-      "x tick step=${1:integer}",
-      "y tick step=${1:integer}",
-      "tick step=${1:integer}",
-      "x tick offset=${1:integer}",
-      "y tick offset=${1:integer}",
-      "tick offset=${1:integer}",
-      "x major tick step=${1:integer}",
-      "y major tick step=${1:integer}",
-      "major tick step=${1:integer}",
-      "x minor tick step=${1:integer}",
-      "y minor tick step=${1:integer}",
-      "minor tick step=${1:integer}",
-      "x tick style={${1:keys}}",
-      "y tick style={${1:keys}}",
-      "tick style={${1:keys}}",
-      "x tick handler=${1:macro}",
-      "y tick handler=${1:macro}",
-      "tick handler=${1:macro}",
-      "x axis type=",
-      "y axis type=",
-      "axes type=",
-      "no x axis",
-      "no y axis",
-      "no axes",
-      "x axis origin=${1:x value}",
-      "y axis origin=${1:y value}",
-      "x axis gap=",
-      "y axis gap=",
-      "axes gap=",
-      "x tick gap=",
-      "y tick gap=",
-      "x axis extend start=",
-      "y axis extend start=",
-      "x axis extend end=",
-      "y axis extend end=",
-      "x axis tail=",
-      "y axis tail=",
-      "x axis clip padding=",
-      "y axis clip padding=",
-      "right clip padding=",
-      "left clip padding=",
-      "top clip padding=",
-      "bottom clip padding=",
-      "custom clip=${1:clip path}",
-      "clip",
-      "rotate labels",
+    "\\begin{sseqpage}#c": [
       "keep changes"
     ]
+  },
+  "args": [
+    "\\usepackage/spectralsequences#c"
   ]
 }

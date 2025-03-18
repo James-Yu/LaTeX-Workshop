@@ -1,172 +1,341 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": [],
-    "ifthen": [],
-    "luamplib": [],
-    "tikz": []
-  },
-  "macros": {
-    "buildMeshBW{}": {
-      "snippet": "buildMeshBW{${1:<${2:list of points}> or <file>}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "buildMeshBW[]{}": {
-      "snippet": "buildMeshBW[${2:options}]{${1:<${3:list of points}> or <file>}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "xcolor"
     },
-    "buildMeshBWinc{}{}{}": {
-      "snippet": "buildMeshBWinc{${1:<${4:list of points}> or <file>}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "ifthen"
     },
-    "buildMeshBWinc[]{}{}{}": {
-      "snippet": "buildMeshBWinc[${4:options}]{${1:<${5:list of points}> or <file>}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "luamplib"
     },
-    "drawPointsMesh{}": {
-      "snippet": "drawPointsMesh{${1:<${2:list of points}> or <file>}}"
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "buildMeshBW",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildMeshBW{${1:<list of points> or <file>}}"
+      }
     },
-    "drawPointsMesh[]{}": {
-      "snippet": "drawPointsMesh[${2:options}]{${1:<${3:list of points}> or <file>}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "buildMeshBW",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "buildMeshBW[${2:options}]{${1:<list of points> or <file>}}",
+        "keys": [
+          "\\buildMeshBW,\\buildMeshBWinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "drawPointsMeshinc{}{}{}": {
-      "snippet": "drawPointsMeshinc{${1:<${4:list of points}> or <file>}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "buildMeshBWinc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "buildMeshBWinc{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}"
+      }
     },
-    "drawPointsMeshinc[]{}{}{}": {
-      "snippet": "drawPointsMeshinc[${4:options}]{${1:<${5:list of points}> or <file>}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "buildMeshBWinc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "buildMeshBWinc[${4:options}]{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\buildMeshBW,\\buildMeshBWinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "meshAddPointBW{}{}": {
-      "snippet": "meshAddPointBW{${1:<${3:list of points}> or <file>}}{${2:<${4:point}> or <number of line>}}"
+    {
+      "name": "drawPointsMesh",
+      "arg": {
+        "format": "{}",
+        "snippet": "drawPointsMesh{${1:<list of points> or <file>}}"
+      }
     },
-    "meshAddPointBW[]{}{}": {
-      "snippet": "meshAddPointBW[${3:options}]{${1:<${4:list of points}> or <file>}}{${2:<${5:point}> or <number of line>}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "drawPointsMesh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "drawPointsMesh[${2:options}]{${1:<list of points> or <file>}}",
+        "keys": [
+          "\\drawPointsMesh,\\drawPointsMeshinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "meshAddPointBWinc{}{}{}{}": {
-      "snippet": "meshAddPointBWinc{${1:<${5:list of points}> or <file>}}{${2:<${6:point}> or <number of line>}}{${3:code before}}{${4:code after}}"
+    {
+      "name": "drawPointsMeshinc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "drawPointsMeshinc{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}"
+      }
     },
-    "meshAddPointBWinc[]{}{}{}{}": {
-      "snippet": "meshAddPointBWinc[${5:options}]{${1:<${6:list of points}> or <file>}}{${2:<${7:point}> or <number of line>}}{${3:code before}}{${4:code after}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "drawPointsMeshinc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "drawPointsMeshinc[${4:options}]{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\drawPointsMesh,\\drawPointsMeshinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "meshPolygon{}": {
-      "snippet": "meshPolygon{${1:<${2:list of points}> or <file>}}"
+    {
+      "name": "meshAddPointBW",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "meshAddPointBW{${1:<list of points> or <file>}}{${2:<point> or <number of line>}}"
+      }
     },
-    "meshPolygon[]{}": {
-      "snippet": "meshPolygon[${2:options}]{${1:<${3:list of points}> or <file>}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "meshAddPointBW",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "meshAddPointBW[${3:options}]{${1:<list of points> or <file>}}{${2:<point> or <number of line>}}",
+        "keys": [
+          "\\meshAddPointBW,\\meshAddPointBWinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "meshPolygonInc{}{}{}": {
-      "snippet": "meshPolygonInc{${1:<${4:list of points}> or <file>}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "meshAddPointBWinc",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "meshAddPointBWinc{${1:<list of points> or <file>}}{${2:<point> or <number of line>}}{${3:code before}}{${4:code after}}"
+      }
     },
-    "meshPolygonInc[]{}{}{}": {
-      "snippet": "meshPolygonInc[${4:options}]{${1:<${5:list of points}> or <file>}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "meshAddPointBWinc",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "meshAddPointBWinc[${5:options}]{${1:<list of points> or <file>}}{${2:<point> or <number of line>}}{${3:code before}}{${4:code after}}",
+        "keys": [
+          "\\meshAddPointBW,\\meshAddPointBWinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "luameshmpcolor": {},
-    "luameshmpcolorBack": {},
-    "luameshmpcolorBbox": {},
-    "luameshmpcolorCircle": {},
-    "luameshmpcolorNew": {},
-    "luameshmpcolorPoly": {},
-    "buildVoronoiBW{}": {
-      "snippet": "buildVoronoiBW{${1:<${2:list of points}> or <file>}}"
+    {
+      "name": "meshPolygon",
+      "arg": {
+        "format": "{}",
+        "snippet": "meshPolygon{${1:<list of points> or <file>}}"
+      }
     },
-    "buildVoronoiBW[]{}": {
-      "snippet": "buildVoronoiBW[${2:options}]{${1:<${3:list of points}> or <file>}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "meshPolygon",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "meshPolygon[${2:options}]{${1:<list of points> or <file>}}",
+        "keys": [
+          "\\meshPolygon,\\meshPolygonInc"
+        ],
+        "keyPos": 0
+      }
     },
-    "buildVoronoiBWinc{}{}{}": {
-      "snippet": "buildVoronoiBWinc{${1:<${4:list of points}> or <file>}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "meshPolygonInc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "meshPolygonInc{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}"
+      }
     },
-    "buildVoronoiBWinc[]{}{}{}": {
-      "snippet": "buildVoronoiBWinc[${4:options}]{${1:<${5:list of points}> or <file>}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "meshPolygonInc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "meshPolygonInc[${4:options}]{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\meshPolygon,\\meshPolygonInc"
+        ],
+        "keyPos": 0
+      }
     },
-    "luameshmpcolorVoronoi": {},
-    "drawGmsh{}": {
-      "snippet": "drawGmsh{${1:file}}"
+    {
+      "name": "luameshmpcolor"
     },
-    "drawGmsh[]{}": {
-      "snippet": "drawGmsh[${2:options}]{${1:file}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "luameshmpcolorBack"
     },
-    "drawGmshinc{}{}{}": {
-      "snippet": "drawGmshinc{${1:file}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "luameshmpcolorBbox"
     },
-    "drawGmshinc[]{}{}{}": {
-      "snippet": "drawGmshinc[${4:options}]{${1:file}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 5,
-      "keyvalpos": 0
+    {
+      "name": "luameshmpcolorCircle"
     },
-    "gmshVoronoi{}": {
-      "snippet": "gmshVoronoi{${1:file}}"
+    {
+      "name": "luameshmpcolorNew"
     },
-    "gmshVoronoi[]{}": {
-      "snippet": "gmshVoronoi[${2:options}]{${1:file}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "luameshmpcolorPoly"
     },
-    "gmshVoronoiinc{}{}{}": {
-      "snippet": "gmshVoronoiinc{${1:file}}{${2:code before}}{${3:code after}}"
+    {
+      "name": "buildVoronoiBW",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildVoronoiBW{${1:<list of points> or <file>}}"
+      }
     },
-    "gmshVoronoiinc[]{}{}{}": {
-      "snippet": "gmshVoronoiinc[${4:options}]{${1:file}}{${2:code before}}{${3:code after}}",
-      "keyvalindex": 6,
-      "keyvalpos": 0
+    {
+      "name": "buildVoronoiBW",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "buildVoronoiBW[${2:options}]{${1:<list of points> or <file>}}",
+        "keys": [
+          "\\buildVoronoiBW,\\buildVoronoiBWinc"
+        ],
+        "keyPos": 0
+      }
     },
-    "CircumPoint": {},
-    "MeshPoint": {},
-    "NewPoint": {},
-    "PackageName": {},
-    "filedate": {},
-    "fileversion": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
-      "mode=",
-      "bbox=",
+    {
+      "name": "buildVoronoiBWinc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "buildVoronoiBWinc{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}"
+      }
+    },
+    {
+      "name": "buildVoronoiBWinc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "buildVoronoiBWinc[${4:options}]{${1:<list of points> or <file>}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\buildVoronoiBW,\\buildVoronoiBWinc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "luameshmpcolorVoronoi"
+    },
+    {
+      "name": "drawGmsh",
+      "arg": {
+        "format": "{}",
+        "snippet": "drawGmsh{${1:file}}"
+      }
+    },
+    {
+      "name": "drawGmsh",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "drawGmsh[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\drawGmsh,\\drawGmshinc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "drawGmshinc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "drawGmshinc{${1:file}}{${2:code before}}{${3:code after}}"
+      }
+    },
+    {
+      "name": "drawGmshinc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "drawGmshinc[${4:options%keyvals}]{${1:file}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\drawGmsh,\\drawGmshinc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gmshVoronoi",
+      "arg": {
+        "format": "{}",
+        "snippet": "gmshVoronoi{${1:file}}"
+      }
+    },
+    {
+      "name": "gmshVoronoi",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "gmshVoronoi[${2:options%keyvals}]{${1:file}}",
+        "keys": [
+          "\\gmshVoronoi,\\gmshVoronoiinc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gmshVoronoiinc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "gmshVoronoiinc{${1:file}}{${2:code before}}{${3:code after}}"
+      }
+    },
+    {
+      "name": "gmshVoronoiinc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "gmshVoronoiinc[${4:options%keyvals}]{${1:file}}{${2:code before}}{${3:code after}}",
+        "keys": [
+          "\\gmshVoronoi,\\gmshVoronoiinc"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CircumPoint",
+      "unusual": true
+    },
+    {
+      "name": "MeshPoint",
+      "unusual": true
+    },
+    {
+      "name": "NewPoint",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\buildMeshBW,\\buildMeshBWinc": [
+      "mode=${1|int,ext|}",
+      "bbox=${1|none,show|}",
       "color=",
       "colorBbox=",
-      "print=",
+      "print=${1|none,points,dotpoints|}",
       "meshpoint=${1:letter(s)}",
       "tikz",
       "scale=",
       "thickness="
     ],
-    [
-      "mode=",
-      "bbox=",
+    "\\drawPointsMesh,\\drawPointsMeshinc": [
+      "mode=${1|int,ext|}",
+      "bbox=${1|none,show|}",
       "color=",
       "colorBbox=",
-      "print=",
+      "print=${1|none,points|}",
       "meshpoint=${1:letter(s)}",
       "tikz",
       "scale="
     ],
-    [
-      "mode=",
-      "bbox=",
+    "\\meshAddPointBW,\\meshAddPointBWinc": [
+      "mode=${1|int,ext|}",
+      "bbox=${1|none,show|}",
       "color=",
       "colorBbox=",
       "colorNew=",
       "colorBack=",
       "colorCircle=",
       "meshpoint=${1:letter(s)}",
-      "step=",
+      "step=${1|badtriangles,cavity,newtriangles|}",
       "newpoint=${1:letter(s)}",
       "tikz",
       "scale=",
@@ -174,58 +343,59 @@
       "thicknessNew=",
       "thicknessCircle="
     ],
-    [
-      "mode=",
+    "\\meshPolygon,\\meshPolygonInc": [
+      "mode=${1|int,ext|}",
       "h=${1:number}",
       "color=",
       "colorPolygon=",
-      "print=",
+      "print=${1|none,points,dotpoints|}",
       "meshpoint=${1:letter(s)}",
-      "step=",
+      "step=${1|polygon,grid,points,mesh|}",
       "tikz",
       "scale=",
-      "gridpoints=",
+      "gridpoints=${1|rect,perturb|}",
       "thickness=",
       "thicknessPolygon="
     ],
-    [
-      "mode=",
-      "bbox=",
+    "\\buildVoronoiBW,\\buildVoronoiBWinc": [
+      "mode=${1|int,ext|}",
+      "bbox=${1|none,show|}",
       "color=",
       "colorBbox=",
       "colorVoronoi=",
-      "print=",
+      "print=${1|none,points|}",
       "meshpoint=${1:letter(s)}",
       "circumpoint=${1:letter(s)}",
       "tikz",
       "scale=",
-      "delaunay=",
-      "styleDelaunay=",
-      "styleVoronoi=",
+      "delaunay=${1|none,show|}",
+      "styleDelaunay=${1|none,dashed|}",
+      "styleVoronoi=${1|none,dashed|}",
       "thickness=",
       "thicknessVoronoi="
     ],
-    [
+    "\\drawGmsh,\\drawGmshinc": [
       "color=",
-      "print=",
+      "print=${1|none,points|}",
       "meshpoint=${1:letter(s)}",
       "tikz",
       "scale=",
       "thickness="
     ],
-    [
+    "\\gmshVoronoi,\\gmshVoronoiinc": [
       "color=",
       "colorVoronoi=",
-      "print=",
+      "print=${1|none,points|}",
       "meshpoint=${1:letter(s)}",
       "circumpoint=${1:letter(s)}",
       "tikz",
       "scale=",
-      "delaunay=",
-      "styleDelaunay=",
-      "styleVoronoi=",
+      "delaunay=${1|none,show|}",
+      "styleDelaunay=${1|none,dashed|}",
+      "styleVoronoi=${1|none,dashed|}",
       "thickness=",
       "thicknessVoronoi="
     ]
-  ]
+  },
+  "args": []
 }

@@ -1,27 +1,54 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "fontenc": [],
-    "fontaxes": [],
-    "mweights": []
-  },
-  "macros": {
-    "ibarra": {},
-    "ibarraSemiBold": {},
-    "liningnums{}": {
-      "snippet": "liningnums{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "ibarrafamily": {}
-  },
-  "envs": {},
-  "options": [
-    "scaled=${1:factor}",
-    "lining",
-    "oldstyle",
-    "type1",
-    "semibold"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "fontaxes"
+    },
+    {
+      "name": "mweights"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "ibarra"
+    },
+    {
+      "name": "ibarraSemiBold"
+    },
+    {
+      "name": "liningnums",
+      "arg": {
+        "format": "{}",
+        "snippet": "liningnums{${1:text}}"
+      }
+    },
+    {
+      "name": "ibarrafamily",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ibarra#c": [
+      "scaled=${1:factor}",
+      "lining",
+      "oldstyle",
+      "type1",
+      "semibold"
+    ]
+  },
+  "args": [
+    "\\usepackage/ibarra#c"
+  ]
 }

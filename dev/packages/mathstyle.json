@@ -1,34 +1,74 @@
 {
-  "includes": {},
-  "macros": {
-    "mathstyle": {},
-    "mathstyledenom": {},
-    "currentmathstyle": {},
-    "fracstyle": {},
-    "genfrac{}{}{}{}{}{}": {
-      "snippet": "genfrac{${1:left-delim}}{${2:right-delim}}{${3:thickness}}{${4:mathstyle}}{${5:numerator}}{${6:denominator}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "mathstyle",
+      "unusual": true
     },
-    "dfrac{}{}": {
-      "snippet": "dfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "mathstyledenom",
+      "unusual": true
     },
-    "tfrac{}{}": {
-      "snippet": "tfrac{${1:numerator}}{${2:denominator}}"
+    {
+      "name": "currentmathstyle",
+      "unusual": true
     },
-    "binom{}{}": {
-      "snippet": "binom{${1:above}}{${2:below}}"
+    {
+      "name": "fracstyle",
+      "unusual": true
     },
-    "tbinom{}{}": {
-      "snippet": "tbinom{${1:above}}{${2:below}}"
+    {
+      "name": "genfrac",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "genfrac{${1:left-delim}}{${2:right-delim}}{${3:thickness%l}}{${4:mathstyle}}{${5:numerator}}{${6:denominator}}"
+      }
     },
-    "dbinom{}{}": {
-      "snippet": "dbinom{${1:above}}{${2:below}}"
+    {
+      "name": "dfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "tfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tfrac{${1:numerator}}{${2:denominator}}"
+      }
+    },
+    {
+      "name": "binom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "binom{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "tbinom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tbinom{${1:above}}{${2:below}}"
+      }
+    },
+    {
+      "name": "dbinom",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dbinom{${1:above}}{${2:below}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "mathactivechars",
-    "activechars",
-    "noactivechars"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/mathstyle#c": [
+      "mathactivechars",
+      "activechars",
+      "noactivechars"
+    ]
+  },
+  "args": [
+    "\\usepackage/mathstyle#c"
+  ]
 }

@@ -1,20 +1,140 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": [],
-    "pst-node": []
-  },
-  "macros": {
-    "ProLineCol": {},
-    "ProFillCol": {},
-    "pencilColA": {},
-    "pencilColB": {},
-    "RulerFillCol": {},
-    "PoCFillCol": {},
-    "PoCMineCol": {},
-    "PSTgeometrictoolsLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-xkey"
+    },
+    {
+      "name": "pst-node"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psProtractor",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psProtractor{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psProtractor",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psProtractor[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "ProLineCol",
+      "unusual": true
+    },
+    {
+      "name": "ProFillCol",
+      "unusual": true
+    },
+    {
+      "name": "psPencil",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psPencil{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psPencil",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psPencil[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "pencilColA",
+      "unusual": true
+    },
+    {
+      "name": "pencilColB",
+      "unusual": true
+    },
+    {
+      "name": "psRuler",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psRuler{${1:angle}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psRuler",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psRuler[${2:options%keyvals}]{${1:angle}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "RulerFillCol",
+      "unusual": true
+    },
+    {
+      "name": "psCompass",
+      "arg": {
+        "format": "{}()",
+        "snippet": "psCompass{${1:radius}}(${2:x},${3:y})"
+      }
+    },
+    {
+      "name": "psCompass",
+      "arg": {
+        "format": "[]{}()",
+        "snippet": "psCompass[${2:options%keyvals}]{${1:radius}}(${3:x},${4:y})"
+      }
+    },
+    {
+      "name": "PoCFillCol",
+      "unusual": true
+    },
+    {
+      "name": "PoCMineCol",
+      "unusual": true
+    },
+    {
+      "name": "psDistAB",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psDistAB(${2:A})(${3:B}){${1:name}}"
+      }
+    },
+    {
+      "name": "psAngleAB",
+      "unusual": true,
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psAngleAB(${2:A})(${3:B}){${1:name}}"
+      }
+    },
+    {
+      "name": "psAngleAOB",
+      "unusual": true,
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "psAngleAOB(${2:A})(${3:O})(${4:B}){${1:name}}"
+      }
+    },
+    {
+      "name": "psParallels",
+      "arg": {
+        "format": "()()()",
+        "snippet": "psParallels(${1:A})(${2:B})(${3:C})"
+      }
+    },
+    {
+      "name": "psParallels",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "psParallels[${1:options%keyvals}](${2:A})(${3:B})(${4:C})"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

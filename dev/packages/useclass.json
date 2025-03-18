@@ -1,20 +1,36 @@
 {
-  "includes": {},
-  "macros": {
-    "useclass{}": {
-      "snippet": "useclass{${1:class}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "useclass",
+      "arg": {
+        "format": "{}",
+        "snippet": "useclass{${1:class}}"
+      }
     },
-    "useclass[]{}": {
-      "snippet": "useclass[${2:options}]{${1:class}}"
+    {
+      "name": "useclass",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useclass[${2:options%keyvals}]{${1:class}}"
+      }
     },
-    "useclass*{}": {
-      "snippet": "useclass*{${1:class}}"
+    {
+      "name": "useclass*",
+      "arg": {
+        "format": "{}",
+        "snippet": "useclass*{${1:class}}"
+      }
     },
-    "useclass*[]{}": {
-      "snippet": "useclass*[${2:options}]{${1:class}}"
+    {
+      "name": "useclass*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "useclass*[${2:options%keyvals}]{${1:class}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

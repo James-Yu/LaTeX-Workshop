@@ -1,39 +1,93 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psAffinTransform[]{}{}": {
-      "snippet": "psAffinTransform[${3:options}]{${1:transformation matrix}}{${2:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "psAffinTransform{}{}": {
-      "snippet": "psAffinTransform{${1:transformation matrix}}{${2:stuff}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psAffinTransform",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psAffinTransform[${3:options%keyvals}]{${1:transformation matrix}}{${2:stuff}}"
+      }
     },
-    "pssetzlength{}{}": {
-      "snippet": "pssetzlength{${1:cmd}}{${2:dim}}"
+    {
+      "name": "psAffinTransform",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psAffinTransform{${1:transformation matrix}}{${2:stuff}}"
+      }
     },
-    "psshadow[]{}": {
-      "snippet": "psshadow[${2:options}]{${1:stuff}}"
+    {
+      "name": "pssetzlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pssetzlength{${1:cmd}}{${2:dim}}"
+      }
     },
-    "psshadow{}": {
-      "snippet": "psshadow{${1:stuff}}"
+    {
+      "name": "psshadow",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "psshadow[${2:options%keyvals}]{${1:stuff}}"
+      }
     },
-    "pstilt[]{}{}": {
-      "snippet": "pstilt[${3:options}]{${1:angle}}{${2:stuff}}"
+    {
+      "name": "psshadow",
+      "arg": {
+        "format": "{}",
+        "snippet": "psshadow{${1:stuff}}"
+      }
     },
-    "psTilt[]{}{}": {
-      "snippet": "psTilt[${3:options}]{${1:angle}}{${2:stuff}}"
+    {
+      "name": "pstilt",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pstilt[${3:options%keyvals}]{${1:angle}}{${2:stuff}}"
+      }
     },
-    "pstilt{}{}": {
-      "snippet": "pstilt{${1:angle}}{${2:stuff}}"
+    {
+      "name": "psTilt",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "psTilt[${3:options%keyvals}]{${1:angle}}{${2:stuff}}"
+      }
     },
-    "psTilt{}{}": {
-      "snippet": "psTilt{${1:angle}}{${2:stuff}}"
+    {
+      "name": "pstilt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pstilt{${1:angle}}{${2:stuff}}"
+      }
     },
-    "PSTthreeDLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "psTilt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "psTilt{${1:angle}}{${2:stuff}}"
+      }
+    },
+    {
+      "name": "ThreeDput",
+      "arg": {
+        "format": "(){}",
+        "snippet": "ThreeDput(${2:x},${3:y},${4:z}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "ThreeDput",
+      "arg": {
+        "format": "[](){}",
+        "snippet": "ThreeDput[${2:options%keyvals}](${3:x},${4:y},${5:z}){${1:stuff}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,73 +1,377 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-node": [],
-    "pst-plot": [],
-    "pst-3d": [],
-    "pst-grad": [],
-    "pst-math": [],
-    "multido": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "resetOpticOptions": {},
-    "lens": {},
-    "lens[]": {
-      "snippet": "lens[${1:options}]"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "lensCVG": {},
-    "lensDVG": {},
-    "Transform": {},
-    "telescope": {},
-    "telescope[]": {
-      "snippet": "telescope[${1:options}]"
+    {
+      "name": "pst-node"
     },
-    "mirrorCVG": {},
-    "mirrorCVG[]": {
-      "snippet": "mirrorCVG[${1:options}]"
+    {
+      "name": "pst-plot"
     },
-    "mirrorDVG": {},
-    "mirrorDVG[]": {
-      "snippet": "mirrorDVG[${1:options}]"
+    {
+      "name": "pst-3d"
     },
-    "beamLight": {},
-    "beamLight[]": {
-      "snippet": "beamLight[${1:options}]"
+    {
+      "name": "pst-grad"
     },
-    "psprism": {},
-    "psprism[]": {
-      "snippet": "psprism[${1:options}]"
+    {
+      "name": "pst-math"
     },
-    "lensSPH": {},
-    "lensSPH[]": {
-      "snippet": "lensSPH[${1:options}]"
+    {
+      "name": "multido"
     },
-    "eye": {},
-    "rotateNode{}{}": {
-      "snippet": "rotateNode{${1:node name}}{${2:degrees}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "resetOpticOptions"
     },
-    "rotateTriangle{}{}{}{}": {
-      "snippet": "rotateTriangle{${1:nodeA}}{${2:nodeB}}{${3:nodeC}}{${4:degrees}}"
+    {
+      "name": "lens"
     },
-    "rotateFrame{}{}{}{}{}": {
-      "snippet": "rotateFrame{${1:nodeA}}{${2:nodeB}}{${3:nodeC}}{${4:nodeD}}{${5:degrees}}"
+    {
+      "name": "lens",
+      "arg": {
+        "format": "[]",
+        "snippet": "lens[${1:options%keyvals}]"
+      }
     },
-    "mirrorTwo": {},
-    "pslensDVG{}{}": {
-      "snippet": "pslensDVG{${1:width}}{${2:height}}"
+    {
+      "name": "lensCVG"
     },
-    "pslensCVG{}{}": {
-      "snippet": "pslensCVG{${1:width}}{${2:height}}"
+    {
+      "name": "lensDVG"
     },
-    "lensTypeCVG": {},
-    "lensTypeDVG": {},
-    "lensTypePCVG": {},
-    "lensTypePDVG": {},
-    "mirrorType": {},
-    "psprismColor": {},
-    "PSTopticLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Transform"
+    },
+    {
+      "name": "rayInterLens",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "rayInterLens(${2:start node})(${3:intermediate node})(${4:lens distance}){${1:lens node}}"
+      }
+    },
+    {
+      "name": "telescope"
+    },
+    {
+      "name": "telescope",
+      "arg": {
+        "format": "[]",
+        "snippet": "telescope[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mirrorCVG"
+    },
+    {
+      "name": "mirrorCVG",
+      "arg": {
+        "format": "[]",
+        "snippet": "mirrorCVG[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mirrorDVG"
+    },
+    {
+      "name": "mirrorDVG",
+      "arg": {
+        "format": "[]",
+        "snippet": "mirrorDVG[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mirrorCVGRay",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "mirrorCVGRay(${2:node1})(${3:node2}){${1:mirror node}}"
+      }
+    },
+    {
+      "name": "mirrorCVGRay",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "mirrorCVGRay[${2:options%keyvals}](${3:node1})(${4:node2}){${1:mirror node}}"
+      }
+    },
+    {
+      "name": "mirrorDVGRay",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "mirrorDVGRay(${2:node1})(${3:node2}){${1:mirror node}}"
+      }
+    },
+    {
+      "name": "mirrorDVGRay",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "mirrorDVGRay[${2:options%keyvals}](${3:node1})(${4:node2}){${1:mirror node}}"
+      }
+    },
+    {
+      "name": "planMirrorRay",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "planMirrorRay(${2:mirror begin})(${3:mirror end})(${4:original point}){${1:new point}}"
+      }
+    },
+    {
+      "name": "symPlan",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "symPlan(${2:node1})(${3:node2}){${1:stuff}}"
+      }
+    },
+    {
+      "name": "beamLight"
+    },
+    {
+      "name": "beamLight",
+      "arg": {
+        "format": "[]",
+        "snippet": "beamLight[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "refractionRay",
+      "arg": {
+        "format": "()()()(){}{}{}",
+        "snippet": "refractionRay(${4:A})(${5:B})(${6:C})(${7:D}){${1:n1}}{${2:n2}}{${3:end node}}"
+      }
+    },
+    {
+      "name": "psprism"
+    },
+    {
+      "name": "psprism",
+      "arg": {
+        "format": "[]",
+        "snippet": "psprism[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "lensSPH"
+    },
+    {
+      "name": "lensSPH",
+      "arg": {
+        "format": "[]",
+        "snippet": "lensSPH[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mirrorCVG"
+    },
+    {
+      "name": "mirrorCVG",
+      "arg": {
+        "format": "[]",
+        "snippet": "mirrorCVG[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "mirrorDVG"
+    },
+    {
+      "name": "mirrorDVG",
+      "arg": {
+        "format": "[]",
+        "snippet": "mirrorDVG[${1:options%keyvals}]"
+      }
+    },
+    {
+      "name": "ABinterSPHLens",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "ABinterSPHLens(${2:A})(${3:B})(${4:center}){${1:name}}"
+      }
+    },
+    {
+      "name": "lensSPHRay",
+      "arg": {
+        "format": "()(){}{}{}",
+        "snippet": "lensSPHRay(${4:A})(${5:B}){${1:refractA}}{${2:refractB}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "lensSPHRay",
+      "arg": {
+        "format": "[]()(){}{}{}",
+        "snippet": "lensSPHRay[${4:options%keyvals}](${5:A})(${6:B}){${1:refractA}}{${2:refractB}}{${3:node name}}"
+      }
+    },
+    {
+      "name": "reflectionRay",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "reflectionRay(${2:A})(${3:B}){${1:node name}}"
+      }
+    },
+    {
+      "name": "reflectionRay",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "reflectionRay[${2:options%keyvals}](${3:A})(${4:B}){${1:node name}}"
+      }
+    },
+    {
+      "name": "eye"
+    },
+    {
+      "name": "Arrows",
+      "arg": {
+        "format": "()()",
+        "snippet": "Arrows(${1:nodeA})(${2:nodeB})"
+      }
+    },
+    {
+      "name": "Arrows",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "Arrows[${1:options%keyvals}](${2:nodeA})(${3:nodeB})"
+      }
+    },
+    {
+      "name": "psOutLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psOutLine(${2:nodeA})(${3:nodeB}){${1:end node}}"
+      }
+    },
+    {
+      "name": "psOutLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psOutLine[${2:options%keyvals}](${3:nodeA})(${4:nodeB}){${1:end node}}"
+      }
+    },
+    {
+      "name": "psBeforeLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "psBeforeLine(${2:nodeA})(${3:nodeB}){${1:start node}}"
+      }
+    },
+    {
+      "name": "psBeforeLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "psBeforeLine[${2:options%keyvals}](${3:nodeA})(${4:nodeB}){${1:start node}}"
+      }
+    },
+    {
+      "name": "Parallel",
+      "arg": {
+        "format": "()()(){}",
+        "snippet": "Parallel(${2:nodeA})(${3:nodeB})(${4:start node}){${1:end node}}"
+      }
+    },
+    {
+      "name": "Parallel",
+      "arg": {
+        "format": "[]()()(){}",
+        "snippet": "Parallel[${2:options%keyvals}](${3:nodeA})(${4:nodeB})(${5:start node}){${1:end node}}"
+      }
+    },
+    {
+      "name": "ABinterCD",
+      "arg": {
+        "format": "()()()(){}",
+        "snippet": "ABinterCD(${2:A})(${3:B})(${4:C})(${5:D}){${1:E}}"
+      }
+    },
+    {
+      "name": "nodeBetween",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "nodeBetween(${2:A})(${3:B}){${1:C}}"
+      }
+    },
+    {
+      "name": "rotateNode",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rotateNode{${1:node name}}{${2:degrees}}"
+      }
+    },
+    {
+      "name": "rotateTriangle",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "rotateTriangle{${1:nodeA}}{${2:nodeB}}{${3:nodeC}}{${4:degrees}}"
+      }
+    },
+    {
+      "name": "rotateFrame",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "rotateFrame{${1:nodeA}}{${2:nodeB}}{${3:nodeC}}{${4:nodeD}}{${5:degrees}}"
+      }
+    },
+    {
+      "name": "arrowLine",
+      "arg": {
+        "format": "()(){}",
+        "snippet": "arrowLine(${2:start})(${3:end}){${1:arrow number}}"
+      }
+    },
+    {
+      "name": "arrowLine",
+      "arg": {
+        "format": "[]()(){}",
+        "snippet": "arrowLine[${2:options%keyvals}](${3:start})(${4:end}){${1:arrow number}}"
+      }
+    },
+    {
+      "name": "mirrorTwo"
+    },
+    {
+      "name": "pslensDVG",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pslensDVG{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "pslensCVG",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pslensCVG{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "lensTypeCVG",
+      "unusual": true
+    },
+    {
+      "name": "lensTypeDVG",
+      "unusual": true
+    },
+    {
+      "name": "lensTypePCVG",
+      "unusual": true
+    },
+    {
+      "name": "lensTypePDVG",
+      "unusual": true
+    },
+    {
+      "name": "mirrorType",
+      "unusual": true
+    },
+    {
+      "name": "psprismColor",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

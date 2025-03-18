@@ -1,24 +1,48 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "stringstrings": [],
-    "trimspaces": []
-  },
-  "macros": {
-    "mergeFields{}": {
-      "snippet": "mergeFields{${1:specification}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "Field{}": {
-      "snippet": "Field{${1:field name}}"
+    {
+      "name": "stringstrings"
     },
-    "ifFieldEmpty{}{}{}": {
-      "snippet": "ifFieldEmpty{${1:field name}}{${2:true}}{${3:false}}"
+    {
+      "name": "trimspaces"
+    }
+  ],
+  "macros": [
+    {
+      "name": "mergeFields",
+      "arg": {
+        "format": "{}",
+        "snippet": "mergeFields{${1:specification}}"
+      }
     },
-    "setDelimitersCommaQuote": {},
-    "setDelimitersTabQuote": {},
-    "makeMePublic": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "Field",
+      "arg": {
+        "format": "{}",
+        "snippet": "Field{${1:field name}}"
+      }
+    },
+    {
+      "name": "ifFieldEmpty",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifFieldEmpty{${1:field name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "setDelimitersCommaQuote"
+    },
+    {
+      "name": "setDelimitersTabQuote"
+    },
+    {
+      "name": "makeMePublic"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

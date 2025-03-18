@@ -20,8 +20,7 @@ export function initConnect() {
         ws.addEventListener('close', reconnect)
         const openPack: ClientRequest = {
             type: 'open',
-            pdfFileUri: utils.parseURL().pdfFileUri,
-            viewer: (utils.isEmbedded() ? 'tab' : 'browser')
+            pdfFileUri: utils.parseURL().pdfFileUri
         }
         void send(openPack)
     }).catch((e) => console.error('Setting up connection port failed:', e))

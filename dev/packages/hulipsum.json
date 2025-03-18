@@ -1,35 +1,103 @@
 {
-  "includes": {},
-  "macros": {
-    "hulipsum": {},
-    "hulipsum[]": {
-      "snippet": "hulipsum[${1:num-num}]"
+  "deps": [],
+  "macros": [
+    {
+      "name": "hulipsum"
     },
-    "hulipsum*": {},
-    "hulipsum*[]": {
-      "snippet": "hulipsum*[${1:num-num}]"
+    {
+      "name": "hulipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsum[${1:num}]"
+      }
     },
-    "sethulipsumdefault{}": {
-      "snippet": "sethulipsumdefault{${1:num-num}}"
+    {
+      "name": "hulipsum",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsum[${1:num-num}]"
+      }
     },
-    "hulipsumsave[]": {
-      "snippet": "hulipsumsave[${1:num-num}]"
+    {
+      "name": "hulipsum*"
     },
-    "hulipsumsave*[]": {
-      "snippet": "hulipsumsave*[${1:num-num}]"
+    {
+      "name": "hulipsum*",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsum*[${1:num}]"
+      }
     },
-    "hulipsumexp": {},
-    "hulipsumdocument": {},
-    "hulipsumdocument[]": {
-      "snippet": "hulipsumdocument[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "hulipsum*",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsum*[${1:num-num}]"
+      }
+    },
+    {
+      "name": "sethulipsumdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethulipsumdefault{${1:num}}"
+      }
+    },
+    {
+      "name": "sethulipsumdefault",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethulipsumdefault{${1:num-num}}"
+      }
+    },
+    {
+      "name": "hulipsumsave",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsumsave[${1:num}]"
+      }
+    },
+    {
+      "name": "hulipsumsave",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsumsave[${1:num-num}]"
+      }
+    },
+    {
+      "name": "hulipsumsave*",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsumsave*[${1:num}]"
+      }
+    },
+    {
+      "name": "hulipsumsave*",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsumsave*[${1:num-num}]"
+      }
+    },
+    {
+      "name": "hulipsumexp"
+    },
+    {
+      "name": "hulipsumdocument"
+    },
+    {
+      "name": "hulipsumdocument",
+      "arg": {
+        "format": "[]",
+        "snippet": "hulipsumdocument[${1:options%keyvals}]",
+        "keys": [
+          "\\hulipsumdocument"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\hulipsumdocument": [
       "maketitle",
       "tableofcontents",
       "part",
@@ -37,5 +105,6 @@
       "math",
       "bibliography"
     ]
-  ]
+  },
+  "args": []
 }

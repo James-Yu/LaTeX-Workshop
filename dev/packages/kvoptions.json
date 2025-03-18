@@ -1,85 +1,185 @@
 {
-  "includes": {
-    "keyval": [],
-    "ltxcmds": [],
-    "kvsetkeys": [],
-    "kvoptions-patch": [
-      "patch"
-    ]
-  },
-  "macros": {
-    "ProcessKeyvalOptions{}": {
-      "snippet": "ProcessKeyvalOptions{${1:family}}"
+  "deps": [
+    {
+      "name": "keyval"
     },
-    "ProcessKeyvalOptions*": {},
-    "ProcessLocalKeyvalOptions{}": {
-      "snippet": "ProcessLocalKeyvalOptions{${1:family}}"
+    {
+      "name": "ltxcmds"
     },
-    "ProcessLocalKeyvalOptions*": {},
-    "SetupKeyvalOptions{}": {
-      "snippet": "SetupKeyvalOptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "kvsetkeys"
     },
-    "DeclareStringOption{}": {
-      "snippet": "DeclareStringOption{${1:key}}"
-    },
-    "DeclareStringOption[]{}[]": {
-      "snippet": "DeclareStringOption[${2:init}]{${1:key}}[${3:default}]"
-    },
-    "DeclareBoolOption{}": {
-      "snippet": "DeclareBoolOption{${1:key}}"
-    },
-    "DeclareBoolOption[]{}": {
-      "snippet": "DeclareBoolOption[${2:init}]{${1:key}}"
-    },
-    "DeclareComplementaryOption{}{}": {
-      "snippet": "DeclareComplementaryOption{${1:key}}{${2:parent}}"
-    },
-    "DeclareVoidOption{}{}": {
-      "snippet": "DeclareVoidOption{${1:key}}{${2:code}}"
-    },
-    "DeclareDefaultOption{}": {
-      "snippet": "DeclareDefaultOption{${1:code}}"
-    },
-    "DeclareLocalOption{}": {
-      "snippet": "DeclareLocalOption{${1:option}}"
-    },
-    "DeclareLocalOptions{}": {
-      "snippet": "DeclareLocalOptions{${1:options}}"
-    },
-    "DisableKeyvalOption{}{}": {
-      "snippet": "DisableKeyvalOption{${1:family}}{${2:key}}"
-    },
-    "DisableKeyvalOption[]{}{}": {
-      "snippet": "DisableKeyvalOption[${3:options}]{${1:family}}{${2:key}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "AddToKeyvalOption{}{}{}": {
-      "snippet": "AddToKeyvalOption{${1:family}}{${2:key}}{${3:code}}"
-    },
-    "AddToKeyvalOption*{}{}": {
-      "snippet": "AddToKeyvalOption*{${1:key}}{${2:code}}"
+    {
+      "name": "kvoptions-patch",
+      "if": "patch"
     }
-  },
-  "envs": {},
-  "options": [
-    "debugshow",
-    "patch"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "ProcessKeyvalOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProcessKeyvalOptions{${1:family}}"
+      }
+    },
+    {
+      "name": "ProcessKeyvalOptions*",
+      "unusual": true
+    },
+    {
+      "name": "ProcessLocalKeyvalOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProcessLocalKeyvalOptions{${1:family}}"
+      }
+    },
+    {
+      "name": "ProcessLocalKeyvalOptions*",
+      "unusual": true
+    },
+    {
+      "name": "SetupKeyvalOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetupKeyvalOptions{${1:options%keyvals}}",
+        "keys": [
+          "\\SetupKeyvalOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "DeclareStringOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareStringOption{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "DeclareStringOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "DeclareStringOption[${2:init}]{${1:key%plain}}[${3:default}]"
+      }
+    },
+    {
+      "name": "DeclareBoolOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareBoolOption{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "DeclareBoolOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DeclareBoolOption[${2:init}]{${1:key%plain}}"
+      }
+    },
+    {
+      "name": "DeclareComplementaryOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareComplementaryOption{${1:key%plain}}{${2:parent}}"
+      }
+    },
+    {
+      "name": "DeclareVoidOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareVoidOption{${1:key%plain}}{${2:code}}"
+      }
+    },
+    {
+      "name": "DeclareDefaultOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareDefaultOption{${1:code}}"
+      }
+    },
+    {
+      "name": "DeclareLocalOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareLocalOption{${1:option}}"
+      }
+    },
+    {
+      "name": "DeclareLocalOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DeclareLocalOptions{${1:options}}"
+      }
+    },
+    {
+      "name": "DisableKeyvalOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DisableKeyvalOption{${1:family}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "DisableKeyvalOption",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DisableKeyvalOption[${3:options%keyvals}]{${1:family}}{${2:key%plain}}",
+        "keys": [
+          "\\DisableKeyvalOption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "AddToKeyvalOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "AddToKeyvalOption{${1:family}}{${2:key%plain}}{${3:code}}"
+      }
+    },
+    {
+      "name": "AddToKeyvalOption*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddToKeyvalOption*{${1:key%plain}}{${2:code}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/kvoptions#c": [
+      "debugshow",
+      "patch"
+    ],
+    "\\SetupKeyvalOptions": [
       "family=",
       "prefix=",
       "setkeys="
     ],
-    [
-      "action=",
+    "\\DisableKeyvalOption": [
+      "action=${1|undef,warning,error,ignore|}",
       "global",
       "local",
       "package=",
       "class="
     ]
+  },
+  "args": [
+    "\\usepackage/kvoptions#c"
   ]
 }

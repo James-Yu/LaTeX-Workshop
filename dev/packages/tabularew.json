@@ -1,26 +1,43 @@
 {
-  "includes": {
-    "array": []
-  },
-  "macros": {
-    "GetExcessWidth{}": {
-      "snippet": "GetExcessWidth{${1:column}}"
-    },
-    "ExcessWidth": {},
-    "spew{}{}": {
-      "snippet": "spew{${1:factor}}{${2:column}}"
-    },
-    "CurrentColumn": {},
-    "NumberOfColumns": {},
-    "tabularew": {},
-    "endtabularew": {}
-  },
-  "envs": {
-    "tabularew{}": {
-      "name": "tabularew",
-      "snippet": "{${1:preamble}}"
+  "deps": [
+    {
+      "name": "array"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "GetExcessWidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "GetExcessWidth{${1:column}}"
+      }
+    },
+    {
+      "name": "ExcessWidth"
+    },
+    {
+      "name": "spew",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "spew{${1:factor}}{${2:column}}"
+      }
+    },
+    {
+      "name": "CurrentColumn"
+    },
+    {
+      "name": "NumberOfColumns"
+    }
+  ],
+  "envs": [
+    {
+      "name": "tabularew",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:preamble}}"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

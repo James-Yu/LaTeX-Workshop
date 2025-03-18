@@ -1,362 +1,327 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibraryfadings": [],
-    "fontenc": [],
-    "xetex": [
-      "numerals=dvn"
-    ],
-    "zhnumber": [
-      "numerals=zh"
-    ]
-  },
-  "macros": {
-    "pgfPTdvnfont{}": {
-      "snippet": "pgfPTdvnfont{${1:font name}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "pgfPTdvnfont[]{}": {
-      "snippet": "pgfPTdvnfont[${2:font options}]{${1:font name}}"
+    {
+      "name": "tikzlibraryfadings"
     },
-    "pgfPTdvn": {},
-    "pgfPTnumberfont": {},
-    "pgfPTzhfont{}": {
-      "snippet": "pgfPTzhfont{${1:font name}}"
+    {
+      "name": "fontenc"
     },
-    "pgfPTzhfont[]{}": {
-      "snippet": "pgfPTzhfont[${2:font options}]{${1:font name}}"
+    {
+      "name": "xetex",
+      "if": "numerals=dvn"
     },
-    "pgfPTzhnumber{}": {
-      "snippet": "pgfPTzhnumber{${1:list}}"
-    },
-    "pgfPTzhnumber[]{}": {
-      "snippet": "pgfPTzhnumber[${2:true|false}]{${1:list}}"
-    },
-    "pgfPTzhnumberfont": {},
-    "pgfPT": {},
-    "pgfPT[]": {
-      "snippet": "pgfPT[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfPTstyle[]": {
-      "snippet": "pgfPTstyle[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "pgfPTresetstyle": {},
-    "pgfPTresetcell": {},
-    "pgfPTpreviewcell": {},
-    "pgfPTpreviewcell[]": {
-      "snippet": "pgfPTpreviewcell[${1:scale}]"
-    },
-    "pgfPTpreviewcellstyle{}": {
-      "snippet": "pgfPTpreviewcellstyle{${1:name}}"
-    },
-    "pgfPTpreviewcellstyle[]{}": {
-      "snippet": "pgfPTpreviewcellstyle[${2:scale}]{${1:name}}"
-    },
-    "pgfPTnewColorScheme{}{}": {
-      "snippet": "pgfPTnewColorScheme{${1:name}}{${2:r1/g1/b1,r2/g2/b2,...}}"
-    },
-    "pgfPTnewColorScheme[]{}{}": {
-      "snippet": "pgfPTnewColorScheme[${3:r/g/b}]{${1:name}}{${2:r1/g1/b1,r2/g2/b2,...}}"
-    },
-    "pgfPTnewZlist{}{}": {
-      "snippet": "pgfPTnewZlist{${1:name}}{${2:list}}"
-    },
-    "usepgfPTlibrary{}": {
-      "snippet": "usepgfPTlibrary{${1:library}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "pgfPTGroupColors{}{}": {
-      "snippet": "pgfPTGroupColors{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 1
-    },
-    "pgfPTGroupColors[]{}{}": {
-      "snippet": "pgfPTGroupColors[${3:default color}]{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 2,
-      "keyvalpos": 2
-    },
-    "pgfPTPeriodColors{}{}": {
-      "snippet": "pgfPTPeriodColors{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 1
-    },
-    "pgfPTPeriodColors[]{}{}": {
-      "snippet": "pgfPTPeriodColors[${3:default color}]{${1:new colorscheme name}}{${2:options}}",
-      "keyvalindex": 3,
-      "keyvalpos": 2
-    },
-    "pgfPTCScombine{}": {
-      "snippet": "pgfPTCScombine{${1:colorscheme1,colorscheme2,new colorscheme name}}"
-    },
-    "pgfPTCScombine[]{}": {
-      "snippet": "pgfPTCScombine[${2:proportion,mode}]{${1:colorscheme1,colorscheme2,new colorscheme name}}"
-    },
-    "pgfPTCSwrite{}": {
-      "snippet": "pgfPTCSwrite{${1:list of colorschemes}}"
-    },
-    "pgfPTCSwrite[]{}": {
-      "snippet": "pgfPTCSwrite[${2:filename}]{${1:list of colorschemes}}"
-    },
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "ifpgfPTblocos": {},
-    "ifpgfPTexCapitals": {},
-    "ifpgfPTexMode": {},
-    "ifpgfPTfamilias": {},
-    "ifpgfPTgrlabels": {},
-    "ifpgfPTIUPACMMIX": {},
-    "ifpgfPTLaAclabels": {},
-    "ifpgfPTlegacro": {},
-    "ifpgfPTlegenda": {},
-    "ifpgfPTlegendaextra": {},
-    "ifpgfPTlegendapins": {},
-    "ifpgfPTMNMline": {},
-    "ifpgfPTonlycells": {},
-    "ifpgfPTonlycellsPerAndGroupNum": {},
-    "ifpgfPTonlycellsPerAndGroupNumZ": {},
-    "ifpgfPTonlycellsZ": {},
-    "ifpgfPTperlabels": {},
-    "ifpgfPTtitulo": {},
-    "ifpgfPTvariations": {},
-    "ifpgfZuseboxwidth": {},
-    "loadcell{}": {
-      "snippet": "loadcell{${1:arg1}}"
-    },
-    "pgfPTArcolor": {},
-    "pgfPTArfont": {},
-    "pgfPTArlabel": {},
-    "pgfPTArprecision": {},
-    "pgfPTArstarcolor": {},
-    "pgfPTbcs": {},
-    "pgfPTbcsolid": {},
-    "pgfPTblocksfont": {},
-    "pgfPTblocosfalse": {},
-    "pgfPTblocostrue": {},
-    "pgfPTcellht": {},
-    "pgfPTcellinewd": {},
-    "pgfPTcelllinecolor": {},
-    "pgfPTcelllinewd": {},
-    "pgfPTcells": {},
-    "pgfPTcellstyle": {},
-    "pgfPTcellwd": {},
-    "pgfPTcolorSchemeInfo": {},
-    "pgfPTCpcolor": {},
-    "pgfPTCpfont": {},
-    "pgfPTCpprecision": {},
-    "pgfPTCScolor": {},
-    "pgfPTCSfont": {},
-    "pgfPTCSolc": {},
-    "pgfPTCSolwd": {},
-    "pgfPTcSQgas": {},
-    "pgfPTcSQliq": {},
-    "pgfPTcSQsint": {},
-    "pgfPTcSQsol": {},
-    "pgfPTCSrender": {},
-    "pgfPTdblockcolor": {},
-    "pgfPTdblockfontcolor": {},
-    "pgfPTdblocklinewidth": {},
-    "pgfPTdcolor": {},
-    "pgfPTdfont": {},
-    "pgfPTDiscCcolor": {},
-    "pgfPTDiscCfont": {},
-    "pgfPTDiscYBCscale": {},
-    "pgfPTDiscYcolor": {},
-    "pgfPTDiscYfont": {},
-    "pgfPTdprecision": {},
-    "pgfPTdunit": {},
-    "pgfPTeaffcolor": {},
-    "pgfPTeafffont": {},
-    "pgfPTeConfigncolor": {},
-    "pgfPTeConfignfont": {},
-    "pgfPTeConfignlcolor": {},
-    "pgfPTeConfignlfont": {},
-    "pgfPTeDistcolor": {},
-    "pgfPTeDistfont": {},
-    "pgfPTeDistsep": {},
-    "pgfPTEicolor": {},
-    "pgfPTEifont": {},
-    "pgfPTenegcolor": {},
-    "pgfPTenegfont": {},
-    "pgfPTEprecision": {},
-    "pgfPTexCapitalsfalse": {},
-    "pgfPTexCapitalstrue": {},
-    "pgfPTexModefalse": {},
-    "pgfPTexModetrue": {},
-    "pgfPTfamiliasfalse": {},
-    "pgfPTfamiliastrue": {},
-    "pgfPTfamiliesfont": {},
-    "pgfPTfblockcolor": {},
-    "pgfPTfblockfontcolor": {},
-    "pgfPTfblocklinewidth": {},
-    "pgfPTglobalfont": {},
-    "pgfPTgrlabelsfalse": {},
-    "pgfPTgrlabelstrue": {},
-    "pgfPTiblockcolor": {},
-    "pgfPTiblockfontcolor": {},
-    "pgfPTiblocklinewidth": {},
-    "pgfPTIUPACMMIXfalse": {},
-    "pgfPTIUPACMMIXtrue": {},
-    "pgfPTkTcolor": {},
-    "pgfPTkTfont": {},
-    "pgfPTkTprecision": {},
-    "pgfPTLaAclabelsfalse": {},
-    "pgfPTLaAclabelstrue": {},
-    "pgfPTLaAclabelsUSER": {},
-    "pgfPTlabfont": {},
-    "pgfPTlabgrcolor": {},
-    "pgfPTlabLaAcfont": {},
-    "pgfPTlabpercolor": {},
-    "pgfPTlanguages": {},
-    "pgfPTlegacrofalse": {},
-    "pgfPTlegacrotrue": {},
-    "pgfPTlegendaextrafalse": {},
-    "pgfPTlegendaextratrue": {},
-    "pgfPTlegendafalse": {},
-    "pgfPTlegendapinsfalse": {},
-    "pgfPTlegendapinstrue": {},
-    "pgfPTlegendatrue": {},
-    "pgfPTlegendbackcolor": {},
-    "pgfPTlegendCScolor": {},
-    "pgfPTlegendradiocolor": {},
-    "pgfPTlegendZcolor": {},
-    "pgfPTlsacolor": {},
-    "pgfPTlsafont": {},
-    "pgfPTlsalign": {},
-    "pgfPTlsbcolor": {},
-    "pgfPTlsbfont": {},
-    "pgfPTlscacolor": {},
-    "pgfPTlscafont": {},
-    "pgfPTlsccolor": {},
-    "pgfPTlscfont": {},
-    "pgfPTlscolor": {},
-    "pgfPTlsfont": {},
-    "pgfPTlsprecision": {},
-    "pgfPTlstxtfig": {},
-    "pgfPTlsunit": {},
-    "pgfPTMNMlinecolor": {},
-    "pgfPTMNMlinefalse": {},
-    "pgfPTMNMlinetrue": {},
-    "pgfPTMNMlinewidth": {},
-    "pgfPTnamealign": {},
-    "pgfPTnamecolor": {},
-    "pgfPTnamefont": {},
-    "pgfPTNames": {},
-    "pgfPTOcolor": {},
-    "pgfPTOfont": {},
-    "pgfPTonlycellsfalse": {},
-    "pgfPTonlycellsPerAndGroupNumfalse": {},
-    "pgfPTonlycellsPerAndGroupNumtrue": {},
-    "pgfPTonlycellsPerAndGroupNumZfalse": {},
-    "pgfPTonlycellsPerAndGroupNumZtrue": {},
-    "pgfPTonlycellstrue": {},
-    "pgfPTonlycellsZfalse": {},
-    "pgfPTonlycellsZtrue": {},
-    "pgfPTotherLangColor": {},
-    "pgfPTotherLangFont": {},
-    "pgfPTpblockcolor": {},
-    "pgfPTpblockfontcolor": {},
-    "pgfPTpblocklinewidth": {},
-    "pgfPTperlabelsfalse": {},
-    "pgfPTperlabelstrue": {},
-    "pgfPTradiocolor": {},
-    "pgfPTrblockcolor": {},
-    "pgfPTrblockfontcolor": {},
-    "pgfPTrblocklinewidth": {},
-    "pgfPTRcolor": {},
-    "pgfPTRcovcolor": {},
-    "pgfPTRcovfont": {},
-    "pgfPTRfont": {},
-    "pgfPTRioncolor": {},
-    "pgfPTRionfont": {},
-    "pgfPTsblockcolor": {},
-    "pgfPTsblockfontcolor": {},
-    "pgfPTsblocklinewidth": {},
-    "pgfPTsetLanguage{}": {
-      "snippet": "pgfPTsetLanguage{${1:arg1}}"
-    },
-    "pgfPTspectracolor": {},
-    "pgfPTspectrafont": {},
-    "pgfPTtblockcolor": {},
-    "pgfPTtblockfontcolor": {},
-    "pgfPTtblocklinewidth": {},
-    "pgfPTTboilCcolor": {},
-    "pgfPTTboilCfont": {},
-    "pgfPTTboilcolor": {},
-    "pgfPTTboilfont": {},
-    "pgfPTtitlecolor": {},
-    "pgfPTtitlefont": {},
-    "pgfPTtitulofalse": {},
-    "pgfPTtitulotrue": {},
-    "pgfPTTmeltCcolor": {},
-    "pgfPTTmeltCfont": {},
-    "pgfPTTmeltcolor": {},
-    "pgfPTTmeltfont": {},
-    "pgfPTTprecision": {},
-    "pgfPTtxtcolor": {},
-    "pgfPTvareaffcolor": {},
-    "pgfPTvareafffont": {},
-    "pgfPTvareafffontcolor": {},
-    "pgfPTvarEicolor": {},
-    "pgfPTvarEifont": {},
-    "pgfPTvarEifontcolor": {},
-    "pgfPTvariationsfalse": {},
-    "pgfPTvariationstrue": {},
-    "pgfPTvarRcolor": {},
-    "pgfPTvarRfont": {},
-    "pgfPTvarRfontcolor": {},
-    "pgfPTZalign": {},
-    "pgfPTZback": {},
-    "pgfPTZcolor": {},
-    "pgfPTZexlist": {},
-    "pgfPTZexlistcolor": {},
-    "pgfPTZexlistfont": {},
-    "pgfPTZfont": {},
-    "pgfPTZspace": {},
-    "pgfZuseboxwidthfalse": {},
-    "pgfZuseboxwidthtrue": {},
-    "thetinysize": {}
-  },
-  "envs": {},
-  "options": [
-    "pt",
-    "en",
-    "fr",
-    "de",
-    "it",
-    "es",
-    "br",
-    "userlang=${1:ISO 639-1 code}",
-    "numerals="
+    {
+      "name": "zhnumber",
+      "if": "numerals=zh"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "pgfPTdvnfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTdvnfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTdvnfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTdvnfont[${2:font options}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTzhfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTzhfont[${2:font options}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "pgfPTzhnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTzhnumber{${1:list}}"
+      }
+    },
+    {
+      "name": "pgfPTzhnumber",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTzhnumber[${2:true|false}]{${1:list}}"
+      }
+    },
+    {
+      "name": "pgfPT"
+    },
+    {
+      "name": "pgfPT",
+      "arg": {
+        "format": "[]",
+        "snippet": "pgfPT[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfPT#c,\\pgfPTstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfPTstyle",
+      "arg": {
+        "format": "[]",
+        "snippet": "pgfPTstyle[${1:options%keyvals}]",
+        "keys": [
+          "\\pgfPT#c,\\pgfPTstyle#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfPTresetstyle"
+    },
+    {
+      "name": "pgfPTbuildcell",
+      "arg": {
+        "format": "()[]",
+        "snippet": "pgfPTbuildcell(${2:rows},${3:columns})[${1:entries}]"
+      }
+    },
+    {
+      "name": "pgfPTresetcell"
+    },
+    {
+      "name": "pgfPTbuildcellstyle",
+      "arg": {
+        "format": "{}()[]",
+        "snippet": "pgfPTbuildcellstyle{${1:name%specialDef}}(${3:rows},${4:columns})[${2:entries}]"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcell"
+    },
+    {
+      "name": "pgfPTpreviewcell",
+      "arg": {
+        "format": "[]",
+        "snippet": "pgfPTpreviewcell[${1:scale}]"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcellstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTpreviewcellstyle{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfPTpreviewcellstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTpreviewcellstyle[${2:scale}]{${1:name}}"
+      }
+    },
+    {
+      "name": "pgfPTnewColorScheme",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfPTnewColorScheme{${1:name%specialDef}}{${2:r1/g1/b1,r2/g2/b2,...}}"
+      }
+    },
+    {
+      "name": "pgfPTnewColorScheme",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfPTnewColorScheme[${3:r/g/b}]{${1:name}}{${2:r1/g1/b1,r2/g2/b2,...}}"
+      }
+    },
+    {
+      "name": "pgfPTnewZlist",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfPTnewZlist{${1:name%specialDef}}{${2:list}}"
+      }
+    },
+    {
+      "name": "usepgfPTlibrary",
+      "arg": {
+        "format": "{}",
+        "snippet": "usepgfPTlibrary{${1:library%keyvals}}",
+        "keys": [
+          "\\usepgfPTlibrary#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfPTGroupColors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfPTGroupColors{${1:new colorscheme name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfPTGroupColors#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pgfPTGroupColors",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfPTGroupColors[${3:default color}]{${1:new colorscheme name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfPTGroupColors#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "pgfPTPeriodColors",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfPTPeriodColors{${1:new colorscheme name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfPTPeriodColors#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "pgfPTPeriodColors",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "pgfPTPeriodColors[${3:default color}]{${1:new colorscheme name}}{${2:options%keyvals}}",
+        "keys": [
+          "\\pgfPTPeriodColors#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "pgfPTCScombine",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTCScombine{${1:colorscheme1,colorscheme2,new colorscheme name}}"
+      }
+    },
+    {
+      "name": "pgfPTCScombine",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTCScombine[${2:proportion,mode}]{${1:colorscheme1,colorscheme2,new colorscheme name}}"
+      }
+    },
+    {
+      "name": "pgfPTCSwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfPTCSwrite{${1:list of colorschemes}}"
+      }
+    },
+    {
+      "name": "pgfPTCSwrite",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pgfPTCSwrite[${2:filename%file}]{${1:list of colorschemes}}"
+      }
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/pgf-PeriodicTable#c": [
+      "pt",
+      "en",
+      "fr",
+      "de",
+      "it",
+      "es",
+      "br",
+      "userlang=${1:ISO 639-1 code}",
+      "numerals=${1|dvn,zh|}"
+    ],
+    "\\pgfPT#c,\\pgfPTstyle#c": [
       "Z list=",
       "cell width=",
       "cell height=",
@@ -410,8 +375,10 @@
       "legend={${1:keyvals}}",
       "show period numbers",
       "show group numbers",
+      "group numbers=${1|arabic,CAS,IUPAC,CAS*,IUPAC*|}",
       "period label color=",
       "group label color=",
+      "Roman label color=",
       "label font=${1:font commands}",
       "per={${1:keyvals}}",
       "gr={${1:keyvals}}",
@@ -482,7 +449,7 @@
       "Z color=",
       "Z font=${1:font commands}",
       "Z use box width",
-      "Z align=",
+      "Z align=${1|left,center,right|}",
       "Z padding=",
       "Z box",
       "Z={${1:keyvals}}",
@@ -492,32 +459,33 @@
       "CS synt=",
       "CS all=",
       "CS font=${1:font commands}",
-      "CS render mode=",
+      "CS render mode=${1|fill,outline,fill and outline|}",
       "CS outline color=",
       "CS outline width=",
       "CS={${1:keyvals}}",
       "name color=",
       "name font=${1:font commands}",
-      "name align=",
+      "name align=${1|left,center,right|}",
       "capitalize element names",
       "name",
       "Name",
       "NAME",
       "Ar color=",
       "Ar font=${1:font commands}",
-      "Ar label=",
+      "Ar label=${1|m,w|}",
       "Ar precision=${1:integer}",
       "Ar={${1:keyvals}}",
+      "O Roman",
       "d color=",
       "d font=${1:font commands}",
-      "d unit=",
+      "d unit=${1|g/dm3,g/cm3,both|}",
       "d precision=${1:integer}",
       "d={${1:keyvals}}",
-      "ls=",
+      "ls=${1|fig,txt,fig+txt|}",
       "ls color=",
       "ls font=${1:font commands}",
-      "ls align=",
-      "ls unit=",
+      "ls align=${1|left,center,right|}",
+      "ls unit=${1|pm,A|}",
       "ls precision=${1:integer}",
       "lat={${1:keyvals}}",
       "DiscY color=",
@@ -575,10 +543,10 @@
       "Cp precision=${1:integer}",
       "kT precision=${1:integer}"
     ],
-    [
+    "\\usepgfPTlibrary#c": [
       "colorschemes"
     ],
-    [
+    "\\pgfPTGroupColors#c": [
       "G1=",
       "G2=",
       "G3=",
@@ -608,7 +576,7 @@
       "Actin=",
       "period blending={${1:keyvals}}"
     ],
-    [
+    "\\pgfPTPeriodColors#c": [
       "P1=",
       "P2=",
       "P3=",
@@ -627,5 +595,8 @@
       "Actin=",
       "group blending={${1:keyvals}}"
     ]
+  },
+  "args": [
+    "\\usepackage/pgf-PeriodicTable#c"
   ]
 }

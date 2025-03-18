@@ -1,0 +1,90 @@
+{
+  "deps": [
+    {
+      "name": "graphics"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NewSpotColorSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "NewSpotColorSpace{${1:name}}"
+      }
+    },
+    {
+      "name": "AddSpotColor",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "AddSpotColor{${1:colorspace}}{${2:color}}{${3:pdf name}}{${4:specification}}"
+      }
+    },
+    {
+      "name": "SpotSpace"
+    },
+    {
+      "name": "SetPageColorSpace",
+      "arg": {
+        "format": "{}",
+        "snippet": "SetPageColorSpace{${1:colorspace}}"
+      }
+    },
+    {
+      "name": "SpotColor",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "SpotColor{${1:color}}{${2:number}}"
+      }
+    },
+    {
+      "name": "SetPageColorResource",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "SetPageColorResource{${1:resource}}"
+      }
+    },
+    {
+      "name": "thecolorprofile",
+      "unusual": true
+    },
+    {
+      "name": "thecolor",
+      "unusual": true
+    },
+    {
+      "name": "ifhks",
+      "unusual": true
+    },
+    {
+      "name": "hkstrue",
+      "unusual": true
+    },
+    {
+      "name": "hksfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpantone",
+      "unusual": true
+    },
+    {
+      "name": "pantonetrue",
+      "unusual": true
+    },
+    {
+      "name": "pantonefalse",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/spotcolor#c": [
+      "hks",
+      "pantone"
+    ]
+  },
+  "args": [
+    "\\usepackage/spotcolor#c"
+  ]
+}

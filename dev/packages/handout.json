@@ -1,0 +1,89 @@
+{
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "suffix"
+    }
+  ],
+  "macros": [
+    {
+      "name": "handout",
+      "arg": {
+        "format": "{}",
+        "snippet": "handout{${1:file path%file}}"
+      }
+    },
+    {
+      "name": "thehandoutnumber",
+      "unusual": true
+    },
+    {
+      "name": "handoutnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "handoutnumber{${1:arg}}"
+      }
+    },
+    {
+      "name": "handoutnumberintxt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "handoutnumberintxt{${1:arg}}"
+      }
+    },
+    {
+      "name": "disablehandout"
+    },
+    {
+      "name": "enablehandout"
+    },
+    {
+      "name": "onlyhandout",
+      "arg": {
+        "format": "{}",
+        "snippet": "onlyhandout{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "nothandout",
+      "arg": {
+        "format": "{}",
+        "snippet": "nothandout{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "forhandout",
+      "arg": {
+        "format": "{}",
+        "snippet": "forhandout{${1:contents%text}}"
+      }
+    },
+    {
+      "name": "forhandout*",
+      "arg": {
+        "format": "{}",
+        "snippet": "forhandout*{${1:contents%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/handout#c": [
+      "dir=${1:file path}",
+      "sectioning",
+      "disabled",
+      "printing",
+      "numbering"
+    ]
+  },
+  "args": [
+    "\\usepackage/handout#c"
+  ]
+}

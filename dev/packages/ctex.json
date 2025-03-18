@@ -1,180 +1,373 @@
 {
-  "includes": {
-    "zhnumber": [],
-    "fontspec": []
-  },
-  "macros": {
-    "CTEXnumberline{}": {
-      "snippet": "CTEXnumberline{${1:arg}}",
-      "option": "heading=true"
+  "deps": [
+    {
+      "name": "zhnumber"
     },
-    "songti": {},
-    "heiti": {},
-    "fangsong": {},
-    "kaishu": {},
-    "lishu": {},
-    "youyuan": {},
-    "yahei": {},
-    "pingfang": {},
-    "ctexset{}": {
-      "snippet": "ctexset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "CTEXthepart": {},
-    "CTEXthechapter": {},
-    "CTEXthesection": {},
-    "CTEXthesubsection": {},
-    "CTEXthesubsubsection": {},
-    "CTEXtheparagraph": {},
-    "CTEXthesubparagraph": {},
-    "CTEXifname{}{}": {
-      "snippet": "CTEXifname{${1:contents with name}}{${2:contents with name}}"
-    },
-    "zihao{}": {
-      "snippet": "zihao{${1:number}}"
-    },
-    "ziju{}": {
-      "snippet": "ziju{${1:factor}}"
-    },
-    "ccwd": {},
-    "chinese{}": {
-      "snippet": "chinese{${1:counter}}"
-    },
-    "CTEXnumber{}{}": {
-      "snippet": "CTEXnumber{${1:cmd}}{${2:number}}"
-    },
-    "CTEXdigits{}{}": {
-      "snippet": "CTEXdigits{${1:cmd}}{${2:number}}"
-    },
-    "CTeX": {},
-    "addCJKfontfeature*[]{}": {
-      "snippet": "addCJKfontfeature*[${2:blocks}]{${1:font features}}"
-    },
-    "addCJKfontfeature*{}": {
-      "snippet": "addCJKfontfeature*{${1:font features}}"
-    },
-    "addCJKfontfeature[]{}": {
-      "snippet": "addCJKfontfeature[${2:blocks}]{${1:font features}}"
-    },
-    "addCJKfontfeature{}": {
-      "snippet": "addCJKfontfeature{${1:font features}}"
-    },
-    "addCJKfontfeatures*[]{}": {
-      "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features}}"
-    },
-    "addCJKfontfeatures*{}": {
-      "snippet": "addCJKfontfeatures*{${1:font features}}"
-    },
-    "addCJKfontfeatures[]{}": {
-      "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features}}"
-    },
-    "addCJKfontfeatures{}": {
-      "snippet": "addCJKfontfeatures{${1:font features}}"
-    },
-    "CJKfamilydefault": {},
-    "CJKfontspec[]{}": {
-      "snippet": "CJKfontspec[${2:font features}]{${1:font name}}"
-    },
-    "CJKfontspec{}": {
-      "snippet": "CJKfontspec{${1:font name}}"
-    },
-    "CJKfontspec{}[]": {
-      "snippet": "CJKfontspec{${1:font name}}[${2:font features}]"
-    },
-    "CJKrmdefault": {},
-    "CJKsfdefault": {},
-    "CJKttdefault": {},
-    "defaultCJKfontfeatures{}": {
-      "snippet": "defaultCJKfontfeatures{${1:font features}}"
-    },
-    "newCJKfontfamily[]{}[]{}": {
-      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features}]{${2:font name}}"
-    },
-    "newCJKfontfamily[]{}{}": {
-      "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}"
-    },
-    "newCJKfontfamily{}[]{}": {
-      "snippet": "newCJKfontfamily{${1:cmd}}[${2:font features}]{${3:font name}}"
-    },
-    "newCJKfontfamily{}{}": {
-      "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}"
-    },
-    "setCJKfamilyfont{}[]{}": {
-      "snippet": "setCJKfamilyfont{${1:family}}[${2:font features}]{${3:font name}}"
-    },
-    "setCJKfamilyfont{}{}": {
-      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}"
-    },
-    "setCJKfamilyfont{}{}[]": {
-      "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
-    },
-    "setCJKmainfont[]{}": {
-      "snippet": "setCJKmainfont[${2:font features}]{${1:font name}}"
-    },
-    "setCJKmainfont{}": {
-      "snippet": "setCJKmainfont{${1:font name}}"
-    },
-    "setCJKmainfont{}[]": {
-      "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]"
-    },
-    "setCJKmathfont[]{}": {
-      "snippet": "setCJKmathfont[${2:font features}]{${1:font name}}"
-    },
-    "setCJKmathfont{}": {
-      "snippet": "setCJKmathfont{${1:font name}}"
-    },
-    "setCJKmathfont{}[]": {
-      "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]"
-    },
-    "setCJKmonofont[]{}": {
-      "snippet": "setCJKmonofont[${2:font features}]{${1:font name}}"
-    },
-    "setCJKmonofont{}": {
-      "snippet": "setCJKmonofont{${1:font name}}"
-    },
-    "setCJKmonofont{}[]": {
-      "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]"
-    },
-    "setCJKromanfont[]{}": {
-      "snippet": "setCJKromanfont[${2:font features}]{${1:font name}}"
-    },
-    "setCJKromanfont{}": {
-      "snippet": "setCJKromanfont{${1:font name}}"
-    },
-    "setCJKromanfont{}[]": {
-      "snippet": "setCJKromanfont{${1:font name}}[${2:font features}]"
-    },
-    "setCJKsansfont[]{}": {
-      "snippet": "setCJKsansfont[${2:font features}]{${1:font name}}"
-    },
-    "setCJKsansfont{}": {
-      "snippet": "setCJKsansfont{${1:font name}}"
-    },
-    "setCJKsansfont{}[]": {
-      "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]"
+    {
+      "name": "fontspec"
     }
-  },
-  "envs": {},
-  "options": [
-    "GBK",
-    "UTF8",
-    "zhmap=",
-    "zihao=",
-    "heading",
-    "sub3section",
-    "sub4section",
-    "scheme=",
-    "linespread=${1:number}"
   ],
-  "keyvals": [
-    [
-      "fontset=",
-      "punct=",
-      "space=",
-      "autoindent=",
+  "macros": [
+    {
+      "name": "CTEXnumberline",
+      "if": "heading",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CTEXnumberline{${1:arg}}"
+      }
+    },
+    {
+      "name": "CTEXnumberline",
+      "if": "heading=true",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "CTEXnumberline{${1:arg}}"
+      }
+    },
+    {
+      "name": "songti"
+    },
+    {
+      "name": "heiti"
+    },
+    {
+      "name": "fangsong"
+    },
+    {
+      "name": "kaishu"
+    },
+    {
+      "name": "lishu"
+    },
+    {
+      "name": "youyuan"
+    },
+    {
+      "name": "yahei"
+    },
+    {
+      "name": "pingfang"
+    },
+    {
+      "name": "ctexset",
+      "arg": {
+        "format": "{}",
+        "snippet": "ctexset{${1:options%keyvals}}",
+        "keys": [
+          "\\ctexset,\\usepackage/ctex#c",
+          "\\ctexset"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "CTEXthepart",
+      "unusual": true
+    },
+    {
+      "name": "CTEXthechapter",
+      "unusual": true
+    },
+    {
+      "name": "CTEXthesection",
+      "unusual": true
+    },
+    {
+      "name": "CTEXthesubsection",
+      "unusual": true
+    },
+    {
+      "name": "CTEXthesubsubsection",
+      "unusual": true
+    },
+    {
+      "name": "CTEXtheparagraph",
+      "unusual": true
+    },
+    {
+      "name": "CTEXthesubparagraph",
+      "unusual": true
+    },
+    {
+      "name": "CTEXifname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "CTEXifname{${1:contents with name}}{${2:contents with name}}"
+      }
+    },
+    {
+      "name": "zihao",
+      "arg": {
+        "format": "{}",
+        "snippet": "zihao{${1:number}}"
+      }
+    },
+    {
+      "name": "ziju",
+      "arg": {
+        "format": "{}",
+        "snippet": "ziju{${1:factor}}"
+      }
+    },
+    {
+      "name": "ccwd"
+    },
+    {
+      "name": "chinese",
+      "arg": {
+        "format": "{}",
+        "snippet": "chinese{${1:counter}}"
+      }
+    },
+    {
+      "name": "CTEXnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "CTEXnumber{${1:cmd}}{${2:number}}"
+      }
+    },
+    {
+      "name": "CTEXdigits",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "CTEXdigits{${1:cmd}}{${2:number}}"
+      }
+    },
+    {
+      "name": "CTeX",
+      "unusual": true
+    },
+    {
+      "name": "addCJKfontfeatures*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addCJKfontfeatures*[${2:blocks}]{${1:font features%keyvals}}"
+      }
+    },
+    {
+      "name": "addCJKfontfeatures*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addCJKfontfeatures*{${1:font features%keyvals}}"
+      }
+    },
+    {
+      "name": "addCJKfontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "addCJKfontfeatures[${2:blocks}]{${1:font features%keyvals}}"
+      }
+    },
+    {
+      "name": "addCJKfontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "addCJKfontfeatures{${1:font features%keyvals}}"
+      }
+    },
+    {
+      "name": "CJKfontspec",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "CJKfontspec[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "CJKfontspec",
+      "arg": {
+        "format": "{}",
+        "snippet": "CJKfontspec{${1:font name}}"
+      }
+    },
+    {
+      "name": "CJKfontspec",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "CJKfontspec{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "defaultCJKfontfeatures",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "defaultCJKfontfeatures{${1:font features%keyvals}}"
+      }
+    },
+    {
+      "name": "newCJKfontfamily",
+      "arg": {
+        "format": "[]{}[]{}",
+        "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}[${4:font features%keyvals}]{${2:font name}}"
+      }
+    },
+    {
+      "name": "newCJKfontfamily",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newCJKfontfamily[${3:family}]{${1:cmd}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "newCJKfontfamily",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "newCJKfontfamily{${1:cmd}}[${3:font features%keyvals}]{${2:font name}}"
+      }
+    },
+    {
+      "name": "newCJKfontfamily",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newCJKfontfamily{${1:cmd}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "setCJKfamilyfont",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setCJKfamilyfont{${1:family}}[${3:font features%keyvals}]{${2:font name}}"
+      }
+    },
+    {
+      "name": "setCJKfamilyfont",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}"
+      }
+    },
+    {
+      "name": "setCJKfamilyfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "setCJKfamilyfont{${1:family}}{${2:font name}}[${3:font features}]"
+      }
+    },
+    {
+      "name": "setCJKmainfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setCJKmainfont[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmainfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setCJKmainfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmainfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setCJKmainfont{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setCJKmathfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setCJKmathfont[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmathfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setCJKmathfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmathfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setCJKmathfont{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setCJKmonofont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setCJKmonofont[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmonofont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setCJKmonofont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKmonofont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setCJKmonofont{${1:font name}}[${2:font features}]"
+      }
+    },
+    {
+      "name": "setCJKsansfont",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setCJKsansfont[${2:font features%keyvals}]{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKsansfont",
+      "arg": {
+        "format": "{}",
+        "snippet": "setCJKsansfont{${1:font name}}"
+      }
+    },
+    {
+      "name": "setCJKsansfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "setCJKsansfont{${1:font name}}[${2:font features}]"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ctex#c": [
+      "GBK",
+      "UTF8",
+      "zhmap=${1|true,false,zhmCJK|}",
+      "zihao=${1|-4,5,false|}",
+      "heading",
+      "sub3section",
+      "sub4section",
+      "scheme=${1|chinese,plain|}",
+      "linespread=${1:number}"
+    ],
+    "\\ctexset,\\usepackage/ctex#c": [
+      "fontset=${1|adobe,fandol,founder,mac,macnew,macold,ubuntu,windows,none|}",
+      "punct=${1|quanjiao,banjiao,kaiming,CCT,plain|}",
+      "space=${1|true,false,auto|}",
+      "autoindent="
+    ],
+    "\\ctexset": [
       "linestretch=",
-      "today=",
+      "today=${1|small,big,old|}",
       "contentsname=${1:name}",
       "listfigurename=${1:name}",
       "listtablename=${1:name}",
@@ -378,6 +571,13 @@
       "declarecharrange=",
       "clearalternatefont={${1:family1,family2,...}}",
       "resetalternatefont={${1:family1,family2,...}}"
+    ],
+    "\\pagenumbering#c": [
+      "chinese"
     ]
+  },
+  "args": [
+    "\\usepackage/ctex#c",
+    "\\ctexset,\\usepackage/ctex#c"
   ]
 }

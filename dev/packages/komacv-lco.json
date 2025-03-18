@@ -1,85 +1,259 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "fontawesome": [],
-    "marvosym": [],
-    "scrkbase": []
-  },
-  "macros": {
-    "newkomavar{}": {
-      "snippet": "newkomavar{${1:name}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "newkomavar[]{}": {
-      "snippet": "newkomavar[${2:description}]{${1:name}}"
+    {
+      "name": "fontawesome"
     },
-    "newkomavar*{}": {
-      "snippet": "newkomavar*{${1:name}}"
+    {
+      "name": "marvosym"
     },
-    "newkomavar*[]{}": {
-      "snippet": "newkomavar*[${2:description}]{${1:name}}"
-    },
-    "setkomavar{}{}": {
-      "snippet": "setkomavar{${1:name}}{${2:content}}"
-    },
-    "setkomavar{}[]{}": {
-      "snippet": "setkomavar{${1:name}}[${2:description}]{${3:content}}"
-    },
-    "setkomavar*{}{}": {
-      "snippet": "setkomavar*{${1:name}}{${2:content}}"
-    },
-    "usekomavar{}": {
-      "snippet": "usekomavar{${1:name}}"
-    },
-    "usekomavar[]{}": {
-      "snippet": "usekomavar[${2:command}]{${1:name}}"
-    },
-    "usekomavar*{}": {
-      "snippet": "usekomavar*{${1:name}}"
-    },
-    "usekomavar*[]{}": {
-      "snippet": "usekomavar*[${2:command}]{${1:name}}"
-    },
-    "ifkomavarempty{}{}{}": {
-      "snippet": "ifkomavarempty{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "ifkomavarempty*{}{}{}": {
-      "snippet": "ifkomavarempty*{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "ifkomavar{}{}{}": {
-      "snippet": "ifkomavar{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "ifkomavar*{}{}{}": {
-      "snippet": "ifkomavar*{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "LoadLetterOption{}": {
-      "snippet": "LoadLetterOption{${1:file}}"
-    },
-    "LoadLetterOptions{}": {
-      "snippet": "LoadLetterOptions{${1:file list}}"
-    },
-    "ifkomavarenabled{}{}{}": {
-      "snippet": "ifkomavarenabled{${1:name}}{${2:true code}}{${3:false code}}"
-    },
-    "emaillink{}": {
-      "snippet": "emaillink{${1:URL}}"
-    },
-    "emaillink[]{}": {
-      "snippet": "emaillink[${2:link text}]{${1:URL}}"
-    },
-    "httplink{}": {
-      "snippet": "httplink{${1:URL}}"
-    },
-    "httplink[]{}": {
-      "snippet": "httplink[${2:link text}]{${1:URL}}"
-    },
-    "httpslink{}": {
-      "snippet": "httpslink{${1:URL}}"
-    },
-    "httpslink[]{}": {
-      "snippet": "httpslink[${2:link text}]{${1:URL}}"
+    {
+      "name": "scrkbase"
     }
+  ],
+  "macros": [
+    {
+      "name": "newkomavar",
+      "arg": {
+        "format": "{}",
+        "snippet": "newkomavar{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newkomavar[${2:description}]{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "newkomavar*{${1:name}}"
+      }
+    },
+    {
+      "name": "newkomavar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "newkomavar*[${2:description}]{${1:name}}"
+      }
+    },
+    {
+      "name": "setkomavar",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setkomavar{${1:name%keyvals}}{${2:content}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setkomavar",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "setkomavar{${1:name%keyvals}}[${3:description}]{${2:content}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setkomavar*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setkomavar*{${1:name%keyvals}}{${2:content}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usekomavar",
+      "arg": {
+        "format": "{}",
+        "snippet": "usekomavar{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usekomavar",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usekomavar[${2:command}]{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "usekomavar*",
+      "arg": {
+        "format": "{}",
+        "snippet": "usekomavar*{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usekomavar*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "usekomavar*[${2:command}]{${1:name%keyvals}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "ifkomavarempty",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifkomavarempty{${1:name%keyvals}}{${2:true code}}{${3:false code}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifkomavarempty*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifkomavarempty*{${1:name%keyvals}}{${2:true code}}{${3:false code}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifkomavar",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifkomavar{${1:name%keyvals}}{${2:true code}}{${3:false code}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ifkomavar*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifkomavar*{${1:name%keyvals}}{${2:true code}}{${3:false code}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "LoadLetterOption",
+      "arg": {
+        "format": "{}",
+        "snippet": "LoadLetterOption{${1:file}}"
+      }
+    },
+    {
+      "name": "LoadLetterOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "LoadLetterOptions{${1:file list}}"
+      }
+    },
+    {
+      "name": "ifkomavarenabled",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifkomavarenabled{${1:name%keyvals}}{${2:true code}}{${3:false code}}",
+        "keys": [
+          "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "emaillink",
+      "arg": {
+        "format": "{}",
+        "snippet": "emaillink{${1:URL}}"
+      }
+    },
+    {
+      "name": "emaillink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "emaillink[${2:link text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "httplink",
+      "arg": {
+        "format": "{}",
+        "snippet": "httplink{${1:URL}}"
+      }
+    },
+    {
+      "name": "httplink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "httplink[${2:link text}]{${1:URL}}"
+      }
+    },
+    {
+      "name": "httpslink",
+      "arg": {
+        "format": "{}",
+        "snippet": "httpslink{${1:URL}}"
+      }
+    },
+    {
+      "name": "httpslink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "httpslink[${2:link text}]{${1:URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\setkomavar#c,\\setkomavar*#c,\\usekomavar#c,\\usekomavar*#c,\\ifkomavarempty#c,\\ifkomavarempty*#c,\\ifkomavar#c,\\ifkomavar*#c,\\ifkomavarenabled#c": [
+      "fromacadtitle",
+      "fromaddress",
+      "fromaddresscity",
+      "fromaddressstreet",
+      "fromemail",
+      "fromextrainfo",
+      "fromfax",
+      "fromfacebook",
+      "fromfamilyname",
+      "fromfirstname",
+      "fromgithub",
+      "fromlinkedin",
+      "frommobilephone",
+      "fromname",
+      "fromphone",
+      "fromtwitter",
+      "fromurl",
+      "location",
+      "place"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

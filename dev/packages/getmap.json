@@ -1,42 +1,68 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "stringenc": [],
-    "ifthen": [],
-    "shellesc": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "getmap{}": {
-      "snippet": "getmap{${1:address}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "getmap[]{}": {
-      "snippet": "getmap[${2:options}]{${1:address}}"
+    {
+      "name": "stringenc"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "shellesc"
+    },
+    {
+      "name": "ifxetex"
     }
-  },
-  "envs": {},
-  "options": [
-    "mode=",
-    "inputencoding=${1:encoding}",
-    "overwrite",
-    "file=${1:file name}",
-    "key=${1:service key}",
-    "scale=${1:number}",
-    "zoom=${1:number}",
-    "xsize=${1:width in pixels}",
-    "ysize=${1:height in pixels}",
-    "imagetype=",
-    "type=",
-    "color=${1:color}",
-    "number=${1:number}",
-    "language=${1:lang code}",
-    "markers={${1:&markers=...}}",
-    "visible={${1:loc1|loc2|...}}",
-    "path={${1:&path=...}}",
-    "pathfile=${1:file name}",
-    "heading=${1:degrees}",
-    "pitch=${1:degrees}",
-    "fov=${1:degrees}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "getmap",
+      "arg": {
+        "format": "{}",
+        "snippet": "getmap{${1:address}}"
+      }
+    },
+    {
+      "name": "getmap",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "getmap[${2:options%keyvals}]{${1:address}}",
+        "keys": [
+          "\\usepackage/getmap#c,\\getmap"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/getmap#c,\\getmap": [
+      "mode=${1|osm,gm,gsv|}",
+      "inputencoding=${1:encoding}",
+      "overwrite",
+      "file=${1:file name}",
+      "key=${1:service key}",
+      "scale=${1:number}",
+      "zoom=${1:number}",
+      "xsize=${1:width in pixels}",
+      "ysize=${1:height in pixels}",
+      "imagetype=${1|png,png8,png32,jpeg,jpg,jpg-baseline,gif|}",
+      "type=${1|map,sat,hyb,roadmap,satellite,hybrid,terrain|}",
+      "color=${1:color}",
+      "number=${1:number}",
+      "language=${1:lang code}",
+      "markers={${1:&markers=...}}",
+      "visible={${1:loc1|loc2|...}}",
+      "path={${1:&path=...}}",
+      "pathfile=${1:file name}",
+      "heading=${1:degrees}",
+      "pitch=${1:degrees}",
+      "fov=${1:degrees}"
+    ]
+  },
+  "args": [
+    "\\usepackage/getmap#c,\\getmap"
+  ]
 }

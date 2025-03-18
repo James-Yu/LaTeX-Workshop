@@ -1,49 +1,77 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifluatex": [],
-    "titlesec": [],
-    "geometry": [],
-    "calc": [],
-    "microtype": []
-  },
-  "macros": {
-    "markeverypar{}": {
-      "snippet": "markeverypar{${1:commands}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "savetreesbibnote{}": {
-      "snippet": "savetreesbibnote{${1:note}}"
+    {
+      "name": "ifpdf"
+    },
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "titlesec"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "microtype"
     }
-  },
-  "envs": {},
-  "options": [
-    "subtle",
-    "moderate",
-    "extreme",
-    "all=",
-    "bibbreaks=",
-    "paragraphs=",
-    "floats=",
-    "mathspacing=",
-    "wordspacing=",
-    "tracking=",
-    "bibnotes=",
-    "charwidths=",
-    "mathdisplays=",
-    "leading=",
-    "indent=",
-    "lists=",
-    "bibliography=",
-    "title=",
-    "sections=",
-    "margins=",
-    "charwidthfraction=${1:fraction}",
-    "leadingfraction=${1:fraction}",
-    "marginwidth=",
-    "parindent=",
-    "trackingfraction=${1:fraction}",
-    "wordspacingfraction=${1:fraction}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "markeverypar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "markeverypar{${1:commands}}"
+      }
+    },
+    {
+      "name": "savetreesbibnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "savetreesbibnote{${1:note}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/savetrees#c": [
+      "subtle",
+      "moderate",
+      "extreme",
+      "all=${1|tight,normal|}",
+      "bibbreaks=${1|tight,normal|}",
+      "paragraphs=${1|tight,normal|}",
+      "floats=${1|tight,normal|}",
+      "mathspacing=${1|tight,normal|}",
+      "wordspacing=${1|tight,normal|}",
+      "tracking=${1|tight,normal|}",
+      "bibnotes=${1|tight,normal|}",
+      "charwidths=${1|tight,normal|}",
+      "mathdisplays=${1|tight,normal|}",
+      "leading=${1|tight,normal|}",
+      "indent=${1|tight,normal|}",
+      "lists=${1|tight,normal|}",
+      "bibliography=${1|tight,normal|}",
+      "title=${1|tight,normal|}",
+      "sections=${1|tight,normal|}",
+      "margins=${1|tight,normal|}",
+      "charwidthfraction=${1:fraction}",
+      "leadingfraction=${1:fraction}",
+      "marginwidth=",
+      "parindent=",
+      "trackingfraction=${1:fraction}",
+      "wordspacingfraction=${1:fraction}"
+    ]
+  },
+  "args": [
+    "\\usepackage/savetrees#c"
+  ]
 }

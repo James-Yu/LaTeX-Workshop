@@ -1,15 +1,27 @@
 {
-  "includes": {},
-  "macros": {
-    "cprotectinside{}{}": {
-      "snippet": "cprotectinside{${1:delimiter}}{${2:content}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "cprotectinside",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cprotectinside{${1:delimiter}}{${2:content%text}}"
+      }
     },
-    "cprotectinsideAppend": {},
-    "cprotectinsideReexec{}": {
-      "snippet": "cprotectinsideReexec{${1:arg}}"
+    {
+      "name": "cprotectinsideAppend",
+      "unusual": true
+    },
+    {
+      "name": "cprotectinsideReexec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cprotectinsideReexec{${1:arg}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

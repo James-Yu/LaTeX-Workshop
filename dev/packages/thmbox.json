@@ -1,69 +1,114 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "thmboxoptions{}": {
-      "snippet": "thmboxoptions{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "newtheorem[]{}{}": {
-      "snippet": "newtheorem[${3:options}]{${1:envname}}{${2:caption}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "newtheorem[]{}{}[]": {
-      "snippet": "newtheorem[${3:options}]{${1:envname}}{${2:caption}}[${4:within}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "examplename": {},
-    "proofname": {},
-    "newboxtheorem{}{}": {
-      "snippet": "newboxtheorem{${1:envname}}{${2:caption}}"
-    },
-    "newboxtheorem[]{}{}": {
-      "snippet": "newboxtheorem[${3:options}]{${1:envname}}{${2:caption}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {
-    "thmbox{}": {
-      "name": "thmbox",
-      "snippet": "{${1:title}}"
-    },
-    "thmbox[]{}": {
-      "name": "thmbox",
-      "snippet": "[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "leftbar": {},
-    "leftbar[]": {
-      "name": "leftbar",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "proof": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:postfix}]"
-    },
-    "example": {},
-    "example[]": {
-      "name": "example",
-      "snippet": "[${1:label text}]"
-    }
-  },
-  "options": [
-    "nothm",
-    "nocut",
-    "nounderline"
   ],
-  "keyvals": [
-    [
-      "style=",
+  "macros": [
+    {
+      "name": "thmboxoptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "thmboxoptions{${1:options%keyvals}}",
+        "keys": [
+          "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newtheorem",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newtheorem[${3:options%keyvals}]{${1:envname}}{${2:caption}}",
+        "keys": [
+          "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newtheorem",
+      "arg": {
+        "format": "[]{}{}[]",
+        "snippet": "newtheorem[${3:options%keyvals}]{${1:envname}}{${2:caption}}[${4:within}]",
+        "keys": [
+          "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "examplename",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "thmbox",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:title%text}}"
+      }
+    },
+    {
+      "name": "thmbox",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:title%text}}",
+        "keys": [
+          "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "leftbar"
+    },
+    {
+      "name": "leftbar",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "proof"
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:postfix}]"
+      }
+    },
+    {
+      "name": "example"
+    },
+    {
+      "name": "example",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:label text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/thmbox#c": [
+      "nothm",
+      "nocut",
+      "nounderline"
+    ],
+    "\\thmboxoptions#c,\\begin{thmbox}#c,\\begin{leftbar}#c,\\newtheorem#c": [
+      "style=${1|S,M,L|}",
       "S",
       "M",
       "L",
@@ -78,5 +123,8 @@
       "vskip=",
       "thickness="
     ]
+  },
+  "args": [
+    "\\usepackage/thmbox#c"
   ]
 }

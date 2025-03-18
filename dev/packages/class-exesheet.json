@@ -1,22 +1,32 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "exesheet": [],
-    "schooldocs": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "exetoc",
-    "setlist",
-    "output=",
-    "display=",
-    "answerspace",
-    "marginpos=",
-    "marginwidth=",
-    "noteragged=",
-    "checkpts",
-    "correct="
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "exesheet"
+    },
+    {
+      "name": "schooldocs"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\documentclass/exesheet#c": [
+      "exetoc",
+      "setlist",
+      "output=${1|questions,answers,both|}",
+      "display=${1|none,pts,notes|}",
+      "answerspace",
+      "marginpos=${1|left,right,inner,outer|}",
+      "marginwidth=${1|standard,expand,unset|}",
+      "noteragged=${1|left,right,center,justify,twoside|}",
+      "checkpts",
+      "correct=${1|true,false,conditional|}"
+    ]
+  },
+  "args": [
+    "\\documentclass/exesheet#c"
+  ]
 }

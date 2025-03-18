@@ -1,76 +1,168 @@
 {
-  "includes": {},
-  "macros": {
-    "makecommand{}[][]{}": {
-      "snippet": "makecommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "makecommand",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "makecommand{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
     },
-    "makecommand{}[]{}": {
-      "snippet": "makecommand{${1:cmd}}[${2:args}]{${3:def}}"
+    {
+      "name": "makecommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "makecommand{${1:cmd}}[${3:args}]{${2:def}}"
+      }
     },
-    "makecommand{}{}": {
-      "snippet": "makecommand{${1:cmd}}{${2:def}}"
+    {
+      "name": "makecommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "makecommand{${1:cmd}}{${2:def}}"
+      }
     },
-    "makecommand*{}[][]{}": {
-      "snippet": "makecommand*{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    {
+      "name": "makecommand*",
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "makecommand*{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
     },
-    "makecommand*{}[]{}": {
-      "snippet": "makecommand*{${1:cmd}}[${2:args}]{${3:def}}"
+    {
+      "name": "makecommand*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "makecommand*{${1:cmd}}[${3:args}]{${2:def}}"
+      }
     },
-    "makecommand*{}{}": {
-      "snippet": "makecommand*{${1:cmd}}{${2:def}}"
+    {
+      "name": "makecommand*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "makecommand*{${1:cmd}}{${2:def}}"
+      }
     },
-    "provideenvironment{}[][]{}{}": {
-      "snippet": "provideenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "provideenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "provideenvironment{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "provideenvironment{}[]{}{}": {
-      "snippet": "provideenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "provideenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "provideenvironment{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "provideenvironment{}{}{}": {
-      "snippet": "provideenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "provideenvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "provideenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "provideenvironment*{}[][]{}{}": {
-      "snippet": "provideenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "provideenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "provideenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "provideenvironment*{}[]{}{}": {
-      "snippet": "provideenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "provideenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "provideenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "provideenvironment*{}{}{}": {
-      "snippet": "provideenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "provideenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "provideenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment{}[][]{}{}": {
-      "snippet": "makeenvironment{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "makeenvironment",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "makeenvironment{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment{}[]{}{}": {
-      "snippet": "makeenvironment{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "makeenvironment",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "makeenvironment{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment{}{}{}": {
-      "snippet": "makeenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "makeenvironment",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "makeenvironment{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment*{}[][]{}{}": {
-      "snippet": "makeenvironment*{${1:envname}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    {
+      "name": "makeenvironment*",
+      "arg": {
+        "format": "{}[][]{}{}",
+        "snippet": "makeenvironment*{${1:envname}}[${4:args}][${5:default}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment*{}[]{}{}": {
-      "snippet": "makeenvironment*{${1:envname}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    {
+      "name": "makeenvironment*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "makeenvironment*{${1:envname}}[${4:args}]{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "makeenvironment*{}{}{}": {
-      "snippet": "makeenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+    {
+      "name": "makeenvironment*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "makeenvironment*{${1:envname}}{${2:begdef}}{${3:enddef}}"
+      }
     },
-    "providelength{}": {
-      "snippet": "providelength{${1:cmd}}"
+    {
+      "name": "providelength",
+      "arg": {
+        "format": "{}",
+        "snippet": "providelength{${1:cmd}}"
+      }
     },
-    "makelength{}": {
-      "snippet": "makelength{${1:cmd}}"
+    {
+      "name": "makelength",
+      "arg": {
+        "format": "{}",
+        "snippet": "makelength{${1:cmd}}"
+      }
     },
-    "providecounter{}": {
-      "snippet": "providecounter{${1:counter name}}"
+    {
+      "name": "providecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "providecounter{${1:counter name}}"
+      }
     },
-    "makecounter{}": {
-      "snippet": "makecounter{${1:counter name}}"
+    {
+      "name": "makecounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "makecounter{${1:counter name}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "warn"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/makecmds#c": [
+      "warn"
+    ]
+  },
+  "args": [
+    "\\usepackage/makecmds#c"
+  ]
 }

@@ -1,20 +1,40 @@
 {
-  "includes": {},
-  "macros": {
-    "pgfkeysearch{}{}{}": {
-      "snippet": "pgfkeysearch{${1:path-list}}{${2:key}}{${3:macro}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "pgfkeysearch",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysearch{${1:path-list}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
     },
-    "pgfkeysearchvalueof{}{}{}": {
-      "snippet": "pgfkeysearchvalueof{${1:path-list}}{${2:key}}{${3:macro}}"
+    {
+      "name": "pgfkeysearchvalueof",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfkeysearchvalueof{${1:path-list}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
     },
-    "pgfkeysearchTF{}{}{}{}{}": {
-      "snippet": "pgfkeysearchTF{${1:path-list}}{${2:key}}{${3:macro}}{${4:if-found}}{${5:if-not}}"
+    {
+      "name": "pgfkeysearchTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfkeysearchTF{${1:path-list}}{${2:key%plain}}{${3:macro%cmd}}{${4:if-found}}{${5:if-not}}"
+      }
     },
-    "pgfkeysearchvalueofTF{}{}{}{}{}": {
-      "snippet": "pgfkeysearchvalueofTF{${1:path-list}}{${2:key}}{${3:macro}}{${4:if-found}}{${5:if-not}}"
+    {
+      "name": "pgfkeysearchvalueofTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pgfkeysearchvalueofTF{${1:path-list}}{${2:key%plain}}{${3:macro%cmd}}{${4:if-found}}{${5:if-not}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

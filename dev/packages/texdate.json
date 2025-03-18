@@ -1,55 +1,138 @@
 {
-  "includes": {
-    "padcount": [],
-    "modulus": [],
-    "iflang": []
-  },
-  "macros": {
-    "printdate": {},
-    "initcurrdate": {},
-    "initdate{}{}{}": {
-      "snippet": "initdate{${1:year}}{${2:month}}{${3:day}}"
+  "deps": [
+    {
+      "name": "padcount"
     },
-    "printfdate{}": {
-      "snippet": "printfdate{${1:format}}"
+    {
+      "name": "modulus"
     },
-    "setdateformat": {},
-    "nameddateformat{}{}": {
-      "snippet": "nameddateformat{${1:name}}{${2:format string}}"
-    },
-    "texdatenumformat": {},
-    "advancebydays{}": {
-      "snippet": "advancebydays{${1:number}}"
-    },
-    "advancebyweeks{}": {
-      "snippet": "advancebyweeks{${1:number}}"
-    },
-    "advancebymonths{}": {
-      "snippet": "advancebymonths{${1:number}}"
-    },
-    "regressbydays{}": {
-      "snippet": "regressbydays{${1:number}}"
-    },
-    "regressbyweeks{}": {
-      "snippet": "regressbyweeks{${1:number}}"
-    },
-    "regressbymonths{}": {
-      "snippet": "regressbymonths{${1:number}}"
-    },
-    "savedate{}": {
-      "snippet": "savedate{${1:name}}"
-    },
-    "restoredate{}": {
-      "snippet": "restoredate{${1:name}}"
-    },
-    "texdcal{}{}": {
-      "snippet": "texdcal{${1:year}}{${2:month}}"
-    },
-    "texdcalyear{}": {
-      "snippet": "texdcalyear{${1:year}}"
+    {
+      "name": "iflang"
     }
+  ],
+  "macros": [
+    {
+      "name": "printdate"
+    },
+    {
+      "name": "initcurrdate"
+    },
+    {
+      "name": "initdate",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "initdate{${1:year}}{${2:month}}{${3:day}}"
+      }
+    },
+    {
+      "name": "printfdate",
+      "arg": {
+        "format": "{}",
+        "snippet": "printfdate{${1:format%keyvals}}",
+        "keys": [
+          "\\printfdate#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setdateformat",
+      "unusual": true
+    },
+    {
+      "name": "nameddateformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "nameddateformat{${1:name}}{${2:format string}}"
+      }
+    },
+    {
+      "name": "texdatenumformat",
+      "unusual": true
+    },
+    {
+      "name": "advancebydays",
+      "arg": {
+        "format": "{}",
+        "snippet": "advancebydays{${1:number}}"
+      }
+    },
+    {
+      "name": "advancebyweeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "advancebyweeks{${1:number}}"
+      }
+    },
+    {
+      "name": "advancebymonths",
+      "arg": {
+        "format": "{}",
+        "snippet": "advancebymonths{${1:number}}"
+      }
+    },
+    {
+      "name": "regressbydays",
+      "arg": {
+        "format": "{}",
+        "snippet": "regressbydays{${1:number}}"
+      }
+    },
+    {
+      "name": "regressbyweeks",
+      "arg": {
+        "format": "{}",
+        "snippet": "regressbyweeks{${1:number}}"
+      }
+    },
+    {
+      "name": "regressbymonths",
+      "arg": {
+        "format": "{}",
+        "snippet": "regressbymonths{${1:number}}"
+      }
+    },
+    {
+      "name": "savedate",
+      "arg": {
+        "format": "{}",
+        "snippet": "savedate{${1:name}}"
+      }
+    },
+    {
+      "name": "restoredate",
+      "arg": {
+        "format": "{}",
+        "snippet": "restoredate{${1:name}}"
+      }
+    },
+    {
+      "name": "texdcal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "texdcal{${1:year}}{${2:month}}"
+      }
+    },
+    {
+      "name": "texdcalyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "texdcalyear{${1:year}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\printfdate#c": [
+      "ISO",
+      "ISOext",
+      "american",
+      "shamerican",
+      "british",
+      "shbritish",
+      "shbritishdots"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

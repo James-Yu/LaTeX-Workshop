@@ -1,40 +1,77 @@
 {
-  "includes": {
-    "listings": [],
-    "xcolor": []
-  },
-  "macros": {
-    "framemargin": {},
-    "pythonprompt": {},
-    "literatecolour{}": {
-      "snippet": "literatecolour{${1:text}}"
+  "deps": [
+    {
+      "name": "listings"
     },
-    "inputpythonfile{}": {
-      "snippet": "inputpythonfile{${1:file}}"
-    },
-    "inputpythonfile{}[]": {
-      "snippet": "inputpythonfile{${1:file}}[${2:start num}]"
-    },
-    "inputpythonfile{}[][]": {
-      "snippet": "inputpythonfile{${1:file}}[${2:start num}][${3:end num}]"
-    },
-    "pyth": {
-      "snippet": "pyth|${1:text}|"
-    },
-    "pyth{}": {
-      "snippet": "pyth{${1:verbatimSymbol}}"
-    },
-    "inputpython{}{}{}": {
-      "snippet": "inputpython{${1:file}}{${2:start num}}{${3:end num}}"
+    {
+      "name": "xcolor"
     }
-  },
-  "envs": {
-    "python": {},
-    "python[]": {
+  ],
+  "macros": [
+    {
+      "name": "framemargin",
+      "unusual": true
+    },
+    {
+      "name": "pythonprompt",
+      "unusual": true
+    },
+    {
+      "name": "literatecolour",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "literatecolour{${1:text}}"
+      }
+    },
+    {
+      "name": "inputpythonfile",
+      "arg": {
+        "format": "{}",
+        "snippet": "inputpythonfile{${1:file}}"
+      }
+    },
+    {
+      "name": "inputpythonfile",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "inputpythonfile{${1:file}}[${2:start num}]"
+      }
+    },
+    {
+      "name": "inputpythonfile",
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "inputpythonfile{${1:file}}[${2:start num}][${3:end num}]"
+      }
+    },
+    {
+      "name": "pyth",
+      "arg": {
+        "format": "||",
+        "snippet": "pyth|${1:text}|"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "python"
+    },
+    {
       "name": "python",
-      "snippet": "[${1:options}]"
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options}]"
+      }
     }
+  ],
+  "keys": {
+    "\\lstset,\\begin{lstlisting},\\lstinputlisting,\\lstdefinelanguage,\\lstdefinestyle": [
+      "style=pythonhighlight-style"
+    ],
+    "\\lstinline,\\lstMakeShortInline,\\lstdefinelanguage,\\lstdefinestyle": [
+      "style=pythonhighlight-inline-style"
+    ]
   },
-  "options": [],
-  "keyvals": []
+  "args": []
 }

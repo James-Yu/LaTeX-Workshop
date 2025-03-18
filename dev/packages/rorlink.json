@@ -1,21 +1,41 @@
 {
-  "includes": {
-    "hyperref": [],
-    "tikz": [],
-    "etoolbox": [],
-    "tikzlibrarysvg.path": []
-  },
-  "macros": {
-    "rorlink{}": {
-      "snippet": "rorlink{${1:ror-link}}"
+  "deps": [
+    {
+      "name": "hyperref"
     },
-    "rorlink[]{}": {
-      "snippet": "rorlink[${2:option}]{${1:ror-link}}"
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tikzlibrarysvg.path"
     }
-  },
-  "envs": {},
-  "options": [
-    "blackwhite"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "rorlink",
+      "arg": {
+        "format": "{}",
+        "snippet": "rorlink{${1:ror-link%URL}}"
+      }
+    },
+    {
+      "name": "rorlink",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "rorlink[${2:option%keyvals}]{${1:ror-link%URL}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/rorlink#c,\\rorlink": [
+      "blackwhite"
+    ]
+  },
+  "args": [
+    "\\usepackage/rorlink#c,\\rorlink"
+  ]
 }

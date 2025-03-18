@@ -1,18 +1,29 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "PstFrameBoxThreeD{}": {
-      "snippet": "PstFrameBoxThreeD{${1:stuff}}"
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "PstFrameBoxThreeD[]{}": {
-      "snippet": "PstFrameBoxThreeD[${2:options}]{${1:stuff}}"
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "PstFrameBoxThreeD",
+      "arg": {
+        "format": "{}",
+        "snippet": "PstFrameBoxThreeD{${1:stuff%text}}"
+      }
     },
-    "PstFrameBoxThreeDLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "PstFrameBoxThreeD",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "PstFrameBoxThreeD[${2:options%keyvals}]{${1:stuff%text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,57 +1,100 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "pxjodel": [],
-    "mlutf": [
-      "multi"
-    ],
-    "mlcid": [
-      "multi"
-    ],
-    "uplatex": [
-      "uplatex"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "pxjodel"
+    },
+    {
+      "name": "mlutf",
+      "if": "multi"
+    },
+    {
+      "name": "mlcid",
+      "if": "multi"
+    },
+    {
+      "name": "uplatex",
+      "if": "uplatex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "rubydefault",
+      "if": "expert",
+      "unusual": true
+    },
+    {
+      "name": "rubyfamily",
+      "if": "expert"
+    },
+    {
+      "name": "rubykatuji",
+      "if": "expert"
+    },
+    {
+      "name": "mgdefault",
+      "unusual": true
+    },
+    {
+      "name": "propdefault",
+      "unusual": true
+    },
+    {
+      "name": "ebdefault",
+      "unusual": true
+    },
+    {
+      "name": "ltdefault",
+      "unusual": true
+    },
+    {
+      "name": "mathmg",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathmg{${1:text%plain}}"
+      }
+    },
+    {
+      "name": "mgfamily"
+    },
+    {
+      "name": "textmg",
+      "arg": {
+        "format": "{}",
+        "snippet": "textmg{${1:text}}"
+      }
+    },
+    {
+      "name": "propshape"
+    },
+    {
+      "name": "ebseries"
+    },
+    {
+      "name": "ltseries"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/jlreq-deluxe#c": [
+      "hanging_punctuation",
+      "zenkakunibu_nibu",
+      "prefix=${1:string}",
+      "nomacros",
+      "noreplace",
+      "bold",
+      "expert",
+      "deluxe=false",
+      "multi",
+      "uplatex",
+      "autodetect",
+      "jis2004",
+      "scale=${1:factor}"
     ]
   },
-  "macros": {
-    "rubydefault": {
-      "option": "expert"
-    },
-    "rubyfamily": {
-      "option": "expert"
-    },
-    "rubykatuji": {
-      "option": "expert"
-    },
-    "mgdefault": {},
-    "propdefault": {},
-    "ebdefault": {},
-    "ltdefault": {},
-    "mathmg{}": {
-      "snippet": "mathmg{${1:text}}"
-    },
-    "mgfamily": {},
-    "textmg{}": {
-      "snippet": "textmg{${1:text}}"
-    },
-    "propshape": {},
-    "ebseries": {},
-    "ltseries": {}
-  },
-  "envs": {},
-  "options": [
-    "hanging_punctuation",
-    "zenkakunibu_nibu",
-    "prefix=${1:string}",
-    "nomacros",
-    "noreplace",
-    "bold",
-    "expert",
-    "deluxe=false",
-    "multi",
-    "uplatex",
-    "autodetect",
-    "jis2004",
-    "scale=${1:factor}"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/jlreq-deluxe#c"
+  ]
 }

@@ -1,196 +1,529 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "etoolbox": [],
-    "setspace": [],
-    "geometry": [],
-    "url": [],
-    "refcount": [],
-    "pressrelease-symbols": [
-      "symbols",
-      "symbols=true"
-    ]
-  },
-  "macros": {
-    "PRset{}": {
-      "snippet": "PRset{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "PRusevar{}": {
-      "snippet": "PRusevar{${1:variable}}"
+    {
+      "name": "etoolbox"
     },
-    "PRheadline{}": {
-      "snippet": "PRheadline{${1:text}}"
+    {
+      "name": "setspace"
     },
-    "PRsubheadline{}": {
-      "snippet": "PRsubheadline{${1:text}}"
+    {
+      "name": "geometry"
     },
-    "PRrelease{}": {
-      "snippet": "PRrelease{${1:text}}"
+    {
+      "name": "url"
     },
-    "PRlogo{}": {
-      "snippet": "PRlogo{${1:logo}}"
+    {
+      "name": "refcount"
     },
-    "PRcompany{}": {
-      "snippet": "PRcompany{${1:name}}"
+    {
+      "name": "pressrelease-symbols",
+      "if": "symbols"
     },
-    "PRdepartment{}": {
-      "snippet": "PRdepartment{${1:name}}"
-    },
-    "PRlocation{}": {
-      "snippet": "PRlocation{${1:place}}"
-    },
-    "PRcontact{}": {
-      "snippet": "PRcontact{${1:name}}"
-    },
-    "PRaddress{}": {
-      "snippet": "PRaddress{${1:text}}"
-    },
-    "PRphone{}": {
-      "snippet": "PRphone{${1:number}}"
-    },
-    "PRmobile{}": {
-      "snippet": "PRmobile{${1:number}}"
-    },
-    "PRfax{}": {
-      "snippet": "PRfax{${1:number}}"
-    },
-    "PRurl{}": {
-      "snippet": "PRurl{${1:URL}}"
-    },
-    "PRemail{}": {
-      "snippet": "PRemail{${1:email}}"
-    },
-    "PRemailformat{}": {
-      "snippet": "PRemailformat{${1:text}}"
-    },
-    "PRhours{}": {
-      "snippet": "PRhours{${1:times}}"
-    },
-    "PRencl{}": {
-      "snippet": "PRencl{${1:text}}"
-    },
-    "PRtagformat{}": {
-      "snippet": "PRtagformat{${1:text}}"
-    },
-    "PRinfotopline{}{}": {
-      "snippet": "PRinfotopline{${1:tag}}{${2:details}}"
-    },
-    "PRinfobottomline{}{}": {
-      "snippet": "PRinfobottomline{${1:tag}}{${2:details}}"
-    },
-    "PRinfoline{}{}": {
-      "snippet": "PRinfoline{${1:tag}}{${2:details}}"
-    },
-    "PRinfoentry{}": {
-      "snippet": "PRinfoentry{${1:details}}"
-    },
-    "PRenclformat{}{}": {
-      "snippet": "PRenclformat{${1:tag}}{${2:details}}"
-    },
-    "PRurlformat{}{}": {
-      "snippet": "PRurlformat{${1:tag}}{${2:URL}}"
-    },
-    "PRcontacttext": {},
-    "PRphonetext": {},
-    "PRmobiletext": {},
-    "PRemailtext": {},
-    "PRurltext": {},
-    "PRfaxtext": {},
-    "PRcompanytext": {},
-    "PRdepartmenttext": {},
-    "PRaddresstext": {},
-    "PRhourstext": {},
-    "PRdatetext": {},
-    "PRlocationtext": {},
-    "PRencltext": {},
-    "PRabouttext": {},
-    "PRreleasetext": {},
-    "PRnOfm{}{}": {
-      "snippet": "PRnOfm{${1:n}}{${2:m}}"
-    },
-    "ifPRheadabove": {},
-    "ifPRloadsymbols": {},
-    "ifPRruled": {},
-    "PRaboutposturlhook": {},
-    "PRdohrule": {},
-    "PRendsignal": {},
-    "PRformatendsignal{}": {
-      "snippet": "PRformatendsignal{${1:arg}}"
-    },
-    "PRheadabovefalse": {},
-    "PRheadabovetrue": {},
-    "PRheadalign{}": {
-      "snippet": "PRheadalign{${1:arg}}"
-    },
-    "PRheaderfont{}": {
-      "snippet": "PRheaderfont{${1:arg}}"
-    },
-    "PRheadformat{}": {
-      "snippet": "PRheadformat{${1:arg}}"
-    },
-    "PRinfobottomalign{}": {
-      "snippet": "PRinfobottomalign{${1:arg}}"
-    },
-    "PRinfobottombeginhook": {},
-    "PRinfobottomblock{}{}{}{}{}{}{}{}{}": {
-      "snippet": "PRinfobottomblock{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
-    },
-    "PRinfobottomendhook": {},
-    "PRinfotopalign{}": {
-      "snippet": "PRinfotopalign{${1:arg}}"
-    },
-    "PRinfotopbeginhook": {},
-    "PRinfotopblock{}{}{}{}{}{}{}{}{}": {
-      "snippet": "PRinfotopblock{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
-    },
-    "PRinfotopendhook": {},
-    "PRloadsymbolsfalse": {},
-    "PRloadsymbolstrue": {},
-    "PRlogoalign{}": {
-      "snippet": "PRlogoalign{${1:arg}}"
-    },
-    "PRlogoformat{}": {
-      "snippet": "PRlogoformat{${1:arg}}"
-    },
-    "PRreleasealign{}": {
-      "snippet": "PRreleasealign{${1:arg}}"
-    },
-    "PRreleaseformat{}": {
-      "snippet": "PRreleaseformat{${1:arg}}"
-    },
-    "PRruledfalse": {},
-    "PRruledtrue": {},
-    "PRsubheadformat{}": {
-      "snippet": "PRsubheadformat{${1:arg}}"
-    },
-    "PRthelastpage": {},
-    "thepressrelease": {}
-  },
-  "envs": {
-    "pressrelease": {},
-    "about": {}
-  },
-  "options": [
-    "10pt",
-    "11pt",
-    "12pt",
-    "letterpaper",
-    "a4paper"
+    {
+      "name": "pressrelease-symbols",
+      "if": "symbols=true"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "PRset",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRset{${1:options%keyvals}}",
+        "keys": [
+          "\\PRset#c,\\documentclass/pressrelease#c",
+          "\\PRset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PRusevar",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRusevar{${1:variable%keyvals}}",
+        "keys": [
+          "\\PRusevar#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "PRheadline",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRheadline{${1:text}}"
+      }
+    },
+    {
+      "name": "PRsubheadline",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRsubheadline{${1:text}}"
+      }
+    },
+    {
+      "name": "PRrelease",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRrelease{${1:text}}"
+      }
+    },
+    {
+      "name": "PRlogo",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRlogo{${1:logo}}"
+      }
+    },
+    {
+      "name": "PRcompany",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRcompany{${1:name%text}}"
+      }
+    },
+    {
+      "name": "PRdepartment",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRdepartment{${1:name%text}}"
+      }
+    },
+    {
+      "name": "PRlocation",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRlocation{${1:place%text}}"
+      }
+    },
+    {
+      "name": "PRcontact",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRcontact{${1:name}}"
+      }
+    },
+    {
+      "name": "PRaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRaddress{${1:text}}"
+      }
+    },
+    {
+      "name": "PRphone",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRphone{${1:number}}"
+      }
+    },
+    {
+      "name": "PRmobile",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRmobile{${1:number}}"
+      }
+    },
+    {
+      "name": "PRfax",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRfax{${1:number}}"
+      }
+    },
+    {
+      "name": "PRurl",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRurl{${1:URL}}"
+      }
+    },
+    {
+      "name": "PRemail",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRemail{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "PRemailformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRemailformat{${1:text}}"
+      }
+    },
+    {
+      "name": "PRhours",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRhours{${1:times}}"
+      }
+    },
+    {
+      "name": "PRencl",
+      "arg": {
+        "format": "{}",
+        "snippet": "PRencl{${1:text}}"
+      }
+    },
+    {
+      "name": "PRtagformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRtagformat{${1:text}}"
+      }
+    },
+    {
+      "name": "PRinfotopline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRinfotopline{${1:tag}}{${2:details%text}}"
+      }
+    },
+    {
+      "name": "PRinfobottomline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRinfobottomline{${1:tag}}{${2:details%text}}"
+      }
+    },
+    {
+      "name": "PRinfoline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRinfoline{${1:tag}}{${2:details%text}}"
+      }
+    },
+    {
+      "name": "PRinfoentry",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRinfoentry{${1:details%text}}"
+      }
+    },
+    {
+      "name": "PRenclformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRenclformat{${1:tag}}{${2:details%text}}"
+      }
+    },
+    {
+      "name": "PRurlformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRurlformat{${1:tag}}{${2:URL}}"
+      }
+    },
+    {
+      "name": "PRcontacttext",
+      "unusual": true
+    },
+    {
+      "name": "PRphonetext",
+      "unusual": true
+    },
+    {
+      "name": "PRmobiletext",
+      "unusual": true
+    },
+    {
+      "name": "PRemailtext",
+      "unusual": true
+    },
+    {
+      "name": "PRurltext",
+      "unusual": true
+    },
+    {
+      "name": "PRfaxtext",
+      "unusual": true
+    },
+    {
+      "name": "PRcompanytext",
+      "unusual": true
+    },
+    {
+      "name": "PRdepartmenttext",
+      "unusual": true
+    },
+    {
+      "name": "PRaddresstext",
+      "unusual": true
+    },
+    {
+      "name": "PRhourstext",
+      "unusual": true
+    },
+    {
+      "name": "PRdatetext",
+      "unusual": true
+    },
+    {
+      "name": "PRlocationtext",
+      "unusual": true
+    },
+    {
+      "name": "PRencltext",
+      "unusual": true
+    },
+    {
+      "name": "PRabouttext",
+      "unusual": true
+    },
+    {
+      "name": "PRreleasetext",
+      "unusual": true
+    },
+    {
+      "name": "PRnOfm",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PRnOfm{${1:n}}{${2:m}}"
+      }
+    },
+    {
+      "name": "ifPRheadabove",
+      "unusual": true
+    },
+    {
+      "name": "ifPRloadsymbols",
+      "unusual": true
+    },
+    {
+      "name": "ifPRruled",
+      "unusual": true
+    },
+    {
+      "name": "PRaboutposturlhook",
+      "unusual": true
+    },
+    {
+      "name": "PRdohrule",
+      "unusual": true
+    },
+    {
+      "name": "PRendsignal",
+      "unusual": true
+    },
+    {
+      "name": "PRformatendsignal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRformatendsignal{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRheadabovefalse",
+      "unusual": true
+    },
+    {
+      "name": "PRheadabovetrue",
+      "unusual": true
+    },
+    {
+      "name": "PRheadalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRheadalign{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRheaderfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRheaderfont{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRheadformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRheadformat{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRinfobottomalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRinfobottomalign{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRinfobottombeginhook",
+      "unusual": true
+    },
+    {
+      "name": "PRinfobottomblock",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "PRinfobottomblock{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
+      }
+    },
+    {
+      "name": "PRinfobottomendhook",
+      "unusual": true
+    },
+    {
+      "name": "PRinfotopalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRinfotopalign{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRinfotopbeginhook",
+      "unusual": true
+    },
+    {
+      "name": "PRinfotopblock",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "PRinfotopblock{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}{${6:arg6}}{${7:arg7}}{${8:arg8}}{${9:arg9}}"
+      }
+    },
+    {
+      "name": "PRinfotopendhook",
+      "unusual": true
+    },
+    {
+      "name": "PRloadsymbolsfalse",
+      "unusual": true
+    },
+    {
+      "name": "PRloadsymbolstrue",
+      "unusual": true
+    },
+    {
+      "name": "PRlogoalign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRlogoalign{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRlogoformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRlogoformat{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRreleasealign",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRreleasealign{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRreleaseformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRreleaseformat{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRruledfalse",
+      "unusual": true
+    },
+    {
+      "name": "PRruledtrue",
+      "unusual": true
+    },
+    {
+      "name": "PRsubheadformat",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "PRsubheadformat{${1:arg}}"
+      }
+    },
+    {
+      "name": "PRthelastpage",
+      "unusual": true
+    },
+    {
+      "name": "thepressrelease",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "pressrelease"
+    },
+    {
+      "name": "about"
+    }
+  ],
+  "keys": {
+    "\\documentclass/pressrelease#c": [
+      "10pt",
+      "11pt",
+      "12pt",
+      "letterpaper",
+      "a4paper"
+    ],
+    "\\PRset#c,\\documentclass/pressrelease#c": [
       "symbols",
-      "head=",
+      "head=${1|above,below,center,left,right,above center,above left,above right,below center,below left,below right|}",
       "smashlogo",
-      "logo=",
-      "releasealign=",
+      "logo=${1|left,right,above,below,above left,above right,below left,below right|}",
+      "releasealign=${1|center,left,right|}",
       "ruled",
-      "topinfoalign=",
-      "bottominfoalign=",
+      "topinfoalign=${1|center,left,right|}",
+      "bottominfoalign=${1|center,left,right|}"
+    ],
+    "\\PRset#c": [
       "topinfo=${1:company/department/location/date}",
       "bottominfo=${1:contact/address/hours/phone/email}"
+    ],
+    "\\PRusevar#c": [
+      "address",
+      "company",
+      "contact",
+      "date",
+      "department",
+      "email",
+      "encl",
+      "fax",
+      "headline",
+      "hours",
+      "location",
+      "logo",
+      "mobile",
+      "phone",
+      "release",
+      "subheadline",
+      "url"
     ]
+  },
+  "args": [
+    "\\documentclass/pressrelease#c",
+    "\\PRset#c,\\documentclass/pressrelease#c"
   ]
 }

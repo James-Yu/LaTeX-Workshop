@@ -1,20 +1,28 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "xcolor": []
-  },
-  "macros": {},
-  "envs": {},
-  "options": [
-    "accentcolor=",
-    "textaccentcolor=",
-    "identbarcolor=",
-    "color=",
-    "text=",
-    "cmyk",
-    "RGB",
-    "department=mecheng",
-    "departmentconfigprefix=${1:prefix}"
+  "deps": [
+    {
+      "name": "l3keys2e"
+    },
+    {
+      "name": "xcolor"
+    }
   ],
-  "keyvals": []
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tudacolors#c": [
+      "accentcolor=",
+      "textaccentcolor=",
+      "identbarcolor=",
+      "color=",
+      "text=${1|black,white|}",
+      "cmyk",
+      "RGB",
+      "department=mecheng",
+      "departmentconfigprefix=${1:prefix}"
+    ]
+  },
+  "args": [
+    "\\usepackage/tudacolors#c"
+  ]
 }

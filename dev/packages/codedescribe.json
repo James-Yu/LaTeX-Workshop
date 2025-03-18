@@ -1,130 +1,396 @@
 {
-  "includes": {
-    "xcolor": [],
-    "pifont": [],
-    "codelisting": []
-  },
-  "macros": {
-    "defgroupfmt{}{}": {
-      "snippet": "defgroupfmt{${1:format-group}}{${2:format-keys}}"
+  "deps": [
+    {
+      "name": "xcolor"
     },
-    "defobjectfmt{}{}{}": {
-      "snippet": "defobjectfmt{${1:obj-type}}{${2:format-group}}{${3:format-keys}}"
+    {
+      "name": "pifont"
     },
-    "describe{}{}": {
-      "snippet": "describe{${1:item-name}}{${2:item-description}}"
-    },
-    "typesetobj{}": {
-      "snippet": "typesetobj{${1:csv-list}}"
-    },
-    "typesetobj[]{}": {
-      "snippet": "typesetobj[${2:obj-type}]{${1:csv-list}}"
-    },
-    "tsobj{}": {
-      "snippet": "tsobj{${1:csv-list}}"
-    },
-    "tsobj[]{}": {
-      "snippet": "tsobj[${2:obj-type}]{${1:csv-list}}"
-    },
-    "typesetargs{}": {
-      "snippet": "typesetargs{${1:csv-list}}"
-    },
-    "typesetargs[]{}": {
-      "snippet": "typesetargs[${2:obj-type}]{${1:csv-list}}"
-    },
-    "tsargs{}": {
-      "snippet": "tsargs{${1:csv-list}}"
-    },
-    "tsargs[]{}": {
-      "snippet": "tsargs[${2:obj-type}]{${1:csv-list}}"
-    },
-    "typesetmacro{}{}": {
-      "snippet": "typesetmacro{${1:macro-list}}{${2:csv-list}}"
-    },
-    "typesetmacro{}[]{}": {
-      "snippet": "typesetmacro{${1:macro-list}}[${2:oargs-list}]{${3:margs-list}}"
-    },
-    "tsmacro{}{}": {
-      "snippet": "tsmacro{${1:macro-list}}{${2:csv-list}}"
-    },
-    "tsmacro{}[]{}": {
-      "snippet": "tsmacro{${1:macro-list}}[${2:oargs-list}]{${3:margs-list}}"
-    },
-    "typesetmeta{}": {
-      "snippet": "typesetmeta{${1:name}}"
-    },
-    "tsmeta{}": {
-      "snippet": "tsmeta{${1:name}}"
-    },
-    "typesetverb{}": {
-      "snippet": "typesetverb{${1:verbatim text}}"
-    },
-    "typesetverb[]{}": {
-      "snippet": "typesetverb[${2:obj-type}]{${1:verbatim text}}"
-    },
-    "tsverb{}": {
-      "snippet": "tsverb{${1:verbatim text}}"
-    },
-    "tsverb[]{}": {
-      "snippet": "tsverb[${2:obj-type}]{${1:verbatim text}}"
-    },
-    "typesetmarginnote{}": {
-      "snippet": "typesetmarginnote{${1:note}}"
-    },
-    "tsmarginnote{}": {
-      "snippet": "tsmarginnote{${1:note}}"
-    },
-    "typesettitle{}": {
-      "snippet": "typesettitle{${1:title-keys}}"
-    },
-    "tstitle{}": {
-      "snippet": "tstitle{${1:title-keys}}"
-    },
-    "typesetdate": {},
-    "tsdate": {},
-    "PkgDescription{}": {
-      "snippet": "PkgDescription{${1:arg}}"
-    },
-    "PkgInfo{}{}": {
-      "snippet": "PkgInfo{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "codelisting"
     }
-  },
-  "envs": {
-    "codedescribe{}": {
-      "name": "codedescribe",
-      "snippet": "{${1:csv-list}}"
-    },
-    "codedescribe[]{}": {
-      "name": "codedescribe",
-      "snippet": "[${2:obj-type}]{${1:csv-list}}"
-    },
-    "codesyntax": {},
-    "describelist{}": {
-      "name": "describelist",
-      "snippet": "{${1:obj-type}}"
-    },
-    "describelist[]{}": {
-      "name": "describelist",
-      "snippet": "[${2:item-indent}]{${1:obj-type}}"
-    },
-    "describelist*{}": {
-      "name": "describelist*",
-      "snippet": "{${1:obj-type}}"
-    },
-    "describelist*[]{}": {
-      "name": "describelist*",
-      "snippet": "[${2:item-indent}]{${1:obj-type}}"
-    },
-    "tsremark": {},
-    "tsremark[]": {
-      "name": "tsremark",
-      "snippet": "[${1:NB}]"
-    },
-    "typesetabstract": {},
-    "tsabstract": {}
-  },
-  "options": [
-    "nolisting"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "defgroupfmt",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defgroupfmt{${1:format-group}}{${2:format-keys%keyvals}}",
+        "keys": [
+          "\\defgroupfmt#c,\\defobjectfmt#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "defobjectfmt",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "defobjectfmt{${1:obj-type}}{${2:format-group}}{${3:format-keys%keyvals}}",
+        "keys": [
+          "\\defgroupfmt#c,\\defobjectfmt#c"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "describe",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "describe{${1:item-name}}{${2:item-description%text}}"
+      }
+    },
+    {
+      "name": "typesetobj",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetobj{${1:csv-list}}"
+      }
+    },
+    {
+      "name": "typesetobj",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "typesetobj[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\typesetobj#c,\\tsobj#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tsobj",
+      "arg": {
+        "format": "{}",
+        "snippet": "tsobj{${1:csv-list}}"
+      }
+    },
+    {
+      "name": "tsobj",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tsobj[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\typesetobj#c,\\tsobj#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typesetargs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetargs{${1:csv-list}}"
+      }
+    },
+    {
+      "name": "typesetargs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "typesetargs[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tsargs",
+      "arg": {
+        "format": "{}",
+        "snippet": "tsargs{${1:csv-list}}"
+      }
+    },
+    {
+      "name": "tsargs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tsargs[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typesetmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "typesetmacro{${1:macro-list}}{${2:csv-list}}"
+      }
+    },
+    {
+      "name": "typesetmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "typesetmacro{${1:macro-list}}[${3:oargs-list}]{${2:margs-list}}"
+      }
+    },
+    {
+      "name": "tsmacro",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tsmacro{${1:macro-list%definition}}{${2:csv-list}}"
+      }
+    },
+    {
+      "name": "tsmacro",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "tsmacro{${1:macro-list%definition}}[${3:oargs-list}]{${2:margs-list}}"
+      }
+    },
+    {
+      "name": "typesetmeta",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetmeta{${1:name}}"
+      }
+    },
+    {
+      "name": "tsmeta",
+      "arg": {
+        "format": "{}",
+        "snippet": "tsmeta{${1:name}}"
+      }
+    },
+    {
+      "name": "typesetverb",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetverb{${1:verbatim text%definition}}"
+      }
+    },
+    {
+      "name": "typesetverb",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "typesetverb[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tsverb",
+      "arg": {
+        "format": "{}",
+        "snippet": "tsverb{${1:verbatim text%definition}}"
+      }
+    },
+    {
+      "name": "tsverb",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "tsverb[${2:obj-type%keyvals}]{${1:verbatim text%definition}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typesetmarginnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesetmarginnote{${1:note%text}}"
+      }
+    },
+    {
+      "name": "tsmarginnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "tsmarginnote{${1:note%text}}"
+      }
+    },
+    {
+      "name": "typesettitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "typesettitle{${1:title-keys%keyvals}}",
+        "keys": [
+          "\\typesettitle,\\tstitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tstitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "tstitle{${1:title-keys%keyvals}}",
+        "keys": [
+          "\\typesettitle,\\tstitle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "typesetdate",
+      "unusual": true
+    },
+    {
+      "name": "tsdate"
+    }
+  ],
+  "envs": [
+    {
+      "name": "codedescribe",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:csv-list}}"
+      }
+    },
+    {
+      "name": "codedescribe",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:obj-type%keyvals}]{${1:csv-list}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c",
+          "\\begin{codedescribe}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "codesyntax"
+    },
+    {
+      "name": "describelist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "describelist",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "describelist*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "describelist*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:item-indent}]{${1:obj-type%keyvals}}",
+        "keys": [
+          "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "tsremark"
+    },
+    {
+      "name": "tsremark",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:NB}]"
+      }
+    },
+    {
+      "name": "typesetabstract",
+      "unusual": true
+    },
+    {
+      "name": "tsabstract"
+    }
+  ],
+  "keys": {
+    "\\usepackage/codedescribe#c": [
+      "nolisting"
+    ],
+    "\\defgroupfmt#c,\\defobjectfmt#c": [
+      "meta",
+      "xmeta",
+      "verb",
+      "xverb",
+      "code",
+      "nofmt",
+      "slshape",
+      "itshape",
+      "noshape",
+      "lbracket=${1:symbol}",
+      "rbracket=${1:symbol}",
+      "color="
+    ],
+    "\\begin{codedescribe}#c,\\begin{describelist}#c,\\begin{describelist*}#c,\\typesetobj#c,\\tsobj#c,\\typesetargs#c,\\tsargs#c,\\typesetverb#c,\\tsverb#c": [
+      "arg",
+      "meta",
+      "verb",
+      "xverb",
+      "marg",
+      "oarg",
+      "parg",
+      "xarg",
+      "code",
+      "macro",
+      "function",
+      "syntax",
+      "keyval",
+      "key",
+      "keys",
+      "value",
+      "option",
+      "defaultval",
+      "env",
+      "pkg",
+      "pack"
+    ],
+    "\\begin{codedescribe}#c": [
+      "rulecolor=${1:color}",
+      "new=${1:date}",
+      "update=${1:date}",
+      "note=${1:text}",
+      "EXP",
+      "rEXP"
+    ],
+    "\\typesetobj#c,\\tsobj#c": [
+      "sep=${1:separator}"
+    ],
+    "\\typesettitle,\\tstitle": [
+      "title=${1:text}",
+      "author=${1:name}",
+      "date=${1:date}"
+    ]
+  },
+  "args": [
+    "\\usepackage/codedescribe#c"
+  ]
 }

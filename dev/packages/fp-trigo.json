@@ -1,47 +1,99 @@
 {
-  "includes": {
-    "fp-basic": []
-  },
-  "macros": {
-    "FPpi": {},
-    "FPsin{}{}": {
-      "snippet": "FPsin{${1:variable}}{${2:value}}"
-    },
-    "FPcos{}{}": {
-      "snippet": "FPcos{${1:variable}}{${2:value}}"
-    },
-    "FPsincos{}{}{}": {
-      "snippet": "FPsincos{${1:variable1}}{${2:variable2}}{${3:value}}"
-    },
-    "FPtan{}{}": {
-      "snippet": "FPtan{${1:variable}}{${2:value}}"
-    },
-    "FPcot{}{}": {
-      "snippet": "FPcot{${1:variable}}{${2:value}}"
-    },
-    "FPtancot{}{}{}": {
-      "snippet": "FPtancot{${1:variable1}}{${2:variable2}}{${3:value}}"
-    },
-    "FParcsin{}{}": {
-      "snippet": "FParcsin{${1:variable}}{${2:value}}"
-    },
-    "FParccos{}{}": {
-      "snippet": "FParccos{${1:variable}}{${2:value}}"
-    },
-    "FParcsincos{}{}{}": {
-      "snippet": "FParcsincos{${1:variable1}}{${2:variable2}}{${3:value}}"
-    },
-    "FParctan{}{}": {
-      "snippet": "FParctan{${1:variable}}{${2:value}}"
-    },
-    "FParccot{}{}": {
-      "snippet": "FParccot{${1:variable}}{${2:value}}"
-    },
-    "FParctancot{}{}{}": {
-      "snippet": "FParctancot{${1:variable1}}{${2:variable2}}{${3:value}}"
+  "deps": [
+    {
+      "name": "fp-basic"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "FPpi"
+    },
+    {
+      "name": "FPsin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPsin{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPcos",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPcos{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPsincos",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FPsincos{${1:variable1%cmd}}{${2:variable2%cmd}}{${3:value}}"
+      }
+    },
+    {
+      "name": "FPtan",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPtan{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPcot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FPcot{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FPtancot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FPtancot{${1:variable1%cmd}}{${2:variable2%cmd}}{${3:value}}"
+      }
+    },
+    {
+      "name": "FParcsin",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FParcsin{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FParccos",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FParccos{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FParcsincos",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FParcsincos{${1:variable1%cmd}}{${2:variable2%cmd}}{${3:value}}"
+      }
+    },
+    {
+      "name": "FParctan",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FParctan{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FParccot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FParccot{${1:variable%cmd}}{${2:value}}"
+      }
+    },
+    {
+      "name": "FParctancot",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FParctancot{${1:variable1%cmd}}{${2:variable2%cmd}}{${3:value}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

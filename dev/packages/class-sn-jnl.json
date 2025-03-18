@@ -1,30 +1,1871 @@
 {
-  "includes": {
-    "geometry": [],
-    "graphicx": [],
-    "multirow": [],
-    "amsmath": [],
-    "amssymb": [],
-    "amsfonts": [],
-    "amsthm": [],
-    "mathrsfs": [],
-    "rotating": [],
-    "appendix": [],
-    "xcolor": [],
-    "manyfoot": [],
-    "booktabs": [],
-    "algorithm": [],
-    "algorithmicx": [],
-    "algpseudocode": [],
-    "program": [],
-    "listings": [],
-    "hyperref": [],
-    "breakurl": [],
-    "wrapfig": [],
-    "setspace": [
-      "referee"
-    ],
-    "natbib": [
+  "deps": [
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "multirow"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "amsfonts"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "mathrsfs"
+    },
+    {
+      "name": "rotating"
+    },
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "manyfoot"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "algorithmicx"
+    },
+    {
+      "name": "algpseudocode"
+    },
+    {
+      "name": "program"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "breakurl"
+    },
+    {
+      "name": "wrapfig"
+    },
+    {
+      "name": "setspace",
+      "if": "referee"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-basic"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-mathphys"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-aps"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-vancouver"
+    },
+    {
+      "name": "apacite",
+      "if": "sn-apa"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-apa"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-chicago"
+    },
+    {
+      "name": "natbib",
+      "if": "sn-standardnature"
+    },
+    {
+      "name": "natbib",
+      "if": "default"
+    },
+    {
+      "name": "vruler",
+      "if": "lineno"
+    }
+  ],
+  "macros": [
+    {
+      "name": "refdoi",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "refdoi{${1:DOI}}"
+      }
+    },
+    {
+      "name": "citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "citeauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citeauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "citeauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "citeauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citeauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "citeauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "Citeauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Citeauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "Citeauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "Citeauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Citeauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citeauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "Citeauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Citefullauthor{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Citefullauthor[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthor",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "Citefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "citefullauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citefullauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "citefullauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "citefullauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citefullauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "citefullauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Citefullauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Citefullauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthort",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "Citefullauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "Citefullauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Citefullauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "Citefullauthorp",
+      "if": "sn-apa",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "Citefullauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitep{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitep[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitep[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitet{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitet[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitet[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteyearpar",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskciteyearpar{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteyearpar",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskciteyearpar[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteyearpar",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskciteyearpar[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitealp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitealp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitealp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitealt{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitealt[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitealt[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitenum",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitenum{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitenum",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitenum[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitenum",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitenum[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitetalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitetalias{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitetalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitetalias[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitetalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitetalias[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitepalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitepalias{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitepalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitepalias[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitepalias",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitepalias[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCitep{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCitep[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitep",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCitep[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCitet{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCitet[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitet",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCitet[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCiteauthor{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCiteauthor[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCiteauthor[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCitealp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCitealp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCitealp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCitealt{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCitealt[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitealt",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCitealt[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskciteauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskciteauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskciteauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskciteauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskciteauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskciteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskciteauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCiteauthorp{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCiteauthorp[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthorp",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCiteauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCiteauthort{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCiteauthort[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCiteauthort",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCiteauthort[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskcitefullauthor{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskcitefullauthor[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskcitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskcitefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "{}",
+        "snippet": "maskCitefullauthor{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "maskCitefullauthor[${2:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "maskCitefullauthor",
+      "if": "sn-apa",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "maskCitefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}"
+      }
+    },
+    {
+      "name": "linenoon",
+      "if": "lineno",
+      "unusual": true
+    },
+    {
+      "name": "absraggedcenter",
+      "unusual": true
+    },
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "abstract{${1:text}}"
+      }
+    },
+    {
+      "name": "abstractfont",
+      "unusual": true
+    },
+    {
+      "name": "abstracthead",
+      "unusual": true
+    },
+    {
+      "name": "abstractheadfont",
+      "unusual": true
+    },
+    {
+      "name": "abstractsubheadfont",
+      "unusual": true
+    },
+    {
+      "name": "accepted",
+      "arg": {
+        "format": "{}",
+        "snippet": "accepted{${1:date}}"
+      }
+    },
+    {
+      "name": "addcount",
+      "unusual": true
+    },
+    {
+      "name": "addressfont",
+      "unusual": true
+    },
+    {
+      "name": "affil*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "affil*[${2:num}]{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "affil*",
+      "arg": {
+        "format": "{}",
+        "snippet": "affil*{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "affil[${2:num}]{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "affil",
+      "arg": {
+        "format": "{}",
+        "snippet": "affil{${1:affiliation%text}}"
+      }
+    },
+    {
+      "name": "affnum",
+      "unusual": true
+    },
+    {
+      "name": "artauthors",
+      "unusual": true
+    },
+    {
+      "name": "artcatbox",
+      "unusual": true
+    },
+    {
+      "name": "Artcatfont",
+      "unusual": true
+    },
+    {
+      "name": "articletype",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "articletype{${1:arg}}"
+      }
+    },
+    {
+      "name": "artnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "artnote{${1:text}}"
+      }
+    },
+    {
+      "name": "ArtType",
+      "unusual": true
+    },
+    {
+      "name": "auaddress",
+      "unusual": true
+    },
+    {
+      "name": "aucount",
+      "unusual": true
+    },
+    {
+      "name": "authbiotextfont",
+      "unusual": true
+    },
+    {
+      "name": "authemail",
+      "unusual": true
+    },
+    {
+      "name": "author*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author*[${2:affil-num}]{${1:name}}"
+      }
+    },
+    {
+      "name": "author*",
+      "arg": {
+        "format": "{}",
+        "snippet": "author*{${1:name}}"
+      }
+    },
+    {
+      "name": "author",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "author[${2:affil-num}]{${1:name}}"
+      }
+    },
+    {
+      "name": "Authorfont",
+      "unusual": true
+    },
+    {
+      "name": "authorsep",
+      "unusual": true
+    },
+    {
+      "name": "backmatter"
+    },
+    {
+      "name": "backmatterfalse",
+      "unusual": true
+    },
+    {
+      "name": "backmattertrue",
+      "unusual": true
+    },
+    {
+      "name": "bibcommenthead",
+      "unusual": true
+    },
+    {
+      "name": "biofigadjskip",
+      "unusual": true
+    },
+    {
+      "name": "bmhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "bmhead{${1:title}}"
+      }
+    },
+    {
+      "name": "bmheadfont",
+      "unusual": true
+    },
+    {
+      "name": "botrule"
+    },
+    {
+      "name": "capbox",
+      "unusual": true
+    },
+    {
+      "name": "city",
+      "arg": {
+        "format": "{}",
+        "snippet": "city{${1:city}}"
+      }
+    },
+    {
+      "name": "columnhsize",
+      "unusual": true
+    },
+    {
+      "name": "copytext",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "copytext{${1:text}}{${2:year}}"
+      }
+    },
+    {
+      "name": "corraucount",
+      "unusual": true
+    },
+    {
+      "name": "corrauthemail",
+      "unusual": true
+    },
+    {
+      "name": "country",
+      "arg": {
+        "format": "{}",
+        "snippet": "country{${1:country}}"
+      }
+    },
+    {
+      "name": "dgr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "dgr{${1:text}}"
+      }
+    },
+    {
+      "name": "Doublecolfalse",
+      "unusual": true
+    },
+    {
+      "name": "Doublecoltrue",
+      "unusual": true
+    },
+    {
+      "name": "email",
+      "arg": {
+        "format": "{}",
+        "snippet": "email{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "emailcnt",
+      "unusual": true
+    },
+    {
+      "name": "enumargs",
+      "unusual": true
+    },
+    {
+      "name": "eqnhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "eqnhead{${1:text}}"
+      }
+    },
+    {
+      "name": "eqnheadfont",
+      "unusual": true
+    },
+    {
+      "name": "equalcont",
+      "arg": {
+        "format": "{}",
+        "snippet": "equalcont{${1:text}}"
+      }
+    },
+    {
+      "name": "equalcontfalse",
+      "unusual": true
+    },
+    {
+      "name": "equalconttrue",
+      "unusual": true
+    },
+    {
+      "name": "equalcontxt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "equalcontxt{${1:text}}"
+      }
+    },
+    {
+      "name": "FIG",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FIG{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "figcapbox",
+      "unusual": true
+    },
+    {
+      "name": "figheight",
+      "unusual": true
+    },
+    {
+      "name": "FigName",
+      "unusual": true
+    },
+    {
+      "name": "figurebox",
+      "unusual": true
+    },
+    {
+      "name": "figurecaptionfont",
+      "unusual": true
+    },
+    {
+      "name": "figwidth",
+      "unusual": true
+    },
+    {
+      "name": "FMremark",
+      "unusual": true
+    },
+    {
+      "name": "fmremarkbox",
+      "unusual": true
+    },
+    {
+      "name": "FMremarkdim",
+      "unusual": true
+    },
+    {
+      "name": "fnm",
+      "arg": {
+        "format": "{}",
+        "snippet": "fnm{${1:first name}}"
+      }
+    },
+    {
+      "name": "footerfont",
+      "unusual": true
+    },
+    {
+      "name": "footinsA",
+      "unusual": true
+    },
+    {
+      "name": "footnoteA",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "footnoteA[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "FootnoteA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FootnoteA{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnoteA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "footnoteA{${1:text}}"
+      }
+    },
+    {
+      "name": "footnotemarkA",
+      "unusual": true
+    },
+    {
+      "name": "footnotemarkA",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "footnotemarkA[${1:number}]"
+      }
+    },
+    {
+      "name": "FootnotemarkA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FootnotemarkA{${1:marker}}"
+      }
+    },
+    {
+      "name": "footnotetextA",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "footnotetextA[${2:number}]{${1:text}}"
+      }
+    },
+    {
+      "name": "FootnotetextA",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FootnotetextA{${1:marker}}{${2:text}}"
+      }
+    },
+    {
+      "name": "footnotetextA",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "footnotetextA{${1:text}}"
+      }
+    },
+    {
+      "name": "GetRoman",
+      "unusual": true
+    },
+    {
+      "name": "gloshead",
+      "unusual": true
+    },
+    {
+      "name": "headerfont",
+      "unusual": true
+    },
+    {
+      "name": "headwidthskip",
+      "unusual": true
+    },
+    {
+      "name": "historyfont",
+      "unusual": true
+    },
+    {
+      "name": "ifbackmatter",
+      "unusual": true
+    },
+    {
+      "name": "ifDoublecol",
+      "unusual": true
+    },
+    {
+      "name": "ifequalcont",
+      "unusual": true
+    },
+    {
+      "name": "ifpagebody",
+      "unusual": true
+    },
+    {
+      "name": "ifpresentaddress",
+      "unusual": true
+    },
+    {
+      "name": "itemargs",
+      "unusual": true
+    },
+    {
+      "name": "jmkLabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "jmkLabel{${1:label}}"
+      }
+    },
+    {
+      "name": "jmkRef",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "jmkRef{${1:label}}"
+      }
+    },
+    {
+      "name": "jyear",
+      "arg": {
+        "format": "{}",
+        "snippet": "jyear{${1:year}}"
+      }
+    },
+    {
+      "name": "keywordfont",
+      "unusual": true
+    },
+    {
+      "name": "keywordhead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "keywordhead{${1:text}}"
+      }
+    },
+    {
+      "name": "keywordname",
+      "unusual": true
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:word1,word2,...%text}}"
+      }
+    },
+    {
+      "name": "labelwidthi",
+      "unusual": true
+    },
+    {
+      "name": "labelwidthii",
+      "unusual": true
+    },
+    {
+      "name": "labelwidthiii",
+      "unusual": true
+    },
+    {
+      "name": "labelwidthiv",
+      "unusual": true
+    },
+    {
+      "name": "larg",
+      "unusual": true
+    },
+    {
+      "name": "listfont",
+      "unusual": true
+    },
+    {
+      "name": "medsize"
+    },
+    {
+      "name": "miscnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "miscnote{${1:text}}"
+      }
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "motto[${2:head}]{${1:text}}"
+      }
+    },
+    {
+      "name": "motto",
+      "arg": {
+        "format": "{}",
+        "snippet": "motto{${1:text}}"
+      }
+    },
+    {
+      "name": "mottofont",
+      "unusual": true
+    },
+    {
+      "name": "mottoraggedright",
+      "unusual": true
+    },
+    {
+      "name": "Newlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Newlabel{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "nomail"
+    },
+    {
+      "name": "numbered",
+      "unusual": true
+    },
+    {
+      "name": "opensquare"
+    },
+    {
+      "name": "opheaderfont",
+      "unusual": true
+    },
+    {
+      "name": "opshortpage",
+      "unusual": true
+    },
+    {
+      "name": "orgaddress",
+      "arg": {
+        "format": "{}",
+        "snippet": "orgaddress{${1:address%text}}"
+      }
+    },
+    {
+      "name": "orgdiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "orgdiv{${1:department%text}}"
+      }
+    },
+    {
+      "name": "orgname",
+      "arg": {
+        "format": "{}",
+        "snippet": "orgname{${1:organization%text}}"
+      }
+    },
+    {
+      "name": "pacs",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "pacs[${2:name%text}]{${1:codes}}"
+      }
+    },
+    {
+      "name": "pacs",
+      "arg": {
+        "format": "{}",
+        "snippet": "pacs{${1:codes}}"
+      }
+    },
+    {
+      "name": "pacsbullet",
+      "unusual": true
+    },
+    {
+      "name": "PacsCount",
+      "unusual": true
+    },
+    {
+      "name": "pacsname",
+      "unusual": true
+    },
+    {
+      "name": "PacsTmpCnt",
+      "unusual": true
+    },
+    {
+      "name": "pagebodyfalse",
+      "unusual": true
+    },
+    {
+      "name": "pagebodytrue",
+      "unusual": true
+    },
+    {
+      "name": "paragraphfont",
+      "unusual": true
+    },
+    {
+      "name": "pfx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pfx{${1:text}}"
+      }
+    },
+    {
+      "name": "postcode",
+      "arg": {
+        "format": "{}",
+        "snippet": "postcode{${1:postcode}}"
+      }
+    },
+    {
+      "name": "presentaddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "presentaddress{${1:address%text}}"
+      }
+    },
+    {
+      "name": "presentaddressfalse",
+      "unusual": true
+    },
+    {
+      "name": "presentaddresstrue",
+      "unusual": true
+    },
+    {
+      "name": "presentaddresstxt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "presentaddresstxt{${1:text}}"
+      }
+    },
+    {
+      "name": "printabstract",
+      "unusual": true
+    },
+    {
+      "name": "printcopyright",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printcopyright{${1:text}}"
+      }
+    },
+    {
+      "name": "printhistory",
+      "unusual": true
+    },
+    {
+      "name": "printkeywords",
+      "unusual": true
+    },
+    {
+      "name": "punctcount",
+      "unusual": true
+    },
+    {
+      "name": "quotefont",
+      "unusual": true
+    },
+    {
+      "name": "raggedcenter",
+      "unusual": true
+    },
+    {
+      "name": "received",
+      "arg": {
+        "format": "{}",
+        "snippet": "received{${1:date}}"
+      }
+    },
+    {
+      "name": "revised",
+      "arg": {
+        "format": "{}",
+        "snippet": "revised{${1:date}}"
+      }
+    },
+    {
+      "name": "scrisize",
+      "unusual": true
+    },
+    {
+      "name": "sectionfont",
+      "unusual": true
+    },
+    {
+      "name": "sep",
+      "unusual": true
+    },
+    {
+      "name": "setleftmargin",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setleftmargin{${1:i|${3:ii}|${4:iii}|iv}}{${2:width}}"
+      }
+    },
+    {
+      "name": "sfx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "sfx{${1:text}}"
+      }
+    },
+    {
+      "name": "sidecapwidth",
+      "unusual": true
+    },
+    {
+      "name": "sidewaystablefn"
+    },
+    {
+      "name": "spfx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "spfx{${1:text}}"
+      }
+    },
+    {
+      "name": "state",
+      "arg": {
+        "format": "{}",
+        "snippet": "state{${1:state}}"
+      }
+    },
+    {
+      "name": "StepDownCounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "StepDownCounter{${1:count}}"
+      }
+    },
+    {
+      "name": "StepUpCounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "StepUpCounter{${1:count}}"
+      }
+    },
+    {
+      "name": "StorePacsText",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "StorePacsText{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "street",
+      "arg": {
+        "format": "{}",
+        "snippet": "street{${1:street}}"
+      }
+    },
+    {
+      "name": "subabstracthead",
+      "unusual": true
+    },
+    {
+      "name": "subparagraphfont",
+      "unusual": true
+    },
+    {
+      "name": "subsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "subsubsectionfont",
+      "unusual": true
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "SubTitlefont",
+      "unusual": true
+    },
+    {
+      "name": "sur",
+      "arg": {
+        "format": "{}",
+        "snippet": "sur{${1:surname}}"
+      }
+    },
+    {
+      "name": "tabcapbox",
+      "unusual": true
+    },
+    {
+      "name": "tabhtdime",
+      "unusual": true
+    },
+    {
+      "name": "tablebodyfont",
+      "unusual": true
+    },
+    {
+      "name": "tablecaptionfont",
+      "unusual": true
+    },
+    {
+      "name": "tablecolheadfont",
+      "unusual": true
+    },
+    {
+      "name": "tablefootnotefont",
+      "unusual": true
+    },
+    {
+      "name": "tabraggedcenter",
+      "unusual": true
+    },
+    {
+      "name": "tanm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tanm{${1:text}}"
+      }
+    },
+    {
+      "name": "TBL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "TBL{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "TCH",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "TCH{${1:arg}}"
+      }
+    },
+    {
+      "name": "tempdime",
+      "unusual": true
+    },
+    {
+      "name": "temptbox",
+      "unusual": true
+    },
+    {
+      "name": "theaffn",
+      "unusual": true
+    },
+    {
+      "name": "thefootnoteA",
+      "unusual": true
+    },
+    {
+      "name": "title",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "title[${2:short title%text}]{${1:text}}"
+      }
+    },
+    {
+      "name": "Titlefont",
+      "unusual": true
+    },
+    {
+      "name": "titraggedcenter",
+      "unusual": true
+    },
+    {
+      "name": "tnote",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tnote{${1:arg}}"
+      }
+    },
+    {
+      "name": "totalwrapline",
+      "unusual": true
+    },
+    {
+      "name": "unenumargs",
+      "unusual": true
+    },
+    {
+      "name": "unnumbered",
+      "unusual": true
+    },
+    {
+      "name": "wrapcapline",
+      "unusual": true
+    },
+    {
+      "name": "wrapfigcapbox",
+      "unusual": true
+    },
+    {
+      "name": "wraplines",
+      "unusual": true
+    },
+    {
+      "name": "wraptotline",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "biography",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "fmremark",
+      "unusual": true
+    },
+    {
+      "name": "proof",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name%text}]"
+      }
+    },
+    {
+      "name": "spiproof",
+      "unusual": true
+    },
+    {
+      "name": "spiproof",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name%text}]"
+      }
+    },
+    {
+      "name": "tablenotes",
+      "unusual": true
+    },
+    {
+      "name": "unenumerate"
+    },
+    {
+      "name": "unenumerate",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:widest label}]"
+      }
+    },
+    {
+      "name": "unnumfigure",
+      "unusual": true
+    },
+    {
+      "name": "glos"
+    },
+    {
+      "name": "glos",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/sn-jnl#c": [
+      "a4paper",
+      "a3paper",
+      "centre",
+      "crop",
+      "nocrop",
+      "info",
+      "noinfo",
+      "oneside",
+      "twoside",
+      "draft",
+      "titlepage",
+      "notitlepage",
+      "onecolumn",
+      "twocolumn",
+      "openbib",
+      "pagegrid",
+      "iicol",
+      "bibcomment",
+      "referee",
+      "lineno",
+      "pdflatex",
+      "remarkboxoff",
       "sn-basic",
       "sn-mathphys",
       "sn-aps",
@@ -34,741 +1875,14 @@
       "sn-standardnature",
       "default"
     ],
-    "apacite": [
-      "sn-apa"
-    ],
-    "vruler": [
-      "lineno"
+    "\\theoremstyle#c": [
+      "thmstyleone",
+      "thmstyletwo",
+      "thmstylethree",
+      "thmstylefour"
     ]
   },
-  "macros": {
-    "refdoi{}": {
-      "snippet": "refdoi{${1:DOI}}",
-      "option": "sn-apa"
-    },
-    "citeauthorp{}": {
-      "snippet": "citeauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citeauthorp[]{}": {
-      "snippet": "citeauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citeauthorp[][]{}": {
-      "snippet": "citeauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citeauthort{}": {
-      "snippet": "citeauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citeauthort[]{}": {
-      "snippet": "citeauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citeauthort[][]{}": {
-      "snippet": "citeauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthorp{}": {
-      "snippet": "Citeauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthorp[]{}": {
-      "snippet": "Citeauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthorp[][]{}": {
-      "snippet": "Citeauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthort{}": {
-      "snippet": "Citeauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthort[]{}": {
-      "snippet": "Citeauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citeauthort[][]{}": {
-      "snippet": "Citeauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthor{}": {
-      "snippet": "Citefullauthor{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthor[]{}": {
-      "snippet": "Citefullauthor[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthor[][]{}": {
-      "snippet": "Citefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthort{}": {
-      "snippet": "citefullauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthort[]{}": {
-      "snippet": "citefullauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthort[][]{}": {
-      "snippet": "citefullauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthorp{}": {
-      "snippet": "citefullauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthorp[]{}": {
-      "snippet": "citefullauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "citefullauthorp[][]{}": {
-      "snippet": "citefullauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthort{}": {
-      "snippet": "Citefullauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthort[]{}": {
-      "snippet": "Citefullauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthort[][]{}": {
-      "snippet": "Citefullauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthorp{}": {
-      "snippet": "Citefullauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthorp[]{}": {
-      "snippet": "Citefullauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "Citefullauthorp[][]{}": {
-      "snippet": "Citefullauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitep{}": {
-      "snippet": "maskcitep{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitep[]{}": {
-      "snippet": "maskcitep[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitep[][]{}": {
-      "snippet": "maskcitep[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitet{}": {
-      "snippet": "maskcitet{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitet[]{}": {
-      "snippet": "maskcitet[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitet[][]{}": {
-      "snippet": "maskcitet[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteyearpar{}": {
-      "snippet": "maskciteyearpar{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteyearpar[]{}": {
-      "snippet": "maskciteyearpar[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteyearpar[][]{}": {
-      "snippet": "maskciteyearpar[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealp{}": {
-      "snippet": "maskcitealp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealp[]{}": {
-      "snippet": "maskcitealp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealp[][]{}": {
-      "snippet": "maskcitealp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealt{}": {
-      "snippet": "maskcitealt{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealt[]{}": {
-      "snippet": "maskcitealt[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitealt[][]{}": {
-      "snippet": "maskcitealt[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitenum{}": {
-      "snippet": "maskcitenum{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitenum[]{}": {
-      "snippet": "maskcitenum[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitenum[][]{}": {
-      "snippet": "maskcitenum[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitetalias{}": {
-      "snippet": "maskcitetalias{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitetalias[]{}": {
-      "snippet": "maskcitetalias[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitetalias[][]{}": {
-      "snippet": "maskcitetalias[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitepalias{}": {
-      "snippet": "maskcitepalias{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitepalias[]{}": {
-      "snippet": "maskcitepalias[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitepalias[][]{}": {
-      "snippet": "maskcitepalias[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitep{}": {
-      "snippet": "maskCitep{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitep[]{}": {
-      "snippet": "maskCitep[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitep[][]{}": {
-      "snippet": "maskCitep[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitet{}": {
-      "snippet": "maskCitet{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitet[]{}": {
-      "snippet": "maskCitet[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitet[][]{}": {
-      "snippet": "maskCitet[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthor{}": {
-      "snippet": "maskCiteauthor{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthor[]{}": {
-      "snippet": "maskCiteauthor[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthor[][]{}": {
-      "snippet": "maskCiteauthor[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealp{}": {
-      "snippet": "maskCitealp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealp[]{}": {
-      "snippet": "maskCitealp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealp[][]{}": {
-      "snippet": "maskCitealp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealt{}": {
-      "snippet": "maskCitealt{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealt[]{}": {
-      "snippet": "maskCitealt[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitealt[][]{}": {
-      "snippet": "maskCitealt[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthorp{}": {
-      "snippet": "maskciteauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthorp[]{}": {
-      "snippet": "maskciteauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthorp[][]{}": {
-      "snippet": "maskciteauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthort{}": {
-      "snippet": "maskciteauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthort[]{}": {
-      "snippet": "maskciteauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskciteauthort[][]{}": {
-      "snippet": "maskciteauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthorp{}": {
-      "snippet": "maskCiteauthorp{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthorp[]{}": {
-      "snippet": "maskCiteauthorp[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthorp[][]{}": {
-      "snippet": "maskCiteauthorp[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthort{}": {
-      "snippet": "maskCiteauthort{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthort[]{}": {
-      "snippet": "maskCiteauthort[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCiteauthort[][]{}": {
-      "snippet": "maskCiteauthort[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitefullauthor{}": {
-      "snippet": "maskcitefullauthor{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitefullauthor[]{}": {
-      "snippet": "maskcitefullauthor[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskcitefullauthor[][]{}": {
-      "snippet": "maskcitefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitefullauthor{}": {
-      "snippet": "maskCitefullauthor{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitefullauthor[]{}": {
-      "snippet": "maskCitefullauthor[${2:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "maskCitefullauthor[][]{}": {
-      "snippet": "maskCitefullauthor[${2:prefix}][${3:postfix}]{${1:keylist}}",
-      "option": "sn-apa"
-    },
-    "linenoon": {
-      "option": "lineno"
-    },
-    "absraggedcenter": {},
-    "abstract{}": {
-      "snippet": "abstract{${1:text}}"
-    },
-    "abstractfont": {},
-    "abstracthead": {},
-    "abstractheadfont": {},
-    "abstractsubheadfont": {},
-    "accepted{}": {
-      "snippet": "accepted{${1:date}}"
-    },
-    "addcount": {},
-    "addressfont": {},
-    "affil*[]{}": {
-      "snippet": "affil*[${2:num}]{${1:affiliation}}"
-    },
-    "affil*{}": {
-      "snippet": "affil*{${1:affiliation}}"
-    },
-    "affil[]{}": {
-      "snippet": "affil[${2:num}]{${1:affiliation}}"
-    },
-    "affil{}": {
-      "snippet": "affil{${1:affiliation}}"
-    },
-    "affnum": {},
-    "artauthors": {},
-    "artcatbox": {},
-    "Artcatfont": {},
-    "articletype{}": {
-      "snippet": "articletype{${1:arg}}"
-    },
-    "artnote{}": {
-      "snippet": "artnote{${1:text}}"
-    },
-    "ArtType": {},
-    "auaddress": {},
-    "aucount": {},
-    "authbiotextfont": {},
-    "authemail": {},
-    "author*[]{}": {
-      "snippet": "author*[${2:affil-num}]{${1:name}}"
-    },
-    "author*{}": {
-      "snippet": "author*{${1:name}}"
-    },
-    "author[]{}": {
-      "snippet": "author[${2:affil-num}]{${1:name}}"
-    },
-    "Authorfont": {},
-    "authorsep": {},
-    "backmatter": {},
-    "backmatterfalse": {},
-    "backmattertrue": {},
-    "bibcommenthead": {},
-    "biofigadjskip": {},
-    "bmhead{}": {
-      "snippet": "bmhead{${1:title}}"
-    },
-    "bmheadfont": {},
-    "botrule": {},
-    "breakurldefns": {},
-    "capbox": {},
-    "city{}": {
-      "snippet": "city{${1:city}}"
-    },
-    "columnhsize": {},
-    "copytext{}{}": {
-      "snippet": "copytext{${1:text}}{${2:year}}"
-    },
-    "corraucount": {},
-    "corrauthemail": {},
-    "country{}": {
-      "snippet": "country{${1:country}}"
-    },
-    "dgr{}": {
-      "snippet": "dgr{${1:text}}"
-    },
-    "Doublecolfalse": {},
-    "Doublecoltrue": {},
-    "email{}": {
-      "snippet": "email{${1:email}}"
-    },
-    "emailcnt": {},
-    "enumargs": {},
-    "eqnhead{}": {
-      "snippet": "eqnhead{${1:text}}"
-    },
-    "eqnheadfont": {},
-    "equalcont{}": {
-      "snippet": "equalcont{${1:text}}"
-    },
-    "equalcontfalse": {},
-    "equalconttrue": {},
-    "equalcontxt{}": {
-      "snippet": "equalcontxt{${1:text}}"
-    },
-    "FIG{}{}": {
-      "snippet": "FIG{${1:arg1}}{${2:arg2}}"
-    },
-    "figcapbox": {},
-    "figheight": {},
-    "FigName": {},
-    "figurebox": {},
-    "figurecaptionfont": {},
-    "figwidth": {},
-    "FMremark": {},
-    "fmremarkbox": {},
-    "FMremarkdim": {},
-    "fnm{}": {
-      "snippet": "fnm{${1:first name}}"
-    },
-    "footerfont": {},
-    "footinsA": {},
-    "footnoteA[]{}": {
-      "snippet": "footnoteA[${2:number}]{${1:text}}"
-    },
-    "FootnoteA{}{}": {
-      "snippet": "FootnoteA{${1:marker}}{${2:text}}"
-    },
-    "footnoteA{}": {
-      "snippet": "footnoteA{${1:text}}"
-    },
-    "footnotemarkA": {},
-    "footnotemarkA[]": {
-      "snippet": "footnotemarkA[${1:number}]"
-    },
-    "FootnotemarkA{}": {
-      "snippet": "FootnotemarkA{${1:marker}}"
-    },
-    "footnotetextA[]{}": {
-      "snippet": "footnotetextA[${2:number}]{${1:text}}"
-    },
-    "FootnotetextA{}{}": {
-      "snippet": "FootnotetextA{${1:marker}}{${2:text}}"
-    },
-    "footnotetextA{}": {
-      "snippet": "footnotetextA{${1:text}}"
-    },
-    "GetRoman": {},
-    "gloshead": {},
-    "hb": {},
-    "headerfont": {},
-    "headwidthskip": {},
-    "historyfont": {},
-    "ifbackmatter": {},
-    "ifDoublecol": {},
-    "ifequalcont": {},
-    "ifpagebody": {},
-    "ifpresentaddress": {},
-    "itemargs": {},
-    "jmkLabel{}": {
-      "snippet": "jmkLabel{${1:label}}"
-    },
-    "jmkRef{}": {
-      "snippet": "jmkRef{${1:label}}"
-    },
-    "jyear{}": {
-      "snippet": "jyear{${1:year}}"
-    },
-    "keywordfont": {},
-    "keywordhead{}": {
-      "snippet": "keywordhead{${1:text}}"
-    },
-    "keywordname": {},
-    "keywords{}": {
-      "snippet": "keywords{${1:word1,word2,...}}"
-    },
-    "labelwidthi": {},
-    "labelwidthii": {},
-    "labelwidthiii": {},
-    "labelwidthiv": {},
-    "larg": {},
-    "listfont": {},
-    "medsize": {},
-    "miscnote{}": {
-      "snippet": "miscnote{${1:text}}"
-    },
-    "motto[]{}": {
-      "snippet": "motto[${2:head}]{${1:text}}"
-    },
-    "motto{}": {
-      "snippet": "motto{${1:text}}"
-    },
-    "mottofont": {},
-    "mottoraggedright": {},
-    "Newlabel{}{}": {
-      "snippet": "Newlabel{${1:arg1}}{${2:arg2}}"
-    },
-    "nomail": {},
-    "numbered": {},
-    "oldpacs{}": {
-      "snippet": "oldpacs{${1:codes}}"
-    },
-    "opensquare": {},
-    "opheaderfont": {},
-    "opshortpage": {},
-    "orgaddress{}": {
-      "snippet": "orgaddress{${1:address}}"
-    },
-    "orgdiv{}": {
-      "snippet": "orgdiv{${1:department}}"
-    },
-    "orgname{}": {
-      "snippet": "orgname{${1:organization}}"
-    },
-    "pacs[]{}": {
-      "snippet": "pacs[${2:name}]{${1:codes}}"
-    },
-    "pacs{}": {
-      "snippet": "pacs{${1:codes}}"
-    },
-    "pacsbullet": {},
-    "PacsCount": {},
-    "pacsname": {},
-    "PacsTmpCnt": {},
-    "pagebodyfalse": {},
-    "pagebodytrue": {},
-    "paragraphfont": {},
-    "pfx{}": {
-      "snippet": "pfx{${1:text}}"
-    },
-    "postcode{}": {
-      "snippet": "postcode{${1:postcode}}"
-    },
-    "presentaddress{}": {
-      "snippet": "presentaddress{${1:address}}"
-    },
-    "presentaddressfalse": {},
-    "presentaddresstrue": {},
-    "presentaddresstxt{}": {
-      "snippet": "presentaddresstxt{${1:text}}"
-    },
-    "printabstract": {},
-    "printcopyright{}": {
-      "snippet": "printcopyright{${1:text}}"
-    },
-    "printhistory": {},
-    "printkeywords": {},
-    "punctcount": {},
-    "quotefont": {},
-    "raggedcenter": {},
-    "received{}": {
-      "snippet": "received{${1:date}}"
-    },
-    "refereedefns": {},
-    "revised{}": {
-      "snippet": "revised{${1:date}}"
-    },
-    "scrisize": {},
-    "sectionfont": {},
-    "sep": {},
-    "setleftmargin{}{}": {
-      "snippet": "setleftmargin{${1:i|ii|iii|iv}}{${2:width}}"
-    },
-    "sfx{}": {
-      "snippet": "sfx{${1:text}}"
-    },
-    "sidecapwidth": {},
-    "sidewaystablefn": {},
-    "spfx{}": {
-      "snippet": "spfx{${1:text}}"
-    },
-    "state{}": {
-      "snippet": "state{${1:state}}"
-    },
-    "StepDownCounter{}": {
-      "snippet": "StepDownCounter{${1:count}}"
-    },
-    "StepUpCounter{}": {
-      "snippet": "StepUpCounter{${1:count}}"
-    },
-    "StorePacsText{}{}": {
-      "snippet": "StorePacsText{${1:arg1}}{${2:arg2}}"
-    },
-    "street{}": {
-      "snippet": "street{${1:street}}"
-    },
-    "subabstracthead": {},
-    "subparagraphfont": {},
-    "subsectionfont": {},
-    "subsubsectionfont": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:text}}"
-    },
-    "SubTitlefont": {},
-    "sur{}": {
-      "snippet": "sur{${1:surname}}"
-    },
-    "tabcapbox": {},
-    "tabhtdime": {},
-    "tablebodyfont": {},
-    "tablecaptionfont": {},
-    "tablecolheadfont": {},
-    "tablefootnotefont": {},
-    "tabraggedcenter": {},
-    "tanm{}": {
-      "snippet": "tanm{${1:text}}"
-    },
-    "TBL{}{}{}": {
-      "snippet": "TBL{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "TCH{}": {
-      "snippet": "TCH{${1:arg}}"
-    },
-    "tempdime": {},
-    "temptbox": {},
-    "theaffn": {},
-    "thefootnoteA": {},
-    "title[]{}": {
-      "snippet": "title[${2:short title}]{${1:text}}"
-    },
-    "Titlefont": {},
-    "titraggedcenter": {},
-    "tnote{}": {
-      "snippet": "tnote{${1:arg}}"
-    },
-    "totalwrapline": {},
-    "unenumargs": {},
-    "unnumbered": {},
-    "wrapcapline": {},
-    "wrapfigcapbox": {},
-    "wraplines": {},
-    "wraptotline": {}
-  },
-  "envs": {
-    "biography{}{}": {
-      "name": "biography",
-      "snippet": "{${1:name}}{${2:text}}"
-    },
-    "fmremark": {},
-    "proof[]": {
-      "name": "proof",
-      "snippet": "[${1:name}]"
-    },
-    "spiproof": {},
-    "spiproof[]": {
-      "name": "spiproof",
-      "snippet": "[${1:name}]"
-    },
-    "tablenotes": {},
-    "unenumerate": {},
-    "unenumerate[]": {
-      "name": "unenumerate",
-      "snippet": "[${1:widest label}]"
-    },
-    "unnumfigure": {},
-    "glos": {},
-    "glos[]": {
-      "name": "glos",
-      "snippet": "[${1:heading}]"
-    }
-  },
-  "options": [
-    "a4paper",
-    "a3paper",
-    "centre",
-    "crop",
-    "nocrop",
-    "info",
-    "noinfo",
-    "oneside",
-    "twoside",
-    "draft",
-    "titlepage",
-    "notitlepage",
-    "onecolumn",
-    "twocolumn",
-    "openbib",
-    "pagegrid",
-    "iicol",
-    "bibcomment",
-    "referee",
-    "lineno",
-    "pdflatex",
-    "remarkboxoff",
-    "sn-basic",
-    "sn-mathphys",
-    "sn-aps",
-    "sn-vancouver",
-    "sn-apa",
-    "sn-chicago",
-    "sn-standardnature",
-    "default"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/sn-jnl#c"
+  ]
 }

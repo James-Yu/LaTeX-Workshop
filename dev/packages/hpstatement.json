@@ -1,34 +1,74 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "iflang": []
-  },
-  "macros": {
-    "hpsetup{}": {
-      "snippet": "hpsetup{${1:options}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "hpnumber{}": {
-      "snippet": "hpnumber{${1:number}}"
-    },
-    "hpnumber[]{}": {
-      "snippet": "hpnumber[${2:text1}]{${1:number}}"
-    },
-    "hpnumber[][]{}": {
-      "snippet": "hpnumber[${2:text1}][${3:text2}]{${1:number}}"
-    },
-    "hpstatement{}": {
-      "snippet": "hpstatement{${1:number}}"
-    },
-    "hpstatement[]{}": {
-      "snippet": "hpstatement[${2:text1}]{${1:number}}"
-    },
-    "hpstatement[][]{}": {
-      "snippet": "hpstatement[${2:text1}][${3:text2}]{${1:number}}"
+    {
+      "name": "iflang"
     }
-  },
-  "envs": {},
-  "options": [
-    "date=${1:YYYY-MM-DD}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "hpsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "hpsetup{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/hpstatement#c,\\hpsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "hpnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "hpnumber{${1:number}}"
+      }
+    },
+    {
+      "name": "hpnumber",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hpnumber[${2:text1%text}]{${1:number}}"
+      }
+    },
+    {
+      "name": "hpnumber",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "hpnumber[${2:text1%text}][${3:text2%text}]{${1:number}}"
+      }
+    },
+    {
+      "name": "hpstatement",
+      "arg": {
+        "format": "{}",
+        "snippet": "hpstatement{${1:number}}"
+      }
+    },
+    {
+      "name": "hpstatement",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "hpstatement[${2:text1%text}]{${1:number}}"
+      }
+    },
+    {
+      "name": "hpstatement",
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "hpstatement[${2:text1%text}][${3:text2%text}]{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/hpstatement#c,\\hpsetup": [
+      "date=${1:YYYY-MM-DD}"
+    ]
+  },
+  "args": [
+    "\\usepackage/hpstatement#c,\\hpsetup"
+  ]
 }

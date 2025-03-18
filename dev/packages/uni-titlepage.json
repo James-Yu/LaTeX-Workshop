@@ -1,163 +1,677 @@
 {
-  "includes": {
-    "scrbase": [],
-    "graphicx": []
-  },
-  "macros": {
-    "TitlePageStyle[]{}": {
-      "snippet": "TitlePageStyle[${2:option=value,...}]{${1:style}}"
+  "deps": [
+    {
+      "name": "scrbase"
     },
-    "TitleOption{}{}": {
-      "snippet": "TitleOption{${1:option}}{${2:value}}"
-    },
-    "maketitle[]": {
-      "snippet": "maketitle[${1:option=value,...}]"
-    },
-    "TitleOptions{}": {
-      "snippet": "TitleOptions{${1:option=value,...}}"
-    },
-    "NowButAfterBeginDocument{}": {
-      "snippet": "NowButAfterBeginDocument{${1:code}}"
-    },
-    "usetitleelement{}": {
-      "snippet": "usetitleelement{${1:element}}"
-    },
-    "usenonemptytitleelement{}": {
-      "snippet": "usenonemptytitleelement{${1:element}}"
-    },
-    "advisorname": {},
-    "atthename": {},
-    "bachelorthesisname": {},
-    "blackborderfalse": {},
-    "blackbordertrue": {},
-    "chairmanname": {},
-    "companyname": {},
-    "coursename": {},
-    "dedication": {},
-    "DefineReplaceTitleKey{}{}": {
-      "snippet": "DefineReplaceTitleKey{${1:name}}{${2:alias}}"
-    },
-    "DefineSimpleTitleKey{}": {
-      "snippet": "DefineSimpleTitleKey{${1:name}}"
-    },
-    "degreethesisname": {},
-    "diplomathesisname": {},
-    "durationname": {},
-    "englishordinal{}": {
-      "snippet": "englishordinal{${1:number}}"
-    },
-    "englishordinalfemalerefereename": {},
-    "englishordinalmalerefereename": {},
-    "englishordinalmalereferename": {},
-    "examinationdatename": {},
-    "examinationname": {},
-    "exittitle": {},
-    "extratitle{}": {
-      "snippet": "extratitle{${1:text}}"
-    },
-    "femaleordinal{}": {
-      "snippet": "femaleordinal{${1:number}}"
-    },
-    "femalerefereename": {},
-    "finalfalse": {},
-    "finaltrue": {},
-    "fromname": {},
-    "fromplacename": {},
-    "germanfemaleordinal{}": {
-      "snippet": "germanfemaleordinal{${1:number}}"
-    },
-    "germanmaleordinal{}": {
-      "snippet": "germanmaleordinal{${1:number}}"
-    },
-    "germanordinal{}": {
-      "snippet": "germanordinal{${1:number}}"
-    },
-    "germanordinalfemalecorrectorname": {},
-    "germanordinalfemalerefereename": {},
-    "germanordinalmalecorrectorname": {},
-    "germanordinalmalerefereename": {},
-    "homepage{}": {
-      "snippet": "homepage{${1:URL}}"
-    },
-    "ifblackborder": {},
-    "iffinal": {},
-    "indatename": {},
-    "inittitle": {},
-    "inittitlestyle": {},
-    "KITlongname": {},
-    "KITurl": {},
-    "lowertitleback{}": {
-      "snippet": "lowertitleback{${1:text}}"
-    },
-    "mainlogo": {},
-    "makemaintitle": {},
-    "makemaintitleback": {},
-    "makeposttitle": {},
-    "makeposttitleback": {},
-    "makepretitle": {},
-    "makepretitleback": {},
-    "maleordinal{}": {
-      "snippet": "maleordinal{${1:number}}"
-    },
-    "malerefereename": {},
-    "masterthesisname": {},
-    "matriculationnumber": {},
-    "matriculationnumbername": {},
-    "ofthename": {},
-    "oralexaminationdatename": {},
-    "ordinal{}": {
-      "snippet": "ordinal{${1:number}}"
-    },
-    "ordinalfemalecorrectorname": {},
-    "ordinalfemalerefereename": {},
-    "ordinalmalerefereename": {},
-    "PackageNotLoadedError{}": {
-      "snippet": "PackageNotLoadedError{${1:message}}"
-    },
-    "presentationinformationDHBW": {},
-    "presentationinformationKIT": {},
-    "presentationinformationTUHH": {},
-    "presentationinformationUKoLa": {},
-    "presentationinformationUKoLA": {},
-    "presentationinformationWWUM": {},
-    "presentedbyname": {},
-    "projectpapername": {},
-    "publishers": {},
-    "refereename": {},
-    "seminarpapername": {},
-    "studentresearchname": {},
-    "studentreserchname": {},
-    "thename": {},
-    "thetitlepage": {},
-    "titlebox": {},
-    "titlefont": {},
-    "titlehead{}": {
-      "snippet": "titlehead{${1:text}}"
-    },
-    "titlepagestyle": {},
-    "uppertitleback{}": {
-      "snippet": "uppertitleback{${1:text}}"
+    {
+      "name": "graphicx"
     }
-  },
-  "envs": {
-    "titlepage[]": {
+  ],
+  "macros": [
+    {
+      "name": "TitlePageStyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "TitlePageStyle[${2:option=value,...%keyvals}]{${1:style}}"
+      }
+    },
+    {
+      "name": "TitleOption",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TitleOption{${1:option%keyvals}}{${2:value}}",
+        "keys": [
+          "\\TitleOption"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "maketitle",
+      "arg": {
+        "format": "[]",
+        "snippet": "maketitle[${1:option=value,...%keyvals}]",
+        "keys": [
+          "\\maketitle,\\TitleOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "TitleOptions",
+      "arg": {
+        "format": "{}",
+        "snippet": "TitleOptions{${1:option=value,...%keyvals}}",
+        "keys": [
+          "\\maketitle,\\TitleOptions"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "NowButAfterBeginDocument",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "NowButAfterBeginDocument{${1:code}}"
+      }
+    },
+    {
+      "name": "usetitleelement",
+      "arg": {
+        "format": "{}",
+        "snippet": "usetitleelement{${1:element%keyvals}}",
+        "keys": [
+          "\\usetitleelement,\\usenonemptytitleelement"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usenonemptytitleelement",
+      "arg": {
+        "format": "{}",
+        "snippet": "usenonemptytitleelement{${1:element%keyvals}}",
+        "keys": [
+          "\\usetitleelement,\\usenonemptytitleelement"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "advisorname",
+      "unusual": true
+    },
+    {
+      "name": "atthename",
+      "unusual": true
+    },
+    {
+      "name": "bachelorthesisname",
+      "unusual": true
+    },
+    {
+      "name": "chairmanname",
+      "unusual": true
+    },
+    {
+      "name": "companyname",
+      "unusual": true
+    },
+    {
+      "name": "coursename",
+      "unusual": true
+    },
+    {
+      "name": "dedication",
+      "unusual": true
+    },
+    {
+      "name": "DefineReplaceTitleKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DefineReplaceTitleKey{${1:name}}{${2:alias}}"
+      }
+    },
+    {
+      "name": "DefineSimpleTitleKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DefineSimpleTitleKey{${1:name}}"
+      }
+    },
+    {
+      "name": "degreethesisname",
+      "unusual": true
+    },
+    {
+      "name": "diplomathesisname",
+      "unusual": true
+    },
+    {
+      "name": "durationname",
+      "unusual": true
+    },
+    {
+      "name": "englishordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "englishordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "englishordinalfemalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "englishordinalmalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "englishordinalmalereferename",
+      "unusual": true
+    },
+    {
+      "name": "examinationdatename",
+      "unusual": true
+    },
+    {
+      "name": "examinationname",
+      "unusual": true
+    },
+    {
+      "name": "exittitle",
+      "unusual": true
+    },
+    {
+      "name": "extratitle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "extratitle{${1:text}}"
+      }
+    },
+    {
+      "name": "femaleordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "femaleordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "femalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "fromname",
+      "unusual": true
+    },
+    {
+      "name": "fromplacename",
+      "unusual": true
+    },
+    {
+      "name": "germanfemaleordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "germanfemaleordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "germanmaleordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "germanmaleordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "germanordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "germanordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "germanordinalfemalecorrectorname",
+      "unusual": true
+    },
+    {
+      "name": "germanordinalfemalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "germanordinalmalecorrectorname",
+      "unusual": true
+    },
+    {
+      "name": "germanordinalmalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "homepage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "homepage{${1:URL}}"
+      }
+    },
+    {
+      "name": "indatename",
+      "unusual": true
+    },
+    {
+      "name": "inittitle",
+      "unusual": true
+    },
+    {
+      "name": "inittitlestyle",
+      "unusual": true
+    },
+    {
+      "name": "KITlongname",
+      "unusual": true
+    },
+    {
+      "name": "KITurl",
+      "unusual": true
+    },
+    {
+      "name": "lowertitleback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lowertitleback{${1:text}}"
+      }
+    },
+    {
+      "name": "mainlogo",
+      "unusual": true
+    },
+    {
+      "name": "makemaintitle",
+      "unusual": true
+    },
+    {
+      "name": "makemaintitleback",
+      "unusual": true
+    },
+    {
+      "name": "makeposttitle",
+      "unusual": true
+    },
+    {
+      "name": "makeposttitleback",
+      "unusual": true
+    },
+    {
+      "name": "makepretitle",
+      "unusual": true
+    },
+    {
+      "name": "makepretitleback",
+      "unusual": true
+    },
+    {
+      "name": "maleordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "maleordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "malerefereename",
+      "unusual": true
+    },
+    {
+      "name": "masterthesisname",
+      "unusual": true
+    },
+    {
+      "name": "matriculationnumber",
+      "unusual": true
+    },
+    {
+      "name": "matriculationnumbername",
+      "unusual": true
+    },
+    {
+      "name": "ofthename",
+      "unusual": true
+    },
+    {
+      "name": "oralexaminationdatename",
+      "unusual": true
+    },
+    {
+      "name": "ordinal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ordinal{${1:number}}"
+      }
+    },
+    {
+      "name": "ordinalfemalecorrectorname",
+      "unusual": true
+    },
+    {
+      "name": "ordinalfemalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "ordinalmalerefereename",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationDHBW",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationKIT",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationTUHH",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationUKoLa",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationUKoLA",
+      "unusual": true
+    },
+    {
+      "name": "presentationinformationWWUM",
+      "unusual": true
+    },
+    {
+      "name": "presentedbyname",
+      "unusual": true
+    },
+    {
+      "name": "projectpapername",
+      "unusual": true
+    },
+    {
+      "name": "publishers",
+      "unusual": true
+    },
+    {
+      "name": "refereename",
+      "unusual": true
+    },
+    {
+      "name": "seminarpapername",
+      "unusual": true
+    },
+    {
+      "name": "studentresearchname",
+      "unusual": true
+    },
+    {
+      "name": "studentreserchname",
+      "unusual": true
+    },
+    {
+      "name": "thename",
+      "unusual": true
+    },
+    {
+      "name": "thetitlepage",
+      "unusual": true
+    },
+    {
+      "name": "titlebox",
+      "unusual": true
+    },
+    {
+      "name": "titlefont",
+      "unusual": true
+    },
+    {
+      "name": "titlehead",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "titlehead{${1:text}}"
+      }
+    },
+    {
+      "name": "titlepagestyle",
+      "unusual": true
+    },
+    {
+      "name": "uppertitleback",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "uppertitleback{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
       "name": "titlepage",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{titlepage},\\begin{fullsizetitle}"
+        ],
+        "keyPos": 0
+      }
     },
-    "fullsizetitle[]": {
+    {
       "name": "fullsizetitle",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{titlepage},\\begin{fullsizetitle}"
+        ],
+        "keyPos": 0
+      }
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "keys": {
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-DD,\\TitlePageStyle/TU-HH,\\TitlePageStyle/KIT,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
+      "author={${1:author names}}",
+      "pagenumber=${1:number}",
+      "pagestyle=${1:style}",
+      "student=${1:student name}",
+      "subject=${1:subject}",
+      "subjectfont=${1:font commands}",
+      "title={${1:title text}}",
+      "titlefont=${1:font commands}",
+      "titlepagefont=${1:font commands}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
+      "academicgrade=${1:grade}"
+    ],
+    "\\TitlePageStyle/TU-DD,\\TitlePageStyle/UKoLa": [
+      "advisor=${1:advisor name}"
+    ],
+    "\\TitlePageStyle/TU-DD": [
+      "blackborder"
+    ],
+    "\\TitlePageStyle/TU-DD,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
+      "chair=${1:chair name}"
+    ],
+    "\\TitlePageStyle/DHBW": [
+      "company=${1:company}",
+      "course=${1:course}",
+      "duration=${1:duration}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/KIT,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-HH,\\TitlePageStyle/TU-DD,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM": [
+      "date=${1:date}"
+    ],
+    "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer": [
+      "dedication={${1:dedication text}}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD,\\TitlePageStyle/WWUM": [
+      "discipline=${1:discipline}"
+    ],
+    "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography": [
+      "extratitle={${1:extra title text}}"
+    ],
+    "\\TitlePageStyle/TU-DD,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
+      "faculty=${1:faculty name}"
+    ],
+    "\\TitlePageStyle/TU-HH": [
+      "final"
+    ],
+    "\\TitlePageStyle/KIT": [
+      "homepage=${1:URL}"
+    ],
+    "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography": [
+      "lowertitleback={${1:text}}",
+      "publisher=${1:publisher name}",
+      "uppertitleback={${1:text}}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/KIT,\\TitlePageStyle/UKoLa": [
+      "mainlogo={${1:logo code}}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD": [
+      "matriculationnumber=${1:number}"
+    ],
+    "\\TitlePageStyle/TU-HH,\\TitlePageStyle/WWUM": [
+      "oralexaminationdate=${1:date}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/JT-Typography,\\TitlePageStyle/WWUM,\\TitlePageStyle/UKoLa": [
+      "place=${1:location}"
+    ],
+    "\\TitlePageStyle/TU-DD,\\TitlePageStyle/WWUM": [
+      "professor=${1:professor name}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-HH,\\TitlePageStyle/UKoLa,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
+      "referee={${1:referee names}}"
+    ],
+    "\\TitlePageStyle/Markus-2,\\TitlePageStyle/JT-Aufsaetze,\\TitlePageStyle/JT-Geschichte,\\TitlePageStyle/Spacer": [
+      "rulesep=",
+      "rulewidth=",
+      "rulecolor="
+    ],
+    "\\TitlePageStyle/UKoLa": [
+      "secondlogo={${1:logo code}}"
+    ],
+    "\\TitlePageStyle/WWUM": [
+      "science=${1:science}"
+    ],
+    "\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-1,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/TU-HH": [
+      "subtitle={${1:subtitle text}}",
+      "subtitlefont=${1:font commands}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/KOMAScript,\\TitlePageStyle/Markus-2,\\TitlePageStyle/Spacer,\\TitlePageStyle/KIT": [
+      "titlehead={${1:titlehead code}}"
+    ],
+    "\\TitlePageStyle/DHBW,\\TitlePageStyle/TU-DD,\\TitlePageStyle/TU-HH,\\TitlePageStyle/KIT,\\TitlePageStyle/WWUM": [
+      "university=${1:university}"
+    ],
+    "\\TitleOption": [
+      "academicgrade",
+      "advisor",
+      "author",
+      "blackborder",
+      "chair",
+      "company",
+      "course",
+      "date",
+      "dedication",
+      "discipline",
+      "duration",
+      "extratitle",
+      "faculty",
+      "final",
+      "homepage",
+      "lowertitleback",
+      "mainlogo",
+      "matriculationnumber",
+      "oralexaminationdate",
+      "pagenumber",
+      "pagestyle",
+      "place",
+      "professor",
+      "publisher",
+      "referee",
+      "rulesep",
+      "rulewidth",
+      "secondlogo",
+      "science",
+      "student",
+      "subject",
+      "subjectfont",
+      "subtitle",
+      "subtitlefont",
+      "title",
+      "titlefont",
+      "titlehead",
+      "titlepagefont",
+      "university",
+      "uppertitleback"
+    ],
+    "\\maketitle,\\TitleOptions": [
+      "academicgrade=${1:grade}",
+      "advisor=${1:advisor name}",
+      "author={${1:author names}}",
+      "blackborder",
+      "chair=${1:chair name}",
+      "company=${1:company}",
+      "course=${1:course}",
+      "date=${1:date}",
+      "dedication={${1:dedication text}}",
+      "discipline=${1:discipline}",
+      "duration=${1:duration}",
+      "extratitle={${1:extra title text}}",
+      "faculty=${1:faculty name}",
+      "final",
+      "homepage=${1:URL}",
+      "lowertitleback={${1:text}}",
+      "mainlogo={${1:logo code}}",
+      "matriculationnumber=${1:number}",
+      "oralexaminationdate=${1:date}",
+      "pagenumber=${1:number}",
+      "pagestyle=${1:style}",
+      "place=${1:location}",
+      "professor=${1:professor name}",
+      "publisher=${1:publisher name}",
+      "referee={${1:referee names}}",
+      "rulesep=",
+      "rulewidth=",
+      "secondlogo={${1:logo code}}",
+      "science=${1:science}",
+      "student=${1:student name}",
+      "subject=${1:subject}",
+      "subjectfont=${1:font commands}",
+      "subtitle={${1:subtitle text}}",
+      "subtitlefont=${1:font commands}",
+      "title={${1:title text}}",
+      "titlefont=${1:font commands}",
+      "titlehead={${1:titlehead code}}",
+      "titlepagefont=${1:font commands}",
+      "university=${1:university}",
+      "uppertitleback={${1:text}}"
+    ],
+    "\\begin{titlepage},\\begin{fullsizetitle}": [
       "pagenumber=${1:number}",
       "pagestyle=${1:style}"
+    ],
+    "\\usetitleelement,\\usenonemptytitleelement": [
+      "academicgrade",
+      "advisor",
+      "author",
+      "chair",
+      "company",
+      "course",
+      "date",
+      "dedication",
+      "discipline",
+      "duration",
+      "faculty",
+      "homepage",
+      "mainlogo",
+      "matriculationnumber",
+      "oralexaminationdate",
+      "place",
+      "professor",
+      "publisher",
+      "referee",
+      "secondlogo",
+      "subject",
+      "subtitle",
+      "title",
+      "titlehead",
+      "university"
     ]
-  ]
+  },
+  "args": []
 }

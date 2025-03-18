@@ -1,41 +1,75 @@
 {
-  "includes": {
-    "ifthen": [],
-    "xspace": []
-  },
-  "macros": {
-    "Next": {},
-    "NNext": {},
-    "Last": {},
-    "LLast": {},
-    "nextx": {
-      "option": "expex"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "anextx": {
-      "option": "expex"
-    },
-    "lastx": {
-      "option": "expex"
-    },
-    "blastx": {
-      "option": "expex"
-    },
-    "bblastx": {
-      "option": "expex"
-    },
-    "printtmpcounter{}": {
-      "snippet": "printtmpcounter{${1:value}}"
-    },
-    "settmpcounter{}": {
-      "snippet": "settmpcounter{${1:value}}"
-    },
-    "thetmpcounter": {}
-  },
-  "envs": {},
-  "options": [
-    "linguex",
-    "expex",
-    "noparens"
+    {
+      "name": "xspace"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Next"
+    },
+    {
+      "name": "NNext"
+    },
+    {
+      "name": "Last"
+    },
+    {
+      "name": "LLast"
+    },
+    {
+      "name": "nextx",
+      "if": "expex"
+    },
+    {
+      "name": "anextx",
+      "if": "expex"
+    },
+    {
+      "name": "lastx",
+      "if": "expex"
+    },
+    {
+      "name": "blastx",
+      "if": "expex"
+    },
+    {
+      "name": "bblastx",
+      "if": "expex"
+    },
+    {
+      "name": "printtmpcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printtmpcounter{${1:value}}"
+      }
+    },
+    {
+      "name": "settmpcounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "settmpcounter{${1:value}}"
+      }
+    },
+    {
+      "name": "thetmpcounter",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nnext#c": [
+      "linguex",
+      "expex",
+      "noparens"
+    ]
+  },
+  "args": [
+    "\\usepackage/nnext#c"
+  ]
 }

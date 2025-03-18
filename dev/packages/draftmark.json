@@ -1,51 +1,74 @@
 {
-  "includes": {
-    "atbegshi": [],
-    "etextools": [],
-    "fix-cm": [],
-    "graphicx": [],
-    "ltxnew": [],
-    "picture": [],
-    "xcolor": [],
-    "xifthen": [],
-    "xkeyval": []
-  },
-  "macros": {
-    "draftmarksetup{}": {
-      "snippet": "draftmarksetup{${1:options}}"
+  "deps": [
+    {
+      "name": "atbegshi"
     },
-    "fileauthor": {},
-    "filedate": {},
-    "filedesc": {},
-    "filetime": {},
-    "fileversion": {},
-    "readRCS": {},
-    "x": {
-      "detail": "𝑥",
-      "documentation": "MATHEMATICAL ITALIC SMALL X"
+    {
+      "name": "etextools"
+    },
+    {
+      "name": "fix-cm"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "ltxnew"
+    },
+    {
+      "name": "picture"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "xifthen"
+    },
+    {
+      "name": "xkeyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "allpages",
-    "evenpages",
-    "oddpages",
-    "pages=${1:num1-num2}",
-    "page=${1:num}",
-    "mark=${1:text}",
-    "angle=${1:degrees}",
-    "scale=${1:factor}",
-    "grayness=${1:factor}",
-    "color=",
-    "fontfamily=${1:family}",
-    "fontsize=",
-    "xcoord=${1:number}",
-    "ycoord=${1:number}",
-    "coordunit=${1:unit}",
-    "showcenter",
-    "acceptrange"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "draftmarksetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "draftmarksetup{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/draftmark#c,\\draftmarksetup"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/draftmark#c": [
+      "draft",
+      "final",
+      "allpages",
+      "evenpages",
+      "oddpages",
+      "pages=${1:num1-num2}",
+      "page=${1:num}"
+    ],
+    "\\usepackage/draftmark#c,\\draftmarksetup": [
+      "mark=${1:text}",
+      "angle=${1:degrees}",
+      "scale=${1:factor}",
+      "grayness=${1:factor}",
+      "color=",
+      "fontfamily=${1:family}",
+      "fontsize=",
+      "xcoord=${1:number}",
+      "ycoord=${1:number}",
+      "coordunit=${1:unit}",
+      "showcenter",
+      "acceptrange"
+    ]
+  },
+  "args": [
+    "\\usepackage/draftmark#c",
+    "\\usepackage/draftmark#c,\\draftmarksetup"
+  ]
 }

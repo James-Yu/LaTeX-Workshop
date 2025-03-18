@@ -1,131 +1,399 @@
 {
-  "includes": {
-    "kvoptions": [],
-    "geometry": [],
-    "graphicx": [],
-    "calc": [],
-    "tikz": [],
-    "etoolbox": [],
-    "fgruler": []
-  },
-  "macros": {
-    "bookcovercomponent{}{}{}": {
-      "snippet": "bookcovercomponent{${1:type}}{${2:part}}{${3:content}}"
+  "deps": [
+    {
+      "name": "kvoptions"
     },
-    "bookcovercomponent{}{}[]{}": {
-      "snippet": "bookcovercomponent{${1:type}}{${2:part}}[${3:left,bottom,right,top}]{${4:content}}"
+    {
+      "name": "geometry"
     },
-    "partheight": {},
-    "partwidth": {},
-    "coverheight": {},
-    "coverwidth": {},
-    "spinewidth": {},
-    "flapwidth": {},
-    "wrapwidth": {},
-    "bleedwidth": {},
-    "marklength": {},
-    "markthick": {},
-    "bookcoverdescgeometry{}": {
-      "snippet": "bookcoverdescgeometry{${1:geometry parameters}}"
+    {
+      "name": "graphicx"
     },
-    "showbookcoverparameters": {},
-    "bookcovertrimmedpart{}": {
-      "snippet": "bookcovertrimmedpart{${1:trimmed part}}",
-      "option": "trimmed=true"
+    {
+      "name": "calc"
     },
-    "bookcovertrimmedpart{}[]": {
-      "snippet": "bookcovertrimmedpart{${1:trimmed part}}[${2:left,bottom,right,top}]",
-      "option": "trimmed=true"
+    {
+      "name": "tikz"
     },
-    "setbookcover{}": {
-      "snippet": "setbookcover{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "etoolbox"
     },
-    "newbookcoverpart{}{}": {
-      "snippet": "newbookcoverpart{${1:new part}}{${2:setting}}"
-    },
-    "renewbookcoverpart{}{}": {
-      "snippet": "renewbookcoverpart{${1:defined part}}{${2:setting}}"
-    },
-    "setpartposx{}": {
-      "snippet": "setpartposx{${1:coord x}}"
-    },
-    "setpartposy{}": {
-      "snippet": "setpartposy{${1:coord y}}"
-    },
-    "setpartwidth{}": {
-      "snippet": "setpartwidth{${1:width}}"
-    },
-    "setpartheight{}": {
-      "snippet": "setpartheight{${1:height}}"
-    },
-    "settrimmedpart{}{}{}{}": {
-      "snippet": "settrimmedpart{${1:width minus}}{${2:height minus}}{${3:shift x}}{${4:shift y}}"
-    },
-    "newnamebookcoverpart{}{}": {
-      "snippet": "newnamebookcoverpart{${1:new part}}{${2:defined part}}"
-    },
-    "letnamebookcoverpart{}{}": {
-      "snippet": "letnamebookcoverpart{${1:new part}}{${2:defined part}}"
-    },
-    "letnamebookcoverpart{}{}[]": {
-      "snippet": "letnamebookcoverpart{${1:new part}}{${2:defined part}}[${3:left,bottom,right,top}]"
-    },
-    "newbookcovercomponenttype{}{}": {
-      "snippet": "newbookcovercomponenttype{${1:new type}}{${2:formatting}}"
-    },
-    "renewbookcovercomponenttype{}{}": {
-      "snippet": "renewbookcovercomponenttype{${1:defined type}}{${2:formatting}}"
-    },
-    "newnamebookcovercomponenttype{}{}": {
-      "snippet": "newnamebookcovercomponenttype{${1:new type}}{${2:defined type}}"
-    },
-    "letnamebookcovercomponenttype{}{}": {
-      "snippet": "letnamebookcovercomponenttype{${1:new type}}{${2:defined type}}"
-    },
-    "makebookcover": {},
-    "bookcover": {},
-    "endbookcover": {}
-  },
-  "envs": {
-    "bookcover": {},
-    "bookcoverelement{}{}": {
-      "name": "bookcoverelement",
-      "snippet": "{${1:type}}{${2:part}}"
-    },
-    "bookcoverelement{}{}[]": {
-      "name": "bookcoverelement",
-      "snippet": "{${1:type}}{${2:part}}[${3:left,bottom,right,top}]"
-    },
-    "bookcoverdescription": {}
-  },
-  "options": [
-    "cover=",
-    "coverheight=",
-    "coverwidth=",
-    "spinewidth=",
-    "flapwidth=",
-    "wrapwidth=",
-    "bleedwidth=",
-    "marklength=",
-    "foldingmargin",
-    "10pt",
-    "11pt",
-    "12pt",
-    "markthick=",
-    "markcolor=",
-    "pagecolor=",
-    "trimmed",
-    "trimmingcolor="
+    {
+      "name": "fgruler"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "bookcovercomponent",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bookcovercomponent{${1:type%keyvals}}{${2:part}}{${3:content}}",
+        "keys": [
+          "\\bookcovercomponent#c,\\begin{bookcoverelement}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookcovercomponent",
+      "arg": {
+        "format": "{}{}[]{}",
+        "snippet": "bookcovercomponent{${1:type%keyvals}}{${2:part}}[${4:left,bottom,right,top}]{${3:content}}",
+        "keys": [
+          "\\bookcovercomponent#c,\\begin{bookcoverelement}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "partheight"
+    },
+    {
+      "name": "partwidth"
+    },
+    {
+      "name": "coverheight"
+    },
+    {
+      "name": "coverwidth"
+    },
+    {
+      "name": "spinewidth"
+    },
+    {
+      "name": "flapwidth"
+    },
+    {
+      "name": "wrapwidth"
+    },
+    {
+      "name": "bleedwidth"
+    },
+    {
+      "name": "marklength"
+    },
+    {
+      "name": "markthick"
+    },
+    {
+      "name": "bookcoverdescgeometry",
+      "arg": {
+        "format": "{}",
+        "snippet": "bookcoverdescgeometry{${1:geometry parameters%keyvals}}",
+        "keys": [
+          "\\bookcoverdescgeometry"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "showbookcoverparameters"
+    },
+    {
+      "name": "bookcovertrimmedpart",
+      "if": "trimmed",
+      "arg": {
+        "format": "{}",
+        "snippet": "bookcovertrimmedpart{${1:trimmed part}}"
+      }
+    },
+    {
+      "name": "bookcovertrimmedpart",
+      "if": "trimmed",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "bookcovertrimmedpart{${1:trimmed part}}[${2:left,bottom,right,top}]"
+      }
+    },
+    {
+      "name": "bookcovertrimmedpart",
+      "if": "trimmed=true",
+      "arg": {
+        "format": "{}",
+        "snippet": "bookcovertrimmedpart{${1:trimmed part}}"
+      }
+    },
+    {
+      "name": "bookcovertrimmedpart",
+      "if": "trimmed=true",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "bookcovertrimmedpart{${1:trimmed part}}[${2:left,bottom,right,top}]"
+      }
+    },
+    {
+      "name": "setbookcover",
+      "arg": {
+        "format": "{}",
+        "snippet": "setbookcover{${1:options%keyvals}}",
+        "keys": [
+          "\\setbookcover"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "newbookcoverpart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newbookcoverpart{${1:new part}}{${2:setting}}"
+      }
+    },
+    {
+      "name": "renewbookcoverpart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewbookcoverpart{${1:defined part}}{${2:setting}}"
+      }
+    },
+    {
+      "name": "setpartposx",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpartposx{${1:coord x}}"
+      }
+    },
+    {
+      "name": "setpartposy",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpartposy{${1:coord y}}"
+      }
+    },
+    {
+      "name": "setpartwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpartwidth{${1:width}}"
+      }
+    },
+    {
+      "name": "setpartheight",
+      "arg": {
+        "format": "{}",
+        "snippet": "setpartheight{${1:height}}"
+      }
+    },
+    {
+      "name": "settrimmedpart",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "settrimmedpart{${1:width minus}}{${2:height minus}}{${3:shift x}}{${4:shift y}}"
+      }
+    },
+    {
+      "name": "newnamebookcoverpart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newnamebookcoverpart{${1:new part}}{${2:defined part}}"
+      }
+    },
+    {
+      "name": "letnamebookcoverpart",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "letnamebookcoverpart{${1:new part}}{${2:defined part}}"
+      }
+    },
+    {
+      "name": "letnamebookcoverpart",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "letnamebookcoverpart{${1:new part}}{${2:defined part}}[${3:left,bottom,right,top}]"
+      }
+    },
+    {
+      "name": "newbookcovercomponenttype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newbookcovercomponenttype{${1:new type%specialDef}}{${2:formatting}}"
+      }
+    },
+    {
+      "name": "renewbookcovercomponenttype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewbookcovercomponenttype{${1:defined type}}{${2:formatting}}"
+      }
+    },
+    {
+      "name": "newnamebookcovercomponenttype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newnamebookcovercomponenttype{${1:new type%specialDef}}{${2:defined type}}"
+      }
+    },
+    {
+      "name": "letnamebookcovercomponenttype",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "letnamebookcovercomponenttype{${1:new type%specialDef}}{${2:defined type}}"
+      }
+    },
+    {
+      "name": "makebookcover",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "bookcover"
+    },
+    {
+      "name": "bookcoverelement",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:type%keyvals}}{${2:part}}",
+        "keys": [
+          "\\bookcovercomponent#c,\\begin{bookcoverelement}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookcoverelement",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "{${1:type%keyvals}}{${2:part}}[${3:left,bottom,right,top}]",
+        "keys": [
+          "\\bookcovercomponent#c,\\begin{bookcoverelement}#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bookcoverdescription"
+    }
+  ],
+  "keys": {
+    "\\documentclass/bookcover#c": [
+      "cover=${1|default,a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansia,ansib,ansic,ansid,ansie,letter,legal,executive|}",
+      "coverheight=",
+      "coverwidth=",
+      "spinewidth=",
+      "flapwidth=",
+      "wrapwidth=",
+      "bleedwidth=",
+      "marklength=",
+      "foldingmargin",
+      "10pt",
+      "11pt",
+      "12pt",
+      "markthick=",
+      "markcolor=",
+      "pagecolor=",
+      "trimmed",
+      "trimmingcolor="
+    ],
+    "\\bookcovercomponent#c,\\begin{bookcoverelement}#c": [
+      "color",
+      "tikz",
+      "tikz clip",
+      "picture",
+      "normal",
+      "center",
+      "ruler",
+      "%bookcovertype"
+    ],
+    "\\bookcoverdescgeometry": [
+      "layout=${1|a0paper,a1paper,a2paper,a3paper,a4paper,a5paper,a6paper,b0paper,b1paper,b2paper,b3paper,b4paper,b5paper,b6paper,c0paper,c1paper,c2paper,c3paper,c4paper,c5paper,c6paper,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansiapaper,ansibpaper,ansicpaper,ansidpaper,ansiepaper,letterpaper,executivepaper,legalpaper|}",
+      "layoutwidth=",
+      "layoutheight=",
+      "layoutsize=",
+      "layoutsize={${1:width},${2:height}}",
+      "layouthoffset=",
+      "layoutvoffset=",
+      "layoutoffset=",
+      "layoutoffset={${1:hoffset},${2:voffset}}",
+      "hscale=${1:scale}",
+      "vscale=${1:scale}",
+      "scale=${1:scale}",
+      "scale={${1:hscale},${2:vscale}}",
+      "width=",
+      "totalwidth=",
+      "height=",
+      "totalheight=",
+      "total=",
+      "total={${1:width},${2:height}}",
+      "textwidth=",
+      "textheight=",
+      "text=",
+      "body={${1:width},${2:height}}",
+      "lines=${1:integer}",
+      "includehead",
+      "includefoot",
+      "includeheadfoot",
+      "includemp",
+      "includeall",
+      "ignorehead",
+      "ignorefoot",
+      "ignoreheadfoot",
+      "ignoremp",
+      "ignoreall",
+      "heightrounded",
+      "hdivide={${1:left margin},${2:width},${3:right margin}}",
+      "vdivide={${1:top margin},${2:height},${3:bottom margin}}",
+      "divide={${1:left/top margin},${2:width/height},${3:right/bottom margin}}",
+      "left=",
+      "lmargin=",
+      "inner=",
+      "right=",
+      "rmargin=",
+      "outer=",
+      "top=",
+      "tmargin=",
+      "bottom=",
+      "bmargin=",
+      "hmargin=",
+      "hmargin={${1:left margin},${2:right margin}}",
+      "vmargin=",
+      "vmargin={${1:top margin},${2:bottom margin}}",
+      "margin=",
+      "margin={${1:left/top margin},${2:right/bottom margin}}",
+      "hmarginratio=${1:left}:${2:right}",
+      "vmarginratio=${1:top}:${2:bottom}",
+      "marginratio={${1:left}:${2:right},${3:top}:${4:bottom}}",
+      "marginratio=${1:left/top}:${2:right/bottom}",
+      "ratio={${1:left}:${2:right},${3:top}:${4:bottom}}",
+      "ratio=${1:left/top}:${2:right/bottom}",
+      "hcentering",
+      "vcentering",
+      "centering",
+      "twoside",
+      "asymmetric",
+      "bindingoffset=",
+      "headheight=",
+      "head=",
+      "headsep=",
+      "footskip=",
+      "foot=",
+      "nohead",
+      "nofoot",
+      "noheadfoot",
+      "footnotesep=",
+      "marginparwidth=",
+      "marginparsep=",
+      "nomarginpar",
+      "columnsep=",
+      "hoffset=",
+      "voffset=",
+      "offset=",
+      "offset={${1:hoffset},${2:voffset}}",
+      "twocolumn",
+      "onecolumn",
+      "twoside",
+      "reversemp",
+      "reversemarginpar"
+    ],
+    "\\setbookcover": [
       "markthick=",
       "markcolor=",
       "pagecolor=",
       "trimmed",
       "trimmingcolor="
     ]
+  },
+  "args": [
+    "\\documentclass/bookcover#c"
   ]
 }

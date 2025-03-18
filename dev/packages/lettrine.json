@@ -1,51 +1,148 @@
 {
-  "includes": {},
-  "macros": {
-    "lettrine{}{}": {
-      "snippet": "lettrine{${1:letter}}{${2:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "lettrine",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "lettrine{${1:letter}}{${2:text%plain}}"
+      }
     },
-    "lettrine[]{}{}": {
-      "snippet": "lettrine[${3:options}]{${1:letter}}{${2:text}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "lettrine",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "lettrine[${3:options%keyvals}]{${1:letter}}{${2:text%plain}}",
+        "keys": [
+          "\\lettrine,\\usepackage/lettrine#c,\\LettrineOptionsFor",
+          "\\lettrine,\\LettrineOptionsFor"
+        ],
+        "keyPos": 0
+      }
     },
-    "DefaultFindent": {},
-    "DefaultLhang": {},
-    "DefaultLoversize": {},
-    "DefaultLraise": {},
-    "DefaultNindent": {},
-    "DefaultOptionsFile": {},
-    "DefaultSlope": {},
-    "DiscardVskip": {},
-    "LettrineDepth": {},
-    "theDefaultLines": {},
-    "theDefaultDepth": {},
-    "LettrineFont": {},
-    "LettrineFontHook": {},
-    "LettrineHeight": {},
-    "ifLettrineImage": {},
-    "LettrineImagetrue": {},
-    "LettrineImagefalse": {},
-    "ifLettrineOnGrid": {},
-    "LettrineOnGridtrue": {},
-    "LettrineOnGridfalse": {},
-    "LettrineOptionsFor{}{}": {
-      "snippet": "LettrineOptionsFor{${1:letter}}{${2:options}}"
+    {
+      "name": "DefaultFindent",
+      "unusual": true
     },
-    "ifLettrineRealHeight": {},
-    "LettrineRealHeightfalse": {},
-    "LettrineRealHeighttrue": {},
-    "LettrineSecondString": {},
-    "LettrineTestString": {},
-    "LettrineTextFont": {},
-    "LettrineWidth": {}
-  },
-  "envs": {},
-  "options": [
-    "optionsfile=${1:filename}"
+    {
+      "name": "DefaultLhang",
+      "unusual": true
+    },
+    {
+      "name": "DefaultLoversize",
+      "unusual": true
+    },
+    {
+      "name": "DefaultLraise",
+      "unusual": true
+    },
+    {
+      "name": "DefaultNindent",
+      "unusual": true
+    },
+    {
+      "name": "DefaultOptionsFile",
+      "unusual": true
+    },
+    {
+      "name": "DefaultSlope",
+      "unusual": true
+    },
+    {
+      "name": "DiscardVskip",
+      "unusual": true
+    },
+    {
+      "name": "LettrineDepth",
+      "unusual": true
+    },
+    {
+      "name": "theDefaultLines",
+      "unusual": true
+    },
+    {
+      "name": "theDefaultDepth",
+      "unusual": true
+    },
+    {
+      "name": "LettrineFont",
+      "unusual": true
+    },
+    {
+      "name": "LettrineFontHook",
+      "unusual": true
+    },
+    {
+      "name": "LettrineHeight",
+      "unusual": true
+    },
+    {
+      "name": "ifLettrineImage",
+      "unusual": true
+    },
+    {
+      "name": "LettrineImagetrue",
+      "unusual": true
+    },
+    {
+      "name": "LettrineImagefalse",
+      "unusual": true
+    },
+    {
+      "name": "ifLettrineOnGrid",
+      "unusual": true
+    },
+    {
+      "name": "LettrineOnGridtrue",
+      "unusual": true
+    },
+    {
+      "name": "LettrineOnGridfalse",
+      "unusual": true
+    },
+    {
+      "name": "LettrineOptionsFor",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "LettrineOptionsFor{${1:letter}}{${2:options%keyvals}}"
+      }
+    },
+    {
+      "name": "ifLettrineRealHeight",
+      "unusual": true
+    },
+    {
+      "name": "LettrineRealHeightfalse",
+      "unusual": true
+    },
+    {
+      "name": "LettrineRealHeighttrue",
+      "unusual": true
+    },
+    {
+      "name": "LettrineSecondString",
+      "unusual": true
+    },
+    {
+      "name": "LettrineTestString",
+      "unusual": true
+    },
+    {
+      "name": "LettrineTextFont",
+      "unusual": true
+    },
+    {
+      "name": "LettrineWidth",
+      "unusual": true
+    }
   ],
-  "keyvals": [
-    [
+  "envs": [],
+  "keys": {
+    "\\usepackage/lettrine#c": [
+      "optionsfile=${1:filename}"
+    ],
+    "\\lettrine,\\usepackage/lettrine#c,\\LettrineOptionsFor": [
       "lines=${1:integer}",
       "depth=${1:integer}",
       "lhang=${1:decimal}",
@@ -59,9 +156,15 @@
       "novskip=",
       "realheight",
       "refstring",
-      "refstring=${1:string}",
+      "refstring=${1:string}"
+    ],
+    "\\lettrine,\\LettrineOptionsFor": [
       "ante=${1:text}",
       "viewport=${1:llx lly urx ury}"
     ]
+  },
+  "args": [
+    "\\usepackage/lettrine#c",
+    "\\lettrine,\\usepackage/lettrine#c,\\LettrineOptionsFor"
   ]
 }

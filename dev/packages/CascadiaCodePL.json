@@ -1,33 +1,66 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "fontenc": [],
-    "ifthen": [],
-    "mweights": [],
-    "fontaxes": []
-  },
-  "macros": {
-    "sufigures": {},
-    "supfigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "textsup{}": {
-      "snippet": "textsup{${1:text}}"
+    {
+      "name": "fontenc"
     },
-    "textsuperior{}": {
-      "snippet": "textsuperior{${1:text}}"
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "mweights"
+    },
+    {
+      "name": "fontaxes"
     }
-  },
-  "envs": {},
-  "options": [
-    "scale=${1:factor}",
-    "lining",
-    "tabular",
-    "mainfont",
-    "semibold",
-    "bold",
-    "regular"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "supfigures",
+      "unusual": true
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "textsup",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsup{${1:text}}"
+      }
+    },
+    {
+      "name": "textsuperior",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "textsuperior{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/CascadiaCodePL#c": [
+      "scale=${1:factor}",
+      "lining",
+      "tabular",
+      "mainfont",
+      "semibold",
+      "bold",
+      "regular"
+    ]
+  },
+  "args": [
+    "\\usepackage/CascadiaCodePL#c"
+  ]
 }

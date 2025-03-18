@@ -1,31 +1,57 @@
 {
-  "includes": {
-    "nicematrix": [],
-    "l3keys2e": []
-  },
-  "macros": {
-    "dmntable{}{}{}{}{}": {
-      "snippet": "dmntable{${1:title}}{${2:hit policy}}{${3:input}}{${4:output}}{${5:entries}}"
+  "deps": [
+    {
+      "name": "nicematrix"
     },
-    "dmnoutputtable{}{}{}{}": {
-      "snippet": "dmnoutputtable{${1:title}}{${2:hit policy}}{${3:output}}{${4:entries}}"
+    {
+      "name": "l3keys2e"
+    }
+  ],
+  "macros": [
+    {
+      "name": "dmntable",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "dmntable{${1:title}}{${2:hit policy}}{${3:input}}{${4:output}}{${5:entries}}"
+      }
     },
-    "glossarytable{}{}{}": {
-      "snippet": "glossarytable{${1:title}}{${2:subtitles}}{${3:entries}}"
+    {
+      "name": "dmnoutputtable",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "dmnoutputtable{${1:title}}{${2:hit policy}}{${3:output}}{${4:entries}}"
+      }
     },
-    "goaltable{}{}": {
-      "snippet": "goaltable{${1:title}}{${2:entries}}"
+    {
+      "name": "glossarytable",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "glossarytable{${1:title}}{${2:subtitles}}{${3:entries}}"
+      }
     },
-    "pdmntable{}{}{}{}{}{}": {
-      "snippet": "pdmntable{${1:title}}{${2:hit policy}}{${3:inputs}}{${4:outputs}}{${5:output vals}}{${6:entries}}"
+    {
+      "name": "goaltable",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "goaltable{${1:title}}{${2:entries}}"
+      }
     },
-    "pdmnoutputtable{}{}{}{}{}": {
-      "snippet": "pdmnoutputtable{${1:title}}{${2:hit policy}}{${3:output}}{${4:output val}}{${5:probabilities}}"
+    {
+      "name": "pdmntable",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "pdmntable{${1:title}}{${2:hit policy}}{${3:inputs}}{${4:outputs}}{${5:output vals}}{${6:entries}}"
+      }
     },
-    "dmnfileversion": {},
-    "dmnfiledate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "pdmnoutputtable",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "pdmnoutputtable{${1:title}}{${2:hit policy}}{${3:output}}{${4:output val}}{${5:probabilities}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

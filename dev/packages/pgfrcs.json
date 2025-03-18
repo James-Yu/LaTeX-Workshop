@@ -1,61 +1,229 @@
 {
-  "includes": {
-    "everyshi": []
+  "deps": [
+    {
+      "name": "everyshi"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pgferror",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgferror{${1:error text%text}}"
+      }
+    },
+    {
+      "name": "pgfwarning",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfwarning{${1:warning text%text}}"
+      }
+    },
+    {
+      "name": "usepgflibrary",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usepgflibrary{${1:list of libraries%keyvals}}",
+        "keys": [
+          "\\usepgflibrary#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "usepgfmodule",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "usepgfmodule{${1:module names%keyvals}}",
+        "keys": [
+          "\\usepgfmodule#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "pgfutilensuremath",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfutilensuremath{${1:formula}}"
+      }
+    },
+    {
+      "name": "pgfutilpreparefilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pgfutilpreparefilename{${1:file name}}"
+      }
+    },
+    {
+      "name": "pgfretvalquoted",
+      "unusual": true
+    },
+    {
+      "name": "pgfutilconvertdcolon",
+      "unusual": true
+    },
+    {
+      "name": "pgfutilifcontainsmacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfutilifcontainsmacro{${1:token list}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "pgfutilifstartswith",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "pgfutilifstartswith{${1:start with pattern}}{${2:token list}}{${3:true}}{${4:false}}"
+      }
+    },
+    {
+      "name": "pgfutilstrreplace",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "pgfutilstrreplace{${1:search}}{${2:replacement}}{${3:string}}"
+      }
+    },
+    {
+      "name": "pgfutilsolvetwotwoleq",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfutilsolvetwotwoleq{2x2 matrix entries}{2x1 matrix entries}"
+      }
+    },
+    {
+      "name": "pgfutilsolvetwotwoleqfloat",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "pgfutilsolvetwotwoleqfloat{2x2 matrix entries}{2x1 matrix entries}"
+      }
+    },
+    {
+      "name": "pgftypesetversion",
+      "unusual": true
+    },
+    {
+      "name": "pgfrcsloaded",
+      "unusual": true
+    },
+    {
+      "name": "pgfrcsatcode",
+      "unusual": true
+    },
+    {
+      "name": "ProvidesFileRCS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesFileRCS{${1:file name}}"
+      }
+    },
+    {
+      "name": "ProvidesPackageRCS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesPackageRCS{${1:pkg name}}"
+      }
+    },
+    {
+      "name": "ProvidesClassRCS",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ProvidesClassRCS{${1:class name}}"
+      }
+    },
+    {
+      "name": "pgfrevision",
+      "unusual": true
+    },
+    {
+      "name": "pgfversion",
+      "unusual": true
+    },
+    {
+      "name": "pgfversiondate",
+      "unusual": true
+    },
+    {
+      "name": "pgfrevisiondate",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepgflibrary#c": [
+      "arrows.meta",
+      "curvilinear",
+      "datavisualization.barcharts",
+      "datavisualization.formats.functions",
+      "datavisualization.polar",
+      "decorations.footprints",
+      "decorations.fractals",
+      "decorations.markings",
+      "decorations.pathmorphing",
+      "decorations.pathreplacing",
+      "decorations.shapes",
+      "decorations.text",
+      "fadings",
+      "fixedpointarithmetic",
+      "fpu",
+      "graphdrawing.circular",
+      "graphdrawing",
+      "graphdrawing.examples",
+      "graphdrawing.force",
+      "graphdrawing.layered",
+      "graphdrawing.trees",
+      "intersections",
+      "lindenmayersystems",
+      "luamath",
+      "patterns",
+      "patterns.meta",
+      "plothandlers",
+      "plotmarks",
+      "profiler",
+      "shadings",
+      "shapes",
+      "shapes.arrows",
+      "shapes.callouts",
+      "shapes.gates.ee",
+      "shapes.gates.ee.IEC",
+      "shapes.gates.logic",
+      "shapes.gates.logic.IEC",
+      "shapes.gates.logic.US",
+      "shapes.geometric",
+      "shapes.misc",
+      "shapes.multipart",
+      "shapes.symbols",
+      "svg.path",
+      "timelines",
+      "transformations.mirror"
+    ],
+    "\\usepgfmodule#c": [
+      "animations",
+      "bending",
+      "datavisualization",
+      "decorations",
+      "matrix",
+      "nonlineartransformations",
+      "oo",
+      "parser",
+      "plot",
+      "shapes",
+      "sorting"
+    ]
   },
-  "macros": {
-    "pgferror{}": {
-      "snippet": "pgferror{${1:error text}}"
-    },
-    "pgfwarning{}": {
-      "snippet": "pgfwarning{${1:warning text}}"
-    },
-    "usepgflibrary{}": {
-      "snippet": "usepgflibrary{${1:list of libraries}}"
-    },
-    "usepgfmodule{}": {
-      "snippet": "usepgfmodule{${1:module names}}"
-    },
-    "pgfutilensuremath{}": {
-      "snippet": "pgfutilensuremath{${1:formula}}"
-    },
-    "pgfutilpreparefilename{}": {
-      "snippet": "pgfutilpreparefilename{${1:file name}}"
-    },
-    "pgfretvalquoted": {},
-    "pgfutilconvertdcolon": {},
-    "pgfutilifcontainsmacro{}{}{}": {
-      "snippet": "pgfutilifcontainsmacro{${1:token list}}{${2:true}}{${3:false}}"
-    },
-    "pgfutilifstartswith{}{}{}{}": {
-      "snippet": "pgfutilifstartswith{${1:start with pattern}}{${2:token list}}{${3:true}}{${4:false}}"
-    },
-    "pgfutilstrreplace{}{}{}": {
-      "snippet": "pgfutilstrreplace{${1:search}}{${2:replacement}}{${3:string}}"
-    },
-    "pgfutilsolvetwotwoleq{}{}": {
-      "snippet": "pgfutilsolvetwotwoleq{${1:2x2 matrix entries}}{${2:2x1 matrix entries}}"
-    },
-    "pgfutilsolvetwotwoleqfloat{}{}": {
-      "snippet": "pgfutilsolvetwotwoleqfloat{${1:2x2 matrix entries}}{${2:2x1 matrix entries}}"
-    },
-    "pgftypesetversion": {},
-    "pgfrcsloaded": {},
-    "pgfrcsatcode": {},
-    "ProvidesFileRCS{}": {
-      "snippet": "ProvidesFileRCS{${1:file name}}"
-    },
-    "ProvidesPackageRCS{}": {
-      "snippet": "ProvidesPackageRCS{${1:pkg name}}"
-    },
-    "ProvidesClassRCS{}": {
-      "snippet": "ProvidesClassRCS{${1:class name}}"
-    },
-    "pgfrevision": {},
-    "pgfversion": {},
-    "pgfversiondate": {},
-    "pgfrevisiondate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

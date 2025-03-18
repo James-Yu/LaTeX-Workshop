@@ -1,7 +1,15 @@
 {
-  "includes": {},
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "deps": [],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\node#c,\\coordinate#c,\\nodepart#c,\\pic#c": [
+      "fit=${1:coords or nodes}",
+      "rotate fit=${1:degrees}"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c": [
+      "every fit/.style={${1:options}}"
+    ]
+  },
+  "args": []
 }

@@ -1,22 +1,40 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "mttfamily": {},
-    "textmtt{}": {
-      "snippet": "textmtt{${1:text}}"
-    },
-    "mtt{}": {
-      "snippet": "mtt{${1:text}}"
-    },
-    "nbsp": {}
-  },
-  "envs": {},
-  "options": [
-    "override",
-    "t1",
-    "ot1"
+  "deps": [
+    {
+      "name": "keyval"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "mttfamily"
+    },
+    {
+      "name": "textmtt",
+      "arg": {
+        "format": "{}",
+        "snippet": "textmtt{${1:text}}"
+      }
+    },
+    {
+      "name": "mtt",
+      "arg": {
+        "format": "{}",
+        "snippet": "mtt{${1:text}}"
+      }
+    },
+    {
+      "name": "nbsp"
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/cmtt#c": [
+      "override",
+      "t1",
+      "ot1"
+    ]
+  },
+  "args": [
+    "\\usepackage/cmtt#c"
+  ]
 }

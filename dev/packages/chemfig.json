@@ -1,0 +1,398 @@
+{
+  "deps": [
+    {
+      "name": "simplekv"
+    },
+    {
+      "name": "tikz"
+    }
+  ],
+  "macros": [
+    {
+      "name": "chemfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemfig{${1:code%definition}}"
+      }
+    },
+    {
+      "name": "chemfig",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "chemfig[${2:options%keyvals}]{${1:code%definition}}",
+        "keys": [
+          "\\chemfig,\\setchemfig"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setchemfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "setchemfig{${1:options%keyvals}}",
+        "keys": [
+          "\\chemfig,\\setchemfig",
+          "\\setchemfig"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetchemfig"
+    },
+    {
+      "name": "printatom",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printatom{${1:code%formula}}"
+      }
+    },
+    {
+      "name": "hflipnext"
+    },
+    {
+      "name": "vflipnext"
+    },
+    {
+      "name": "definesubmol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "definesubmol{${1:name%cmd}}{${2:code%definition}}"
+      }
+    },
+    {
+      "name": "definesubmol",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "definesubmol{${1:name%cmd}}[${3:code1%definition}]{${2:code2%definition}}"
+      }
+    },
+    {
+      "name": "redefinesubmol",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "redefinesubmol{${1:name%cmd}}{${2:code%definition}}"
+      }
+    },
+    {
+      "name": "redefinesubmol",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "redefinesubmol{${1:name%cmd}}[${3:code1%definition}]{${2:code2%definition}}"
+      }
+    },
+    {
+      "name": "chemskipalign"
+    },
+    {
+      "name": "charge",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "charge{${1:[${3:parameters}]position[${4:TikZ code}]}}{${2:atom}}"
+      }
+    },
+    {
+      "name": "Charge",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Charge{${1:[${3:parameters}]position[${4:TikZ code}]}}{${2:atom}}"
+      }
+    },
+    {
+      "name": "setcharge",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcharge{${1:options%keyvals}}",
+        "keys": [
+          "\\setcharge"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "resetcharge"
+    },
+    {
+      "name": "chargeangle"
+    },
+    {
+      "name": "chemabove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "chemabove{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "chemabove",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "chemabove[${3:dim%l}]{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "chembelow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "chembelow{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "chembelow",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "chembelow[${3:dim%l}]{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "Chemabove",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Chemabove{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "Chemabove",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Chemabove[${3:dim%l}]{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "Chembelow",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Chembelow{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "Chembelow",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "Chembelow[${3:dim%l}]{${1:txt1%formula}}{${2:txt2%formula}}"
+      }
+    },
+    {
+      "name": "chemname",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "chemname{${1:molecule}}{${2:name}}"
+      }
+    },
+    {
+      "name": "chemname",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "chemname[${3:dim%l}]{${1:molecule}}{${2:name}}"
+      }
+    },
+    {
+      "name": "chemname*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "chemname*{${1:name}}"
+      }
+    },
+    {
+      "name": "chemnameinit",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemnameinit{${1:arg}}"
+      }
+    },
+    {
+      "name": "schemestart"
+    },
+    {
+      "name": "schemestart",
+      "arg": {
+        "format": "[]",
+        "snippet": "schemestart[${1:angle,coeff,style}]"
+      }
+    },
+    {
+      "name": "schemestart",
+      "arg": {
+        "format": "[][]",
+        "snippet": "schemestart[${1:angle,coeff,style}][${2:position}]"
+      }
+    },
+    {
+      "name": "schemestop"
+    },
+    {
+      "name": "arrow"
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "[]",
+        "snippet": "arrow[${1:angle,coeff,style}]"
+      }
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "{}",
+        "snippet": "arrow{${1:type}}"
+      }
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "arrow{${1:type}}[${2:angle,coeff,style}]"
+      }
+    },
+    {
+      "name": "arrow",
+      "arg": {
+        "format": "(){}[]",
+        "snippet": "arrow(%<n1.a1%>[${2:s1}]--%<n2.a2%>[${3:s2}]){${1:type}}[${4:angle,coeff,style}]"
+      }
+    },
+    {
+      "name": "setcompoundstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "setcompoundstyle{${1:TikZ code}}"
+      }
+    },
+    {
+      "name": "subscheme",
+      "arg": {
+        "format": "{}",
+        "snippet": "subscheme{${1:code}}"
+      }
+    },
+    {
+      "name": "definearrow",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "definearrow{${1:number}}{${2:name}}{${3:code%definition}}"
+      }
+    },
+    {
+      "name": "chemleft",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemleft{${1:delim%formula}}"
+      }
+    },
+    {
+      "name": "chemright",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemright{${1:delim%formula}}"
+      }
+    },
+    {
+      "name": "chemup",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemup{${1:delim%formula}}"
+      }
+    },
+    {
+      "name": "chemdown",
+      "arg": {
+        "format": "{}",
+        "snippet": "chemdown{${1:delim%formula}}"
+      }
+    },
+    {
+      "name": "polymerdelim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "polymerdelim{${1:node1}}{${2:node2}}"
+      }
+    },
+    {
+      "name": "polymerdelim",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "polymerdelim[${3:options%keyvals}]{${1:node1}}{${2:node2}}",
+        "keys": [
+          "\\polymerdelim"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\chemfig,\\setchemfig": [
+      "chemfig style={${1:TikZ keys}}",
+      "atom style={${1:TikZ keys}}",
+      "bond join",
+      "fixed length",
+      "cram rectangle",
+      "cram width=",
+      "cram dash width=",
+      "cram dash sep=",
+      "atom sep=",
+      "bond offset=",
+      "double bond sep=",
+      "angle increment=${1:degrees}",
+      "node style={${1:TikZ keys}}",
+      "bond style={${1:TikZ keys}}",
+      "cycle radius coeff=",
+      "stack sep=",
+      "show cntcycle",
+      "autoreset cntcycle",
+      "compound style={${1:TikZ keys}}",
+      "compound sep=",
+      "arrow offset=",
+      "arrow angle=${1:degrees}",
+      "arrow coeff=${1:decimal}",
+      "arrow style={${1:TikZ keys}}",
+      "arrow double sep=",
+      "arrow double coeff=",
+      "arrow double harpoon",
+      "arrow label sep=",
+      "arrow head=",
+      "+ sep left=",
+      "+ sep right=",
+      "+ vshift=",
+      "gchemname",
+      "schemestart code=${1:code}",
+      "schemestop code=${1:code}",
+      "baseline="
+    ],
+    "\\setchemfig": [
+      "debug",
+      "scheme debug"
+    ],
+    "\\setcharge": [
+      "debug",
+      "macro atom=${1:cmd}",
+      "circle",
+      "macro charge=${1:cmd}",
+      "extra sep=",
+      "overlay",
+      "shortcuts",
+      "lewisautorot",
+      ".radius=",
+      ":sep=",
+      ".style={${1:TikZ keys}}",
+      "\"length=",
+      "\"width=",
+      "\"style={${1:TikZ keys}}",
+      "|style={${1:TikZ keys}}"
+    ],
+    "\\polymerdelim": [
+      "delimiters=",
+      "height=",
+      "depth=",
+      "h align",
+      "auto rotate",
+      "rotate=${1:degrees}",
+      "open xshift=",
+      "close x shift=",
+      "indice=${1:integer}"
+    ]
+  },
+  "args": []
+}

@@ -1,63 +1,357 @@
 {
-  "includes": {},
-  "macros": {
-    "numbline{}{}": {
-      "snippet": "numbline{${1:from}}{${2:to}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "numbline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "numbline{${1:from}}{${2:to}}"
+      }
     },
-    "numbline[]{}{}": {
-      "snippet": "numbline[${3:spacing}]{${1:from}}{${2:to}}"
+    {
+      "name": "numbline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "numbline[${3:spacing}]{${1:from}}{${2:to}}"
+      }
     },
-    "numbline*{}{}": {
-      "snippet": "numbline*{${1:from}}{${2:to}}"
+    {
+      "name": "numbline*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "numbline*{${1:from}}{${2:to}}"
+      }
     },
-    "numbline*[]{}{}": {
-      "snippet": "numbline*[${3:spacing}]{${1:from}}{${2:to}}"
+    {
+      "name": "numbline*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "numbline*[${3:spacing}]{${1:from}}{${2:to}}"
+      }
     },
-    "vnumbline{}{}": {
-      "snippet": "vnumbline{${1:from}}{${2:to}}"
+    {
+      "name": "vnumbline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vnumbline{${1:from}}{${2:to}}"
+      }
     },
-    "vnumbline[]{}{}": {
-      "snippet": "vnumbline[${3:spacing}]{${1:from}}{${2:to}}"
+    {
+      "name": "vnumbline",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "vnumbline[${3:spacing}]{${1:from}}{${2:to}}"
+      }
     },
-    "vnumbline*{}{}": {
-      "snippet": "vnumbline*{${1:from}}{${2:to}}"
+    {
+      "name": "vnumbline*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "vnumbline*{${1:from}}{${2:to}}"
+      }
     },
-    "vnumbline*[]{}{}": {
-      "snippet": "vnumbline*[${3:spacing}]{${1:from}}{${2:to}}"
+    {
+      "name": "vnumbline*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "vnumbline*[${3:spacing}]{${1:from}}{${2:to}}"
+      }
     },
-    "gridstyle{}{}": {
-      "snippet": "gridstyle{${1:thin-declaration}}{${2:thick-declaration}}"
+    {
+      "name": "coordsys",
+      "arg": {
+        "format": "()()",
+        "snippet": "coordsys(${1:lower-left})(${2:upper-right})"
+      }
     },
-    "sethlabel{}": {
-      "snippet": "sethlabel{${1:label}}"
+    {
+      "name": "coordsys",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "coordsys[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
     },
-    "sethlabel[]{}": {
-      "snippet": "sethlabel[${2:alignment}]{${1:label}}"
+    {
+      "name": "coordsys",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "coordsys[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
     },
-    "setvlabel{}": {
-      "snippet": "setvlabel{${1:label}}"
+    {
+      "name": "coordsys*",
+      "arg": {
+        "format": "()()",
+        "snippet": "coordsys*(${1:lower-left})(${2:upper-right})"
+      }
     },
-    "setvlabel[]{}": {
-      "snippet": "setvlabel[${2:alignment}]{${1:label}}"
+    {
+      "name": "coordsys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "coordsys*[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
     },
-    "hthickratio": {},
-    "vthickratio": {},
-    "rescaleby{}{}{}": {
-      "snippet": "rescaleby{${1:num}}{${2:den}}{${3:cmd}}"
+    {
+      "name": "coordsys*",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "coordsys*[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
     },
-    "rescaleby[]{}{}{}": {
-      "snippet": "rescaleby[${4:symb}]{${1:num}}{${2:den}}{${3:cmd}}"
+    {
+      "name": "fcoordsys",
+      "arg": {
+        "format": "()()",
+        "snippet": "fcoordsys(${1:lower-left})(${2:upper-right})"
+      }
     },
-    "tickstyle{}{}": {
-      "snippet": "tickstyle{${1:thin-declaration}}{${2:thick-declaration}}"
+    {
+      "name": "fcoordsys",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "fcoordsys[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
     },
-    "ticklength": {}
-  },
-  "envs": {},
-  "options": [
-    "centred",
-    "outside",
-    "inside"
+    {
+      "name": "fcoordsys",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "fcoordsys[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "fcoordsys*",
+      "arg": {
+        "format": "()()",
+        "snippet": "fcoordsys*(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "fcoordsys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "fcoordsys*[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "fcoordsys*",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "fcoordsys*[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys",
+      "arg": {
+        "format": "()()",
+        "snippet": "bcoordsys(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "bcoordsys[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "bcoordsys[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys*",
+      "arg": {
+        "format": "()()",
+        "snippet": "bcoordsys*(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "bcoordsys*[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "bcoordsys*",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "bcoordsys*[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "window",
+      "arg": {
+        "format": "()()",
+        "snippet": "window(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "window",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "window[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "window",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "window[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "window*",
+      "arg": {
+        "format": "()()",
+        "snippet": "window*(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "window*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "window*[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "window*",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "window*[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid",
+      "arg": {
+        "format": "()()",
+        "snippet": "coordgrid(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "coordgrid[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "coordgrid[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid*",
+      "arg": {
+        "format": "()()",
+        "snippet": "coordgrid*(${1:lower-left})(${2:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid*",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "coordgrid*[${1:h-spacing}](${2:lower-left})(${3:upper-right})"
+      }
+    },
+    {
+      "name": "coordgrid*",
+      "arg": {
+        "format": "[][]()()",
+        "snippet": "coordgrid*[${1:h-spacing}][${2:v-spacing}](${3:lower-left})(${4:upper-right})"
+      }
+    },
+    {
+      "name": "gridstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gridstyle{${1:thin-declaration}}{${2:thick-declaration}}"
+      }
+    },
+    {
+      "name": "sethlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "sethlabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "sethlabel[${2:alignment}]{${1:label}}"
+      }
+    },
+    {
+      "name": "setvlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "setvlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "setvlabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setvlabel[${2:alignment}]{${1:label}}"
+      }
+    },
+    {
+      "name": "hthickratio"
+    },
+    {
+      "name": "vthickratio"
+    },
+    {
+      "name": "rescaleby",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "rescaleby{${1:num}}{${2:den}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "rescaleby",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "rescaleby[${4:symb}]{${1:num}}{${2:den}}{${3:cmd}}"
+      }
+    },
+    {
+      "name": "tickstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tickstyle{${1:thin-declaration}}{${2:thick-declaration}}"
+      }
+    },
+    {
+      "name": "ticklength"
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/coordsys#c": [
+      "centred",
+      "outside",
+      "inside"
+    ]
+  },
+  "args": [
+    "\\usepackage/coordsys#c"
+  ]
 }

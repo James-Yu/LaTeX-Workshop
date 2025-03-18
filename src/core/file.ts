@@ -7,8 +7,9 @@ import { lw } from '../lw'
 
 const logger = lw.log('File')
 
+let extraTeXExts: string[]
 export const file = {
-    tmpDirPath: createTmpDir(),
+    tmpDirPath: '',
     getOutDir,
     getLangId,
     getJobname,
@@ -26,10 +27,18 @@ export const file = {
     kpsewhich,
     getUriScheme,
     isUriScheme,
-    toUri,
-    _test: {
-        createTmpDir
-    }
+    toUri
+}
+
+initialize()
+export function initialize() {
+    file.tmpDirPath = createTmpDir()
+}
+
+setExtraTeXExts()
+lw.onConfigChange('latex.extraExts', setExtraTeXExts)
+function setExtraTeXExts() {
+    extraTeXExts = vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[]
 }
 
 /**
@@ -88,8 +97,9 @@ function handleTmpDirError(error: Error) {
  * This function verifies whether a provided file extension string matches any
  * of the TeX-related extensions defined in several constant arrays. It
  * consolidates these arrays into a single collection and checks if the given
- * extension exists within this collection. The arrays include TeX extensions, R
- * Sweave extensions, Julia Weave extensions, and Python Weave extensions.
+ * extension exists within this collection. The arrays include TeX extensions
+ * (including those defined by the user ), R Sweave extensions, Julia Weave extensions,
+ * and Python Weave extensions.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -98,6 +108,7 @@ function handleTmpDirError(error: Error) {
  */
 function hasTeXExt(extname: string): boolean {
     return [
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.RSWEAVE_EXT,
         ...lw.constant.JLWEAVE_EXT,
@@ -112,9 +123,10 @@ function hasTeXExt(extname: string): boolean {
  * This function evaluates the given file extension and checks it against a
  * predefined list of TeX source extensions such as `.tex`, `.ltx`, `.sty`,
  * `.cls`, `.fd`, `.aux`, `.bbl`, `.blg`, `.brf`, `.log`, `.out`, and R Sweave
- * extensions, Julia Weave extensions, and Python Weave extensions. It returns
- * `true` if the extension is not found in this list, and `false` otherwise.
- * This is useful for filtering out non-TeX files from a collection of files.
+ * extensions, Julia Weave extensions, Python Weave extensions and user defined
+ * tex extensions. It returns `true` if the extension is not found in this list,
+ * and `false` otherwise. This is useful for filtering out non-TeX files from a
+ * collection of files.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -123,6 +135,7 @@ function hasTeXExt(extname: string): boolean {
  */
 function hasBinaryExt(extname: string): boolean {
     return ![
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.TEX_NOCACHE_EXT,
         ...lw.constant.RSWEAVE_EXT,
@@ -266,7 +279,7 @@ function getOutDir(texPath?: string): string {
  */
 function getLangId(filename: string): string | undefined {
     const ext = path.extname(filename).toLocaleLowerCase()
-    if (ext === '.tex') {
+    if (ext === '.tex' || extraTeXExts.includes(ext)) {
         return 'latex'
     } else if (lw.constant.PWEAVE_EXT.includes(ext)) {
         return 'pweave'
@@ -383,11 +396,16 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
 
     try {
         const args = isBib ? ['-format=.bib', target] : [target]
-        const kpsewhichReturn = lw.external.sync(command, args, { cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path })
+        const cwd = lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path
+        const kpsewhichReturn = lw.external.sync(command, args, { cwd })
         if (kpsewhichReturn.status === 0) {
-            const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+            let output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             logger.log(`kpsewhich returned with '${output}'.`)
             if (output !== '') {
+                if (!path.isAbsolute(output) && cwd) {
+                    output = path.resolve(cwd, output)
+                    logger.log(`kpsewhich resolved to '${output}'.`)
+                }
                 kpsecache[query] = output
             }
             return output
@@ -420,7 +438,7 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
  * @returns {string[]} An array containing the resolved file path(s) for the
  * bibliography file, or an empty array if the file could not be resolved.
  */
-function getBibPath(bib: string, baseDir: string): string[] {
+async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]
     let searchDirs: string[] = [baseDir, ...bibDirs]
@@ -429,7 +447,7 @@ function getBibPath(bib: string, baseDir: string): string[] {
     if (lw.root.dir.path) {
         searchDirs = [lw.root.dir.path, ...searchDirs]
     }
-    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
+    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : await utils.resolveFile(searchDirs, bib, '.bib')
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
@@ -464,7 +482,8 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * function will rethrow the caught error, making the calling code responsible
  * for handling the exception.
  *
- * @param {string} filePath - The path to the file to be read.
+ * @param {string | vscode.Uri} filePath - The path / Uri to the file to be
+ * read.
  * @param {boolean} [raise=false] - A flag indicating whether to rethrow an
  * error if the file read operation fails.
  * @returns {Promise<string | undefined>} - A promise that resolves to the file
@@ -473,11 +492,17 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * @throws Will throw an error if the file read operation fails and `raise` is
  * `true`.
  */
-async function read(filePath: string, raise: boolean = false): Promise<string | undefined> {
+async function read(fileUri: vscode.Uri, raise?: boolean): Promise<string | undefined>
+async function read(filePath: string, raise?: boolean): Promise<string | undefined>
+async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promise<string | undefined> {
     try {
-        return (await vscode.workspace.fs.readFile(lw.file.toUri(filePath))).toString()
+        if (filePathOrUri instanceof vscode.Uri) {
+            return (await vscode.workspace.fs.readFile(filePathOrUri)).toString()
+        } else {
+            return (await vscode.workspace.fs.readFile(lw.file.toUri(filePathOrUri))).toString()
+        }
     } catch (err) {
-        if (raise === false) {
+        if (raise === undefined || raise === false) {
             return undefined
         }
         throw err
@@ -491,23 +516,22 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  * the input is a string, it is converted to a file URI using
  * `lw.file.fileUriFromPath()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
- * system API. If the status retrieval is successful, the function returns
- * `true`, indicating that the file or directory exists. If an error occurs
- * (e.g., the file or directory does not exist), the function catches the error
- * and returns `false`.
+ * system API. If the status retrieval is successful, the function returns the
+ * file stat, which can also be used to indicate that the file or directory
+ * exists. If an error occurs (e.g., the file or directory does not exist), the
+ * function catches the error and returns `false`.
  *
  * @param {vscode.Uri | string} uri - The URI or file path to check for
  * existence.
  * @returns {Promise<boolean>} - A promise that resolves to `true` if the file
  * or directory exists, and `false` otherwise.
  */
-async function exists(uri: vscode.Uri | string): Promise<boolean> {
+async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false> {
     if (typeof (uri) === 'string') {
         uri = lw.file.toUri(uri)
     }
     try {
-        await lw.external.stat(uri)
-        return true
+        return await lw.external.stat(uri)
     } catch {
         return false
     }

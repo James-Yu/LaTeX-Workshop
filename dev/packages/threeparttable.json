@@ -1,48 +1,106 @@
 {
-  "includes": {},
-  "macros": {
-    "tnote{}": {
-      "snippet": "tnote{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "tnote",
+      "arg": {
+        "format": "{}",
+        "snippet": "tnote{${1:label}}"
+      }
     },
-    "TPTminimum": {},
-    "TPToverlap": {},
-    "TPTrlap": {},
-    "TPTtagStyle": {},
-    "TPTnoteLabel": {},
-    "TPTnoteSettings": {},
-    "TPTdoTablenotes": {}
-  },
-  "envs": {
-    "threeparttable": {},
-    "threeparttable[]": {
-      "name": "threeparttable",
-      "snippet": "[${1:pos}]"
+    {
+      "name": "TPTminimum",
+      "unusual": true
     },
-    "measuredfigure": {},
-    "measuredfigure[]": {
-      "name": "measuredfigure",
-      "snippet": "[${1:pos}]"
+    {
+      "name": "TPToverlap",
+      "unusual": true
     },
-    "tablenotes": {},
-    "tablenotes[]": {
-      "name": "tablenotes",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "TPTrlap",
+      "unusual": true
+    },
+    {
+      "name": "TPTtagStyle",
+      "unusual": true
+    },
+    {
+      "name": "TPTnoteLabel",
+      "unusual": true
+    },
+    {
+      "name": "TPTnoteSettings",
+      "unusual": true
+    },
+    {
+      "name": "TPTdoTablenotes",
+      "unusual": true
     }
-  },
-  "options": [
-    "para",
-    "flushleft",
-    "online",
-    "normal"
   ],
-  "keyvals": [
-    [
+  "envs": [
+    {
+      "name": "threeparttable"
+    },
+    {
+      "name": "threeparttable",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pos%keyvals}]",
+        "keys": [
+          "\\begin{threeparttable},\\begin{measuredfigure}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "measuredfigure"
+    },
+    {
+      "name": "measuredfigure",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:pos%keyvals}]",
+        "keys": [
+          "\\begin{threeparttable},\\begin{measuredfigure}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tablenotes"
+    },
+    {
+      "name": "tablenotes",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{tablenotes}"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/threeparttable#c": [
+      "para",
+      "flushleft",
+      "online",
+      "normal"
+    ],
+    "\\begin{threeparttable},\\begin{measuredfigure}": [
+      "t",
+      "b",
+      "c"
+    ],
+    "\\begin{tablenotes}": [
       "para",
       "flushleft",
       "online",
       "normal"
     ]
+  },
+  "args": [
+    "\\usepackage/threeparttable#c"
   ]
 }

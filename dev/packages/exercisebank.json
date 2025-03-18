@@ -1,235 +1,644 @@
 {
-  "includes": {
-    "xstring": [],
-    "pgffor": [],
-    "scrextend": [],
-    "comment": [],
-    "calc": [],
-    "pgfpages": [],
-    "geometry": [],
-    "listofitems": [],
-    "trimspaces": [],
-    "needspace": []
-  },
-  "macros": {
-    "DisplaySolutions": {},
-    "SolutionsOnly": {},
-    "makesetdefaults{}": {
-      "snippet": "makesetdefaults{${1:}}"
+  "deps": [
+    {
+      "name": "xstring"
     },
-    "spritesets{}": {
-      "snippet": "spritesets{${1:}}"
+    {
+      "name": "pgffor"
     },
-    "makeset{}{}": {
-      "snippet": "makeset{${1:name}}{${2:file}}"
+    {
+      "name": "scrextend"
     },
-    "makeset[]{}{}": {
-      "snippet": "makeset[${3:options}]{${1:name}}{${2:file}}"
+    {
+      "name": "comment"
     },
-    "phead": {},
-    "about{}": {
-      "snippet": "about{${1:text}}"
+    {
+      "name": "calc"
     },
-    "buildall": {},
-    "sprite": {},
-    "sprite[]": {
-      "snippet": "sprite[${1:number}]"
+    {
+      "name": "pgfpages"
     },
-    "exec{}": {
-      "snippet": "exec{${1:code}}"
+    {
+      "name": "geometry"
     },
-    "DeclareExerciseCommand{}{}": {
-      "snippet": "DeclareExerciseCommand{${1:cmd}}{${2:def}}"
+    {
+      "name": "listofitems"
     },
-    "DeclareExerciseCommand{}[]{}": {
-      "snippet": "DeclareExerciseCommand{${1:cmd}}[${2:args}]{${3:def}}"
+    {
+      "name": "trimspaces"
     },
-    "exclude{}{}": {
-      "snippet": "exclude{${1:file}}{${2:list of numbers}}"
+    {
+      "name": "needspace"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DisplaySolutions"
     },
-    "select{}{}": {
-      "snippet": "select{${1:file}}{${2:list of numbers}}"
+    {
+      "name": "SolutionsOnly"
     },
-    "buildset{}": {
-      "snippet": "buildset{${1:name}}"
+    {
+      "name": "makesetdefaults",
+      "arg": {
+        "format": "{}",
+        "snippet": "makesetdefaults{${1:}}"
+      }
     },
-    "buildset[]{}": {
-      "snippet": "buildset[${2:options}]{${1:name}}"
+    {
+      "name": "spritesets",
+      "arg": {
+        "format": "{}",
+        "snippet": "spritesets{${1:}}"
+      }
     },
-    "setName": {},
-    "buildsets{}": {
-      "snippet": "buildsets{${1:list of names}}"
+    {
+      "name": "makeset",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "makeset{${1:name}}{${2:file}}"
+      }
     },
-    "buildsets[]{}": {
-      "snippet": "buildsets[${2:options}]{${1:list of sets}}"
+    {
+      "name": "makeset",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "makeset[${3:options%keyvals}]{${1:name}}{${2:file}}"
+      }
     },
-    "buildtags{}{}": {
-      "snippet": "buildtags{${1:list of tags}}{${2:list of sets}}"
+    {
+      "name": "phead"
     },
-    "buildsprite{}": {
-      "snippet": "buildsprite{${1:list of sets}}"
+    {
+      "name": "about",
+      "arg": {
+        "format": "{}",
+        "snippet": "about{${1:text}}"
+      }
     },
-    "pplabel{}": {
-      "snippet": "pplabel{${1:label}}"
+    {
+      "name": "buildall"
     },
-    "ppref{}": {
-      "snippet": "ppref{${1:label}}"
+    {
+      "name": "sprite"
     },
-    "ppgref{}": {
-      "snippet": "ppgref{${1:label}}"
+    {
+      "name": "sprite",
+      "arg": {
+        "format": "[]",
+        "snippet": "sprite[${1:number}]"
+      }
     },
-    "pref{}": {
-      "snippet": "pref{${1:label}}"
+    {
+      "name": "exec",
+      "arg": {
+        "format": "{}",
+        "snippet": "exec{${1:code}}"
+      }
     },
-    "pgref{}": {
-      "snippet": "pgref{${1:label}}"
+    {
+      "name": "DeclareExerciseCommand",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DeclareExerciseCommand{${1:cmd}}{${2:def}}"
+      }
     },
-    "HideTags{}": {
-      "snippet": "HideTags{${1:list of tags}}"
+    {
+      "name": "DeclareExerciseCommand",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "DeclareExerciseCommand{${1:cmd}}[${3:args}]{${2:def}}"
+      }
     },
-    "ShowAllTags": {},
-    "exercisenote{}": {
-      "snippet": "exercisenote{${1:text}}"
+    {
+      "name": "exclude",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "exclude{${1:file}}{${2:list of numbers}}"
+      }
     },
-    "ShowNumbers": {},
-    "ShowTags": {},
-    "ShowFilenames": {},
-    "exercisebanksetup{}": {
-      "snippet": "exercisebanksetup{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "select",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "select{${1:file}}{${2:list of numbers}}"
+      }
     },
-    "translateExBank{}": {
-      "snippet": "translateExBank{${1:keyvals}}"
+    {
+      "name": "buildset",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildset{${1:name}}"
+      }
     },
-    "nextproblem{}": {
-      "snippet": "nextproblem{${1:options}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "buildset",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "buildset[${2:options%keyvals}]{${1:name}}"
+      }
     },
-    "totalpoints": {},
-    "exercisepoints": {},
-    "PartProblemHeaderSuffix": {},
-    "PostPPHeader": {},
-    "BeginPartproblem": {},
-    "VeryBeginPartproblem": {},
-    "InputExercise": {},
-    "BeginProblem": {},
-    "EndProblem": {},
-    "BeginBuildset": {},
-    "EndBuildset": {},
-    "ownLineNoSpacesGotIt": {},
-    "exercisebankversion": {},
-    "exercisebankbuild": {},
-    "thisfilepath": {},
-    "exerciseFile": {},
-    "theproblemcounter": {},
-    "thepartproblemcounter": {},
-    "pMarginBelow": {},
-    "pMarginAbove": {},
-    "pMarginLeft": {},
-    "ppMarginBelow": {},
-    "ppMarginAbove": {},
-    "ppMargin": {},
-    "introOutdent": {},
-    "setExercisesDir{}": {
-      "snippet": "setExercisesDir{${1:directory}}"
+    {
+      "name": "setName"
     },
-    "AtNextPar{}": {
-      "snippet": "AtNextPar{${1:code}}"
+    {
+      "name": "buildsets",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildsets{${1:list of names}}"
+      }
     },
-    "buildex{}": {
-      "snippet": "buildex{${1:file}}"
+    {
+      "name": "buildsets",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "buildsets[${2:options%keyvals}]{${1:list of sets}}"
+      }
     },
-    "continueLoop": {},
-    "csvlist": {},
-    "csvsets": {},
-    "csvtags": {},
-    "ea": {},
-    "emptyList": {},
-    "exerciseFileInfo": {},
-    "exfile": {},
-    "figuresPath": {},
-    "fileInputBase": {},
-    "fileInputPath": {},
-    "firstarg": {},
-    "haystack": {},
-    "ifppMode{}": {
-      "snippet": "ifppMode{${1:arg}}"
+    {
+      "name": "buildtags",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "buildtags{${1:list of tags}}{${2:list of sets}}"
+      }
     },
-    "ignoreOutlineSpaces": {},
-    "incl{}": {
-      "snippet": "incl{${1:file}}"
+    {
+      "name": "buildsprite",
+      "arg": {
+        "format": "{}",
+        "snippet": "buildsprite{${1:list of sets}}"
+      }
     },
-    "introarg": {},
-    "ipm{}": {
-      "snippet": "ipm{${1:arg}}"
+    {
+      "name": "pplabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "pplabel{${1:label}}"
+      }
     },
-    "isFalse": {},
-    "isInList": {},
-    "isppMode{}{}": {
-      "snippet": "isppMode{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "ppref",
+      "arg": {
+        "format": "{}",
+        "snippet": "ppref{${1:label}}"
+      }
     },
-    "isTrue": {},
-    "keystring": {},
-    "listarg": {},
-    "marginw": {},
-    "markeverypar": {},
-    "mname": {},
-    "ncArgs": {},
-    "needle": {},
-    "nextprobargs": {},
-    "nextproblems{}": {
-      "snippet": "nextproblems{${1:arg}}"
+    {
+      "name": "ppgref",
+      "arg": {
+        "format": "{}",
+        "snippet": "ppgref{${1:label}}"
+      }
     },
-    "nohead": {},
-    "numppex": {},
-    "obeyOutlineSpaces": {},
-    "oldep": {},
-    "orderedselect{}{}": {
-      "snippet": "orderedselect{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "pref",
+      "arg": {
+        "format": "{}",
+        "snippet": "pref{${1:label}}"
+      }
     },
-    "ppList": {},
-    "ppMode": {},
-    "pppref{}": {
-      "snippet": "pppref{${1:arg1}}"
+    {
+      "name": "pgref",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgref{${1:label}}"
+      }
     },
-    "pptag": {},
-    "removebs{}": {
-      "snippet": "removebs{${1:arg1}}"
+    {
+      "name": "HideTags",
+      "arg": {
+        "format": "{}",
+        "snippet": "HideTags{${1:list of tags}}"
+      }
     },
-    "resetnextproblems": {},
-    "setmacro": {},
-    "showhideproblem{}": {
-      "snippet": "showhideproblem{${1:arg}}"
+    {
+      "name": "ShowAllTags"
     },
-    "shownextchar{}": {
-      "snippet": "shownextchar{${1:arg}}"
+    {
+      "name": "exercisenote",
+      "arg": {
+        "format": "{}",
+        "snippet": "exercisenote{${1:text}}"
+      }
     },
-    "skeys": {},
-    "solutionMarginAbove": {},
-    "squeeze": {},
-    "stopfilbreak": {},
-    "strif{}{}": {
-      "snippet": "strif{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "ShowNumbers"
     },
-    "themetacounter": {},
-    "thenumppInFile": {},
-    "theset": {},
-    "thissetid": {},
-    "tmpargs": {},
-    "tpd": {},
-    "whenfalse": {},
-    "whentrue": {}
-  },
-  "envs": {
-    "problem": {},
-    "solution": {},
-    "intro": {}
-  },
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "ShowTags"
+    },
+    {
+      "name": "ShowFilenames"
+    },
+    {
+      "name": "exercisebanksetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "exercisebanksetup{${1:options%keyvals}}",
+        "keys": [
+          "\\exercisebanksetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "translateExBank",
+      "arg": {
+        "format": "{}",
+        "snippet": "translateExBank{${1:keyvals}}",
+        "keys": [
+          "\\translateExBank"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nextproblem",
+      "arg": {
+        "format": "{}",
+        "snippet": "nextproblem{${1:options%keyvals}}",
+        "keys": [
+          "\\nextproblem#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "totalpoints"
+    },
+    {
+      "name": "exercisepoints"
+    },
+    {
+      "name": "PartProblemHeaderSuffix"
+    },
+    {
+      "name": "PostPPHeader"
+    },
+    {
+      "name": "BeginPartproblem"
+    },
+    {
+      "name": "VeryBeginPartproblem"
+    },
+    {
+      "name": "InputExercise"
+    },
+    {
+      "name": "BeginProblem"
+    },
+    {
+      "name": "EndProblem"
+    },
+    {
+      "name": "BeginBuildset"
+    },
+    {
+      "name": "EndBuildset"
+    },
+    {
+      "name": "ownLineNoSpacesGotIt"
+    },
+    {
+      "name": "exercisebankversion",
+      "unusual": true
+    },
+    {
+      "name": "exercisebankbuild",
+      "unusual": true
+    },
+    {
+      "name": "thisfilepath"
+    },
+    {
+      "name": "exerciseFile"
+    },
+    {
+      "name": "theproblemcounter",
+      "unusual": true
+    },
+    {
+      "name": "thepartproblemcounter",
+      "unusual": true
+    },
+    {
+      "name": "pMarginBelow",
+      "unusual": true
+    },
+    {
+      "name": "pMarginAbove",
+      "unusual": true
+    },
+    {
+      "name": "pMarginLeft",
+      "unusual": true
+    },
+    {
+      "name": "ppMarginBelow",
+      "unusual": true
+    },
+    {
+      "name": "ppMarginAbove",
+      "unusual": true
+    },
+    {
+      "name": "ppMargin",
+      "unusual": true
+    },
+    {
+      "name": "introOutdent",
+      "unusual": true
+    },
+    {
+      "name": "AtNextPar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtNextPar{${1:code}}"
+      }
+    },
+    {
+      "name": "buildex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "buildex{${1:file}}"
+      }
+    },
+    {
+      "name": "continueLoop",
+      "unusual": true
+    },
+    {
+      "name": "csvlist",
+      "unusual": true
+    },
+    {
+      "name": "csvsets",
+      "unusual": true
+    },
+    {
+      "name": "csvtags",
+      "unusual": true
+    },
+    {
+      "name": "emptyList",
+      "unusual": true
+    },
+    {
+      "name": "exerciseFileInfo",
+      "unusual": true
+    },
+    {
+      "name": "exfile",
+      "unusual": true
+    },
+    {
+      "name": "figuresPath",
+      "unusual": true
+    },
+    {
+      "name": "fileInputBase",
+      "unusual": true
+    },
+    {
+      "name": "fileInputPath",
+      "unusual": true
+    },
+    {
+      "name": "haystack",
+      "unusual": true
+    },
+    {
+      "name": "ifppMode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ifppMode{${1:arg}}"
+      }
+    },
+    {
+      "name": "ignoreOutlineSpaces",
+      "unusual": true
+    },
+    {
+      "name": "incl",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "incl{${1:file}}"
+      }
+    },
+    {
+      "name": "introarg",
+      "unusual": true
+    },
+    {
+      "name": "ipm",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ipm{${1:arg}}"
+      }
+    },
+    {
+      "name": "isFalse",
+      "unusual": true
+    },
+    {
+      "name": "isInList",
+      "unusual": true
+    },
+    {
+      "name": "isppMode",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "isppMode{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "isTrue",
+      "unusual": true
+    },
+    {
+      "name": "keystring",
+      "unusual": true
+    },
+    {
+      "name": "listarg",
+      "unusual": true
+    },
+    {
+      "name": "marginw",
+      "unusual": true
+    },
+    {
+      "name": "markeverypar",
+      "unusual": true
+    },
+    {
+      "name": "mname",
+      "unusual": true
+    },
+    {
+      "name": "ncArgs",
+      "unusual": true
+    },
+    {
+      "name": "needle",
+      "unusual": true
+    },
+    {
+      "name": "nextprobargs",
+      "unusual": true
+    },
+    {
+      "name": "nextproblems",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nextproblems{${1:arg}}"
+      }
+    },
+    {
+      "name": "nohead",
+      "unusual": true
+    },
+    {
+      "name": "numppex",
+      "unusual": true
+    },
+    {
+      "name": "obeyOutlineSpaces",
+      "unusual": true
+    },
+    {
+      "name": "orderedselect",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "orderedselect{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "ppList",
+      "unusual": true
+    },
+    {
+      "name": "ppMode",
+      "unusual": true
+    },
+    {
+      "name": "pppref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pppref{${1:arg1}}"
+      }
+    },
+    {
+      "name": "pptag",
+      "unusual": true
+    },
+    {
+      "name": "removebs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "removebs{${1:arg1}}"
+      }
+    },
+    {
+      "name": "resetnextproblems",
+      "unusual": true
+    },
+    {
+      "name": "setmacro",
+      "unusual": true
+    },
+    {
+      "name": "showhideproblem",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showhideproblem{${1:arg}}"
+      }
+    },
+    {
+      "name": "shownextchar",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "shownextchar{${1:arg}}"
+      }
+    },
+    {
+      "name": "skeys",
+      "unusual": true
+    },
+    {
+      "name": "solutionMarginAbove",
+      "unusual": true
+    },
+    {
+      "name": "squeeze",
+      "unusual": true
+    },
+    {
+      "name": "stopfilbreak",
+      "unusual": true
+    },
+    {
+      "name": "strif",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "strif{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "themetacounter",
+      "unusual": true
+    },
+    {
+      "name": "thenumppInFile",
+      "unusual": true
+    },
+    {
+      "name": "theset",
+      "unusual": true
+    },
+    {
+      "name": "thissetid",
+      "unusual": true
+    },
+    {
+      "name": "tmpargs",
+      "unusual": true
+    },
+    {
+      "name": "whenfalse",
+      "unusual": true
+    },
+    {
+      "name": "whentrue",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "problem"
+    },
+    {
+      "name": "solution"
+    },
+    {
+      "name": "intro"
+    }
+  ],
+  "keys": {
+    "\\exercisebanksetup": [
       "part problems",
       "tighten paragraphs",
       "problem header",
@@ -247,7 +656,10 @@
       "current points style",
       "disable points"
     ],
-    [
+    "\\translateExBank": [
+      ""
+    ],
+    "\\nextproblem#c": [
       "head=${1:text}",
       "solution only",
       "points=${1:number}",
@@ -255,5 +667,6 @@
       "tag=${1:tag}",
       "tag={${1:tag1,tag2,...}}"
     ]
-  ]
+  },
+  "args": []
 }

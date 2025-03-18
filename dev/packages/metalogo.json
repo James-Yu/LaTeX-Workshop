@@ -1,36 +1,83 @@
 {
-  "includes": {
-    "graphicx": [],
-    "ifxetex": []
-  },
-  "macros": {
-    "XeTeX": {},
-    "XeLaTeX": {},
-    "LuaTeX": {},
-    "LuaLaTeX": {},
-    "setlogokern{}{}": {
-      "snippet": "setlogokern{${1:string}}{${2:dimen}}"
+  "deps": [
+    {
+      "name": "graphicx"
     },
-    "setlogodrop{}": {
-      "snippet": "setlogodrop{${1:dimen}}"
-    },
-    "setlogodrop[]{}": {
-      "snippet": "setlogodrop[${2:string}]{${1:dimen}}"
-    },
-    "setLaTeXa{}": {
-      "snippet": "setLaTeXa{${1:arg}}"
-    },
-    "setLaTeXee{}": {
-      "snippet": "setLaTeXee{${1:arg}}"
-    },
-    "seteverylogo{}": {
-      "snippet": "seteverylogo{${1:tokens}}"
-    },
-    "everylogo{}": {
-      "snippet": "everylogo{${1:tokens}}"
+    {
+      "name": "ifxetex"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "XeTeX"
+    },
+    {
+      "name": "XeLaTeX"
+    },
+    {
+      "name": "LuaTeX"
+    },
+    {
+      "name": "LuaLaTeX"
+    },
+    {
+      "name": "setlogokern",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setlogokern{${1:string}}{${2:dimen%l}}"
+      }
+    },
+    {
+      "name": "setlogodrop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setlogodrop{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "setlogodrop",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "setlogodrop[${2:string}]{${1:dimen%l}}"
+      }
+    },
+    {
+      "name": "setLaTeXa",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setLaTeXa{${1:arg}}"
+      }
+    },
+    {
+      "name": "setLaTeXee",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setLaTeXee{${1:arg}}"
+      }
+    },
+    {
+      "name": "seteverylogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "seteverylogo{${1:tokens}}"
+      }
+    },
+    {
+      "name": "everylogo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "everylogo{${1:tokens}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,26 +1,48 @@
 {
-  "includes": {},
-  "macros": {
-    "setouterhbox": {},
-    "endsetouterhbox": {},
-    "setouterhboxFailure": {},
-    "setouterhboxRemove": {},
-    "setouterhboxFinish{}": {
-      "snippet": "setouterhboxFinish{${1:number}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "setouterhboxFailure",
+      "unusual": true
     },
-    "setouterhboxAfter{}": {
-      "snippet": "setouterhboxAfter{${1:number}}"
+    {
+      "name": "setouterhboxRemove",
+      "unusual": true
     },
-    "setouterhboxReturnAfterFi{}": {
-      "snippet": "setouterhboxReturnAfterFi{${1:arg}}"
+    {
+      "name": "setouterhboxFinish",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setouterhboxFinish{${1:number}}"
+      }
+    },
+    {
+      "name": "setouterhboxAfter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setouterhboxAfter{${1:number}}"
+      }
+    },
+    {
+      "name": "setouterhboxReturnAfterFi",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setouterhboxReturnAfterFi{${1:arg}}"
+      }
     }
-  },
-  "envs": {
-    "setouterhbox{}": {
+  ],
+  "envs": [
+    {
       "name": "setouterhbox",
-      "snippet": "{${1:box number}}"
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:box number}}"
+      }
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "keys": {},
+  "args": []
 }

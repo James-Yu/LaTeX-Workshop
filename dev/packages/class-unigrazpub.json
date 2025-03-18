@@ -1,69 +1,154 @@
 {
-  "includes": {
-    "l3keys2e": [],
-    "class-scrbook": [],
-    "roboto": [],
-    "sourceserifpro": [],
-    "anyfontsize": [],
-    "geometry": [],
-    "ragged2e": [],
-    "scrlayer-scrpage": [],
-    "csquotes": [],
-    "biblatex-chicago": [],
-    "graphicx": [],
-    "doclicense": [],
-    "hyperref": []
-  },
-  "macros": {
-    "edition{}": {
-      "snippet": "edition{${1:edition}}"
+  "deps": [
+    {
+      "name": "l3keys2e"
     },
-    "insertedition": {},
-    "insertpublishersaddress": {},
-    "insertauthor": {},
-    "insertdate": {},
-    "insertpublishers": {},
-    "Article{}": {
-      "snippet": "Article{${1:title}}"
+    {
+      "name": "class-scrbook"
     },
-    "Article[]{}": {
-      "snippet": "Article[${2:options}]{${1:title}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "roboto"
     },
-    "keywords{}": {
-      "snippet": "keywords{${1:keywords}}"
+    {
+      "name": "sourceserifpro"
     },
-    "listofauthors": {},
-    "HUGE": {},
-    "TocAuthorEntry{}{}": {
-      "snippet": "TocAuthorEntry{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "anyfontsize"
     },
-    "currentarticlelabel": {},
-    "citeimprint{}": {
-      "snippet": "citeimprint{${1:bibid}}"
+    {
+      "name": "geometry"
     },
-    "citearticleauthor{}": {
-      "snippet": "citearticleauthor{${1:bibid}}"
+    {
+      "name": "ragged2e"
     },
-    "publishersaddress{}": {
-      "snippet": "publishersaddress{${1:address}}"
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "biblatex-chicago"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "doclicense"
+    },
+    {
+      "name": "hyperref"
     }
-  },
-  "envs": {
-    "abstract[]": {
-      "name": "abstract",
-      "snippet": "[${1:language}]"
-    }
-  },
-  "options": [
-    "collection",
-    "license-type=${1:type}",
-    "license-modifier=",
-    "license-version="
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "edition",
+      "arg": {
+        "format": "{}",
+        "snippet": "edition{${1:edition%text}}"
+      }
+    },
+    {
+      "name": "insertedition"
+    },
+    {
+      "name": "insertpublishersaddress"
+    },
+    {
+      "name": "insertauthor"
+    },
+    {
+      "name": "insertdate"
+    },
+    {
+      "name": "insertpublishers"
+    },
+    {
+      "name": "Article",
+      "arg": {
+        "format": "{}",
+        "snippet": "Article{${1:title}}"
+      }
+    },
+    {
+      "name": "Article",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "Article[${2:options%keyvals}]{${1:title}}",
+        "keys": [
+          "\\Article#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "keywords",
+      "arg": {
+        "format": "{}",
+        "snippet": "keywords{${1:keywords%text}}"
+      }
+    },
+    {
+      "name": "listofauthors"
+    },
+    {
+      "name": "HUGE",
+      "unusual": true
+    },
+    {
+      "name": "TocAuthorEntry",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "TocAuthorEntry{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "currentarticlelabel",
+      "unusual": true
+    },
+    {
+      "name": "citeimprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "citeimprint{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citearticleauthor",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "citearticleauthor{${1:bibid}}"
+      }
+    },
+    {
+      "name": "publishersaddress",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "publishersaddress{${1:address%text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "abstract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:language}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\documentclass/unigrazpub#c": [
+      "collection",
+      "license-type=${1:type}",
+      "license-modifier=${1|by,by-sa,by-nd,by-nc,by-nc-sa,by-nc-nd|}",
+      "license-version=${1|1.0,3.0,4.0|}"
+    ],
+    "\\Article#c": [
       "author=${1:author}",
       "authorkeys={${1:author1,author2,...}}",
       "head=${1:text}",
@@ -71,8 +156,11 @@
       "imprint=${1:text}",
       "doi=${1:DOI}",
       "license-type=${1:type}",
-      "license-modifier=",
-      "license-version="
+      "license-modifier=${1|by,by-sa,by-nd,by-nc,by-nc-sa,by-nc-nd|}",
+      "license-version=${1|1.0,3.0,4.0|}"
     ]
+  },
+  "args": [
+    "\\documentclass/unigrazpub#c"
   ]
 }

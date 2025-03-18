@@ -1,62 +1,115 @@
 {
-  "includes": {
-    "pdfmanagement-testphase": []
-  },
-  "macros": {
-    "tagpdfsetup{}": {
-      "snippet": "tagpdfsetup{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "tagtool{}": {
-      "snippet": "tagtool{${1:keyvals}}",
-      "keyvalindex": 1,
-      "keyvalpos": 0
-    },
-    "tagmcbegin{}": {
-      "snippet": "tagmcbegin{${1:keyvals}}",
-      "keyvalindex": 2,
-      "keyvalpos": 0
-    },
-    "tagmcend": {},
-    "tagmcuse": {},
-    "tagmcifinTF{}{}": {
-      "snippet": "tagmcifinTF{${1:true code}}{${2:false code}}"
-    },
-    "tagstructbegin{}": {
-      "snippet": "tagstructbegin{${1:keyvals}}",
-      "keyvalindex": 3,
-      "keyvalpos": 0
-    },
-    "tagstructend": {},
-    "tagstructuse{}": {
-      "snippet": "tagstructuse{${1:label}}"
-    },
-    "tagstop": {},
-    "tagstart": {},
-    "ShowTagging{}": {
-      "snippet": "ShowTagging{${1:keyvals}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
-    },
-    "tagpdfsuppressmarks{}": {
-      "snippet": "tagpdfsuppressmarks{${1:arg}}"
-    },
-    "UseTaggingSocket{}": {
-      "snippet": "UseTaggingSocket{${1:socket name}}"
+  "deps": [
+    {
+      "name": "pdfmanagement-testphase"
     }
-  },
-  "envs": {},
-  "options": [
-    "luamode",
-    "genericmode",
-    "disabledelayedshipout"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "tagpdfsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "tagpdfsetup{${1:keyvals}}",
+        "keys": [
+          "\\tagpdfsetup"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagtool",
+      "arg": {
+        "format": "{}",
+        "snippet": "tagtool{${1:keyvals}}",
+        "keys": [
+          "\\tagtool"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagmcbegin",
+      "arg": {
+        "format": "{}",
+        "snippet": "tagmcbegin{${1:keyvals}}",
+        "keys": [
+          "\\tagmcbegin"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagmcend"
+    },
+    {
+      "name": "tagmcuse"
+    },
+    {
+      "name": "tagmcifinTF",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tagmcifinTF{${1:true code}}{${2:false code}}"
+      }
+    },
+    {
+      "name": "tagstructbegin",
+      "arg": {
+        "format": "{}",
+        "snippet": "tagstructbegin{${1:keyvals}}",
+        "keys": [
+          "\\tagstructbegin"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagstructend"
+    },
+    {
+      "name": "tagstructuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "tagstructuse{${1:label}}"
+      }
+    },
+    {
+      "name": "tagstop"
+    },
+    {
+      "name": "tagstart"
+    },
+    {
+      "name": "ShowTagging",
+      "arg": {
+        "format": "{}",
+        "snippet": "ShowTagging{${1:keyvals}}",
+        "keys": [
+          "\\ShowTagging"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tagpdfsuppressmarks",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "tagpdfsuppressmarks{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tagpdf#c": [
+      "luamode",
+      "genericmode",
+      "disabledelayedshipout"
+    ],
+    "\\tagpdfsetup": [
       "activate=${1:tag}",
       "activate/all",
       "activate/mc",
+      "activate/softhyphen",
       "activate/spaces",
       "activate/struct",
       "activate/struct-dest",
@@ -65,16 +118,16 @@
       "role/mathml-tags",
       "role/new-tag=${1:tag/role}",
       "role/new-attribute={${1:name}}{${2:content}}",
-      "role/map-tags=",
+      "role/map-tags=${1|false,pdf|}",
       "debug/show",
-      "debug/show=",
-      "debug/log=",
+      "debug/show=${1|para,paraOff,spaces,spacesOff|}",
+      "debug/log=${1|none,v,vv,vvv,all|}",
       "debug/uncompress",
       "viewer/pane/mathml",
       "viewer/pane/mathsource",
       "viewer/startstructure=${1:number}",
-      "page/tabsorder=",
-      "page/exclude-header-footer=",
+      "page/tabsorder=${1|row,column,structure,none|}",
+      "page/exclude-header-footer=${1|false,pagination|}",
       "para/tagging",
       "para/tag=${1:tag}",
       "para/maintag=${1:tag}",
@@ -88,26 +141,27 @@
       "table/header-rows=${1:comma list}",
       "text/lang=${1:lang}"
     ],
-    [
+    "\\tagtool": [
       "para/tagging",
       "para/maintag=${1:tag}",
       "para/tag=${1:tag}",
       "para/flattened"
     ],
-    [
+    "\\tagmcbegin": [
       "tag=${1:tag}",
-      "artifact=",
+      "artifact=${1|pagination,pagination/header,pagination/footer,layout,page,background,notype|}",
       "stash",
       "label=${1:name}",
       "alt=${1:text}",
       "actualtext=${1:text}",
       "raw=${1:PDF code}"
     ],
-    [
+    "\\tagstructbegin": [
       "tag=${1:tag}",
       "stash",
       "label=${1:name}",
       "parent=${1:structure number}",
+      "firstkid",
       "alt=${1:text}",
       "actualtext=${1:text}",
       "attribute={${1:attr1,attr2,...}}",
@@ -123,11 +177,14 @@
       "ref=${1:label1,label2,...}}",
       "E=${1:text}"
     ],
-    [
+    "\\ShowTagging": [
       "mc-data=${1:integer}",
       "mc-current",
-      "struct-stack=",
+      "struct-stack=${1|log,show|}",
       "debug/structures"
     ]
+  },
+  "args": [
+    "\\usepackage/tagpdf#c"
   ]
 }

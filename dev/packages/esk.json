@@ -1,77 +1,110 @@
 {
-  "includes": {
-    "kvsetkeys": [],
-    "verbatim": []
-  },
-  "macros": {
-    "eskwrite{}": {
-      "snippet": "eskwrite{${1:Sketch code}}"
+  "deps": [
+    {
+      "name": "kvsetkeys"
     },
-    "eskprelude{}": {
-      "snippet": "eskprelude{${1:Sketch prelude}}"
-    },
-    "eskaddtoprelude{}": {
-      "snippet": "eskaddtoprelude{${1:Sketch code}}"
-    },
-    "eskglobals{}": {
-      "snippet": "eskglobals{${1:Sketch properties}}"
-    },
-    "eskaddtoglobals{}": {
-      "snippet": "eskaddtoglobals{${1:Sketch properties}}"
-    },
-    "eskwritetoken{}": {
-      "snippet": "eskwritetoken{${1:code}}"
-    },
-    "theeskfig": {},
-    "theeskfile": {},
-    "RCS": {},
-    "endRCS": {},
-    "esk": {},
-    "esk[]": {
-      "snippet": "esk[${1:name}]"
-    },
-    "endesk": {},
-    "eskdef{}": {
-      "snippet": "eskdef{${1:name}}"
-    },
-    "endeskdef": {},
-    "eskfile": {},
-    "eskfile[]": {
-      "snippet": "eskfile[${1:name}]"
-    },
-    "endeskfile": {},
-    "filedate": {},
-    "filemaintainer": {},
-    "filename": {},
-    "filerevision": {},
-    "fileversion": {},
-    "futurenospacelet{}": {
-      "snippet": "futurenospacelet{${1:arg}}"
-    },
-    "leftparanthesis": {},
-    "next": {},
-    "nexttoken": {},
-    "stepone": {},
-    "steptwo": {},
-    "stepthree": {},
-    "stoken": {}
-  },
-  "envs": {
-    "esk": {},
-    "esk[]": {
-      "name": "esk",
-      "snippet": "[${1:name}]"
-    },
-    "eskdef{}": {
-      "name": "eskdef",
-      "snippet": "{${1:name}}"
-    },
-    "eskfile": {},
-    "eskfile[]": {
-      "name": "eskfile",
-      "snippet": "[${1:name}]"
+    {
+      "name": "verbatim"
     }
-  },
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "eskwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "eskwrite{${1:Sketch code%definition}}"
+      }
+    },
+    {
+      "name": "eskprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "eskprelude{${1:Sketch prelude%definition}}"
+      }
+    },
+    {
+      "name": "eskaddtoprelude",
+      "arg": {
+        "format": "{}",
+        "snippet": "eskaddtoprelude{${1:Sketch code%definition}}"
+      }
+    },
+    {
+      "name": "eskglobals",
+      "arg": {
+        "format": "{}",
+        "snippet": "eskglobals{${1:Sketch properties}}"
+      }
+    },
+    {
+      "name": "eskaddtoglobals",
+      "arg": {
+        "format": "{}",
+        "snippet": "eskaddtoglobals{${1:Sketch properties}}"
+      }
+    },
+    {
+      "name": "eskwritetoken",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "eskwritetoken{${1:code}}"
+      }
+    },
+    {
+      "name": "theeskfig",
+      "unusual": true
+    },
+    {
+      "name": "theeskfile",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "esk"
+    },
+    {
+      "name": "esk",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "esk",
+      "arg": {
+        "format": "()",
+        "snippet": "(${1:def1},${2:def2},${3:...})"
+      }
+    },
+    {
+      "name": "esk",
+      "arg": {
+        "format": "[]()",
+        "snippet": "[${1:name}](${2:def1},${3:def2},${4:...})"
+      }
+    },
+    {
+      "name": "eskdef",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "eskfile",
+      "unusual": true
+    },
+    {
+      "name": "eskfile",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
 }

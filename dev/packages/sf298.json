@@ -1,116 +1,262 @@
 {
-  "includes": {
-    "totpages": [],
-    "multicol": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "Abstract{}": {
-      "snippet": "Abstract{${1:text}}"
+  "deps": [
+    {
+      "name": "totpages"
     },
-    "AbstractClassification{}": {
-      "snippet": "AbstractClassification{${1:type}}"
+    {
+      "name": "multicol"
     },
-    "AbstractLimitation{}": {
-      "snippet": "AbstractLimitation{${1:type}}"
-    },
-    "Acronyms{}": {
-      "snippet": "Acronyms{${1:acro1,acro2,...}}"
-    },
-    "Author{}": {
-      "snippet": "Author{${1:names}}"
-    },
-    "ContractNumber{}": {
-      "snippet": "ContractNumber{${1:number}}"
-    },
-    "DatesCovered{}": {
-      "snippet": "DatesCovered{${1:dates}}"
-    },
-    "DistributionStatement{}": {
-      "snippet": "DistributionStatement{${1:text}}"
-    },
-    "DownShift{}": {
-      "snippet": "DownShift{${1:pts}}"
-    },
-    "eg": {},
-    "GeneralInstructions{}": {
-      "snippet": "GeneralInstructions{${1:fontsize csname}}"
-    },
-    "GrantNumber{}": {
-      "snippet": "GrantNumber{${1:number}}"
-    },
-    "LeftShift{}": {
-      "snippet": "LeftShift{${1:pts}}"
-    },
-    "MakeGenInsPage{}": {
-      "snippet": "MakeGenInsPage{${1:fontsize csname}}"
-    },
-    "MakeRptDocPage": {},
-    "NumberPages*{}": {
-      "snippet": "NumberPages*{${1:number}}"
-    },
-    "NumberPages{}": {
-      "snippet": "NumberPages{${1:number}}"
-    },
-    "PageClassification{}": {
-      "snippet": "PageClassification{${1:type}}"
-    },
-    "PerformingOrg{}": {
-      "snippet": "PerformingOrg{${1:organization}}"
-    },
-    "POReportNumber{}": {
-      "snippet": "POReportNumber{${1:number}}"
-    },
-    "ProgramElementNumber{}": {
-      "snippet": "ProgramElementNumber{${1:number}}"
-    },
-    "ProjectNumber{}": {
-      "snippet": "ProjectNumber{${1:number}}"
-    },
-    "ReportClassification{}": {
-      "snippet": "ReportClassification{${1:type}}"
-    },
-    "ReportDate{}": {
-      "snippet": "ReportDate{${1:date}}"
-    },
-    "ReportDescription": {},
-    "ReportType{}": {
-      "snippet": "ReportType{${1:type}}"
-    },
-    "ResponsiblePerson{}": {
-      "snippet": "ResponsiblePerson{${1:name}}"
-    },
-    "RPTelephone{}": {
-      "snippet": "RPTelephone{${1:number}}"
-    },
-    "SMReportNumber{}": {
-      "snippet": "SMReportNumber{${1:number}}"
-    },
-    "SponsoringAgency{}": {
-      "snippet": "SponsoringAgency{${1:agency}}"
-    },
-    "SubjectTerms{}": {
-      "snippet": "SubjectTerms{${1:term1;term2;...}}"
-    },
-    "SupplementaryNotes{}": {
-      "snippet": "SupplementaryNotes{${1:text}}"
-    },
-    "TaskNumber{}": {
-      "snippet": "TaskNumber{${1:number}}"
-    },
-    "Title{}": {
-      "snippet": "Title{${1:text}}"
-    },
-    "WorkUnitNumber{}": {
-      "snippet": "WorkUnitNumber{${1:number}}"
+    {
+      "name": "fancyhdr"
     }
-  },
-  "envs": {},
-  "options": [
-    "config",
-    "noconfig",
-    "floatlongboxes",
-    "nofloatlongboxes"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "Abstract",
+      "arg": {
+        "format": "{}",
+        "snippet": "Abstract{${1:text}}"
+      }
+    },
+    {
+      "name": "AbstractClassification",
+      "arg": {
+        "format": "{}",
+        "snippet": "AbstractClassification{${1:type}}"
+      }
+    },
+    {
+      "name": "AbstractLimitation",
+      "arg": {
+        "format": "{}",
+        "snippet": "AbstractLimitation{${1:type}}"
+      }
+    },
+    {
+      "name": "Acronyms",
+      "arg": {
+        "format": "{}",
+        "snippet": "Acronyms{${1:acro1,acro2,...}}"
+      }
+    },
+    {
+      "name": "Author",
+      "arg": {
+        "format": "{}",
+        "snippet": "Author{${1:names}}"
+      }
+    },
+    {
+      "name": "ContractNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "ContractNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "DatesCovered",
+      "arg": {
+        "format": "{}",
+        "snippet": "DatesCovered{${1:dates%text}}"
+      }
+    },
+    {
+      "name": "DistributionStatement",
+      "arg": {
+        "format": "{}",
+        "snippet": "DistributionStatement{${1:text}}"
+      }
+    },
+    {
+      "name": "DownShift",
+      "arg": {
+        "format": "{}",
+        "snippet": "DownShift{${1:pts}}"
+      }
+    },
+    {
+      "name": "eg"
+    },
+    {
+      "name": "GeneralInstructions",
+      "arg": {
+        "format": "{}",
+        "snippet": "GeneralInstructions{${1:fontsize csname}}"
+      }
+    },
+    {
+      "name": "GrantNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "GrantNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "LeftShift",
+      "arg": {
+        "format": "{}",
+        "snippet": "LeftShift{${1:pts}}"
+      }
+    },
+    {
+      "name": "MakeGenInsPage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "MakeGenInsPage{${1:fontsize csname}}"
+      }
+    },
+    {
+      "name": "MakeRptDocPage",
+      "unusual": true
+    },
+    {
+      "name": "NumberPages*",
+      "arg": {
+        "format": "{}",
+        "snippet": "NumberPages*{${1:number}}"
+      }
+    },
+    {
+      "name": "NumberPages",
+      "arg": {
+        "format": "{}",
+        "snippet": "NumberPages{${1:number}}"
+      }
+    },
+    {
+      "name": "PageClassification",
+      "arg": {
+        "format": "{}",
+        "snippet": "PageClassification{${1:type}}"
+      }
+    },
+    {
+      "name": "PerformingOrg",
+      "arg": {
+        "format": "{}",
+        "snippet": "PerformingOrg{${1:organization%text}}"
+      }
+    },
+    {
+      "name": "POReportNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "POReportNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "ProgramElementNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProgramElementNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "ProjectNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "ProjectNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "ReportClassification",
+      "arg": {
+        "format": "{}",
+        "snippet": "ReportClassification{${1:type}}"
+      }
+    },
+    {
+      "name": "ReportDate",
+      "arg": {
+        "format": "{}",
+        "snippet": "ReportDate{${1:date%text}}"
+      }
+    },
+    {
+      "name": "ReportDescription"
+    },
+    {
+      "name": "ReportType",
+      "arg": {
+        "format": "{}",
+        "snippet": "ReportType{${1:type%text}}"
+      }
+    },
+    {
+      "name": "ResponsiblePerson",
+      "arg": {
+        "format": "{}",
+        "snippet": "ResponsiblePerson{${1:name}}"
+      }
+    },
+    {
+      "name": "RPTelephone",
+      "arg": {
+        "format": "{}",
+        "snippet": "RPTelephone{${1:number}}"
+      }
+    },
+    {
+      "name": "SMReportNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "SMReportNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "SponsoringAgency",
+      "arg": {
+        "format": "{}",
+        "snippet": "SponsoringAgency{${1:agency%text}}"
+      }
+    },
+    {
+      "name": "SubjectTerms",
+      "arg": {
+        "format": "{}",
+        "snippet": "SubjectTerms{${1:term1;term2;...}}"
+      }
+    },
+    {
+      "name": "SupplementaryNotes",
+      "arg": {
+        "format": "{}",
+        "snippet": "SupplementaryNotes{${1:text}}"
+      }
+    },
+    {
+      "name": "TaskNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "TaskNumber{${1:number}}"
+      }
+    },
+    {
+      "name": "Title",
+      "arg": {
+        "format": "{}",
+        "snippet": "Title{${1:text}}"
+      }
+    },
+    {
+      "name": "WorkUnitNumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "WorkUnitNumber{${1:number}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/sf298#c": [
+      "config",
+      "noconfig",
+      "floatlongboxes",
+      "nofloatlongboxes"
+    ]
+  },
+  "args": [
+    "\\usepackage/sf298#c"
+  ]
 }

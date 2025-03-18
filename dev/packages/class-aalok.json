@@ -1,54 +1,118 @@
 {
-  "includes": {
-    "class-memoir": [],
-    "expex": [],
-    "xcolor": [],
-    "marathi": [],
-    "microtype": [],
-    "fontawesome5": [],
-    "diagbox": [],
-    "fancyhdr": [],
-    "float": [],
-    "paracol": [],
-    "tcolorbox": [],
-    "tcolorboxlibrarymost": [],
-    "tikz": [],
-    "graphicx": [],
-    "mdframed": [],
-    "etoolbox": [],
-    "hyperref": [],
-    "biblatex": [],
-    "tocloft": [],
-    "minitoc": []
-  },
-  "macros": {
-    "orcid{}": {
-      "snippet": "orcid{${1:orcid क्रमांक}}"
+  "deps": [
+    {
+      "name": "class-memoir"
     },
-    "aalokDate": {},
-    "aalokName": {},
-    "aalokVersion": {},
-    "citetitleyear[]{}": {
-      "snippet": "citetitleyear[${2:postnote}]{${1:bibid}}"
+    {
+      "name": "expex"
     },
-    "citetitleyear[][]{}": {
-      "snippet": "citetitleyear[${2:prenote}][${3:postnote}]{${1:bibid}}"
+    {
+      "name": "xcolor"
     },
-    "citetitleyear{}": {
-      "snippet": "citetitleyear{${1:bibid}}"
+    {
+      "name": "marathi"
     },
-    "endparsecomma": {},
-    "orcidlogo": {},
-    "orcidno": {},
-    "parsecomma": {}
-  },
-  "envs": {},
-  "options": [
-    "खासगीवितरण",
-    "छापील",
-    "सुटालेख",
-    "रेगे",
-    "राजवाडे"
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "fontawesome5"
+    },
+    {
+      "name": "diagbox"
+    },
+    {
+      "name": "fancyhdr"
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "paracol"
+    },
+    {
+      "name": "tcolorbox"
+    },
+    {
+      "name": "tcolorboxlibrarymost"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "mdframed"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "tocloft"
+    },
+    {
+      "name": "minitoc"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "orcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "orcid{${1:orcid क्रमांक}}"
+      }
+    },
+    {
+      "name": "citetitleyear",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "citetitleyear[${2:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citetitleyear",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}",
+        "snippet": "citetitleyear[${2:prenote}][${3:postnote}]{${1:bibid}}"
+      }
+    },
+    {
+      "name": "citetitleyear",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "citetitleyear{${1:bibid}}"
+      }
+    },
+    {
+      "name": "orcidlogo",
+      "unusual": true
+    },
+    {
+      "name": "orcidno",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/aalok#c": [
+      "खासगीवितरण",
+      "छापील",
+      "सुटालेख",
+      "रेगे",
+      "राजवाडे"
+    ]
+  },
+  "args": [
+    "\\documentclass/aalok#c"
+  ]
 }

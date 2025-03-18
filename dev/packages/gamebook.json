@@ -1,59 +1,116 @@
 {
-  "includes": {
-    "ifthen": [],
-    "fancyhdr": [],
-    "extramarks": [],
-    "titlesec": [],
-    "enumitem": [],
-    "draftwatermark": [
-      "draft"
-    ],
-    "scrtime": [
-      "draft"
-    ],
-    "prelim2e": [
-      "draft"
-    ]
-  },
-  "macros": {
-    "gbsection{}": {
-      "snippet": "gbsection{${1:id}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "gbturn{}": {
-      "snippet": "gbturn{${1:id}}"
+    {
+      "name": "fancyhdr"
     },
-    "gbturntext": {},
-    "gbitem{}{}": {
-      "snippet": "gbitem{${1:text}}{${2:id}}"
+    {
+      "name": "extramarks"
     },
-    "gbvillain{}{}{}{}{}": {
-      "snippet": "gbvillain{${1:name}}{${2:skill}}{${3:skill level}}{${4:life}}{${5:life level}}"
+    {
+      "name": "titlesec"
     },
-    "gbheader": {},
-    "gbheadtext": {},
-    "gbdebugx{}": {
-      "snippet": "gbdebugx{${1:arg}}"
+    {
+      "name": "enumitem"
     },
-    "gbdebug{}": {
-      "snippet": "gbdebug{${1:arg}}"
+    {
+      "name": "draftwatermark",
+      "if": "draft"
+    },
+    {
+      "name": "scrtime",
+      "if": "draft"
+    },
+    {
+      "name": "prelim2e",
+      "if": "draft"
     }
-  },
-  "envs": {
-    "gbturnoptions": {},
-    "gbturnoptions[]": {
-      "name": "gbturnoptions",
-      "snippet": "[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "gbtabbing": {}
-  },
-  "options": [
-    "debug",
-    "draft"
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "gbsection",
+      "arg": {
+        "format": "{}",
+        "snippet": "gbsection{${1:id%labeldef}}"
+      }
+    },
+    {
+      "name": "gbturn",
+      "arg": {
+        "format": "{}",
+        "snippet": "gbturn{${1:id%ref}}"
+      }
+    },
+    {
+      "name": "gbturntext",
+      "unusual": true
+    },
+    {
+      "name": "gbitem",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gbitem{${1:text}}{${2:id%ref}}"
+      }
+    },
+    {
+      "name": "gbvillain",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "gbvillain{${1:name}}{${2:skill%text}}{${3:skill level%text}}{${4:life%text}}{${5:life level%text}}"
+      }
+    },
+    {
+      "name": "gbheader"
+    },
+    {
+      "name": "gbheadtext",
+      "unusual": true
+    },
+    {
+      "name": "gbdebugx",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gbdebugx{${1:arg}}"
+      }
+    },
+    {
+      "name": "gbdebug",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gbdebug{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "gbturnoptions"
+    },
+    {
+      "name": "gbturnoptions",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{gbturnoptions}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "gbtabbing",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/gamebook#c": [
+      "debug",
+      "draft"
+    ],
+    "\\begin{gbturnoptions}": [
       "topsep=",
       "partopsep=",
       "parsep=",
@@ -69,7 +126,7 @@
       "ref=${1:commands}",
       "font=${1:commands}",
       "format=${1:commands}",
-      "align=",
+      "align=${1|left,right,parleft|}",
       "labelindent=",
       "left=${1:labelindent}",
       "left=${1:labelindent} .. ${2:leftmargin}",
@@ -93,7 +150,7 @@
       "after*=${1:code}",
       "first=${1:code}",
       "first*=${1:code}",
-      "style=",
+      "style=${1|standard,unboxed,nextline,sameline,multiline|}",
       "noitemsep",
       "nosep",
       "wide",
@@ -101,7 +158,10 @@
       "itemjoin=${1:string}",
       "itemjoin*=${1:string}",
       "afterlabel=${1:string}",
-      "mode="
+      "mode=${1|unboxed,boxed|}"
     ]
+  },
+  "args": [
+    "\\usepackage/gamebook#c"
   ]
 }

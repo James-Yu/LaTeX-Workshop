@@ -1,34 +1,61 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "polynomial{}": {
-      "snippet": "polynomial{${1:coeff1,coeff2,...}}"
-    },
-    "polynomial[]{}": {
-      "snippet": "polynomial[${2:options}]{${1:coeff1,coeff2,...}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "polynomialfrac{}{}": {
-      "snippet": "polynomialfrac{${1:numerator coeffs}}{${2:denominator coeffs}}"
-    },
-    "polynomialfrac[]{}{}": {
-      "snippet": "polynomialfrac[${3:options}]{${1:numerator coeffs}}{${2:denominator coeffs}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "polynomialstyle{}": {
-      "snippet": "polynomialstyle{${1:options}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "polynomial",
+      "arg": {
+        "format": "{}",
+        "snippet": "polynomial{${1:coeff1,coeff2,...}}"
+      }
+    },
+    {
+      "name": "polynomial",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "polynomial[${2:options%keyvals}]{${1:coeff1,coeff2,...}}",
+        "keys": [
+          "\\polynomial,\\polynomialfrac,\\polynomialstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "polynomialfrac",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "polynomialfrac{${1:numerator coeffs}}{${2:denominator coeffs}}"
+      }
+    },
+    {
+      "name": "polynomialfrac",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "polynomialfrac[${3:options%keyvals}]{${1:numerator coeffs}}{${2:denominator coeffs}}",
+        "keys": [
+          "\\polynomial,\\polynomialfrac,\\polynomialstyle"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "polynomialstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "polynomialstyle{${1:options%keyvals}}",
+        "keys": [
+          "\\polynomial,\\polynomialfrac,\\polynomialstyle"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\polynomial,\\polynomialfrac,\\polynomialstyle": [
       "falling",
       "reciprocal",
       "var=${1:variable symbol}",
@@ -38,5 +65,6 @@
       "sub=${1:subtraction symbol}",
       "firstsub=${1:symbol}"
     ]
-  ]
+  },
+  "args": []
 }

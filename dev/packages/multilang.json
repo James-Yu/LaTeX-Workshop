@@ -1,0 +1,80 @@
+{
+  "deps": [
+    {
+      "name": "environ"
+    },
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "pgfkeys"
+    },
+    {
+      "name": "pgfopts"
+    }
+  ],
+  "macros": [
+    {
+      "name": "NewMultilangCmd",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewMultilangCmd{${1:command}}{${2:options%keyvals}}",
+        "keys": [
+          "\\NewMultilangCmd#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "NewMultilangEnv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewMultilangEnv{${1:envname}}{${2:options%keyvals}}",
+        "keys": [
+          "\\NewMultilangEnv#c"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "NewMultilangType",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "NewMultilangType{${1:type name}}{${2:format%definition}}"
+      }
+    },
+    {
+      "name": "NewMultilangType",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "NewMultilangType[${3:arg count}]{${1:type name}}{${2:format%definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/multilang#c": [
+      "languages={${1:lang1,lang2,...}}"
+    ],
+    "\\NewMultilangCmd#c": [
+      "command=${1:command}",
+      "margs={${1:arg1,arg2,...}}",
+      "oargs={${1:arg1,arg2,...}}",
+      "starred",
+      "disablable",
+      "defaults={${1:arg1=val1,arg2=val2,...}}",
+      "alias/${1:name}={${2:arg1,arg2,...}}"
+    ],
+    "\\NewMultilangEnv#c": [
+      "environment=${1:environment}",
+      "margs={${1:arg1,arg2,...}}",
+      "oargs={${1:arg1,arg2,...}}",
+      "disablable",
+      "defaults={${1:arg1=val1,arg2=val2,...}}",
+      "alias/${1:name}={${2:arg1,arg2,...}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/multilang#c"
+  ]
+}

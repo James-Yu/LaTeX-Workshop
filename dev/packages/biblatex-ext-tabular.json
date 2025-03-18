@@ -1,43 +1,78 @@
 {
-  "includes": {},
-  "macros": {
-    "printbibtabular": {},
-    "printbibtabular[]": {
-      "snippet": "printbibtabular[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [],
+  "macros": [
+    {
+      "name": "printbibtabular"
     },
-    "defbibtabular{}{}{}{}": {
-      "snippet": "defbibtabular{${1:name}}{${2:begin code}}{${3:end code}}{${4:row code}}"
+    {
+      "name": "printbibtabular",
+      "arg": {
+        "format": "[]",
+        "snippet": "printbibtabular[${1:options%keyvals}]",
+        "keys": [
+          "\\printbibtabular"
+        ],
+        "keyPos": 0
+      }
     },
-    "plain{}": {
-      "snippet": "plain{${1:code}}"
+    {
+      "name": "defbibtabular",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "defbibtabular{${1:name}}{${2:begin code%definition}}{${3:end code%definition}}{${4:row code%definition}}"
+      }
     },
-    "plainlang{}": {
-      "snippet": "plainlang{${1:code}}"
+    {
+      "name": "plain",
+      "arg": {
+        "format": "{}",
+        "snippet": "plain{${1:code}}"
+      }
     },
-    "anchor{}": {
-      "snippet": "anchor{${1:code}}"
+    {
+      "name": "plainlang",
+      "arg": {
+        "format": "{}",
+        "snippet": "plainlang{${1:code}}"
+      }
     },
-    "anchorlang{}": {
-      "snippet": "anchorlang{${1:code}}"
+    {
+      "name": "anchor",
+      "arg": {
+        "format": "{}",
+        "snippet": "anchor{${1:code}}"
+      }
     },
-    "driver{}": {
-      "snippet": "driver{${1:precode}}"
+    {
+      "name": "anchorlang",
+      "arg": {
+        "format": "{}",
+        "snippet": "anchorlang{${1:code}}"
+      }
     },
-    "defbibtabulartwocolumn{}{}{}{}{}": {
-      "snippet": "defbibtabulartwocolumn{${1:name}}{${2:begin code}}{${3:end code}}{${4:anchor code}}{${5:driver code}}"
+    {
+      "name": "driver",
+      "arg": {
+        "format": "{}",
+        "snippet": "driver{${1:precode}}"
+      }
+    },
+    {
+      "name": "defbibtabulartwocolumn",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "defbibtabulartwocolumn{${1:name}}{${2:begin code%definition}}{${3:end code%definition}}{${4:anchor code%definition}}{${5:driver code%definition}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "envs": [],
+  "keys": {
+    "\\printbibtabular": [
       "env=${1:name}",
       "heading=${1:name}",
       "title=${1:text}",
       "label=",
-      "block=",
+      "block=${1|none,space,par,nbpar,ragged|}",
       "prenote=${1:name}",
       "postnote=${1:name}",
       "section=${1:integer}",
@@ -56,5 +91,6 @@
       "omitnumbers",
       "locallabelwidth"
     ]
-  ]
+  },
+  "args": []
 }

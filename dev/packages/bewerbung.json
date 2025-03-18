@@ -1,0 +1,443 @@
+{
+  "deps": [
+    {
+      "name": "datatool"
+    }
+  ],
+  "macros": [
+    {
+      "name": "Vorname",
+      "arg": {
+        "format": "{}",
+        "snippet": "Vorname{${1:Vorname}}"
+      }
+    },
+    {
+      "name": "Name",
+      "arg": {
+        "format": "{}",
+        "snippet": "Name{${1:Vorname}}"
+      }
+    },
+    {
+      "name": "fullname"
+    },
+    {
+      "name": "fullname",
+      "arg": {
+        "format": "[]",
+        "snippet": "fullname[${1:Reihenfolge}]"
+      }
+    },
+    {
+      "name": "Street",
+      "arg": {
+        "format": "{}",
+        "snippet": "Street{${1:Straße Hnr.}}"
+      }
+    },
+    {
+      "name": "Plz",
+      "arg": {
+        "format": "{}",
+        "snippet": "Plz{${1:Postleitzahl}}"
+      }
+    },
+    {
+      "name": "Stadt",
+      "arg": {
+        "format": "{}",
+        "snippet": "Stadt{${1:Stadt}}"
+      }
+    },
+    {
+      "name": "anschrift"
+    },
+    {
+      "name": "anschrift",
+      "arg": {
+        "format": "[]",
+        "snippet": "anschrift[${1:Umbruch}]"
+      }
+    },
+    {
+      "name": "MeinBeruf",
+      "arg": {
+        "format": "{}",
+        "snippet": "MeinBeruf{${1:Berufsbezeichnung}}"
+      }
+    },
+    {
+      "name": "Tel",
+      "arg": {
+        "format": "{}",
+        "snippet": "Tel{${1:Telefonnummer}}"
+      }
+    },
+    {
+      "name": "Mobile",
+      "arg": {
+        "format": "{}",
+        "snippet": "Mobile{${1:Mobiltelefonnummer}}"
+      }
+    },
+    {
+      "name": "EMail",
+      "arg": {
+        "format": "{}",
+        "snippet": "EMail{${1:E-Mail%URL}}"
+      }
+    },
+    {
+      "name": "Sta",
+      "arg": {
+        "format": "{}",
+        "snippet": "Sta{${1:Staatsangehörigkeit}}"
+      }
+    },
+    {
+      "name": "GebDatum",
+      "arg": {
+        "format": "{}",
+        "snippet": "GebDatum{${1:Geburtsdatum}}"
+      }
+    },
+    {
+      "name": "LebenslaufTitel",
+      "arg": {
+        "format": "{}",
+        "snippet": "LebenslaufTitel{${1:Titel%text}}"
+      }
+    },
+    {
+      "name": "ID",
+      "arg": {
+        "format": "{}",
+        "snippet": "ID{${1:Identifikation}}"
+      }
+    },
+    {
+      "name": "Anhang",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Anhang{${1:Liste}}{${2:Aufzählung}}"
+      }
+    },
+    {
+      "name": "TodayOrt",
+      "arg": {
+        "format": "{}",
+        "snippet": "TodayOrt{${1:Ort}}"
+      }
+    },
+    {
+      "name": "TodayTime",
+      "arg": {
+        "format": "{}",
+        "snippet": "TodayTime{${1:Time}}"
+      }
+    },
+    {
+      "name": "makePerson"
+    },
+    {
+      "name": "Anhang",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Anhang{${1:Text%text}}{${2:Artikelliste%text}}"
+      }
+    },
+    {
+      "name": "argetabelle"
+    },
+    {
+      "name": "argetabelle",
+      "arg": {
+        "format": "[]",
+        "snippet": "argetabelle[${1:Datei}]"
+      }
+    },
+    {
+      "name": "anhang",
+      "unusual": true
+    },
+    {
+      "name": "beruf",
+      "unusual": true
+    },
+    {
+      "name": "bewerbungDatum",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungDatum",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungDatum{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungFirma",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirma",
+      "unusual": true
+    },
+    {
+      "name": "bewerbungFirmaAnrede",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirmaAnrede",
+      "unusual": true
+    },
+    {
+      "name": "bewerbungFirmaName",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirmaName",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungFirmaName{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungFirmaOrt",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirmaOrt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungFirmaOrt{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungFirmaPlz",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirmaPlz",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungFirmaPlz{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungFirmaStr",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungFirmaStr",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungFirmaStr{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungKW",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungKW",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungKW{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungRueckmeldung",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungRueckmeldung",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungRueckmeldung{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungSonstiges",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungSonstiges",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungSonstiges{${1:arg}}"
+      }
+    },
+    {
+      "name": "bewerbungStelle",
+      "unusual": true
+    },
+    {
+      "name": "BewerbungStelle",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "BewerbungStelle{${1:arg}}"
+      }
+    },
+    {
+      "name": "email",
+      "unusual": true
+    },
+    {
+      "name": "firma",
+      "unusual": true
+    },
+    {
+      "name": "firmaAnrede",
+      "unusual": true
+    },
+    {
+      "name": "firmaName",
+      "unusual": true
+    },
+    {
+      "name": "firmaPlz",
+      "unusual": true
+    },
+    {
+      "name": "firmaStadt",
+      "unusual": true
+    },
+    {
+      "name": "firmaStreet",
+      "unusual": true
+    },
+    {
+      "name": "gebDatum",
+      "unusual": true
+    },
+    {
+      "name": "geehrt",
+      "unusual": true
+    },
+    {
+      "name": "getBewerbung",
+      "unusual": true
+    },
+    {
+      "name": "getBewerbung",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "getBewerbung[${1:file}]"
+      }
+    },
+    {
+      "name": "id",
+      "unusual": true
+    },
+    {
+      "name": "lebenslaufTitel",
+      "unusual": true
+    },
+    {
+      "name": "meinBeruf",
+      "unusual": true
+    },
+    {
+      "name": "meinberuf",
+      "unusual": true
+    },
+    {
+      "name": "mobile",
+      "unusual": true
+    },
+    {
+      "name": "name",
+      "unusual": true
+    },
+    {
+      "name": "plz",
+      "unusual": true
+    },
+    {
+      "name": "runKomaVar",
+      "unusual": true
+    },
+    {
+      "name": "setzekomma",
+      "unusual": true
+    },
+    {
+      "name": "sta",
+      "unusual": true
+    },
+    {
+      "name": "stadt",
+      "unusual": true
+    },
+    {
+      "name": "street",
+      "unusual": true
+    },
+    {
+      "name": "tel",
+      "unusual": true
+    },
+    {
+      "name": "todayOrt",
+      "unusual": true
+    },
+    {
+      "name": "todayTime",
+      "unusual": true
+    },
+    {
+      "name": "vorname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "anschreiben"
+    },
+    {
+      "name": "anschreiben",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Anrede}]"
+      }
+    },
+    {
+      "name": "anschreiben",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:Anrede}][${2:Enlarge}]"
+      }
+    },
+    {
+      "name": "lebenslauf"
+    },
+    {
+      "name": "lebenslauf",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:Listensymbol}]"
+      }
+    },
+    {
+      "name": "lebenslauf",
+      "arg": {
+        "format": "[][]",
+        "snippet": "[${1:Listensymbol}][${2:Addendum}]"
+      }
+    }
+  ],
+  "keys": {},
+  "args": []
+}

@@ -1,50 +1,108 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "amsmath": [],
-    "luacode": [],
-    "luamaths": []
-  },
-  "macros": {
-    "cpxNew{}{}": {
-      "snippet": "cpxNew{${1:name}}{${2:x,y}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "cpxPrint{}": {
-      "snippet": "cpxPrint{${1:name}}"
+    {
+      "name": "amsmath"
     },
-    "cpxAdd{}{}{}": {
-      "snippet": "cpxAdd{${1:name}}{${2:name1}}{${3:name2}}"
+    {
+      "name": "luacode"
     },
-    "cpxSub{}{}{}": {
-      "snippet": "cpxSub{${1:name}}{${2:name1}}{${3:name2}}"
+    {
+      "name": "luamaths"
+    }
+  ],
+  "macros": [
+    {
+      "name": "cpxNew",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxNew{${1:name}}{${2:x,y}}"
+      }
     },
-    "cpxMul{}{}{}": {
-      "snippet": "cpxMul{${1:name}}{${2:name1}}{${3:name2}}"
+    {
+      "name": "cpxPrint",
+      "arg": {
+        "format": "{}",
+        "snippet": "cpxPrint{${1:name}}"
+      }
     },
-    "cpxDiv{}{}{}": {
-      "snippet": "cpxDiv{${1:name}}{${2:name1}}{${3:name2}}"
+    {
+      "name": "cpxAdd",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cpxAdd{${1:name}}{${2:name1}}{${3:name2}}"
+      }
     },
-    "cpxInv{}{}": {
-      "snippet": "cpxInv{${1:name}}{${2:orig-name}}"
+    {
+      "name": "cpxSub",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cpxSub{${1:name}}{${2:name1}}{${3:name2}}"
+      }
     },
-    "cpxRe{}{}": {
-      "snippet": "cpxRe{${1:name}}{${2:orig-name}}"
+    {
+      "name": "cpxMul",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cpxMul{${1:name}}{${2:name1}}{${3:name2}}"
+      }
     },
-    "cpxIm{}{}": {
-      "snippet": "cpxIm{${1:name}}{${2:orig-name}}"
+    {
+      "name": "cpxDiv",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "cpxDiv{${1:name}}{${2:name1}}{${3:name2}}"
+      }
     },
-    "cpxMod{}{}": {
-      "snippet": "cpxMod{${1:name}}{${2:orig-name}}"
+    {
+      "name": "cpxInv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxInv{${1:name}}{${2:orig-name}}"
+      }
     },
-    "cpxPrinArg{}{}": {
-      "snippet": "cpxPrinArg{${1:name}}{${2:orig-name}}"
+    {
+      "name": "cpxRe",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxRe{${1:name}}{${2:orig-name}}"
+      }
     },
-    "cpxOp{}{}": {
-      "snippet": "cpxOp{${1:name}}{${2:expression}}"
+    {
+      "name": "cpxIm",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxIm{${1:name}}{${2:orig-name}}"
+      }
     },
-    "imgUnit": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "cpxMod",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxMod{${1:name}}{${2:orig-name}}"
+      }
+    },
+    {
+      "name": "cpxPrinArg",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxPrinArg{${1:name}}{${2:orig-name}}"
+      }
+    },
+    {
+      "name": "cpxOp",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cpxOp{${1:name}}{${2:expression%definition}}"
+      }
+    },
+    {
+      "name": "imgUnit"
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

@@ -1,51 +1,97 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarypatterns": []
-  },
-  "macros": {
-    "robotArm{}": {
-      "snippet": "robotArm{${1:number}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "robotArm[]{}": {
-      "snippet": "robotArm[${2:options}]{${1:number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "tikzlibrarypatterns"
+    }
+  ],
+  "macros": [
+    {
+      "name": "robotArm",
+      "arg": {
+        "format": "{}",
+        "snippet": "robotArm{${1:number}}"
+      }
     },
-    "robotArmBaseLink": {},
-    "robotArmBaseLink[]": {
-      "snippet": "robotArmBaseLink[${1:options}]",
-      "keyvalindex": 1,
-      "keyvalpos": 0
+    {
+      "name": "robotArm",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "robotArm[${2:options%keyvals}]{${1:number}}",
+        "keys": [
+          "\\robotArm#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "robotArmLink": {},
-    "robotArmLink[]": {
-      "snippet": "robotArmLink[${1:options}]",
-      "keyvalindex": 2,
-      "keyvalpos": 0
+    {
+      "name": "robotArmBaseLink"
     },
-    "robotArmEndEffector": {},
-    "robotArmEndEffector[]": {
-      "snippet": "robotArmEndEffector[${1:options}]",
-      "keyvalindex": 3,
-      "keyvalpos": 0
+    {
+      "name": "robotArmBaseLink",
+      "arg": {
+        "format": "[]",
+        "snippet": "robotArmBaseLink[${1:options%keyvals}]",
+        "keys": [
+          "\\robotArmBaseLink#c"
+        ],
+        "keyPos": 0
+      }
     },
-    "robotarmset{}": {
-      "snippet": "robotarmset{${1:options}}",
-      "keyvalindex": 4,
-      "keyvalpos": 0
+    {
+      "name": "robotArmLink"
     },
-    "angleannotationcase": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "robotArmLink",
+      "arg": {
+        "format": "[]",
+        "snippet": "robotArmLink[${1:options%keyvals}]",
+        "keys": [
+          "\\robotArmLink#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "robotArmEndEffector"
+    },
+    {
+      "name": "robotArmEndEffector",
+      "arg": {
+        "format": "[]",
+        "snippet": "robotArmEndEffector[${1:options%keyvals}]",
+        "keys": [
+          "\\robotArmEndEffector#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "robotarmset",
+      "arg": {
+        "format": "{}",
+        "snippet": "robotarmset{${1:options%keyvals}}",
+        "keys": [
+          "\\robotarmset#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "angleannotationcase",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\robotArm#c": [
       "geometry={${1:keyvals}}",
       "config={${1:keyvals}}",
       "styles={${1:styles}}"
     ],
-    [
+    "\\robotArmBaseLink#c": [
       "height=${1:value}",
       "width=${1:value}",
       "world width=${1:value}",
@@ -53,14 +99,14 @@
       "draw base link/.code={${1:code}}",
       "draw world/.code={${1:code}}"
     ],
-    [
+    "\\robotArmLink#c": [
       "width=${1:value}",
       "length=${1:value}",
       "joint radius=${1:value}",
       "draw link/.code={${1:code}}",
       "draw joint/.code={${1:code}}"
     ],
-    [
+    "\\robotArmEndEffector#c": [
       "width=${1:value}",
       "length=${1:value}",
       "joint radius=${1:value}",
@@ -70,7 +116,7 @@
       "draw joint/.code={${1:code}}",
       "draw end effector/.code={${1:code}}"
     ],
-    [
+    "\\robotarmset#c": [
       "geometry={${1:keyvals}}",
       "config={${1:keyvals}}",
       "styles={${1:styles}}",
@@ -93,6 +139,19 @@
       "end effector/draw link/.code={${1:code}}",
       "end effector/draw joint/.code={${1:code}}",
       "end effector/draw end effector/.code={${1:code}}"
+    ],
+    "\\path#c,\\draw#c": [
+      "link style",
+      "world style"
+    ],
+    "\\tikzset#c": [
+      "link style/.style={${1:TikZ keys}}",
+      "world style/.style={${1:TikZ keys}}",
+      "in link/.style={${1:TikZ keys}}",
+      "in base link/.style={${1:TikZ keys}}",
+      "in world/.style={${1:TikZ keys}}",
+      "in end effector/.style={${1:TikZ keys}}"
     ]
-  ]
+  },
+  "args": []
 }

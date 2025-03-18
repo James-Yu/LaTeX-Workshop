@@ -1,0 +1,854 @@
+{
+  "deps": [
+    {
+      "name": "scrlfile"
+    },
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "scrlogo"
+    }
+  ],
+  "macros": [
+    {
+      "name": "KOMAScriptVersion",
+      "unusual": true
+    },
+    {
+      "name": "rloop",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "rloop{${1:arg}}"
+      }
+    },
+    {
+      "name": "IfLTXAtLeastTF",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "IfLTXAtLeastTF{${1:date}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "DefineFamily",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DefineFamily{${1:family}}"
+      }
+    },
+    {
+      "name": "DefineFamilyMember",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DefineFamilyMember{${1:family}}"
+      }
+    },
+    {
+      "name": "DefineFamilyMember",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "DefineFamilyMember[${2:member}]{${1:family}}"
+      }
+    },
+    {
+      "name": "DefineFamilyKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DefineFamilyKey{${1:family}}{${2:key%plain}}{${3:action}}"
+      }
+    },
+    {
+      "name": "DefineFamilyKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:action}}"
+      }
+    },
+    {
+      "name": "DefineFamilyKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "DefineFamilyKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:action}}"
+      }
+    },
+    {
+      "name": "RelaxFamilyKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "RelaxFamilyKey{${1:family}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "RelaxFamilyKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "RelaxFamilyKey[${3:member}]{${1:family}}{${2:key%plain}}"
+      }
+    },
+    {
+      "name": "FamilyKeyState",
+      "unusual": true
+    },
+    {
+      "name": "FamilyKeyStateUnknown",
+      "unusual": true
+    },
+    {
+      "name": "FamilyKeyStateUnknownValue",
+      "unusual": true
+    },
+    {
+      "name": "FamilyKeyStateNeedValue",
+      "unusual": true
+    },
+    {
+      "name": "FamilyKeyStateProcessed",
+      "unusual": true
+    },
+    {
+      "name": "FamilyOfKey",
+      "unusual": true
+    },
+    {
+      "name": "FamilyMemberOfKey",
+      "unusual": true
+    },
+    {
+      "name": "FamilyProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "FamilyProcessOptions{${1:family}}"
+      }
+    },
+    {
+      "name": "FamilyProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "FamilyProcessOptions[${2:member}]{${1:family}}"
+      }
+    },
+    {
+      "name": "AtEndOfFamilyOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtEndOfFamilyOptions{${1:action}}"
+      }
+    },
+    {
+      "name": "AtEndOfFamilyOptions*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "AtEndOfFamilyOptions*{${1:action}}"
+      }
+    },
+    {
+      "name": "IfArgIsEmpty",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "IfArgIsEmpty{${1:arg}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "XdivY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "XdivY{${1:dividend}}{${2:divisor}}"
+      }
+    },
+    {
+      "name": "XmodY",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "XmodY{${1:dividend}}{${2:divisor}}"
+      }
+    },
+    {
+      "name": "Ifundefinedorrelax",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifundefinedorrelax{${1:name}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifnotundefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifnotundefined{${1:name}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifstr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Ifstr{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}"
+      }
+    },
+    {
+      "name": "Ifstrstart",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "Ifstrstart{${1:string1}}{${2:string2}}{${3:then code}}{${4:else code}}"
+      }
+    },
+    {
+      "name": "Ifislengthprimitive",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifislengthprimitive{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisdimen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisdimen{${1:string}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisskip",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisskip{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifiscount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifiscount{${1:count}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisdimexpr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisdimexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisglueexpr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisglueexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisnumexpr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisnumexpr{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisdefchar",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisdefchar{${1:arg}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifiscounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifiscounter{${1:counter}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisinteger",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisinteger{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisdimension",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisdimension{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifisglue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifisglue{${1:expression}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifnumber{${1:string}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifintnumber",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifintnumber{${1:string}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifdimen",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "Ifdimen{${1:string}}{${2:then code}}{${3:else code}}"
+      }
+    },
+    {
+      "name": "Ifpdfoutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Ifpdfoutput{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "Ifpsoutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Ifpsoutput{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "Ifdvioutput",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "Ifdvioutput{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "IfRTL",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfRTL{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "IfLTR",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfLTR{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "PackageInfoNoLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "PackageInfoNoLine{${1:package}}{${2:information%text}}"
+      }
+    },
+    {
+      "name": "ClassInfoNoLine",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ClassInfoNoLine{${1:class}}{${2:information%text}}"
+      }
+    },
+    {
+      "name": "IfActiveMkBoth",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "IfActiveMkBoth{${1:then code}}{${2:else code}}"
+      }
+    },
+    {
+      "name": "BeforeFamilyProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "BeforeFamilyProcessOptions{${1:family}}{${2:code}}"
+      }
+    },
+    {
+      "name": "BeforeFamilyProcessOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "BeforeFamilyProcessOptions[${3:member}]{${1:family}}{${2:code}}"
+      }
+    },
+    {
+      "name": "FamilyExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FamilyExecuteOptions{${1:family}}{${2:options list}}"
+      }
+    },
+    {
+      "name": "FamilyExecuteOptions",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "FamilyExecuteOptions[${3:member}]{${1:family}}{${2:options list}}"
+      }
+    },
+    {
+      "name": "FamilyOptions",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "FamilyOptions{${1:family}}{${2:options list}}"
+      }
+    },
+    {
+      "name": "FamilyOption",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyOption{${1:family}}{${2:option}}{${3:value list}}"
+      }
+    },
+    {
+      "name": "FamilyUnknownKeyValue",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilyUnknownKeyValue{${1:family}}{${2:key%plain}}{${3:value}}{${4:value list}}"
+      }
+    },
+    {
+      "name": "FamilyElseValues",
+      "unusual": true
+    },
+    {
+      "name": "FamilyBoolKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyBoolKey{${1:family}}{${2:key%plain}}{${3:switch name}}"
+      }
+    },
+    {
+      "name": "FamilyBoolKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyBoolKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:switch name}}"
+      }
+    },
+    {
+      "name": "FamilySetBool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetBool{${1:family}}{${2:key%plain}}{${3:switch name}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyInverseBoolKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyInverseBoolKey{${1:family}}{${2:key%plain}}{${3:switch name}}"
+      }
+    },
+    {
+      "name": "FamilyInverseBoolKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyInverseBoolKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:switch name}}"
+      }
+    },
+    {
+      "name": "FamilySetInverseBool",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetInverseBool{${1:family}}{${2:key%plain}}{${3:switch name}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyCounterKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyCounterKey{${1:family}}{${2:key%plain}}{${3:counter}}"
+      }
+    },
+    {
+      "name": "FamilyCounterKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:counter}}"
+      }
+    },
+    {
+      "name": "FamilyCounterKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyCounterKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:counter}}"
+      }
+    },
+    {
+      "name": "FamilySetCounter",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetCounter{${1:family}}{${2:key%plain}}{${3:counter}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyCounterMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyCounterMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyCounterMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyCounterMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyCounterMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilySetCounterMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetCounterMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyLengthKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyLengthKey{${1:family}}{${2:key%plain}}{${3:length}}"
+      }
+    },
+    {
+      "name": "FamilyLengthKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:length}}"
+      }
+    },
+    {
+      "name": "FamilyLengthKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:length}}"
+      }
+    },
+    {
+      "name": "FamilySetLength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetLength{${1:family}}{${2:key%plain}}{${3:length}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyLengthMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilySetLengthMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetLengthMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyUseLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyUseLengthMacroKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyUseLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyUseLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyUseLengthMacroKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilySetUseLengthMacro",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilySetUseLengthMacro{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value}}"
+      }
+    },
+    {
+      "name": "FamilyNumericalKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "FamilyNumericalKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}"
+      }
+    },
+    {
+      "name": "FamilyLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}"
+      }
+    },
+    {
+      "name": "FamilyLengthMacroKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}{}",
+        "snippet": "FamilyLengthMacroKey[${5:member}]{${1:family}}{${2:key%plain}}[${6:default}]{${3:macro%cmd}}{${4:value list}}"
+      }
+    },
+    {
+      "name": "FamilySetNumerical",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "FamilySetNumerical{${1:family}}{${2:key%plain}}{${3:macro%cmd}}{${4:value list}}{${5:value}}"
+      }
+    },
+    {
+      "name": "FamilyStringKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyStringKey{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyStringKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyStringKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyStringKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:macro%cmd}}"
+      }
+    },
+    {
+      "name": "FamilyCSKey",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "FamilyCSKey{${1:family}}{${2:key%plain}}{${3:csname}}"
+      }
+    },
+    {
+      "name": "FamilyLengthKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}{${3:csname}}"
+      }
+    },
+    {
+      "name": "FamilyLengthKey",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}[]{}",
+        "snippet": "FamilyLengthKey[${4:member}]{${1:family}}{${2:key%plain}}[${5:default}]{${3:csname}}"
+      }
+    },
+    {
+      "name": "ForDoHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ForDoHook{${1:specification}}{${2:command}}"
+      }
+    },
+    {
+      "name": "SplitDoHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "SplitDoHook{${1:specifier}}{${2:head macro%cmd}}{${3:remainder macro%cmd}}"
+      }
+    },
+    {
+      "name": "ExecuteDoHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ExecuteDoHook{${1:specifier}}"
+      }
+    },
+    {
+      "name": "AddtoDoHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddtoDoHook{${1:name}}{${2:command}}"
+      }
+    },
+    {
+      "name": "AddtoOneTimeDoHook",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "AddtoOneTimeDoHook{${1:name}}{${2:command}}"
+      }
+    },
+    {
+      "name": "defcaptionname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "defcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "defcaptionname*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "defcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "providecaptionname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "providecaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "providecaptionname*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "providecaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "newcaptionname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "newcaptionname*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "newcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewcaptionname",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewcaptionname{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    },
+    {
+      "name": "renewcaptionname*",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "renewcaptionname*{${1:language list}}{${2:term%cmd}}{${3:definition}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
+}

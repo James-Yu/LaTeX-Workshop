@@ -1,178 +1,411 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "xcolor": [],
-    "eforms": [],
-    "popupmenu": [
-      "usepopup"
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "eforms"
+    },
+    {
+      "name": "popupmenu",
+      "if": "usepopup"
+    }
+  ],
+  "macros": [
+    {
+      "name": "ytvId",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytvId{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvId",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytvId[${3:options}]{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvId*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytvId*{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvId*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytvId*[${3:options}]{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvIdPresets",
+      "arg": {
+        "format": "{}",
+        "snippet": "ytvIdPresets{${1:presets}}"
+      }
+    },
+    {
+      "name": "ytvIdML",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytvIdML{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvIdML",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytvIdML[${3:options}]{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvIdML*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytvIdML*{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytvIdML*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytvIdML*[${3:options}]{${1:ytvID}}{${2:text}}"
+      }
+    },
+    {
+      "name": "declarePlayList",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declarePlayList{${1:command}}{${2:playlist}}"
+      }
+    },
+    {
+      "name": "Esc",
+      "unusual": true
+    },
+    {
+      "name": "cs",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:csname}}"
+      }
+    },
+    {
+      "name": "ytIdTitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytIdTitle{${1:title%text}}{${2:ytvID}}"
+      }
+    },
+    {
+      "name": "ytPlayList",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytPlayList{${1:ytvID}}{${2:playlist cmd}}"
+      }
+    },
+    {
+      "name": "ytComboList",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ytComboList{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "ytComboList",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ytComboList[${4:options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "ytComboBtn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ytComboBtn{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "ytComboBtn",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "ytComboBtn[${4:options}]{${1:name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "ytPopupAllMenuData",
+      "if": "usepopup",
+      "unusual": true
+    },
+    {
+      "name": "ytMenuNames",
+      "if": "usepopup",
+      "unusual": true
+    },
+    {
+      "name": "ytUseMenus",
+      "if": "usepopup",
+      "arg": {
+        "format": "{}",
+        "snippet": "ytUseMenus{${1:menu names}}"
+      }
+    },
+    {
+      "name": "puIdTitle",
+      "if": "usepopup",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "puIdTitle{${1:title%text}}{${2:ytvID}}"
+      }
+    },
+    {
+      "name": "ytpubtnCnt",
+      "if": "usepopup",
+      "unusual": true
+    },
+    {
+      "name": "ytPopupBtn",
+      "if": "usepopup",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ytPopupBtn{${1:menu name}}{${2:width}}{${3:height}}"
+      }
+    },
+    {
+      "name": "ytPopupPresets",
+      "if": "usepopup",
+      "arg": {
+        "format": "{}",
+        "snippet": "ytPopupPresets{${1:options}}"
+      }
+    },
+    {
+      "name": "ytLink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytLink{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLink",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytLink[${3:options}]{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLink*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytLink*{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLink*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytLink*[${3:options}]{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "embedID",
+      "arg": {
+        "format": "{}",
+        "snippet": "embedID{${1:ytvID}}"
+      }
+    },
+    {
+      "name": "params",
+      "arg": {
+        "format": "{}",
+        "snippet": "params{${1:params}}"
+      }
+    },
+    {
+      "name": "watchId",
+      "arg": {
+        "format": "{}",
+        "snippet": "watchId{${1:ytvID}}"
+      }
+    },
+    {
+      "name": "embed",
+      "arg": {
+        "format": "{}",
+        "snippet": "embed{${1:spec}}"
+      }
+    },
+    {
+      "name": "channel",
+      "arg": {
+        "format": "{}",
+        "snippet": "channel{${1:name}}"
+      }
+    },
+    {
+      "name": "user",
+      "arg": {
+        "format": "{}",
+        "snippet": "user{${1:name}}"
+      }
+    },
+    {
+      "name": "search",
+      "arg": {
+        "format": "{}",
+        "snippet": "search{${1:string}}"
+      }
+    },
+    {
+      "name": "ytLinkML",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytLinkML{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLinkML",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytLinkML[${3:options}]{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLinkML*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytLinkML*{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytLinkML*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytLinkML*[${3:options}]{${1:spec}}{${2:text}}"
+      }
+    },
+    {
+      "name": "ytInputQuery",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytInputQuery{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytInputQuery",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytInputQuery[${3:options}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytSearch",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytSearch{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytSearch",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytSearch[${3:options}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytClearQuery",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ytClearQuery{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytClearQuery",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ytClearQuery[${3:options}]{${1:width}}{${2:height}}"
+      }
+    },
+    {
+      "name": "ytNF",
+      "unusual": true
+    },
+    {
+      "name": "ytURL",
+      "unusual": true
+    },
+    {
+      "name": "ytvIdParams",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ytvIdParams{${1:params}}"
+      }
+    },
+    {
+      "name": "ifytwatch",
+      "unusual": true
+    },
+    {
+      "name": "ytwatchfalse",
+      "unusual": true
+    },
+    {
+      "name": "ytwatchtrue",
+      "unusual": true
+    },
+    {
+      "name": "ques",
+      "unusual": true
+    },
+    {
+      "name": "URLArg",
+      "unusual": true
+    },
+    {
+      "name": "ytComboBtnPresets",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ytComboBtnPresets{${1:options}}"
+      }
+    },
+    {
+      "name": "ytComboListPresets",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ytComboListPresets{${1:options}}"
+      }
+    },
+    {
+      "name": "ytspec",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ytspec{${1:arg}}"
+      }
+    },
+    {
+      "name": "ytStrPLAY",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/ltx4yt#c": [
+      "usepopup",
+      "!usepopup"
     ]
   },
-  "macros": {
-    "ytvId{}{}": {
-      "snippet": "ytvId{${1:ytvID}}{${2:text}}"
-    },
-    "ytvId[]{}{}": {
-      "snippet": "ytvId[${3:options}]{${1:ytvID}}{${2:text}}"
-    },
-    "ytvId*{}{}": {
-      "snippet": "ytvId*{${1:ytvID}}{${2:text}}"
-    },
-    "ytvId*[]{}{}": {
-      "snippet": "ytvId*[${3:options}]{${1:ytvID}}{${2:text}}"
-    },
-    "ytvIdPresets{}": {
-      "snippet": "ytvIdPresets{${1:presets}}"
-    },
-    "ytvIdML{}{}": {
-      "snippet": "ytvIdML{${1:ytvID}}{${2:text}}"
-    },
-    "ytvIdML[]{}{}": {
-      "snippet": "ytvIdML[${3:options}]{${1:ytvID}}{${2:text}}"
-    },
-    "ytvIdML*{}{}": {
-      "snippet": "ytvIdML*{${1:ytvID}}{${2:text}}"
-    },
-    "ytvIdML*[]{}{}": {
-      "snippet": "ytvIdML*[${3:options}]{${1:ytvID}}{${2:text}}"
-    },
-    "declarePlayList{}{}": {
-      "snippet": "declarePlayList{${1:command}}{${2:playlist}}"
-    },
-    "Esc": {},
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "ytIdTitle{}{}": {
-      "snippet": "ytIdTitle{${1:title}}{${2:ytvID}}"
-    },
-    "ytPlayList{}{}": {
-      "snippet": "ytPlayList{${1:ytvID}}{${2:playlist cmd}}"
-    },
-    "ytComboList{}{}{}": {
-      "snippet": "ytComboList{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "ytComboList[]{}{}{}": {
-      "snippet": "ytComboList[${4:options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "ytComboBtn{}{}{}": {
-      "snippet": "ytComboBtn{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "ytComboBtn[]{}{}{}": {
-      "snippet": "ytComboBtn[${4:options}]{${1:name}}{${2:width}}{${3:height}}"
-    },
-    "ytPopupAllMenuData": {
-      "option": "usepopup"
-    },
-    "ytMenuNames": {
-      "option": "usepopup"
-    },
-    "ytUseMenus{}": {
-      "snippet": "ytUseMenus{${1:menu names}}",
-      "option": "usepopup"
-    },
-    "puIdTitle{}{}": {
-      "snippet": "puIdTitle{${1:title}}{${2:ytvID}}",
-      "option": "usepopup"
-    },
-    "ytpubtnCnt": {
-      "option": "usepopup"
-    },
-    "ytPopupBtn{}{}{}": {
-      "snippet": "ytPopupBtn{${1:menu name}}{${2:width}}{${3:height}}",
-      "option": "usepopup"
-    },
-    "ytPopupPresets{}": {
-      "snippet": "ytPopupPresets{${1:options}}",
-      "option": "usepopup"
-    },
-    "ytLink{}{}": {
-      "snippet": "ytLink{${1:spec}}{${2:text}}"
-    },
-    "ytLink[]{}{}": {
-      "snippet": "ytLink[${3:options}]{${1:spec}}{${2:text}}"
-    },
-    "ytLink*{}{}": {
-      "snippet": "ytLink*{${1:spec}}{${2:text}}"
-    },
-    "ytLink*[]{}{}": {
-      "snippet": "ytLink*[${3:options}]{${1:spec}}{${2:text}}"
-    },
-    "embedID{}": {
-      "snippet": "embedID{${1:ytvID}}"
-    },
-    "params{}": {
-      "snippet": "params{${1:params}}"
-    },
-    "watchId{}": {
-      "snippet": "watchId{${1:ytvID}}"
-    },
-    "embed{}": {
-      "snippet": "embed{${1:spec}}"
-    },
-    "channel{}": {
-      "snippet": "channel{${1:name}}"
-    },
-    "user{}": {
-      "snippet": "user{${1:name}}"
-    },
-    "search{}": {
-      "snippet": "search{${1:string}}"
-    },
-    "ytLinkML{}{}": {
-      "snippet": "ytLinkML{${1:spec}}{${2:text}}"
-    },
-    "ytLinkML[]{}{}": {
-      "snippet": "ytLinkML[${3:options}]{${1:spec}}{${2:text}}"
-    },
-    "ytLinkML*{}{}": {
-      "snippet": "ytLinkML*{${1:spec}}{${2:text}}"
-    },
-    "ytLinkML*[]{}{}": {
-      "snippet": "ytLinkML*[${3:options}]{${1:spec}}{${2:text}}"
-    },
-    "ytInputQuery{}{}": {
-      "snippet": "ytInputQuery{${1:width}}{${2:height}}"
-    },
-    "ytInputQuery[]{}{}": {
-      "snippet": "ytInputQuery[${3:options}]{${1:width}}{${2:height}}"
-    },
-    "ytSearch{}{}": {
-      "snippet": "ytSearch{${1:width}}{${2:height}}"
-    },
-    "ytSearch[]{}{}": {
-      "snippet": "ytSearch[${3:options}]{${1:width}}{${2:height}}"
-    },
-    "ytClearQuery{}{}": {
-      "snippet": "ytClearQuery{${1:width}}{${2:height}}"
-    },
-    "ytClearQuery[]{}{}": {
-      "snippet": "ytClearQuery[${3:options}]{${1:width}}{${2:height}}"
-    },
-    "ytNF": {},
-    "ytURL": {},
-    "ytvIdParams{}": {
-      "snippet": "ytvIdParams{${1:params}}"
-    },
-    "ifytwatch": {},
-    "ytwatchfalse": {},
-    "ytwatchtrue": {},
-    "ques": {},
-    "URLArg": {},
-    "ytComboBtnPresets{}": {
-      "snippet": "ytComboBtnPresets{${1:options}}"
-    },
-    "ytComboListPresets{}": {
-      "snippet": "ytComboListPresets{${1:options}}"
-    },
-    "ytspec{}": {
-      "snippet": "ytspec{${1:arg}}"
-    },
-    "ytStrPLAY": {}
-  },
-  "envs": {},
-  "options": [
-    "usepopup",
-    "!usepopup"
-  ],
-  "keyvals": []
+  "args": [
+    "\\usepackage/ltx4yt#c"
+  ]
 }

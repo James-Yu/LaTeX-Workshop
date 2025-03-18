@@ -1,136 +1,365 @@
 {
-  "includes": {
-    "graphics": []
-  },
-  "macros": {
-    "id{}": {
-      "snippet": "id{${1:identifier}}"
+  "deps": [
+    {
+      "name": "graphics"
+    }
+  ],
+  "macros": [
+    {
+      "name": "id",
+      "arg": {
+        "format": "{}",
+        "snippet": "id{${1:identifier%formula}}"
+      }
     },
-    "proc{}": {
-      "snippet": "proc{${1:procedure}}"
+    {
+      "name": "proc",
+      "arg": {
+        "format": "{}",
+        "snippet": "proc{${1:procedure}}"
+      }
     },
-    "const{}": {
-      "snippet": "const{${1:constant}}"
+    {
+      "name": "const",
+      "arg": {
+        "format": "{}",
+        "snippet": "const{${1:constant}}"
+      }
     },
-    "func{}": {
-      "snippet": "func{${1:function}}"
+    {
+      "name": "func",
+      "arg": {
+        "format": "{}",
+        "snippet": "func{${1:function%formula}}"
+      }
     },
-    "attrib{}{}": {
-      "snippet": "attrib{${1:object}}{${2:attribute}}"
+    {
+      "name": "attrib",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "attrib{${1:object%formula}}{${2:attribute%formula}}"
+      }
     },
-    "attribxi{}{}": {
-      "snippet": "attribxi{${1:object}}{${2:attribute}}"
+    {
+      "name": "attribxi",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "attribxi{${1:object%formula}}{${2:attribute%formula}}"
+      }
     },
-    "attribxx{}{}": {
-      "snippet": "attribxx{${1:object}}{${2:attribute}}"
+    {
+      "name": "attribxx",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "attribxx{${1:object%formula}}{${2:attribute%formula}}"
+      }
     },
-    "attribii{}{}": {
-      "snippet": "attribii{${1:object}}{${2:attribute}}"
+    {
+      "name": "attribii",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "attribii{${1:object%formula}}{${2:attribute%formula}}"
+      }
     },
-    "attribix{}{}": {
-      "snippet": "attribix{${1:object}}{${2:attribute}}"
+    {
+      "name": "attribix",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "attribix{${1:object%formula}}{${2:attribute%formula}}"
+      }
     },
-    "attribb{}{}{}": {
-      "snippet": "attribb{${1:object}}{${2:attribute1}}{${3:attribute2}}"
+    {
+      "name": "attribb",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "attribb{${1:object%formula}}{${2:attribute1%formula}}{${3:attribute2%formula}}"
+      }
     },
-    "attribbb{}{}{}{}": {
-      "snippet": "attribbb{${1:object}}{${2:attribute1}}{${3:attribute2}}{${4:attribute3}}"
+    {
+      "name": "attribbb",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "attribbb{${1:object%formula}}{${2:attribute1%formula}}{${3:attribute2%formula}}{${4:attribute3%formula}}"
+      }
     },
-    "attribbbb{}{}{}{}{}": {
-      "snippet": "attribbbb{${1:object}}{${2:attribute1}}{${3:attribute2}}{${4:attribute3}}{${5:attribute4}}"
+    {
+      "name": "attribbbb",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "attribbbb{${1:object%formula}}{${2:attribute1%formula}}{${3:attribute2%formula}}{${4:attribute3%formula}}{${5:attribute4%formula}}"
+      }
     },
-    "attribbxxi{}{}{}": {
-      "snippet": "attribbxxi{${1:object}}{${2:attribute1}}{${3:attribute2}}"
+    {
+      "name": "attribbxxi",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "attribbxxi{${1:object%formula}}{${2:attribute1%formula}}{${3:attribute2%formula}}"
+      }
     },
-    "attribe{}{}{}": {
-      "snippet": "attribe{${1:vertex1}}{${2:vertex2}}{${3:attribute}}"
+    {
+      "name": "attribe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "attribe{${1:vertex1%formula}}{${2:vertex2%formula}}{${3:attribute%formula}}"
+      }
     },
-    "attribex{}{}{}": {
-      "snippet": "attribex{${1:vertex1}}{${2:vertex2}}{${3:attribute}}"
+    {
+      "name": "attribex",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "attribex{${1:vertex1%formula}}{${2:vertex2%formula}}{${3:attribute%formula}}"
+      }
     },
-    "twodots": {},
-    "gets": {
-      "detail": "←",
-      "documentation": "a: leftward arrow"
+    {
+      "name": "twodots"
     },
-    "isequal": {},
-    "Procname{}": {
-      "snippet": "Procname{${1:procedure}}"
+    {
+      "name": "gets"
     },
-    "li": {},
-    "zi": {},
-    "kw{}": {
-      "snippet": "kw{${1:keyword}}"
+    {
+      "name": "isequal"
     },
-    "For": {},
-    "To": {},
-    "Downto": {},
-    "By": {},
-    "While": {},
-    "If": {},
-    "Return": {},
-    "Goto": {},
-    "Error": {},
-    "Spawn": {},
-    "Sync": {},
-    "Parfor": {},
-    "Comment": {},
-    "CommentSymbol": {},
-    "Do": {},
-    "End": {},
-    "Repeat": {},
-    "Until": {},
-    "Then": {},
-    "Else": {},
-    "ElseIf": {},
-    "ElseNoIf": {},
-    "Indentmore": {},
-    "RComment": {},
-    "setlinenumber{}": {
-      "snippet": "setlinenumber{${1:label}}"
+    {
+      "name": "Procname",
+      "arg": {
+        "format": "{}",
+        "snippet": "Procname{${1:procedure}}"
+      }
     },
-    "setlinenumberplus{}{}": {
-      "snippet": "setlinenumberplus{${1:label}}{${2:integer}}"
+    {
+      "name": "li"
     },
-    "Startalign{}": {
-      "snippet": "Startalign{${1:content}}"
+    {
+      "name": "zi"
     },
-    "Stopalign": {},
-    "codeboxwidth": {},
-    "codeindent": {},
-    "digitwidth": {},
-    "EndTest": {},
-    "FakeIndent": {},
-    "firstcodelinefalse": {},
-    "firstcodelinetrue": {},
-    "iffirstcodeline": {},
-    "ifnumberedline": {},
-    "ifprocname": {},
-    "Indent": {},
-    "liprint": {},
-    "lispace{}": {
-      "snippet": "lispace{${1:length}}"
+    {
+      "name": "kw",
+      "arg": {
+        "format": "{}",
+        "snippet": "kw{${1:keyword}}"
+      }
     },
-    "numberedlinefalse": {},
-    "numberedlinetrue": {},
-    "numref{}": {
-      "snippet": "numref{${1:label}}"
+    {
+      "name": "For"
     },
-    "procnamefalse": {},
-    "procnametrue": {},
-    "putfakeindents": {},
-    "putindents": {},
-    "savecode": {},
-    "saveprocname": {},
-    "thecodelinenumber": {},
-    "theindent": {},
-    "thethisindent": {},
-    "useregularv": {},
-    "zeroli": {}
-  },
-  "envs": {
-    "codebox": {}
-  },
-  "options": [],
-  "keyvals": []
+    {
+      "name": "To"
+    },
+    {
+      "name": "Downto"
+    },
+    {
+      "name": "By"
+    },
+    {
+      "name": "While"
+    },
+    {
+      "name": "If"
+    },
+    {
+      "name": "Return"
+    },
+    {
+      "name": "Goto"
+    },
+    {
+      "name": "Error"
+    },
+    {
+      "name": "Spawn"
+    },
+    {
+      "name": "Sync"
+    },
+    {
+      "name": "Parfor"
+    },
+    {
+      "name": "Comment"
+    },
+    {
+      "name": "CommentSymbol"
+    },
+    {
+      "name": "Do"
+    },
+    {
+      "name": "End"
+    },
+    {
+      "name": "Repeat"
+    },
+    {
+      "name": "Until"
+    },
+    {
+      "name": "If"
+    },
+    {
+      "name": "Then"
+    },
+    {
+      "name": "Else"
+    },
+    {
+      "name": "ElseIf"
+    },
+    {
+      "name": "ElseNoIf"
+    },
+    {
+      "name": "Indentmore"
+    },
+    {
+      "name": "RComment"
+    },
+    {
+      "name": "setlinenumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "setlinenumber{${1:label}}"
+      }
+    },
+    {
+      "name": "setlinenumberplus",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setlinenumberplus{${1:label}}{${2:integer}}"
+      }
+    },
+    {
+      "name": "Startalign",
+      "arg": {
+        "format": "{}",
+        "snippet": "Startalign{${1:content}}"
+      }
+    },
+    {
+      "name": "Stopalign"
+    },
+    {
+      "name": "codeboxwidth",
+      "unusual": true
+    },
+    {
+      "name": "codeindent",
+      "unusual": true
+    },
+    {
+      "name": "digitwidth",
+      "unusual": true
+    },
+    {
+      "name": "EndTest",
+      "unusual": true
+    },
+    {
+      "name": "FakeIndent",
+      "unusual": true
+    },
+    {
+      "name": "firstcodelinefalse",
+      "unusual": true
+    },
+    {
+      "name": "firstcodelinetrue",
+      "unusual": true
+    },
+    {
+      "name": "iffirstcodeline",
+      "unusual": true
+    },
+    {
+      "name": "ifnumberedline",
+      "unusual": true
+    },
+    {
+      "name": "ifprocname",
+      "unusual": true
+    },
+    {
+      "name": "Indent",
+      "unusual": true
+    },
+    {
+      "name": "liprint",
+      "unusual": true
+    },
+    {
+      "name": "lispace",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "lispace{${1:length}}"
+      }
+    },
+    {
+      "name": "numberedlinefalse",
+      "unusual": true
+    },
+    {
+      "name": "numberedlinetrue",
+      "unusual": true
+    },
+    {
+      "name": "numref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "numref{${1:label}}"
+      }
+    },
+    {
+      "name": "procnamefalse",
+      "unusual": true
+    },
+    {
+      "name": "procnametrue",
+      "unusual": true
+    },
+    {
+      "name": "putfakeindents",
+      "unusual": true
+    },
+    {
+      "name": "putindents",
+      "unusual": true
+    },
+    {
+      "name": "savecode",
+      "unusual": true
+    },
+    {
+      "name": "saveprocname",
+      "unusual": true
+    },
+    {
+      "name": "thecodelinenumber",
+      "unusual": true
+    },
+    {
+      "name": "theindent",
+      "unusual": true
+    },
+    {
+      "name": "thethisindent",
+      "unusual": true
+    },
+    {
+      "name": "useregularv",
+      "unusual": true
+    },
+    {
+      "name": "zeroli",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "codebox"
+    }
+  ],
+  "keys": {},
+  "args": []
 }

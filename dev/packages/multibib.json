@@ -1,39 +1,32 @@
 {
-  "includes": {},
-  "macros": {
-    "newcites{}{}": {
-      "snippet": "newcites{${1:suffix1,suffix2,...}}{${2:title1,title2,...}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newcites",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newcites{${1:suffix1,suffix2,...}}{${2:title1,title2,...%text}}"
+      }
     },
-    "setbiblabelwidth{}": {
-      "snippet": "setbiblabelwidth{${1:number}}"
-    },
-    "ifcontinuouslabels": {},
-    "continuouslabelstrue": {},
-    "continuouslabelsfalse": {},
-    "iflabeled": {},
-    "labeledtrue": {},
-    "labeledfalse": {},
-    "mylop{}": {
-      "snippet": "mylop{${1:arg}}"
-    },
-    "to{}": {
-      "snippet": "to{${1:arg}}"
-    },
-    "mylopoff{}": {
-      "snippet": "mylopoff{${1:arg}}"
-    },
-    "newusecounter{}": {
-      "snippet": "newusecounter{${1:counter}}"
-    },
-    "argdef": {},
-    "argedef": {},
-    "plugh": {},
-    "testchar": {}
-  },
-  "envs": {},
-  "options": [
-    "labeled",
-    "resetlabels"
+    {
+      "name": "setbiblabelwidth",
+      "arg": {
+        "format": "{}",
+        "snippet": "setbiblabelwidth{${1:number}}"
+      }
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/multibib#c": [
+      "labeled",
+      "resetlabels"
+    ],
+    "\\bibliographystyle#c": [
+      "mbplain"
+    ]
+  },
+  "args": [
+    "\\usepackage/multibib#c"
+  ]
 }

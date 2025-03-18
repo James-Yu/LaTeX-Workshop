@@ -1,33 +1,147 @@
 {
-  "includes": {
-    "tikz": [],
-    "calc": [],
-    "etoolbox": [],
-    "tikzlibrarydecorations.markings": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": []
-  },
-  "macros": {
-    "alltikzpeople{}{}": {
-      "snippet": "alltikzpeople{${1:width}}{${2:node options}}",
-      "option": "demo"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "alltikzpeople*{}{}": {
-      "snippet": "alltikzpeople*{${1:width}}{${2:node options}}",
-      "option": "demo"
+    {
+      "name": "calc"
     },
-    "tikzpeoplecolors{}": {
-      "snippet": "tikzpeoplecolors{${1:shape name}}",
-      "option": "demo"
+    {
+      "name": "etoolbox"
+    },
+    {
+      "name": "tikzlibrarydecorations.markings"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypositioning"
     }
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "demo",
-    "nobeards",
-    "saturated"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "alltikzpeople",
+      "if": "demo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alltikzpeople{${1:width}}{${2:node options}}"
+      }
+    },
+    {
+      "name": "alltikzpeople*",
+      "if": "demo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "alltikzpeople*{${1:width}}{${2:node options}}"
+      }
+    },
+    {
+      "name": "tikzpeoplecolors",
+      "if": "demo",
+      "arg": {
+        "format": "{}",
+        "snippet": "tikzpeoplecolors{${1:shape name}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/tikzpeople#c": [
+      "draft",
+      "demo",
+      "nobeards",
+      "saturated"
+    ],
+    "\\node#c": [
+      "shape=${1:shape name}",
+      "alice",
+      "bob",
+      "bride",
+      "builder",
+      "businessman",
+      "charlie",
+      "chef",
+      "conductor",
+      "cowboy",
+      "criminal",
+      "dave",
+      "devil",
+      "duck",
+      "graduate",
+      "groom",
+      "guard",
+      "jester",
+      "judge",
+      "maninblack",
+      "mexican",
+      "nun",
+      "nurse",
+      "physician",
+      "pilot",
+      "police",
+      "priest",
+      "sailor",
+      "santa",
+      "surgeon",
+      "evil",
+      "female",
+      "good",
+      "mirrored",
+      "monitor",
+      "saturated",
+      "shield",
+      "sword",
+      "hat=",
+      "hair=",
+      "shirt=",
+      "cross=",
+      "collar=",
+      "skin=",
+      "details=",
+      "undershirt=",
+      "veil=",
+      "pearls=",
+      "trousers=",
+      "tie=",
+      "monogram=",
+      "buttons=",
+      "hatbadge=",
+      "hatshield=",
+      "stitching=",
+      "vest=",
+      "patches=",
+      "bill=",
+      "tongue=",
+      "stripes=",
+      "lining=",
+      "pattern=",
+      "hairshadow=",
+      "earpiece=",
+      "glasses=",
+      "ringtop=",
+      "ringmid=",
+      "ringbot=",
+      "plaid=",
+      "badgeclip=",
+      "badgename=",
+      "redcross=",
+      "badge=",
+      "stethoscope=",
+      "tube=",
+      "decoration=",
+      "visor=",
+      "straps=",
+      "beard=",
+      "mask=",
+      "monogramtext=${1:text}",
+      "badgetext=${1:text}"
+    ]
+  },
+  "args": [
+    "\\usepackage/tikzpeople#c"
+  ]
 }

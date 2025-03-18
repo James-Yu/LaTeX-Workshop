@@ -1,562 +1,1300 @@
 {
-  "includes": {
-    "xstring": []
-  },
-  "macros": {
-    "sympycalc{}": {
-      "snippet": "sympycalc{${1:commande sympy}}"
-    },
-    "sympycalc<>{}": {
-      "snippet": "sympycalc<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympycalc*{}": {
-      "snippet": "sympycalc*{${1:commande sympy}}"
-    },
-    "sympycalc*<>{}": {
-      "snippet": "sympycalc*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympycalc{}": {
-      "snippet": "dsympycalc{${1:commande sympy}}"
-    },
-    "dsympycalc<>{}": {
-      "snippet": "dsympycalc<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympycalc*{}": {
-      "snippet": "dsympycalc*{${1:commande sympy}}"
-    },
-    "dsympycalc*<>{}": {
-      "snippet": "dsympycalc*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympyimage{}": {
-      "snippet": "sympyimage{${1:fonction sympy}}"
-    },
-    "sympyimage{}[]": {
-      "snippet": "sympyimage{${1:fonction sympy}}[${2:variable}]"
-    },
-    "sympyimage<>{}": {
-      "snippet": "sympyimage<${2:NoSimplif}>{${1:fonction sympy}}"
-    },
-    "sympyimage<>{}[]": {
-      "snippet": "sympyimage<${3:NoSimplif}>{${1:fonction sympy}}[${2:variable}]"
-    },
-    "sympyimage*{}": {
-      "snippet": "sympyimage*{${1:fonction sympy}}"
-    },
-    "sympyimage*{}[]": {
-      "snippet": "sympyimage*{${1:fonction sympy}}[${2:variable}]"
-    },
-    "sympyimage*<>{}": {
-      "snippet": "sympyimage*<${2:NoSimplif}>{${1:fonction sympy}}"
-    },
-    "sympyimage*<>{}[]": {
-      "snippet": "sympyimage*<${3:NoSimplif}>{${1:fonction sympy}}[${2:variable}]"
-    },
-    "dsympyimage{}": {
-      "snippet": "dsympyimage{${1:fonction sympy}}"
-    },
-    "dsympyimage{}[]": {
-      "snippet": "dsympyimage{${1:fonction sympy}}[${2:variable}]"
-    },
-    "dsympyimage<>{}": {
-      "snippet": "dsympyimage<${2:NoSimplif}>{${1:fonction sympy}}"
-    },
-    "dsympyimage<>{}[]": {
-      "snippet": "dsympyimage<${3:NoSimplif}>{${1:fonction sympy}}[${2:variable}]"
-    },
-    "dsympyimage*{}": {
-      "snippet": "dsympyimage*{${1:fonction sympy}}"
-    },
-    "dsympyimage*{}[]": {
-      "snippet": "dsympyimage*{${1:fonction sympy}}[${2:variable}]"
-    },
-    "dsympyimage*<>{}": {
-      "snippet": "dsympyimage*<${2:NoSimplif}>{${1:fonction sympy}}"
-    },
-    "dsympyimage*<>{}[]": {
-      "snippet": "dsympyimage*<${3:NoSimplif}>{${1:fonction sympy}}[${2:variable}]"
-    },
-    "sympydev{}": {
-      "snippet": "sympydev{${1:commande sympy}}"
-    },
-    "sympydev{}[]": {
-      "snippet": "sympydev{${1:commande sympy}}[${2:variable}]"
-    },
-    "sympydev<>{}": {
-      "snippet": "sympydev<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympydev<>{}[]": {
-      "snippet": "sympydev<${3:NoSimplif}>{${1:commande sympy}}[${2:variable}]"
-    },
-    "sympydev*{}": {
-      "snippet": "sympydev*{${1:commande sympy}}"
-    },
-    "sympydev*{}[]": {
-      "snippet": "sympydev*{${1:commande sympy}}[${2:variable}]"
-    },
-    "sympydev*<>{}": {
-      "snippet": "sympydev*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympydev*<>{}[]": {
-      "snippet": "sympydev*<${3:NoSimplif}>{${1:commande sympy}}[${2:variable}]"
-    },
-    "dsympydev{}": {
-      "snippet": "dsympydev{${1:commande sympy}}"
-    },
-    "dsympydev{}[]": {
-      "snippet": "dsympydev{${1:commande sympy}}[${2:variable}]"
-    },
-    "dsympydev<>{}": {
-      "snippet": "dsympydev<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympydev<>{}[]": {
-      "snippet": "dsympydev<${3:NoSimplif}>{${1:commande sympy}}[${2:variable}]"
-    },
-    "dsympydev*{}": {
-      "snippet": "dsympydev*{${1:commande sympy}}"
-    },
-    "dsympydev*{}[]": {
-      "snippet": "dsympydev*{${1:commande sympy}}[${2:variable}]"
-    },
-    "dsympydev*<>{}": {
-      "snippet": "dsympydev*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympydev*<>{}[]": {
-      "snippet": "dsympydev*<${3:NoSimplif}>{${1:commande sympy}}[${2:variable}]"
-    },
-    "sympyfact{}": {
-      "snippet": "sympyfact{${1:commande sympy}}"
-    },
-    "sympyfact<>{}": {
-      "snippet": "sympyfact<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympyfact*{}": {
-      "snippet": "sympyfact*{${1:commande sympy}}"
-    },
-    "sympyfact*<>{}": {
-      "snippet": "sympyfact*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympyfact{}": {
-      "snippet": "dsympyfact{${1:commande sympy}}"
-    },
-    "dsympyfact<>{}": {
-      "snippet": "dsympyfact<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "dsympyfact*{}": {
-      "snippet": "dsympyfact*{${1:commande sympy}}"
-    },
-    "dsympyfact*<>{}": {
-      "snippet": "dsympyfact*<${2:NoSimplif}>{${1:commande sympy}}"
-    },
-    "sympyresol{}": {
-      "snippet": "sympyresol{${1:equation sympy}}"
-    },
-    "sympyresol{}[]": {
-      "snippet": "sympyresol{${1:equation sympy}}[${2:variable}]"
-    },
-    "sympyresol*{}": {
-      "snippet": "sympyresol*{${1:equation sympy}}"
-    },
-    "sympyresol*{}[]": {
-      "snippet": "sympyresol*{${1:equation sympy}}[${2:variable}]"
-    },
-    "dsympyresol{}": {
-      "snippet": "dsympyresol{${1:equation sympy}}"
-    },
-    "dsympyresol{}[]": {
-      "snippet": "dsympyresol{${1:equation sympy}}[${2:variable}]"
-    },
-    "dsympyresol*{}": {
-      "snippet": "dsympyresol*{${1:equation sympy}}"
-    },
-    "dsympyresol*{}[]": {
-      "snippet": "dsympyresol*{${1:equation sympy}}[${2:variable}]"
-    },
-    "sympyresolC{}": {
-      "snippet": "sympyresolC{${1:equation sympy}}"
-    },
-    "sympyresolC{}[]": {
-      "snippet": "sympyresolC{${1:equation sympy}}[${2:variable}]"
-    },
-    "sympyresolC*{}": {
-      "snippet": "sympyresolC*{${1:equation sympy}}"
-    },
-    "sympyresolC*{}[]": {
-      "snippet": "sympyresolC*{${1:equation sympy}}[${2:variable}]"
-    },
-    "dsympyresolC{}": {
-      "snippet": "dsympyresolC{${1:equation sympy}}"
-    },
-    "dsympyresolC{}[]": {
-      "snippet": "dsympyresolC{${1:equation sympy}}[${2:variable}]"
-    },
-    "dsympyresolC*{}": {
-      "snippet": "dsympyresolC*{${1:equation sympy}}"
-    },
-    "dsympyresolC*{}[]": {
-      "snippet": "dsympyresolC*{${1:equation sympy}}[${2:variable}]"
-    },
-    "sympynbderiv{}{}": {
-      "snippet": "sympynbderiv{${1:expr sympy}}{${2:point}}"
-    },
-    "sympynbderiv{}{}[]": {
-      "snippet": "sympynbderiv{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympynbderiv{}[]{}": {
-      "snippet": "sympynbderiv{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympynbderiv{}[]{}[]": {
-      "snippet": "sympynbderiv{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympynbderiv<>{}{}": {
-      "snippet": "sympynbderiv<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "sympynbderiv<>{}{}[]": {
-      "snippet": "sympynbderiv<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympynbderiv<>{}[]{}": {
-      "snippet": "sympynbderiv<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympynbderiv<>{}[]{}[]": {
-      "snippet": "sympynbderiv<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympynbderiv*{}{}": {
-      "snippet": "sympynbderiv*{${1:expr sympy}}{${2:point}}"
-    },
-    "sympynbderiv*{}{}[]": {
-      "snippet": "sympynbderiv*{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympynbderiv*{}[]{}": {
-      "snippet": "sympynbderiv*{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympynbderiv*{}[]{}[]": {
-      "snippet": "sympynbderiv*{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympynbderiv*<>{}{}": {
-      "snippet": "sympynbderiv*<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "sympynbderiv*<>{}{}[]": {
-      "snippet": "sympynbderiv*<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympynbderiv*<>{}[]{}": {
-      "snippet": "sympynbderiv*<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympynbderiv*<>{}[]{}[]": {
-      "snippet": "sympynbderiv*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympynbderiv{}{}": {
-      "snippet": "dsympynbderiv{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympynbderiv{}{}[]": {
-      "snippet": "dsympynbderiv{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympynbderiv{}[]{}": {
-      "snippet": "dsympynbderiv{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympynbderiv{}[]{}[]": {
-      "snippet": "dsympynbderiv{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympynbderiv<>{}{}": {
-      "snippet": "dsympynbderiv<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympynbderiv<>{}{}[]": {
-      "snippet": "dsympynbderiv<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympynbderiv<>{}[]{}": {
-      "snippet": "dsympynbderiv<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympynbderiv<>{}[]{}[]": {
-      "snippet": "dsympynbderiv<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympynbderiv*{}{}": {
-      "snippet": "dsympynbderiv*{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympynbderiv*{}{}[]": {
-      "snippet": "dsympynbderiv*{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympynbderiv*{}[]{}": {
-      "snippet": "dsympynbderiv*{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympynbderiv*{}[]{}[]": {
-      "snippet": "dsympynbderiv*{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympynbderiv*<>{}{}": {
-      "snippet": "dsympynbderiv*<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympynbderiv*<>{}{}[]": {
-      "snippet": "dsympynbderiv*<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympynbderiv*<>{}[]{}": {
-      "snippet": "dsympynbderiv*<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympynbderiv*<>{}[]{}[]": {
-      "snippet": "dsympynbderiv*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympyderiv{}": {
-      "snippet": "sympyderiv{${1:expr sympy}}"
-    },
-    "sympyderiv{}[]": {
-      "snippet": "sympyderiv{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyderiv<>{}": {
-      "snippet": "sympyderiv<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "sympyderiv<>{}[]": {
-      "snippet": "sympyderiv<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyderiv*{}": {
-      "snippet": "sympyderiv*{${1:expr sympy}}"
-    },
-    "sympyderiv*{}[]": {
-      "snippet": "sympyderiv*{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyderiv*<>{}": {
-      "snippet": "sympyderiv*<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "sympyderiv*<>{}[]": {
-      "snippet": "sympyderiv*<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyderiv{}": {
-      "snippet": "dsympyderiv{${1:expr sympy}}"
-    },
-    "dsympyderiv{}[]": {
-      "snippet": "dsympyderiv{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyderiv<>{}": {
-      "snippet": "dsympyderiv<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "dsympyderiv<>{}[]": {
-      "snippet": "dsympyderiv<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyderiv*{}": {
-      "snippet": "dsympyderiv*{${1:expr sympy}}"
-    },
-    "dsympyderiv*{}[]": {
-      "snippet": "dsympyderiv*{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyderiv*<>{}": {
-      "snippet": "dsympyderiv*<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "dsympyderiv*<>{}[]": {
-      "snippet": "dsympyderiv*<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyprim{}": {
-      "snippet": "sympyprim{${1:expr sympy}}"
-    },
-    "sympyprim{}[]": {
-      "snippet": "sympyprim{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyprim<>{}": {
-      "snippet": "sympyprim<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "sympyprim<>{}[]": {
-      "snippet": "sympyprim<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyprim*{}": {
-      "snippet": "sympyprim*{${1:expr sympy}}"
-    },
-    "sympyprim*{}[]": {
-      "snippet": "sympyprim*{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyprim*<>{}": {
-      "snippet": "sympyprim*<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "sympyprim*<>{}[]": {
-      "snippet": "sympyprim*<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyprim{}": {
-      "snippet": "dsympyprim{${1:expr sympy}}"
-    },
-    "dsympyprim{}[]": {
-      "snippet": "dsympyprim{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyprim<>{}": {
-      "snippet": "dsympyprim<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "dsympyprim<>{}[]": {
-      "snippet": "dsympyprim<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyprim*{}": {
-      "snippet": "dsympyprim*{${1:expr sympy}}"
-    },
-    "dsympyprim*{}[]": {
-      "snippet": "dsympyprim*{${1:expr sympy}}[${2:variable}]"
-    },
-    "dsympyprim*<>{}": {
-      "snippet": "dsympyprim*<${2:NoSimplif}>{${1:expr sympy}}"
-    },
-    "dsympyprim*<>{}[]": {
-      "snippet": "dsympyprim*<${3:NoSimplif}>{${1:expr sympy}}[${2:variable}]"
-    },
-    "sympyintegr{}{}{}": {
-      "snippet": "sympyintegr{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "sympyintegr{}[]{}{}": {
-      "snippet": "sympyintegr{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "sympyintegr<>{}{}{}": {
-      "snippet": "sympyintegr<${4:NoSimplif}>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "sympyintegr<>{}[]{}{}": {
-      "snippet": "sympyintegr<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "sympyintegr*{}{}{}": {
-      "snippet": "sympyintegr*{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "sympyintegr*{}[]{}{}": {
-      "snippet": "sympyintegr*{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "sympyintegr*<>{}{}{}": {
-      "snippet": "sympyintegr*<${4:NoSimplif}>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "sympyintegr*<>{}[]{}{}": {
-      "snippet": "sympyintegr*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "dsympyintegr{}{}{}": {
-      "snippet": "dsympyintegr{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "dsympyintegr{}[]{}{}": {
-      "snippet": "dsympyintegr{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "dsympyintegr<>{}{}{}": {
-      "snippet": "dsympyintegr<${4:NoSimplif}>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "dsympyintegr<>{}[]{}{}": {
-      "snippet": "dsympyintegr<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "dsympyintegr*{}{}{}": {
-      "snippet": "dsympyintegr*{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "dsympyintegr*{}[]{}{}": {
-      "snippet": "dsympyintegr*{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "dsympyintegr*<>{}{}{}": {
-      "snippet": "dsympyintegr*<${4:NoSimplif}>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
-    },
-    "dsympyintegr*<>{}[]{}{}": {
-      "snippet": "dsympyintegr*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:borne inf}}{${4:borne sup}}"
-    },
-    "sympylim{}{}": {
-      "snippet": "sympylim{${1:expr sympy}}{${2:point}}"
-    },
-    "sympylim{}{}[]": {
-      "snippet": "sympylim{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympylim{}[]{}": {
-      "snippet": "sympylim{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympylim{}[]{}[]": {
-      "snippet": "sympylim{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympylim<>{}{}": {
-      "snippet": "sympylim<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "sympylim<>{}{}[]": {
-      "snippet": "sympylim<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympylim<>{}[]{}": {
-      "snippet": "sympylim<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympylim<>{}[]{}[]": {
-      "snippet": "sympylim<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympylim*{}{}": {
-      "snippet": "sympylim*{${1:expr sympy}}{${2:point}}"
-    },
-    "sympylim*{}{}[]": {
-      "snippet": "sympylim*{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympylim*{}[]{}": {
-      "snippet": "sympylim*{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympylim*{}[]{}[]": {
-      "snippet": "sympylim*{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympylim*<>{}{}": {
-      "snippet": "sympylim*<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "sympylim*<>{}{}[]": {
-      "snippet": "sympylim*<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "sympylim*<>{}[]{}": {
-      "snippet": "sympylim*<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "sympylim*<>{}[]{}[]": {
-      "snippet": "sympylim*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympylim{}{}": {
-      "snippet": "dsympylim{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympylim{}{}[]": {
-      "snippet": "dsympylim{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympylim{}[]{}": {
-      "snippet": "dsympylim{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympylim{}[]{}[]": {
-      "snippet": "dsympylim{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympylim<>{}{}": {
-      "snippet": "dsympylim<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympylim<>{}{}[]": {
-      "snippet": "dsympylim<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympylim<>{}[]{}": {
-      "snippet": "dsympylim<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympylim<>{}[]{}[]": {
-      "snippet": "dsympylim<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympylim*{}{}": {
-      "snippet": "dsympylim*{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympylim*{}{}[]": {
-      "snippet": "dsympylim*{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympylim*{}[]{}": {
-      "snippet": "dsympylim*{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympylim*{}[]{}[]": {
-      "snippet": "dsympylim*{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "dsympylim*<>{}{}": {
-      "snippet": "dsympylim*<${3:NoSimplif}>{${1:expr sympy}}{${2:point}}"
-    },
-    "dsympylim*<>{}{}[]": {
-      "snippet": "dsympylim*<${4:NoSimplif}>{${1:expr sympy}}{${2:point}}[${3:côté}]"
-    },
-    "dsympylim*<>{}[]{}": {
-      "snippet": "dsympylim*<${4:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}"
-    },
-    "dsympylim*<>{}[]{}[]": {
-      "snippet": "dsympylim*<${5:NoSimplif}>{${1:expr sympy}}[${2:variable}]{${3:point}}[${4:côté}]"
-    },
-    "sympyfexpo{}": {
-      "snippet": "sympyfexpo{${1:complexe sympy}}"
-    },
-    "sympyfexpo<>{}": {
-      "snippet": "sympyfexpo<${2:NoSimplif}>{${1:complexe sympy}}"
-    },
-    "sympyfexpo*{}": {
-      "snippet": "sympyfexpo*{${1:complexe sympy}}"
-    },
-    "sympyfexpo*<>{}": {
-      "snippet": "sympyfexpo*<${2:NoSimplif}>{${1:complexe sympy}}"
-    },
-    "dsympyfexpo{}": {
-      "snippet": "dsympyfexpo{${1:complexe sympy}}"
-    },
-    "dsympyfexpo<>{}": {
-      "snippet": "dsympyfexpo<${2:NoSimplif}>{${1:complexe sympy}}"
-    },
-    "dsympyfexpo*{}": {
-      "snippet": "dsympyfexpo*{${1:complexe sympy}}"
-    },
-    "dsympyfexpo*<>{}": {
-      "snippet": "dsympyfexpo*<${2:NoSimplif}>{${1:complexe sympy}}"
+  "deps": [
+    {
+      "name": "xstring"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "sympycalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympycalc{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympycalc<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympycalc<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympycalc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympycalc*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympycalc*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympycalc*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympycalc",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympycalc{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympycalc<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympycalc<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympycalc*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympycalc*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympycalc*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympycalc*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympyimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyimage{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "sympyimage",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyimage{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyimage<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyimage<NoSimplif>{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "sympyimage<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyimage<NoSimplif>{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyimage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyimage*{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "sympyimage*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyimage*{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyimage*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyimage*<NoSimplif>{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "sympyimage*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyimage*<NoSimplif>{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyimage",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyimage{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "dsympyimage",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyimage{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyimage<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyimage<NoSimplif>{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "dsympyimage<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyimage<NoSimplif>{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyimage*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyimage*{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "dsympyimage*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyimage*{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyimage*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyimage*<NoSimplif>{${1:fonction sympy}}"
+      }
+    },
+    {
+      "name": "dsympyimage*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyimage*<NoSimplif>{${1:fonction sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympydev",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympydev{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympydev",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympydev{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympydev<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympydev<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympydev<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympydev<NoSimplif>{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympydev*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympydev*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympydev*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympydev*{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympydev*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympydev*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympydev*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympydev*<NoSimplif>{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympydev",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympydev{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympydev",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympydev{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympydev<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympydev<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympydev<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympydev<NoSimplif>{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympydev*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympydev*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympydev*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympydev*{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympydev*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympydev*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympydev*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympydev*<NoSimplif>{${1:commande sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyfact",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfact{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympyfact<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfact<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympyfact*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfact*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympyfact*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfact*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfact",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfact{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfact<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfact<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfact*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfact*{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfact*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfact*<NoSimplif>{${1:commande sympy}}"
+      }
+    },
+    {
+      "name": "sympyresol",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyresol{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "sympyresol",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyresol{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyresol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyresol*{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "sympyresol*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyresol*{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyresol",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyresol{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "dsympyresol",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyresol{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyresol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyresol*{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "dsympyresol*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyresol*{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyresolC",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyresolC{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "sympyresolC",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyresolC{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyresolC*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyresolC*{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "sympyresolC*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyresolC*{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyresolC",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyresolC{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "dsympyresolC",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyresolC{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyresolC*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyresolC*{${1:equation sympy}}"
+      }
+    },
+    {
+      "name": "dsympyresolC*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyresolC*{${1:equation sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympynbderiv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympynbderiv{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympynbderiv{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympynbderiv{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympynbderiv{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympynbderiv<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympynbderiv<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympynbderiv<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympynbderiv<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympynbderiv*{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympynbderiv*{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympynbderiv*{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv*",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympynbderiv*{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympynbderiv*<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympynbderiv*<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympynbderiv*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympynbderiv*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympynbderiv{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympynbderiv{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympynbderiv{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympynbderiv{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympynbderiv<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympynbderiv<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympynbderiv<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympynbderiv<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympynbderiv*{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympynbderiv*{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympynbderiv*{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv*",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympynbderiv*{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympynbderiv*<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympynbderiv*<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympynbderiv*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympynbderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympynbderiv*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympyderiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyderiv{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyderiv",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyderiv{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyderiv<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyderiv<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyderiv<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyderiv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyderiv*{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyderiv*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyderiv*{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyderiv*<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyderiv*<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyderiv",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyderiv{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyderiv",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyderiv{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyderiv<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyderiv<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyderiv<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyderiv<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyderiv*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyderiv*{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyderiv*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyderiv*{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyderiv*<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyderiv*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyderiv*<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyprim",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyprim{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyprim",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyprim{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyprim<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyprim<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyprim<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyprim<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyprim*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyprim*{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyprim*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyprim*{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyprim*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyprim*<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "sympyprim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "sympyprim*<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyprim",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyprim{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyprim",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyprim{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyprim<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyprim<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyprim<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyprim<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyprim*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyprim*{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyprim*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyprim*{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "dsympyprim*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyprim*<NoSimplif>{${1:expr sympy}}"
+      }
+    },
+    {
+      "name": "dsympyprim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "dsympyprim*<NoSimplif>{${1:expr sympy}}[${2:variable}]"
+      }
+    },
+    {
+      "name": "sympyintegr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sympyintegr{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "sympyintegr{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr<NoSimplif>",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sympyintegr<NoSimplif>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "sympyintegr<NoSimplif>{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sympyintegr*{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "sympyintegr*{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr*<NoSimplif>",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sympyintegr*<NoSimplif>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympyintegr*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "sympyintegr*<NoSimplif>{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dsympyintegr{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "dsympyintegr{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr<NoSimplif>",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dsympyintegr<NoSimplif>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "dsympyintegr<NoSimplif>{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dsympyintegr*{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr*",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "dsympyintegr*{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr*<NoSimplif>",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "dsympyintegr*<NoSimplif>{${1:expr sympy}}{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "dsympyintegr*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}{}",
+        "snippet": "dsympyintegr*<NoSimplif>{${1:expr sympy}}[${4:variable}]{${2:borne inf}}{${3:borne sup}}"
+      }
+    },
+    {
+      "name": "sympylim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympylim{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympylim{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympylim",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympylim{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympylim{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympylim<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympylim<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympylim<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympylim<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympylim<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympylim<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympylim*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympylim*{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympylim*{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympylim*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympylim*{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim*",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympylim*{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "sympylim*<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "sympylim*<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "sympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "sympylim*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "sympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "sympylim*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympylim{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympylim{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympylim{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympylim{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympylim<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympylim<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympylim<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympylim<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympylim*{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim*",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympylim*{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim*",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympylim*{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim*",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympylim*{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dsympylim*<NoSimplif>{${1:expr sympy}}{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}{}[]",
+        "snippet": "dsympylim*<NoSimplif>{${1:expr sympy}}{${2:point}}[${3:côté}]"
+      }
+    },
+    {
+      "name": "dsympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "dsympylim*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}"
+      }
+    },
+    {
+      "name": "dsympylim*<NoSimplif>",
+      "arg": {
+        "format": "{}[]{}[]",
+        "snippet": "dsympylim*<NoSimplif>{${1:expr sympy}}[${3:variable}]{${2:point}}[${4:côté}]"
+      }
+    },
+    {
+      "name": "sympyfexpo",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfexpo{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "sympyfexpo<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfexpo<NoSimplif>{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "sympyfexpo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfexpo*{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "sympyfexpo*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "sympyfexpo*<NoSimplif>{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfexpo",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfexpo{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfexpo<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfexpo<NoSimplif>{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfexpo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfexpo*{${1:complexe sympy}}"
+      }
+    },
+    {
+      "name": "dsympyfexpo*<NoSimplif>",
+      "arg": {
+        "format": "{}",
+        "snippet": "dsympyfexpo*<NoSimplif>{${1:complexe sympy}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

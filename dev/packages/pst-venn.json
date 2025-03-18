@@ -1,10 +1,41 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-xkey": []
+  "deps": [
+    {
+      "name": "pstricks"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psVenn",
+      "arg": {
+        "format": "()()(){}{}",
+        "snippet": "psVenn(${3:x1},${4:y1})(${5:x2},${6:y2})(${7:x3},${8:y3}){${1:radius}}{${2:segments}}"
+      }
+    },
+    {
+      "name": "psVenn",
+      "arg": {
+        "format": "[]()()(){}{}",
+        "snippet": "psVenn[${3:options%keyvals}](${4:x1},${5:y1})(${6:x2},${7:y2})(${8:x3},${9:y3}){${1:radius}}{${2:segments}}",
+        "keys": [
+          "\\psVenn#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psVenn#c": [
+      "bgcircle",
+      "bgcolor=",
+      "bgradius=",
+      "fgcolor=",
+      "vennfill=${1|solid,hlines,dots|}"
+    ]
   },
-  "macros": {},
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

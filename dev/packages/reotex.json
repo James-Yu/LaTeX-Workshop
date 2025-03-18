@@ -1,195 +1,450 @@
 {
-  "includes": {
-    "ifthen": [],
-    "tikz": [],
-    "verbatim": [],
-    "tikzlibrarydecorations.pathmorphing": [],
-    "tikzlibrarydecorations.shapes": [],
-    "tikzlibrarycalc": []
-  },
-  "macros": {
-    "sync{}{}{}": {
-      "snippet": "sync{${1:start}}{${2:target}}{${3:labels}}"
+  "deps": [
+    {
+      "name": "ifthen"
     },
-    "sync*{}{}{}": {
-      "snippet": "sync*{${1:start}}{${2:target}}{${3:labels}}"
+    {
+      "name": "tikz"
     },
-    "lossysync{}{}{}": {
-      "snippet": "lossysync{${1:start}}{${2:target}}{${3:labels}}"
+    {
+      "name": "verbatim"
     },
-    "lossysync*{}{}{}": {
-      "snippet": "lossysync*{${1:start}}{${2:target}}{${3:labels}}"
+    {
+      "name": "tikzlibrarydecorations.pathmorphing"
     },
-    "syncdrain{}{}{}": {
-      "snippet": "syncdrain{${1:start}}{${2:target}}{${3:labels}}"
+    {
+      "name": "tikzlibrarydecorations.shapes"
     },
-    "syncdrain*{}{}{}": {
-      "snippet": "syncdrain*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "syncspout{}{}{}": {
-      "snippet": "syncspout{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "syncspout*{}{}{}": {
-      "snippet": "syncspout*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "filter{}{}{}": {
-      "snippet": "filter{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "filter*{}{}{}": {
-      "snippet": "filter*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifoe{}{}{}": {
-      "snippet": "fifoe{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifoe*{}{}{}": {
-      "snippet": "fifoe*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifof{}{}{}": {
-      "snippet": "fifof{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifof*{}{}{}": {
-      "snippet": "fifof*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "asyncdrain{}{}{}": {
-      "snippet": "asyncdrain{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "asyncdrain*{}{}{}": {
-      "snippet": "asyncdrain*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "asyncspout{}{}{}": {
-      "snippet": "asyncspout{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "asyncspout*{}{}{}": {
-      "snippet": "asyncspout*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifon{}{}{}": {
-      "snippet": "fifon{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "fifon*{}{}{}": {
-      "snippet": "fifon*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "shiftfifon{}{}{}": {
-      "snippet": "shiftfifon{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "shiftfifon*{}{}{}": {
-      "snippet": "shiftfifon*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "lossyfifon{}{}{}": {
-      "snippet": "lossyfifon{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "lossyfifon*{}{}{}": {
-      "snippet": "lossyfifon*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "timer{}{}{}": {
-      "snippet": "timer{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "timer*{}{}{}": {
-      "snippet": "timer*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "ordered{}{}{}": {
-      "snippet": "ordered{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "ordered*{}{}{}": {
-      "snippet": "ordered*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "orderedn{}{}{}": {
-      "snippet": "orderedn{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "orderedn*{}{}{}": {
-      "snippet": "orderedn*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "bag{}{}{}": {
-      "snippet": "bag{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "bag*{}{}{}": {
-      "snippet": "bag*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "bagn{}{}{}": {
-      "snippet": "bagn{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "bagn*{}{}{}": {
-      "snippet": "bagn*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "set{}{}{}": {
-      "snippet": "set{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "set*{}{}{}": {
-      "snippet": "set*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "setn{}{}{}": {
-      "snippet": "setn{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "setn*{}{}{}": {
-      "snippet": "setn*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "delayset{}{}{}": {
-      "snippet": "delayset{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "delayset*{}{}{}": {
-      "snippet": "delayset*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "delaysetn{}{}{}": {
-      "snippet": "delaysetn{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "delaysetn*{}{}{}": {
-      "snippet": "delaysetn*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "keyedset{}{}{}": {
-      "snippet": "keyedset{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "keyedset*{}{}{}": {
-      "snippet": "keyedset*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "keyedsetn{}{}{}": {
-      "snippet": "keyedsetn{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "keyedsetn*{}{}{}": {
-      "snippet": "keyedsetn*{${1:start}}{${2:target}}{${3:labels}}"
-    },
-    "ionode{}{}{}": {
-      "snippet": "ionode{${1:reference}}{${2:point}}{${3:labels}}"
-    },
-    "mixednode{}{}{}": {
-      "snippet": "mixednode{${1:reference}}{${2:point}}{${3:labels}}"
-    },
-    "xrouter{}{}{}": {
-      "snippet": "xrouter{${1:reference}}{${2:point}}{${3:labels}}"
-    },
-    "Lchannel{}{}{}{}{}{}{}": {
-      "snippet": "Lchannel{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Lchannel[]{}{}{}{}{}{}{}": {
-      "snippet": "Lchannel[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Lchannel*{}{}{}{}{}{}{}": {
-      "snippet": "Lchannel*{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Lchannel*[]{}{}{}{}{}{}{}": {
-      "snippet": "Lchannel*[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Uchannel{}{}{}{}{}{}{}": {
-      "snippet": "Uchannel{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Uchannel[]{}{}{}{}{}{}{}": {
-      "snippet": "Uchannel[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Uchannel*{}{}{}{}{}{}{}": {
-      "snippet": "Uchannel*{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "Uchannel*[]{}{}{}{}{}{}{}": {
-      "snippet": "Uchannel*[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
-    },
-    "component{}{}{}": {
-      "snippet": "component{${1:corner1}}{${2:corner2}}{${3:labels}}"
-    },
-    "reader{}{}{}": {
-      "snippet": "reader{${1:reference}}{${2:point}}{${3:labels}}"
-    },
-    "writer{}{}{}": {
-      "snippet": "writer{${1:reference}}{${2:point}}{${3:labels}}"
+    {
+      "name": "tikzlibrarycalc"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "sync",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sync{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "sync*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "sync*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "lossysync",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lossysync{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "lossysync*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lossysync*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "syncdrain",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "syncdrain{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "syncdrain*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "syncdrain*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "syncspout",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "syncspout{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "syncspout*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "syncspout*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "filter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "filter{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "filter*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "filter*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifoe",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifoe{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifoe*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifoe*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifof",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifof{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifof*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifof*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "asyncdrain",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "asyncdrain{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "asyncdrain*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "asyncdrain*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "asyncspout",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "asyncspout{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "asyncspout*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "asyncspout*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifon",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifon{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "fifon*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "fifon*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "shiftfifon",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "shiftfifon{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "shiftfifon*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "shiftfifon*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "lossyfifon",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lossyfifon{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "lossyfifon*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "lossyfifon*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "timer",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "timer{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "timer*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "timer*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "ordered",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ordered{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "ordered*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ordered*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "orderedn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "orderedn{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "orderedn*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "orderedn*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "bag",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bag{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "bag*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bag*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "bagn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bagn{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "bagn*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "bagn*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "set",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "set{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "set*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "set*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "setn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setn{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "setn*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "setn*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "delayset",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "delayset{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "delayset*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "delayset*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "delaysetn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "delaysetn{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "delaysetn*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "delaysetn*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "keyedset",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "keyedset{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "keyedset*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "keyedset*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "keyedsetn",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "keyedsetn{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "keyedsetn*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "keyedsetn*{${1:start}}{${2:target}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "ionode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ionode{${1:reference}}{${2:point}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "mixednode",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "mixednode{${1:reference}}{${2:point}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "xrouter",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "xrouter{${1:reference}}{${2:point}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "Lchannel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "Lchannel{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Lchannel",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "Lchannel[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Lchannel*",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "Lchannel*{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Lchannel*",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "Lchannel*[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Uchannel",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "Uchannel{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Uchannel",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "Uchannel[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Uchannel*",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}",
+        "snippet": "Uchannel*{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "Uchannel*",
+      "arg": {
+        "format": "[]{}{}{}{}{}{}{}",
+        "snippet": "Uchannel*[${8:dashed}]{${1:channel name}}{${2:start}}{${3:target}}{${4:length}}{${5:orientation}}{${6:polarization}}{${7:labels}}"
+      }
+    },
+    {
+      "name": "component",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "component{${1:corner1}}{${2:corner2}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "reader",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "reader{${1:reference}}{${2:point}}{${3:labels}}"
+      }
+    },
+    {
+      "name": "writer",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "writer{${1:reference}}{${2:point}}{${3:labels}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

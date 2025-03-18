@@ -1,48 +1,90 @@
 {
-  "includes": {},
-  "macros": {
-    "company{}": {
-      "snippet": "company{${1:company}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "company",
+      "arg": {
+        "format": "{}",
+        "snippet": "company{${1:company%text}}"
+      }
     },
-    "confidential{}": {
-      "snippet": "confidential{${1:text}}"
+    {
+      "name": "confidential",
+      "arg": {
+        "format": "{}",
+        "snippet": "confidential{${1:text}}"
+      }
     },
-    "emptyfoottopmargin": {},
-    "emptyheadtopmargin": {},
-    "footruleskip": {},
-    "fullcenter{}": {
-      "snippet": "fullcenter{${1:text}}"
+    {
+      "name": "emptyfoottopmargin",
+      "unusual": true
     },
-    "fullwidth": {},
-    "leftmarginwidth": {},
-    "longrule": {},
-    "longthickrule": {},
-    "secshape": {},
-    "settextfraction{}": {
-      "snippet": "settextfraction{${1:factor}}"
+    {
+      "name": "emptyheadtopmargin",
+      "unusual": true
+    },
+    {
+      "name": "footruleskip",
+      "unusual": true
+    },
+    {
+      "name": "fullcenter",
+      "arg": {
+        "format": "{}",
+        "snippet": "fullcenter{${1:text}}"
+      }
+    },
+    {
+      "name": "fullwidth",
+      "unusual": true
+    },
+    {
+      "name": "leftmarginwidth",
+      "unusual": true
+    },
+    {
+      "name": "longrule"
+    },
+    {
+      "name": "longthickrule"
+    },
+    {
+      "name": "secshape",
+      "unusual": true
+    },
+    {
+      "name": "settextfraction",
+      "arg": {
+        "format": "{}",
+        "snippet": "settextfraction{${1:factor}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "a4paper",
-    "a5paper",
-    "b5paper",
-    "letterpaper",
-    "legalpaper",
-    "executivepaper",
-    "landscape",
-    "10pt",
-    "11pt",
-    "12pt",
-    "oneside",
-    "twoside",
-    "draft",
-    "final",
-    "titlepage",
-    "notitlepage",
-    "leqno",
-    "fleqn",
-    "openbib"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\documentclass/hitec#c": [
+      "a4paper",
+      "a5paper",
+      "b5paper",
+      "letterpaper",
+      "legalpaper",
+      "executivepaper",
+      "landscape",
+      "10pt",
+      "11pt",
+      "12pt",
+      "oneside",
+      "twoside",
+      "draft",
+      "final",
+      "titlepage",
+      "notitlepage",
+      "leqno",
+      "fleqn",
+      "openbib"
+    ]
+  },
+  "args": [
+    "\\documentclass/hitec#c"
+  ]
 }

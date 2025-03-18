@@ -1,173 +1,469 @@
 {
-  "includes": {
-    "keyval": []
-  },
-  "macros": {
-    "timingconfigure{}": {
-      "snippet": "timingconfigure{${1:options}}"
-    },
-    "timingconfigure[]{}": {
-      "snippet": "timingconfigure[${2:cond}]{${1:options}}"
-    },
-    "timingstart{}": {
-      "snippet": "timingstart{${1:abstime}}"
-    },
-    "timingstart[]{}": {
-      "snippet": "timingstart[${2:cond}]{${1:abstime}}"
-    },
-    "timingstart*{}": {
-      "snippet": "timingstart*{${1:reltime}}"
-    },
-    "timingstart*[]{}": {
-      "snippet": "timingstart*[${2:cond}]{${1:reltime}}"
-    },
-    "timingsplit{}": {
-      "snippet": "timingsplit{${1:abstime}}"
-    },
-    "timingsplit[]{}": {
-      "snippet": "timingsplit[${2:cond}]{${1:abstime}}"
-    },
-    "timingsplit*{}": {
-      "snippet": "timingsplit*{${1:reltime}}"
-    },
-    "timingsplit*[]{}": {
-      "snippet": "timingsplit*[${2:cond}]{${1:reltime}}"
-    },
-    "timingstop{}": {
-      "snippet": "timingstop{${1:abstime}}"
-    },
-    "timingstop[]{}": {
-      "snippet": "timingstop[${2:cond}]{${1:abstime}}"
-    },
-    "timingstop*{}": {
-      "snippet": "timingstop*{${1:reltime}}"
-    },
-    "timingstop*[]{}": {
-      "snippet": "timingstop*[${2:cond}]{${1:reltime}}"
-    },
-    "timingnext{}": {
-      "snippet": "timingnext{${1:abstime}}"
-    },
-    "timingnext[]{}": {
-      "snippet": "timingnext[${2:cond}]{${1:abstime}}"
-    },
-    "timingnext*{}": {
-      "snippet": "timingnext*{${1:reltime}}"
-    },
-    "timingnext*[]{}": {
-      "snippet": "timingnext*[${2:cond}]{${1:reltime}}"
-    },
-    "timinglapse{}": {
-      "snippet": "timinglapse{${1:reltime}}"
-    },
-    "timinglapse[]{}": {
-      "snippet": "timinglapse[${2:cond}]{${1:reltime}}"
-    },
-    "timinggauge{}": {
-      "snippet": "timinggauge{${1:abstime}}"
-    },
-    "timinggauge[]{}": {
-      "snippet": "timinggauge[${2:cond}]{${1:abstime}}"
-    },
-    "timingblocktotal": {},
-    "timingblocktotal[]": {
-      "snippet": "timingblocktotal[${1:error}]"
-    },
-    "timingblocktotal*": {},
-    "timingblocktotal*[]": {
-      "snippet": "timingblocktotal*[${1:error}]"
-    },
-    "timingchapter": {},
-    "timingchapter[]": {
-      "snippet": "timingchapter[${1:cond}]"
-    },
-    "timingchapterend": {},
-    "timingchapterend[]": {
-      "snippet": "timingchapterend[${1:cond}]"
-    },
-    "timingchapterlabel{}": {
-      "snippet": "timingchapterlabel{${1:chapterlabel}}"
-    },
-    "timingchaptertotal{}": {
-      "snippet": "timingchaptertotal{${1:chapterlabel}}"
-    },
-    "timingchapterlabel[]{}": {
-      "snippet": "timingchapterlabel[${2:error}]{${1:chapterlabel}}"
-    },
-    "timingchaptertotal*{}": {
-      "snippet": "timingchaptertotal*{${1:chapterlabel}}"
-    },
-    "timingchapterlabel*[]{}": {
-      "snippet": "timingchapterlabel*[${2:error}]{${1:chapterlabel}}"
-    },
-    "timingreturn": {},
-    "timingsession": {},
-    "timingsession[]": {
-      "snippet": "timingsession[${1:cond}]"
-    },
-    "timingsessionend": {},
-    "timingsessionend[]": {
-      "snippet": "timingsessionend[${1:cond}]"
-    },
-    "timinglistofsessions": {},
-    "timingcomment{}": {
-      "snippet": "timingcomment{${1:comment}}"
-    },
-    "timingcomment[]{}": {
-      "snippet": "timingcomment[${2:cond}]{${1:comment}}"
-    },
-    "timingif{}": {
-      "snippet": "timingif{${1:code}}"
-    },
-    "timingif[]{}": {
-      "snippet": "timingif[${2:cond}]{${1:code}}"
-    },
-    "timingprint{}": {
-      "snippet": "timingprint{${1:arg}}"
-    },
-    "timingprint[]{}": {
-      "snippet": "timingprint[${2:opt}]{${1:arg}}"
-    },
-    "timingprintblock{}{}{}": {
-      "snippet": "timingprintblock{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "timingprintchapter{}": {
-      "snippet": "timingprintchapter{${1:arg}}"
-    },
-    "timingprintmark{}": {
-      "snippet": "timingprintmark{${1:arg}}"
-    },
-    "timingprintremark{}": {
-      "snippet": "timingprintremark{${1:arg}}"
-    },
-    "timingprintsession{}{}": {
-      "snippet": "timingprintsession{${1:arg1}}{${2:arg2}}"
-    },
-    "timingsessionline{}{}{}{}{}": {
-      "snippet": "timingsessionline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
-    },
-    "timingsessiontotal{}": {
-      "snippet": "timingsessiontotal{${1:arg}}"
-    },
-    "timingsessiontotal[]{}": {
-      "snippet": "timingsessiontotal[${2:opt}]{${1:arg}}"
+  "deps": [
+    {
+      "name": "keyval"
     }
-  },
-  "envs": {},
-  "options": [
-    "print",
-    "block",
-    "chapter",
-    "session",
-    "comment",
-    "warning",
-    "width=",
-    "widthl=",
-    "widthr=",
-    "autosession=${1:duration}",
-    "depthsec=${1:depth}",
-    "depthpar=${1:depth}",
-    "flags={${1:flag1,flag2,...}}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "timingconfigure",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingconfigure{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/sesstime#c,\\timingconfigure"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingconfigure",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingconfigure[${2:cond}]{${1:options%keyvals}}",
+        "keys": [
+          "\\usepackage/sesstime#c,\\timingconfigure"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "timingstart",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingstart{${1:abstime}}"
+      }
+    },
+    {
+      "name": "timingstart",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingstart[${2:cond%keyvals}]{${1:abstime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingstart*",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingstart*{${1:reltime}}"
+      }
+    },
+    {
+      "name": "timingstart*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingstart*[${2:cond%keyvals}]{${1:reltime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingsplit",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingsplit{${1:abstime}}"
+      }
+    },
+    {
+      "name": "timingsplit",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingsplit[${2:cond%keyvals}]{${1:abstime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingsplit*",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingsplit*{${1:reltime}}"
+      }
+    },
+    {
+      "name": "timingsplit*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingsplit*[${2:cond%keyvals}]{${1:reltime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingstop",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingstop{${1:abstime}}"
+      }
+    },
+    {
+      "name": "timingstop",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingstop[${2:cond%keyvals}]{${1:abstime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingstop*",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingstop*{${1:reltime}}"
+      }
+    },
+    {
+      "name": "timingstop*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingstop*[${2:cond%keyvals}]{${1:reltime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingnext",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingnext{${1:abstime}}"
+      }
+    },
+    {
+      "name": "timingnext",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingnext[${2:cond%keyvals}]{${1:abstime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingnext*",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingnext*{${1:reltime}}"
+      }
+    },
+    {
+      "name": "timingnext*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingnext*[${2:cond%keyvals}]{${1:reltime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timinglapse",
+      "arg": {
+        "format": "{}",
+        "snippet": "timinglapse{${1:reltime}}"
+      }
+    },
+    {
+      "name": "timinglapse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timinglapse[${2:cond%keyvals}]{${1:reltime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timinggauge",
+      "arg": {
+        "format": "{}",
+        "snippet": "timinggauge{${1:abstime}}"
+      }
+    },
+    {
+      "name": "timinggauge",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timinggauge[${2:cond%keyvals}]{${1:abstime}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingblocktotal"
+    },
+    {
+      "name": "timingblocktotal",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingblocktotal[${1:error}]"
+      }
+    },
+    {
+      "name": "timingblocktotal*"
+    },
+    {
+      "name": "timingblocktotal*",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingblocktotal*[${1:error}]"
+      }
+    },
+    {
+      "name": "timingchapter"
+    },
+    {
+      "name": "timingchapter",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingchapter[${1:cond%keyvals}]",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingchapterend"
+    },
+    {
+      "name": "timingchapterend",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingchapterend[${1:cond%keyvals}]",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingchapterlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingchapterlabel{${1:chapterlabel%special}}"
+      }
+    },
+    {
+      "name": "timingchaptertotal",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingchaptertotal{${1:chapterlabel%special}}"
+      }
+    },
+    {
+      "name": "timingchapterlabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingchapterlabel[${2:error}]{${1:chapterlabel%special}}"
+      }
+    },
+    {
+      "name": "timingchaptertotal*",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingchaptertotal*{${1:chapterlabel%special}}"
+      }
+    },
+    {
+      "name": "timingchapterlabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingchapterlabel*[${2:error}]{${1:chapterlabel%special}}"
+      }
+    },
+    {
+      "name": "timingreturn"
+    },
+    {
+      "name": "timingsession"
+    },
+    {
+      "name": "timingsession",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingsession[${1:cond%keyvals}]",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingsessionend"
+    },
+    {
+      "name": "timingsessionend",
+      "arg": {
+        "format": "[]",
+        "snippet": "timingsessionend[${1:cond%keyvals}]",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timinglistofsessions"
+    },
+    {
+      "name": "timingcomment",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingcomment{${1:comment%text}}"
+      }
+    },
+    {
+      "name": "timingcomment",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingcomment[${2:cond%keyvals}]{${1:comment%text}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingif",
+      "arg": {
+        "format": "{}",
+        "snippet": "timingif{${1:code}}"
+      }
+    },
+    {
+      "name": "timingif",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingif[${2:cond%keyvals}]{${1:code}}",
+        "keys": [
+          "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "timingprint",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "timingprint{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingprint",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingprint[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingprintblock",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "timingprintblock{${1:arg1}}{${2:arg2}}{${3:arg3}}"
+      }
+    },
+    {
+      "name": "timingprintchapter",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "timingprintchapter{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingprintmark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "timingprintmark{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingprintremark",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "timingprintremark{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingprintsession",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "timingprintsession{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "timingsessionline",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "timingsessionline{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}{${5:arg5}}"
+      }
+    },
+    {
+      "name": "timingsessiontotal",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "timingsessiontotal{${1:arg}}"
+      }
+    },
+    {
+      "name": "timingsessiontotal",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "timingsessiontotal[${2:opt}]{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/sesstime#c,\\timingconfigure": [
+      "print",
+      "block",
+      "chapter",
+      "session",
+      "comment",
+      "warning",
+      "width=",
+      "widthl=",
+      "widthr=",
+      "autosession=${1:duration}",
+      "depthsec=${1:depth}",
+      "depthpar=${1:depth}",
+      "flags={${1:flag1,flag2,...}}"
+    ],
+    "\\timingstart,\\timingstart*,\\timingsplit,\\timingsplit*,\\timingstop,\\timingstop*,\\timingnext,\\timingnext*,\\timinglapse,\\timinggauge,\\timingchapter,\\timingchapterend,\\timingsession,\\timingsessionend,\\timingcomment,\\timingif": [
+      "if=${1:flag}",
+      "not=${1:flag}"
+    ]
+  },
+  "args": [
+    "\\usepackage/sesstime#c,\\timingconfigure"
+  ]
 }

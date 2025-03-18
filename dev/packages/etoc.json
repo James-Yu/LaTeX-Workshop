@@ -1,0 +1,923 @@
+{
+  "deps": [
+    {
+      "name": "kvoptions"
+    },
+    {
+      "name": "multicol"
+    }
+  ],
+  "macros": [
+    {
+      "name": "locallistoffigures",
+      "if": "lof"
+    },
+    {
+      "name": "etoclocallistoffigureshook",
+      "if": "lof",
+      "unusual": true
+    },
+    {
+      "name": "locallistoftables",
+      "if": "lot"
+    },
+    {
+      "name": "etoclocallistoftableshook",
+      "if": "lot",
+      "unusual": true
+    },
+    {
+      "name": "etocsetup",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocsetup{${1:keyvals}}",
+        "keys": [
+          "\\etocsetup,\\usepackage/etoc#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "tableofcontents*"
+    },
+    {
+      "name": "localtableofcontents"
+    },
+    {
+      "name": "localtableofcontents*"
+    },
+    {
+      "name": "etocclasstocstyle"
+    },
+    {
+      "name": "etocetoclocaltocstyle"
+    },
+    {
+      "name": "etocusertocstyle"
+    },
+    {
+      "name": "etocstandardlines"
+    },
+    {
+      "name": "etoctoclines"
+    },
+    {
+      "name": "etocdefaultlines"
+    },
+    {
+      "name": "etocstoretocstyleinto",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocstoretocstyleinto{${1:cmd}}"
+      }
+    },
+    {
+      "name": "etocstorelinestylesinto",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocstorelinestylesinto{${1:cmd}}"
+      }
+    },
+    {
+      "name": "etocstorethislinestyleinto",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocstorethislinestyleinto{${1:name or number}}{${2:cmd}}"
+      }
+    },
+    {
+      "name": "etocifislocal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifislocal{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifislocaltoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifislocaltoc{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifislocallof",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifislocallof{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifislocallot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifislocallot{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifmaintoctotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifmaintoctotoc{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etociflocaltoctotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etociflocaltoctotoc{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etociflocalloftotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etociflocalloftotoc{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etociflocallottotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etociflocallottotoc{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifisstarred",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifisstarred{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etoclocalheadtotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etoclocalheadtotoc{${1:level name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "etocglobalheadtotoc",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocglobalheadtotoc{${1:level name}}{${2:text}}"
+      }
+    },
+    {
+      "name": "etoclevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "etoclevel{${1:level name}}"
+      }
+    },
+    {
+      "name": "etocthelevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocthelevel{${1:level name}}"
+      }
+    },
+    {
+      "name": "etocthemaxlevel"
+    },
+    {
+      "name": "etocifunknownlevelTF",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "etocifunknownlevelTF{${1:level name}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "etocdivisionnameatlevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocdivisionnameatlevel{${1:number}}"
+      }
+    },
+    {
+      "name": "etocetoclocaltocmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "etocetoclistoffiguresmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "etocetoclistoftablesmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "localcontentsname",
+      "unusual": true
+    },
+    {
+      "name": "locallistfigurename",
+      "unusual": true
+    },
+    {
+      "name": "locallisttablename",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocaltocmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocallofmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocallotmaketitle",
+      "unusual": true
+    },
+    {
+      "name": "etocclassmaintocaddtotoc",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocaltocaddtotoc",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocallofaddtotoc",
+      "unusual": true
+    },
+    {
+      "name": "etocclasslocallotaddtotoc",
+      "unusual": true
+    },
+    {
+      "name": "etocsettocstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocsettocstyle{${1:before toc}}{${2:after toc}}"
+      }
+    },
+    {
+      "name": "etocarticlestyle",
+      "unusual": true
+    },
+    {
+      "name": "etocarticlestylenomarks",
+      "unusual": true
+    },
+    {
+      "name": "etocreportstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocreportstylenomarks",
+      "unusual": true
+    },
+    {
+      "name": "etocbookstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocbookstylenomarks",
+      "unusual": true
+    },
+    {
+      "name": "etocmemoirstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocscrartclstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocscrreprtstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocscrbookstyle",
+      "unusual": true
+    },
+    {
+      "name": "etoctocloftstyle",
+      "unusual": true
+    },
+    {
+      "name": "etocinline"
+    },
+    {
+      "name": "etocnopar",
+      "unusual": true
+    },
+    {
+      "name": "etocdisplay"
+    },
+    {
+      "name": "etocmulticolstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocmulticolstyle{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etocmulticolstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocmulticolstyle[${2:num of cols}]{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etocmulticol",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocmulticol{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etocmulticol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocmulticol[${2:num of cols}]{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etocmulticol*",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocmulticol*{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etocmulticol*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocmulticol*[${2:num of cols}]{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etoclocalmulticol",
+      "arg": {
+        "format": "{}",
+        "snippet": "etoclocalmulticol{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etoclocalmulticol",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etoclocalmulticol[${2:num of cols}]{${1:heading%text}}"
+      }
+    },
+    {
+      "name": "etoctocstyle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etoctocstyle{${1:num of cols}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "etoctocstyle",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "etoctocstyle[${3:kind}]{${1:num of cols}}{${2:title%text}}"
+      }
+    },
+    {
+      "name": "etoctocstylewithmarks",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "etoctocstylewithmarks{${1:num of cols}}{${2:title%plain}}{${3:mark}}"
+      }
+    },
+    {
+      "name": "etoctocstylewithmarks",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "etoctocstylewithmarks[${4:kind}]{${1:num of cols}}{${2:title%text}}{${3:mark}}"
+      }
+    },
+    {
+      "name": "etoctocstylewithmarksnouc",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "etoctocstylewithmarksnouc{${1:num of cols}}{${2:title%text}}{${3:mark}}"
+      }
+    },
+    {
+      "name": "etoctocstylewithmarksnouc",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "etoctocstylewithmarksnouc[${4:kind}]{${1:num of cols}}{${2:title%text}}{${3:mark}}"
+      }
+    },
+    {
+      "name": "etocruledstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocruledstyle{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocruledstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocruledstyle[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocruled",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocruled{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocruled",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocruled[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etoclocalruled",
+      "arg": {
+        "format": "{}",
+        "snippet": "etoclocalruled{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etoclocalruled",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etoclocalruled[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocframedstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocframedstyle{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocframedstyle",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocframedstyle[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocframed",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocframed{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocframed",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etocframed[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etoclocalframed",
+      "arg": {
+        "format": "{}",
+        "snippet": "etoclocalframed{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etoclocalframed",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "etoclocalframed[${2:num of cols}]{${1:title%text}}"
+      }
+    },
+    {
+      "name": "etocabovetocskip",
+      "unusual": true
+    },
+    {
+      "name": "etocbelowtocskip",
+      "unusual": true
+    },
+    {
+      "name": "etoccolumnsep",
+      "unusual": true
+    },
+    {
+      "name": "etocmulticolsep",
+      "unusual": true
+    },
+    {
+      "name": "etocmulticolpretolerance",
+      "unusual": true
+    },
+    {
+      "name": "etocmulticoltolerance",
+      "unusual": true
+    },
+    {
+      "name": "etocdefaultnbcol",
+      "unusual": true
+    },
+    {
+      "name": "etocinnertopsep",
+      "unusual": true
+    },
+    {
+      "name": "etoctoprule",
+      "unusual": true
+    },
+    {
+      "name": "etoctoprulecolorcmd",
+      "unusual": true
+    },
+    {
+      "name": "etocinnerleftsep",
+      "unusual": true
+    },
+    {
+      "name": "etocinnerrightsep",
+      "unusual": true
+    },
+    {
+      "name": "etocinnerbottomsep",
+      "unusual": true
+    },
+    {
+      "name": "etocleftrule",
+      "unusual": true
+    },
+    {
+      "name": "etocrightrule",
+      "unusual": true
+    },
+    {
+      "name": "etocbottomrule",
+      "unusual": true
+    },
+    {
+      "name": "etocleftrulecolorcmd",
+      "unusual": true
+    },
+    {
+      "name": "etocrightrulecolorcmd",
+      "unusual": true
+    },
+    {
+      "name": "etocbottomrulecolorcmd",
+      "unusual": true
+    },
+    {
+      "name": "etocbkgcolorcmd",
+      "unusual": true
+    },
+    {
+      "name": "etocframedmphook",
+      "unusual": true
+    },
+    {
+      "name": "etocoldpar",
+      "unusual": true
+    },
+    {
+      "name": "etocinnertopsep",
+      "unusual": true
+    },
+    {
+      "name": "etocaftertitlehook",
+      "unusual": true
+    },
+    {
+      "name": "etocaftercontentshook",
+      "unusual": true
+    },
+    {
+      "name": "etocbeforetitlehook",
+      "unusual": true
+    },
+    {
+      "name": "etocaftertochook",
+      "unusual": true
+    },
+    {
+      "name": "etocsetstyle",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "etocsetstyle{${1:level name}}{${2:start}}{${3:prefix}}{${4:contents}}{${5:finish}}"
+      }
+    },
+    {
+      "name": "etocname"
+    },
+    {
+      "name": "etocnumber"
+    },
+    {
+      "name": "etocpage"
+    },
+    {
+      "name": "etocskipfirstprefix"
+    },
+    {
+      "name": "etociffirst",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etociffirst{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocxiffirst",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocxiffirst{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocifnumbered",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifnumbered{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocxifnumbered",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocxifnumbered{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocthename"
+    },
+    {
+      "name": "etocthenumber"
+    },
+    {
+      "name": "etocthepage"
+    },
+    {
+      "name": "etoclink",
+      "arg": {
+        "format": "{}",
+        "snippet": "etoclink{${1:text}}"
+      }
+    },
+    {
+      "name": "etocthelinkedname"
+    },
+    {
+      "name": "etocthelinkednumber"
+    },
+    {
+      "name": "etocthelinkedpage"
+    },
+    {
+      "name": "etocthelink"
+    },
+    {
+      "name": "etocsetlevel",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocsetlevel{${1:level name}}{${2:number}}"
+      }
+    },
+    {
+      "name": "etocglobaldefs"
+    },
+    {
+      "name": "etoclocaldefs"
+    },
+    {
+      "name": "etocfontminustwo",
+      "unusual": true
+    },
+    {
+      "name": "etocfontminusone",
+      "unusual": true
+    },
+    {
+      "name": "etocfontzero",
+      "unusual": true
+    },
+    {
+      "name": "etocfontone",
+      "unusual": true
+    },
+    {
+      "name": "etocfonttwo",
+      "unusual": true
+    },
+    {
+      "name": "etocfontthree",
+      "unusual": true
+    },
+    {
+      "name": "etocsepminustwo",
+      "unusual": true
+    },
+    {
+      "name": "etocsepminusone",
+      "unusual": true
+    },
+    {
+      "name": "etocsepzero",
+      "unusual": true
+    },
+    {
+      "name": "etocsepone",
+      "unusual": true
+    },
+    {
+      "name": "etocseptwo",
+      "unusual": true
+    },
+    {
+      "name": "etocsepthree",
+      "unusual": true
+    },
+    {
+      "name": "etocminustwoleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "etocminustworightmargin",
+      "unusual": true
+    },
+    {
+      "name": "etocminusoneleftmargin",
+      "unusual": true
+    },
+    {
+      "name": "etocminusonerightmargin",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadminustwo",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadminusone",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadzero",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadone",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadtwo",
+      "unusual": true
+    },
+    {
+      "name": "etocbaselinespreadthree",
+      "unusual": true
+    },
+    {
+      "name": "etoctoclineleaders",
+      "unusual": true
+    },
+    {
+      "name": "etocabbrevpagename",
+      "unusual": true
+    },
+    {
+      "name": "etocpartname",
+      "unusual": true
+    },
+    {
+      "name": "etocbookname",
+      "unusual": true
+    },
+    {
+      "name": "etoctableofcontents",
+      "unusual": true
+    },
+    {
+      "name": "etockeeporiginaltableofcontents",
+      "unusual": true
+    },
+    {
+      "name": "localtableofcontentswithrelativedepth",
+      "arg": {
+        "format": "{}",
+        "snippet": "localtableofcontentswithrelativedepth{${1:number}}"
+      }
+    },
+    {
+      "name": "invisibletableofcontents"
+    },
+    {
+      "name": "invisiblelocaltableofcontents"
+    },
+    {
+      "name": "etocsettocdepth",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocsettocdepth{${1:level}}"
+      }
+    },
+    {
+      "name": "etocsetnexttocdepth",
+      "arg": {
+        "format": "{}",
+        "snippet": "etocsetnexttocdepth{${1:level}}"
+      }
+    },
+    {
+      "name": "etocobeytoctocdepth"
+    },
+    {
+      "name": "etocignoretoctocdepth"
+    },
+    {
+      "name": "etocsettagdepth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocsettagdepth{${1:tag name}}{${2:level}}"
+      }
+    },
+    {
+      "name": "etocobeydepthtags"
+    },
+    {
+      "name": "etocignoredepthtags"
+    },
+    {
+      "name": "etoclocaltop"
+    },
+    {
+      "name": "etocchecksemptiness"
+    },
+    {
+      "name": "etocdoesnotcheckemptiness"
+    },
+    {
+      "name": "etocnotocifnotoc"
+    },
+    {
+      "name": "etocifwasempty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocifwasempty{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etocxifwasempty",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocxifwasempty{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "etoctoccontentsline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etoctoccontentsline{${1:level name}}{${2:name}}"
+      }
+    },
+    {
+      "name": "etoctoccontentsline*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "etoctoccontentsline*{${1:level name}}{${2:name}}{${3:bookmark level}}"
+      }
+    },
+    {
+      "name": "etocimmediatetoccontentsline",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "etocimmediatetoccontentsline{${1:level name}}{${2:name}}"
+      }
+    },
+    {
+      "name": "etocimmediatetoccontentsline*",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "etocimmediatetoccontentsline*{${1:level name}}{${2:name}}{${3:bookmark level}}"
+      }
+    },
+    {
+      "name": "etocnoprotrusion",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/etoc#c": [
+      "lof",
+      "lot",
+      "deeplevels"
+    ],
+    "\\etocsetup,\\usepackage/etoc#c": [
+      "maintoctotoc",
+      "localtoctotoc",
+      "localloftotoc",
+      "locallottotoc",
+      "ouroboros"
+    ]
+  },
+  "args": [
+    "\\usepackage/etoc#c",
+    "\\etocsetup,\\usepackage/etoc#c"
+  ]
+}

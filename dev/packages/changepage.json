@@ -1,44 +1,104 @@
 {
-  "includes": {},
-  "macros": {
-    "ifstrictpagecheck": {},
-    "strictpagecheckfalse": {},
-    "strictpagechecktrue": {},
-    "strictpagecheck": {},
-    "easypagecheck": {},
-    "ifoddpage": {},
-    "oddpagefalse": {},
-    "oddpagetrue": {},
-    "cplabel": {},
-    "pmemlabel{}": {
-      "snippet": "pmemlabel{${1:label}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "ifstrictpagecheck",
+      "unusual": true
     },
-    "newpmemlabel{}{}": {
-      "snippet": "newpmemlabel{${1:label}}{${2:page num}}"
+    {
+      "name": "strictpagecheckfalse",
+      "unusual": true
     },
-    "pmemlabelref{}": {
-      "snippet": "pmemlabelref{${1:label}}"
+    {
+      "name": "strictpagechecktrue",
+      "unusual": true
     },
-    "checkoddpage": {},
-    "changetext{}{}{}{}{}": {
-      "snippet": "changetext{${1:textheight}}{${2:textwidth}}{${3:evenmargin}}{${4:oddmargin}}{${5:colsep}}"
+    {
+      "name": "strictpagecheck"
     },
-    "changepage{}{}{}{}{}{}{}{}{}": {
-      "snippet": "changepage{${1:textheight}}{${2:textwidth}}{${3:evenmargin}}{${4:oddmargin}}{${5:colsep}}{${6:topmargin}}{${7:headheight}}{${8:headsep}}{${9:footskip}}"
+    {
+      "name": "easypagecheck"
+    },
+    {
+      "name": "ifoddpage",
+      "unusual": true
+    },
+    {
+      "name": "oddpagefalse",
+      "unusual": true
+    },
+    {
+      "name": "oddpagetrue",
+      "unusual": true
+    },
+    {
+      "name": "cplabel",
+      "unusual": true
+    },
+    {
+      "name": "pmemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pmemlabel{${1:label}}"
+      }
+    },
+    {
+      "name": "newpmemlabel",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newpmemlabel{${1:label}}{${2:page num}}"
+      }
+    },
+    {
+      "name": "pmemlabelref",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "pmemlabelref{${1:label}}"
+      }
+    },
+    {
+      "name": "checkoddpage"
+    },
+    {
+      "name": "changetext",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "changetext{${1:textheight%l}}{${2:textwidth%l}}{${3:evenmargin%l}}{${4:oddmargin%l}}{${5:colsep%l}}"
+      }
+    },
+    {
+      "name": "changepage",
+      "arg": {
+        "format": "{}{}{}{}{}{}{}{}{}",
+        "snippet": "changepage{${1:textheight%l}}{${2:textwidth%l}}{${3:evenmargin%l}}{${4:oddmargin%l}}{${5:colsep%l}}{${6:topmargin%l}}{${7:headheight%l}}{${8:headsep%l}}{${9:footskip%l}}"
+      }
     }
-  },
-  "envs": {
-    "adjustwidth{}{}": {
-      "name": "adjustwidth",
-      "snippet": "{${1:leftmargin}}{${2:rightmargin}}"
-    },
-    "adjustwidth*{}{}": {
-      "name": "adjustwidth*",
-      "snippet": "{${1:leftmargin}}{${2:rightmargin}}"
-    }
-  },
-  "options": [
-    "strict"
   ],
-  "keyvals": []
+  "envs": [
+    {
+      "name": "adjustwidth",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:leftmargin%l}}{${2:rightmargin%l}}"
+      }
+    },
+    {
+      "name": "adjustwidth*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:leftmargin%l}}{${2:rightmargin%l}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/changepage#c": [
+      "strict"
+    ]
+  },
+  "args": [
+    "\\usepackage/changepage#c"
+  ]
 }

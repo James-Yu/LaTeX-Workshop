@@ -1,38 +1,105 @@
 {
-  "includes": {
-    "genealogytree": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "gtrDBspouse": {},
-    "gtrifspousedefined{}{}": {
-      "snippet": "gtrifspousedefined{${1:true}}{${2:false}}"
+  "deps": [
+    {
+      "name": "genealogytree"
     },
-    "gtrPrintSpouse": {},
-    "gtrPrintSpouseDetails": {},
-    "gtrDBchildren": {},
-    "gtrDBdaughters": {},
-    "gtrDBsons": {},
-    "gtrifchildrendefined{}{}": {
-      "snippet": "gtrifchildrendefined{${1:true}}{${2:false}}"
-    },
-    "gtrPrintChildren": {},
-    "gtrltSparseNodeProcessor": {},
-    "gtrltIfSparseEnabled{}{}": {
-      "snippet": "gtrltIfSparseEnabled{${1:true}}{${2:false}}"
-    },
-    "gtrltFieldCount": {},
-    "gtrltIfSparse{}{}": {
-      "snippet": "gtrltIfSparse{${1:true}}{${2:false}}"
-    },
-    "gtrltDeclareFieldCount{}{}": {
-      "snippet": "gtrltDeclareFieldCount{${1:db-format}}{${2:macro}}"
-    },
-    "gtrltFieldCountByConditionals{}": {
-      "snippet": "gtrltFieldCountByConditionals{${1:cond-list}}"
+    {
+      "name": "etoolbox"
     }
+  ],
+  "macros": [
+    {
+      "name": "gtrDBspouse",
+      "unusual": true
+    },
+    {
+      "name": "gtrifspousedefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifspousedefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintSpouse"
+    },
+    {
+      "name": "gtrPrintSpouseDetails"
+    },
+    {
+      "name": "gtrDBchildren",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBdaughters",
+      "unusual": true
+    },
+    {
+      "name": "gtrDBsons",
+      "unusual": true
+    },
+    {
+      "name": "gtrifchildrendefined",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrifchildrendefined{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrPrintChildren"
+    },
+    {
+      "name": "gtrltSparseNodeProcessor",
+      "unusual": true
+    },
+    {
+      "name": "gtrltIfSparseEnabled",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrltIfSparseEnabled{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrltFieldCount",
+      "unusual": true
+    },
+    {
+      "name": "gtrltIfSparse",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrltIfSparse{${1:true}}{${2:false}}"
+      }
+    },
+    {
+      "name": "gtrltDeclareFieldCount",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gtrltDeclareFieldCount{${1:db-format}}{${2:macro}}"
+      }
+    },
+    {
+      "name": "gtrltFieldCountByConditionals",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gtrltFieldCountByConditionals{${1:cond-list}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\genealogytree#c,\\genealogytreeinput#c,\\begin{genealogypicture}#c,\\gtrset#c,\\gtrkeysappto#c,\\gtrkeysgappto#c,\\gtrsetoptionsfornode#c,\\gtrsetoptionsforfamily#c,\\gtrsetoptionsforsubtree#c,\\gtrparserdebug#c,\\gtrparserdebuginput#c,\\gtrprocessordebug#c,\\gtrprocessordebuginput#c,\\gtrfanchart#c,\\gtrfanchartinput#c": [
+      "sparse display",
+      "sparse node size from=${1:min} to ${2:max}",
+      "sparse max fields=${1:integer}",
+      "sparse inner from level=${1:integer}",
+      "sparse leaf from level=${1:integer}",
+      "sparse inner never"
+    ]
   },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

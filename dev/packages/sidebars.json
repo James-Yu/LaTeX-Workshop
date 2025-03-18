@@ -1,25 +1,54 @@
 {
-  "includes": {},
-  "macros": {
-    "backgroundcolor{}": {
-      "snippet": "backgroundcolor{${1:r,g,b}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "backgroundcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "backgroundcolor{${1:r,g,b}}"
+      }
     },
-    "sidebarcolor{}": {
-      "snippet": "sidebarcolor{${1:r,g,b}}"
+    {
+      "name": "sidebarcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "sidebarcolor{${1:r,g,b}}"
+      }
     },
-    "highlightcolor{}": {
-      "snippet": "highlightcolor{${1:r,g,b}}"
+    {
+      "name": "highlightcolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "highlightcolor{${1:r,g,b}}"
+      }
     },
-    "titlecolor{}": {
-      "snippet": "titlecolor{${1:r,g,b}}"
+    {
+      "name": "titlecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "titlecolor{${1:r,g,b}}"
+      }
     },
-    "sidebartitlecolor{}": {
-      "snippet": "sidebartitlecolor{${1:r,g,b}}"
+    {
+      "name": "sidebartitlecolor",
+      "arg": {
+        "format": "{}",
+        "snippet": "sidebartitlecolor{${1:r,g,b}}"
+      }
     }
-  },
-  "envs": {},
-  "options": [
-    "compress"
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/sidebars#c": [
+      "compress"
+    ],
+    "\\begin{slide}#c,\\begin{multislide}#c,\\slidestyle#c": [
+      "plain",
+      "outline",
+      "normal"
+    ]
+  },
+  "args": [
+    "\\usepackage/sidebars#c"
+  ]
 }

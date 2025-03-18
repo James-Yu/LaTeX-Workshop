@@ -1,0 +1,185 @@
+{
+  "deps": [
+    {
+      "name": "class-memoir"
+    },
+    {
+      "name": "expkv-def"
+    },
+    {
+      "name": "expkv-opt"
+    },
+    {
+      "name": "iftex"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "iflang"
+    },
+    {
+      "name": "unicode-math"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "hyperxmp"
+    },
+    {
+      "name": "doclicense",
+      "if": "license=CC-BY-SA"
+    }
+  ],
+  "macros": [
+    {
+      "name": "pronouns",
+      "arg": {
+        "format": "{}",
+        "snippet": "pronouns{${1:pronouns%text}}"
+      }
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "shorttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "shorttitle{${1:text}}"
+      }
+    },
+    {
+      "name": "stream",
+      "arg": {
+        "format": "{}",
+        "snippet": "stream{${1:stream%text}}"
+      }
+    },
+    {
+      "name": "discipline",
+      "arg": {
+        "format": "{}",
+        "snippet": "discipline{${1:discipline%text}}"
+      }
+    },
+    {
+      "name": "degree",
+      "arg": {
+        "format": "{}",
+        "snippet": "degree{${1:degree%text}}"
+      }
+    },
+    {
+      "name": "supervisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "supervisor{${1:supervisor}}"
+      }
+    },
+    {
+      "name": "university",
+      "arg": {
+        "format": "{}",
+        "snippet": "university{${1:university}}"
+      }
+    },
+    {
+      "name": "department",
+      "arg": {
+        "format": "{}",
+        "snippet": "department{${1:department}}"
+      }
+    },
+    {
+      "name": "logo",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo{${1:imagefile}}"
+      }
+    },
+    {
+      "name": "logo*",
+      "arg": {
+        "format": "{}",
+        "snippet": "logo*{${1:code}}"
+      }
+    },
+    {
+      "name": "dissertationstyle",
+      "arg": {
+        "format": "{}",
+        "snippet": "dissertationstyle{${1:style}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\documentclass/udiss#c": [
+      "title={${1:text}}",
+      "author={${1:author}}",
+      "pronouns={${1:pronouns}}",
+      "subtitle={${1:text}}",
+      "shorttitle={${1:text}}",
+      "stream={${1:stream}}",
+      "discipline={${1:discipline}}",
+      "degree={${1:degree}}",
+      "supervisor={${1:supervisor}}",
+      "university={${1:university}}",
+      "department={${1:department}}",
+      "logo=${1:imagefile}",
+      "logo*=${1:code}",
+      "language={${1:babel language names}}",
+      "ldfbabel={${1:babel ldf language names}}",
+      "nofontwarning",
+      "license=${1|all-rights-reserved,CC-BY-SA,GFDL|}",
+      "copyright-yrs=${1:years}",
+      "localcopyright=${1:word}",
+      "placeholders",
+      "lot",
+      "lof",
+      "declaration",
+      "declarationtxt=${1:text}",
+      "decllocal=${1:word}",
+      "blind",
+      "framed-title",
+      "print",
+      "norefcolors",
+      "udisslinkclr=",
+      "udissurlclr=",
+      "udissciteclr=",
+      "oldstylenumoff",
+      "oldone",
+      "fulfilment=${1:text}",
+      "explicitext",
+      "ignorefsoff",
+      "rmfeatures={${1:font features}}",
+      "sffeatures={${1:font features}}",
+      "ttfeatures={${1:font features}}",
+      "mathfeatures={${1:font features}}",
+      "rmfntext=${1|ttf,otf|}",
+      "sffntext=${1|ttf,otf|}",
+      "ttfntext=${1|ttf,otf|}",
+      "mathfntext=${1|ttf,otf|}",
+      "logowidth=${1:factor}",
+      "logoheight=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\documentclass/udiss#c"
+  ]
+}

@@ -1,108 +1,225 @@
 {
-  "includes": {
-    "adjustbox": [],
-    "calc": [],
-    "environ": [],
-    "etoolbox": [],
-    "fp": [],
-    "graphicx": [],
-    "kvoptions": [],
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "twoopt": [],
-    "xstring": [],
-    "grffile": [],
-    "ulem": [],
-    "hyperref": [],
-    "bookmark": [],
-    "geometry": []
-  },
-  "macros": {
-    "note{}{}": {
-      "snippet": "note{${1:height}}{${2:text}}"
+  "deps": [
+    {
+      "name": "adjustbox"
     },
-    "note[]{}{}": {
-      "snippet": "note[${3:alignment}]{${1:height}}{${2:text}}"
+    {
+      "name": "calc"
     },
-    "bnote{}{}": {
-      "snippet": "bnote{${1:height}}{${2:text}}"
+    {
+      "name": "environ"
     },
-    "cnote{}{}": {
-      "snippet": "cnote{${1:height}}{${2:text}}"
+    {
+      "name": "etoolbox"
     },
-    "tnote{}{}": {
-      "snippet": "tnote{${1:height}}{${2:text}}"
+    {
+      "name": "fp"
     },
-    "sourcedoc{}": {
-      "snippet": "sourcedoc{${1:file}}"
+    {
+      "name": "graphicx"
     },
-    "pagegrid": {},
-    "pagegrid[]": {
-      "snippet": "pagegrid[${1:TikZ settings}]"
+    {
+      "name": "kvoptions"
     },
-    "pagegrid[][]": {
-      "snippet": "pagegrid[${1:TikZ settings}][${2:steps}]"
+    {
+      "name": "tikz"
     },
-    "gsetlength{}{}": {
-      "snippet": "gsetlength{${1:length macro}}{${2:length}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "thenote": {},
-    "resettrim": {},
-    "resettrim[]": {
-      "snippet": "resettrim[${1:length}]"
+    {
+      "name": "tikzlibrarypositioning"
     },
-    "remark": {},
-    "ssout{}": {
-      "snippet": "ssout{${1:text}}"
+    {
+      "name": "twoopt"
+    },
+    {
+      "name": "xstring"
+    },
+    {
+      "name": "grffile"
+    },
+    {
+      "name": "ulem"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "bookmark"
+    },
+    {
+      "name": "geometry"
     }
-  },
-  "envs": {
-    "page{}": {
-      "name": "page",
-      "snippet": "{${1:page number}}"
-    },
-    "page[]{}": {
-      "name": "page",
-      "snippet": "[${2:options}]{${1:page number}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "leftnotes": {},
-    "rightnotes": {},
-    "insertpage": {},
-    "insertpage[]": {
-      "name": "insertpage",
-      "snippet": "[${1:heading}]"
-    },
-    "listofnotes": {}
-  },
-  "options": [
-    "grid",
-    "twocolumn",
-    "notenumbers",
-    "inline",
-    "withnotesonly",
-    "staggered",
-    "scaletopage=${1:factor}",
-    "gridcolor=",
-    "bodywidth=${1:factor}",
-    "trim=",
-    "trimshift=",
-    "bodyframe=",
-    "sourcedoc=${1:file name}",
-    "pageoffset=${1:integer}",
-    "alignnotes=",
-    "notesbg=",
-    "important=",
-    "notesframe=",
-    "notesep=",
-    "fontsize=${1:fontsize csname}",
-    "maxscale=${1:integer}",
-    "insertpagemargin="
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "note",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "note{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "note",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "note[${3:alignment%keyvals}]{${1:height}}{${2:text}}",
+        "keys": [
+          "\\note"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "bnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "bnote{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "cnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "cnote{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "tnote",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "tnote{${1:height}}{${2:text}}"
+      }
+    },
+    {
+      "name": "sourcedoc",
+      "arg": {
+        "format": "{}",
+        "snippet": "sourcedoc{${1:file%file}}"
+      }
+    },
+    {
+      "name": "pagegrid"
+    },
+    {
+      "name": "pagegrid",
+      "arg": {
+        "format": "[]",
+        "snippet": "pagegrid[${1:TikZ settings}]"
+      }
+    },
+    {
+      "name": "pagegrid",
+      "arg": {
+        "format": "[][]",
+        "snippet": "pagegrid[${1:TikZ settings}][${2:steps}]"
+      }
+    },
+    {
+      "name": "gsetlength",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gsetlength{${1:length macro}}{${2:length}}"
+      }
+    },
+    {
+      "name": "thenote",
+      "unusual": true
+    },
+    {
+      "name": "resettrim",
+      "unusual": true
+    },
+    {
+      "name": "resettrim",
+      "unusual": true,
+      "arg": {
+        "format": "[]",
+        "snippet": "resettrim[${1:length}]"
+      }
+    },
+    {
+      "name": "ssout",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "ssout{${1:text}}"
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "page",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:page number}}"
+      }
+    },
+    {
+      "name": "page",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:options%keyvals}]{${1:page number}}",
+        "keys": [
+          "\\begin{page}"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "leftnotes"
+    },
+    {
+      "name": "rightnotes"
+    },
+    {
+      "name": "insertpage"
+    },
+    {
+      "name": "insertpage",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:heading%text}]"
+      }
+    },
+    {
+      "name": "listofnotes",
+      "unusual": true
+    }
+  ],
+  "keys": {
+    "\\usepackage/pdfreview#c": [
+      "grid",
+      "twocolumn",
+      "notenumbers",
+      "inline",
+      "withnotesonly",
+      "staggered",
+      "scaletopage=${1:factor}",
+      "gridcolor=",
+      "bodywidth=${1:factor}",
+      "trim=",
+      "trimshift=",
+      "bodyframe=",
+      "sourcedoc=${1:file name}",
+      "pageoffset=${1:integer}",
+      "alignnotes=${1|t,b,c|}",
+      "notesbg=",
+      "important=",
+      "notesframe=",
+      "notesep=",
+      "fontsize=${1:fontsize csname}",
+      "maxscale=${1:integer}",
+      "insertpagemargin="
+    ],
+    "\\note": [
+      "b",
+      "c",
+      "t"
+    ],
+    "\\begin{page}": [
       "alt={${1:alt text}}",
       "bb=${1:llx lly urx ury}",
       "bbllx=",
@@ -112,7 +229,7 @@
       "natwidth=",
       "natheight=",
       "hiresbb",
-      "pagebox=",
+      "pagebox=${1|mediabox,cropbox,bleedbox,trimbox,artbox|}",
       "viewport=${1:llx lly urx ury}",
       "trim=${1:llx lly urx ury}",
       "angle=${1:degrees}",
@@ -173,7 +290,7 @@
       "rndframe=",
       "rndcornersbox",
       "rndfbox",
-      "valign=",
+      "valign=${1|T,M,B,t,m,b|}",
       "raise=",
       "set height=",
       "set depth=",
@@ -257,7 +374,7 @@
       "execute=${1:code}",
       "Execute=${1:code}",
       "phantom",
-      "phantom=",
+      "phantom=${1|h,v|}",
       "gobble",
       "discard",
       "content=${1:new content}",
@@ -270,5 +387,8 @@
       "gstore sizes=",
       "process"
     ]
+  },
+  "args": [
+    "\\usepackage/pdfreview#c"
   ]
 }

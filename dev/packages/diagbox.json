@@ -1,0 +1,128 @@
+{
+  "deps": [
+    {
+      "name": "keyval"
+    },
+    {
+      "name": "pict2e"
+    },
+    {
+      "name": "calc"
+    },
+    {
+      "name": "array"
+    },
+    {
+      "name": "fp"
+    }
+  ],
+  "macros": [
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "diagbox{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "diagbox[${3:options%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\diagbox"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "diagbox",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "diagbox{${1:left%text}}{${2:middle%text}}{${3:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "backslashbox{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "backslashbox[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "backslashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "backslashbox[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\backslashbox,\\slashbox"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "slashbox{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "slashbox[${3:width}]{${1:left%text}}{${2:right%text}}"
+      }
+    },
+    {
+      "name": "slashbox",
+      "unusual": true,
+      "arg": {
+        "format": "[][]{}{}",
+        "snippet": "slashbox[${3:width}][${4:trim%keyvals}]{${1:left%text}}{${2:right%text}}",
+        "keys": [
+          "\\backslashbox,\\slashbox"
+        ],
+        "keyPos": 1
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\diagbox": [
+      "width=",
+      "height=",
+      "dir=${1|NW,NE,SW,SE|}",
+      "innerwidth=",
+      "innerleftsep=",
+      "innerrightsep=",
+      "outerleftsep=",
+      "outerrightsep=",
+      "leftsep=",
+      "rightsep=",
+      "trim=${1|l,r,lr,rl|}",
+      "font=${1:font commands}",
+      "linewidth=",
+      "linecolor="
+    ],
+    "\\backslashbox,\\slashbox": [
+      "l",
+      "r",
+      "lr",
+      "rl"
+    ]
+  },
+  "args": []
+}

@@ -1,176 +1,434 @@
 {
-  "includes": {},
-  "macros": {
-    "crtrefundefinedtext{}": {
-      "snippet": "crtrefundefinedtext{${1:text}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "crtrefundefinedtext",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefundefinedtext{${1:text%plain}}"
+      }
     },
-    "crtcrefundefinedcountervalue{}": {
-      "snippet": "crtcrefundefinedcountervalue{${1:integer}}"
+    {
+      "name": "crtcrefundefinedcountervalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefundefinedcountervalue{${1:integer}}"
+      }
     },
-    "crtextractref{}{}": {
-      "snippet": "crtextractref{${1:property}}{${2:label}}"
+    {
+      "name": "crtextractref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "crtextractref{${1:property%keyvals}}{${2:label}}",
+        "keys": [
+          "\\crtextractref"
+        ],
+        "keyPos": 0
+      }
     },
-    "crtcrefpage{}": {
-      "snippet": "crtcrefpage{${1:label}}"
+    {
+      "name": "crtcrefpage",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefpage{${1:label}}"
+      }
     },
-    "crtrefnumber{}": {
-      "snippet": "crtrefnumber{${1:label}}"
+    {
+      "name": "crtrefnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefnumber{${1:label}}"
+      }
     },
-    "crtrefname{}": {
-      "snippet": "crtrefname{${1:label}}"
+    {
+      "name": "crtrefname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefname{${1:label}}"
+      }
     },
-    "crtrefanchor{}": {
-      "snippet": "crtrefanchor{${1:label}}"
+    {
+      "name": "crtrefanchor",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefanchor{${1:label}}"
+      }
     },
-    "crtrefunused{}": {
-      "snippet": "crtrefunused{${1:label}}"
+    {
+      "name": "crtrefunused",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefunused{${1:label}}"
+      }
     },
-    "crtrefcounter{}": {
-      "snippet": "crtrefcounter{${1:label}}"
+    {
+      "name": "crtrefcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefcounter{${1:label}}"
+      }
     },
-    "crtextractcref{}{}": {
-      "snippet": "crtextractcref{${1:property}}{${2:label}}"
+    {
+      "name": "crtextractcref",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "crtextractcref{${1:property%keyvals}}{${2:label}}",
+        "keys": [
+          "\\crtextractcref"
+        ],
+        "keyPos": 0
+      }
     },
-    "crtcrefcounter{}": {
-      "snippet": "crtcrefcounter{${1:label}}"
+    {
+      "name": "crtcrefcounter",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefcounter{${1:label}}"
+      }
     },
-    "crtcrefnumber{}": {
-      "snippet": "crtcrefnumber{${1:label}}"
+    {
+      "name": "crtcrefnumber",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefnumber{${1:label}}"
+      }
     },
-    "crtcrefcountervalue{}": {
-      "snippet": "crtcrefcountervalue{${1:label}}"
+    {
+      "name": "crtcrefcountervalue",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefcountervalue{${1:label}}"
+      }
     },
-    "crtcrefresult{}": {
-      "snippet": "crtcrefresult{${1:label}}"
+    {
+      "name": "crtcrefresult",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefresult{${1:label}}"
+      }
     },
-    "crtcrefreference{}": {
-      "snippet": "crtcrefreference{${1:label}}"
+    {
+      "name": "crtcrefreference",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefreference{${1:label}}"
+      }
     },
-    "crtcrefname{}": {
-      "snippet": "crtcrefname{${1:counter}}"
+    {
+      "name": "crtcrefname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefname{${1:counter}}"
+      }
     },
-    "crtCrefname{}": {
-      "snippet": "crtCrefname{${1:counter}}"
+    {
+      "name": "crtCrefname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtCrefname{${1:counter}}"
+      }
     },
-    "crtcrefpluralname{}": {
-      "snippet": "crtcrefpluralname{${1:counter}}"
+    {
+      "name": "crtcrefpluralname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefpluralname{${1:counter}}"
+      }
     },
-    "crtCrefpluralname{}": {
-      "snippet": "crtCrefpluralname{${1:counter}}"
+    {
+      "name": "crtCrefpluralname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtCrefpluralname{${1:counter}}"
+      }
     },
-    "crtcrefnamebylabel{}": {
-      "snippet": "crtcrefnamebylabel{${1:label}}"
+    {
+      "name": "crtcrefnamebylabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrefnamebylabel{${1:label}}"
+      }
     },
-    "crtCrefnamebylabel{}": {
-      "snippet": "crtCrefnamebylabel{${1:label}}"
+    {
+      "name": "crtCrefnamebylabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtCrefnamebylabel{${1:label}}"
+      }
     },
-    "crtcref{}": {
-      "snippet": "crtcref{${1:label}}"
+    {
+      "name": "crtcref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcref{${1:label}}"
+      }
     },
-    "crtCref{}": {
-      "snippet": "crtCref{${1:label}}"
+    {
+      "name": "crtCref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtCref{${1:label}}"
+      }
     },
-    "crthyperlink{}{}": {
-      "snippet": "crthyperlink{${1:anchor}}{${2:link text}}"
+    {
+      "name": "crthyperlink",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "crthyperlink{${1:anchor}}{${2:link text}}"
+      }
     },
-    "crthypercref{}": {
-      "snippet": "crthypercref{${1:label}}"
+    {
+      "name": "crthypercref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crthypercref{${1:label}}"
+      }
     },
-    "crthyperCref{}": {
-      "snippet": "crthyperCref{${1:label}}"
+    {
+      "name": "crthyperCref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crthyperCref{${1:label}}"
+      }
     },
-    "crtlnameref{}": {
-      "snippet": "crtlnameref{${1:label}}"
+    {
+      "name": "crtlnameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtlnameref{${1:label}}"
+      }
     },
-    "crtlnameref*{}": {
-      "snippet": "crtlnameref*{${1:label}}"
+    {
+      "name": "crtlnameref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtlnameref*{${1:label}}"
+      }
     },
-    "crtunameref{}": {
-      "snippet": "crtunameref{${1:label}}"
+    {
+      "name": "crtunameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtunameref{${1:label}}"
+      }
     },
-    "crtunameref*{}": {
-      "snippet": "crtunameref*{${1:label}}"
+    {
+      "name": "crtunameref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtunameref*{${1:label}}"
+      }
     },
-    "crtnameref{}": {
-      "snippet": "crtnameref{${1:label}}"
+    {
+      "name": "crtnameref",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtnameref{${1:label}}"
+      }
     },
-    "crtnameref*{}": {
-      "snippet": "crtnameref*{${1:label}}"
+    {
+      "name": "crtnameref*",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtnameref*{${1:label}}"
+      }
     },
-    "crtprovidecurrentlabel{}": {
-      "snippet": "crtprovidecurrentlabel{${1:label content}}"
+    {
+      "name": "crtprovidecurrentlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtprovidecurrentlabel{${1:label content}}"
+      }
     },
-    "crtprovidecurrentlabelname{}": {
-      "snippet": "crtprovidecurrentlabelname{${1:nameref label content}}"
+    {
+      "name": "crtprovidecurrentlabelname",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtprovidecurrentlabelname{${1:nameref label content}}"
+      }
     },
-    "crtprovidecurrentlabelinfo{}{}": {
-      "snippet": "crtprovidecurrentlabelinfo{${1:label content}}{${2:nameref label content}}"
+    {
+      "name": "crtprovidecurrentlabelinfo",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "crtprovidecurrentlabelinfo{${1:label content}}{${2:nameref label content}}"
+      }
     },
-    "crtcrossreflabel{}": {
-      "snippet": "crtcrossreflabel{${1:label content}}"
+    {
+      "name": "crtcrossreflabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrossreflabel{${1:label content}}"
+      }
     },
-    "crtcrossreflabel[]{}": {
-      "snippet": "crtcrossreflabel[${2:nameref label content}]{${1:label content}}"
+    {
+      "name": "crtcrossreflabel",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "crtcrossreflabel[${2:nameref label content}]{${1:label content}}"
+      }
     },
-    "crtcrossreflabel[]{}[]": {
-      "snippet": "crtcrossreflabel[${2:nameref label content}]{${1:label content}}[${3:label}]"
+    {
+      "name": "crtcrossreflabel",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "crtcrossreflabel[${2:nameref label content}]{${1:label content}}[${3:label}]"
+      }
     },
-    "crtcrossreflabel*{}": {
-      "snippet": "crtcrossreflabel*{${1:label content}}"
+    {
+      "name": "crtcrossreflabel*",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtcrossreflabel*{${1:label content}}"
+      }
     },
-    "crtcrossreflabel*[]{}": {
-      "snippet": "crtcrossreflabel*[${2:nameref label content}]{${1:label content}}"
+    {
+      "name": "crtcrossreflabel*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "crtcrossreflabel*[${2:nameref label content}]{${1:label content}}"
+      }
     },
-    "crtcrossreflabel*[]{}[]": {
-      "snippet": "crtcrossreflabel*[${2:nameref label content}]{${1:label content}}[${3:label}]"
+    {
+      "name": "crtcrossreflabel*",
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "crtcrossreflabel*[${2:nameref label content}]{${1:label content}}[${3:label}]"
+      }
     },
-    "crtifdefinedlabel{}{}{}": {
-      "snippet": "crtifdefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "crtifdefinedlabel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "crtifdefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "crtifundefinedlabel{}{}{}": {
-      "snippet": "crtifundefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "crtifundefinedlabel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "crtifundefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "crtcrefifdefinedlabel{}{}{}": {
-      "snippet": "crtcrefifdefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "crtcrefifdefinedlabel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "crtcrefifdefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "crtcrefifundefinedlabel{}{}{}": {
-      "snippet": "crtcrefifundefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+    {
+      "name": "crtcrefifundefinedlabel",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "crtcrefifundefinedlabel{${1:label}}{${2:true}}{${3:false}}"
+      }
     },
-    "crtlistoflabels": {},
-    "crtlistoflabels*": {},
-    "crtlistoflabelsfileextension{}": {
-      "snippet": "crtlistoflabelsfileextension{${1:extension}}"
+    {
+      "name": "crtlistoflabels"
     },
-    "listoflabelsname": {},
-    "crtlistoflabelsstructurelevel{}": {
-      "snippet": "crtlistoflabelsstructurelevel{${1:counter}}"
+    {
+      "name": "crtlistoflabels*"
     },
-    "crtprelabelhook{}": {
-      "snippet": "crtprelabelhook{${1:code}}"
+    {
+      "name": "crtlistoflabelsfileextension",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtlistoflabelsfileextension{${1:extension}}"
+      }
     },
-    "crtpostlabelhook{}": {
-      "snippet": "crtpostlabelhook{${1:code}}"
+    {
+      "name": "listoflabelsname"
     },
-    "crossreftoolspackageversion": {},
-    "crtaddlabeltotoc{}": {
-      "snippet": "crtaddlabeltotoc{${1:label}}"
+    {
+      "name": "crtlistoflabelsstructurelevel",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtlistoflabelsstructurelevel{${1:counter}}"
+      }
     },
-    "crtrefpage{}": {
-      "snippet": "crtrefpage{${1:label}}"
+    {
+      "name": "crtprelabelhook",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtprelabelhook{${1:code}}"
+      }
     },
-    "listoflabelstructurelevel": {},
-    "ifcrtfinal": {},
-    "crtfinaltrue": {},
-    "crtfinalfalse": {},
-    "ifcleverefcompatmode": {},
-    "cleverefcompatmodetrue": {},
-    "cleverefcompatmodefalse": {}
-  },
-  "envs": {},
-  "options": [
-    "draft",
-    "final",
-    "cleverefcompat"
+    {
+      "name": "crtpostlabelhook",
+      "arg": {
+        "format": "{}",
+        "snippet": "crtpostlabelhook{${1:code}}"
+      }
+    },
+    {
+      "name": "crtaddlabeltotoc",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "crtaddlabeltotoc{${1:label}}"
+      }
+    },
+    {
+      "name": "crtrefpage",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "crtrefpage{${1:label}}"
+      }
+    },
+    {
+      "name": "listoflabelstructurelevel",
+      "unusual": true
+    },
+    {
+      "name": "ifcrtfinal",
+      "unusual": true
+    },
+    {
+      "name": "crtfinaltrue",
+      "unusual": true
+    },
+    {
+      "name": "crtfinalfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifcleverefcompatmode",
+      "unusual": true
+    },
+    {
+      "name": "cleverefcompatmodetrue",
+      "unusual": true
+    },
+    {
+      "name": "cleverefcompatmodefalse",
+      "unusual": true
+    }
   ],
-  "keyvals": []
+  "envs": [],
+  "keys": {
+    "\\usepackage/crossreftools#c": [
+      "draft",
+      "final",
+      "cleverefcompat"
+    ],
+    "\\crtextractref": [
+      "reference",
+      "page",
+      "anchor",
+      "name",
+      "unused"
+    ],
+    "\\crtextractcref": [
+      "counter",
+      "number",
+      "result",
+      "reference",
+      "page"
+    ]
+  },
+  "args": [
+    "\\usepackage/crossreftools#c"
+  ]
 }

@@ -1,32 +1,123 @@
 {
-  "includes": {
-    "pstricks": [],
-    "pst-3d": [],
-    "multido": [],
-    "pst-node": [],
-    "pst-arrow": [],
-    "pst-xkey": []
-  },
-  "macros": {
-    "psBarMagnet": {},
-    "psBarMagnet[]": {
-      "snippet": "psBarMagnet[${1:options}]",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "pstricks"
     },
-    "CalcIntermediaire": {},
-    "yA": {},
-    "PSTMagneticFieldLoaded": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+    {
+      "name": "pst-3d"
+    },
+    {
+      "name": "multido"
+    },
+    {
+      "name": "pst-node"
+    },
+    {
+      "name": "pst-arrow"
+    },
+    {
+      "name": "pst-xkey"
+    }
+  ],
+  "macros": [
+    {
+      "name": "psmagneticfield",
+      "arg": {
+        "format": "()()",
+        "snippet": "psmagneticfield(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "psmagneticfield",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psmagneticfield[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\psmagneticfield#c,\\psmagneticfieldThreeD#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psmagneticfieldThreeD",
+      "arg": {
+        "format": "()()",
+        "snippet": "psmagneticfieldThreeD(${1:x1},${2:y1})(${3:x2},${4:y2})"
+      }
+    },
+    {
+      "name": "psmagneticfieldThreeD",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "psmagneticfieldThreeD[${1:options%keyvals}](${2:x1},${3:y1})(${4:x2},${5:y2})",
+        "keys": [
+          "\\psmagneticfield#c,\\psmagneticfieldThreeD#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psBarMagnet"
+    },
+    {
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "()",
+        "snippet": "psBarMagnet(${1:x},${2:y})"
+      }
+    },
+    {
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "[]",
+        "snippet": "psBarMagnet[${1:options%keyvals}]",
+        "keys": [
+          "\\psBarMagnet#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "psBarMagnet",
+      "arg": {
+        "format": "[]()",
+        "snippet": "psBarMagnet[${1:options%keyvals}](${2:x},${3:y})",
+        "keys": [
+          "\\psBarMagnet#c"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\psmagneticfield#c,\\psmagneticfieldThreeD#c": [
+      "R=${1:number}",
+      "N=${1:number}",
+      "L=${1:number}",
+      "nL=${1:integer}",
+      "numSpires=",
+      "pointsB=${1:integer}",
+      "pointsS=${1:integer}",
+      "PasB=${1:number}",
+      "PasS=${1:number}",
+      "nS=${1:integer}",
+      "styleSpire=${1:style}",
+      "styleCourant=${1:style}",
+      "drawSelf",
+      "AntiHelmholtz",
+      "StreamDensityPlot",
+      "setgray",
+      "changeNS",
+      "linecolor="
+    ],
+    "\\psBarMagnet#c": [
       "rot=${1:degrees}",
       "showField",
       "showPoleLabels",
       "fontstyle=${1:font commands}",
       "magnetScale=${1:factor}"
     ]
-  ]
+  },
+  "args": []
 }

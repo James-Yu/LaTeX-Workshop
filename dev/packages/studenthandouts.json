@@ -1,67 +1,171 @@
 {
-  "includes": {
-    "changepage": [],
-    "ifthen": [],
-    "fmtcount": [],
-    "tocloft": [],
-    "geometry": [],
-    "fancyhdr": []
-  },
-  "macros": {
-    "sethandouttitle{}": {
-      "snippet": "sethandouttitle{${1:title}}"
+  "deps": [
+    {
+      "name": "changepage"
     },
-    "importhandout{}{}": {
-      "snippet": "importhandout{${1:unit number}}{${2:handout number}}"
+    {
+      "name": "ifthen"
     },
-    "importall": {},
-    "importnone": {},
-    "importonlyunits{}": {
-      "snippet": "importonlyunits{${1:unit numbers}}"
+    {
+      "name": "fmtcount"
     },
-    "importallunits": {},
-    "importonlyhandouts{}": {
-      "snippet": "importonlyhandouts{${1:handout numbers}}"
+    {
+      "name": "tocloft"
     },
-    "importallhandouts": {},
-    "thehandoutsdirectory": {},
-    "thehandoutslabel": {},
-    "thehandoutscredit": {},
-    "setunittitle{}{}": {
-      "snippet": "setunittitle{${1:unit number}}{${2:unit title}}"
+    {
+      "name": "geometry"
     },
-    "thehandoutsgeometry": {},
-    "thehandoutnumber": {},
-    "thehandouttitle": {},
-    "thehandoutfulltitle": {},
-    "thehandoutpage": {},
-    "theunitnumber": {},
-    "theunittitle": {},
-    "theunitfulltitle": {},
-    "allhandoutinfo": {},
-    "gnewcommand{}{}": {
-      "snippet": "gnewcommand{${1:cmd}}{${2:def}}"
-    },
-    "gnewcommand{}[]{}": {
-      "snippet": "gnewcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "gnewcommand{}[][]{}": {
-      "snippet": "gnewcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
-    },
-    "grenewcommand{}{}": {
-      "snippet": "grenewcommand{${1:cmd}}{${2:def}}"
-    },
-    "grenewcommand{}[]{}": {
-      "snippet": "grenewcommand{${1:cmd}}[${2:args}]{${3:def}}"
-    },
-    "grenewcommand{}[][]{}": {
-      "snippet": "grenewcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+    {
+      "name": "fancyhdr"
     }
-  },
-  "envs": {},
-  "options": [
-    "blanks",
-    "noblanks"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sethandouttitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethandouttitle{${1:title%text}}"
+      }
+    },
+    {
+      "name": "importhandout",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "importhandout{${1:unit number}}{${2:handout number}}"
+      }
+    },
+    {
+      "name": "importall"
+    },
+    {
+      "name": "importnone"
+    },
+    {
+      "name": "importonlyunits",
+      "arg": {
+        "format": "{}",
+        "snippet": "importonlyunits{${1:unit numbers}}"
+      }
+    },
+    {
+      "name": "importallunits"
+    },
+    {
+      "name": "importonlyhandouts",
+      "arg": {
+        "format": "{}",
+        "snippet": "importonlyhandouts{${1:handout numbers}}"
+      }
+    },
+    {
+      "name": "importallhandouts"
+    },
+    {
+      "name": "thehandoutsdirectory"
+    },
+    {
+      "name": "thehandoutslabel"
+    },
+    {
+      "name": "thehandoutscredit"
+    },
+    {
+      "name": "setunittitle",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setunittitle{${1:unit number}}{${2:unit title%text}}"
+      }
+    },
+    {
+      "name": "thehandoutsgeometry"
+    },
+    {
+      "name": "thehandoutnumber"
+    },
+    {
+      "name": "thehandouttitle"
+    },
+    {
+      "name": "thehandoutfulltitle"
+    },
+    {
+      "name": "thehandoutpage"
+    },
+    {
+      "name": "theunitnumber"
+    },
+    {
+      "name": "theunittitle"
+    },
+    {
+      "name": "theunitfulltitle"
+    },
+    {
+      "name": "thehandoutslabel"
+    },
+    {
+      "name": "thehandoutscredit"
+    },
+    {
+      "name": "allhandoutinfo"
+    },
+    {
+      "name": "gnewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "gnewcommand{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "gnewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "gnewcommand{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "gnewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "gnewcommand{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    },
+    {
+      "name": "grenewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "grenewcommand{${1:cmd}}{${2:def}}"
+      }
+    },
+    {
+      "name": "grenewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]{}",
+        "snippet": "grenewcommand{${1:cmd}}[${3:args}]{${2:def}}"
+      }
+    },
+    {
+      "name": "grenewcommand",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]{}",
+        "snippet": "grenewcommand{${1:cmd}}[${3:args}][${4:default}]{${2:def}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/studenthandouts#c": [
+      "blanks",
+      "noblanks"
+    ]
+  },
+  "args": [
+    "\\usepackage/studenthandouts#c"
+  ]
 }

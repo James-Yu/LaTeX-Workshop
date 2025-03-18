@@ -1,107 +1,369 @@
 {
-  "includes": {
-    "amstext": []
+  "deps": [
+    {
+      "name": "amstext"
+    }
+  ],
+  "macros": [
+    {
+      "name": "newchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newchemgreekmapping{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "newchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "newchemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "renewchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewchemgreekmapping{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "renewchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "renewchemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "declarechemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declarechemgreekmapping{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "declarechemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "declarechemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
+      }
+    },
+    {
+      "name": "newchemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "newchemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "newchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "renewchemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "renewchemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "renewchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "declarechemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declarechemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "declarechemgreekmappingalias",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "declarechemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
+      }
+    },
+    {
+      "name": "activatechemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "activatechemgreekmapping{${1:name}}"
+      }
+    },
+    {
+      "name": "activatechemgreekmapping*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "activatechemgreekmapping*{${1:name}}"
+      }
+    },
+    {
+      "name": "selectchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "selectchemgreekmapping{${1:name}}"
+      }
+    },
+    {
+      "name": "changechemgreeksymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "changechemgreeksymbol{${1:mapping name}}{${2:case%keyvals}}{${3:entry name}}{${4:entry}}",
+        "keys": [
+          "\\changechemgreeksymbol"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "printchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "printchemgreekmapping{${1:mapping}}"
+      }
+    },
+    {
+      "name": "printchemgreekalphabet",
+      "unusual": true
+    },
+    {
+      "name": "showchemgreekmapping",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "showchemgreekmapping{${1:mapping}}"
+      }
+    },
+    {
+      "name": "chemgreekmappingsymbol",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "chemgreekmappingsymbol{${1:mapping name}}{${2:symbol name}}"
+      }
+    },
+    {
+      "name": "chemalpha",
+      "unusual": true
+    },
+    {
+      "name": "chembeta",
+      "unusual": true
+    },
+    {
+      "name": "chemgamma",
+      "unusual": true
+    },
+    {
+      "name": "chemdelta",
+      "unusual": true
+    },
+    {
+      "name": "chemepsilon",
+      "unusual": true
+    },
+    {
+      "name": "chemzeta",
+      "unusual": true
+    },
+    {
+      "name": "chemeta",
+      "unusual": true
+    },
+    {
+      "name": "chemtheta",
+      "unusual": true
+    },
+    {
+      "name": "chemiota",
+      "unusual": true
+    },
+    {
+      "name": "chemkappa",
+      "unusual": true
+    },
+    {
+      "name": "chemlambda",
+      "unusual": true
+    },
+    {
+      "name": "chemmu",
+      "unusual": true
+    },
+    {
+      "name": "chemnu",
+      "unusual": true
+    },
+    {
+      "name": "chemxi",
+      "unusual": true
+    },
+    {
+      "name": "chemomikron",
+      "unusual": true
+    },
+    {
+      "name": "chempi",
+      "unusual": true
+    },
+    {
+      "name": "chemrho",
+      "unusual": true
+    },
+    {
+      "name": "chemsigma",
+      "unusual": true
+    },
+    {
+      "name": "chemtau",
+      "unusual": true
+    },
+    {
+      "name": "chemupsilon",
+      "unusual": true
+    },
+    {
+      "name": "chemphi",
+      "unusual": true
+    },
+    {
+      "name": "chempsi",
+      "unusual": true
+    },
+    {
+      "name": "chemchi",
+      "unusual": true
+    },
+    {
+      "name": "chemomega",
+      "unusual": true
+    },
+    {
+      "name": "chemAlpha",
+      "unusual": true
+    },
+    {
+      "name": "chemBeta",
+      "unusual": true
+    },
+    {
+      "name": "chemGamma",
+      "unusual": true
+    },
+    {
+      "name": "chemDelta",
+      "unusual": true
+    },
+    {
+      "name": "chemEpsilon",
+      "unusual": true
+    },
+    {
+      "name": "chemZeta",
+      "unusual": true
+    },
+    {
+      "name": "chemEta",
+      "unusual": true
+    },
+    {
+      "name": "chemTheta",
+      "unusual": true
+    },
+    {
+      "name": "chemIota",
+      "unusual": true
+    },
+    {
+      "name": "chemKappa",
+      "unusual": true
+    },
+    {
+      "name": "chemLambda",
+      "unusual": true
+    },
+    {
+      "name": "chemMu",
+      "unusual": true
+    },
+    {
+      "name": "chemNu",
+      "unusual": true
+    },
+    {
+      "name": "chemXi",
+      "unusual": true
+    },
+    {
+      "name": "chemOmikron",
+      "unusual": true
+    },
+    {
+      "name": "chemPi",
+      "unusual": true
+    },
+    {
+      "name": "chemRho",
+      "unusual": true
+    },
+    {
+      "name": "chemSigma",
+      "unusual": true
+    },
+    {
+      "name": "chemTau",
+      "unusual": true
+    },
+    {
+      "name": "chemUpsilon",
+      "unusual": true
+    },
+    {
+      "name": "chemPhi",
+      "unusual": true
+    },
+    {
+      "name": "chemPsi",
+      "unusual": true
+    },
+    {
+      "name": "chemChi",
+      "unusual": true
+    },
+    {
+      "name": "chemOmega",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\changechemgreeksymbol": [
+      "upper",
+      "lower"
+    ]
   },
-  "macros": {
-    "newchemgreekmapping{}{}": {
-      "snippet": "newchemgreekmapping{${1:name}}{${2:mapping list}}"
-    },
-    "newchemgreekmapping[]{}{}": {
-      "snippet": "newchemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
-    },
-    "renewchemgreekmapping{}{}": {
-      "snippet": "renewchemgreekmapping{${1:name}}{${2:mapping list}}"
-    },
-    "renewchemgreekmapping[]{}{}": {
-      "snippet": "renewchemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
-    },
-    "declarechemgreekmapping{}{}": {
-      "snippet": "declarechemgreekmapping{${1:name}}{${2:mapping list}}"
-    },
-    "declarechemgreekmapping[]{}{}": {
-      "snippet": "declarechemgreekmapping[${3:package}]{${1:name}}{${2:mapping list}}"
-    },
-    "newchemgreekmappingalias{}{}": {
-      "snippet": "newchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
-    },
-    "renewchemgreekmappingalias{}{}": {
-      "snippet": "renewchemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
-    },
-    "declarechemgreekmappingalias{}{}": {
-      "snippet": "declarechemgreekmappingalias{${1:new mapping name}}{${2:existing mapping name}}"
-    },
-    "activatechemgreekmapping{}": {
-      "snippet": "activatechemgreekmapping{${1:name}}"
-    },
-    "activatechemgreekmapping*{}": {
-      "snippet": "activatechemgreekmapping*{${1:name}}"
-    },
-    "selectchemgreekmapping{}": {
-      "snippet": "selectchemgreekmapping{${1:name}}"
-    },
-    "changechemgreeksymbol{}{}{}{}": {
-      "snippet": "changechemgreeksymbol{${1:mapping name}}{${2:case}}{${3:entry name}}{${4:entry}}"
-    },
-    "printchemgreekmapping{}": {
-      "snippet": "printchemgreekmapping{${1:mapping}}"
-    },
-    "printchemgreekalphabet": {},
-    "showchemgreekmapping{}": {
-      "snippet": "showchemgreekmapping{${1:mapping}}"
-    },
-    "chemgreekmappingsymbol{}{}": {
-      "snippet": "chemgreekmappingsymbol{${1:mapping name}}{${2:symbol name}}"
-    },
-    "chemalpha": {},
-    "chembeta": {},
-    "chemgamma": {},
-    "chemdelta": {},
-    "chemepsilon": {},
-    "chemzeta": {},
-    "chemeta": {},
-    "chemtheta": {},
-    "chemiota": {},
-    "chemkappa": {},
-    "chemlambda": {},
-    "chemmu": {},
-    "chemnu": {},
-    "chemxi": {},
-    "chemomikron": {},
-    "chempi": {},
-    "chemrho": {},
-    "chemsigma": {},
-    "chemtau": {},
-    "chemupsilon": {},
-    "chemphi": {},
-    "chempsi": {},
-    "chemchi": {},
-    "chemomega": {},
-    "chemAlpha": {},
-    "chemBeta": {},
-    "chemGamma": {},
-    "chemDelta": {},
-    "chemEpsilon": {},
-    "chemZeta": {},
-    "chemEta": {},
-    "chemTheta": {},
-    "chemIota": {},
-    "chemKappa": {},
-    "chemLambda": {},
-    "chemMu": {},
-    "chemNu": {},
-    "chemXi": {},
-    "chemOmikron": {},
-    "chemPi": {},
-    "chemRho": {},
-    "chemSigma": {},
-    "chemTau": {},
-    "chemUpsilon": {},
-    "chemPhi": {},
-    "chemPsi": {},
-    "chemChi": {},
-    "chemOmega": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

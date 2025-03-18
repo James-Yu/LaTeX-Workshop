@@ -1,339 +1,769 @@
 {
-  "includes": {
-    "tikz": [],
-    "tikzlibrarycalc": [],
-    "tikzlibraryshadings": [],
-    "xifthen": []
-  },
-  "macros": {
-    "amongUsOriginal{}{}": {
-      "snippet": "amongUsOriginal{${1:color}}{${2:color}}"
+  "deps": [
+    {
+      "name": "tikz"
     },
-    "amongUsOriginal[]{}{}": {
-      "snippet": "amongUsOriginal[${3:opt}]{${1:color}}{${2:color}}"
+    {
+      "name": "tikzlibrarycalc"
     },
-    "amongUsEyesI{}": {
-      "snippet": "amongUsEyesI{${1:color}}"
+    {
+      "name": "tikzlibraryshadings"
     },
-    "amongUsEyesI[]{}": {
-      "snippet": "amongUsEyesI[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesAngryI{}": {
-      "snippet": "amongUsEyesAngryI{${1:color}}"
-    },
-    "amongUsEyesAngryI[]{}": {
-      "snippet": "amongUsEyesAngryI[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesVeryangryI{}": {
-      "snippet": "amongUsEyesVeryangryI{${1:color}}"
-    },
-    "amongUsEyesVeryangryI[]{}": {
-      "snippet": "amongUsEyesVeryangryI[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesHappyI{}": {
-      "snippet": "amongUsEyesHappyI{${1:color}}"
-    },
-    "amongUsEyesHappyI[]{}": {
-      "snippet": "amongUsEyesHappyI[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesScaredI{}": {
-      "snippet": "amongUsEyesScaredI{${1:color}}"
-    },
-    "amongUsEyesScaredI[]{}": {
-      "snippet": "amongUsEyesScaredI[${2:opt}]{${1:color}}"
-    },
-    "amongUsBackpackI{}": {
-      "snippet": "amongUsBackpackI{${1:color}}"
-    },
-    "amongUsBackpackI[]{}": {
-      "snippet": "amongUsBackpackI[${2:opt}]{${1:color}}"
-    },
-    "amongUsBodyI{}": {
-      "snippet": "amongUsBodyI{${1:color}}"
-    },
-    "amongUsBodyI[]{}": {
-      "snippet": "amongUsBodyI[${2:opt}]{${1:color}}"
-    },
-    "amongUsI{}{}": {
-      "snippet": "amongUsI{${1:color}}{${2:color}}"
-    },
-    "amongUsI[]{}{}": {
-      "snippet": "amongUsI[${3:opt}]{${1:color}}{${2:color}}"
-    },
-    "impostorSmile{}": {
-      "snippet": "impostorSmile{${1:color}}"
-    },
-    "impostorSmile[]{}": {
-      "snippet": "impostorSmile[${2:opt}]{${1:color}}"
-    },
-    "impostorTeethUp{}": {
-      "snippet": "impostorTeethUp{${1:color}}"
-    },
-    "impostorTeethUp[]{}": {
-      "snippet": "impostorTeethUp[${2:opt}]{${1:color}}"
-    },
-    "impostorTeethLw{}": {
-      "snippet": "impostorTeethLw{${1:color}}"
-    },
-    "impostorTeethLw[]{}": {
-      "snippet": "impostorTeethLw[${2:opt}]{${1:color}}"
-    },
-    "impostorTeeth{}": {
-      "snippet": "impostorTeeth{${1:color}}"
-    },
-    "impostorTeeth[]{}": {
-      "snippet": "impostorTeeth[${2:opt}]{${1:color}}"
-    },
-    "impostorI{}{}{}{}": {
-      "snippet": "impostorI{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
-    },
-    "impostorI[]{}{}{}{}": {
-      "snippet": "impostorI[${5:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
-    },
-    "impostorTeeth{}{}{}{}": {
-      "snippet": "impostorTeeth{${1:color}}{${2:color}}{${3:color}}{${4:color}}"
-    },
-    "impostorTeeth[]{}{}{}{}": {
-      "snippet": "impostorTeeth[${5:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}"
-    },
-    "amongUsGhostBodyI{}": {
-      "snippet": "amongUsGhostBodyI{${1:color}}"
-    },
-    "amongUsGhostBodyI[]{}": {
-      "snippet": "amongUsGhostBodyI[${2:opt}]{${1:color}}"
-    },
-    "amongUsGhostI{}{}": {
-      "snippet": "amongUsGhostI{${1:color}}{${2:color}}"
-    },
-    "amongUsGhostI[]{}{}": {
-      "snippet": "amongUsGhostI[${3:opt}]{${1:color}}{${2:color}}"
-    },
-    "amoongussCapInnerDetail": {},
-    "amoongussCapWhite": {},
-    "amoongussCapI{}": {
-      "snippet": "amoongussCapI{${1:color}}"
-    },
-    "amoongussCapI[]{}": {
-      "snippet": "amoongussCapI[${2:opt}]{${1:color}}"
-    },
-    "amoongussBodyI{}": {
-      "snippet": "amoongussBodyI{${1:color}}"
-    },
-    "amoongussBodyI[]{}": {
-      "snippet": "amoongussBodyI[${2:opt}]{${1:color}}"
-    },
-    "amoongussNoseI{}": {
-      "snippet": "amoongussNoseI{${1:color}}"
-    },
-    "amoongussNoseI[]{}": {
-      "snippet": "amoongussNoseI[${2:opt}]{${1:color}}"
-    },
-    "amoongussLeftHandI{}": {
-      "snippet": "amoongussLeftHandI{${1:color}}"
-    },
-    "amoongussLeftHandI[]{}": {
-      "snippet": "amoongussLeftHandI[${2:opt}]{${1:color}}"
-    },
-    "amoongussRightHandI{}": {
-      "snippet": "amoongussRightHandI{${1:color}}"
-    },
-    "amoongussRightHandI[]{}": {
-      "snippet": "amoongussRightHandI[${2:opt}]{${1:color}}"
-    },
-    "amoongussI{}{}{}{}{}": {
-      "snippet": "amoongussI{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussI[]{}{}{}{}{}": {
-      "snippet": "amoongussI[${6:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussGhostBodyI{}": {
-      "snippet": "amoongussGhostBodyI{${1:color}}"
-    },
-    "amoongussGhostBodyI[]{}": {
-      "snippet": "amoongussGhostBodyI[${2:opt}]{${1:color}}"
-    },
-    "amoongussGhostI{}{}{}{}{}": {
-      "snippet": "amoongussGhostI{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussGhostI[]{}{}{}{}{}": {
-      "snippet": "amoongussGhostI[${6:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amongUsHandsA{}": {
-      "snippet": "amongUsHandsA{${1:color}}"
-    },
-    "amongUsHandsA[]{}": {
-      "snippet": "amongUsHandsA[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsB{}": {
-      "snippet": "amongUsHandsB{${1:color}}"
-    },
-    "amongUsHandsB[]{}": {
-      "snippet": "amongUsHandsB[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsC{}": {
-      "snippet": "amongUsHandsC{${1:color}}"
-    },
-    "amongUsHandsC[]{}": {
-      "snippet": "amongUsHandsC[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsD{}": {
-      "snippet": "amongUsHandsD{${1:color}}"
-    },
-    "amongUsHandsD[]{}": {
-      "snippet": "amongUsHandsD[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsE{}": {
-      "snippet": "amongUsHandsE{${1:color}}"
-    },
-    "amongUsHandsE[]{}": {
-      "snippet": "amongUsHandsE[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsF{}": {
-      "snippet": "amongUsHandsF{${1:color}}"
-    },
-    "amongUsHandsF[]{}": {
-      "snippet": "amongUsHandsF[${2:opt}]{${1:color}}"
-    },
-    "amongUsHandsG{}": {
-      "snippet": "amongUsHandsG{${1:color}}"
-    },
-    "amongUsHandsG[]{}": {
-      "snippet": "amongUsHandsG[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesII{}": {
-      "snippet": "amongUsEyesII{${1:color}}"
-    },
-    "amongUsEyesII[]{}": {
-      "snippet": "amongUsEyesII[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesAngryII{}": {
-      "snippet": "amongUsEyesAngryII{${1:color}}"
-    },
-    "amongUsEyesAngryII[]{}": {
-      "snippet": "amongUsEyesAngryII[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesVeryangryII{}": {
-      "snippet": "amongUsEyesVeryangryII{${1:color}}"
-    },
-    "amongUsEyesVeryangryII[]{}": {
-      "snippet": "amongUsEyesVeryangryII[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesHappyII{}": {
-      "snippet": "amongUsEyesHappyII{${1:color}}"
-    },
-    "amongUsEyesHappyII[]{}": {
-      "snippet": "amongUsEyesHappyII[${2:opt}]{${1:color}}"
-    },
-    "amongUsEyesScaredII{}": {
-      "snippet": "amongUsEyesScaredII{${1:color}}"
-    },
-    "amongUsEyesScaredII[]{}": {
-      "snippet": "amongUsEyesScaredII[${2:opt}]{${1:color}}"
-    },
-    "amongUsBackpackII{}": {
-      "snippet": "amongUsBackpackII{${1:color}}"
-    },
-    "amongUsBackpackII[]{}": {
-      "snippet": "amongUsBackpackII[${2:opt}]{${1:color}}"
-    },
-    "amongUsBodyII{}": {
-      "snippet": "amongUsBodyII{${1:color}}"
-    },
-    "amongUsBodyII[]{}": {
-      "snippet": "amongUsBodyII[${2:opt}]{${1:color}}"
-    },
-    "amongUsII{}{}": {
-      "snippet": "amongUsII{${1:color}}{${2:color}}"
-    },
-    "amongUsII[]{}{}": {
-      "snippet": "amongUsII[${3:opt}]{${1:color}}{${2:color}}"
-    },
-    "amongUsGhostBodyII{}": {
-      "snippet": "amongUsGhostBodyII{${1:color}}"
-    },
-    "amongUsGhostBodyII[]{}": {
-      "snippet": "amongUsGhostBodyII[${2:opt}]{${1:color}}"
-    },
-    "amongUsGhostII{}{}": {
-      "snippet": "amongUsGhostII{${1:color}}{${2:color}}"
-    },
-    "amongUsGhostII[]{}{}": {
-      "snippet": "amongUsGhostII[${3:opt}]{${1:color}}{${2:color}}"
-    },
-    "impostorII{}{}{}{}": {
-      "snippet": "impostorII{${1:color}}{${2:color}}{${3:color}}{${4:color}}"
-    },
-    "impostorII[]{}{}{}{}": {
-      "snippet": "impostorII[${5:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}"
-    },
-    "amoongussCapII{}": {
-      "snippet": "amoongussCapII{${1:color}}"
-    },
-    "amoongussCapII[]{}": {
-      "snippet": "amoongussCapII[${2:opt}]{${1:color}}"
-    },
-    "amoongussBodyII{}": {
-      "snippet": "amoongussBodyII{${1:color}}"
-    },
-    "amoongussBodyII[]{}": {
-      "snippet": "amoongussBodyII[${2:opt}]{${1:color}}"
-    },
-    "amoongussNoseII{}": {
-      "snippet": "amoongussNoseII{${1:color}}"
-    },
-    "amoongussNoseII[]{}": {
-      "snippet": "amoongussNoseII[${2:opt}]{${1:color}}"
-    },
-    "amoongussLeftHandII{}": {
-      "snippet": "amoongussLeftHandII{${1:color}}"
-    },
-    "amoongussLeftHandII[]{}": {
-      "snippet": "amoongussLeftHandII[${2:opt}]{${1:color}}"
-    },
-    "amoongussRightHandII{}": {
-      "snippet": "amoongussRightHandII{${1:color}}"
-    },
-    "amoongussRightHandII[]{}": {
-      "snippet": "amoongussRightHandII[${2:opt}]{${1:color}}"
-    },
-    "amoongussII{}{}{}{}{}": {
-      "snippet": "amoongussII{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussII[]{}{}{}{}{}": {
-      "snippet": "amoongussII[${6:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussGhostBodyII{}": {
-      "snippet": "amoongussGhostBodyII{${1:color}}"
-    },
-    "amoongussGhostBodyII[]{}": {
-      "snippet": "amoongussGhostBodyII[${2:opt}]{${1:color}}"
-    },
-    "amoongussGhostII{}{}{}{}{}": {
-      "snippet": "amoongussGhostII{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amoongussGhostII[]{}{}{}{}{}": {
-      "snippet": "amoongussGhostII[${6:opt}]{${1:color}}{${2:color}}{${3:color}}{${4:color}}{${5:color}}"
-    },
-    "amongUsEyesIII{}": {
-      "snippet": "amongUsEyesIII{${1:color}}"
-    },
-    "amongUsEyesIII[]{}": {
-      "snippet": "amongUsEyesIII[${2:opt}]{${1:color}}"
-    },
-    "amongUsBodyIII{}": {
-      "snippet": "amongUsBodyIII{${1:color}}"
-    },
-    "amongUsBodyIII[]{}": {
-      "snippet": "amongUsBodyIII[${2:opt}]{${1:color}}"
-    },
-    "amongUsIII{}{}": {
-      "snippet": "amongUsIII{${1:color}}{${2:color}}"
-    },
-    "amongUsIII[]{}{}": {
-      "snippet": "amongUsIII[${3:opt}]{${1:color}}{${2:color}}"
+    {
+      "name": "xifthen"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "amongUsOriginal",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsOriginal{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsOriginal",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsOriginal[${3:opt}]{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsEyesI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesI{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesI[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesAngryI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesAngryI{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesAngryI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesAngryI[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesVeryangryI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesVeryangryI{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesVeryangryI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesVeryangryI[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesHappyI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesHappyI{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesHappyI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesHappyI[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesScaredI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesScaredI{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesScaredI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesScaredI[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsBackpackI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsBackpackI{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsBackpackI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsBackpackI[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsBodyI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsBodyI{${1:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsBodyI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsBodyI[${2:opt}]{${1:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsI",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsI{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsI",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsI[${3:opt}]{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "impostorSmile",
+      "arg": {
+        "format": "{}",
+        "snippet": "impostorSmile{${1:SmileColor}}"
+      }
+    },
+    {
+      "name": "impostorSmile",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "impostorSmile[${2:opt}]{${1:SmileColor}}"
+      }
+    },
+    {
+      "name": "impostorTeethUp",
+      "arg": {
+        "format": "{}",
+        "snippet": "impostorTeethUp{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorTeethUp",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "impostorTeethUp[${2:opt}]{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorTeethLw",
+      "arg": {
+        "format": "{}",
+        "snippet": "impostorTeethLw{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorTeethLw",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "impostorTeethLw[${2:opt}]{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorTeeth",
+      "arg": {
+        "format": "{}",
+        "snippet": "impostorTeeth{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorTeeth",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "impostorTeeth[${2:opt}]{${1:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorI",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "impostorI{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorI",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "impostorI[${5:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostBodyI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsGhostBodyI{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostBodyI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsGhostBodyI[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostI",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsGhostI{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostI",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsGhostI[${3:opt}]{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amoongussCapInnerDetail"
+    },
+    {
+      "name": "amoongussCapWhite"
+    },
+    {
+      "name": "amoongussCapI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussCapI{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussCapI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussCapI[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussBodyI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussBodyI{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussBodyI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussBodyI[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussNoseI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussNoseI{${1:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussNoseI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussNoseI[${2:opt}]{${1:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussLeftHandI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussLeftHandI{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussLeftHandI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussLeftHandI[${2:opt}]{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussRightHandI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussRightHandI{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussRightHandI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussRightHandI[${2:opt}]{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussI",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "amoongussI{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussI",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "amoongussI[${6:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostBodyI",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussGhostBodyI{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostBodyI",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussGhostBodyI[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostI",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "amoongussGhostI{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostI",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "amoongussGhostI[${6:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsA",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsA{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsA",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsA[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsB",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsB{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsB",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsB[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsC",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsC{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsC",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsC[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsD",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsD{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsD",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsD[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsE",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsE{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsE",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsE[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsF",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsF{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsF",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsF[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsG",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsHandsG{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsHandsG",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsHandsG[${2:opt}]{${1:HandColor}}"
+      }
+    },
+    {
+      "name": "amongUsEyesII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesAngryII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesAngryII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesAngryII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesAngryII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesVeryangryII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesVeryangryII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesVeryangryII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesVeryangryII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesHappyII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesHappyII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesHappyII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesHappyII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesScaredII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesScaredII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsEyesScaredII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesScaredII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsBackpackII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsBackpackII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsBackpackII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsBackpackII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsBodyII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsBodyII{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsBodyII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsBodyII[${2:opt}]{${1:color}}"
+      }
+    },
+    {
+      "name": "amongUsII",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsII{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsII",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsII[${3:opt}]{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostBodyII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsGhostBodyII{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostBodyII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsGhostBodyII[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostII",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsGhostII{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsGhostII",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsGhostII[${3:opt}]{${1:BodyColor}}{${2:EyeColor}}"
+      }
+    },
+    {
+      "name": "impostorII",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "impostorII{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
+      }
+    },
+    {
+      "name": "impostorII",
+      "arg": {
+        "format": "[]{}{}{}{}",
+        "snippet": "impostorII[${5:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:SmileColor}}{${4:TeethColor}}"
+      }
+    },
+    {
+      "name": "amoongussCapII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussCapII{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussCapII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussCapII[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussBodyII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussBodyII{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussBodyII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussBodyII[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussNoseII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussNoseII{${1:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussNoseII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussNoseII[${2:opt}]{${1:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussLeftHandII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussLeftHandII{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussLeftHandII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussLeftHandII[${2:opt}]{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussRightHandII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussRightHandII{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussRightHandII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussRightHandII[${2:opt}]{${1:PokeballColor}}"
+      }
+    },
+    {
+      "name": "amoongussII",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "amoongussII{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussII",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "amoongussII[${6:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostBodyII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amoongussGhostBodyII{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostBodyII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amoongussGhostBodyII[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostII",
+      "arg": {
+        "format": "{}{}{}{}{}",
+        "snippet": "amoongussGhostII{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amoongussGhostII",
+      "arg": {
+        "format": "[]{}{}{}{}{}",
+        "snippet": "amoongussGhostII[${6:opt}]{${1:BodyColor}}{${2:EyeColor}}{${3:PokeballColor}}{${4:PokeballColor}}{${5:NoseColor}}"
+      }
+    },
+    {
+      "name": "amongUsEyesIII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsEyesIII{${1:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsEyesIII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsEyesIII[${2:opt}]{${1:EyeColor}}"
+      }
+    },
+    {
+      "name": "amongUsBodyIII",
+      "arg": {
+        "format": "{}",
+        "snippet": "amongUsBodyIII{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsBodyIII",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "amongUsBodyIII[${2:opt}]{${1:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsIII",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "amongUsIII{${1:EyeColor}}{${2:BodyColor}}"
+      }
+    },
+    {
+      "name": "amongUsIII",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "amongUsIII[${3:opt}]{${1:EyeColor}}{${2:BodyColor}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

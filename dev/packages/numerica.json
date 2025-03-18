@@ -1,282 +1,870 @@
 {
-  "includes": {
-    "amsmath": [],
-    "mathtools": []
-  },
-  "macros": {
-    "eval{}": {
-      "snippet": "eval{${1:expression}}"
-    },
-    "eval[]{}": {
-      "snippet": "eval[${2:settings}]{${1:expression}}"
-    },
-    "eval{}[]": {
-      "snippet": "eval{${1:expression}}[${2:vv-list}]"
-    },
-    "eval[]{}[]": {
-      "snippet": "eval[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "eval{}[][]": {
-      "snippet": "eval{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "eval[]{}[][]": {
-      "snippet": "eval[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "eval*{}": {
-      "snippet": "eval*{${1:expression}}"
-    },
-    "eval*[]{}": {
-      "snippet": "eval*[${2:settings}]{${1:expression}}"
-    },
-    "eval*{}[]": {
-      "snippet": "eval*{${1:expression}}[${2:vv-list}]"
-    },
-    "eval*[]{}[]": {
-      "snippet": "eval*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "eval*{}[][]": {
-      "snippet": "eval*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "eval*[]{}[][]": {
-      "snippet": "eval*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcEvaluate{}": {
-      "snippet": "nmcEvaluate{${1:expression}}"
-    },
-    "nmcEvaluate[]{}": {
-      "snippet": "nmcEvaluate[${2:settings}]{${1:expression}}"
-    },
-    "nmcEvaluate{}[]": {
-      "snippet": "nmcEvaluate{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcEvaluate[]{}[]": {
-      "snippet": "nmcEvaluate[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcEvaluate{}[][]": {
-      "snippet": "nmcEvaluate{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcEvaluate[]{}[][]": {
-      "snippet": "nmcEvaluate[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "nmcEvaluate*{}": {
-      "snippet": "nmcEvaluate*{${1:expression}}"
-    },
-    "nmcEvaluate*[]{}": {
-      "snippet": "nmcEvaluate*[${2:settings}]{${1:expression}}"
-    },
-    "nmcEvaluate*{}[]": {
-      "snippet": "nmcEvaluate*{${1:expression}}[${2:vv-list}]"
-    },
-    "nmcEvaluate*[]{}[]": {
-      "snippet": "nmcEvaluate*[${2:settings}]{${1:expression}}[${3:vv-list}]"
-    },
-    "nmcEvaluate*{}[][]": {
-      "snippet": "nmcEvaluate*{${1:expression}}[${2:vv-list}][${3:num format}]"
-    },
-    "nmcEvaluate*[]{}[][]": {
-      "snippet": "nmcEvaluate*[${2:settings}]{${1:expression}}[${3:vv-list}][${4:num format}]"
-    },
-    "csch": {},
-    "sech": {},
-    "arccsc": {},
-    "arcsec": {},
-    "arccot": {},
-    "asinh": {},
-    "acosh": {},
-    "atanh": {},
-    "acsch": {},
-    "asech": {},
-    "acoth": {},
-    "arsinh": {},
-    "arcosh": {},
-    "artanh": {},
-    "arcsch": {},
-    "arsech": {},
-    "arcoth": {},
-    "arcsinh": {},
-    "arccosh": {},
-    "arctanh": {},
-    "arccsch": {},
-    "arcsech": {},
-    "arccoth": {},
-    "lb": {},
-    "sgn": {},
-    "abs{}": {
-      "snippet": "abs{${1:arg}}"
-    },
-    "abs[]{}": {
-      "snippet": "abs[${2:opt}]{${1:arg}}"
-    },
-    "abs*{}": {
-      "snippet": "abs*{${1:arg}}"
-    },
-    "abs*[]{}": {
-      "snippet": "abs*[${2:opt}]{${1:arg}}"
-    },
-    "floor{}": {
-      "snippet": "floor{${1:arg}}"
-    },
-    "floor[]{}": {
-      "snippet": "floor[${2:opt}]{${1:arg}}"
-    },
-    "floor*{}": {
-      "snippet": "floor*{${1:arg}}"
-    },
-    "floor*[]{}": {
-      "snippet": "floor*[${2:opt}]{${1:arg}}"
-    },
-    "ceil{}": {
-      "snippet": "ceil{${1:arg}}"
-    },
-    "ceil[]{}": {
-      "snippet": "ceil[${2:opt}]{${1:arg}}"
-    },
-    "ceil*{}": {
-      "snippet": "ceil*{${1:arg}}"
-    },
-    "ceil*[]{}": {
-      "snippet": "ceil*[${2:opt}]{${1:arg}}"
-    },
-    "comma": {
-      "detail": ",",
-      "documentation": "COMMA"
-    },
-    "equals": {},
-    "degree": {},
-    "q": {
-      "detail": "𝑞",
-      "documentation": "MATHEMATICAL ITALIC SMALL Q"
-    },
-    "Q": {
-      "detail": "𝑄",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL Q"
-    },
-    "info{}": {
-      "snippet": "info{${1:type}}"
-    },
-    "info[]{}": {
-      "snippet": "info[${2:settings}]{${1:type}}"
-    },
-    "info*{}": {
-      "snippet": "info*{${1:type}}"
-    },
-    "info*[]{}": {
-      "snippet": "info*[${2:settings}]{${1:type}}"
-    },
-    "nmcInfo{}": {
-      "snippet": "nmcInfo{${1:type}}"
-    },
-    "nmcInfo[]{}": {
-      "snippet": "nmcInfo[${2:settings}]{${1:type}}"
-    },
-    "nmcInfo*{}": {
-      "snippet": "nmcInfo*{${1:type}}"
-    },
-    "nmcInfo*[]{}": {
-      "snippet": "nmcInfo*[${2:settings}]{${1:type}}"
-    },
-    "macros{}": {
-      "snippet": "macros{${1:command list}}"
-    },
-    "macros[]{}": {
-      "snippet": "macros[${2:settings}]{${1:command list}}"
-    },
-    "macros{}[]": {
-      "snippet": "macros{${1:command list}}[${2:vv-list}]"
-    },
-    "macros[]{}[]": {
-      "snippet": "macros[${2:settings}]{${1:command list}}[${3:vv-list}]"
-    },
-    "macros*{}": {
-      "snippet": "macros*{${1:command list}}"
-    },
-    "macros*[]{}": {
-      "snippet": "macros*[${2:settings}]{${1:command list}}"
-    },
-    "macros*{}[]": {
-      "snippet": "macros*{${1:command list}}[${2:vv-list}]"
-    },
-    "macros*[]{}[]": {
-      "snippet": "macros*[${2:settings}]{${1:command list}}[${3:vv-list}]"
-    },
-    "nmcMacros{}": {
-      "snippet": "nmcMacros{${1:command list}}"
-    },
-    "nmcMacros[]{}": {
-      "snippet": "nmcMacros[${2:settings}]{${1:command list}}"
-    },
-    "nmcMacros{}[]": {
-      "snippet": "nmcMacros{${1:command list}}[${2:vv-list}]"
-    },
-    "nmcMacros[]{}[]": {
-      "snippet": "nmcMacros[${2:settings}]{${1:command list}}[${3:vv-list}]"
-    },
-    "nmcMacros*{}": {
-      "snippet": "nmcMacros*{${1:command list}}"
-    },
-    "nmcMacros*[]{}": {
-      "snippet": "nmcMacros*[${2:settings}]{${1:command list}}"
-    },
-    "nmcMacros*{}[]": {
-      "snippet": "nmcMacros*{${1:command list}}[${2:vv-list}]"
-    },
-    "nmcMacros*[]{}[]": {
-      "snippet": "nmcMacros*[${2:settings}]{${1:command list}}[${3:vv-list}]"
-    },
-    "constants{}": {
-      "snippet": "constants{${1:name1=val1,name2=val2,...}}"
-    },
-    "constants[]{}": {
-      "snippet": "constants[${2:settings}]{${1:name1=val1,name2=val2,...}}"
-    },
-    "constants{}[]": {
-      "snippet": "constants{${1:name1=val1,name2=val2,...}}[${2:vv-list}]"
-    },
-    "constants[]{}[]": {
-      "snippet": "constants[${2:settings}]{${1:name1=val1,name2=val2,...}}[${3:vv-list}]"
-    },
-    "nmcConstants{}": {
-      "snippet": "nmcConstants{${1:name1=val1,name2=val2,...}}"
-    },
-    "nmcConstants[]{}": {
-      "snippet": "nmcConstants[${2:settings}]{${1:name1=val1,name2=val2,...}}"
-    },
-    "nmcConstants{}[]": {
-      "snippet": "nmcConstants{${1:name1=val1,name2=val2,...}}[${2:vv-list}]"
-    },
-    "nmcConstants[]{}[]": {
-      "snippet": "nmcConstants[${2:settings}]{${1:name1=val1,name2=val2,...}}[${3:vv-list}]"
-    },
-    "reuse{}": {
-      "snippet": "reuse{${1:csname}}"
-    },
-    "reuse[]{}": {
-      "snippet": "reuse[${2:settings}]{${1:csname}}"
-    },
-    "reuse*{}": {
-      "snippet": "reuse*{${1:csname}}"
-    },
-    "reuse*[]{}": {
-      "snippet": "reuse*[${2:settings}]{${1:csname}}"
-    },
-    "nmcReuse{}": {
-      "snippet": "nmcReuse{${1:csname}}"
-    },
-    "nmcReuse[]{}": {
-      "snippet": "nmcReuse[${2:settings}]{${1:csname}}"
-    },
-    "nmcReuse*{}": {
-      "snippet": "nmcReuse*{${1:csname}}"
-    },
-    "nmcReuse*[]{}": {
-      "snippet": "nmcReuse*[${2:settings}]{${1:csname}}"
+  "deps": [
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "mathtools"
     }
-  },
-  "envs": {},
-  "options": [
-    "comma",
-    "rounding=${1:integer}",
-    "approx"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}",
+        "snippet": "eval{${1:expression}}"
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eval[${2:settings%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "eval",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "eval{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "eval",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "eval[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "eval",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "eval{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "eval",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "eval[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "eval*",
+      "arg": {
+        "format": "{}",
+        "snippet": "eval*{${1:expression}}"
+      }
+    },
+    {
+      "name": "eval*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "eval*[${2:settings%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "eval*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "eval*{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "eval*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "eval*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "eval*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "eval*{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "eval*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "eval*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcEvaluate{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcEvaluate[${2:settings%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nmcEvaluate{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcEvaluate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "nmcEvaluate{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcEvaluate",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "nmcEvaluate[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcEvaluate*{${1:expression}}"
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcEvaluate*[${2:settings%keyvals}]{${1:expression}}",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nmcEvaluate*{${1:expression}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcEvaluate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "{}[][]",
+        "snippet": "nmcEvaluate*{${1:expression}}[${2:vv-list%formula}][${3:num format}]"
+      }
+    },
+    {
+      "name": "nmcEvaluate*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[][]",
+        "snippet": "nmcEvaluate*[${2:settings%keyvals}]{${1:expression}}[${3:vv-list%formula}][${4:num format}]",
+        "keys": [
+          "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "csch"
+    },
+    {
+      "name": "sech"
+    },
+    {
+      "name": "arccsc"
+    },
+    {
+      "name": "arcsec"
+    },
+    {
+      "name": "arccot"
+    },
+    {
+      "name": "asinh"
+    },
+    {
+      "name": "acosh"
+    },
+    {
+      "name": "atanh"
+    },
+    {
+      "name": "acsch"
+    },
+    {
+      "name": "asech"
+    },
+    {
+      "name": "acoth"
+    },
+    {
+      "name": "arsinh",
+      "unusual": true
+    },
+    {
+      "name": "arcosh",
+      "unusual": true
+    },
+    {
+      "name": "artanh",
+      "unusual": true
+    },
+    {
+      "name": "arcsch",
+      "unusual": true
+    },
+    {
+      "name": "arsech",
+      "unusual": true
+    },
+    {
+      "name": "arcoth",
+      "unusual": true
+    },
+    {
+      "name": "arcsinh",
+      "unusual": true
+    },
+    {
+      "name": "arccosh",
+      "unusual": true
+    },
+    {
+      "name": "arctanh",
+      "unusual": true
+    },
+    {
+      "name": "arccsch",
+      "unusual": true
+    },
+    {
+      "name": "arcsech",
+      "unusual": true
+    },
+    {
+      "name": "arccoth",
+      "unusual": true
+    },
+    {
+      "name": "lb"
+    },
+    {
+      "name": "sgn"
+    },
+    {
+      "name": "abs",
+      "arg": {
+        "format": "{}",
+        "snippet": "abs{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "abs[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs*",
+      "arg": {
+        "format": "{}",
+        "snippet": "abs*{${1:arg}}"
+      }
+    },
+    {
+      "name": "abs*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "abs*[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor",
+      "arg": {
+        "format": "{}",
+        "snippet": "floor{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "floor[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor*",
+      "arg": {
+        "format": "{}",
+        "snippet": "floor*{${1:arg}}"
+      }
+    },
+    {
+      "name": "floor*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "floor*[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceil{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ceil[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil*",
+      "arg": {
+        "format": "{}",
+        "snippet": "ceil*{${1:arg}}"
+      }
+    },
+    {
+      "name": "ceil*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "ceil*[${2:opt}]{${1:arg}}"
+      }
+    },
+    {
+      "name": "comma",
+      "unusual": true,
+      "detail": ",",
+      "doc": "Comma"
+    },
+    {
+      "name": "equals",
+      "unusual": true
+    },
+    {
+      "name": "degree",
+      "unusual": true
+    },
+    {
+      "name": "q"
+    },
+    {
+      "name": "Q"
+    },
+    {
+      "name": "info",
+      "arg": {
+        "format": "{}",
+        "snippet": "info{${1:type}}"
+      }
+    },
+    {
+      "name": "info",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "info[${2:settings%keyvals}]{${1:type}}",
+        "keys": [
+          "\\info#c,\\info*#c,\\nmcInfo#c,\\nmcInfo*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "info*",
+      "arg": {
+        "format": "{}",
+        "snippet": "info*{${1:type}}"
+      }
+    },
+    {
+      "name": "info*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "info*[${2:settings%keyvals}]{${1:type}}",
+        "keys": [
+          "\\info#c,\\info*#c,\\nmcInfo#c,\\nmcInfo*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcInfo",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcInfo{${1:type}}"
+      }
+    },
+    {
+      "name": "nmcInfo",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcInfo[${2:settings%keyvals}]{${1:type}}",
+        "keys": [
+          "\\info#c,\\info*#c,\\nmcInfo#c,\\nmcInfo*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcInfo*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcInfo*{${1:type}}"
+      }
+    },
+    {
+      "name": "nmcInfo*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcInfo*[${2:settings%keyvals}]{${1:type}}",
+        "keys": [
+          "\\info#c,\\info*#c,\\nmcInfo#c,\\nmcInfo*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macros",
+      "arg": {
+        "format": "{}",
+        "snippet": "macros{${1:command list}}"
+      }
+    },
+    {
+      "name": "macros",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "macros[${2:settings%keyvals}]{${1:command list}}",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macros",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "macros{${1:command list}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "macros",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "macros[${2:settings%keyvals}]{${1:command list}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macros*",
+      "arg": {
+        "format": "{}",
+        "snippet": "macros*{${1:command list}}"
+      }
+    },
+    {
+      "name": "macros*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "macros*[${2:settings%keyvals}]{${1:command list}}",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "macros*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "macros*{${1:command list}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "macros*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "macros*[${2:settings%keyvals}]{${1:command list}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcMacros",
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcMacros{${1:command list}}"
+      }
+    },
+    {
+      "name": "nmcMacros",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcMacros[${2:settings%keyvals}]{${1:command list}}",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcMacros",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nmcMacros{${1:command list}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcMacros",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcMacros[${2:settings%keyvals}]{${1:command list}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcMacros*",
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcMacros*{${1:command list}}"
+      }
+    },
+    {
+      "name": "nmcMacros*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcMacros*[${2:settings%keyvals}]{${1:command list}}",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcMacros*",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nmcMacros*{${1:command list}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcMacros*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcMacros*[${2:settings%keyvals}]{${1:command list}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "constants",
+      "arg": {
+        "format": "{}",
+        "snippet": "constants{${1:name1=val1,name2=val2,...%formula}}"
+      }
+    },
+    {
+      "name": "constants",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "constants[${2:settings%keyvals}]{${1:name1=val1,name2=val2,...%formula}}",
+        "keys": [
+          "\\constants,\\constants*,\\nmcConstants,\\nmcConstants*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "constants",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "constants{${1:name1=val1,name2=val2,...%formula}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "constants",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "constants[${2:settings%keyvals}]{${1:name1=val1,name2=val2,...%formula}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\constants,\\constants*,\\nmcConstants,\\nmcConstants*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcConstants",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcConstants{${1:name1=val1,name2=val2,...%formula}}"
+      }
+    },
+    {
+      "name": "nmcConstants",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcConstants[${2:settings%keyvals}]{${1:name1=val1,name2=val2,...%formula}}",
+        "keys": [
+          "\\constants,\\constants*,\\nmcConstants,\\nmcConstants*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcConstants",
+      "unusual": true,
+      "arg": {
+        "format": "{}[]",
+        "snippet": "nmcConstants{${1:name1=val1,name2=val2,...%formula}}[${2:vv-list%formula}]"
+      }
+    },
+    {
+      "name": "nmcConstants",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}[]",
+        "snippet": "nmcConstants[${2:settings%keyvals}]{${1:name1=val1,name2=val2,...%formula}}[${3:vv-list%formula}]",
+        "keys": [
+          "\\constants,\\constants*,\\nmcConstants,\\nmcConstants*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "reuse",
+      "arg": {
+        "format": "{}",
+        "snippet": "reuse{${1:csname}}"
+      }
+    },
+    {
+      "name": "reuse",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "reuse[${2:settings%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "reuse*",
+      "arg": {
+        "format": "{}",
+        "snippet": "reuse*{${1:csname}}"
+      }
+    },
+    {
+      "name": "reuse*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "reuse*[${2:settings%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcReuse",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcReuse{${1:csname}}"
+      }
+    },
+    {
+      "name": "nmcReuse",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcReuse[${2:settings%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "nmcReuse*",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "nmcReuse*{${1:csname}}"
+      }
+    },
+    {
+      "name": "nmcReuse*",
+      "unusual": true,
+      "arg": {
+        "format": "[]{}",
+        "snippet": "nmcReuse*[${2:settings%keyvals}]{${1:csname}}",
+        "keys": [
+          "\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/numerica#c": [
+      "comma",
+      "rounding=${1:integer}",
+      "approx"
+    ],
+    "\\eval,\\eval*,\\nmcEvaluate,\\nmcEvaluate*,\\macros,\\macros*,\\nmcMacros,\\nmcMacros*,\\constants,\\constants*,\\nmcConstants,\\nmcConstants*,\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*": [
+      "dbg=${1|0,1,2,3,5,7,11|}",
+      "view",
+      "^=${1:char}",
+      "xx=${1|0,1|}",
+      "ff=${1:char}",
+      "1s2=${1|0,1|}",
+      "/min=${1:integer}",
+      "/max=${1:integer}",
+      "vv@=${1|0,1|}",
+      "vvmode=${1|0,1|}",
+      "o=${1|0,1|}",
+      "log=${1:number}",
+      "S+=${1:integer}",
+      "S?=${1:integer}",
+      "P+=${1:integer}",
+      "P?=${1:integer}",
+      "f=${1|0,1|}",
+      "p=${1:punctuation}",
+      "pp=${1:punctuation}",
+      "env=${1:envname}",
+      "arg=${1:arg}",
+      "eq=${1:symbol}",
+      "vv=${1:spec}",
+      "sep=${1:separator}",
+      "\\}=${1:<space><r-delim>}"
+    ],
+    "\\info#c,\\info*#c,\\nmcInfo#c,\\nmcInfo*#c": [
+      "view"
+    ],
+    "\\macros,\\macros*,\\nmcMacros,\\nmcMacros*": [
+      "free"
+    ],
+    "\\constants,\\constants*,\\nmcConstants,\\nmcConstants*": [
+      "add"
+    ],
+    "\\reuse,\\reuse*,\\nmcReuse,\\nmcReuse*": [
+      "save",
+      "renew",
+      "load",
+      "delete"
+    ]
+  },
+  "args": [
+    "\\usepackage/numerica#c"
+  ]
 }

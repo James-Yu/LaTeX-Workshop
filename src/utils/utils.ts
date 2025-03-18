@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import { glob } from 'glob'
 import { lw } from '../lw'
 
@@ -224,7 +223,7 @@ export function getSurroundingMacroRange(macro: string, position: vscode.Positio
  * @param suffix The suffix of the input file
  * @return an absolute path or undefined if the file does not exist
  */
-export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
+export async function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): Promise<string | undefined> {
     if (inputFile.startsWith('/')) {
         dirs.unshift('')
     }
@@ -233,10 +232,10 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
         if (path.extname(inputFilePath) === '') {
             inputFilePath += suffix
         }
-        if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + suffix)) {
+        if (!await lw.file.exists(inputFilePath) && await lw.file.exists(inputFilePath + suffix)) {
             inputFilePath += suffix
         }
-        if (fs.existsSync(inputFilePath)) {
+        if (await lw.file.exists(inputFilePath)) {
             return inputFilePath
         }
     }

@@ -1,29 +1,54 @@
 {
-  "includes": {},
-  "macros": {
-    "newrvwrite{}": {
-      "snippet": "newrvwrite{${1:name}}"
+  "deps": [],
+  "macros": [
+    {
+      "name": "newrvwrite",
+      "arg": {
+        "format": "{}",
+        "snippet": "newrvwrite{${1:name}}"
+      }
     },
-    "rvwrite{}{}": {
-      "snippet": "rvwrite{${1:write name}}{${2:code}}"
+    {
+      "name": "rvwrite",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "rvwrite{${1:write name}}{${2:code%definition}}"
+      }
     },
-    "ervwrite{}{}": {
-      "snippet": "ervwrite{${1:write name}}{${2:code}}"
+    {
+      "name": "ervwrite",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "ervwrite{${1:write name}}{${2:code%definition}}"
+      }
     },
-    "dlrchr": {},
-    "hshchr": {},
-    "bslchr": {},
-    "lbrchr": {},
-    "rbrchr": {},
-    "tldchr": {},
-    "ampchr": {},
-    "rvtwrite": {},
-    "Filedate": {},
-    "Fileversion": {},
-    "fileversion": {},
-    "filedate": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+    {
+      "name": "dlrchr"
+    },
+    {
+      "name": "hshchr"
+    },
+    {
+      "name": "bslchr"
+    },
+    {
+      "name": "lbrchr"
+    },
+    {
+      "name": "rbrchr"
+    },
+    {
+      "name": "tldchr"
+    },
+    {
+      "name": "ampchr"
+    },
+    {
+      "name": "rvtwrite",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

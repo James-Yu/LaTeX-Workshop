@@ -1,26 +1,54 @@
 {
-  "includes": {
-    "fontspec": [],
-    "etoolbox": []
-  },
-  "macros": {
-    "settofirstfound{}{}": {
-      "snippet": "settofirstfound{${1:font cmd}}{${2:font1,font2,...}}"
+  "deps": [
+    {
+      "name": "fontspec"
     },
-    "iffontsexist{}{}{}": {
-      "snippet": "iffontsexist{${1:font list}}{${2:true}}{${3:false}}"
-    },
-    "ifxfontsexist{}{}{}": {
-      "snippet": "ifxfontsexist{${1:font list}}{${2:true}}{${3:false}}"
-    },
-    "iffontexists{}{}{}": {
-      "snippet": "iffontexists{${1:font}}{${2:true}}{${3:false}}"
-    },
-    "ifxfontexists{}{}{}": {
-      "snippet": "ifxfontexists{${1:font}}{${2:true}}{${3:false}}"
+    {
+      "name": "etoolbox"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "settofirstfound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "settofirstfound{${1:font cmd}}{${2:font1,font2,...}}"
+      }
+    },
+    {
+      "name": "iffontsexist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iffontsexist{${1:font list}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifxfontsexist",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifxfontsexist{${1:font list}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "iffontexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "iffontexists{${1:font}}{${2:true}}{${3:false}}"
+      }
+    },
+    {
+      "name": "ifxfontexists",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifxfontexists{${1:font}}{${2:true}}{${3:false}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

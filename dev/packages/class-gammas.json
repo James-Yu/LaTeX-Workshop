@@ -1,230 +1,648 @@
 {
-  "includes": {
-    "class-scrartcl": [],
-    "inputenc": [],
-    "fontenc": [],
-    "lmodern": [],
-    "fourier": [],
-    "babel": [],
-    "microtype": [],
-    "anyfontsize": [],
-    "amssymb": [],
-    "amsmath": [],
-    "amsthm": [],
-    "mathtools": [],
-    "mathrsfs": [],
-    "subdepth": [],
-    "graphicx": [],
-    "xcolor": [],
-    "tikz": [],
-    "pgfplots": [],
-    "geometry": [],
-    "scrlayer-scrpage": [],
-    "booktabs": [],
-    "enumitem": [],
-    "caption": [],
-    "siunitx": [],
-    "lineno": [],
-    "listings": [],
-    "ifthen": [],
-    "hyperref": [],
-    "cleveref": [],
-    "csquotes": [],
-    "biblatex": [],
-    "natbib": [
+  "deps": [
+    {
+      "name": "class-scrartcl"
+    },
+    {
+      "name": "inputenc"
+    },
+    {
+      "name": "fontenc"
+    },
+    {
+      "name": "lmodern"
+    },
+    {
+      "name": "fourier"
+    },
+    {
+      "name": "babel"
+    },
+    {
+      "name": "microtype"
+    },
+    {
+      "name": "anyfontsize"
+    },
+    {
+      "name": "amssymb"
+    },
+    {
+      "name": "amsmath"
+    },
+    {
+      "name": "amsthm"
+    },
+    {
+      "name": "mathtools"
+    },
+    {
+      "name": "mathrsfs"
+    },
+    {
+      "name": "subdepth"
+    },
+    {
+      "name": "graphicx"
+    },
+    {
+      "name": "xcolor"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "pgfplots"
+    },
+    {
+      "name": "geometry"
+    },
+    {
+      "name": "scrlayer-scrpage"
+    },
+    {
+      "name": "booktabs"
+    },
+    {
+      "name": "enumitem"
+    },
+    {
+      "name": "caption"
+    },
+    {
+      "name": "siunitx"
+    },
+    {
+      "name": "lineno"
+    },
+    {
+      "name": "listings"
+    },
+    {
+      "name": "ifthen"
+    },
+    {
+      "name": "hyperref"
+    },
+    {
+      "name": "cleveref"
+    },
+    {
+      "name": "csquotes"
+    },
+    {
+      "name": "biblatex"
+    },
+    {
+      "name": "natbib",
+      "if": "usebibtex"
+    }
+  ],
+  "macros": [
+    {
+      "name": "gammtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammtitle{${1:text}}"
+      }
+    },
+    {
+      "name": "gammauthora",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthora{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthorb",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorb{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthorc",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorc{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthord",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthord{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthore",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthore{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthorf",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorf{${1:name}}"
+      }
+    },
+    {
+      "name": "gammauthoraorcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthoraorcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammauthorborcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorborcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammauthorcorcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorcorcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammauthordorcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthordorcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammauthoreorcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthoreorcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammauthorforcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorforcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammaddressa",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddressa{${1:address}}"
+      }
+    },
+    {
+      "name": "gammaddressb",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddressb{${1:address}}"
+      }
+    },
+    {
+      "name": "gammaddressc",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddressc{${1:address}}"
+      }
+    },
+    {
+      "name": "gammaddressd",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddressd{${1:address}}"
+      }
+    },
+    {
+      "name": "gammaddresse",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddresse{${1:address}}"
+      }
+    },
+    {
+      "name": "gammaddressf",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammaddressf{${1:address}}"
+      }
+    },
+    {
+      "name": "inst",
+      "arg": {
+        "format": "{}",
+        "snippet": "inst{${1:supscript}}"
+      }
+    },
+    {
+      "name": "corauth"
+    },
+    {
+      "name": "gammauthorhead",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammauthorhead{${1:text}}"
+      }
+    },
+    {
+      "name": "gammcorrespondence",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammcorrespondence{${1:email%URL}}"
+      }
+    },
+    {
+      "name": "gammsupervisor",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammsupervisor{${1:name}}"
+      }
+    },
+    {
+      "name": "gammbibfilename",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammbibfilename{${1:bib file}}"
+      }
+    },
+    {
+      "name": "gammotherpublication",
+      "arg": {
+        "format": "{}",
+        "snippet": "gammotherpublication{${1:publication}}"
+      }
+    },
+    {
+      "name": "orcid",
+      "arg": {
+        "format": "{}",
+        "snippet": "orcid{${1:ORCID}}"
+      }
+    },
+    {
+      "name": "gammasHeader",
+      "unusual": true
+    },
+    {
+      "name": "gammbiberopt",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gammbiberopt{${1:true|false}}"
+      }
+    },
+    {
+      "name": "gammfinalmode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gammfinalmode{${1:arg}}"
+      }
+    },
+    {
+      "name": "gammloadoptbiber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gammloadoptbiber{${1:true|false}}"
+      }
+    },
+    {
+      "name": "gammloadoptbibtex",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gammloadoptbibtex{${1:true|false}}"
+      }
+    },
+    {
+      "name": "gammtwocolumnmode",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "gammtwocolumnmode{${1:arg}}"
+      }
+    },
+    {
+      "name": "makegammhead",
+      "unusual": true
+    },
+    {
+      "name": "patchAmsMathEnvironmentForLineno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchAmsMathEnvironmentForLineno{${1:envname}}"
+      }
+    },
+    {
+      "name": "patchBothAmsMathEnvironmentsForLineno",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "patchBothAmsMathEnvironmentsForLineno{${1:envname}}"
+      }
+    },
+    {
+      "name": "setbiber",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setbiber{${1:bib file}}"
+      }
+    },
+    {
+      "name": "setbib",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setbib{${1:bib file}}"
+      }
+    },
+    {
+      "name": "GAMMAUTHORA",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORB",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORC",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORD",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORE",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORF",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORAORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORBORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORCORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORDORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHOREORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORFORCID",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSA",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSB",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSC",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSD",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSE",
+      "unusual": true
+    },
+    {
+      "name": "GAMMADDRESSF",
+      "unusual": true
+    },
+    {
+      "name": "GAMMAUTHORHEAD",
+      "unusual": true
+    },
+    {
+      "name": "GAMMCORRESPONDENCE",
+      "unusual": true
+    },
+    {
+      "name": "GAMMSUPERVISOR",
+      "unusual": true
+    },
+    {
+      "name": "GAMMSUPERVISORTEXT",
+      "unusual": true
+    },
+    {
+      "name": "GAMMOTHERPUBLICATION",
+      "unusual": true
+    },
+    {
+      "name": "GAMMBIBFILENAME",
+      "unusual": true
+    },
+    {
+      "name": "GAMMLOADOPTBIBER",
+      "unusual": true
+    },
+    {
+      "name": "GAMMBIBEROPT",
+      "unusual": true
+    },
+    {
+      "name": "GAMMLOADOPTBIBTEX",
+      "unusual": true
+    },
+    {
+      "name": "GAMMFINALMODE",
+      "unusual": true
+    },
+    {
+      "name": "GAMMTWOCOLUMNMODE",
+      "unusual": true
+    },
+    {
+      "name": "DH"
+    },
+    {
+      "name": "dh"
+    },
+    {
+      "name": "dj"
+    },
+    {
+      "name": "DJ"
+    },
+    {
+      "name": "guillemetleft"
+    },
+    {
+      "name": "guillemetright"
+    },
+    {
+      "name": "guillemotleft",
+      "unusual": true
+    },
+    {
+      "name": "guillemotright",
+      "unusual": true
+    },
+    {
+      "name": "guilsinglleft"
+    },
+    {
+      "name": "guilsinglright"
+    },
+    {
+      "name": "Hwithstroke"
+    },
+    {
+      "name": "hwithstroke"
+    },
+    {
+      "name": "k",
+      "arg": {
+        "format": "{}",
+        "snippet": "k{${1:arg}}"
+      }
+    },
+    {
+      "name": "NG"
+    },
+    {
+      "name": "ng"
+    },
+    {
+      "name": "quotedblbase"
+    },
+    {
+      "name": "quotesinglbase"
+    },
+    {
+      "name": "textogonekcentered",
+      "arg": {
+        "format": "{}",
+        "snippet": "textogonekcentered{${1:arg}}"
+      }
+    },
+    {
+      "name": "textquotedbl"
+    },
+    {
+      "name": "th"
+    },
+    {
+      "name": "TH"
+    },
+    {
+      "name": "captionsenglish",
+      "unusual": true
+    },
+    {
+      "name": "dateenglish",
+      "unusual": true
+    },
+    {
+      "name": "extrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "noextrasenglish",
+      "unusual": true
+    },
+    {
+      "name": "englishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "britishhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "americanhyphenmins",
+      "unusual": true
+    },
+    {
+      "name": "prefacename",
+      "unusual": true
+    },
+    {
+      "name": "bibname",
+      "unusual": true
+    },
+    {
+      "name": "chaptername",
+      "unusual": true
+    },
+    {
+      "name": "enclname",
+      "unusual": true
+    },
+    {
+      "name": "ccname",
+      "unusual": true
+    },
+    {
+      "name": "headtoname",
+      "unusual": true
+    },
+    {
+      "name": "seename",
+      "unusual": true
+    },
+    {
+      "name": "alsoname",
+      "unusual": true
+    },
+    {
+      "name": "proofname",
+      "unusual": true
+    },
+    {
+      "name": "glossaryname",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "gammabstract"
+    },
+    {
+      "name": "gammkeywords"
+    },
+    {
+      "name": "gammacode"
+    },
+    {
+      "name": "gammacknowledgement"
+    }
+  ],
+  "keys": {
+    "\\documentclass/gammas#c": [
+      "usebiber",
       "usebibtex"
     ]
   },
-  "macros": {
-    "gammtitle{}": {
-      "snippet": "gammtitle{${1:text}}"
-    },
-    "gammauthora{}": {
-      "snippet": "gammauthora{${1:name}}"
-    },
-    "gammauthorb{}": {
-      "snippet": "gammauthorb{${1:name}}"
-    },
-    "gammauthorc{}": {
-      "snippet": "gammauthorc{${1:name}}"
-    },
-    "gammauthord{}": {
-      "snippet": "gammauthord{${1:name}}"
-    },
-    "gammauthore{}": {
-      "snippet": "gammauthore{${1:name}}"
-    },
-    "gammauthorf{}": {
-      "snippet": "gammauthorf{${1:name}}"
-    },
-    "gammauthoraorcid{}": {
-      "snippet": "gammauthoraorcid{${1:ORCID}}"
-    },
-    "gammauthorborcid{}": {
-      "snippet": "gammauthorborcid{${1:ORCID}}"
-    },
-    "gammauthorcorcid{}": {
-      "snippet": "gammauthorcorcid{${1:ORCID}}"
-    },
-    "gammauthordorcid{}": {
-      "snippet": "gammauthordorcid{${1:ORCID}}"
-    },
-    "gammauthoreorcid{}": {
-      "snippet": "gammauthoreorcid{${1:ORCID}}"
-    },
-    "gammauthorforcid{}": {
-      "snippet": "gammauthorforcid{${1:ORCID}}"
-    },
-    "gammaddressa{}": {
-      "snippet": "gammaddressa{${1:address}}"
-    },
-    "gammaddressb{}": {
-      "snippet": "gammaddressb{${1:address}}"
-    },
-    "gammaddressc{}": {
-      "snippet": "gammaddressc{${1:address}}"
-    },
-    "gammaddressd{}": {
-      "snippet": "gammaddressd{${1:address}}"
-    },
-    "gammaddresse{}": {
-      "snippet": "gammaddresse{${1:address}}"
-    },
-    "gammaddressf{}": {
-      "snippet": "gammaddressf{${1:address}}"
-    },
-    "inst{}": {
-      "snippet": "inst{${1:supscript}}"
-    },
-    "corauth": {},
-    "gammauthorhead{}": {
-      "snippet": "gammauthorhead{${1:text}}"
-    },
-    "gammcorrespondence{}": {
-      "snippet": "gammcorrespondence{${1:email}}"
-    },
-    "gammsupervisor{}": {
-      "snippet": "gammsupervisor{${1:name}}"
-    },
-    "gammbibfilename{}": {
-      "snippet": "gammbibfilename{${1:bib file}}"
-    },
-    "gammotherpublication{}": {
-      "snippet": "gammotherpublication{${1:publication}}"
-    },
-    "orcid{}": {
-      "snippet": "orcid{${1:ORCID}}"
-    },
-    "gammasHeader": {},
-    "gammbiberopt{}": {
-      "snippet": "gammbiberopt{${1:true|false}}"
-    },
-    "gammfinalmode{}": {
-      "snippet": "gammfinalmode{${1:arg}}"
-    },
-    "gammloadoptbiber{}": {
-      "snippet": "gammloadoptbiber{${1:true|false}}"
-    },
-    "gammloadoptbibtex{}": {
-      "snippet": "gammloadoptbibtex{${1:true|false}}"
-    },
-    "gammtwocolumnmode{}": {
-      "snippet": "gammtwocolumnmode{${1:arg}}"
-    },
-    "makegammhead": {},
-    "patchAmsMathEnvironmentForLineno{}": {
-      "snippet": "patchAmsMathEnvironmentForLineno{${1:envname}}"
-    },
-    "patchBothAmsMathEnvironmentsForLineno{}": {
-      "snippet": "patchBothAmsMathEnvironmentsForLineno{${1:envname}}"
-    },
-    "setbiber{}": {
-      "snippet": "setbiber{${1:bib file}}"
-    },
-    "setbib{}": {
-      "snippet": "setbib{${1:bib file}}"
-    },
-    "GAMMAUTHORA": {},
-    "GAMMAUTHORB": {},
-    "GAMMAUTHORC": {},
-    "GAMMAUTHORD": {},
-    "GAMMAUTHORE": {},
-    "GAMMAUTHORF": {},
-    "GAMMAUTHORAORCID": {},
-    "GAMMAUTHORBORCID": {},
-    "GAMMAUTHORCORCID": {},
-    "GAMMAUTHORDORCID": {},
-    "GAMMAUTHOREORCID": {},
-    "GAMMAUTHORFORCID": {},
-    "GAMMADDRESSA": {},
-    "GAMMADDRESSB": {},
-    "GAMMADDRESSC": {},
-    "GAMMADDRESSD": {},
-    "GAMMADDRESSE": {},
-    "GAMMADDRESSF": {},
-    "GAMMAUTHORHEAD": {},
-    "GAMMCORRESPONDENCE": {},
-    "GAMMSUPERVISOR": {},
-    "GAMMSUPERVISORTEXT": {},
-    "GAMMOTHERPUBLICATION": {},
-    "GAMMBIBFILENAME": {},
-    "GAMMLOADOPTBIBER": {},
-    "GAMMBIBEROPT": {},
-    "GAMMLOADOPTBIBTEX": {},
-    "GAMMFINALMODE": {},
-    "GAMMTWOCOLUMNMODE": {},
-    "DH": {},
-    "dh": {},
-    "dj": {},
-    "DJ": {},
-    "guillemetleft": {},
-    "guillemetright": {},
-    "guillemotleft": {},
-    "guillemotright": {},
-    "guilsinglleft": {},
-    "guilsinglright": {},
-    "Hwithstroke": {},
-    "hwithstroke": {},
-    "k{}": {
-      "snippet": "k{${1:arg}}"
-    },
-    "NG": {},
-    "ng": {},
-    "quotedblbase": {},
-    "quotesinglbase": {},
-    "textogonekcentered{}": {
-      "snippet": "textogonekcentered{${1:arg}}"
-    },
-    "textquotedbl": {},
-    "th": {},
-    "TH": {},
-    "captionsenglish": {},
-    "dateenglish": {},
-    "extrasenglish": {},
-    "noextrasenglish": {},
-    "englishhyphenmins": {},
-    "britishhyphenmins": {},
-    "americanhyphenmins": {},
-    "prefacename": {},
-    "bibname": {},
-    "chaptername": {},
-    "enclname": {},
-    "ccname": {},
-    "headtoname": {},
-    "seename": {},
-    "alsoname": {},
-    "proofname": {},
-    "glossaryname": {}
-  },
-  "envs": {
-    "gammabstract": {},
-    "gammkeywords": {},
-    "gammacode": {},
-    "gammacknowledgement": {}
-  },
-  "options": [
-    "usebiber",
-    "usebibtex"
-  ],
-  "keyvals": []
+  "args": [
+    "\\documentclass/gammas#c"
+  ]
 }

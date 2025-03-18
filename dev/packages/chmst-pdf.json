@@ -1,66 +1,157 @@
 {
-  "includes": {
-    "chemist": [],
-    "xymtx-pdf": []
-  },
-  "macros": {
-    "chmstpdfsw": {},
-    "futuresubst{}": {
-      "snippet": "futuresubst{${1:content}}"
+  "deps": [
+    {
+      "name": "chemist"
     },
-    "electronAHshift": {},
-    "electronshiftAH{}": {
-      "snippet": "electronshiftAH{${1:arg1}}"
-    },
-    "leftharpoondownElement{}": {
-      "snippet": "leftharpoondownElement{${1:arg1}}"
-    },
-    "leftharpoonupElement{}": {
-      "snippet": "leftharpoonupElement{${1:arg1}}"
-    },
-    "newreactDEqarrow": {},
-    "newreactEqarrow": {},
-    "newreactLEqarrow": {},
-    "newreactREqarrow": {},
-    "newreactUEqarrow": {},
-    "newreactVEqarrow": {},
-    "newreactdarrow": {},
-    "newreactdeqarrow": {},
-    "newreactdlrarrow": {},
-    "newreactduarrow": {},
-    "newreacteqarrow": {},
-    "newreactlarrow": {},
-    "newreactleqarrow": {},
-    "newreactlrarrow": {},
-    "newreactnearrow": {},
-    "newreactnwarrow": {},
-    "newreactrarrow": {},
-    "newreactreqarrow": {},
-    "newreactsearrow": {},
-    "newreactswarrow": {},
-    "newreactuarrow": {},
-    "newreactueqarrow": {},
-    "newreactulrarrow": {},
-    "newreactveqarrow": {},
-    "newschemelarrow{}{}{}{}": {
-      "snippet": "newschemelarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "newschemelrarrow{}{}{}{}": {
-      "snippet": "newschemelrarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "newschemerarrow{}{}{}{}": {
-      "snippet": "newschemerarrow{${1:arg1}}{${2:arg2}}{${3:arg3}}{${4:arg4}}"
-    },
-    "rightharpoondownElement{}": {
-      "snippet": "rightharpoondownElement{${1:arg1}}"
-    },
-    "rightharpoonupElement{}": {
-      "snippet": "rightharpoonupElement{${1:arg1}}"
+    {
+      "name": "xymtx-pdf"
     }
-  },
-  "envs": {},
-  "options": [
-    "chemtimes"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "chmstpdfsw"
+    },
+    {
+      "name": "electronHldshiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronHldshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
+      }
+    },
+    {
+      "name": "electronHldshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronHldshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronHlushiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronHlushiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "electronHlushiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronHlushiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronHrdshiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronHrdshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
+      }
+    },
+    {
+      "name": "electronHrdshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronHrdshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronHrushiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronHrushiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "electronHrushiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronHrushiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronlshiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronlshiftarrow(${1:xend},${2:yend})(${3:xstart},${4:ystart})"
+      }
+    },
+    {
+      "name": "electronlshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronlshiftarrow[${1:direction}](${2:xend},${3:yend})(${4:xstart},${5:ystart})"
+      }
+    },
+    {
+      "name": "electronrshiftarrow",
+      "arg": {
+        "format": "()()",
+        "snippet": "electronrshiftarrow(${1:xstart},${2:ystart})(${3:xend},${4:yend})"
+      }
+    },
+    {
+      "name": "electronrshiftarrow",
+      "arg": {
+        "format": "[]()()",
+        "snippet": "electronrshiftarrow[${1:direction}](${2:xstart},${3:ystart})(${4:xend},${5:yend})"
+      }
+    },
+    {
+      "name": "electronshiftArrowl",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftArrowl(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "electronshiftArrowr",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftArrowr(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "electronshiftHld",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftHld(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "electronshiftHlu",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftHlu(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "electronshiftHrd",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftHrd(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "electronshiftHru",
+      "arg": {
+        "format": "()()()()",
+        "snippet": "electronshiftHru(${1:xstart},${2:ystart})(${3:xctrl1},${4:yctrl1})(${5:xctrl2},${6:yctrl2})(${7:xend},${8:yend})"
+      }
+    },
+    {
+      "name": "futuresubst",
+      "arg": {
+        "format": "{}",
+        "snippet": "futuresubst{${1:content}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/chmst-pdf#c": [
+      "chemtimes"
+    ]
+  },
+  "args": [
+    "\\usepackage/chmst-pdf#c"
+  ]
 }

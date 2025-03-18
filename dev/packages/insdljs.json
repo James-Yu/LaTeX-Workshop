@@ -1,312 +1,324 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "ifpdf": [],
-    "ifxetex": [],
-    "ifluatex": [],
-    "hyperref": [],
-    "verbatim": [],
-    "conv-xkv": [],
-    "everyshi": []
-  },
-  "macros": {
-    "flJSStr{}{}": {
-      "snippet": "flJSStr{${1:cmd}}{${2:JS string}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "flJSStr[]{}{}": {
-      "snippet": "flJSStr[${3:options}]{${1:cmd}}{${2:JS string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifpdf"
     },
-    "flJSStr*{}{}": {
-      "snippet": "flJSStr*{${1:cmd}}{${2:JS string}}"
+    {
+      "name": "ifxetex"
     },
-    "flJSStr*[]{}{}": {
-      "snippet": "flJSStr*[${3:options}]{${1:cmd}}{${2:JS string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+    {
+      "name": "ifluatex"
     },
-    "defineJSStr{}{}": {
-      "snippet": "defineJSStr{${1:cmd}}{${2:JS string}}"
+    {
+      "name": "hyperref"
     },
-    "fieldJSStr{}{}": {
-      "snippet": "fieldJSStr{${1:cmd}}{${2:JS string}}"
+    {
+      "name": "verbatim"
     },
-    "dlJSStr{}{}": {
-      "snippet": "dlJSStr{${1:cmd}}{${2:JS string}}"
+    {
+      "name": "conv-xkv"
     },
-    "dlJSStr[]{}{}": {
-      "snippet": "dlJSStr[${3:options}]{${1:cmd}}{${2:JS string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "dlJSStr*{}{}": {
-      "snippet": "dlJSStr*{${1:cmd}}{${2:JS string}}"
-    },
-    "dlJSStr*[]{}{}": {
-      "snippet": "dlJSStr*[${3:options}]{${1:cmd}}{${2:JS string}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "cs{}": {
-      "snippet": "cs{${1:csname}}"
-    },
-    "eqbs": {},
-    "jslit": {},
-    "OpenAction{}": {
-      "snippet": "OpenAction{${1:action code}}"
-    },
-    "thisPageAction{}{}": {
-      "snippet": "thisPageAction{${1:open script}}{${2:close script}}"
-    },
-    "JS{}": {
-      "snippet": "JS{${1:string}}"
-    },
-    "Named{}": {
-      "snippet": "Named{${1:string}}"
-    },
-    "eParams": {},
-    "makeJSspecials": {},
-    "actualsize": {},
-    "addActionObj": {},
-    "addImportAnFDF{}": {
-      "snippet": "addImportAnFDF{${1:arg}}"
-    },
-    "addToDocOpen{}": {
-      "snippet": "addToDocOpen{${1:arg}}"
-    },
-    "aebpFA": {},
-    "aebpopentoks": {},
-    "applydljs{}": {
-      "snippet": "applydljs{${1:arg}}"
-    },
-    "begindljs": {},
-    "beginseg": {},
-    "ckivspace{}": {
-      "snippet": "ckivspace{${1:arg1}}"
-    },
-    "db{}": {
-      "snippet": "db{${1:arg}}"
-    },
-    "definebraces": {},
-    "defineJSArg": {},
-    "defjsLB": {},
-    "detectdljs": {},
-    "dfnJSCR{}": {
-      "snippet": "dfnJSCR{${1:arg}}"
-    },
-    "dfnJSCRDef": {},
-    "dfnJSR": {},
-    "dlcombine": {},
-    "dlcontig": {},
-    "dlgobToFi{}": {
-      "snippet": "dlgobToFi{${1:arg}}"
-    },
-    "dljsBase": {},
-    "dljsobjtoks": {},
-    "dljspdftextmp": {},
-    "dljspresent": {},
-    "dljstfor": {},
-    "dljstmp": {},
-    "dlparsePkgInfo{}{}{}": {
-      "snippet": "dlparsePkgInfo{${1:arg1}}{${2:arg2}}{${3:arg3}}"
-    },
-    "dlpkgInfo": {},
-    "dlPkgInfoDate": {},
-    "dlPkgInfoDesc": {},
-    "dlpkgInfoExpd": {},
-    "dlPkgInfoPkg": {},
-    "dlPkgInfoVer": {},
-    "dlSetPkgInfo": {},
-    "DLspecialDefs": {},
-    "dlTC{}": {
-      "snippet": "dlTC{${1:arg}}"
-    },
-    "efdlspecials": {},
-    "endseg": {},
-    "eqdospecials": {},
-    "eqesc": {},
-    "Eschr": {},
-    "escIs{}": {
-      "snippet": "escIs{${1:arg}}"
-    },
-    "execJSOff": {},
-    "execJSOn": {},
-    "expVerb": {},
-    "fdfAfterheader{}": {
-      "snippet": "fdfAfterheader{${1:arg}}"
-    },
-    "fdfbeginstreamobj": {},
-    "fdfendstreamobj": {},
-    "fdfheader": {},
-    "fdftrailer": {},
-    "firstdljs": {},
-    "firstFDFline": {},
-    "fitheight": {},
-    "fitpage": {},
-    "fitvisible": {},
-    "fitwidth": {},
-    "genericLB": {},
-    "genericNL": {},
-    "gobiv": {},
-    "GoTo": {},
-    "GoToD": {},
-    "GoToR": {},
-    "holdtokstmp": {},
-    "importAnFDF": {},
-    "importAnFDFTemplate": {},
-    "importAnFDFtmp": {},
-    "importdljs": {},
-    "importfdftoks": {},
-    "inheritzoom": {},
-    "inputAltAdbFncs": {},
-    "insdljsloadVar": {},
-    "insPath{}": {
-      "snippet": "insPath{${1:arg}}"
-    },
-    "isOpenAction": {},
-    "isStar": {},
-    "iwvo{}": {
-      "snippet": "iwvo{${1:arg}}"
-    },
-    "jscsDflt": {},
-    "jscsDLJS": {},
-    "jsFrstLne": {},
-    "jsN": {},
-    "jsR": {},
-    "jsT": {},
-    "JStoks": {},
-    "lastFDFline": {},
-    "Launch{}": {
-      "snippet": "Launch{${1:arg}}"
-    },
-    "LB": {},
-    "makecmt": {},
-    "makeesc": {},
-    "makespecialJS": {},
-    "multisegments": {},
-    "NL": {},
-    "objNames": {},
-    "opentoks": {},
-    "Page": {},
-    "pdfLBr": {},
-    "pdfmarkLB": {},
-    "pdfRBr": {},
-    "pdfSP": {},
-    "pdfSpacesOff": {},
-    "pdfSpacesOn": {},
-    "pdfSPDef": {},
-    "pdftexOAction": {},
-    "previewMiKTeX": {},
-    "protectJSCtrls": {},
-    "reqpkg": {},
-    "restoreDLspecialDefs": {},
-    "thedljssegs": {},
-    "theFirstAction": {},
-    "thisPageActionpdftex": {},
-    "Thread{}": {
-      "snippet": "Thread{${1:arg}}"
-    },
-    "typeset": {},
-    "Uni": {},
-    "URI{}": {
-      "snippet": "URI{${1:arg}}"
-    },
-    "usedAdbFuncs": {},
-    "W": {
-      "detail": "𝑊",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL W"
-    },
-    "ifpdfmarkup": {},
-    "pdfmarkuptrue": {},
-    "pdfmarkupfalse": {},
-    "ifthereisdjs": {},
-    "thereisdjstrue": {},
-    "thereisdjsfalse": {},
-    "ifpdfspaces": {},
-    "pdfspacestrue": {},
-    "pdfspacesfalse": {},
-    "ifisdljs": {},
-    "isdljstrue": {},
-    "isdljsfalse": {},
-    "ifdlfortypeset": {},
-    "dlfortypesettrue": {},
-    "dlfortypesetfalse": {}
-  },
-  "envs": {
-    "insDLJS{}{}": {
-      "name": "insDLJS",
-      "snippet": "{${1:base name}}{${2:script name}}"
-    },
-    "insDLJS[]{}{}": {
-      "name": "insDLJS",
-      "snippet": "[${3:JS var}]{${1:base name}}{${2:script name}}"
-    },
-    "insDLJS*{}": {
-      "name": "insDLJS*",
-      "snippet": "{${1:base name}}"
-    },
-    "insDLJS*[]{}": {
-      "name": "insDLJS*",
-      "snippet": "[${2:JS var}]{${1:base name}}"
-    },
-    "newsegment{}": {
-      "name": "newsegment",
-      "snippet": "{${1:script name}}"
-    },
-    "execJS{}": {
-      "name": "execJS",
-      "snippet": "{${1:name}}"
-    },
-    "defineJS{}": {
-      "name": "defineJS",
-      "snippet": "{${1:cmd}}"
-    },
-    "defineJS[]{}": {
-      "name": "defineJS",
-      "snippet": "[${2:chngCats}]{${1:cmd}}"
-    },
-    "defineJS*{}": {
-      "name": "defineJS*",
-      "snippet": "{${1:cmd}}"
-    },
-    "defineJS*[]{}": {
-      "name": "defineJS*",
-      "snippet": "[${2:chngCats}]{${1:cmd}}"
-    },
-    "didPrint": {},
-    "didSave": {},
-    "dlcomment": {},
-    "dljs": {},
-    "jsexpverbatimwrite": {},
-    "localJS": {},
-    "willClose": {},
-    "willPrint": {},
-    "willSave": {}
-  },
-  "options": [
-    "dvipsone",
-    "dvips",
-    "textures",
-    "pdftex",
-    "luatex",
-    "dvipdfm",
-    "dvipdfmx",
-    "xetex",
-    "nodljs",
-    "debug",
-    "execJS",
-    "nopro",
-    "reqjs",
-    "!reqjs",
-    "usealtadobe"
+    {
+      "name": "everyshi"
+    }
   ],
-  "keyvals": [
-    [
+  "macros": [
+    {
+      "name": "flJSStr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "flJSStr{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "flJSStr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "flJSStr[${3:options%keyvals}]{${1:cmd}}{${2:JS string%definition}}",
+        "keys": [
+          "\\flJSStr#c,\\flJSStr*#c,\\dlJSStr#c,\\dlJSStr*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "flJSStr*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "flJSStr*{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "flJSStr*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "flJSStr*[${3:options%keyvals}]{${1:cmd}}{${2:JS string%definition}}",
+        "keys": [
+          "\\flJSStr#c,\\flJSStr*#c,\\dlJSStr#c,\\dlJSStr*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "defineJSStr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "defineJSStr{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "fieldJSStr",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "fieldJSStr{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "dlJSStr",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dlJSStr{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "dlJSStr",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dlJSStr[${3:options%keyvals}]{${1:cmd}}{${2:JS string%definition}}",
+        "keys": [
+          "\\flJSStr#c,\\flJSStr*#c,\\dlJSStr#c,\\dlJSStr*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "dlJSStr*",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "dlJSStr*{${1:cmd}}{${2:JS string%definition}}"
+      }
+    },
+    {
+      "name": "dlJSStr*",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "dlJSStr*[${3:options%keyvals}]{${1:cmd}}{${2:JS string%definition}}",
+        "keys": [
+          "\\flJSStr#c,\\flJSStr*#c,\\dlJSStr#c,\\dlJSStr*#c"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "cs",
+      "arg": {
+        "format": "{}",
+        "snippet": "cs{${1:csname}}"
+      }
+    },
+    {
+      "name": "eqbs",
+      "unusual": true
+    },
+    {
+      "name": "jslit"
+    },
+    {
+      "name": "OpenAction",
+      "arg": {
+        "format": "{}",
+        "snippet": "OpenAction{${1:action code}}"
+      }
+    },
+    {
+      "name": "thisPageAction",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "thisPageAction{${1:open script}}{${2:close script}}"
+      }
+    },
+    {
+      "name": "JS",
+      "arg": {
+        "format": "{}",
+        "snippet": "JS{${1:string}}"
+      }
+    },
+    {
+      "name": "Named",
+      "arg": {
+        "format": "{}",
+        "snippet": "Named{${1:string}}"
+      }
+    },
+    {
+      "name": "makeJSspecials",
+      "unusual": true
+    },
+    {
+      "name": "ifpdfmarkup",
+      "unusual": true
+    },
+    {
+      "name": "pdfmarkuptrue",
+      "unusual": true
+    },
+    {
+      "name": "pdfmarkupfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifthereisdjs",
+      "unusual": true
+    },
+    {
+      "name": "thereisdjstrue",
+      "unusual": true
+    },
+    {
+      "name": "thereisdjsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifpdfspaces",
+      "unusual": true
+    },
+    {
+      "name": "pdfspacestrue",
+      "unusual": true
+    },
+    {
+      "name": "pdfspacesfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifisdljs",
+      "unusual": true
+    },
+    {
+      "name": "isdljstrue",
+      "unusual": true
+    },
+    {
+      "name": "isdljsfalse",
+      "unusual": true
+    },
+    {
+      "name": "ifdlfortypeset",
+      "unusual": true
+    },
+    {
+      "name": "dlfortypesettrue",
+      "unusual": true
+    },
+    {
+      "name": "dlfortypesetfalse",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "insDLJS",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "{${1:base name}}{${2:script name}}"
+      }
+    },
+    {
+      "name": "insDLJS",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "[${3:JS var}]{${1:base name}}{${2:script name}}"
+      }
+    },
+    {
+      "name": "insDLJS*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:base name}}"
+      }
+    },
+    {
+      "name": "insDLJS*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:JS var}]{${1:base name}}"
+      }
+    },
+    {
+      "name": "newsegment",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:script name}}"
+      }
+    },
+    {
+      "name": "execJS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "defineJS",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "defineJS",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:chngCats}]{${1:cmd}}"
+      }
+    },
+    {
+      "name": "defineJS*",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:cmd}}"
+      }
+    },
+    {
+      "name": "defineJS*",
+      "arg": {
+        "format": "[]{}",
+        "snippet": "[${2:chngCats}]{${1:cmd}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/insdljs#c": [
+      "dvipsone",
+      "dvips",
+      "textures",
+      "pdftex",
+      "luatex",
+      "dvipdfm",
+      "dvipdfmx",
+      "xetex",
+      "nodljs",
+      "debug",
+      "execJS",
+      "nopro",
+      "reqjs",
+      "!reqjs",
+      "usealtadobe"
+    ],
+    "\\flJSStr#c,\\flJSStr*#c,\\dlJSStr#c,\\dlJSStr*#c": [
       "quotes",
       "noquotes",
       "parens",
       "noparens"
     ]
+  },
+  "args": [
+    "\\usepackage/insdljs#c"
   ]
 }

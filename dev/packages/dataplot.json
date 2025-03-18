@@ -1,96 +1,362 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "tikz": [],
-    "tikzlibraryplotmarks": [],
-    "tikzlibrarycalc": [],
-    "datatool": []
+  "deps": [
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "tikz"
+    },
+    {
+      "name": "tikzlibraryplotmarks"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "datatool"
+    }
+  ],
+  "macros": [
+    {
+      "name": "DTLplot",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "DTLplot{${1:db list%special}}{${2:settings%keyvals}}",
+        "keys": [
+          "\\DTLplot"
+        ],
+        "keyPos": 1
+      }
+    },
+    {
+      "name": "DTLplot",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "DTLplot[${3:condition}]{${1:db list%special}}{${2:settings%keyvals}}",
+        "keys": [
+          "\\DTLplot"
+        ],
+        "keyPos": 2
+      }
+    },
+    {
+      "name": "DTLplotatbegintikz"
+    },
+    {
+      "name": "DTLplotatendtikz"
+    },
+    {
+      "name": "dtlplothandlermark",
+      "arg": {
+        "format": "{}",
+        "snippet": "dtlplothandlermark{${1:pgf code}}"
+      }
+    },
+    {
+      "name": "DTLaddtoplotlegend",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTLaddtoplotlegend{${1:marker}}{${2:line style}}{${3:text}}"
+      }
+    },
+    {
+      "name": "DTLplotwidth",
+      "unusual": true
+    },
+    {
+      "name": "DTLplotheight",
+      "unusual": true
+    },
+    {
+      "name": "DTLticklength",
+      "unusual": true
+    },
+    {
+      "name": "DTLminorticklength",
+      "unusual": true
+    },
+    {
+      "name": "DTLticklabeloffset",
+      "unusual": true
+    },
+    {
+      "name": "DTLmintickgap",
+      "unusual": true
+    },
+    {
+      "name": "DTLlegendxoffset",
+      "unusual": true
+    },
+    {
+      "name": "DTLlegendyoffset",
+      "unusual": true
+    },
+    {
+      "name": "DTLplotmarks",
+      "unusual": true
+    },
+    {
+      "name": "DTLplotmarkcolors",
+      "unusual": true
+    },
+    {
+      "name": "DTLplotlines",
+      "unusual": true
+    },
+    {
+      "name": "DTLplotlinecolors",
+      "unusual": true
+    },
+    {
+      "name": "DTLXAxisStyle",
+      "unusual": true
+    },
+    {
+      "name": "DTLYAxisStyle",
+      "unusual": true
+    },
+    {
+      "name": "DTLmajorgridstyle",
+      "unusual": true
+    },
+    {
+      "name": "DTLminorgridstyle",
+      "unusual": true
+    },
+    {
+      "name": "DTLformatlegend",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "DTLformatlegend{${1:legend}}"
+      }
+    },
+    {
+      "name": "DTLplotstream",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "DTLplotstream{${1:db%special}}{${2:x key}}{${3:y key}}"
+      }
+    },
+    {
+      "name": "DTLplotstream",
+      "arg": {
+        "format": "[]{}{}{}",
+        "snippet": "DTLplotstream[${4:condition}]{${1:db%special}}{${2:x key}}{${3:y key}}"
+      }
+    },
+    {
+      "name": "DTLboxfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLboxtrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLgridfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLgridtrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLmaxX",
+      "unusual": true
+    },
+    {
+      "name": "DTLmaxY",
+      "unusual": true
+    },
+    {
+      "name": "DTLminminortickgap",
+      "unusual": true
+    },
+    {
+      "name": "DTLminX",
+      "unusual": true
+    },
+    {
+      "name": "DTLminY",
+      "unusual": true
+    },
+    {
+      "name": "DTLshowlinesfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLshowlinestrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLshowmarkersfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLshowmarkerstrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLxaxisfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLxaxistrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLxminorticsfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLxminorticstrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLxticsfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLxticsinfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLxticsintrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLxticstrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLyaxisfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLyaxistrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLyminorticsfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLyminorticstrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLyticsfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLyticsinfalse",
+      "unusual": true
+    },
+    {
+      "name": "DTLyticsintrue",
+      "unusual": true
+    },
+    {
+      "name": "DTLyticstrue",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLbox",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLgrid",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLshowlines",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLshowmarkers",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLxaxis",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLxminortics",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLxtics",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLxticsin",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLyaxis",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLyminortics",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLytics",
+      "unusual": true
+    },
+    {
+      "name": "ifDTLyticsin",
+      "unusual": true
+    },
+    {
+      "name": "theDTLplotroundXvar",
+      "unusual": true
+    },
+    {
+      "name": "theDTLplotroundYvar",
+      "unusual": true
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\DTLplot": [
+      "x=${1:db key}",
+      "y=${1:db key}",
+      "markcolors={${1:color1,color2,...}}",
+      "linecolors={${1:color1,color2,...}}",
+      "colors={${1:color1,color2,...}}",
+      "marks={${1:mark1,mark2,...}}",
+      "lines={${1:linestyle1,linestyle2,...}}",
+      "width=",
+      "height=",
+      "style=${1|both,lines,markers|}",
+      "axes=${1|both,x,y,none|}",
+      "box",
+      "xtics",
+      "ytics",
+      "xminortics",
+      "yminortics",
+      "xticdir=${1|in,out|}",
+      "yticdir=${1|in,out|}",
+      "ticdir=${1|in,out|}",
+      "bounds={${1:min-x,min-y,max-x,max-y}}",
+      "minx=${1:decimal}",
+      "miny=${1:decimal}",
+      "maxx=${1:decimal}",
+      "maxy=${1:decimal}",
+      "xticpoints={${1:decimal1,decimal2,...}}",
+      "xticgap=",
+      "yticpoints={${1:decimal1,decimal2,...}}",
+      "yticgap=",
+      "grid",
+      "xticlabels={${1:text1,text2,...}}",
+      "yticlabels={${1:text1,text2,...}}",
+      "xlabel=${1:text}",
+      "ylabel=${1:text}",
+      "legend=${1|none,north,northeast,east,southeast,south,southwest,west,northwest|}",
+      "legendlabels={${1:text1,text2,...}}"
+    ]
   },
-  "macros": {
-    "DTLplot{}{}": {
-      "snippet": "DTLplot{${1:db list}}{${2:settings}}"
-    },
-    "DTLplot[]{}{}": {
-      "snippet": "DTLplot[${3:condition}]{${1:db list}}{${2:settings}}"
-    },
-    "DTLplotatbegintikz": {},
-    "DTLplotatendtikz": {},
-    "dtlplothandlermark{}": {
-      "snippet": "dtlplothandlermark{${1:pgf code}}"
-    },
-    "DTLaddtoplotlegend{}{}{}": {
-      "snippet": "DTLaddtoplotlegend{${1:marker}}{${2:line style}}{${3:text}}"
-    },
-    "DTLplotwidth": {},
-    "DTLplotheight": {},
-    "DTLticklength": {},
-    "DTLminorticklength": {},
-    "DTLticklabeloffset": {},
-    "DTLmintickgap": {},
-    "DTLlegendxoffset": {},
-    "DTLlegendyoffset": {},
-    "DTLplotmarks": {},
-    "DTLplotmarkcolors": {},
-    "DTLplotlines": {},
-    "DTLplotlinecolors": {},
-    "DTLXAxisStyle": {},
-    "DTLYAxisStyle": {},
-    "DTLmajorgridstyle": {},
-    "DTLminorgridstyle": {},
-    "DTLformatlegend{}": {
-      "snippet": "DTLformatlegend{${1:legend}}"
-    },
-    "DTLplotstream{}{}{}": {
-      "snippet": "DTLplotstream{${1:db}}{${2:x key}}{${3:y key}}"
-    },
-    "DTLplotstream[]{}{}{}": {
-      "snippet": "DTLplotstream[${4:condition}]{${1:db}}{${2:x key}}{${3:y key}}"
-    },
-    "DTLboxfalse": {},
-    "DTLboxtrue": {},
-    "DTLgridfalse": {},
-    "DTLgridtrue": {},
-    "DTLmaxX": {},
-    "DTLmaxY": {},
-    "DTLminminortickgap": {},
-    "DTLminX": {},
-    "DTLminY": {},
-    "DTLshowlinesfalse": {},
-    "DTLshowlinestrue": {},
-    "DTLshowmarkersfalse": {},
-    "DTLshowmarkerstrue": {},
-    "DTLxaxisfalse": {},
-    "DTLxaxistrue": {},
-    "DTLxminorticsfalse": {},
-    "DTLxminorticstrue": {},
-    "DTLxticsfalse": {},
-    "DTLxticsinfalse": {},
-    "DTLxticsintrue": {},
-    "DTLxticstrue": {},
-    "DTLyaxisfalse": {},
-    "DTLyaxistrue": {},
-    "DTLyminorticsfalse": {},
-    "DTLyminorticstrue": {},
-    "DTLyticsfalse": {},
-    "DTLyticsinfalse": {},
-    "DTLyticsintrue": {},
-    "DTLyticstrue": {},
-    "ifDTLbox": {},
-    "ifDTLgrid": {},
-    "ifDTLshowlines": {},
-    "ifDTLshowmarkers": {},
-    "ifDTLxaxis": {},
-    "ifDTLxminortics": {},
-    "ifDTLxtics": {},
-    "ifDTLxticsin": {},
-    "ifDTLyaxis": {},
-    "ifDTLyminortics": {},
-    "ifDTLytics": {},
-    "ifDTLyticsin": {},
-    "theDTLplotroundXvar": {},
-    "theDTLplotroundYvar": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }

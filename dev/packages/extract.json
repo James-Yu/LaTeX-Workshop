@@ -1,0 +1,78 @@
+{
+  "deps": [
+    {
+      "name": "verbatim"
+    },
+    {
+      "name": "xkeyval"
+    }
+  ],
+  "macros": [
+    {
+      "name": "extractionlabel",
+      "arg": {
+        "format": "{}",
+        "snippet": "extractionlabel{${1:name}}"
+      }
+    },
+    {
+      "name": "extractline"
+    },
+    {
+      "name": "extractline*"
+    }
+  ],
+  "envs": [
+    {
+      "name": "extract"
+    },
+    {
+      "name": "extract",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "extract*"
+    },
+    {
+      "name": "extract*",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    },
+    {
+      "name": "extractskip"
+    },
+    {
+      "name": "extractskip",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:name}]"
+      }
+    }
+  ],
+  "keys": {
+    "\\usepackage/extract#c": [
+      "active",
+      "header",
+      "handles",
+      "copydocumentclass",
+      "generate=${1:file}",
+      "extract-env={${1:env1,env2,...}}",
+      "extract-cmd=${1:cmd}",
+      "extract-cmdline=${1:cmd}",
+      "line-nrs=${1:number spec}",
+      "line-labels={${1:label1,label2,...}}",
+      "extract-nrs=${1:number spec}",
+      "extract-labels={${1:label1,label2,...}}",
+      "extractskip-nrs=${1:number spec}",
+      "extractskip-labels={${1:label1,label2,...}}"
+    ]
+  },
+  "args": [
+    "\\usepackage/extract#c"
+  ]
+}

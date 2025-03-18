@@ -1,37 +1,63 @@
 {
-  "includes": {
-    "simplekv": []
-  },
-  "macros": {
-    "hitem": {},
-    "hitem>": {},
-    "hitem*": {},
-    "hitem*>": {},
-    "sethlist{}": {
-      "snippet": "sethlist{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "setdefaulthlist{}": {
-      "snippet": "setdefaulthlist{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
-    },
-    "hlstname": {},
-    "hlstdate": {},
-    "hlstver": {},
-    "hlist": {},
-    "endhlist": {}
-  },
-  "envs": {
-    "hlist{}": {
-      "name": "hlist",
-      "snippet": "{${1:num of colums}}"
+  "deps": [
+    {
+      "name": "simplekv"
     }
-  },
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "hitem"
+    },
+    {
+      "name": "hitem>"
+    },
+    {
+      "name": "hitem*"
+    },
+    {
+      "name": "hitem*>"
+    },
+    {
+      "name": "hitem",
+      "arg": {
+        "format": "()",
+        "snippet": "hitem(${1:num})"
+      }
+    },
+    {
+      "name": "sethlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "sethlist{${1:keyvals}}",
+        "keys": [
+          "\\sethlist,\\setdefaulthlist"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "setdefaulthlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "setdefaulthlist{${1:keyvals}}",
+        "keys": [
+          "\\sethlist,\\setdefaulthlist"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [
+    {
+      "name": "hlist",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:num of colums}}"
+      }
+    }
+  ],
+  "keys": {
+    "\\sethlist,\\setdefaulthlist": [
       "pre skip=",
       "post skip=",
       "left margin=",
@@ -39,7 +65,7 @@
       "item offset=",
       "label sep=",
       "label width=",
-      "label align=",
+      "label align=${1|left,right,center|}",
       "label=${1:code}",
       "pre label=${1:code}",
       "post label=${1:code}",
@@ -52,5 +78,6 @@
       "list parindent=",
       "show frame"
     ]
-  ]
+  },
+  "args": []
 }

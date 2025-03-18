@@ -1,51 +1,331 @@
 {
-  "includes": {
-    "etoolbox": [],
-    "fontspec": [],
-    "kotex": [],
-    "ob-unfontsdefault": []
-  },
-  "macros": {
-    "compressbnms": {},
-    "setmonoscale{}": {
-      "snippet": "setmonoscale{${1:factor}}"
+  "deps": [
+    {
+      "name": "etoolbox"
     },
-    "setkorfont{}{}": {
-      "snippet": "setkorfont{${1:arg1}}{${2:arg2}}"
+    {
+      "name": "fontspec"
     },
-    "setkorfontxob{}": {
-      "snippet": "setkorfontxob{${1:arg}}"
+    {
+      "name": "kotex"
     },
-    "setxoblatinfont{}": {
-      "snippet": "setxoblatinfont{${1:arg}}"
-    },
-    "setkormainfont{}": {
-      "snippet": "setkormainfont{${1:Regular}}"
-    },
-    "setkorsansfont{}": {
-      "snippet": "setkorsansfont{${1:Regular}}"
-    },
-    "setkormonofont{}": {
-      "snippet": "setkormonofont{${1:Regular}}"
-    },
-    "setkorfontorigmethod{}{}": {
-      "snippet": "setkorfontorigmethod{${1:arg1}}{${2:arg2}}"
-    },
-    "setkorfontorigstar{}": {
-      "snippet": "setkorfontorigstar{${1:arg}}"
-    },
-    "setkorfontorigstar*{}": {
-      "snippet": "setkorfontorigstar*{${1:arg}}"
+    {
+      "name": "ob-unfontsdefault"
     }
-  },
-  "envs": {},
-  "options": [
-    "oldhangul",
-    "gremph",
-    "itemph",
-    "nanum",
-    "nanumx",
-    "hcr"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "setkomainfont",
+      "arg": {
+        "format": "()",
+        "snippet": "setkomainfont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setkomainfont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setkomainfont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setkomainfont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setkomainfont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setkomainfont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setkomainfont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setkomainfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setkomainfont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setkomainfont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setkomainfont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "arg": {
+        "format": "()",
+        "snippet": "setkosansfont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setkosansfont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setkosansfont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setkosansfont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setkosansfont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setkosansfont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setkosansfont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "arg": {
+        "format": "()",
+        "snippet": "setkomonofont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setkomonofont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setkomonofont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setkomonofont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setkomonofont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setkomonofont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setkomonofont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "arg": {
+        "format": "()",
+        "snippet": "setobmainfont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setobmainfont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setobmainfont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setobmainfont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setobmainfont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setobmainfont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setobmainfont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "arg": {
+        "format": "()",
+        "snippet": "setobsansfont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setobsansfont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setobsansfont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setobsansfont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setobsansfont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setobsansfont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setobsansfont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "arg": {
+        "format": "()",
+        "snippet": "setobmonofont(${1:Regular})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "unusual": true,
+      "arg": {
+        "format": "()()",
+        "snippet": "setobmonofont(${1:Regular})(${2:Bold})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "arg": {
+        "format": "()()()",
+        "snippet": "setobmonofont(${1:Regular})(${2:Bold})(${3:Italic})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "arg": {
+        "format": "[]()",
+        "snippet": "setobmonofont[${1:basename}](${2:Regular})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "unusual": true,
+      "arg": {
+        "format": "[]()()",
+        "snippet": "setobmonofont[${1:basename}](${2:Regular})(${3:Bold})"
+      }
+    },
+    {
+      "name": "setobmonofont",
+      "arg": {
+        "format": "[]()()()",
+        "snippet": "setobmonofont[${1:basename}](${2:Regular})(${3:Bold})(${4:Italic})"
+      }
+    },
+    {
+      "name": "compressbnms"
+    },
+    {
+      "name": "setmonoscale",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setmonoscale{${1:factor}}"
+      }
+    },
+    {
+      "name": "setkorfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "setkorfont{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "setkorfontxob",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setkorfontxob{${1:arg}}"
+      }
+    },
+    {
+      "name": "setxoblatinfont",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "setxoblatinfont{${1:arg}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/xob-font#c": [
+      "oldhangul",
+      "gremph",
+      "itemph",
+      "nanum",
+      "nanumx",
+      "hcr"
+    ]
+  },
+  "args": [
+    "\\usepackage/xob-font#c"
+  ]
 }

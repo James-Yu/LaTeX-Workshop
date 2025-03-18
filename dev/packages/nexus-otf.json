@@ -1,35 +1,59 @@
 {
-  "includes": {
-    "ifxetex": [],
-    "ifluatex": [],
-    "xkeyval": [],
-    "unicode-math": []
-  },
-  "macros": {
-    "sufigures": {},
-    "textsu{}": {
-      "snippet": "textsu{${1:text}}"
+  "deps": [
+    {
+      "name": "ifxetex"
     },
-    "infigures": {},
-    "textin{}": {
-      "snippet": "textin{${1:text}}"
+    {
+      "name": "ifluatex"
+    },
+    {
+      "name": "xkeyval"
+    },
+    {
+      "name": "unicode-math"
     }
-  },
-  "envs": {},
-  "options": [
-    "pro",
-    "math",
-    "lining",
-    "lf",
-    "oldstyle",
-    "osf",
-    "tabular",
-    "tf",
-    "proportional",
-    "pf",
-    "ScaleRM=${1:factor}",
-    "ScaleSF=${1:factor}",
-    "scaled=${1:factor}"
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "sufigures"
+    },
+    {
+      "name": "textsu",
+      "arg": {
+        "format": "{}",
+        "snippet": "textsu{${1:text}}"
+      }
+    },
+    {
+      "name": "infigures"
+    },
+    {
+      "name": "textin",
+      "arg": {
+        "format": "{}",
+        "snippet": "textin{${1:text}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\usepackage/nexus-otf#c": [
+      "pro",
+      "math",
+      "lining",
+      "lf",
+      "oldstyle",
+      "osf",
+      "tabular",
+      "tf",
+      "proportional",
+      "pf",
+      "ScaleRM=${1:factor}",
+      "ScaleSF=${1:factor}",
+      "scaled=${1:factor}"
+    ]
+  },
+  "args": [
+    "\\usepackage/nexus-otf#c"
+  ]
 }

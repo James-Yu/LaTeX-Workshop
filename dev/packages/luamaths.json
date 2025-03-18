@@ -1,75 +1,168 @@
 {
-  "includes": {
-    "xkeyval": [],
-    "amsmath": [],
-    "luacode": []
-  },
-  "macros": {
-    "mathOp{}": {
-      "snippet": "mathOp{${1:expression}}"
+  "deps": [
+    {
+      "name": "xkeyval"
     },
-    "mathAbs{}": {
-      "snippet": "mathAbs{${1:number}}"
+    {
+      "name": "amsmath"
     },
-    "mathAcos{}": {
-      "snippet": "mathAcos{${1:number}}"
-    },
-    "mathAsin{}": {
-      "snippet": "mathAsin{${1:number}}"
-    },
-    "mathAtan{}": {
-      "snippet": "mathAtan{${1:number}}"
-    },
-    "mathCeil{}": {
-      "snippet": "mathCeil{${1:number}}"
-    },
-    "mathCos{}": {
-      "snippet": "mathCos{${1:number}}"
-    },
-    "mathExp{}": {
-      "snippet": "mathExp{${1:number}}"
-    },
-    "mathFloor{}": {
-      "snippet": "mathFloor{${1:number}}"
-    },
-    "mathInf": {},
-    "mathLog{}": {
-      "snippet": "mathLog{${1:number}}"
-    },
-    "mathMax{}": {
-      "snippet": "mathMax{${1:num1,num2,...}}"
-    },
-    "mathMin{}": {
-      "snippet": "mathMin{${1:num1,num2,...}}"
-    },
-    "mathPi": {},
-    "mathRandom{}": {
-      "snippet": "mathRandom{${1:arg}}"
-    },
-    "mathSin{}": {
-      "snippet": "mathSin{${1:number}}"
-    },
-    "mathSqrt{}": {
-      "snippet": "mathSqrt{${1:number}}"
-    },
-    "mathTan{}": {
-      "snippet": "mathTan{${1:number}}"
-    },
-    "mathRad{}": {
-      "snippet": "mathRad{${1:degrees}}"
-    },
-    "mathRound{}{}": {
-      "snippet": "mathRound{${1:number}}{${2:digits}}"
-    },
-    "imUnit": {},
-    "complexRound{}{}": {
-      "snippet": "complexRound{${1:a+bi}}{${2:num digits}}"
-    },
-    "luaChkeqnum{}{}": {
-      "snippet": "luaChkeqnum{${1:num1}}{${2:num2}}"
+    {
+      "name": "luacode"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  ],
+  "macros": [
+    {
+      "name": "mathOp",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathOp{${1:expression%definition}}"
+      }
+    },
+    {
+      "name": "mathAbs",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathAbs{${1:number}}"
+      }
+    },
+    {
+      "name": "mathAcos",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathAcos{${1:number}}"
+      }
+    },
+    {
+      "name": "mathAsin",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathAsin{${1:number}}"
+      }
+    },
+    {
+      "name": "mathAtan",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathAtan{${1:number}}"
+      }
+    },
+    {
+      "name": "mathCeil",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathCeil{${1:number}}"
+      }
+    },
+    {
+      "name": "mathCos",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathCos{${1:number}}"
+      }
+    },
+    {
+      "name": "mathExp",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathExp{${1:number}}"
+      }
+    },
+    {
+      "name": "mathFloor",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathFloor{${1:number}}"
+      }
+    },
+    {
+      "name": "mathInf"
+    },
+    {
+      "name": "mathLog",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathLog{${1:number}}"
+      }
+    },
+    {
+      "name": "mathMax",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathMax{${1:num1,num2,...}}"
+      }
+    },
+    {
+      "name": "mathMin",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathMin{${1:num1,num2,...}}"
+      }
+    },
+    {
+      "name": "mathPi"
+    },
+    {
+      "name": "mathRandom",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathRandom{${1:arg}}"
+      }
+    },
+    {
+      "name": "mathSin",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathSin{${1:number}}"
+      }
+    },
+    {
+      "name": "mathSqrt",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathSqrt{${1:number}}"
+      }
+    },
+    {
+      "name": "mathTan",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathTan{${1:number}}"
+      }
+    },
+    {
+      "name": "mathRad",
+      "arg": {
+        "format": "{}",
+        "snippet": "mathRad{${1:degrees}}"
+      }
+    },
+    {
+      "name": "mathRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "mathRound{${1:number}}{${2:digits}}"
+      }
+    },
+    {
+      "name": "imUnit",
+      "unusual": true
+    },
+    {
+      "name": "complexRound",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "complexRound{${1:a+bi}}{${2:num digits}}"
+      }
+    },
+    {
+      "name": "luaChkeqnum",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "luaChkeqnum{${1:num1}}{${2:num2}}"
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {},
+  "args": []
 }

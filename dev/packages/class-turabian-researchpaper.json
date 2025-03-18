@@ -1,31 +1,56 @@
 {
-  "includes": {
-    "turabian-formatting": []
-  },
-  "macros": {
-    "noadjustssect": {},
-    "subtitle{}": {
-      "snippet": "subtitle{${1:subtitle}}"
-    },
-    "submissioninfo{}": {
-      "snippet": "submissioninfo{${1:info}}"
-    },
-    "course{}": {
-      "snippet": "course{${1:course}}"
-    },
-    "enoteheading": {}
-  },
-  "envs": {
-    "appendixes": {}
-  },
-  "options": [
-    "noraggedright",
-    "authordate",
-    "noadjustbib",
-    "endnotes",
-    "10pt",
-    "11pt",
-    "12pt"
+  "deps": [
+    {
+      "name": "turabian-formatting"
+    }
   ],
-  "keyvals": []
+  "macros": [
+    {
+      "name": "noadjustssect"
+    },
+    {
+      "name": "subtitle",
+      "arg": {
+        "format": "{}",
+        "snippet": "subtitle{${1:subtitle%text}}"
+      }
+    },
+    {
+      "name": "submissioninfo",
+      "arg": {
+        "format": "{}",
+        "snippet": "submissioninfo{${1:info%text}}"
+      }
+    },
+    {
+      "name": "course",
+      "arg": {
+        "format": "{}",
+        "snippet": "course{${1:course%text}}"
+      }
+    },
+    {
+      "name": "enoteheading",
+      "unusual": true
+    }
+  ],
+  "envs": [
+    {
+      "name": "appendixes"
+    }
+  ],
+  "keys": {
+    "\\documentclass/turabian-researchpaper#c": [
+      "noraggedright",
+      "authordate",
+      "noadjustbib",
+      "endnotes",
+      "10pt",
+      "11pt",
+      "12pt"
+    ]
+  },
+  "args": [
+    "\\documentclass/turabian-researchpaper#c"
+  ]
 }

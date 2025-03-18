@@ -1,19 +1,28 @@
 {
-  "includes": {
-    "filehook": [],
-    "pgfkeys": []
-  },
-  "macros": {
-    "pgffilehook{}": {
-      "snippet": "pgffilehook{${1:keyvals}}",
-      "keyvalindex": 0,
-      "keyvalpos": 0
+  "deps": [
+    {
+      "name": "filehook"
+    },
+    {
+      "name": "pgfkeys"
     }
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": [
-    [
+  ],
+  "macros": [
+    {
+      "name": "pgffilehook",
+      "arg": {
+        "format": "{}",
+        "snippet": "pgffilehook{${1:keyvals}}",
+        "keys": [
+          "\\pgffilehook"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\pgffilehook": [
       "EveryFile",
       "Files",
       "File",
@@ -26,5 +35,6 @@
       "AtBegin={${1:code}}",
       "AtEnd={${1:code}}"
     ]
-  ]
+  },
+  "args": []
 }

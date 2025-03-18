@@ -1,0 +1,94 @@
+{
+  "deps": [
+    {
+      "name": "pgfkeys"
+    }
+  ],
+  "macros": [
+    {
+      "name": "interval",
+      "arg": {
+        "format": "{}{}",
+        "snippet": "interval{${1:start}}{${2:end}}"
+      }
+    },
+    {
+      "name": "interval",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "interval[${3:options}]{${1:start}}{${2:end}}",
+        "keys": [
+          "\\interval",
+          "\\interval,\\ointerval,\\linterval,\\rinterval"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "ointerval",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "ointerval[${3:options}]{${1:start}}{${2:end}}",
+        "keys": [
+          "\\interval,\\ointerval,\\linterval,\\rinterval"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "linterval",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "linterval[${3:options}]{${1:start}}{${2:end}}",
+        "keys": [
+          "\\interval,\\ointerval,\\linterval,\\rinterval"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "rinterval",
+      "arg": {
+        "format": "[]{}{}",
+        "snippet": "rinterval[${3:options}]{${1:start}}{${2:end}}",
+        "keys": [
+          "\\interval,\\ointerval,\\linterval,\\rinterval"
+        ],
+        "keyPos": 0
+      }
+    },
+    {
+      "name": "intervalconfig",
+      "arg": {
+        "format": "{}",
+        "snippet": "intervalconfig{${1:options}}",
+        "keys": [
+          "\\intervalconfig"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
+  "envs": [],
+  "keys": {
+    "\\interval": [
+      "open",
+      "open left",
+      "open right"
+    ],
+    "\\interval,\\ointerval,\\linterval,\\rinterval": [
+      "scaled",
+      "scaled=${1:scale command}"
+    ],
+    "\\intervalconfig": [
+      "separator symbol=${1:symbol}",
+      "left open fence=${1:symbol}",
+      "left closed fence=${1:symbol}",
+      "right open fence=${1:symbol}",
+      "right closed fence=${1:symbol}",
+      "soft open fences",
+      "colorize=${1:color commands}"
+    ]
+  },
+  "args": []
+}

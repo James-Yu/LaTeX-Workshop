@@ -1,41 +1,54 @@
 {
-  "includes": {
-    "tikzlibrarybackgrounds": [],
-    "tikzlibrarycalc": [],
-    "tikzlibrarypositioning": [],
-    "tikzlibrarydecorations.pathreplacing": []
+  "deps": [
+    {
+      "name": "tikzlibrarybackgrounds"
+    },
+    {
+      "name": "tikzlibrarycalc"
+    },
+    {
+      "name": "tikzlibrarypositioning"
+    },
+    {
+      "name": "tikzlibrarydecorations.pathreplacing"
+    }
+  ],
+  "macros": [],
+  "envs": [],
+  "keys": {
+    "\\node#c": [
+      "clos snb",
+      "clos rear",
+      "benes",
+      "benes complete",
+      "banyan omega",
+      "banyan flip",
+      "clos snb example",
+      "clos rear example",
+      "clos example with labels"
+    ],
+    "\\begin{tikzpicture}#c,\\tikz#c,\\begin{scope}#c,\\tikzset#c,\\scoped#c,\\node#c": [
+      "N=${1:num input ports}",
+      "M=${1:num output ports}",
+      "r1=${1:num modules}",
+      "r3=${1:num modules}",
+      "P=${1:num ports}",
+      "module size=",
+      "module ysep=${1:number}",
+      "module xsep=${1:number}",
+      "module label opacity=${1:factor}",
+      "pin length factor=${1:factor}",
+      "module font=${1:font commands}",
+      "connections disabled",
+      "N label=${1:text}",
+      "r1 label=${1:text}",
+      "m1 label=${1:text}",
+      "r2 label=${1:text}",
+      "M label=${1:text}",
+      "r3 label=${1:text}",
+      "m3 label=${1:text}",
+      "set math mode labels"
+    ]
   },
-  "macros": {
-    "pgfmathomegarotation{}{}{}": {
-      "snippet": "pgfmathomegarotation{${1:degrees}}{${2:bits}}{${3:macro}}"
-    },
-    "rone": {},
-    "ronelabel": {},
-    "monelabel": {},
-    "rtwolabel": {},
-    "M": {
-      "detail": "𝑀",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL M"
-    },
-    "Mlabel": {},
-    "rthree": {},
-    "rthreelabel": {},
-    "mthreelabel": {},
-    "P": {
-      "detail": "𝑃",
-      "documentation": "MATHEMATICAL ITALIC CAPITAL P"
-    },
-    "modulesize": {},
-    "moduleysep": {},
-    "modulexsep": {},
-    "modulefont": {},
-    "modulelabelopacity": {},
-    "pinlength": {},
-    "ifconnectiondisabled": {},
-    "connectiondisabledtrue": {},
-    "connectiondisabledfalse": {}
-  },
-  "envs": {},
-  "options": [],
-  "keyvals": []
+  "args": []
 }
