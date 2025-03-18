@@ -60,7 +60,7 @@ function refresh(pdfUri?: vscode.Uri): void {
         return
     }
     let clientSet = manager.getClients(pdfUri)
-    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfFile, clientSet)
+    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfUri.fsPath, clientSet)
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfUri}`)
         return

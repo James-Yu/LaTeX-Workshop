@@ -208,12 +208,12 @@ function getCurrentEditorCoordinates(): {line: number, column: number, inputFile
     return {line, column, inputFileUri}
 }
 
-async function synctexToPDFCombined(line: number, col: number, filePath: string, targetPdfFile: string, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> {
+async function synctexToPDFCombined(line: number, col: number, filePath: string, targetPdfFile: vscode.Uri, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> {
     try {
         return await callSyncTeXToPDF(line, col, filePath, targetPdfFile, indicator)
     } catch {
         logger.log(`Compute with synctex.js from ${filePath} to ${targetPdfFile} on line ${line}.`)
-        const record = syncTeXToPDF(line, filePath, targetPdfFile)
+        const record = await syncTeXToPDF(line, filePath, targetPdfFile)
         if (!record) {
             throw new Error('Failed to compute the SyncTeX record.')
         }
@@ -264,7 +264,7 @@ function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, for
     }
 
     const rootFile = lw.file.toUri(lw.root.file.path).fsPath
-    const targetPdfFile = pdfFile ?? lw.file.toUri(lw.file.getPdfPath(lw.root.file.path)).fsPath
+    const targetPdfFile = pdfUri ?? lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
@@ -452,13 +452,13 @@ function toPDFFromRef(args: {line: number, filePath: string}) {
  * @param pdfUri - The path of the PDF file.
  */
 async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri) {
-    const record = computeToTeX(data, pdfPath)
+    const record = await computeToTeX(data, pdfUri)
     if (record) {
         await openTeX(record.input, record.line, record.column, data.textBeforeSelection, data.textAfterSelection)
     }
 }
 
-function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri): SyncTeXRecordToTeX | undefined {
+async function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri): Promise<SyncTeXRecordToTeX | undefined> {
     let record: SyncTeXRecordToTeX
 
     // We only use synctex.js for backward sync as the binary cannot handle CJK encodings #4239.
@@ -508,7 +508,7 @@ async function openTeX(input: string, line: number, column: number, textBeforeSe
     const uri = lw.file.toUri(input)
     try {
         await vscode.workspace.fs.stat(uri)
-    } catch (e) {
+    } catch (_e) {
         logger.log(`Backward SyncTeX failed on non-existent ${filePath} .`)
         return
     }

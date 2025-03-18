@@ -252,7 +252,7 @@ function handleCommandSyncTeX(): boolean {
     const pdfFileUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
     const indicator = configuration.get('synctex.indicator') as 'none' | 'circle' | 'rectangle'
-    sendToHost({type: 'synctex', line: coords.line, column: coords.column, filePath: coords.inputFileUri.toString(true), targetPdfFile: pdfFileUri.toString(true), indicator})
+    sendToHost({ type: 'synctex', line: coords.line, column: coords.column, filePath: coords.inputFileUri.toString(true), targetPdfFile: pdfFileUri.toString(true), indicator })
     return true
 }
 
@@ -268,24 +268,25 @@ function handleViewerRefresh(pdfFile?: string, clientSet?: Set<Client>) {
     return clientSet
 }
 
-function handleViewerReverseSyncTeX(websocket: ws, uri: vscode.Uri, data: Extract<ClientRequest, {type: 'reverse_synctex'}>): boolean {
+function handleViewerReverseSyncTeX(websocket: ws, uri: vscode.Uri, data: Extract<ClientRequest, { type: 'reverse_synctex' }>): boolean {
     if (isGuest()) {
         state.ws?.send(JSON.stringify(data)) // forward the request to host
         return true
     } else if (isHost() && uri.scheme === 'vsls' && state.liveshare) { // reply to guest if request comes from guest
         const localUri = state.liveshare.convertSharedUriToLocal(uri) ?? uri
-        const record = lw.locate.synctex.components.computeToTeX(data, localUri)
-        if (record) {
-            const response: ServerResponse = {
-                type: 'reverse_synctex_result',
-                input: state.liveshare.convertLocalUriToShared(vscode.Uri.file(record.input)).toString(true),
-                line: record.line,
-                column: record.column,
-                textBeforeSelection: data.textAfterSelection,
-                textAfterSelection: data.textAfterSelection
+        void lw.locate.synctex.components.computeToTeX(data, localUri).then(record => {
+            if (record && state.liveshare) {
+                const response: ServerResponse = {
+                    type: 'reverse_synctex_result',
+                    input: state.liveshare.convertLocalUriToShared(vscode.Uri.file(record.input)).toString(true),
+                    line: record.line,
+                    column: record.column,
+                    textBeforeSelection: data.textAfterSelection,
+                    textAfterSelection: data.textAfterSelection
+                }
+                websocket.send(JSON.stringify(response))
             }
-            websocket.send(JSON.stringify(response))
-        }
+        })
         return true
     }
     return false
@@ -300,7 +301,7 @@ function handleViewerSyncTeX(websocket: ws, data: ClientRequest): boolean {
     }
 
     const filePath = state.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.filePath, true)).fsPath
-    const targetPdfFile = state.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.targetPdfFile, true)).fsPath
+    const targetPdfFile = state.liveshare.convertSharedUriToLocal(vscode.Uri.parse(data.targetPdfFile, true))
     void lw.locate.synctex.components.synctexToPDFCombined(data.line, data.column, filePath, targetPdfFile, data.indicator).then(record => {
         if (!record) {
             logger.log(`Failed to locate synctex for ${filePath}. This was requested from a guest.`)
