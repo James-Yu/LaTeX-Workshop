@@ -4,7 +4,7 @@ FROM texlive/texlive:latest
 # https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt -y install curl
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
 # Clean up
