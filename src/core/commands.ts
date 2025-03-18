@@ -83,7 +83,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.view(vscode.Uri.file(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.view(lw.file.toUri(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
@@ -109,9 +109,9 @@ export function synctex() {
     }
     let pdfUri: vscode.Uri | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.subfiles.path))
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))
     } else if (lw.root.file.path !== undefined) {
-        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.file.path))
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
     }
     lw.locate.synctex.toPDF(pdfUri)
 }

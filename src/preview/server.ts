@@ -295,7 +295,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
         }
     }
     try {
-        const content = await vscode.workspace.fs.readFile(vscode.Uri.file(fileName))
+        const content = await vscode.workspace.fs.readFile(lw.file.toUri(fileName))
         sendOkResponse(response, Buffer.from(content), contentType, false)
     } catch (err) {
         if (typeof (err as any).code === 'string' && (err as any).code === 'FileNotFound') {

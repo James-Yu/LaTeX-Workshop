@@ -178,7 +178,7 @@ function connectionHandler(msg: string): void {
 
     switch (data.type) {
         case 'refresh': {
-            lw.viewer.refresh(vscode.Uri.parse(data.pdfFileUri).fsPath)
+            lw.viewer.refresh(vscode.Uri.parse(data.pdfFileUri))
             break
         }
         case 'reverse_synctex_result': {
@@ -186,7 +186,7 @@ function connectionHandler(msg: string): void {
             break
         }
         case 'synctex_result': {
-            void lw.viewer.locate(vscode.Uri.parse(data.pdfFile, true).fsPath, data.synctexData)
+            void lw.viewer.locate(vscode.Uri.parse(data.pdfFile, true), data.synctexData)
             break
         }
         default: {
@@ -209,7 +209,7 @@ async function reconnect() {
                 throw new Error('Connection to host is not open.')
             }
             return
-        } catch (e) {
+        } catch (_e) {
         }
 
         await sleep(1000 * (tries + 2))
@@ -219,11 +219,11 @@ async function reconnect() {
 
 function register(client?: Client) {
     if (client) {
-        sendToHost({ type: 'open', pdfFileUri: client.pdfFileUri, viewer: client.viewer })
+        sendToHost({ type: 'open', pdfFileUri: client.pdfFileUri })
     }
 
     getClients()?.forEach(guestClient => {
-        sendToHost({ type: 'open', pdfFileUri: guestClient.pdfFileUri, viewer: guestClient.viewer })
+        sendToHost({ type: 'open', pdfFileUri: guestClient.pdfFileUri })
     })
 }
 
@@ -274,7 +274,7 @@ function handleViewerReverseSyncTeX(websocket: ws, uri: vscode.Uri, data: Extrac
         return true
     } else if (isHost() && uri.scheme === 'vsls' && state.liveshare) { // reply to guest if request comes from guest
         const localUri = state.liveshare.convertSharedUriToLocal(uri) ?? uri
-        const record = lw.locate.synctex.components.computeToTeX(data, localUri.fsPath)
+        const record = lw.locate.synctex.components.computeToTeX(data, localUri)
         if (record) {
             const response: ServerResponse = {
                 type: 'reverse_synctex_result',

@@ -115,7 +115,7 @@ function add(filePath: string) {
         logger.log(`Ignored ${filePath} .`)
         return
     }
-    const uri = vscode.Uri.file(filePath)
+    const uri = lw.file.toUri(filePath)
     if (!lw.watcher.src.has(uri)) {
         logger.log(`Adding ${filePath} .`)
         lw.watcher.src.add(uri)
@@ -396,7 +396,7 @@ async function updateChildrenInput(fileCache: FileCache, rootPath: string) {
         })
         logger.log(`Input ${result.path} from ${fileCache.filePath} .`)
 
-        if (lw.watcher.src.has(vscode.Uri.file(result.path))) {
+        if (lw.watcher.src.has(lw.file.toUri(result.path))) {
             continue
         }
         add(result.path)
@@ -443,7 +443,7 @@ async function updateChildrenXr(fileCache: FileCache, rootPath: string) {
             logger.log(`External document ${externalPath} from ${fileCache.filePath} .` + (result[1] ? ` Prefix is ${result[1]}`: ''))
         }
 
-        if (lw.watcher.src.has(vscode.Uri.file(externalPath))) {
+        if (lw.watcher.src.has(lw.file.toUri(externalPath))) {
             continue
         }
         add(externalPath)
@@ -510,7 +510,7 @@ async function updateBibfiles(fileCache: FileCache) {
                 }
                 fileCache.bibfiles.add(bibPath)
                 logger.log(`Bib ${bibPath} from ${fileCache.filePath} .`)
-                const bibUri = vscode.Uri.file(bibPath)
+                const bibUri = lw.file.toUri(bibPath)
                 if (!lw.watcher.bib.has(bibUri)) {
                     lw.watcher.bib.add(bibUri)
                 }
@@ -546,7 +546,7 @@ async function updateGlossaryBibFiles(fileCache: FileCache) {
             }
             fileCache.glossarybibfiles.add(bibPath)
             logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
-            const bibUri = vscode.Uri.file(bibPath)
+            const bibUri = lw.file.toUri(bibPath)
             if (!lw.watcher.bib.has(bibUri)) {
                 lw.watcher.bib.add(bibUri)
             }
@@ -584,7 +584,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
     const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
 
     for (const inputFile of ioFiles.input) {
-        const inputUri = vscode.Uri.file(inputFile)
+        const inputUri = lw.file.toUri(inputFile)
         // Drop files that are also listed as OUTPUT or should be ignored
         if (ioFiles.output.includes(inputFile) ||
             isExcluded(inputFile) ||
@@ -713,7 +713,7 @@ async function parseAuxFile(filePath: string, srcDir: string) {
                     get(lw.root.file.path)?.bibfiles.add(bibPath)
                     logger.log(`Found .bib ${bibPath} from .aux ${filePath} .`)
                 }
-                const bibUri = vscode.Uri.file(bibPath)
+                const bibUri = lw.file.toUri(bibPath)
                 if (!lw.watcher.bib.has(bibUri)) {
                     lw.watcher.bib.add(bibUri)
                 }

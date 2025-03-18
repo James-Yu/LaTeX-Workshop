@@ -419,13 +419,13 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refresh(vscode.Uri.file(lw.file.getPdfPath(lastStep.rootFile)))
+    lw.viewer.refresh(lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile)))
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(lastStep.rootFile))
     // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
     if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-        const pdfUri = vscode.Uri.file(lw.file.getPdfPath(lastStep.rootFile))
+        const pdfUri = lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile))
         logger.log('SyncTex after build invoked.')
         lw.locate.synctex.toPDF(pdfUri)
     }
