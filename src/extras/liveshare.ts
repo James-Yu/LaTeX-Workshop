@@ -75,6 +75,10 @@ function getApi() {
     return state.liveshare
 }
 
+/**
+ * Runs init logic for the host or guest, depending on the assigned role.
+ * @param role The role of the user in the Live Share session.
+ */
 function setRole(role: vsls.Role) {
     state.role = role
     state.hostServerPort = undefined
@@ -96,6 +100,11 @@ async function initHost() {
     await shareServer()
 }
 
+/**
+ * Returns the saved host server port or checks the shared servers for a new port.
+ * @param reset If true, the host server port is reset and a new one is acquired.
+ * @returns Promise that resolves to the host server port.
+ */
 async function getHostServerPort(reset: boolean = false): Promise<number> {
     if (!reset && state.hostServerPort !== undefined) {
         return state.hostServerPort
@@ -111,6 +120,10 @@ async function getHostServerPort(reset: boolean = false): Promise<number> {
     return hostServerPort
 }
 
+/**
+ * Shares the server using the Live Share API.
+ * @returns Promise that resolves when the server is shared.
+ */
 async function shareServer() {
     if (state.role !== vsls.Role.Host) {
         return
@@ -120,7 +133,9 @@ async function shareServer() {
     state.shareServerDisposable = await state.liveshare?.shareServer({ port: lw.server.getPort(), displayName: 'latex-workshop-server' })
 }
 
-
+/**
+ * Connects to the WebSocket server of the host.
+ */
 async function connectHost() {
     logger.log('Connecting to host')
     if (state.role !== vsls.Role.Guest) {
