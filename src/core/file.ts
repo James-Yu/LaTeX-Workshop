@@ -560,5 +560,11 @@ function isUriScheme(fileUri: vscode.Uri): boolean {
 }
 
 function toUri(filePath: string): vscode.Uri {
+    const scheme = getUriScheme(filePath)
+    // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
+    // this is a workaround that removes the drive letter from the path
+    if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
+        filePath = filePath.replace(/^\w:\\/, '\\')
+    }
     return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
 }
