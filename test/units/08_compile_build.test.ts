@@ -519,7 +519,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             log.start()
             for (const handler of lw.watcher.src['onChangeHandlers']) {
                 try {
-                    handler(vscode.Uri.file(get.path('main.tex')))
+                    handler(lw.file.toUri(get.path('main.tex')))
                 } catch (_) { }
             }
             log.stop()
@@ -535,7 +535,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             log.start()
             for (const handler of lw.watcher.bib['onChangeHandlers']) {
                 try {
-                    handler(vscode.Uri.file(get.path('main.bib')))
+                    handler(lw.file.toUri(get.path('main.bib')))
                 } catch (_) { }
             }
             log.stop()

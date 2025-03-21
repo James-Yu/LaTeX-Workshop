@@ -77,7 +77,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const ref = lw.completion.reference.getItem(token)
         if (ref) {
             return [{
-                targetUri: vscode.Uri.file(ref.file),
+                targetUri: lw.file.toUri(ref.file),
                 targetRange: new vscode.Range(ref.position, ref.position),
                 originSelectionRange: tokenRange
             }]
@@ -85,7 +85,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const cite = lw.completion.citation.getItem(token)
         if (cite) {
             return [{
-                targetUri: vscode.Uri.file(cite.file),
+                targetUri: lw.file.toUri(cite.file),
                 targetRange: new vscode.Range(cite.position, cite.position),
                 originSelectionRange: tokenRange
             }]
@@ -93,7 +93,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const glossary = lw.completion.glossary.getItem(token)
         if (glossary) {
             return [{
-                targetUri: vscode.Uri.file(glossary.filePath),
+                targetUri: lw.file.toUri(glossary.filePath),
                 targetRange: new vscode.Range(glossary.position, glossary.position),
                 originSelectionRange: tokenRange
             }]
@@ -108,7 +108,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
             const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
             if (fs.existsSync(absolutePath)) {
                 return [{
-                    targetUri: vscode.Uri.file(absolutePath),
+                    targetUri: lw.file.toUri(absolutePath),
                     targetRange: new vscode.Range(0, 0, 0, 0),
                     originSelectionRange: tokenRange
                 }]
@@ -118,7 +118,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const filename = await this.onAFilename(document, position, token)
         if (filename) {
             return [{
-                targetUri: vscode.Uri.file(filename),
+                targetUri: lw.file.toUri(filename),
                 targetRange: new vscode.Range(0, 0, 0, 0),
                 originSelectionRange: tokenRange
             }]

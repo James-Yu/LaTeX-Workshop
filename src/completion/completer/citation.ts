@@ -248,8 +248,8 @@ function updateAll(bibFiles?: string[]): CitationItem[] {
  */
 async function parseBibFile(fileName: string) {
     logger.log(`Parsing .bib entries from ${fileName}`)
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(fileName))
-    if ((await lw.external.stat(vscode.Uri.file(fileName))).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(fileName))
+    if ((await lw.external.stat(lw.file.toUri(fileName))).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${fileName}`)
         data.bibEntries.delete(fileName)
         return
@@ -257,7 +257,7 @@ async function parseBibFile(fileName: string) {
     const newEntry: CitationItem[] = []
     const bibtex = await lw.file.read(fileName)
     logger.log(`Parse BibTeX AST from ${fileName} .`)
-    const ast = await lw.parser.parse.bib(vscode.Uri.file(fileName), bibtex ?? '')
+    const ast = await lw.parser.parse.bib(lw.file.toUri(fileName), bibtex ?? '')
     if (ast === undefined) {
         logger.log(`Parsed 0 bib entries from ${fileName}.`)
         lw.event.fire(lw.event.FileParsed, fileName)

@@ -22,7 +22,7 @@ export function fieldValueToString(field: bibtexParser.FieldValue, abbreviations
 }
 
 export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXElement[]> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(document.fileName))
     if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
         return []

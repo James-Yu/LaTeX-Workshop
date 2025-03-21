@@ -222,7 +222,7 @@ function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, for
         logger.log('No root file found.')
         return
     }
-    const targetPdfFile = pdfUri ?? vscode.Uri.file(lw.file.getPdfPath(rootFile))
+    const targetPdfFile = pdfUri ?? lw.file.toUri(lw.file.getPdfPath(rootFile))
     if (active.document.lineCount === line &&
         active.document.lineAt(line - 1).text === '') {
             line -= 1

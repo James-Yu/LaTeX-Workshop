@@ -207,7 +207,7 @@ export function suggest(row: number, col: number, isAtSuggestion = false, openFi
     ok(lines)
     logger.log('Get suggestion.')
     const items = (isAtSuggestion ? lw.completion.atProvider : lw.completion.provider).provide({
-        uri: vscode.Uri.file(openFile ?? lw.root.file.path),
+        uri: lw.file.toUri(openFile ?? lw.root.file.path),
         langId: 'latex',
         line: lines[row],
         position: new vscode.Position(row, col)
@@ -229,9 +229,9 @@ export async function view(fixture: string, pdfName: string, postAction?: () => 
     }
     await promise
     const pdfFilePath = path.resolve(fixture, pdfName)
-    const status = lw.viewer.getViewerState(vscode.Uri.file(pdfFilePath))[0]
+    const status = lw.viewer.getViewerState(lw.file.toUri(pdfFilePath))[0]
     ok(status)
-    strictEqual(status.pdfFileUri, vscode.Uri.file(path.resolve(fixture, pdfName)).toString(true))
+    strictEqual(status.pdfFileUri, lw.file.toUri(path.resolve(fixture, pdfName)).toString(true))
 }
 
 export async function format() {

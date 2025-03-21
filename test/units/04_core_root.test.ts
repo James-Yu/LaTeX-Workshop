@@ -28,11 +28,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'another.tex')
 
             lw.root.file.path = texPath
-            lw.watcher.src.add(vscode.Uri.file(texPath))
+            lw.watcher.src.add(lw.file.toUri(texPath))
             assert.notHasLog('Current workspace folders: ')
 
             const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
-            await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPath))
+            await onDidDeleteSpy.call(lw.watcher.src, lw.file.toUri(texPath))
             onDidDeleteSpy.restore()
             assert.hasLog('Current workspace folders: ')
         })
@@ -524,7 +524,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
             cacheSpy1.restore()
 
-            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
+            assert.ok(lw.watcher.src.has(lw.file.toUri(texPath)))
             assert.ok(cacheSpy1.called)
 
             await lw.cache.wait(texPath)

@@ -24,7 +24,8 @@ export const file = {
     setTeXDirs,
     exists,
     read,
-    kpsewhich
+    kpsewhich,
+    toUri
 }
 
 initialize()
@@ -250,7 +251,7 @@ function getOutDir(texPath?: string): string {
         return './'
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath))
     const outDir = configuration.get('latex.outDir') as string || './'
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
     let result = undefined
@@ -303,7 +304,7 @@ function getLangId(filename: string): string | undefined {
  * configuration or derived from the file name.
  */
 function getJobname(texPath: string): string {
-    const jobname = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath)).get('latex.jobname') as string
+    const jobname = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath)).get('latex.jobname') as string
     return jobname || path.parse(texPath).name
 }
 
@@ -496,7 +497,7 @@ async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promis
         if (filePathOrUri instanceof vscode.Uri) {
             return (await vscode.workspace.fs.readFile(filePathOrUri)).toString()
         } else {
-            return (await vscode.workspace.fs.readFile(vscode.Uri.file(filePathOrUri))).toString()
+            return (await vscode.workspace.fs.readFile(lw.file.toUri(filePathOrUri))).toString()
         }
     } catch (err) {
         if (raise === undefined || raise === false) {
@@ -511,7 +512,7 @@ async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promis
  *
  * This function accepts a URI object or a string representing a file path. If
  * the input is a string, it is converted to a file URI using
- * `vscode.Uri.file()`. The function then attempts to retrieve the status of the
+ * `lw.file.toUri()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
  * system API. If the status retrieval is successful, the function returns the
  * file stat, which can also be used to indicate that the file or directory
@@ -525,11 +526,22 @@ async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promis
  */
 async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false> {
     if (typeof(uri) === 'string') {
-        uri = vscode.Uri.file(uri)
+        uri = lw.file.toUri(uri)
     }
     try {
         return await lw.external.stat(uri)
     } catch {
         return false
     }
+}
+
+/**
+ * Converts a file path to a VS Code URI.
+ *
+ * @param {string} filePath - The file path to be converted.
+ * @returns {vscode.Uri} - The corresponding VS Code URI.
+ */
+function toUri(filePath: string): vscode.Uri {
+    const scheme = vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
+    return lw.file.toUri(filePath).with({ scheme })
 }

@@ -171,9 +171,9 @@ suite.skip('Build TeX files test suite', () => {
             {src: 'subfile_sub.tex', dst: 'sub/s.tex'}
         ], {local: 1, skipCache: true})
 
-        const docMain = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'main.tex')))
+        const docMain = await vscode.workspace.openTextDocument(lw.file.toUri(path.resolve(fixture, 'main.tex')))
         await vscode.window.showTextDocument(docMain)
-        const docSub = await vscode.workspace.openTextDocument(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))
+        const docSub = await vscode.workspace.openTextDocument(lw.file.toUri(path.resolve(fixture, 'sub/s.tex')))
         await vscode.window.showTextDocument(docSub, vscode.ViewColumn.Beside)
 
         await test.build(fixture, 'sub/s.tex')

@@ -42,12 +42,12 @@ suite.skip('PDF viewer test suite', () => {
         await test.view(fixture, 'main.pdf')
         await test.sleep(250)
         await lw.commands.view()
-        let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        let statuses = lw.viewer.getViewerState(lw.file.toUri(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1)
         await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
         await lw.commands.view()
         await test.sleep(250)
-        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        statuses = lw.viewer.getViewerState(lw.file.toUri(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 2)
     }, ['linux', 'darwin'])
 
@@ -61,17 +61,17 @@ suite.skip('PDF viewer test suite', () => {
         await test.view(fixture, 'main.pdf')
         await test.sleep(250)
         await lw.commands.view()
-        let statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        let statuses = lw.viewer.getViewerState(lw.file.toUri(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1) // Make sure a custom editor was opened
         await test.sleep(250)
         await lw.commands.view()
         await test.sleep(250)
-        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        statuses = lw.viewer.getViewerState(lw.file.toUri(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 1) // Make sure the custom editor got reused
         await vscode.workspace.getConfiguration('latex-workshop').update('view.pdf.viewer', 'legacy')
         await lw.commands.view()
         await test.sleep(250)
-        statuses = lw.viewer.getViewerState(vscode.Uri.file(path.resolve(fixture, 'main.pdf')))
+        statuses = lw.viewer.getViewerState(lw.file.toUri(path.resolve(fixture, 'main.pdf')))
         assert.strictEqual(statuses.length, 2) // Make sure a non-customEditor viewer was opened
     })
 

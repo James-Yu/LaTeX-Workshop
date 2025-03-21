@@ -12,7 +12,7 @@ import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
     const pdfPath = get.path(fixture, 'main.pdf')
-    const pdfUri = vscode.Uri.file(pdfPath)
+    const pdfUri = lw.file.toUri(pdfPath)
     let handlerSpy: sinon.SinonSpy
 
     before(() => {

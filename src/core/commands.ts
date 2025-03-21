@@ -16,13 +16,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${vscode.Uri.file(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outDir))
+    logger.log(`Reveal ${lw.file.toUri(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.toUri(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -73,7 +73,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.view(vscode.Uri.file(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.view(lw.file.toUri(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
@@ -95,9 +95,9 @@ export function synctex() {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
     let pdfUri: vscode.Uri | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.subfiles.path))
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))
     } else if (lw.root.file.path !== undefined) {
-        pdfUri = vscode.Uri.file(lw.file.getPdfPath(lw.root.file.path))
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
     }
     lw.locate.synctex.toPDF(pdfUri)
 }
@@ -465,7 +465,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

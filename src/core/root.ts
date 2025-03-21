@@ -130,7 +130,7 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
     }
     // If provided with a filePath, check its workspace
     if (filePath !== undefined) {
-        return (vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath)) ?? firstWorkspace).uri
+        return (vscode.workspace.getWorkspaceFolder(lw.file.toUri(filePath)) ?? firstWorkspace).uri
     }
     // If we don't have an active text editor, we can only make a guess.
     // Let's guess the first one.

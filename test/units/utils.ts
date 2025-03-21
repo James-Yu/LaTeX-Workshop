@@ -230,7 +230,7 @@ export class TextDocument implements vscode.TextDocument {
     constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
         this.content = content
         this.lines = content.split('\n')
-        this.uri = scheme === 'file' ? vscode.Uri.file(filePath) : vscode.Uri.from({ scheme, path: filePath })
+        this.uri = scheme === 'file' ? lw.file.toUri(filePath) : vscode.Uri.from({ scheme, path: filePath })
         this.fileName = filePath
         this.languageId = languageId
         this.isDirty = isDirty

@@ -288,7 +288,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
         data.definedCmds.set(cmd.signatureAsString(), {
             filePath,
             location: new vscode.Location(
-                vscode.Uri.file(filePath),
+                lw.file.toUri(filePath),
                 new vscode.Position(
                     (node.position?.start.line ?? 1) - 1,
                     (node.position?.start.column ?? 1) - 1))
@@ -386,7 +386,7 @@ function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
         data.definedCmds.set(result[1], {
             filePath,
             location: new vscode.Location(
-                vscode.Uri.file(filePath),
+                lw.file.toUri(filePath),
                 new vscode.Position(content.substring(0, result.index).split('\n').length - 1, 0))
         })
     }

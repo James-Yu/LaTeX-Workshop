@@ -20,7 +20,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.completion->documentclass', () => {
         function getSuggestions() {
             return provider.from(['', ''], {
-                uri: vscode.Uri.file(texPath),
+                uri: lw.file.toUri(texPath),
                 langId: 'latex',
                 line: '',
                 position: new vscode.Position(0, 0),

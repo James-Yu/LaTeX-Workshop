@@ -79,7 +79,7 @@ function showDiagnostics(duplicates: string[]) {
 
     for (const file in diagsCollection) {
         if (path.extname(file) === '.tex') {
-            duplicatedLabelsDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            duplicatedLabelsDiagnostics.set(lw.file.toUri(file), diagsCollection[file])
         }
     }
 }
