@@ -542,7 +542,9 @@ async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false
  * @returns {vscode.Uri} - The corresponding VS Code URI.
  */
 function toUri(filePath: string): vscode.Uri {
-    const scheme = vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
+    const scheme = vscode.workspace.workspaceFolders?.filter(
+        folder => filePath?.startsWith(folder.uri.path)
+    )[0]?.uri.scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
     // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
     // this is a workaround that removes the drive letter from the path
     if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
