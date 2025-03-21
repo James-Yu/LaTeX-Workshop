@@ -16,7 +16,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     let handlerSpy: sinon.SinonSpy
 
     before(() => {
-        mock.init(lw, 'server', 'viewer')
+        mock.init(lw, 'server', 'viewer', 'extra')
         handlerSpy = sinon.spy(lw.viewer, 'handler')
     })
 
@@ -477,14 +477,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             manager.getClients(altUri)?.clear()
         })
 
-        it('should refresh all viewers if not provided with an uri', async () => {
-            const promise = waitMsg(JSON.stringify({ type: 'refresh' }).repeat(3))
+        it.only('should refresh all viewers if not provided with an uri', async () => {
+            const promise = waitMsg(
+                JSON.stringify({ type: 'refresh', pdfFileUri: pdfUri.toString(true) }).repeat(2)
+                + JSON.stringify({ type: 'refresh', pdfFileUri: altUri.toString(true) })
+            )
             lw.viewer.refresh()
             await promise
         })
 
         it('should refresh selected viewers if provided with an uri', async () => {
-            const promise = waitMsg(JSON.stringify({ type: 'refresh' }).repeat(2))
+            const promise = waitMsg(JSON.stringify({ type: 'refresh', pdfFileUri: pdfUri.toString(true) }).repeat(2))
             lw.viewer.refresh(pdfUri)
             await promise
         })
