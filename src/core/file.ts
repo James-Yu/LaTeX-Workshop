@@ -543,5 +543,5 @@ async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false
  */
 function toUri(filePath: string): vscode.Uri {
     const scheme = vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
-    return lw.file.toUri(filePath).with({ scheme })
+    return vscode.Uri.file(filePath).with({ scheme })
 }
