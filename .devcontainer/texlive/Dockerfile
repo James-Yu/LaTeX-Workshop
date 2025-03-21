@@ -7,6 +7,17 @@ RUN apt -y install curl
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
+# VS Code dependencies for testing
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+    libnss3-dev \
+    libdbus-1-dev \
+    libatk-bridge2.0-dev \
+    libdrm-dev \
+    libgtk-3-dev \
+    libasound2-dev
+
+
 # Clean up
 RUN apt autoremove -y \
     && apt clean -y \
