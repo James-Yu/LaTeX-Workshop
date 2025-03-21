@@ -37,7 +37,7 @@ export async function onGraphics(document: vscode.TextDocument, position: vscode
 }
 
 export async function graph2md(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
-    const filePathUriString = (filePath).toString()
+    const filePathUriString = lw.file.toUri(filePath).toString()
     if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
         // Workaround for https://github.com/microsoft/vscode/issues/137632
         if (vscode.env.remoteName) {

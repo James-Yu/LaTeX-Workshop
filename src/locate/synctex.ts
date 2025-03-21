@@ -263,10 +263,17 @@ function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, for
         filePath = args.filePath
     }
 
-    const rootFile = lw.file.toUri(lw.root.file.path).fsPath
-    const targetPdfFile = pdfUri ?? lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
-
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const rootFile = lw.root.file.path
+    if (rootFile === undefined) {
+        logger.log('No root file found.')
+        return
+    }
+    const targetPdfFile = pdfUri ?? lw.file.toUri(lw.file.getPdfPath(rootFile))
+    if (active.document.lineCount === line &&
+        active.document.lineAt(line - 1).text === '') {
+            line -= 1
+    }
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
         syncTeXExternal(line, targetPdfFile, rootFile)
         return

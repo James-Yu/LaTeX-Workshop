@@ -1,4 +1,6 @@
 import vscode from 'vscode'
+import { lw } from '../lw'
+
 import type { ExternalStep, RecipeStep, Step, StepQueue, Tool } from '../types'
 import { lw } from '../lw'
 

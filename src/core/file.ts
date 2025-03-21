@@ -514,7 +514,7 @@ async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promis
  *
  * This function accepts a URI object or a string representing a file path. If
  * the input is a string, it is converted to a file URI using
- * `lw.file.fileUriFromPath()`. The function then attempts to retrieve the status of the
+ * `lw.file.toUri()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
  * system API. If the status retrieval is successful, the function returns the
  * file stat, which can also be used to indicate that the file or directory
@@ -559,12 +559,18 @@ function isUriScheme(fileUri: vscode.Uri): boolean {
     return ['file', 'vsls'].includes(fileUri.scheme)
 }
 
+/**
+ * Converts a file path to a VS Code URI.
+ *
+ * @param {string} filePath - The file path to be converted.
+ * @returns {vscode.Uri} - The corresponding VS Code URI.
+ */
 function toUri(filePath: string): vscode.Uri {
-    const scheme = getUriScheme(filePath)
+    const scheme = vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
     // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
     // this is a workaround that removes the drive letter from the path
     if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
         filePath = filePath.replace(/^\w:\\/, '\\')
     }
-    return vscode.Uri.file(filePath).with({ scheme: getUriScheme(filePath) })
+    return vscode.Uri.file(filePath).with({ scheme })
 }
