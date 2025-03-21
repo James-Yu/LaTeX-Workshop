@@ -54,7 +54,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const texPath = get.path(fixture, 'main.tex')
             const spy = sinon.spy(lw.watcher.src as any, 'createWatcher')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             assert.ok(spy.called)
             assert.ok(Object.keys(getWatchers()).includes(rootDir))
             assert.ok(getWatchers()[rootDir].files.has('main.tex'))
@@ -64,8 +64,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            lw.watcher.src.add(lw.file.toUri(get.path(fixture, 'another.tex')))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            lw.watcher.src.add(vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.listStrictEqual(Object.keys(getWatchers()), [ rootDir ])
             assert.ok(getWatchers()[rootDir].files.has('another.tex'))
         })
@@ -80,16 +80,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             assert.ok(getWatchers()[rootDir].files.has('main.tex'))
-            lw.watcher.src.remove(lw.file.toUri(texPath))
+            lw.watcher.src.remove(vscode.Uri.file(texPath))
             assert.ok(!getWatchers()[rootDir].files.has('main.tex'))
         })
 
         it('should not throw an error if the file is not being watched', () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.remove(lw.file.toUri(texPath))
+            lw.watcher.src.remove(vscode.Uri.file(texPath))
             assert.ok(true)
         })
     })
@@ -103,7 +103,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             assert.ok(getWatchers()[rootDir].files.has('main.tex'))
         })
 
@@ -111,7 +111,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             assert.ok(!getWatchers()[rootDir].files.has('another.tex'))
         })
     })
@@ -125,7 +125,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
             const spy = sinon.spy(getWatchers()[rootDir].watcher, 'dispose')
             lw.watcher.src.reset()
             spy.restore()
@@ -151,8 +151,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call onChangeHandlers when creating watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            await callOnDidChange('create', lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            await callOnDidChange('create', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.listStrictEqual(stub.getCall(0).args, [ texPath ])
         })
@@ -160,8 +160,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call onChangeHandlers when changing watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            await callOnDidChange('change', lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            await callOnDidChange('change', vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.listStrictEqual(stub.getCall(0).args, [ texPath ])
         })
@@ -169,25 +169,25 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should not call onChangeHandlers when creating non-watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            await callOnDidChange('create', lw.file.toUri(get.path(fixture, 'another.tex')))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            await callOnDidChange('create', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should not call onChangeHandlers when changing non-watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            await callOnDidChange('change', lw.file.toUri(get.path(fixture, 'another.tex')))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            await callOnDidChange('change', vscode.Uri.file(get.path(fixture, 'another.tex')))
             assert.strictEqual(stub.callCount, 0)
         })
 
         it('should call onChangeHandlers once when quickly changing watched binary file', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
-            lw.watcher.src.add(lw.file.toUri(binPath))
-            await callOnDidChange('change', lw.file.toUri(binPath))
-            await callOnDidChange('change', lw.file.toUri(binPath))
+            lw.watcher.src.add(vscode.Uri.file(binPath))
+            await callOnDidChange('change', vscode.Uri.file(binPath))
+            await callOnDidChange('change', vscode.Uri.file(binPath))
             await sleep(500)
             assert.strictEqual(stub.callCount, 1)
         })
@@ -195,10 +195,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call onChangeHandlers multiple times when slowly changing watched binary file', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
-            lw.watcher.src.add(lw.file.toUri(binPath))
-            await callOnDidChange('change', lw.file.toUri(binPath))
+            lw.watcher.src.add(vscode.Uri.file(binPath))
+            await callOnDidChange('change', vscode.Uri.file(binPath))
             await sleep(500)
-            await callOnDidChange('change', lw.file.toUri(binPath))
+            await callOnDidChange('change', vscode.Uri.file(binPath))
             await sleep(500)
             assert.strictEqual(stub.callCount, 2)
         })
@@ -222,8 +222,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should call onDeleteHandlers when deleting watched file', async () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.add(lw.file.toUri(texPath))
-            await callOnDidDelete(lw.file.toUri(texPath))
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+            await callOnDidDelete(vscode.Uri.file(texPath))
             assert.strictEqual(stub.callCount, 1)
             assert.listStrictEqual(stub.getCall(0).args, [ texPath ])
         })
@@ -231,8 +231,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
-            lw.watcher.src.add(lw.file.toUri(binPath))
-            await callOnDidDelete(lw.file.toUri(binPath))
+            lw.watcher.src.add(vscode.Uri.file(binPath))
+            await callOnDidDelete(vscode.Uri.file(binPath))
             assert.strictEqual(stub.callCount, 0)
         })
     })

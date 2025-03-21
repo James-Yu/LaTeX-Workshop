@@ -106,7 +106,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should retrieve and return PDF content', async () => {
             const stub = lw.viewer.isViewing as sinon.SinonStub
             stub.returns(true)
-            const url = await lw.server.getUrl(lw.file.toUri(get.path(fixture, 'main.pdf')))
+            const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
             const res = await fetch(url.url.replaceAll('viewer.html?file=', ''))
             stub.resetBehavior()
 
@@ -116,7 +116,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should 404 if the retrieved PDF is not curently viewed', async () => {
             const stub = lw.viewer.isViewing as sinon.SinonStub
             stub.returns(false)
-            const url = await lw.server.getUrl(lw.file.toUri(get.path(fixture, 'main.pdf')))
+            const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
             const res = await fetch(url.url.replaceAll('viewer.html?file=', ''))
             stub.resetBehavior()
 
@@ -126,7 +126,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should 404 if the retrieved PDF cannot be read', async () => {
             const stub = lw.viewer.isViewing as sinon.SinonStub
             stub.returns(true)
-            const url = await lw.server.getUrl(lw.file.toUri(get.path(fixture, 'non-existent.pdf')))
+            const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'non-existent.pdf')))
             const res = await fetch(url.url.replaceAll('viewer.html?file=', ''))
             stub.resetBehavior()
 

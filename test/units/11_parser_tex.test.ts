@@ -27,7 +27,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.parser->bib', () => {
         it('should parse BibTeX content', async () => {
-            const ast = await parser.bib(lw.file.toUri('/main.bib'), '@article{key, author = "author"}')
+            const ast = await parser.bib(vscode.Uri.file('/main.bib'), '@article{key, author = "author"}')
 
             assert.ok(ast)
             assert.strictEqual(ast.content[0].entryType, 'article')
@@ -38,7 +38,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should log error when parsing BibTeX content fails', async () => {
-            const ast = await parser.bib(lw.file.toUri('/main.bib'), '@article{key, author = "author",')
+            const ast = await parser.bib(vscode.Uri.file('/main.bib'), '@article{key, author = "author",')
 
             assert.strictEqual(ast, undefined)
             assert.hasLog('Error when parsing bib file')

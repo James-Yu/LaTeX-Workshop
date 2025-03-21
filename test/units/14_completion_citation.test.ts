@@ -60,7 +60,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should parse the bib file', async () => {
             await citation.parseBibFile(bibPath)
 
-            const suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
 
             assert.ok(suggestions.some(suggestion => suggestion.label === 'miller2024'))
         })
@@ -69,7 +69,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('bibtex.maxFileSize', 0)
             await citation.parseBibFile(bibPath)
 
-            const suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
 
             assert.ok(!suggestions.some(suggestion => suggestion.label === 'miller2024'))
         })
@@ -77,7 +77,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should set and concat string abbreviations', async () => {
             await citation.parseBibFile(bibPath)
 
-            const suggestion = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }).find(s => s.label === 'miller2025') as CitationItem
+            const suggestion = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }).find(s => s.label === 'miller2025') as CitationItem
 
             assert.ok(suggestion)
             assert.strictEqual(suggestion.fields.journal, 'Proceedings of the ')
@@ -87,7 +87,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should deparenthesis', async () => {
             await citation.parseBibFile(bibPath)
 
-            const suggestion = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }).find(s => s.label === 'miller2025') as CitationItem
+            const suggestion = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }).find(s => s.label === 'miller2025') as CitationItem
 
             assert.ok(suggestion)
             assert.strictEqual(suggestion.fields.author, 'Jane Miller and Robert Smith')
@@ -96,7 +96,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should handle biblatex ids field', async () => {
             await citation.parseBibFile(bibPath)
 
-            const suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
 
             assert.ok(suggestions.find(s => s.label === 'miller2024'))
             assert.ok(suggestions.find(s => s.label === 'altid1'))
@@ -105,7 +105,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should handle biblatex ids field with multiple alt names', async () => {
             await citation.parseBibFile(bibPath)
 
-            const suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
 
             assert.ok(suggestions.find(s => s.label === 'miller2025'))
             assert.ok(suggestions.find(s => s.label === 'altid2'))
@@ -124,19 +124,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should follow `latex-workshop.intellisense.citation.label`', () => {
             set.config('intellisense.citation.label', 'title')
-            let suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            let suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             let suggestion = suggestions.find(s => s.label === 'An Overview of Quantum Computing: Challenges and Future Directions')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.label, suggestion.fields.title)
 
             set.config('intellisense.citation.label', 'bibtex key')
-            suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             suggestion = suggestions.find(s => s.label === 'miller2024')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.label, suggestion.key)
 
             set.config('intellisense.citation.label', 'authors')
-            suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             suggestion = suggestions.find(s => s.label === 'Jane Miller and Robert Smith')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.label, suggestion.fields.author)
@@ -146,19 +146,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const otherFields = 'Jane Miller and Robert Smith Journal of Advanced Computing 2024 Elsevier'
 
             set.config('intellisense.citation.filterText', ['title', 'bibtex key'])
-            let suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            let suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             let suggestion = suggestions.find(s => s.key === 'miller2024')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, `${suggestion.fields.title} ${suggestion.key}`)
 
             set.config('intellisense.citation.filterText', ['other fields'])
-            suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             suggestion = suggestions.find(s => s.key === 'miller2024')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, otherFields)
 
             set.config('intellisense.citation.filterText', ['wrong config'])
-            suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             suggestion = suggestions.find(s => s.key === 'miller2024')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.filterText, `${suggestion.key} ${suggestion.fields.title} ${otherFields}`)
@@ -166,7 +166,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should follow `latex-workshop.intellisense.citation.format`', () => {
             set.config('intellisense.citation.format', ['title', 'author'])
-            const suggestions = provider.from([''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
+            const suggestions = provider.from([''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) }) as CitationItem[]
             const suggestion = suggestions.find(s => s.key === 'miller2024')
             assert.ok(suggestion)
             const documentation = (suggestion.documentation as vscode.MarkdownString | undefined)?.value

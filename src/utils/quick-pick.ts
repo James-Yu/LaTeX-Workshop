@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { lw } from '../lw'
 
 export async function pickRootPath(rootPath: string, subRootPath: string, verb: string): Promise<string | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootPath))

@@ -35,10 +35,10 @@ suite('Linter test suite', () => {
         ], {skipCache: true})
         const log = 'main.tex:5:18:1:Warning:24:Delete this space to maintain correct pagereferences.\nsub/s.tex:1:26:1:Warning:24:Delete this space to maintain correct pagereferences.\n'
         chkTeX.parseLog(log)
-        assert.strictEqual(chkTeX.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'main.tex')))?.length, 1)
-        assert.strictEqual(chkTeX.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'sub/s.tex')))?.length, 1)
-        assert.match(chkTeX.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'main.tex')))?.[0].message || '', /Delete this space/)
-        assert.match(chkTeX.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /Delete this space/)
+        assert.strictEqual(chkTeX.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.length, 1)
+        assert.strictEqual(chkTeX.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.length, 1)
+        assert.match(chkTeX.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.[0].message || '', /Delete this space/)
+        assert.match(chkTeX.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /Delete this space/)
     })
 
     test.run('test lacheck', async (fixture: string) => {
@@ -57,9 +57,9 @@ suite('Linter test suite', () => {
         ], {skipCache: true})
         const log = '"main.tex", line 7: double space at "~~"\n** sub/sub:\n"sub/s.tex", line 2: double space at "~~"\n'
         laCheck.parseLog(log)
-        assert.strictEqual(laCheck.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'main.tex')))?.length, 1)
-        assert.strictEqual(laCheck.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'sub/s.tex')))?.length, 1)
-        assert.match(laCheck.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'main.tex')))?.[0].message || '', /double space at/)
-        assert.match(laCheck.linterDiagnostics.get(lw.file.toUri(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /double space at/)
+        assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.length, 1)
+        assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.length, 1)
+        assert.match(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'main.tex')))?.[0].message || '', /double space at/)
+        assert.match(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve(fixture, 'sub/s.tex')))?.[0].message || '', /double space at/)
     })
 })

@@ -25,7 +25,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.completion->macro', () => {
         function getSuggestions() {
-            return provider.from(['', ''], { uri: lw.file.toUri(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+            return provider.from(['', ''], { uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
         }
 
         function getMacros() {

@@ -28,7 +28,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.completion->argument', () => {
         function getSuggestions(match: RegExpMatchArray) {
             return provider.from(match, {
-                uri: lw.file.toUri(texPath),
+                uri: vscode.Uri.file(texPath),
                 langId: 'latex',
                 line: match[0],
                 position: new vscode.Position(0, 0),

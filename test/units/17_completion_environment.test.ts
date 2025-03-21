@@ -27,7 +27,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.completion->environment', () => {
         function getSuggestions() {
             return provider.from(['', ''], {
-                uri: lw.file.toUri(texPath),
+                uri: vscode.Uri.file(texPath),
                 langId: 'latex',
                 line: '',
                 position: new vscode.Position(0, 0),
@@ -47,7 +47,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should provide environments in the form of macros', () => {
             const labels = provider
                 .from(['', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '',
                     position: new vscode.Position(0, 0),
@@ -61,7 +61,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const stub = mock.activeTextEditor(texPath, '\\begin{')
             const suggestion = provider
                 .from(['\\begin{', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '\\begin{',
                     position: new vscode.Position(0, 7),
@@ -78,7 +78,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const stub = mock.activeTextEditor(texPath, '\\begin{}')
             const suggestion = provider
                 .from(['\\begin{', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '\\begin{}',
                     position: new vscode.Position(0, 7),
@@ -99,7 +99,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(editor)
             const suggestion = provider
                 .from(['\\begin{', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '\\begin{',
                     position: new vscode.Position(0, 7),
@@ -115,7 +115,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const stub = mock.activeTextEditor(texPath, '\\begin{itemize}\\end{')
             const suggestion = provider
                 .from(['\\end{', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '\\begin{itemize}\\end{',
                     position: new vscode.Position(0, 20),
@@ -151,7 +151,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const labels = macro
                 .from(['', ''], {
-                    uri: lw.file.toUri(texPath),
+                    uri: vscode.Uri.file(texPath),
                     langId: 'latex',
                     line: '',
                     position: new vscode.Position(0, 0),
