@@ -7,7 +7,7 @@ RUN apt-get update \
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 # https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
 RUN apt -y install curl
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
 # Verify git and needed tools are installed
@@ -28,6 +28,16 @@ RUN curl -L http://cpanmin.us | perl - App::cpanminus \
     && cpanm YAML::Tiny \
     && cpanm File::HomeDir \
     && cpanm Unicode::GCString
+
+# VS Code dependencies for testing
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+    libnss3-dev \
+    libdbus-1-dev \
+    libatk-bridge2.0-dev \
+    libdrm-dev \
+    libgtk-3-dev \
+    libasound2-dev
 
 # Clean up
 RUN apt-get autoremove -y \

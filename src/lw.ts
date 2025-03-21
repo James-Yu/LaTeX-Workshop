@@ -81,7 +81,8 @@ const constant = {
         'cases', 'centernot', 'colortbl', 'empheq', 'enclose', 'extpfeil',
         'gensymb', 'html', 'mathtools', 'mhchem', 'physics', 'textcomp',
         'textmacros', 'unicode', 'upgreek', 'verb'
-    ]
+    ],
+    FILE_URI_SCHEMES: ['file', 'vsls']
 }
 lw.constant = constant
 

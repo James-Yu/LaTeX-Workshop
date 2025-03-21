@@ -42,7 +42,7 @@ export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle:
 
     for (let i = 0, ii = parts.length; i < ii; ++i) {
         const param = parts[i].split('=')
-        if (param[0].toLowerCase() === 'file') {
+        if (['file', 'vsls'].includes(param[0].toLowerCase())) {
             const encodedPath = param[1].replace(pdfFilePrefix, '')
             const pdfFileUri = decodePath(encodedPath)
             const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'

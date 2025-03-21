@@ -190,7 +190,7 @@ function hasDtxLangId(langId: string): boolean {
  *
  * @type {Object.<string, {out?: string, aux?: string}>}
  */
-const texDirs: {[tex: string]: {out?: string, aux?: string}} = {}
+const texDirs: { [tex: string]: { out?: string, aux?: string } } = {}
 /**
  * Sets the output and auxiliary files directory for a root TeX file.
  *
@@ -213,7 +213,7 @@ function setTeXDirs(tex: string, out?: string, aux?: string) {
     if (!tex.endsWith('.tex')) {
         tex += '.tex'
     }
-    texDirs[tex] = {out, aux}
+    texDirs[tex] = { out, aux }
 }
 
 /**
@@ -364,7 +364,7 @@ async function getFlsPath(texPath: string): Promise<string | undefined> {
  * avoiding redundant executions of the `kpsewhich` command by returning
  * previously computed results quickly.
  */
-const kpsecache: {[query: string]: string} = {}
+const kpsecache: { [query: string]: string } = {}
 /**
  * Resolves the path to a given LaTeX target using the `kpsewhich` command.
  *
@@ -450,7 +450,7 @@ async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
             const kpsePath = kpsewhich(bib, true)
-            return kpsePath ? [ kpsePath ] : []
+            return kpsePath ? [kpsePath] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
             return []
@@ -459,9 +459,9 @@ async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
 
     if (os.platform() === 'win32') {
         // Normalize drive letters on Windows.
-        return [ bibPath ].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
+        return [bibPath].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
     } else {
-        return [ bibPath ].flat()
+        return [bibPath].flat()
     }
 }
 
@@ -525,7 +525,7 @@ async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promis
  * or directory exists, and `false` otherwise.
  */
 async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false> {
-    if (typeof(uri) === 'string') {
+    if (typeof (uri) === 'string') {
         uri = lw.file.toUri(uri)
     }
     try {
@@ -542,6 +542,13 @@ async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false
  * @returns {vscode.Uri} - The corresponding VS Code URI.
  */
 function toUri(filePath: string): vscode.Uri {
-    const scheme = vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
+    const scheme = vscode.workspace.workspaceFolders?.filter(
+        folder => filePath?.startsWith(folder.uri.path)
+    )[0]?.uri.scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
+    // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
+    // this is a workaround that removes the drive letter from the path
+    if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
+        filePath = filePath.replace(/^\w:\\/, '\\')
+    }
     return vscode.Uri.file(filePath).with({ scheme })
 }

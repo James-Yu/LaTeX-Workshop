@@ -29,10 +29,10 @@ class WsServer extends ws.Server {
     // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
     //
     shouldHandle(req: http.IncomingMessage): boolean {
-        if (!this.validOrigin.includes('127.0.0.1')) {
+        const reqOrigin = req.headers['origin']
+        if (!this.validOrigin.includes('127.0.0.1') || reqOrigin?.includes('127.0.0.1')) {
             return true
         }
-        const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
             logger.log(`Valid origin: ${this.validOrigin}`)
@@ -151,7 +151,7 @@ function initializeWsServer(httpServer: http.Server, validOrigin: string) {
 //
 function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
     const validOrigin = getValidOrigin()
-    if (!validOrigin.includes('127.0.0.1')) {
+    if (!validOrigin.includes('127.0.0.1') || req.headers['origin']?.includes('127.0.0.1')) {
         return true
     }
     const reqOrigin = req.headers['origin']
@@ -187,6 +187,10 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
 }
 
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    if (await lw.extra.liveshare.handle.server.request(request, response)) {
+        return
+    }
+
     if (!request.url) {
         return
     }
@@ -196,8 +200,12 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
-        const fileUri = decodePathWithPrefix(s)
-        if (!lw.viewer.isViewing(fileUri)) {
+        let fileUri = decodePathWithPrefix(s)
+        const isVsls = (fileUri.scheme === 'vsls') && (lw.extra.liveshare.isHost())
+        if (isVsls) {
+            fileUri = lw.extra.liveshare.getApi()?.convertSharedUriToLocal(fileUri) ?? fileUri
+        }
+        if (!lw.viewer.isViewing(fileUri) && !isVsls) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
             response.writeHead(404)
             response.end()
