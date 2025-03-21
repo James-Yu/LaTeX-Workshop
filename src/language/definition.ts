@@ -54,7 +54,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
      * @returns {DefinitionLink[]} linking `originSelectionRange` to `targetUri`/`targetRange`
      */
     async provideDefinition(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.DefinitionLink[]> {
-        if (!lw.file.isUriScheme(document.uri)) {
+        if (!lw.constant.FILE_URI_SCHEMES.includes(document.uri.scheme)) {
             return []
         }
         const tokenRange = tokenizer(document, position)

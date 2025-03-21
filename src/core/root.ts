@@ -201,7 +201,7 @@ function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
     }
-    if (!lw.file.isUriScheme(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.constant.FILE_URI_SCHEMES.includes(vscode.window.activeTextEditor.document.uri.scheme)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -225,7 +225,7 @@ async function findFromActive(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    if (!lw.file.isUriScheme(vscode.window.activeTextEditor.document.uri)) {
+    if (!lw.constant.FILE_URI_SCHEMES.includes(vscode.window.activeTextEditor.document.uri.scheme)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -298,7 +298,7 @@ async function findInWorkspace(): Promise<string | undefined> {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
         for (const fileUri of fileUris) {
-            if (!lw.file.isUriScheme(fileUri)) {
+            if (!lw.constant.FILE_URI_SCHEMES.includes(fileUri.scheme)) {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }

@@ -67,7 +67,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (!lw.file.isUriScheme(e.uri)){
+        if (!lw.constant.FILE_URI_SCHEMES.includes(e.uri.scheme)){
             return
         }
         if (lw.file.hasTeXLangId(e.languageId) ||
@@ -99,7 +99,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             logger.showStatus()
         }
 
-        if (e && !lw.file.isUriScheme(e.document.uri)) {
+        if (e && !lw.constant.FILE_URI_SCHEMES.includes(e.document.uri.scheme)) {
             return
         }
 
@@ -123,7 +123,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (!lw.file.isUriScheme(e.document.uri)){
+        if (!lw.constant.FILE_URI_SCHEMES.includes(e.document.uri.scheme)){
             return
         }
         if (!lw.file.hasTeXLangId(e.document.languageId) &&
@@ -343,7 +343,7 @@ function conflictCheck() {
 
 function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
    const selector = ids.map( (id) => {
-       return { scheme: lw.file.getUriScheme(), language: id }
+       return { scheme: lw.file.toUri('').scheme, language: id }
    })
    return selector
 }

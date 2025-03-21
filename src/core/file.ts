@@ -25,8 +25,6 @@ export const file = {
     exists,
     read,
     kpsewhich,
-    getUriScheme,
-    isUriScheme,
     toUri
 }
 
@@ -535,28 +533,6 @@ async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false
     } catch {
         return false
     }
-}
-
-/**
-* Returns the scheme of the URI based on the file path.
-*
-* This function determines the URI scheme based on the file path provided. It
-* checks if the file path starts with any of the workspace folder paths and
-* returns the scheme associated with the workspace folder. If the file path
-* does not match any workspace folder, it returns the default scheme based on
-* whether the user is a guest in a Live Share session.
-*
-* @param {string} filePath - The file path for which to determine the URI scheme.
-* @returns {string} - The URI scheme associated with the file path.
-*/
-function getUriScheme(filePath?: string): string {
-    const scheme =
-        vscode.workspace.workspaceFolders?.filter(folder => filePath?.startsWith(folder.uri.path))[0]?.uri.scheme
-    return scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
-}
-
-function isUriScheme(fileUri: vscode.Uri): boolean {
-    return ['file', 'vsls'].includes(fileUri.scheme)
 }
 
 /**
