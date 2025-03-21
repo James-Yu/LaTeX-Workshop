@@ -27,7 +27,7 @@ function resourcesFolder(extensionRoot: string) {
 }
 
 class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
-    async deserializeWebviewPanel(panel: vscode.WebviewPanel) {
+    deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         initializePanel(panel)
         panel.webview.options = {
             enableScripts: true,
@@ -113,14 +113,14 @@ function close() {
 function toggle(action?: 'open' | 'close') {
     if (action) {
         if (action === 'open') {
-            void open()
+            open()
         } else {
             close()
         }
     } else if (state.panel) {
         close()
     } else {
-        void open()
+        open()
     }
 }
 
@@ -157,7 +157,7 @@ function getHtml() {
                 padding-left: 50px;
             }
         </style>
-        <script src='http://127.0.0.1:${(lw.server.getPort()).toString()}/mathpreviewpanel/mathpreview.js' defer></script>
+        <script src='http://127.0.0.1:${lw.server.getPort().toString()}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>
