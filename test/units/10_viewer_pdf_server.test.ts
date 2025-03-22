@@ -477,7 +477,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             manager.getClients(altUri)?.clear()
         })
 
-        it.only('should refresh all viewers if not provided with an uri', async () => {
+        it('should refresh all viewers if not provided with an uri', async () => {
             const promise = waitMsg(
                 JSON.stringify({ type: 'refresh', pdfFileUri: pdfUri.toString(true) }).repeat(2)
                 + JSON.stringify({ type: 'refresh', pdfFileUri: altUri.toString(true) })
