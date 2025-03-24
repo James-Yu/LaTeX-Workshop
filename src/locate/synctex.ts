@@ -180,6 +180,10 @@ function parseToPDFList(result: string): SyncTeXRecordToPDFAll[] {
 //     }
 // }
 
+/**
+ * Locates the current cursor position in the TeX file editor.
+ * @returns The current editor coordinates including line, column, and input file URI.
+ */
 function getCurrentEditorCoordinates(): {line: number, column: number, inputFileUri: vscode.Uri} | undefined {
     if (!vscode.window.activeTextEditor) {
         logger.log('No active editor found.')
@@ -208,6 +212,16 @@ function getCurrentEditorCoordinates(): {line: number, column: number, inputFile
     return {line, column, inputFileUri}
 }
 
+/**
+ * Tries calling forward SyncTeX (from Tex to PDF) using the native SyncTeX binary,
+ * and if it fails, falls back to using the JavaScript implementation.
+ * @param line
+ * @param col
+ * @param filePath - path to the TeX file.
+ * @param targetPdfFile - path to the target PDF file.
+ * @param indicator - highlight indicator type.
+ * @returns an object indicating the PDF file location and whether to show the indicator.
+ */
 async function synctexToPDFCombined(line: number, col: number, filePath: string, targetPdfFile: vscode.Uri, indicator: 'none' | 'circle' | 'rectangle'): Promise<SyncTeXRecordToPDF> {
     try {
         return await callSyncTeXToPDF(line, col, filePath, targetPdfFile, indicator)
@@ -262,7 +276,6 @@ function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, for
         line = args.line
         filePath = args.filePath
     }
-
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const rootFile = lw.root.file.path
     if (rootFile === undefined) {
@@ -465,6 +478,12 @@ async function toTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pd
     }
 }
 
+/**
+ * Computes the SyncTeX record to TeX from the given data and PDF URI.
+ * @param data - the client request with relevant reverse SyncTeX data.
+ * @param pdfUri - the URI of the PDF file.
+ * @returns the SyncTeX record to TeX or undefined if not found.
+ */
 async function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfUri: vscode.Uri): Promise<SyncTeXRecordToTeX | undefined> {
     let record: SyncTeXRecordToTeX
 
@@ -510,6 +529,14 @@ async function computeToTeX(data: Extract<ClientRequest, {type: 'reverse_synctex
     return record
 }
 
+/**
+ * Highlights the specified position in the TeX source file.
+ * @param input - TeX source file path.
+ * @param line
+ * @param column
+ * @param textBeforeSelection
+ * @param textAfterSelection
+ */
 async function openTeX(input: string, line: number, column: number, textBeforeSelection: string, textAfterSelection: string) {
     const filePath = path.resolve(input)
     const uri = lw.file.toUri(input)
