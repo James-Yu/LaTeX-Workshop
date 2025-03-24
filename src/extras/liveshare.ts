@@ -20,6 +20,21 @@ export {
     shareServer
 }
 
+/**
+ * This module exports the Live Share API and handles the connection to the host server.
+ * Since LiveShare allows sharing the server, in order to support features like PDF sync,
+ * Synctex, and reverse Synctex, we provide LiveShare guests with the ability to connect
+ * to the host Workshop server.
+ * Unfortunately, the LiveShare extensions seems to be abandoned by Microsoft, with
+ * long standing issues like the lack of binary file support:
+ * https://github.com/microsoft/live-share/issues/1895
+ *
+ * The URIs must then be carefully handled to follow the `vsls` scheme, not `file` on guests.
+ * Fot the server to be shared, the host must Allow for port sharing when prompted or execute
+ * the HOSTPORT command. Already connected guests need to execute that command as well
+ * to update the port.
+ */
+
 const handle = {
     command: {
         syncTeX: handleCommandSyncTeX
