@@ -33,6 +33,7 @@ export {
  * Fot the server to be shared, the host must Allow for port sharing when prompted or execute
  * the HOSTPORT command. Already connected guests need to execute that command as well
  * to update the port.
+ * Another limitation is that the host must already have the viewer and compiler running.
  */
 
 const handle = {
