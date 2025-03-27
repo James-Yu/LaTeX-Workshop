@@ -4,9 +4,6 @@
       "name": "graphicx"
     },
     {
-      "name": "pdftexcmds"
-    },
-    {
       "name": "siunitx"
     },
     {
@@ -106,6 +103,13 @@
       "arg": {
         "format": "{}",
         "snippet": "mrcNPlon{${1:name}}"
+      }
+    },
+    {
+      "name": "ifmrcNPexists",
+      "arg": {
+        "format": "{}{}{}",
+        "snippet": "ifmrcNPexists{${1:name}}{${2:true}}{${3:false}}"
       }
     },
     {
@@ -491,6 +495,62 @@
       }
     },
     {
+      "name": "mrcNPfromOrthoFraction",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFraction{${1:name}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFraction",
+      "arg": {
+        "format": "{}[]{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFraction{${1:name}}[${7:\\angle}]{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFractionNamed",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcNPfromOrthoFractionNamed{${1:name}}{${2:name1}}{${3:name2}}{${4:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoFractionNamed",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "mrcNPfromOrthoFractionNamed{${1:name}}[${5:\\angle}]{${2:name1}}{${3:name2}}{${4:fraction}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistance",
+      "arg": {
+        "format": "{}{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistance{${1:name}}{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistance",
+      "arg": {
+        "format": "{}[]{}{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistance{${1:name}}[${7:\\angle}]{${2:lat1}}{${3:lon1}}{${4:lat2}}{${5:lon2}}{${6:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistanceNamed",
+      "arg": {
+        "format": "{}{}{}{}",
+        "snippet": "mrcNPfromOrthoDistanceNamed{${1:name}}{${2:name1}}{${3:name2}}{${4:distance}}"
+      }
+    },
+    {
+      "name": "mrcNPfromOrthoDistanceNamed",
+      "arg": {
+        "format": "{}[]{}{}{}",
+        "snippet": "mrcNPfromOrthoDistanceNamed{${1:name}}[${5:\\angle}]{${2:name1}}{${3:name2}}{${4:distance}}"
+      }
+    },
+    {
       "name": "mrcprettyorthodistance",
       "arg": {
         "format": "{}{}{}{}",
@@ -533,6 +593,40 @@
       }
     },
     {
+      "name": "mrcTimewarpIdentity",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowStart",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowFinal",
+      "unusual": true
+    },
+    {
+      "name": "mrcTimewarpSlowStartFinal",
+      "unusual": true
+    },
+    {
+      "name": "mrcAnimFrame"
+    },
+    {
+      "name": "mrcAnimTime"
+    },
+    {
+      "name": "mrcAnimScaleDenom"
+    },
+    {
+      "name": "mrcAnimLatitude"
+    },
+    {
+      "name": "mrcAnimLongitude"
+    },
+    {
+      "name": "mrcAnimAngle"
+    },
+    {
       "name": "mermaplastfivesum",
       "unusual": true,
       "arg": {
@@ -564,6 +658,17 @@
       "arg": {
         "format": "[]",
         "snippet": "[${1:TikZ options}]"
+      }
+    },
+    {
+      "name": "mrcAnimation",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:options%keyvals}}",
+        "keys": [
+          "\\begin{mrcAnimation}#c"
+        ],
+        "keyPos": 0
       }
     }
   ],
@@ -639,7 +744,7 @@
       "flex area fit=",
       "pixel=${1:pixel size}",
       "dpi=${1:dpi value}",
-      "source=${1|dummy,opentopomap,stamen terrain,stamen terrain-background,stamen terrain-labels,stamen terrain-lines,stamen toner,stamen toner-lite,stamen toner-hybrid,stamen toner-background,stamen toner-labels,stamen toner-lines,stamen watercolor,thunderforest opencyclemap,thunderforest transport,thunderforest landscape,thunderforest outdoors,thunderforest transport-dark,thunderforest spinal-map,thunderforest pioneer,thunderforest mobile-atlas,thunderforest neighbourhood,topplusopen web,topplusopen web grau,topplusopen p5,topplusopen p5 grau,topplusopen p10,topplusopen p10 grau,topplusopen p17.5,topplusopen p17.5 grau,topplusopen p25,topplusopen p25 grau,topplusopen p50,topplusopen p50 grau,topplusopen p100,topplusopen p100 grau,topplusopen p250,topplusopen p250 grau|}"
+      "source=${1|dummy,opentopomap,thunderforest opencyclemap,thunderforest transport,thunderforest landscape,thunderforest outdoors,thunderforest atlas,thunderforest transport-dark,thunderforest spinal-map,thunderforest pioneer,thunderforest mobile-atlas,thunderforest neighbourhood,topplusopen web,topplusopen web grau,topplusopen web light,topplusopen web light grau,topplusopen p5,topplusopen p5 grau,topplusopen p10,topplusopen p10 grau,topplusopen p17.5,topplusopen p17.5 grau,topplusopen p25,topplusopen p25 grau,topplusopen p50,topplusopen p50 grau,topplusopen p100,topplusopen p100 grau,topplusopen p250,topplusopen p250 grau|}"
     ],
     "\\mermapset#c,\\mrcdrawmap#c": [
       "draw=${1|auto,path,tiles,mergedmap,wmsmap|}",
@@ -731,6 +836,28 @@
       "inner radius=",
       "path style={${1:TikZ options}}",
       "node style={${1:TikZ options}}"
+    ],
+    "\\begin{mrcAnimation}#c": [
+      "start-position=${1:latitude}/${2:longitude}",
+      "named-start-position=${1:name}",
+      "final-position=${1:latitude}/${2:longitude}",
+      "named-final-position=${1:name}",
+      "position=${1:latitude}/${2:longitude}",
+      "named-position=${1:name}",
+      "frames=${1:integer}",
+      "drop-first-frame",
+      "drop-last-frame",
+      "drop-no-frame",
+      "scale-denominators=${1:time and scale sequence}",
+      "common-scale-denominator=${1:scale denominator}",
+      "timewarp=${1:macro}",
+      "timewarp-identity",
+      "timewarp-slow-start",
+      "timewarp-slow-start=${1:exponent}",
+      "timewarp-slow-final",
+      "timewarp-slow-final=${1:exponent}",
+      "timewarp-slow-start-final",
+      "timewarp-slow-start-final=${1:exponent}"
     ]
   },
   "args": []

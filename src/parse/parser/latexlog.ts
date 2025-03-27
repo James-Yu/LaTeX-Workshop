@@ -262,6 +262,7 @@ function parseBadBox(line: string, filename: string, state: ParserState, type?: 
                 line: 1,
                 text: result[2] ? `${result[1]} in page ${result[2]}` : result[1]
             }
+            parseLine(line.substring(result[0].length), state)
         } else {
             state.currentResult = {
                 type: 'typesetting',
@@ -270,9 +271,8 @@ function parseBadBox(line: string, filename: string, state: ParserState, type?: 
                 text: result[1]
             }
             state.insideBoxWarn = true
+            state.searchEmptyLine = false
         }
-        state.searchEmptyLine = false
-        parseLine(line.substring(result[0].length), state)
         return true
     }
     return false

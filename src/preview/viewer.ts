@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type ws from 'ws'
+import ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
@@ -33,7 +33,7 @@ lw.watcher.pdf.onChange(pdfUri => {
         refresh(pdfUri)
     }
 })
-lw.onConfigChange(['view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal'], () => {
+lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf.invertMode', 'view.pdf.color', 'view.pdf.internal', 'view.pdf.reload.transition'], () => {
     reload()
 })
 
@@ -55,23 +55,23 @@ function refresh(pdfUri?: vscode.Uri): void {
     logger.log(`Call refreshExistingViewer: ${pdfUri ?? 'undefined'} .`)
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
-            client.send({type: 'refresh'})
+            client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
         })
         return
     }
-    const clientSet = manager.getClients(pdfUri)
+    let clientSet = manager.getClients(pdfUri)
+    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfUri.fsPath, clientSet)
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfUri}`)
         return
     }
     logger.log(`Refresh PDF viewer: ${pdfUri}`)
     clientSet.forEach(client => {
-        client.send({type: 'refresh'})
+        client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
     })
 }
 
-async function getUrl(pdfFile: string): Promise<string | undefined> {
-    const pdfUri = vscode.Uri.file(pdfFile)
+async function getUrl(pdfUri: vscode.Uri): Promise<string | undefined> {
     if (!await lw.file.exists(pdfUri)) {
         logger.log(`Cannot find PDF file ${pdfUri}`)
         logger.refreshStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfUri}`, 'warning')
@@ -80,7 +80,7 @@ async function getUrl(pdfFile: string): Promise<string | undefined> {
     return (await lw.server.getUrl(pdfUri)).url
 }
 
-async function view(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
+async function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
     let viewerMode: ViewerMode = mode ?? configuration.get<ViewerMode>('view.pdf.viewer', 'tab')
@@ -88,29 +88,28 @@ async function view(pdfFile: string, mode?: 'tab' | 'browser' | 'external'): Pro
         viewerMode = 'legacy'
     }
     if (viewerMode === 'browser') {
-        return viewInBrowser(pdfFile)
+        return viewInBrowser(pdfUri)
     } else if (viewerMode === 'tab') {
-        return viewInCustomEditor(pdfFile)
+        return viewInCustomEditor(pdfUri)
     } else if (viewerMode === 'legacy' || viewerMode === 'singleton') {
-        return viewInTab(pdfFile, tabEditorGroup, true)
+        return viewInWebviewPanel(pdfUri, tabEditorGroup, true)
     } else if (viewerMode === 'external') {
-        return viewInExternal(pdfFile)
+        return viewInExternal(pdfUri)
     } else {
-        return viewInCustomEditor(pdfFile)
+        return viewInCustomEditor(pdfUri)
     }
 }
 
 /**
- * Opens the PDF file in the browser.
+ * Opens the PDF uri in the browser.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  */
-async function viewInBrowser(pdfFile: string): Promise<void> {
-    const url = await getUrl(pdfFile)
+async function viewInBrowser(pdfUri: vscode.Uri): Promise<void> {
+    const url = await getUrl(pdfUri)
     if (!url) {
         return
     }
-    const pdfUri = vscode.Uri.file(pdfFile)
     manager.create(pdfUri)
     lw.watcher.pdf.add(pdfUri)
     try {
@@ -126,30 +125,9 @@ async function viewInBrowser(pdfFile: string): Promise<void> {
     }
 }
 
-/**
- * Opens the PDF file in the internal PDF viewer.
- *
- * @param pdfFile The path of a PDF file.
- * @param tabEditorGroup
- * @param preserveFocus
- */
-async function viewInTab(pdfFile: string, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
-    const url = await getUrl(pdfFile)
-    if (!url) {
-        return
-    }
-    const pdfUri = vscode.Uri.file(pdfFile)
-    return viewInWebviewPanel(pdfUri, tabEditorGroup, preserveFocus)
-}
-
-async function viewInCustomEditor(pdfFile: string): Promise<void> {
-    const url = await getUrl(pdfFile)
-    if (!url) {
-        return
-    }
+async function viewInCustomEditor(pdfUri: vscode.Uri): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-    const pdfUri = vscode.Uri.file(pdfFile)
     const showOptions: vscode.TextDocumentShowOptions = {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus: true
@@ -162,11 +140,7 @@ async function viewInCustomEditor(pdfFile: string): Promise<void> {
             await vscode.commands.executeCommand('workbench.action.focusRightGroup')
         } else {
             await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
-            if (currentColumn === vscode.ViewColumn.One) {
-                await moveActiveEditor('left', true)
-            } else {
-                await vscode.commands.executeCommand('workbench.action.focusRightGroup')
-            }
+            await moveActiveEditor('left', true)
         }
     } else if (editorGroup === 'right') {
         const currentColumn = vscode.window.activeTextEditor?.viewColumn
@@ -213,9 +187,9 @@ async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, pr
 /**
  * Opens the PDF file of in the external PDF viewer.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  */
-function viewInExternal(pdfFile: string): void {
+function viewInExternal(pdfUri: vscode.Uri): void {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     let command = configuration.get('view.pdf.external.viewer.command') as string
     let args = configuration.get('view.pdf.external.viewer.args') as string[]
@@ -238,11 +212,11 @@ function viewInExternal(pdfFile: string): void {
         }
     }
     if (args) {
-        args = args.map(arg => arg.replace('%PDF%', pdfFile))
+        args = args.map(arg => arg.replace('%PDF%', pdfUri.fsPath))
     }
-    logger.log(`Open external viewer for ${pdfFile}`)
+    logger.log(`Open external viewer for ${pdfUri.toString(true)}`)
     logger.logCommand('Execute the external PDF viewer command', command, args)
-    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile), detached: true})
+    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath), detached: true})
     let stdout = ''
     proc.stdout.on('data', newStdout => {
         stdout += newStdout
@@ -273,11 +247,15 @@ function handler(websocket: ws, msg: string): void {
     switch (data.type) {
         case 'open': {
             const pdfUri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (pdfUri.scheme === 'vsls' && lw.extra.liveshare.isHost()) {
+                manager.create(pdfUri)
+            }
             const clientSet = manager.getClients(pdfUri)
             if (clientSet === undefined) {
                 break
             }
-            const client = new Client(data.viewer, websocket)
+            const client = new Client(websocket, pdfUri.toString(true))
+            lw.extra.liveshare.register(client)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)
@@ -290,34 +268,27 @@ function handler(websocket: ws, msg: string): void {
             if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                 logger.log('SyncTex after build invoked.')
                 const uri = vscode.Uri.parse(data.pdfFileUri, true)
-                lw.locate.synctex.toPDF(undefined, undefined, uri.fsPath)
+                lw.locate.synctex.toPDF(uri)
             }
             break
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
-            void lw.locate.synctex.toTeX(data, uri.fsPath)
+            if (lw.extra.liveshare.handle.viewer.reverseSyncTeX(websocket, uri, data)) {
+                break
+            }
+            void lw.locate.synctex.toTeX(data, uri)
             break
         }
         case 'external_link': {
-            void vscode.env.clipboard.writeText(data.url)
             const uri = vscode.Uri.parse(data.url)
             if (['http', 'https'].includes(uri.scheme)) {
                 void vscode.env.openExternal(uri)
             } else {
-                vscode.window.showInformationMessage(`The link ${data.url} has been copied to clipboard.`, 'Open link', 'Dismiss').then(
-                    option => {
-                        switch (option) {
-                            case 'Open link':
-                                void vscode.env.openExternal(uri)
-                                break
-                            default:
-                                break
-                        }
-                    },
-                    reason => {
-                        logger.log(`Unknown error when opening URI. Error: ${JSON.stringify(reason)}, URI: ${data.url}`)
-                    })
+                void vscode.window.showInputBox({
+                    prompt: 'For security reasons, please copy and visit this link manually.',
+                    value: data.url
+                })
             }
             break
         }
@@ -337,6 +308,9 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         default: {
+            if (lw.extra.liveshare.handle.viewer.syncTeX(websocket, data)) {
+                break
+            }
             logger.log(`Unknown websocket message: ${msg}`)
             break
         }
@@ -346,10 +320,12 @@ function handler(websocket: ws, msg: string): void {
 function getParams(): PdfViewerParams {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const invertType = configuration.get('view.pdf.invertMode.enabled') as string
-    const invertEnabled = (invertType === 'auto' && vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark) ||
-    invertType === 'always' ||
-    (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
+    const invertEnabled =
+        (invertType === 'auto' && vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Dark) ||
+        invertType === 'always' ||
+        (invertType === 'compat' && (configuration.get('view.pdf.invert') as number) > 0)
     const pack: PdfViewerParams = {
+        toolbar: configuration.get('view.pdf.toolbar.hide.timeout') as number,
         scale: configuration.get('view.pdf.zoom') as string,
         trim: configuration.get('view.pdf.trim') as number,
         scrollMode: configuration.get('view.pdf.scrollMode') as number,
@@ -368,19 +344,20 @@ function getParams(): PdfViewerParams {
                 pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
                 pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
                 backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff'),
-                pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey')
+                pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey'),
             },
             dark: {
                 pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
                 pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
                 backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff'),
-                pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
-            }
+                pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey'),
+            },
         },
         codeColorTheme: vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Light ? 'light' : 'dark',
         keybindings: {
-            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
-        }
+            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click',
+        },
+        reloadTransition: configuration.get('view.pdf.reload.transition') as 'none' | 'fade',
     }
     return pack
 }
@@ -388,19 +365,18 @@ function getParams(): PdfViewerParams {
 /**
  * Reveals the position of `record` on the internal PDF viewers.
  *
- * @param pdfFile The path of a PDF file.
+ * @param pdfUri The path of a PDF file.
  * @param record The position to be revealed.
  */
-async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
-    const pdfUri = vscode.Uri.file(pdfFile)
+async function locate(pdfUri: vscode.Uri, record: SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]): Promise<void> {
     let clientSet = manager.getClients(pdfUri)
     if (clientSet === undefined || clientSet.size === 0) {
-        logger.log(`PDF is not opened: ${pdfFile} , try opening.`)
-        await view(pdfFile)
+        logger.log(`PDF is not opened: ${pdfUri.toString(true)} , try opening.`)
+        await view(pdfUri)
         clientSet = manager.getClients(pdfUri)
     }
     if (clientSet === undefined || clientSet.size === 0) {
-        logger.log(`PDF cannot be opened: ${pdfFile} .`)
+        logger.log(`PDF cannot be opened: ${pdfUri.toString(true)} .`)
         return
     }
     const needDelay = showInvisibleWebviewPanel(pdfUri)
@@ -408,7 +384,7 @@ async function locate(pdfFile: string, record: SyncTeXRecordToPDF | SyncTeXRecor
         setTimeout(() => {
             client.send({type: 'synctex', data: record})
         }, needDelay ? 200 : 0)
-        logger.log(`Try to synctex ${pdfFile}`)
+        logger.log(`Try to synctex ${pdfUri.toString(true)}`)
     }
 }
 
@@ -444,6 +420,7 @@ function showInvisibleWebviewPanel(pdfUri: vscode.Uri): boolean {
 }
 
 /**
+ * !! Test only
  * Returns the state of the internal PDF viewer of `pdfFilePath`.
  *
  * @param pdfUri The path of a PDF file.

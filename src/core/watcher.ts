@@ -108,7 +108,7 @@ class Watcher {
 
         if (!lw.file.hasBinaryExt(path.extname(uri.fsPath))) {
             this.handleNonBinaryFileChange(event, uri)
-        } else if (!this.polling[uri.toString()]) {
+        } else if (!this.polling[uri.toString(true)]) {
             await this.initiatePolling(uri)
         }
     }
@@ -120,7 +120,7 @@ class Watcher {
      * @param {vscode.Uri} uri - The URI of the changed file.
      */
     private handleNonBinaryFileChange(event: string, uri: vscode.Uri): void {
-        const uriString = uri.toString()
+        const uriString = uri.toString(true)
         logger.log(`"${event}" emitted on ${uriString}.`)
         this.onChangeHandlers.forEach(handler => handler(uri))
         lw.event.fire(lw.event.FileChanged, uriString)
@@ -138,14 +138,14 @@ class Watcher {
      * @param {vscode.Uri} uri - The URI of the changed file.
      */
     private async initiatePolling(uri: vscode.Uri): Promise<void> {
-        const uriString = uri.toString()
+        const uriString = uri.toString(true)
         const firstChangeTime = Date.now()
         const size = (await lw.external.stat(uri)).size
 
         this.polling[uriString] = { size, time: firstChangeTime }
 
-        const pollingInterval = setInterval(async () => {
-            await this.handlePolling(uri, size, firstChangeTime, pollingInterval)
+        const pollingInterval = setInterval(() => {
+            void this.handlePolling(uri, firstChangeTime, pollingInterval)
         }, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number)
     }
 
@@ -164,8 +164,8 @@ class Watcher {
      * @param {number} firstChangeTime - The timestamp of the first change.
      * @param {NodeJS.Timeout} interval - The polling interval.
      */
-    private async handlePolling(uri: vscode.Uri, size: number, firstChangeTime: number, interval: NodeJS.Timeout): Promise<void> {
-        const uriString = uri.toString()
+    private async handlePolling(uri: vscode.Uri, firstChangeTime: number, interval: NodeJS.Timeout): Promise<void> {
+        const uriString = uri.toString(true)
         if (!await lw.file.exists(uri)) {
             clearInterval(interval)
             delete this.polling[uriString]
@@ -174,9 +174,15 @@ class Watcher {
 
         const currentSize = (await lw.external.stat(uri)).size
 
-        if (currentSize !== size) {
+        if (currentSize !== this.polling[uriString].size) {
             this.polling[uriString].size = currentSize
             this.polling[uriString].time = Date.now()
+            return
+        }
+
+        // Resume vscode may cause accidental "change", do nothing
+        if (!(uriString in this.polling)) {
+            clearInterval(interval)
             return
         }
 
@@ -203,7 +209,7 @@ class Watcher {
             return
         }
 
-        const uriString = uri.toString()
+        const uriString = uri.toString(true)
         logger.log(`"delete" emitted on ${uriString}.`)
         return new Promise(resolve => {
             setTimeout(async () => {
@@ -258,13 +264,13 @@ class Watcher {
                 files: new Set([fileName])
             }
             this.onCreateHandlers.forEach(handler => handler(uri))
-            logger.log(`Watched ${uri.toString()} with a new ${this.fileExt} watcher on ${folder} .`)
+            logger.log(`Watched ${uri.toString(true)} with a new ${this.fileExt} watcher on ${folder} .`)
         } else {
             this.watchers[folder].files.add(fileName)
             this.onCreateHandlers.forEach(handler => handler(uri))
-            logger.log(`Watched ${uri.toString()} by the ${this.fileExt} watcher.`)
+            logger.log(`Watched ${uri.toString(true)} by the ${this.fileExt} watcher.`)
         }
-        lw.event.fire(lw.event.FileWatched, uri.toString())
+        lw.event.fire(lw.event.FileWatched, uri.toString(true))
     }
 
     /**

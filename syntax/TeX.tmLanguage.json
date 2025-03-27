@@ -2,7 +2,7 @@
     "name": "TeX",
     "patterns": [
         {
-            "begin": "(?<=^\\s*)((\\\\)iffalse)",
+            "begin": "(?<=^\\s*)((\\\\)iffalse)(?!\\s*[{}]\\s*\\\\fi)",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.control.tex"
@@ -12,7 +12,7 @@
                 }
             },
             "contentName": "comment.line.percentage.tex",
-            "end": "(?<=^\\s*)((\\\\)(?:else|fi))",
+            "end": "((\\\\)(?:else|fi))",
             "endCaptures": {
                 "1": {
                     "name": "keyword.control.tex"
@@ -24,6 +24,9 @@
             "patterns": [
                 {
                     "include": "#comment"
+                },
+                {
+                    "include": "#braces"
                 },
                 {
                     "include": "#conditionals"

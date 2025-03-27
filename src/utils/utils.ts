@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import { glob } from 'glob'
+import { lw } from '../lw'
 
 export function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -223,7 +223,7 @@ export function getSurroundingMacroRange(macro: string, position: vscode.Positio
  * @param suffix The suffix of the input file
  * @return an absolute path or undefined if the file does not exist
  */
-export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
+export async function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): Promise<string | undefined> {
     if (inputFile.startsWith('/')) {
         dirs.unshift('')
     }
@@ -232,10 +232,10 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
         if (path.extname(inputFilePath) === '') {
             inputFilePath += suffix
         }
-        if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + suffix)) {
+        if (!await lw.file.exists(inputFilePath) && await lw.file.exists(inputFilePath + suffix)) {
             inputFilePath += suffix
         }
-        if (fs.existsSync(inputFilePath)) {
+        if (await lw.file.exists(inputFilePath)) {
             return inputFilePath
         }
     }
@@ -268,7 +268,7 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
  */
 export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
     return (arg: string) => {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
         const docker = configuration.get('docker.enabled')
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]

@@ -21,6 +21,7 @@ function from(result: RegExpMatchArray, args: CompletionArgs) {
         environment = result[2].match(/{(.*?)}/)?.[1]
     }
     for (const packageName of Object.keys(packages)) {
+        lw.completion.usepackage.load(packageName)
         if (environment) {
             const environments = lw.completion.environment.getEnvFromPkg(packageName, EnvSnippetType.AsMacro) || []
             for (const env of environments) {

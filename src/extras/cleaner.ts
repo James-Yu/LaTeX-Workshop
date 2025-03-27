@@ -45,7 +45,7 @@ async function clean(rootFile?: string): Promise<void> {
             return
         }
     }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const cleanMethod = configuration.get('latex.clean.method') as string
     switch (cleanMethod) {
         case 'glob':
@@ -102,7 +102,7 @@ function splitGlobs(globs: string[]): { fileOrFolderGlobs: string[], folderGlobs
  * intentionally by the user. Otherwise, the folders will be ignored.
  */
 async function cleanGlob(rootFile: string): Promise<void> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
     const globs = (configuration.get('latex.clean.fileTypes') as string[])
         .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(globType))
@@ -149,7 +149,7 @@ async function cleanGlob(rootFile: string): Promise<void> {
 }
 
 function cleanCommand(rootFile: string): Promise<void> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const command = configuration.get('latex.clean.command') as string
     const args = (configuration.get('latex.clean.args') as string[])
         .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)

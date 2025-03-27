@@ -212,50 +212,21 @@
       }
     },
     {
-      "name": "printbibheading"
+      "name": "newrefsection"
     },
     {
-      "name": "printbibheading",
+      "name": "newrefsection",
       "arg": {
         "format": "[]",
-        "snippet": "printbibheading[${1:options%keyvals}]",
+        "snippet": "newrefsection[${1:options%keyvals}]",
         "keys": [
-          "\\printbibheading"
+          "\\begin{refsection},\\newrefsection"
         ],
         "keyPos": 0
       }
     },
     {
-      "name": "addtocategory",
-      "unusual": true,
-      "arg": {
-        "format": "{}{}",
-        "snippet": "addtocategory{${1:category}}{${2:keys%plain}}"
-      }
-    },
-    {
-      "name": "DeclareBibliographyCategory",
-      "unusual": true,
-      "arg": {
-        "format": "{}",
-        "snippet": "DeclareBibliographyCategory{${1:category}}"
-      }
-    },
-    {
-      "name": "defbibenvironment",
-      "unusual": true,
-      "arg": {
-        "format": "{}{}{}{}",
-        "snippet": "defbibenvironment{${1:name}}{${2:begdef}}{${3:enddef}}{${4:item code}}"
-      }
-    },
-    {
-      "name": "defbibheading",
-      "unusual": true,
-      "arg": {
-        "format": "{}[]{}",
-        "snippet": "defbibheading{${1:name}}[${3:title%text}]{${2:code}}"
-      }
+      "name": "endrefsection"
     },
     {
       "name": "defbibheading",
@@ -266,20 +237,37 @@
       }
     },
     {
-      "name": "defbibnote",
+      "name": "defbibheading",
       "unusual": true,
       "arg": {
-        "format": "{}{}",
-        "snippet": "defbibnote{${1:name}}{${2:text}}"
+        "format": "{}[]{}",
+        "snippet": "defbibheading{${1:name}}[${3:title%text}]{${2:code}}"
       }
     }
   ],
-  "envs": [],
+  "envs": [
+    {
+      "name": "refsection"
+    },
+    {
+      "name": "refsection",
+      "arg": {
+        "format": "[]",
+        "snippet": "[${1:options%keyvals}]",
+        "keys": [
+          "\\begin{refsection},\\newrefsection"
+        ],
+        "keyPos": 0
+      }
+    }
+  ],
   "keys": {
     "\\cslsetup,\\usepackage/citation-style-language#c": [
       "regression-test",
       "style=${1|american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver|}",
+      "bib-resource=${1:resource}",
       "locale=${1:language code}",
+      "ref-section=${1|none,part,chapter,chapter+,section,section+,subsection,subsection+|}",
       "backref=${1|true,page,section,false|}",
       "bib-font=${1:font commands}",
       "bib-entry-page-break",
@@ -328,12 +316,17 @@
       "title=${1:text}",
       "prenote=${1:text}",
       "postnote=${1:text}",
-      "type=",
-      "nottype=",
-      "keyword=",
-      "notkeyword=",
-      "category=",
-      "notcategory="
+      "type=${1:entry type}",
+      "nottype=${1:entry type}",
+      "keyword=${1:keyword}",
+      "notkeyword=${1:keyword}",
+      "category=${1:category}",
+      "notcategory=${1:category}"
+    ],
+    "\\begin{refsection},\\newrefsection": [
+      "style=${1:style id}",
+      "bib-resource=${1:resource}",
+      "locale=${1:language code}"
     ],
     "\\printbibheading": [
       "heading=${1:text}",

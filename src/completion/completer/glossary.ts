@@ -1,29 +1,35 @@
 import * as vscode from 'vscode'
 import type * as Ast from '@unified-latex/unified-latex-types'
+import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
 import { GlossaryType } from '../../types'
 import type { CompletionProvider, FileCache, GlossaryItem } from '../../types'
 import { argContentToStr } from '../../utils/parser'
 import { getLongestBalancedString } from '../../utils/utils'
+import { bibTools } from './citation'
 
+const logger = lw.log('Intelli', 'Glossary')
 export const provider: CompletionProvider = { from }
 export const glossary = {
     parse,
-    getItem
+    getItem,
+    parseBibFile
 }
 
 const data = {
+    // The keys are the labels of the glossary items.
     glossaries: new Map<string, GlossaryItem>(),
-    acronyms: new Map<string, GlossaryItem>()
+    acronyms: new Map<string, GlossaryItem>(),
+    // The keys are the paths of the `.bib` files.
+    bibEntries: new Map<string, GlossaryItem[]>()
 }
 
-interface GlossaryEntry {
-    label: string | undefined,
-    description: string | undefined
-}
+lw.watcher.bib.onCreate(uri => parseBibFile(uri.fsPath))
+lw.watcher.bib.onChange(uri => parseBibFile(uri.fsPath))
+lw.watcher.bib.onDelete(uri => removeEntriesInFile(uri.fsPath))
 
 function from(result: RegExpMatchArray): vscode.CompletionItem[] {
-    updateAll()
+    updateAll(lw.cache.getIncludedGlossaryBib(lw.root.file.path))
     let suggestions: Map<string, GlossaryItem>
 
     if (result[1] && result[1].match(/^ac/i)) {
@@ -38,13 +44,32 @@ function from(result: RegExpMatchArray): vscode.CompletionItem[] {
 }
 
 function getItem(token: string): GlossaryItem | undefined {
-    updateAll()
+    updateAll(lw.cache.getIncludedGlossaryBib(lw.root.file.path))
     return data.glossaries.get(token) || data.acronyms.get(token)
 }
 
-function updateAll() {
+
+/**
+ * Returns aggregated glossary entries from `.bib` files and glossary items defined on LaTeX files included in the root file.
+ *
+ * @param bibFiles The array of the paths of `.bib` files. If `undefined`, the keys of `bibEntries` are used.
+ */
+function updateAll(bibFiles: string[]) {
     // Extract cached references
     const glossaryList: string[] = []
+
+    // From bib files
+    bibFiles.forEach(file => {
+        const entries = data.bibEntries.get(file)
+        entries?.forEach(entry => {
+            if (entry.type === GlossaryType.glossary) {
+                data.glossaries.set(entry.label, entry)
+            } else {
+                data.acronyms.set(entry.label, entry)
+            }
+            glossaryList.push(entry.label)
+        })
+    })
 
     lw.cache.getIncludedTeX().forEach(cachedFile => {
         const cachedGlossaries = lw.cache.get(cachedFile)?.elements.glossary
@@ -61,7 +86,7 @@ function updateAll() {
         })
     })
 
-    // Remove references that has been deleted
+    // Remove references that have been deleted
     data.glossaries.forEach((_, key) => {
         if (!glossaryList.includes(key)) {
             data.glossaries.delete(key)
@@ -74,6 +99,64 @@ function updateAll() {
     })
 }
 
+/**
+ * Parse a glossary `.bib` file. The results are stored in this instance.
+ *
+ * @param fileName The path of `.bib` file.
+ */
+async function parseBibFile(fileName: string) {
+    logger.log(`Parsing glossary .bib entries from ${fileName}`)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(fileName))
+    if ((await lw.external.stat(lw.file.toUri(fileName))).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
+        logger.log(`Bib file is too large, ignoring it: ${fileName}`)
+        data.bibEntries.delete(fileName)
+        return
+    }
+    const newEntry: GlossaryItem[] = []
+    const bibtex = await lw.file.read(fileName)
+    logger.log(`Parse BibTeX AST from ${fileName} .`)
+    const ast = await lw.parser.parse.bib(lw.file.toUri(fileName), bibtex ?? '')
+    if (ast === undefined) {
+        logger.log(`Parsed 0 bib entries from ${fileName}.`)
+        lw.event.fire(lw.event.FileParsed, fileName)
+        return
+    }
+    const abbreviations = bibTools.parseAbbrevations(ast)
+    ast.content
+        .filter(bibtexParser.isEntry)
+        .forEach((entry: bibtexParser.Entry) => {
+            if (entry.internalKey === undefined) {
+                return
+            }
+            let type: GlossaryType
+            if ( ['entry'].includes(entry.entryType) ) {
+                type = GlossaryType.glossary
+            } else {
+                type = GlossaryType.acronym
+            }
+            const name = bibTools.expandField(abbreviations, entry.content.find(field => field.name === 'name')?.value)
+            const description = bibTools.expandField(abbreviations, entry.content.find(field => field.name === 'description')?.value)
+            const item: GlossaryItem = {
+                type,
+                label: entry.internalKey,
+                filePath: fileName,
+                position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
+                kind: vscode.CompletionItemKind.Reference,
+                detail: name + ': ' + description
+            }
+            newEntry.push(item)
+        })
+    data.bibEntries.set(fileName, newEntry)
+    logger.log(`Parsed ${newEntry.length} glossary bib entries from ${fileName} .`)
+    void lw.outline.reconstruct()
+    lw.event.fire(lw.event.FileParsed, fileName)
+}
+
+function removeEntriesInFile(file: string) {
+    logger.log(`Remove parsed bib entries for ${file}`)
+    data.bibEntries.delete(file)
+}
+
 function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         cache.elements.glossary = parseAst(cache.ast, cache.filePath)
@@ -84,12 +167,13 @@ function parse(cache: FileCache) {
 
 function parseAst(node: Ast.Node, filePath: string): GlossaryItem[] {
     let glos: GlossaryItem[] = []
-    let entry: GlossaryEntry = { label: '', description: '' }
+    let label: string = ''
+    let description: string = ''
     let type: GlossaryType | undefined
 
     if (node.type === 'macro' && ['newglossaryentry', 'provideglossaryentry'].includes(node.content)) {
         type = GlossaryType.glossary
-        let description = argContentToStr(node.args?.[1]?.content || [], true)
+        description = argContentToStr(node.args?.[1]?.content || [], true)
         const index = description.indexOf('description=')
         if (index >= 0) {
             description = description.slice(index + 12)
@@ -101,28 +185,23 @@ function parseAst(node: Ast.Node, filePath: string): GlossaryItem[] {
         } else {
             description = ''
         }
-        entry = {
-            label: argContentToStr(node.args?.[0]?.content || []),
-            description
-        }
+        label = argContentToStr(node.args?.[0]?.content || [])
     } else if (node.type === 'macro' && ['longnewglossaryentry', 'longprovideglossaryentry', 'newacronym', 'newabbreviation', 'newabbr'].includes(node.content)) {
         if (['longnewglossaryentry', 'longprovideglossaryentry'].includes(node.content)) {
             type = GlossaryType.glossary
         } else {
             type = GlossaryType.acronym
         }
-        entry = {
-            label: argContentToStr(node.args?.[1]?.content || []),
-            description: argContentToStr(node.args?.[3]?.content || []),
-        }
+        label = argContentToStr(node.args?.[1]?.content || [])
+        description = argContentToStr(node.args?.[3]?.content || [])
     }
-    if (type !== undefined && entry.label && entry.description && node.position !== undefined) {
+    if (type !== undefined && label && description && node.position !== undefined) {
         glos.push({
             type,
             filePath,
             position: new vscode.Position(node.position.start.line - 1, node.position.start.column - 1),
-            label: entry.label,
-            detail: entry.description,
+            label,
+            detail: description,
             kind: vscode.CompletionItemKind.Reference
         })
     }

@@ -12,7 +12,8 @@ type ExtendedAssert = typeof nodeAssert & {
     pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     pathNotStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     hasLog: (message: string | RegExp) => void,
-    notHasLog: (message: string | RegExp) => void
+    notHasLog: (message: string | RegExp) => void,
+    hasCompilerLog: (message: string | RegExp) => void
 }
 export const assert: ExtendedAssert = nodeAssert as ExtendedAssert
 assert.listStrictEqual = <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => {
@@ -32,21 +33,31 @@ function getPaths(actual: string | undefined, expected: string | undefined): [st
     return [actual, expected]
 }
 assert.pathStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
-    assert.strictEqual(path.relative(...getPaths(actual, expected)), '', message)
+    [actual, expected] = getPaths(actual, expected)
+    assert.strictEqual(path.relative(actual, expected), '', message ?? `Paths are not equal: ${actual} !== ${expected} .`)
 }
 assert.pathNotStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
-    assert.notStrictEqual(path.relative(...getPaths(actual, expected)), '', message)
+    [actual, expected] = getPaths(actual, expected)
+    assert.notStrictEqual(path.relative(actual, expected), '', message ?? `Paths are equal: ${actual} === ${expected} .`)
 }
 function hasLog(message: string | RegExp) {
     return typeof message === 'string'
         ? log.all().some(logMessage => logMessage.includes(lwLog.applyPlaceholders(message)))
         : log.all().some(logMessage => message.exec(logMessage))
 }
+function hasCompilerLog(message: string | RegExp) {
+    return typeof message === 'string'
+        ? lwLog.getCachedLog().CACHED_COMPILER.some(logMessage => logMessage.includes(message))
+        : lwLog.getCachedLog().CACHED_COMPILER.some(logMessage => message.exec(logMessage))
+}
 assert.hasLog = (message: string | RegExp) => {
-    assert.ok(hasLog(message), log.all().join('\n'))
+    assert.ok(hasLog(message), '\n' + log.all().join('\n'))
 }
 assert.notHasLog = (message: string | RegExp) => {
-    assert.ok(!hasLog(message), log.all().join('\n'))
+    assert.ok(!hasLog(message), '\n' + log.all().join('\n'))
+}
+assert.hasCompilerLog = (message: string | RegExp) => {
+    assert.ok(hasCompilerLog(message), '\n' + lwLog.getCachedLog().CACHED_COMPILER.join('\n'))
 }
 
 export const get = {
@@ -60,20 +71,28 @@ export const get = {
         } else {
             return result
         }
+    },
+    compiler: {
+        log: () => lwLog.getCachedLog().CACHED_COMPILER.join('')
     }
 }
 
+const configs: Map<string, any> = new Map()
 const changedConfigs: Set<string> = new Set()
 export const set = {
     root: (...paths: string[]) => {
         const rootFile = get.path(...paths)
         lw.root.file.path = rootFile
+        lw.root.file.langId = 'latex'
         lw.root.dir.path = path.dirname(rootFile)
         return rootFile
     },
-    config: async (section: string, value: any) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
+    config: (section: string, value: any) => {
+        configs.set(section, value)
+    },
+    codeConfig: async (section: string, value: any) => {
         changedConfigs.add(section)
+        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
     }
 }
 
@@ -87,9 +106,10 @@ export const reset = {
     },
     config: async () => {
         for (const section of changedConfigs.values()) {
-            await set.config(section, undefined)
+            await set.codeConfig(section, undefined)
         }
         changedConfigs.clear()
+        configs.clear()
     },
     log: () => {
         lwLog.resetCachedLog()
@@ -117,13 +137,17 @@ export function sleep(ms: number) {
 }
 
 export const mock = {
+    init: (obj: any, ...ignore: string[]) => {
+        mock.object(obj, ...ignore)
+        mock.config()
+    },
     object: (obj: any, ...ignore: string[]) => {
         const items = Object.getPrototypeOf(obj) === Object.prototype
             ? Object.getOwnPropertyNames(obj)
             : Object.getOwnPropertyNames(Object.getPrototypeOf(obj))
         items.forEach(item => {
             // Don't stub the unit to be tested or the logging/external functions.
-            if (ignore.includes(item) || ['log', 'external', 'constant'].includes(item)) {
+            if (ignore.includes(item) || ['file', 'log', 'external', 'constant'].includes(item)) {
                 return
             }
             if (typeof obj[item] === 'object') {
@@ -133,10 +157,29 @@ export const mock = {
             }
         })
     },
+    config: () => {
+        const original = vscode.workspace.getConfiguration
+        sinon.stub(vscode.workspace, 'getConfiguration').callsFake((section?: string, scope?: vscode.ConfigurationScope | null) => {
+            function getConfig<T>(configName: string): T | undefined
+            function getConfig<T>(configName: string, defaultValue: T): T
+            function getConfig<T>(configName: string, defaultValue?: T): T | undefined {
+                if (configs.has(configName)) {
+                    return configs.get(configName) as T
+                }
+                return originalConfig.get(configName, defaultValue)
+            }
+            const originalConfig = original(section, scope)
+            const configItem: vscode.WorkspaceConfiguration = {
+                ...originalConfig,
+                get: getConfig
+            }
+            return configItem
+        })
+    },
     textDocument: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
         return sinon.stub(vscode.workspace, 'textDocuments').value([ new TextDocument(filePath, content, params) ])
     },
-    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string } = {}) => {
+    activeTextEditor: (filePath: string, content: string, params: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string, viewColumn?: vscode.ViewColumn } = {}) => {
         return sinon.stub(vscode.window, 'activeTextEditor').value(new TextEditor(filePath, content, params))
     }
 }
@@ -171,7 +214,7 @@ function cacheLog(context: Mocha.Context) {
     fs.writeFileSync(path.resolve(logFolder, `${name}.log`), cachedLog.CACHED_EXTLOG.join('\n'))
 }
 
-class TextDocument implements vscode.TextDocument {
+export class TextDocument implements vscode.TextDocument {
     content: string
     lines: string[]
     uri: vscode.Uri
@@ -194,8 +237,27 @@ class TextDocument implements vscode.TextDocument {
         this.isClosed = isClosed
         this.lineCount = this.lines.length
     }
+    setContent(content: string) {
+        this.content = content
+        this.lines = content.split('\n')
+        this.lineCount = this.lines.length
+    }
+    setLanguage(languageId: string) {
+        this.languageId = languageId
+    }
     save(): Thenable<boolean> { throw new Error('Not implemented.') }
-    lineAt(_: number | vscode.Position): vscode.TextLine { throw new Error('Not implemented.') }
+    lineAt(lineOrPos: number | vscode.Position): vscode.TextLine {
+        const lineNumber = lineOrPos instanceof vscode.Position ? lineOrPos.line : lineOrPos
+        const text = this.content.split('\n')[lineNumber]
+        return {
+            lineNumber,
+            text,
+            range: new vscode.Range(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, text.length)),
+            rangeIncludingLineBreak: new vscode.Range(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, text.length + 1)),
+            firstNonWhitespaceCharacterIndex: text.length - text.trimStart().length,
+            isEmptyOrWhitespace: text.trim() === ''
+        }
+    }
     offsetAt(_: vscode.Position): number { throw new Error('Not implemented.') }
     positionAt(_: number): vscode.Position { throw new Error('Not implemented.') }
     getText(_?: vscode.Range): string { return this.content }
@@ -204,7 +266,7 @@ class TextDocument implements vscode.TextDocument {
     validatePosition(_: vscode.Position): vscode.Position { throw new Error('Not implemented.') }
 }
 
-class TextEditor implements vscode.TextEditor {
+export class TextEditor implements vscode.TextEditor {
     document: TextDocument
     selection: vscode.Selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 0))
     selections: vscode.Selection[] = [ this.selection ]
@@ -212,10 +274,17 @@ class TextEditor implements vscode.TextEditor {
     options: vscode.TextEditorOptions = {}
     viewColumn: vscode.ViewColumn | undefined = vscode.ViewColumn.Active
 
-    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
+    constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file', viewColumn = undefined }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string, viewColumn?: vscode.ViewColumn }) {
         this.document = new TextDocument(filePath, content, { languageId, isDirty, isClosed, scheme })
+        if (viewColumn !== undefined) {
+            this.viewColumn = viewColumn
+        }
     }
 
+    setSelections(selections: vscode.Selection[]) {
+        this.selection = selections[0]
+        this.selections = selections
+    }
     edit(_: (_: vscode.TextEditorEdit) => void): Thenable<boolean> { throw new Error('Not implemented.') }
     insertSnippet(_: vscode.SnippetString): Thenable<boolean> { throw new Error('Not implemented.') }
     setDecorations(_d: vscode.TextEditorDecorationType, _r: vscode.Range[] | vscode.DecorationOptions[]): void { throw new Error('Not implemented.') }

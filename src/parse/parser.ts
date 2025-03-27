@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type * as Ast from '@unified-latex/unified-latex-types'
@@ -12,6 +13,7 @@ import { latexLogParser } from './parser/latexlog'
 import { toString } from '../../../resources/unified.js'
 
 const logger = lw.log('Parser')
+const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 
 export const parser = {
     bib,
@@ -42,14 +44,24 @@ async function reset() {
     return (await proxy).reset(getMacroDefs(), getEnvDefs())
 }
 
-async function bib(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
-    let ast = undefined
-    try {
-        ast = (await proxy).parseBibTeX(s, options)
-    } catch (err) {
-        logger.logError('Error when parsing bib file.', err)
+async function bib(uri: vscode.Uri, s: string): Promise<bibtexParser.BibtexAst | undefined> {
+    const ast = await (await proxy).parseBibTeX(s)
+    if (typeof ast === 'string') {
+        const err = JSON.parse(ast) as bibtexParser.SyntaxError
+        logger.log(`Error when parsing bib file: found ${err.found} from ${err.location.start.line}:${err.location.start.column} to ${err.location.end.line}:${err.location.end.column}.`)
+        bibDiagnostics.set(uri, [new vscode.Diagnostic(
+            new vscode.Range(
+                new vscode.Position(err.location.start.line - 1, err.location.start.column - 1),
+                new vscode.Position(err.location.end.line - 1, err.location.end.column - 1)
+            ),
+            `A BibTeX parsing error occurred. "${err.found}" is unexpected here. No BibTeX entries will be available.`,
+            vscode.DiagnosticSeverity.Warning
+        )])
+        return undefined
+    } else {
+        bibDiagnostics.set(uri, [])
+        return ast
     }
-    return ast
 }
 
 function stringify(ast: Ast.Ast): string {
@@ -62,6 +74,7 @@ function stringify(ast: Ast.Ast): string {
 // https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
+const latexXeNoOutputPattern = /^No pages of output.$/gm
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLog = /^Latexmk:\sapplying\srule/
@@ -102,7 +115,7 @@ function log(msg: string, rootFile?: string): boolean {
     } else if (msg.match(texifyPattern)) {
         msg = trimTexify(msg)
     }
-    if (msg.match(latexPattern) || msg.match(latexFatalPattern)) {
+    if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)
         latexLogParser.showLog()
     } else if (latexmkSkipped(msg)) {

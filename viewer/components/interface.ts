@@ -2,6 +2,7 @@ export type PdfjsEventName
     = 'documentloaded'
     | 'pagesinit'
     | 'pagesloaded'
+    | 'pagerendered'
     | 'scalechanged'
     | 'zoomin'
     | 'zoomout'
@@ -10,6 +11,30 @@ export type PdfjsEventName
     | 'spreadmodechanged'
     | 'pagenumberchanged'
     | 'rotationchanging'
+
+type PDFViewerPage = {
+    viewport: {
+        rawDims: {
+            pageHeight: number,
+            pageWidth: number,
+            pageX: number,
+            pageY: number
+        },
+        rotation: number,
+        convertToViewportPoint(x: number, y: number): [number, number]
+    },
+    canvas: HTMLCanvasElement | undefined,
+    div: HTMLDivElement,
+    getPagePoint(x: number, y: number): [number, number],
+    get renderingState(): RenderingStates
+}
+
+export enum RenderingStates {
+    INITIAL = 0,
+    RUNNING = 1,
+    PAUSED = 2,
+    FINISHED = 3,
+}
 
 export type PDFViewerApplicationType = {
     eventBus: {
@@ -25,19 +50,8 @@ export type PDFViewerApplicationType = {
     isViewerEmbedded: boolean,
     pdfViewer: {
         _currentScale: number,
-        _pages: {
-            viewport: {
-                rawDims: {
-                    pageHeight: number,
-                    pageWidth: number,
-                    pageX: number,
-                    pageY: number
-                },
-                rotation: number,
-                convertToViewportPoint(x: number, y: number): [number, number]
-            },
-            getPagePoint(x: number, y: number): [number, number]
-        }[],
+        _getVisiblePages(): { first: number, last: number, views: { id: number, x: number, y: number, view: PDFViewerPage, percent: number }[], ids: Set<number> },
+        _pages: PDFViewerPage[],
         currentPageNumber: number,
         currentScaleValue: string,
         scrollMode: number,

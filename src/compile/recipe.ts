@@ -62,9 +62,9 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
-        createOutputSubFolders(lw.root.file.path)
+        await createOutputSubFolders(lw.root.file.path)
     } else {
-        createOutputSubFolders(rootFile)
+        await createOutputSubFolders(rootFile)
     }
 
     // Check for invalid toolchain
@@ -77,7 +77,13 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     const timestamp = Date.now()
     tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-    lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    // #4513 If the recipe contains a forced latexmk compilation, don't set the
+    // compiledPDFPath so that PDF refresh is handled by file watcher.
+    if (!tools.some(tool => tool.command === 'latexmk' &&
+                            tool.args?.includes('-interaction=nonstopmode') &&
+                            tool.args?.includes('-f'))) {
+        lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+    }
     // Execute the build loop
     await buildLoop()
 }
@@ -88,14 +94,14 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  */
-function createOutputSubFolders(rootFile: string) {
+async function createOutputSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
     let outDir = lw.file.getOutDir(rootFile)
     if (!path.isAbsolute(outDir)) {
         outDir = path.resolve(rootDir, outDir)
     }
     logger.log(`outDir: ${outDir} .`)
-    lw.cache.getIncludedTeX(rootFile).forEach(async file => {
+    for (const file of lw.cache.getIncludedTeX(rootFile)) {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
         const fullOutDir = path.resolve(outDir, relativePath)
         // To avoid issues when fullOutDir is the root dir
@@ -120,7 +126,7 @@ function createOutputSubFolders(rootFile: string) {
                 throw(e)
             }
         }
-    })
+    }
 }
 
 
@@ -136,7 +142,7 @@ function createOutputSubFolders(rootFile: string) {
 async function createBuildTools(rootFile: string, langId: string, recipeName?: string): Promise<Tool[] | undefined> {
     let buildTools: Tool[] = []
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const magic = await findMagicComments(rootFile)
 
     if (recipeName === undefined && magic.tex && !configuration.get('latex.build.forceRecipeUsage')) {
@@ -249,7 +255,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
  * @returns {Tool[]} - An array of Tool objects representing the build tools.
  */
 function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
 
     if (!magicTex.args) {
         magicTex.args = configuration.get('latex.magic.args') as string[]
@@ -277,7 +283,7 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
  * provided parameters.
  */
 function findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
 
     const recipes = configuration.get('latex.recipes') as Recipe[]
     const defaultRecipeName = configuration.get('latex.recipe.default') as string
@@ -303,8 +309,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
         }
     }
     // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed' && recipes.find(candidate => candidate.name === state.prevRecipe?.name)) {
-        recipe = state.prevRecipe
+    if (recipe === undefined && defaultRecipeName === 'lastUsed') {
+        recipe = recipes.find(candidate => candidate.name === state.prevRecipe?.name)
     }
     // If still not found, fallback to 'first'
     if (recipe === undefined) {
@@ -333,7 +339,7 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
  * @returns {Tool[]} - An array of Tool objects with expanded values.
  */
 function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const docker = configuration.get('docker.enabled')
 
     buildTools.forEach(tool => {
@@ -365,14 +371,23 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         })
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
-            const isLuaLatex = tool.args.includes('-lualatex') ||
-                               tool.args.includes('-pdflua') ||
-                               tool.args.includes('-pdflualatex') ||
-                               tool.args.includes('--lualatex') ||
-                               tool.args.includes('--pdflua') ||
-                               tool.args.includes('--pdflualatex')
-            if (((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex') && isMikTeX()) {
-                tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+            const isLaTeXmk =
+                tool.command === 'latexmk' &&
+                !(
+                    tool.args.includes('-lualatex') ||
+                    tool.args.includes('-pdflua') ||
+                    tool.args.includes('-pdflualatex') ||
+                    tool.args.includes('--lualatex') ||
+                    tool.args.includes('--pdflua') ||
+                    tool.args.includes('--pdflualatex')
+                )
+            if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
+                if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
+                    // %!TeX options is present. All args are provided in a string and { shell: true }
+                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
+                } else {
+                    tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
+                }
             }
         }
     })

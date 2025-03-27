@@ -47,7 +47,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
         if (state.path) {
-            pdfFileUri = vscode.Uri.file(state.path)
+            pdfFileUri = lw.file.toUri(state.path)
         } else if (state.pdfFileUri) {
             pdfFileUri = vscode.Uri.parse(state.pdfFileUri, true)
         }
@@ -97,7 +97,7 @@ async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise
 
 function getKeyboardEventConfig(): boolean {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
+    const setting: 'auto' | 'force' | 'never' = configuration.get('view.pdf.internal.keyboardEvent', 'auto')
     if (setting === 'auto') {
         return true
     } else if (setting === 'force') {
@@ -120,7 +120,7 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     logger.log(`Internal PDF viewer at ${iframeSrcUrl} .`)
     const rebroadcast: boolean = getKeyboardEventConfig()
     return `
-    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeSrcOrigin}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
+    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src *; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
     <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
     </iframe>
     <script>

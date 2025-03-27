@@ -4,7 +4,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import { type TeXElement, TeXElementType } from '../../types'
 import { resolveFile } from '../../utils/utils'
-import { InputFileRegExp } from '../../utils/inputfilepath'
+import { InputFileRegExp, sanitizeInputFilePath } from '../../utils/inputfilepath'
 
 
 import { argContentToStr } from '../../utils/parser'
@@ -64,7 +64,7 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
         return
     }
     // Get a list of rnw child chunks
-    const rnwSub = parseRnwChildMacro(content, filePath, lw.root.file.path || '')
+    const rnwSub = await parseRnwChildMacro(content, filePath, lw.root.file.path || '')
 
     // Parse each base-level node. If the node has contents, that function
     // will be called recursively.
@@ -83,9 +83,18 @@ async function constructFile(filePath: string, config: StructureConfig, structs:
     }
 }
 
+function chooseCaption(...args: (Ast.Argument | undefined)[]): string {
+    for (const arg of args) {
+        if ((arg?.content?.length ?? 0) > 0) {
+            return argContentToStr(arg?.content ?? [])
+        }
+    }
+    return ''
+}
+
 async function parseNode(
         node: Ast.Node,
-        rnwSub: ReturnType<typeof parseRnwChildMacro>,
+        rnwSub: Awaited<ReturnType<typeof parseRnwChildMacro>>,
         root: { children: TeXElement[] },
         filePath: string,
         config: StructureConfig,
@@ -105,7 +114,7 @@ async function parseNode(
         element = {
             type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
-            label: argContentToStr(((node.args?.[1]?.content?.length ?? 0) > 0 ? node.args?.[1]?.content : node.args?.[2]?.content) || []),
+            label: chooseCaption(node.args?.[1], node.args?.[2]),
             appendix: inAppendix,
             ...attributes
         }
@@ -121,7 +130,7 @@ async function parseNode(
         inAppendix = true
     } else if ((node.type === 'environment') && node.env === 'frame') {
         const frameTitleMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'frametitle') as Ast.Macro | undefined
-        const caption = argContentToStr(node.args?.[3]?.content || []) || argContentToStr(frameTitleMacro?.args?.[2]?.content || [])
+        const caption = chooseCaption(node.args?.[3], frameTitleMacro?.args?.[2])
         element = {
             type: TeXElementType.Environment,
             name: node.env,
@@ -132,7 +141,7 @@ async function parseNode(
                 (node.env === 'figure' || node.env === 'figure*') && config.macros.envs.includes('figure') ||
                 (node.env === 'table' || node.env === 'table*') && config.macros.envs.includes('table'))) {
         const captionMacro: Ast.Macro | undefined = node.content.find(sub => sub.type === 'macro' && sub.content === 'caption') as Ast.Macro | undefined
-        const caption = argContentToStr(captionMacro?.args?.[1]?.content || [])
+        const caption = chooseCaption(captionMacro?.args?.[0], captionMacro?.args?.[1])
         if (node.env.endsWith('*')) {
             node.env = node.env.slice(0, -1)
         }
@@ -159,8 +168,8 @@ async function parseNode(
             ...attributes
         }
     } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const subFile = resolveFile([ path.dirname(filePath), path.dirname(lw.root.file.path || ''), ...config.texDirs ], arg0)
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
+        const subFile = await resolveFile([ path.dirname(filePath), path.dirname(lw.root.file.path || ''), ...config.texDirs ], arg0)
         if (subFile) {
             element = {
                 type: TeXElementType.SubFile,
@@ -173,9 +182,9 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['import', 'inputfrom', 'includefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const arg1 = argContentToStr(node.args?.[1]?.content || [])
-        const subFile = resolveFile([ arg0, path.join(path.dirname(lw.root.file.path || ''), arg0 )], arg1)
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
+        const arg1 = sanitizeInputFilePath(argContentToStr(node.args?.[1]?.content || []))
+        const subFile = await resolveFile([ arg0, path.join(path.dirname(lw.root.file.path || ''), arg0 )], arg1)
         if (subFile) {
             element = {
                 type: TeXElementType.SubFile,
@@ -188,9 +197,9 @@ async function parseNode(
             }
         }
     } else if (node.type === 'macro' && ['subimport', 'subinputfrom', 'subincludefrom'].includes(node.content)) {
-        const arg0 = argContentToStr(node.args?.[0]?.content || [])
-        const arg1 = argContentToStr(node.args?.[1]?.content || [])
-        const subFile = resolveFile([ path.dirname(filePath) ], path.join(arg0, arg1))
+        const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
+        const arg1 = sanitizeInputFilePath(argContentToStr(node.args?.[1]?.content || []))
+        const subFile = await resolveFile([ path.dirname(filePath) ], path.join(arg0, arg1))
         if (subFile) {
             element = {
                 type: TeXElementType.SubFile,
@@ -239,7 +248,7 @@ function insertSubFile(structs: FileStructureCache, struct?: TeXElement[], trave
     if (lw.root.file.path === undefined) {
         return []
     }
-    struct = struct ?? structs[lw.root.file.path] ?? []
+    struct = JSON.parse(JSON.stringify(struct ?? structs[lw.root.file.path] ?? [])) as TeXElement[]
     traversed = traversed ?? [lw.root.file.path]
     let elements: TeXElement[] = []
     for (const element of struct) {
@@ -373,11 +382,11 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
     return struct
 }
 
-function parseRnwChildMacro(content: string, file: string, rootFile: string): {subFile: string, path: string, line: number}[] {
+async function parseRnwChildMacro(content: string, file: string, rootFile: string): Promise<{subFile: string, path: string, line: number}[]> {
     const children: {subFile: string, path: string, line: number}[] = []
     const childRegExp = new InputFileRegExp()
     while(true) {
-        const result = childRegExp.execChild(content, file, rootFile)
+        const result = await childRegExp.execChild(content, file, rootFile)
         if (!result) {
             break
         }

@@ -37,6 +37,8 @@ export type FileCache = {
     }[],
     /** The array of the paths of `.bib` files referenced from the LaTeX file */
     bibfiles: Set<string>,
+    /** The array of the paths of `.bib` files listed by `\GlsXtrLoadResources` to provide glossary entries */
+    glossarybibfiles: Set<string>,
     /** A dictionary of external documents provided by `\externaldocument` of
      * `xr` package. The value is its prefix `\externaldocument[prefix]{*}` */
     external: {[filePath: string]: string},
@@ -121,6 +123,10 @@ export interface LaTeXLinter {
     lintRootFile(rootPath: string): Promise<void>,
     lintFile(document: vscode.TextDocument): Promise<void>,
     parseLog(log: string, filePath?: string): void
+}
+
+export interface LaTeXFormatter {
+    formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined>
 }
 
 export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }

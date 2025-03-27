@@ -9,10 +9,8 @@ import { build } from '../../src/compile/external'
 import type { ExternalStep } from '../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
-
     before(() => {
-        mock.object(lw, 'file', 'root')
+        mock.init(lw)
     })
 
     after(() => {
@@ -33,7 +31,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should create a Tool object representing the build command and arguments', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
 
@@ -67,7 +65,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const stub = sinon.stub().returnsArg(0)
             const replaceStub = sinon.stub(lwUtils, 'replaceArgumentPlaceholders').returns(stub)
             const pathStub = sinon.stub(lw.file, 'getPdfPath').returns('main.pdf')
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
             replaceStub.restore()
@@ -92,11 +90,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should set the compiledPDFPath if a root file is provided', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
 
-            assert.pathStrictEqual(lw.compile.compiledPDFPath, get.path(fixture, 'main.pdf'))
+            assert.pathStrictEqual(lw.compile.compiledPDFPath, get.path('main.pdf'))
         })
 
         it('should not set the compiledPDFPath if no root file is provided', async () => {
@@ -114,7 +112,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add the build tool to the queue for execution', async () => {
-            const rootFile = set.root(fixture, 'main.tex')
+            const rootFile = set.root('main.tex')
 
             await build('command', ['arg1', 'arg2'], '/cwd', sinon.stub(), rootFile)
 

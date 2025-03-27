@@ -162,6 +162,10 @@
       "unusual": true
     },
     {
+      "name": "markdownConvert",
+      "unusual": true
+    },
+    {
       "name": "markdownEnd",
       "unusual": true
     },
@@ -200,6 +204,10 @@
         "format": "{}{}{}",
         "snippet": "markdownIfOption{${1:option}}{${2:true}}{${3:false}}"
       }
+    },
+    {
+      "name": "markdownInputFilename",
+      "unusual": true
     },
     {
       "name": "markdownLuaExecute",
@@ -368,6 +376,14 @@
     {
       "name": "markdownPrepare",
       "unusual": true
+    },
+    {
+      "name": "markdownPrepareInputFilename",
+      "unusual": true,
+      "arg": {
+        "format": "{}",
+        "snippet": "markdownPrepareInputFilename{${1:arg}}"
+      }
     },
     {
       "name": "markdownPrepareLuaOptions",
@@ -672,6 +688,14 @@
         "format": "{}",
         "snippet": "markdownRendererEmphasisPrototype{${1:arg1}}"
       }
+    },
+    {
+      "name": "markdownRendererError",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererErrorPrototype",
+      "unusual": true
     },
     {
       "name": "markdownRendererFancyOlBegin",
@@ -1062,6 +1086,22 @@
       }
     },
     {
+      "name": "markdownRendererJekyllDataProgrammaticString",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "markdownRendererJekyllDataProgrammaticString{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataProgrammaticStringPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "markdownRendererJekyllDataProgrammaticStringPrototype{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
       "name": "markdownRendererJekyllDataSequenceBegin",
       "unusual": true
     },
@@ -1082,15 +1122,19 @@
       "unusual": true
     },
     {
-      "name": "markdownRendererJekyllDataString",
-      "unusual": true
-    },
-    {
-      "name": "markdownRendererJekyllDataStringPrototype",
+      "name": "markdownRendererJekyllDataTypographicString",
       "unusual": true,
       "arg": {
         "format": "{}{}",
-        "snippet": "markdownRendererJekyllDataStringPrototype{${1:arg1}}{${2:arg2}}"
+        "snippet": "markdownRendererJekyllDataTypographicString{${1:arg1}}{${2:arg2}}"
+      }
+    },
+    {
+      "name": "markdownRendererJekyllDataTypographicStringPrototype",
+      "unusual": true,
+      "arg": {
+        "format": "{}{}",
+        "snippet": "markdownRendererJekyllDataTypographicStringPrototype{${1:arg1}}{${2:arg2}}"
       }
     },
     {
@@ -1434,6 +1478,14 @@
       "unusual": true
     },
     {
+      "name": "markdownRendererWarning",
+      "unusual": true
+    },
+    {
+      "name": "markdownRendererWarningPrototype",
+      "unusual": true
+    },
+    {
       "name": "markinlinePlainTeX",
       "unusual": true,
       "arg": {
@@ -1485,8 +1537,9 @@
       "codeSpans",
       "definitionLists",
       "eagerCache",
-      "extensions=${1:file names}",
+      "ensureJekyllData",
       "expectJekyllData",
+      "extensions=${1:file names}",
       "fancyLists",
       "fencedCode",
       "fencedCodeAttributes",
@@ -1494,7 +1547,6 @@
       "hashEnumerators",
       "headerAttributes",
       "html",
-      "hybrid",
       "inlineCodeAttributes",
       "inlineNotes",
       "jekyllData",

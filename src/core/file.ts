@@ -7,6 +7,7 @@ import { lw } from '../lw'
 
 const logger = lw.log('File')
 
+let extraTeXExts: string[]
 export const file = {
     tmpDirPath: '',
     getOutDir,
@@ -23,12 +24,19 @@ export const file = {
     setTeXDirs,
     exists,
     read,
-    kpsewhich
+    kpsewhich,
+    toUri
 }
 
 initialize()
 export function initialize() {
     file.tmpDirPath = createTmpDir()
+}
+
+setExtraTeXExts()
+lw.onConfigChange('latex.extraExts', setExtraTeXExts)
+function setExtraTeXExts() {
+    extraTeXExts = vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[]
 }
 
 /**
@@ -87,8 +95,9 @@ function handleTmpDirError(error: Error) {
  * This function verifies whether a provided file extension string matches any
  * of the TeX-related extensions defined in several constant arrays. It
  * consolidates these arrays into a single collection and checks if the given
- * extension exists within this collection. The arrays include TeX extensions, R
- * Sweave extensions, Julia Weave extensions, and Python Weave extensions.
+ * extension exists within this collection. The arrays include TeX extensions
+ * (including those defined by the user ), R Sweave extensions, Julia Weave extensions,
+ * and Python Weave extensions.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -97,6 +106,7 @@ function handleTmpDirError(error: Error) {
  */
 function hasTeXExt(extname: string): boolean {
     return [
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.RSWEAVE_EXT,
         ...lw.constant.JLWEAVE_EXT,
@@ -111,9 +121,10 @@ function hasTeXExt(extname: string): boolean {
  * This function evaluates the given file extension and checks it against a
  * predefined list of TeX source extensions such as `.tex`, `.ltx`, `.sty`,
  * `.cls`, `.fd`, `.aux`, `.bbl`, `.blg`, `.brf`, `.log`, `.out`, and R Sweave
- * extensions, Julia Weave extensions, and Python Weave extensions. It returns
- * `true` if the extension is not found in this list, and `false` otherwise.
- * This is useful for filtering out non-TeX files from a collection of files.
+ * extensions, Julia Weave extensions, Python Weave extensions and user defined
+ * tex extensions. It returns `true` if the extension is not found in this list,
+ * and `false` otherwise. This is useful for filtering out non-TeX files from a
+ * collection of files.
  *
  * @param {string} extname - The file extension to be checked including the dot
  * (e.g., '.tex').
@@ -122,6 +133,7 @@ function hasTeXExt(extname: string): boolean {
  */
 function hasBinaryExt(extname: string): boolean {
     return ![
+        ...extraTeXExts,
         ...lw.constant.TEX_EXT,
         ...lw.constant.TEX_NOCACHE_EXT,
         ...lw.constant.RSWEAVE_EXT,
@@ -178,7 +190,7 @@ function hasDtxLangId(langId: string): boolean {
  *
  * @type {Object.<string, {out?: string, aux?: string}>}
  */
-const texDirs: {[tex: string]: {out?: string, aux?: string}} = {}
+const texDirs: { [tex: string]: { out?: string, aux?: string } } = {}
 /**
  * Sets the output and auxiliary files directory for a root TeX file.
  *
@@ -201,7 +213,7 @@ function setTeXDirs(tex: string, out?: string, aux?: string) {
     if (!tex.endsWith('.tex')) {
         tex += '.tex'
     }
-    texDirs[tex] = {out, aux}
+    texDirs[tex] = { out, aux }
 }
 
 /**
@@ -239,7 +251,7 @@ function getOutDir(texPath?: string): string {
         return './'
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath))
     const outDir = configuration.get('latex.outDir') as string || './'
     const out = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(outDir)
     let result = undefined
@@ -265,7 +277,7 @@ function getOutDir(texPath?: string): string {
  */
 function getLangId(filename: string): string | undefined {
     const ext = path.extname(filename).toLocaleLowerCase()
-    if (ext === '.tex') {
+    if (ext === '.tex' || extraTeXExts.includes(ext)) {
         return 'latex'
     } else if (lw.constant.PWEAVE_EXT.includes(ext)) {
         return 'pweave'
@@ -292,7 +304,7 @@ function getLangId(filename: string): string | undefined {
  * configuration or derived from the file name.
  */
 function getJobname(texPath: string): string {
-    const jobname = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath)).get('latex.jobname') as string
+    const jobname = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath)).get('latex.jobname') as string
     return jobname || path.parse(texPath).name
 }
 
@@ -352,7 +364,7 @@ async function getFlsPath(texPath: string): Promise<string | undefined> {
  * avoiding redundant executions of the `kpsewhich` command by returning
  * previously computed results quickly.
  */
-const kpsecache: {[query: string]: string} = {}
+const kpsecache: { [query: string]: string } = {}
 /**
  * Resolves the path to a given LaTeX target using the `kpsewhich` command.
  *
@@ -382,11 +394,16 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
 
     try {
         const args = isBib ? ['-format=.bib', target] : [target]
-        const kpsewhichReturn = lw.external.sync(command, args, {cwd: lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path})
+        const cwd = lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path
+        const kpsewhichReturn = lw.external.sync(command, args, { cwd })
         if (kpsewhichReturn.status === 0) {
-            const output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+            let output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
             logger.log(`kpsewhich returned with '${output}'.`)
             if (output !== '') {
+                if (!path.isAbsolute(output) && cwd) {
+                    output = path.resolve(cwd, output)
+                    logger.log(`kpsewhich resolved to '${output}'.`)
+                }
                 kpsecache[query] = output
             }
             return output
@@ -419,7 +436,7 @@ function kpsewhich(target: string, isBib: boolean = false): string | undefined {
  * @returns {string[]} An array containing the resolved file path(s) for the
  * bibliography file, or an empty array if the file could not be resolved.
  */
-function getBibPath(bib: string, baseDir: string): string[] {
+async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const bibDirs = configuration.get('latex.bibDirs') as string[]
     let searchDirs: string[] = [baseDir, ...bibDirs]
@@ -428,12 +445,12 @@ function getBibPath(bib: string, baseDir: string): string[] {
     if (lw.root.dir.path) {
         searchDirs = [lw.root.dir.path, ...searchDirs]
     }
-    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : utils.resolveFile(searchDirs, bib, '.bib')
+    const bibPath = bib.includes('*') ? utils.resolveFileGlob(searchDirs, bib, '.bib') : await utils.resolveFile(searchDirs, bib, '.bib')
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
             const kpsePath = kpsewhich(bib, true)
-            return kpsePath ? [ kpsePath ] : []
+            return kpsePath ? [kpsePath] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
             return []
@@ -442,9 +459,9 @@ function getBibPath(bib: string, baseDir: string): string[] {
 
     if (os.platform() === 'win32') {
         // Normalize drive letters on Windows.
-        return [ bibPath ].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
+        return [bibPath].flat().map(p => p.replace(/^([a-zA-Z]):/, (_, p1: string) => p1.toLowerCase() + ':'))
     } else {
-        return [ bibPath ].flat()
+        return [bibPath].flat()
     }
 }
 
@@ -463,7 +480,8 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * function will rethrow the caught error, making the calling code responsible
  * for handling the exception.
  *
- * @param {string} filePath - The path to the file to be read.
+ * @param {string | vscode.Uri} filePath - The path / Uri to the file to be
+ * read.
  * @param {boolean} [raise=false] - A flag indicating whether to rethrow an
  * error if the file read operation fails.
  * @returns {Promise<string | undefined>} - A promise that resolves to the file
@@ -472,11 +490,17 @@ function getBibPath(bib: string, baseDir: string): string[] {
  * @throws Will throw an error if the file read operation fails and `raise` is
  * `true`.
  */
-async function read(filePath: string, raise: boolean = false): Promise<string | undefined> {
+async function read(fileUri: vscode.Uri, raise?: boolean): Promise<string | undefined>
+async function read(filePath: string, raise?: boolean): Promise<string | undefined>
+async function read(filePathOrUri: string | vscode.Uri, raise?: boolean): Promise<string | undefined> {
     try {
-        return (await vscode.workspace.fs.readFile(vscode.Uri.file(filePath))).toString()
+        if (filePathOrUri instanceof vscode.Uri) {
+            return (await vscode.workspace.fs.readFile(filePathOrUri)).toString()
+        } else {
+            return (await vscode.workspace.fs.readFile(lw.file.toUri(filePathOrUri))).toString()
+        }
     } catch (err) {
-        if (raise === false) {
+        if (raise === undefined || raise === false) {
             return undefined
         }
         throw err
@@ -488,7 +512,7 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  *
  * This function accepts a URI object or a string representing a file path. If
  * the input is a string, it is converted to a file URI using
- * `vscode.Uri.file()`. The function then attempts to retrieve the status of the
+ * `lw.file.toUri()`. The function then attempts to retrieve the status of the
  * file or directory at the given URI using `stat()` of VS Code workspace file
  * system API. If the status retrieval is successful, the function returns the
  * file stat, which can also be used to indicate that the file or directory
@@ -501,12 +525,30 @@ async function read(filePath: string, raise: boolean = false): Promise<string | 
  * or directory exists, and `false` otherwise.
  */
 async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false> {
-    if (typeof(uri) === 'string') {
-        uri = vscode.Uri.file(uri)
+    if (typeof (uri) === 'string') {
+        uri = lw.file.toUri(uri)
     }
     try {
         return await lw.external.stat(uri)
     } catch {
         return false
     }
+}
+
+/**
+ * Converts a file path to a VS Code URI.
+ *
+ * @param {string} filePath - The file path to be converted.
+ * @returns {vscode.Uri} - The corresponding VS Code URI.
+ */
+function toUri(filePath: string): vscode.Uri {
+    const scheme = vscode.workspace.workspaceFolders?.filter(
+        folder => filePath?.startsWith(folder.uri.path)
+    )[0]?.uri.scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
+    // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
+    // this is a workaround that removes the drive letter from the path
+    if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
+        filePath = filePath.replace(/^\w:\\/, '\\')
+    }
+    return vscode.Uri.file(filePath).with({ scheme })
 }

@@ -1,22 +1,6 @@
-@media all and (max-width: 1100px) {
-    #toolbarViewerMiddle {
-      display: table;
-      margin: auto;
-      left: auto;
-      position: inherit;
-      -webkit-transform: none;
-              transform: none;
-    }
-}
-
-@media all and (max-width: 660px) {
-    .visibleSmallView {
-      display: inherit;
-    }
-}
-
 .visibleLargeView,
-.visibleMediumView {
+.visibleMediumView,
+.visibleMediumView + .horizontalToolbarSeparator {
   display: none !important;
 }
 
@@ -46,6 +30,8 @@ html[dir='rtl'] .findbar {
 
 #synctex-indicator {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 100000;
     border: 0.2em solid red;
     border-radius: 50%;
@@ -103,19 +89,47 @@ html[dir='rtl'] .findbar {
     mask-image:var(--secondaryToolbarButton-spreadNone-icon);
 }
 
+.spread {
+    margin-inline: 0 !important;
+}
+
 .pdfViewer.removePageBorders .page {
     border: none;
     overflow: hidden;
     box-shadow: 0px 0px 0px 1px lightgrey;
 }
 
-.pdfViewer .page.loadingIcon::after{
-    z-index: -100000 !important;
+:is(.pdfViewer .canvasWrapper) canvas{
+    position: relative !important;
 }
 
-.pdfViewer .page:not(.loading)::after{
-    transition-property: auto !important;
-    display:block !important;
+.pdfViewer.removePageBorders > .page:last-of-type,
+.pdfViewer.removePageBorders .spread:last-of-type .page {
+    margin-bottom: 0px;
+}
+
+.pdfViewer.removePageBorders .spread .page:first-of-type {
+    margin-inline-start: 0px;
+    margin-inline-end: 5px;
+}
+
+.pdfViewer.removePageBorders .spread .page:last-of-type {
+    margin-inline-start: 5px;
+    margin-inline-end: 0px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page {
+    margin-bottom: 0px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page:first-of-type {
+    margin-inline-start: 0px;
+    margin-inline-end: 5px;
+}
+
+.pdfViewer.removePageBorders.scrollHorizontal .page:last-of-type {
+    margin-inline-start: 5px;
+    margin-inline-end: 0px;
 }
 
 .notransition {
@@ -124,26 +138,29 @@ html[dir='rtl'] .findbar {
 
 .toolbar {
     position: absolute;
+    width: 100%;
     top: 0;
     transition: all 0.2s cubic-bezier(.23,.96,.57,.99);
 }
 
 .toolbar.hide {
     top: -32px;
-    transition-duration: 0.4s;
 }
 
 .toolbar.hide:hover {
     top: 0;
 }
 
-#numPages.toolbarLabel {
-    font-size: 16px;
-    margin-top: 3px;
+.pdfSidebarNotification::after {
+    display: none !important;
 }
 
 #viewerContainer {
     top: 0;
+}
+
+#pageNumber {
+    font-size: 12px !important;
 }
 
 #viewBookmark {
@@ -154,7 +171,7 @@ html[dir='rtl'] .findbar {
     display: none  !important;
 }
 
-#download {
+#downloadButton {
     display: none  !important;
 }
 
@@ -184,13 +201,39 @@ html[dir='rtl'] .findbar {
 }
 
 #synctexOnButton, #autoRefreshOnButton {
-    padding-left: 14px;
+    padding-left: 12px;
+}
+
+#synctexOnButton > input, #autoRefreshOnButton > input {
+    margin: 1px;
 }
 
 #synctexOnButton > span, #autoRefreshOnButton > span {
-    padding-left: 9px;
+    padding-left: 1px;
 }
 
 .annotationLayer .popup {
     margin: 0 calc(5px * var(--scale-factor));
+}
+
+.page-loading-mask {
+    border: none;
+    box-shadow: 0px 0px 0px 1px lightgrey;
+    outline: none;
+    position: absolute;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.page-loading-mask img {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    position: relative;
+}
+
+.page-loading-mask.remove {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }

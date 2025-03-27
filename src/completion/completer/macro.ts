@@ -187,12 +187,12 @@ function surround(cmdItems?: CompletionItem[]) {
         }
         void editor.edit( editBuilder => {
             for (const selection of editor.selections) {
-                const selectedContent = editor.document.getText(selection)
+                const selectedContent = editor.document.getText(selection).replaceAll('$', '$$$$')
                 const selectedMacro = '\\' + selected.macro
                 editBuilder.replace(new vscode.Range(selection.start, selection.end),
-                    selectedMacro.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
-                                 .replace(/\${\d:?(.*?)}/g, '$1')                    // Remove snippet placeholders
-                                 .replace(/\$\d/, ''))                               // Remove $2 etc
+                    selectedMacro.replace(/\$\d/g, '')                                // Remove $2 etc
+                                 .replace(/(.*)(\${\d.*?})/g, `$1${selectedContent}`) // Replace text
+                                 .replace(/\${\d:?(.*?)}/g, '$1'))                   // Remove snippet placeholders
             }
         })
     })
@@ -288,7 +288,7 @@ function parseAst(node: Ast.Node, filePath: string, defined?: Set<string>): CmdE
         data.definedCmds.set(cmd.signatureAsString(), {
             filePath,
             location: new vscode.Location(
-                vscode.Uri.file(filePath),
+                lw.file.toUri(filePath),
                 new vscode.Position(
                     (node.position?.start.line ?? 1) - 1,
                     (node.position?.start.column ?? 1) - 1))
@@ -386,7 +386,7 @@ function parseContent(content: string, filePath: string): CmdEnvSuggestion[] {
         data.definedCmds.set(result[1], {
             filePath,
             location: new vscode.Location(
-                vscode.Uri.file(filePath),
+                lw.file.toUri(filePath),
                 new vscode.Position(content.substring(0, result.index).split('\n').length - 1, 0))
         })
     }
@@ -410,20 +410,28 @@ function entryCmdToCompletion(item: MacroRaw, packageName?: string, postAction?:
         if (! (item.arg.snippet.match(/\$\{?2/) || (item.arg.snippet.match(/\$\{?0/) && item.arg.snippet.match(/\$\{?1/)))) {
             item.arg.snippet = item.arg.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
         }
+        item.arg.snippet = item.arg.snippet
+            // Remove the %:translatable component
+            .replace(/%:translatable/g, '')
+            // Remove the %randomword component
+            .replace(/%\w+/g, '')
         suggestion.insertText = new vscode.SnippetString(item.arg.snippet)
     } else {
         suggestion.insertText = item.name
     }
-    suggestion.filterText = item.detail ?? item.name
+    suggestion.filterText = item.name + (item.arg?.format ?? '') + (item.detail ?? '')
     suggestion.detail = item.detail ?? (item.arg?.snippet ? `\\${item.arg?.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}` : `\\${item.name}`)
     suggestion.documentation = item.doc ?? `Macro \\${item.name}${item.arg?.format ?? ''}.`
     if (packageName) {
         suggestion.documentation += ` From package: ${packageName}.`
     }
-    suggestion.sortText = (item.name + (item.arg?.format ?? '')).replace(/^[a-zA-Z]/, c => {
-        const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-        return n !== undefined ? n.toString(16): c
-    })
+    suggestion.sortText = (item.name + (item.arg?.format ?? ''))
+        .replace(/([a-z])/g, '$10').toLowerCase()
+        .replaceAll('{', '0')
+        .replaceAll('[', '1')
+        .replace(/^(.+?)\(/g, '$12') // Skip \(
+        .replaceAll('|', '3')
+        .replaceAll('*', '9')
     if (postAction) {
         suggestion.command = { title: 'Post-Action', command: postAction }
     } else if (isTriggerSuggestNeeded(item.name)) {
@@ -449,26 +457,26 @@ function provideCmdInPkg(packageName: string, options: string[], suggestions: Cm
     lw.completion.usepackage.load(packageName)
 
     // No package macro defined
-    const pkgCmds = data.packageCmds.get(packageName)
-    if (!pkgCmds || pkgCmds.length === 0) {
+    const macros = data.packageCmds.get(packageName)
+    if (!macros || macros.length === 0) {
         return
     }
 
     const unusual = configuration.get('intellisense.package.unusual') as boolean
     // Insert macros
-    pkgCmds.forEach(cmd => {
-        if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
+    macros.forEach(mac => {
+        if (!useOptionalArgsEntries && mac.hasOptionalArgs()) {
             return
         }
-        if (!defined.has(cmd.signatureAsString())) {
-            if (cmd.ifCond && !options.includes(cmd.ifCond)) {
+        if (!defined.has(mac.signatureAsString())) {
+            if (mac.ifCond && !options.includes(mac.ifCond)) {
                 return
             }
-            if (cmd.unusual && !unusual) {
+            if (mac.unusual && !unusual) {
                 return
             }
-            suggestions.push(cmd)
-            defined.add(cmd.signatureAsString())
+            suggestions.push(mac)
+            defined.add(mac.signatureAsString())
         }
     })
 }

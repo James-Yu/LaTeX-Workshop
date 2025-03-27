@@ -1,4 +1,16 @@
+import type { PdfViewerParams } from '../../types/latex-workshop-protocol-types/index'
+
 export const pdfFilePrefix = 'pdf..'
+
+export async function getParams(): Promise<PdfViewerParams> {
+    const storedParams = (globalThis as any).lwParams as PdfViewerParams | undefined
+    if (storedParams) {
+        return storedParams as PdfViewerParams
+    }
+    const params = await (await fetch('config.json')).json() as PdfViewerParams
+    ;(globalThis as any).lwParams = params
+    return params
+}
 
 export async function sleep(timeout: number) {
     await new Promise((resolve) => setTimeout(resolve, timeout))
@@ -30,7 +42,7 @@ export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle:
 
     for (let i = 0, ii = parts.length; i < ii; ++i) {
         const param = parts[i].split('=')
-        if (param[0].toLowerCase() === 'file') {
+        if (['file', 'vsls'].includes(param[0].toLowerCase())) {
             const encodedPath = param[1].replace(pdfFilePrefix, '')
             const pdfFileUri = decodePath(encodedPath)
             const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'

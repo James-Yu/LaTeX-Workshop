@@ -67,7 +67,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (e.uri.scheme !== 'file'){
+        if (!lw.constant.FILE_URI_SCHEMES.includes(e.uri.scheme)){
             return
         }
         if (lw.file.hasTeXLangId(e.languageId) ||
@@ -99,9 +99,10 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             logger.showStatus()
         }
 
-        if (e && e.document.uri.scheme !== 'file'){
+        if (e && !lw.constant.FILE_URI_SCHEMES.includes(e.document.uri.scheme)) {
             return
         }
+
         if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
             await lw.root.find()
             lw.lint.latex.root()
@@ -122,7 +123,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (e.document.uri.scheme !== 'file'){
+        if (!lw.constant.FILE_URI_SCHEMES.includes(e.document.uri.scheme)){
             return
         }
         if (!lw.file.hasTeXLangId(e.document.languageId) &&
@@ -159,6 +160,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
+        vscode.commands.registerCommand('latex-workshop.hostPort', () => lw.commands.hostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),
@@ -270,6 +272,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completion.provider, '\\', '{'),
+        vscode.languages.registerCompletionItemProvider({ scheme: 'vsls', language: 'tex'}, lw.completion.provider, '\\', '{'),
         vscode.languages.registerCompletionItemProvider(bibtexSelector, lw.completion.bibProvider, '@')
     )
 
@@ -312,7 +315,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
         vscode.languages.registerFoldingRangeProvider(latexSelector, lw.language.folding),
-        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding)
+        vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding),
+        vscode.languages.registerFoldingRangeProvider(latexDoctexSelector, lw.language.doctexFolding)
     )
 
     const selectionLatex = configuration.get('selection.smart.latex.enabled', true)
@@ -340,7 +344,7 @@ function conflictCheck() {
 
 function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
    const selector = ids.map( (id) => {
-       return { scheme: 'file', language: id }
+       return { scheme: lw.file.toUri('').scheme, language: id }
    })
    return selector
 }

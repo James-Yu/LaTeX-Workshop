@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 import * as path from 'path'
@@ -91,32 +92,33 @@ function toRect(blocks: any): Rectangle {
     }
 }
 
-function parseSyncTexForPdf(pdfFile: string): PdfSyncObject | undefined {
-    const filename = path.basename(pdfFile, path.extname(pdfFile))
-    const dir = path.dirname(pdfFile)
-    const synctexFile = path.resolve(dir, filename + '.synctex')
-    const synctexFileGz = synctexFile + '.gz'
+async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | undefined> {
+    const filename = path.basename(pdfUri.fsPath, path.extname(pdfUri.fsPath))
+    const dir = path.dirname(pdfUri.fsPath)
+    const synctexUri = pdfUri.with({ path: path.resolve(dir, filename + '.synctex') })
+    const synctexUriGz = synctexUri.with({ path: synctexUri.path + '.gz' })
 
-    if (fs.existsSync(synctexFile)) {
+    if (await lw.file.exists(synctexUri)) {
+        await vscode.workspace.fs.stat(synctexUri)
         try {
-            logger.log(`Parsing .synctex ${synctexFile} .`)
-            const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
-            return parseSyncTex(s)
+            logger.log(`Parsing .synctex ${synctexUri.toString(true)} .`)
+            const s = await lw.file.read(synctexUri)
+            return parseSyncTex(s ?? '')
         } catch (e: unknown) {
-            logger.logError(`Failed parsing .synctex ${synctexFile}:`, e)
+            logger.logError(`Failed parsing .synctex ${synctexUri.toString(true)}:`, e)
         }
-    } else if (fs.existsSync(synctexFileGz)) {
+    } else if (await lw.file.exists(synctexUriGz)) {
         try {
-            logger.log(`Parsing .synctex.gz ${synctexFileGz} .`)
-            const data = fs.readFileSync(synctexFileGz)
+            logger.log(`Parsing .synctex.gz ${synctexUriGz.toString(true)} .`)
+            const data = await vscode.workspace.fs.readFile(synctexUriGz)
             const b = zlib.gunzipSync(data)
             const s = b.toString('binary')
             return parseSyncTex(s)
         } catch (e: unknown) {
-            logger.logError(`Failed parsing .synctex.gz ${synctexFileGz}:`, e)
+            logger.logError(`Failed parsing .synctex.gz ${synctexUriGz.toString(true)}:`, e)
         }
     }
-    logger.log(`${synctexFile}, ${synctexFileGz} not found.`)
+    logger.log(`${synctexUri.toString(true)}, ${synctexUriGz.toString(true)} not found.`)
     return undefined
 }
 
@@ -142,8 +144,8 @@ function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject
     return
 }
 
-function syncTeXToPDF(line: number, filePath: string, pdfFile: string): SyncTeXRecordToPDF | undefined {
-    const pdfSyncObject = parseSyncTexForPdf(pdfFile)
+async function syncTeXToPDF(line: number, filePath: string, pdfUri: vscode.Uri): Promise<SyncTeXRecordToPDF | undefined> {
+    const pdfSyncObject = await parseSyncTexForPdf(pdfUri)
     if (!pdfSyncObject) {
         return undefined
     }
@@ -177,8 +179,8 @@ function syncTeXToPDF(line: number, filePath: string, pdfFile: string): SyncTeXR
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y, indicator: true }
 }
 
-function syncTeXToTeX(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordToTeX | undefined {
-    const pdfSyncObject = parseSyncTexForPdf(pdfPath)
+async function syncTeXToTeX(page: number, x: number, y: number, pdfUri: vscode.Uri): Promise<SyncTeXRecordToTeX | undefined> {
+    const pdfSyncObject = await parseSyncTexForPdf(pdfUri)
     if (!pdfSyncObject) {
         return undefined
     }

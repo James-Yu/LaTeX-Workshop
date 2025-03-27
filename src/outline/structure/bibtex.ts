@@ -11,7 +11,7 @@ const logger = lw.log('Structure', 'BibTeX')
 * Convert a bibtexParser.FieldValue to a string
 * @param field the bibtexParser.FieldValue to parse
 */
-function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abbr: string]: string}): string {
+export function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abbr: string]: string}): string {
     if (field.kind === 'concat') {
         return field.content.map(value => fieldValueToString(value, abbreviations)).reduce((acc, cur) => {return acc + ' # ' + cur})
     } else if (field.kind === 'abbreviation') {
@@ -22,13 +22,13 @@ function fieldValueToString(field: bibtexParser.FieldValue, abbreviations: {[abb
 }
 
 export async function buildBibTeX(document: vscode.TextDocument): Promise<TeXElement[]> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(document.fileName))
     if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${document.fileName}`)
         return []
     }
     logger.log('Parse active BibTeX document for AST.')
-    const ast = await lw.parser.parse.bib(document.getText())
+    const ast = await lw.parser.parse.bib(document.uri, document.getText())
     if (ast === undefined) {
         return []
     }

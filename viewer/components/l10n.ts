@@ -1,5 +1,15 @@
 export function getL10n(text: 'enableSyncTeX' | 'enableRefresh' | 'trimMargin' | 'navBack' | 'navForward'): string {
-  return l10n[text][navigator.language]
+  const keys = Object.keys(l10n[text])
+  const lang = navigator.language
+  if (keys.includes(lang)) {
+    return l10n[text][lang]
+  }
+  // A language variant
+  const key = keys.find(candidate => candidate.startsWith(lang))
+  if (key !== undefined) {
+    return l10n[text][key]
+  }
+  return l10n[text]['en-US']
 }
 
 const enableSyncTeX: {[lang: string]: string} = {

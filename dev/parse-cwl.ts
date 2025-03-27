@@ -167,7 +167,9 @@ function parseKeys(pkg: PackageRaw, lines: string[], tag: string): void {
 function assignKeys(pkg: PackageRaw, tag: string) {
     for (let context of tag.split(',')) {
         if (context.startsWith('\\documentclass') || context.startsWith('\\usepackage')) {
-            pkg.args.push(tag)
+            if (!pkg.args.includes(tag)) {
+                pkg.args.push(tag)
+            }
             continue
         }
         // \includepdf,includepdfmerge,\includepdfset => \includepdf,\includepdfmerge,\includepdfset
@@ -322,8 +324,8 @@ function handleBigMacros(pkg: PackageRaw, line: string): void {
         name: line.slice(1, line.indexOf('%')),
         arg: {
             format: '',
-            snippet
-        }
+            snippet,
+        },
     }
     pkg.macros.push(macro)
     return
@@ -481,7 +483,7 @@ function handleKomaClasses(pkgName: string, content: string): string {
 function parseFiles(files: string[], folder: string) {
     for (const file of files) {
         console.log(file)
-        if (!file.endsWith('.cwl')) {
+        if (!file.endsWith('.cwl') || file === 'expl3.cwl') {
             continue
         }
         const pkgName = file.replace('.cwl', '')

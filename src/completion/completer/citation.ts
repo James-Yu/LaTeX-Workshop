@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import { bibtexParser } from 'latex-utensils'
 import { lw } from '../../lw'
 import type { CitationField, CitationItem, CompletionArgs, CompletionItem, CompletionProvider } from '../../types'
@@ -45,7 +44,10 @@ export const bibTools = {
     parseAbbrevations
 }
 
-function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue): string {
+function expandField(abbreviations: {[key: string]: string}, value: bibtexParser.FieldValue | undefined): string {
+    if (value === undefined) {
+        return ''
+    }
     if (value.kind === 'concat') {
         const args = value.content as bibtexParser.FieldValue[]
         return args.map(arg => expandField(abbreviations, arg)).join(' ')
@@ -98,7 +100,42 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration)
     const range: vscode.Range | undefined = computeFilteringRange(line, position)
-    return updateAll(getIncludedBibs(lw.root.file.path)).map(item => {
+
+    const items = updateAll(lw.cache.getIncludedBib(lw.root.file.path))
+    const alts: CitationItem[] = []
+    items.forEach(item => {
+        if (item.fields.has('ids')) {
+            const ids = item.fields.get('ids')?.split(',').map(id => id.trim())
+            if (ids === undefined || ids.length === 0) {
+                return
+            }
+            for (const id of ids) {
+                const alt = Object.assign({}, item)
+                alt.key = id
+                alts.push(alt)
+            }
+        }
+    })
+    // Retrieve the list of fields to filter the completion items
+    const filterContents = configuration.get('intellisense.citation.filterText') as ('bibtex key' | 'title' | 'other fields')[]
+    // Construct the filter text for each item
+    const getFilterText = (item: CitationItem): string => {
+        const filterText = filterContents
+            .map(filterContent => ({
+                    'bibtex key': item.key,
+                    'title': item.fields.title || '',
+                    'other fields': item.fields.join(fields.filter(field => field !== 'title'), false)
+                }[filterContent] || ''))
+            .filter(text => text !== '')
+            .join(' ')
+
+        if (filterText === '') {
+            return `${item.key} ${item.fields.title || ''} ${item.fields.join(fields.filter(field => field !== 'title'), false)}`
+        }
+
+        return filterText
+    }
+    return [...items, ...alts].map(item => {
         // Compile the completion item label
         switch(label) {
             case 'bibtex key':
@@ -116,7 +153,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
                 }
                 break
         }
-        item.filterText = item.key + ' ' + item.fields.title + ' ' + item.fields.join(fields.filter(field => field !== 'title'), false)
+        item.filterText = getFilterText(item)
         item.insertText = item.key
         item.range = range
         // We need two spaces to ensure md newline
@@ -129,7 +166,7 @@ function browser(args?: CompletionArgs) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration, label)
-    void vscode.window.showQuickPick(updateAll(getIncludedBibs(lw.root.file.path)).map(item => {
+    void vscode.window.showQuickPick(updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
         return {
             label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
             description: item.key,
@@ -177,33 +214,6 @@ function getItem(key: string, configurationScope?: vscode.ConfigurationScope): C
 }
 
 /**
- * Returns the array of the paths of `.bib` files referenced from `file`.
- *
- * @param file The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
- * @param visitedTeX Internal use only.
- */
-function getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
-    if (file === undefined) {
-        // Only happens when rootFile is undefined
-        return Array.from(data.bibEntries.keys())
-    }
-    const cache = lw.cache.get(file)
-    if (cache === undefined) {
-        return []
-    }
-    let bibs = Array.from(cache.bibfiles)
-    visitedTeX.push(file)
-    for (const child of cache.children) {
-        if (visitedTeX.includes(child.filePath)) {
-            // Already included
-            continue
-        }
-        bibs = Array.from(new Set(bibs.concat(getIncludedBibs(child.filePath, visitedTeX))))
-    }
-    return bibs
-}
-
-/**
  * Returns aggregated bib entries from `.bib` files and bibitems defined on LaTeX files included in the root file.
  *
  * @param bibFiles The array of the paths of `.bib` files. If `undefined`, the keys of `bibEntries` are used.
@@ -238,16 +248,16 @@ function updateAll(bibFiles?: string[]): CitationItem[] {
  */
 async function parseBibFile(fileName: string) {
     logger.log(`Parsing .bib entries from ${fileName}`)
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(fileName))
-    if (fs.statSync(fileName).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(fileName))
+    if ((await lw.external.stat(lw.file.toUri(fileName))).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
         logger.log(`Bib file is too large, ignoring it: ${fileName}`)
         data.bibEntries.delete(fileName)
         return
     }
     const newEntry: CitationItem[] = []
-    const bibtex = fs.readFileSync(fileName).toString()
+    const bibtex = await lw.file.read(fileName)
     logger.log(`Parse BibTeX AST from ${fileName} .`)
-    const ast = await lw.parser.parse.bib(bibtex)
+    const ast = await lw.parser.parse.bib(lw.file.toUri(fileName), bibtex ?? '')
     if (ast === undefined) {
         logger.log(`Parsed 0 bib entries from ${fileName}.`)
         lw.event.fire(lw.event.FileParsed, fileName)

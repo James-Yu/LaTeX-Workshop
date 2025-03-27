@@ -16,7 +16,7 @@ const MACROS: MacroInfoRecord = {
     subinputfrom: { signature: 'm m' },
     subincludefrom: { signature: 'm m' },
     // \label{some-label}
-    linelabel: { signature: 'o m' },
+    linelabel: { signature: 'd<> o m' },
     // \newglossaryentry{vscode}{name=VSCode, description=Editor}
     newglossaryentry: { signature: 'm m' },
     provideglossaryentry: { signature: 'm m' },

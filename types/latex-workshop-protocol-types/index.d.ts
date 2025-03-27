@@ -14,15 +14,28 @@ type SynctexRangeData = SynctexData & {
 }
 
 export type ServerResponse = {
-    type: 'refresh'
+    type: 'refresh',
+    pdfFileUri: string
 } | {
     type: 'synctex',
     data: SynctexData | SynctexRangeData[]
+} | {
+    type: 'synctex_result',
+    pdfFile: string, // vsls scheme
+    synctexData: SynctexData | SynctexRangeData
+} | {
+    type: 'reverse_synctex_result',
+    input: string, // input file path, in vsls scheme
+    line: number,
+    column: number,
+    textBeforeSelection: string,
+    textAfterSelection: string
 } | {
     type: 'reload'
 }
 
 export type PdfViewerParams = {
+    toolbar: number,
     scale: string,
     trim: number,
     scrollMode: number,
@@ -53,13 +66,13 @@ export type PdfViewerParams = {
     codeColorTheme: 'light' | 'dark',
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
-    }
+    },
+    reloadTransition: 'none' | 'fade'
 }
 
 export type ClientRequest = {
     type: 'open',
-    pdfFileUri: string,
-    viewer: 'browser' | 'tab'
+    pdfFileUri: string
 } | {
     type: 'loaded',
     pdfFileUri: string
@@ -82,6 +95,13 @@ export type ClientRequest = {
     type: 'copy',
     content: string,
     isMetaKey: boolean
+} | {
+    type: 'synctex',
+    line: number,
+    column: number,
+    filePath: string,
+    targetPdfFile: string,
+    indicator: 'none' | 'circle' | 'rectangle'
 }
 
 export type PanelManagerResponse = {

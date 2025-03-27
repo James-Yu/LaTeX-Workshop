@@ -5,6 +5,16 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
+export async function hostPort() {
+    logger.log('HOSTPORT command invoked.')
+    if (lw.extra.liveshare.isGuest()) {
+        await lw.extra.liveshare.getHostServerPort(true)
+    }
+    else {
+        await lw.extra.liveshare.shareServer()
+    }
+}
+
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
@@ -16,13 +26,13 @@ export async function revealOutputDir() {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
-            logger.log(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
+            logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
         }
         outDir = path.resolve(rootDir, outDir)
     }
-    logger.log(`Reveal ${vscode.Uri.file(outDir)}`)
-    await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outDir))
+    logger.log(`Reveal ${lw.file.toUri(outDir)}`)
+    await vscode.commands.executeCommand('revealFileInOS', lw.file.toUri(outDir))
 }
 
 export function recipes(recipe?: string) {
@@ -73,7 +83,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
     if (!pickedRootFile) {
         return
     }
-    return lw.viewer.view(lw.file.getPdfPath(pickedRootFile), typeof mode === 'string' ? mode : undefined)
+    return lw.viewer.view(lw.file.toUri(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
 }
 
 export function refresh() {
@@ -93,13 +103,17 @@ export function synctex() {
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-    let pdfFile: string | undefined = undefined
-    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfFile = lw.file.getPdfPath(lw.root.subfiles.path)
-    } else if (lw.root.file.path !== undefined) {
-        pdfFile = lw.file.getPdfPath(lw.root.file.path)
+
+    if (lw.extra.liveshare.handle.command.syncTeX()) {
+        return
     }
-    lw.locate.synctex.toPDF(undefined, undefined, pdfFile)
+    let pdfUri: vscode.Uri | undefined = undefined
+    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))
+    } else if (lw.root.file.path !== undefined) {
+        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
+    }
+    lw.locate.synctex.toPDF(pdfUri)
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -176,7 +190,7 @@ export async function gotoSection(filePath: string, lineNumber: number) {
     if (vscode.window.activeTextEditor) {
         vscode.window.activeTextEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
         if (vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sync.viewer') as boolean) {
-            lw.locate.synctex.toPDF({ line: lineNumber, filePath: doc.fileName })
+            lw.locate.synctex.toPDF(undefined, { line: lineNumber, filePath: doc.fileName })
         }
     }
 }
@@ -424,7 +438,10 @@ export async function devParseBib() {
     if (vscode.window.activeTextEditor === undefined) {
         return
     }
-    const ast = await lw.parser.parse.bib(vscode.window.activeTextEditor.document.getText())
+    const ast = await lw.parser.parse.bib(
+        vscode.window.activeTextEditor.document.uri,
+        vscode.window.activeTextEditor.document.getText()
+    )
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
 }
 
@@ -494,7 +511,7 @@ export function toggleMathPreviewPanel() {
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {

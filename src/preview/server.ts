@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as http from 'http'
 import type { AddressInfo } from 'net'
 import ws from 'ws'
-import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
@@ -30,10 +29,10 @@ class WsServer extends ws.Server {
     // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
     //
     shouldHandle(req: http.IncomingMessage): boolean {
-        if (!this.validOrigin.includes('127.0.0.1')) {
+        const reqOrigin = req.headers['origin']
+        if (!this.validOrigin.includes('127.0.0.1') || reqOrigin?.includes('127.0.0.1')) {
             return true
         }
-        const reqOrigin = req.headers['origin']
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
             logger.log(`Valid origin: ${this.validOrigin}`)
@@ -74,7 +73,7 @@ function getPort(): number {
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${lw.server.getPort()}`, true))
+    const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${getPort()}`, true))
     const url =
         (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
         (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -96,11 +95,14 @@ function getValidOrigin(): string {
 function initialize(hostname?: string): http.Server {
     if (hostname) { // We must have created one.
         state.httpServer.close()
+        state.address = undefined
     }
     const httpServer = http.createServer((request, response) => handler(request, response))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+    const viewerPort = configuration.get('view.pdf.internal.port') as number
     httpServer.listen(viewerPort, hostname ?? '127.0.0.1', undefined, async () => {
+        // Double set state to ensure the server is set
+        state.httpServer = httpServer
         const address = state.httpServer.address()
         if (address && typeof address !== 'string') {
             state.address = address
@@ -149,7 +151,7 @@ function initializeWsServer(httpServer: http.Server, validOrigin: string) {
 //
 function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
     const validOrigin = getValidOrigin()
-    if (!validOrigin.includes('127.0.0.1')) {
+    if (!validOrigin.includes('127.0.0.1') || req.headers['origin']?.includes('127.0.0.1')) {
         return true
     }
     const reqOrigin = req.headers['origin']
@@ -185,6 +187,10 @@ function sendOkResponse(response: http.ServerResponse, content: Buffer, contentT
 }
 
 async function handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    if (await lw.extra.liveshare.handle.server.request(request, response)) {
+        return
+    }
+
     if (!request.url) {
         return
     }
@@ -194,14 +200,20 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (hasPrefix(request.url) && !request.url.includes('viewer.html')) {
         const s = request.url.replace('/', '')
-        const fileUri = decodePathWithPrefix(s)
-        if (!lw.viewer.isViewing(fileUri)) {
+        let fileUri = decodePathWithPrefix(s)
+        const isVsls = (fileUri.scheme === 'vsls') && (lw.extra.liveshare.isHost())
+        if (isVsls) {
+            fileUri = lw.extra.liveshare.getApi()?.convertSharedUriToLocal(fileUri) ?? fileUri
+        }
+        if (!lw.viewer.isViewing(fileUri) && !isVsls) {
             logger.log(`Invalid PDF request: ${fileUri.toString(true)}`)
+            response.writeHead(404)
+            response.end()
             return
         }
         try {
-            const buf: Buffer = Buffer.from(await vscode.workspace.fs.readFile(fileUri))
-            sendOkResponse(response, buf, 'application/pdf')
+            const content = await vscode.workspace.fs.readFile(fileUri)
+            sendOkResponse(response, Buffer.from(content), 'application/pdf')
             logger.log(`Preview PDF file: ${fileUri.toString(true)}`)
         } catch (e) {
             logger.logError(`Error reading PDF ${fileUri.toString(true)}`, e)
@@ -212,8 +224,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     }
     if (request.url.endsWith('/config.json')) {
         const params = lw.viewer.getParams()
-        const content = JSON.stringify(params)
-        sendOkResponse(response, Buffer.from(content), 'application/json')
+        sendOkResponse(response, Buffer.from(JSON.stringify(params)), 'application/json')
         return
     }
     let root: string
@@ -283,18 +294,17 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
             break
         }
     }
-    fs.readFile(fileName, (err, content) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                response.writeHead(404)
-            } else {
-                response.writeHead(500)
-            }
-            response.end()
+    try {
+        const content = await vscode.workspace.fs.readFile(lw.file.toUri(fileName))
+        sendOkResponse(response, Buffer.from(content), contentType, false)
+    } catch (err) {
+        if (typeof (err as any).code === 'string' && (err as any).code === 'FileNotFound') {
+            response.writeHead(404)
         } else {
-            sendOkResponse(response, content, contentType, false)
+            response.writeHead(500)
         }
-    })
+        response.end()
+    }
 }
 
 /**

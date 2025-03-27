@@ -130,7 +130,7 @@ function getWorkspace(filePath?: string): vscode.Uri | undefined {
     }
     // If provided with a filePath, check its workspace
     if (filePath !== undefined) {
-        return (vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath)) ?? firstWorkspace).uri
+        return (vscode.workspace.getWorkspaceFolder(lw.file.toUri(filePath)) ?? firstWorkspace).uri
     }
     // If we don't have an active text editor, we can only make a guess.
     // Let's guess the first one.
@@ -201,7 +201,7 @@ function findFromRoot(): string | undefined {
     if (!vscode.window.activeTextEditor || root.file.path === undefined) {
         return
     }
-    if (vscode.window.activeTextEditor.document.uri.scheme !== 'file') {
+    if (!lw.constant.FILE_URI_SCHEMES.includes(vscode.window.activeTextEditor.document.uri.scheme)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -221,11 +221,11 @@ function findFromRoot(): string | undefined {
  *
  * @returns {string | undefined} The root file path, or undefined if not found.
  */
-function findFromActive(): string | undefined {
+async function findFromActive(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
-    if (vscode.window.activeTextEditor.document.uri.scheme !== 'file') {
+    if (!lw.constant.FILE_URI_SCHEMES.includes(vscode.window.activeTextEditor.document.uri.scheme)) {
         logger.log(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         return
     }
@@ -233,7 +233,7 @@ function findFromActive(): string | undefined {
     const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
     const result = content.match(getIndicator())
     if (result) {
-        const rootFilePath = findSubfiles(content)
+        const rootFilePath = await findSubfiles(content)
         const activeFilePath = vscode.window.activeTextEditor.document.fileName
         if (rootFilePath) {
             root.subfiles.path = activeFilePath
@@ -257,13 +257,13 @@ function findFromActive(): string | undefined {
  * @returns {string | undefined} The root file path for subfiles, or undefined
  * if not found.
  */
-function findSubfiles(content: string): string | undefined {
+async function findSubfiles(content: string): Promise<string | undefined> {
     const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
     const result = content.match(regex)
     if (!result) {
         return
     }
-    const filePath = utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
+    const filePath = await utils.resolveFile([path.dirname(vscode.window.activeTextEditor!.document.fileName)], result[1])
     if (filePath) {
         logger.log(`Found subfile root ${filePath} from active.`)
     }
@@ -298,7 +298,7 @@ async function findInWorkspace(): Promise<string | undefined> {
         const fileUris = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
         const candidates: string[] = []
         for (const fileUri of fileUris) {
-            if (fileUri.scheme !== 'file') {
+            if (!lw.constant.FILE_URI_SCHEMES.includes(fileUri.scheme)) {
                 logger.log(`Skip the file: ${fileUri.toString(true)}`)
                 continue
             }

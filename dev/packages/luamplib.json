@@ -195,6 +195,13 @@
         ],
         "keyPos": 0
       }
+    },
+    {
+      "name": "usemplibgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "usemplibgroup{${1:name}}"
+      }
     }
   ],
   "envs": [
@@ -225,6 +232,24 @@
         ],
         "keyPos": 1
       }
+    },
+    {
+      "name": "mplibgroup",
+      "arg": {
+        "format": "{}",
+        "snippet": "{${1:name}}"
+      }
+    },
+    {
+      "name": "mplibgroup",
+      "arg": {
+        "format": "{}[]",
+        "snippet": "{${1:name}}[${2:options%keyvals}]",
+        "keys": [
+          "\\begin{mplibgroup}"
+        ],
+        "keyPos": 1
+      }
     }
   ],
   "keys": {
@@ -250,6 +275,12 @@
     "\\mplibsetformat#c": [
       "plain",
       "metafun"
+    ],
+    "\\begin{mplibgroup}": [
+      "asgroup=${1:string}",
+      "bbox=\"${1:llx lly urx ury}\"",
+      "matrix=\"${1:xx xy yx yy}\"",
+      "resources=${1:PDF resources}"
     ]
   },
   "args": []
