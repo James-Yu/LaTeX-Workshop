@@ -1,5 +1,16 @@
 # Change Log
 
+## [10.9.0] - 2025-03-27
+
+### Added
+- (#4308) LiveShare integration.
+  - This is an experimental feature. Please read [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#Collaborative-editing-using-Live-Share-(experimental)) before use.
+  - Three thousand thanks to @quoc-ho and @krokosik!
+- (#4384) Add a `checkcites` command to check unused citations.
+
+### Fixed
+- (#4557) Do not include macro defs with args in MathJax rendering.
+
 ## [10.8.0] - 2025-03-04
 
 ### Added
