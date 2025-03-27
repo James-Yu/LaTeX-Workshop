@@ -4,13 +4,15 @@ import type { ServerResponse } from '../../../types/latex-workshop-protocol-type
 
 export class Client {
     readonly websocket: ws
+    readonly pdfFileUri: string
     private readonly disposables = new Set<vscode.Disposable>()
 
-    constructor(websocket: ws) {
+    constructor(websocket: ws, pdfFileUri: string) {
         this.websocket = websocket
         this.websocket.on('close', () => {
             this.disposeDisposables()
         })
+        this.pdfFileUri = pdfFileUri
     }
 
     private disposeDisposables() {

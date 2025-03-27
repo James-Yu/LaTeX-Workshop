@@ -5,6 +5,16 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
+export async function hostPort() {
+    logger.log('HOSTPORT command invoked.')
+    if (lw.extra.liveshare.isGuest()) {
+        await lw.extra.liveshare.getHostServerPort(true)
+    }
+    else {
+        await lw.extra.liveshare.shareServer()
+    }
+}
+
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
@@ -93,6 +103,10 @@ export function synctex() {
         return
     }
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
+
+    if (lw.extra.liveshare.handle.command.syncTeX()) {
+        return
+    }
     let pdfUri: vscode.Uri | undefined = undefined
     if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
         pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))

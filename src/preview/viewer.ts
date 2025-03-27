@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type ws from 'ws'
+import ws from 'ws'
 import * as path from 'path'
 import * as os from 'os'
 import * as cs from 'cross-spawn'
@@ -55,18 +55,19 @@ function refresh(pdfUri?: vscode.Uri): void {
     logger.log(`Call refreshExistingViewer: ${pdfUri ?? 'undefined'} .`)
     if (pdfUri === undefined) {
         manager.getClients()?.forEach(client => {
-            client.send({type: 'refresh'})
+            client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
         })
         return
     }
-    const clientSet = manager.getClients(pdfUri)
+    let clientSet = manager.getClients(pdfUri)
+    clientSet = lw.extra.liveshare.handle.viewer.refresh(pdfUri.fsPath, clientSet)
     if (!clientSet) {
         logger.log(`Not found PDF viewers to refresh: ${pdfUri}`)
         return
     }
     logger.log(`Refresh PDF viewer: ${pdfUri}`)
     clientSet.forEach(client => {
-        client.send({type: 'refresh'})
+        client.send({type: 'refresh', pdfFileUri: client.pdfFileUri})
     })
 }
 
@@ -246,11 +247,15 @@ function handler(websocket: ws, msg: string): void {
     switch (data.type) {
         case 'open': {
             const pdfUri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (pdfUri.scheme === 'vsls' && lw.extra.liveshare.isHost()) {
+                manager.create(pdfUri)
+            }
             const clientSet = manager.getClients(pdfUri)
             if (clientSet === undefined) {
                 break
             }
-            const client = new Client(websocket)
+            const client = new Client(websocket, pdfUri.toString(true))
+            lw.extra.liveshare.register(client)
             clientSet.add(client)
             client.onDidDispose(() => {
                 clientSet.delete(client)
@@ -269,6 +274,9 @@ function handler(websocket: ws, msg: string): void {
         }
         case 'reverse_synctex': {
             const uri = vscode.Uri.parse(data.pdfFileUri, true)
+            if (lw.extra.liveshare.handle.viewer.reverseSyncTeX(websocket, uri, data)) {
+                break
+            }
             void lw.locate.synctex.toTeX(data, uri)
             break
         }
@@ -300,6 +308,9 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         default: {
+            if (lw.extra.liveshare.handle.viewer.syncTeX(websocket, data)) {
+                break
+            }
             logger.log(`Unknown websocket message: ${msg}`)
             break
         }
