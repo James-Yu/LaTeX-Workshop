@@ -1,5 +1,5 @@
-import * as vscode from 'vscode'
 import * as path from 'path'
+import * as vscode from 'vscode'
 import { lw } from '../lw'
 import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
@@ -443,6 +443,38 @@ export async function devParseBib() {
         vscode.window.activeTextEditor.document.getText()
     )
     return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+}
+
+export async function checkCitations() {
+    const unused = lw.extra.checkCitations()
+    if (unused.length === 0){
+        return
+    }
+    const selected = await vscode.window.showQuickPick(unused, {title: 'Unused citations'})
+    if (!selected){
+        return
+    }
+
+    const bibFiles = lw.cache.getIncludedBib(lw.root.file.path)
+    for(const bibFile of bibFiles){
+        const content = await lw.file.read(bibFile)
+        if (content && content.includes(selected)){
+            const doc = await vscode.workspace.openTextDocument(bibFile)
+
+            const {line, index} = content
+                .split(doc.eol === vscode.EndOfLine.LF ? '\n' : '\r\n')
+                .map((l, i) => ({line: l, index: i}))
+                .find(({line: l}) => l.includes(selected))!
+
+            const start = new vscode.Position(index, line.indexOf(selected))
+            const end = new vscode.Position(index, line.indexOf(selected) + selected.length)
+
+            await vscode.window.showTextDocument(doc, {
+                selection: new vscode.Range(start, end),
+            })
+            return
+        }
+    }
 }
 
 export async function devStripText() {
