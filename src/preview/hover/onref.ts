@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import type { ReferenceItem, TeXMathEnv } from '../../types'
 import { addDummyCodeBlock, getColor, mathjaxify, stripTeX, svg2DataUrl } from './utils'
-import { findMacros } from '../../parse/newcommandfinder'
+import { parser } from '../../parse'
 
 const logger = lw.log('Preview', 'Ref')
 
@@ -53,7 +53,7 @@ export async function ref2svg(refData: ReferenceItem, ctoken?: vscode.Cancellati
     const texMath = refData.math
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-    const macros = await findMacros(ctoken)
+    const macros = await parser.find.macro(ctoken)
 
     let texStr: string | undefined = undefined
     if (refData.prevIndex !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
@@ -91,7 +91,7 @@ function replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): stri
 }
 
 export async function tex2svg(tex: TeXMathEnv, macros?: string, texStr?: string) {
-    macros = macros ?? await findMacros()
+    macros = macros ?? await parser.find.macro()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     texStr = texStr ?? mathjaxify(tex.texString, tex.envname)

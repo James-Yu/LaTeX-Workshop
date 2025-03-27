@@ -29,7 +29,8 @@ export async function findMacros(ctoken?: vscode.CancellationToken): Promise<str
         if (content === undefined || ast === undefined) {
             logger.log(`Cannot parse the AST of ${filepath} .`)
         } else {
-            macros += parseAst(content, ast).join('\n') + '\n'
+            // #4557 Filter out any macros with #1, #2, etc. as they are not supported by MathJax.
+            macros += parseAst(content, ast).filter(macro => !/#\d/.test(macro)).join('\n') + '\n'
         }
     }
 
