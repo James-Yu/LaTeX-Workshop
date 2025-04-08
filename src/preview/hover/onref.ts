@@ -95,12 +95,18 @@ export async function tex2svg(tex: TeXMathEnv, macros?: string, texStr?: string)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const scale = configuration.get('hover.preview.scale') as number
     texStr = texStr ?? mathjaxify(tex.texString, tex.envname)
-    texStr = macros + stripTeX(texStr, macros)
+    const strippedTeX = macros + stripTeX(texStr, macros)
     try {
-        const data = svg2DataUrl(await lw.preview.mathjax.typeset(texStr, {scale, color: getColor()}))
+        const data = svg2DataUrl(await lw.preview.mathjax.typeset(strippedTeX, {scale, color: getColor()}))
         return { svgDataUrl: data, macros }
     } catch(e) {
-        logger.logError(`Failed rendering MathJax ${texStr} .`, e)
-        throw e
+        if (macros !== '') {
+            logger.log(`Failed rendering MathJax ${strippedTeX} . Try removing macro definitions.`)
+            const data = svg2DataUrl(await lw.preview.mathjax.typeset(texStr, {scale, color: getColor()}))
+            return { svgDataUrl: data, macros }
+        } else {
+            logger.logError(`Failed rendering MathJax ${texStr} .`, e)
+            throw e
+        }
     }
 }
