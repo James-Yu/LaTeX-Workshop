@@ -121,7 +121,7 @@ export class Provider implements vscode.CompletionItemProvider {
                 provider = classProvider
                 break
             case 'input':
-                reg = /\\(input|include|subfile|subfileinclude|includegraphics|includesvg|lstinputlisting|verbatiminput|loadglsentries|markdownInput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|subfileinclude|(?:adj)?includegraphics|includesvg|lstinputlisting|adjustimage|(?:fg|bg)?imagebox|verbatiminput|loadglsentries|markdownInput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = inputProvider
                 break
             case 'includeonly':
