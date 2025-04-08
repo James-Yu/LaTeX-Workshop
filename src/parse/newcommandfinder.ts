@@ -53,6 +53,8 @@ function parseAst(content: string, node: Ast.Node): string[] {
     if (isNewCommand || isDeclarePairedDelimiter || isProvideCommand) {
         macros.push(
             lw.parser.parse.stringify(node)
+                // Change DeclareRobustCommand to newcommand
+                .replaceAll(/^\\DeclareRobustCommand([^a-zA-Z])/g, '\\newcommand$1')
                 // Change providecommand to newcommand
                 .replaceAll(/^\\providecommand([^a-zA-Z])/g, '\\newcommand$1')
                 // Remove the star as MathJax does not support #4127
