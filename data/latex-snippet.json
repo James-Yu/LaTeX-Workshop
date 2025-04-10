@@ -1,262 +1,276 @@
 {
-	"item": {
-		"prefix": "item",
-		"body": "\n\\item ",
-		"description": "\\item on a newline"
-	},
-	"subscript": {
-		"prefix": "__",
-		"body": "_{${1:${TM_SELECTED_TEXT}}}",
-		"description": "subscript"
-	},
-	"superscript": {
-		"prefix": "**",
-		"body": "^{${1:${TM_SELECTED_TEXT}}}",
-		"description": "superscript"
-	},
-	"etc": {
-		"prefix": "...",
-		"body": "\\dots",
-		"description": "\\dots"
-	},
-	"equation": {
-		"prefix": "BEQ",
-		"body": "\\begin{equation}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation}",
-		"description": "equation environment"
-	},
-	"equation*": {
-		"prefix": "BSEQ",
-		"body": "\\begin{equation*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation*}",
-		"description": "equation* environment"
-	},
-	"align": {
-		"prefix": "BAL",
-		"body": "\\begin{align}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align}",
-		"description": "align environment"
-	},
-	"align*": {
-		"prefix": "BSAL",
-		"body": "\\begin{align*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align*}",
-		"description": "align* environment"
-	},
-	"gather": {
-		"prefix": "BGA",
-		"body": "\\begin{gather}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather}",
-		"description": "gather environment"
-	},
-	"gather*": {
-		"prefix": "BSGA",
-		"body": "\\begin{gather*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather*}",
-		"description": "gather* environment"
-	},
-	"multline": {
-		"prefix": "BMU",
-		"body": "\\begin{multline}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline}",
-		"description": "multline environment"
-	},
-	"multline*": {
-		"prefix": "BSMU",
-		"body": "\\begin{multline*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline*}",
-		"description": "multline* environment"
-	},
-	"itemize": {
-		"prefix": "BIT",
-		"body": "\\begin{itemize}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{itemize}",
-		"description": "itemize environment"
-	},
-	"enumerate": {
-		"prefix": "BEN",
-		"body": "\\begin{enumerate}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{enumerate}",
-		"description": "enumerate environment"
-	},
-	"split": {
-		"prefix": "BSPL",
-		"body": "\\begin{split}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{split}",
-		"description": "split environment"
-	},
-	"cases": {
-		"prefix": "BCAS",
-		"body": "\\begin{cases}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{cases}",
-		"description": "cases environment"
-	},
-	"frame": {
-		"prefix": "BFR",
-		"body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t${0:${TM_SELECTED_TEXT}}\n\n\\end{frame}",
-		"description": "frame"
-	},
-	"figure": {
-		"prefix": "BFI",
-		"body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
-		"description": "figure"
-	},
-	"table (caption after tabular)": {
-		"prefix": "BTA",
-		"body": "\\begin{table}[${1:htbp}]\n\t\\centering\n\t\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
-		"description": "table"
-	},
-	"table (caption before tabular)": {
-		"prefix": "BTB",
-		"body": "\\begin{table}[${1:htbp}]\n\t\\centering\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\t\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\\end{table}",
-		"description": "table"
-	},
-	"tikzcd": {
-		"prefix": "BTC",
-		"body": "\\begin{tikzcd}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{tikzcd}",
-		"description": "tikzcd"
-	},
-	"tikzpicture": {
-		"prefix": "BTP",
-		"body": "\\begin{tikzpicture}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{tikzpicture}",
-		"description": "tikzpicture"
-	},
-	"set font size": {
-		"prefix": "fontsize",
-		"body": "${1|\\Huge,\\huge,\\LARGE,\\Large,\\large,\\normalsize,\\small,\\footnotesize,\\scriptsize,\\tiny|}",
-		"description": "Select a font size"
-	},
-	"textnormal": {
-		"prefix": "FNO",
-		"body": "\\textnormal{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "normal font"
-	},
-	"textrm": {
-		"prefix": "FRM",
-		"body": "\\textrm{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "roman font"
-	},
-	"emph": {
-		"prefix": "FEM",
-		"body": "\\emph{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "emphasis font"
-	},
-	"textsf": {
-		"prefix": "FSF",
-		"body": "\\textsf{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "sans serif font"
-	},
-	"texttt": {
-		"prefix": "FTT",
-		"body": "\\texttt{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "typewriter font"
-	},
-	"textit": {
-		"prefix": "FIT",
-		"body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "italic font"
-	},
-	"textsl": {
-		"prefix": "FSL",
-		"body": "\\textsl{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "slanted font"
-	},
-	"textsc": {
-		"prefix": "FSC",
-		"body": "\\textsc{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "smallcaps font"
-	},
-	"underline": {
-		"prefix": "FUL",
-		"body": "\\underline{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Underline text"
-	},
-	"uppercase": {
-		"prefix": "FUC",
-		"body": "\\uppercase{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Make text uppercase (all caps)"
-	},
-	"lowercase": {
-		"prefix": "FLC",
-		"body": "\\lowercase{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Make text lowercase (no caps)"
-	},
-	"textbf": {
-		"prefix": "FBF",
-		"body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "bold font"
-	},
-	"textsuperscript": {
-		"prefix": "FSS",
-		"body": "\\textsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Make text a superscript"
-	},
-	"textsubscript": {
-		"prefix": "FBS",
-		"body": "\\textsubscript{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Make text a superscript"
-	},
-	"mathrm": {
-		"prefix": "MRM",
-		"body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math roman font"
-	},
-	"mathsf": {
-		"prefix": "MSF",
-		"body": "\\mathsf{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math sans serif font"
-	},
-	"mathbf": {
-		"prefix": "MBF",
-		"body": "\\mathbf{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math bold font"
-	},
-	"mathbb": {
-		"prefix": "MBB",
-		"body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math blackboard bold font"
-	},
-	"mathcal": {
-		"prefix": "MCA",
-		"body": "\\mathcal{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math caligraphic font"
-	},
-	"mathit": {
-		"prefix": "MIT",
-		"body": "\\mathit{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math italic font"
-	},
-	"mathtt": {
-		"prefix": "MTT",
-		"body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "math typewriter font"
-	},
-	"wrapEnv": {
-		"body": "\n\\begin{$1}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{$1}",
-		"description": "Wrap selection into an environment"
-	},
-	"part": {
-		"prefix": "SPA",
-		"body": "\\part{${1:${TM_SELECTED_TEXT}}}",
-		"description": "part"
-		},
-	"chapter": {
-		"prefix": "SCH",
-		"body": "\\chapter{${1:${TM_SELECTED_TEXT}}}",
-		"description": "chapter"
-	},
-	"section": {
-		"prefix": "SSE",
-		"body": "\\section{${1:${TM_SELECTED_TEXT}}}",
-		"description": "section"
-
-	},
-	"subsection": {
-		"prefix": "SSS",
-		"body": "\\subsection{${1:${TM_SELECTED_TEXT}}}",
-		"description": "subsection"
-	},
-	"subsubsection": {
-		"prefix": "SS2",
-		"body": "\\subsubsection{${1:${TM_SELECTED_TEXT}}}",
-		"description": "subsubsection"
-	},
-	"paragraph": {
-		"prefix": "SPG",
-		"body": "\\paragraph{${1:${TM_SELECTED_TEXT}}}",
-		"description": "paragraph"
-	},
-	"subparagraph": {
-		"prefix": "SSP",
-		"body": "\\subparagraph{${1:${TM_SELECTED_TEXT}}}",
-		"description": "subparagraph"
-	}
+  "item": {
+    "prefix": "item",
+    "body": "\n\\item ",
+    "description": "\\item on a newline"
+  },
+  "subscript": {
+    "prefix": "__",
+    "body": "_{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subscript"
+  },
+  "superscript": {
+    "prefix": "**",
+    "body": "^{${1:${TM_SELECTED_TEXT}}}",
+    "description": "superscript"
+  },
+  "etc": {
+    "prefix": "...",
+    "body": "\\dots",
+    "description": "\\dots"
+  },
+  "equation": {
+    "prefix": "BEQ",
+    "body": "\\begin{equation}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation}",
+    "description": "equation environment"
+  },
+  "left/right parenthesis": {
+    "prefix": "LRP",
+    "body": "\\left({${0:${TM_SELECTED_TEXT}}}\\right)",
+    "description": "left / right parenthesis"
+  },
+  "left/right brackets": {
+    "prefix": "LRB",
+    "body": "\\left[{${0:${TM_SELECTED_TEXT}}}\\right]",
+    "description": "left / right brackets"
+  },
+  "left/right angle brackets": {
+    "prefix": "LRA",
+    "body": "\\left\\{{${0:${TM_SELECTED_TEXT}}}\\right\\}",
+    "description": "left / right brackets"
+  },
+  "equation*": {
+    "prefix": "BSEQ",
+    "body": "\\begin{equation*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{equation*}",
+    "description": "equation* environment"
+  },
+  "align": {
+    "prefix": "BAL",
+    "body": "\\begin{align}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align}",
+    "description": "align environment"
+  },
+  "align*": {
+    "prefix": "BSAL",
+    "body": "\\begin{align*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{align*}",
+    "description": "align* environment"
+  },
+  "gather": {
+    "prefix": "BGA",
+    "body": "\\begin{gather}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather}",
+    "description": "gather environment"
+  },
+  "gather*": {
+    "prefix": "BSGA",
+    "body": "\\begin{gather*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{gather*}",
+    "description": "gather* environment"
+  },
+  "multline": {
+    "prefix": "BMU",
+    "body": "\\begin{multline}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline}",
+    "description": "multline environment"
+  },
+  "multline*": {
+    "prefix": "BSMU",
+    "body": "\\begin{multline*}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{multline*}",
+    "description": "multline* environment"
+  },
+  "itemize": {
+    "prefix": "BIT",
+    "body": "\\begin{itemize}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{itemize}",
+    "description": "itemize environment"
+  },
+  "enumerate": {
+    "prefix": "BEN",
+    "body": "\\begin{enumerate}\n\t\\item ${0:${TM_SELECTED_TEXT}}\n\\end{enumerate}",
+    "description": "enumerate environment"
+  },
+  "split": {
+    "prefix": "BSPL",
+    "body": "\\begin{split}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{split}",
+    "description": "split environment"
+  },
+  "cases": {
+    "prefix": "BCAS",
+    "body": "\\begin{cases}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{cases}",
+    "description": "cases environment"
+  },
+  "frame": {
+    "prefix": "BFR",
+    "body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t${0:${TM_SELECTED_TEXT}}\n\n\\end{frame}",
+    "description": "frame"
+  },
+  "figure": {
+    "prefix": "BFI",
+    "body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t${0:${TM_SELECTED_TEXT}}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
+    "description": "figure"
+  },
+  "table (caption after tabular)": {
+    "prefix": "BTA",
+    "body": "\\begin{table}[${1:htbp}]\n\t\\centering\n\t\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
+    "description": "table"
+  },
+  "table (caption before tabular)": {
+    "prefix": "BTB",
+    "body": "\\begin{table}[${1:htbp}]\n\t\\centering\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\t\\begin{tabular}{${4:<columns>}}\n\t\t${0:${TM_SELECTED_TEXT}}\n\t\\end{tabular}\n\\end{table}",
+    "description": "table"
+  },
+  "tikzcd": {
+    "prefix": "BTC",
+    "body": "\\begin{tikzcd}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{tikzcd}",
+    "description": "tikzcd"
+  },
+  "tikzpicture": {
+    "prefix": "BTP",
+    "body": "\\begin{tikzpicture}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{tikzpicture}",
+    "description": "tikzpicture"
+  },
+  "set font size": {
+    "prefix": "fontsize",
+    "body": "${1|\\Huge,\\huge,\\LARGE,\\Large,\\large,\\normalsize,\\small,\\footnotesize,\\scriptsize,\\tiny|}",
+    "description": "Select a font size"
+  },
+  "textnormal": {
+    "prefix": "FNO",
+    "body": "\\textnormal{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "normal font"
+  },
+  "textrm": {
+    "prefix": "FRM",
+    "body": "\\textrm{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "roman font"
+  },
+  "emph": {
+    "prefix": "FEM",
+    "body": "\\emph{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "emphasis font"
+  },
+  "textsf": {
+    "prefix": "FSF",
+    "body": "\\textsf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "sans serif font"
+  },
+  "texttt": {
+    "prefix": "FTT",
+    "body": "\\texttt{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "typewriter font"
+  },
+  "textit": {
+    "prefix": "FIT",
+    "body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "italic font"
+  },
+  "textsl": {
+    "prefix": "FSL",
+    "body": "\\textsl{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "slanted font"
+  },
+  "textsc": {
+    "prefix": "FSC",
+    "body": "\\textsc{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "smallcaps font"
+  },
+  "underline": {
+    "prefix": "FUL",
+    "body": "\\underline{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Underline text"
+  },
+  "uppercase": {
+    "prefix": "FUC",
+    "body": "\\uppercase{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text uppercase (all caps)"
+  },
+  "lowercase": {
+    "prefix": "FLC",
+    "body": "\\lowercase{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text lowercase (no caps)"
+  },
+  "textbf": {
+    "prefix": "FBF",
+    "body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "bold font"
+  },
+  "textsuperscript": {
+    "prefix": "FSS",
+    "body": "\\textsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text a superscript"
+  },
+  "textsubscript": {
+    "prefix": "FBS",
+    "body": "\\textsubscript{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "Make text a superscript"
+  },
+  "mathrm": {
+    "prefix": "MRM",
+    "body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math roman font"
+  },
+  "mathsf": {
+    "prefix": "MSF",
+    "body": "\\mathsf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math sans serif font"
+  },
+  "mathbf": {
+    "prefix": "MBF",
+    "body": "\\mathbf{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math bold font"
+  },
+  "mathbb": {
+    "prefix": "MBB",
+    "body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math blackboard bold font"
+  },
+  "mathcal": {
+    "prefix": "MCA",
+    "body": "\\mathcal{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math caligraphic font"
+  },
+  "mathit": {
+    "prefix": "MIT",
+    "body": "\\mathit{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math italic font"
+  },
+  "mathtt": {
+    "prefix": "MTT",
+    "body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
+    "description": "math typewriter font"
+  },
+  "wrapEnv": {
+    "body": "\n\\begin{$1}\n\t${0:${TM_SELECTED_TEXT}}\n\\end{$1}",
+    "description": "Wrap selection into an environment"
+  },
+  "part": {
+    "prefix": "SPA",
+    "body": "\\part{${1:${TM_SELECTED_TEXT}}}",
+    "description": "part"
+  },
+  "chapter": {
+    "prefix": "SCH",
+    "body": "\\chapter{${1:${TM_SELECTED_TEXT}}}",
+    "description": "chapter"
+  },
+  "section": {
+    "prefix": "SSE",
+    "body": "\\section{${1:${TM_SELECTED_TEXT}}}",
+    "description": "section"
+  },
+  "subsection": {
+    "prefix": "SSS",
+    "body": "\\subsection{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subsection"
+  },
+  "subsubsection": {
+    "prefix": "SS2",
+    "body": "\\subsubsection{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subsubsection"
+  },
+  "paragraph": {
+    "prefix": "SPG",
+    "body": "\\paragraph{${1:${TM_SELECTED_TEXT}}}",
+    "description": "paragraph"
+  },
+  "subparagraph": {
+    "prefix": "SSP",
+    "body": "\\subparagraph{${1:${TM_SELECTED_TEXT}}}",
+    "description": "subparagraph"
+  }
 }
