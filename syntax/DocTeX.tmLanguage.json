@@ -2,54 +2,16 @@
     "name": "DocTeX",
     "patterns": [
         {
-            "captures": {
-                "1": {
-                    "name": "punctuation.definition.verb.latex"
-                },
-                "2": {
-                    "name": "markup.raw.verb.latex"
-                },
-                "3": {
-                    "name": "punctuation.definition.verb.latex"
-                }
-            },
-            "match": "(\\|)([^\\|]*)(\\|)",
-            "name": "meta.function.verb.latex"
+            "include": "#verb"
         },
         {
-            "begin": "^(%)    (\\\\begin\\{macrocode\\})",
-            "captures": {
-                "1": {
-                    "name": "comment.line.percentage.doctex"
-                },
-                "2": {
-                    "name": "entity.name.tag.macrocode.doctex"
-                }
-            },
-            "end": "^(%)    (\\\\end\\{macrocode\\})",
-            "patterns": [
-                {
-                    "include": "#guards"
-                },
-                {
-                    "include": "text.tex.latex"
-                }
-            ]
+            "include": "#macrocode"
         },
         {
             "include": "#guards"
         },
         {
-            "match": "(^[ \\t]*)%?%",
-            "name": "comment.line.percentage.doctex"
-        },
-        {
-            "match": "\\^\\^A.*$\\n?",
-            "name": "comment.line.percentage.tex"
-        },
-        {
-            "match": "(?<=[^%\\\\])%",
-            "name": "invalid"
+            "include": "#comments"
         },
         {
             "include": "#latexSource"
@@ -59,6 +21,80 @@
         "guards": {
             "match": "^%(\\<[^\\>]*\\>)",
             "name": "entity.name.function.filename.latex"
+        },
+        "verb": {
+            "patterns": [
+                {
+                    "match": "(?!\\\\)(\\|)([^\\|]*)(\\|)",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.verb.latex"
+                        },
+                        "2": {
+                            "name": "markup.raw.verb.latex"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.verb.latex"
+                        }
+                    },
+                    "name": "meta.function.verb.latex"
+                },
+                {
+                    "match": "(?!\\\\)(\")([^\"]*)(\")",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.verb.latex"
+                        },
+                        "2": {
+                            "name": "markup.raw.verb.latex"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.verb.latex"
+                        }
+                    },
+                    "name": "meta.function.verb.latex"
+                }
+            ]
+        },
+        "macrocode": {
+            "patterns": [
+                {
+                    "begin": "^(%)    (\\\\begin\\{macrocode\\})",
+                    "captures": {
+                        "1": {
+                            "name": "comment.line.percentage.doctex"
+                        },
+                        "2": {
+                            "name": "entity.name.tag.macrocode.doctex"
+                        }
+                    },
+                    "end": "^(%)    (\\\\end\\{macrocode\\})",
+                    "patterns": [
+                        {
+                            "include": "#guards"
+                        },
+                        {
+                            "include": "text.tex.latex"
+                        }
+                    ]
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "match": "(^[ \\t]*)%?%",
+                    "name": "comment.line.percentage.doctex"
+                },
+                {
+                    "match": "\\^\\^A.*$\\n?",
+                    "name": "comment.line.percentage.tex"
+                },
+                {
+                    "match": "(?<=[^%\\\\])%",
+                    "name": "invalid"
+                }
+            ]
         },
         "latexSource": {
             "patterns": [
@@ -2204,14 +2240,14 @@
                         "3": {
                             "name": "punctuation.definition.arguments.begin.latex"
                         },
+                        "4": {
+                            "name": "markup.underline.link.latex"
+                        },
                         "5": {
                             "name": "punctuation.definition.arguments.end.latex"
-                        },
-                        "'": {
-                            "name": "markup.underline.link.latex"
                         }
                     },
-                    "match": "(?:\\s*)((\\\\)url)(\\{)([^}]*)(\\})",
+                    "match": "(?:\\s*)((\\\\)(?:url|path))(\\{)([^}]*)(\\})",
                     "name": "meta.function.link.url.latex"
                 },
                 {
@@ -2276,7 +2312,7 @@
                             "include": "#definition-label"
                         },
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -2310,7 +2346,7 @@
                             "include": "#definition-label"
                         },
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -2790,10 +2826,39 @@
                     "name": "meta.reference.label.latex",
                     "patterns": [
                         {
-                            "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]",
+                            "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]+",
                             "name": "constant.other.reference.label.latex"
                         }
                     ]
+                },
+                {
+                    "match": "((\\\\)(?:\\w*[rR]efrange\\*?))(?:\\[[^\\]]*\\])?(\\{)([\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]+)(\\})(\\{)([\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]+)(\\})",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control.ref.latex"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.keyword.latex"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.arguments.begin.latex"
+                        },
+                        "4": {
+                            "name": "constant.other.reference.label.latex"
+                        },
+                        "5": {
+                            "name": "punctuation.definition.arguments.end.latex"
+                        },
+                        "6": {
+                            "name": "punctuation.definition.arguments.begin.latex"
+                        },
+                        "7": {
+                            "name": "constant.other.reference.label.latex"
+                        },
+                        "8": {
+                            "name": "punctuation.definition.arguments.end.latex"
+                        }
+                    }
                 },
                 {
                     "include": "#definition-label"
@@ -3027,7 +3092,7 @@
                     "name": "meta.function.verb.latex"
                 },
                 {
-                    "begin": "((\\\\)(?:directlua|luadirect))(\\{)",
+                    "begin": "((\\\\)(?:directlua|luadirect|luaexec))(\\{)",
                     "beginCaptures": {
                         "1": {
                             "name": "support.function.verb.latex"
@@ -3072,7 +3137,7 @@
                     "name": "meta.math.block.latex support.class.math.block.environment.latex",
                     "patterns": [
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -3099,7 +3164,7 @@
                             "name": "constant.character.escape.latex"
                         },
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -3126,7 +3191,7 @@
                             "name": "constant.character.escape.latex"
                         },
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -3149,7 +3214,7 @@
                     "name": "meta.math.block.latex support.class.math.block.environment.latex",
                     "patterns": [
                         {
-                            "include": "text.tex#math"
+                            "include": "text.tex#math-content"
                         },
                         {
                             "include": "$self"
@@ -3301,7 +3366,7 @@
             "name": "meta.definition.label.latex",
             "patterns": [
                 {
-                    "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]",
+                    "match": "[\\p{Alphabetic}\\p{Number}\\.,:/*!^_-]+",
                     "name": "variable.parameter.definition.label.latex"
                 }
             ]
