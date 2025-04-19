@@ -53,5 +53,21 @@
 			"start": "^\\s*%\\s*#?region\\b.*",
 			"end": "^\\s*%\\s*#?endregion\\b.*"
 		}
-	}
+	},
+	"onEnterRules": [
+		{
+			"beforeText": "^%    .*",
+			"action": {
+				"indent": "none",
+				"appendText": "%    "
+			}
+		},
+		{
+			"beforeText": "^%.*",
+			"action": {
+				"indent": "none",
+				"appendText": "% "
+			}
+		}
+	]
 }
