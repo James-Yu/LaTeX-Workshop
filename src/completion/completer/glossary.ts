@@ -24,9 +24,9 @@ const data = {
     bibEntries: new Map<string, GlossaryItem[]>()
 }
 
-lw.watcher.bib.onCreate(uri => parseBibFile(uri.fsPath))
-lw.watcher.bib.onChange(uri => parseBibFile(uri.fsPath))
-lw.watcher.bib.onDelete(uri => removeEntriesInFile(uri.fsPath))
+lw.watcher.glossary.onCreate(uri => parseBibFile(uri.fsPath))
+lw.watcher.glossary.onChange(uri => parseBibFile(uri.fsPath))
+lw.watcher.glossary.onDelete(uri => removeEntriesInFile(uri.fsPath))
 
 function from(result: RegExpMatchArray): vscode.CompletionItem[] {
     updateAll(lw.cache.getIncludedGlossaryBib(lw.root.file.path))

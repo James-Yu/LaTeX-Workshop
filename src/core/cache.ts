@@ -196,6 +196,7 @@ async function wait(filePath: string, seconds: number = 2): Promise<Promise<void
 function reset() {
     lw.watcher.src.reset()
     lw.watcher.bib.reset()
+    lw.watcher.glossary.reset()
     // lw.watcher.pdf.reset()
     paths().forEach(filePath => caches.delete(filePath))
 }
@@ -547,8 +548,8 @@ async function updateGlossaryBibFiles(fileCache: FileCache) {
             fileCache.glossarybibfiles.add(bibPath)
             logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
             const bibUri = lw.file.toUri(bibPath)
-            if (!lw.watcher.bib.has(bibUri)) {
-                lw.watcher.bib.add(bibUri)
+            if (!lw.watcher.glossary.has(bibUri)) {
+                lw.watcher.glossary.add(bibUri)
             }
         }
     }
