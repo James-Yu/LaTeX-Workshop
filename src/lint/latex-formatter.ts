@@ -46,7 +46,7 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
         const firstLine = document.lineAt(range.start.line)
         // Replace all new line characters with new line and spaces, so that
         // the indentations are added from the second line.
-        edit.newText = edit.newText.replaceAll('\n', '\n' + (useSpaces ? ' ' : '\\t').repeat(firstLine.firstNonWhitespaceCharacterIndex))
+        edit.newText = edit.newText.replaceAll('\n', '\n' + (useSpaces ? ' ' : '\t').repeat(firstLine.firstNonWhitespaceCharacterIndex))
         if (firstLine.firstNonWhitespaceCharacterIndex > range.start.character) {
             // \s\s\s|\sf(x)=ax+b
             // In this case, the first line need some leading whitespaces.
