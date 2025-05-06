@@ -1,5 +1,14 @@
 # Change Log
 
+## [10.9.1] - 2025-05-06
+
+### Fixed
+- Use a dedicated watcher for glossary bib files to avoid parsing every bib file twice, including true bibliography
+files.
+- (#4557) Use `newcommand` instead of `DeclareRobustCommand` in MathJax preview.
+- (#4566) Add path suggestion to `adjustbox` macros.
+- (#4586) Fix formatting selection with tab indent inserts verbal `\t`.
+
 ## [10.9.0] - 2025-03-27
 
 ### Added
