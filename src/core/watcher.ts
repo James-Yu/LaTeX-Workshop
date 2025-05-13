@@ -159,8 +159,7 @@ class Watcher {
      * specified time (200 milliseconds), it is considered a valid change, and
      * the appropriate handlers are triggered.
      *
-     * @param {uri: vscode.Uri} uri - The uri of the changed file.
-     * @param {number} size - The size of the file.
+     * @param {vscode.Uri} uri - The uri of the changed file.
      * @param {number} firstChangeTime - The timestamp of the first change.
      * @param {NodeJS.Timeout} interval - The polling interval.
      */
@@ -172,17 +171,17 @@ class Watcher {
             return
         }
 
+        // Resume vscode may cause accidental "change", do nothing
+        if (!(uriString in this.polling)) {
+            clearInterval(interval)
+            return
+        }
+
         const currentSize = (await lw.external.stat(uri)).size
 
         if (currentSize !== this.polling[uriString].size) {
             this.polling[uriString].size = currentSize
             this.polling[uriString].time = Date.now()
-            return
-        }
-
-        // Resume vscode may cause accidental "change", do nothing
-        if (!(uriString in this.polling)) {
-            clearInterval(interval)
             return
         }
 
