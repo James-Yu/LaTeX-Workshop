@@ -138,12 +138,12 @@ def apply_caption_tweaks(content: List[str]) -> List[str]:
 def parse_keyvals(line: str):
     i = 0
     for i in range(len(re.findall(r'%<([^%]*?)%>', line))):
-        line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, 1)
+        line = re.sub(r'%<([^%]*?)%>', '${' + str(i + 1) + r':\1}', line, count=1)
     match = re.match(r'^([^#\n]*)', line)
     if match is None:
         return None
     snippet = match[1]
-    match = re.search(r'=#([^%#]+)$', line, re.M)
+    match = re.search(r'=#([^%#]+)$', line, flags=re.M)
     if match is not None:
         snippet += '${' + str(i + 1) + '|' + match[1] + '|}'
     return snippet
@@ -152,13 +152,13 @@ class CwlIntel:
     """
     Parse a CWL file to generate intellisense data in JSON format
 
-    :unimath_dict: Dictionnary of unimathsymbols
+    :unimath_dict: Dictionary of unimathsymbols
     """
 
     def __init__(self, commands_file: Union[Path, str], envs_file: Union[Path, str], unimathsymbols: Union[Path, str]):
         """
-        :param commands_file: Path to the JSON file contaning the default commands
-        :param envs_file: Path to the JSON file contaning the default environments
+        :param commands_file: Path to the JSON file containing the default commands
+        :param envs_file: Path to the JSON file containing the default environments
         :param unimathsymbols: Path to unimathsymbols.txt. If the file exists, it
         is read from this location. If not, it is retrieved from
         http://milde.users.sourceforge.net/LUCR/Math/data/ and written to this location.
@@ -180,7 +180,7 @@ class CwlIntel:
 
     def compute_unimathsymbols(self) -> Dict[str, Dict[str, str]]:
         """
-        Create a dictionnary of unmimathsymbols
+        Create a dictionary of unmimathsymbols
         """
         if not self.unimathsymbols.exists():
             urllib.request.urlretrieve('http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt', self.unimathsymbols)
