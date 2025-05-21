@@ -18,9 +18,11 @@ export const file = {
     getFlsPath,
     hasBinaryExt,
     hasTeXExt,
+    hasLaTeXLangId,
     hasTeXLangId,
     hasBibLangId,
     hasDtxLangId,
+    hasLaTeXWorkshopLangId,
     setTeXDirs,
     exists,
     read,
@@ -143,18 +145,25 @@ function hasBinaryExt(extname: string): boolean {
 }
 
 /**
- * Determines if the given language ID corresponds to a TeX-related language.
- *
- * This function checks if the provided `langId` matches any of the known
- * TeX-related language identifiers. These identifiers include 'tex', 'latex',
- * 'latex-expl3', 'doctex', 'pweave', 'jlweave', and 'rsweave'.
+ * Determines if the given language ID corresponds to a LaTeX-related language.
  *
  * @param {string} langId - The language identifier to check.
- * @returns {boolean} Returns `true` if `langId` is one of the TeX-related
+ * @returns {boolean} Returns `true` if `langId` is one of the LaTeX-related
+ * language identifiers, otherwise `false`.
+ */
+function hasLaTeXLangId(langId: string): boolean {
+    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+}
+
+/**
+ * Determines if the given language ID corresponds to a LaTeX-related language.
+ *
+ * @param {string} langId - The language identifier to check.
+ * @returns {boolean} Returns `true` if `langId` is one of the LaTeX-related
  * language identifiers, otherwise `false`.
  */
 function hasTeXLangId(langId: string): boolean {
-    return ['tex', 'latex', 'context', 'latex-class', 'latex-expl3', 'latex-package', 'doctex', 'doctex-installer', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+    return ['tex', 'latex-class', 'latex-package', 'doctex', 'doctex-installer'].includes(langId)
 }
 
 /**
@@ -177,6 +186,9 @@ function hasDtxLangId(langId: string): boolean {
     return langId === 'doctex'
 }
 
+function hasLaTeXWorkshopLangId(langId: string): boolean {
+    return hasLaTeXLangId(langId) || hasTeXLangId(langId) || hasBibLangId(langId) || hasDtxLangId(langId)
+}
 /**
  * An object that stores the output and auxiliary directories for TeX files.
  *

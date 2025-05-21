@@ -70,7 +70,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (!lw.constant.FILE_URI_SCHEMES.includes(e.uri.scheme)){
             return
         }
-        if (lw.file.hasTeXLangId(e.languageId) ||
+        if (lw.file.hasLaTeXLangId(e.languageId) ||
             lw.cache.getIncludedTeX(lw.root.file.path, false).includes(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
@@ -89,7 +89,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     extensionContext.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        if (vscode.window.visibleTextEditors.filter(editor => lw.file.hasTeXLangId(editor.document.languageId)).length > 0) {
+        if (vscode.window.visibleTextEditors.filter(editor => lw.file.hasLaTeXWorkshopLangId(editor.document.languageId)).length > 0) {
             logger.showStatus()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
                 void vscode.commands.executeCommand('workbench.view.lw.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
@@ -103,19 +103,19 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
 
-        if (e && lw.file.hasTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
+        if (e && lw.file.hasLaTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
             await lw.root.find()
             lw.lint.latex.root()
         } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
             isLaTeXActive = false
         }
 
-        if (e && lw.file.hasTeXLangId(e.document.languageId)) {
+        if (e && lw.file.hasLaTeXLangId(e.document.languageId)) {
             lw.previousActive = e
         }
 
         if (e && (
-            lw.file.hasTeXLangId(e.document.languageId)
+            lw.file.hasLaTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
             || lw.file.hasDtxLangId(e.document.languageId))) {
             void lw.outline.refresh()
@@ -126,9 +126,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (!lw.constant.FILE_URI_SCHEMES.includes(e.document.uri.scheme)){
             return
         }
-        if (!lw.file.hasTeXLangId(e.document.languageId) &&
-            !lw.file.hasBibLangId(e.document.languageId) &&
-            !lw.file.hasDtxLangId(e.document.languageId)) {
+        if (!lw.file.hasLaTeXWorkshopLangId(e.document.languageId)) {
             return
         }
         lw.event.fire(lw.event.DocumentChanged)
@@ -137,7 +135,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     }))
 
     extensionContext.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (lw.file.hasTeXLangId(e.textEditor.document.languageId) ||
+        if (lw.file.hasLaTeXLangId(e.textEditor.document.languageId) ||
             lw.file.hasBibLangId(e.textEditor.document.languageId) ||
             lw.file.hasDtxLangId(e.textEditor.document.languageId)) {
             return lw.outline.reveal(e)
@@ -149,7 +147,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
 
     void lw.root.find().then(() => {
         lw.lint.latex.root()
-        if (lw.file.hasTeXLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
+        if (lw.file.hasLaTeXLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             lw.previousActive = vscode.window.activeTextEditor
         }
     })

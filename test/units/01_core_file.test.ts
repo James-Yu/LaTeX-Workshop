@@ -457,21 +457,28 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.file.hasTeXLangId', () => {
-        it('should return true for supported TeX languages', () => {
-            assert.ok(lw.file.hasTeXLangId('tex'))
-            assert.ok(lw.file.hasTeXLangId('latex'))
-            assert.ok(lw.file.hasTeXLangId('latex-expl3'))
-            assert.ok(lw.file.hasTeXLangId('doctex'))
-            assert.ok(lw.file.hasTeXLangId('pweave'))
-            assert.ok(lw.file.hasTeXLangId('jlweave'))
-            assert.ok(lw.file.hasTeXLangId('rsweave'))
+    describe('lw.file.hasLaTeXLangId', () => {
+        it('should return true for supported LaTeX languages', () => {
+            assert.ok(lw.file.hasLaTeXLangId('latex'))
+            assert.ok(lw.file.hasLaTeXLangId('latex-expl3'))
+            assert.ok(lw.file.hasLaTeXLangId('pweave'))
+            assert.ok(lw.file.hasLaTeXLangId('jlweave'))
+            assert.ok(lw.file.hasLaTeXLangId('rsweave'))
         })
 
         it('should return false for unsupported languages', () => {
-            assert.ok(!lw.file.hasTeXLangId('markdown'))
-            assert.ok(!lw.file.hasTeXLangId('python'))
-            assert.ok(!lw.file.hasTeXLangId('html'))
+            assert.ok(!lw.file.hasLaTeXLangId('markdown'))
+            assert.ok(!lw.file.hasLaTeXLangId('python'))
+            assert.ok(!lw.file.hasLaTeXLangId('html'))
+        })
+    })
+
+    describe('lw.file.hasTeXLangId', () => {
+        it('should return true for supported TeX languages', () => {
+            assert.ok(lw.file.hasTeXLangId('tex'))
+            assert.ok(lw.file.hasLaTeXLangId('latex-class'))
+            assert.ok(lw.file.hasLaTeXLangId('latex-package'))
+            assert.ok(lw.file.hasLaTeXLangId('doctex-installer'))
         })
     })
 
