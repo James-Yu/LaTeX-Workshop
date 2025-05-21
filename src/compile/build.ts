@@ -95,7 +95,7 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
     const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
 
-    if (rootFile === undefined && lw.file.hasTeXLangId(activeEditor.document.languageId)) {
+    if (rootFile === undefined && lw.file.hasLaTeXLangId(activeEditor.document.languageId)) {
         await lw.root.find()
         rootFile = lw.root.file.path
         languageId = lw.root.file.langId

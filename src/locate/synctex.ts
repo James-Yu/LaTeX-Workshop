@@ -191,7 +191,7 @@ function getCurrentEditorCoordinates(): {line: number, column: number, inputFile
     }
 
     const inputFileUri = vscode.window.activeTextEditor.document.uri
-    if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log(`${inputFileUri} is not valid LaTeX.`)
         return
     }
