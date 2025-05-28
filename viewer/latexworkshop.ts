@@ -1,4 +1,4 @@
-import { patchViewerUI, registerKeyBind, repositionAnnotation } from './components/gui.js'
+import { patchViewerUI, registerKeyBind, registerPersistentState, repositionAnnotation } from './components/gui.js'
 import * as utils from './components/utils.js'
 
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
@@ -85,6 +85,7 @@ onPDFViewerEvent('pagesinit', () => {
     initTrim()
     void restoreState()
     registerSyncTeX()
+    registerPersistentState()
 })
 onPDFViewerEvent('pagesloaded', () => {
     initTrim()

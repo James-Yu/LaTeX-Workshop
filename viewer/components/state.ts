@@ -60,6 +60,24 @@ export async function setParams() {
     const thumbnailView = document.querySelector('#thumbnailView') as HTMLHtmlElement
     const sidebarContent = document.querySelector('#sidebarContent') as HTMLHtmlElement
 
+    if (params.sidebar.open === 'on' || params.sidebar.open === 'persist' && localStorage.getItem('lw-pdf-sidebar-open') === 'true') {
+        PDFViewerApplication.pdfSidebar.open()
+    } else if (params.sidebar.open === 'off' || params.sidebar.open === 'persist' && localStorage.getItem('lw-pdf-sidebar-open') === 'false') {
+        PDFViewerApplication.pdfSidebar.close()
+    }
+
+    if (params.sidebar.view === 'thumbnails') {
+        PDFViewerApplication.pdfSidebar.switchView(1)
+    } else if (params.sidebar.view === 'outline') {
+        PDFViewerApplication.pdfSidebar.switchView(2)
+    } else if (params.sidebar.view === 'attachments') {
+        PDFViewerApplication.pdfSidebar.switchView(3)
+    } else if (params.sidebar.view === 'layers') {
+        PDFViewerApplication.pdfSidebar.switchView(4)
+    } else if (params.sidebar.view === 'persist') {
+        PDFViewerApplication.pdfSidebar.switchView(parseInt(localStorage.getItem('lw-pdf-sidebar-view') ?? '1'))
+    }
+
     PDFViewerApplication.pdfCursorTools.switchTool(params.hand ? 1 : 0)
     if (params.invertMode.enabled) {
         const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode

@@ -263,3 +263,13 @@ function showToolbar() {
     const toolbarDom = document.getElementsByClassName('toolbar')[0]
     toolbarDom.classList.remove('hide')
 }
+
+export function registerPersistentState() {
+    PDFViewerApplication.eventBus.on('sidebarviewchanged', () => {
+        const sidebarOpen = PDFViewerApplication.pdfSidebar.isOpen
+        localStorage.setItem('lw-pdf-sidebar-open', sidebarOpen.toString())
+        if (sidebarOpen) {
+            localStorage.setItem('lw-pdf-sidebar-view', PDFViewerApplication.pdfSidebar.visibleView.toString())
+        }
+    })
+}

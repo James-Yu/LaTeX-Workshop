@@ -36,6 +36,10 @@ export type ServerResponse = {
 
 export type PdfViewerParams = {
     toolbar: number,
+    sidebar: {
+        open: 'off' | 'on' | 'persist',
+        view: 'thumbnails' | 'outline' | 'attachments' | 'layers' | 'persist',
+    }
     scale: string,
     trim: number,
     scrollMode: number,

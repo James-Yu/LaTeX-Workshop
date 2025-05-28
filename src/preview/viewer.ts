@@ -326,6 +326,10 @@ function getParams(): PdfViewerParams {
         (invertType === 'compat' && (configuration.get('view.pdf.invert') as number) > 0)
     const pack: PdfViewerParams = {
         toolbar: configuration.get('view.pdf.toolbar.hide.timeout') as number,
+        sidebar: {
+            open: configuration.get('view.pdf.sidebar.open') as 'off' | 'on' | 'persist',
+            view: configuration.get('view.pdf.sidebar.view') as 'thumbnails' | 'outline' | 'attachments' | 'layers' | 'persist',
+        },
         scale: configuration.get('view.pdf.zoom') as string,
         trim: configuration.get('view.pdf.trim') as number,
         scrollMode: configuration.get('view.pdf.scrollMode') as number,

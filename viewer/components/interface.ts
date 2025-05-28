@@ -11,6 +11,7 @@ export type PdfjsEventName
     | 'spreadmodechanged'
     | 'pagenumberchanged'
     | 'rotationchanging'
+    | 'sidebarviewchanged'
 
 type PDFViewerPage = {
     viewport: {
@@ -63,7 +64,9 @@ export type PDFViewerApplicationType = {
     pdfSidebar: {
         isOpen: boolean,
         visibleView: number,
-        switchView(view: number): void
+        switchView(view: number): void,
+        open(): void,
+        close(): void
     },
     secondaryToolbar: {
         close: () => void,
