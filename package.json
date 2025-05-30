@@ -46,22 +46,62 @@
       {
         "id": "tex",
         "aliases": [
-          "TeX",
-          "tex"
+          "TeX"
+        ],
+        "configuration": "./syntax/latex-language-configuration.json"
+      },
+      {
+        "id": "latex",
+        "aliases": [
+          "LaTeX"
         ],
         "extensions": [
-          ".sty",
-          ".cls",
-          ".bbx",
-          ".cbx"
+          ".tex",
+          ".ltx"
+        ],
+        "configuration": "./syntax/latex-language-configuration.json"
+      },
+      {
+        "id": "latex-class",
+        "aliases": [
+          "LaTeX class"
+        ],
+        "extensions": [
+          ".cls"
+        ],
+        "configuration": "./syntax/latex-language-configuration.json"
+      },
+      {
+        "id": "latex-package",
+        "aliases": [
+          "LaTeX package"
+        ],
+        "extensions": [
+          ".sty"
+        ],
+        "configuration": "./syntax/latex-language-configuration.json"
+      },
+      {
+        "id": "latex-expl3",
+        "aliases": [
+          "LaTeX expl3"
+        ],
+        "configuration": "./syntax/latex3-language-configuration.json"
+      },
+      {
+        "id": "context",
+        "aliases": [
+          "ConTeXt"
+        ],
+        "extensions": [
+          ".ctx"
         ],
         "configuration": "./syntax/latex-language-configuration.json"
       },
       {
         "id": "doctex",
         "aliases": [
-          "DocTeX",
-          "doctex"
+          "DocTeX"
         ],
         "extensions": [
           ".dtx"
@@ -69,23 +109,19 @@
         "configuration": "./syntax/doctex-language-configuration.json"
       },
       {
-        "id": "latex",
+        "id": "doctex-installer",
         "aliases": [
-          "LaTeX",
-          "latex"
+          "DocTeX installer"
         ],
         "extensions": [
-          ".tex",
-          ".ltx",
-          ".ctx"
+          ".ins"
         ],
         "configuration": "./syntax/latex-language-configuration.json"
       },
       {
         "id": "bibtex",
         "aliases": [
-          "BibTeX",
-          "bibtex"
+          "BibTeX"
         ],
         "extensions": [
           ".bib"
@@ -103,11 +139,16 @@
         "configuration": "./syntax/bibtex-style-language-configuration.json"
       },
       {
-        "id": "latex-expl3",
+        "id": "biblatex",
         "aliases": [
-          "LaTeX-Expl3"
+          "BibLaTeX"
         ],
-        "configuration": "./syntax/latex3-language-configuration.json"
+        "extensions": [
+          ".bbx",
+          ".cbx",
+          ".lbx"
+        ],
+        "configuration": "./syntax/latex-language-configuration.json"
       },
       {
         "id": "pweave",
@@ -134,31 +175,34 @@
       {
         "id": "rsweave",
         "aliases": [
-          "R Sweave"
+          "Sweave"
         ],
         "extensions": [
           ".rnw",
-          ".Rnw",
-          ".Rtex",
           ".rtex",
-          ".snw",
-          ".Snw"
+          ".snw"
         ],
         "configuration": "./syntax/latex-language-configuration.json"
       },
       {
         "id": "cpp_embedded_latex",
-        "configuration": "./syntax/latex-cpp-embedded-language-configuration.json",
-        "aliases": []
+        "aliases": [
+          "C++ embedded in LaTeX"
+        ],
+        "configuration": "./syntax/latex-cpp-embedded-language-configuration.json"
       },
       {
         "id": "markdown_latex_combined",
-        "configuration": "./syntax/markdown-latex-combined-language-configuration.json",
-        "aliases": []
+        "aliases": [
+          "Combined Markdown/LaTeX"
+        ],
+        "configuration": "./syntax/markdown-latex-combined-language-configuration.json"
       },
       {
         "id": "latex_workshop_log",
-        "aliases": [],
+        "aliases": [
+          "LaTeX Workshop log"
+        ],
         "configuration": "./syntax/latex-workshop-log-language-configuration.json"
       }
     ],
@@ -167,11 +211,6 @@
         "language": "tex",
         "scopeName": "text.tex",
         "path": "./syntax/TeX.tmLanguage.json"
-      },
-      {
-        "language": "doctex",
-        "scopeName": "text.tex.doctex",
-        "path": "./syntax/DocTeX.tmLanguage.json"
       },
       {
         "language": "latex",
@@ -198,14 +237,14 @@
         }
       },
       {
-        "language": "bibtex",
-        "scopeName": "text.bibtex",
-        "path": "./syntax/Bibtex.tmLanguage.json"
+        "language": "latex-class",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.tmLanguage.json"
       },
       {
-        "language": "bibtex-style",
-        "scopeName": "source.bst",
-        "path": "./syntax/BibTeX-style.tmLanguage.json"
+        "language": "latex-package",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.tmLanguage.json"
       },
       {
         "language": "latex-expl3",
@@ -232,17 +271,53 @@
         }
       },
       {
-        "language": "markdown_latex_combined",
-        "scopeName": "text.tex.markdown_latex_combined",
-        "path": "./syntax/markdown-latex-combined.tmLanguage.json"
+        "language": "context",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.asymptote": "asymptote",
+          "source.cpp": "cpp_embedded_latex",
+          "source.css": "css",
+          "source.dot": "dot",
+          "source.gnuplot": "gnuplot",
+          "text.html": "html",
+          "source.java": "java",
+          "source.js": "javascript",
+          "source.julia": "julia",
+          "source.lua": "lua",
+          "source.python": "python",
+          "source.ruby": "ruby",
+          "source.scala": "scala",
+          "source.ts": "typescript",
+          "text.xml": "xml",
+          "source.yaml": "yaml",
+          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+        }
       },
       {
-        "language": "cpp_embedded_latex",
-        "scopeName": "source.cpp.embedded.latex",
-        "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
-        "embeddedLanguages": {
-          "meta.embedded.assembly.cpp": "asm"
-        }
+        "language": "doctex",
+        "scopeName": "text.tex.doctex",
+        "path": "./syntax/DocTeX.tmLanguage.json"
+      },
+      {
+        "language": "doctex-installer",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.tmLanguage.json"
+      },
+      {
+        "language": "bibtex",
+        "scopeName": "text.bibtex",
+        "path": "./syntax/Bibtex.tmLanguage.json"
+      },
+      {
+        "language": "bibtex-style",
+        "scopeName": "source.bst",
+        "path": "./syntax/BibTeX-style.tmLanguage.json"
+      },
+      {
+        "language": "biblatex",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.tmLanguage.json"
       },
       {
         "language": "pweave",
@@ -269,6 +344,19 @@
         }
       },
       {
+        "language": "cpp_embedded_latex",
+        "scopeName": "source.cpp.embedded.latex",
+        "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.assembly.cpp": "asm"
+        }
+      },
+      {
+        "language": "markdown_latex_combined",
+        "scopeName": "text.tex.markdown_latex_combined",
+        "path": "./syntax/markdown-latex-combined.tmLanguage.json"
+      },
+      {
         "language": "latex_workshop_log",
         "scopeName": "text.latex_workshop.log",
         "path": "./syntax/LaTeX-Workshop-Log.tmLanguage.json"
@@ -276,7 +364,19 @@
     ],
     "snippets": [
       {
+        "language": "tex",
+        "path": "./data/latex-snippet.json"
+      },
+      {
         "language": "latex",
+        "path": "./data/latex-snippet.json"
+      },
+      {
+        "language": "latex-expl3",
+        "path": "./data/latex-snippet.json"
+      },
+      {
+        "language": "context",
         "path": "./data/latex-snippet.json"
       },
       {
@@ -289,10 +389,6 @@
       },
       {
         "language": "rsweave",
-        "path": "./data/latex-snippet.json"
-      },
-      {
-        "language": "latex-expl3",
         "path": "./data/latex-snippet.json"
       }
     ],

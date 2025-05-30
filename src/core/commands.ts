@@ -65,7 +65,7 @@ export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
         logger.log('Cannot find active TextEditor.')
         return
     }
-    if (!lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Active document is not a TeX file.')
         return
     }
@@ -98,7 +98,7 @@ export function kill() {
 
 export function synctex() {
     logger.log('SYNCTEX command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
@@ -118,7 +118,7 @@ export function synctex() {
 
 export function synctexonref(line: number, filePath: string) {
     logger.log('SYNCTEX command invoked on a reference.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
         return
     }
@@ -146,7 +146,7 @@ export async function clean(): Promise<void> {
 
 export function addTexRoot() {
     logger.log('ADDTEXROOT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     lw.extra.texroot()
@@ -159,7 +159,7 @@ export function citation() {
 
 export function wordcount() {
     logger.log('WORDCOUNT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId) ||
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId) ||
         lw.root.file.path === vscode.window.activeTextEditor.document.fileName) {
         if (lw.root.file.path) {
             lw.extra.count(lw.root.file.path, true, true)
@@ -197,7 +197,7 @@ export async function gotoSection(filePath: string, lineNumber: number) {
 
 export function navigateToEnvPair() {
     logger.log('JumpToEnvPair command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.goto()
@@ -205,7 +205,7 @@ export function navigateToEnvPair() {
 
 export function selectEnvContent(mode: 'content' | 'whole') {
     logger.log('SelectEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.select(mode)
@@ -213,7 +213,7 @@ export function selectEnvContent(mode: 'content' | 'whole') {
 
 export function selectEnvName() {
     logger.log('SelectEnvName command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.name('selection')
@@ -221,7 +221,7 @@ export function selectEnvName() {
 
 export function multiCursorEnvName() {
     logger.log('MutliCursorEnvName command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.name('cursor')
@@ -229,7 +229,7 @@ export function multiCursorEnvName() {
 
 export function toggleEquationEnv() {
     logger.log('toggleEquationEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.name('equationToggle')
@@ -237,7 +237,7 @@ export function toggleEquationEnv() {
 
 export function closeEnv() {
     logger.log('CloseEnv command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
         return
     }
     void lw.locate.pair.close()
