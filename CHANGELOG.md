@@ -1,5 +1,17 @@
 # Change Log
 
+## [10.10.0] - 2025-06-03
+
+### Added
+- (#4599) Add `view.pdf.sidebar.*` configs to store sidebar behavior.
+
+### Changed
+- (#4592) Refine language, grammar, and snippet contributions.
+
+### Fixed
+- (#4590) (Internal) Check if file is polled before comparing file size.
+- (#4603) Synctex does not work from second row in spread mode.
+
 ## [10.9.1] - 2025-05-06
 
 ### Fixed
