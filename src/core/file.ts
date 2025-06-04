@@ -152,18 +152,18 @@ function hasBinaryExt(extname: string): boolean {
  * language identifiers, otherwise `false`.
  */
 function hasLaTeXLangId(langId: string): boolean {
-    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+    return ['latex', 'context', 'latex-expl3', 'doctex', 'pweave', 'jlweave', 'rsweave'].includes(langId)
 }
 
 /**
- * Determines if the given language ID corresponds to a LaTeX-related language.
+ * Determines if the given language ID corresponds to a TeX-related language.
  *
  * @param {string} langId - The language identifier to check.
- * @returns {boolean} Returns `true` if `langId` is one of the LaTeX-related
+ * @returns {boolean} Returns `true` if `langId` is one of the TeX-related
  * language identifiers, otherwise `false`.
  */
 function hasTeXLangId(langId: string): boolean {
-    return ['tex', 'latex-class', 'latex-package', 'doctex', 'doctex-installer'].includes(langId)
+    return ['tex', 'latex-class', 'latex-package', 'doctex-installer'].includes(langId)
 }
 
 /**
