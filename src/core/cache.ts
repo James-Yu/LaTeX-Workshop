@@ -541,15 +541,17 @@ async function updateGlossaryBibFiles(fileCache: FileCache) {
         const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => bib.trim())
 
         for (const bib of bibs) {
-            const bibPath = await utils.resolveFile([path.dirname(fileCache.filePath)], bib, '.bib')
-            if (!bibPath || isExcluded(bibPath)) {
-                continue
-            }
-            fileCache.glossarybibfiles.add(bibPath)
-            logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
-            const bibUri = lw.file.toUri(bibPath)
-            if (!lw.watcher.glossary.has(bibUri)) {
-                lw.watcher.glossary.add(bibUri)
+            const bibPaths = await lw.file.getBibPath(bib, path.dirname(fileCache.filePath))
+            for (const bibPath of bibPaths) {
+                if (!bibPath || isExcluded(bibPath)) {
+                    continue
+                }
+                fileCache.glossarybibfiles.add(bibPath)
+                logger.log(`Glossary bib ${bibPath} from ${fileCache.filePath} .`)
+                const bibUri = lw.file.toUri(bibPath)
+                if (!lw.watcher.glossary.has(bibUri)) {
+                    lw.watcher.glossary.add(bibUri)
+                }
             }
         }
     }
