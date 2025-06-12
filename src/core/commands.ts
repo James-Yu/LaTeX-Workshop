@@ -146,8 +146,8 @@ export async function clean(): Promise<void> {
 
 export function addTexRoot() {
     logger.log('ADDTEXROOT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-        logger.log('Cannot add tex root. The active editor is undefined, or the document is not a LaTeX document.')
+    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId) || !lw.file.hasLaTeXClassPackageLangId(vscode.window.activeTextEditor.document.languageId)) {
+        logger.log('Cannot add tex root. The active editor is undefined, or the document is not related to a LaTeX document.')
         return
     }
     lw.extra.texroot()
