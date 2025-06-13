@@ -206,7 +206,10 @@ function findFromRoot(): string | undefined {
         return
     }
     logger.log('Try finding root from current root.')
-    if (lw.cache.getIncludedTeX().has(vscode.window.activeTextEditor.document.fileName)) {
+    const langId = vscode.window.activeTextEditor.document.languageId
+    if (langId && (lw.file.hasLaTeXLangId(langId) || lw.file.hasLaTeXClassPackageLangId(langId))
+        && lw.cache.getIncludedTeX().has(vscode.window.activeTextEditor.document.fileName)) {
+        logger.log(`Current root file is still valid: ${root.file.path}`)
         return root.file.path
     }
     return
