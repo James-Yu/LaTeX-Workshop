@@ -1365,7 +1365,7 @@
             "**/Library/Application Support/MiKTeX/texmfs/**",
             "/dev/null"
           ],
-          "markdownDescription": "Files to ignore from the watching mechanism, i.e., no intellisense or build-on-file-change. However, document structure/outline and build-on-save won't be affected. This property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
+          "markdownDescription": "Files to ignore from the watching mechanism, i.e., no intellisense or build-on-file-change. However, document structure/outline and build-on-save won't be affected (For build-on-save configuration, see #latex-workshop.autoBuild.onSave.files.ignore#). This property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used. "
         },
         "latex-workshop.latex.autoBuild.run": {
           "scope": "resource",
@@ -1394,6 +1394,18 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry. This property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+        },
+        "latex-workshop.latex.autoBuild.onSave.files.ignore": {
+          "scope": "window",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/*.sty",
+            "**/*.cls"
+          ],
+          "markdownDescription": "Files to ignore from the auto-build on save mechanism, This property must be an array of glob patterns. The patterns are matched against the absolute file path."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
           "scope": "resource",

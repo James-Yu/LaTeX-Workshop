@@ -75,7 +75,12 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()
-            void lw.compile.autoBuild(e.fileName, 'onSave')
+            if (lw.compile.isFileExcludedFromBuildOnSave(e.fileName)) {
+                logger.log(`File ${file} is excluded from build-on-save due to configuration.`)
+                return
+            } else {
+                void lw.compile.autoBuild(e.fileName, 'onSave')
+            }
             lw.extra.count(e.fileName)
         }
         // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
