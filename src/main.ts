@@ -122,10 +122,9 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
 
-        if (e && (
-            lw.file.hasLaTeXLangId(e.document.languageId)
+        if ( lw.file.hasLaTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
-            || lw.file.hasDtxLangId(e.document.languageId))) {
+            || lw.file.hasDtxLangId(e.document.languageId)) {
             void lw.outline.refresh()
         }
     }))
