@@ -103,15 +103,18 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
 
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
-            await lw.root.find()
-            lw.lint.latex.root()
-        } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
-            isLaTeXActive = false
-        }
-
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId)) {
+        if (e && (
+            lw.file.hasLaTeXLangId(e.document.languageId)
+            || lw.file.hasBibLangId(e.document.languageId)
+            || lw.file.hasLaTeXClassPackageLangId(e.document.languageId) )) {
+            if (!lw.file.hasBibLangId(e.document.languageId) && (e.document.fileName !== lw.previousActive?.document.fileName)) {
+                await lw.root.find()
+                lw.lint.latex.root()
+            }
             lw.previousActive = e
+        } else {
+            isLaTeXActive = false
+            return
         }
 
         if (e && (
