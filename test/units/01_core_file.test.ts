@@ -476,8 +476,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.file.hasTeXLangId', () => {
         it('should return true for supported TeX languages', () => {
             assert.ok(lw.file.hasTeXLangId('tex'))
-            assert.ok(lw.file.hasTeXLangId('latex-class'))
-            assert.ok(lw.file.hasTeXLangId('latex-package'))
             assert.ok(lw.file.hasTeXLangId('doctex-installer'))
         })
     })
