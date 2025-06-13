@@ -827,8 +827,7 @@ function getIncludedTeX(filePath?: string, cachedOnly: boolean = true, includedT
     }
     includedTeX.push(filePath)
     if (fileCache === undefined) {
-        // The file itself should be included even if it is not cached when cachedOnly is false
-        return Array.from(new Set(includedTeX))
+        return []
     }
     for (const child of fileCache.children) {
         if (includedTeX.includes(child.filePath)) {
