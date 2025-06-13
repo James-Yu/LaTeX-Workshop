@@ -75,7 +75,12 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()
-            void lw.compile.autoBuild(e.fileName, 'onSave')
+            if (lw.compile.isFileExcludedFromBuildOnSave(e.fileName)) {
+                logger.log(`File ${file} is excluded from build-on-save due to configuration.`)
+                return
+            } else {
+                void lw.compile.autoBuild(e.fileName, 'onSave')
+            }
             lw.extra.count(e.fileName)
         }
         // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
@@ -103,21 +108,23 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
 
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
-            await lw.root.find()
-            lw.lint.latex.root()
-        } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
-            isLaTeXActive = false
-        }
-
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId)) {
-            lw.previousActive = e
-        }
-
         if (e && (
             lw.file.hasLaTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
-            || lw.file.hasDtxLangId(e.document.languageId))) {
+            || lw.file.hasLaTeXClassPackageLangId(e.document.languageId) )) {
+            if (!lw.file.hasBibLangId(e.document.languageId) && (e.document.fileName !== lw.previousActive?.document.fileName)) {
+                await lw.root.find()
+                lw.lint.latex.root()
+            }
+            lw.previousActive = e
+        } else {
+            isLaTeXActive = false
+            return
+        }
+
+        if ( lw.file.hasLaTeXLangId(e.document.languageId)
+            || lw.file.hasBibLangId(e.document.languageId)
+            || lw.file.hasDtxLangId(e.document.languageId)) {
             void lw.outline.refresh()
         }
     }))

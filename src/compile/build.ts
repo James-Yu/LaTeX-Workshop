@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import os from 'os'
+import micromatch from 'micromatch'
 import * as path from 'path'
 import { pickRootPath } from '../utils/quick-pick'
 import { lw } from '../lw'
@@ -12,6 +14,7 @@ const logger = lw.log('Build')
 export {
     autoBuild,
     build,
+    isFileExcludedFromBuildOnSave
 }
 
 lw.watcher.src.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange'))
@@ -58,6 +61,21 @@ function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: bo
 function canAutoBuild(): boolean {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? lw.file.toUri(lw.root.file.path) : undefined)
     return Date.now() - lw.compile.lastAutoBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
+}
+
+/**
+ * Checks if a file is excluded from the build-on-save process based on
+ * the value of the `latex.autoBuild.onSave.files.ignore` configuration.
+ *
+ * @param filePath - The path of the file to check for exclusion from build-on-save.
+
+ * @returns True if the file is excluded from build-on-save, false otherwise.
+ */
+function isFileExcludedFromBuildOnSave(filePath: string): boolean {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(filePath))
+    const globsToIgnore = configuration.get('latex.autoBuild.onSave.files.ignore') as string[]
+    const format = (str: string): string => (os.platform() === 'win32' ? str.replace(/\\/g, '/') : str)
+    return micromatch.some(filePath, globsToIgnore, { format })
 }
 
 let isBuilding = false
