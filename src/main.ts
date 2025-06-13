@@ -241,9 +241,9 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     // According to cmhughes/latexindent.pl, it aims to beautify .tex, .sty and .cls files.
     const latexindentSelector = selectDocumentsWithId(['tex', 'latex', 'latex-expl3', 'latex-class', 'latex-package'])
-    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package'])
+    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'biblatex', 'context'])
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
-    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'doctex', 'doctex-installer'])
+    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'biblatex', 'context', 'doctex', 'doctex-installer'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
 
     extensionContext.subscriptions.push(
