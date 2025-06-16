@@ -853,60 +853,44 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('lw.cache.getIncludedTeX', () => {
         it('should return an empty list if no file path is given', () => {
-            assert.listStrictEqual(lw.cache.getIncludedTeX(), [])
+            assert.strictEqual(lw.cache.getIncludedTeX().size, 0)
         })
 
         it('should return an empty list if the given file is not cached', () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [])
+            assert.strictEqual(lw.cache.getIncludedTeX(toParse).size, 0)
         })
 
         it('should return a list of included .tex files', async () => {
             const toParse = get.path(fixture, 'included_tex', 'main.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.wait(get.path(fixture, 'included_tex', 'another.tex'))
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
-                toParse,
-                get.path(fixture, 'included_tex', 'another.tex'),
-            ])
-        })
-
-        it('should return a list of included .tex files even non-cached with `cachedOnly` set to `false`', async () => {
-            const toParse = get.path(fixture, 'included_tex', 'main.tex')
-            const texPathAnother = get.path(fixture, 'included_tex', 'another.tex')
-
-            await lw.cache.refreshCache(toParse)
-
-            const onDidDeleteSpy = sinon.spy(lw.watcher.src as any, 'onDidDelete')
-            const existsStub = sinon.stub(lw.file, 'exists').resolves(false)
-            await onDidDeleteSpy.call(lw.watcher.src, vscode.Uri.file(texPathAnother))
-            onDidDeleteSpy.restore()
-            existsStub.restore()
-
-            assert.strictEqual(lw.cache.get(texPathAnother), undefined)
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse, false), [toParse, texPathAnother])
+            const includedFiles = lw.cache.getIncludedTeX(toParse)
+            assert.strictEqual(includedFiles.size, 2)
+            assert.ok(includedFiles.has(toParse))
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'another.tex')))
         })
 
         it('should return a list of included .tex files with circular inclusions', async () => {
             const toParse = get.path(fixture, 'included_tex', 'circular_1.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.wait(get.path(fixture, 'included_tex', 'circular_2.tex'))
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
-                toParse,
-                get.path(fixture, 'included_tex', 'circular_2.tex'),
-            ])
+            const includedFiles = lw.cache.getIncludedTeX(toParse)
+            assert.strictEqual(includedFiles.size, 2)
+            assert.ok(includedFiles.has(toParse))
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'circular_2.tex')))
         })
 
         it('should return a list of de-duplicated .tex files', async () => {
             const toParse = get.path(fixture, 'included_tex', 'duplicate_1.tex')
             await lw.cache.refreshCache(toParse)
             await lw.cache.wait(get.path(fixture, 'included_tex', 'another.tex'))
-            assert.listStrictEqual(lw.cache.getIncludedTeX(toParse), [
-                get.path(fixture, 'included_tex', 'duplicate_1.tex'),
-                get.path(fixture, 'included_tex', 'duplicate_2.tex'),
-                get.path(fixture, 'included_tex', 'main.tex'),
-                get.path(fixture, 'included_tex', 'another.tex'),
-            ])
+            const includedFiles = lw.cache.getIncludedTeX(toParse)
+            assert.strictEqual(includedFiles.size, 4)
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'duplicate_1.tex')))
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'duplicate_2.tex')))
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'main.tex')))
+            assert.ok(includedFiles.has(get.path(fixture, 'included_tex', 'another.tex')))
         })
     })
 

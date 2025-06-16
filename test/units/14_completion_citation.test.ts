@@ -113,7 +113,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe.only('latex-workshop.intellisense.citation.*', () => {
+    describe('latex-workshop.intellisense.citation.*', () => {
         const texPath = get.path(fixture, 'bibitems.tex')
         const bibPath = get.path(fixture, 'bibfile.bib')
         beforeEach(async () => {

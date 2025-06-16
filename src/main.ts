@@ -71,7 +71,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         if (lw.file.hasLaTeXLangId(e.languageId) ||
-            lw.cache.getIncludedTeX(lw.root.file.path).includes(e.fileName) ||
+            lw.cache.getIncludedTeX(lw.root.file.path).has(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()

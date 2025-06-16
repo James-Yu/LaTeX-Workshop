@@ -206,7 +206,7 @@ function findFromRoot(): string | undefined {
         return
     }
     logger.log('Try finding root from current root.')
-    if (lw.cache.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
+    if (lw.cache.getIncludedTeX().has(vscode.window.activeTextEditor.document.fileName)) {
         return root.file.path
     }
     return
@@ -311,8 +311,10 @@ async function findInWorkspace(): Promise<string | undefined> {
             const result = content.match(getIndicator())
             if (result) {
                 // Can be a root
-                const children = lw.cache.getIncludedTeX(fileUri.fsPath).filter(filePath => filePath !== fileUri.fsPath)
-                if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
+                const activeFilePath = vscode.window.activeTextEditor?.document.fileName ?? ''
+                if (vscode.window.activeTextEditor
+                    && fileUri.fsPath !== activeFilePath
+                    && lw.cache.getIncludedTeX(fileUri.fsPath).has(activeFilePath)) {
                     logger.log(`Found root file from active editor by parent: ${fileUri.fsPath}`)
                     candidates.unshift(fileUri.fsPath)
                 }

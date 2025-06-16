@@ -809,28 +809,27 @@ function getIncludedGlossaryBib(filePath?: string): string[] {
  *
  * @param {string} [filePath] - The path to the starting file. Defaults to the
  * root file path.
- * @param {string[]} [includedTeX=[]] - An array to store the paths of included
- * TeX files.
  * @returns {string[]} - An array of paths to included TeX files.
  */
-function getIncludedTeX(filePath?: string, includedTeX: string[] = []): string[] {
+function getIncludedTeX(filePath?: string): Set<string> {
+    const includedTeX = new Set<string>()
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
-        return []
+        return new Set()
     }
     const fileCache = get(filePath)
-    includedTeX.push(filePath)
     if (fileCache === undefined) {
-        return Array.from(new Set(includedTeX))
+        return includedTeX
     }
+    includedTeX.add(filePath)
     for (const child of fileCache.children) {
-        if (includedTeX.includes(child.filePath)) {
+        if (includedTeX.has(child.filePath)) {
             // Already included
             continue
         }
-        getIncludedTeX(child.filePath, includedTeX)
+        getIncludedTeX(child.filePath).forEach(texFile => includedTeX.add(texFile))
     }
-    return Array.from(new Set(includedTeX))
+    return includedTeX
 }
 
 /**
