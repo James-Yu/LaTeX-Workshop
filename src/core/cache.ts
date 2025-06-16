@@ -805,36 +805,30 @@ function getIncludedGlossaryBib(filePath?: string): string[] {
  * This function recursively gathers all TeX files included in a specified file,
  * starting from the provided file path or the root file path if none is
  * specified. It uses a depth-first search approach to traverse the file
- * dependencies and caches the results to avoid redundant processing. If the
- * `cachedOnly` flag is set, it considers only cached files.
+ * dependencies and caches the results to avoid redundant processing.
  *
  * @param {string} [filePath] - The path to the starting file. Defaults to the
  * root file path.
- * @param {boolean} [cachedOnly=true] - A flag indicating whether to consider
- * only cached files.
  * @param {string[]} [includedTeX=[]] - An array to store the paths of included
  * TeX files.
  * @returns {string[]} - An array of paths to included TeX files.
  */
-function getIncludedTeX(filePath?: string, cachedOnly: boolean = true, includedTeX: string[] = []): string[] {
+function getIncludedTeX(filePath?: string, includedTeX: string[] = []): string[] {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
         return []
     }
     const fileCache = get(filePath)
-    if (cachedOnly && fileCache === undefined) {
-        return []
-    }
     includedTeX.push(filePath)
     if (fileCache === undefined) {
-        return []
+        return Array.from(new Set(includedTeX))
     }
     for (const child of fileCache.children) {
         if (includedTeX.includes(child.filePath)) {
             // Already included
             continue
         }
-        getIncludedTeX(child.filePath, cachedOnly, includedTeX)
+        getIncludedTeX(child.filePath, includedTeX)
     }
     return Array.from(new Set(includedTeX))
 }
