@@ -70,7 +70,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (!lw.constant.FILE_URI_SCHEMES.includes(e.uri.scheme)){
             return
         }
-        if (lw.file.hasLaTeXLangId(e.languageId) ||
+        if (lw.file.hasLaTeXLangId(e.languageId) || lw.file.hasLaTeXClassPackageLangId(e.languageId) ||
             lw.cache.getIncludedTeX(lw.root.file.path).has(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
