@@ -19,6 +19,7 @@ export const file = {
     hasBinaryExt,
     hasTeXExt,
     hasLaTeXLangId,
+    hasLaTeXClassPackageLangId,
     hasTeXLangId,
     hasBibLangId,
     hasDtxLangId,
@@ -152,7 +153,18 @@ function hasBinaryExt(extname: string): boolean {
  * language identifiers, otherwise `false`.
  */
 function hasLaTeXLangId(langId: string): boolean {
-    return ['latex', 'context', 'latex-expl3', 'doctex', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+}
+
+/**
+ * Determines if the given language ID corresponds to a LaTeX class or package.
+ *
+ * @param {string} langId - The language identifier to check.
+ * @returns {boolean} Returns `true` if `langId` is one of the LaTeX class or package
+ * language identifiers, otherwise `false`.
+ */
+function hasLaTeXClassPackageLangId(langId: string): boolean {
+    return ['latex-class', 'latex-package'].includes(langId)
 }
 
 /**
@@ -163,11 +175,11 @@ function hasLaTeXLangId(langId: string): boolean {
  * language identifiers, otherwise `false`.
  */
 function hasTeXLangId(langId: string): boolean {
-    return ['tex', 'latex-class', 'latex-package', 'doctex-installer'].includes(langId)
+    return ['tex', 'doctex-installer'].includes(langId)
 }
 
 /**
- * Returns `true` if the language id is 'bibtex'.
+ * Returns `true` if the language ID is 'bibtex'.
  *
  * @param {string} langId - The language identifier.
  * @returns {boolean} - Indicates whether the language is BibTeX.
@@ -177,7 +189,7 @@ function hasBibLangId(langId: string): boolean {
 }
 
 /**
- * Returns `true` if the language id is 'doctex'.
+ * Returns `true` if the language ID is 'doctex'.
  *
  * @param {string} langId - The language identifier.
  * @returns {boolean} - Indicates whether the language is Doctex.
@@ -187,7 +199,7 @@ function hasDtxLangId(langId: string): boolean {
 }
 
 function hasLaTeXWorkshopLangId(langId: string): boolean {
-    return hasLaTeXLangId(langId) || hasTeXLangId(langId) || hasBibLangId(langId) || hasDtxLangId(langId)
+    return hasLaTeXLangId(langId) || hasLaTeXClassPackageLangId(langId) || hasTeXLangId(langId) || hasBibLangId(langId) || hasDtxLangId(langId)
 }
 /**
  * An object that stores the output and auxiliary directories for TeX files.

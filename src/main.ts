@@ -70,12 +70,18 @@ export function activate(extensionContext: vscode.ExtensionContext) {
         if (!lw.constant.FILE_URI_SCHEMES.includes(e.uri.scheme)){
             return
         }
-        if (lw.file.hasLaTeXLangId(e.languageId) ||
+        if (lw.file.hasLaTeXLangId(e.languageId) || lw.file.hasLaTeXClassPackageLangId(e.languageId) ||
             lw.cache.getIncludedTeX(lw.root.file.path).has(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()
-            void lw.compile.autoBuild(e.fileName, 'onSave')
+            if (lw.compile.isFileExcludedFromBuildOnSave(e.fileName)) {
+                logger.log(`File ${e.fileName} is excluded from build-on-save due to configuration.`)
+            } else {
+                void lw.compile.autoBuild(e.fileName, 'onSave')
+            }
+        }
+        if (lw.file.hasLaTeXLangId(e.languageId)) {
             lw.extra.count(e.fileName)
         }
         // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
@@ -103,21 +109,23 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
 
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId) && e.document.fileName !== lw.previousActive?.document.fileName) {
-            await lw.root.find()
-            lw.lint.latex.root()
-        } else if (!e || !lw.file.hasBibLangId(e.document.languageId)) {
-            isLaTeXActive = false
-        }
-
-        if (e && lw.file.hasLaTeXLangId(e.document.languageId)) {
-            lw.previousActive = e
-        }
-
         if (e && (
             lw.file.hasLaTeXLangId(e.document.languageId)
             || lw.file.hasBibLangId(e.document.languageId)
-            || lw.file.hasDtxLangId(e.document.languageId))) {
+            || lw.file.hasLaTeXClassPackageLangId(e.document.languageId) )) {
+            if (!lw.file.hasBibLangId(e.document.languageId) && (e.document.fileName !== lw.previousActive?.document.fileName)) {
+                await lw.root.find()
+                lw.lint.latex.root()
+            }
+            lw.previousActive = e
+        } else {
+            isLaTeXActive = false
+            return
+        }
+
+        if ( lw.file.hasLaTeXLangId(e.document.languageId)
+            || lw.file.hasBibLangId(e.document.languageId)
+            || lw.file.hasDtxLangId(e.document.languageId)) {
             void lw.outline.refresh()
         }
     }))
@@ -241,7 +249,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     // According to cmhughes/latexindent.pl, it aims to beautify .tex, .sty and .cls files.
     const latexindentSelector = selectDocumentsWithId(['tex', 'latex', 'latex-expl3', 'latex-class', 'latex-package'])
-    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'biblatex', 'context'])
+    const latexSymbolSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'context'])
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'biblatex', 'context', 'doctex', 'doctex-installer'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
@@ -260,9 +268,9 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     )
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerHoverProvider(latexSelector, lw.preview.provider),
-        vscode.languages.registerDefinitionProvider(latexSelector, lw.language.definition),
-        vscode.languages.registerDocumentSymbolProvider(latexSelector, lw.language.docSymbol),
+        vscode.languages.registerHoverProvider(latexSymbolSelector, lw.preview.provider),
+        vscode.languages.registerDefinitionProvider(latexSymbolSelector, lw.language.definition),
+        vscode.languages.registerDocumentSymbolProvider(latexSymbolSelector, lw.language.docSymbol),
         vscode.languages.registerDocumentSymbolProvider(bibtexSelector, lw.language.docSymbol),
         vscode.languages.registerDocumentSymbolProvider(selectDocumentsWithId(['doctex']), lw.language.docSymbol),
         vscode.languages.registerWorkspaceSymbolProvider(lw.language.projectSymbol)
@@ -311,8 +319,8 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     })
 
     extensionContext.subscriptions.push(
-        vscode.languages.registerCodeActionsProvider(latexSelector, lw.lint.latex.actionprovider),
-        vscode.languages.registerFoldingRangeProvider(latexSelector, lw.language.folding),
+        vscode.languages.registerCodeActionsProvider(latexSymbolSelector, lw.lint.latex.actionprovider),
+        vscode.languages.registerFoldingRangeProvider(latexSymbolSelector, lw.language.folding),
         vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding),
         vscode.languages.registerFoldingRangeProvider(latexDoctexSelector, lw.language.doctexFolding)
     )
