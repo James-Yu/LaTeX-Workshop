@@ -76,7 +76,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             lw.lint.latex.root()
             if (lw.compile.isFileExcludedFromBuildOnSave(e.fileName)) {
-                logger.log(`File ${file} is excluded from build-on-save due to configuration.`)
+                logger.log(`File ${e.fileName} is excluded from build-on-save due to configuration.`)
             } else {
                 void lw.compile.autoBuild(e.fileName, 'onSave')
             }
