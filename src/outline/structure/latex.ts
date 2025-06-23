@@ -167,7 +167,7 @@ async function parseNode(
             label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}`,
             ...attributes
         }
-    } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'loadglsentries', 'markdownInput'].includes(node.content)) {
+    } else if (node.type === 'macro' && ['input', 'InputIfFileExists', 'include', 'SweaveInput', 'subfile', 'subfileinclude', 'loadglsentries', 'markdownInput'].includes(node.content)) {
         const arg0 = sanitizeInputFilePath(argContentToStr(node.args?.[0]?.content || []))
         const subFile = await resolveFile([ path.dirname(filePath), path.dirname(lw.root.file.path || ''), ...config.texDirs ], arg0)
         if (subFile) {

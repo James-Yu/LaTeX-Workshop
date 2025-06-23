@@ -17,7 +17,7 @@ interface MatchPath {
 }
 
 export class InputFileRegExp {
-    private readonly inputReg = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|loadglsentries|markdownInput|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
+    private readonly inputReg = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|subfileinclude|loadglsentries|markdownInput|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
     private readonly childReg = /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
 
     /**

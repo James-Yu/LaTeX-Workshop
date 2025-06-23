@@ -10,7 +10,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     private async onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): Promise<string | undefined> {
         const line = document.lineAt(position.line).text
         const escapedToken = utils.escapeRegExp(token)
-        const regexInput = new RegExp(`\\\\(?:include|input|subfile)\\{${escapedToken}\\}`)
+        const regexInput = new RegExp(`\\\\(?:include|input|subfile|subfileinclude)\\{${escapedToken}\\}`)
         const regexImport = new RegExp(`\\\\(?:sub)?(?:import|includefrom|inputfrom)\\*?\\{([^\\}]*)\\}\\{${escapedToken}\\}`)
         const regexDocumentclass = new RegExp(`\\\\(?:documentclass)(?:\\[[^[]]*\\])?\\{${escapedToken}\\}`)
 

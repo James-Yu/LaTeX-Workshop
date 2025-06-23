@@ -6,6 +6,7 @@ const MACROS: MacroInfoRecord = {
     InputIfFileExists: { signature: 'm' },
     SweaveInput: { signature: 'm' },
     subfile: { signature: 'm' },
+    subfileinclude: { signature: 'm' },
     loadglsentries: { signature: 'm' },
     markdownInput: { signature: 'm' },
     // \import{sections/}{some-file}
