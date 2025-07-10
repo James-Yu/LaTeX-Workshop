@@ -15,6 +15,9 @@ export function mathjaxify(tex: string, envname: string, opt = { stripLabel: tru
     if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
         s = '\\begin{equation}' + s + '\\end{equation}'
     }
+    if (envname.match(/^subeqnarray\*?$/)) {
+        s = s.replace(/\\(begin|end){subeqnarray\*?}/g, '\\$1{eqnarray}')
+    }
     // #4528
     s = s.replace(/\\llbracket(?!\w)/g, '\\left[\\!\\left[')
          .replace(/\\rrbracket(?!\w)/g, '\\right]\\!\\right]')
