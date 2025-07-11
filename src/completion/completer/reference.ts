@@ -152,7 +152,8 @@ function parseAst(node: Ast.Node, nodeStack: Ast.Node[], filePath: string, lines
     if (node.type === 'macro' && labelMacros.includes(node.content)) {
         label = argContentToStr(node.args?.[2]?.content || [])
     } else if (node.type === 'environment') {
-        label = argContentToStr(node.args?.[1]?.content || [])
+        // We are looking for \begin{env}{some args}[label= ] or \begin{env}[label= ]
+        label = argContentToStr(node.args?.[1]?.content || node.args?.[0]?.content || [])
         const index = label.indexOf('label=')
         if (index >= 0) {
             label = label.slice(index + 6)
