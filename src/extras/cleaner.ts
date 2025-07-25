@@ -130,6 +130,7 @@ async function cleanGlob(rootFile: string): Promise<void> {
             }
         } catch (err) {
             logger.logError(`Failed cleaning path ${realPath} .`, err)
+            logger.refreshStatus('x', 'errorForeground', `Cleaning failed: ${err}`, 'error')
         }
     }
 
@@ -171,6 +172,7 @@ function cleanCommand(rootFile: string): Promise<void> {
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 logger.logError('The clean command failed.', exitCode, stderr)
+                logger.refreshStatus('x', 'errorForeground', `Cleaning failed: ${stderr}`, 'error')
             }
             resolve()
         })
