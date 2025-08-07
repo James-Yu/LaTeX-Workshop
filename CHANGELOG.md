@@ -1,5 +1,20 @@
 # Change Log
 
+## [10.10.1] - 2025-08-07
+
+### Fixed
+- (#4602,#4605) A new configuration variable is added `latex.autoBuild.onSave.files.ignore` to list which file extension should not trigger a build.
+  - The default is to ignore `.sty` and `.cls`.
+  - Saving a `.tex` with `latex` id or a bib file triggers a build if build on save is set.
+- (#4605) Make `langid` of `doctex` LaTeX rather than TeX.
+- (#4609) Enable completion for new language IDs `latex-class`, `latex-package`, `doctex-installer`
+- (#4610) Activate keybindings for new language IDs.
+- (#4617) Add `subfileinclude` parsing aside `subfile`.
+- (#4626) Path `\wsl` is not recognized by compile-on-save and synctex.
+- (#4630) Improve catching `label=` in environment args.
+- (#4632). Treat `subeqnarray` as `eqnarray`.
+- (#4636). Show an error message box when cleaning fails.
+
 ## [10.10.0] - 2025-06-03
 
 ### Added
