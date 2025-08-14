@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.10.2] - 2025-08-14
+
+### Fixed
+- [#4642] `enumitem` package labels considered duplicate.
+
 ## [10.10.1] - 2025-08-07
 
 ### Fixed
