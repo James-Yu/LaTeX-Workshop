@@ -20,7 +20,7 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
         } else if (program === 'tex-fmt') {
             return texfmt
         } else if (program === 'none') {
-            errorMsg = 'LaTeX formatter is set to "none" by `formatting.latex`.'
+            errorMsg = 'Please set your LaTeX formatter in `latex-workshop.formatting.latex`.'
         } else {
             errorMsg = `Unknown LaTeX formatter by \`formatting.latex\`: ${program} .`
         }
