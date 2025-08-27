@@ -74,6 +74,7 @@ function stringify(ast: Ast.Ast): string {
 // https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
+const latexIntErrPattern = /^! Internal error: /gm
 const latexXeNoOutputPattern = /^No pages of output.$/gm
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
@@ -115,7 +116,7 @@ function log(msg: string, rootFile?: string): boolean {
     } else if (msg.match(texifyPattern)) {
         msg = trimTexify(msg)
     }
-    if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexXeNoOutputPattern)) {
+    if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexIntErrPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)
         latexLogParser.showLog()
     } else if (latexmkSkipped(msg)) {
