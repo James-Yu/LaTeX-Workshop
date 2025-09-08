@@ -45,7 +45,7 @@ jobs:
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
         [ -d /Users/runner/texlive/bin/x86_64-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/x86_64-darwin/latexindent && chmod +x /Users/runner/texlive/bin/x86_64-darwin/latexindent || [ -d /Users/runner/texlive/bin/universal-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/universal-darwin/latexindent && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: '18'
     - run: |
