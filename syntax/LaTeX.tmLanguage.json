@@ -908,8 +908,8 @@
             ]
         },
         {
-            "begin": "\\s*\\\\begin\\{(?:luacode)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
-            "end": "\\s*\\\\end\\{(?:luacode)\\*?\\}",
+            "begin": "\\s*\\\\begin\\{(?:luacode|luadraw)\\*?\\}(?:\\[[a-zA-Z0-9_-]*\\])?(?=\\[|\\{|\\s*$)",
+            "end": "\\s*\\\\end\\{(?:luacode|luadraw)\\*?\\}",
             "captures": {
                 "0": {
                     "patterns": [
@@ -940,7 +940,7 @@
                 },
                 {
                     "begin": "^(?=\\s*)",
-                    "end": "^\\s*(?=\\\\end\\{(?:luacode)\\*?\\})",
+                    "end": "^\\s*(?=\\\\end\\{(?:luacode|luadraw)\\*?\\})",
                     "contentName": "source.lua",
                     "patterns": [
                         {
@@ -3720,6 +3720,9 @@
             "patterns": [
                 {
                     "include": "source.lua"
+                },
+                {
+                    "include": "text.tex#braces"
                 }
             ]
         },
