@@ -4,6 +4,7 @@ import { lw } from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 export interface IParser {
+    clearLog(): void,
     showLog(): void,
     parse(log: string, rootFile?: string): LogEntry[]
 }

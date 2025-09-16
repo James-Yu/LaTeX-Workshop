@@ -15,8 +15,13 @@ const biberDiagnostics = vscode.languages.createDiagnosticCollection('Biber')
 const buildLog: LogEntry[] = []
 
 export const biberLogParser: IParser = {
+    clearLog,
     showLog,
     parse
+}
+
+function clearLog() {
+    biberDiagnostics.clear()
 }
 
 function showLog() {

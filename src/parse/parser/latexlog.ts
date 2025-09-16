@@ -36,8 +36,13 @@ const texDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
 const buildLog: LogEntry[] = []
 
 export const latexLogParser: IParser = {
+    clearLog,
     showLog,
     parse
+}
+
+function clearLog() {
+    texDiagnostics.clear()
 }
 
 function showLog() {

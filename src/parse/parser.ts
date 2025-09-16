@@ -17,6 +17,7 @@ const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 
 export const parser = {
     bib,
+    clearLog,
     log,
     tex,
     args,
@@ -179,4 +180,11 @@ function latexmkSkipped(msg: string): boolean {
         return true
     }
     return false
+}
+
+function clearLog() {
+    // Clear all diagnostics messages
+    biberLogParser.clearLog()
+    bibtexLogParser.clearLog()
+    latexLogParser.clearLog()
 }

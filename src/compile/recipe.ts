@@ -84,6 +84,8 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
                             tool.args?.includes('-f'))) {
         lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
     }
+    // Clear all logs before starting
+    lw.parser.parse.clearLog()
     // Execute the build loop
     await buildLoop()
 }

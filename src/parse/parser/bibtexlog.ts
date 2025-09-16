@@ -17,8 +17,13 @@ const bibDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 const buildLog: LogEntry[] = []
 
 export const bibtexLogParser: IParser = {
+    clearLog,
     showLog,
     parse
+}
+
+function clearLog() {
+    bibDiagnostics.clear()
 }
 
 function showLog() {
