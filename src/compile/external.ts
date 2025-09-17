@@ -39,7 +39,5 @@ export async function build(command: string, args: string[], pwd: string, buildL
 
     lw.compile.compiledPDFPath = rootFile ? lw.file.getPdfPath(rootFile) : ''
     // Clear all logs before starting
-    lw.parser.parse.clearLog()
-    // Execute the build loop
     await buildLoop()
 }
