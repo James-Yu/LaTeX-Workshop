@@ -164,6 +164,8 @@ async function buildLoop() {
         return
     }
 
+    // Clear all logs before starting
+    lw.parser.parse.clearLog()
     isBuilding = true
     lw.compile.compiledPDFWriting++
     // Stop watching the PDF file to avoid reloading the PDF viewer twice.
