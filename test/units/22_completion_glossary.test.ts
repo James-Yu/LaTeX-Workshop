@@ -112,7 +112,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         const bibFile = 'glossary.bib'
         const bibPath = get.path(fixture, bibFile)
 
-        it('should parse the bib file', async () => {
+        it('should parse the bib file given by \\GlsXtrLoadResources', async () => {
             readStub.withArgs(texPath).resolves(`\\GlsXtrLoadResources[src={${bibFile}}]`)
             await lw.cache.refreshCache(texPath)
             sinon.restore()
@@ -127,7 +127,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(suggestions.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
         })
 
-        it('should parse the bib file', async () => {
+        it('should parse the bib file given by \\glsbibdata', async () => {
             readStub.withArgs(texPath).resolves(`\\glsbibdata{${bibFile}}`)
             await lw.cache.refreshCache(texPath)
             sinon.restore()
