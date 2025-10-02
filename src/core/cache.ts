@@ -523,7 +523,7 @@ async function updateBibfiles(fileCache: FileCache) {
 /**
  * Updates the glossary files associated with a given file cache.
  *
- * This function parses the content of a file cache to find `\GlsXtrLoadResources``
+ * This function parses the content of a file cache to find `\GlsXtrLoadResources` and `\glsbibdata`
  * using a regular expression. It extracts the  file paths specified in these
  * macros, resolves their full paths, and adds them to the set of glossary
  * files in the file cache. If a glossary file is not excluded, it logs the
@@ -534,7 +534,7 @@ async function updateBibfiles(fileCache: FileCache) {
  * bibliography files.
  */
 async function updateGlossaryBibFiles(fileCache: FileCache) {
-    const glossaryReg = /\\GlsXtrLoadResources\s*\[.*?src=\{([^}]+)\}.*?\]/gs
+    const glossaryReg = /(?:\\GlsXtrLoadResources\s*\[.*?src=\{([^}]+)\}.*?\])|(?:\\glsbibdata(?:\[[^\]]*\])?\{([^}]*)\})/gs
 
     let result: RegExpExecArray | null
     while ((result = glossaryReg.exec(fileCache.contentTrimmed)) !== null) {

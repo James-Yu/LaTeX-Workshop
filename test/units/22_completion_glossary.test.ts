@@ -126,5 +126,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(suggestions.find(item => item.label === 'wellesley' && item.detail?.includes('\\sortname{Arthur}{Wellesley}')))
             assert.ok(suggestions.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
         })
+
+        it('should parse the bib file', async () => {
+            readStub.withArgs(texPath).resolves(`\\glsbibdata{${bibFile}}`)
+            await lw.cache.refreshCache(texPath)
+            sinon.restore()
+
+            await glossary.parseBibFile(bibPath)
+
+            const suggestions = getSuggestions()
+            assert.ok(suggestions.find(item => item.label === 'fs' && item.detail?.includes('\\ensuremath{f_s}')))
+            assert.ok(suggestions.find(item => item.label === 'theta' && item.detail?.includes('\\ensuremath{\\theta}')))
+            assert.ok(suggestions.find(item => item.label === 'caesar' && item.detail?.includes('\\sortname{Gaius Julius}{Caesar}')))
+            assert.ok(suggestions.find(item => item.label === 'wellesley' && item.detail?.includes('\\sortname{Arthur}{Wellesley}')))
+            assert.ok(suggestions.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
+        })
     })
 })
