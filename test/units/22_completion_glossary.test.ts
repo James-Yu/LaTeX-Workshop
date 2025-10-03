@@ -13,14 +13,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     before(() => {
         mock.init(lw, 'root', 'cache', 'parser', 'completion')
-        readStub = sinon.stub(lw.file, 'read')
     })
 
     beforeEach(() => {
+        readStub = sinon.stub(lw.file, 'read')
         set.root(texPath)
     })
 
-    after(() => {
+    afterEach(() => {
         sinon.restore()
     })
 
@@ -112,8 +112,23 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         const bibFile = 'glossary.bib'
         const bibPath = get.path(fixture, bibFile)
 
-        it('should parse the bib file', async () => {
+        it('should parse the bib file given by \\GlsXtrLoadResources', async () => {
             readStub.withArgs(texPath).resolves(`\\GlsXtrLoadResources[src={${bibFile}}]`)
+            await lw.cache.refreshCache(texPath)
+            sinon.restore()
+
+            await glossary.parseBibFile(bibPath)
+
+            const suggestions = getSuggestions()
+            assert.ok(suggestions.find(item => item.label === 'fs' && item.detail?.includes('\\ensuremath{f_s}')))
+            assert.ok(suggestions.find(item => item.label === 'theta' && item.detail?.includes('\\ensuremath{\\theta}')))
+            assert.ok(suggestions.find(item => item.label === 'caesar' && item.detail?.includes('\\sortname{Gaius Julius}{Caesar}')))
+            assert.ok(suggestions.find(item => item.label === 'wellesley' && item.detail?.includes('\\sortname{Arthur}{Wellesley}')))
+            assert.ok(suggestions.find(item => item.label === 'wellington' && item.detail?.includes('Wellington')))
+        })
+
+        it('should parse the bib file given by \\glsbibdata', async () => {
+            readStub.withArgs(texPath).resolves(`\\glsbibdata{${bibFile}}`)
             await lw.cache.refreshCache(texPath)
             sinon.restore()
 
