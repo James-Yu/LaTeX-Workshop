@@ -13,14 +13,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     before(() => {
         mock.init(lw, 'root', 'cache', 'parser', 'completion')
-        readStub = sinon.stub(lw.file, 'read')
     })
 
     beforeEach(() => {
+        readStub = sinon.stub(lw.file, 'read')
         set.root(texPath)
     })
 
-    after(() => {
+    afterEach(() => {
         sinon.restore()
     })
 
