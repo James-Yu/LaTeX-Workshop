@@ -151,9 +151,10 @@ function parseAst(node: Ast.Node, nodeStack: Ast.Node[], filePath: string, lines
     let label = ''
     if (node.type === 'macro' && labelMacros.includes(node.content)) {
         label = argContentToStr(node.args?.[2]?.content || [])
-    } else if (node.type === 'environment' && !['enumerate'].includes(node.env)) {
+    } else if (node.type === 'environment' && !['enumerate', 'itemize'].includes(node.env)) {
         // #4630 We are looking for \begin{env}{some args}[label= ] or \begin{env}[label= ]
         // #4642 But \begin{enumerate}[label={(\arabic*)}] from `enumitem` should not be considered
+        // #4687 But \begin{itemize}[label=$\star$] from `enumitem` should not be considered
         label = argContentToStr(node.args?.[1]?.content || node.args?.[0]?.content || [])
         const index = label.indexOf('label=')
         if (index >= 0) {
