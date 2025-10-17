@@ -14845,6 +14845,42 @@ function onWheel(evt) {
       }
       this.updateZoom(ticks, null, origin);
     }
+    return;
+  }
+
+  // Minimal page-turn-on-wheel behavior: 
+  // If there is remaining content to scroll in the wheel direction, let native scrolling occur, otherwise turn page.
+  if (pdfViewer.scrollMode === ScrollMode.PAGE) {
+    const container = pdfViewer.container;
+    if (!container) {
+      return;
+    }
+
+    const absX = Math.abs(evt.deltaX || 0);
+    const absY = Math.abs(evt.deltaY || 0);
+    const useHorizontal = absX > absY || (evt.shiftKey && absY > 0);
+
+    let goNext = false;
+    if (useHorizontal) {
+      const goingRight = (evt.deltaX || (evt.shiftKey ? evt.deltaY : 0)) > 0;
+      if (container.scrollWidth > container.clientWidth + 1) {
+        return; // allow native horizontal scrolling
+      }
+      goNext = goingRight; // right => next, left => previous
+    } else {
+      const goingDown = (evt.deltaY || 0) > 0;
+      if (container.scrollHeight > container.clientHeight + 1) {
+        return; // allow native vertical scrolling
+      }
+      goNext = goingDown; // down => next, up => previous
+    }
+
+    evt.preventDefault();
+    if (goNext) {
+      pdfViewer.nextPage();
+    } else {
+      pdfViewer.previousPage();
+    }
   }
 }
 function closeSecondaryToolbar(evt) {
