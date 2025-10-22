@@ -92,6 +92,9 @@ function bibtexSortSwitch(a: BibtexEntry, b: BibtexEntry, duplicates: Set<bibtex
             case 'type':
                 r = bibtexSortByType(a, b)
                 break
+            case 'month':
+                r = bibtexSortByMonth(a, b, config)
+                break
             default:
                 r = bibtexSortByField(key, a, b, config)
         }
@@ -137,29 +140,8 @@ function bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: Bibte
  * @param fieldName which field name to sort by
  */
 function bibtexSortByField(fieldName: string, a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
-    let fieldA: string = ''
-    let fieldB: string = ''
-
-    if (bibtexParser.isEntry(a)) {
-        for(let i = 0; i < a.content.length; i++) {
-            if (a.content[i].name === fieldName) {
-                fieldA = fieldToString(a.content[i].value, '', config)
-                break
-            }
-        }
-    }
-    if (bibtexParser.isEntry(b)) {
-        for(let i = 0; i < b.content.length; i++) {
-            if (b.content[i].name === fieldName) {
-                fieldB = fieldToString(b.content[i].value, '', config)
-                break
-            }
-        }
-    }
-
-    // Remove braces to sort properly
-    fieldA = fieldA.replace(/{|}/g, '')
-    fieldB = fieldB.replace(/{|}/g, '')
+    const fieldA = getFieldString(a, fieldName, config).replace(/{|}/g, '')
+    const fieldB = getFieldString(b, fieldName, config).replace(/{|}/g, '')
 
     return fieldA.localeCompare(fieldB)
 }
@@ -186,6 +168,11 @@ function bibtexSortByKey(a: BibtexEntry, b: BibtexEntry): number {
 
 function bibtexSortByType(a: BibtexEntry, b: BibtexEntry): number {
     return a.entryType.localeCompare(b.entryType)
+}
+
+function bibtexSortByMonth(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatConfig): number {
+    const monthOrder = [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
+    return monthOrder.indexOf(getFieldString(a, 'month', config).toLowerCase()) - monthOrder.indexOf(getFieldString(b, 'month', config).toLowerCase())
 }
 
 /**
@@ -230,6 +217,20 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
     s += '\n}'
 
     return s
+}
+
+/**
+ * Return the string value of a named field for an entry, or empty string if not present.
+ */
+function getFieldString(entry: BibtexEntry, fieldName: string, config: BibtexFormatConfig): string {
+    if (bibtexParser.isEntry(entry)) {
+        for (let i = 0; i < entry.content.length; i++) {
+            if (entry.content[i].name === fieldName) {
+                return fieldToString(entry.content[i].value, '', config)
+            }
+        }
+    }
+    return ''
 }
 
 /**
