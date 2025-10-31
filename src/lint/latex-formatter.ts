@@ -3,6 +3,7 @@ import { lw } from '../lw'
 import { LaTeXFormatter } from '../types'
 import { latexindent } from './latex-formatter/latexindent'
 import { texfmt } from './latex-formatter/tex-fmt'
+import { fixQuotes } from '../extras/quote-fixer'
 
 const logger = lw.log('Format', 'LaTeX')
 
@@ -31,16 +32,18 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
 
     public async provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): Promise<vscode.TextEdit[]> {
         const edit = await this.formatter?.formatDocument(document)
-        if (edit === undefined) {
+        const finalEdit = fixQuotes(document, undefined, edit)
+        if (finalEdit === undefined) {
             return []
         }
-        return [ edit ]
+        return [finalEdit]
     }
 
     public async provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): Promise<vscode.TextEdit[]> {
         const edit = await this.formatter?.formatDocument(document, range)
         if (edit === undefined) {
-            return []
+            const fixedQuoteEdit = fixQuotes(document, range, undefined)
+            return fixedQuoteEdit ? [fixedQuoteEdit] : []
         }
         const useSpaces = vscode.window.activeTextEditor?.options.insertSpaces ?? true
         const firstLine = document.lineAt(range.start.line)
@@ -52,7 +55,11 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
             // In this case, the first line need some leading whitespaces.
             edit.newText = ' '.repeat(firstLine.firstNonWhitespaceCharacterIndex - range.start.character) + edit.newText
         }
-        return [ edit ]
+        const finalEdit = fixQuotes(document, range, edit)
+        if (finalEdit === undefined) {
+            return []
+        }
+        return [finalEdit]
     }
 }
 
