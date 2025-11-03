@@ -1,5 +1,29 @@
 # Change Log
 
+## [10.11.0] - 2025-11-03
+
+### Added
+- Update PDF.js to v5.4.394.
+- Sort month bibtex entry by context.
+- [#4662] Add macro for double vertical bar.
+- [#4691] Add automatic LaTeX quote normalization.
+
+### Changed
+- [#4685] Make `intellisense.triggers.latex` fully customizable: default `\` `,` `{` `}` triggers can be disabled.
+
+### Fixed
+- Update documentation of `latex.extraExts`.
+- Prevent `\@ifnextchar{` to be considered as a starting pair.
+- Fix trailing underscore issue with bracket pair colorizer.
+- [#4649] Never control the invert css of PDF toolbar or viewer scrollbar.
+- [#4654] Tweak `none` LaTeX formatter notification.
+- [#4658] `! Internal error:` indicates LaTeX log.
+- [#4672] Specify the embedded languages each time a grammar is listed in contributes.grammars.
+- [#4673] Reset all diagnostics (`biber`, `bibtex` and `latex`) when starting a new recipe or external command.
+- [#4679] Parse glossary bib file defined by `\glsbibdata`.
+- [#4684] Hover on `\RequirePackage`.
+- [#4687] Ignore `label=` inside `itemize`.
+
 ## [10.10.2] - 2025-08-14
 
 ### Fixed
