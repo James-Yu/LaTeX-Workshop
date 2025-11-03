@@ -322,7 +322,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const stub = mock.textDocument(texPath, '', { isDirty: true })
             lw.cache.refreshCacheAggressive(texPath)
-            await sleep(150)
+            await sleep(250)
             stub.restore()
             assert.hasLog('Parsing .fls ')
         })
