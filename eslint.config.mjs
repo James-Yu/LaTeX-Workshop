@@ -22,6 +22,7 @@ export default [{
         "**/out",
         "**/node_modules",
         "viewer/viewer.mjs",
+        "viewer/wasm/*.js",
         "**/.idea/",
         "**/__pycache__/",
         "**/.mypy_cache/",
