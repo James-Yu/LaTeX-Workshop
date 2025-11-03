@@ -60,6 +60,7 @@ async function initialization() {
             workerPort: worker,
             workerSrc: './build/pdf.worker.mjs',
             forcePageColors: true,
+            viewerCssTheme: 1,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)
