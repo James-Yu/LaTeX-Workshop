@@ -47,7 +47,6 @@ async function initialization() {
     document.title = utils.parseURL().docTitle
 
     const params = await utils.getParams()
-    const worker = new Worker('build/pdf.worker.mjs', { type: 'module' })
     document.addEventListener('webviewerloaded', () => {
         const color = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark : params.color.light
         const options = {
@@ -57,10 +56,7 @@ async function initialization() {
             cMapUrl: '../cmaps/',
             sidebarViewOnLoad: 0,
             standardFontDataUrl: '../standard_fonts/',
-            workerPort: worker,
             workerSrc: './build/pdf.worker.mjs',
-            forcePageColors: true,
-            viewerCssTheme: 1,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)
