@@ -53,9 +53,9 @@ async function initialization() {
             annotationEditorMode: -1,
             disablePreferences: true,
             enableScripting: false,
-            cMapUrl: '../cmaps/',
+            cMapUrl: './cmaps/',
             sidebarViewOnLoad: 0,
-            standardFontDataUrl: '../standard_fonts/',
+            standardFontDataUrl: './standard_fonts/',
             workerSrc: './build/pdf.worker.mjs',
             ...color
         }
