@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.11.2] - 2025-11-04
+
+## Fixed
+- [#4700,#4705] PDFs remain in dark mode in the PDF viewer when OS theme is dark.
+
 ## [10.11.1] - 2025-11-04
 
 ### Fixed
