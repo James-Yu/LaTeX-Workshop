@@ -7,7 +7,7 @@ const logger = lw.log('Citations', 'Linter')
 
 export function checkCitations() {
   logger.log('Checking citations.')
-  const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(lw.root.file.path!))
+  const configuration = vscode.workspace.getConfiguration('latex-workshop')
   const aux = lw.root.file.path?.replace(/\.tex$/, '.aux')
   const auxDir = path.join(path.dirname(aux || ''),path.normalize(configuration.get('latex.outDir') as string))
   const auxBaseName = aux ? path.basename(aux) : ''
