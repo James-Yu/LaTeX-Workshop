@@ -55,7 +55,6 @@ export function uploadState() {
 export async function setParams() {
     const params = await utils.getParams()
 
-    const viewer = document.querySelector('#viewer') as HTMLHtmlElement
     const viewerContainer = document.querySelector('#viewerContainer') as HTMLHtmlElement
     const thumbnailView = document.querySelector('#thumbnailView') as HTMLHtmlElement
     const sidebarContent = document.querySelector('#sidebarContent') as HTMLHtmlElement
@@ -82,7 +81,7 @@ export async function setParams() {
     if (params.invertMode.enabled) {
         const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-        viewer.style.filter = filter
+        viewerContainer.style.filter = filter
         thumbnailView.style.filter = filter
         sidebarContent.style.background = 'var(--body-bg-color)'
     }
