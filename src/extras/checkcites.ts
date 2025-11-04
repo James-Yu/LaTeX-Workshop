@@ -7,11 +7,18 @@ const logger = lw.log('Citations', 'Linter')
 
 export function checkCitations() {
   logger.log('Checking citations.')
-  const configuration = vscode.workspace.getConfiguration('latex-workshop')
-  const aux = lw.root.file.path?.replace(/\.tex$/, '.aux')
-  const auxDir = path.join(path.dirname(aux || ''),path.normalize(configuration.get('latex.outDir') as string))
-  const auxBaseName = aux ? path.basename(aux) : ''
-  const auxFile = aux ? path.join(auxDir, auxBaseName) : undefined
+  const rootPath = lw.root.file.path
+  if (!rootPath) {
+    logger.log('No root file found.')
+    return []
+  }
+  const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootPath))
+
+  const aux = rootPath.replace(/\.tex$/, '.aux')
+  const outDir = configuration.get<string>('latex.outDir', '')
+  const auxDir = path.join(path.dirname(aux), path.normalize(outDir))
+  const auxBaseName = path.basename(aux)
+  const auxFile = path.join(auxDir, auxBaseName)
   if (!auxFile) {
     logger.log('No aux file found.')
     return []
