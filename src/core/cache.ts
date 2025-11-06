@@ -699,13 +699,14 @@ function parseFlsContent(content: string, rootDir: string): {input: string[], ou
  */
 async function parseAuxFile(filePath: string, srcDir: string) {
     const content = await lw.file.read(filePath) ?? ''
-    const regex = /^\\bibdata{(.*)}$/gm
-    while (true) {
-        const result = regex.exec(content)
-        if (!result) {
-            return
+    const regex = /^\\bibdata\{([^}]*)\}/gm
+    let result: RegExpExecArray | null
+    while ((result = regex.exec(content)) !== null) {
+        const bibs = (result[1] ?? '').split(',').map(b => b.trim()).filter(b => b.length > 0)
+        if (bibs.length === 0) {
+            logger.log(`Empty \\bibdata in .aux ${filePath} , skip.`)
+            continue
         }
-        const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => { return bib.trim() })
         for (const bib of bibs) {
             const bibPaths = await lw.file.getBibPath(bib, srcDir)
             for (const bibPath of bibPaths) {
