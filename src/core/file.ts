@@ -153,7 +153,7 @@ function hasBinaryExt(extname: string): boolean {
  * language identifiers, otherwise `false`.
  */
 function hasLaTeXLangId(langId: string): boolean {
-    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'].includes(langId)
 }
 
 /**
