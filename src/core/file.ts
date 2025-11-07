@@ -18,6 +18,7 @@ export const file = {
     getFlsPath,
     hasBinaryExt,
     hasTeXExt,
+    hasAlwaysRootExt,
     hasLaTeXLangId,
     hasLaTeXClassPackageLangId,
     hasTeXLangId,
@@ -146,6 +147,16 @@ function hasBinaryExt(extname: string): boolean {
 }
 
 /**
+ * Determine if the given extension corresponds to a file that should always be considered as a root file if active.
+ *
+ * @param {string} extname - The file extension to be checked including the dot
+ * (e.g., '.tex').
+ */
+function hasAlwaysRootExt(extname: string) {
+    return lw.constant.ACTIVE_ROOTFILE_EXT.includes(extname)
+}
+
+/**
  * Determines if the given language ID corresponds to a LaTeX-related language.
  *
  * @param {string} langId - The language identifier to check.
@@ -153,7 +164,7 @@ function hasBinaryExt(extname: string): boolean {
  * language identifiers, otherwise `false`.
  */
 function hasLaTeXLangId(langId: string): boolean {
-    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave'].includes(langId)
+    return ['latex', 'context', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'doctex'].includes(langId)
 }
 
 /**
@@ -301,7 +312,7 @@ function getOutDir(texPath?: string): string {
  */
 function getLangId(filename: string): string | undefined {
     const ext = path.extname(filename).toLocaleLowerCase()
-    if (ext === '.tex' || extraTeXExts.includes(ext)) {
+    if (lw.constant.TEX_EXT.includes(ext) || extraTeXExts.includes(ext)) {
         return 'latex'
     } else if (lw.constant.PWEAVE_EXT.includes(ext)) {
         return 'pweave'
