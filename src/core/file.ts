@@ -146,6 +146,12 @@ function hasBinaryExt(extname: string): boolean {
     ].includes(extname)
 }
 
+/**
+ * Determine if the given extension corresponds to a file that should always be considered as a root file if active.
+ *
+ * @param {string} extname - The file extension to be checked including the dot
+ * (e.g., '.tex').
+ */
 function hasAlwaysRootExt(extname: string) {
     return lw.constant.ACTIVE_ROOTFILE_EXT.includes(extname)
 }
