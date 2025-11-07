@@ -59,6 +59,7 @@ export const lw = {
 /* eslint-enable */
 
 const constant = {
+    ACTIVE_ROOTFILE_EXT: ['.dtx', '.ltx'],
     TEX_EXT: ['.tex', '.bib'],
     TEX_NOCACHE_EXT: ['.cls', '.sty', '.bst', '.bbx', '.cbx', '.def', '.cfg'],
     RSWEAVE_EXT: ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw'],

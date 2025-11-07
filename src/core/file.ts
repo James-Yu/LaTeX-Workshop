@@ -18,6 +18,7 @@ export const file = {
     getFlsPath,
     hasBinaryExt,
     hasTeXExt,
+    hasAlwaysRootExt,
     hasLaTeXLangId,
     hasLaTeXClassPackageLangId,
     hasTeXLangId,
@@ -143,6 +144,10 @@ function hasBinaryExt(extname: string): boolean {
         ...lw.constant.JLWEAVE_EXT,
         ...lw.constant.PWEAVE_EXT
     ].includes(extname)
+}
+
+function hasAlwaysRootExt(extname: string) {
+    return lw.constant.ACTIVE_ROOTFILE_EXT.includes(extname)
 }
 
 /**

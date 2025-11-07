@@ -233,11 +233,15 @@ async function findFromActive(): Promise<string | undefined> {
         return
     }
     logger.log('Try finding root from active editor.')
+    const activeFilePath = vscode.window.activeTextEditor.document.fileName
+    if (lw.file.hasAlwaysRootExt(path.extname(activeFilePath))) {
+        logger.log(`Found root file from active editor: ${activeFilePath}`)
+        return activeFilePath
+    }
     const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
     const result = content.match(getIndicator())
     if (result) {
         const rootFilePath = await findSubfiles(content)
-        const activeFilePath = vscode.window.activeTextEditor.document.fileName
         if (rootFilePath) {
             root.subfiles.path = activeFilePath
             root.subfiles.langId = lw.file.getLangId(activeFilePath)
