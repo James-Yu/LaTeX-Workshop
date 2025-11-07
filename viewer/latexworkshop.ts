@@ -57,6 +57,7 @@ async function initialization() {
             sidebarViewOnLoad: 0,
             standardFontDataUrl: './standard_fonts/',
             workerSrc: './build/pdf.worker.mjs',
+            forcePageColors: true,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)
