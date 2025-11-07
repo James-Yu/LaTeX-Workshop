@@ -230,6 +230,7 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
     let root: string
     if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/')) {
         root = path.resolve(lw.extensionRoot, 'node_modules', 'pdfjs-dist')
+        console.log('Request URL:', request.url, 'served from', root)
     } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
         // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
         // The latter is for debugging with sourcemap.
