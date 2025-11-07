@@ -306,7 +306,7 @@ function getOutDir(texPath?: string): string {
  */
 function getLangId(filename: string): string | undefined {
     const ext = path.extname(filename).toLocaleLowerCase()
-    if (ext === '.tex' || extraTeXExts.includes(ext)) {
+    if (lw.constant.TEX_EXT.includes(ext) || extraTeXExts.includes(ext)) {
         return 'latex'
     } else if (lw.constant.PWEAVE_EXT.includes(ext)) {
         return 'pweave'
