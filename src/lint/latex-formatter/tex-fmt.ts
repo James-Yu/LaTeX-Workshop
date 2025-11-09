@@ -2,6 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { lw } from '../../lw'
 import { LaTeXFormatter } from '../../types'
+import { replaceArgumentPlaceholders } from '../../utils/utils'
+
 
 const logger = lw.log('Format', 'tex-fmt')
 
@@ -12,7 +14,9 @@ export const texfmt: LaTeXFormatter = {
 async function formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined> {
     const config = vscode.workspace.getConfiguration('latex-workshop')
     const program = config.get('formatting.tex-fmt.path') as string
-    const args = [...(config.get('formatting.tex-fmt.args') as string[]), '--stdin']
+    const rootFile = lw.root.file.path || document.fileName
+    const args = (config.get('formatting.tex-fmt.args') as string[]).map(arg => replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg))
+    args.push('--stdin')
     const process = lw.external.spawn(program, args, { cwd: path.dirname(document.uri.fsPath) })
 
     let stdout: Buffer = Buffer.alloc(0)
