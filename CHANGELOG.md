@@ -1,8 +1,18 @@
 # Change Log
 
+## [10.11.3] - 2025-11-11
+
+### Fixed
+- [#4708] `checkcites` can read the output dir.
+- [#4709] PDF viewer respects custom fore/background colors.
+- [#4710] Use correct paths for PDF viewer cmaps and standard fonts.
+- [#4716] Re-enable building `.dtx` and `.ltx` files.
+- [#4718] Parse `stderr` when the build process crashes.
+- [#4721] Honor placeholders in `tex-fmt.args`.
+
 ## [10.11.2] - 2025-11-04
 
-## Fixed
+### Fixed
 - [#4700,#4705] PDFs remain in dark mode in the PDF viewer when OS theme is dark.
 
 ## [10.11.1] - 2025-11-04
