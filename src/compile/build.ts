@@ -349,6 +349,7 @@ function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: 
         logger.log(`Recipe returns with error code ${code}/${signal} on PID ${lw.compile.process?.pid}.`)
         logger.log(`Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`)
         logger.log(`${stderr}`)
+        lw.parser.parse.log(stderr)
     }
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.toUri(step.rootFile) : undefined)
