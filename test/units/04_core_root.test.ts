@@ -352,6 +352,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.pathStrictEqual(lw.root.file.path, texPath)
         })
 
+        it('should use \\startext indicator on selecting `\\starttext`', async () => {
+            set.config('latex.rootFile.indicator', '\\starttext')
+
+            const texPath = get.path(fixture, 'main.tex')
+
+            const stub = mock.activeTextEditor(texPath, '\\starttext\n\\stoptext\n')
+            await lw.root.find()
+            stub.restore()
+
+            assert.hasLog(`Found root file from active editor: ${texPath}`)
+            assert.pathStrictEqual(lw.root.file.path, texPath)
+        })
+
         it('should return \\documentclass indicator on other values', async () => {
             set.config('latex.rootFile.indicator', 'invalid value')
 

@@ -102,6 +102,10 @@ function getIndicator(): RegExp {
             return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
         case '\\begin{document}':
             return /\\begin\s*{document}/m
+        case '\\starttext':
+            return /\\starttext/m
+        case '\\startTEXpage':
+            return /\\startTEXpage/m
         default:
             logger.logError('Unknown rootFile.indicator', indicator)
             return /\\documentclass(?:\s*\[.*\])?\s*\{.*\}/ms
