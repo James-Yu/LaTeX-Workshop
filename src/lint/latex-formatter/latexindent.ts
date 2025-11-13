@@ -101,7 +101,7 @@ function checkPath(): Thenable<boolean> {
                 logger.log(`Error when checking latexindent: ${stderr}`)
                 resolve(false)
             } else {
-                logger.log(`Checking latexindent is ok: ${stdout}`)
+                logger.log(`Checking latexindent is ok: ${stdout.trim()}`)
                 resolve(true)
             }
         })
@@ -182,7 +182,7 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
             const stdout = Buffer.concat(stdoutBuffer).toString()
             if (stdout !== '') {
                 const edit = vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdout)
-                logger.log('Formatted ' + document.fileName)
+                logger.log(`Formatted using ${formatter} ${document.fileName}.`)
                 return resolve(edit)
             }
 

@@ -17,6 +17,7 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
     const rootFile = lw.root.file.path || document.fileName
     const args = (config.get('formatting.tex-fmt.args') as string[]).map(arg => replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg))
     args.push('--stdin')
+    logger.logCommand('Formatting LaTeX.', program, args)
     const process = lw.external.spawn(program, args, { cwd: path.dirname(document.uri.fsPath) })
 
     let stdout: Buffer = Buffer.alloc(0)
@@ -42,7 +43,7 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
             if (stdoutStr.endsWith('\n\n')) {
                 stdoutStr = stdoutStr.slice(0, -1)
             }
-            logger.log(`Formatted using ${program} .`)
+            logger.log(`Formatted using ${program} ${document.fileName}.`)
             resolve(vscode.TextEdit.replace(range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)), stdoutStr))
         })
     })
