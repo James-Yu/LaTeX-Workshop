@@ -53,9 +53,10 @@ async function initialization() {
             annotationEditorMode: -1,
             disablePreferences: true,
             enableScripting: false,
-            // The following two paths are requested from ./build/cmaps/ and ./build/standard_fonts/
+            // The following paths are requested from ./build/cmaps/, ./build/standard_fonts/, and ./build/wasm/
             cMapUrl: '../cmaps/',
             standardFontDataUrl: '../standard_fonts/',
+            wasmUrl: '../wasm/',
             sidebarViewOnLoad: 0,
             workerSrc: './build/pdf.worker.mjs',
             forcePageColors: true,
