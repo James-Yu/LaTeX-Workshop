@@ -60,6 +60,10 @@ async function initialization() {
             sidebarViewOnLoad: 0,
             workerSrc: './build/pdf.worker.mjs',
             forcePageColors: true,
+            // The following allow clear display with large zoom values. This is necessary to enable trimming.
+            maxCanvasPixels: -1,
+            maxCanvasDim: -1,
+            enableDetailCanvas: false,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)

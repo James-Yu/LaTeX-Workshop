@@ -942,7 +942,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   wasmUrl: {
-    value: "../web/wasm/",
+    value: "../wasm/",
     kind: OptionKind.API
   },
   workerPort: {
