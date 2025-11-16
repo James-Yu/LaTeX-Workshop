@@ -909,7 +909,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   iccUrl: {
-    value: "../web/iccs/",
+    value: "../iccs/",
     kind: OptionKind.API
   },
   isEvalSupported: {

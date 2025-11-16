@@ -3,8 +3,9 @@
 ## [10.11.4] - 2025-11-16
 
 ### Fixed
-- [#4726] Detect conTeXt root file from active editor.
 - [#4724] Add the missing WASM support for PDF.js v5.4.394.
+- [#4726] Detect conTeXt root file from active editor.
+- [#4727] Disable PDFjs partial rendering.
 
 ## [10.11.3] - 2025-11-11
 
