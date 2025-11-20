@@ -90,14 +90,14 @@ export function stripEnvironments(text: string, envs: string[]): string {
 
 /**
  * Remove comments and verbatim content
- * Note the number lines of the output matches the input
+ * Note that the positions are preserved between the input and the output
  *
  * @param text A multiline string to be stripped
  * @return the input text with comments and verbatim content removed.
  */
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
-    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, '')
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, m => ' '.repeat(m.length))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
     return stripEnvironments(content, verbatimEnvs)
