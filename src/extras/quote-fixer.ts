@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { stripCommentsAndVerbatimPreservingLength } from '../utils/utils'
+import { stripCommentsAndVerbatim } from '../utils/utils'
 
 /**
  * Regular expression that captures straight double-quoted substrings for replacement.
@@ -19,62 +19,56 @@ export class QuoteFixer {
      * then performs replacements on the original text based on matches in the masked text.
      *
      * @param text - The content to process.
-     * @param initialInVerbatim - Indicates whether processing starts in a verbatim environment.
-     * @returns The processed text and the final verbatim state.
+     * @returns The processed text.
      */
-    public apply(text: string, initialInVerbatim: boolean = false): { text: string, inVerbatim: boolean } {
-        // 1. Mask verbatim and comments
-        const { text: masked, finalInVerbatim } = stripCommentsAndVerbatimPreservingLength(text, initialInVerbatim)
+    public apply(text: string): string {
+        // 1. Strip comments and verbatim content
+        const stripped = stripCommentsAndVerbatim(text)
+        const strippedLines = stripped.split('\n')
+        const originalLines = text.split('\n')
 
-        // 2. Find quotes in masked text
-        let result = ''
-        let lastIndex = 0
-        let match: RegExpExecArray | null
-
-        // Reset lastIndex for the global regex
-        QUOTE_PATTERN.lastIndex = 0
-        while ((match = QUOTE_PATTERN.exec(masked)) !== null) {
-            const index = match.index
-            const fullMatch = match[0]
-            const content = match[1]
-
-            // Append text before the match (from the ORIGINAL text)
-            result += text.slice(lastIndex, index)
-
-            // Append replaced quote
-            // Note: We use the content from the ORIGINAL text, not the masked text
-            // (though they should be identical in non-verbatim regions, but just to be safe)
-            // Actually, QUOTE_PATTERN captures the content inside quotes.
-            // If the content contained verbatim markers, they would be masked in `masked`.
-            // But we want the original content.
-            // The match index and length in masked text correspond to original text.
-            // So we take the substring from original text.
-            const originalContent = text.slice(index + 1, index + 1 + content.length)
-            result += "``" + originalContent + "''"
-
-            lastIndex = index + fullMatch.length
+        if (strippedLines.length !== originalLines.length) {
+            return text
         }
 
-        // Append remaining text
-        result += text.slice(lastIndex)
+        const resultLines: string[] = []
 
-        return {
-            text: result,
-            inVerbatim: finalInVerbatim
+        for (let i = 0; i < originalLines.length; i++) {
+            const sLine = strippedLines[i]
+            const oLine = originalLines[i]
+
+            if (!sLine || sLine.trim() === '') {
+                resultLines.push(oLine)
+                continue
+            }
+
+            let lineResult = ''
+            let lastIndex = 0
+            let match: RegExpExecArray | null
+
+            QUOTE_PATTERN.lastIndex = 0
+            while ((match = QUOTE_PATTERN.exec(sLine)) !== null) {
+                const index = match.index
+                const fullMatch = match[0]
+                const content = match[1]
+
+                // Append text before the match (from the ORIGINAL line)
+                lineResult += oLine.slice(lastIndex, index)
+
+                // Append replaced quote
+                // We use the content from the ORIGINAL line
+                const originalContent = oLine.slice(index + 1, index + 1 + content.length)
+                lineResult += "``" + originalContent + "''"
+
+                lastIndex = index + fullMatch.length
+            }
+
+            // Append remaining text
+            lineResult += oLine.slice(lastIndex)
+            resultLines.push(lineResult)
         }
-    }
 
-    /**
-     * Determines the verbatim state after scanning the given text without mutating it. This is used
-     * to discover whether subsequent edits should be considered inside a verbatim scope.
-     *
-     * @param text - The content to inspect.
-     * @param initialInVerbatim - Indicates whether inspection starts in a verbatim environment.
-     * @returns The verbatim state after processing the entire text.
-     */
-    public stateAfter(text: string, initialInVerbatim: boolean = false): boolean {
-        const { finalInVerbatim } = stripCommentsAndVerbatimPreservingLength(text, initialInVerbatim)
-        return finalInVerbatim
+        return resultLines.join('\n')
     }
 }
 
@@ -95,19 +89,18 @@ export function fixQuotes(document: vscode.TextDocument, range: vscode.Range | u
     }
 
     const quoteFixer = new QuoteFixer()
-    const initialInVerbatim = range ? quoteFixer.stateAfter(document.getText(new vscode.Range(new vscode.Position(0, 0), range.start))) : false
 
     if (edit) {
-        const fixed = quoteFixer.apply(edit.newText, initialInVerbatim)
-        edit.newText = fixed.text
+        const fixed = quoteFixer.apply(edit.newText)
+        edit.newText = fixed
         return edit
     }
 
     const targetRange = range ?? document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
     const originalText = document.getText(targetRange)
-    const fixed = quoteFixer.apply(originalText, initialInVerbatim)
-    if (fixed.text === originalText) {
+    const fixed = quoteFixer.apply(originalText)
+    if (fixed === originalText) {
         return undefined
     }
-    return vscode.TextEdit.replace(targetRange, fixed.text)
+    return vscode.TextEdit.replace(targetRange, fixed)
 }

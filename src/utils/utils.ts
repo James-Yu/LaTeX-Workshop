@@ -71,22 +71,6 @@ export function stripComments(text: string): string {
 }
 
 /**
- * Remove comments, replacing them with spaces to preserve positions.
- *
- * @param text A string in which comments get replaced.
- * @return the input text with comments replaced by spaces.
- */
-export function stripCommentsPreservingLength(text: string): string {
-    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%(?![2-9A-F][0-9A-F]).*$/gm
-    return text.replace(reg, (match, p1) => {
-        // p1 is the preceding character(s) that should be preserved
-        // The rest of the match is the comment
-        const commentLength = match.length - p1.length
-        return p1 + ' '.repeat(commentLength)
-    })
-}
-
-/**
  * Remove some environments
  * Note the number lines of the output matches the input
  *
@@ -95,57 +79,30 @@ export function stripCommentsPreservingLength(text: string): string {
  *
  */
 export function stripEnvironments(text: string, envs: string[]): string {
-    const envsAlt = envs.join('|')
-    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
-    const reg = RegExp(pattern, 'gms')
+    if (envs.length === 0) {
+        return text
+    }
+
+    // Build alternation of environment names, each with optional star
+    // Use non-capturing group for the star to keep backreference simple
+    const envPatterns = envs.map(env => `${env}(?:\\*?)`).join('|')
+
+    // Single capture group with all environments, backreference works correctly
+    const pattern = `\\\\begin{(${envPatterns})}.*?\\\\end{\\1}`
+
+    // Use case-insensitive for verbatim-family environments
+    const hasVerbatimFamily = envs.some(e =>
+        e.toLowerCase().includes('verbatim') ||
+        e.toLowerCase() === 'verb' ||
+        e.toLowerCase().includes('listing')
+    )
+    const flags = hasVerbatimFamily ? 'gmsi' : 'gms'
+    const reg = new RegExp(pattern, flags)
+
     return text.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
         return '\n'.repeat(len - 1)
     })
-}
-
-/**
- * Remove some environments, replacing them with spaces/newlines to preserve positions.
- *
- * @param text A string representing the content of a TeX file
- * @param envs An array of environments to be removed
- * @param initialInVerbatim Whether the text starts inside a verbatim environment
- * @return The stripped text and the final verbatim state
- */
-export function stripEnvironmentsPreservingLength(text: string, envs: string[], initialInVerbatim: boolean = false): { text: string, finalInVerbatim: boolean } {
-    const envsAlt = envs.join('|')
-    let masked = text
-
-    if (initialInVerbatim) {
-        const endReg = RegExp(`\\\\end{(${envsAlt})}`, 'm')
-        const match = endReg.exec(text)
-        if (match) {
-            // Mask from start to end of match
-            const len = match.index + match[0].length
-            const spaces = text.slice(0, len).replace(/[^\r\n]/g, ' ')
-            masked = spaces + text.slice(len)
-        } else {
-            // No end found, mask all
-            return { text: text.replace(/[^\r\n]/g, ' '), finalInVerbatim: true }
-        }
-    }
-
-    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
-    const reg = RegExp(pattern, 'gms')
-    masked = masked.replace(reg, (match) => match.replace(/[^\r\n]/g, ' '))
-
-    // Check for unclosed begin
-    const beginReg = RegExp(`\\\\begin{(${envsAlt})}`, 'm')
-    const match = beginReg.exec(masked)
-    if (match) {
-        const start = match.index
-        const prefix = masked.slice(0, start)
-        const suffix = masked.slice(start).replace(/[^\r\n]/g, ' ')
-        masked = prefix + suffix
-        return { text: masked, finalInVerbatim: true }
-    }
-
-    return { text: masked, finalInVerbatim: false }
 }
 
 /**
@@ -157,26 +114,12 @@ export function stripEnvironmentsPreservingLength(text: string, envs: string[], 
  */
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
-    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, '')
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, match => ' '.repeat(match.length))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
     return stripEnvironments(content, verbatimEnvs)
 }
 
-/**
- * Remove comments and verbatim content, replacing them with spaces.
- *
- * @param text A multiline string to be stripped
- * @param initialInVerbatim Whether the text starts inside a verbatim environment
- * @return the input text with comments and verbatim content replaced by spaces, and the final verbatim state.
- */
-export function stripCommentsAndVerbatimPreservingLength(text: string, initialInVerbatim: boolean = false): { text: string, finalInVerbatim: boolean } {
-    let content = stripCommentsPreservingLength(text)
-    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, match => ' '.repeat(match.length))
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[] || []
-    return stripEnvironmentsPreservingLength(content, verbatimEnvs, initialInVerbatim)
-}
 
 /**
  * Trim leading and ending spaces on every line
