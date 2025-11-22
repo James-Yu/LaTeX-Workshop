@@ -79,9 +79,26 @@ export function stripComments(text: string): string {
  *
  */
 export function stripEnvironments(text: string, envs: string[]): string {
-    const envsAlt = envs.join('|')
-    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
-    const reg = RegExp(pattern, 'gms')
+    if (envs.length === 0) {
+        return text
+    }
+
+    // Build alternation of environment names, each with optional star
+    // Use non-capturing group for the star to keep backreference simple
+    const envPatterns = envs.map(env => `${env}(?:\\*?)`).join('|')
+
+    // Single capture group with all environments, backreference works correctly
+    const pattern = `\\\\begin{(${envPatterns})}.*?\\\\end{\\1}`
+
+    // Use case-insensitive for verbatim-family environments
+    const hasVerbatimFamily = envs.some(e =>
+        e.toLowerCase().includes('verbatim') ||
+        e.toLowerCase() === 'verb' ||
+        e.toLowerCase().includes('listing')
+    )
+    const flags = hasVerbatimFamily ? 'gmsi' : 'gms'
+    const reg = new RegExp(pattern, flags)
+
     return text.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
         return '\n'.repeat(len - 1)
@@ -102,6 +119,7 @@ export function stripCommentsAndVerbatim(text: string): string {
     const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
     return stripEnvironments(content, verbatimEnvs)
 }
+
 
 /**
  * Trim leading and ending spaces on every line
