@@ -25,6 +25,11 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
         stdout = Buffer.concat([stdout, Buffer.isBuffer(msg) ? msg : Buffer.from(msg)])
     })
 
+    let stderr: Buffer = Buffer.alloc(0)
+    process.stderr?.on('data', (msg: Buffer | string) => {
+        stderr = Buffer.concat([stderr, Buffer.isBuffer(msg) ? msg : Buffer.from(msg)])
+    })
+
     const promise = new Promise<vscode.TextEdit | undefined>(resolve => {
         process.on('error', err => {
             logger.logError(`Failed to run ${program}`, err)
