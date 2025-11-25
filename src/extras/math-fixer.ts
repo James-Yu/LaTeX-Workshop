@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { stripCommentsAndVerbatim } from '../utils/utils'
 
 /**
- * Represents the type of math environment we are currently in.
+ * Represent the type of math environment we are currently in.
  */
 enum MathMode {
     Inline, // $ ... $
@@ -10,9 +10,8 @@ enum MathMode {
 }
 
 /**
- * Transforms inline math delimiters ($ ... $) into \( ... \) and
- * display math delimiters ($$ ... $$) into \[ ... \]
- * while respecting verbatim-like regions.
+ * Transform inline math delimiters $ ... $ into \( ... \) and
+ * display math delimiters $$ ... $$ into \[ ... \].
  */
 export class MathFixer {
     // Regex to find tokens: escaped char, display math, or inline math.
@@ -22,17 +21,12 @@ export class MathFixer {
     private readonly tokenPattern = /(\\.)|(\$\$)|(\$)/g
 
     /**
-     * Generates a list of TextEdits to transform math delimiters.
+     * Generate a list of TextEdits to transform math delimiters.
      *
      * @param text - The content to process.
      * @returns An array of TextEdits.
      */
     public getEdits(text: string): vscode.TextEdit[] {
-        // 1. Strip comments and verbatim content
-        // stripCommentsAndVerbatim preserves line count.
-        // Verbatim environments are replaced by empty lines.
-        // \verb commands are replaced by spaces (preserving length).
-        // Comments are removed (replaced by empty string at end of line).
         const stripped = stripCommentsAndVerbatim(text)
         const strippedLines = stripped.split('\n')
 
@@ -42,18 +36,11 @@ export class MathFixer {
         for (let i = 0; i < strippedLines.length; i++) {
             const sLine = strippedLines[i]
 
-            // If stripped line is empty (and original wasn't empty, or even if it was),
-            // it might be a stripped verbatim line or just empty.
-            // If it's empty, we can skip regex matching, but we must preserve the original line.
-            // However, if the original line had content but stripped is empty, it means it was fully stripped (verbatim/comment).
-            // So we just keep the original line.
             if (!sLine || sLine.trim() === '') {
                 continue
             }
 
-            // Find matches in the stripped line
             let match: RegExpExecArray | null
-
             this.tokenPattern.lastIndex = 0
             while ((match = this.tokenPattern.exec(sLine)) !== null) {
                 const index = match.index
@@ -63,7 +50,7 @@ export class MathFixer {
                 const inlineMath = match[3]
 
                 if (escaped) {
-                    // Escaped character, ignore
+                    // Ignore escaped character
                     continue
                 } else if (displayMath) {
                     // Special case: consecutive $$ with no content between should be treated as
@@ -118,21 +105,21 @@ export class MathFixer {
     }
 }
 
-export function fixMath(
-    document: vscode.TextDocument,
-    range: vscode.Range | undefined
-): vscode.TextEdit[] {
-    const config = vscode.workspace.getConfiguration(
-        'latex-workshop',
-        document.uri
-    )
+/**
+ * Apply maths normalization based on the user configuration.
+ *
+ * @param document The document being edited.
+ * @param range The range covered by the edit, or `undefined` to process the entire document.
+ * @returns A list of TextEdit.
+ */
+export function fixMath(document: vscode.TextDocument, range: vscode.Range | undefined): vscode.TextEdit[] {
+    const config = vscode.workspace.getConfiguration('latex-workshop', document.uri)
     const enabled = config.get('format.fixMath.enabled', false)
     if (!enabled) {
         return []
     }
 
     const mathFixer = new MathFixer()
-
     const targetRange = range ?? new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
     const text = document.getText() // Get full text to ensure correct line numbers
     return mathFixer.getEdits(text).filter(e => targetRange.contains(e.range))

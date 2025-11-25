@@ -7,17 +7,14 @@ import { stripCommentsAndVerbatim } from '../utils/utils'
 const QUOTE_PATTERN = /"([^"]*)"/g
 
 /**
- * Transforms straight double quotes into LaTeX-style quotes while respecting verbatim-like regions
- * (
- *     verbatim, Verbatim, lstlisting, and \verb commands
- * ) to avoid altering content where literal text is expected.
+ * Transform straight double quotes into LaTeX-style quotes
  */
 export class QuoteFixer {
     /**
-     * Generates a list of TextEdits to replace straight quotes with LaTeX-style quotes,
+     * Generate a list of TextEdits to replace straight quotes with LaTeX-style quotes,
      * supporting both standard ("...") and German („...“) quotes.
      *
-     * @param text - The content to process.
+     * @param text The content to process.
      * @returns An array of TextEdits.
      */
     public getEdits(text: string): vscode.TextEdit[] {
@@ -75,12 +72,11 @@ export class QuoteFixer {
 }
 
 /**
- * Applies LaTeX quote normalization based on the user configuration. When the feature is enabled, this helper
- * ensures that edits are processed with the appropriate verbatim awareness so that literal regions remain intact.
+ * Apply LaTeX quote normalization based on the user configuration.
  *
- * @param document - The document being edited.
- * @param range - The range covered by the edit, or `undefined` to process the entire document.
- * @returns The updated text edit, or a new edit when one is required, or `undefined` if no change is needed.
+ * @param document The document being edited.
+ * @param range The range covered by the edit, or `undefined` to process the entire document.
+ * @returns A list of TextEdits.
  */
 export function fixQuotes(document: vscode.TextDocument, range: vscode.Range | undefined): vscode.TextEdit[] {
     const config = vscode.workspace.getConfiguration('latex-workshop', document.uri)
@@ -90,7 +86,6 @@ export function fixQuotes(document: vscode.TextDocument, range: vscode.Range | u
     }
 
     const quoteFixer = new QuoteFixer()
-
     const targetRange = range ?? new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
     const text = document.getText() // Get full text to ensure correct line numbers
     return quoteFixer.getEdits(text).filter(e => targetRange.contains(e.range))
