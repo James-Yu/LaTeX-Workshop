@@ -9,9 +9,9 @@ export function sleep(ms: number) {
 
 export function escapeHtml(s: string): string {
     return s.replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
 }
 
 export function escapeRegExp(str: string) {
@@ -53,7 +53,7 @@ export function stripText(raw: string): string {
         }
         const line = text.substring(0, match.index).split('\n').length - 1
         // Append each line in the macro to the array.
-        matchedText.split('\n').forEach((content, index) => result[line + index] += content)
+        matchedText.split('\n').forEach((content, index) => result[line+index] += content)
     }
     return result.join('\n')
 }
@@ -84,15 +84,9 @@ export function stripEnvironments(text: string, envs: string[]): string {
     }
 
     // Build alternation of environment names, each with optional star
-    // Use non-capturing group for the star to keep backreference simple
     const envPatterns = envs.map(env => `${env}\\*?`).join('|')
-
-    // Single capture group with all environments, backreference works correctly
     const pattern = `\\\\begin{(${envPatterns})}.*?\\\\end{\\1}`
-
-    // Use case-insensitive for verbatim-family environments
-    const flags = 'gmsi'
-    const reg = new RegExp(pattern, flags)
+    const reg = new RegExp(pattern, 'gmi')
 
     return text.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
@@ -115,7 +109,6 @@ export function stripCommentsAndVerbatim(text: string): string {
     return stripEnvironments(content, verbatimEnvs)
 }
 
-
 /**
  * Trim leading and ending spaces on every line
  * See https://blog.stevenlevithan.com/archives/faster-trim-javascript for
@@ -133,7 +126,7 @@ export function trimMultiLineString(text: string): string {
  *
  * @param s A string to be searched.
  */
-export function getLongestBalancedString(s: string, bracket: 'curly' | 'square' = 'curly'): string | undefined {
+export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string | undefined {
     const bracketStack: ('{' | '[' | '(')[] = []
 
     const opener = bracket === 'curly' ? '{' : '['
@@ -176,7 +169,7 @@ export function getLongestBalancedString(s: string, bracket: 'curly' | 'square' 
  * @param position the current position in the document
  * @param document a TextDocument
  */
-export function getSurroundingMacroRange(macro: string, position: vscode.Position, document: vscode.TextDocument): { range: vscode.Range, arg: string } | undefined {
+export function getSurroundingMacroRange(macro: string, position: vscode.Position, document: vscode.TextDocument): {range: vscode.Range, arg: string} | undefined {
     if (!macro.startsWith('\\')) {
         macro = '\\' + macro
     }
@@ -193,7 +186,7 @@ export function getSurroundingMacroRange(macro: string, position: vscode.Positio
         if (arg !== undefined && position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
             const start = new vscode.Position(position.line, matchPos)
             const end = new vscode.Position(position.line, openingBracePos + arg.length + 1)
-            return { range: new vscode.Range(start, end), arg }
+            return {range: new vscode.Range(start, end), arg}
         }
     }
     return
@@ -300,17 +293,17 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
 
         const expandPlaceHolders = (a: string): string => {
             return a.replace(/%DOC%/g, docker ? docfile : doc)
-                .replace(/%DOC_W32%/g, docker ? docfile : docW32)
-                .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
-                .replace(/%DOC_EXT_W32%/g, docker ? docfileExt : docExtW32)
-                .replace(/%DOCFILE_EXT%/g, docfileExt)
-                .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, docker ? './' : dir)
-                .replace(/%DIR_W32%/g, docker ? './' : dirW32)
-                .replace(/%TMPDIR%/g, tmpDir)
-                .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
-                .replace(/%RELATIVE_DIR%/, docker ? './' : relativeDir)
-                .replace(/%RELATIVE_DOC%/, docker ? docfile : relativeDoc)
+                    .replace(/%DOC_W32%/g, docker ? docfile : docW32)
+                    .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                    .replace(/%DOC_EXT_W32%/g, docker ? docfileExt : docExtW32)
+                    .replace(/%DOCFILE_EXT%/g, docfileExt)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, docker ? './' : dir)
+                    .replace(/%DIR_W32%/g, docker ? './' : dirW32)
+                    .replace(/%TMPDIR%/g, tmpDir)
+                    .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
+                    .replace(/%RELATIVE_DIR%/, docker ? './' : relativeDir)
+                    .replace(/%RELATIVE_DOC%/, docker ? docfile : relativeDoc)
 
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
