@@ -86,7 +86,7 @@ export function stripEnvironments(text: string, envs: string[]): string {
     // Build alternation of environment names, each with optional star
     const envPatterns = envs.map(env => `${env}\\*?`).join('|')
     const pattern = `\\\\begin{(${envPatterns})}.*?\\\\end{\\1}`
-    const reg = new RegExp(pattern, 'gmi')
+    const reg = new RegExp(pattern, 'gmsi')
 
     return text.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
