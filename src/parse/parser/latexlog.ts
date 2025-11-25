@@ -16,6 +16,7 @@ const latexUnderfullBoxOutput = /^(Underfull \\[vh]box \([^)]*\)) has occurred w
 const latexWarn = /^((?:(?:Class|Package|Module) \S*)|LaTeX(?: \S*)?|LaTeX3) (Warning|Info):\s+(.*?)(?: on(?: input)? line (\d+))?(\.|\?|)$/
 const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
 const latexMissChar = /^\s*(Missing character:.*?!)/
+const latexNoPageOutput = /^No pages of output\.$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -152,7 +153,21 @@ function parseLine(line: string, state: ParserState) {
     if (parseBadBox(line, filename, state, configuration.get('message.badbox.show'))) {
         return
     }
-    let result = line.match(latexMissChar)
+    let result = line.match(latexNoPageOutput)
+    if (result) {
+        if (state.currentResult.type !== '') {
+            buildLog.push(state.currentResult)
+        }
+        state.currentResult = {
+            type: 'error',
+            file: filename,
+            line: 1,
+            text: result[1]
+        }
+        state.searchEmptyLine = false
+        return
+    }
+    result = line.match(latexMissChar)
     if (result) {
         if (state.currentResult.type !== '') {
             buildLog.push(state.currentResult)
