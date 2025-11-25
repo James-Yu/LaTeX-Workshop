@@ -71,12 +71,12 @@ export function stripComments(text: string): string {
 }
 
 /**
- * Remove some environments
- * Note the number lines of the output matches the input
+ * Remove some verbatim-like environments.
+ * Note the number of lines of the output matches the input.
+ * Verbatim content is replaced by empty lines.
  *
  * @param text A string representing the content of a TeX file
  * @param envs An array of environments to be removed
- *
  */
 export function stripEnvironments(text: string, envs: string[]): string {
     if (envs.length === 0) {
@@ -96,7 +96,9 @@ export function stripEnvironments(text: string, envs: string[]): string {
 
 /**
  * Remove comments and verbatim content
- * Note that the positions are preserved between the input and the output
+ * Note that the positions are preserved between the input and the output:
+ *  - verbatim environments are replaced by as many empty lines
+ *  - inline verbatim content is replaced by as many white spaces
  *
  * @param text A multiline string to be stripped
  * @return the input text with comments and verbatim content removed.
