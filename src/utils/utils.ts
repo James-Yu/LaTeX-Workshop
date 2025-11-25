@@ -71,17 +71,23 @@ export function stripComments(text: string): string {
 }
 
 /**
- * Remove some environments
- * Note the number lines of the output matches the input
+ * Remove some verbatim-like environments.
+ * Note the number of lines of the output matches the input.
+ * Verbatim content is replaced by empty lines.
  *
  * @param text A string representing the content of a TeX file
  * @param envs An array of environments to be removed
- *
  */
 export function stripEnvironments(text: string, envs: string[]): string {
-    const envsAlt = envs.join('|')
-    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
-    const reg = RegExp(pattern, 'gms')
+    if (envs.length === 0) {
+        return text
+    }
+
+    // Build alternation of environment names, each with optional star
+    const envPatterns = envs.map(env => `${env}\\*?`).join('|')
+    const pattern = `\\\\begin{(${envPatterns})}.*?\\\\end{\\1}`
+    const reg = new RegExp(pattern, 'gmsi')
+
     return text.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
         return '\n'.repeat(len - 1)
@@ -89,8 +95,10 @@ export function stripEnvironments(text: string, envs: string[]): string {
 }
 
 /**
- * Remove comments and verbatim content
- * Note that the positions are preserved between the input and the output
+ * Remove comments and verbatim content.
+ * Note that the positions are preserved between the input and the output:
+ *  - verbatim environments are replaced by as many empty lines
+ *  - inline verbatim content is replaced by as many white spaces
  *
  * @param text A multiline string to be stripped
  * @return the input text with comments and verbatim content removed.
