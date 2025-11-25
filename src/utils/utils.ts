@@ -95,7 +95,7 @@ export function stripEnvironments(text: string, envs: string[]): string {
 }
 
 /**
- * Remove comments and verbatim content
+ * Remove comments and verbatim content.
  * Note that the positions are preserved between the input and the output:
  *  - verbatim environments are replaced by as many empty lines
  *  - inline verbatim content is replaced by as many white spaces
