@@ -210,11 +210,13 @@ function spawnProcess(step: Step): ProcessEnv {
     if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
         logger.clearCompilerMessage()
     }
+    let cwd = step.cwd
 
     logger.refreshStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ' ' + queue.getStepString(step))
     logger.logCommand(`Recipe step ${step.index + 1}`, step.command, step.args)
     logger.log(`env: ${JSON.stringify(step.env)}`)
     logger.log(`root: ${step.rootFile}`)
+    logger.log(`cwd: ${cwd}`)
 
     const env: ProcessEnv = { ...process.env, ...step.env }
     env['max_print_line'] = lw.constant.MAX_PRINT_LINE
@@ -222,18 +224,16 @@ function spawnProcess(step: Step): ProcessEnv {
     if (!step.isExternal &&
         (step.name.startsWith(lw.constant.TEX_MAGIC_PROGRAM_NAME) ||
             step.name.startsWith(lw.constant.BIB_MAGIC_PROGRAM_NAME))) {
-        logger.log(`cwd: ${path.dirname(step.rootFile)}`)
 
         const args = step.args
         if (args && !step.name.endsWith(lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
+            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd, env, shell: true})
         } else {
-            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd: path.dirname(step.rootFile), env})
+            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd, env})
         }
     } else if (!step.isExternal) {
-        let cwd = path.dirname(step.rootFile)
-        if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path) {
+        if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path && cwd === path.dirname(step.rootFile)) {
             cwd = lw.root.dir.path
         }
         logger.log(`cwd: ${cwd}`)

@@ -53,6 +53,14 @@ function setDockerPath() {
  */
 export async function build(rootFile: string, langId: string, buildLoop: () => Promise<void>, recipeName?: string) {
     logger.log(`Build root file ${rootFile}`)
+    let cwd: string = path.dirname(lw.file.toUri(rootFile).fsPath)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (configuration.get('latex.build.fromWorkspaceFolder')) {
+        const workspaceFolder = vscode.workspace.getWorkspaceFolder(lw.file.toUri(rootFile))
+        if (workspaceFolder) {
+            cwd = workspaceFolder.uri.fsPath
+        }
+    }
 
     // Save all open files in the workspace
     await vscode.workspace.saveAll()
@@ -75,7 +83,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Add tools to the queue with timestamp
     const timestamp = Date.now()
-    tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp))
+    tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp, false, cwd))
 
     // #4513 If the recipe contains a forced latexmk compilation, don't set the
     // compiledPDFPath so that PDF refresh is handled by file watcher.

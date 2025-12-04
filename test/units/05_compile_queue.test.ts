@@ -19,8 +19,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should clear the queue', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
             assert.ok(queue.getStep())
 
             queue.clear()
@@ -28,8 +28,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get the next step from the queue', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
-            queue.add({ name: 'bibtex', command: 'bibtex' }, 'main.tex', 'Recipe1', Date.now(), false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
+            queue.add({ name: 'bibtex', command: 'bibtex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
 
             const step1 = queue.getStep()
             const step2 = queue.getStep()
@@ -39,7 +39,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should add a Tool as a RecipeStep to the queue', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now())
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
 
             const step = queue.getStep()
             assert.ok(step)
@@ -59,11 +59,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should prepend a Tool as a RecipeStep to the queue', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now())
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
 
             let step = queue.getStep()
             queue.clear()
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'alt.tex', 'Recipe1', Date.now())
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'alt.tex', 'Recipe1', Date.now(), false, '')
 
             assert.ok(step)
             queue.prepend(step)
@@ -76,14 +76,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should check if the last step in the queue', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
 
             let step = queue.getStep()
             assert.ok(step)
             assert.ok(queue.isLastStep(step))
 
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now() + 1, false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now() + 1, false, '')
 
             step = queue.getStep()
             assert.ok(step)
@@ -91,7 +91,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get the formatted string representation of a step', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
 
             const step = queue.getStep()
             assert.ok(step)
@@ -100,8 +100,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get correct step repr with multiple recipes', () => {
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false)
-            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now() + 1, false)
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now(), false, '')
+            queue.add({ name: 'latex', command: 'pdflatex' }, 'main.tex', 'Recipe1', Date.now() + 1, false, '')
             const step = queue.getStep()
             assert.ok(step)
             const stepString = queue.getStepString(step)
@@ -110,8 +110,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should get correct step repr with multiple tools in one recipe', () => {
             const recipeTime = Date.now()
-            queue.add({ name: 'latex1', command: 'pdflatex' }, 'main.tex', 'Recipe1', recipeTime, false)
-            queue.add({ name: 'latex2', command: 'pdflatex' }, 'main.tex', 'Recipe1', recipeTime, false)
+            queue.add({ name: 'latex1', command: 'pdflatex' }, 'main.tex', 'Recipe1', recipeTime, false, '')
+            queue.add({ name: 'latex2', command: 'pdflatex' }, 'main.tex', 'Recipe1', recipeTime, false, '')
 
             let step = queue.getStep()
             assert.ok(step)

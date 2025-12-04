@@ -21,6 +21,7 @@ suite.skip('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.fromWorkspaceFolder', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.search.rootFiles.include', undefined)
@@ -278,5 +279,19 @@ suite.skip('Build TeX files test suite', () => {
         await test.build(fixture, 'main.tex')
         assert.ok(fs.existsSync(path.resolve(fixture, 'out space/copy.pdf')))
     }, ['win32'])
+
+    test.run('build from workspace folder', async (fixture: string) => {
+        const texFile = path.join(path.basename(fixture), 'tex', 'main.tex')
+        const outdir = path.join(fixture, 'build')
+
+        const tools = [{name: 'latexmk', command: 'latexmk', args: [ '-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', `-outdir=${outdir}`, texFile ]}]
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', tools)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.fromWorkspaceFolder', true)
+        await test.load(fixture, [
+            {src: 'base.tex', dst: 'tex/main.tex'}
+        ], {skipCache: true})
+        await test.build(fixture, 'tex/main.tex')
+        assert.ok(fs.existsSync(path.resolve(outdir, 'main.pdf')))
+    })
 
 })

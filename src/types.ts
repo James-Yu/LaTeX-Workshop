@@ -81,7 +81,8 @@ export type RecipeStep = Tool & {
     index: number,
     isExternal: false,
     isRetry: boolean,
-    isSkipped: boolean
+    isSkipped: boolean,
+     cwd: string
 }
 
 export type ExternalStep = Tool & {
