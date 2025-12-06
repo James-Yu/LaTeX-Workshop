@@ -40,8 +40,15 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
         process.on('exit', code => {
             if (code !== 0) {
                 logger.log(`${program} returned ${code} .`)
+                if (stderr.length > 0) {
+                    logger.log(stderr.toString())
+                }
+                if (stdout.length > 0) {
+                    logger.log(stdout.toString())
+                }
                 logger.showErrorMessage(`${program} returned ${code} . Be cautious on the edits.`)
                 resolve(undefined)
+                return
             }
             let stdoutStr = stdout.toString()
             // tex-fmt adds an extra newline at the end
