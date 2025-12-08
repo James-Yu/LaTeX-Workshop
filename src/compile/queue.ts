@@ -16,12 +16,10 @@ const stepQueue: StepQueue = { steps: [], nextSteps: [] }
  * @param {string} recipeName - The name of the recipe to which the tool
  * belongs.
  * @param {number} timestamp - The timestamp when the recipe is called.
- * @param {boolean} [isExternal=false] - Whether the tool is an external
- * command.
- * @param {string} [cwd] - The current working directory if the tool is an
- * external command.
+ * @param {boolean} isExternal - Whether the tool is an external command.
+ * @param {string} [cwd] - The current working directory.
  */
-function add(tool: Tool, rootFile: string | undefined, recipeName: string, timestamp: number, isExternal: boolean = false, cwd?: string) {
+function add(tool: Tool, rootFile: string | undefined, recipeName: string, timestamp: number, isExternal: boolean, cwd: string) {
     // Wrap the tool as a RecipeStep or ExternalStep
     let step: Step
     if (!isExternal && rootFile !== undefined) {
@@ -32,12 +30,13 @@ function add(tool: Tool, rootFile: string | undefined, recipeName: string, times
         step.isRetry = false
         step.isExternal = false
         step.isSkipped = false
+        step.cwd = cwd
     } else {
         step = tool as ExternalStep
         step.recipeName = 'External'
         step.timestamp = timestamp
         step.isExternal = true
-        step.cwd = cwd || ''
+        step.cwd = cwd
     }
 
     // Add the step to the appropriate queue (steps or nextSteps)
