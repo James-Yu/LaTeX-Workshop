@@ -1,5 +1,19 @@
 # Change Log
 
+## [10.12.0] - 2025-12-11
+
+### Added
+- [#4736] Parse "No pages of output" latex log message.
+- [#4738, #4742] Add LaTeX formatting provider that converts math delimiters.
+  - A new config item `format.fixMath.enabled` is added, default to `false`.
+- [#4750] Add a setting to decide from which directory to run the recipes.
+  - A new config item `latex.build.fromWorkspaceFolder` is added, default to `false`.
+- [#4752] Log `tex-fmt` `stderr` output on non-zero exit code.
+
+### Fixed
+- [#4743] `tex-fmt` subprocess halting when pipe buffer for `stderr` is full.
+
+
 ## [10.11.4] - 2025-11-16
 
 ### Fixed
