@@ -164,7 +164,8 @@ function parseLine(line: string, state: ParserState) {
             line: 1,
             text: result[1]
         }
-        state.searchEmptyLine = false
+        state.searchEmptyLine = true
+        state.insideError = true
         return
     }
     result = line.match(latexMissChar)
