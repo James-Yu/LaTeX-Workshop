@@ -6,7 +6,7 @@ import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserut
 
 const logger = lw.log('Parser', 'TexLog')
 
-const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
+const latexError = /^(?:(.*):(\d+):|!)(?:\s?(.+) [Ee]rror:)? (.+?)$/
 const latexOverfullBox = /^(Overfull \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexOverfullBoxAlt = /^(Overfull \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexOverfullBoxOutput = /^(Overfull \\[vh]box \([^)]*\)) has occurred while \\output is active(?: \[(\d+)\])?/
