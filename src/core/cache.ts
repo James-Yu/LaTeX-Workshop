@@ -620,8 +620,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
             } else {
                 logger.log(`Cache not finished on ${filePath} when parsing fls.`)
             }
-        } else if (!lw.watcher.src.has(inputUri) && !['.aux', '.out'].includes(inputExt)) {
-            // Watch non-tex files. aux and out are excluded because they are auto-generated during the building process
+        } else {
             add(inputFile)
         }
     }
