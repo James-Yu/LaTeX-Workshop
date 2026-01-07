@@ -1,5 +1,19 @@
 # Change Log
 
+## [10.12.2] - 2026-01-07
+
+### Fixed
+- Fix an extension packaging and publishing issue.
+
+## [10.12.1] - 2026-01-07
+
+### Fixed
+- [#4756] Set error flag when "no page of output".
+- [#4757] Non-case sensitive error match.
+- [#4763] Fix scrollbar color inconsistency in dark mode.
+- [#4767] Ignore `.gls` files to avoid infinite build loop.
+- [#4771] Add `**/*.aux` and `**/*.out` to `latex.watch.files.ignore`.
+
 ## [10.12.0] - 2025-12-11
 
 ### Added
