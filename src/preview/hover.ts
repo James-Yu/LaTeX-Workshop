@@ -33,7 +33,7 @@ class HoverProvider implements vscode.HoverProvider {
                 return graphicsHover
             }
         }
-        const token = document.getText(tokenizer(document, position))
+        const token = document.getText(tokenizer(document, position)).trim()
         if (!token) {
             return
         }
