@@ -48,7 +48,7 @@ jobs:
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v6
       with:
-        node-version: '18'
+        node-version: '20'
     - run: |
         perl -v
         perl -MCwd -e 'print $Cwd::VERSION."\n";'
