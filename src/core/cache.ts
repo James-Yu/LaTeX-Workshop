@@ -334,7 +334,7 @@ function refreshCacheAggressive(filePath: string) {
 async function updateAST(fileCache: FileCache): Promise<void> {
     logger.log(`Parse LaTeX AST: ${fileCache.filePath} .`)
     const start = performance.now()
-    fileCache.ast = await lw.parser.parse.tex(fileCache.content)
+    fileCache.ast = await lw.parser.parse.tex(fileCache.contentTrimmed)
     const elapsed = performance.now() - start
     logger.log(`Parsed LaTeX AST in ${elapsed.toFixed(2)} ms: ${fileCache.filePath} .`)
 }

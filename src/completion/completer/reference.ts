@@ -4,7 +4,7 @@ import * as path from 'path'
 import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../lw'
 import type { CompletionArgs, CompletionProvider, FileCache, ReferenceItem, TeXMathEnv } from '../../types'
-import { getLongestBalancedString, stripEnvironments } from '../../utils/utils'
+import { getLongestBalancedString } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
 import { argContentToStr } from '../../utils/parser'
 
@@ -126,9 +126,9 @@ function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const labelMacros = configuration.get('intellisense.label.command') as string[]
-        cache.elements.reference = parseAst(cache.ast, [], cache.filePath, cache.content.split('\n'), labelMacros)
+        cache.elements.reference = parseAst(cache.ast, [], cache.filePath, cache.contentTrimmed.split('\n'), labelMacros)
     } else {
-        cache.elements.reference = parseContent(cache.content, cache.filePath)
+        cache.elements.reference = parseContent(cache.contentTrimmed, cache.filePath)
     }
 }
 
@@ -225,7 +225,6 @@ function parseContent(content: string, filePath: string): ReferenceItem[] {
     const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
     const refs: ReferenceItem[] = []
     const refList: string[] = []
-    content = stripEnvironments(content, [''])
     while (true) {
         const result = refReg.exec(content)
         if (result === null) {

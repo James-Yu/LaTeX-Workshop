@@ -161,7 +161,7 @@ function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         cache.elements.glossary = parseAst(cache.ast, cache.filePath)
     } else {
-        cache.elements.glossary = parseContent(cache.content, cache.filePath)
+        cache.elements.glossary = parseContent(cache.contentTrimmed, cache.filePath)
     }
 }
 

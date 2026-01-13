@@ -25,7 +25,7 @@ function from(result: RegExpMatchArray, _: CompletionArgs): CompletionItem[] {
 
 function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
-        const scripts = parseAst(cache.ast, cache.content.split('\n'), {sub: [], super: []})
+        const scripts = parseAst(cache.ast, cache.contentTrimmed.split('\n'), {sub: [], super: []})
         cache.elements.subscripts = scripts.sub
         cache.elements.superscripts = scripts.super
     }

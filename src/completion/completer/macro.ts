@@ -209,7 +209,7 @@ function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
         cache.elements.macro = parseAst(cache.ast, cache.filePath)
     } else {
-        cache.elements.macro = parseContent(cache.content, cache.filePath)
+        cache.elements.macro = parseContent(cache.contentTrimmed, cache.filePath)
     }
 }
 
