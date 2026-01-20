@@ -182,7 +182,8 @@ function bibtexSortByMonth(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatC
 export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConfig): string {
     let s = ''
 
-    s += '@' + entry.entryType + '{' + (entry.internalKey ? entry.internalKey : '')
+    const convertCase = config.case === 'lowercase' ? (str: string) => str.toLowerCase() : (str: string) => str.toUpperCase()
+    s += '@' + convertCase(entry.entryType) + '{' + (entry.internalKey ?? '')
 
     // Find the longest field name in entry
     let maxFieldLength = 0
@@ -198,7 +199,7 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
     }
 
     fields.forEach(field => {
-        s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
+        s += ',\n' + config.tab + convertCase(field.name)
         let indent = config.tab + ' '.repeat(field.name.length)
         if (config.alignOnEqual) {
             const adjustedLength = ' '.repeat(maxFieldLength - field.name.length)
