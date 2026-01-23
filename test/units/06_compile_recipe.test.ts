@@ -7,13 +7,13 @@ import { build, initialize } from '../../src/compile/recipe'
 import { queue } from '../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    let getOutDirStub: sinon.SinonStub
+    let getAuxDirStub: sinon.SinonStub
     let getIncludedTeXStub: sinon.SinonStub
     let mkdirStub: sinon.SinonStub
 
     before(() => {
         mock.init(lw)
-        getOutDirStub = sinon.stub(lw.file, 'getOutDir').returns('.')
+        getAuxDirStub = sinon.stub(lw.file, 'getAuxDir').returns('.')
         getIncludedTeXStub = lw.cache.getIncludedTeX as sinon.SinonStub
         mkdirStub = sinon.stub(lw.external, 'mkdirSync').returns(undefined)
     })
@@ -26,7 +26,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     afterEach(() => {
         queue.clear()
-        getOutDirStub.resetHistory()
+        getAuxDirStub.resetHistory()
         getIncludedTeXStub.resetHistory()
         mkdirStub.resetHistory()
         lw.root.subfiles.path = undefined
@@ -68,7 +68,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(stub.calledOnce)
         })
 
-        it('should call `createOutputSubFolders` with correct args', async () => {
+        it('should call `createAuxSubFolders` with correct args', async () => {
             const rootFile = set.root('main.tex')
             const subPath = get.path('sub', 'main.tex')
             set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
@@ -77,10 +77,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             getIncludedTeXStub.returns([rootFile, subPath])
 
             await build(rootFile, 'latex', async () => {})
-            assert.hasLog(`outDir: ${path.dirname(rootFile)} .`)
+            assert.hasLog(`auxDir: ${path.dirname(rootFile)} .`)
         })
 
-        it('should call `createOutputSubFolders` with correct args with subfiles package', async () => {
+        it('should call `createAuxSubFolders` with correct args with subfiles package', async () => {
             const rootFile = set.root('main.tex')
             const subPath = get.path('sub', 'main.tex')
             set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
@@ -89,7 +89,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             getIncludedTeXStub.returns([rootFile, subPath])
 
             await build(subPath, 'latex', async () => {})
-            assert.hasLog(`outDir: ${path.dirname(rootFile)} .`)
+            assert.hasLog(`auxDir: ${path.dirname(rootFile)} .`)
         })
 
         it('should not call buildLoop if no tool is created', async () => {
@@ -186,42 +186,42 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.compile->recipe.createOutputSubFolders', () => {
+    describe('lw.compile->recipe.createAuxSubFolders', () => {
         beforeEach(() => {
             getIncludedTeXStub.returns([ set.root('main.tex') ])
         })
 
         afterEach(() => {
-            getOutDirStub.returns('.')
+            getAuxDirStub.returns('.')
         })
 
-        it('should resolve the output directory relative to the root directory if not absolute', async () => {
+        it('should resolve the aux directory relative to the root directory if not absolute', async () => {
             const rootFile = set.root('main.tex')
-            const relativeOutDir = 'output'
-            const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
-            getOutDirStub.returns(relativeOutDir)
+            const relativeAuxDir = 'aux'
+            const expectedOutDir = path.resolve(path.dirname(rootFile), relativeAuxDir)
+            getAuxDirStub.returns(relativeAuxDir)
 
             await build(rootFile, 'latex', async () => {})
 
-            assert.hasLog(`outDir: ${expectedOutDir} .`)
+            assert.hasLog(`auxDir: ${expectedOutDir} .`)
         })
 
-        it('should use the absolute output directory as is', async () => {
+        it('should use the absolute aux directory as is', async () => {
             const rootFile = set.root('main.tex')
             const absoluteOutDir = '/absolute/output'
-            getOutDirStub.returns(absoluteOutDir)
+            getAuxDirStub.returns(absoluteOutDir)
 
             await build(rootFile, 'latex', async () => {})
 
-            assert.hasLog(`outDir: ${absoluteOutDir} .`)
+            assert.hasLog(`auxDir: ${absoluteOutDir} .`)
         })
 
-        it('should create the output directory if it does not exist', async () => {
+        it('should create the aux directory if it does not exist', async () => {
             const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
             const expectedOutDir = path.resolve(path.dirname(rootFile), relativeOutDir)
             const stub = sinon.stub(lw.file, 'exists').resolves(false)
-            getOutDirStub.returns(relativeOutDir)
+            getAuxDirStub.returns(relativeOutDir)
 
             await build(rootFile, 'latex', async () => {})
             stub.restore()
@@ -231,11 +231,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.deepStrictEqual(mkdirStub.getCall(0).args[1], { recursive: true })
         })
 
-        it('should not create the output directory if it already exists', async () => {
+        it('should not create the aux directory if it already exists', async () => {
             const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
             const stub = sinon.stub(lw.file, 'exists').resolves({ type: vscode.FileType.Directory, ctime: 0, mtime: 0, size: 0 })
-            getOutDirStub.returns(relativeOutDir)
+            getAuxDirStub.returns(relativeOutDir)
 
             await build(rootFile, 'latex', async () => {})
             mkdirStub.resetHistory()

@@ -199,10 +199,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should handle when `auxdir` is missing in last compilation', async () => {
             const texPath = get.path(fixture, 'main.tex')
-            const flsPath = get.path(fixture, 'main.fls')
+            const flsPath = get.path(fixture, 'output', 'main.fls')
 
             set.root(fixture, 'main.tex')
-            lw.file.setTeXDirs(lw.root.file.path ?? '', '/output')
+            lw.file.setTeXDirs(lw.root.file.path ?? '', './output')
             assert.pathStrictEqual(await lw.file.getFlsPath(texPath), flsPath)
         })
 
