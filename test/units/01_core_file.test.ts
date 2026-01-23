@@ -54,6 +54,118 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
+        describe('lw.file.getAuxDir', () => {
+        it('should get aux directory from root', () => {
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), lw.root.dir.path)
+        })
+
+        it('should get aux directory without root or input latex', () => {
+            assert.pathStrictEqual(lw.file.getAuxDir(), './')
+        })
+
+        it('should get aux directory with an input latex', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
+            assert.pathStrictEqual(lw.file.getAuxDir(texPath), rootDir)
+        })
+
+        it('should get aux directory with an input latex over the root', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(texPath), rootDir)
+        })
+
+        it('should get aux directory with absolute `latex.outDir` and root', () => {
+            set.config('latex.outDir', '/aux')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), '/aux')
+        })
+
+        it('should get aux directory with relative `latex.auxDir` and root', () => {
+            set.config('latex.auxDir', 'aux')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), 'aux')
+        })
+
+        it('should get aux directory with relative `latex.auxDir` with leading `./` and root', () => {
+            set.config('latex.auxDir', './aux')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), 'aux')
+        })
+
+        it('should get aux directory with relative `latex.auxDir`, root, and an input latex', () => {
+            const texPath = get.path(fixture, 'main.tex')
+
+            set.config('latex.auxDir', 'aux')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(texPath), 'aux')
+        })
+
+        it('should get aux directory with placeholder in `latex.auxDir` and root', () => {
+            set.config('latex.auxDir', '%DIR%')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), lw.root.dir.path)
+        })
+
+        it('should get aux directory with placeholder in `latex.auxDir`, root, and an input latex', () => {
+            const rootDir = get.path(fixture)
+            const texPath = get.path(fixture, 'main.tex')
+
+            set.config('latex.auxDir', '%DIR%')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(texPath), rootDir)
+        })
+
+        it('should get aux directory from last compilation if `latex.auxDir` is `%OUTDIR%`', () => {
+            set.config('latex.auxDir', '%OUTDIR%')
+            set.root(fixture, 'main.tex')
+            lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, '/aux')
+            assert.pathStrictEqual(lw.file.getAuxDir(), '/aux')
+        })
+
+        it('should ignore aux directory from last compilation if `latex.auxDir` is not `%OUTDIR%`', () => {
+            set.config('latex.auxDir', '/aux')
+            set.root(fixture, 'main.tex')
+            lw.file.setTeXDirs(lw.root.file.path ?? '', undefined, '/trap')
+            assert.pathStrictEqual(lw.file.getAuxDir(), '/aux')
+        })
+
+        it('should ignore aux directory from last compilation if no `auxdir` is recorded', () => {
+            set.config('latex.auxDir', '%OUTDIR%')
+            set.root(fixture, 'main.tex')
+            lw.file.setTeXDirs(lw.root.file.path ?? '')
+            assert.pathStrictEqual(lw.file.getAuxDir(), lw.root.dir.path)
+        })
+
+        it('should handle empty `latex.auxDir` correctly', () => {
+            set.config('latex.auxDir', '')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), './')
+        })
+
+        it('should handle absolute `latex.auxDir` with trailing slashes correctly', () => {
+            set.config('latex.auxDir', '/aux/')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), '/aux')
+        })
+
+        it('should handle relative `latex.auxDir` with trailing slashes correctly', () => {
+            set.config('latex.auxDir', 'aux/')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), 'aux')
+        })
+
+        it('should normalize aux directory paths correctly on Windows', () => {
+            if (os.platform() === 'win32') {
+                assert.pathStrictEqual(lw.file.getAuxDir('c:\\path\\to\\file.tex'), 'c:/path/to')
+            }
+        })
+    })
+
     describe('lw.file.getOutDir', () => {
         it('should get output directory from root', () => {
             set.root(fixture, 'main.tex')
