@@ -310,6 +310,7 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
         const outDir = outDirW32.split(path.sep).join('/')
-        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
+        const auxDir = path.normalize(expandPlaceHolders(configuration.get('latex.auxDir') as string)).split(path.sep).join('/')
+        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32).replace(/%AUXDIR%/g, auxDir)
     }
 }

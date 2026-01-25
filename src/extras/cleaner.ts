@@ -34,6 +34,13 @@ function globAll(globs: string[], cwd: string): string[] {
     ).sort((a, b) => b.localeCompare(a))
 }
 
+function globAllMultipleCwds(globs: string[], cwds: string[]): string[] {
+    return unique(
+        cwds.map(cwd => globAll(globs, cwd)).flat()
+    ).sort((a, b) => b.localeCompare(a))
+}
+
+
 async function clean(rootFile?: string): Promise<void> {
     if (!rootFile) {
         if (lw.root.file.path !== undefined) {
@@ -95,7 +102,7 @@ function splitGlobs(globs: string[]): { fileOrFolderGlobs: string[], folderGlobs
 }
 
 /**
- * Removes files in `outDir` matching the glob patterns.
+ * Removes files in `outDir` and `auxDir` matching the glob patterns.
  *
  * Also removes empty folders explicitly specified by the glob pattern. We
  * only remove folders that are empty and the folder glob pattern is added
@@ -108,13 +115,15 @@ async function cleanGlob(rootFile: string): Promise<void> {
         .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(globType))
     const outdir = path.resolve(path.dirname(rootFile), lw.file.getOutDir(rootFile))
     logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
+    const auxdir = path.resolve(path.dirname(rootFile), lw.file.getAuxDir(rootFile))
+    logger.log(`Clean glob matched files ${JSON.stringify({globs, auxdir})} .`)
 
     const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = splitGlobs(globs)
     logger.log(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar} .`)
 
-    const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
+    const explicitFolders: string[] = globAllMultipleCwds(folderGlobsExplicit, [auxdir,outdir])
     const explicitFoldersSet: Set<string> = new Set(explicitFolders)
-    const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir).filter(file => !explicitFoldersSet.has(file))
+    const filesOrFolders: string[] = globAllMultipleCwds(fileOrFolderGlobs, [auxdir, outdir]).filter(file => !explicitFoldersSet.has(file))
 
     // Remove files first
     for (const realPath of filesOrFolders) {
