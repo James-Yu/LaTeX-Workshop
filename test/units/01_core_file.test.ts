@@ -80,10 +80,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should get aux directory with absolute `latex.outDir` and root', () => {
+            set.config('latex.auxDir', '%OUTDIR%')
             set.config('latex.outDir', '/aux')
             set.root(fixture, 'main.tex')
             assert.pathStrictEqual(lw.file.getAuxDir(), '/aux')
         })
+
+        it('should get different aux and out directories', () => {
+            set.config('latex.auxDir', './aux')
+            set.config('latex.outDir', '/out')
+            set.root(fixture, 'main.tex')
+            assert.pathStrictEqual(lw.file.getAuxDir(), 'aux')
+        })
+
 
         it('should get aux directory with relative `latex.auxDir` and root', () => {
             set.config('latex.auxDir', 'aux')
