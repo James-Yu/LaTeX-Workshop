@@ -31,7 +31,10 @@ type BibtexFormatConfig = {
     tab: string,
     left: string,
     right: string,
-    case: 'UPPERCASE' | 'lowercase',
+    case: {
+        field: 'UPPERCASE' | 'lowercase',
+        type: 'UPPERCASE' | 'lowercase'
+    },
     trailingComma: boolean,
     sort: string[],
     alignOnEqual: boolean,
@@ -51,7 +54,10 @@ export function getBibtexFormatConfig(scope: vscode.ConfigurationScope | undefin
     }
     const formatConfig: BibtexFormatConfig = {
         tab: tabs,
-        case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
+        case: {
+            field: config.get('bibtex-format.case.field') as ('UPPERCASE' | 'lowercase'),
+            type: config.get('bibtex-format.case.type') as ('UPPERCASE' | 'lowercase')
+        },
         left: leftright[0],
         right: leftright[1],
         trailingComma: config.get('bibtex-format.trailingComma') as boolean,
@@ -182,8 +188,7 @@ function bibtexSortByMonth(a: BibtexEntry, b: BibtexEntry, config: BibtexFormatC
 export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConfig): string {
     let s = ''
 
-    const convertCase = config.case === 'lowercase' ? (str: string) => str.toLowerCase() : (str: string) => str.toUpperCase()
-    s += '@' + convertCase(entry.entryType) + '{' + (entry.internalKey ?? '')
+    s += '@' + (config.case.type === 'lowercase' ? entry.entryType.toLowerCase() : entry.entryType.toUpperCase()) + '{' + (entry.internalKey ?? '')
 
     // Find the longest field name in entry
     let maxFieldLength = 0
@@ -198,6 +203,7 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
         fields = entry.content.sort(bibtexSortFields(config.fieldsOrder))
     }
 
+    const convertCase = config.case.field === 'lowercase' ? (str: string) => str.toLowerCase() : (str: string) => str.toUpperCase()
     fields.forEach(field => {
         s += ',\n' + config.tab + convertCase(field.name)
         let indent = config.tab + ' '.repeat(field.name.length)
