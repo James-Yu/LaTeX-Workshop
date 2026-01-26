@@ -186,6 +186,36 @@ async function buildLoop() {
     isBuilding = false
     setTimeout(() => lw.compile.compiledPDFWriting--, vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.pdf.delay') as number * 2)
 }
+/** Normalizes a command-line argument that represents a file path to be
+ * relative to the current working directory (`cwd`) if it is under the root
+ * directory (`rootDir`). If the argument does not represent a path or is not
+ * under the root directory, it is returned unchanged.
+ *
+ * @param {string} arg - The command-line argument to normalize.
+ * @param {string} cwd - The current working directory.
+ * @param {string} rootDir - The root directory of the LaTeX project.
+ * @returns {string} - The normalized command-line argument.
+ */
+function normalizeArgForCwd(arg: string, cwd: string, rootDir: string): string {
+    if (!arg) { return arg }
+    let abs: string
+    try {
+        abs = path.isAbsolute(arg) ? path.normalize(arg) : path.resolve(cwd, arg)
+    } catch {
+        logger.log(`Cannot resolve path for arg: ${arg} please check if it is a valid path.`)
+        return arg
+    }
+    const relToRoot = path.relative(rootDir, abs)
+    const isUnderRoot = relToRoot === '' || (!relToRoot.startsWith('..') && !path.isAbsolute(relToRoot))
+    if (!isUnderRoot) {
+        logger.log(`Argument path not under root dir, you can wiki how to set openout_any=a if you want to keep as-is: ${arg}`)
+        return arg
+    }
+    const rel = path.relative(cwd, abs).split(path.sep).join('/')
+    logger.log(`Argument path converted to relative: ${arg} -> ${rel}`)
+    return rel
+}
+
 
 /**
  * Spawns a child process for the specified step. The function creates the
@@ -235,6 +265,9 @@ function spawnProcess(step: Step): ProcessEnv {
     } else if (!step.isExternal) {
         if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path && cwd === path.dirname(step.rootFile)) {
             cwd = lw.root.dir.path
+        }
+        if (step.command === 'bibtex' && step.args && step.args.length > 0) {
+            step.args[step.args.length - 1] = normalizeArgForCwd(step.args[step.args.length - 1], cwd, cwd)
         }
         logger.log(`cwd: ${cwd}`)
         lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd, env})
