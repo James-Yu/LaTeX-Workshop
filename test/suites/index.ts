@@ -13,6 +13,7 @@ export function run(): Promise<void> {
 
     return new Promise((resolve, reject) => {
         glob.sync('**/**.test.js', { cwd: __dirname })
+            .filter(f => process.env['LATEXWORKSHOP_SUITE'] ? process.env['LATEXWORKSHOP_SUITE'].split(',').find(candidate => f.includes(candidate)) !== undefined : true)
             .sort()
             .forEach(f => mocha.addFile(path.resolve(__dirname, f)))
         // Run the mocha test
