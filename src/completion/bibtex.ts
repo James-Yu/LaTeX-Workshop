@@ -117,7 +117,7 @@ export class BibProvider implements vscode.CompletionItemProvider {
         // Find the longest field name in entry
         let s: string = itemName + '{${0:key}'
         itemFields.forEach(field => {
-            s += ',\n' + config.tab + (config.case === 'lowercase' ? field.toLowerCase() : field.toUpperCase())
+            s += ',\n' + config.tab + (config.case.field === 'lowercase' ? field.toLowerCase() : field.toUpperCase())
             s += ' = '
             s += config.left + `$${count}` + config.right
             count++
