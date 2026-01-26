@@ -111,13 +111,21 @@ suite('Formatter test suite', () => {
             {src: 'formatter/bibtex_base.bib', dst: 'main.bib'}
         ], {open: 0, skipCache: true})
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', 'UPPERCASE')
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case.field', 'UPPERCASE')
         let lines = (await test.format()).split('\n')
         assert.ok(lines[1].trim().slice(0, 1).match(/[A-Z]/))
 
-        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case', 'lowercase')
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case.field', 'lowercase')
         lines = (await test.format()).split('\n')
         assert.ok(lines[1].trim().slice(0, 1).match(/[a-z]/))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case.type', 'UPPERCASE')
+        lines = (await test.format()).split('\n')
+        assert.ok(lines[0].trim().slice(1, 2).match(/[A-Z]/))
+
+        await vscode.workspace.getConfiguration('latex-workshop').update('bibtex-format.case.type', 'lowercase')
+        lines = (await test.format()).split('\n')
+        assert.ok(lines[0].trim().slice(1, 2).match(/[a-z]/))
     })
 
     test.run('test bibtex formatter with `bibtex-format.trailingComma`', async (fixture: string) => {
