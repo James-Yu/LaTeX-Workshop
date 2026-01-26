@@ -10,6 +10,7 @@ const logger = lw.log('File')
 let extraTeXExts: string[]
 export const file = {
     tmpDirPath: '',
+    getAuxDir,
     getOutDir,
     getLangId,
     getJobname,
@@ -300,6 +301,45 @@ function getOutDir(texPath?: string): string {
     return result
 }
 
+
+/**
+ * Determines the auxiliary directory for a given LaTeX file path.
+ *
+ * This function calculates the output directory where LaTeX compilation
+ * auxiliary files will be stored. If a specific LaTeX file path is provided, the
+ * function uses it to determine the output directory. Otherwise, it defaults to
+ * using the root file path. The function handles various scenarios, such as
+ * undefined paths and placeholder replacements, ensuring the output directory
+ * is appropriately formatted and normalized.
+ *
+ * @param {string} [texPath] - The path to the LaTeX file. If not provided, the
+ * root file path is used.
+ * @returns {string} The resolved auxiliary directory path.
+ */
+function getAuxDir(texPath?: string): string {
+    texPath = texPath ?? lw.root.file.path
+    // rootFile is also undefined
+    if (texPath === undefined) {
+        return './'
+    }
+
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(texPath))
+    const auxDir = configuration.get('latex.auxDir') as string || './'
+    let result = undefined
+    if (auxDir === '%OUTDIR%') {
+        result = texDirs[texPath]?.aux
+        if (!result) {
+            result = getOutDir(texPath)
+        }
+    }
+    const aux = utils.replaceArgumentPlaceholders(texPath, file.tmpDirPath)(auxDir)
+    result = result ?? path.normalize(aux).replaceAll(path.sep, '/')
+    if (result !== './' && result.endsWith('/')) {
+        result = result.slice(0, -1)
+    }
+    return result
+}
+
 /**
  * Returns the language identifier based on the file extension.
  *
@@ -364,13 +404,8 @@ function getPdfPath(texPath: string): string {
  * Retrieves the .fls file path associated with a given .tex file.
  *
  * This function determines the file system path to the .fls file generated
- * during the compilation of a LaTeX document. It starts by identifying the root
- * directory and output directory of the provided .tex file. Using the job name
- * derived from the .tex file, it constructs the expected .fls file name. The
- * function first checks if this .fls file exists in the output directory; if
- * found, it returns this path. If not found, it then checks an auxiliary
- * directory (if specified) for the .fls file and returns the path if it exists.
- * If the .fls file is not found in either location, the function returns
+ * during the compilation of a LaTeX document.
+ * If no .fls file is found in the aux directory, the function returns
  * `undefined`.
  *
  * @param {string} texPath - The file path to the .tex file for which the .fls
@@ -386,7 +421,8 @@ async function getFlsPath(texPath: string): Promise<string | undefined> {
     if (await exists(flsFile)) {
         return flsFile
     }
-    flsFile = path.resolve(rootDir, texDirs[texPath]?.aux ?? '', fileName)
+    const auxDir = getAuxDir(texPath)
+    flsFile = path.resolve(rootDir, path.join(auxDir, fileName))
     return await exists(flsFile) ? flsFile : undefined
 }
 

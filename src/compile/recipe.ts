@@ -70,9 +70,9 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
-        await createOutputSubFolders(lw.root.file.path)
+        await createAuxSubFolders(lw.root.file.path)
     } else {
-        await createOutputSubFolders(rootFile)
+        await createAuxSubFolders(rootFile)
     }
 
     // Check for invalid toolchain
@@ -102,27 +102,27 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  */
-async function createOutputSubFolders(rootFile: string) {
+async function createAuxSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
-    let outDir = lw.file.getOutDir(rootFile)
-    if (!path.isAbsolute(outDir)) {
-        outDir = path.resolve(rootDir, outDir)
+    let auxDir = lw.file.getAuxDir(rootFile)
+    if (!path.isAbsolute(auxDir)) {
+        auxDir = path.resolve(rootDir, auxDir)
     }
-    logger.log(`outDir: ${outDir} .`)
+    logger.log(`auxDir: ${auxDir} .`)
     for (const file of lw.cache.getIncludedTeX(rootFile)) {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
-        const fullOutDir = path.resolve(outDir, relativePath)
-        // To avoid issues when fullOutDir is the root dir
+        const fullAuxDir = path.resolve(auxDir, relativePath)
+        // To avoid issues when fullAuxDir is the root dir
         // Using fs.mkdir() on the root directory even with recursion will result in an error
         try {
-            const fileStat = await lw.file.exists(fullOutDir)
+            const fileStat = await lw.file.exists(fullAuxDir)
             if (
                 !fileStat ||
                 ![vscode.FileType.Directory, vscode.FileType.Directory | vscode.FileType.SymbolicLink].includes(
                     fileStat.type
                 )
             ) {
-                lw.external.mkdirSync(fullOutDir, { recursive: true })
+                lw.external.mkdirSync(fullAuxDir, { recursive: true })
             }
         } catch (e) {
             if (e instanceof Error) {

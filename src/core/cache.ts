@@ -583,7 +583,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
     }
     logger.log(`Parsing .fls ${flsPath} .`)
     const rootDir = path.dirname(filePath)
-    const outDir = lw.file.getOutDir(filePath)
+    const auxDir = lw.file.getAuxDir(filePath)
     const ioFiles = parseFlsContent(await lw.file.read(flsPath) ?? '', rootDir)
 
     for (const inputFile of ioFiles.input) {
@@ -628,7 +628,7 @@ async function loadFlsFile(filePath: string): Promise<void> {
     for (const outputFile of ioFiles.output) {
         if (path.extname(outputFile) === '.aux' && await lw.file.exists(outputFile)) {
             logger.log(`Found .aux ${outputFile} from .fls ${flsPath} , parsing.`)
-            await parseAuxFile(outputFile, path.dirname(outputFile).replace(outDir, rootDir))
+            await parseAuxFile(outputFile, path.dirname(outputFile).replace(auxDir, rootDir))
             logger.log(`Parsed .aux ${outputFile} .`)
         }
     }

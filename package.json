@@ -1128,6 +1128,7 @@
                 "-file-line-error",
                 "-pdf",
                 "-outdir=%OUTDIR%",
+                "-auxdir=%AUXDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -1141,6 +1142,7 @@
                 "-file-line-error",
                 "-lualatex",
                 "-outdir=%OUTDIR%",
+                "-auxdir=%AUXDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -1154,6 +1156,7 @@
                 "-file-line-error",
                 "-xelatex",
                 "-outdir=%OUTDIR%",
+                "-auxdir=%AUXDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -1244,7 +1247,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for a complete list of all placeholders."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%`, `%AUXDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for a complete list of all placeholders."
         },
         "latex-workshop.latex.magic.args": {
           "scope": "resource",
@@ -1302,7 +1305,13 @@
           "scope": "resource",
           "type": "string",
           "default": "%DIR%",
-          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located. Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to %DIR% (default value) or %DIR_W32%, the extension will try to parse the last LaTeX tools used and look for `-out-directory=` and `-outdir=`, and automatically determine the output directory. This means that you can safely ignore this config if you use `latexmk` and do not manually `mv` the output files in your recipe."
+          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%DIR%` (default value) or `%DIR_W32%`, the extension will try to parse the last LaTeX tools used and look for `-out-directory=` and `-outdir=`, and automatically determine the output directory. This means that you can safely ignore this config if you use `latexmk` and do not manually `mv` the output files in your recipe."
+        },
+        "latex-workshop.latex.auxDir": {
+          "scope": "resource",
+          "type": "string",
+          "default": "%OUTDIR%",
+          "markdownDescription": "The directory where the extension tries to find auxiliary project files (e.g., aux, fls). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output auxiliary files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%OUTDIR%` (default value), the extension will try to parse the last LaTeX tools used and look for `-aux-directory=` and `-auxdir=`, and automatically determine the auxiliary directory."
         },
         "latex-workshop.latex.extraExts": {
           "scope": "resource",
@@ -1542,7 +1551,7 @@
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `#latex-workshop.latex.outDir#`. Note that sub-folders are not removed."
+          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#`. Note that sub-folders are not removed."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "scope": "resource",
@@ -1591,6 +1600,7 @@
           },
           "default": [
             "-outdir=%OUTDIR%",
+            "-auxdir=%AUXDIR%",
             "-c",
             "%TEX%"
           ],
@@ -1605,7 +1615,7 @@
             "command"
           ],
           "markdownEnumDescriptions": [
-            "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
+            "Clean all the files located in `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
             "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
           "markdownDescription": "Define how temporary files will be cleaned."
