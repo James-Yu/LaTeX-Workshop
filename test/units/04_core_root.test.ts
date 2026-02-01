@@ -83,6 +83,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lw.root.findFromMagic', () => {
+        beforeEach(() => {
+            set.config('latex.build.enableMagicComments', true)
+        })
+
         it('should do nothing if there is no active editor', async () => {
             const stub = sinon.stub(vscode.window, 'activeTextEditor').value(undefined)
             await lw.root.find()
@@ -487,6 +491,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should not change root if new root remains the same, only refresh outline', async () => {
+            set.config('latex.build.enableMagicComments', true)
             const texPath = get.path(fixture, 'main.tex')
             set.root(fixture, 'main.tex')
 
@@ -502,6 +507,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should set path, dir, langId on newly found root', async () => {
+            set.config('latex.build.enableMagicComments', true)
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
@@ -514,6 +520,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should reset input completion, duplicate label cache, and file caches on newly found root', async () => {
+            set.config('latex.build.enableMagicComments', true)
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
@@ -528,6 +535,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should watch, cache, and parse fls of the new root', async () => {
+            set.config('latex.build.enableMagicComments', true)
             const texPath = get.path(fixture, 'main.tex')
 
             const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
