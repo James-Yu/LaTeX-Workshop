@@ -214,6 +214,12 @@ function buildMacroPairTreeFromNode(doc: vscode.TextDocument, node: Ast.Node, ne
                 }
             }
         }
+    } else if (node.type === 'group') {
+        for (let index = 0; index < node.content.length; index++) {
+            const subnode = node.content[index]
+            const subnext = index === node.content.length - 1 ? undefined : node.content[index + 1]
+            parentMacroPair = buildMacroPairTreeFromNode(doc, subnode, subnext, parentMacroPair, macros)
+        }
     }
     return parentMacroPair
 }
