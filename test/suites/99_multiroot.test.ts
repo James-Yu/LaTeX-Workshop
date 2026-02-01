@@ -33,7 +33,7 @@ suite('Multi-root workspace test suite', () => {
             'latex.outDir',
             'latex.recipes',
             'latex.recipe.default',
-            'latex.build.forceRecipeUsage',
+            'latex.build.enableMagicComments',
             'latex.search.rootFiles.include',
             'latex.search.rootFiles.exclude',
             'latex.autoBuild.run',
@@ -139,9 +139,9 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(fs.existsSync(resolve(fixture, 'out/main.pdf', 'A')))
     })
 
-    test.run('build with forceRecipeUsage: true', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
-        await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.build.forceRecipeUsage', true)
+    test.run('build with enableMagicComments: false', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', true)
+        await vscode.workspace.getConfiguration('latex-workshop', vscode.workspace.workspaceFolders?.[0]).update('latex.build.enableMagicComments', false)
         await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex', ws: 'A'},
             {src: 'empty', dst: 'empty', ws: 'B'}

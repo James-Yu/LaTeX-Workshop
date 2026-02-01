@@ -225,7 +225,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should handle magic comment %!TEX program', async () => {
             readStub.resolves('% !TEX program = echo\n')
-            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.build.enableMagicComments', true)
             set.config('latex.magic.args', ['--arg1', '--arg2'])
 
             await build()
@@ -234,7 +234,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should handle magic comment % !TEX program with % !TEX options', async () => {
             readStub.resolves('% !TEX program = echo\n% !TEX options = --arg1 --arg2\n')
-            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.build.enableMagicComments', true)
 
             await build()
             assert.strictEqual(get.compiler.log().trim(), '--arg1 --arg2')

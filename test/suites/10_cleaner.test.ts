@@ -172,7 +172,7 @@ suite('Cleaner test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.method', 'glob')
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.clean.fileTypes', ['*.aux','*.fls', '*.pdf'])
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.autoBuild.cleanAndRetry.enabled', false)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', true)
         await test.load(fixture, [
             {src: 'invalid_cmd.tex', dst: 'main.tex'}
         ], {skipCache: true})

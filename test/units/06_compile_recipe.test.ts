@@ -138,7 +138,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const rootFile = set.root('magic.tex')
             readStub.resolves('% !TEX program = pdflatex\n')
             set.config('latex.recipes', [])
-            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.build.enableMagicComments', true)
             set.config('latex.magic.args', ['--shell-escape'])
 
             await build(rootFile, 'latex', async () => {})
@@ -153,7 +153,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should do nothing but log an error with magic comments but disabled', async () => {
             const rootFile = set.root('magic.tex')
             set.config('latex.recipes', [])
-            set.config('latex.build.forceRecipeUsage', true)
+            set.config('latex.build.enableMagicComments', false)
 
             await build(rootFile, 'latex', async () => {})
 
@@ -256,7 +256,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         beforeEach(() => {
-            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.build.enableMagicComments', true)
         })
 
         afterEach(() => {
@@ -404,7 +404,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         beforeEach(() => {
-            set.config('latex.build.forceRecipeUsage', false)
+            set.config('latex.build.enableMagicComments', true)
             set.config('latex.magic.args', ['--shell-escape'])
             set.config('latex.magic.bib.args', ['--min-crossrefs=1000'])
         })
@@ -750,7 +750,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should add --max-print-line argument to the arg string with MikTeX and %!TeX options', async () => {
             await set.config('latex.option.maxPrintLine.enabled', true)
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.build.forceRecipeUsage', false)
+            await set.config('latex.build.enableMagicComments', true)
             syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
             readStub.resolves('% !TEX program = latexmk\n% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error\n')
             const rootFile = set.root('main.tex')
