@@ -117,11 +117,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.compile->recipe.createBuildTools', () => {
         let readStub: sinon.SinonStub
 
-        before(() => {
+        beforeEach(() => {
             readStub = sinon.stub(lw.file, 'read')
         })
 
-        after(() => {
+        afterEach(() => {
             readStub.restore()
         })
 
@@ -137,6 +137,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should create build tools based on magic comments when enabled', async () => {
             const rootFile = set.root('magic.tex')
             readStub.resolves('% !TEX program = pdflatex\n')
+            set.config('latex.build.enableMagicComments', true)
             set.config('latex.recipes', [])
             set.config('latex.build.enableMagicComments', true)
             set.config('latex.magic.args', ['--shell-escape'])
@@ -162,6 +163,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should skip undefined tools in the recipe and log an error', async () => {
             const rootFile = set.root('main.tex')
+            // set.config('latex.build.enableMagicComments', false)
             set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
             set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
 
@@ -177,6 +179,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should do nothing but log an error if no tools are prepared', async () => {
             const rootFile = set.root('main.tex')
+            // set.config('latex.build.enableMagicComments', false)
             set.config('latex.tools', [])
             set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 

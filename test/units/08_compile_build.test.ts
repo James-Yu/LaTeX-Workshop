@@ -201,11 +201,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('lw.compile->build.spawnProcess', () => {
         let readStub: sinon.SinonStub
 
-        before(() => {
+        beforeEach(() => {
             readStub = sinon.stub(lw.file, 'read')
         })
 
-        after(() => {
+        afterEach(() => {
             readStub.restore()
         })
 
