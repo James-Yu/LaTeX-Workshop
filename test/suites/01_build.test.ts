@@ -20,7 +20,7 @@ suite.skip('Build TeX files test suite', () => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.tools', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.outDir', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', undefined)
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', undefined)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.fromWorkspaceFolder', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.doNotPrompt', undefined)
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.rootFile.useSubFile', undefined)
@@ -96,7 +96,7 @@ suite.skip('Build TeX files test suite', () => {
 
     test.run('build with magic comment', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', true)
         await test.load(fixture, [
             {src: 'magic_program.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -106,7 +106,7 @@ suite.skip('Build TeX files test suite', () => {
 
     test.run('build with !TEX program and !TEX options', async (fixture: string) => {
         await vscode.workspace.getConfiguration('latex-workshop').update('latex.recipes', [])
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', true)
         await test.load(fixture, [
             {src: 'magic_option.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -115,7 +115,7 @@ suite.skip('Build TeX files test suite', () => {
     })
 
     test.run('build with invalid !TEX program', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', false)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', true)
         await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})
@@ -124,7 +124,7 @@ suite.skip('Build TeX files test suite', () => {
     })
 
     test.run('build with !LW recipe', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', false)
         const tools = [
             { name: 'touch', command: 'touch', args: ['fail.txt'], env: {} },
             { name: 'latexmk', command: 'latexmk', args: [ '-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '%DOC%' ], env: {} }
@@ -140,7 +140,7 @@ suite.skip('Build TeX files test suite', () => {
     })
 
     test.run('build with invalid !LW recipe', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', false)
         const tools = [
             { name: 'touch', command: 'touch', args: ['success.txt'], env: {} },
             { name: 'latexmk', command: 'latexmk', args: [ '-synctex=1', '-interaction=nonstopmode', '-file-line-error', '-pdf', '-outdir=%OUTDIR%', '%DOC%' ], env: {} }
@@ -155,8 +155,8 @@ suite.skip('Build TeX files test suite', () => {
         assert.ok(!fs.existsSync(path.resolve(fixture, 'main.pdf')))
     })
 
-    test.run('build with forceRecipeUsage: true', async (fixture: string) => {
-        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.forceRecipeUsage', true)
+    test.run('build with enableMagicComments: false', async (fixture: string) => {
+        await vscode.workspace.getConfiguration('latex-workshop').update('latex.build.enableMagicComments', false)
         await test.load(fixture, [
             {src: 'magic_invalid.tex', dst: 'main.tex'}
         ], {skipCache: true})

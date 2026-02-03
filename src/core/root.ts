@@ -158,7 +158,11 @@ async function findFromMagic(): Promise<string | undefined> {
     if (!vscode.window.activeTextEditor) {
         return
     }
-
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(vscode.window.activeTextEditor.document.fileName))
+    if (!configuration.get('latex.build.enableMagicComments')) {
+        logger.log('Skip finding root from magic comment.')
+        return
+    }
     logger.log('Try finding root from magic comment.')
     const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
     const fileStack: string[] = []
