@@ -1,5 +1,20 @@
 # Change Log
 
+## [10.13.0] - 2026-02-24
+
+### Added
+- [#4781] Add `bibtex-format.case.type` to format the case of entry types in bibtex.
+- [#4786] Add `auxDir` setting.
+- [#4792] Improved magic comments configuration.
+  - Add new configuration `latex.build.enableMagicComments` and replace `forceRecipeUsage`.
+
+### Fixed
+- [#4714] Improved `outdir` for bibtex.
+- [#4775] Citation hover with whitespace.
+- [#4778] Compute AST on `stripCommentsAndVerbatim` return.
+- [#4790] Parse groups to build the `MacroPair` tree.
+- [#4795] Remove TiKZ snippet view.
+
 ## [10.12.2] - 2026-01-07
 
 ### Fixed
