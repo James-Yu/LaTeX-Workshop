@@ -331,7 +331,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.window.registerWebviewViewProvider(
-            'latex-workshop-snippet-view',
+            'latex-workshop-math-symbols',
             lw.extra.snippet.provider,
             { webviewOptions: { retainContextWhenHidden: true } }
         )
