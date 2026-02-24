@@ -5,7 +5,6 @@ var vscodeApi;
 
 (function() {
     vscodeApi = acquireVsCodeApi();
-    tikzInitialise();
 })();
 
 async function loadMathSymbols() {
@@ -83,30 +82,3 @@ function getSearchText(symbol) {
     }
     return searchText;
 }
-
-function tikzInitialise() {
-    document.querySelectorAll('#TikZ a.cmd').forEach(elem => {
-        elem.addEventListener('click', _evt => {
-            vscodeApi.postMessage({
-                type: 'insertSnippet',
-                snippet: elem.getAttribute('data-snippet').replace(/\\n/g, '\n')
-            });
-        });
-    });
-}
-
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName('tabcontent');
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = 'none';
-    }
-    tablinks = document.getElementsByClassName('tablinks');
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(' active', '');
-    }
-    document.getElementById(tabName).style.display = 'block';
-    evt.currentTarget.className += ' active';
-}
-
-document.querySelector('.tablinks.active').click();
