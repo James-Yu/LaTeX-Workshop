@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.13.1] - 2026-02-26
+
+### Fixed
+- Fix expansion of `%OUTDIR%` in `%AUXDIR%`.
+
 ## [10.13.0] - 2026-02-24
 
 ### Added
