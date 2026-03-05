@@ -88,8 +88,12 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
  */
 export function onAPackage(document: vscode.TextDocument, position: vscode.Position, token: string): boolean {
     const line = document.lineAt(position.line).text
+    // First, test if the cursor is on a list of words.
+    if (!token.match(/^[\w,\s]*$/)) {
+        return false
+    }
     const escapedToken = utils.escapeRegExp(token)
-    const regex = new RegExp(`\\\\(?:usepackage|RequirePackage)(?:\\[[^\\[\\]\\{\\}]*\\])?\\{[\\w,]*${escapedToken}[\\w,]*\\}`)
+    const regex = new RegExp(`\\\\(?:usepackage|RequirePackage)(?:\\[[^\\[\\]\\{\\}]*\\])?\\{[\\w,\\s]*${escapedToken}[\\w,\\s]*\\}`)
     if (line.match(regex)) {
         return true
     }
