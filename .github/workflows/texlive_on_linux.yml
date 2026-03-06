@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
     - name: Set up PATH
       run: |
         echo "/tmp/texlive/bin/x86_64-linux" >> $GITHUB_PATH
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v5
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
       with:
         path: /tmp/texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
@@ -46,7 +46,7 @@ jobs:
         mv -f latexindent /tmp/texlive/bin/x86_64-linux/latexindent
         chmod +x /tmp/texlive/bin/x86_64-linux/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20'
     - run: |
@@ -62,7 +62,7 @@ jobs:
       run: xvfb-run -a npm run test | grep -v 'Failed to connect to the bus:\|is not in the list of known options\|gpu_memory_buffer_support_x11' ; test ${PIPESTATUS[0]} -eq 0
     - name: Archive test logs
       if: always()
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
       with:
         name: test-log
         path: test/log/**/*.log

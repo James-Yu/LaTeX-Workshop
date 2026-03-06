@@ -11,14 +11,14 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
     - name: Set up PATH
       run: |
         echo "/Users/runner/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
         echo "/Users/runner/texlive/bin/universal-darwin" >> $GITHUB_PATH
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v5
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
       with:
         path: /Users/runner/texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
@@ -45,7 +45,7 @@ jobs:
         curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
         [ -d /Users/runner/texlive/bin/x86_64-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/x86_64-darwin/latexindent && chmod +x /Users/runner/texlive/bin/x86_64-darwin/latexindent || [ -d /Users/runner/texlive/bin/universal-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/universal-darwin/latexindent && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20'
     - run: |
@@ -61,7 +61,7 @@ jobs:
       run: npm run test
     - name: Archive test logs
       if: always()
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
       with:
         name: test-log
         path: test/log/**/*.log
