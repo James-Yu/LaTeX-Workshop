@@ -36,3 +36,19 @@ jobs:
             echo 'Do not use pull_request_target for this repository hardening baseline.'
             exit 1
           fi
+
+      - name: Ensure workflows do not use plaintext HTTP downloads
+        run: |
+          MATCHES="$(git grep -nE 'http://' -- .github/workflows | grep -v '^.github/workflows/security-guardrails.yml:' || true)"
+          if [ -n "$MATCHES" ]; then
+            echo "$MATCHES"
+            echo 'Plaintext HTTP is not allowed in workflows. Use HTTPS-only downloads.'
+            exit 1
+          fi
+
+      - name: Ensure workflows verify downloaded installers
+        run: |
+          for file in .github/workflows/texlive_on_linux.yml .github/workflows/texlive_on_mac.yml .github/workflows/texlive_on_win.yml; do
+            grep -q 'sha512' "$file" || { echo "Missing checksum verification in $file"; exit 1; }
+            grep -q 'gpg' "$file" || { echo "Missing signature verification in $file"; exit 1; }
+          done

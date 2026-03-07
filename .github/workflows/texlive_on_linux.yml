@@ -1,6 +1,7 @@
 name: TeX Live on Linux
 env:
   cache-version: v12
+  TEXLIVE_KEY_FINGERPRINT: C78B82D8C79512F79CC0D7C80D5E5D9106BAB6BC
 on: [push, pull_request]
 
 permissions:
@@ -23,11 +24,22 @@ jobs:
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
         restore-keys: |
           ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
-    - name: Download install-tl.zip
+    - name: Download and verify install-tl archive
       run: |
-        curl -s -O -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
-        unzip -q install-tl.zip
-        mv install-tl-2* install-tl-dir
+        curl --fail --show-error --silent --location --proto '=https' --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+        curl --fail --show-error --silent --location --proto '=https' --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz.sha512
+        curl --fail --show-error --silent --location --proto '=https' --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz.sha512.asc
+        curl --fail --show-error --silent --location --proto '=https' --tlsv1.2 -O https://tug.org/texlive/files/texlive.asc
+        test "$(gpg --show-keys --with-colons texlive.asc | awk -F: '/^fpr:/ {print $10; exit}')" = "$TEXLIVE_KEY_FINGERPRINT"
+        sha512sum --check install-tl-unx.tar.gz.sha512
+        export GNUPGHOME="$(mktemp -d)"
+        gpg --batch --import texlive.asc
+        gpg --batch --verify install-tl-unx.tar.gz.sha512.asc install-tl-unx.tar.gz.sha512
+        tar -xzf install-tl-unx.tar.gz
+        INSTALL_DIR="$(find . -maxdepth 1 -type d -name 'install-tl-*' | head -n 1)"
+        test -n "$INSTALL_DIR"
+        mv "$INSTALL_DIR" install-tl-dir
+        rm -rf "$GNUPGHOME"
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - name: Run install-tl
       run: |
@@ -40,12 +52,12 @@ jobs:
         tlmgr install import subfiles latexmk makeindex
         tlmgr install chktex lacheck latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - name: Download latexindent binary
+    - name: Create latexindent wrapper
       run: |
-        curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/linux/latexindent
-        mv -f latexindent /tmp/texlive/bin/x86_64-linux/latexindent
+        SCRIPT_PATH="$(kpsewhich latexindent.pl)"
+        test -n "$SCRIPT_PATH"
+        printf '%s\n' '#!/bin/sh' 'exec perl "'"$SCRIPT_PATH"'" "$@"' > /tmp/texlive/bin/x86_64-linux/latexindent
         chmod +x /tmp/texlive/bin/x86_64-linux/latexindent
-      if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20'

@@ -1,6 +1,7 @@
 name: TeX Live on Windows
 env:
   cache-version: v12
+  TEXLIVE_KEY_FINGERPRINT: C78B82D8C79512F79CC0D7C80D5E5D9106BAB6BC
 on: [push, pull_request]
 
 permissions:
@@ -29,10 +30,20 @@ jobs:
           ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
     - name: Download install-tl.zip
       run: |
-        curl -s -O -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+        curl.exe --fail --show-error --silent --location --proto "=https" --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+        curl.exe --fail --show-error --silent --location --proto "=https" --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip.sha512
+        curl.exe --fail --show-error --silent --location --proto "=https" --tlsv1.2 -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip.sha512.asc
+        curl.exe --fail --show-error --silent --location --proto "=https" --tlsv1.2 -O https://tug.org/texlive/files/texlive.asc
+        test "$(gpg --show-keys --with-colons texlive.asc | awk -F: '/^fpr:/ {print $10; exit}')" = "$TEXLIVE_KEY_FINGERPRINT"
+        sha512sum --check install-tl.zip.sha512
+        export GNUPGHOME="$(mktemp -d)"
+        gpg --batch --import texlive.asc
+        gpg --batch --verify install-tl.zip.sha512.asc install-tl.zip.sha512
         unzip -q install-tl.zip
         mv install-tl-2* install-tl-dir
+        rm -rf "$GNUPGHOME"
       if: steps.cache-texlive.outputs.cache-hit != 'true'
+      shell: bash
     - name: Run install-tl-windows.bat
       run: |
         install-tl-dir\install-tl-windows.bat --profile test\config\texlive_windows.profile
@@ -44,11 +55,14 @@ jobs:
         tlmgr install import subfiles latexmk makeindex
         tlmgr install chktex lacheck latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - name: Download latexindent binary
+    - name: Create latexindent wrapper
       run: |
-        curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/windows/latexindent.exe
-        mv -Force "latexindent.exe" "D:\texlive\bin\windows\latexindent-binary.exe"
-      if: steps.cache-texlive.outputs.cache-hit != 'true'
+        $script = & kpsewhich latexindent.pl
+        if (-not $script) { throw 'latexindent.pl not found via kpsewhich' }
+        @(
+          '@echo off',
+          'perl "' + $script + '" %*'
+        ) | Set-Content -Path 'D:\texlive\bin\windows\latexindent.bat' -Encoding ASCII
     - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20'
