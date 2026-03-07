@@ -1,0 +1,35 @@
+name: Security Guardrails
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Ensure telemetry SDK is not introduced
+        run: |
+          if git grep -nE 'vscode-extension-telemetry|applicationinsights|@opentelemetry|opentelemetry' -- src package.json; then
+            echo 'Telemetry-related SDK usage detected in extension runtime surface.'
+            exit 1
+          fi
+
+      - name: Ensure `shell: true` stays constrained
+        run: |
+          MATCHES="$(git grep -n 'shell: true' -- src || true)"
+          if [ -z "$MATCHES" ]; then
+            exit 0
+          fi
+          echo "$MATCHES"
+          BAD="$(echo "$MATCHES" | grep -v '^src/compile/build.ts:' || true)"
+          if [ -n "$BAD" ]; then
+            echo 'Unexpected `shell: true` usage found outside src/compile/build.ts'
+            echo "$BAD"
+            exit 1
+          fi

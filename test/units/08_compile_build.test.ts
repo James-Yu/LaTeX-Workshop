@@ -240,6 +240,46 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(get.compiler.log().trim(), '--arg1 --arg2')
         })
 
+        it('should use `shell: true` only for magic options string execution', async () => {
+            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --arg1 --arg2\n')
+            set.config('latex.build.enableMagicComments', true)
+
+            const originalSpawn = lw.external.spawn
+            let lastSpawnArgs: [command: string, args: readonly string[], options: SpawnOptions] | undefined
+            lw.external.spawn = ((...args) => {
+                lastSpawnArgs = args
+                return cs.spawn('true')
+            }) as typeof lw.external.spawn
+            try {
+                await build()
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
+
+            assert.strictEqual(lastSpawnArgs?.[2].shell, true)
+            assert.strictEqual(lastSpawnArgs?.[0], 'pdflatex --arg1 --arg2')
+        })
+
+        it('should not use `shell: true` for normal recipe tool execution', async () => {
+            set.config('latex.tools', [{ name: 'tool', command: 'pdflatex', args: ['%DOC%'] }])
+            set.config('latex.recipes', [{ name: 'recipe', tools: ['tool'] }])
+
+            const originalSpawn = lw.external.spawn
+            let lastSpawnArgs: [command: string, args: readonly string[], options: SpawnOptions] | undefined
+            lw.external.spawn = ((...args) => {
+                lastSpawnArgs = args
+                return cs.spawn('true')
+            }) as typeof lw.external.spawn
+            try {
+                await build()
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
+
+            assert.ok(lastSpawnArgs?.[2].shell === undefined)
+            assert.strictEqual(lastSpawnArgs?.[0], 'pdflatex')
+        })
+
         it('should use the root file directory as cwd when building', async () => {
             set.root('main.tex')
             const spawnSpy = sinon.spy(lw.external, 'spawn')
