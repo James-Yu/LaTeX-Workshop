@@ -2,7 +2,7 @@
 
 ## [10.13.2] - 2026-03-07
 
-Subtractive feature selection of TeX Workspace for enterprise use cases.
+Subtractive feature selection of LaTeX-Secure-Workspace for enterprise use cases.
 Privacy-first, with no telemetry and no profile-enrichment lookups.
 Security-first maintenance, including active review and corrective updates.
 
