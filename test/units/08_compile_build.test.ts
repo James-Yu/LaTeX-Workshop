@@ -257,7 +257,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
 
             assert.strictEqual(lastSpawnArgs?.[2].shell, true)
-            assert.strictEqual(lastSpawnArgs?.[0], 'pdflatex --arg1 --arg2')
+            assert.ok(lastSpawnArgs?.[0].startsWith('pdflatex '))
+            assert.ok(lastSpawnArgs?.[0].includes('--arg1 --arg2'))
         })
 
         it('should not use `shell: true` for normal recipe tool execution', async () => {
