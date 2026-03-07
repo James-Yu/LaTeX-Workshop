@@ -1,6 +1,6 @@
 # Overview
 
-This document is partly historical and upstream-oriented. In TeX Workspace Secure, the active runtime path is a minimal local tab-based PDF viewer that loads bundled PDF.js assets in a webview and supports only one-way refresh from the extension host. The internal PDF viewer server, browser viewer workflow, WebSocket-based control flow, and SyncTeX integration are disabled in the secure build, so most of the architecture described below is no longer the active runtime path.
+This document is partly historical and upstream-oriented. In LaTeX-Secure-Workspace, the active runtime path is a minimal local tab-based PDF viewer that loads bundled PDF.js assets in a webview and supports only one-way refresh from the extension host. The internal PDF viewer server, browser viewer workflow, WebSocket-based control flow, and SyncTeX integration are disabled in the secure build, so most of the architecture described below is no longer the active runtime path.
 
 The pdf viewer is based on [PDF.js](https://mozilla.github.io/pdf.js/) by Mozilla Foundation. Files are from the [prebuilt download version](https://mozilla.github.io/pdf.js/getting_started/#download). See a [related issue](https://github.com/mozilla/pdf.js/issues/9318#issuecomment-354192067).
 
@@ -47,7 +47,7 @@ See [mozilla/pdf.js/pull/8107](https://github.com/mozilla/pdf.js/pull/8107) for 
 ```mermaid
 flowchart TB
   subgraph ExtensionHost["VS Code Extension Host"]
-    LW["LaTex Secure Workspace"]
+    LW["LaTeX-Secure-Workspace"]
     Server["Server for PDF viewer \n(Files and WebSocket)\n127.0.0.1"]
     LW --- Server
   end
@@ -68,7 +68,7 @@ flowchart TB
 flowchart TB
   subgraph Remote["Remote machine or container"]
     subgraph ExtensionHost["VS Code Server (Extension Host)"]
-      LW["LaTex Secure Workspace"]
+      LW["LaTeX-Secure-Workspace"]
       Server["Server for PDF viewer\n(Files and WebSocket)\n127.0.0.1 at remote"]
       LW --- Server
     end
@@ -224,7 +224,7 @@ When reloading a PDF file. In order.
 flowchart TB
   subgraph Remote["Remote machine"]
     subgraph ExtensionHost["VS Code Server (Extension Host)"]
-      LW["LaTex Secure Workspace"]
+      LW["LaTeX-Secure-Workspace"]
       Server["Server for PDF viewer\n(Files and WebSocket)\n127.0.0.1 at remote"]
       LW --- Server
     end

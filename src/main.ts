@@ -5,7 +5,7 @@ lw.extensionRoot = path.resolve(`${__dirname}/../../`)
 import { log } from './utils/logger'
 lw.log = log.getLogger
 const logger = lw.log('Extension')
-logger.log('Initializing LaTex Secure Workspace.')
+logger.log('Initializing LaTeX-Secure-Workspace.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
@@ -154,7 +154,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     })
     conflictCheck()
 
-    logger.log('LaTex Secure Workspace initialized.')
+    logger.log('LaTeX-Secure-Workspace initialized.')
 }
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
@@ -296,7 +296,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 function conflictCheck() {
     function check(ID: string, name: string, suggestion: string) {
         if (vscode.extensions.getExtension(ID) !== undefined) {
-            void vscode.window.showWarningMessage(`LaTex Secure Workspace is incompatible with  "${name}". ${suggestion}`)
+            void vscode.window.showWarningMessage(`LaTeX-Secure-Workspace is incompatible with  "${name}". ${suggestion}`)
         }
     }
     check('tomoki1207.pdf', 'vscode-pdf', 'We compete when opening a PDF file from the sidebar. Please consider disabling either extension.')

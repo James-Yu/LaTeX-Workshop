@@ -7,7 +7,7 @@ Privacy-first, with no telemetry and no profile-enrichment lookups.
 Security-first maintenance, including active review and corrective updates.
 
 ### Changed
-- Forked the extension into LaTex Secure Workspace with a dedicated publisher, package name, icon, and log branding.
+- Forked the extension into LaTeX-Secure-Workspace with a dedicated publisher, package name, icon, and log branding.
 - Reduced the feature surface to core authoring and compilation workflows for this secure build.
 
 ### Removed

@@ -33,13 +33,13 @@ async function runTexdoc(packageName: string) {
 
     proc.on('error', err => {
         logger.log(`Cannot run texdoc: ${err.message}, ${stderr}`)
-        void logger.showErrorMessage('Texdoc failed. Please refer to LaTex Secure Workspace Output for details.')
+        void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX-Secure-Workspace Output for details.')
     })
 
     proc.on('exit', exitCode => {
         if (exitCode !== 0) {
             logger.logError(`Cannot find documentation for ${packageName}.`, exitCode)
-            void logger.showErrorMessage('Texdoc failed. Please refer to LaTex Secure Workspace Output for details.')
+            void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX-Secure-Workspace Output for details.')
         } else {
             const regex = new RegExp(`(no documentation found)|(Documentation for ${packageName} could not be found)`)
             if (stdout.match(regex) || stderr.match(regex)) {
