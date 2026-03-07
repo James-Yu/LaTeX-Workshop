@@ -4,3 +4,20 @@ updates:
   directory: "/"
   schedule:
       interval: "weekly"
+
+- package-ecosystem: "npm"
+  directory: "/"
+  schedule:
+      interval: "weekly"
+  ignore:
+    # Managed acceptance (dev-only risk):
+    # - advisory: GHSA-5c6j-r48x-rmvq (serialize-javascript)
+    # - path: mocha -> serialize-javascript (devDependencies only)
+    # - not shipped in VSIX/runtime
+    # - security_update_not_possible until upstream range changes
+    # Re-evaluate on: mocha dependency range change, quarterly dependency review, or lockfile refresh.
+    - dependency-name: "serialize-javascript"
+      update-types:
+        - "version-update:semver-major"
+        - "version-update:semver-minor"
+        - "version-update:semver-patch"

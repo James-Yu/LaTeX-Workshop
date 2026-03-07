@@ -33,3 +33,10 @@ jobs:
             echo "$BAD"
             exit 1
           fi
+
+      - name: Ensure `pull_request_target` is not introduced
+        run: |
+          if git grep -n 'pull_request_target' -- .github/workflows; then
+            echo 'Do not use pull_request_target for this repository hardening baseline.'
+            exit 1
+          fi
