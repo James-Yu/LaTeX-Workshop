@@ -10,6 +10,8 @@ Privacy-first, with no telemetry and no profile-enrichment lookups.
 
 Security-first maintenance, including active review and corrective updates.
 
+For a concise summary of the security measures in this fork and the risks they are intended to reduce, see [Security Hardening Summary](./docs/security-hardening.md) or [セキュリティ対策サマリー](./docs/security-hardening.ja.md).
+
 Security review is performed with enterprise use cases in mind, but adopters remain responsible for their own validation, deployment decisions, and incident handling.
 
 > [!IMPORTANT]
