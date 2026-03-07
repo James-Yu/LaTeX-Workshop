@@ -5,7 +5,7 @@ export function initConnect() {
     console.warn('Internal viewer connection is disabled in this build.')
 }
 
-export async function send(message: ClientRequest) {
+export function send(message: ClientRequest) {
     void message
 }
 
