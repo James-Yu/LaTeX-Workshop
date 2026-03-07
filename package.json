@@ -1,10 +1,10 @@
 {
   "name": "tex-workspace-secure",
-  "displayName": "TeX Workspace Secure",
+  "displayName": "LaTex Secure Workspace",
   "description": "Subtractive, privacy-first, security-maintained TeX Workspace for enterprise use cases.",
   "icon": "icons/icon.png",
-  "version": "10.13.1-secure.0",
-  "publisher": "thinksyncs",
+  "version": "10.13.2",
+  "publisher": "ToppyMicrosServices",
   "license": "MIT",
   "homepage": "https://github.com/thinksyncs/LaTeX-Secure-Workspace",
   "repository": {
@@ -36,7 +36,39 @@
       "description": "Only a few features are supported."
     },
     "untrustedWorkspaces": {
-      "supported": false
+      "supported": "limited",
+      "description": "Editing, navigation, log viewing, and the internal tab PDF viewer remain available in restricted mode. Build, clean, command execution, and workspace-controlled execution settings are disabled until the workspace is trusted.",
+      "restrictedConfigurations": [
+        "latex-workshop.latex.autoBuild.run",
+        "latex-workshop.latex.autoBuild.interval",
+        "latex-workshop.latex.autoBuild.onSave.files.ignore",
+        "latex-workshop.latex.autoBuild.cleanAndRetry.enabled",
+        "latex-workshop.latex.recipes",
+        "latex-workshop.latex.recipe.default",
+        "latex-workshop.latex.tools",
+        "latex-workshop.latex.external.build.command",
+        "latex-workshop.latex.external.build.args",
+        "latex-workshop.latex.build.enableMagicComments",
+        "latex-workshop.latex.build.fromWorkspaceFolder",
+        "latex-workshop.latex.outDir",
+        "latex-workshop.latex.auxDir",
+        "latex-workshop.latex.clean.method",
+        "latex-workshop.latex.clean.command",
+        "latex-workshop.latex.clean.args",
+        "latex-workshop.latex.clean.fileTypes",
+        "latex-workshop.latex.clean.subfolder.enabled",
+        "latex-workshop.latex.autoClean.run",
+        "latex-workshop.latex.rootFile.useSubFile",
+        "latex-workshop.latex.rootFile.doNotPrompt",
+        "latex-workshop.latex.rootFile.indicator",
+        "latex-workshop.latex.search.rootFiles.include",
+        "latex-workshop.latex.search.rootFiles.exclude",
+        "latex-workshop.view.pdf.viewer",
+        "latex-workshop.view.pdf.external.viewer.command",
+        "latex-workshop.view.pdf.external.viewer.args",
+        "latex-workshop.view.pdf.external.synctex.command",
+        "latex-workshop.view.pdf.external.synctex.args"
+      ]
     }
   },
   "contributes": {
@@ -199,7 +231,7 @@
         {
           "id": "latex_workshop_log",
           "aliases": [
-            "TeX Workspace Secure log"
+            "LaTex Secure Workspace log"
           ],
           "configuration": "./syntax/latex-workshop-log-language-configuration.json"
         }
@@ -490,163 +522,170 @@
       {
         "command": "latex-workshop.navigate-envpair",
         "title": "%command.navigate-envpair%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.select-envname",
         "title": "%command.select-envname%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.select-envcontent",
         "title": "%command.select-envcontent%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.select-env",
         "title": "%command.select-env%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.multicursor-envname",
         "title": "%command.multicursor-envname%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.wrap-env",
         "title": "%command.wrap-env%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.surround",
         "title": "%command.surround%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.close-env",
         "title": "%command.close-env%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.toggle-equation-envname",
         "title": "%command.toggle-equation-envname%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.revealOutputDir",
         "title": "%command.revealoutput%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.saveWithoutBuilding",
         "title": "%command.saveWithoutBuilding%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.build",
         "title": "%command.build%",
-        "category": "TeX Workspace Secure",
+        "category": "LaTex Secure Workspace",
         "icon": "$(debug-start)",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
+      },
+      {
+        "command": "latex-workshop.view",
+        "title": "%command.view%",
+        "category": "LaTex Secure Workspace",
         "enablement": "!virtualWorkspace"
       },
       {
-        "command": "latex-workshop.recipes",
-        "title": "%command.recipes%",
-        "category": "TeX Workspace Secure",
+        "command": "latex-workshop.refresh-viewer",
+        "title": "%command.refresh-viewer%",
+        "category": "LaTex Secure Workspace",
         "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.kill",
         "title": "%command.kill%",
-        "category": "TeX Workspace Secure",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTex Secure Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.clean",
         "title": "%command.clean%",
-        "category": "TeX Workspace Secure",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTex Secure Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.citation",
         "title": "%command.citation%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.addtexroot",
         "title": "%command.addtexroot%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.compilerlog",
         "title": "%command.compilerlog%",
-        "category": "TeX Workspace Secure",
+        "category": "LaTex Secure Workspace",
         "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.log",
         "title": "%command.log%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.actions",
         "title": "%command.actions%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop-dev.parselog",
         "title": "%command-dev.parselog%",
-        "category": "TeX Workspace Secure DevTools"
+        "category": "LaTex Secure Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.parsetex",
         "title": "%command-dev.parsetex%",
-        "category": "TeX Workspace Secure DevTools"
+        "category": "LaTex Secure Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.parsebib",
         "title": "%command-dev.parsebib%",
-        "category": "TeX Workspace Secure DevTools"
+        "category": "LaTex Secure Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.striptext",
         "title": "%command-dev.striptext%",
-        "category": "TeX Workspace Secure DevTools"
+        "category": "LaTex Secure Workspace DevTools"
       },
       {
         "command": "latex-workshop.promote-sectioning",
         "title": "%command.promote-sectioning%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.demote-sectioning",
         "title": "%command.demote-sectioning%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.select-section",
         "title": "%command.select-section%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.bibsort",
         "title": "%command.bibsort%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.bibalign",
         "title": "%command.bibalign%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.bibalignsort",
         "title": "%command.bibalignsort%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       },
       {
         "command": "latex-workshop.checkcitations",
         "title": "%command.checkcitations%",
-        "category": "TeX Workspace Secure"
+        "category": "LaTex Secure Workspace"
       }
     ],
     "keybindings": [
@@ -654,13 +693,13 @@
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+l alt+x",
@@ -672,13 +711,13 @@
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+alt+x",
@@ -967,13 +1006,13 @@
               ]
             }
           ],
-          "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `#latex-workshop.latex.tools#`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes."
+          "markdownDescription": "Compatibility setting retained from upstream. Custom recipes are ignored in this secure build because manual builds always use the fixed internal recipe."
         },
         "latex-workshop.latex.recipe.default": {
           "scope": "resource",
           "type": "string",
           "default": "first",
-          "markdownDescription": "Define which recipe is used by `#latex-workshop.build#`. It also applies to auto build. Recipes are referred to by their names as defined in `#latex-workshop.latex.recipes#`. Note there are two particular values: \n- `first` means to use the first recipe in `#latex-workshop.latex.recipes#`;\n- `lastUsed` means to use the last run recipe."
+          "markdownDescription": "Compatibility setting retained from upstream. Manual builds in this secure build ignore recipe selection and always use the fixed internal recipe."
         },
         "latex-workshop.latex.tools": {
           "scope": "resource",
@@ -1132,7 +1171,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%`, `%AUXDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for a complete list of all placeholders."
+          "markdownDescription": "Compatibility setting retained from upstream. Custom tools are ignored in this secure build because manual builds always use the fixed internal toolchain."
         },
         "latex-workshop.latex.magic.args": {
           "scope": "resource",
@@ -1163,7 +1202,7 @@
           "scope": "resource",
           "type": "string",
           "default": "",
-          "markdownDescription": "The external command to execute when calling latex-workshop.build. This is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
+          "markdownDescription": "Compatibility setting retained from upstream. External build commands are ignored in this secure build."
         },
         "latex-workshop.latex.external.build.args": {
           "scope": "resource",
@@ -1172,7 +1211,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "The arguments of `#latex-workshop.latex.external.build.command#` when calling latex-workshop.build."
+          "markdownDescription": "Compatibility setting retained from upstream. External build commands are ignored in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.build.forceRecipeUsage": {
           "scope": "resource",
@@ -1185,25 +1224,25 @@
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable magic comments if present."
+          "markdownDescription": "Compatibility setting retained from upstream. In this secure build, root-file magic comments remain available for root detection, but build-control magic comments such as `% !TEX program`, `% !TEX options`, `% !BIB program`, and `% !LW recipe` are ignored."
         },
         "latex-workshop.latex.build.fromWorkspaceFolder": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Run the recipe from the workspace folder. If false, the recipe is run from the directory containing the root file. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
+          "markdownDescription": "Compatibility setting retained from upstream. Manual builds in this secure build always run from the directory containing the resolved root file."
         },
         "latex-workshop.latex.outDir": {
           "scope": "resource",
           "type": "string",
           "default": "%DIR%",
-          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%DIR%` (default value) or `%DIR_W32%`, the extension will try to parse the last LaTeX tools used and look for `-out-directory=` and `-outdir=`, and automatically determine the output directory. This means that you can safely ignore this config if you use `latexmk` and do not manually `mv` the output files in your recipe."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always writes and resolves build outputs in the resolved root file directory, so this setting has no effect on build, clean, reveal-output, or internal PDF viewing behavior."
         },
         "latex-workshop.latex.auxDir": {
           "scope": "resource",
           "type": "string",
           "default": "%OUTDIR%",
-          "markdownDescription": "The directory where the extension tries to find auxiliary project files (e.g., aux, fls). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output auxiliary files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%OUTDIR%` (default value), the extension will try to parse the last LaTeX tools used and look for `-aux-directory=` and `-auxdir=`, and automatically determine the auxiliary directory."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always writes and resolves auxiliary files in the resolved root file directory, so this setting has no effect on build, clean, or internal file lookup behavior."
         },
         "latex-workshop.latex.extraExts": {
           "scope": "resource",
@@ -1286,7 +1325,7 @@
             "**/*.rnw",
             "**/*.Rnw"
           ],
-          "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details, see https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects"
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands use a fixed root search policy equivalent to the default TeX workspace scan and ignore custom include patterns."
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "scope": "resource",
@@ -1295,19 +1334,19 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `#latex-workshop.latex.search.rootFiles.include#`. For more details, see the https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects."
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands ignore custom root search exclusions and use a fixed internal root detection policy."
         },
         "latex-workshop.latex.rootFile.useSubFile": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always uses the resolved main root file for build and clean operations and does not switch execution to a subfile."
         },
         "latex-workshop.latex.rootFile.doNotPrompt": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build does not prompt for subfile-vs-root execution and always uses the resolved main root file for build and clean commands."
         },
         "latex-workshop.latex.rootFile.indicator": {
           "scope": "resource",
@@ -1319,7 +1358,7 @@
             "\\starttext",
             "\\startTEXpage"
           ],
-          "markdownDescription": "Determine if the root file is detected based on the presence of `\\documentclass[]{}` or `\\begin{document}` for LaTeX documents, or `\\starttext` or `\\startTEXpage` for ConTeXt documents."
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands use a fixed internal root indicator policy that accepts standard LaTeX and ConTeXt document-start markers and ignores this override."
         },
         "latex-workshop.latex.watch.delay": {
           "scope": "window",
@@ -1388,20 +1427,20 @@
             "Auto build whenever a file is saved",
             "Auto build whenever a dependency file changes on disk"
           ],
-          "default": "onFileChange",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. \n- `onSave` builds the project upon saving a `tex` file in vscode.\n- `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\n\n Note that `onSave` is more restrictive than `onFileChange` "
+          "default": "never",
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.interval": {
           "scope": "resource",
           "type": "integer",
           "default": 1000,
-          "markdownDescription": "The minimal time interval in milliseconds for an auto build to trigger after the previous (manual and auto) build. This value is recommended to be greater than ~500."
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry. This property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+          "markdownDescription": "Compatibility setting retained from upstream. Automatic clean-and-retry is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.onSave.files.ignore": {
           "scope": "window",
@@ -1413,7 +1452,7 @@
             "**/*.sty",
             "**/*.cls"
           ],
-          "markdownDescription": "Files to ignore from the auto-build on save mechanism, This property must be an array of glob patterns. The patterns are matched against the absolute file path."
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
           "scope": "resource",
@@ -1437,13 +1476,13 @@
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `#latex-workshop.latex.outDir#`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
+          "markdownDescription": "Compatibility setting retained from upstream. Automatic post-build cleaning is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#`. Note that sub-folders are not removed."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean uses the fixed secure policy in this build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "scope": "resource",
@@ -1476,13 +1515,13 @@
             "%DOCFILE%.nav",
             "%DOCFILE%.vrb"
           ],
-          "markdownDescription": "Files to clean when `#latex-workshop.latex.clean.method#` is set to `glob`. This property must be an array of strings. Placeholders listed in https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders can be used to populate the glob strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean uses a fixed internal list of auxiliary file types in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
           "type": "string",
           "default": "latexmk",
-          "markdownDescription": "The command to be used to remove temporary files when `#latex-workshop.latex.clean.method#` is set to `command`."
+          "markdownDescription": "Compatibility setting retained from upstream. External clean commands are disabled in this secure build."
         },
         "latex-workshop.latex.clean.args": {
           "scope": "resource",
@@ -1496,7 +1535,7 @@
             "-c",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments of `#latex-workshop.latex.clean.command#`. Placeholders listed in https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders can be used to populate the argument strings. Besides, an additional `%TEX%` placeholder refers to the full path of the tex file from which the clean command is called."
+          "markdownDescription": "Compatibility setting retained from upstream. External clean commands are disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.method": {
           "scope": "resource",
@@ -1510,7 +1549,7 @@
             "Clean all the files located in `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
             "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
-          "markdownDescription": "Define how temporary files will be cleaned."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean always uses the fixed secure policy in this build."
         },
         "latex-workshop.latex.option.maxPrintLine.enabled": {
           "scope": "resource",
@@ -1597,10 +1636,10 @@
             "legacy",
             "singleton"
           ],
-          "markdownDescription": "Compatibility setting retained from upstream. Built-in and external PDF viewer workflows are disabled in this secure build.",
+          "markdownDescription": "In this secure build, only the tab-based local PDF viewer is available. Browser, external, legacy, and singleton viewer workflows are disabled.",
           "enumDescriptions": [
             "Disabled in this secure build.",
-            "Disabled in this secure build.",
+            "Open the built PDF in the local tab-based viewer.",
             "Disabled in this secure build.",
             "Disabled in this secure build.",
             "Disabled in this secure build."
@@ -1634,13 +1673,13 @@
             "tabOrBrowser",
             "external"
           ],
-          "markdownDescription": "Compatibility setting retained from upstream. PDF viewer integration is disabled in this secure build, so this setting has no effect."
+          "markdownDescription": "Compatibility setting retained from upstream. Reference-based viewer selection is not used in this secure build. The local tab viewer is used when PDF preview is opened."
         },
         "latex-workshop.view.pdf.internal.port": {
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Compatibility setting retained from upstream. The internal PDF viewer server is disabled in this secure build, so this setting has no effect."
+          "markdownDescription": "Compatibility setting retained from upstream. The minimal tab-only PDF viewer does not use an internal HTTP server, so this setting has no effect."
         },
         "latex-workshop.view.pdf.internal.synctex.keybinding": {
           "scope": "window",
@@ -2779,14 +2818,14 @@
     "menus": {
       "editor/context": [
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
+          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace && isWorkspaceTrusted",
           "command": "latex-workshop.build",
           "group": "navigation@100"
         }
       ],
       "editor/title": [
         {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace && isWorkspaceTrusted",
           "command": "latex-workshop.build",
           "group": "navigation@1"
         }
@@ -2826,6 +2865,7 @@
     "lint:fix": "eslint --fix --cache .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
+    "test:ci": "node ./dev/runTestCi.mjs",
     "watch-src": "tsc -watch -p tsconfig.json",
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json",
     "update-grammar": "node ./dev/update-grammar.mjs"

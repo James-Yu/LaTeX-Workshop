@@ -5,7 +5,7 @@ lw.extensionRoot = path.resolve(`${__dirname}/../../`)
 import { log } from './utils/logger'
 lw.log = log.getLogger
 const logger = lw.log('Extension')
-logger.log('Initializing TeX Workspace Secure.')
+logger.log('Initializing LaTex Secure Workspace.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
@@ -154,7 +154,7 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     })
     conflictCheck()
 
-    logger.log('TeX Workspace Secure initialized.')
+    logger.log('LaTex Secure Workspace initialized.')
 }
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
@@ -162,6 +162,8 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.hostPort', () => lw.commands.hostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
+        vscode.commands.registerCommand('latex-workshop.view', (mode?: 'tab' | 'browser' | 'external' | vscode.Uri) => lw.commands.view(mode)),
+        vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => lw.commands.refresh()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),
         vscode.commands.registerCommand('latex-workshop.kill', () => lw.commands.kill()),
         vscode.commands.registerCommand('latex-workshop.clean', () => lw.commands.clean()),
@@ -294,7 +296,7 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 function conflictCheck() {
     function check(ID: string, name: string, suggestion: string) {
         if (vscode.extensions.getExtension(ID) !== undefined) {
-            void vscode.window.showWarningMessage(`TeX Workspace Secure is incompatible with  "${name}". ${suggestion}`)
+            void vscode.window.showWarningMessage(`LaTex Secure Workspace is incompatible with  "${name}". ${suggestion}`)
         }
     }
     check('tomoki1207.pdf', 'vscode-pdf', 'We compete when opening a PDF file from the sidebar. Please consider disabling either extension.')

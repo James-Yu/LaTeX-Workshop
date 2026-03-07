@@ -13,6 +13,9 @@ export const file = {
     tmpDirPath: '',
     getAuxDir,
     getOutDir,
+    getSecurityAuxDir,
+    getSecurityOutDir,
+    getSecurityPdfPath,
     getLangId,
     getJobname,
     getBibPath,
@@ -315,6 +318,10 @@ function getOutDir(texPath?: string): string {
     return result
 }
 
+function getSecurityOutDir(_texPath?: string): string {
+    return './'
+}
+
 
 /**
  * Determines the auxiliary directory for a given LaTeX file path.
@@ -352,6 +359,10 @@ function getAuxDir(texPath?: string): string {
         result = result.slice(0, -1)
     }
     return result
+}
+
+function getSecurityAuxDir(_texPath?: string): string {
+    return './'
 }
 
 /**
@@ -412,6 +423,10 @@ function getJobname(texPath: string): string {
  */
 function getPdfPath(texPath: string): string {
     return path.resolve(path.dirname(texPath), getOutDir(texPath), path.basename(`${getJobname(texPath)}.pdf`))
+}
+
+function getSecurityPdfPath(texPath: string): string {
+    return path.resolve(path.dirname(texPath), getSecurityOutDir(texPath), path.basename(`${getJobname(texPath)}.pdf`))
 }
 
 /**

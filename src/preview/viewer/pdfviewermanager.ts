@@ -6,6 +6,7 @@ import type { PdfViewerPanel } from './pdfviewerpanel'
 export {
     create,
     getClients,
+    getPanelsForAll,
     getPanels,
     insert
 }
@@ -45,6 +46,12 @@ function getClients(pdfUri?: vscode.Uri): Set<Client> | undefined {
 
 function getPanels(pdfUri: vscode.Uri): Set<PdfViewerPanel> | undefined {
     return webviewPanelMap.get(toKey(pdfUri))
+}
+
+function getPanelsForAll(): Set<PdfViewerPanel> {
+    const panels = new Set<PdfViewerPanel>()
+    webviewPanelMap.forEach(panelSet => panelSet.forEach(panel => panels.add(panel)))
+    return panels
 }
 
 function insert(pdfPanel: PdfViewerPanel): PdfViewerPanel | undefined {

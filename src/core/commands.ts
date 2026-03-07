@@ -10,20 +10,36 @@ function showDisabledFeature(feature: string) {
     void vscode.window.showWarningMessage(`${feature} is disabled in this secure build.`)
 }
 
+function requireTrustedWorkspace(feature: string): boolean {
+    if (vscode.workspace.isTrusted) {
+        return true
+    }
+    logger.log(`${feature} is disabled in restricted mode.`)
+    void vscode.window.showWarningMessage(`${feature} is disabled in restricted mode. Trust the workspace to enable it.`)
+    return false
+}
+
 export function hostPort() {
     showDisabledFeature('Live Share integration')
 }
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
+    if (!requireTrustedWorkspace('Build')) {
+        return
+    }
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
 }
 
 export async function revealOutputDir() {
-    let outDir = lw.file.getOutDir()
+    if (!requireTrustedWorkspace('Reveal output directory')) {
+        return
+    }
+    const rootFile = await lw.root.resolveSecurityRoot()
+    let outDir = rootFile ? lw.file.getSecurityOutDir(rootFile) : lw.file.getSecurityOutDir()
     if (!path.isAbsolute(outDir)) {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
-        const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
+        const rootDir = (rootFile ? path.dirname(rootFile) : undefined) || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
             logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
@@ -35,36 +51,39 @@ export async function revealOutputDir() {
 }
 
 export function recipes(recipe?: string) {
-    logger.log('RECIPES command invoked.')
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-    const candidates = configuration.get('latex.recipes') as {name: string}[]
-    if (!candidates) {
-        return
-    }
-    if (recipe) {
-        return build(false, undefined, undefined, recipe)
-    }
-    return vscode.window.showQuickPick(candidates.map(candidate => candidate.name), {
-        placeHolder: 'Please Select a LaTeX Recipe'
-    }).then(selected => {
-        if (!selected) {
-            return
-        }
-        return build(false, undefined, undefined, selected)
-    })
+    void recipe
+    showDisabledFeature('Custom recipes')
 }
 
-export function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
-    void mode
-    showDisabledFeature('PDF preview')
+export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
+    logger.log('VIEW command invoked.')
+    if (mode instanceof vscode.Uri) {
+        await lw.viewer.view(mode, 'tab')
+        return
+    }
+    const rootFile = await lw.root.resolveSecurityRoot()
+    if (!rootFile) {
+        logger.log('Cannot view PDF because no root file is available.')
+        return
+    }
+    const pdfPath = lw.file.getSecurityPdfPath(rootFile)
+    if (!await lw.file.exists(pdfPath)) {
+        void vscode.window.showWarningMessage(`PDF file not found: ${pdfPath}`)
+        return
+    }
+    await lw.viewer.view(vscode.Uri.file(pdfPath), mode === 'browser' || mode === 'external' ? mode : 'tab')
 }
 
 export function refresh() {
-    showDisabledFeature('PDF preview refresh')
+    logger.log('REFRESH command invoked.')
+    lw.viewer.refresh()
 }
 
 export function kill() {
     logger.log('KILL command invoked.')
+    if (!requireTrustedWorkspace('Build termination')) {
+        return
+    }
     lw.compile.terminate()
 }
 
@@ -83,21 +102,15 @@ export function synctexonref(line: number, filePath: string) {
 
 export async function clean(): Promise<void> {
     logger.log('CLEAN command invoked.')
-    await lw.root.find()
-    const rootFile = lw.root.file.path
+    if (!requireTrustedWorkspace('Clean')) {
+        return
+    }
+    const rootFile = await lw.root.resolveSecurityRoot()
     if (rootFile === undefined) {
         logger.log('Cannot find LaTeX root file to clean.')
         return
     }
-    let pickedRootFile: string | undefined = rootFile
-    if (lw.root.subfiles.path) {
-        // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'clean')
-        if (! pickedRootFile) {
-            return
-        }
-    }
-    return lw.extra.clean(pickedRootFile)
+    return lw.extra.clean(rootFile)
 }
 
 export function addTexRoot() {
@@ -439,37 +452,3 @@ export function toggleMathPreviewPanel() {
     showDisabledFeature('Math preview panel')
 }
 
-async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
-    if (doNotPrompt) {
-        if (configuration.get('latex.rootFile.useSubFile')) {
-            return localRootFile
-        } else {
-            return rootFile
-        }
-    }
-    const pickedRootFile = await vscode.window.showQuickPick([{
-        label: 'Default root file',
-        description: `Path: ${rootFile}`
-    }, {
-        label: 'Subfiles package root file',
-        description: `Path: ${localRootFile}`
-    }], {
-        placeHolder: `Subfiles package detected. Which file to ${verb}?`,
-        matchOnDescription: true
-    }).then( selected => {
-        if (!selected) {
-            return
-        }
-        switch (selected.label) {
-            case 'Default root file':
-                return rootFile
-            case 'Subfiles package root file':
-                return localRootFile
-            default:
-                return
-        }
-    })
-    return pickedRootFile
-}

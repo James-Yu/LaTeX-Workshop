@@ -1,13 +1,35 @@
-import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import { glob } from 'glob'
-import * as cs from 'cross-spawn'
 import { lw } from '../lw'
-import { confirmWorkspaceCommandExecution } from '../utils/security'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
 const logger = lw.log('Cleaner')
+const FIXED_CLEAN_FILE_TYPES = [
+    '%DOCFILE%.aux',
+    '%DOCFILE%.bbl',
+    '%DOCFILE%.blg',
+    '%DOCFILE%.idx',
+    '%DOCFILE%.ind',
+    '%DOCFILE%.lof',
+    '%DOCFILE%.lot',
+    '%DOCFILE%.out',
+    '%DOCFILE%.toc',
+    '%DOCFILE%.acn',
+    '%DOCFILE%.acr',
+    '%DOCFILE%.alg',
+    '%DOCFILE%.glg',
+    '%DOCFILE%.glo',
+    '%DOCFILE%.gls',
+    '%DOCFILE%.fls',
+    '%DOCFILE%.log',
+    '%DOCFILE%.fdb_latexmk',
+    '%DOCFILE%.snm',
+    '%DOCFILE%.synctex(busy)',
+    '%DOCFILE%.synctex.gz(busy)',
+    '%DOCFILE%.nav',
+    '%DOCFILE%.vrb'
+]
 
 export {
     clean
@@ -44,30 +66,13 @@ function globAllMultipleCwds(globs: string[], cwds: string[]): string[] {
 
 async function clean(rootFile?: string): Promise<void> {
     if (!rootFile) {
-        if (lw.root.file.path !== undefined) {
-            await lw.root.find()
-        }
-        rootFile = lw.root.file.path
+        rootFile = await lw.root.resolveSecurityRoot()
         if (!rootFile) {
             logger.log('Cannot determine the root file to be cleaned.')
             return
         }
     }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const cleanMethod = configuration.get('latex.clean.method') as string
-    switch (cleanMethod) {
-        case 'glob':
-            return cleanGlob(rootFile)
-        case 'cleanCommand':
-            await configuration.update('latex.clean.method', 'command')
-            void vscode.window.showInformationMessage('The cleaning method `cleanCommand` has been renamed to `command`. Your config is auto-updated.')
-            return cleanCommand(rootFile)
-        case 'command':
-            return cleanCommand(rootFile)
-        default:
-            logger.log(`Unknown cleaning method ${cleanMethod} .`)
-            return
-    }
+    return cleanGlob(rootFile)
 }
 
 /**
@@ -110,13 +115,11 @@ function splitGlobs(globs: string[]): { fileOrFolderGlobs: string[], folderGlobs
  * intentionally by the user. Otherwise, the folders will be ignored.
  */
 async function cleanGlob(rootFile: string): Promise<void> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const globPrefix = (configuration.get('latex.clean.subfolder.enabled') as boolean) ? './**/' : ''
-    const globs = (configuration.get('latex.clean.fileTypes') as string[])
-        .map(globType => globPrefix + replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(globType))
-    const outdir = path.resolve(path.dirname(rootFile), lw.file.getOutDir(rootFile))
+    const globs = FIXED_CLEAN_FILE_TYPES
+        .map(globType => replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(globType))
+    const outdir = path.resolve(path.dirname(rootFile), lw.file.getSecurityOutDir(rootFile))
     logger.log(`Clean glob matched files ${JSON.stringify({globs, outdir})} .`)
-    const auxdir = path.resolve(path.dirname(rootFile), lw.file.getAuxDir(rootFile))
+    const auxdir = path.resolve(path.dirname(rootFile), lw.file.getSecurityAuxDir(rootFile))
     logger.log(`Clean glob matched files ${JSON.stringify({globs, auxdir})} .`)
 
     const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = splitGlobs(globs)
@@ -157,37 +160,4 @@ async function cleanGlob(rootFile: string): Promise<void> {
             logger.logError(`Failed cleaning folder ${folderRealPath} .`, err)
         }
     }
-}
-
-async function cleanCommand(rootFile: string): Promise<void> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const command = configuration.get('latex.clean.command') as string
-    if (!await confirmWorkspaceCommandExecution(lw.file.toUri(rootFile), 'latex.clean.command', command)) {
-        return
-    }
-    const args = (configuration.get('latex.clean.args') as string[])
-        .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)
-            // cleaner.ts specific tokens
-            .replace(/%TEX%/g, rootFile)
-        })
-    logger.logCommand('Clean temporary files command', command, args)
-    return new Promise((resolve, _reject) => {
-        // issue #3679 #3687: spawning with `detached: true` causes latexmk from MiKTeX to fail on Windows when "install on-the-fly" is enabled
-        const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile)})
-        let stderr = ''
-        proc.stderr.on('data', newStderr => {
-            stderr += newStderr
-        })
-        proc.on('error', err => {
-            logger.logError(`Failed running cleaning command ${command} .`, err, stderr)
-            resolve()
-        })
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                logger.logError('The clean command failed.', exitCode, stderr)
-                logger.refreshStatus('x', 'errorForeground', `Cleaning failed: ${stderr}`, 'error')
-            }
-            resolve()
-        })
-    })
 }

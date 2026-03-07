@@ -5,6 +5,7 @@ import { lw } from '../lw'
 import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import type { PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
+import { populate } from './viewer/pdfviewerpanel'
 
 const logger = lw.log('Viewer')
 
@@ -30,11 +31,11 @@ lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf
     reload()
 })
 
-const isViewing = (fileUri: vscode.Uri) => manager.getClients(fileUri) !== undefined
+const isViewing = (fileUri: vscode.Uri) => manager.getPanels(fileUri) !== undefined
 
 function reload(): void {
-    manager.getClients()?.forEach(client => {
-        client.send({type: 'reload'})
+    manager.getPanelsForAll().forEach(panel => {
+        void panel.webviewPanel.webview.postMessage({ type: 'reload-viewer' })
     })
 }
 
@@ -45,22 +46,37 @@ function reload(): void {
  * refreshes all the PDF viewers.
  */
 function refresh(pdfUri?: vscode.Uri): void {
-    logger.log(`Ignoring PDF refresh request because preview is disabled: ${pdfUri ?? 'undefined'} .`)
+    if (pdfUri) {
+        manager.getPanels(pdfUri)?.forEach(panel => panel.webviewPanel.webview.postMessage({ type: 'reload-viewer' }))
+        return
+    }
+    manager.getPanelsForAll().forEach(panel => panel.webviewPanel.webview.postMessage({ type: 'reload-viewer' }))
 }
 
-function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
-    void pdfUri
-    void mode
-    void vscode.window.showWarningMessage('PDF preview is disabled in this secure build.')
-    return Promise.resolve()
+async function view(pdfUri: vscode.Uri, mode?: 'tab' | 'browser' | 'external'): Promise<void> {
+    if (mode && mode !== 'tab') {
+        void vscode.window.showWarningMessage('Only tab-based PDF preview is available in this secure build.')
+    }
+    return viewInWebviewPanel(pdfUri, 'right', false)
 }
 
-function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
-    void pdfUri
-    void tabEditorGroup
-    void preserveFocus
-    void vscode.window.showWarningMessage('PDF preview is disabled in this secure build.')
-    return Promise.resolve()
+async function viewInWebviewPanel(pdfUri: vscode.Uri, tabEditorGroup: string, preserveFocus: boolean): Promise<void> {
+    const existing = manager.getPanels(pdfUri)?.values().next().value
+    if (existing) {
+        existing.webviewPanel.reveal(tabEditorGroup === 'current' ? vscode.ViewColumn.Active : vscode.ViewColumn.Beside, preserveFocus)
+        return
+    }
+    const panel = vscode.window.createWebviewPanel(
+        'latex-workshop-pdf-preview',
+        path.basename(pdfUri.fsPath) || 'PDF Preview',
+        tabEditorGroup === 'current' ? vscode.ViewColumn.Active : vscode.ViewColumn.Beside,
+        {
+            enableScripts: true,
+            retainContextWhenHidden: true
+        }
+    )
+    const pdfPanel = await populate(pdfUri, panel)
+    manager.insert(pdfPanel)
 }
 
 /**
