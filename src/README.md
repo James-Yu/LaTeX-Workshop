@@ -4,7 +4,7 @@
 
 ## Root file
 
-Where LaTeX Workshop differs from other extensions of VS Code is in treating the root file. For other extensions of programming languages, generally, there is only one compilation target per workspace. However, LaTeX Workshop dynamically detects the root file and the target depending on the document being currently edited. See [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file) for the details. `Manager.findRoot()` does the job. We register `findRoot` with `onDidChangeActiveTextEditor` in `main.ts`. This works well with multi-root workspaces.
+Where TeX Workspace Secure differs from other extensions of VS Code is in treating the root file. For other extensions of programming languages, generally, there is only one compilation target per workspace. However, TeX Workspace Secure dynamically detects the root file and the target depending on the document being currently edited. See the upstream compile wiki for the original background: https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file . `Manager.findRoot()` does the job. We register `findRoot` with `onDidChangeActiveTextEditor` in `main.ts`. This works well with multi-root workspaces.
 
 ## Application Log
 
@@ -38,7 +38,7 @@ flowchart LR
     MathPreview["Math Preview Panel\n mathpreview.js"]
   end
   subgraph ExtensionHost["VS Code Extension Host"]
-    LW["LaTeX Workshop\n main.ts"]
+    LW["TeX Workspace Secure\n main.ts"]
     LW --- Server["Server for PDF viewer \n(Files and WebSocket)\n server.ts "];
     LW --- ParserPool["Parser pool\n syntax.ts"]
     LW --- MathJaxPool["MathJax pool\n mathjaxpool.ts"]

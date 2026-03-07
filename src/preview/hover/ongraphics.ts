@@ -60,7 +60,7 @@ export async function graph2md(filePath: string, opts: { height: number, width: 
             if (!vscode.workspace.getWorkspaceFolder(lw.file.toUri(filePath))) {
                 msg = '$(warning) Cannot render a PDF file not in workspaces.'
             } else if (lw.extra.snippet.state.view?.webview === undefined) {
-                msg = '$(info) Please activate the LaTeX Workshop activity bar item to render PDF thumbnails.'
+                msg = '$(info) Please activate the TeX Workspace Secure activity bar item to render PDF thumbnails.'
             }
             return new vscode.MarkdownString(msg, true)
         }

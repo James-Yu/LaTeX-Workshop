@@ -3,6 +3,7 @@ import os from 'os'
 import micromatch from 'micromatch'
 import * as path from 'path'
 import { pickRootPath } from '../utils/quick-pick'
+import { confirmNoWorkspaceConfigurationOverride, confirmWorkspaceCommandExecution } from '../utils/security'
 import { lw } from '../lw'
 import type { ProcessEnv, RecipeStep, Step } from '../types'
 import { build as buildRecipe } from './recipe'
@@ -119,6 +120,12 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
         languageId = lw.root.file.langId
     }
     if (externalBuildCommand) {
+        if (!await confirmNoWorkspaceConfigurationOverride(workspace, 'latex.external.build.command')) {
+            return
+        }
+        if (!await confirmWorkspaceCommandExecution(workspace, 'latex.external.build.command', externalBuildCommand)) {
+            return
+        }
         // Check if a build is already in progress
         if (isBuilding) {
             void logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
@@ -451,8 +458,6 @@ function handleUserTermination() {
  */
 async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (lastStep.rootFile === undefined) {
-        // This only happens when the step is an external command.
-        lw.viewer.refresh()
         return
     }
     logger.log(`Successfully built ${lastStep.rootFile} .`)
@@ -461,16 +466,9 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refresh(lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile)))
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(lastStep.rootFile))
-    // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
-    if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-        const pdfUri = lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile))
-        logger.log('SyncTex after build invoked.')
-        lw.locate.synctex.toPDF(pdfUri)
-    }
     if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
         logger.log('Auto Clean invoked.')
         await lw.extra.clean(lastStep.rootFile)

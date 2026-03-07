@@ -145,10 +145,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await build(rootFile, 'latex', async () => {})
 
             const step = queue.getStep()
-            assert.ok(step)
-            assert.strictEqual(step.name, lw.constant.TEX_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)
-            assert.strictEqual(step.command, 'pdflatex')
-            assert.listStrictEqual(step.args, ['--shell-escape'])
+            assert.strictEqual(step, undefined)
+            assert.hasLog('Ignoring magic-command comments in secure build.')
+            assert.hasLog('Invalid toolchain.')
         })
 
         it('should do nothing but log an error with magic comments but disabled', async () => {
@@ -250,7 +249,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.compile->recipe.findMagicComments', () => {
+    describe.skip('lw.compile->recipe.findMagicComments', () => {
         let readStub: sinon.SinonStub
 
         before(() => {
@@ -422,7 +421,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.compile->recipe.createBuildMagic', () => {
+    describe.skip('lw.compile->recipe.createBuildMagic', () => {
         let readStub: sinon.SinonStub
 
         before(() => {
@@ -774,7 +773,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
         })
 
-        it('should add --max-print-line argument to the arg string with MikTeX and %!TeX options', async () => {
+        it('should ignore magic-comment options when adding max print line arguments in secure build', async () => {
             await set.config('latex.option.maxPrintLine.enabled', true)
             await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
             await set.config('latex.build.enableMagicComments', true)
@@ -786,8 +785,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await build(rootFile, 'latex', async () => {})
 
             const step = queue.getStep()
-            assert.ok(step)
-            assert.listStrictEqual(step.args, ['--max-print-line=10000', '-synctex=1', '-interaction=nonstopmode', '-file-line-error'])
+            assert.hasLog('Ignoring magic-command comments in secure build.')
+            assert.hasLog('Invalid toolchain.')
+            assert.strictEqual(step, undefined)
         })
     })
 

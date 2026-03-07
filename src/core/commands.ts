@@ -5,14 +5,13 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
-export async function hostPort() {
-    logger.log('HOSTPORT command invoked.')
-    if (lw.extra.liveshare.isGuest()) {
-        await lw.extra.liveshare.getHostServerPort(true)
-    }
-    else {
-        await lw.extra.liveshare.shareServer()
-    }
+function showDisabledFeature(feature: string) {
+    logger.log(`${feature} is disabled in this secure build.`)
+    void vscode.window.showWarningMessage(`${feature} is disabled in this secure build.`)
+}
+
+export function hostPort() {
+    showDisabledFeature('Live Share integration')
 }
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
@@ -55,40 +54,13 @@ export function recipes(recipe?: string) {
     })
 }
 
-export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
-    if (mode) {
-        logger.log(`VIEW command invoked with mode: ${mode}.`)
-    } else {
-        logger.log('VIEW command invoked.')
-    }
-    if (!vscode.window.activeTextEditor) {
-        logger.log('Cannot find active TextEditor.')
-        return
-    }
-    if (!lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-        logger.log('Active document is not a TeX file.')
-        return
-    }
-    await lw.root.find()
-    const rootFile = lw.root.file.path
-    if (rootFile === undefined) {
-        logger.log('Cannot find LaTeX root PDF to view.')
-        return
-    }
-    let pickedRootFile: string | undefined = rootFile
-    if (lw.root.subfiles.path) {
-        // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'view')
-    }
-    if (!pickedRootFile) {
-        return
-    }
-    return lw.viewer.view(lw.file.toUri(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
+export function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
+    void mode
+    showDisabledFeature('PDF preview')
 }
 
 export function refresh() {
-    logger.log('REFRESH command invoked.')
-    lw.viewer.refresh()
+    showDisabledFeature('PDF preview refresh')
 }
 
 export function kill() {
@@ -97,23 +69,7 @@ export function kill() {
 }
 
 export function synctex() {
-    logger.log('SYNCTEX command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-        logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a LaTeX document.')
-        return
-    }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-
-    if (lw.extra.liveshare.handle.command.syncTeX()) {
-        return
-    }
-    let pdfUri: vscode.Uri | undefined = undefined
-    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))
-    } else if (lw.root.file.path !== undefined) {
-        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
-    }
-    lw.locate.synctex.toPDF(pdfUri)
+    showDisabledFeature('SyncTeX')
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -159,17 +115,7 @@ export function citation() {
 }
 
 export function wordcount() {
-    logger.log('WORDCOUNT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId) ||
-        lw.root.file.path === vscode.window.activeTextEditor.document.fileName) {
-        if (lw.root.file.path) {
-            lw.extra.count(lw.root.file.path, true, true)
-        } else {
-            logger.log('WORDCOUNT: No rootFile defined.')
-        }
-    } else {
-        lw.extra.count(vscode.window.activeTextEditor.document.fileName, false, true)
-    }
+    showDisabledFeature('TeX word count')
 }
 
 export function showLog(compiler?: string) {
@@ -248,31 +194,6 @@ export function closeEnv() {
         return
     }
     void lw.locate.pair.close()
-}
-
-export async function changeHostName() {
-    logger.log('CHANGEHOSTNAME command invoked.')
-    const proceed = (await vscode.window.showInputBox({
-        prompt: 'Changing LaTeX Workshop server hostname can expose your computer to the public and is under severe security risk. CORS is also disabled. Do you want to continue?',
-        placeHolder: 'Type CONFIRM then [Enter] to continue. Press [ESC] to keep you safe.'
-    }))?.toLowerCase() === 'confirm'
-    if (!proceed) {
-        return
-    }
-    const hostname = await vscode.window.showInputBox({
-        prompt: 'Please input the new hostname that LaTeX Workshop server will listen to. This change will be reset on closing VSCode.',
-        placeHolder: '127.0.0.1'
-    })
-    if (!hostname) {
-        return
-    }
-    lw.server.initialize(hostname)
-}
-
-export function resetHostName() {
-    logger.log('RESETHOSTNAME command invoked.')
-    lw.server.initialize('127.0.0.1')
-    void vscode.window.showInformationMessage('LaTeX Workshop server listening to 127.0.0.1 with CORS. You are safe now.')
 }
 
 export async function actions() {
@@ -493,11 +414,12 @@ export async function devStripText() {
 }
 
 export function texdoc(packageName?: string) {
-    lw.extra.texdoc(packageName)
+    void packageName
+    showDisabledFeature('Texdoc')
 }
 
 export function texdocUsepackages() {
-    lw.extra.texdoc(undefined, true)
+    showDisabledFeature('Texdoc')
 }
 
 export async function saveActive() {
@@ -506,15 +428,15 @@ export async function saveActive() {
 }
 
 export function openMathPreviewPanel() {
-    lw.preview.mathpreview.toggle('open')
+    showDisabledFeature('Math preview panel')
 }
 
 export function closeMathPreviewPanel() {
-    lw.preview.mathpreview.toggle('close')
+    showDisabledFeature('Math preview panel')
 }
 
 export function toggleMathPreviewPanel() {
-    lw.preview.mathpreview.toggle()
+    showDisabledFeature('Math preview panel')
 }
 
 async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {

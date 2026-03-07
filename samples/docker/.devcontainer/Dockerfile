@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM ubuntu:latest
+FROM ubuntu:24.04@sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
@@ -24,7 +24,7 @@ RUN apt-get update && apt-get -y upgrade \
 
 # latexindent modules
 RUN apt-get install --no-install-recommends -y curl
-RUN curl -L http://cpanmin.us | perl - App::cpanminus \
+RUN curl -fsSL https://cpanmin.us | perl - App::cpanminus \
     && cpanm Log::Dispatch::File \
     && cpanm YAML::Tiny \
     && cpanm File::HomeDir \

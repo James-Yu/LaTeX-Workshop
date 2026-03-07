@@ -3,6 +3,7 @@ import path from 'path'
 import { replaceArgumentPlaceholders, splitCommandLineArgs } from '../utils/utils'
 
 import { lw } from '../lw'
+import { confirmNoWorkspaceConfigurationOverride } from '../utils/security'
 import type { Recipe, Tool } from '../types'
 import { queue } from './queue'
 
@@ -153,8 +154,14 @@ async function createBuildTools(rootFile: string, langId: string, recipeName?: s
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const magic = await findMagicComments(rootFile)
 
+    if (!await confirmNoWorkspaceConfigurationOverride(lw.file.toUri(rootFile), 'latex.recipes')) {
+        return
+    }
+    if (!await confirmNoWorkspaceConfigurationOverride(lw.file.toUri(rootFile), 'latex.tools')) {
+        return
+    }
     if (magic.tex && configuration.get('latex.build.enableMagicComments')) {
-        buildTools = createBuildMagic(rootFile, magic.tex, magic.bib)
+        logger.log('Ignoring magic-command comments in secure build.')
     } else {
         const recipe = findRecipe(rootFile, langId, recipeName || magic.recipe)
         if (recipe === undefined) {
@@ -251,35 +258,6 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
 
     return {tex: texCommand, bib: bibCommand, recipe: recipe?.[1]}
 }
-
-/**
- * Create build tools based on magic comments in the root file.
- *
- * @param {string} rootFile - Path to the root LaTeX file.
- * @param {Tool} magicTex - Tool object representing the TeX command from magic
- * comments.
- * @param {Tool} [magicBib] - Optional. Tool object representing the BibTeX
- * command from magic comments.
- * @returns {Tool[]} - An array of Tool objects representing the build tools.
- */
-function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-
-    if (!magicTex.args) {
-        magicTex.args = configuration.get('latex.magic.args') as string[]
-        magicTex.name = lw.constant.TEX_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX
-    }
-    if (magicBib) {
-        if (!magicBib.args) {
-            magicBib.args = configuration.get('latex.magic.bib.args') as string[]
-            magicBib.name = lw.constant.BIB_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX
-        }
-        return [magicTex, magicBib, magicTex, magicTex]
-    } else {
-        return [magicTex]
-    }
-}
-
 
 /**
  * Find a recipe based on the provided recipe name, language ID, and root file.

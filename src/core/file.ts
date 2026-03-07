@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as tmp from 'tmp'
+import { confirmWorkspaceCommandExecution, warnWorkspaceCommandSetting } from '../utils/security'
 import * as utils from '../utils/utils'
 import { lw } from '../lw'
 
@@ -36,12 +37,25 @@ export const file = {
 initialize()
 export function initialize() {
     file.tmpDirPath = createTmpDir()
+    warnKpsewhichPathSetting()
 }
 
 setExtraTeXExts()
 lw.onConfigChange('latex.extraExts', setExtraTeXExts)
+lw.onConfigChange('kpsewhich.path', warnKpsewhichPathSetting)
 function setExtraTeXExts() {
     extraTeXExts = vscode.workspace.getConfiguration('latex-workshop').get('latex.extraExts', []) as string[]
+}
+
+function warnKpsewhichPathSetting() {
+    const workspaceFolders = vscode.workspace.workspaceFolders
+    if (!workspaceFolders || workspaceFolders.length === 0) {
+        warnWorkspaceCommandSetting(undefined, 'kpsewhich.path')
+        return
+    }
+    for (const folder of workspaceFolders) {
+        warnWorkspaceCommandSetting(folder.uri, 'kpsewhich.path')
+    }
 }
 
 /**
@@ -436,6 +450,7 @@ async function getFlsPath(texPath: string): Promise<string | undefined> {
  * previously computed results quickly.
  */
 const kpsecache: { [query: string]: string } = {}
+const kpsewhichPromises: Partial<Record<string, Promise<string | undefined>>> = {}
 /**
  * Resolves the path to a given LaTeX target using the `kpsewhich` command.
  *
@@ -451,39 +466,78 @@ const kpsecache: { [query: string]: string } = {}
  * @param {string} target - The LaTeX target to resolve, such as a file name.
  * @param {boolean} [isBib=false] - Indicates whether the target is a
  * bibliography file, default is false.
- * @returns {string | undefined} The resolved path to the target, or `undefined`
+ * @returns {Promise<string | undefined>} The resolved path to the target, or `undefined`
  * if resolution fails.
  */
-function kpsewhich(target: string, isBib: boolean = false): string | undefined {
+async function kpsewhich(target: string, isBib: boolean = false): Promise<string | undefined> {
     const query = (isBib ? '-format=.bib ' : '') + target
     if (kpsecache[query]) {
         logger.log(`kpsewhich cache hit on ${query}: ${kpsecache[query]} .`)
         return kpsecache[query]
     }
+    if (kpsewhichPromises[query]) {
+        logger.log(`kpsewhich promise cache hit on ${query} .`)
+        return kpsewhichPromises[query]
+    }
     const command = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
     logger.log(`Calling ${command} to resolve ${query} .`)
 
-    try {
-        const args = isBib ? ['-format=.bib', target] : [target]
-        const cwd = lw.root.dir.path || vscode.workspace.workspaceFolders?.[0].uri.path
-        const kpsewhichReturn = lw.external.sync(command, args, { cwd })
-        if (kpsewhichReturn.status === 0) {
-            let output = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
-            logger.log(`kpsewhich returned with '${output}'.`)
-            if (output !== '') {
-                if (!path.isAbsolute(output) && cwd) {
-                    output = path.resolve(cwd, output)
-                    logger.log(`kpsewhich resolved to '${output}'.`)
-                }
-                kpsecache[query] = output
+    const request = (async () => {
+        try {
+            const args = isBib ? ['-format=.bib', target] : [target]
+            const cwd = lw.root.dir.path || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
+            const scope = lw.root.file.path ? toUri(lw.root.file.path) : vscode.workspace.workspaceFolders?.[0]?.uri
+            if (!await confirmWorkspaceCommandExecution(scope, 'kpsewhich.path', command)) {
+                return undefined
             }
-            return output
+
+            const proc = lw.external.spawn(command, args, { cwd })
+            proc.stdout?.setEncoding('utf8')
+            proc.stderr?.setEncoding('utf8')
+
+            return await new Promise<string | undefined>((resolve) => {
+                let stdout = ''
+                let stderr = ''
+
+                proc.stdout?.on('data', (data: Buffer | string) => {
+                    stdout += typeof data === 'string' ? data : data.toString()
+                })
+                proc.stderr?.on('data', (data: Buffer | string) => {
+                    stderr += typeof data === 'string' ? data : data.toString()
+                })
+                proc.on('error', error => {
+                    logger.logError(`Calling ${command} on ${query} failed.`, error)
+                    resolve(undefined)
+                })
+                proc.on('close', code => {
+                    if (code === 0) {
+                        let output = stdout.replace(/\r?\n/, '')
+                        logger.log(`kpsewhich returned with '${output}'.`)
+                        if (output !== '') {
+                            if (!path.isAbsolute(output) && cwd) {
+                                output = path.resolve(cwd, output)
+                                logger.log(`kpsewhich resolved to '${output}'.`)
+                            }
+                            kpsecache[query] = output
+                        }
+                        resolve(output)
+                        return
+                    }
+                    logger.log(`kpsewhich returned with non-zero code ${code}.${stderr ? ` STDERR: ${stderr}` : ''}`)
+                    resolve(undefined)
+                })
+            })
+        } catch (e) {
+            logger.logError(`Calling ${command} on ${query} failed.`, e)
+            return undefined
         }
-        logger.log(`kpsewhich returned with non-zero code ${kpsewhichReturn.status}.`)
-        return undefined
-    } catch (e) {
-        logger.logError(`Calling ${command} on ${query} failed.`, e)
-        return undefined
+    })()
+
+    kpsewhichPromises[query] = request
+    try {
+        return await request
+    } finally {
+        delete kpsewhichPromises[query]
     }
 }
 
@@ -520,7 +574,7 @@ async function getBibPath(bib: string, baseDir: string): Promise<string[]> {
 
     if (bibPath === undefined || bibPath.length === 0) {
         if (configuration.get('kpsewhich.bibtex.enabled')) {
-            const kpsePath = kpsewhich(bib, true)
+            const kpsePath = await kpsewhich(bib, true)
             return kpsePath ? [kpsePath] : []
         } else {
             logger.log(`Cannot resolve bib path: ${bib} .`)
@@ -615,11 +669,6 @@ async function exists(uri: vscode.Uri | string): Promise<vscode.FileStat | false
 function toUri(filePath: string): vscode.Uri {
     const scheme = vscode.workspace.workspaceFolders?.filter(
         folder => filePath?.startsWith(folder.uri.path)
-    )[0]?.uri.scheme ?? (lw.extra.liveshare.isGuest() ? 'vsls' : 'file')
-    // LiveShare guest sessions use the native path API, even though vsls uses POSIX paths
-    // this is a workaround that removes the drive letter from the path
-    if (scheme === 'vsls' && lw.extra.liveshare.isGuest() && os.platform() === 'win32') {
-        filePath = filePath.replace(/^\w:\\/, '\\')
-    }
+    )[0]?.uri.scheme ?? 'file'
     return vscode.Uri.file(filePath).with({ scheme })
 }

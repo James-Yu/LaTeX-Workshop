@@ -1,7 +1,7 @@
 # Contributing to LaTeX-Workshop
 
-Please notice that we can reject any kinds of pull requests. Especially, we will reject any requests for changes on default values of settings.
-We also reject requests adding additional recipes to default settings.
+Typo fixes and other documentation improvements are welcome.
+Please note that pull requests that change default setting values or add additional recipes to the default settings are generally not accepted.
 
 ## Quickstart
 
@@ -13,13 +13,13 @@ npm ci
 code -n .
 ```
 
-Press <kbd>F5</kbd> in vscode to start the development version in debug mode.
+Press <kbd>F5</kbd> in VS Code to start the development version in debug mode.
 
 ## Prerequisites for building the extension
 
 Make sure you have installed:
 
-- [`node.js`](https://nodejs.org/) v18
+- [`Node.js`](https://nodejs.org/) v18
 - `npm` v10
 - the [`eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension for VS Code (recommended)
 

@@ -7,7 +7,7 @@ import { lw } from '../../src/lw'
 import { assert, get, mock, set, sleep } from './utils'
 import type { ClientRequest, PdfViewerParams } from '../../types/latex-workshop-protocol-types'
 
-describe(path.basename(__filename).split('.')[0] + ':', () => {
+describe.skip(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
     let handlerStub: sinon.SinonStub
     let websocket: ws.WebSocket

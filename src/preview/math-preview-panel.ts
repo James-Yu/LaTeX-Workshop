@@ -27,15 +27,14 @@ function resourcesFolder(extensionRoot: string) {
 }
 
 class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
-    deserializeWebviewPanel(panel: vscode.WebviewPanel) {
+    async deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         initializePanel(panel)
         panel.webview.options = {
             enableScripts: true,
             localResourceRoots: [resourcesFolder(lw.extensionRoot)]
         }
-        panel.webview.html = getHtml()
+        panel.webview.html = await getHtml()
         logger.log('Math preview panel: restored')
-        return Promise.resolve()
     }
 }
 const serializer = new MathPreviewPanelSerializer()
@@ -48,7 +47,7 @@ const state = {
     prevMacros: undefined as string | undefined,
 }
 
-function open() {
+async function open() {
     const activeDocument = vscode.window.activeTextEditor?.document
     if (state.panel) {
         if (!state.panel.visible) {
@@ -67,7 +66,7 @@ function open() {
         }
     )
     initializePanel(panel)
-    panel.webview.html = getHtml()
+    panel.webview.html = await getHtml()
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
     if (activeDocument) {
@@ -113,14 +112,14 @@ function close() {
 function toggle(action?: 'open' | 'close') {
     if (action) {
         if (action === 'open') {
-            open()
+            void open()
         } else {
             close()
         }
     } else if (state.panel) {
         close()
     } else {
-        open()
+        void open()
     }
 }
 
@@ -132,7 +131,7 @@ function clearCache() {
 }
 
 let serverHandlerInserted = false
-function getHtml() {
+async function getHtml() {
     if (serverHandlerInserted === false) {
         lw.server.setHandler((url: string) => {
             if (url.startsWith('/mathpreviewpanel/')) {
@@ -142,10 +141,13 @@ function getHtml() {
         })
         serverHandlerInserted = true
     }
+    const serverUrl = (await lw.server.getUrl()).url
+    const serverUri = vscode.Uri.parse(serverUrl, true)
+    const scriptOrigin = `${serverUri.scheme}://${serverUri.authority}`
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src 'self' http://127.0.0.1:*; img-src data:; style-src 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src 'self' ${scriptOrigin}; img-src data:; style-src 'unsafe-inline';">
         <meta charset="UTF-8">
         <style>
             body {
@@ -157,7 +159,7 @@ function getHtml() {
                 padding-left: 50px;
             }
         </style>
-        <script src='http://127.0.0.1:${lw.server.getPort().toString()}/mathpreviewpanel/mathpreview.js' defer></script>
+        <script src='${serverUrl}/mathpreviewpanel/mathpreview.js' defer></script>
     </head>
     <body>
         <div id="mathBlock"><img src="" id="math" /></div>

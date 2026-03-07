@@ -2,7 +2,6 @@ import * as utils from './utils.js'
 import type { PDFViewerApplicationType } from './interface'
 import type { PanelManagerResponse, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
 import { getTrimValue } from './trimming.js'
-import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { IsAutoRefreshEnabled } from './refresh.js'
 import { sendPanel } from './connection.js'
 
@@ -46,7 +45,7 @@ export function uploadState() {
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
         scrollTop: document.getElementById('viewerContainer')!.scrollTop,
         scrollLeft: document.getElementById('viewerContainer')!.scrollLeft,
-        synctexEnabled: isSyncTeXEnabled(),
+        synctexEnabled: false,
         autoReloadEnabled: IsAutoRefreshEnabled()
     }
     sendPanel({type: 'state', state})
@@ -92,9 +91,4 @@ export async function setParams() {
     const css = document.styleSheets[document.styleSheets.length - 1]
     const pageBorderColor = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark.pageBorderColor : params.color.light.pageBorderColor
     css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${pageBorderColor}}`, css.cssRules.length)
-
-    if (params.keybindings) {
-        setSyncTeXKey(params.keybindings['synctex'])
-        registerSyncTeX()
-    }
 }

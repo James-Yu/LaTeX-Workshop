@@ -5,6 +5,7 @@ import * as cs from 'cross-spawn'
 import { lw } from '../lw'
 import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, SyncTeXRecordToTeX } from '../types'
 import { syncTeXToPDF, syncTeXToTeX } from './synctex/worker'
+import { confirmWorkspaceCommandExecution } from '../utils/security'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
 import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
@@ -288,7 +289,7 @@ function toPDF(pdfUri?: vscode.Uri, args?: {line: number, filePath: string}, for
             line -= 1
     }
     if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
-        syncTeXExternal(line, targetPdfFile, rootFile)
+        void syncTeXExternal(line, targetPdfFile, rootFile)
         return
     }
 
@@ -338,21 +339,21 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: v
     }
     const logTag = docker ? 'Docker' : 'SyncTeX'
     logger.log(`Forward from ${filePath} to ${pdfUri.toString(true)} on line ${line}.`)
-    const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath)})
-    proc.stdout.setEncoding('utf8')
-    proc.stderr.setEncoding('utf8')
+    const runSyncTeX = () => new Promise<SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]>((resolve, reject) => {
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfUri.fsPath)})
+        proc.stdout.setEncoding('utf8')
+        proc.stderr.setEncoding('utf8')
 
-    let stdout = ''
-    proc.stdout.on('data', newStdout => {
-        stdout += newStdout
-    })
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
 
-    let stderr = ''
-    proc.stderr.on('data', newStderr => {
-        stderr += newStderr
-    })
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
 
-    return new Promise<SyncTeXRecordToPDF | SyncTeXRecordToPDFAll[]>( (resolve, reject) => {
         proc.on('error', err => {
             logger.logError(`(${logTag}) Forward SyncTeX failed, fallback to synctex.js.`, err, stderr)
             reject()
@@ -370,6 +371,17 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: v
                 resolve(record)
             }
         })
+    }) as Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]>
+
+    if (docker) {
+        return runSyncTeX()
+    }
+
+    return confirmWorkspaceCommandExecution(pdfUri, 'synctex.path', command).then(confirmed => {
+        if (!confirmed) {
+            return Promise.reject(new Error('SyncTeX command execution was not approved.'))
+        }
+        return runSyncTeX()
     }) as Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]>
 }
 
@@ -758,16 +770,19 @@ function animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
  * @param pdfUri - The path of the PDF file.
  * @param rootFile - The path of the root TeX file.
  */
-function syncTeXExternal(line: number, pdfUri: vscode.Uri, rootFile: string) {
+async function syncTeXExternal(line: number, pdfUri: vscode.Uri, rootFile: string) {
     if (!vscode.window.activeTextEditor) {
         return
     }
     const texFile = vscode.window.activeTextEditor.document.uri.fsPath
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', pdfUri)
     const command = configuration.get('view.pdf.external.synctex.command') as string
     let args = configuration.get('view.pdf.external.synctex.args') as string[]
     if (command === '') {
         logger.log('The external SyncTeX command is empty.')
+        return
+    }
+    if (!await confirmWorkspaceCommandExecution(pdfUri, 'view.pdf.external.synctex.command', command)) {
         return
     }
     if (args) {

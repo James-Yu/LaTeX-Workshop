@@ -7,6 +7,7 @@ import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
 import { processWrapper } from './utils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { confirmWorkspaceCommandExecution } from '../../utils/security'
 
 const logger = lw.log('Linter', 'ChkTeX')
 
@@ -50,6 +51,9 @@ async function lintFile(document: vscode.TextDocument) {
 async function chktexWrapper(linterid: string, configScope: vscode.ConfigurationScope, filePath: string, requiredArgs: string[], content?: string): Promise<string | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', configScope)
     const command = configuration.get('linting.chktex.exec.path') as string
+    if (!await confirmWorkspaceCommandExecution(configScope, 'linting.chktex.exec.path', command)) {
+        return
+    }
     const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
     if (!args.includes('-l')) {
         const rcPath = getRcPath()

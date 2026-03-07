@@ -42,7 +42,7 @@ export type SupportedExtension =
     'verb'
 
 export type MacrosOption = {
-    [name: string]: object;
+    [name: string]: unknown;
 }
 
 export type TexOption = {
@@ -70,7 +70,7 @@ export type SvgOption = {
     mtextInheritFont?: boolean,
     merrorInheritFont?: boolean,
     mathmlSpacing?: boolean,
-    skipAttributes?: readonly { [attrname: string]: boolean },
+    skipAttributes?: Readonly<Record<string, boolean>>,
     exFactor?: number,
     displayAlign?: 'left' | 'center' | 'right',
     displayIndent?: number,

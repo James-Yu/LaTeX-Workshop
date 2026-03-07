@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import { glob } from 'glob'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
+import { confirmWorkspaceCommandExecution } from '../utils/security'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
 const logger = lw.log('Cleaner')
@@ -158,9 +159,12 @@ async function cleanGlob(rootFile: string): Promise<void> {
     }
 }
 
-function cleanCommand(rootFile: string): Promise<void> {
+async function cleanCommand(rootFile: string): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const command = configuration.get('latex.clean.command') as string
+    if (!await confirmWorkspaceCommandExecution(lw.file.toUri(rootFile), 'latex.clean.command', command)) {
+        return
+    }
     const args = (configuration.get('latex.clean.args') as string[])
         .map(arg => { return replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(arg)
             // cleaner.ts specific tokens

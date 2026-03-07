@@ -1,19 +1,26 @@
-# Visual Studio Code LaTeX Workshop Extension
+# TeX Workspace Secure
 
-[![version](https://img.shields.io/visual-studio-marketplace/v/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![updated](https://img.shields.io/visual-studio-marketplace/last-updated/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![release](https://img.shields.io/visual-studio-marketplace/release-date/James-Yu.latex-workshop)](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)
+Independent VS Code extension fork: <https://github.com/thinksyncs/LaTeX-Workshop>
 
-[![downloads](https://img.shields.io/visual-studio-marketplace/d/James-Yu.latex-workshop)](https://vsmarketplacebadge.apphb.com/downloads-short/James-Yu.latex-workshop.svg)
-[![installs](https://img.shields.io/visual-studio-marketplace/i/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![rating](https://img.shields.io/visual-studio-marketplace/r/James-Yu.latex-workshop)](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/James-Yu/LaTeX-Workshop/master/LICENSE.txt)
+TeX Workspace Secure is a security-hardened fork of LaTeX Workshop for [Visual Studio Code](https://code.visualstudio.com/).
 
-[![TeX Live on Windows](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20Windows/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Windows%22)
-[![TeX Live on macOS](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20macOS/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+macOS%22)
-[![TeX Live on Linux](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20Linux/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Linux%22)
+## Security-Focused Feature Set for Enterprise Use Cases
 
-LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudio.com/), aiming to provide core features for LaTeX typesetting with Visual Studio Code.
+Privacy-first, with no telemetry and no profile-enrichment lookups.
+
+Security-first maintenance, including active review and corrective updates.
+
+Security review is performed with enterprise use cases in mind, but adopters remain responsible for their own validation, deployment decisions, and incident handling.
+
+> [!IMPORTANT]
+> This package is an independent fork and is not the official `James-Yu.latex-workshop` marketplace release.
+> For compatibility, settings and command IDs still use the existing `latex-workshop.*` prefix.
+
+The project aims to provide core features for LaTeX typesetting with Visual Studio Code while keeping compatibility with existing LaTeX Workshop setups.
+
+This secure build is intentionally narrower than upstream. It focuses on core authoring and compilation workflows and does not include Live Share integration, the internal PDF preview server/viewer, SyncTeX, texdoc, or external formatter/linter execution.
+
+The upstream wiki remains useful for shared concepts such as recipes, root file handling, snippets, and IntelliSense, but parts of it document features that are disabled in this build.
 
 This project won't be successful without contributions from the community, especially from the current and past key contributors:
 
@@ -24,105 +31,37 @@ This project won't be successful without contributions from the community, espec
 
 Thank you so much!
 
-**Note that the latest version of LaTeX-Workshop requires at least VSCode `1.96.0` (December 2024 or later).**
+**Note that the latest version of TeX Workspace Secure requires at least VSCode `1.96.0` (December 2024 or later).**
 
 ## Manual
 
-The manual of the extension is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)
+The upstream manual is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki).
 
-### Table of Contents
+For this secure build, the following upstream pages are the most relevant:
 
-- [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
-  - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#requirements)
-  - [Installation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
-  - [Setting PATH environment variable](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#setting-path-environment-variable)
-  - [Settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#settings)
-  - [Usage](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#usage)
-    - [Supported languages](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#supported-languages)
-  - [Using Docker](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-docker)
-  - [Using WSL](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-wsl)
 - [Compiling](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile)
-  - [Building the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-the-document)
-  - [Terminating the current compilation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#terminating-the-current-compilation)
-  - [Auto build LaTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#auto-build-latex)
-  - [LaTeX recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)
-    - [LaTeX tools](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-tools)
-    - [Placeholders](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders)
-  - [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects)
-  - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
-  - [Catching errors and warnings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
-  - [External build command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#external-build-command)
-  - [Magic comments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments)
-  - [Building a `.jnw` file](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-a-jnw-file)
-  - [Building a `.rnw` file](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-a-rnw-file)
-- [Linting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters)
-  - [Duplicate labels](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#duplicate-labels)
-  - [Chktex](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#chktex)
-- [Viewing & SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
-  - [Internal PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#internal-pdf-viewer)
-    - [Color](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#color)
-    - [Invert mode](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#invert-mode)
-  - [SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#synctex)
-  - [External PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#external-pdf-viewer)
-    - [Using SyncTeX with an external viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#using-synctex-with-an-external-viewer)
-- [Formatting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
-  - [LaTeX files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#LaTeX-files)
-  - [Bibtex files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#Bibtex-files)
 - [Intellisense](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense)
-  - [Citations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations)
-  - [References](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#References)
-  - [Commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Commands)
-  - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Environments)
-  - [Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#files)
-  - [Bibtex Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#bibtex-files)
-  - [`@` suggestions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#-suggestions)
-    - [Inserting Greek letters](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#inserting-greek-letters)
-    - [Handy mathematical helpers](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Handy-mathematical-helpers)
 - [Snippets and shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
-  - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments)
-  - [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Sectioning)
-  - [Font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#font-commands-and-snippets)
-  - [Mathematical font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Mathematical-font-commands)
-  - [Surrounding text](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#surrounding-text)
-  - [Miscellaneous actions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Miscellaneous-Actions)
-- [Hovering and previewing features](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover)
-  - [Documentation of a package](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-package)
-  - [Previewing equations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-equations)
-  - [Previewing graphics](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-graphics)
-  - [Previewing citation details](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-citation-details)
-  - [Previewing references](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-references)
-  - [Documentation of a command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-command)
-- [Playing with environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments)
-  - [Inserting an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#inserting-an-environment)
-  - [Itemize like environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Itemize-like-environments)
-  - [Navigating and selecting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Navigating-and-selecting)
-  - [Changing between `\[...\]` and `\begin{}...\end{}`](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#changing-between--and-beginend)
-  - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
-  - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
-- [Extra features](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures)
-  - [Structure of the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#structure-of-the-document)
-  - [Code folding](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#code-folding)
-  - [Counting words](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words)
-  - [Literate programming support using LaTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#Literate-programming-support-using-LaTeX)
+- [Hovering features](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover)
+- [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments)
 - [VS Code Remote Development](https://github.com/James-Yu/LaTeX-Workshop/wiki/Remote)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
 
-## Features (Taster)
+The following upstream sections do not describe this build accurately because those features are disabled or intentionally not exposed here:
 
-This is not a complete list but rather a preview of some of the coolest features.
+- Viewing and SyncTeX
+- Linting commands and external formatter integration
+- Texdoc, word count, Live Share, and math preview panel workflows
+- Any workflow that depends on the internal PDF preview server or browser viewer
+
+## Supported Editing and Build Features
+
+This is a representative subset of the editing and compilation capabilities retained in the secure build.
 
 - Build LaTeX (including BibTeX) to PDF automatically on save.
 
   <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/build.gif" alt="build process gif" height="20px">
-
-- View PDF on-the-fly (in VS Code or browser).
-
-  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/preview.gif" alt="demo of preview feature" height="220px">
-
-- Direct and reverse [SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#synctex). Click to jump between location in `.tex` source and PDF and vice versa.
-
-  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/synctex.gif" alt="demo of SyncTeX" height="220px">
 
 - Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
 
@@ -131,10 +70,6 @@ This is not a complete list but rather a preview of some of the coolest features
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 
   <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/errors.png" alt="error reporting demo" height="125px">
-
-  - Linting
-
-  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/chktex.gif" alt="auto \item demo" height="90px">
 
 - [Snippets](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
@@ -174,13 +109,13 @@ This is not a complete list but rather a preview of some of the coolest features
 
 ## GitHub
 
-The code for this extension is available on github at: https://github.com/James-Yu/LaTeX-Workshop
+The code for this extension is available on GitHub at: https://github.com/thinksyncs/LaTeX-Workshop
 
-## Like this work?
+## Support This Project
 
-- :smile: Star this project on GitHub and Visual Studio Marketplace
-- :blush: Leave a comment
-- :relaxed: Thank the develops and community for their effort.
+- Star this project on GitHub and Visual Studio Marketplace.
+- Leave feedback or usage reports.
+- Thank the maintainers and community for their work.
 
 ## License
 
