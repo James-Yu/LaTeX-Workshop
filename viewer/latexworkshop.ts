@@ -5,8 +5,6 @@ import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOpti
 import { initTrim, setTrimCSS } from './components/trimming.js'
 import { doneRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
-import { initConnect, send } from './components/connection.js'
-import { registerSyncTeX } from './components/synctex.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
@@ -68,8 +66,6 @@ async function initialization() {
         }
         PDFViewerApplicationOptions.setAll(options)
     })
-
-    initConnect()
     await patchViewerUI()
     registerKeyBind()
 }
@@ -88,14 +84,12 @@ onPDFViewerEvent('documentloaded', () => {
 onPDFViewerEvent('pagesinit', () => {
     initTrim()
     void restoreState()
-    registerSyncTeX()
     registerPersistentState()
 })
 onPDFViewerEvent('pagesloaded', () => {
     initTrim()
     void restoreState()
         .then(() => uploadState())
-        .then(() => send({ type: 'loaded', pdfFileUri: utils.parseURL().pdfFileUri }))
     repositionAnnotation()
     doneRefresh()
 })

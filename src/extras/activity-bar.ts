@@ -29,15 +29,6 @@ async function buildCommandTree(): Promise<LaTeXCommand[]> {
     ])
     commands.push(node)
 
-    const viewCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.view'), {command: 'latex-workshop.view'}, 'open-preview')
-    node = buildNode(viewCommand, [
-        new LaTeXCommand(await lw.language.getLocaleString('activity.viewintab'), {command: 'latex-workshop.view', arguments: ['tab']}, 'open-preview'),
-        new LaTeXCommand(await lw.language.getLocaleString('activity.viewinweb'), {command: 'latex-workshop.view', arguments: ['browser']}, 'browser'),
-        new LaTeXCommand(await lw.language.getLocaleString('activity.viewinexternal'), {command: 'latex-workshop.view', arguments: ['external']}, 'preview'),
-        new LaTeXCommand(await lw.language.getLocaleString('command.refresh-viewer'), {command: 'latex-workshop.refresh-viewer'}, 'refresh')
-    ])
-    commands.push(node)
-
     const logCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.log'), {command: 'latex-workshop.log'}, 'output')
     const compilerLog = new LaTeXCommand(await lw.language.getLocaleString('command.compilerlog'), {command: 'latex-workshop.compilerlog'}, 'output')
     const latexWorkshopLog = new LaTeXCommand(await lw.language.getLocaleString('command.log'), {command: 'latex-workshop.log'}, 'output')
@@ -49,7 +40,6 @@ async function buildCommandTree(): Promise<LaTeXCommand[]> {
 
     const navCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.navigate'), undefined, 'edit')
     node= buildNode(navCommand, [
-        new LaTeXCommand(await lw.language.getLocaleString('command.synctex'), {command: 'latex-workshop.synctex'}, 'go-to-file'),
         new LaTeXCommand(await lw.language.getLocaleString('command.navigate-envpair'), {command: 'latex-workshop.navigate-envpair'}),
         new LaTeXCommand(await lw.language.getLocaleString('command.select-envcontent'), {command: 'latex-workshop.select-envcontent'}),
         new LaTeXCommand(await lw.language.getLocaleString('command.select-envname'), {command: 'latex-workshop.select-envname'}),
@@ -62,7 +52,6 @@ async function buildCommandTree(): Promise<LaTeXCommand[]> {
     const miscCommand = new LaTeXCommand(await lw.language.getLocaleString('activity.misc'), undefined, 'menu')
     node = buildNode(miscCommand, [
         new LaTeXCommand(await lw.language.getLocaleString('command.citation'), {command: 'latex-workshop.citation'}),
-        new LaTeXCommand(await lw.language.getLocaleString('command.wordcount'), {command: 'latex-workshop.wordcount'}),
         new LaTeXCommand(await lw.language.getLocaleString('command.revealoutput'), {command: 'latex-workshop.revealOutputDir'}, 'folder-opened')
     ])
     commands.push(node)

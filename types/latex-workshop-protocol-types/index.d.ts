@@ -21,11 +21,11 @@ export type ServerResponse = {
     data: SynctexData | SynctexRangeData[]
 } | {
     type: 'synctex_result',
-    pdfFile: string, // vsls scheme
+    pdfFile: string,
     synctexData: SynctexData | SynctexRangeData
 } | {
     type: 'reverse_synctex_result',
-    input: string, // input file path, in vsls scheme
+    input: string,
     line: number,
     column: number,
     textBeforeSelection: string,
@@ -117,7 +117,7 @@ export type PanelRequest = {
     type: 'initialized'
 } | {
     type: 'keyboard_event',
-    event: any
+    event: KeyboardEventInit
 } | {
     type: 'state',
     state: PdfViewerState

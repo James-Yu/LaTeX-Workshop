@@ -83,7 +83,7 @@ const constant = {
         'gensymb', 'html', 'mathtools', 'mhchem', 'physics', 'textcomp',
         'textmacros', 'unicode', 'upgreek', 'verb'
     ],
-    FILE_URI_SCHEMES: ['file', 'vsls']
+    FILE_URI_SCHEMES: ['file']
 }
 lw.constant = constant
 

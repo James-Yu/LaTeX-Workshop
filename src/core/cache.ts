@@ -469,7 +469,7 @@ async function updateElements(fileCache: FileCache): Promise<void> {
     const start = performance.now()
     lw.completion.citation.parse(fileCache)
     // Package parsing must be before command and environment.
-    lw.completion.usepackage.parse(fileCache)
+    await lw.completion.usepackage.parse(fileCache)
     lw.completion.reference.parse(fileCache)
     lw.completion.glossary.parse(fileCache)
     lw.completion.environment.parse(fileCache)

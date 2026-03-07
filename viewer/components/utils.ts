@@ -7,6 +7,13 @@ export async function getParams(): Promise<PdfViewerParams> {
     if (storedParams) {
         return storedParams as PdfViewerParams
     }
+    const query = new URLSearchParams(document.location.search)
+    const encodedConfig = query.get('config')
+    if (encodedConfig) {
+        const params = JSON.parse(decodePath(encodedConfig)) as PdfViewerParams
+        ;(globalThis as any).lwParams = params
+        return params
+    }
     const params = await (await fetch('config.json')).json() as PdfViewerParams
     ;(globalThis as any).lwParams = params
     return params
@@ -37,19 +44,18 @@ export function parseURL(): { encodedPath: string, pdfFileUri: string, docTitle:
     if (urlComponents) {
         return urlComponents
     }
-    const query = document.location.search.substring(1)
-    const parts = query.split('&')
+    const query = new URLSearchParams(document.location.search)
+    const title = query.get('title') ?? undefined
+    const encoded = query.get('file')
 
-    for (let i = 0, ii = parts.length; i < ii; ++i) {
-        const param = parts[i].split('=')
-        if (['file', 'vsls'].includes(param[0].toLowerCase())) {
-            const encodedPath = param[1].replace(pdfFilePrefix, '')
-            const pdfFileUri = decodePath(encodedPath)
-            const docTitle = pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'
-            urlComponents = { encodedPath, pdfFileUri, docTitle }
-            return urlComponents
-        }
+    if (encoded) {
+        const encodedPath = encoded.replace(pdfFilePrefix, '')
+        const pdfFileUri = decodePath(encodedPath)
+        const docTitle = title ?? pdfFileUri.split(/[\\/]/).pop() ?? 'Untitled PDF'
+        urlComponents = { encodedPath, pdfFileUri, docTitle }
+        return urlComponents
     }
+
     throw new Error('file not given in the query.')
 }
 

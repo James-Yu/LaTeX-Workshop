@@ -1,5 +1,25 @@
 # Change Log
 
+## [10.13.2] - 2026-03-07
+
+Subtractive feature selection of LaTeX-Secure-Workspace for enterprise use cases.
+Privacy-first, with no telemetry and no profile-enrichment lookups.
+Security-first maintenance, including active review and corrective updates.
+
+### Changed
+- Forked the extension into LaTeX-Secure-Workspace with a dedicated publisher, package name, icon, and log branding.
+- Reduced the feature surface to core authoring and compilation workflows for this secure build.
+
+### Removed
+- Removed Live Share integration.
+- Removed the internal PDF preview server and viewer, SyncTeX commands, texdoc commands, math preview commands, and related UI contributions.
+- Removed built-in formatter and linter registrations from activation.
+
+### Security
+- Block workspace-level overrides for `latex.recipes`, `latex.tools`, and `latex.external.build.command` in the secure build.
+- Require confirmation before executing workspace-configured external command paths such as `kpsewhich`, cleaners, formatters, and linters.
+- Ignore magic-command comments during builds in the secure build.
+
 ## [10.13.1] - 2026-02-26
 
 ### Fixed

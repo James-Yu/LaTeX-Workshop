@@ -19,6 +19,72 @@ export function escapeRegExp(str: string) {
 }
 
 /**
+ * Split a shell-like command-line string into individual arguments without
+ * invoking a shell.
+ *
+ * Supports single quotes, double quotes and backslash escaping. The parsing is
+ * intentionally minimal and only meant for command option strings such as
+ * `% !TeX options = ...`.
+ *
+ * @param commandLine The command-line string to split.
+ * @returns The parsed argument array.
+ */
+export function splitCommandLineArgs(commandLine: string): string[] {
+    const args: string[] = []
+    let current = ''
+    let quote: '\'' | '"' | undefined
+    const trimmed = commandLine.trim()
+
+    for (let i = 0; i < trimmed.length; i++) {
+        const char = trimmed[i]
+        const nextChar = trimmed[i + 1]
+
+        if (quote) {
+            if (char === '\\' && quote === '"' && (nextChar === '"' || nextChar === '\\')) {
+                current += nextChar
+                i++
+                continue
+            }
+            if (char === quote) {
+                quote = undefined
+            } else {
+                current += char
+            }
+            continue
+        }
+
+        if (char === '\\' && (nextChar === '\'' || nextChar === '"' || nextChar === '\\' || /\s/.test(nextChar ?? ''))) {
+            if (nextChar !== undefined) {
+                current += nextChar
+                i++
+                continue
+            }
+        }
+
+        if (char === '\'' || char === '"') {
+            quote = char
+            continue
+        }
+
+        if (/\s/.test(char)) {
+            if (current.length > 0) {
+                args.push(current)
+                current = ''
+            }
+            continue
+        }
+
+        current += char
+    }
+
+    if (current.length > 0) {
+        args.push(current)
+    }
+
+    return args
+}
+
+/**
  * Strip text and comments from LaTeX, leaving only macros and environments.
  *
  * @param raw The raw LaTeX content as a string

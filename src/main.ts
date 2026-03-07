@@ -5,7 +5,7 @@ lw.extensionRoot = path.resolve(`${__dirname}/../../`)
 import { log } from './utils/logger'
 lw.log = log.getLogger
 const logger = lw.log('Extension')
-logger.log('Initializing LaTeX Workshop.')
+logger.log('Initializing LaTeX-Secure-Workspace.')
 import { event } from './core/event'
 lw.event = event
 import { file } from './core/file'
@@ -74,15 +74,11 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             lw.cache.getIncludedTeX(lw.root.file.path).has(e.fileName) ||
             lw.cache.getIncludedBib().includes(e.fileName)) {
             logger.log(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
-            lw.lint.latex.root()
             if (lw.compile.isFileExcludedFromBuildOnSave(e.fileName)) {
                 logger.log(`File ${e.fileName} is excluded from build-on-save due to configuration.`)
             } else {
                 void lw.compile.autoBuild(e.fileName, 'onSave')
             }
-        }
-        if (lw.file.hasLaTeXLangId(e.languageId)) {
-            lw.extra.count(e.fileName)
         }
         // We don't check LaTeX ID as the reconstruct is handled by the Cacher.
         // We don't check BibTeX ID as the reconstruct is handled by the citation completer.
@@ -115,7 +111,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             || lw.file.hasLaTeXClassPackageLangId(e.document.languageId) )) {
             if (!lw.file.hasBibLangId(e.document.languageId) && (e.document.fileName !== lw.previousActive?.document.fileName)) {
                 await lw.root.find()
-                lw.lint.latex.root()
             }
             lw.previousActive = e
         } else {
@@ -138,7 +133,6 @@ export function activate(extensionContext: vscode.ExtensionContext) {
             return
         }
         lw.event.fire(lw.event.DocumentChanged)
-        lw.lint.latex.on(e.document)
         lw.cache.refreshCacheAggressive(e.document.fileName)
     }))
 
@@ -154,14 +148,13 @@ export function activate(extensionContext: vscode.ExtensionContext) {
     registerProviders(extensionContext)
 
     void lw.root.find().then(() => {
-        lw.lint.latex.root()
         if (lw.file.hasLaTeXLangId(vscode.window.activeTextEditor?.document.languageId ?? '')) {
             lw.previousActive = vscode.window.activeTextEditor
         }
     })
     conflictCheck()
 
-    logger.log('LaTeX Workshop initialized.')
+    logger.log('LaTeX-Secure-Workspace initialized.')
 }
 
 function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext) {
@@ -169,23 +162,15 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.hostPort', () => lw.commands.hostPort()),
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => lw.commands.saveActive()),
         vscode.commands.registerCommand('latex-workshop.build', () => lw.commands.build()),
-        vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),
-        vscode.commands.registerCommand('latex-workshop.view', (uri: vscode.Uri) => lw.commands.view(uri)),
+        vscode.commands.registerCommand('latex-workshop.view', (mode?: 'tab' | 'browser' | 'external' | vscode.Uri) => lw.commands.view(mode)),
         vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => lw.commands.refresh()),
-        vscode.commands.registerCommand('latex-workshop.tab', () => lw.commands.view('tab')),
-        vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => lw.commands.view('browser')),
-        vscode.commands.registerCommand('latex-workshop.viewExternal', () => lw.commands.view('external')),
+        vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => lw.commands.recipes(recipe)),
         vscode.commands.registerCommand('latex-workshop.kill', () => lw.commands.kill()),
-        vscode.commands.registerCommand('latex-workshop.synctex', () => lw.commands.synctex()),
-        vscode.commands.registerCommand('latex-workshop.texdoc', (packageName: string | undefined) => lw.commands.texdoc(packageName)),
-        vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => lw.commands.texdocUsepackages()),
-        vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => lw.commands.synctexonref(line, filePath)),
         vscode.commands.registerCommand('latex-workshop.clean', () => lw.commands.clean()),
         vscode.commands.registerCommand('latex-workshop.actions', () => lw.commands.actions()),
         vscode.commands.registerCommand('latex-workshop.activate', () => undefined),
         vscode.commands.registerCommand('latex-workshop.citation', () => lw.commands.citation()),
         vscode.commands.registerCommand('latex-workshop.addtexroot', () => lw.commands.addTexRoot()),
-        vscode.commands.registerCommand('latex-workshop.wordcount', () => lw.commands.wordcount()),
         vscode.commands.registerCommand('latex-workshop.log', () => lw.commands.showLog()),
         vscode.commands.registerCommand('latex-workshop.compilerlog', () => lw.commands.showLog('compiler')),
         vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.lint.latex.action(d, r, c, m)),
@@ -201,8 +186,6 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.onEnterKey', () => lw.commands.onEnterKey()),
         vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => lw.commands.onEnterKey('alt')),
         vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => lw.commands.revealOutputDir()),
-        vscode.commands.registerCommand('latex-workshop.changeHostName', () => lw.commands.changeHostName()),
-        vscode.commands.registerCommand('latex-workshop.resetHostName', () => lw.commands.resetHostName()),
         vscode.commands.registerCommand('latex-workshop-dev.parselog', () => lw.commands.devParseLog()),
         vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => lw.commands.devParseTeX()),
         vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => lw.commands.devParseBib()),
@@ -236,36 +219,17 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.bibsort', () => lw.lint.bibtex.format(true, false)),
         vscode.commands.registerCommand('latex-workshop.bibalign', () => lw.lint.bibtex.format(false, true)),
         vscode.commands.registerCommand('latex-workshop.bibalignsort', () => lw.lint.bibtex.format(true, true)),
-        vscode.commands.registerCommand('latex-workshop.checkcitations', () => lw.commands.checkCitations()),
-
-        vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => lw.commands.openMathPreviewPanel()),
-        vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => lw.commands.closeMathPreviewPanel()),
-        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => lw.commands.toggleMathPreviewPanel())
+        vscode.commands.registerCommand('latex-workshop.checkcitations', () => lw.commands.checkCitations())
     )
 }
 
 function registerProviders(extensionContext: vscode.ExtensionContext) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-    // According to cmhughes/latexindent.pl, it aims to beautify .tex, .sty and .cls files.
-    const latexindentSelector = selectDocumentsWithId(['tex', 'latex', 'latex-expl3', 'latex-class', 'latex-package'])
     const latexSymbolSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'context'])
     const weaveSelector = selectDocumentsWithId(['pweave', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'pweave', 'jlweave', 'rsweave', 'latex-class', 'latex-package', 'biblatex', 'context', 'doctex', 'doctex-installer'])
     const bibtexSelector = selectDocumentsWithId(['bibtex'])
-
-    extensionContext.subscriptions.push(
-        vscode.languages.registerDocumentFormattingEditProvider(latexindentSelector, lw.lint.latex.formatter),
-        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, lw.lint.latex.formatter),
-        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter)
-    )
-
-    extensionContext.subscriptions.push(
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.preview.mathpreview.serializer)
-    )
 
     extensionContext.subscriptions.push(
         vscode.languages.registerHoverProvider(latexSymbolSelector, lw.preview.provider),
@@ -278,7 +242,6 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, lw.completion.provider, '\\', '{'),
-        vscode.languages.registerCompletionItemProvider({ scheme: 'vsls', language: 'tex'}, lw.completion.provider, '\\', '{'),
         vscode.languages.registerCompletionItemProvider(bibtexSelector, lw.completion.bibProvider, '@')
     )
 
@@ -328,20 +291,12 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     if (selectionLatex) {
         extensionContext.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, lw.language.selectionRage))
     }
-
-    extensionContext.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(
-            'latex-workshop-math-symbols',
-            lw.extra.snippet.provider,
-            { webviewOptions: { retainContextWhenHidden: true } }
-        )
-    )
 }
 
 function conflictCheck() {
     function check(ID: string, name: string, suggestion: string) {
         if (vscode.extensions.getExtension(ID) !== undefined) {
-            void vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with  "${name}". ${suggestion}`)
+            void vscode.window.showWarningMessage(`LaTeX-Secure-Workspace is incompatible with  "${name}". ${suggestion}`)
         }
     }
     check('tomoki1207.pdf', 'vscode-pdf', 'We compete when opening a PDF file from the sidebar. Please consider disabling either extension.')

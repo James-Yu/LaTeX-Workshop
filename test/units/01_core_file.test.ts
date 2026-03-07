@@ -1,6 +1,8 @@
 import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
+import { EventEmitter } from 'events'
+import { PassThrough } from 'stream'
 import * as sinon from 'sinon'
 import { assert, get, mock, set } from './utils'
 import { lw } from '../../src/lw'
@@ -8,6 +10,34 @@ import { initialize } from '../../src/core/file'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
+
+    function mockKpsewhichProcess({ stdout = '', stderr = '', code = 0, error }: { stdout?: string, stderr?: string, code?: number | null, error?: Error }): ReturnType<typeof lw.external.spawn> {
+        const proc = new EventEmitter() as EventEmitter & { stdout: PassThrough, stderr: PassThrough }
+        proc.stdout = new PassThrough()
+        proc.stderr = new PassThrough()
+        process.nextTick(() => {
+            if (error) {
+                proc.emit('error', error)
+                return
+            }
+            if (stdout !== '') {
+                proc.stdout.write(stdout)
+            }
+            if (stderr !== '') {
+                proc.stderr.write(stderr)
+            }
+            proc.stdout.end()
+            proc.stderr.end()
+            setImmediate(() => {
+                proc.emit('close', code)
+            })
+        })
+        return proc as unknown as ReturnType<typeof lw.external.spawn>
+    }
+
+    function mockSpawn(result: { stdout?: string, stderr?: string, code?: number | null, error?: Error }): typeof lw.external.spawn {
+        return (..._args: Parameters<typeof lw.external.spawn>): ReturnType<typeof lw.external.spawn> => mockKpsewhichProcess(result)
+    }
 
     before(() => {
         mock.init(lw)
@@ -380,32 +410,44 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should handle case when kpsewhich is disabled and BibTeX file not found', async () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', false)
             set.root(fixture, 'main.tex')
-            const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
-            stub.restore()
-            assert.listStrictEqual(result, [ ])
+            const originalSpawn = lw.external.spawn
+            lw.external.spawn = mockSpawn({ stdout: get.path(fixture, 'nonexistent.bib') })
+            try {
+                const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
+                assert.listStrictEqual(result, [ ])
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
         it('should handle case when kpsewhich is enabled and BibTeX file not found', async () => {
             const nonPath = get.path(fixture, 'nonexistent.bib')
 
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'nonexistent.bib'), output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', true)
             set.root(fixture, 'main.tex')
-            const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
-            stub.restore()
-            assert.listStrictEqual(result, [ nonPath ])
+            const originalSpawn = lw.external.spawn
+            lw.external.spawn = mockSpawn({ stdout: get.path(fixture, 'nonexistent.bib') })
+            try {
+                const result = await lw.file.getBibPath('nonexistent.bib', lw.root.dir.path ?? '')
+                assert.listStrictEqual(result, [ nonPath ])
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
         it('should return an empty array when kpsewhich is enabled but file is not found', async () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
             set.config('kpsewhich.bibtex.enabled', true)
             set.root(fixture, 'main.tex')
-            const result = await lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
-            stub.restore()
-            assert.listStrictEqual(result, [ ])
+            const originalSpawn = lw.external.spawn
+            lw.external.spawn = mockSpawn({})
+            try {
+                const result = await lw.file.getBibPath('another-nonexistent.bib', lw.root.dir.path ?? '')
+                assert.listStrictEqual(result, [ ])
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
     })
 
@@ -673,51 +715,93 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('kpsewhich', () => {
-        it('should call kpsewhich with correct arguments', () => {
+        it('should call kpsewhich with correct arguments', async () => {
             set.config('kpsewhich.path', 'kpse')
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
-            lw.file.kpsewhich('article.cls')
-            stub.restore()
-            sinon.assert.calledWith(stub, 'kpse', ['article.cls'], sinon.match.any)
+            const originalSpawn = lw.external.spawn
+            let lastSpawnArgs: Parameters<typeof lw.external.spawn> | undefined
+            lw.external.spawn = ((...args) => {
+                lastSpawnArgs = args
+                return mockKpsewhichProcess({})
+            }) as typeof lw.external.spawn
+            try {
+                await lw.file.kpsewhich('article.cls')
+                assert.strictEqual(lastSpawnArgs?.[0], 'kpse')
+                assert.listStrictEqual([...lastSpawnArgs?.[1] ?? []], ['article.cls'])
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
-        it('should handle isBib flag correctly', () => {
+        it('should handle isBib flag correctly', async () => {
             set.config('kpsewhich.path', 'kpse')
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
-            lw.file.kpsewhich('reference.bib', true)
-            stub.restore()
-            sinon.assert.calledWith(stub, 'kpse', ['-format=.bib', 'reference.bib'], sinon.match.any)
+            const originalSpawn = lw.external.spawn
+            let lastSpawnArgs: Parameters<typeof lw.external.spawn> | undefined
+            lw.external.spawn = ((...args) => {
+                lastSpawnArgs = args
+                return mockKpsewhichProcess({})
+            }) as typeof lw.external.spawn
+            try {
+                await lw.file.kpsewhich('reference.bib', true)
+                assert.strictEqual(lastSpawnArgs?.[0], 'kpse')
+                assert.listStrictEqual([...lastSpawnArgs?.[1] ?? []], ['-format=.bib', 'reference.bib'])
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
-        it('should return undefined if kpsewhich returns non-zero status', () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 1, stdout: '', output: [''], stderr: '', signal: 'SIGTERM' })
-            const result = lw.file.kpsewhich('article.cls')
-            stub.restore()
-            assert.strictEqual(result, undefined)
+        it('should return undefined if kpsewhich returns non-zero status', async () => {
+            const originalSpawn = lw.external.spawn
+            lw.external.spawn = mockSpawn({ code: 1 })
+            try {
+                const result = await lw.file.kpsewhich('article.cls')
+                assert.strictEqual(result, undefined)
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
-        it('should cache resolved path and hit', () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: get.path(fixture, 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
-            const result1 = lw.file.kpsewhich('article.cls')
-            const result2 = lw.file.kpsewhich('article.cls')
-            stub.restore()
-            assert.strictEqual(stub.callCount, 1)
-            assert.strictEqual(result1, result2)
+        it('should cache resolved path and hit', async () => {
+            const originalSpawn = lw.external.spawn
+            let callCount = 0
+            lw.external.spawn = ((..._args) => {
+                callCount += 1
+                return mockKpsewhichProcess({ stdout: get.path(fixture, 'article.cls') })
+            }) as typeof lw.external.spawn
+            try {
+                const result1 = await lw.file.kpsewhich('article.cls')
+                const result2 = await lw.file.kpsewhich('article.cls')
+                assert.strictEqual(callCount, 1)
+                assert.strictEqual(result1, result2)
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
-        it('should not cache on non-zero return', () => {
-            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 1, stdout: get.path(fixture, 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
-            lw.file.kpsewhich('another-article.cls')
-            lw.file.kpsewhich('another-article.cls')
-            stub.restore()
-            assert.strictEqual(stub.callCount, 2)
+        it('should not cache on non-zero return', async () => {
+            const originalSpawn = lw.external.spawn
+            let callCount = 0
+            lw.external.spawn = ((..._args) => {
+                callCount += 1
+                return mockKpsewhichProcess({ code: 1, stdout: get.path(fixture, 'article.cls') })
+            }) as typeof lw.external.spawn
+            try {
+                await lw.file.kpsewhich('another-article.cls')
+                await lw.file.kpsewhich('another-article.cls')
+                assert.strictEqual(callCount, 2)
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
 
-        it('should handle kpsewhich call failure gracefully', () => {
-            const stub = sinon.stub(lw.external, 'sync').throws(new Error('kpsewhich failed'))
-            const result = lw.file.kpsewhich('yet-another-article.cls')
-            stub.restore()
-            assert.strictEqual(result, undefined)
+        it('should handle kpsewhich call failure gracefully', async () => {
+            const originalSpawn = lw.external.spawn
+            lw.external.spawn = mockSpawn({ error: new Error('kpsewhich failed') })
+            try {
+                const result = await lw.file.kpsewhich('yet-another-article.cls')
+                assert.strictEqual(result, undefined)
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
         })
     })
 })

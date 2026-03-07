@@ -1,0 +1,54 @@
+name: Security Guardrails
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Ensure telemetry SDK is not introduced
+        run: |
+          if git grep -nE 'vscode-extension-telemetry|applicationinsights|@opentelemetry|opentelemetry' -- src package.json; then
+            echo 'Telemetry-related SDK usage detected in extension runtime surface.'
+            exit 1
+          fi
+
+      - name: Ensure `shell: true` is not used in src
+        run: |
+          MATCHES="$(git grep -n 'shell: true' -- src || true)"
+          if [ -z "$MATCHES" ]; then
+            exit 0
+          fi
+          echo "$MATCHES"
+          echo 'Unexpected `shell: true` usage found in src'
+          exit 1
+
+      - name: Ensure `pull_request_target` is not introduced
+        run: |
+          if git grep -n 'pull_request_target' -- .github/workflows; then
+            echo 'Do not use pull_request_target for this repository hardening baseline.'
+            exit 1
+          fi
+
+      - name: Ensure workflows do not use plaintext HTTP downloads
+        run: |
+          MATCHES="$(git grep -nE 'http://' -- .github/workflows | grep -v '^.github/workflows/security-guardrails.yml:' || true)"
+          if [ -n "$MATCHES" ]; then
+            echo "$MATCHES"
+            echo 'Plaintext HTTP is not allowed in workflows. Use HTTPS-only downloads.'
+            exit 1
+          fi
+
+      - name: Ensure workflows verify downloaded installers
+        run: |
+          for file in .github/workflows/texlive_on_linux.yml .github/workflows/texlive_on_mac.yml .github/workflows/texlive_on_win.yml; do
+            grep -q 'sha512' "$file" || { echo "Missing checksum verification in $file"; exit 1; }
+            grep -q 'gpg' "$file" || { echo "Missing signature verification in $file"; exit 1; }
+          done

@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
+import { confirmWorkspaceCommandExecution } from '../utils/security'
 import { lw } from '../lw'
 
 const logger = lw.log('TeXDoc')
@@ -8,9 +9,13 @@ export {
     texdoc
 }
 
-function runTexdoc(packageName: string) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+async function runTexdoc(packageName: string) {
+    const scope = vscode.window.activeTextEditor?.document.uri
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
     const texdocPath = configuration.get('texdoc.path') as string
+    if (!await confirmWorkspaceCommandExecution(scope, 'texdoc.path', texdocPath)) {
+        return
+    }
     const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
     texdocArgs.push(packageName)
     logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
@@ -28,13 +33,13 @@ function runTexdoc(packageName: string) {
 
     proc.on('error', err => {
         logger.log(`Cannot run texdoc: ${err.message}, ${stderr}`)
-        void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+        void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX-Secure-Workspace Output for details.')
     })
 
     proc.on('exit', exitCode => {
         if (exitCode !== 0) {
             logger.logError(`Cannot find documentation for ${packageName}.`, exitCode)
-            void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+            void logger.showErrorMessage('Texdoc failed. Please refer to LaTeX-Secure-Workspace Output for details.')
         } else {
             const regex = new RegExp(`(no documentation found)|(Documentation for ${packageName} could not be found)`)
             if (stdout.match(regex) || stderr.match(regex)) {
@@ -51,7 +56,7 @@ function runTexdoc(packageName: string) {
 
 function texdoc(packageName?: string, useonly = false) {
     if (packageName) {
-        runTexdoc(packageName)
+        void runTexdoc(packageName)
         return
     }
     if (useonly) {
@@ -70,14 +75,14 @@ function texdoc(packageName?: string, useonly = false) {
             if (!selectedPkg) {
                 return
             }
-            runTexdoc(selectedPkg.label)
+            void runTexdoc(selectedPkg.label)
         })
     } else {
         void vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }
-            runTexdoc(selectedPkg)
+            void runTexdoc(selectedPkg)
         })
     }
 }

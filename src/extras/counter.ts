@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
+import { confirmWorkspaceCommandExecution } from '../utils/security'
 import { lw } from '../lw'
 
 const logger = lw.log('Counter')
@@ -81,8 +82,11 @@ function count(file: string, merge: boolean = true, manual: boolean = false) {
     }
 }
 
-function runTeXCount(file: string, merge: boolean = true): Promise<boolean> {
+async function runTeXCount(file: string, merge: boolean = true): Promise<boolean> {
     let command = state.commandPath
+    if (!state.useDocker && !await confirmWorkspaceCommandExecution(lw.file.toUri(file), 'texcount.path', command)) {
+        return false
+    }
     if (state.useDocker) {
         logger.log('Use Docker to invoke the command.')
         if (process.platform === 'win32') {
@@ -114,14 +118,14 @@ function runTeXCount(file: string, merge: boolean = true): Promise<boolean> {
 
     proc.on('error', err => {
         logger.logError('Cannot count words.', err, stderr)
-        void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+        void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX-Secure-Workspace Output for details.')
     })
 
     return new Promise( resolve => {
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 logger.logError('Cannot count words', exitCode, stderr)
-                void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+                void logger.showErrorMessage('TeXCount failed. Please refer to LaTeX-Secure-Workspace Output for details.')
             } else {
                 const words = /Words in text: ([0-9]*)/g.exec(stdout)
                 const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)

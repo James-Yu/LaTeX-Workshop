@@ -1,15 +1,15 @@
 {
-  "name": "latex-workshop",
-  "displayName": "LaTeX Workshop",
-  "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
+  "name": "tex-workspace-secure",
+  "displayName": "LaTeX-Secure-Workspace",
+  "description": "Subtractive, privacy-first, security-maintained TeX Workspace for enterprise use cases.",
   "icon": "icons/icon.png",
-  "version": "10.13.1",
-  "publisher": "James-Yu",
+  "version": "10.13.2",
+  "publisher": "thinksyncs",
   "license": "MIT",
-  "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
+  "homepage": "https://github.com/thinksyncs/LaTeX-Secure-Workspace",
   "repository": {
     "type": "git",
-    "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
+    "url": "https://github.com/thinksyncs/LaTeX-Secure-Workspace.git"
   },
   "engines": {
     "vscode": "^1.96.0"
@@ -24,12 +24,10 @@
     "latex",
     "tex",
     "compile",
-    "preview",
     "hint"
   ],
   "activationEvents": [
-    "onCommand:latex-workshop.activate",
-    "onWebviewPanel:latex-workshop-pdf"
+    "onCommand:latex-workshop.activate"
   ],
   "main": "./out/src/main.js",
   "capabilities": {
@@ -38,7 +36,39 @@
       "description": "Only a few features are supported."
     },
     "untrustedWorkspaces": {
-      "supported": false
+      "supported": "limited",
+      "description": "Editing, navigation, log viewing, and the internal tab PDF viewer remain available in restricted mode. Build, clean, command execution, and workspace-controlled execution settings are disabled until the workspace is trusted.",
+      "restrictedConfigurations": [
+        "latex-workshop.latex.autoBuild.run",
+        "latex-workshop.latex.autoBuild.interval",
+        "latex-workshop.latex.autoBuild.onSave.files.ignore",
+        "latex-workshop.latex.autoBuild.cleanAndRetry.enabled",
+        "latex-workshop.latex.recipes",
+        "latex-workshop.latex.recipe.default",
+        "latex-workshop.latex.tools",
+        "latex-workshop.latex.external.build.command",
+        "latex-workshop.latex.external.build.args",
+        "latex-workshop.latex.build.enableMagicComments",
+        "latex-workshop.latex.build.fromWorkspaceFolder",
+        "latex-workshop.latex.outDir",
+        "latex-workshop.latex.auxDir",
+        "latex-workshop.latex.clean.method",
+        "latex-workshop.latex.clean.command",
+        "latex-workshop.latex.clean.args",
+        "latex-workshop.latex.clean.fileTypes",
+        "latex-workshop.latex.clean.subfolder.enabled",
+        "latex-workshop.latex.autoClean.run",
+        "latex-workshop.latex.rootFile.useSubFile",
+        "latex-workshop.latex.rootFile.doNotPrompt",
+        "latex-workshop.latex.rootFile.indicator",
+        "latex-workshop.latex.search.rootFiles.include",
+        "latex-workshop.latex.search.rootFiles.exclude",
+        "latex-workshop.view.pdf.viewer",
+        "latex-workshop.view.pdf.external.viewer.command",
+        "latex-workshop.view.pdf.external.viewer.args",
+        "latex-workshop.view.pdf.external.synctex.command",
+        "latex-workshop.view.pdf.external.synctex.args"
+      ]
     }
   },
   "contributes": {
@@ -72,381 +102,381 @@
         "configuration": "./syntax/latex-language-configuration.json"
       },
       {
-        "id": "latex-package",
-        "aliases": [
-          "LaTeX package"
-        ],
-        "extensions": [
-          ".sty"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "latex-expl3",
-        "aliases": [
-          "LaTeX expl3"
-        ],
-        "configuration": "./syntax/latex3-language-configuration.json"
-      },
-      {
-        "id": "context",
-        "aliases": [
-          "ConTeXt"
-        ],
-        "extensions": [
-          ".ctx"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "doctex",
-        "aliases": [
-          "DocTeX"
-        ],
-        "extensions": [
-          ".dtx"
-        ],
-        "configuration": "./syntax/doctex-language-configuration.json"
-      },
-      {
-        "id": "doctex-installer",
-        "aliases": [
-          "DocTeX installer"
-        ],
-        "extensions": [
-          ".ins"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "bibtex",
-        "aliases": [
-          "BibTeX"
-        ],
-        "extensions": [
-          ".bib"
-        ],
-        "configuration": "./syntax/bibtex-language-configuration.json"
-      },
-      {
-        "id": "bibtex-style",
-        "aliases": [
-          "BibTeX style"
-        ],
-        "extensions": [
-          ".bst"
-        ],
-        "configuration": "./syntax/bibtex-style-language-configuration.json"
-      },
-      {
-        "id": "biblatex",
-        "aliases": [
-          "BibLaTeX"
-        ],
-        "extensions": [
-          ".bbx",
-          ".cbx",
-          ".lbx"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "pweave",
-        "aliases": [
-          "Pweave"
-        ],
-        "extensions": [
-          ".pnw",
-          ".ptexw"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "jlweave",
-        "aliases": [
-          "Weave.jl"
-        ],
-        "extensions": [
-          ".jnw",
-          ".jtexw"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "rsweave",
-        "aliases": [
-          "Sweave"
-        ],
-        "extensions": [
-          ".rnw",
-          ".rtex",
-          ".snw"
-        ],
-        "configuration": "./syntax/latex-language-configuration.json"
-      },
-      {
-        "id": "cpp_embedded_latex",
-        "aliases": [
-          "C++ embedded in LaTeX"
-        ],
-        "configuration": "./syntax/latex-cpp-embedded-language-configuration.json"
-      },
-      {
-        "id": "markdown_latex_combined",
-        "aliases": [
-          "Combined Markdown/LaTeX"
-        ],
-        "configuration": "./syntax/markdown-latex-combined-language-configuration.json"
-      },
-      {
-        "id": "latex_workshop_log",
-        "aliases": [
-          "LaTeX Workshop log"
-        ],
-        "configuration": "./syntax/latex-workshop-log-language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "tex",
-        "scopeName": "text.tex",
-        "path": "./syntax/TeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ]
-      },
-      {
-        "language": "latex",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          "id": "latex-package",
+          "aliases": [
+            "LaTeX package"
+          ],
+          "extensions": [
+            ".sty"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "latex-expl3",
+          "aliases": [
+            "LaTeX expl3"
+          ],
+          "configuration": "./syntax/latex3-language-configuration.json"
+        },
+        {
+          "id": "context",
+          "aliases": [
+            "ConTeXt"
+          ],
+          "extensions": [
+            ".ctx"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "doctex",
+          "aliases": [
+            "DocTeX"
+          ],
+          "extensions": [
+            ".dtx"
+          ],
+          "configuration": "./syntax/doctex-language-configuration.json"
+        },
+        {
+          "id": "doctex-installer",
+          "aliases": [
+            "DocTeX installer"
+          ],
+          "extensions": [
+            ".ins"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "bibtex",
+          "aliases": [
+            "BibTeX"
+          ],
+          "extensions": [
+            ".bib"
+          ],
+          "configuration": "./syntax/bibtex-language-configuration.json"
+        },
+        {
+          "id": "bibtex-style",
+          "aliases": [
+            "BibTeX style"
+          ],
+          "extensions": [
+            ".bst"
+          ],
+          "configuration": "./syntax/bibtex-style-language-configuration.json"
+        },
+        {
+          "id": "biblatex",
+          "aliases": [
+            "BibLaTeX"
+          ],
+          "extensions": [
+            ".bbx",
+            ".cbx",
+            ".lbx"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "pweave",
+          "aliases": [
+            "Pweave"
+          ],
+          "extensions": [
+            ".pnw",
+            ".ptexw"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "jlweave",
+          "aliases": [
+            "Weave.jl"
+          ],
+          "extensions": [
+            ".jnw",
+            ".jtexw"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "rsweave",
+          "aliases": [
+            "Sweave"
+          ],
+          "extensions": [
+            ".rnw",
+            ".rtex",
+            ".snw"
+          ],
+          "configuration": "./syntax/latex-language-configuration.json"
+        },
+        {
+          "id": "cpp_embedded_latex",
+          "aliases": [
+            "C++ embedded in LaTeX"
+          ],
+          "configuration": "./syntax/latex-cpp-embedded-language-configuration.json"
+        },
+        {
+          "id": "markdown_latex_combined",
+          "aliases": [
+            "Combined Markdown/LaTeX"
+          ],
+          "configuration": "./syntax/markdown-latex-combined-language-configuration.json"
+        },
+        {
+          "id": "latex_workshop_log",
+          "aliases": [
+            "LaTeX-Secure-Workspace log"
+          ],
+          "configuration": "./syntax/latex-workshop-log-language-configuration.json"
         }
-      },
-      {
-        "language": "latex-class",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
-        }
-      },
-      {
-        "language": "latex-package",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
-        }
-      },
-      {
-        "language": "latex-expl3",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
-        }
-      },
-      {
-        "language": "context",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
-        }
-      },
-      {
-        "language": "doctex",
-        "scopeName": "text.tex.doctex",
-        "path": "./syntax/DocTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ]
-      },
-      {
-        "language": "doctex-installer",
-        "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.asymptote": "asymptote",
-          "source.cpp": "cpp_embedded_latex",
-          "source.css": "css",
-          "source.dot": "dot",
-          "source.gnuplot": "gnuplot",
-          "text.html": "html",
-          "source.java": "java",
-          "source.js": "javascript",
-          "source.julia": "julia",
-          "source.lua": "lua",
-          "source.python": "python",
-          "source.ruby": "ruby",
-          "source.scala": "scala",
-          "source.ts": "typescript",
-          "text.xml": "xml",
-          "source.yaml": "yaml",
-          "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
-        }
-      },
-      {
-        "language": "bibtex",
-        "scopeName": "text.bibtex",
-        "path": "./syntax/Bibtex.tmLanguage.json"
-      },
-      {
-        "language": "bibtex-style",
-        "scopeName": "source.bst",
-        "path": "./syntax/BibTeX-style.tmLanguage.json"
-      },
-      {
-        "language": "pweave",
-        "scopeName": "text.tex.latex.pweave",
-        "path": "./syntax/Pweave.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.python": "python"
-        }
-      },
-      {
-        "language": "jlweave",
-        "scopeName": "text.tex.latex.jlweave",
-        "path": "./syntax/JLweave.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.julia": "julia"
-        }
-      },
-      {
-        "language": "rsweave",
-        "scopeName": "text.tex.latex.rsweave",
-        "path": "./syntax/RSweave.tmLanguage.json",
-        "unbalancedBracketScopes": [
-          "keyword.control.ifnextchar.tex",
-          "punctuation.math.operator.tex"
-        ],
-        "embeddedLanguages": {
-          "source.r": "r"
-        }
-      },
-      {
-        "language": "cpp_embedded_latex",
-        "scopeName": "source.cpp.embedded.latex",
-        "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
-        "embeddedLanguages": {
-          "meta.embedded.assembly.cpp": "asm"
-        }
-      },
+      ],
+      "grammars": [
+        {
+          "language": "tex",
+          "scopeName": "text.tex",
+          "path": "./syntax/TeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ]
+        },
+        {
+          "language": "latex",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "latex-class",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "latex-package",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "latex-expl3",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "context",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "doctex",
+          "scopeName": "text.tex.doctex",
+          "path": "./syntax/DocTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ]
+        },
+        {
+          "language": "doctex-installer",
+          "scopeName": "text.tex.latex",
+          "path": "./syntax/LaTeX.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.asymptote": "asymptote",
+            "source.cpp": "cpp_embedded_latex",
+            "source.css": "css",
+            "source.dot": "dot",
+            "source.gnuplot": "gnuplot",
+            "text.html": "html",
+            "source.java": "java",
+            "source.js": "javascript",
+            "source.julia": "julia",
+            "source.lua": "lua",
+            "source.python": "python",
+            "source.ruby": "ruby",
+            "source.scala": "scala",
+            "source.ts": "typescript",
+            "text.xml": "xml",
+            "source.yaml": "yaml",
+            "meta.embedded.markdown_latex_combined": "markdown_latex_combined"
+          }
+        },
+        {
+          "language": "bibtex",
+          "scopeName": "text.bibtex",
+          "path": "./syntax/Bibtex.tmLanguage.json"
+        },
+        {
+          "language": "bibtex-style",
+          "scopeName": "source.bst",
+          "path": "./syntax/BibTeX-style.tmLanguage.json"
+        },
+        {
+          "language": "pweave",
+          "scopeName": "text.tex.latex.pweave",
+          "path": "./syntax/Pweave.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.python": "python"
+          }
+        },
+        {
+          "language": "jlweave",
+          "scopeName": "text.tex.latex.jlweave",
+          "path": "./syntax/JLweave.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.julia": "julia"
+          }
+        },
+        {
+          "language": "rsweave",
+          "scopeName": "text.tex.latex.rsweave",
+          "path": "./syntax/RSweave.tmLanguage.json",
+          "unbalancedBracketScopes": [
+            "keyword.control.ifnextchar.tex",
+            "punctuation.math.operator.tex"
+          ],
+          "embeddedLanguages": {
+            "source.r": "r"
+          }
+        },
+        {
+          "language": "cpp_embedded_latex",
+          "scopeName": "source.cpp.embedded.latex",
+          "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
+          "embeddedLanguages": {
+            "meta.embedded.assembly.cpp": "asm"
+          }
+        },
       {
         "language": "markdown_latex_combined",
         "scopeName": "text.tex.markdown_latex_combined",
@@ -490,274 +520,186 @@
     ],
     "commands": [
       {
-        "command": "latex-workshop.hostPort",
-        "title": "%command.hostPort%",
-        "category": "LaTeX Workshop"
-      },
-      {
         "command": "latex-workshop.navigate-envpair",
         "title": "%command.navigate-envpair%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.select-envname",
         "title": "%command.select-envname%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.select-envcontent",
         "title": "%command.select-envcontent%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.select-env",
         "title": "%command.select-env%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.multicursor-envname",
         "title": "%command.multicursor-envname%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.wrap-env",
         "title": "%command.wrap-env%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.surround",
         "title": "%command.surround%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.close-env",
         "title": "%command.close-env%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.toggle-equation-envname",
         "title": "%command.toggle-equation-envname%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.revealOutputDir",
         "title": "%command.revealoutput%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.saveWithoutBuilding",
         "title": "%command.saveWithoutBuilding%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.build",
         "title": "%command.build%",
-        "category": "LaTeX Workshop",
+        "category": "LaTeX-Secure-Workspace",
         "icon": "$(debug-start)",
-        "enablement": "!virtualWorkspace"
-      },
-      {
-        "command": "latex-workshop.recipes",
-        "title": "%command.recipes%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.view",
         "title": "%command.view%",
-        "category": "LaTeX Workshop",
-        "icon": "$(open-preview)"
-      },
-      {
-        "command": "latex-workshop.tab",
-        "title": "%command.tab%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.viewInBrowser",
-        "title": "%command.viewInBrowser%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.viewExternal",
-        "title": "%command.viewExternal%",
-        "category": "LaTeX Workshop",
+        "category": "LaTeX-Secure-Workspace",
         "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.refresh-viewer",
         "title": "%command.refresh-viewer%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.kill",
         "title": "%command.kill%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
-      },
-      {
-        "command": "latex-workshop.synctex",
-        "title": "%command.synctex%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.clean",
         "title": "%command.clean%",
-        "category": "LaTeX Workshop",
-        "enablement": "!virtualWorkspace"
+        "category": "LaTeX-Secure-Workspace",
+        "enablement": "!virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "command": "latex-workshop.citation",
         "title": "%command.citation%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.addtexroot",
         "title": "%command.addtexroot%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.wordcount",
-        "title": "%command.wordcount%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.changeHostName",
-        "title": "%command.changeHostName%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.resetHostName",
-        "title": "%command.resetHostName%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.compilerlog",
         "title": "%command.compilerlog%",
-        "category": "LaTeX Workshop",
+        "category": "LaTeX-Secure-Workspace",
         "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.log",
         "title": "%command.log%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.actions",
         "title": "%command.actions%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop-dev.parselog",
         "title": "%command-dev.parselog%",
-        "category": "LaTeX Workshop DevTools"
+        "category": "LaTeX-Secure-Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.parsetex",
         "title": "%command-dev.parsetex%",
-        "category": "LaTeX Workshop DevTools"
+        "category": "LaTeX-Secure-Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.parsebib",
         "title": "%command-dev.parsebib%",
-        "category": "LaTeX Workshop DevTools"
+        "category": "LaTeX-Secure-Workspace DevTools"
       },
       {
         "command": "latex-workshop-dev.striptext",
         "title": "%command-dev.striptext%",
-        "category": "LaTeX Workshop DevTools"
-      },
-      {
-        "command": "latex-workshop.texdoc",
-        "title": "%command.texdoc%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.texdocUsepackages",
-        "title": "%command.texdocUsepackages%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace DevTools"
       },
       {
         "command": "latex-workshop.promote-sectioning",
         "title": "%command.promote-sectioning%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.demote-sectioning",
         "title": "%command.demote-sectioning%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.select-section",
         "title": "%command.select-section%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.bibsort",
         "title": "%command.bibsort%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.bibalign",
         "title": "%command.bibalign%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.bibalignsort",
         "title": "%command.bibalignsort%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       },
       {
         "command": "latex-workshop.checkcitations",
         "title": "%command.checkcitations%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.openMathPreviewPanel",
-        "title": "%command.openMathPreviewPanel%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.closeMathPreviewPanel",
-        "title": "%command.closeMathPreviewPanel%",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.toggleMathPreviewPanel",
-        "title": "%command.toggleMathPreviewPanel%",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX-Secure-Workspace"
       }
     ],
     "keybindings": [
       {
-        "key": "ctrl+l alt+m",
-        "mac": "cmd+l alt+m",
-        "command": "latex-workshop.toggleMathPreviewPanel",
-        "when": "editorLangId =~ /^latex$|^latex-expl3$|^context$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled"
-      },
-      {
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
-      },
-      {
-        "key": "ctrl+l alt+v",
-        "mac": "cmd+l alt+v",
-        "command": "latex-workshop.view",
-        "when": "editorLangId =~ /^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled"
-      },
-      {
-        "key": "ctrl+l alt+j",
-        "mac": "cmd+l alt+j",
-        "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /^bibtex$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+l alt+x",
@@ -766,34 +708,16 @@
         "when": "config.latex-workshop.bind.altKeymap.enabled"
       },
       {
-        "key": "ctrl+alt+m",
-        "mac": "cmd+alt+m",
-        "command": "latex-workshop.toggleMathPreviewPanel",
-        "when": "editorLangId =~ /^latex$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled"
-      },
-      {
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
-      },
-      {
-        "key": "ctrl+alt+v",
-        "mac": "cmd+alt+v",
-        "command": "latex-workshop.view",
-        "when": "editorLangId =~ /^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled"
-      },
-      {
-        "key": "ctrl+alt+j",
-        "mac": "cmd+alt+j",
-        "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId =~ /^latex$|^latex-expl3$|^doctex$/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && isWorkspaceTrusted"
       },
       {
         "key": "ctrl+alt+x",
@@ -1082,13 +1006,13 @@
               ]
             }
           ],
-          "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `#latex-workshop.latex.tools#`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes."
+          "markdownDescription": "Compatibility setting retained from upstream. Custom recipes are ignored in this secure build because manual builds always use the fixed internal recipe."
         },
         "latex-workshop.latex.recipe.default": {
           "scope": "resource",
           "type": "string",
           "default": "first",
-          "markdownDescription": "Define which recipe is used by `#latex-workshop.build#`. It also applies to auto build. Recipes are referred to by their names as defined in `#latex-workshop.latex.recipes#`. Note there are two particular values: \n- `first` means to use the first recipe in `#latex-workshop.latex.recipes#`;\n- `lastUsed` means to use the last run recipe."
+          "markdownDescription": "Compatibility setting retained from upstream. Manual builds in this secure build ignore recipe selection and always use the fixed internal recipe."
         },
         "latex-workshop.latex.tools": {
           "scope": "resource",
@@ -1247,7 +1171,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%`, `%AUXDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for a complete list of all placeholders."
+          "markdownDescription": "Compatibility setting retained from upstream. Custom tools are ignored in this secure build because manual builds always use the fixed internal toolchain."
         },
         "latex-workshop.latex.magic.args": {
           "scope": "resource",
@@ -1278,7 +1202,7 @@
           "scope": "resource",
           "type": "string",
           "default": "",
-          "markdownDescription": "The external command to execute when calling latex-workshop.build. This is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
+          "markdownDescription": "Compatibility setting retained from upstream. External build commands are ignored in this secure build."
         },
         "latex-workshop.latex.external.build.args": {
           "scope": "resource",
@@ -1287,7 +1211,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "The arguments of `#latex-workshop.latex.external.build.command#` when calling latex-workshop.build."
+          "markdownDescription": "Compatibility setting retained from upstream. External build commands are ignored in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.build.forceRecipeUsage": {
           "scope": "resource",
@@ -1300,25 +1224,25 @@
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable magic comments if present."
+          "markdownDescription": "Compatibility setting retained from upstream. In this secure build, root-file magic comments remain available for root detection, but build-control magic comments such as `% !TEX program`, `% !TEX options`, `% !BIB program`, and `% !LW recipe` are ignored."
         },
         "latex-workshop.latex.build.fromWorkspaceFolder": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Run the recipe from the workspace folder. If false, the recipe is run from the directory containing the root file. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
+          "markdownDescription": "Compatibility setting retained from upstream. Manual builds in this secure build always run from the directory containing the resolved root file."
         },
         "latex-workshop.latex.outDir": {
           "scope": "resource",
           "type": "string",
           "default": "%DIR%",
-          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%DIR%` (default value) or `%DIR_W32%`, the extension will try to parse the last LaTeX tools used and look for `-out-directory=` and `-outdir=`, and automatically determine the output directory. This means that you can safely ignore this config if you use `latexmk` and do not manually `mv` the output files in your recipe."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always writes and resolves build outputs in the resolved root file directory, so this setting has no effect on build, clean, reveal-output, or internal PDF viewing behavior."
         },
         "latex-workshop.latex.auxDir": {
           "scope": "resource",
           "type": "string",
           "default": "%OUTDIR%",
-          "markdownDescription": "The directory where the extension tries to find auxiliary project files (e.g., aux, fls). Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output auxiliary files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders. Note that if this config is set to `%OUTDIR%` (default value), the extension will try to parse the last LaTeX tools used and look for `-aux-directory=` and `-auxdir=`, and automatically determine the auxiliary directory."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always writes and resolves auxiliary files in the resolved root file directory, so this setting has no effect on build, clean, or internal file lookup behavior."
         },
         "latex-workshop.latex.extraExts": {
           "scope": "resource",
@@ -1401,7 +1325,7 @@
             "**/*.rnw",
             "**/*.Rnw"
           ],
-          "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details, see https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects"
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands use a fixed root search policy equivalent to the default TeX workspace scan and ignore custom include patterns."
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "scope": "resource",
@@ -1410,19 +1334,19 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `#latex-workshop.latex.search.rootFiles.include#`. For more details, see the https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects."
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands ignore custom root search exclusions and use a fixed internal root detection policy."
         },
         "latex-workshop.latex.rootFile.useSubFile": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build always uses the resolved main root file for build and clean operations and does not switch execution to a subfile."
         },
         "latex-workshop.latex.rootFile.doNotPrompt": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
+          "markdownDescription": "Compatibility setting retained from upstream. This secure build does not prompt for subfile-vs-root execution and always uses the resolved main root file for build and clean commands."
         },
         "latex-workshop.latex.rootFile.indicator": {
           "scope": "resource",
@@ -1434,7 +1358,7 @@
             "\\starttext",
             "\\startTEXpage"
           ],
-          "markdownDescription": "Determine if the root file is detected based on the presence of `\\documentclass[]{}` or `\\begin{document}` for LaTeX documents, or `\\starttext` or `\\startTEXpage` for ConTeXt documents."
+          "markdownDescription": "Compatibility setting retained from upstream. Secure build commands use a fixed internal root indicator policy that accepts standard LaTeX and ConTeXt document-start markers and ignores this override."
         },
         "latex-workshop.latex.watch.delay": {
           "scope": "window",
@@ -1503,20 +1427,20 @@
             "Auto build whenever a file is saved",
             "Auto build whenever a dependency file changes on disk"
           ],
-          "default": "onFileChange",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. \n- `onSave` builds the project upon saving a `tex` file in vscode.\n- `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\n\n Note that `onSave` is more restrictive than `onFileChange` "
+          "default": "never",
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.interval": {
           "scope": "resource",
           "type": "integer",
           "default": 1000,
-          "markdownDescription": "The minimal time interval in milliseconds for an auto build to trigger after the previous (manual and auto) build. This value is recommended to be greater than ~500."
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry. This property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+          "markdownDescription": "Compatibility setting retained from upstream. Automatic clean-and-retry is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.autoBuild.onSave.files.ignore": {
           "scope": "window",
@@ -1528,7 +1452,7 @@
             "**/*.sty",
             "**/*.cls"
           ],
-          "markdownDescription": "Files to ignore from the auto-build on save mechanism, This property must be an array of glob patterns. The patterns are matched against the absolute file path."
+          "markdownDescription": "Compatibility setting retained from upstream. Auto build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
           "scope": "resource",
@@ -1552,13 +1476,13 @@
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `#latex-workshop.latex.outDir#`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
+          "markdownDescription": "Compatibility setting retained from upstream. Automatic post-build cleaning is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#`. Note that sub-folders are not removed."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean uses the fixed secure policy in this build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "scope": "resource",
@@ -1591,13 +1515,13 @@
             "%DOCFILE%.nav",
             "%DOCFILE%.vrb"
           ],
-          "markdownDescription": "Files to clean when `#latex-workshop.latex.clean.method#` is set to `glob`. This property must be an array of strings. Placeholders listed in https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders can be used to populate the glob strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean uses a fixed internal list of auxiliary file types in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
           "type": "string",
           "default": "latexmk",
-          "markdownDescription": "The command to be used to remove temporary files when `#latex-workshop.latex.clean.method#` is set to `command`."
+          "markdownDescription": "Compatibility setting retained from upstream. External clean commands are disabled in this secure build."
         },
         "latex-workshop.latex.clean.args": {
           "scope": "resource",
@@ -1611,7 +1535,7 @@
             "-c",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments of `#latex-workshop.latex.clean.command#`. Placeholders listed in https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders can be used to populate the argument strings. Besides, an additional `%TEX%` placeholder refers to the full path of the tex file from which the clean command is called."
+          "markdownDescription": "Compatibility setting retained from upstream. External clean commands are disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.latex.clean.method": {
           "scope": "resource",
@@ -1625,7 +1549,7 @@
             "Clean all the files located in `#latex-workshop.latex.outDir#` and `#latex-workshop.latex.auxDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
             "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
-          "markdownDescription": "Define how temporary files will be cleaned."
+          "markdownDescription": "Compatibility setting retained from upstream. Clean always uses the fixed secure policy in this build."
         },
         "latex-workshop.latex.option.maxPrintLine.enabled": {
           "scope": "resource",
@@ -1669,7 +1593,7 @@
           "scope": "window",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Whether clicking on structure items will also call synctex to scroll the PDF viewer to the corresponding location."
+          "markdownDescription": "Compatibility setting retained from upstream. PDF viewer SyncTeX is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "scope": "window",
@@ -1712,13 +1636,13 @@
             "legacy",
             "singleton"
           ],
-          "markdownDescription": "The default PDF viewer.",
+          "markdownDescription": "In this secure build, only the tab-based local PDF viewer is available. Browser, external, legacy, and singleton viewer workflows are disabled.",
           "enumDescriptions": [
-            "Open PDF with the default web browser.",
-            "Open PDF with the built-in tab viewer.",
-            "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\".",
-            "[Legacy] Open PDF with the built-in tab viewer with vscode WebView API.",
-            "[Legacy] Open PDF with the built-in tab viewer with vscode WebView API, reveal existing one if possible."
+            "Disabled in this secure build.",
+            "Open the built PDF in the local tab-based viewer.",
+            "Disabled in this secure build.",
+            "Disabled in this secure build.",
+            "Disabled in this secure build."
           ]
         },
         "latex-workshop.view.pdf.tab.editorGroup": {
@@ -1749,13 +1673,13 @@
             "tabOrBrowser",
             "external"
           ],
-          "markdownDescription": "PDF viewer used for [View on PDF] link on \\ref."
+          "markdownDescription": "Compatibility setting retained from upstream. Reference-based viewer selection is not used in this secure build. The local tab viewer is used when PDF preview is opened."
         },
         "latex-workshop.view.pdf.internal.port": {
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the port to listen on for communicating with the internal viewer. The default value \"0\" means the port is chosen randomly by the application. If this config is set, only one Visual Studio Code instance with this extension active can be opened. Otherwise, a port conflict may happen."
+          "markdownDescription": "Compatibility setting retained from upstream. The minimal tab-only PDF viewer does not use an internal HTTP server, so this setting has no effect."
         },
         "latex-workshop.view.pdf.internal.synctex.keybinding": {
           "scope": "window",
@@ -1765,7 +1689,7 @@
             "ctrl-click",
             "double-click"
           ],
-          "markdownDescription": "Which keybinding to use for the internal viewer for reverse synctex. `ctrl`/`cmd` + click (default) or double click."
+          "markdownDescription": "Compatibility setting retained from upstream. Reverse SyncTeX in the internal viewer is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.view.pdf.internal.keyboardEvent": {
           "scope": "window",
@@ -1776,13 +1700,13 @@
             "force",
             "never"
           ],
-          "markdownDescription": "Rebroadcasting KeyboardEvent on the internal viewers. If keyboard shortcuts on the internal viewer do not work well, change this setting."
+          "markdownDescription": "Compatibility setting retained from upstream. Internal viewer keyboard rebroadcast is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.view.pdf.external.viewer.command": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The command to execute when using external viewer. This function is not officially supported."
+          "markdownDescription": "Compatibility setting retained from upstream. External PDF viewer execution is disabled in this secure build."
         },
         "latex-workshop.view.pdf.external.viewer.args": {
           "scope": "window",
@@ -1793,13 +1717,13 @@
           "default": [
             "%PDF%"
           ],
-          "markdownDescription": "The arguments for `#latex-workshop.view.pdf.external.viewer.command#` when using external viewer. This function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+          "markdownDescription": "Compatibility setting retained from upstream. External PDF viewer execution is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.view.pdf.external.synctex.command": {
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The command to execute when forward synctex to external viewer. This function is not officially supported."
+          "markdownDescription": "Compatibility setting retained from upstream. External SyncTeX is disabled in this secure build."
         },
         "latex-workshop.view.pdf.external.synctex.args": {
           "scope": "window",
@@ -1812,7 +1736,7 @@
             "%PDF%",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments for `#latex-workshop.view.pdf.external.synctex.args#` when forward synctex to external viewer. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "markdownDescription": "Compatibility setting retained from upstream. External SyncTeX is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.view.pdf.zoom": {
           "scope": "window",
@@ -1993,7 +1917,7 @@
           "scope": "window",
           "type": "string",
           "default": "synctex",
-          "markdownDescription": "Define the location of SyncTeX executive file. Additional arguments, e.g., synctex modes and position of click, will be appended to this command."
+          "markdownDescription": "Compatibility setting retained from upstream. SyncTeX execution is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.synctex.indicator": {
           "scope": "window",
@@ -2005,17 +1929,17 @@
           ],
           "enumDescriptions": [
             "Hide the indicator.",
-            "Indicates a possible location with a red circular SyncTeX indicator.",
-            "Indicates the whole line selected in the TeX file with a red rectangular SyncTeX indicator. Only valid when SyncTeX binary is executable."
+            "Disabled in this secure build.",
+            "Disabled in this secure build."
           ],
           "default": "rectangle",
-          "markdownDescription": "Define the visibility and style of SyncTeX indicator after a forward SyncTeX in the PDF viewer."
+          "markdownDescription": "Compatibility setting retained from upstream. SyncTeX indicators are disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "scope": "window",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Execute forward synctex at cursor position after compiling LaTeX project."
+          "markdownDescription": "Compatibility setting retained from upstream. SyncTeX after build is disabled in this secure build, so this setting has no effect."
         },
         "latex-workshop.linting.chktex.enabled": {
           "scope": "resource",
@@ -2743,23 +2667,6 @@
           "default": {},
           "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/biblatex-entries.json`. See `data/biblatex-entries.json` for the list of fields for each entry. This variable is used when `#latex-workshop.intellisense.citation.backend#` is set to `biblatex`."
         },
-        "latex-workshop.texdoc.path": {
-          "scope": "window",
-          "type": "string",
-          "default": "texdoc",
-          "markdownDescription": "Define the location of the `texdoc` executable. This command is used to show a package documentation."
-        },
-        "latex-workshop.texdoc.args": {
-          "scope": "window",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [
-            "--view"
-          ],
-          "markdownDescription": "Texdoc arguments to see a package documentation. Arguments must be in separate strings in the array. The package name is automatically appended to the arguments."
-        },
         "latex-workshop.bibtex.maxFileSize": {
           "scope": "window",
           "type": "number",
@@ -2911,24 +2818,14 @@
     "menus": {
       "editor/context": [
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
+          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace && isWorkspaceTrusted",
           "command": "latex-workshop.build",
           "group": "navigation@100"
-        },
-        {
-          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
-          "command": "latex-workshop.synctex",
-          "group": "navigation@101"
         }
       ],
       "editor/title": [
         {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/",
-          "command": "latex-workshop.view",
-          "group": "navigation@2"
-        },
-        {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace && isWorkspaceTrusted",
           "command": "latex-workshop.build",
           "group": "navigation@1"
         }
@@ -2948,45 +2845,31 @@
         {
           "id": "latex-workshop-commands",
           "name": "%activity.commands%",
-          "when": "latex-workshop:enabled"
+          "when": "latex-workshop:enabled",
+          "icon": "./icons/activity-bar.svg"
         },
         {
           "id": "latex-workshop-structure",
           "name": "%activity.structure%",
-          "when": "latex-workshop:enabled"
-        },
-        {
-          "id": "latex-workshop-math-symbols",
-          "name": "%activity.mathsymbols%",
           "when": "latex-workshop:enabled",
-          "type": "webview"
+          "icon": "./icons/activity-bar.svg"
         }
       ]
-    },
-    "customEditors": [
-      {
-        "viewType": "latex-workshop-pdf-hook",
-        "displayName": "LaTeX Workshop Internal PDF Viewer",
-        "selector": [
-          {
-            "filenamePattern": "*.pdf"
-          },
-          {
-            "filenamePattern": "*.PDF"
-          }
-        ],
-        "priority": "default"
-      }
-    ]
+    }
   },
   "scripts": {
     "clean": "rimraf out/ .eslintcache",
     "compile": "tsc -p tsconfig.json && tsc -p viewer/tsconfig.json",
     "coverage": "c8 --check-coverage npm run test --src out/src/",
+    "extension:cleanup-local": "node ./dev/cleanupLocalExtensions.mjs",
+    "extension:package-local": "node ./dev/manageLocalExtension.mjs package",
+    "extension:install-local": "node ./dev/manageLocalExtension.mjs install",
+    "extension:reinstall-local": "node ./dev/manageLocalExtension.mjs reinstall",
     "lint": "eslint --cache .",
     "lint:fix": "eslint --fix --cache .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
+    "test:ci": "node ./dev/runTestCi.mjs",
     "watch-src": "tsc -watch -p tsconfig.json",
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json",
     "update-grammar": "node ./dev/update-grammar.mjs"
@@ -3000,9 +2883,26 @@
     "micromatch": "^4.0.8",
     "pdfjs-dist": "5.4.394",
     "tmp": "^0.2.4",
-    "vsls": "^1.0.4753",
     "workerpool": "^9.2.0",
     "ws": "^8.18.0"
+  },
+  "overrides": {
+    "@vscode/vsce": {
+      "markdown-it": "^14.1.1"
+    },
+    "@secretlint/config-loader": {
+      "ajv": "^8.18.0"
+    },
+    "typed-rest-client": {
+      "underscore": "^1.13.8"
+    },
+    "mocha": {
+      "diff": "^8.0.3",
+      "serialize-javascript": "^7.0.4"
+    },
+    "table": {
+      "ajv": "^8.18.0"
+    }
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^2.12.1",
@@ -3026,11 +2926,11 @@
     "@vscode/vsce": "^3.7.1",
     "c8": "^10.1.3",
     "esbuild": "^0.25.0",
-    "eslint": "^9.17.0",
-    "mocha": "^11.0.1",
+    "eslint": "^9.39.4",
+    "mocha": "^11.7.5",
     "node-fetch": "^2.7.0",
     "rimraf": "^6.0.1",
-    "sinon": "^19.0.2",
+    "sinon": "^21.0.2",
     "textmate-bailout": "^1.1.0",
     "typescript": "^5.7.2",
     "vscode-extend-language": "0.3.0"

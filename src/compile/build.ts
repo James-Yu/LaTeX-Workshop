@@ -2,11 +2,9 @@ import * as vscode from 'vscode'
 import os from 'os'
 import micromatch from 'micromatch'
 import * as path from 'path'
-import { pickRootPath } from '../utils/quick-pick'
 import { lw } from '../lw'
 import type { ProcessEnv, RecipeStep, Step } from '../types'
 import { build as buildRecipe } from './recipe'
-import { build as buildExternal } from './external'
 import { queue } from './queue'
 
 const logger = lw.log('Build')
@@ -32,35 +30,10 @@ lw.watcher.bib.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange', t
  * changed.
  */
 function autoBuild(file: string, type: 'onFileChange' | 'onSave', bibChanged: boolean = false) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(file))
-    if (configuration.get('latex.autoBuild.run') as string !== type) {
-        return
-    }
-    logger.log('Auto build started ' + (type === 'onFileChange' ? 'detecting the change of a file' : 'on saving file') + `: ${file} .`)
-    lw.event.fire(lw.event.AutoBuildInitiated, {type, file})
-    if (!canAutoBuild()) {
-        logger.log('Autobuild temporarily disabled.')
-        return
-    }
-    lw.compile.lastAutoBuildTime = Date.now()
-    if (!bibChanged && lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        return build(true, lw.root.subfiles.path, lw.root.subfiles.langId)
-    } else {
-        return build(true, lw.root.file.path, lw.root.file.langId)
-    }
-}
-
-/**
- * Determines whether an auto-build on save or on change can be triggered.
- * Two conditions are considered: the presence of `latex.autoBuild.interval`
- * configuration and avoiding unwanted auto-build triggered by `saveAll()`
- * during a previous building process.
- *
- * @returns {boolean} - True if auto-build can be triggered, false otherwise.
- */
-function canAutoBuild(): boolean {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.file.path ? lw.file.toUri(lw.root.file.path) : undefined)
-    return Date.now() - lw.compile.lastAutoBuildTime >= (configuration.get('latex.autoBuild.interval', 1000) as number)
+    void file
+    void type
+    void bibChanged
+    logger.log('Auto build is disabled in this secure build.')
 }
 
 /**
@@ -111,39 +84,23 @@ async function build(skipSelection: boolean = false, rootFile: string | undefine
     const workspace = rootFile ? lw.file.toUri(rootFile) : activeEditor.document.uri
     const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
     const externalBuildCommand = configuration.get('latex.external.build.command') as string
-    const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
 
     if (rootFile === undefined && lw.file.hasLaTeXLangId(activeEditor.document.languageId)) {
-        await lw.root.find()
+        await lw.root.resolveSecurityRoot()
         rootFile = lw.root.file.path
         languageId = lw.root.file.langId
     }
     if (externalBuildCommand) {
-        // Check if a build is already in progress
-        if (isBuilding) {
-            void logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
-        } else {
-            const pwd = path.dirname(rootFile ? rootFile : activeEditor.document.fileName)
-            await buildExternal(externalBuildCommand, externalBuildArgs, pwd, buildLoop, rootFile)
-        }
-        return
+        logger.log('Ignoring external build command in this secure build.')
     }
     if (rootFile === undefined || languageId === undefined) {
         logger.log('Cannot find LaTeX root file. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file')
         return
     }
+    void skipSelection
 
-    let pickedRootFile: string | undefined = rootFile
-    if (!skipSelection && lw.root.subfiles.path) {
-        // We are using the subfile package
-        pickedRootFile = await pickRootPath(rootFile, lw.root.subfiles.path, 'compile')
-        if (! pickedRootFile) {
-            return
-        }
-    }
-
-    logger.log(`Building root file: ${pickedRootFile}`)
-    await buildRecipe(pickedRootFile, languageId, buildLoop, recipe)
+    logger.log(`Building root file: ${rootFile}`)
+    await buildRecipe(rootFile, languageId, buildLoop, recipe)
 }
 
 /**
@@ -224,9 +181,8 @@ function normalizeArgForCwd(arg: string, cwd: string, rootDir: string): string {
  * external command.
  *
  * Based on the type of step, this function sets the current working directory
- * (`cwd`) for the spawn command. If the step represents a magic command (tex or
- * bib), it uses a shell to execute the command with optional arguments. If the
- * step is not external, it sets the `cwd` based on the compiled root file,
+ * (`cwd`) for the spawn command. If the step is not external, it sets the
+ * `cwd` based on the compiled root file,
  * possibly a sub-file. If in such a case, the compile command is `latexmk`, the
  * `cwd` is re-set to the root dir instead of sub-file. If the step is external,
  * it sets the `cwd` based on the provided `cwd` property.
@@ -251,18 +207,7 @@ function spawnProcess(step: Step): ProcessEnv {
     const env: ProcessEnv = { ...process.env, ...step.env }
     env['max_print_line'] = lw.constant.MAX_PRINT_LINE
 
-    if (!step.isExternal &&
-        (step.name.startsWith(lw.constant.TEX_MAGIC_PROGRAM_NAME) ||
-            step.name.startsWith(lw.constant.BIB_MAGIC_PROGRAM_NAME))) {
-
-        const args = step.args
-        if (args && !step.name.endsWith(lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)) {
-            // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd, env, shell: true})
-        } else {
-            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd, env})
-        }
-    } else if (!step.isExternal) {
+    if (!step.isExternal) {
         if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path && cwd === path.dirname(step.rootFile)) {
             cwd = lw.root.dir.path
         }
@@ -385,11 +330,8 @@ function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: 
         lw.parser.parse.log(stderr)
     }
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.toUri(step.rootFile) : undefined)
-    if (!step.isExternal && signal !== 'SIGTERM' && !step.isRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
-        handleRetryError(step)
-    } else if (!step.isExternal && signal !== 'SIGTERM') {
-        handleNoRetryError(configuration, step)
+    if (!step.isExternal && signal !== 'SIGTERM') {
+        handleNoRetryError(step)
     } else if (step.isExternal) {
         handleExternalCommandError()
     } else {
@@ -400,34 +342,14 @@ function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: 
 }
 
 /**
- * Handles the case where a tool process encounters an error and retries the
- * build process by creating a new Tool and adding it to the BuildToolQueue.
- *
- * @param {RecipeStep} step - The Step representing the tool process.
- */
-function handleRetryError(step: RecipeStep) {
-    step.isRetry = true
-    logger.refreshStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
-    logger.log('Cleaning auxiliary files and retrying build after toolchain error.')
-
-    queue.prepend(step)
-    void lw.extra.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
-}
-
-/**
  * Handles the case where a tool process exits with an error and no retries are
  * allowed. It performs cleanup operations, shows error messages to the user,
  * and clears the BuildToolQueue.
  *
- * @param {vscode.WorkspaceConfiguration} configuration - The configuration for
- * the LaTeX project.
  * @param {RecipeStep} step - The Step representing the tool process.
  */
-function handleNoRetryError(configuration: vscode.WorkspaceConfiguration, step: RecipeStep) {
+function handleNoRetryError(_step: RecipeStep) {
     logger.refreshStatus('x', 'errorForeground')
-    if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-        void lw.extra.clean(step.rootFile).then(() => lw.event.fire(lw.event.AutoCleaned))
-    }
     void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
     queue.clear()
 }
@@ -463,8 +385,6 @@ function handleUserTermination() {
  */
 async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (lastStep.rootFile === undefined) {
-        // This only happens when the step is an external command.
-        lw.viewer.refresh()
         return
     }
     logger.log(`Successfully built ${lastStep.rootFile} .`)
@@ -473,19 +393,6 @@ async function afterSuccessfulBuilt(lastStep: Step, skipped: boolean) {
     if (!lastStep.isExternal && skipped) {
         return
     }
-    lw.viewer.refresh(lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile)))
     lw.completion.reference.setNumbersFromAuxFile(lastStep.rootFile)
     await lw.cache.loadFlsFile(lastStep.rootFile ?? '')
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(lastStep.rootFile))
-    // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
-    if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
-        const pdfUri = lw.file.toUri(lw.file.getPdfPath(lastStep.rootFile))
-        logger.log('SyncTex after build invoked.')
-        lw.locate.synctex.toPDF(pdfUri)
-    }
-    if (['onSucceeded', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-        logger.log('Auto Clean invoked.')
-        await lw.extra.clean(lastStep.rootFile)
-        lw.event.fire(lw.event.AutoCleaned)
-    }
 }

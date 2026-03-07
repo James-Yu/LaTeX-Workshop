@@ -6,6 +6,7 @@ import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
 import { processWrapper } from './utils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { confirmWorkspaceCommandExecution } from '../../utils/security'
 
 const logger = lw.log('Linter', 'LaCheck')
 
@@ -44,6 +45,9 @@ async function lintFile(document: vscode.TextDocument) {
 async function lacheckWrapper(linterid: string, configScope: vscode.ConfigurationScope, filePath: string, content?: string): Promise<string | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', configScope)
     const command = configuration.get('linting.lacheck.exec.path') as string
+    if (!await confirmWorkspaceCommandExecution(configScope, 'linting.lacheck.exec.path', command)) {
+        return
+    }
 
     let stdout: string
     try {

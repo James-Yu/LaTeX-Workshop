@@ -184,15 +184,15 @@ function getAll(languageId: string): {[packageName: string]: string[]} {
     return packages
 }
 
-function parse(cache: FileCache) {
+async function parse(cache: FileCache) {
     if (cache.ast !== undefined) {
-        cache.elements.package = parseAst(cache.ast)
+        cache.elements.package = await parseAst(cache.ast)
     } else {
-        cache.elements.package = parseContent(cache.content)
+        cache.elements.package = await parseContent(cache.content)
     }
 }
 
-function parseAst(node: Ast.Node): {[pkgName: string]: string[]} {
+async function parseAst(node: Ast.Node): Promise<{[pkgName: string]: string[]}> {
     const packages = {}
     if (node.type === 'macro' && ['usepackage', 'documentclass'].includes(node.content)) {
         const options: string[] = argContentToStr(node.args?.[0]?.content || [])
@@ -202,19 +202,18 @@ function parseAst(node: Ast.Node): {[pkgName: string]: string[]} {
             .filter(option => option.includes('=true'))
             .map(option => option.replace('=true', ''))
 
-        argContentToStr(node.args?.[1]?.content || [])
-            .split(',')
-            .map(packageName => toPackageObj(packageName.trim(), [...options, ...optionsNoTrue], node))
-            .forEach(packageObj => Object.assign(packages, packageObj))
+        for (const packageName of argContentToStr(node.args?.[1]?.content || []).split(',')) {
+            Object.assign(packages, await toPackageObj(packageName.trim(), [...options, ...optionsNoTrue], node))
+        }
     } else if ('content' in node && typeof node.content !== 'string') {
         for (const subNode of node.content) {
-            Object.assign(packages, parseAst(subNode))
+            Object.assign(packages, await parseAst(subNode))
         }
     }
     return packages
 }
 
-function parseContent(content: string): {[pkgName: string]: string[]} {
+async function parseContent(content: string): Promise<{[pkgName: string]: string[]}> {
     const packages = {}
     const pkgReg = /\\(?:usepackage|RequirePackage)(\[[^[\]{}]*\])?{(.*?)}/gs
     while (true) {
@@ -225,14 +224,14 @@ function parseContent(content: string): {[pkgName: string]: string[]} {
         const packageNames = result[2].split(',').map(packageName => packageName.trim())
         const options = (result[1] || '[]').slice(1,-1).replace(/\s*=\s*/g,'=').split(',').map(option => option.trim())
         const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
-        packageNames
-            .map(packageName => toPackageObj(packageName, [...options, ...optionsNoTrue]))
-            .forEach(packageObj => Object.assign(packages, packageObj))
+        for (const packageName of packageNames) {
+            Object.assign(packages, await toPackageObj(packageName, [...options, ...optionsNoTrue]))
+        }
     }
     return packages
 }
 
-function toPackageObj(packageName: string, options: string[], node?: Ast.Node): {[pkgName: string]: string[]} {
+async function toPackageObj(packageName: string, options: string[], node?: Ast.Node): Promise<{[pkgName: string]: string[]}> {
     packageName = packageName.trim()
     if (packageName === '') {
         return {}
@@ -240,9 +239,9 @@ function toPackageObj(packageName: string, options: string[], node?: Ast.Node): 
     let pkgObj: {[pkgName: string]: string[]} = {}
     if (node?.type === 'macro' && node.content === 'documentclass') {
         if (vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.class.enabled') as boolean) {
-            const clsPath = lw.file.kpsewhich(`${packageName}.cls`)
+            const clsPath = await lw.file.kpsewhich(`${packageName}.cls`)
             if (clsPath && fs.existsSync(clsPath)) {
-                pkgObj = parseContent(fs.readFileSync(clsPath).toString())
+                pkgObj = await parseContent(fs.readFileSync(clsPath).toString())
             }
         }
         packageName = 'class-' + packageName

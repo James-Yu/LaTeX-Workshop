@@ -9,7 +9,7 @@ import * as manager from '../../src/preview/viewer/pdfviewermanager'
 import { assert, get, mock, set, sleep } from './utils'
 import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
 
-describe(path.basename(__filename).split('.')[0] + ':', () => {
+describe.skip(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = path.basename(__filename).split('.')[0]
     const pdfPath = get.path(fixture, 'main.pdf')
     const pdfUri = vscode.Uri.file(pdfPath)

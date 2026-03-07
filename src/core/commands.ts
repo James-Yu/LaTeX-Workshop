@@ -5,26 +5,41 @@ import { getSurroundingMacroRange, stripText } from '../utils/utils'
 
 const logger = lw.log('Commander')
 
-export async function hostPort() {
-    logger.log('HOSTPORT command invoked.')
-    if (lw.extra.liveshare.isGuest()) {
-        await lw.extra.liveshare.getHostServerPort(true)
+function showDisabledFeature(feature: string) {
+    logger.log(`${feature} is disabled in this secure build.`)
+    void vscode.window.showWarningMessage(`${feature} is disabled in this secure build.`)
+}
+
+function requireTrustedWorkspace(feature: string): boolean {
+    if (vscode.workspace.isTrusted) {
+        return true
     }
-    else {
-        await lw.extra.liveshare.shareServer()
-    }
+    logger.log(`${feature} is disabled in restricted mode.`)
+    void vscode.window.showWarningMessage(`${feature} is disabled in restricted mode. Trust the workspace to enable it.`)
+    return false
+}
+
+export function hostPort() {
+    showDisabledFeature('Live Share integration')
 }
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
     logger.log('BUILD command invoked.')
+    if (!requireTrustedWorkspace('Build')) {
+        return
+    }
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
 }
 
 export async function revealOutputDir() {
-    let outDir = lw.file.getOutDir()
+    if (!requireTrustedWorkspace('Reveal output directory')) {
+        return
+    }
+    const rootFile = await lw.root.resolveSecurityRoot()
+    let outDir = rootFile ? lw.file.getSecurityOutDir(rootFile) : lw.file.getSecurityOutDir()
     if (!path.isAbsolute(outDir)) {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
-        const rootDir = lw.root.dir.path || workspaceFolder?.uri.fsPath
+        const rootDir = (rootFile ? path.dirname(rootFile) : undefined) || workspaceFolder?.uri.fsPath
         if (rootDir === undefined) {
             logger.log(`Cannot reveal ${lw.file.toUri(outDir)}: no root dir can be identified.`)
             return
@@ -36,54 +51,27 @@ export async function revealOutputDir() {
 }
 
 export function recipes(recipe?: string) {
-    logger.log('RECIPES command invoked.')
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-    const candidates = configuration.get('latex.recipes') as {name: string}[]
-    if (!candidates) {
-        return
-    }
-    if (recipe) {
-        return build(false, undefined, undefined, recipe)
-    }
-    return vscode.window.showQuickPick(candidates.map(candidate => candidate.name), {
-        placeHolder: 'Please Select a LaTeX Recipe'
-    }).then(selected => {
-        if (!selected) {
-            return
-        }
-        return build(false, undefined, undefined, selected)
-    })
+    void recipe
+    showDisabledFeature('Custom recipes')
 }
 
 export async function view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
-    if (mode) {
-        logger.log(`VIEW command invoked with mode: ${mode}.`)
-    } else {
-        logger.log('VIEW command invoked.')
-    }
-    if (!vscode.window.activeTextEditor) {
-        logger.log('Cannot find active TextEditor.')
+    logger.log('VIEW command invoked.')
+    if (mode instanceof vscode.Uri) {
+        await lw.viewer.view(mode, 'tab')
         return
     }
-    if (!lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-        logger.log('Active document is not a TeX file.')
+    const rootFile = await lw.root.resolveSecurityRoot()
+    if (!rootFile) {
+        logger.log('Cannot view PDF because no root file is available.')
         return
     }
-    await lw.root.find()
-    const rootFile = lw.root.file.path
-    if (rootFile === undefined) {
-        logger.log('Cannot find LaTeX root PDF to view.')
+    const pdfPath = lw.file.getSecurityPdfPath(rootFile)
+    if (!await lw.file.exists(pdfPath)) {
+        void vscode.window.showWarningMessage(`PDF file not found: ${pdfPath}`)
         return
     }
-    let pickedRootFile: string | undefined = rootFile
-    if (lw.root.subfiles.path) {
-        // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'view')
-    }
-    if (!pickedRootFile) {
-        return
-    }
-    return lw.viewer.view(lw.file.toUri(lw.file.getPdfPath(pickedRootFile)), typeof mode === 'string' ? mode : undefined)
+    await lw.viewer.view(vscode.Uri.file(pdfPath), mode === 'browser' || mode === 'external' ? mode : 'tab')
 }
 
 export function refresh() {
@@ -93,27 +81,14 @@ export function refresh() {
 
 export function kill() {
     logger.log('KILL command invoked.')
+    if (!requireTrustedWorkspace('Build termination')) {
+        return
+    }
     lw.compile.terminate()
 }
 
 export function synctex() {
-    logger.log('SYNCTEX command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId)) {
-        logger.log('Cannot start SyncTeX. The active editor is undefined, or the document is not a LaTeX document.')
-        return
-    }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
-
-    if (lw.extra.liveshare.handle.command.syncTeX()) {
-        return
-    }
-    let pdfUri: vscode.Uri | undefined = undefined
-    if (lw.root.subfiles.path && configuration.get('latex.rootFile.useSubFile')) {
-        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.subfiles.path))
-    } else if (lw.root.file.path !== undefined) {
-        pdfUri = lw.file.toUri(lw.file.getPdfPath(lw.root.file.path))
-    }
-    lw.locate.synctex.toPDF(pdfUri)
+    showDisabledFeature('SyncTeX')
 }
 
 export function synctexonref(line: number, filePath: string) {
@@ -127,21 +102,15 @@ export function synctexonref(line: number, filePath: string) {
 
 export async function clean(): Promise<void> {
     logger.log('CLEAN command invoked.')
-    await lw.root.find()
-    const rootFile = lw.root.file.path
+    if (!requireTrustedWorkspace('Clean')) {
+        return
+    }
+    const rootFile = await lw.root.resolveSecurityRoot()
     if (rootFile === undefined) {
         logger.log('Cannot find LaTeX root file to clean.')
         return
     }
-    let pickedRootFile: string | undefined = rootFile
-    if (lw.root.subfiles.path) {
-        // We are using the subfile package
-        pickedRootFile = await quickPickRootFile(rootFile, lw.root.subfiles.path, 'clean')
-        if (! pickedRootFile) {
-            return
-        }
-    }
-    return lw.extra.clean(pickedRootFile)
+    return lw.extra.clean(rootFile)
 }
 
 export function addTexRoot() {
@@ -159,17 +128,7 @@ export function citation() {
 }
 
 export function wordcount() {
-    logger.log('WORDCOUNT command invoked.')
-    if (!vscode.window.activeTextEditor || !lw.file.hasLaTeXLangId(vscode.window.activeTextEditor.document.languageId) ||
-        lw.root.file.path === vscode.window.activeTextEditor.document.fileName) {
-        if (lw.root.file.path) {
-            lw.extra.count(lw.root.file.path, true, true)
-        } else {
-            logger.log('WORDCOUNT: No rootFile defined.')
-        }
-    } else {
-        lw.extra.count(vscode.window.activeTextEditor.document.fileName, false, true)
-    }
+    showDisabledFeature('TeX word count')
 }
 
 export function showLog(compiler?: string) {
@@ -248,31 +207,6 @@ export function closeEnv() {
         return
     }
     void lw.locate.pair.close()
-}
-
-export async function changeHostName() {
-    logger.log('CHANGEHOSTNAME command invoked.')
-    const proceed = (await vscode.window.showInputBox({
-        prompt: 'Changing LaTeX Workshop server hostname can expose your computer to the public and is under severe security risk. CORS is also disabled. Do you want to continue?',
-        placeHolder: 'Type CONFIRM then [Enter] to continue. Press [ESC] to keep you safe.'
-    }))?.toLowerCase() === 'confirm'
-    if (!proceed) {
-        return
-    }
-    const hostname = await vscode.window.showInputBox({
-        prompt: 'Please input the new hostname that LaTeX Workshop server will listen to. This change will be reset on closing VSCode.',
-        placeHolder: '127.0.0.1'
-    })
-    if (!hostname) {
-        return
-    }
-    lw.server.initialize(hostname)
-}
-
-export function resetHostName() {
-    logger.log('RESETHOSTNAME command invoked.')
-    lw.server.initialize('127.0.0.1')
-    void vscode.window.showInformationMessage('LaTeX Workshop server listening to 127.0.0.1 with CORS. You are safe now.')
 }
 
 export async function actions() {
@@ -493,11 +427,12 @@ export async function devStripText() {
 }
 
 export function texdoc(packageName?: string) {
-    lw.extra.texdoc(packageName)
+    void packageName
+    showDisabledFeature('Texdoc')
 }
 
 export function texdocUsepackages() {
-    lw.extra.texdoc(undefined, true)
+    showDisabledFeature('Texdoc')
 }
 
 export async function saveActive() {
@@ -506,48 +441,14 @@ export async function saveActive() {
 }
 
 export function openMathPreviewPanel() {
-    lw.preview.mathpreview.toggle('open')
+    showDisabledFeature('Math preview panel')
 }
 
 export function closeMathPreviewPanel() {
-    lw.preview.mathpreview.toggle('close')
+    showDisabledFeature('Math preview panel')
 }
 
 export function toggleMathPreviewPanel() {
-    lw.preview.mathpreview.toggle()
+    showDisabledFeature('Math preview panel')
 }
 
-async function quickPickRootFile(rootFile: string, localRootFile: string, verb: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-    const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
-    if (doNotPrompt) {
-        if (configuration.get('latex.rootFile.useSubFile')) {
-            return localRootFile
-        } else {
-            return rootFile
-        }
-    }
-    const pickedRootFile = await vscode.window.showQuickPick([{
-        label: 'Default root file',
-        description: `Path: ${rootFile}`
-    }, {
-        label: 'Subfiles package root file',
-        description: `Path: ${localRootFile}`
-    }], {
-        placeHolder: `Subfiles package detected. Which file to ${verb}?`,
-        matchOnDescription: true
-    }).then( selected => {
-        if (!selected) {
-            return
-        }
-        switch (selected.label) {
-            case 'Default root file':
-                return rootFile
-            case 'Subfiles package root file':
-                return localRootFile
-            default:
-                return
-        }
-    })
-    return pickedRootFile
-}

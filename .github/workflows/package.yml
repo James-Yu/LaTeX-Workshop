@@ -1,4 +1,4 @@
-name: LaTeX Workshop Extension Package
+name: LaTeX-Secure-Workspace Extension Package
 env:
   cache-version: v12
 on: [push]
@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v6
-    - uses: actions/setup-node@v6
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
         node-version: '20'
     - name: Create extension package
@@ -20,7 +20,7 @@ jobs:
         npm ci
         npm run release
     - name: Archive extension package
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
       with:
-        name: latex-workshop
-        path: latex-workshop-*.vsix
+        name: tex-workspace-secure
+        path: tex-workspace-secure-*.vsix

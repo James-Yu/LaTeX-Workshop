@@ -1,12 +1,27 @@
 import vscode from 'vscode'
 import path from 'path'
-import { replaceArgumentPlaceholders } from '../utils/utils'
+import { replaceArgumentPlaceholders, splitCommandLineArgs } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
 import { queue } from './queue'
 
 const logger = lw.log('Build', 'Recipe')
+
+const FIXED_SECURE_RECIPE_NAME = 'secure-latexmk'
+const FIXED_SECURE_TOOL: Tool = {
+    name: 'latexmk',
+    command: 'latexmk',
+    args: [
+        '-interaction=nonstopmode',
+        '-file-line-error',
+        '-pdf',
+        '-outdir=%DIR%',
+        '-auxdir=%DIR%',
+        '%DOC%'
+    ],
+    env: {}
+}
 
 let state: {
     prevRecipe: Recipe | undefined,
@@ -54,13 +69,6 @@ function setDockerPath() {
 export async function build(rootFile: string, langId: string, buildLoop: () => Promise<void>, recipeName?: string) {
     logger.log(`Build root file ${rootFile}`)
     let cwd: string = path.dirname(lw.file.toUri(rootFile).fsPath)
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if (configuration.get('latex.build.fromWorkspaceFolder')) {
-        const workspaceFolder = vscode.workspace.getWorkspaceFolder(lw.file.toUri(rootFile))
-        if (workspaceFolder) {
-            cwd = workspaceFolder.uri.fsPath
-        }
-    }
 
     // Save all open files in the workspace
     await vscode.workspace.saveAll()
@@ -90,7 +98,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     if (!tools.some(tool => tool.command === 'latexmk' &&
                             tool.args?.includes('-interaction=nonstopmode') &&
                             tool.args?.includes('-f'))) {
-        lw.compile.compiledPDFPath = lw.file.getPdfPath(rootFile)
+        lw.compile.compiledPDFPath = lw.file.getSecurityPdfPath(rootFile)
     }
     // Execute the build loop
     await buildLoop()
@@ -104,7 +112,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
  */
 async function createAuxSubFolders(rootFile: string) {
     const rootDir = path.dirname(rootFile)
-    let auxDir = lw.file.getAuxDir(rootFile)
+    let auxDir = lw.file.getSecurityAuxDir(rootFile)
     if (!path.isAbsolute(auxDir)) {
         auxDir = path.resolve(rootDir, auxDir)
     }
@@ -152,33 +160,24 @@ async function createBuildTools(rootFile: string, langId: string, recipeName?: s
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const magic = await findMagicComments(rootFile)
+    const hasBuildMagicComments = magic.tex !== undefined || magic.bib !== undefined || magic.recipe !== undefined
 
-    if (magic.tex && configuration.get('latex.build.enableMagicComments')) {
-        buildTools = createBuildMagic(rootFile, magic.tex, magic.bib)
-    } else {
-        const recipe = findRecipe(rootFile, langId, recipeName || magic.recipe)
-        if (recipe === undefined) {
-            return
-        }
-        logger.log(`Preparing to run recipe: ${recipe.name}.`)
-        state.prevRecipe = recipe
-        state.prevLangId = langId
-        const tools = configuration.get('latex.tools') as Tool[]
-        recipe.tools.forEach(tool => {
-            if (typeof tool === 'string') {
-                const candidates = tools.filter(candidate => candidate.name === tool)
-                if (candidates.length < 1) {
-                    logger.log(`Skipping undefined tool ${tool} in recipe ${recipe.name}.`)
-                    void logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
-                } else {
-                    buildTools.push(candidates[0])
-                }
-            } else {
-                buildTools.push(tool)
-            }
-        })
-        logger.log(`Prepared ${buildTools.length} tools.`)
+    if (hasBuildMagicComments && configuration.get('latex.build.enableMagicComments')) {
+        logger.log('Ignoring magic-command comments in secure build.')
     }
+    const recipe = findRecipe(rootFile, langId, recipeName)
+    if (recipe === undefined) {
+        return
+    }
+    logger.log(`Preparing to run recipe: ${recipe.name}.`)
+    state.prevRecipe = recipe
+    state.prevLangId = langId
+    recipe.tools.forEach(tool => {
+        if (typeof tool !== 'string') {
+            buildTools.push(tool)
+        }
+    })
+    logger.log(`Prepared ${buildTools.length} tools.`)
     if (buildTools.length < 1) {
         return
     }
@@ -224,7 +223,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found TeX program by magic comment: ${texCommand.command}.`)
         const res = content.match(regexTexOptions)
         if (res) {
-            texCommand.args = [res[1]]
+            texCommand.args = splitCommandLineArgs(res[1])
             logger.log(`Found TeX options by magic comment: ${texCommand.args}.`)
         }
     }
@@ -239,7 +238,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found BIB program by magic comment: ${bibCommand.command}.`)
         const res = content.match(regexBibOptions)
         if (res) {
-            bibCommand.args = [res[1]]
+            bibCommand.args = splitCommandLineArgs(res[1])
             logger.log(`Found BIB options by magic comment: ${bibCommand.args}.`)
         }
     }
@@ -253,35 +252,6 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
 }
 
 /**
- * Create build tools based on magic comments in the root file.
- *
- * @param {string} rootFile - Path to the root LaTeX file.
- * @param {Tool} magicTex - Tool object representing the TeX command from magic
- * comments.
- * @param {Tool} [magicBib] - Optional. Tool object representing the BibTeX
- * command from magic comments.
- * @returns {Tool[]} - An array of Tool objects representing the build tools.
- */
-function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-
-    if (!magicTex.args) {
-        magicTex.args = configuration.get('latex.magic.args') as string[]
-        magicTex.name = lw.constant.TEX_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX
-    }
-    if (magicBib) {
-        if (!magicBib.args) {
-            magicBib.args = configuration.get('latex.magic.bib.args') as string[]
-            magicBib.name = lw.constant.BIB_MAGIC_PROGRAM_NAME + lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX
-        }
-        return [magicTex, magicBib, magicTex, magicTex]
-    } else {
-        return [magicTex]
-    }
-}
-
-
-/**
  * Find a recipe based on the provided recipe name, language ID, and root file.
  *
  * @param {string} rootFile - Path to the root LaTeX file.
@@ -291,52 +261,15 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
  * provided parameters.
  */
 function findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
-
-    const recipes = configuration.get('latex.recipes') as Recipe[]
-    const defaultRecipeName = configuration.get('latex.recipe.default') as string
-
-    if (recipes.length < 1) {
-        logger.log('No recipes defined.')
-        void logger.showErrorMessage('[Builder] No recipes defined.')
-        return
+    void rootFile
+    void langId
+    if (recipeName && recipeName !== FIXED_SECURE_RECIPE_NAME) {
+        logger.log(`Ignoring requested recipe ${recipeName} in this secure build.`)
     }
-    if (state.prevLangId !== langId) {
-        state.prevRecipe = undefined
+    return {
+        name: FIXED_SECURE_RECIPE_NAME,
+        tools: [JSON.parse(JSON.stringify(FIXED_SECURE_TOOL)) as Tool]
     }
-    let recipe: Recipe | undefined
-    // Find recipe according to the given name
-    if (recipeName === undefined && !['first', 'lastUsed'].includes(defaultRecipeName)) {
-        recipeName = defaultRecipeName
-    }
-    if (recipeName) {
-        recipe = recipes.find(candidate => candidate.name === recipeName)
-        if (recipe === undefined) {
-            logger.log(`Failed to resolve build recipe: ${recipeName}.`)
-            void logger.showErrorMessage(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
-        }
-    }
-    // Find default recipe of last used
-    if (recipe === undefined && defaultRecipeName === 'lastUsed') {
-        recipe = recipes.find(candidate => candidate.name === state.prevRecipe?.name)
-    }
-    // If still not found, fallback to 'first'
-    if (recipe === undefined) {
-        let candidates: Recipe[] = recipes
-        if (langId === 'rsweave') {
-            candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
-        } else if (langId === 'jlweave') {
-            candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
-        } else if (langId === 'pweave') {
-            candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('pnw|pweave'))
-        }
-        if (candidates.length < 1) {
-            logger.log(`Cannot find any recipe for langID \`${langId}\`.`)
-            void logger.showErrorMessage(`[Builder] Cannot find any recipe for langID \`${langId}\`: ${recipeName}.`)
-        }
-        recipe = candidates[0]
-    }
-    return recipe
 }
 
 /**
@@ -390,12 +323,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                     tool.args.includes('--pdflualatex')
                 )
             if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
-                if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
-                    // %!TeX options is present. All args are provided in a string and { shell: true }
-                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
-                } else {
-                    tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
-                }
+                tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
             }
         }
     })

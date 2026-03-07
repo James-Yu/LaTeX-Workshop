@@ -1,8 +1,9 @@
 import * as vscode from 'vscode'
+import * as path from 'path'
 import { lw } from '../../lw'
 import * as manager from './pdfviewermanager'
-import type { PanelRequest, PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
-import { escapeHtml, sleep } from '../../utils/utils'
+import type { PdfViewerState } from '../../../types/latex-workshop-protocol-types/index'
+import { escapeHtml } from '../../utils/utils'
 
 const logger = lw.log('Viewer', 'Panel')
 
@@ -20,16 +21,14 @@ class PdfViewerPanel {
     constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
         this.pdfUri = pdfFileUri
         this.webviewPanel = panel
-        panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
-            switch(msg.type) {
-                case 'state': {
-                    this.viewerState = msg.state
-                    lw.event.fire(lw.event.ViewerStatusChanged, msg.state)
-                    break
-                }
-                default: {
-                    break
-                }
+        this.viewerState = {
+            path: pdfFileUri.fsPath,
+            pdfFileUri: pdfFileUri.toString(true)
+        }
+        panel.webview.onDidReceiveMessage((message: { type?: string }) => {
+            if (message.type === 'viewer-loaded' && this.viewerState) {
+                lw.event.fire(lw.event.ViewerPageLoaded)
+                lw.event.fire(lw.event.ViewerStatusChanged, this.viewerState)
             }
         })
     }
@@ -42,7 +41,6 @@ class PdfViewerPanel {
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
-        // await lw.server.initialized
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
@@ -62,7 +60,8 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
-        panel.webview.html = await getPDFViewerContent(pdfFileUri)
+        configureWebview(panel, pdfFileUri)
+        panel.webview.html = await getPDFViewerContent(pdfFileUri, panel.webview)
         const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
         manager.insert(pdfPanel)
         return
@@ -71,40 +70,21 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
 const serializer = new PdfViewerPanelSerializer()
 
-let codespacesPatched = false
-async function patchCodespaces(url: vscode.Uri) {
-    if (codespacesPatched) {
-        return
+function configureWebview(panel: vscode.WebviewPanel, pdfUri: vscode.Uri) {
+    const viewerRoot = vscode.Uri.joinPath(lw.file.toUri(lw.extensionRoot), 'viewer')
+    panel.webview.options = {
+        enableScripts: true,
+        localResourceRoots: [viewerRoot, pdfUri]
     }
-    if (vscode.env.remoteName === 'codespaces' && vscode.env.uiKind === vscode.UIKind.Web) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const delay = configuration.get('codespaces.portforwarding.openDelay', 20000)
-        // We have to open the url in a browser tab for the authentication of port forwarding through githubpreview.dev.
-        await vscode.env.openExternal(url)
-        await sleep(delay)
-    }
-    codespacesPatched = true
 }
 
 // Create a PdfViewerPanel inside an existing vscode.WebviewPanel
 async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
-    // await lw.server.initialized
-    const htmlContent = await getPDFViewerContent(pdfUri)
+    configureWebview(panel, pdfUri)
+    const htmlContent = await getPDFViewerContent(pdfUri, panel.webview)
     panel.webview.html = htmlContent
     const pdfPanel = new PdfViewerPanel(pdfUri, panel)
     return pdfPanel
-}
-
-function getKeyboardEventConfig(): boolean {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const setting: 'auto' | 'force' | 'never' = configuration.get('view.pdf.internal.keyboardEvent', 'auto')
-    if (setting === 'auto') {
-        return true
-    } else if (setting === 'force') {
-        return true
-    } else {
-        return false
-    }
 }
 
 /**
@@ -112,68 +92,55 @@ function getKeyboardEventConfig(): boolean {
  *
  * @param pdfUri The path of a PDF file to be opened.
  */
-async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
-    const uri = (await lw.server.getUrl(pdfUri)).uri
-    const iframeSrcOrigin = `${uri.scheme}://${uri.authority}`
-    const iframeSrcUrl = uri.toString(true)
-    await patchCodespaces(uri)
-    logger.log(`Internal PDF viewer at ${iframeSrcUrl} .`)
-    const rebroadcast: boolean = getKeyboardEventConfig()
+async function getPDFViewerContent(pdfUri: vscode.Uri, webview: vscode.Webview): Promise<string> {
+    const nonce = getNonce()
+    const viewerRoot = vscode.Uri.joinPath(lw.file.toUri(lw.extensionRoot), 'viewer')
+    const viewerHtmlUri = vscode.Uri.joinPath(viewerRoot, 'viewer.html')
+    const panelWebviewUri = webview.asWebviewUri(viewerHtmlUri).toString()
+    const configuration = encodeURIComponent(encodeJsonConfig(lw.viewer.getParams()))
+    const encodedPdfUri = encodeURIComponent(encodePdfPath(webview.asWebviewUri(pdfUri).toString()))
+    const encodedTitle = encodeURIComponent(path.basename(pdfUri.fsPath) || 'Untitled PDF')
+    const iframeOrigin = extractOrigin(panelWebviewUri)
+    logger.log(`Internal PDF viewer at ${panelWebviewUri} .`)
     return `
-    <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src *; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
-    <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+    <!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; frame-src ${iframeOrigin}; script-src 'nonce-${nonce}'; style-src 'unsafe-inline'; img-src ${iframeOrigin} data: blob:;"></head>
+    <body style="padding:0;margin:0;overflow:hidden;background:#1e1e1e;"><iframe id="preview-panel" class="preview-panel" src="${panelWebviewUri}?file=${encodedPdfUri}&config=${configuration}&title=${encodedTitle}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
     </iframe>
-    <script>
-    // When the tab gets focus again later, move the
-    // the focus to the iframe so that keyboard navigation works in the pdf.
+    <script nonce="${nonce}">
+    const vscode = acquireVsCodeApi();
     const iframe = document.getElementById('preview-panel');
-    window.onfocus = function() {
-        setTimeout(function() { // doesn't work immediately
-            iframe.contentWindow.focus();
-        }, 100);
-    }
-
-    // Prevent the whole iframe selected.
-    // See https://github.com/James-Yu/LaTeX-Workshop/issues/3408
-    window.addEventListener('selectstart', (e) => {
-        e.preventDefault();
+    window.addEventListener('focus', () => {
+        setTimeout(() => iframe.contentWindow?.focus(), 100);
     });
-
-    const vsStore = acquireVsCodeApi();
-    // To enable keyboard shortcuts of VS Code when the iframe is focused,
-    // we have to dispatch keyboard events in the parent window.
-    // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
-    window.addEventListener('message', (e) => {
-        if (e.origin !== '${iframeSrcOrigin}') {
+    window.addEventListener('message', event => {
+        if (event.origin === '${iframeOrigin}' && event.data?.type === 'loaded') {
+            vscode.postMessage({ type: 'viewer-loaded' });
             return;
         }
-        switch (e.data.type) {
-            case 'initialized': {
-                const state = vsStore.getState();
-                if (state) {
-                    state.type = 'restore_state';
-                    iframe.contentWindow.postMessage(state, '${iframeSrcOrigin}');
-                } else {
-                    iframe.contentWindow.postMessage({type: 'restore_state', state: {kind: 'not_stored'} }, '${iframeSrcOrigin}');
-                }
-                break;
-            }
-            case 'keyboard_event': {
-                if (${rebroadcast}) {
-                    window.dispatchEvent(new KeyboardEvent('keydown', e.data.event));
-                }
-                break;
-            }
-            case 'state': {
-                vsStore.setState(e.data);
-                break;
-            }
-            default:
-            break;
+        if (event.data?.type === 'reload-viewer') {
+            iframe.src = iframe.src;
         }
-        vsStore.postMessage(e.data)
     });
     </script>
     </body></html>
     `
+}
+
+function encodePdfPath(pdfUri: string): string {
+    const text = encodeURIComponent(pdfUri)
+    return Buffer.from(text, 'utf8').toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
+}
+
+function encodeJsonConfig(params: unknown): string {
+    const text = encodeURIComponent(JSON.stringify(params))
+    return Buffer.from(text, 'utf8').toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
+}
+
+function extractOrigin(uri: string): string {
+    const parsed = vscode.Uri.parse(uri)
+    return `${parsed.scheme}://${parsed.authority}`
+}
+
+function getNonce(): string {
+    return Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)
 }

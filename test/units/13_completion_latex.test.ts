@@ -36,7 +36,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         mock.activeTextEditor(get.path('main.tex'), '', {
             languageId: 'latex',
         })
-        document = vscode.window.activeTextEditor?.document as TextDocument
+        document = vscode.window.activeTextEditor?.document as unknown as TextDocument
         citationSpy = sinon.spy(citationProvider, 'from')
         referenceSpy = sinon.spy(referenceProvider, 'from')
         environmentSpy = sinon.spy(environmentProvider, 'from')
