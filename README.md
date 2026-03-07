@@ -8,7 +8,11 @@ TeX Workspace Secure is a security-hardened fork of LaTeX Workshop for [Visual S
 
 Privacy-first, with no telemetry and no profile-enrichment lookups.
 
-Security-first maintenance, including active review and corrective updates.
+Security-first maintenance, including active review, dependency hygiene, and corrective updates.
+
+This fork prioritizes a smaller and more auditable extension surface over broad feature parity.
+
+The target use case is enterprise-oriented TeX authoring and build workflows, where predictable execution paths matter more than preview, collaboration, or convenience integrations.
 
 For a concise summary of the security measures in this fork and the risks they are intended to reduce, see [Security Hardening Summary](./docs/security-hardening.md) or [セキュリティ対策サマリー](./docs/security-hardening.ja.md).
 
@@ -18,7 +22,7 @@ Security review is performed with enterprise use cases in mind, but adopters rem
 > This package is an independent fork and is not the official `James-Yu.latex-workshop` marketplace release.
 > For compatibility, settings and command IDs still use the existing `latex-workshop.*` prefix.
 
-The project aims to provide core features for LaTeX typesetting with Visual Studio Code while keeping compatibility with existing LaTeX Workshop setups.
+The project aims to preserve the core features needed for LaTeX typesetting in Visual Studio Code while keeping practical compatibility with existing LaTeX Workshop setups.
 
 This secure build is intentionally narrower than upstream. It focuses on core authoring and compilation workflows and does not include Live Share integration, the internal PDF preview server/viewer, SyncTeX, texdoc, or external formatter/linter execution.
 
