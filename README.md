@@ -1,6 +1,6 @@
 # TeX Workspace Secure
 
-Independent VS Code extension fork: <https://github.com/thinksyncs/LaTeX-Workshop>
+Independent VS Code extension fork: <https://github.com/thinksyncs/LaTeX-Secure-Workspace>
 
 TeX Workspace Secure is a security-hardened fork of LaTeX Workshop for [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -115,7 +115,7 @@ This is a representative subset of the editing and compilation capabilities reta
 
 ## GitHub
 
-The code for this extension is available on GitHub at: https://github.com/thinksyncs/LaTeX-Workshop
+The code for this extension is available on GitHub at: https://github.com/thinksyncs/LaTeX-Secure-Workspace
 
 ## Support This Project
 
