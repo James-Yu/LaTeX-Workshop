@@ -219,6 +219,7 @@ export class TextDocument implements vscode.TextDocument {
     lines: string[]
     uri: vscode.Uri
     fileName: string
+    readonly encoding: string = 'utf8'
     isUntitled: boolean = false
     languageId: string
     version: number = 0
