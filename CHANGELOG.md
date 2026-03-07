@@ -1,13 +1,13 @@
 # Change Log
 
-## [10.13.1-secure.0] - 2026-03-07
+## [10.13.2] - 2026-03-07
 
 Subtractive feature selection of TeX Workspace for enterprise use cases.
 Privacy-first, with no telemetry and no profile-enrichment lookups.
 Security-first maintenance, including active review and corrective updates.
 
 ### Changed
-- Forked the extension into TeX Workspace Secure with a dedicated publisher, package name, icon, and log branding.
+- Forked the extension into LaTex Secure Workspace with a dedicated publisher, package name, icon, and log branding.
 - Reduced the feature surface to core authoring and compilation workflows for this secure build.
 
 ### Removed

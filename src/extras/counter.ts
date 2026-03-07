@@ -118,14 +118,14 @@ async function runTeXCount(file: string, merge: boolean = true): Promise<boolean
 
     proc.on('error', err => {
         logger.logError('Cannot count words.', err, stderr)
-        void logger.showErrorMessage('TeXCount failed. Please refer to TeX Workspace Secure Output for details.')
+        void logger.showErrorMessage('TeXCount failed. Please refer to LaTex Secure Workspace Output for details.')
     })
 
     return new Promise( resolve => {
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 logger.logError('Cannot count words', exitCode, stderr)
-                void logger.showErrorMessage('TeXCount failed. Please refer to TeX Workspace Secure Output for details.')
+                void logger.showErrorMessage('TeXCount failed. Please refer to LaTex Secure Workspace Output for details.')
             } else {
                 const words = /Words in text: ([0-9]*)/g.exec(stdout)
                 const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)

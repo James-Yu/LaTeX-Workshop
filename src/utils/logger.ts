@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../lw'
 
-const LOG_PANEL = vscode.window.createOutputChannel('TeX Workspace Secure', 'latex_workshop_log')
+const LOG_PANEL = vscode.window.createOutputChannel('LaTex Secure Workspace', 'latex_workshop_log')
 const COMPILER_PANEL = vscode.window.createOutputChannel('LaTeX Compiler')
 const STATUS_ITEM = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
 const PLACEHOLDERS: {[placeholder: string]: string} = {}
@@ -203,11 +203,11 @@ function showErrorMessageWithCompilerLogButton(message: string) {
 }
 
 function showErrorMessageWithExtensionLogButton(message: string) {
-    const res = showErrorMessage(message, 'Open TeX Workspace Secure log')
+    const res = showErrorMessage(message, 'Open LaTex Secure Workspace log')
     if (res) {
         return res.then(option => {
             switch (option) {
-                case 'Open TeX Workspace Secure log': {
+                case 'Open LaTex Secure Workspace log': {
                     showLog()
                     break
                 }

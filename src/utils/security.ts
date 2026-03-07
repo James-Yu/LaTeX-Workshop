@@ -50,7 +50,7 @@ export async function confirmWorkspaceCommandExecution(scope: vscode.Configurati
     }
 
     const selection = await vscode.window.showWarningMessage(
-        `TeX Workspace Secure is about to run "${command}" from the ${configScope} setting "latex-workshop.${section}" in this trusted workspace. Review the workspace settings if this is unexpected.`,
+        `LaTex Secure Workspace is about to run "${command}" from the ${configScope} setting "latex-workshop.${section}" in this trusted workspace. Review the workspace settings if this is unexpected.`,
         { modal: true },
         'Continue',
         'Open Settings'
