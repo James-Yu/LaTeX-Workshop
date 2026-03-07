@@ -240,7 +240,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(get.compiler.log().trim(), '--arg1 --arg2')
         })
 
-        it('should use `shell: true` only for magic options string execution', async () => {
+        it('should not use `shell: true` for magic options execution', async () => {
             readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --arg1 --arg2\n')
             set.config('latex.build.enableMagicComments', true)
 
@@ -256,9 +256,32 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 lw.external.spawn = originalSpawn
             }
 
-            assert.strictEqual(lastSpawnArgs?.[2].shell, true)
-            assert.ok(lastSpawnArgs?.[0].startsWith('pdflatex '))
-            assert.ok(lastSpawnArgs?.[0].includes('--arg1 --arg2'))
+            assert.ok(lastSpawnArgs?.[2].shell === undefined)
+            assert.strictEqual(lastSpawnArgs?.[0], 'pdflatex')
+            assert.ok(lastSpawnArgs?.[1].includes('--arg1'))
+            assert.ok(lastSpawnArgs?.[1].includes('--arg2'))
+        })
+
+        it('should preserve quoted magic options as single args', async () => {
+            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --jobname "main output" --arg2\n')
+            set.config('latex.build.enableMagicComments', true)
+
+            const originalSpawn = lw.external.spawn
+            let lastSpawnArgs: [command: string, args: readonly string[], options: SpawnOptions] | undefined
+            lw.external.spawn = ((...args) => {
+                lastSpawnArgs = args
+                return cs.spawn('true')
+            }) as typeof lw.external.spawn
+            try {
+                await build()
+            } finally {
+                lw.external.spawn = originalSpawn
+            }
+
+            assert.strictEqual(lastSpawnArgs?.[0], 'pdflatex')
+            assert.ok(lastSpawnArgs?.[1].includes('--jobname'))
+            assert.ok(lastSpawnArgs?.[1].includes('main output'))
+            assert.ok(lastSpawnArgs?.[1].includes('--arg2'))
         })
 
         it('should not use `shell: true` for normal recipe tool execution', async () => {

@@ -20,19 +20,15 @@ jobs:
             exit 1
           fi
 
-      - name: Ensure `shell: true` stays constrained
+      - name: Ensure `shell: true` is not used in src
         run: |
           MATCHES="$(git grep -n 'shell: true' -- src || true)"
           if [ -z "$MATCHES" ]; then
             exit 0
           fi
           echo "$MATCHES"
-          BAD="$(echo "$MATCHES" | grep -v '^src/compile/build.ts:' || true)"
-          if [ -n "$BAD" ]; then
-            echo 'Unexpected `shell: true` usage found outside src/compile/build.ts'
-            echo "$BAD"
-            exit 1
-          fi
+          echo 'Unexpected `shell: true` usage found in src'
+          exit 1
 
       - name: Ensure `pull_request_target` is not introduced
         run: |

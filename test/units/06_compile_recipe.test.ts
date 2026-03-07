@@ -335,6 +335,30 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(step.args, ['--min-crossrefs=100'])
         })
 
+        it('should split quoted magic options into separate args', async () => {
+            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --jobname "main output" --shell-escape\n')
+
+            await build('dummy.tex', 'latex', async () => {})
+
+            const step = queue.getStep()
+
+            assert.ok(step)
+            assert.strictEqual(step.name, lw.constant.TEX_MAGIC_PROGRAM_NAME)
+            assert.listStrictEqual(step.args, ['--jobname', 'main output', '--shell-escape'])
+        })
+
+        it('should preserve backslashes in quoted magic options', async () => {
+            readStub.resolves('% !TEX program = pdflatex\n% !TEX options = --output-directory "C:\\\\tex dir" --shell-escape\n')
+
+            await build('dummy.tex', 'latex', async () => {})
+
+            const step = queue.getStep()
+
+            assert.ok(step)
+            assert.strictEqual(step.name, lw.constant.TEX_MAGIC_PROGRAM_NAME)
+            assert.listStrictEqual(step.args, ['--output-directory', 'C:\\tex dir', '--shell-escape'])
+        })
+
         it('should detect only LW recipe comment', async () => {
             set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }])
             set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }])
@@ -763,7 +787,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const step = queue.getStep()
             assert.ok(step)
-            assert.strictEqual(step.args?.[0], '--max-print-line=10000 -synctex=1 -interaction=nonstopmode -file-line-error', JSON.stringify(step.args))
+            assert.listStrictEqual(step.args, ['--max-print-line=10000', '-synctex=1', '-interaction=nonstopmode', '-file-line-error'])
         })
     })
 

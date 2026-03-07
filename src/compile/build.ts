@@ -224,9 +224,8 @@ function normalizeArgForCwd(arg: string, cwd: string, rootDir: string): string {
  * external command.
  *
  * Based on the type of step, this function sets the current working directory
- * (`cwd`) for the spawn command. If the step represents a magic command (tex or
- * bib), it uses a shell to execute the command with optional arguments. If the
- * step is not external, it sets the `cwd` based on the compiled root file,
+ * (`cwd`) for the spawn command. If the step is not external, it sets the
+ * `cwd` based on the compiled root file,
  * possibly a sub-file. If in such a case, the compile command is `latexmk`, the
  * `cwd` is re-set to the root dir instead of sub-file. If the step is external,
  * it sets the `cwd` based on the provided `cwd` property.
@@ -251,18 +250,7 @@ function spawnProcess(step: Step): ProcessEnv {
     const env: ProcessEnv = { ...process.env, ...step.env }
     env['max_print_line'] = lw.constant.MAX_PRINT_LINE
 
-    if (!step.isExternal &&
-        (step.name.startsWith(lw.constant.TEX_MAGIC_PROGRAM_NAME) ||
-            step.name.startsWith(lw.constant.BIB_MAGIC_PROGRAM_NAME))) {
-
-        const args = step.args
-        if (args && !step.name.endsWith(lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)) {
-            // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd, env, shell: true})
-        } else {
-            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd, env})
-        }
-    } else if (!step.isExternal) {
+    if (!step.isExternal) {
         if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path && cwd === path.dirname(step.rootFile)) {
             cwd = lw.root.dir.path
         }

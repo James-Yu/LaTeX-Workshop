@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { replaceArgumentPlaceholders } from '../utils/utils'
+import { replaceArgumentPlaceholders, splitCommandLineArgs } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
@@ -224,7 +224,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found TeX program by magic comment: ${texCommand.command}.`)
         const res = content.match(regexTexOptions)
         if (res) {
-            texCommand.args = [res[1]]
+            texCommand.args = splitCommandLineArgs(res[1])
             logger.log(`Found TeX options by magic comment: ${texCommand.args}.`)
         }
     }
@@ -239,7 +239,7 @@ async function findMagicComments(rootFile: string): Promise<{tex?: Tool, bib?: T
         logger.log(`Found BIB program by magic comment: ${bibCommand.command}.`)
         const res = content.match(regexBibOptions)
         if (res) {
-            bibCommand.args = [res[1]]
+            bibCommand.args = splitCommandLineArgs(res[1])
             logger.log(`Found BIB options by magic comment: ${bibCommand.args}.`)
         }
     }
@@ -390,12 +390,7 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                     tool.args.includes('--pdflualatex')
                 )
             if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
-                if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
-                    // %!TeX options is present. All args are provided in a string and { shell: true }
-                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
-                } else {
-                    tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
-                }
+                tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
             }
         }
     })
