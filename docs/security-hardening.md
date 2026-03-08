@@ -54,7 +54,7 @@ Risk:
 
 Mitigation:
 
-The secure build ignores magic command comments that would otherwise alter tool or recipe selection from inside TeX source files. Root detection support is kept separately, but build-command selection is no longer changeable from document comments.
+The secure build ignores magic command comments that would otherwise alter root, tool, or recipe selection from inside TeX source files. Secure build and viewer flows no longer change behavior based on `%!TEX root` or build-control magic comments embedded in documents.
 
 ### 4. Disabled non-essential command surfaces
 
@@ -68,7 +68,7 @@ Risk:
 
 Mitigation:
 
-The secure build removes or disables texdoc, word count, math preview panel, external formatter integration, auto-lint execution, and other convenience features that invoke additional tooling or UI subsystems.
+The secure build removes or disables texdoc, word count, math preview panel, auto-lint execution, and other convenience features that invoke additional tooling or UI subsystems. Remaining formatter and linter executable overrides are no longer silently taken from workspace settings; they require an explicit confirmation prompt before execution.
 
 ### 5. Removed `vsls`-specific handling and legacy compatibility paths
 

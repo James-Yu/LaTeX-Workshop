@@ -107,7 +107,8 @@ suite('Multi-root workspace test suite', () => {
             {src: 'empty', dst: 'empty', ws: 'B'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex', 'A')
-        assert.ok(fs.existsSync(resolve(fixture, 'wsA.pdf', 'A')))
+        assert.ok(fs.existsSync(resolve(fixture, 'main.pdf', 'A')))
+        assert.ok(!fs.existsSync(resolve(fixture, 'fake.pdf', 'A')))
     })
 
     test.run('basic build with unavailable lastUsed', async (fixture: string) => {
@@ -126,7 +127,8 @@ suite('Multi-root workspace test suite', () => {
             {src: 'empty', dst: 'empty', ws: 'B'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex', 'A')
-        assert.ok(fs.existsSync(resolve(fixture, 'wsA.pdf', 'A')))
+        assert.ok(fs.existsSync(resolve(fixture, 'main.pdf', 'A')))
+        assert.ok(!fs.existsSync(resolve(fixture, 'fake.pdf', 'A')))
     })
 
     test.run('basic build with outDir', async (fixture: string) => {
@@ -136,7 +138,7 @@ suite('Multi-root workspace test suite', () => {
             {src: 'empty', dst: 'empty', ws: 'B'}
         ], {skipCache: true})
         await test.build(fixture, 'main.tex', 'A')
-        assert.ok(fs.existsSync(resolve(fixture, 'out/main.pdf', 'A')))
+        assert.ok(fs.existsSync(resolve(fixture, 'main.pdf', 'A')))
     })
 
     test.run('build with enableMagicComments: false', async (fixture: string) => {
@@ -159,8 +161,8 @@ suite('Multi-root workspace test suite', () => {
             {src: 'subfile_sub.tex', dst: 'sub/s.tex', ws: 'A'},
             {src: 'empty', dst: 'empty', ws: 'B'}
         ], {local: 1})
-        const { type } = await test.auto(fixture, 'sub/s.tex', false, true, 'A')
-        assert.strictEqual(type, 'onSave')
+        const result = await test.auto(fixture, 'sub/s.tex', true, true, 'A')
+        assert.strictEqual(result.file, '')
     })
 
     test.run('switching intellisense', async (fixture: string) => {

@@ -1224,7 +1224,7 @@
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Compatibility setting retained from upstream. In this secure build, root-file magic comments remain available for root detection, but build-control magic comments such as `% !TEX program`, `% !TEX options`, `% !BIB program`, and `% !LW recipe` are ignored."
+          "markdownDescription": "Compatibility setting retained from upstream. In this secure build, secure build and viewer flows ignore root-file and build-control magic comments entirely, including `% !TEX root`, `% !TEX program`, `% !TEX options`, `% !BIB program`, and `% !LW recipe`."
         },
         "latex-workshop.latex.build.fromWorkspaceFolder": {
           "scope": "resource",
@@ -1630,19 +1630,11 @@
           "type": "string",
           "default": "tab",
           "enum": [
-            "browser",
-            "tab",
-            "external",
-            "legacy",
-            "singleton"
+            "tab"
           ],
-          "markdownDescription": "In this secure build, only the tab-based local PDF viewer is available. Browser, external, legacy, and singleton viewer workflows are disabled.",
+          "markdownDescription": "In this secure build, only the tab-based local PDF viewer is available.",
           "enumDescriptions": [
-            "Disabled in this secure build.",
-            "Open the built PDF in the local tab-based viewer.",
-            "Disabled in this secure build.",
-            "Disabled in this secure build.",
-            "Disabled in this secure build."
+            "Open the built PDF in the local tab-based viewer."
           ]
         },
         "latex-workshop.view.pdf.tab.editorGroup": {

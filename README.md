@@ -24,9 +24,9 @@ Security review is performed with enterprise use cases in mind, but adopters rem
 
 The project aims to preserve the core features needed for LaTeX typesetting in Visual Studio Code while keeping practical compatibility with existing LaTeX Workshop setups.
 
-This secure build is intentionally narrower than upstream. It focuses on core authoring and compilation workflows and keeps only a minimal local tab-based PDF viewer with one-way refresh. It does not include Live Share integration, the internal PDF preview server, browser viewer workflows, SyncTeX, texdoc, external formatter/linter execution, auto build, external build commands, or custom recipe/tool execution.
+This secure build is intentionally narrower than upstream. It focuses on core authoring and compilation workflows and keeps only a minimal local tab-based PDF viewer with one-way refresh. It does not include Live Share integration, the internal PDF preview server, browser viewer workflows, SyncTeX, texdoc, auto build, external build commands, or custom recipe/tool execution.
 
-This extension supports Restricted Mode on a limited basis. In restricted mode, editing, navigation, log viewing, and the local tab-based PDF viewer remain available, but build, clean, kill, and reveal-output commands stay disabled until the workspace is trusted.
+This extension supports Restricted Mode on a limited basis. In restricted mode, editing, navigation, log viewing, and the local tab-based PDF viewer remain available, but build, clean, kill, and reveal-output commands stay disabled until the workspace is trusted. Secure build and viewer flows ignore root-file magic comments in both restricted and trusted workspaces.
 
 The upstream wiki remains useful for shared concepts such as recipes, root file handling, snippets, and IntelliSense, but parts of it document features that are disabled in this build.
 
@@ -68,7 +68,7 @@ The following upstream sections do not describe this build accurately because th
 This secure build keeps a focused subset of the upstream editing and compilation workflow.
 
 - Build LaTeX documents manually with the fixed internal build recipe.
-- Resolve the build root with a fixed internal policy and always run manual build and clean against the resolved main root file.
+- Resolve the build root with a fixed internal policy and always run manual build and clean against the resolved main root file. Secure build and viewer flows do not honor file-level `%!TEX root` comments.
 - Write build outputs and auxiliary files into the resolved root file directory, rather than honoring workspace-controlled output-path overrides.
 - Open the built PDF in a local VS Code tab using the bundled viewer assets, with one-way refresh from the extension to the viewer.
 - IntelliSense for citations, labels, commands, environments, document classes, packages, and input paths.
@@ -87,7 +87,7 @@ The following upstream features are intentionally disabled or not exposed in thi
 - Workspace-controlled overrides for build root selection and output or auxiliary directory selection in the secure execution path.
 - The internal PDF preview server, browser viewer workflow, reverse or bidirectional viewer messaging, and SyncTeX viewer paths.
 - Texdoc, word count, and math preview panel workflows.
-- External formatter or linter execution paths.
+- External formatter or linter command overrides from workspace settings without an explicit confirmation prompt.
 - Other convenience integrations that expand the executable or network-facing surface without being required for core authoring and compilation.
 
 ## GitHub

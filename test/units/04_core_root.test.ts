@@ -474,6 +474,34 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
+    describe('lw.root.resolveSecurityRoot', () => {
+        it('should ignore !TEX root magic comments and keep the active root candidate', async () => {
+            set.config('latex.build.enableMagicComments', true)
+            const texPath = get.path(fixture, 'main.tex')
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/main.tex\n\\documentclass{article}\n')
+
+            const resolved = await lw.root.resolveSecurityRoot()
+
+            stub.restore()
+            assert.strictEqual(resolved, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
+        })
+
+        it('should ignore !TEX root magic comments in restricted mode as well', async () => {
+            set.config('latex.build.enableMagicComments', true)
+            const texPath = get.path(fixture, 'main.tex')
+            const trustStub = sinon.stub(vscode.workspace, 'isTrusted').value(false)
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/main.tex\n\\documentclass{article}\n')
+
+            const resolved = await lw.root.resolveSecurityRoot()
+
+            stub.restore()
+            trustStub.restore()
+            assert.strictEqual(resolved, texPath)
+            assert.strictEqual(lw.root.file.path, texPath)
+        })
+    })
+
     describe('lw.root.find', () => {
         beforeEach(() => {
             (lw.outline.refresh as sinon.SinonStub).reset()

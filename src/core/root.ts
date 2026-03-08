@@ -74,7 +74,6 @@ async function resolveSecurityRoot(): Promise<string | undefined> {
     logger.log(`Current workspace folders for secure root resolution: ${JSON.stringify(wsfolders)}`)
     root.subfiles = { path: undefined, langId: undefined }
     const findMethods = [
-        () => findSecurityFromMagic(),
         () => findSecurityFromActive(),
         () => findFromRoot(),
         () => findSecurityInWorkspace()
@@ -222,44 +221,6 @@ async function findFromMagic(): Promise<string | undefined> {
     if (fileStack.length > 0) {
         const finalFilePath = fileStack[fileStack.length - 1]
         logger.log(`Finalized magic root ${finalFilePath} .`)
-        return finalFilePath
-    }
-
-    return
-}
-
-async function findSecurityFromMagic(): Promise<string | undefined> {
-    if (!vscode.window.activeTextEditor) {
-        return
-    }
-    logger.log('Try finding secure root from magic comment.')
-    const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
-    const fileStack: string[] = []
-    let content: string | undefined = vscode.window.activeTextEditor.document.getText()
-    let filePath = vscode.window.activeTextEditor.document.fileName
-    let result = content.match(regex)
-
-    while (result) {
-        filePath = path.resolve(path.dirname(filePath), result[1])
-
-        if (fileStack.includes(filePath)) {
-            logger.log(`Found looped secure magic root ${filePath} .`)
-            return filePath
-        }
-        fileStack.push(filePath)
-        logger.log(`Found secure magic root ${filePath}`)
-
-        content = await lw.file.read(filePath)
-        if (content === undefined) {
-            logger.log(`Non-existent secure magic root ${filePath} .`)
-            return
-        }
-
-        result = content.match(regex)
-    }
-    if (fileStack.length > 0) {
-        const finalFilePath = fileStack[fileStack.length - 1]
-        logger.log(`Finalized secure magic root ${finalFilePath} .`)
         return finalFilePath
     }
 

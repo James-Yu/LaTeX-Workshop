@@ -282,6 +282,10 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
 
     extensionContext.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(latexSymbolSelector, lw.lint.latex.actionprovider),
+        vscode.languages.registerDocumentFormattingEditProvider(latexDoctexSelector, lw.lint.latex.formatter),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(latexDoctexSelector, lw.lint.latex.formatter),
+        vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter),
+        vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter),
         vscode.languages.registerFoldingRangeProvider(latexSymbolSelector, lw.language.folding),
         vscode.languages.registerFoldingRangeProvider(weaveSelector, lw.language.weaveFolding),
         vscode.languages.registerFoldingRangeProvider(latexDoctexSelector, lw.language.doctexFolding)
