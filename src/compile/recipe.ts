@@ -153,10 +153,13 @@ async function createBuildTools(rootFile: string, langId: string, recipeName?: s
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const magic = await findMagicComments(rootFile)
 
-    if (configuration.get('latex.build.enableMagicComments') && magic.tex ) {
+    if (configuration.get('latex.build.enableMagicComments') && !recipeName && magic.tex) {
         buildTools = createBuildMagic(rootFile, magic.tex, magic.bib)
     } else {
-        const recipe = findRecipe(rootFile, langId, recipeName || magic.recipe)
+        if (configuration.get('latex.build.enableMagicComments') && !recipeName && magic.recipe) {
+            recipeName = magic.recipe
+        }
+        const recipe = findRecipe(rootFile, langId, recipeName)
         if (recipe === undefined) {
             return
         }
