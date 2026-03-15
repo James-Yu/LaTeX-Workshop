@@ -108,7 +108,7 @@ async function createAuxSubFolders(rootFile: string) {
     if (!path.isAbsolute(auxDir)) {
         auxDir = path.resolve(rootDir, auxDir)
     }
-    logger.log(`auxDir: ${auxDir} .`)
+    logger.log(`RootFile auxDir: ${auxDir} .`)
     for (const file of lw.cache.getIncludedTeX(rootFile)) {
         const relativePath = path.dirname(file.replace(rootDir, '.'))
         const fullAuxDir = path.resolve(auxDir, relativePath)
@@ -122,6 +122,7 @@ async function createAuxSubFolders(rootFile: string) {
                     fileStat.type
                 )
             ) {
+                logger.log(`Create auxDir: ${fullAuxDir} .`)
                 lw.external.mkdirSync(fullAuxDir, { recursive: true })
             }
         } catch (e) {
