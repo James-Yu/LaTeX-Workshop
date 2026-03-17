@@ -16,7 +16,11 @@ export async function hostPort() {
 }
 
 export async function build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
-    logger.log('BUILD command invoked.')
+    let recipeStr = ''
+    if (recipe) {
+        recipeStr = ` with recipe ${recipe}`
+    }
+    logger.log(`BUILD command invoked${recipeStr}.`)
     await lw.compile.build(skipSelection, rootFile, languageId, recipe)
 }
 
