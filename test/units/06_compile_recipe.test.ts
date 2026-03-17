@@ -163,7 +163,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should skip undefined tools in the recipe and log an error', async () => {
             const rootFile = set.root('main.tex')
-            // set.config('latex.build.enableMagicComments', false)
             set.config('latex.tools', [{ name: 'existingTool', command: 'pdflatex' }])
             set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool', 'existingTool'] }])
 
@@ -179,7 +178,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should do nothing but log an error if no tools are prepared', async () => {
             const rootFile = set.root('main.tex')
-            // set.config('latex.build.enableMagicComments', false)
             set.config('latex.tools', [])
             set.config('latex.recipes', [{ name: 'Recipe1', tools: ['nonexistentTool'] }])
 
@@ -347,6 +345,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.strictEqual(step.name, 'Tool2')
             assert.strictEqual(step.command, 'xelatex')
+        })
+
+            it('should ignore LW recipe comment when calling a given recipe', async () => {
+            set.config('latex.tools', [{ name: 'Tool1', command: 'pdflatex' }, { name: 'Tool2', command: 'xelatex' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1'] }, { name: 'Recipe2', tools: ['Tool2'] }])
+
+            readStub.resolves('% !LW recipe = Recipe2\n')
+
+            await build('dummy.tex', 'latex', async () => {}, 'Recipe1')
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.strictEqual(step.name, 'Tool1')
+            assert.strictEqual(step.command, 'pdflatex')
         })
 
         it('should detect all magic comments', async () => {
