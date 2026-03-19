@@ -109,7 +109,7 @@ export class Provider implements vscode.CompletionItemProvider {
                 provider = macroProvider
                 break
             case 'argument':
-                reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[.*?\]|{.*?})*)[[{][^[\]{}]*$/
+                reg = args.langId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)((?:\[[^[\]{}]*?\]|{[^[\]{}]*?})*)[[{][^[\]{}]*$/ : /\\(\+?[a-zA-Z]*)((?:\[[^[\]{}]*?\]|{[^[\]{}]*?})*)[[{][^[\]{}]*$/
                 provider = argumentProvider
                 break
             case 'package':
