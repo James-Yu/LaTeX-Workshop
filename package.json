@@ -1757,6 +1757,12 @@
           "default": 0,
           "markdownDescription": "Define the port to listen on for communicating with the internal viewer. The default value \"0\" means the port is chosen randomly by the application. If this config is set, only one Visual Studio Code instance with this extension active can be opened. Otherwise, a port conflict may happen."
         },
+        "latex-workshop.view.pdf.internal.urlPrefix": {
+          "scope": "window",
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The base URL prefix used to construct the PDF viewer URL when running VS Code as a web server (`code serve-web`) behind a reverse proxy. When the internal PDF server port cannot be automatically forwarded (i.e., `asExternalUri` returns a localhost URL unchanged), this prefix is used instead. The value should be the externally reachable URL at which the proxy forwards traffic to the internal PDF server port, e.g. `https://myserver.example.com/latex-workshop-pdf`. Requires `#latex-workshop.view.pdf.internal.port#` to be fixed and a corresponding reverse proxy rule. Leave empty (default) for automatic port forwarding."
+        },
         "latex-workshop.view.pdf.internal.synctex.keybinding": {
           "scope": "window",
           "type": "string",

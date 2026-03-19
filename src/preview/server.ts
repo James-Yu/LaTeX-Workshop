@@ -74,10 +74,23 @@ function getPort(): number {
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
     const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${getPort()}`, true))
-    const url =
-        (origUrl.toString().endsWith('/') ? origUrl.toString().slice(0, -1) : origUrl.toString()) +
-        (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
+    // When running as `code serve-web` behind a reverse proxy, `asExternalUri` cannot perform port
+    // forwarding and returns the localhost URL unchanged. In that case, fall back to the user-configured
+    // URL prefix so that the browser can reach the PDF viewer server through the proxy.
+    const urlPrefix = getExternalUrlPrefix(origUrl)
+    const url = urlPrefix + (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
     return { url, uri: vscode.Uri.parse(url, true) }
+}
+
+function getExternalUrlPrefix(resolvedUri: vscode.Uri): string {
+    const authority = resolvedUri.authority
+    if (authority.includes('127.0.0.1') || authority.startsWith('localhost')) {
+        const configured = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
+        if (configured) {
+            return configured.replace(/\/$/, '')
+        }
+    }
+    return resolvedUri.toString().replace(/\/$/, '')
 }
 
 function setHandler(newHandler: (url: string) => string | undefined) {
@@ -129,6 +142,12 @@ function initialize(hostname?: string): http.Server {
 async function obtainValidOrigin(serverPort: number, hostname: string): Promise<vscode.Uri> {
     const origUrl = `http://${hostname}:${serverPort}/`
     const uri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
+    // When behind a reverse proxy without built-in port forwarding (e.g. `code serve-web`),
+    // `asExternalUri` returns localhost unchanged. Use the configured URL prefix instead.
+    const configured = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
+    if (configured && (uri.authority.includes('127.0.0.1') || uri.authority.startsWith('localhost'))) {
+        return vscode.Uri.parse(configured.replace(/\/$/, ''))
+    }
     return uri
 }
 
