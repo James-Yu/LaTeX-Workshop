@@ -34,6 +34,10 @@ class WsServer extends ws.Server {
             return true
         }
         if (reqOrigin !== undefined && reqOrigin !== this.validOrigin) {
+            // Allow requests from the user-configured external URL prefix (reverse proxy origin).
+            if (reqOrigin === getConfiguredExternalOrigin()) {
+                return true
+            }
             logger.log(`Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
             logger.log(`Valid origin: ${this.validOrigin}`)
             return false
@@ -85,13 +89,42 @@ async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Ur
 
 function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
     const authority = resolvedUri.authority
-    if (authority.includes('127.0.0.1') || authority.startsWith('localhost')) {
-        const configured = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
+    const host = authority.split(':')[0].toLowerCase()
+    if (host === '127.0.0.1' || host === 'localhost') {
+        const configuredRaw = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
+        const configured = configuredRaw.trim()
         if (configured) {
-            return vscode.Uri.parse(configured.replace(/\/$/, ''))
+            try {
+                const candidate = vscode.Uri.parse(configured, true)
+                const hasValidScheme = candidate.scheme === 'http' || candidate.scheme === 'https'
+                if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
+                    return vscode.Uri.parse(configured.replace(/\/$/, ''))
+                } else {
+                    logger.log(
+                        `[Server] Invalid value for "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
+                        `Expected an absolute http/https URL without query or fragment. ` +
+                        `Falling back to resolved URI "${resolvedUri.toString(true)}".`
+                    )
+                }
+            } catch {
+                logger.log(
+                    `[Server] Failed to parse "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
+                    `Falling back to resolved URI "${resolvedUri.toString(true)}".`
+                )
+            }
         }
     }
     return resolvedUri
+}
+
+// Returns the scheme://authority of the user-configured urlPrefix, if valid.
+// Used to allow origin validation for requests arriving through a reverse proxy.
+// Reuses getExternalUrlPrefix() so validation logic is not duplicated.
+function getConfiguredExternalOrigin(): string | undefined {
+    const loopback = vscode.Uri.parse(`http://127.0.0.1:${state.address?.port ?? 0}/`, true)
+    const prefixUri = getExternalUrlPrefix(loopback)
+    if (prefixUri === loopback) { return undefined }
+    return `${prefixUri.scheme}://${prefixUri.authority}`
 }
 
 function setHandler(newHandler: (url: string) => string | undefined) {
@@ -143,8 +176,7 @@ function initialize(hostname?: string): http.Server {
 async function obtainValidOrigin(serverPort: number, hostname: string): Promise<vscode.Uri> {
     const origUrl = `http://${hostname}:${serverPort}/`
     const uri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
-    // Delegate to shared helper to avoid duplicating localhost-detection and urlPrefix logic.
-    return getExternalUrlPrefix(uri)
+    return uri
 }
 
 function initializeWsServer(httpServer: http.Server, validOrigin: string) {
@@ -171,6 +203,10 @@ function checkHttpOrigin(req: http.IncomingMessage, response: http.ServerRespons
     }
     const reqOrigin = req.headers['origin']
     if (reqOrigin !== undefined && !reqOrigin.startsWith('vscode-webview:') && reqOrigin !== validOrigin) {
+        // Allow requests from the user-configured external URL prefix (reverse proxy origin).
+        if (reqOrigin === getConfiguredExternalOrigin()) {
+            return true
+        }
         logger.log(`Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
         logger.log(`Valid origin: ${validOrigin}`)
         response.writeHead(403)

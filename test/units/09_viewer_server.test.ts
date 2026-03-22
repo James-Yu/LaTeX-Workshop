@@ -188,7 +188,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
 
             try {
-                const url = await lw.server.getUrl(vscode.Uri.file('/tmp/test.pdf'))
+                const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
                 // Should use the configured prefix instead of localhost
                 assert.ok(url.url.startsWith('https://myproxy.example.com/latex-workshop-pdf'),
                     `Expected URL to start with configured prefix, got: ${url.url}`)
@@ -212,7 +212,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
 
             try {
-                const url = await lw.server.getUrl(vscode.Uri.file('/tmp/test.pdf'))
+                const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
                 // Should use the external URL from asExternalUri, not the configured prefix
                 assert.ok(url.url.startsWith('https://external.example.com:8443'),
                     `Expected URL to use asExternalUri result, got: ${url.url}`)
