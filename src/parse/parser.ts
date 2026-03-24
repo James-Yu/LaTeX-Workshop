@@ -9,6 +9,7 @@ import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
 import { bibtexLogParser } from './parser/bibtexlog'
 import { biberLogParser } from './parser/biberlog'
 import { latexLogParser } from './parser/latexlog'
+import { dvipdfmxLogParser } from './parser/dvipdfmxlog'
 // @ts-expect-error Load unified.js from /out/src/...
 import { toString } from '../../../resources/unified.js'
 
@@ -87,6 +88,10 @@ const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
+const dvipdfmxPattern = /^(.*)\.dvi -> (.*)\.pdf/
+const dvipdfmxPatternAlt = /^dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
+const outputDviFile = /^Output written on (.+)\.dvi \(.*\)\./
+
 const bibtexPattern = /^This is BibTeX, Version.*$/m
 const biberPattern = /^INFO - This is Biber .*$/m
 const bibtexPatternAlt = /^The top-level auxiliary file: .*$/m // #4197
@@ -124,12 +129,22 @@ function log(msg: string, rootFile?: string): boolean {
         isLaTeXmkSkipped = true
     }
 
+    if (msg.match(dvipdfmxPattern) || msg.match(dvipdfmxPatternAlt) || msg.match(outputDviFile)) {
+        logger.log(`In dvipdfmxPattern`)
+        dvipdfmxLogParser.parse(msg, rootFile)
+        dvipdfmxLogParser.showLog()
+    }
+
     return isLaTeXmkSkipped
 }
 
 function trimLaTeXmk(msg: string): string {
     return trimPattern(msg, latexmkLogLatex, latexmkLog)
 }
+
+// function trimLaTeXmkDvipdfmx(msg: string): string {
+//     return trimPattern(msg, latexmkLogDvipdfmx, latexmkLog)
+// }
 
 function trimLaTeXmkBibTeX(msg: string): string {
     return trimPattern(msg, bibtexPattern, latexmkLogLatex)
@@ -175,6 +190,7 @@ function trimPattern(msg: string, beginPattern: RegExp, endPattern: RegExp): str
 function latexmkSkipped(msg: string): boolean {
     if (msg.match(latexmkUpToDate) && !msg.match(latexmkPattern)) {
         latexLogParser.showLog()
+        dvipdfmxLogParser.showLog()
         bibtexLogParser.showLog()
         biberLogParser.showLog()
         return true
@@ -186,5 +202,6 @@ function clearLog() {
     // Clear all diagnostics messages
     biberLogParser.clearLog()
     bibtexLogParser.clearLog()
+    dvipdfmxLogParser.clearLog()
     latexLogParser.clearLog()
 }
