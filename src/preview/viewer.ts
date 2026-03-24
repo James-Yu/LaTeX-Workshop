@@ -353,7 +353,7 @@ function getParams(): PdfViewerParams {
             dark: {
                 pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || '',
                 pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || '',
-                backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff'),
+                backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#1b1b1b'),
                 pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey'),
             },
         },
