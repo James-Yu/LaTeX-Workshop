@@ -82,15 +82,16 @@ const latexXeNoOutputPattern = /^No pages of output.$/gm
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
+const latexmkLogDvipdfmx = /^Running 'dvipdfmx/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/m
 
 const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
-const dvipdfmxPattern = /^(.*)\.dvi -> (.*)\.pdf/
+const dvipdfmxPattern = /^(.*)\.dvi -> (.*)\.pdf/m
 const dvipdfmxPatternAlt = /^dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
-const outputDviFile = /^Output written on (.+)\.dvi \(.*\)\./
+const dvipdfmxConfigOption = /^config_special: Unknown option .*?/
 
 const bibtexPattern = /^This is BibTeX, Version.*$/m
 const biberPattern = /^INFO - This is Biber .*$/m
@@ -117,8 +118,10 @@ function log(msg: string, rootFile?: string): boolean {
         bibtexLogParser.showLog()
     }
 
+    let msgDvipdfmx = msg
     if (msg.match(latexmkPattern)) {
         msg = trimLaTeXmk(msg)
+        msgDvipdfmx = trimLaTeXmkDvipdfmx(msgDvipdfmx)
     } else if (msg.match(texifyPattern)) {
         msg = trimTexify(msg)
     }
@@ -128,10 +131,8 @@ function log(msg: string, rootFile?: string): boolean {
     } else if (latexmkSkipped(msg)) {
         isLaTeXmkSkipped = true
     }
-
-    if (msg.match(dvipdfmxPattern) || msg.match(dvipdfmxPatternAlt) || msg.match(outputDviFile)) {
-        logger.log(`In dvipdfmxPattern`)
-        dvipdfmxLogParser.parse(msg, rootFile)
+    if (msgDvipdfmx.match(dvipdfmxPattern) || msgDvipdfmx.match(dvipdfmxPatternAlt) || msgDvipdfmx.match(dvipdfmxConfigOption)) {
+        dvipdfmxLogParser.parse(msgDvipdfmx, rootFile)
         dvipdfmxLogParser.showLog()
     }
 
@@ -142,9 +143,9 @@ function trimLaTeXmk(msg: string): string {
     return trimPattern(msg, latexmkLogLatex, latexmkLog)
 }
 
-// function trimLaTeXmkDvipdfmx(msg: string): string {
-//     return trimPattern(msg, latexmkLogDvipdfmx, latexmkLog)
-// }
+function trimLaTeXmkDvipdfmx(msg: string): string {
+    return trimPattern(msg, latexmkLogDvipdfmx, latexmkLog)
+}
 
 function trimLaTeXmkBibTeX(msg: string): string {
     return trimPattern(msg, bibtexPattern, latexmkLogLatex)
