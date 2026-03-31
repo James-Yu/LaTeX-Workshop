@@ -319,7 +319,15 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         })
 
         lw.compile.process.on('exit', (code, signal) => {
-            const isSkipped = lw.parser.parse.log(stdout, step.rootFile)
+            let isSkipped = false
+
+            if (stderr.trim().length > 0) {
+                isSkipped = lw.parser.parse.log(stderr, step.rootFile) || isSkipped
+            }
+            if (stdout.trim().length > 0) {
+                isSkipped = lw.parser.parse.log(stdout, step.rootFile) || isSkipped
+            }
+
             if (!step.isExternal) {
                 step.isSkipped = isSkipped
             }
@@ -337,7 +345,7 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
                 return
             }
 
-            handleExitCodeError(step, env, stderr, code, signal)
+            handleExitCodeError(step, env, stdout, stderr, code, signal)
             resolve(false)
         })
     })
@@ -377,12 +385,20 @@ function handleProcessError(env: ProcessEnv, stderr: string, err: Error) {
  * @param {number | null} code - The exit code of the process.
  * @param {NodeJS.Signals | null} signal - The exit signal of the process.
  */
-function handleExitCodeError(step: Step, env: ProcessEnv, stderr: string, code: number | null, signal: NodeJS.Signals | null) {
+function handleExitCodeError(step: Step, env: ProcessEnv, stdout: string, stderr: string, code: number | null, signal: NodeJS.Signals | null) {
     if (!step.isExternal) {
         logger.log(`Recipe returns with error code ${code}/${signal} on PID ${lw.compile.process?.pid}.`)
         logger.log(`Does the executable exist? $PATH: ${env['PATH']}, $Path: ${env['Path']}, $SHELL: ${process.env.SHELL}`)
-        logger.log(`${stderr}`)
-        lw.parser.parse.log(stderr)
+
+        if (stdout.trim().length > 0) {
+            logger.log(stdout)
+            lw.parser.parse.log(stdout)
+        }
+
+        if (stderr.trim().length > 0) {
+            logger.log(stderr)
+            lw.parser.parse.log(stderr)
+        }
     }
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? lw.file.toUri(step.rootFile) : undefined)
