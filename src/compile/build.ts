@@ -321,6 +321,10 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         lw.compile.process.on('exit', (code, signal) => {
             let isSkipped = false
 
+            // #4838 LaTeX writes messages to stdout, while dvipdfmx writes
+            // messages to stderr, so both output streams need to be parsed.
+            // Both stdout and stderr are parsed every time, but only when they
+            // contain non-whitespace content.
             if (stderr.trim().length > 0) {
                 isSkipped = lw.parser.parse.log(stderr, step.rootFile) || isSkipped
             }
