@@ -1,5 +1,5 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index ab2fe1fe..f5290dbb 100644
+index b94130b66..50b4b218d 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
 @@ -873,7 +873,7 @@ const defaultOptions = {
@@ -79,7 +79,7 @@ index ab2fe1fe..f5290dbb 100644
      };
    }
  }
-@@ -6438,7 +6438,7 @@ const FindState = {
+@@ -6501,7 +6501,7 @@ const FindState = {
    PENDING: 3
  };
  const FIND_TIMEOUT = 250;
@@ -88,7 +88,7 @@ index ab2fe1fe..f5290dbb 100644
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
    "\u2018": "'",
-@@ -8865,6 +8865,9 @@ function renderProgress(index, total) {
+@@ -8940,6 +8940,9 @@ function renderProgress(index, total) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -98,7 +98,7 @@ index ab2fe1fe..f5290dbb 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -9459,7 +9462,7 @@ class PDFSidebar {
+@@ -9534,7 +9537,7 @@ class PDFSidebar {
        this.#dispatchEvent();
        return;
      }
@@ -107,7 +107,7 @@ index ab2fe1fe..f5290dbb 100644
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
      }
-@@ -12921,7 +12924,7 @@ class PDFViewer {
+@@ -12991,7 +12994,7 @@ class PDFViewer {
      this.#enableNewAltTextWhenAddingImage = options.enableNewAltTextWhenAddingImage === true;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
@@ -116,7 +116,7 @@ index ab2fe1fe..f5290dbb 100644
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.maxCanvasDim = options.maxCanvasDim;
      this.capCanvasAreaFactor = options.capCanvasAreaFactor;
-@@ -13700,12 +13703,12 @@ class PDFViewer {
+@@ -13770,12 +13773,12 @@ class PDFViewer {
            hPadding *= 2;
          }
        } else if (this.removePageBorders) {
@@ -132,7 +132,7 @@ index ab2fe1fe..f5290dbb 100644
        switch (value) {
          case "page-actual":
            scale = 1;
-@@ -13817,7 +13820,7 @@ class PDFViewer {
+@@ -13887,7 +13890,7 @@ class PDFViewer {
          let hPadding = SCROLLBAR_PADDING,
            vPadding = VERTICAL_PADDING;
          if (this.removePageBorders) {
@@ -141,7 +141,7 @@ index ab2fe1fe..f5290dbb 100644
          }
          widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
          heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;
-@@ -16016,10 +16019,10 @@ class ViewHistory {
+@@ -16086,10 +16089,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -154,7 +154,7 @@ index ab2fe1fe..f5290dbb 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -16683,7 +16686,7 @@ const PDFViewerApplication = {
+@@ -16753,7 +16756,7 @@ const PDFViewerApplication = {
          title = decodeURIComponent(getFilenameFromUrl(url));
        } catch {}
      }
@@ -163,7 +163,7 @@ index ab2fe1fe..f5290dbb 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -17127,7 +17130,7 @@ const PDFViewerApplication = {
+@@ -17202,7 +17205,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -172,7 +172,7 @@ index ab2fe1fe..f5290dbb 100644
      const pdfTitle = this._docTitle;
      if (pdfTitle) {
        this.setTitle(`${pdfTitle} - ${this._contentDispositionFilename || this._title}`);
-@@ -17252,9 +17255,9 @@ const PDFViewerApplication = {
+@@ -17327,9 +17330,9 @@ const PDFViewerApplication = {
      this.pdfSidebar?.setInitialView(sidebarView);
      setViewerModes(scrollMode, spreadMode);
      if (this.initialBookmark) {
@@ -184,7 +184,7 @@ index ab2fe1fe..f5290dbb 100644
        this.initialBookmark = null;
      } else if (storedHash) {
        setRotation(rotation);
-@@ -17371,8 +17374,8 @@ const PDFViewerApplication = {
+@@ -17446,8 +17449,8 @@ const PDFViewerApplication = {
      eventBus._on("presentationmodechanged", evt => pdfViewer.presentationModeState = evt.state, opts);
      eventBus._on("presentationmode", this.requestPresentationMode.bind(this), opts);
      eventBus._on("switchannotationeditormode", evt => pdfViewer.annotationEditorMode = evt, opts);
@@ -195,7 +195,7 @@ index ab2fe1fe..f5290dbb 100644
      eventBus._on("firstpage", () => this.page = 1, opts);
      eventBus._on("lastpage", () => this.page = this.pagesCount, opts);
      eventBus._on("nextpage", () => pdfViewer.nextPage(), opts);
-@@ -17395,7 +17398,7 @@ const PDFViewerApplication = {
+@@ -17470,7 +17473,7 @@ const PDFViewerApplication = {
      eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
      eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
      eventBus._on("fileinputchange", onFileInputChange.bind(this), opts);
@@ -204,7 +204,7 @@ index ab2fe1fe..f5290dbb 100644
    },
    bindWindowEvents() {
      if (this._windowAbortController) {
-@@ -18403,7 +18406,7 @@ function webViewerLoad() {
+@@ -18478,7 +18481,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -213,7 +213,7 @@ index ab2fe1fe..f5290dbb 100644
      document.dispatchEvent(event);
    }
    PDFViewerApplication.run(config);
-@@ -18417,4 +18420,3 @@ if (document.readyState === "interactive" || document.readyState === "complete")
+@@ -18492,4 +18495,3 @@ if (document.readyState === "interactive" || document.readyState === "complete")
  
  export { PDFViewerApplication, AppConstants as PDFViewerApplicationConstants, AppOptions as PDFViewerApplicationOptions };
  

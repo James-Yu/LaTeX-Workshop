@@ -5314,6 +5314,7 @@
   --csstools-light-dark-toggle--127:var(--csstools-color-scheme--light) rgb(0 0 0 / 0.2);
   --csstools-light-dark-toggle--128:var(--csstools-color-scheme--light) rgb(0 0 0 / 0.4);
   --sidebar-box-shadow:0 0.25px 0.75px var(--csstools-light-dark-toggle--127, rgb(0 0 0 / 0.05)), 0 2px 6px 0 var(--csstools-light-dark-toggle--128, rgb(0 0 0 / 0.1));
+  --sidebar-backdrop-filter:none;
   --sidebar-border-radius:8px;
   --sidebar-padding:5px;
   --sidebar-min-width:180px;
@@ -5382,6 +5383,8 @@
   width:var(--sidebar-width);
   min-width:var(--sidebar-min-width);
   max-width:var(--sidebar-max-width);
+  -webkit-backdrop-filter:var(--sidebar-backdrop-filter);
+          backdrop-filter:var(--sidebar-backdrop-filter);
 }
 
 .sidebar .sidebarResizer{
@@ -5401,6 +5404,11 @@
 
 :is(.sidebar .sidebarResizer):hover{
       background-color:var(--resizer-hover-bg-color);
+    }
+
+:is(.sidebar .sidebarResizer):focus-visible{
+      background-color:var(--resizer-hover-bg-color);
+      outline:none;
     }
 
 .sidebar.resizing{
@@ -6077,7 +6085,6 @@ body.wait::before{
   inset:var(--toolbar-height) 0 0;
   outline:none;
   z-index:0;
-  color-scheme: light !important;
 }
 
 #viewerContainer:not(.pdfPresentationMode){
@@ -6484,60 +6491,64 @@ body.wait::before{
 }
 
 #thumbnailView{
+  --thumbnail-width:98px;
+
+  display:flex;
+  flex-wrap:wrap;
   width:calc(100% - 60px);
   padding:10px 30px 0;
 }
 
-#thumbnailView > a:is(:active, :focus){
-  outline:0;
-}
+#thumbnailView  > a{
+    width:auto;
+    height:auto;
+  }
 
-.thumbnail{
-  --thumbnail-width:0;
-  --thumbnail-height:0;
+:is(#thumbnailView > a)  > .thumbnail{
+      width:var(--thumbnail-width);
+      margin:0 10px 5px;
+      padding:1px;
+      border:7px solid transparent;
+      border-radius:2px;
+    }
 
-  float:var(--inline-start);
-  width:var(--thumbnail-width);
-  height:var(--thumbnail-height);
-  margin:0 10px 5px;
-  padding:1px;
-  border:7px solid transparent;
-  border-radius:2px;
-}
+.selected:is(:is(#thumbnailView > a) > .thumbnail){
+        border-color:var(--thumbnail-selected-color) !important;
+      }
 
-#thumbnailView > a:last-of-type > .thumbnail{
-  margin-bottom:10px;
-}
+.selected:is(:is(#thumbnailView > a) > .thumbnail)  > .thumbnailImage{
+          opacity:1 !important;
+        }
 
-a:focus > .thumbnail,
-.thumbnail:hover{
-  border-color:var(--thumbnail-hover-color);
-}
+.missingThumbnailImage:is(:is(#thumbnailView > a) > .thumbnail){
+        border:1px dashed rgb(132 132 132);
+        padding:7px;
+      }
 
-.thumbnail.selected{
-  border-color:var(--thumbnail-selected-color) !important;
-}
+.missingThumbnailImage:is(:is(#thumbnailView > a) > .thumbnail)  > .thumbnailImage{
+          display:none;
+        }
 
-.thumbnailImage{
-  width:var(--thumbnail-width);
-  height:var(--thumbnail-height);
-  opacity:0.9;
-}
+:is(:is(#thumbnailView > a) > .thumbnail)  > .thumbnailImage{
+        width:100%;
+        opacity:0.9;
+      }
 
-a:focus > .thumbnail > .thumbnailImage,
-.thumbnail:hover > .thumbnailImage{
-  opacity:0.95;
-}
+:is(#thumbnailView > a):is(:active,:focus){
+      outline:0;
+    }
 
-.thumbnail.selected > .thumbnailImage{
-  opacity:1 !important;
-}
+:is(#thumbnailView > a):last-of-type > .thumbnail{
+      margin-bottom:10px;
+    }
 
-.thumbnail:not([data-loaded]) > .thumbnailImage{
-  width:calc(var(--thumbnail-width) - 2px);
-  height:calc(var(--thumbnail-height) - 2px);
-  border:1px dashed rgb(132 132 132);
-}
+:is(#thumbnailView > a):focus > .thumbnail,:is(#thumbnailView > a) .thumbnail:hover{
+      border-color:var(--thumbnail-hover-color);
+    }
+
+:is(:is(#thumbnailView > a):focus > .thumbnail,:is(#thumbnailView > a) .thumbnail:hover)  > .thumbnailImage{
+        opacity:0.95;
+      }
 
 .treeWithDeepNesting > .treeItem,
 .treeItem > .treeItems{
