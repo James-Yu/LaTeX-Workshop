@@ -181,8 +181,8 @@ pdfjs-layers-button =
     .title = Lagen toane (dûbelklik om alle lagen nei de standertsteat werom te setten)
 pdfjs-layers-button-label = Lagen
 pdfjs-thumbs-button =
-    .title = Miniatueren toane
-pdfjs-thumbs-button-label = Miniatueren
+    .title = Foarbylden toane
+pdfjs-thumbs-button-label = Foarbylden
 pdfjs-current-outline-item-button =
     .title = Aktueel item yn ynhâldsopjefte sykje
 pdfjs-current-outline-item-button-label = Aktueel item yn ynhâldsopjefte
@@ -200,7 +200,7 @@ pdfjs-thumb-page-title =
 # Variables:
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
-    .aria-label = Miniatuer fan side { $page }
+    .aria-label = Foarbyld fan side { $page }
 
 ## Find panel button title and messages
 
@@ -630,6 +630,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Annulearje
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = Opmerking bewurkje
 pdfjs-editor-add-comment-button =
     .title = Opmerking tafoegje
 

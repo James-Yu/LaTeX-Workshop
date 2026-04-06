@@ -630,6 +630,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Ακύρωση
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = Επεξεργασία σχολίου
 pdfjs-editor-add-comment-button =
     .title = Προσθήκη σχολίου
 

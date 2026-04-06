@@ -609,6 +609,11 @@ pdfjs-editor-edit-comment-dialog-text-input =
     .placeholder = Bdu tira...
 pdfjs-editor-edit-comment-dialog-cancel-button = Sefsex
 
+## Edit a comment button in the editor toolbar
+
+pdfjs-editor-edit-comment-button =
+    .title = Ẓreg awennit
+
 ## Main menu for adding/removing signatures
 
 pdfjs-editor-delete-signature-button1 =

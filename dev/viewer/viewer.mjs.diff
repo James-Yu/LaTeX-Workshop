@@ -1,8 +1,8 @@
 diff --git a/../../web/viewer.mjs b/../viewer/viewer.mjs
-index d4186b8b9..189c77b06 100644
+index b94130b66..50b4b218d 100644
 --- a/../../web/viewer.mjs
 +++ b/../viewer/viewer.mjs
-@@ -878,7 +878,7 @@ const defaultOptions = {
+@@ -873,7 +873,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    cMapUrl: {
@@ -11,7 +11,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.API
    },
    disableAutoFetch: {
-@@ -914,7 +914,7 @@ const defaultOptions = {
+@@ -909,7 +909,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    iccUrl: {
@@ -20,7 +20,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.API
    },
    isEvalSupported: {
-@@ -934,7 +934,7 @@ const defaultOptions = {
+@@ -929,7 +929,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    standardFontDataUrl: {
@@ -29,7 +29,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.API
    },
    useSystemFonts: {
-@@ -947,7 +947,7 @@ const defaultOptions = {
+@@ -942,7 +942,7 @@ const defaultOptions = {
      kind: OptionKind.API
    },
    wasmUrl: {
@@ -38,7 +38,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.API
    },
    workerPort: {
-@@ -955,7 +955,7 @@ const defaultOptions = {
+@@ -950,7 +950,7 @@ const defaultOptions = {
      kind: OptionKind.WORKER
    },
    workerSrc: {
@@ -47,7 +47,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.WORKER
    }
  };
-@@ -965,7 +965,7 @@ const defaultOptions = {
+@@ -960,7 +960,7 @@ const defaultOptions = {
      kind: OptionKind.VIEWER
    };
    defaultOptions.sandboxBundleSrc = {
@@ -56,7 +56,7 @@ index d4186b8b9..189c77b06 100644
      kind: OptionKind.VIEWER
    };
    defaultOptions.enableFakeMLManager = {
-@@ -2716,7 +2716,7 @@ class Localization {
+@@ -2711,7 +2711,7 @@ class Localization {
        if (typeof console !== "undefined") {
          const locale = bundle.locales[0];
          const ids = Array.from(missingIds).join(", ");
@@ -65,7 +65,7 @@ index d4186b8b9..189c77b06 100644
        }
      }
      if (!hasAtLeastOneBundle && typeof console !== "undefined") {
-@@ -3290,11 +3290,11 @@ class SignatureStorage {
+@@ -3285,11 +3285,11 @@ class SignatureStorage {
  function initCom(app) {}
  class Preferences extends BasePreferences {
    async _writeToStorage(prefObj) {
@@ -79,7 +79,7 @@ index d4186b8b9..189c77b06 100644
      };
    }
  }
-@@ -6540,7 +6540,7 @@ const FindState = {
+@@ -6501,7 +6501,7 @@ const FindState = {
    PENDING: 3
  };
  const FIND_TIMEOUT = 250;
@@ -88,7 +88,7 @@ index d4186b8b9..189c77b06 100644
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
    "\u2018": "'",
-@@ -8978,6 +8978,9 @@ function renderProgress(index, total) {
+@@ -8940,6 +8940,9 @@ function renderProgress(index, total) {
  }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -98,7 +98,16 @@ index d4186b8b9..189c77b06 100644
      window.print();
      event.preventDefault();
      event.stopImmediatePropagation();
-@@ -12848,7 +12851,7 @@ class PDFViewer {
+@@ -9534,7 +9537,7 @@ class PDFSidebar {
+       this.#dispatchEvent();
+       return;
+     }
+-    this.switchView(view, true);
++    this.switchView(view, false);
+     if (!this.isInitialEventDispatched) {
+       this.#dispatchEvent();
+     }
+@@ -12991,7 +12994,7 @@ class PDFViewer {
      this.#enableNewAltTextWhenAddingImage = options.enableNewAltTextWhenAddingImage === true;
      this.imageResourcesPath = options.imageResourcesPath || "";
      this.enablePrintAutoRotate = options.enablePrintAutoRotate || false;
@@ -107,7 +116,7 @@ index d4186b8b9..189c77b06 100644
      this.maxCanvasPixels = options.maxCanvasPixels;
      this.maxCanvasDim = options.maxCanvasDim;
      this.capCanvasAreaFactor = options.capCanvasAreaFactor;
-@@ -13627,12 +13630,12 @@ class PDFViewer {
+@@ -13770,12 +13773,12 @@ class PDFViewer {
            hPadding *= 2;
          }
        } else if (this.removePageBorders) {
@@ -123,7 +132,7 @@ index d4186b8b9..189c77b06 100644
        switch (value) {
          case "page-actual":
            scale = 1;
-@@ -13744,7 +13747,7 @@ class PDFViewer {
+@@ -13887,7 +13890,7 @@ class PDFViewer {
          let hPadding = SCROLLBAR_PADDING,
            vPadding = VERTICAL_PADDING;
          if (this.removePageBorders) {
@@ -132,7 +141,7 @@ index d4186b8b9..189c77b06 100644
          }
          widthScale = (this.container.clientWidth - hPadding) / width / PixelsPerInch.PDF_TO_CSS_UNITS;
          heightScale = (this.container.clientHeight - vPadding) / height / PixelsPerInch.PDF_TO_CSS_UNITS;
-@@ -15943,10 +15946,10 @@ class ViewHistory {
+@@ -16086,10 +16089,10 @@ class ViewHistory {
    }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -145,16 +154,7 @@ index d4186b8b9..189c77b06 100644
    }
    async set(name, val) {
      await this._initializedPromise;
-@@ -16210,7 +16213,7 @@ class ViewsManager extends Sidebar {
-       this.#dispatchEvent();
-       return;
-     }
--    this.switchView(view, true);
-+    this.switchView(view, false);
-     if (!this.isInitialEventDispatched) {
-       this.#dispatchEvent();
-     }
-@@ -17054,7 +17057,7 @@ const PDFViewerApplication = {
+@@ -16753,7 +16756,7 @@ const PDFViewerApplication = {
          title = decodeURIComponent(getFilenameFromUrl(url));
        } catch {}
      }
@@ -163,7 +163,7 @@ index d4186b8b9..189c77b06 100644
    },
    setTitle(title = this._title) {
      this._title = title;
-@@ -17503,7 +17506,7 @@ const PDFViewerApplication = {
+@@ -17202,7 +17205,7 @@ const PDFViewerApplication = {
      this.metadata = metadata;
      this._contentDispositionFilename ??= contentDispositionFilename;
      this._contentLength ??= contentLength;
@@ -172,8 +172,8 @@ index d4186b8b9..189c77b06 100644
      const pdfTitle = this._docTitle;
      if (pdfTitle) {
        this.setTitle(`${pdfTitle} - ${this._contentDispositionFilename || this._title}`);
-@@ -17628,9 +17631,9 @@ const PDFViewerApplication = {
-     this.viewsManager?.setInitialView(sidebarView);
+@@ -17327,9 +17330,9 @@ const PDFViewerApplication = {
+     this.pdfSidebar?.setInitialView(sidebarView);
      setViewerModes(scrollMode, spreadMode);
      if (this.initialBookmark) {
 -      setRotation(this.initialRotation);
@@ -184,7 +184,7 @@ index d4186b8b9..189c77b06 100644
        this.initialBookmark = null;
      } else if (storedHash) {
        setRotation(rotation);
-@@ -17747,8 +17750,8 @@ const PDFViewerApplication = {
+@@ -17446,8 +17449,8 @@ const PDFViewerApplication = {
      eventBus._on("presentationmodechanged", evt => pdfViewer.presentationModeState = evt.state, opts);
      eventBus._on("presentationmode", this.requestPresentationMode.bind(this), opts);
      eventBus._on("switchannotationeditormode", evt => pdfViewer.annotationEditorMode = evt, opts);
@@ -195,7 +195,7 @@ index d4186b8b9..189c77b06 100644
      eventBus._on("firstpage", () => this.page = 1, opts);
      eventBus._on("lastpage", () => this.page = this.pagesCount, opts);
      eventBus._on("nextpage", () => pdfViewer.nextPage(), opts);
-@@ -17771,7 +17774,7 @@ const PDFViewerApplication = {
+@@ -17470,7 +17473,7 @@ const PDFViewerApplication = {
      eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
      eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
      eventBus._on("fileinputchange", onFileInputChange.bind(this), opts);
@@ -204,7 +204,7 @@ index d4186b8b9..189c77b06 100644
    },
    bindWindowEvents() {
      if (this._windowAbortController) {
-@@ -18783,7 +18786,7 @@ function webViewerLoad() {
+@@ -18478,7 +18481,7 @@ function webViewerLoad() {
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -213,7 +213,7 @@ index d4186b8b9..189c77b06 100644
      document.dispatchEvent(event);
    }
    PDFViewerApplication.run(config);
-@@ -18797,4 +18800,3 @@ if (document.readyState === "interactive" || document.readyState === "complete")
+@@ -18492,4 +18495,3 @@ if (document.readyState === "interactive" || document.readyState === "complete")
  
  export { PDFViewerApplication, AppConstants as PDFViewerApplicationConstants, AppOptions as PDFViewerApplicationOptions };
  

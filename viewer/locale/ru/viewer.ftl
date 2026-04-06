@@ -44,10 +44,10 @@ pdfjs-save-button =
 pdfjs-save-button-label = Сохранить
 # Used in Firefox for Android as a tooltip for the download button (“download” is a verb).
 pdfjs-download-button =
-    .title = Скачать
+    .title = Загрузить
 # Used in Firefox for Android as a label for the download button (“download” is a verb).
 # Length of the translation matters since we are in a mobile context, with limited screen estate.
-pdfjs-download-button-label = Скачать
+pdfjs-download-button-label = Загрузить
 pdfjs-bookmark-button =
     .title = Текущая страница (просмотр URL-адреса с текущей страницы)
 pdfjs-bookmark-button-label = Текущая страница
@@ -515,7 +515,7 @@ pdfjs-editor-alt-text-settings-create-model-description = Предлагает �
 pdfjs-editor-alt-text-settings-download-model-label = ИИ-модель альтернативного текста ({ $totalSize } МБ)
 pdfjs-editor-alt-text-settings-ai-model-description = Запускается локально на вашем устройстве, поэтому ваши данные остаются конфиденциальными. Требуется для автоматического альтернативного текста.
 pdfjs-editor-alt-text-settings-delete-model-button = Удалить
-pdfjs-editor-alt-text-settings-download-model-button = Скачать
+pdfjs-editor-alt-text-settings-download-model-button = Загрузить
 pdfjs-editor-alt-text-settings-downloading-model-button = Загрузка…
 pdfjs-editor-alt-text-settings-editor-title = Редактор альтернативного текста
 pdfjs-editor-alt-text-settings-show-dialog-button-label = Сразу показывать редактор альтернативного текста при добавлении изображения
@@ -634,6 +634,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Отмена
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = Редактировать комментарий
 pdfjs-editor-add-comment-button =
     .title = Добавить комментарий
 
