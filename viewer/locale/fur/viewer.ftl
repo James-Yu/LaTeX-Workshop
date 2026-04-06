@@ -630,8 +630,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Anule
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-edit-comment-button =
-    .title = Modifiche coment
+pdfjs-editor-add-comment-button =
+    .title = Zonte coment
 
 ## Main menu for adding/removing signatures
 
