@@ -583,11 +583,11 @@ pdfjs-editor-add-signature-draw-thickness-range-label = Tloušťka
 #   $thickness (Number) - the thickness (in pixels) of the line used to draw a signature.
 pdfjs-editor-add-signature-draw-thickness-range =
     .title = Tloušťka kresby: { $thickness }
-pdfjs-editor-add-signature-image-placeholder = Pro nahrání přetáhněte soubor sem
+pdfjs-editor-add-signature-image-placeholder = Přetáhněte sem soubor, který chcete nahrát
 pdfjs-editor-add-signature-image-browse-link =
     { PLATFORM() ->
-        [macos] Nebo vyberte soubory s obrázky
-       *[other] Nebo vyberte soubory s obrázky
+        [macos] Nebo vyberte soubory obrazu
+       *[other] Nebo vyberte soubory obrazu
     }
 
 ## Controls
@@ -600,7 +600,7 @@ pdfjs-editor-add-signature-clear-button-label = Vymazání podpisu
 pdfjs-editor-add-signature-clear-button =
     .title = Vymazání podpisu
 pdfjs-editor-add-signature-save-checkbox = Uložit podpis
-pdfjs-editor-add-signature-save-warning-message = Dosáhli jste limitu 5 uložených podpisů. Odstraňte jeden a uložte další.
+pdfjs-editor-add-signature-save-warning-message = Dosáhli jste limitu 5 uložených podpisů. Chcete-li uložit další, jeden odstraňte.
 pdfjs-editor-add-signature-image-upload-error-title = Obrázek se nepodařilo nahrát
 pdfjs-editor-add-signature-image-upload-error-description = Zkontrolujte připojení k síti nebo zkuste jiný obrázek.
 pdfjs-editor-add-signature-image-no-data-error-title = Nelze převést tento obrázek na podpis
@@ -638,8 +638,6 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Zrušit
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-edit-comment-button =
-    .title = Upravit komentář
 pdfjs-editor-add-comment-button =
     .title = Přidání komentáře
 

@@ -614,8 +614,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = ยกเลิก
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-edit-comment-button =
-    .title = แก้ไขความคิดเห็น
+pdfjs-editor-add-comment-button =
+    .title = เพิ่มความคิดเห็น
 
 ## Main menu for adding/removing signatures
 
