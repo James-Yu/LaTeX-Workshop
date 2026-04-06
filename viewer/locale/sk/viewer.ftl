@@ -201,19 +201,6 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Miniatúra strany { $page }
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox1 =
-    .title = Vybrať stranu { $page }
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = Vybrať stranu { $page }
-# Variables:
-#   $page (Number) - the page number
-#   $total (Number) - the number of pages
-pdfjs-thumb-page-title1 =
-    .title = Strana { $page } z { $total }
 
 ## Find panel button title and messages
 
@@ -528,7 +515,7 @@ pdfjs-editor-alt-text-settings-create-model-button-label = Automaticky vytvoriť
 pdfjs-editor-alt-text-settings-create-model-description = Navrhuje popisy, ktoré pomôžu ľuďom, ktorým sa obrázok nezobrazuje alebo ak sa obrázok nenačíta.
 # Variables:
 #   $totalSize (Number) - the total size (in MB) of the AI model.
-pdfjs-editor-alt-text-settings-download-model-label = Model AI pre alternatívne texty ({ $totalSize } MB)
+pdfjs-editor-alt-text-settings-download-model-label = Model AI pre alternatívne texty ({ $totalSize } MB)
 pdfjs-editor-alt-text-settings-ai-model-description = Beží lokálne na vašom zariadení, takže vaše dáta zostanú súkromné. Vyžaduje sa pre automatický alternatívny text.
 pdfjs-editor-alt-text-settings-delete-model-button = Odstrániť
 pdfjs-editor-alt-text-settings-download-model-button = Stiahnuť
@@ -553,7 +540,6 @@ pdfjs-editor-undo-bar-message-freetext = Text bol odstránený
 pdfjs-editor-undo-bar-message-ink = Kreslenie bolo odstránené
 pdfjs-editor-undo-bar-message-stamp = Obrázok bol odstránený
 pdfjs-editor-undo-bar-message-signature = Podpis bol odstránený
-pdfjs-editor-undo-bar-message-comment = Komentár odstránený
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple =
@@ -640,6 +626,18 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
+pdfjs-editor-edit-comment-actions-button-label = Akcie
+pdfjs-editor-edit-comment-actions-button =
+    .title = Akcie
+pdfjs-editor-edit-comment-close-button-label = Zavrieť
+pdfjs-editor-edit-comment-close-button =
+    .title = Zavrieť
+pdfjs-editor-edit-comment-actions-edit-button-label = Upraviť
+pdfjs-editor-edit-comment-actions-delete-button-label = Odstrániť
+pdfjs-editor-edit-comment-manager-text-input =
+    .placeholder = Zadajte svoj komentár
+pdfjs-editor-edit-comment-manager-cancel-button = Zrušiť
+pdfjs-editor-edit-comment-manager-save-button = Uložiť
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = Upraviť komentár
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = Aktualizovať
@@ -652,102 +650,10 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Zrušiť
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = Upraviť komentár
 pdfjs-editor-add-comment-button =
     .title = Pridať komentár
-
-## The view manager is a sidebar displaying different views:
-##  - thumbnails;
-##  - outline;
-##  - attachments;
-##  - layers.
-## The thumbnails view is used to edit the pdf: remove/insert pages, ...
-
-pdfjs-toggle-views-manager-button =
-    .title = Prepnúť bočný panel
-pdfjs-toggle-views-manager-notification-button =
-    .title = Prepnúť bočný panel (dokument obsahuje miniatúry/prehľad/prílohy/vrstvy)
-pdfjs-toggle-views-manager-button1-label = Spravovať strany
-pdfjs-toggle-views-manager-button-label = Prepnúť bočný panel
-pdfjs-views-manager-sidebar =
-    .aria-label = Bočný panel
-pdfjs-views-manager-sidebar-resizer =
-    .aria-label = Zmeniť veľkosť bočného panela
-pdfjs-views-manager-view-selector-button =
-    .title = Zobrazenia
-pdfjs-views-manager-view-selector-button-label = Zobrazenia
-pdfjs-views-manager-pages-title = Strany
-pdfjs-views-manager-outlines-title = Prehľad dokumentu
-pdfjs-views-manager-attachments-title = Prílohy
-pdfjs-views-manager-layers-title = Vrstvy
-pdfjs-views-manager-pages-option-label = Strany
-pdfjs-views-manager-outlines-option-label = Prehľad dokumentu
-pdfjs-views-manager-attachments-option-label = Prílohy
-pdfjs-views-manager-layers-option-label = Vrstvy
-pdfjs-views-manager-add-file-button =
-    .title = Pridať súbor
-pdfjs-views-manager-add-file-button-label = Pridať súbor
-# Variables:
-#   $count (Number) - the number of selected pages.
-pdfjs-views-manager-pages-status-action-label =
-    { $count ->
-        [one] { $count } označená
-        [few] { $count } označené
-        [many] { $count } označených
-       *[other] { $count } označených
-    }
-pdfjs-views-manager-pages-status-none-action-label = Vybrať strany
-pdfjs-views-manager-pages-status-action-button-label = Spravovať
-pdfjs-views-manager-pages-status-copy-button-label = Kopírovať
-pdfjs-views-manager-pages-status-cut-button-label = Vystrihnúť
-pdfjs-views-manager-pages-status-delete-button-label = Odstrániť
-pdfjs-views-manager-pages-status-save-as-button-label = Uložiť ako…
-# Variables:
-#   $count (Number) - the number of selected pages to be cut.
-pdfjs-views-manager-status-undo-cut-label =
-    { $count ->
-        [one] Vystrihnutá 1 strana
-        [few] Vystrihnuté { $count } strany
-        [many] Vystrihnutých { $count } strán
-       *[other] Vystrihnutých { $count } strán
-    }
-# Variables:
-#   $count (Number) - the number of selected pages to be copied.
-pdfjs-views-manager-pages-status-undo-copy-label =
-    { $count ->
-        [one] Skopírovaná 1 strana
-        [few] Skopírované { $count } strany
-        [many] Skopírovaných { $count } strán
-       *[other] Skopírovaných { $count } strán
-    }
-# Variables:
-#   $count (Number) - the number of selected pages to be deleted.
-pdfjs-views-manager-pages-status-undo-delete-label =
-    { $count ->
-        [one] Odstránená 1 strana
-        [few] Odstránené { $count } strany
-        [many] Odstránených { $count } strán
-       *[other] Odstránených { $count } strán
-    }
-pdfjs-views-manager-pages-status-waiting-ready-label = Váš súbor sa pripravuje…
-pdfjs-views-manager-pages-status-waiting-uploading-label = Nahráva sa súbor…
-pdfjs-views-manager-status-warning-cut-label = Vystrihnutie sa nepodarilo. Obnovte stránku a skúste to znova.
-pdfjs-views-manager-status-warning-copy-label = Skopírovanie sa nepodarilo. Obnovte stránku a skúste to znova.
-pdfjs-views-manager-status-warning-delete-label = Odstránenie sa nepodarilo. Obnovte stránku a skúste to znova.
-pdfjs-views-manager-status-warning-save-label = Uloženie sa nepodarilo. Obnovte stránku a skúste to znova.
-pdfjs-views-manager-status-undo-button-label = Späť
-pdfjs-views-manager-status-done-button-label = Hotovo
-pdfjs-views-manager-status-close-button =
-    .title = Zavrieť
-pdfjs-views-manager-status-close-button-label = Zavrieť
-pdfjs-views-manager-paste-button-label = Prilepiť
-pdfjs-views-manager-paste-button-before =
-    .title = Vložiť pred prvú stranu
-# Variables:
-#   $page (Number) - the page number after which the paste button is.
-pdfjs-views-manager-paste-button-after =
-    .title = Vložiť za stranu { $page }
-pdfjs-toggle-views-manager-button1 =
-    .title = Spravovať strany
 
 ## Main menu for adding/removing signatures
 

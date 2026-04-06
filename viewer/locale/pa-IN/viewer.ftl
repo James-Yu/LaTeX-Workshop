@@ -201,19 +201,6 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = { $page } ਸਫ਼ੇ ਦਾ ਥੰਮਨੇਲ
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox1 =
-    .title = { $page } ਸਫ਼ੇ ਨੂੰ ਚੁਣੋ
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = { $page } ਸਫ਼ੇ ਨੂੰ ਚੁਣੋ
-# Variables:
-#   $page (Number) - the page number
-#   $total (Number) - the number of pages
-pdfjs-thumb-page-title1 =
-    .title = { $total } ਵਿੱਚੋਂ { $page } ਸਫ਼ਾ
 
 ## Find panel button title and messages
 
@@ -399,8 +386,6 @@ pdfjs-editor-comments-sidebar-close-button =
     .title = ਬਾਹੀ ਨੂੰ ਬੰਦ ਕਰੋ
     .aria-label = ਬਾਹੀ ਨੂੰ ਬੰਦ ਕਰੋ
 pdfjs-editor-comments-sidebar-close-button-label = ਬਾਹੀ ਨੂੰ ਬੰਦ ਕਰੋ
-# Instructional copy to add a comment by selecting text or an annotations.
-pdfjs-editor-comments-sidebar-no-comments1 = ਕੀ ਕੁਝ ਧਿਆਨ ਦੇਣ ਯੋਗ ਵੇਖਿਆ ਹੈ? ਇਸ ਨੂੰ ਉਘਾੜੋ ਅਤੇ ਟਿੱਪਣੀ ਦਿਓ।
 pdfjs-editor-comments-sidebar-no-comments-link = ਹੋਰ ਜਾਣੋ
 
 ## Alt-text dialog
@@ -547,7 +532,6 @@ pdfjs-editor-undo-bar-message-freetext = ਲਿਖਤ ਨੂੰ ਹਟਾਇਆ 
 pdfjs-editor-undo-bar-message-ink = ਡਰਾਇੰਗ ਨੂੰ ਹਟਾਇਆ ਗਿਆ
 pdfjs-editor-undo-bar-message-stamp = ਚਿੱਤਰ ਨੂੰ ਹਟਾਇਆ ਗਿਆ
 pdfjs-editor-undo-bar-message-signature = ਦਸਤਖ਼ਤ ਨੂੰ ਹਟਾਇਆ
-pdfjs-editor-undo-bar-message-comment = ਟਿੱਪਣੀ ਨੂੰ ਹਟਾਇਆ ਗਿਆ
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple =
@@ -632,6 +616,18 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
+pdfjs-editor-edit-comment-actions-button-label = ਕਾਰਵਾਈਆਂ
+pdfjs-editor-edit-comment-actions-button =
+    .title = ਕਾਰਵਾਈਆਂ
+pdfjs-editor-edit-comment-close-button-label = ਬੰਦ ਕਰੋ
+pdfjs-editor-edit-comment-close-button =
+    .title = ਬੰਦ ਕਰੋ
+pdfjs-editor-edit-comment-actions-edit-button-label = ਸੋਧੋ
+pdfjs-editor-edit-comment-actions-delete-button-label = ਹਟਾਓ
+pdfjs-editor-edit-comment-manager-text-input =
+    .placeholder = ਆਪਣੀ ਟਿੱਪਣੀ ਦਿਓ
+pdfjs-editor-edit-comment-manager-cancel-button = ਰੱਦ ਕਰੋ
+pdfjs-editor-edit-comment-manager-save-button = ਸੰਭਾਲੋ
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = ਟਿੱਪਣੀ ਨੂੰ ਸੋਧੋ
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = ਅੱਪਡੇਟ ਕਰੋ
@@ -644,94 +640,8 @@ pdfjs-editor-edit-comment-dialog-cancel-button = ਰੱਦ ਕਰੋ
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-add-comment-button =
-    .title = ਟਿੱਪਣੀ ਜੋੜੋ
-
-## The view manager is a sidebar displaying different views:
-##  - thumbnails;
-##  - outline;
-##  - attachments;
-##  - layers.
-## The thumbnails view is used to edit the pdf: remove/insert pages, ...
-
-pdfjs-toggle-views-manager-button =
-    .title = ਬਾਹੀ ਬਦਲੋ
-pdfjs-toggle-views-manager-notification-button =
-    .title = ਬਾਹੀ ਨੂੰ ਬਦਲੋ (ਦਸਤਾਵੇਜ਼ ਥੰਮਨੇਲ/ਆਨਲਾਈਨਅਟੈਚਮੈਂਟ/ਪਰਤਾਂ ਰੱਖਦਾ ਹੈ)
-pdfjs-toggle-views-manager-button1-label = ਸਫ਼ਿਆਂ ਦਾ ਇੰਤਜ਼ਾਮ
-pdfjs-toggle-views-manager-button-label = ਬਾਹੀ ਨੂੰ ਬਦਲੋ
-pdfjs-views-manager-sidebar =
-    .aria-label = ਬਾਹੀ
-pdfjs-views-manager-sidebar-resizer =
-    .aria-label = ਬਾਹੀ ਦਾ ਆਕਾਰ-ਬਦਲ
-pdfjs-views-manager-view-selector-button =
-    .title = ਵੇਖੋ
-pdfjs-views-manager-view-selector-button-label = ਵੇਖੋ
-pdfjs-views-manager-pages-title = ਸਫ਼ੇ
-pdfjs-views-manager-outlines-title = ਦਸਤਾਵੇਜ਼ ਆਉਟਲਾਈਨ
-pdfjs-views-manager-attachments-title = ਅਟੈਚਮੈਂਟਾਂ
-pdfjs-views-manager-layers-title = ਪਰਤਾਂ
-pdfjs-views-manager-pages-option-label = ਸਫ਼ੇ
-pdfjs-views-manager-outlines-option-label = ਦਸਤਾਵੇਜ਼ ਆਉਟਲਾਈਨ
-pdfjs-views-manager-attachments-option-label = ਅਟੈਚਮੈਂਟਾਂ
-pdfjs-views-manager-layers-option-label = ਪਰਤਾਂ
-pdfjs-views-manager-add-file-button =
-    .title = ਫ਼ਾਇਲ ਨੂੰ ਜੋੜੋ
-pdfjs-views-manager-add-file-button-label = ਫ਼ਾਇਲ ਨੂੰ ਜੋੜੋ
-# Variables:
-#   $count (Number) - the number of selected pages.
-pdfjs-views-manager-pages-status-action-label =
-    { $count ->
-        [one] { $count } ਚੁਣਿਆ
-       *[other] { $count } ਚੁਣੇ
-    }
-pdfjs-views-manager-pages-status-none-action-label = ਸਫ਼ੇ ਚੁਣੋ
-pdfjs-views-manager-pages-status-action-button-label = ਬੰਦੋਬਸਤ
-pdfjs-views-manager-pages-status-copy-button-label = ਕਾਪੀ ਕਰੋ
-pdfjs-views-manager-pages-status-cut-button-label = ਕੱਟੋ
-pdfjs-views-manager-pages-status-delete-button-label = ਹਟਾਓ
-pdfjs-views-manager-pages-status-save-as-button-label = …ਵਜੋਂ ਸੰਭਾਲੋ
-# Variables:
-#   $count (Number) - the number of selected pages to be cut.
-pdfjs-views-manager-status-undo-cut-label =
-    { $count ->
-        [one] 1 ਸਫ਼ੇ ਨੂੰ ਕੱਟਿਆਂ
-       *[other] { $count } ਸਫ਼ਿਆਂ ਨੂੰ ਕੱਟਿਆਂ
-    }
-# Variables:
-#   $count (Number) - the number of selected pages to be copied.
-pdfjs-views-manager-pages-status-undo-copy-label =
-    { $count ->
-        [one] 1 ਸਫ਼ੇ ਨੂੰ ਕਾਪੀ ਕੀਤਾ
-       *[other] { $count } ਸਫ਼ਿਆਂ ਨੂੰ ਕਾਪੀ ਕੀਤਾ
-    }
-# Variables:
-#   $count (Number) - the number of selected pages to be deleted.
-pdfjs-views-manager-pages-status-undo-delete-label =
-    { $count ->
-        [one] 1 ਸਫ਼ੇ ਨੂੰ ਹਟਾਇਆ
-       *[other] { $count } ਸਫ਼ਿਆਂ ਨੂੰ ਹਟਾਇਆ
-    }
-pdfjs-views-manager-pages-status-waiting-ready-label = …ਤੁਹਾਡੀ ਫ਼ਾਇਲ ਨੂੰ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-pdfjs-views-manager-pages-status-waiting-uploading-label = …ਫ਼ਾਇਲ ਨੂੰ ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-pdfjs-views-manager-status-warning-cut-label = ਕੱਟਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
-pdfjs-views-manager-status-warning-copy-label = ਕਾਪੀ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
-pdfjs-views-manager-status-warning-delete-label = ਹਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
-pdfjs-views-manager-status-warning-save-label = ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਸਫ਼ੇ ਨੂੰ ਤਾਜ਼ਾ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।
-pdfjs-views-manager-status-undo-button-label = ਵਾਪਸ
-pdfjs-views-manager-status-done-button-label = ਮੁਕੰਮਲ
-pdfjs-views-manager-status-close-button =
-    .title = ਬੰਦ ਕਰੋ
-pdfjs-views-manager-status-close-button-label = ਬੰਦ ਕਰੋ
-pdfjs-views-manager-paste-button-label = ਚੇਪੋ
-pdfjs-views-manager-paste-button-before =
-    .title = ਪਹਿਲੇ ਸਫ਼ੇ ਦੇ ਬਾਅਦ ਚੇਪੋ
-# Variables:
-#   $page (Number) - the page number after which the paste button is.
-pdfjs-views-manager-paste-button-after =
-    .title = { $page } ਸਫ਼ੇ ਦੇ ਬਾਅਦ ਚੇਪੋ
-pdfjs-toggle-views-manager-button1 =
-    .title = ਸਫ਼ਿਆਂ ਦਾ ਇੰਤਜ਼ਾਮ
+pdfjs-editor-edit-comment-button =
+    .title = ਟਿੱਪਣੀ ਨੂੰ ਸੋਧੋ
 
 ## Main menu for adding/removing signatures
 

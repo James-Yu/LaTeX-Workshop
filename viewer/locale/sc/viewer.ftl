@@ -338,5 +338,6 @@ pdfjs-editor-add-signature-cancel-button = Annulla
 
 ##  Edit a comment dialog
 
+pdfjs-editor-edit-comment-manager-cancel-button = Annulla
 pdfjs-editor-edit-comment-dialog-text-input =
     .placeholder = Cumintza a iscrìere…

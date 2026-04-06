@@ -201,19 +201,6 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Ảnh thu nhỏ của trang { $page }
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox1 =
-    .title = Chọn trang { $page }
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = Chọn trang { $page }
-# Variables:
-#   $page (Number) - the page number
-#   $total (Number) - the number of pages
-pdfjs-thumb-page-title1 =
-    .title = Trang { $page } / { $total }
 
 ## Find panel button title and messages
 
@@ -535,7 +522,6 @@ pdfjs-editor-undo-bar-message-freetext = Đã xóa văn bản
 pdfjs-editor-undo-bar-message-ink = Đã xóa bản vẽ
 pdfjs-editor-undo-bar-message-stamp = Đã xóa hình ảnh
 pdfjs-editor-undo-bar-message-signature = Chữ ký đã bị xoá
-pdfjs-editor-undo-bar-message-comment = Đã xoá chú thích
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple = { $count } chú thích đã bị xóa
@@ -616,6 +602,18 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
+pdfjs-editor-edit-comment-actions-button-label = Hành động
+pdfjs-editor-edit-comment-actions-button =
+    .title = Hành động
+pdfjs-editor-edit-comment-close-button-label = Đóng
+pdfjs-editor-edit-comment-close-button =
+    .title = Đóng
+pdfjs-editor-edit-comment-actions-edit-button-label = Chỉnh sửa
+pdfjs-editor-edit-comment-actions-delete-button-label = Xóa
+pdfjs-editor-edit-comment-manager-text-input =
+    .placeholder = Nhập chú thích của bạn
+pdfjs-editor-edit-comment-manager-cancel-button = Hủy bỏ
+pdfjs-editor-edit-comment-manager-save-button = Lưu
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = Chỉnh sửa chú thích
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = Cập nhật
@@ -628,86 +626,10 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Hủy bỏ
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = Chỉnh sửa chú thích
 pdfjs-editor-add-comment-button =
     .title = Thêm chú thích
-
-## The view manager is a sidebar displaying different views:
-##  - thumbnails;
-##  - outline;
-##  - attachments;
-##  - layers.
-## The thumbnails view is used to edit the pdf: remove/insert pages, ...
-
-pdfjs-toggle-views-manager-button =
-    .title = Bật/tắt thanh lề
-pdfjs-toggle-views-manager-notification-button =
-    .title = Bật tắt thanh lề (tài liệu bao gồm hình thu nhỏ/phác thảo/tập tin đính kèm/lớp)
-pdfjs-toggle-views-manager-button1-label = Quản lý trang
-pdfjs-toggle-views-manager-button-label = Bật/tắt thanh lề
-pdfjs-views-manager-sidebar =
-    .aria-label = Thanh lề
-pdfjs-views-manager-sidebar-resizer =
-    .aria-label = Công cụ điều chỉnh kích thước thanh lề
-pdfjs-views-manager-view-selector-button =
-    .title = Chế độ hiển thị
-pdfjs-views-manager-view-selector-button-label = Chế độ hiển thị
-pdfjs-views-manager-pages-title = Trang
-pdfjs-views-manager-outlines-title1 = Bản phác thảo tài liệu
-    .title = Bản phác thảo tài liệu (nhấp đúp chuột để mở rộng/thu gọn tất cả các mục)
-pdfjs-views-manager-outlines-title = Bản phác thảo tài liệu
-pdfjs-views-manager-attachments-title = Đính kèm
-pdfjs-views-manager-layers-title1 = Lớp
-    .title = Lớp (nhấp đúp chuột để đặt lại tất cả các lớp về trạng thái mặc định.)
-pdfjs-views-manager-layers-title = Lớp
-pdfjs-views-manager-pages-option-label = Trang
-pdfjs-views-manager-outlines-option-label = Bản phác thảo tài liệu
-pdfjs-views-manager-attachments-option-label = Đính kèm
-pdfjs-views-manager-layers-option-label = Lớp
-pdfjs-views-manager-add-file-button =
-    .title = Thêm tập tin
-pdfjs-views-manager-add-file-button-label = Thêm tập tin
-# Variables:
-#   $count (Number) - the number of selected pages.
-pdfjs-views-manager-pages-status-action-label = { $count } đã chọn
-pdfjs-views-manager-pages-status-none-action-label = Chọn trang
-pdfjs-views-manager-pages-status-action-button-label = Quản lý
-pdfjs-views-manager-pages-status-copy-button-label = Sao chép
-pdfjs-views-manager-pages-status-cut-button-label = Cắt
-pdfjs-views-manager-pages-status-delete-button-label = Dán
-pdfjs-views-manager-pages-status-export-selected-button-label = Xuất các mục đã chọn…
-pdfjs-views-manager-pages-status-save-as-button-label = Lưu thành…
-# Variables:
-#   $count (Number) - the number of selected pages to be cut.
-pdfjs-views-manager-status-undo-cut-label = Đã cắt { $count } trang
-# Variables:
-#   $count (Number) - the number of selected pages to be copied.
-pdfjs-views-manager-pages-status-undo-copy-label = Đã sao chép { $count } trang
-# Variables:
-#   $count (Number) - the number of selected pages to be deleted.
-pdfjs-views-manager-pages-status-undo-delete-label = Đã xoá { $count } trang
-pdfjs-views-manager-pages-status-waiting-ready-label = Đang chuẩn bị tập tin của bạn…
-pdfjs-views-manager-pages-status-waiting-uploading-label = Đang tải lên tập tin…
-pdfjs-views-manager-status-warning-cut-label = Không thể cắt. Vui lòng làm mới trang và thử lại.
-pdfjs-views-manager-status-warning-copy-label = Không thể sao chép. Vui lòng làm mới trang và thử lại.
-pdfjs-views-manager-status-warning-delete-label = Không thể xoá. Vui lòng làm mới trang và thử lại.
-pdfjs-views-manager-status-warning-save-label = Không thể lưu. Vui lòng làm mới trang và thử lại.
-pdfjs-views-manager-status-undo-button-label = Hoàn tác
-pdfjs-views-manager-status-done-button-label = Xong
-pdfjs-views-manager-status-close-button =
-    .title = Đóng
-pdfjs-views-manager-status-close-button-label = Đóng
-pdfjs-views-manager-paste-button-label = Dán
-pdfjs-views-manager-paste-button-before =
-    .title = Dán trước trang đầu
-# Variables:
-#   $page (Number) - the page number after which the paste button is.
-pdfjs-views-manager-paste-button-after =
-    .title = Dán sau trang { $page }
-# Badge used to promote a new feature in the UI, keep it as short as possible.
-# It's spelled uppercase for English, but it can be translated as usual.
-pdfjs-new-badge-content = MỚI
-pdfjs-toggle-views-manager-button1 =
-    .title = Quản lý trang
 
 ## Main menu for adding/removing signatures
 

@@ -201,19 +201,6 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = { $page } 페이지 미리보기
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox1 =
-    .title = { $page } 페이지 선택
-# Variables:
-#   $page (Number) - the page number
-pdfjs-thumb-page-checkbox =
-    .aria-label = { $page } 페이지 선택
-# Variables:
-#   $page (Number) - the page number
-#   $total (Number) - the number of pages
-pdfjs-thumb-page-title1 =
-    .title = { $page } / { $total } 페이지
 
 ## Find panel button title and messages
 
@@ -535,7 +522,6 @@ pdfjs-editor-undo-bar-message-freetext = 텍스트 제거됨
 pdfjs-editor-undo-bar-message-ink = 그리기 제거됨
 pdfjs-editor-undo-bar-message-stamp = 이미지 제거됨
 pdfjs-editor-undo-bar-message-signature = 서명 제거됨
-pdfjs-editor-undo-bar-message-comment = 주석 제거됨
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple = 주석 { $count }개 제거됨
@@ -616,6 +602,18 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
+pdfjs-editor-edit-comment-actions-button-label = 동작
+pdfjs-editor-edit-comment-actions-button =
+    .title = 동작
+pdfjs-editor-edit-comment-close-button-label = 닫기
+pdfjs-editor-edit-comment-close-button =
+    .title = 닫기
+pdfjs-editor-edit-comment-actions-edit-button-label = 편집
+pdfjs-editor-edit-comment-actions-delete-button-label = 삭제
+pdfjs-editor-edit-comment-manager-text-input =
+    .placeholder = 주석을 입력하세요
+pdfjs-editor-edit-comment-manager-cancel-button = 취소
+pdfjs-editor-edit-comment-manager-save-button = 저장
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = 주석 편집
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = 업데이트
@@ -628,86 +626,10 @@ pdfjs-editor-edit-comment-dialog-cancel-button = 취소
 
 ## Edit a comment button in the editor toolbar
 
+pdfjs-editor-edit-comment-button =
+    .title = 주석 편집
 pdfjs-editor-add-comment-button =
     .title = 주석 추가
-
-## The view manager is a sidebar displaying different views:
-##  - thumbnails;
-##  - outline;
-##  - attachments;
-##  - layers.
-## The thumbnails view is used to edit the pdf: remove/insert pages, ...
-
-pdfjs-toggle-views-manager-button =
-    .title = 사이드바 표시/숨기기
-pdfjs-toggle-views-manager-notification-button =
-    .title = 사이드바 표시/숨기기 (문서에 미리보기/아웃라인/첨부파일/레이어 포함됨)
-pdfjs-toggle-views-manager-button1-label = 페이지 관리
-pdfjs-toggle-views-manager-button-label = 사이드바 표시/숨기기
-pdfjs-views-manager-sidebar =
-    .aria-label = 사이드바
-pdfjs-views-manager-sidebar-resizer =
-    .aria-label = 사이드바 크기 조정
-pdfjs-views-manager-view-selector-button =
-    .title = 보기
-pdfjs-views-manager-view-selector-button-label = 보기
-pdfjs-views-manager-pages-title = 페이지
-pdfjs-views-manager-outlines-title1 = 문서 아웃라인
-    .title = 문서 아웃라인 (더블 클릭해서 모든 항목 펼치기/접기)
-pdfjs-views-manager-outlines-title = 문서 아웃라인
-pdfjs-views-manager-attachments-title = 첨부파일
-pdfjs-views-manager-layers-title1 = 레이어
-    .title = 레이어 (더블 클릭해서 모든 레이어를 기본 상태로 재설정)
-pdfjs-views-manager-layers-title = 레이어
-pdfjs-views-manager-pages-option-label = 페이지
-pdfjs-views-manager-outlines-option-label = 문서 아웃라인
-pdfjs-views-manager-attachments-option-label = 첨부파일
-pdfjs-views-manager-layers-option-label = 레이어
-pdfjs-views-manager-add-file-button =
-    .title = 파일 추가
-pdfjs-views-manager-add-file-button-label = 파일 추가
-# Variables:
-#   $count (Number) - the number of selected pages.
-pdfjs-views-manager-pages-status-action-label = { $count }개 선택됨
-pdfjs-views-manager-pages-status-none-action-label = 페이지 선택
-pdfjs-views-manager-pages-status-action-button-label = 관리
-pdfjs-views-manager-pages-status-copy-button-label = 복사
-pdfjs-views-manager-pages-status-cut-button-label = 잘라내기
-pdfjs-views-manager-pages-status-delete-button-label = 삭제
-pdfjs-views-manager-pages-status-export-selected-button-label = 선택한 항목 내보내기…
-pdfjs-views-manager-pages-status-save-as-button-label = 다른 이름으로 저장…
-# Variables:
-#   $count (Number) - the number of selected pages to be cut.
-pdfjs-views-manager-status-undo-cut-label = { $count }개 페이지 잘림
-# Variables:
-#   $count (Number) - the number of selected pages to be copied.
-pdfjs-views-manager-pages-status-undo-copy-label = { $count }개 페이지 복사됨
-# Variables:
-#   $count (Number) - the number of selected pages to be deleted.
-pdfjs-views-manager-pages-status-undo-delete-label = { $count }개 페이지 삭제됨
-pdfjs-views-manager-pages-status-waiting-ready-label = 파일 준비 중…
-pdfjs-views-manager-pages-status-waiting-uploading-label = 파일 업로드 중…
-pdfjs-views-manager-status-warning-cut-label = 잘라낼 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
-pdfjs-views-manager-status-warning-copy-label = 복사할 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
-pdfjs-views-manager-status-warning-delete-label = 삭제할 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
-pdfjs-views-manager-status-warning-save-label = 저장할 수 없습니다. 페이지를 새로 고침하고 다시 시도하세요.
-pdfjs-views-manager-status-undo-button-label = 실행 취소
-pdfjs-views-manager-status-done-button-label = 완료
-pdfjs-views-manager-status-close-button =
-    .title = 닫기
-pdfjs-views-manager-status-close-button-label = 닫기
-pdfjs-views-manager-paste-button-label = 붙여넣기
-pdfjs-views-manager-paste-button-before =
-    .title = 첫 페이지 앞에 붙여넣기
-# Variables:
-#   $page (Number) - the page number after which the paste button is.
-pdfjs-views-manager-paste-button-after =
-    .title = { $page } 페이지 뒤에 붙여넣기
-# Badge used to promote a new feature in the UI, keep it as short as possible.
-# It's spelled uppercase for English, but it can be translated as usual.
-pdfjs-new-badge-content = 신규
-pdfjs-toggle-views-manager-button1 =
-    .title = 페이지 관리
 
 ## Main menu for adding/removing signatures
 
