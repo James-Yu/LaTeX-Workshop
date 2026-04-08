@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.14.1] - 2026-04-08
+
+### Fixed
+- (#4842) PDF viewer refreshed to top of file.
+
 ## [10.14.0] - 2026-04-08
 
 ### Added
