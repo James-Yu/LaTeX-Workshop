@@ -23,7 +23,6 @@ with open(args.web + '/viewer.mjs', 'rt', encoding='utf-8') as fin:
         currentClass = ''
         for line in fin:
             line = line \
-                .replace('''const MATCH_SCROLL_OFFSET_TOP = -50;''', '''const MATCH_SCROLL_OFFSET_TOP = -100;''') \
                 .replace('''this.switchView(view, true);''', '''this.switchView(view, false);''') \
                 .replace('''console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''', '''// console.warn(`[fluent] Missing translations in ${locale}: ${ids}`);''') \
                 .replace('''this.removePageBorders = options.removePageBorders || false;''', '''this.removePageBorders = options.removePageBorders || true;''') \
