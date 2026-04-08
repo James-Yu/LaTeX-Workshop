@@ -1,5 +1,19 @@
 # Change Log
 
+## [10.14.0] - 2026-04-08
+
+### Added
+- Update to PDF.js v5.6.205.
+- (#4825) Improved magic comments logic.
+  1. Calling a recipe from the TeX badge overrides any magic comments
+  2. If build is called without any recipe name (i.e., with `ctrl-alt-b` or using the build icon) and magic comments are enabled
+    - If a `% !LW recipe` comment is present, use the recipe given by the magic comment.
+    - If a `% !TEX program` comment is present, use it as a tool to build the file instead of calling a defined recipe.
+- (#4838) Supports `dvipdfmx` log parsing.
+
+### Fixed
+- (#4817) Fix catastrophic backtracking in argument completion regex.
+
 ## [10.13.1] - 2026-02-26
 
 ### Fixed
