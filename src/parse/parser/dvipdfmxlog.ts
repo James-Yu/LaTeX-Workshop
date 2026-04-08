@@ -31,7 +31,7 @@ function showLog() {
 }
 
 type ParserState = {
-    currentType?: 'warning' | 'error'
+    currentType?: 'warning' | 'error',
     dvipdfmxBuffer: string[]
 }
 
