@@ -13,7 +13,7 @@ function hideToolbar(params: Awaited<ReturnType<typeof utils.getParams>>) {
     if (typeof PDFViewerApplication === 'undefined') {
         return
     }
-    if (hideToolbarTimeout === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
+    if (hideToolbarTimeout === undefined && !PDFViewerApplication.findBar.opened && !PDFViewerApplication.viewsManager.isOpen && !PDFViewerApplication.secondaryToolbar.isOpen) {
         hideToolbarTimeout = setTimeout(() => {
             const toolbarDom = document.getElementsByClassName('toolbar')[0]
             toolbarDom.classList.add('hide')
@@ -100,7 +100,7 @@ export async function patchViewerUI() {
 <button class="toolbarButton findNext" title="${getL10n('navForward')} (⇧←)" id="historyForward">
   <span>Forward</span>
 </button>`
-    anchor = document.getElementById('sidebarToggleButton')!.nextElementSibling!
+    anchor = document.getElementById('viewsManagerToggleButton')!.nextElementSibling!
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
@@ -174,7 +174,7 @@ export function registerKeyBind() {
     }
 
     document.getElementById('viewerContainer')!.addEventListener('click', setHistory)
-    document.getElementById('sidebarContainer')!.addEventListener('click', setHistory)
+    document.getElementById('toolbarContainer')!.addEventListener('click', setHistory)
 
     // back button (mostly useful for the embedded viewer)
     document.getElementById('historyBack')!.addEventListener('click', () => { scrollHistory.back() })
@@ -266,10 +266,10 @@ function showToolbar() {
 
 export function registerPersistentState() {
     PDFViewerApplication.eventBus.on('sidebarviewchanged', () => {
-        const sidebarOpen = PDFViewerApplication.pdfSidebar.isOpen
+        const sidebarOpen = PDFViewerApplication.viewsManager.isOpen
         localStorage.setItem('lw-pdf-sidebar-open', sidebarOpen.toString())
         if (sidebarOpen) {
-            localStorage.setItem('lw-pdf-sidebar-view', PDFViewerApplication.pdfSidebar.visibleView.toString())
+            localStorage.setItem('lw-pdf-sidebar-view', PDFViewerApplication.viewsManager.visibleView.toString())
         }
     })
 }

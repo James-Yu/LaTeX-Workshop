@@ -61,7 +61,7 @@ export type PDFViewerApplicationType = {
     pdfCursorTools: {
         switchTool(tool: 0 | 1): void
     },
-    pdfSidebar: {
+    viewsManager: {
         isOpen: boolean,
         visibleView: number,
         switchView(view: number): void,
