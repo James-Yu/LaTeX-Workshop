@@ -179,12 +179,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         describe('urlPrefix configuration', () => {
             let asExternalUriStub: sinon.SinonStub
 
-            beforeEach(() => {
+            before(() => {
                 asExternalUriStub = sinon.stub(vscode.env, 'asExternalUri')
+            })
+
+            beforeEach(() => {
+                asExternalUriStub.reset()
                 set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
             })
 
-            afterEach(() => {
+            after(() => {
                 asExternalUriStub.restore()
                 set.config('view.pdf.internal.urlPrefix', '')
             })
