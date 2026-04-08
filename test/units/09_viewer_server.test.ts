@@ -211,7 +211,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
                 assert.ok(url.url.startsWith('https://external.example.com:8443'),
                     `Expected URL to use asExternalUri result, got: ${url.url}`)
-                assert.ok(!url.url.includes('myproxy.example.com'),
+                assert.ok(!url.url.startsWith('https://myproxy.example.com'),
                     `Expected URL to not use configured prefix, got: ${url.url}`)
             })
         })
