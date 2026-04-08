@@ -176,52 +176,40 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(res.status, 200)
         })
 
-        it('should use configured urlPrefix when asExternalUri returns localhost', async () => {
-            // Stub asExternalUri to simulate reverse proxy returning localhost unchanged
-            const asExternalUriStub = sinon.stub(vscode.env, 'asExternalUri')
-            asExternalUriStub.callsFake((uri: vscode.Uri) => {
-                // Simulate reverse proxy scenario: asExternalUri returns localhost unchanged
-                return Promise.resolve(uri)
+        describe('urlPrefix configuration', () => {
+            let asExternalUriStub: sinon.SinonStub
+
+            beforeEach(() => {
+                asExternalUriStub = sinon.stub(vscode.env, 'asExternalUri')
+                set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
             })
 
-            // Configure the URL prefix
-            set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
+            afterEach(() => {
+                asExternalUriStub.restore()
+                set.config('view.pdf.internal.urlPrefix', '')
+            })
 
-            try {
+            it('should use configured urlPrefix when asExternalUri returns localhost', async () => {
+                asExternalUriStub.callsFake((uri: vscode.Uri) => Promise.resolve(uri))
+
                 const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
-                // Should use the configured prefix instead of localhost
                 assert.ok(url.url.startsWith('https://myproxy.example.com/latex-workshop-pdf'),
                     `Expected URL to start with configured prefix, got: ${url.url}`)
                 assert.ok(url.url.includes('viewer.html'),
                     `Expected URL to contain viewer.html, got: ${url.url}`)
-            } finally {
-                asExternalUriStub.restore()
-                set.config('view.pdf.internal.urlPrefix', '')
-            }
-        })
-
-        it('should not use configured urlPrefix when asExternalUri returns non-localhost', async () => {
-            // Stub asExternalUri to simulate successful port forwarding
-            const asExternalUriStub = sinon.stub(vscode.env, 'asExternalUri')
-            asExternalUriStub.callsFake((uri: vscode.Uri) => {
-                // Simulate successful port forwarding: returns external URL
-                return Promise.resolve(vscode.Uri.parse(`https://external.example.com:8443${uri.path}`))
             })
 
-            // Configure the URL prefix (should be ignored in this case)
-            set.config('view.pdf.internal.urlPrefix', 'https://myproxy.example.com/latex-workshop-pdf')
+            it('should not use configured urlPrefix when asExternalUri returns non-localhost', async () => {
+                asExternalUriStub.callsFake((uri: vscode.Uri) => {
+                    return Promise.resolve(vscode.Uri.parse(`https://external.example.com:8443${uri.path}`))
+                })
 
-            try {
                 const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
-                // Should use the external URL from asExternalUri, not the configured prefix
                 assert.ok(url.url.startsWith('https://external.example.com:8443'),
                     `Expected URL to use asExternalUri result, got: ${url.url}`)
                 assert.ok(!url.url.includes('myproxy.example.com'),
                     `Expected URL to not use configured prefix, got: ${url.url}`)
-            } finally {
-                asExternalUriStub.restore()
-                set.config('view.pdf.internal.urlPrefix', '')
-            }
+            })
         })
 
         it('should prevent directory traversal attack', async () => {
