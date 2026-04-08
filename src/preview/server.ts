@@ -98,7 +98,7 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
                 const candidate = vscode.Uri.parse(configured, true)
                 const hasValidScheme = candidate.scheme === 'http' || candidate.scheme === 'https'
                 if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
-                    return vscode.Uri.parse(configured.replace(/\/$/, ''))
+                    return candidate.with({ path: candidate.path.replace(/\/$/, '') })
                 } else {
                     logger.log(
                         `[Server] Invalid value for "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
