@@ -24,7 +24,7 @@ This project won't be successful without contributions from the community, espec
 
 Thank you so much!
 
-**Note that the latest version of LaTeX-Workshop requires at least VSCode `1.96.0` (December 2024 or later).**
+**Note that the latest version of LaTeX-Workshop requires at least VSCode `1.114.0` (April 2026 or later).**
 
 ## Manual
 
