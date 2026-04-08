@@ -98,6 +98,9 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
                 const candidate = vscode.Uri.parse(configured, true)
                 const hasValidScheme = candidate.scheme === 'http' || candidate.scheme === 'https'
                 if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
+                    // Keep origin validation tied to the actual loopback listen address,
+                    // even when a custom external URL prefix is used for URL construction.
+                    state.validOriginUri = resolvedUri
                     return candidate.with({ path: candidate.path.replace(/\/$/, '') })
                 } else {
                     logger.log(
@@ -114,6 +117,9 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
             }
         }
     }
+    // When no custom prefix is configured, also base origin validation on the
+    // resolved loopback URI.
+    state.validOriginUri = resolvedUri
     return resolvedUri
 }
 
@@ -157,7 +163,9 @@ function initialize(hostname?: string): http.Server {
             if (hostname) {
                 logger.log(`BE AWARE: YOU ARE PUBLIC TO ${hostname} !`)
             }
-            state.validOriginUri = await obtainValidOrigin(address.port, hostname ?? '127.0.0.1')
+            const origUrl = `http://${hostname ?? '127.0.0.1'}:${address.port}/`
+            const resolvedUri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
+            getExternalUrlPrefix(resolvedUri)
             logger.log(`validOrigin is ${getValidOrigin()}`)
             initializeWsServer(httpServer, getValidOrigin())
             // if (initializeResolve) {
@@ -171,12 +179,6 @@ function initialize(hostname?: string): http.Server {
         logger.log(`Error creating LaTeX Workshop http server: ${JSON.stringify(err)} .`)
     })
     return httpServer
-}
-
-async function obtainValidOrigin(serverPort: number, hostname: string): Promise<vscode.Uri> {
-    const origUrl = `http://${hostname}:${serverPort}/`
-    const uri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
-    return uri
 }
 
 function initializeWsServer(httpServer: http.Server, validOrigin: string) {
