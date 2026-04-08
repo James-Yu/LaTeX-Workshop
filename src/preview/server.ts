@@ -110,16 +110,10 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
                 logger.log(
                     `[Server] Failed to parse "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
                     `Falling back to resolved URI "${resolvedUri.toString(true)}".`
-        if (configured) {
-            // Keep origin validation tied to the actual loopback listen address,
-            // even when a custom external URL prefix is used for URL construction.
-            state.validOriginUri = resolvedUri
-            return vscode.Uri.parse(configured.replace(/\/$/, ''))
+                )
+            }
         }
     }
-    // When no custom prefix is configured, also base origin validation on the
-    // resolved loopback URI.
-    state.validOriginUri = resolvedUri
     return resolvedUri
 }
 
