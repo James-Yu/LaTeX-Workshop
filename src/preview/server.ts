@@ -87,7 +87,7 @@ async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Ur
     return { url, uri: vscode.Uri.parse(url, true) }
 }
 
-function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
+function getExternalUrlPrefix(resolvedUri: vscode.Uri, updateValidOrigin: boolean = true): vscode.Uri {
     const authority = resolvedUri.authority
     const host = authority.split(':')[0].toLowerCase()
     if (host === '127.0.0.1' || host === 'localhost') {
@@ -100,7 +100,9 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
                 if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
                     // Keep origin validation tied to the actual loopback listen address,
                     // even when a custom external URL prefix is used for URL construction.
-                    state.validOriginUri = resolvedUri
+                    if (updateValidOrigin) {
+                        state.validOriginUri = resolvedUri
+                    }
                     return candidate.with({ path: candidate.path.replace(/\/$/, '') })
                 } else {
                     logger.log(
@@ -119,7 +121,9 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
     }
     // When no custom prefix is configured, also base origin validation on the
     // resolved loopback URI.
-    state.validOriginUri = resolvedUri
+    if (updateValidOrigin) {
+        state.validOriginUri = resolvedUri
+    }
     return resolvedUri
 }
 
@@ -128,7 +132,7 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri): vscode.Uri {
 // Reuses getExternalUrlPrefix() so validation logic is not duplicated.
 function getConfiguredExternalOrigin(): string | undefined {
     const loopback = vscode.Uri.parse(`http://127.0.0.1:${state.address?.port ?? 0}/`, true)
-    const prefixUri = getExternalUrlPrefix(loopback)
+    const prefixUri = getExternalUrlPrefix(loopback, false)
     if (prefixUri === loopback) { return undefined }
     return `${prefixUri.scheme}://${prefixUri.authority}`
 }
