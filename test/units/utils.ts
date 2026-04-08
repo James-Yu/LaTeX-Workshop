@@ -226,6 +226,7 @@ export class TextDocument implements vscode.TextDocument {
     isClosed: boolean
     eol: vscode.EndOfLine = vscode.EndOfLine.LF
     lineCount: number
+    encoding: string = 'utf8'
 
     constructor(filePath: string, content: string, { languageId = 'latex', isDirty = false, isClosed = false, scheme = 'file' }: { languageId?: string, isDirty?: boolean, isClosed?: boolean, scheme?: string }) {
         this.content = content
