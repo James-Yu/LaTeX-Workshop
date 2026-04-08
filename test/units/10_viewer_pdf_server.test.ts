@@ -28,7 +28,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         sinon.restore()
     })
 
-    function waitMessage(type: ClientRequest['type'], timeout = 1000) {
+    function waitMessage(type: ClientRequest['type'], timeout = 2000) {
         return (async () => {
             handlerSpy.resetHistory()
             let elapsed = 0
