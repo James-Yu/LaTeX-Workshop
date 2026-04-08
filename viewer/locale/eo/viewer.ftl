@@ -201,6 +201,19 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Miniaturo de paĝo { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Elekti paĝon { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox =
+    .aria-label = Elekti paĝon { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Paĝo { $page } el { $total }
 
 ## Find panel button title and messages
 
@@ -534,6 +547,7 @@ pdfjs-editor-undo-bar-message-freetext = Teksto forigita
 pdfjs-editor-undo-bar-message-ink = Desegno forigita
 pdfjs-editor-undo-bar-message-stamp = Bildo forigita
 pdfjs-editor-undo-bar-message-signature = Subskribo forigita
+pdfjs-editor-undo-bar-message-comment = Komento forigita
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple =
@@ -618,18 +632,6 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
-pdfjs-editor-edit-comment-actions-button-label = Agoj
-pdfjs-editor-edit-comment-actions-button =
-    .title = Agoj
-pdfjs-editor-edit-comment-close-button-label = Fermi
-pdfjs-editor-edit-comment-close-button =
-    .title = Fermi
-pdfjs-editor-edit-comment-actions-edit-button-label = Modifi
-pdfjs-editor-edit-comment-actions-delete-button-label = Forigi
-pdfjs-editor-edit-comment-manager-text-input =
-    .placeholder = Tajpu vian komenton
-pdfjs-editor-edit-comment-manager-cancel-button = Nuligi
-pdfjs-editor-edit-comment-manager-save-button = Konservi
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = Modifi komenton
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = Ĝisdatigi
@@ -642,8 +644,102 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Nuligi
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-edit-comment-button =
-    .title = Modifi komenton
+pdfjs-editor-add-comment-button =
+    .title = Aldoni komenton
+
+## The view manager is a sidebar displaying different views:
+##  - thumbnails;
+##  - outline;
+##  - attachments;
+##  - layers.
+## The thumbnails view is used to edit the pdf: remove/insert pages, ...
+
+pdfjs-toggle-views-manager-button =
+    .title = Montri/kaŝi flankan strion
+pdfjs-toggle-views-manager-notification-button =
+    .title = Montri/kaŝi flankan strion (la dokumento enhavas miniaturojn/konturon/kunsendaĵojn/tavolojn)
+pdfjs-toggle-views-manager-button1-label = Administri paĝojn
+pdfjs-toggle-views-manager-button-label = Montri/kaŝi flankan strion
+pdfjs-views-manager-sidebar =
+    .aria-label = Flanka strio
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Dimensiigilo por la flanka strio
+pdfjs-views-manager-view-selector-button =
+    .title = Vidoj
+pdfjs-views-manager-view-selector-button-label = Vidoj
+pdfjs-views-manager-pages-title = Paĝoj
+pdfjs-views-manager-outlines-title1 = Konturo de dokumento
+    .title = Konturo de dokumento (alklaku duoble por faldi/malfaldi ĉiujn elementojn)
+pdfjs-views-manager-outlines-title = Konturo de dokumento
+pdfjs-views-manager-attachments-title = Kunsendaĵoj
+pdfjs-views-manager-layers-title1 = Tavoloj
+    .title = Tavoloj (alklaku duoble por ke ĉiuj tavoloj reiru al la norma stato)
+pdfjs-views-manager-layers-title = Tavoloj
+pdfjs-views-manager-pages-option-label = Paĝoj
+pdfjs-views-manager-outlines-option-label = Konturo de dokumento
+pdfjs-views-manager-attachments-option-label = Kunsendaĵoj
+pdfjs-views-manager-layers-option-label = Tavoloj
+pdfjs-views-manager-add-file-button =
+    .title = Aldoni dosieron
+pdfjs-views-manager-add-file-button-label = Aldoni dosieron
+# Variables:
+#   $count (Number) - the number of selected pages.
+pdfjs-views-manager-pages-status-action-label =
+    { $count ->
+        [one] { $count } elektita
+       *[other] { $count } elektitaj
+    }
+pdfjs-views-manager-pages-status-none-action-label = Elekti paĝojn
+pdfjs-views-manager-pages-status-action-button-label = Administri
+pdfjs-views-manager-pages-status-copy-button-label = Kopii
+pdfjs-views-manager-pages-status-cut-button-label = Eltondi
+pdfjs-views-manager-pages-status-delete-button-label = Forigi
+pdfjs-views-manager-pages-status-export-selected-button-label = Eksporti elektitajn…
+pdfjs-views-manager-pages-status-save-as-button-label = Konservi kiel…
+# Variables:
+#   $count (Number) - the number of selected pages to be cut.
+pdfjs-views-manager-status-undo-cut-label =
+    { $count ->
+        [one] 1 paĝo eltondita
+       *[other] { $count } paĝoj eltonditaj
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be copied.
+pdfjs-views-manager-pages-status-undo-copy-label =
+    { $count ->
+        [one] 1 paĝo kopiita
+       *[other] { $count } paĝoj kopiitaj
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be deleted.
+pdfjs-views-manager-pages-status-undo-delete-label =
+    { $count ->
+        [one] 1 paĝo forigita
+       *[other] { $count } paĝoj forigitaj
+    }
+pdfjs-views-manager-pages-status-waiting-ready-label = Pretigo de via dosiero…
+pdfjs-views-manager-pages-status-waiting-uploading-label = Dosiero alŝutata…
+pdfjs-views-manager-status-warning-cut-label = Ne eblis eltondi. Refreŝigu la paĝon kaj provu denove.
+pdfjs-views-manager-status-warning-copy-label = Ne eblis kopii. Refreŝigu la paĝon kaj provu denove.
+pdfjs-views-manager-status-warning-delete-label = Ne eblis forigi. Refreŝigu la paĝon kaj provu denove.
+pdfjs-views-manager-status-warning-save-label = Ne eblis konservi. Refreŝigu la paĝon kaj provu denove.
+pdfjs-views-manager-status-undo-button-label = Malfari
+pdfjs-views-manager-status-done-button-label = Farita
+pdfjs-views-manager-status-close-button =
+    .title = Fermi
+pdfjs-views-manager-status-close-button-label = Fermi
+pdfjs-views-manager-paste-button-label = Alglui
+pdfjs-views-manager-paste-button-before =
+    .title = Alglui antaŭ la unua paĝo
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Alglui post la paĝo { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NOVA
+pdfjs-toggle-views-manager-button1 =
+    .title = Administri paĝojn
 
 ## Main menu for adding/removing signatures
 

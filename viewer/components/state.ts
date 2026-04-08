@@ -42,7 +42,7 @@ export function uploadState() {
         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
         trim: getTrimValue(),
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
-        sidebarView: PDFViewerApplication.pdfSidebar.visibleView,
+        sidebarView: PDFViewerApplication.viewsManager.visibleView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
         scrollTop: document.getElementById('viewerContainer')!.scrollTop,
         scrollLeft: document.getElementById('viewerContainer')!.scrollLeft,
@@ -60,21 +60,21 @@ export async function setParams() {
     const sidebarContent = document.querySelector('#sidebarContent') as HTMLHtmlElement
 
     if (params.sidebar.open === 'on' || params.sidebar.open === 'persist' && localStorage.getItem('lw-pdf-sidebar-open') === 'true') {
-        PDFViewerApplication.pdfSidebar.open()
+        PDFViewerApplication.viewsManager.open()
     } else if (params.sidebar.open === 'off' || params.sidebar.open === 'persist' && localStorage.getItem('lw-pdf-sidebar-open') === 'false') {
-        PDFViewerApplication.pdfSidebar.close()
+        PDFViewerApplication.viewsManager.close()
     }
 
     if (params.sidebar.view === 'thumbnails') {
-        PDFViewerApplication.pdfSidebar.switchView(1)
+        PDFViewerApplication.viewsManager.switchView(1)
     } else if (params.sidebar.view === 'outline') {
-        PDFViewerApplication.pdfSidebar.switchView(2)
+        PDFViewerApplication.viewsManager.switchView(2)
     } else if (params.sidebar.view === 'attachments') {
-        PDFViewerApplication.pdfSidebar.switchView(3)
+        PDFViewerApplication.viewsManager.switchView(3)
     } else if (params.sidebar.view === 'layers') {
-        PDFViewerApplication.pdfSidebar.switchView(4)
+        PDFViewerApplication.viewsManager.switchView(4)
     } else if (params.sidebar.view === 'persist') {
-        PDFViewerApplication.pdfSidebar.switchView(parseInt(localStorage.getItem('lw-pdf-sidebar-view') ?? '1'))
+        PDFViewerApplication.viewsManager.switchView(parseInt(localStorage.getItem('lw-pdf-sidebar-view') ?? '1'))
     }
 
     PDFViewerApplication.pdfCursorTools.switchTool(params.hand ? 1 : 0)

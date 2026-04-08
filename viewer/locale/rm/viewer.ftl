@@ -616,18 +616,6 @@ pdfjs-editor-delete-comment-popup-button =
 
 ##  Edit a comment dialog
 
-pdfjs-editor-edit-comment-actions-button-label = Acziuns
-pdfjs-editor-edit-comment-actions-button =
-    .title = Acziuns
-pdfjs-editor-edit-comment-close-button-label = Serrar
-pdfjs-editor-edit-comment-close-button =
-    .title = Serrar
-pdfjs-editor-edit-comment-actions-edit-button-label = Modifitgar
-pdfjs-editor-edit-comment-actions-delete-button-label = Stizzar
-pdfjs-editor-edit-comment-manager-text-input =
-    .placeholder = Endatar in commentari
-pdfjs-editor-edit-comment-manager-cancel-button = Interrumper
-pdfjs-editor-edit-comment-manager-save-button = Memorisar
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = Modifitgar il commentari
 # No existing comment
@@ -635,11 +623,6 @@ pdfjs-editor-edit-comment-dialog-title-when-adding = Agiuntar in commentari
 pdfjs-editor-edit-comment-dialog-text-input =
     .placeholder = Cumenzar a tippar…
 pdfjs-editor-edit-comment-dialog-cancel-button = Interrumper
-
-## Edit a comment button in the editor toolbar
-
-pdfjs-editor-edit-comment-button =
-    .title = Modifitgar il commentari
 
 ## Main menu for adding/removing signatures
 

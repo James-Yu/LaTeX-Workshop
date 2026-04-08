@@ -62,7 +62,7 @@ export async function refresh() {
         trim: getTrimValue(),
         scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
-        sidebarView: PDFViewerApplication.pdfSidebar.visibleView ?? prevState?.sidebarView,
+        sidebarView: PDFViewerApplication.viewsManager.visibleView ?? prevState?.sidebarView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode ?? prevState?.spreadMode,
         scrollTop: document.getElementById('viewerContainer')!.scrollTop ?? prevState?.scrollTop,
         scrollLeft: document.getElementById('viewerContainer')!.scrollLeft ?? prevState?.scrollLeft
@@ -117,7 +117,7 @@ export async function restoreState() {
         PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
     }
     if (prevState.sidebarView) {
-        PDFViewerApplication.pdfSidebar.switchView(prevState.sidebarView)
+        PDFViewerApplication.viewsManager.switchView(prevState.sidebarView)
     }
     if (typeof prevState.scrollMode === 'number' && PDFViewerApplication.pdfViewer.scrollMode !== prevState.scrollMode) {
         PDFViewerApplication.pdfViewer.scrollMode = prevState.scrollMode

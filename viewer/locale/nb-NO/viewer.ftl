@@ -201,6 +201,19 @@ pdfjs-thumb-page-title =
 #   $page (Number) - the page number
 pdfjs-thumb-page-canvas =
     .aria-label = Miniatyrbilde av side { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox1 =
+    .title = Velg side { $page }
+# Variables:
+#   $page (Number) - the page number
+pdfjs-thumb-page-checkbox =
+    .aria-label = Velg side { $page }
+# Variables:
+#   $page (Number) - the page number
+#   $total (Number) - the number of pages
+pdfjs-thumb-page-title1 =
+    .title = Side { $page } av { $total }
 
 ## Find panel button title and messages
 
@@ -352,7 +365,7 @@ pdfjs-editor-free-text-color-input = Farge
 pdfjs-editor-free-text-size-input = Størrelse
 pdfjs-editor-ink-color-input = Farge
 pdfjs-editor-ink-thickness-input = Tykkelse
-pdfjs-editor-ink-opacity-input = Ugjennomsiktighet
+pdfjs-editor-ink-opacity-input = Opasitet
 pdfjs-editor-stamp-add-image-button =
     .title = Legg til bilde
 pdfjs-editor-stamp-add-image-button-label = Legg til bilde
@@ -534,6 +547,7 @@ pdfjs-editor-undo-bar-message-freetext = Tekst fjernet
 pdfjs-editor-undo-bar-message-ink = Tegning fjernet
 pdfjs-editor-undo-bar-message-stamp = Bilde fjernet
 pdfjs-editor-undo-bar-message-signature = Signatur fjernet
+pdfjs-editor-undo-bar-message-comment = Kommentar fjernet
 # Variables:
 #   $count (Number) - the number of removed annotations.
 pdfjs-editor-undo-bar-message-multiple =
@@ -618,18 +632,6 @@ pdfjs-show-comment-button =
 
 ##  Edit a comment dialog
 
-pdfjs-editor-edit-comment-actions-button-label = Handlinger
-pdfjs-editor-edit-comment-actions-button =
-    .title = Handlinger
-pdfjs-editor-edit-comment-close-button-label = Lukk
-pdfjs-editor-edit-comment-close-button =
-    .title = Lukk
-pdfjs-editor-edit-comment-actions-edit-button-label = Rediger
-pdfjs-editor-edit-comment-actions-delete-button-label = Slett
-pdfjs-editor-edit-comment-manager-text-input =
-    .placeholder = Skriv inn kommentaren din
-pdfjs-editor-edit-comment-manager-cancel-button = Avbryt
-pdfjs-editor-edit-comment-manager-save-button = Lagre
 # An existing comment is edited
 pdfjs-editor-edit-comment-dialog-title-when-editing = Rediger kommentar
 pdfjs-editor-edit-comment-dialog-save-button-when-editing = Oppdater
@@ -642,8 +644,102 @@ pdfjs-editor-edit-comment-dialog-cancel-button = Avbryt
 
 ## Edit a comment button in the editor toolbar
 
-pdfjs-editor-edit-comment-button =
-    .title = Rediger kommentar
+pdfjs-editor-add-comment-button =
+    .title = Legg til kommentar
+
+## The view manager is a sidebar displaying different views:
+##  - thumbnails;
+##  - outline;
+##  - attachments;
+##  - layers.
+## The thumbnails view is used to edit the pdf: remove/insert pages, ...
+
+pdfjs-toggle-views-manager-button =
+    .title = Vis/skjul sidestolpe
+pdfjs-toggle-views-manager-notification-button =
+    .title = Vis/skjul sidestolpe (dokumentet inneholder miniatyrbilder/disposisjon/vedlegg/lag)
+pdfjs-toggle-views-manager-button1-label = Behandle sider
+pdfjs-toggle-views-manager-button-label = Vis/skjul sidestolpe
+pdfjs-views-manager-sidebar =
+    .aria-label = Sidestolpe
+pdfjs-views-manager-sidebar-resizer =
+    .aria-label = Endre størrelse på sidestolpen
+pdfjs-views-manager-view-selector-button =
+    .title = Visninger
+pdfjs-views-manager-view-selector-button-label = Visninger
+pdfjs-views-manager-pages-title = Sider
+pdfjs-views-manager-outlines-title1 = Dokumentoversikt
+    .title = Dokumentoversikt (dobbeltklikk for å utvide/skjule alle elementer)
+pdfjs-views-manager-outlines-title = Dokumentdisposisjon
+pdfjs-views-manager-attachments-title = Vedlegg
+pdfjs-views-manager-layers-title1 = Lag
+    .title = Lag (dobbeltklikk for å tilbakestille alle lag til standardtilstand)
+pdfjs-views-manager-layers-title = Lag
+pdfjs-views-manager-pages-option-label = Sider
+pdfjs-views-manager-outlines-option-label = Dokumentdisposisjon
+pdfjs-views-manager-attachments-option-label = Vedlegg
+pdfjs-views-manager-layers-option-label = Lag
+pdfjs-views-manager-add-file-button =
+    .title = Legg til fil
+pdfjs-views-manager-add-file-button-label = Legg til fil
+# Variables:
+#   $count (Number) - the number of selected pages.
+pdfjs-views-manager-pages-status-action-label =
+    { $count ->
+        [one] { $count } valgt
+       *[other] { $count } valgt
+    }
+pdfjs-views-manager-pages-status-none-action-label = Velg sider
+pdfjs-views-manager-pages-status-action-button-label = Behandle
+pdfjs-views-manager-pages-status-copy-button-label = Kopier
+pdfjs-views-manager-pages-status-cut-button-label = Klipp ut
+pdfjs-views-manager-pages-status-delete-button-label = Slett
+pdfjs-views-manager-pages-status-export-selected-button-label = Eksporter valgte…
+pdfjs-views-manager-pages-status-save-as-button-label = Lagre som …
+# Variables:
+#   $count (Number) - the number of selected pages to be cut.
+pdfjs-views-manager-status-undo-cut-label =
+    { $count ->
+        [one] 1 side klippet ut
+       *[other] { $count } sider klippet ut
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be copied.
+pdfjs-views-manager-pages-status-undo-copy-label =
+    { $count ->
+        [one] 1 side kopiert
+       *[other] { $count } sider kopiert
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be deleted.
+pdfjs-views-manager-pages-status-undo-delete-label =
+    { $count ->
+        [one] 1 side slettet
+       *[other] { $count } sider slettet
+    }
+pdfjs-views-manager-pages-status-waiting-ready-label = Klargjør filen din …
+pdfjs-views-manager-pages-status-waiting-uploading-label = Laster opp filen …
+pdfjs-views-manager-status-warning-cut-label = Kunne ikke klippe ut. Oppdater siden og prøv på nytt.
+pdfjs-views-manager-status-warning-copy-label = Kunne ikke kopiere. Oppdater siden og prøv på nytt.
+pdfjs-views-manager-status-warning-delete-label = Kunne ikke slette. Oppdater siden og prøv på nytt.
+pdfjs-views-manager-status-warning-save-label = Kunne ikke lagre. Oppdater siden og prøv på nytt.
+pdfjs-views-manager-status-undo-button-label = Angre
+pdfjs-views-manager-status-done-button-label = Ferdig
+pdfjs-views-manager-status-close-button =
+    .title = Lukk
+pdfjs-views-manager-status-close-button-label = Lukk
+pdfjs-views-manager-paste-button-label = Lim inn
+pdfjs-views-manager-paste-button-before =
+    .title = Lim inn før første side
+# Variables:
+#   $page (Number) - the page number after which the paste button is.
+pdfjs-views-manager-paste-button-after =
+    .title = Lim inn etter side { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NY
+pdfjs-toggle-views-manager-button1 =
+    .title = Behandle sider
 
 ## Main menu for adding/removing signatures
 
