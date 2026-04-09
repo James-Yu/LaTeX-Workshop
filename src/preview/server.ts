@@ -107,7 +107,7 @@ function getExternalUrlPrefix(resolvedUri: vscode.Uri, updateValidOrigin: boolea
                 } else {
                     logger.log(
                         `[Server] Invalid value for "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
-                        `Expected an absolute http/https URL without query or fragment. ` +
+                        'Expected an absolute http/https URL without query or fragment. ' +
                         `Falling back to resolved URI "${resolvedUri.toString(true)}".`
                     )
                 }
