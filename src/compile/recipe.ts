@@ -67,6 +67,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Create build tools based on the recipe system
     const tools = await createBuildTools(rootFile, langId, recipeName)
+    normalizeBuildDirectoryArgs(rootFile, cwd, tools)
 
     // Create output subdirectories for included files
     if (tools?.map(tool => tool.command).includes('latexmk') && rootFile === lw.root.subfiles.path && lw.root.file.path) {
@@ -96,6 +97,36 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
     await buildLoop()
 }
 
+const BUILD_DIRECTORY_ARGUMENT_PATTERN = /^(-(?:out|aux)(?:-directory|dir)=)(.*)$/
+
+function normalizeBuildDirectoryArgs(rootFile: string, cwd: string, tools: Tool[] | undefined) {
+    if (!tools) {
+        return
+    }
+
+    const rootDir = path.dirname(rootFile)
+    tools.forEach(tool => {
+        tool.args = tool.args?.map(arg => normalizeBuildDirectoryArg(arg, cwd, rootDir))
+    })
+}
+
+function normalizeBuildDirectoryArg(arg: string, cwd: string, rootDir: string): string {
+    const match = arg.match(BUILD_DIRECTORY_ARGUMENT_PATTERN)
+    if (!match || !match[2] || path.isAbsolute(match[2])) {
+        return arg
+    }
+
+    const resolvedFromRoot = path.resolve(rootDir, match[2])
+    const relativeToCwd = path.relative(cwd, resolvedFromRoot)
+    const normalizedValue = (relativeToCwd === '' ? '.' : (path.isAbsolute(relativeToCwd) ? resolvedFromRoot : relativeToCwd)).split(path.sep).join('/')
+    const normalizedArg = `${match[1]}${normalizedValue}`
+
+    if (normalizedArg !== arg) {
+        logger.log(`Normalize build directory argument: ${arg} -> ${normalizedArg}`)
+    }
+    return normalizedArg
+}
+
 /**
  * Create subdirectories of the output directory. This is necessary as some
  * LaTeX macros do not create the output directory themselves.
@@ -110,7 +141,7 @@ async function createAuxSubFolders(rootFile: string) {
     }
     logger.log(`RootFile auxDir: ${auxDir} .`)
     for (const file of lw.cache.getIncludedTeX(rootFile)) {
-        const relativePath = path.dirname(file.replace(rootDir, '.'))
+        const relativePath = path.dirname(path.relative(rootDir, file))
         const fullAuxDir = path.resolve(auxDir, relativePath)
         // To avoid issues when fullAuxDir is the root dir
         // Using fs.mkdir() on the root directory even with recursion will result in an error

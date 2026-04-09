@@ -628,11 +628,19 @@ async function loadFlsFile(filePath: string): Promise<void> {
     for (const outputFile of ioFiles.output) {
         if (path.extname(outputFile) === '.aux' && await lw.file.exists(outputFile)) {
             logger.log(`Found .aux ${outputFile} from .fls ${flsPath} , parsing.`)
-            await parseAuxFile(outputFile, path.dirname(outputFile).replace(auxDir, rootDir))
+            await parseAuxFile(outputFile, getSourceDirFromAuxFile(outputFile, auxDir, rootDir))
             logger.log(`Parsed .aux ${outputFile} .`)
         }
     }
     logger.log(`Parsed .fls ${flsPath} .`)
+}
+
+function getSourceDirFromAuxFile(outputFile: string, auxDir: string, rootDir: string): string {
+    const outputDir = path.dirname(outputFile)
+    const relativePath = path.relative(auxDir, outputDir)
+    const isUnderAuxDir = relativePath === '' || (!relativePath.startsWith('..') && !path.isAbsolute(relativePath))
+
+    return isUnderAuxDir ? path.resolve(rootDir, relativePath) : outputDir
 }
 
 /**

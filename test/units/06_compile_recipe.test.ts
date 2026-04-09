@@ -232,6 +232,25 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.deepStrictEqual(mkdirStub.getCall(0).args[1], { recursive: true })
         })
 
+        it('should create aux subdirectories correctly when Windows path casing differs', async () => {
+            if (process.platform !== 'win32') {
+                return
+            }
+
+            const rootFile = set.root('main.tex')
+            const includedFile = get.path('sub', 'main.tex').replace(/^([a-zA-Z]):/, (_, drive: string) => drive.toUpperCase() + ':')
+            const expectedOutDir = path.resolve(path.dirname(rootFile), 'output', 'sub')
+            const stub = sinon.stub(lw.file, 'exists').resolves(false)
+            getAuxDirStub.returns('output')
+            getIncludedTeXStub.returns([includedFile])
+
+            await build(rootFile, 'latex', async () => {})
+            stub.restore()
+
+            assert.strictEqual(mkdirStub.callCount, 1)
+            assert.pathStrictEqual(mkdirStub.getCall(0).args[0] as string, expectedOutDir)
+        })
+
         it('should not create the aux directory if it already exists', async () => {
             const rootFile = set.root('main.tex')
             const relativeOutDir = 'output'
@@ -713,6 +732,27 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.listStrictEqual(stub.getCall(0).args, [rootFile, 'out', 'aux'])
+        })
+
+        it('should normalize outdir and auxdir relative to the workspace cwd', async () => {
+            set.config('latex.build.fromWorkspaceFolder', true)
+            set.config('latex.outDir', 'output')
+            set.config('latex.auxDir', 'aux')
+            set.config('latex.tools', [
+                {
+                    name: 'latexmk',
+                    command: 'latexmk',
+                    args: ['-outdir=%OUTDIR%', '-auxdir=%AUXDIR%'],
+                    env: {},
+                },
+            ])
+            const rootFile = set.root('sub', 'main.tex')
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-outdir=sub/output', '-auxdir=sub/aux'])
         })
 
         it('should process environment variables correctly', async () => {

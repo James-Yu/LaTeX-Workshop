@@ -804,6 +804,37 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.loadFlsFile(toParse)
             assert.ok(lw.watcher.bib.has(vscode.Uri.file(get.path(fixture, 'load_aux_file', 'main.bib'))))
         })
+
+        it('should map aux paths back to the root dir when Windows path casing differs', async () => {
+            if (process.platform !== 'win32') {
+                return
+            }
+
+            const toParse = get.path(fixture, 'load_aux_file', 'main.tex')
+            const auxPath = get.path(fixture, 'load_aux_file', 'main.aux').replace(/^([a-zA-Z]):/, (_, drive: string) => drive.toUpperCase() + ':')
+            const getFlsPathStub = sinon.stub(lw.file, 'getFlsPath').resolves('mock.fls')
+            const readStub = sinon.stub(lw.file, 'read').callsFake(async (filePath: string) => {
+                if (filePath === 'mock.fls') {
+                    return `OUTPUT ${auxPath}`
+                }
+                if (filePath === auxPath) {
+                    return '\\bibdata{main}'
+                }
+                return undefined
+            })
+            const existsStub = sinon.stub(lw.file, 'exists').resolves({ type: vscode.FileType.File, ctime: 0, mtime: 0, size: 0 })
+            const bibPathStub = sinon.stub(lw.file, 'getBibPath').resolves([])
+
+            await lw.cache.loadFlsFile(toParse)
+
+            getFlsPathStub.restore()
+            readStub.restore()
+            existsStub.restore()
+            bibPathStub.restore()
+
+            assert.ok(bibPathStub.calledOnce)
+            assert.pathStrictEqual(bibPathStub.getCall(0).args[1] as string, path.dirname(toParse))
+        })
     })
 
     describe('lw.cache.getIncludedBib', () => {
