@@ -39,7 +39,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     after(async () => {
-        await sleep(3000)
+        await sleep(1000)
         sinon.restore()
     })
 
