@@ -37,6 +37,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         beforeEach(() => {
             ;(lw.cache.wait as sinon.SinonStub).resetHistory()
             ;(lw.cache.get as sinon.SinonStub).resetHistory()
+            outlineTesting.state.cachedDTX = undefined
+            outlineTesting.state.cachedBib = undefined
+            outlineTesting.state.cachedTeX = undefined
         })
 
         afterEach(() => {
