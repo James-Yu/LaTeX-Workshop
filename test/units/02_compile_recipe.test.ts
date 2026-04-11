@@ -42,7 +42,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const expectedImageName = 'your-docker-image'
 
             await set.codeConfig('docker.image.latex', expectedImageName)
-            await sleep(300)
+            await sleep(150)
 
             assert.strictEqual(process.env['LATEXWORKSHOP_DOCKER_LATEX'], expectedImageName)
         })
@@ -51,7 +51,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const expectedDockerPath = '/usr/local/bin/docker'
 
             await set.codeConfig('docker.path', expectedDockerPath)
-            await sleep(300)
+            await sleep(150)
 
             assert.strictEqual(process.env['LATEXWORKSHOP_DOCKER_PATH'], expectedDockerPath)
         })

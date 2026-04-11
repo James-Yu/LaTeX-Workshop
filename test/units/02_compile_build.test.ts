@@ -38,7 +38,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         findStub.resetHistory()
     })
 
-    after(() => {
+    after(async () => {
+        await sleep(3000)
         sinon.restore()
     })
 
