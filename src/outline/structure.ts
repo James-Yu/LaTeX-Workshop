@@ -153,3 +153,8 @@ const state = {
     view: vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider, showCollapseAll: true }),
     treeDataProvider
 }
+
+export const testing = {
+    traverseSectionTree,
+    state
+}
