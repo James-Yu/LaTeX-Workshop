@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set, type TextDocument } from './utils'
-import { type FileCache } from '../../src/types'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set, type TextDocument } from '../utils'
+import { type FileCache } from '../../../src/types'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { testing as outlineTesting } from '../../src/outline/structure'
-import { TeXElementType, type TeXElement } from '../../src/types'
+import { testing as outlineTesting } from '../../../src/outline/structure'
+import { TeXElementType, type TeXElement } from '../../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     let activeStub: sinon.SinonStub

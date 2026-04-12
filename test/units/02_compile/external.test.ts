@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, mock, set } from './utils'
-import { lw } from '../../src/lw'
-import * as lwUtils from '../../src/utils/utils'
-import { queue } from '../../src/compile/queue'
-import { build } from '../../src/compile/external'
-import type { ExternalStep } from '../../src/types'
+import { assert, get, mock, set } from '../utils'
+import { lw } from '../../../src/lw'
+import * as lwUtils from '../../../src/utils/utils'
+import { queue } from '../../../src/compile/queue'
+import { build } from '../../../src/compile/external'
+import type { ExternalStep } from '../../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {

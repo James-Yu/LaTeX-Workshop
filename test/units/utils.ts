@@ -61,6 +61,9 @@ assert.hasCompilerLog = (message: string | RegExp) => {
 }
 
 export const get = {
+    fixture: (filename: string) => {
+        return filename.split(path.sep).slice(-2, -1)[0] + path.sep + path.basename(filename).split('.')[0]
+    },
     path: (...paths: string[]) => {
         const result = path.resolve(
             vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',

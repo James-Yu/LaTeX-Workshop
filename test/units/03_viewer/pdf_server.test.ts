@@ -3,14 +3,14 @@ import * as os from 'os'
 import * as path from 'path'
 import * as ws from 'ws'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { locate, view, viewInWebviewPanel } from '../../src/preview/viewer'
-import * as manager from '../../src/preview/viewer/pdfviewermanager'
-import { assert, get, mock, set, sleep } from './utils'
-import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
+import { lw } from '../../../src/lw'
+import { locate, view, viewInWebviewPanel } from '../../../src/preview/viewer'
+import * as manager from '../../../src/preview/viewer/pdfviewermanager'
+import { assert, get, mock, set, sleep } from '../utils'
+import type { ClientRequest } from '../../../types/latex-workshop-protocol-types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     const pdfPath = get.path(fixture, 'main.pdf')
     const pdfUri = vscode.Uri.file(pdfPath)
     let handlerSpy: sinon.SinonSpy

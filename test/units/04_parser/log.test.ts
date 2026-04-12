@@ -1,11 +1,11 @@
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set } from './utils'
-import { parser } from '../../src/parse/parser'
-import { bibtexLogParser } from '../../src/parse/parser/bibtexlog'
-import { biberLogParser } from '../../src/parse/parser/biberlog'
-import { latexLogParser } from '../../src/parse/parser/latexlog'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set } from '../utils'
+import { parser } from '../../../src/parse/parser'
+import { bibtexLogParser } from '../../../src/parse/parser/bibtexlog'
+import { biberLogParser } from '../../../src/parse/parser/biberlog'
+import { latexLogParser } from '../../../src/parse/parser/latexlog'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {

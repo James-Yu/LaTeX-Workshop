@@ -3,12 +3,12 @@ import * as path from 'path'
 import * as ws from 'ws'
 import * as sinon from 'sinon'
 import fetch from 'node-fetch'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set, sleep } from './utils'
-import type { ClientRequest, PdfViewerParams } from '../../types/latex-workshop-protocol-types'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set, sleep } from '../utils'
+import type { ClientRequest, PdfViewerParams } from '../../../types/latex-workshop-protocol-types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     let handlerStub: sinon.SinonStub
     let websocket: ws.WebSocket
 

@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock } from './utils'
-import { provider } from '../../src/completion/completer/class'
+import { lw } from '../../../src/lw'
+import { assert, get, mock } from '../utils'
+import { provider } from '../../../src/completion/completer/class'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     const texPath = get.path(fixture, 'main.tex')
 
     before(() => {

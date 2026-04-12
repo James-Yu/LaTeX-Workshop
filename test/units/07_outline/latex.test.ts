@@ -1,13 +1,13 @@
 import * as path from 'path'
 import * as sinon from 'sinon'
 import type * as Ast from '@unified-latex/unified-latex-types'
-import { lw } from '../../src/lw'
-import type { FileCache, TeXElement } from '../../src/types'
-import { TeXElementType } from '../../src/types'
-import { InputFileRegExp } from '../../src/utils/inputfilepath'
-import * as utils from '../../src/utils/utils'
-import { construct, outline } from '../../src/outline/structure/latex'
-import { assert, get, mock, set } from './utils'
+import { lw } from '../../../src/lw'
+import type { FileCache, TeXElement } from '../../../src/types'
+import { TeXElementType } from '../../../src/types'
+import { InputFileRegExp } from '../../../src/utils/inputfilepath'
+import * as utils from '../../../src/utils/utils'
+import { construct, outline } from '../../../src/outline/structure/latex'
+import { assert, get, mock, set } from '../utils'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
 	const cache = new Map<string, FileCache>()

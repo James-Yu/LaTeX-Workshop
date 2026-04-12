@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, mock, set, sleep } from './utils'
-import { lw } from '../../src/lw'
+import { assert, get, mock, set, sleep } from '../utils'
+import { lw } from '../../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     let _onDidChangeSpy: sinon.SinonSpy
     const callOnDidChange = async (event: 'create' | 'change', uri: vscode.Uri) => { await _onDidChangeSpy.call(lw.watcher.src, event, uri) }
     let _onDidDeleteSpy: sinon.SinonSpy
