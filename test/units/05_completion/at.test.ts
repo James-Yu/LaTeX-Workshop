@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set, type TextDocument } from './utils'
-import { provider } from '../../src/completion/completer/atsuggestion'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set, type TextDocument } from '../utils'
+import { provider } from '../../../src/completion/completer/atsuggestion'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     const texPath = get.path(fixture, 'main.tex')
     let document: TextDocument
     let atSpy: sinon.SinonSpy

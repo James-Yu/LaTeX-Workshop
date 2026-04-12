@@ -8,12 +8,19 @@ async function runTestSuites(fixture: 'testground' | 'multiroot' | 'unittest') {
         const extensionDevelopmentPath = path.resolve(__dirname, '../../')
         const extensionTestsPath = fixture === 'unittest' ? path.resolve(__dirname, './units/index') : path.resolve(__dirname, './suites/index')
 
+        let fixturePath = ''
+        if (fixture === 'testground' || fixture === 'multiroot') {
+            fixturePath = 'test/fixtures/' + fixture + (fixture === 'multiroot' ? '/resource.code-workspace' : '')
+        } else {
+            fixturePath = 'test/units'
+        }
+
         await runTests({
             version: '1.114.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
-                'test/fixtures/' + fixture + (fixture === 'multiroot' ? '/resource.code-workspace' : ''),
+                fixturePath,
                 '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
                 '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
                 '--disable-gpu'

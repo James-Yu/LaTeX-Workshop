@@ -3,12 +3,12 @@ import * as path from 'path'
 import * as ws from 'ws'
 import * as sinon from 'sinon'
 import fetch from 'node-fetch'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set, sleep } from './utils'
-import type { ClientRequest, PdfViewerParams } from '../../types/latex-workshop-protocol-types'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set, sleep } from '../utils'
+import type { ClientRequest, PdfViewerParams } from '../../../types/latex-workshop-protocol-types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     let handlerStub: sinon.SinonStub
     let websocket: ws.WebSocket
 
@@ -31,7 +31,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     }
 
-    describe('lw.viewer->server.WsServer', () => {
+    describe('lw.server->.WsServer', () => {
         it('should handle websocket messages', async () => {
             handlerStub.resetHistory()
             websocket.send(JSON.stringify({ type: 'ping' }))
@@ -52,7 +52,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.viewer->server.initialize', () => {
+    describe('lw.server->.initialize', () => {
         async function waitInitialize(hostname?: string, newPort?: number, timeout = 1000) {
             const originalPort = lw.server.getPort()
             if (newPort === undefined || newPort === originalPort) {
@@ -96,7 +96,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-    describe('lw.viewer->server.handler', () => {
+    describe('lw.server->.handler', () => {
         it('should be set up to the http server', async () => {
             const url = await lw.server.getUrl()
             const res = await fetch(url.url + '/non-existent-file.html')

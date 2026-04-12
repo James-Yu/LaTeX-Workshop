@@ -1,14 +1,14 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set } from './utils'
-import { provider as macroProvider } from '../../src/completion/completer/macro'
-import { provider as packageProvider } from '../../src/completion/completer/package'
-import type { CompletionProvider } from '../../src/types'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set } from '../utils'
+import { provider as macroProvider } from '../../../src/completion/completer/macro'
+import { provider as packageProvider } from '../../../src/completion/completer/package'
+import type { CompletionProvider } from '../../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     const texPath = get.path(fixture, 'main.tex')
     let readStub: sinon.SinonStub
 

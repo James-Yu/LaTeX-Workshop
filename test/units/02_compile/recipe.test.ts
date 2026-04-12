@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import Sinon, * as sinon from 'sinon'
-import { assert, get, log, mock, set, sleep } from './utils'
-import { lw } from '../../src/lw'
-import { build, initialize } from '../../src/compile/recipe'
-import { queue } from '../../src/compile/queue'
+import { assert, get, log, mock, set, sleep } from '../utils'
+import { lw } from '../../../src/lw'
+import { build, initialize } from '../../../src/compile/recipe'
+import { queue } from '../../../src/compile/queue'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     let getAuxDirStub: sinon.SinonStub

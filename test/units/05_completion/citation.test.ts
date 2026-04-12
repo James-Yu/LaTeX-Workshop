@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set } from './utils'
-import { citation, provider } from '../../src/completion/completer/citation'
-import type { CitationItem, FileCache } from '../../src/types'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set } from '../utils'
+import { citation, provider } from '../../../src/completion/completer/citation'
+import type { CitationItem, FileCache } from '../../../src/types'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
 
     before(() => {
         mock.init(lw, 'root', 'cache', 'parser', 'completion')

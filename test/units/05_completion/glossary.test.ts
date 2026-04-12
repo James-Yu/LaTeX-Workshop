@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { lw } from '../../src/lw'
-import { assert, get, mock, set } from './utils'
-import { glossary, provider } from '../../src/completion/completer/glossary'
+import { lw } from '../../../src/lw'
+import { assert, get, mock, set } from '../utils'
+import { glossary, provider } from '../../../src/completion/completer/glossary'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
     const texPath = get.path(fixture, 'main.tex')
     const glsPath = get.path(fixture, 'gls.tex')
     let readStub: sinon.SinonStub

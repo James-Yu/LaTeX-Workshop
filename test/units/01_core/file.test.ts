@@ -2,12 +2,12 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, mock, set } from './utils'
-import { lw } from '../../src/lw'
-import { initialize } from '../../src/core/file'
+import { assert, get, mock, set } from '../utils'
+import { lw } from '../../../src/lw'
+import { initialize } from '../../../src/core/file'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
 
     before(() => {
         mock.init(lw)

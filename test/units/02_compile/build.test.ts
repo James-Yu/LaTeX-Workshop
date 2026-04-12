@@ -3,11 +3,11 @@ import type { SpawnOptions } from 'child_process'
 import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, log, mock, set, sleep } from './utils'
-import { lw } from '../../src/lw'
-import { autoBuild, build } from '../../src/compile/build'
-import * as pick from '../../src/utils/quick-pick'
-import { terminate } from '../../src/compile/terminate'
+import { assert, get, log, mock, set, sleep } from '../utils'
+import { lw } from '../../../src/lw'
+import { autoBuild, build } from '../../../src/compile/build'
+import * as pick from '../../../src/utils/quick-pick'
+import { terminate } from '../../../src/compile/terminate'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     let activeStub: sinon.SinonStub
@@ -38,7 +38,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         findStub.resetHistory()
     })
 
-    after(() => {
+    after(async () => {
+        await sleep(1000)
         sinon.restore()
     })
 

@@ -1,7 +1,7 @@
 import * as path from 'path'
-import { assert } from './utils'
-import { MathFixer } from '../../src/extras/math-fixer'
-import { QuoteFixer } from '../../src/extras/quote-fixer'
+import { assert } from '../utils'
+import { MathFixer } from '../../../src/extras/math-fixer'
+import { QuoteFixer } from '../../../src/extras/quote-fixer'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     describe('MathFixer', () => {

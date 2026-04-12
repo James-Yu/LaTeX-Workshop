@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
-import { assert, get, log, mock, set, sleep } from './utils'
-import { lw } from '../../src/lw'
+import { assert, get, log, mock, set, sleep } from '../utils'
+import { lw } from '../../../src/lw'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const fixture = path.basename(__filename).split('.')[0]
+    const fixture = get.fixture(__filename)
 
     before(() => {
         mock.init(lw, 'watcher', 'cache')
