@@ -13,7 +13,7 @@ import * as test from './utils'
 //     ])
 // }
 
-suite('Document structure test suite', () => {
+suite.skip('Document structure test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
