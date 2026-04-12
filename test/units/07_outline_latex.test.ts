@@ -619,10 +619,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			const resolveFileStub = sinon.stub(utils, 'resolveFile').callsFake((_dirs: string[], file: string) => {
 				switch (file) {
 					case 'sub/s1':
+					case 'sub\\s1': // Windows path
 						return Promise.resolve(s1)
 					case 's2.tex':
 						return Promise.resolve(s2)
 					case 'sub/s3.tex':
+					case 'sub\\s3.tex': // Windows path
 						return Promise.resolve(s3)
 					default:
 						return Promise.resolve(undefined)
