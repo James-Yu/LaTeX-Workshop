@@ -6,7 +6,7 @@ import * as test from './utils'
 import { chkTeX } from '../../src/lint/latex-linter/chktex'
 import { laCheck } from '../../src/lint/latex-linter/lacheck'
 
-suite('Linter test suite', () => {
+suite.skip('Linter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 

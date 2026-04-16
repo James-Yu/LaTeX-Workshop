@@ -1,4 +1,3 @@
-import * as cp from 'child_process'
 import { lw } from '../lw'
 import { queue } from './queue'
 
@@ -7,8 +6,8 @@ const logger = lw.log('Build', 'Terminate')
 /**
  * Terminate the current process of LaTeX building. This OS-specific function
  * uses a kill command (pkill for Linux and macOS, taskkill for Windows) with
- * the process PID. Regardless of success, `kill()` from the `child_process`
- * module is later called for a "double kill." Subsequent tools in the queue,
+ * the process PID. Regardless of success, `kill()` on the running process is
+ * later called for a "double kill." Subsequent tools in the queue,
  * including those from the current recipe and (if available) those from the
  * cached recipe to be executed, are cleared.
  */
@@ -22,10 +21,16 @@ export function terminate() {
         logger.log(`Kill child processes of the current process with PID ${pid}.`)
         if (process.platform === 'linux' || process.platform === 'darwin') {
             // Use pkill to kill child processes
-            cp.execSync(`pkill -P ${pid}`, { timeout: 1000 })
+            const result = lw.external.sync('pkill', ['-P', `${pid}`], { timeout: 1000, encoding: 'utf8' })
+            if (result.error || result.status !== 0) {
+                throw result.error ?? new Error(result.stderr.toString() || result.stdout.toString() || 'pkill failed.')
+            }
         } else if (process.platform === 'win32') {
             // Use taskkill on Windows to forcefully terminate child processes
-            cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 1000 })
+            const result = lw.external.sync('taskkill', ['/F', '/T', '/PID', `${pid}`], { timeout: 1000, encoding: 'utf8' })
+            if (result.error || result.status !== 0) {
+                throw result.error ?? new Error(result.stderr.toString() || result.stdout.toString() || 'taskkill failed.')
+            }
         }
     } catch (e) {
         logger.logError('Failed killing child processes of the current process.', e)
@@ -33,7 +38,7 @@ export function terminate() {
         // Clear all subsequent tools in the queue
         queue.clear()
 
-        // Perform a "double kill" using kill() from child_process
+        // Perform a "double kill" using kill() on the build process
         lw.compile.process.kill()
         logger.log(`Killed the current process with PID ${pid}`)
     }
