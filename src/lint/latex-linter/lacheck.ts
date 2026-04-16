@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
+import type { ChildProcess } from 'child_process'
 import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
 import { processWrapper } from './utils'
@@ -18,7 +18,7 @@ export const laCheck: LaTeXLinter = {
     parseLog
 }
 
-let linterProcess: ChildProcessWithoutNullStreams | undefined
+let linterProcess: ChildProcess | undefined
 
 async function lintRootFile(rootPath: string) {
     const stdout = await lacheckWrapper('root', lw.file.toUri(rootPath), rootPath, undefined)
@@ -49,7 +49,7 @@ async function lacheckWrapper(linterid: string, configScope: vscode.Configuratio
     try {
         linterProcess?.kill()
         logger.logCommand(`Linter for ${getName()} command`, command, [ filePath ])
-        linterProcess = spawn(command, [ filePath ], { cwd: path.dirname(filePath) })
+        linterProcess = lw.external.spawn(command, [ filePath ], { cwd: path.dirname(filePath) })
         stdout = await processWrapper(linterid, linterProcess, content)
     } catch (err: any) {
         if ('stdout' in err) {

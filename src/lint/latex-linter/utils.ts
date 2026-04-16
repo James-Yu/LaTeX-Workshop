@@ -1,12 +1,24 @@
 import * as os from 'os'
-import type { ChildProcessWithoutNullStreams } from 'child_process'
+import type { ChildProcess } from 'child_process'
 import { lw } from '../../lw'
 
 const logger = lw.log('Linter')
 
-export function processWrapper(linterId: string, proc: ChildProcessWithoutNullStreams, stdin?: string): Promise<string> {
+export function processWrapper(linterId: string, proc: ChildProcess, stdin?: string): Promise<string> {
     return new Promise((resolve, reject) => {
         const startTime = process.hrtime()
+
+        if (!proc.stdout || !proc.stderr) {
+            const error = new Error(`Linter for ${linterId} does not provide stdout/stderr streams.`)
+            logger.log(error.message)
+            return reject(error)
+        }
+
+        if (stdin !== undefined && !proc.stdin) {
+            const error = new Error(`Linter for ${linterId} does not provide a stdin stream.`)
+            logger.log(error.message)
+            return reject(error)
+        }
 
         proc.stdout.setEncoding('binary')
         proc.stderr.setEncoding('binary')
@@ -44,12 +56,18 @@ export function processWrapper(linterId: string, proc: ChildProcessWithoutNullSt
         })
 
         if (stdin !== undefined) {
-            proc.stdin.write(stdin)
+            const procStdin = proc.stdin
+            if (!procStdin) {
+                const error = new Error(`Linter for ${linterId} does not provide a stdin stream.`)
+                logger.log(error.message)
+                return reject(error)
+            }
+            procStdin.write(stdin)
             if (!stdin.endsWith(os.EOL)) {
                 // Always ensure we end with EOL otherwise ChkTeX will report line numbers as off by 1.
-                proc.stdin.write(os.EOL)
+                procStdin.write(os.EOL)
             }
-            proc.stdin.end()
+            procStdin.end()
         }
     })
 }

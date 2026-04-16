@@ -7,7 +7,7 @@ import { lint } from '../../../src/lint/latex-linter'
 import { chkTeX } from '../../../src/lint/latex-linter/chktex'
 import { laCheck } from '../../../src/lint/latex-linter/lacheck'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
         mock.init(lw, 'lint')
     })

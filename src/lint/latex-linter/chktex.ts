@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
-import { ChildProcessWithoutNullStreams, spawn } from 'child_process'
+import type { ChildProcess } from 'child_process'
 import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
 import { processWrapper } from './utils'
@@ -19,7 +19,7 @@ export const chkTeX: LaTeXLinter = {
     parseLog
 }
 
-let linterProcess: ChildProcessWithoutNullStreams | undefined
+let linterProcess: ChildProcess | undefined
 
 async function lintRootFile(rootPath: string) {
     const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', rootPath]
@@ -62,7 +62,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
     try {
         linterProcess?.kill()
         logger.logCommand(`Linter for ${getName()} command`, command, args.concat(requiredArgs).filter(arg => arg !== ''))
-        linterProcess = spawn(command, args.concat(requiredArgs).filter(arg => arg !== ''), { cwd: path.dirname(filePath) })
+        linterProcess = lw.external.spawn(command, args.concat(requiredArgs).filter(arg => arg !== ''), { cwd: path.dirname(filePath) })
         stdout = await processWrapper(linterid, linterProcess, content)
     } catch (err: any) {
         if ('stdout' in err) {
