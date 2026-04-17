@@ -86,7 +86,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))
+			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))
 			assert.strictEqual(diags?.length, 1)
 			assert.match(diags?.[0].message ?? '', /double space at/)
 			assert.strictEqual(diags?.[0].severity, vscode.DiagnosticSeverity.Warning)
@@ -105,9 +105,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))?.length, 1)
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/sub/s.tex'))?.length, 1)
-			assert.match(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/sub/s.tex'))?.[0].message ?? '', /double space at/)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'sub/s.tex')))?.length, 1)
+			assert.match(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'sub/s.tex')))?.[0].message ?? '', /double space at/)
 		})
 
 		it('should parse two-line arrow format and combine messages', async () => {
@@ -119,7 +119,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))
+			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))
 			assert.strictEqual(diags?.length, 1)
 			assert.strictEqual(diags?.[0].message, 'perhaps a typo -> consider rewriting at Line 9')
 		})
@@ -133,7 +133,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))
+			const diags = laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))
 			assert.strictEqual(diags?.length, 1)
 			assert.strictEqual(diags?.[0].message, 'perhaps a typo')
 		})
@@ -146,7 +146,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))?.length, 0)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))?.length, 0)
 		})
 
 		it('should clear previous diagnostics before adding new diagnostics', async () => {
@@ -172,7 +172,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/sub/s.tex'))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'sub/s.tex')))?.length, 1)
 		})
 
 		it('should resolve relative paths from lw.root.file.path when filePath is undefined', async () => {
@@ -184,7 +184,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/workspace/project/sub/s.tex'))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/workspace/project', 'sub/s.tex')))?.length, 1)
 		})
 
 		it('should report diagnostics only on supported file extensions', async () => {
@@ -202,11 +202,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))?.length, 1)
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/bibstyle.bbx'))?.length, 1)
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/citation.cbx'))?.length, 1)
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/doc.dtx'))?.length, 1)
-			assert.ok(!laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/style.sty'))?.length)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'bibstyle.bbx')))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'citation.cbx')))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'doc.dtx')))?.length, 1)
+			assert.ok(!laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'style.sty')))?.length)
 		})
 
 		it('should convert filename encoding when file does not exist and conversion is enabled', async () => {
@@ -221,7 +221,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			convertStub.restore()
 
 			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/converted.tex'))?.length, 1)
-			assert.ok(!laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/missing.tex'))?.length)
+			assert.ok(!laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'missing.tex')))?.length)
 		})
 
 		it('should keep original filename when conversion returns undefined', async () => {
@@ -235,7 +235,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			fileExistsStub.restore()
 			convertStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/missing.tex'))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'missing.tex')))?.length, 1)
 		})
 	})
 
@@ -266,7 +266,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			spawnStub.restore()
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp', 'main.tex')))?.length, 1)
 		})
 
 		it('should return without parsing when spawn throws without stdout', async () => {
@@ -330,7 +330,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			spawnStub.restore()
 			fileExistsStub.restore()
 
-			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file('/tmp/project/main.tex'))?.length, 1)
+			assert.strictEqual(laCheck.linterDiagnostics.get(vscode.Uri.file(path.resolve('/tmp/project', 'main.tex')))?.length, 1)
 		})
 
 		it('should return without parsing when lintFile spawn throws without stdout', async () => {
