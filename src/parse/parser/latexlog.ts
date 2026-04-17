@@ -47,7 +47,7 @@ function clearLog() {
 }
 
 function showLog() {
-    showCompilerDiagnostics(texDiagnostics, buildLog)
+    void showCompilerDiagnostics(texDiagnostics, buildLog)
 }
 
 type ParserState = {

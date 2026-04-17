@@ -214,7 +214,7 @@ async function callConvertColumn(column: number, filePathArg: string, line: numb
     if (!configuration.get('linting.chktex.convertOutput.column.enabled', true)) {
         return column
     }
-    const filePath = convertFilenameEncoding(filePathArg)
+    const filePath = await convertFilenameEncoding(filePathArg)
     if (!filePath){
         logger.log(`Column number not converted on non-existent ${filePathArg} .`)
         return column
@@ -286,7 +286,7 @@ async function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
             // Only report ChkTeX errors on TeX files. This is done to avoid
             // reporting errors in .sty files, which are irrelevant for most users.
             if (!await lw.file.exists(file1) && convEnc) {
-                const f = convertFilenameEncoding(file1)
+                const f = await convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f
                 }

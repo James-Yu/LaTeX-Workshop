@@ -27,7 +27,7 @@ function clearLog() {
 }
 
 function showLog() {
-    showCompilerDiagnostics(dvipdfmxDiagnostics, buildLog)
+    void showCompilerDiagnostics(dvipdfmxDiagnostics, buildLog)
 }
 
 type ParserState = {

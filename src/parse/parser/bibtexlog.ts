@@ -27,7 +27,7 @@ function clearLog() {
 }
 
 function showLog() {
-    showCompilerDiagnostics(bibDiagnostics, buildLog)
+    void showCompilerDiagnostics(bibDiagnostics, buildLog)
 }
 
 function parse(log: string, rootFile?: string) {

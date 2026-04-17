@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import { lw } from '../../lw'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
@@ -43,7 +42,7 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'error': vscode.DiagnosticSeverity.Error,
 }
 
-export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[]) {
+export async function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[]) {
     diagnostics.clear()
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
     for (const item of buildLog) {
@@ -69,8 +68,8 @@ export function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection
     const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
     for (const file in diagsCollection) {
         let file1 = file
-        if (!fs.existsSync(file1) && convEnc) {
-            const f = convertFilenameEncoding(file1)
+        if (!await lw.file.exists(file1) && convEnc) {
+            const f = await convertFilenameEncoding(file1)
             if (f !== undefined) {
                 file1 = f
             }
