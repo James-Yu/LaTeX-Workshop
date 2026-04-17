@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import * as os from 'os'
 import type { ChildProcess } from 'child_process'
 import { lw } from '../../lw'
@@ -29,8 +28,8 @@ async function lintRootFile(rootPath: string) {
         return
     }
 
-    const tabSize = getChktexrcTabSize(rootPath)
-    parseLog(stdout, undefined, tabSize)
+    const tabSize = await getChktexrcTabSize(rootPath)
+    await parseChktexLog(stdout, undefined, tabSize)
 }
 
 async function lintFile(document: vscode.TextDocument) {
@@ -43,8 +42,8 @@ async function lintFile(document: vscode.TextDocument) {
     }
     // provide the original path to the active file as the second argument, so
     // we report this second path in the diagnostics instead of the temporary one.
-    const tabSize = getChktexrcTabSize(document.fileName)
-    parseLog(stdout, filePath, tabSize)
+    const tabSize = await getChktexrcTabSize(document.fileName)
+    await parseChktexLog(stdout, filePath, tabSize)
 }
 
 async function chktexWrapper(linterid: string, configScope: vscode.ConfigurationScope, filePath: string, requiredArgs: string[], content?: string): Promise<string | undefined> {
@@ -52,7 +51,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
     const command = configuration.get('linting.chktex.exec.path') as string
     const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
     if (!args.includes('-l')) {
-        const rcPath = getRcPath()
+        const rcPath = await getRcPath()
         if (rcPath) {
             args.push('-l', rcPath)
         }
@@ -75,7 +74,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
     return stdout
 }
 
-function getRcPath() {
+async function getRcPath() {
     let rcPath: string
     // 0. root file folder
     const root = lw.root.file.path
@@ -84,7 +83,7 @@ function getRcPath() {
     } else {
         return
     }
-    if (fs.existsSync(rcPath)) {
+    if (await lw.file.exists(rcPath)) {
         return rcPath
     }
 
@@ -93,13 +92,13 @@ function getRcPath() {
     if (workspaceFolder) {
         rcPath = path.resolve(workspaceFolder.uri.fsPath, './.chktexrc')
     }
-    if (fs.existsSync(rcPath)) {
+    if (await lw.file.exists(rcPath)) {
         return rcPath
     }
     return
 }
 
-function globalRcPath(): string | undefined {
+async function globalRcPath(): Promise<string | undefined> {
     const rcPathArray: string[] = []
     if (os.platform() === 'win32') {
         if (process.env.CHKTEXRC) {
@@ -123,14 +122,14 @@ function globalRcPath(): string | undefined {
         }
     }
     for (const rcPath of rcPathArray) {
-        if (fs.existsSync(rcPath)) {
+        if (await lw.file.exists(rcPath)) {
             return rcPath
         }
     }
     return
 }
 
-function getChktexrcTabSize(file: string): number | undefined {
+async function getChktexrcTabSize(file: string): Promise<number | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(file))
     const args = configuration.get('linting.chktex.exec.args') as string[]
     let filePath: string | undefined
@@ -138,23 +137,27 @@ function getChktexrcTabSize(file: string): number | undefined {
         const idx = args.indexOf('-l')
         if (idx >= 0) {
             const rcpath = args[idx+1]
-            if (fs.existsSync(rcpath)) {
+            if (rcpath && await lw.file.exists(rcpath)) {
                 filePath = rcpath
             }
         }
     } else {
-        const rcPath = getRcPath()
+        const rcPath = await getRcPath()
         if (rcPath) {
             filePath = rcPath
         } else {
-            filePath = globalRcPath()
+            filePath = await globalRcPath()
         }
     }
     if (!filePath) {
         logger.log('No .chktexrc file is found to determine TabSize.')
         return
     }
-    const rcFile = fs.readFileSync(filePath).toString()
+    const rcFile = await lw.file.read(filePath)
+    if (rcFile === undefined) {
+        logger.log(`Unable to read .chktexrc ${filePath} to determine TabSize.`)
+        return
+    }
     const reg = /^\s*TabSize\s*=\s*(\d+)\s*$/m
     const match = reg.exec(rcFile)
     if (match) {
@@ -166,7 +169,11 @@ function getChktexrcTabSize(file: string): number | undefined {
     return
 }
 
-function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
+function parseLog(log: string, singleFileOriginalPath?: string) {
+    void parseChktexLog(log, singleFileOriginalPath)
+}
+
+async function parseChktexLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
     const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
     const linterLog: ChkTeXLogEntry[] = []
     let match = re.exec(log)
@@ -178,7 +185,7 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
             filePath = path.resolve(lw.root.dir.path, filePath)
         }
         const line = parseInt(match[2])
-        const column = callConvertColumn(parseInt(match[3]), filePath, line, tabSizeArg)
+        const column = await callConvertColumn(parseInt(match[3]), filePath, line, tabSizeArg)
         linterLog.push({
             file: filePath,
             line,
@@ -199,10 +206,10 @@ function parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: num
         // clean existing records.
         chkTeX.linterDiagnostics.set(lw.file.toUri(singleFileOriginalPath), [])
     }
-    showLinterDiagnostics(linterLog)
+    await showLinterDiagnostics(linterLog)
 }
 
-function callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
+async function callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): Promise<number> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.root.getWorkspace())
     if (!configuration.get('linting.chktex.convertOutput.column.enabled', true)) {
         return column
@@ -212,7 +219,12 @@ function callConvertColumn(column: number, filePathArg: string, line: number, ta
         logger.log(`Column number not converted on non-existent ${filePathArg} .`)
         return column
     }
-    const lineString = fs.readFileSync(filePath).toString().split('\n')[line-1]
+    const fileContent = await lw.file.read(filePath)
+    if (fileContent === undefined) {
+        logger.log(`Column number not converted on unreadable ${filePathArg} .`)
+        return column
+    }
+    const lineString = fileContent.split('\n')[line-1]
     let tabSize: number | undefined
     const tabSizeConfig = configuration.get('linting.chktex.convertOutput.column.chktexrcTabSize', -1)
     if (tabSizeConfig >= 0) {
@@ -251,7 +263,7 @@ function convertColumn(colArg: number, lineString: string, tabSize = 8): number 
     return i + 1
 }
 
-function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
+async function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
     for (const item of linterLog) {
         const range = new vscode.Range(
@@ -273,7 +285,7 @@ function showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
         if (['.tex', '.bbx', '.cbx', '.dtx'].includes(path.extname(file))) {
             // Only report ChkTeX errors on TeX files. This is done to avoid
             // reporting errors in .sty files, which are irrelevant for most users.
-            if (!fs.existsSync(file1) && convEnc) {
+            if (!await lw.file.exists(file1) && convEnc) {
                 const f = convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f

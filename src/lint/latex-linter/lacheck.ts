@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import type { ChildProcess } from 'child_process'
 import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
@@ -100,10 +99,10 @@ function parseLog(log: string, filePath?: string) {
     }
     logger.log(`Logged ${linterLog.length} messages.`)
     laCheck.linterDiagnostics.clear()
-    showLinterDiagnostics(linterLog)
+    void showLinterDiagnostics(linterLog)
 }
 
-function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
+async function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
     const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
     for (const item of linterLog) {
         const range = new vscode.Range(
@@ -124,7 +123,7 @@ function showLinterDiagnostics(linterLog: LaCheckLogEntry[]) {
         if (['.tex', '.bbx', '.cbx', '.dtx'].includes(path.extname(file))) {
             // Only report LaCheck errors on TeX files. This is done to avoid
             // reporting errors in .sty files, which are irrelevant for most users.
-            if (!fs.existsSync(file1) && convEnc) {
+            if (!await lw.file.exists(file1) && convEnc) {
                 const f = convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f
