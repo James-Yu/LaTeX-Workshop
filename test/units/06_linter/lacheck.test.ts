@@ -8,7 +8,7 @@ import { lw } from '../../../src/lw'
 import { laCheck } from '../../../src/lint/latex-linter/lacheck'
 import * as convertFilename from '../../../src/utils/convertfilename'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
 	before(() => {
 		mock.init(lw, 'lint')
 	})

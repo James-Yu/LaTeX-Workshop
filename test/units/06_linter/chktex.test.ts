@@ -210,7 +210,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             fileExistsStub.restore()
 
             // Should resolve 'main.tex' relative to lw.root.dir.path ('/tmp')
-            const diags = chkTeX.linterDiagnostics.get(vscode.Uri.file('/tmp/main.tex'))
+            const diags = chkTeX.linterDiagnostics.get(vscode.Uri.file(path.resolve(lw.root.dir.path!, 'main.tex')))
             assert.strictEqual(diags?.length, 1)
         })
 
@@ -680,7 +680,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             // First existence check should be for /tmp/.chktexrc (root file folder)
             const firstCheck = existsCalls.find(p => p.endsWith('.chktexrc'))
-            assert.ok(firstCheck?.startsWith('/tmp'))
+            const rootDir = path.resolve(path.dirname(lw.root.file.path!))
+            assert.ok(firstCheck !== undefined && firstCheck.startsWith(rootDir))
         })
 
         it('should look for .chktexrc in workspace folder if not found next to root', async () => {
@@ -728,8 +729,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
     describe('globalRcPath (via getChktexrcTabSize)', () => {
         it('should check HOME/.chktexrc on non-Windows when HOME is set', async () => {
-            const originalPlatform = Object.getOwnPropertyDescriptor(process, 'platform')
-            Object.defineProperty(process, 'platform', { value: 'linux', configurable: true })
+            if (process.platform === 'win32') { return }
             const originalHome = process.env.HOME
             process.env.HOME = '/home/testuser'
 
@@ -750,9 +750,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             fileReadStub.restore()
             fileExistsStub.restore()
             process.env.HOME = originalHome
-            if (originalPlatform) {
-                Object.defineProperty(process, 'platform', originalPlatform)
-            }
 
             // globalRcPath is called via getChktexrcTabSize when no rc file is found at project level
             // The existence of HOME/.chktexrc should be checked
@@ -760,8 +757,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should check CHKTEXRC/chktexrc on Windows when CHKTEXRC is set', async () => {
-            const originalPlatform = Object.getOwnPropertyDescriptor(process, 'platform')
-            Object.defineProperty(process, 'platform', { value: 'win32', configurable: true })
+            if (process.platform !== 'win32') { return }
             const originalChktexrc = process.env.CHKTEXRC
             process.env.CHKTEXRC = 'C:\\chktex'
 
@@ -782,9 +778,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             fileReadStub.restore()
             fileExistsStub.restore()
             process.env.CHKTEXRC = originalChktexrc
-            if (originalPlatform) {
-                Object.defineProperty(process, 'platform', originalPlatform)
-            }
 
             assert.ok(existsCalls.some(p => p.includes('chktexrc')))
         })
