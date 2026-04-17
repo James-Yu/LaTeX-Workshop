@@ -15,7 +15,9 @@ export const outline = {
 
 lw.onConfigChange(['view.outline.sections', 'view.outline.commands'], async () => {
     await lw.parser.parse.reset()
-    lw.cache.paths().forEach(async filePath => {
+    // The undefined check is needed to avoid test complaints about the cache
+    // being undefined. This is possible due to frequent cache resets in tests.
+    lw.cache.paths()?.forEach(async filePath => {
         const ast = lw.cache.get(filePath)?.ast
         if (ast) {
             await lw.parser.parse.args(ast)
