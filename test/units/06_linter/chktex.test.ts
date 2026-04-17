@@ -7,7 +7,7 @@ import { assert, mock, set, TextDocument } from '../utils'
 import { lw } from '../../../src/lw'
 import { chkTeX } from '../../../src/lint/latex-linter/chktex'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
         mock.init(lw, 'lint')
     })
