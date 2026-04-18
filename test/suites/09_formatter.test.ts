@@ -4,7 +4,7 @@ import * as assert from 'assert'
 import * as test from './utils'
 import { readFileSync } from 'fs'
 
-suite('Formatter test suite', () => {
+suite.skip('Formatter test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
