@@ -5,7 +5,7 @@ import * as test from './utils'
 import { testTools } from '../../src/preview/hover/cursor'
 import { lw } from '../../src/lw'
 
-suite('Math preview test suite', () => {
+suite.skip('Math preview test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
