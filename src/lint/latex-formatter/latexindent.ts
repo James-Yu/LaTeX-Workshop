@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as os from 'os'
-import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import { lw } from '../../lw'
@@ -84,13 +83,13 @@ function checkPath(): Thenable<boolean> {
     const fileExt = currentOs.fileExt
 
     const checkFormatter = (resolve: (value: boolean) => void, isFirstTry: boolean = true) => {
-        const check = cs.spawn(checker, [formatter])
+        const check = lw.external.spawn(checker, [formatter], {})
         let stdout: string = ''
         let stderr: string = ''
-        check.stdout.setEncoding('utf8')
-        check.stderr.setEncoding('utf8')
-        check.stdout.on('data', d => { stdout += d})
-        check.stderr.on('data', d => { stderr += d})
+        check.stdout?.setEncoding('utf8')
+        check.stderr?.setEncoding('utf8')
+        check.stdout?.on('data', d => { stdout += d})
+        check.stderr?.on('data', d => { stderr += d})
         check.on('close', code => {
             if (code && isFirstTry) {
                 logger.log(`Error when checking latexindent: ${stderr}`)
@@ -154,14 +153,14 @@ function format(document: vscode.TextDocument, range?: vscode.Range): Thenable<v
         })
 
         logger.logCommand('Formatting LaTeX.', formatter, args)
-        const worker = cs.spawn(formatter, args, { stdio: 'pipe', cwd: documentDirectory })
+        const worker = lw.external.spawn(formatter, args, { stdio: 'pipe', cwd: documentDirectory })
         // handle stdout/stderr
         const stdoutBuffer: Buffer[] = []
         const stderrBuffer: Buffer[] = []
-        worker.stdout.on('data', (chunk: Buffer | string) => {
+        worker.stdout?.on('data', (chunk: Buffer | string) => {
             stdoutBuffer.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
         })
-        worker.stderr.on('data', (chunk: Buffer | string) => {
+        worker.stderr?.on('data', (chunk: Buffer | string) => {
             stderrBuffer.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk))
         })
         worker.on('error', err => {

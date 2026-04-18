@@ -5,7 +5,7 @@ import type * as Ast from '@unified-latex/unified-latex-types'
 import { lw } from '../../../src/lw'
 import type { TeXMathEnv } from '../../../src/types'
 import * as selection from '../../../src/language/selection'
-import { renderCursor, testTools } from '../../../src/preview/hover/cursor'
+import { renderCursor, testing } from '../../../src/preview/hover/cursor'
 import { assert, mock, set, TextDocument, TextEditor } from '../utils'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
@@ -57,7 +57,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'string', content: 'a+b' } as unknown as Ast.Node
 			])
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			findNodeStub.restore()
@@ -71,7 +71,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			const cursorPos = new vscode.Position(0, 2)
 			const parseStub = sinon.stub(lw.parser.parse, 'tex').resolves(undefined)
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			assert.strictEqual(result, '$c+d$')
@@ -86,7 +86,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'macro', content: 'frac' } as unknown as Ast.Node
 			])
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			findNodeStub.restore()
@@ -103,7 +103,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'string', content: 'ab' } as unknown as Ast.Node
 			])
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			findNodeStub.restore()
@@ -119,7 +119,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'string', content: 'a^b' } as unknown as Ast.Node
 			])
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			findNodeStub.restore()
@@ -135,7 +135,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'string', content: 'c+d' } as unknown as Ast.Node
 			])
 
-			const result = await testTools.insertCursor(texMath, cursorPos, '|')
+			const result = await testing.insertCursor(texMath, cursorPos, '|')
 
 			parseStub.restore()
 			findNodeStub.restore()
@@ -150,8 +150,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 				{ type: 'string', content: 'a+b' } as unknown as Ast.Node
 			])
 
-			await testTools.insertCursor(texMath, new vscode.Position(0, 2), '|')
-			await testTools.insertCursor(texMath, new vscode.Position(0, 3), '|')
+			await testing.insertCursor(texMath, new vscode.Position(0, 2), '|')
+			await testing.insertCursor(texMath, new vscode.Position(0, 3), '|')
 
 			const parseCallCount = parseStub.callCount
 			parseStub.restore()
@@ -164,10 +164,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 		it('should return false at start and end, true inside', () => {
 			const texMath = createMath('$a+b$')
 
-			const startResult = testTools.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 0))
-			const insideLeftResult = testTools.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 1))
-			const insideRightResult = testTools.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 4))
-			const endResult = testTools.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 5))
+			const startResult = testing.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 0))
+			const insideLeftResult = testing.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 1))
+			const insideRightResult = testing.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 4))
+			const endResult = testing.isCursorInsideTexMath(texMath.range, new vscode.Position(0, 5))
 
 			assert.strictEqual(startResult, false)
 			assert.strictEqual(insideLeftResult, true)

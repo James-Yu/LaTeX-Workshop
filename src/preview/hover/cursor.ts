@@ -96,7 +96,7 @@ function isCursorInsideTexMath(texMathRange: vscode.Range, cursorPos: vscode.Pos
     return texMathRange.contains(cursorPos) && !texMathRange.start.isEqual(cursorPos) && !texMathRange.end.isEqual(cursorPos)
 }
 
-export const testTools = {
+export const testing = {
     insertCursor,
     isCursorInsideTexMath,
 }

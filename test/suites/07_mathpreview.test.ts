@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as assert from 'assert'
 import * as test from './utils'
-import { testTools } from '../../src/preview/hover/cursor'
+import { testing } from '../../src/preview/hover/cursor'
 import { lw } from '../../src/lw'
 
 suite.skip('Math preview test suite', () => {
@@ -26,7 +26,7 @@ suite.skip('Math preview test suite', () => {
         const cursorPos = new vscode.Position(0, 2)
         const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
-        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testing.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a|+b$')
     })
 
@@ -39,19 +39,19 @@ suite.skip('Math preview test suite', () => {
         const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
 
-        const result = testTools.isCursorInsideTexMath(texMath.range, cursorPos)
+        const result = testing.isCursorInsideTexMath(texMath.range, cursorPos)
         assert.strictEqual(result, false)
 
         const cursorPos1 = new vscode.Position(0, 1)
-        const result1 = testTools.isCursorInsideTexMath(texMath.range, cursorPos1)
+        const result1 = testing.isCursorInsideTexMath(texMath.range, cursorPos1)
         assert.strictEqual(result1, true)
 
         const cursorPos4 = new vscode.Position(0, 4)
-        const result4 = testTools.isCursorInsideTexMath(texMath.range, cursorPos4)
+        const result4 = testing.isCursorInsideTexMath(texMath.range, cursorPos4)
         assert.strictEqual(result4, true)
 
         const cursorPos5 = new vscode.Position(0, 5)
-        const result5 = testTools.isCursorInsideTexMath(texMath.range, cursorPos5)
+        const result5 = testing.isCursorInsideTexMath(texMath.range, cursorPos5)
         assert.strictEqual(result5, false)
 
     })
@@ -64,7 +64,7 @@ suite.skip('Math preview test suite', () => {
         const cursorPos = new vscode.Position(1, 3)
         const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
-        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testing.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$\\frac{1}{2}$')
     })
 
@@ -76,7 +76,7 @@ suite.skip('Math preview test suite', () => {
         const cursorPos = new vscode.Position(2, 3)
         const texMath = lw.parser.find.math(vscode.window.activeTextEditor.document, cursorPos)
         assert.ok(texMath)
-        const result = texMath && await testTools.insertCursor(texMath, cursorPos, '|')
+        const result = texMath && await testing.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^|b$')
     })
 })

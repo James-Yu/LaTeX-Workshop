@@ -60,7 +60,10 @@ async function formatDocument(document: vscode.TextDocument, range?: vscode.Rang
         })
     })
 
-    // 2024-12-4, for tex-fmt 0.4.7, when using `--stdin`, it requires a newline at the end of the input; Therefore, we need to add a newline at the end of the input if it doesn't exist, and remove it from the output if it exists.
+    // 2024-12-4, for tex-fmt 0.4.7, when using `--stdin`, it requires a newline
+    // at the end of the input; Therefore, we need to add a newline at the end
+    // of the input if it doesn't exist, and remove it from the output if it
+    // exists.
     const text = document.getText(range)
     const endsWithNewline = text.endsWith('\n')
     process.stdin?.write(endsWithNewline ? text : text + '\n')
