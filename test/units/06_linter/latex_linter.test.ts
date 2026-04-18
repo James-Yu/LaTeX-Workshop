@@ -1,11 +1,15 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as os from 'os'
 import * as sinon from 'sinon'
+import { EventEmitter } from 'events'
+import type { ChildProcess } from 'child_process'
 import { assert, mock, set, TextDocument } from '../utils'
 import { lw } from '../../../src/lw'
 import { lint } from '../../../src/lint/latex-linter'
 import { chkTeX } from '../../../src/lint/latex-linter/chktex'
 import { laCheck } from '../../../src/lint/latex-linter/lacheck'
+import { processWrapper } from '../../../src/lint/latex-linter/utils'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     before(() => {
@@ -225,6 +229,179 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(chktexLintFileStub.callCount, 0)
             assert.strictEqual(lacheckLintFileStub.callCount, 1)
             assert.strictEqual(chktexClearStub.callCount, 1)
+        })
+    })
+
+    describe('utils.processWrapper', () => {
+        type EncodableStream = EventEmitter & { setEncoding: (encoding: string) => void }
+        type WritableStream = { write: (chunk: string) => void, end: () => void }
+
+        type FakeProcess = ChildProcess & {
+            triggerExit: (exitCode?: number) => void,
+            triggerError: (error: Error) => void,
+            stdoutEncodings: string[],
+            stderrEncodings: string[],
+            stdinWrites: string[],
+            stdinEnded: boolean
+        }
+
+        function createFakeProcess({
+            stdout = true,
+            stderr = true,
+            stdin = true,
+            flakyStdin = false
+        }: {
+            stdout?: boolean,
+            stderr?: boolean,
+            stdin?: boolean,
+            flakyStdin?: boolean
+        } = {}): FakeProcess {
+            const proc = new EventEmitter() as FakeProcess
+            proc.stdoutEncodings = []
+            proc.stderrEncodings = []
+            proc.stdinWrites = []
+            proc.stdinEnded = false
+            proc.stdout = null
+            proc.stderr = null
+            proc.stdin = null
+
+            if (stdout) {
+                const stdoutStream = new EventEmitter() as EncodableStream
+                stdoutStream.setEncoding = encoding => {
+                    proc.stdoutEncodings.push(encoding)
+                }
+                proc.stdout = stdoutStream as unknown as NonNullable<ChildProcess['stdout']>
+            }
+
+            if (stderr) {
+                const stderrStream = new EventEmitter() as EncodableStream
+                stderrStream.setEncoding = encoding => {
+                    proc.stderrEncodings.push(encoding)
+                }
+                proc.stderr = stderrStream as unknown as NonNullable<ChildProcess['stderr']>
+            }
+
+            if (stdin) {
+                const stdinStream: WritableStream = {
+                    write: (chunk: string) => {
+                        proc.stdinWrites.push(chunk)
+                    },
+                    end: () => {
+                        proc.stdinEnded = true
+                    }
+                }
+
+                if (flakyStdin) {
+                    let reads = 0
+                    Object.defineProperty(proc, 'stdin', {
+                        configurable: true,
+                        get: () => {
+                            reads += 1
+                            return reads === 1 ? stdinStream as unknown as NonNullable<ChildProcess['stdin']> : null
+                        }
+                    })
+                } else {
+                    proc.stdin = stdinStream as unknown as NonNullable<ChildProcess['stdin']>
+                }
+            }
+
+            proc.triggerExit = (exitCode = 0) => {
+                setImmediate(() => {
+                    proc.emit('exit', exitCode)
+                })
+            }
+            proc.triggerError = (error: Error) => {
+                setImmediate(() => {
+                    proc.emit('error', error)
+                })
+            }
+            return proc
+        }
+
+        it('should reject when stdout or stderr streams are missing', async () => {
+            const proc = createFakeProcess({ stdout: false })
+
+            await assert.rejects(processWrapper('ChkTeX', proc), /does not provide stdout\/stderr streams/)
+        })
+
+        it('should reject when stdin content is provided but the process has no stdin stream', async () => {
+            const proc = createFakeProcess({ stdin: false })
+
+            await assert.rejects(processWrapper('LaCheck', proc, 'content'), /does not provide a stdin stream/)
+        })
+
+        it('should reject when stdin becomes unavailable before writing', async () => {
+            const proc = createFakeProcess({ flakyStdin: true })
+
+            await assert.rejects(processWrapper('LaCheck', proc, 'content'), /does not provide a stdin stream/)
+        })
+
+        it('should resolve stdout on successful exit and encode both streams as binary', async () => {
+            const proc = createFakeProcess()
+            const promise = processWrapper('ChkTeX', proc)
+
+            proc.stdout?.emit('data', 'first ')
+            proc.stdout?.emit('data', 'second')
+            proc.stderr?.emit('data', 'ignored stderr')
+            proc.triggerExit(0)
+
+            const output = await promise
+
+            assert.strictEqual(output, 'first second')
+            assert.deepStrictEqual(proc.stdoutEncodings, ['binary'])
+            assert.deepStrictEqual(proc.stderrEncodings, ['binary'])
+        })
+
+        it('should write stdin, append EOL when missing, and end stdin', async () => {
+            const proc = createFakeProcess()
+            const promise = processWrapper('ChkTeX', proc, 'content')
+            proc.triggerExit(0)
+
+            await promise
+
+            assert.deepStrictEqual(proc.stdinWrites, ['content', os.EOL])
+            assert.strictEqual(proc.stdinEnded, true)
+        })
+
+        it('should not append an extra EOL when stdin already ends with one', async () => {
+            const proc = createFakeProcess()
+            const promise = processWrapper('ChkTeX', proc, `content${os.EOL}`)
+            proc.triggerExit(0)
+
+            await promise
+
+            assert.deepStrictEqual(proc.stdinWrites, [`content${os.EOL}`])
+            assert.strictEqual(proc.stdinEnded, true)
+        })
+
+        it('should reject when the process emits an error event', async () => {
+            const proc = createFakeProcess()
+            const promise = processWrapper('ChkTeX', proc)
+            proc.triggerError(new Error('spawn failed'))
+
+            await assert.rejects(promise, /spawn failed/)
+        })
+
+        it('should reject with exit details when the process exits with a non-zero code', async () => {
+            const proc = createFakeProcess()
+            const promise = processWrapper('LaCheck', proc)
+
+            proc.stdout?.emit('data', 'partial stdout')
+            proc.stderr?.emit('data', 'stderr output')
+            proc.triggerExit(2)
+
+            let rejection: { exitCode: number, stdout: string, stderr: string } | undefined
+            try {
+                await promise
+            } catch (error) {
+                rejection = error as { exitCode: number, stdout: string, stderr: string }
+            }
+
+            assert.deepStrictEqual(rejection, {
+                exitCode: 2,
+                stdout: 'partial stdout',
+                stderr: 'stderr output'
+            })
         })
     })
 })
