@@ -30,14 +30,27 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lint.root', () => {
-        it('should lint root file with both linters when enabled', () => {
-            const chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
-            const lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
+        let chktexLintRootFileStub: sinon.SinonStub
+        let lacheckLintRootFileStub: sinon.SinonStub
+        let chktexClearStub: sinon.SinonStub | undefined
+        let lacheckClearStub: sinon.SinonStub | undefined
 
-            lint.root()
+        beforeEach(() => {
+            chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
+            lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
+            chktexClearStub = undefined
+            lacheckClearStub = undefined
+        })
 
+        afterEach(() => {
             chktexLintRootFileStub.restore()
             lacheckLintRootFileStub.restore()
+            chktexClearStub?.restore()
+            lacheckClearStub?.restore()
+        })
+
+        it('should lint root file with both linters when enabled', () => {
+            lint.root()
 
             assert.strictEqual(chktexLintRootFileStub.callCount, 1)
             assert.strictEqual(chktexLintRootFileStub.firstCall.args[0], '/tmp/main.tex')
@@ -47,15 +60,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should only lint with chktex and clear lacheck diagnostics when lacheck is disabled', () => {
             set.config('linting.lacheck.enabled', false)
-            const chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
-            const lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
-            const lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
+            lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
 
             lint.root()
-
-            chktexLintRootFileStub.restore()
-            lacheckLintRootFileStub.restore()
-            lacheckClearStub.restore()
 
             assert.strictEqual(chktexLintRootFileStub.callCount, 1)
             assert.strictEqual(lacheckLintRootFileStub.callCount, 0)
@@ -64,15 +71,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should only lint with lacheck and clear chktex diagnostics when chktex is disabled', () => {
             set.config('linting.chktex.enabled', false)
-            const chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
-            const lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
-            const chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
+            chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
 
             lint.root()
-
-            chktexLintRootFileStub.restore()
-            lacheckLintRootFileStub.restore()
-            chktexClearStub.restore()
 
             assert.strictEqual(chktexLintRootFileStub.callCount, 0)
             assert.strictEqual(lacheckLintRootFileStub.callCount, 1)
@@ -82,17 +83,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should clear both diagnostics and skip linting when both linters are disabled', () => {
             set.config('linting.chktex.enabled', false)
             set.config('linting.lacheck.enabled', false)
-            const chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
-            const lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
-            const chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
-            const lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
+            chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
+            lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
 
             lint.root()
-
-            chktexLintRootFileStub.restore()
-            lacheckLintRootFileStub.restore()
-            chktexClearStub.restore()
-            lacheckClearStub.restore()
 
             assert.strictEqual(chktexLintRootFileStub.callCount, 0)
             assert.strictEqual(lacheckLintRootFileStub.callCount, 0)
@@ -102,13 +96,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not lint when root file path is undefined', () => {
             lw.root.file.path = undefined
-            const chktexLintRootFileStub = sinon.stub(chkTeX, 'lintRootFile').resolves()
-            const lacheckLintRootFileStub = sinon.stub(laCheck, 'lintRootFile').resolves()
 
             lint.root()
-
-            chktexLintRootFileStub.restore()
-            lacheckLintRootFileStub.restore()
 
             assert.strictEqual(chktexLintRootFileStub.callCount, 0)
             assert.strictEqual(lacheckLintRootFileStub.callCount, 0)
@@ -116,22 +105,37 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('lint.on', () => {
-        it('should lint on type after configured delay', async () => {
-            const clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
-            const chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
-            const lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
-            const document = new TextDocument('/tmp/main.tex', '\\section{A}', {})
+        let clock: sinon.SinonFakeTimers
+        let chktexLintFileStub: sinon.SinonStub
+        let lacheckLintFileStub: sinon.SinonStub
+        let chktexClearStub: sinon.SinonStub | undefined
+        let lacheckClearStub: sinon.SinonStub | undefined
+        let document: TextDocument
 
+        beforeEach(() => {
+            clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
+            chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
+            lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
+            chktexClearStub = undefined
+            lacheckClearStub = undefined
+            document = new TextDocument('/tmp/main.tex', '\\section{A}', {})
+        })
+
+        afterEach(() => {
+            chktexLintFileStub.restore()
+            lacheckLintFileStub.restore()
+            chktexClearStub?.restore()
+            lacheckClearStub?.restore()
+            clock.restore()
+        })
+
+        it('should lint on type after configured delay', async () => {
             lint.on(document)
             await clock.tickAsync(299)
             const chktexCallCountBeforeDelay = chktexLintFileStub.callCount
             const lacheckCallCountBeforeDelay = lacheckLintFileStub.callCount
 
             await clock.tickAsync(1)
-
-            chktexLintFileStub.restore()
-            lacheckLintFileStub.restore()
-            clock.restore()
 
             assert.strictEqual(chktexCallCountBeforeDelay, 0)
             assert.strictEqual(lacheckCallCountBeforeDelay, 0)
@@ -141,17 +145,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should not lint on type when run mode is not onType', async () => {
             set.config('linting.run', 'never')
-            const clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
-            const chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
-            const lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
-            const document = new TextDocument('/tmp/main.tex', '\\section{A}', {})
 
             lint.on(document)
             await clock.tickAsync(500)
-
-            chktexLintFileStub.restore()
-            lacheckLintFileStub.restore()
-            clock.restore()
 
             assert.strictEqual(chktexLintFileStub.callCount, 0)
             assert.strictEqual(lacheckLintFileStub.callCount, 0)
@@ -160,21 +156,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should clear disabled linter diagnostics and not schedule lint when no linter is enabled', async () => {
             set.config('linting.chktex.enabled', false)
             set.config('linting.lacheck.enabled', false)
-            const clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
-            const chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
-            const lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
-            const chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
-            const lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
-            const document = new TextDocument('/tmp/main.tex', '\\section{A}', {})
+            chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
+            lacheckClearStub = sinon.stub(laCheck.linterDiagnostics, 'clear')
 
             lint.on(document)
             await clock.tickAsync(500)
-
-            chktexLintFileStub.restore()
-            lacheckLintFileStub.restore()
-            chktexClearStub.restore()
-            lacheckClearStub.restore()
-            clock.restore()
 
             assert.strictEqual(chktexLintFileStub.callCount, 0)
             assert.strictEqual(lacheckLintFileStub.callCount, 0)
@@ -183,9 +169,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should replace pending timeout with latest lint request', async () => {
-            const clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
-            const chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
-            const lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
             const firstDocument = new TextDocument('/tmp/first.tex', '\\section{First}', {})
             const secondDocument = new TextDocument('/tmp/second.tex', '\\section{Second}', {})
 
@@ -198,10 +181,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             await clock.tickAsync(1)
 
-            chktexLintFileStub.restore()
-            lacheckLintFileStub.restore()
-            clock.restore()
-
             assert.strictEqual(chktexCallCountBeforeReplacementDelay, 0)
             assert.strictEqual(lacheckCallCountBeforeReplacementDelay, 0)
             assert.strictEqual(chktexLintFileStub.callCount, 1)
@@ -212,19 +191,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should lint with enabled linter only and clear disabled linter diagnostics', async () => {
             set.config('linting.chktex.enabled', false)
-            const clock = sinon.useFakeTimers({ shouldClearNativeTimers: true })
-            const chktexLintFileStub = sinon.stub(chkTeX, 'lintFile').resolves()
-            const lacheckLintFileStub = sinon.stub(laCheck, 'lintFile').resolves()
-            const chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
-            const document = new TextDocument('/tmp/main.tex', '\\section{A}', {})
+            chktexClearStub = sinon.stub(chkTeX.linterDiagnostics, 'clear')
 
             lint.on(document)
             await clock.tickAsync(300)
-
-            chktexLintFileStub.restore()
-            lacheckLintFileStub.restore()
-            chktexClearStub.restore()
-            clock.restore()
 
             assert.strictEqual(chktexLintFileStub.callCount, 0)
             assert.strictEqual(lacheckLintFileStub.callCount, 1)
