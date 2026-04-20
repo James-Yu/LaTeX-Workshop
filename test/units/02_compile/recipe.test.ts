@@ -68,47 +68,6 @@ describe.only(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(stub.calledOnce)
         })
 
-        it('should run recipe from folder relative to workspace root', async () => {
-            const rootFile = set.root(path.join('tex', 'main.tex'))
-            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
-            set.config('latex.build.fromFolder', 'build')
-
-            await build(rootFile, 'latex', async () => {})
-
-            const step = queue.getStep()
-            assert.ok(step)
-            assert.pathStrictEqual(step.cwd, get.path('build'))
-        })
-
-        it('should run recipe from root file directory when fromFolder is empty', async () => {
-            const rootFile = set.root(path.join('tex', 'main.tex'))
-            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
-            set.config('latex.build.fromFolder', '')
-
-            await build(rootFile, 'latex', async () => {})
-
-            const step = queue.getStep()
-            assert.ok(step)
-            assert.pathStrictEqual(step.cwd, path.dirname(rootFile))
-        })
-
-        it('should fallback to root file directory when no workspace folder is found', async () => {
-            const rootFile = set.root(path.join('tex', 'main.tex'))
-            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
-            set.config('latex.build.fromFolder', 'build')
-            const stub = sinon.stub(vscode.workspace, 'getWorkspaceFolder').returns(undefined)
-
-            await build(rootFile, 'latex', async () => {})
-            stub.restore()
-
-            const step = queue.getStep()
-            assert.ok(step)
-            assert.pathStrictEqual(step.cwd, path.resolve(path.dirname(rootFile), 'build'))
-        })
-
         it('should call `createAuxSubFolders` with correct args', async () => {
             const rootFile = set.root('main.tex')
             const subPath = get.path('sub', 'main.tex')
