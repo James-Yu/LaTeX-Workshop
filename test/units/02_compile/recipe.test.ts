@@ -6,7 +6,7 @@ import { lw } from '../../../src/lw'
 import { build, initialize } from '../../../src/compile/recipe'
 import { queue } from '../../../src/compile/queue'
 
-describe.only(path.basename(__filename).split('.')[0] + ':', () => {
+describe(path.basename(__filename).split('.')[0] + ':', () => {
     let getAuxDirStub: sinon.SinonStub
     let getIncludedTeXStub: sinon.SinonStub
     let mkdirStub: sinon.SinonStub
