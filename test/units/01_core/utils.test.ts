@@ -8,62 +8,62 @@ import { getWorkingFolder, replaceArgumentPlaceholders } from '../../../src/util
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = get.fixture(__filename)
 
-	before(() => {
-		mock.init(lw)
-	})
+    before(() => {
+        mock.init(lw)
+    })
 
-	after(() => {
-		sinon.restore()
-	})
+    after(() => {
+        sinon.restore()
+    })
 
-	describe('lw.utils->getWorkingFolder', () => {
-		let rootFile: string
-		let workspaceDir: string
-		let getWorkspaceFolderStub: sinon.SinonStub | undefined
+    describe('lw.utils->getWorkingFolder', () => {
+        let rootFile: string
+        let workspaceDir: string
+        let getWorkspaceFolderStub: sinon.SinonStub | undefined
 
-		beforeEach(() => {
-			workspaceDir = get.path()
-			rootFile = get.path(fixture, 'main.tex')
-			getWorkspaceFolderStub = undefined
-		})
+        beforeEach(() => {
+            workspaceDir = get.path()
+            rootFile = get.path(fixture, 'main.tex')
+            getWorkspaceFolderStub = undefined
+        })
 
-		afterEach(() => {
-			getWorkspaceFolderStub?.restore()
-		})
+        afterEach(() => {
+            getWorkspaceFolderStub?.restore()
+        })
 
-		it('should return the root directory when `latex.build.fromFolder` is empty', () => {
-			set.config('latex.build.fromFolder', '')
+        it('should return the root directory when `latex.build.fromFolder` is empty', () => {
+            set.config('latex.build.fromFolder', '')
 
-			const workingFolder = getWorkingFolder(rootFile)
+            const workingFolder = getWorkingFolder(rootFile)
 
-			assert.pathStrictEqual(workingFolder, path.dirname(rootFile))
-		})
+            assert.pathStrictEqual(workingFolder, path.dirname(rootFile))
+        })
 
-		it('should resolve `latex.build.fromFolder` from workspace directory', () => {
-			const workspaceFolder: vscode.WorkspaceFolder = {
-				uri: vscode.Uri.file(workspaceDir),
-				name: path.basename(workspaceDir),
-				index: 0
-			}
-			getWorkspaceFolderStub = sinon.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder)
-			set.config('latex.build.fromFolder', 'test/units')
+        it('should resolve `latex.build.fromFolder` from workspace directory', () => {
+            const workspaceFolder: vscode.WorkspaceFolder = {
+                uri: vscode.Uri.file(workspaceDir),
+                name: path.basename(workspaceDir),
+                index: 0
+            }
+            getWorkspaceFolderStub = sinon.stub(vscode.workspace, 'getWorkspaceFolder').returns(workspaceFolder)
+            set.config('latex.build.fromFolder', 'test/units')
 
-			const workingFolder = getWorkingFolder(rootFile)
+            const workingFolder = getWorkingFolder(rootFile)
 
-			assert.pathStrictEqual(workingFolder, path.resolve(workspaceDir, 'test', 'units'))
-		})
+            assert.pathStrictEqual(workingFolder, path.resolve(workspaceDir, 'test', 'units'))
+        })
 
-		it('should resolve `latex.build.fromFolder` from root directory when no workspace is found', () => {
-			getWorkspaceFolderStub = sinon.stub(vscode.workspace, 'getWorkspaceFolder').returns(undefined)
-			set.config('latex.build.fromFolder', 'build')
+        it('should resolve `latex.build.fromFolder` from root directory when no workspace is found', () => {
+            getWorkspaceFolderStub = sinon.stub(vscode.workspace, 'getWorkspaceFolder').returns(undefined)
+            set.config('latex.build.fromFolder', 'build')
 
-			const workingFolder = getWorkingFolder(rootFile)
+            const workingFolder = getWorkingFolder(rootFile)
 
-			assert.pathStrictEqual(workingFolder, path.resolve(path.dirname(rootFile), 'build'))
-		})
-	})
+            assert.pathStrictEqual(workingFolder, path.resolve(path.dirname(rootFile), 'build'))
+        })
+    })
 
-	describe('lw.utils->replaceArgumentPlaceholders', () => {
+    describe('lw.utils->replaceArgumentPlaceholders', () => {
 		let workspaceDir: string
 		let rootFile: string
 		let tmpDir: string

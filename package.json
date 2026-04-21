@@ -1304,9 +1304,9 @@
         },
         "latex-workshop.latex.build.fromFolder": {
           "scope": "resource",
-          "type": "boolean",
+          "type": "string",
           "default": "",
-          "markdownDescription": "Run the recipe from the given folder relative to the root workspace. The default empty value will run the recipe from the directory containing the root file. You can also set this value to a relative folder from the root workspace. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
+          "markdownDescription": "Run the recipe from the given folder. The default empty value runs the recipe from the directory containing the root file. Relative paths are resolved from the workspace folder containing the root file; if no workspace folder contains the root file, they are resolved from the root file's directory. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
         },
         "latex-workshop.latex.build.fromWorkspaceFolder": {
           "scope": "resource",

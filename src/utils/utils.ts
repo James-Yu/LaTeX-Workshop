@@ -268,12 +268,13 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
 }
 
 export function getWorkingFolder(rootFile: string): string {
-    const rootDir = path.dirname(lw.file.toUri(rootFile).fsPath)
+    const rootFileUri = lw.file.toUri(rootFile)
+    const rootDir = path.dirname(rootFileUri.fsPath)
     let workingFolder: string = rootDir
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', rootFileUri)
     const buildFromFolder = configuration.get('latex.build.fromFolder', '')
     if (buildFromFolder) {
-        const workspaceFolder = vscode.workspace.getWorkspaceFolder(lw.file.toUri(rootFile))
+        const workspaceFolder = vscode.workspace.getWorkspaceFolder(rootFileUri)
         workingFolder = workspaceFolder ? path.resolve(workspaceFolder.uri.fsPath, buildFromFolder) : path.resolve(rootDir, buildFromFolder)
     }
     return workingFolder
