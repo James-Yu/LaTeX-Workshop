@@ -1302,11 +1302,18 @@
           "default": true,
           "markdownDescription": "Enable magic comments if present."
         },
+        "latex-workshop.latex.build.fromFolder": {
+          "scope": "resource",
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Run the recipe from the given folder. The default empty value runs the recipe from the directory containing the root file. Relative paths are resolved from the workspace folder containing the root file; if no workspace folder contains the root file, they are resolved from the root file's directory. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
+        },
         "latex-workshop.latex.build.fromWorkspaceFolder": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Run the recipe from the workspace folder. If false, the recipe is run from the directory containing the root file. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`."
+          "markdownDescription": "Run the recipe from the workspace folder. If false, the recipe is run from the directory containing the root file. The setting has no effect on external commands `#latex-workshop.latex.external.build.command`.",
+          "deprecationMessage": "Use `#latex-workshop.latex.build.fromFolder` instead."
         },
         "latex-workshop.latex.outDir": {
           "scope": "resource",

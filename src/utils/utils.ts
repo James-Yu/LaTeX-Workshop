@@ -267,6 +267,19 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
     return []
 }
 
+export function getWorkingFolder(rootFile: string): string {
+    const rootFileUri = lw.file.toUri(rootFile)
+    const rootDir = path.dirname(rootFileUri.fsPath)
+    let workingFolder: string = rootDir
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', rootFileUri)
+    const buildFromFolder = configuration.get('latex.build.fromFolder', '')
+    if (buildFromFolder) {
+        const workspaceFolder = vscode.workspace.getWorkspaceFolder(rootFileUri)
+        workingFolder = workspaceFolder ? path.resolve(workspaceFolder.uri.fsPath, buildFromFolder) : path.resolve(rootDir, buildFromFolder)
+    }
+    return workingFolder
+}
+
 /**
  * Return a function replacing placeholders of LaTeX recipes.
  *
@@ -290,8 +303,11 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const doc = docW32.split(path.sep).join('/')
         const docExtW32 = path.join(dirW32, docfileExt)
         const docExt = docExtW32.split(path.sep).join('/')
-        const relativeDir = path.relative(workspaceDir, dir).split(path.sep).join('/')
-        const relativeDoc = path.relative(workspaceDir, doc).split(path.sep).join('/')
+        const relativeWorkspaceDir = path.relative(workspaceDir, dir).split(path.sep).join('/')
+        const relativeWorkspaceDoc = path.relative(workspaceDir, doc).split(path.sep).join('/')
+        const workingFolder = getWorkingFolder(rootFile)
+        const relativeWorkingDir = path.relative(workingFolder, dir).split(path.sep).join('/')
+        const relativeWorkingDoc = path.relative(workingFolder, doc).split(path.sep).join('/')
 
         const expandPlaceHolders = (a: string): string => {
             return a.replace(/%DOC%/g, docker ? docfile : doc)
@@ -304,14 +320,16 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
                     .replace(/%DIR_W32%/g, docker ? './' : dirW32)
                     .replace(/%TMPDIR%/g, tmpDir)
                     .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
-                    .replace(/%RELATIVE_DIR%/, docker ? './' : relativeDir)
-                    .replace(/%RELATIVE_DOC%/, docker ? docfile : relativeDoc)
+                    .replace(/%RELATIVE_DIR%/, docker ? './' : relativeWorkspaceDir)
+                    .replace(/%RELATIVE_DOC%/, docker ? docfile : relativeWorkspaceDoc)
+                    .replace(/%RELATIVE_CWD_DIR%/, docker ? './' : relativeWorkingDir)
+                    .replace(/%RELATIVE_CWD_DOC%/, docker ? docfile : relativeWorkingDoc)
 
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
         const outDir = outDirW32.split(path.sep).join('/')
         const auxDir = path.normalize(expandPlaceHolders(configuration.get('latex.auxDir') as string)).split(path.sep).join('/')
-        // Replace %AUXDIR% first as its defaut value is %OUTDIR%
+        // Replace %AUXDIR% first as its default value is %OUTDIR%
         return expandPlaceHolders(arg).replace(/%AUXDIR%/g, auxDir).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
     }
 }

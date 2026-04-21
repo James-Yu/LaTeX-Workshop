@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { replaceArgumentPlaceholders } from '../utils/utils'
+import { getWorkingFolder, replaceArgumentPlaceholders } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
@@ -53,14 +53,7 @@ function setDockerPath() {
  */
 export async function build(rootFile: string, langId: string, buildLoop: () => Promise<void>, recipeName?: string) {
     logger.log(`Build root file ${rootFile}`)
-    let cwd: string = path.dirname(lw.file.toUri(rootFile).fsPath)
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if (configuration.get('latex.build.fromWorkspaceFolder')) {
-        const workspaceFolder = vscode.workspace.getWorkspaceFolder(lw.file.toUri(rootFile))
-        if (workspaceFolder) {
-            cwd = workspaceFolder.uri.fsPath
-        }
-    }
+    const cwd = getWorkingFolder(rootFile)
 
     // Save all open files in the workspace
     await vscode.workspace.saveAll()
