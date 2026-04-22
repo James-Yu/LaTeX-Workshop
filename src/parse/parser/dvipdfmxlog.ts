@@ -10,6 +10,7 @@ const dvipdfmxContinuedWarn = /^dvipdfmx:warning: >> (.*)$/
 const divpdfmxFatal = /^dvipdfmx:fatal: (.+)$/
 const dvipdfmxArgsError = /^dvipdfmx: ((Missing argument|Unexpected argument in) .+?|Multiple dvi filenames\?)/
 const dvipdfmxConfigError = /^config_special: (Unknown option .+)/
+const additionalMessage = /^\s*(CMap name|input str|Font|CMap):/
 const noOutputPDF = 'No output PDF file written.'
 
 const dvipdfmxDiagnostics = vscode.languages.createDiagnosticCollection('Dvipdfmx')
@@ -79,6 +80,17 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
             state.currentType = 'warning'
         }
         state.dvipdfmxBuffer.push(result[1].trim())
+        return
+    }
+
+    result = line.match(additionalMessage)
+    if (result) {
+        if (state.currentType !== 'warning') {
+            flushLog(state, rootFile, excludeRegexp)
+            state.currentType = 'warning'
+        }
+        line = line.replace(/^\s*/, '\t')
+        state.dvipdfmxBuffer.push(line)
         return
     }
 
