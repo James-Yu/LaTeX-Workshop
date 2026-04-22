@@ -91,13 +91,21 @@ export async function setParams() {
     if (params.invertMode.enabled) {
         const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-        if (viewerContainer) viewerContainer.style.filter = filter
-        if (thumbnailView) thumbnailView.style.filter = filter
-        if (viewsManagerContent) viewsManagerContent.style.background = 'var(--body-bg-color)'
+        if (viewerContainer) {
+            viewerContainer.style.filter = filter
+        }
+        if (thumbnailView) {
+            thumbnailView.style.filter = filter
+        }
+        if (viewsManagerContent) {
+            viewsManagerContent.style.background = 'var(--body-bg-color)'
+        }
     }
 
     const backgroundColor = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark.backgroundColor : params.color.light.backgroundColor
-    if (viewerContainer) viewerContainer.style.background = backgroundColor
+    if (viewerContainer) {
+        viewerContainer.style.background = backgroundColor
+    }
 
     const css = document.styleSheets[document.styleSheets.length - 1]
     const pageBorderColor = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark.pageBorderColor : params.color.light.pageBorderColor
