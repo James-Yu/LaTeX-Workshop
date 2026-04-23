@@ -290,6 +290,22 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(execSpy.callCount, 1)
             assert.strictEqual(execSpy.firstCall.args[0], 'workbench.action.moveEditorToLeftGroup')
         })
+
+        it('should not log internal viewer DOM errors while applying params', async () => {
+            set.config('view.pdf.invertMode.enabled', 'always')
+
+            const promise = waitMessage('loaded')
+            await viewInWebviewPanel(pdfUri, 'current', true)
+            await promise
+
+            const internalErrorMessages = handlerSpy.getCalls()
+                .map(call => JSON.parse((call.args?.[1] as Uint8Array)?.toString()) as ClientRequest)
+                .filter((message): message is Extract<ClientRequest, { type: 'add_log' }> => message.type === 'add_log')
+                .map(message => message.message)
+                .filter(message => message.startsWith('Internal error:'))
+
+            assert.deepStrictEqual(internalErrorMessages, [])
+        })
     })
 
     describe('lw.viewer->viewer.viewInTab', () => {
