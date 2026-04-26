@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import { glob } from 'glob'
 import * as cs from 'cross-spawn'
 import { lw } from '../lw'
@@ -128,11 +127,12 @@ async function cleanGlob(rootFile: string): Promise<void> {
     // Remove files first
     for (const realPath of filesOrFolders) {
         try {
-            const stats: fs.Stats = fs.statSync(realPath)
-            if (stats.isFile()) {
-                await fs.promises.unlink(realPath)
+            const realUri = vscode.Uri.file(realPath)
+            const stats = await lw.external.stat(realUri)
+            if ((stats.type & vscode.FileType.File) !== 0) {
+                await lw.external.delete(realUri)
                 logger.log(`Cleaning file ${realPath} .`)
-            } else if (stats.isDirectory()) {
+            } else if ((stats.type & vscode.FileType.Directory) !== 0) {
                 logger.log(`Not removing folder that is not explicitly specified ${realPath} .`)
             } else {
                 logger.log(`Not removing non-file ${realPath} .`)
@@ -146,8 +146,9 @@ async function cleanGlob(rootFile: string): Promise<void> {
     // Then remove empty folders EXPLICITLY specified by the user
     for (const folderRealPath of explicitFolders) {
         try {
-            if (fs.readdirSync(folderRealPath).length === 0) {
-                await fs.promises.rmdir(folderRealPath)
+            const folderUri = vscode.Uri.file(folderRealPath)
+            if ((await lw.external.readDir(folderUri)).length === 0) {
+                await lw.external.delete(folderUri)
                 logger.log(`Removing empty folder: ${folderRealPath} .`)
             } else {
                 logger.log(`Not removing non-empty folder: ${folderRealPath} .`)

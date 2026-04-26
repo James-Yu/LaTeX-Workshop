@@ -50,6 +50,8 @@ export const lw = {
         spawn: wrapper(cs.spawn),
         sync: wrapper(cs.sync),
         stat: wrapper(vscode.workspace.fs.stat.bind(vscode.workspace.fs)),
+        delete: wrapper(vscode.workspace.fs.delete.bind(vscode.workspace.fs)),
+        readDir: wrapper(vscode.workspace.fs.readDirectory.bind(vscode.workspace.fs)),
         mkdirSync: wrapper(fs.mkdirSync),
         chmodSync: wrapper(fs.chmodSync)
     },
