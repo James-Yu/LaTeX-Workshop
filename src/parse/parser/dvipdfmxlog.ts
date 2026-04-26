@@ -14,7 +14,7 @@ const dvipdfmxConfigError = /^config_special: (Unknown option .+)/
 const additionalMessage = /^\s*(CMap name|input str|Font|CMap):/
 const noOutputPDF = 'No output PDF file written.'
 
-const latexWorkshopMesg = "Message from LaTeX Workshop:"
+const latexWorkshopMesg = 'Message from LaTeX Workshop:'
 
 const dvipdfmxDiagnostics = vscode.languages.createDiagnosticCollection('Dvipdfmx')
 
@@ -64,7 +64,7 @@ function parse(log: string, rootFile?: string) {
         dvipdfmxBuffer: []
     }
 
-    if (getL3Backend() !== "dvipdfmx") {
+    if (getL3Backend() !== 'dvipdfmx') {
         pushLog(
             'warning',
             rootFile,

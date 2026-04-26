@@ -281,11 +281,11 @@ function spawnProcess(step: Step): ProcessEnv {
 
 export type L3Backend = string;
 // L3Backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
-let backend: L3Backend = "unknown";
+let backend: L3Backend = 'unknown'
 export const setL3Backend = (l3b: L3Backend) => {
-    backend = l3b;
-};
-export const getL3Backend = () => backend;
+    backend = l3b
+}
+export const getL3Backend = () => backend
 
 /**
  * Monitors the output and termination of the tool process. This function
@@ -329,7 +329,7 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         lw.compile.process.on('exit', (code, signal) => {
             let isSkipped = false
 
-            const l3backend = stdout.match(/l3backend-(.*?)\.def/)?.[1] ?? "unknown"
+            const l3backend = stdout.match(/l3backend-(.*?)\.def/)?.[1] ?? 'unknown'
             setL3Backend(l3backend)
 
             // #4838 LaTeX writes messages to stdout, while dvipdfmx writes
