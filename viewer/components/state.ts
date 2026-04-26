@@ -4,7 +4,7 @@ import type { PanelManagerResponse, PdfViewerState } from '../../types/latex-wor
 import { getTrimValue } from './trimming.js'
 import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { IsAutoRefreshEnabled } from './refresh.js'
-import { sendPanel } from './connection.js'
+import { sendLog, sendPanel } from './connection.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 
@@ -55,9 +55,19 @@ export function uploadState() {
 export async function setParams() {
     const params = await utils.getParams()
 
-    const viewerContainer = document.querySelector('#viewerContainer') as HTMLHtmlElement
-    const thumbnailView = document.querySelector('#thumbnailView') as HTMLHtmlElement
-    const sidebarContent = document.querySelector('#sidebarContent') as HTMLHtmlElement
+    const viewerContainer = document.querySelector('#viewerContainer') as HTMLHtmlElement | null
+    const thumbnailView = document.querySelector('#thumbnailsView') as HTMLHtmlElement | null
+    const viewsManagerContent = document.querySelector('#viewsManagerContent') as HTMLHtmlElement | null
+
+    if (!viewerContainer) {
+        sendLog('Internal error: #viewerContainer is missing.')
+    }
+    if (!thumbnailView) {
+        sendLog('Internal error: #thumbnailsView is missing.')
+    }
+    if (!viewsManagerContent) {
+        sendLog('Internal error: #viewsManagerContent is missing.')
+    }
 
     if (params.sidebar.open === 'on' || params.sidebar.open === 'persist' && localStorage.getItem('lw-pdf-sidebar-open') === 'true') {
         PDFViewerApplication.viewsManager.open()
@@ -81,13 +91,21 @@ export async function setParams() {
     if (params.invertMode.enabled) {
         const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-        viewerContainer.style.filter = filter
-        thumbnailView.style.filter = filter
-        sidebarContent.style.background = 'var(--body-bg-color)'
+        if (viewerContainer) {
+            viewerContainer.style.filter = filter
+        }
+        if (thumbnailView) {
+            thumbnailView.style.filter = filter
+        }
+        if (viewsManagerContent) {
+            viewsManagerContent.style.background = 'var(--body-bg-color)'
+        }
     }
 
     const backgroundColor = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark.backgroundColor : params.color.light.backgroundColor
-    viewerContainer.style.background = backgroundColor
+    if (viewerContainer) {
+        viewerContainer.style.background = backgroundColor
+    }
 
     const css = document.styleSheets[document.styleSheets.length - 1]
     const pageBorderColor = utils.isPrefersColorSchemeDark(params.codeColorTheme) ? params.color.dark.pageBorderColor : params.color.light.pageBorderColor

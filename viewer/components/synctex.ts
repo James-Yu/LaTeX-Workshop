@@ -49,6 +49,10 @@ export function registerSyncTeX() {
     for (const pageDom of pageDomList as NodeListOf<HTMLElement> | HTMLElement[]) {
         const page = Number(pageDom.dataset.pageNumber)
         const viewerContainer = document.getElementById('viewerContainer')!
+        // `registerSyncTeX()` runs before and after `setParams()`,
+        // so clear stale handlers in case configured keybinding changed.
+        pageDom.onclick = null
+        pageDom.ondblclick = null
         switch (reverseSynctexKeybinding) {
             case 'ctrl-click': {
                 pageDom.onclick = (e) => {
