@@ -40,6 +40,7 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
+    'information': vscode.DiagnosticSeverity.Information
 }
 
 export async function showCompilerDiagnostics(diagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[]) {
