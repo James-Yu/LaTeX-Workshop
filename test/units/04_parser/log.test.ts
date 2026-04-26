@@ -182,7 +182,7 @@ TEXIFY LOG
         })
     })
 
-    describe('lw.parser->latex', () => {
+    describe.only('lw.parser->latex', () => {
         beforeEach(() => {
             set.config('message.badbox.show', 'both')
         })
@@ -330,18 +330,25 @@ Test message`
         })
 
         it('should parse class/package/module/LaTeX3 warnings/infos', () => {
-            const logs = [
+            const warningLogs = [
                 'Class MyClass Warning: This is a warning message on input line 42.',
-                'Package MyPackage Info: All systems operational.',
                 'Module MyModule Warning: Something went wrong.',
-                'LaTeX Info: Compilation successful.',
                 'LaTeX3 Warning: Deprecated feature used on line 10.',
+            ]
+            const infoLogs = [
+                'Package MyPackage Info: All systems operational.',
+                'LaTeX Info: Compilation successful.',
                 'LaTeX3 Info: No issues found.',
             ]
 
-            for (const log of logs) {
+            for (const log of warningLogs) {
                 const warning = latexLogParser.parse(log, get.path('main.tex'))?.[0]
                 assert.strictEqual(warning?.type, 'warning')
+            }
+
+            for (const log of infoLogs) {
+                const info = latexLogParser.parse(log, get.path('main.tex'))?.[0]
+                assert.strictEqual(info?.type, 'information')
             }
         })
 

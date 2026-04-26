@@ -13,7 +13,8 @@ const latexOverfullBoxOutput = /^(Overfull \\[vh]box \([^)]*\)) has occurred whi
 const latexUnderfullBox = /^(Underfull \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexUnderfullBoxAlt = /^(Underfull \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexUnderfullBoxOutput = /^(Underfull \\[vh]box \([^)]*\)) has occurred while \\output is active(?: \[(\d+)\])?/
-const latexWarn = /^((?:(?:Class|Package|Module) \S*)|LaTeX(?: \S*)?|LaTeX3) (Warning|Info):\s+(.*?)(?: on(?: input)? line (\d+))?(\.|\?|)$/
+const latexInfo = /^((?:(?:Class|Package|Module) \S*)|LaTeX(?: \S*)?|LaTeX3) (Info):\s+(.*?)(?: on(?: input)? line (\d+))?(\.|\?|)$/
+const latexWarn = /^((?:(?:Class|Package|Module) \S*)|LaTeX(?: \S*)?|LaTeX3) (Warning):\s+(.*?)(?: on(?: input)? line (\d+))?(\.|\?|)$/
 const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
 const latexMissChar = /^\s*(Missing character:.*?!)/
 const latexNoPageOutput = /^No pages of output\.$/
@@ -180,6 +181,20 @@ function parseLine(line: string, state: ParserState) {
             text: result[1]
         }
         state.searchEmptyLine = false
+        return
+    }
+    result = line.match(latexInfo)
+    if (result) {
+        if (state.currentResult.type !== '') {
+            buildLog.push(state.currentResult)
+        }
+        state.currentResult = {
+            type: 'information',
+            file: filename,
+            line: result[4] ? parseInt(result[4], 10) : 1,
+            text: result[1] + ': ' + result[3] + result[5]
+        }
+        state.searchEmptyLine = true
         return
     }
     result = line.match(latexWarn)
