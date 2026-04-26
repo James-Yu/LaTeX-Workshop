@@ -279,7 +279,7 @@ function spawnProcess(step: Step): ProcessEnv {
     return env
 }
 
-export type L3Backend = string;
+export type L3Backend = string
 // L3Backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
 let backend: L3Backend = 'unknown'
 export const setL3Backend = (l3b: L3Backend) => {
