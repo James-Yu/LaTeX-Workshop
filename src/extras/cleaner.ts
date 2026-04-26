@@ -1,11 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { glob } from 'glob'
-import * as cs from 'cross-spawn'
 import { lw } from '../lw'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 
-const logger = lw.log('Cleaner')
+const logger: ReturnType<typeof lw.log> = lw.log('Cleaner')
 
 export {
     clean
@@ -56,10 +55,6 @@ async function clean(rootFile?: string): Promise<void> {
     switch (cleanMethod) {
         case 'glob':
             return cleanGlob(rootFile)
-        case 'cleanCommand':
-            await configuration.update('latex.clean.method', 'command')
-            void vscode.window.showInformationMessage('The cleaning method `cleanCommand` has been renamed to `command`. Your config is auto-updated.')
-            return cleanCommand(rootFile)
         case 'command':
             return cleanCommand(rootFile)
         default:
@@ -87,7 +82,7 @@ function splitGlobs(globs: string[]): { fileOrFolderGlobs: string[], folderGlobs
 
     for (const pattern of unique(globs)) {
         if (pattern.endsWith(path.sep)) {
-            if (path.basename(pattern).includes('**')) {
+            if (pattern.includes('**')) {
                 folderGlobsWithGlobstar.push(pattern)
             } else {
                 folderGlobsExplicit.push(pattern)
@@ -129,6 +124,9 @@ async function cleanGlob(rootFile: string): Promise<void> {
         try {
             const realUri = vscode.Uri.file(realPath)
             const stats = await lw.external.stat(realUri)
+            // Both files and symbolic links to files will be removed, but not
+            // folders or symbolic links to folders. This is to avoid removing
+            // non-empty folders.
             if ((stats.type & vscode.FileType.File) !== 0) {
                 await lw.external.delete(realUri)
                 logger.log(`Cleaning file ${realPath} .`)
@@ -170,16 +168,16 @@ function cleanCommand(rootFile: string): Promise<void> {
     logger.logCommand('Clean temporary files command', command, args)
     return new Promise((resolve, _reject) => {
         // issue #3679 #3687: spawning with `detached: true` causes latexmk from MiKTeX to fail on Windows when "install on-the-fly" is enabled
-        const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile)})
+        const proc = lw.external.spawn(command, args, {cwd: path.dirname(rootFile)})
         let stderr = ''
-        proc.stderr.on('data', newStderr => {
+        proc.stderr?.on('data', (newStderr: string | Buffer) => {
             stderr += newStderr
         })
-        proc.on('error', err => {
+        proc.on('error', (err: Error) => {
             logger.logError(`Failed running cleaning command ${command} .`, err, stderr)
             resolve()
         })
-        proc.on('exit', exitCode => {
+        proc.on('exit', (exitCode: number | null) => {
             if (exitCode !== 0) {
                 logger.logError('The clean command failed.', exitCode, stderr)
                 logger.refreshStatus('x', 'errorForeground', `Cleaning failed: ${stderr}`, 'error')
