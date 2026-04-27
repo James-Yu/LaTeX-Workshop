@@ -14,7 +14,8 @@ const logger = lw.log('Build')
 export {
     autoBuild,
     build,
-    isFileExcludedFromBuildOnSave
+    isFileExcludedFromBuildOnSave,
+    getL3Backend
 }
 
 lw.watcher.src.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange'))
@@ -279,13 +280,12 @@ function spawnProcess(step: Step): ProcessEnv {
     return env
 }
 
-export type L3Backend = string
-// L3Backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
-let backend: L3Backend = 'unknown'
-export const setL3Backend = (l3b: L3Backend) => {
+let backend: string = 'unknown'
+// backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
+const setL3Backend = (l3b: string) => {
     backend = l3b
 }
-export const getL3Backend = () => backend
+const getL3Backend = () => backend
 
 /**
  * Monitors the output and termination of the tool process. This function
