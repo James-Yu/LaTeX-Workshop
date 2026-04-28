@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
-import { getL3Backend } from '../../compile/build'
+import { l3backend } from '../../compile/build'
 
 
 const logger = lw.log('Parser', 'DvipdfmxLog')
@@ -64,11 +64,11 @@ function parse(log: string, rootFile?: string) {
         dvipdfmxBuffer: []
     }
 
-    if (getL3Backend() !== 'dvipdfmx') {
+    if (l3backend !== 'dvipdfmx') {
         pushLog(
             'warning',
             rootFile,
-            `${latexWorkshopMesg} Detected backend: \`${getL3Backend()}'.\nThis document appears to require the dvipdfmx backend.\nPlease specify \`dvipdfmx' in your global options within \\documentclass.`,
+            `${latexWorkshopMesg} Detected backend: \`${l3backend}'.\nThis document appears to require the dvipdfmx backend.\nPlease specify \`dvipdfmx' in your global options within \\documentclass.`,
             1,
             excludeRegexp
         )

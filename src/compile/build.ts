@@ -15,7 +15,7 @@ export {
     autoBuild,
     build,
     isFileExcludedFromBuildOnSave,
-    getL3Backend
+    l3backend
 }
 
 lw.watcher.src.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange'))
@@ -280,12 +280,8 @@ function spawnProcess(step: Step): ProcessEnv {
     return env
 }
 
-let backend: string = 'unknown'
-// backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
-const setL3Backend = (l3b: string) => {
-    backend = l3b
-}
-const getL3Backend = () => backend
+let l3backend: string = 'unknown'
+// l3backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
 
 /**
  * Monitors the output and termination of the tool process. This function
@@ -329,8 +325,8 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         lw.compile.process.on('exit', (code, signal) => {
             let isSkipped = false
 
-            const l3backend = stdout.match(/l3backend-(.*?)\.def/)?.[1] ?? 'unknown'
-            setL3Backend(l3backend)
+            const backend = stdout.match(/l3backend-(.*?)\.def/)?.[1] ?? 'unknown'
+            l3backend = backend
 
             // #4838 LaTeX writes messages to stdout, while dvipdfmx writes
             // messages to stderr, so both output streams need to be parsed.
