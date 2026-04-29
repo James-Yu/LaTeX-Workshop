@@ -143,7 +143,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await clean(rootFile)
 
             const deletedPaths = deleteStub.getCalls().map(call => (call.args[0] as vscode.Uri).fsPath).sort()
-            assert.deepStrictEqual(deletedPaths, [
+            assert.pathListStrictEqual(deletedPaths, [
                 path.join(auxDir, 'main.aux'),
                 path.join(outDir, 'main.aux'),
                 path.join(outDir, 'main.fls')
@@ -160,7 +160,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await clean(rootFile)
 
             const deletedPaths = deleteStub.getCalls().map(call => (call.args[0] as vscode.Uri).fsPath).sort()
-            assert.deepStrictEqual(deletedPaths, [path.join(outDir, 'main.aux'), path.join(outDir, 'sub.aux')])
+            assert.pathListStrictEqual(deletedPaths, [path.join(outDir, 'main.aux'), path.join(outDir, 'sub.aux')])
         })
 
         it('should prefix globs with globstar when latex.clean.subfolder.enabled is true', async () => {
@@ -201,7 +201,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await clean(rootFile)
 
             const deletedPaths = deleteStub.getCalls().map(call => (call.args[0] as vscode.Uri).fsPath)
-            assert.deepStrictEqual(deletedPaths, [path.join(outDir, 'tmp')])
+            assert.pathListStrictEqual(deletedPaths, [path.join(outDir, 'tmp')])
         })
 
         it('should ignore folder glob patterns with globstar', async () => {

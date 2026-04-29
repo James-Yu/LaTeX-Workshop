@@ -11,6 +11,7 @@ type ExtendedAssert = typeof nodeAssert & {
     listStrictEqual: <T>(actual: T[] | undefined, expected: T[] | undefined, message?: string | Error) => void,
     pathStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
     pathNotStrictEqual: (actual: string | undefined, expected: string | undefined, message?: string | Error) => void,
+    pathListStrictEqual: (actual: string[] | undefined, expected: string[] | undefined, message?: string | Error) => void,
     hasLog: (message: string | RegExp) => void,
     notHasLog: (message: string | RegExp) => void,
     hasCompilerLog: (message: string | RegExp) => void
@@ -39,6 +40,25 @@ assert.pathStrictEqual = (actual: string | undefined, expected: string | undefin
 assert.pathNotStrictEqual = (actual: string | undefined, expected: string | undefined, message?: string | Error) => {
     [actual, expected] = getPaths(actual, expected)
     assert.notStrictEqual(path.relative(actual, expected), '', message ?? `Paths are equal: ${actual} === ${expected} .`)
+}
+assert.pathListStrictEqual = (actual: string[] | undefined, expected: string[] | undefined, message?: string | Error) => {
+    if (actual === undefined || expected === undefined) {
+        assert.strictEqual(actual, expected)
+    } else {
+        assert.strictEqual(
+            actual.length,
+            expected.length,
+            message ?? `Path lists have different lengths: ${actual} !== ${expected} .`
+        )
+
+        actual.forEach((actualPath, index) => {
+            assert.pathStrictEqual(
+                actualPath,
+                expected[index],
+                message ?? `Paths at index ${index} are not equal: ${actualPath} !== ${expected[index]} .`
+            )
+        })
+    }
 }
 function hasLog(message: string | RegExp) {
     return typeof message === 'string'
