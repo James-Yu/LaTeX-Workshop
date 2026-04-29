@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import { lw } from '../../lw'
 import { type IParser, type LogEntry, showCompilerDiagnostics } from './parserutils'
+import { l3backend } from '../../compile/build'
 
 
 const logger = lw.log('Parser', 'DvipdfmxLog')
@@ -12,6 +13,8 @@ const dvipdfmxArgsError = /^dvipdfmx: ((Missing argument|Unexpected argument in)
 const dvipdfmxConfigError = /^config_special: (Unknown option .+)/
 const additionalMessage = /^\s*(CMap name|input str|Font|CMap):/
 const noOutputPDF = 'No output PDF file written.'
+
+const latexWorkshopMesg = 'Message from LaTeX Workshop:'
 
 const dvipdfmxDiagnostics = vscode.languages.createDiagnosticCollection('Dvipdfmx')
 
@@ -59,6 +62,16 @@ function parse(log: string, rootFile?: string) {
     const state: ParserState = {
         currentType: undefined,
         dvipdfmxBuffer: []
+    }
+
+    if (l3backend !== 'dvipdfmx') {
+        pushLog(
+            'warning',
+            rootFile,
+            `${latexWorkshopMesg} Detected backend: \`${l3backend}'.\nThis document appears to require the dvipdfmx backend.\nPlease specify \`dvipdfmx' in your global options within \\documentclass.`,
+            1,
+            excludeRegexp
+        )
     }
 
     for (const line of lines) {

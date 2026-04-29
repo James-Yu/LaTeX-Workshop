@@ -14,7 +14,8 @@ const logger = lw.log('Build')
 export {
     autoBuild,
     build,
-    isFileExcludedFromBuildOnSave
+    isFileExcludedFromBuildOnSave,
+    l3backend
 }
 
 lw.watcher.src.onChange(filePath => autoBuild(filePath.fsPath, 'onFileChange'))
@@ -279,6 +280,9 @@ function spawnProcess(step: Step): ProcessEnv {
     return env
 }
 
+let l3backend: string = 'unknown'
+// l3backend expected: pdftex | luatex | xetex | dvips | dvipdfmx | dvisvgm
+
 /**
  * Monitors the output and termination of the tool process. This function
  * monitors the stdout and stderr channels to log and parse the output messages.
@@ -320,6 +324,9 @@ async function monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
 
         lw.compile.process.on('exit', (code, signal) => {
             let isSkipped = false
+
+            const backend = stdout.match(/l3backend-(.*?)\.def/)?.[1] ?? 'unknown'
+            l3backend = backend
 
             // #4838 LaTeX writes messages to stdout, while dvipdfmx writes
             // messages to stderr, so both output streams need to be parsed.
