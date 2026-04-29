@@ -64,7 +64,7 @@ function parse(log: string, rootFile?: string) {
         dvipdfmxBuffer: []
     }
 
-    if (l3backend !== 'dvipdfmx') {
+    if (l3backend !== 'dvipdfmx' && l3backend !== 'unknown') {
         pushLog(
             'warning',
             rootFile,
