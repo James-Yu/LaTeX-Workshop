@@ -10,6 +10,43 @@ import { registerSyncTeX } from './components/synctex.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
+declare const pdfjsLib: {
+    OutputScale?: {
+        readonly pixelRatio: number
+    }
+}
+
+const FRACTIONAL_DPI_EPSILON = 1e-3
+const MIN_FRACTIONAL_DPI_CANVAS_SCALE = 2
+
+// Chromium-based viewers are visibly soft when PDF.js renders page canvases at
+// fractional DPR values such as Windows 125%. Render at an integral backing
+// scale so Chromium does not have to stretch the PDF canvas.
+function getCanvasPixelRatio() {
+    const pixelRatio = window.devicePixelRatio || 1
+    if (!Number.isFinite(pixelRatio) || pixelRatio <= 1) {
+        return 1
+    }
+    if (Math.abs(pixelRatio - Math.round(pixelRatio)) < FRACTIONAL_DPI_EPSILON) {
+        return pixelRatio
+    }
+    return Math.max(MIN_FRACTIONAL_DPI_CANVAS_SCALE, Math.ceil(pixelRatio))
+}
+
+function patchFractionalDpiCanvasScale() {
+    const outputScale = pdfjsLib.OutputScale
+    if (!outputScale) {
+        return
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(outputScale, 'pixelRatio')
+    if (descriptor && !descriptor.configurable) {
+        return
+    }
+    Object.defineProperty(outputScale, 'pixelRatio', {
+        configurable: true,
+        get: getCanvasPixelRatio
+    })
+}
 
 // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
 // We can set PDFViewerApplicationOptions at the time.
@@ -45,6 +82,8 @@ function onPDFViewerEvent(event: PdfjsEventName, cb: (evt?: any) => unknown, opt
 
 async function initialization() {
     document.title = utils.parseURL().docTitle
+
+    patchFractionalDpiCanvasScale()
 
     const params = await utils.getParams()
     document.addEventListener('webviewerloaded', () => {
