@@ -88,8 +88,8 @@ const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
-const dvipdfmxPattern = /^(.*)\.dvi -> (.*)\.pdf/m
-const dvipdfmxPatternAlt = /^dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
+const dvipdfmxPattern = /^(.*)(\.dvi|\.xdv|stdin) -> (.*)\.pdf/
+const dvipdfmxPatternAlt = /^x?dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
 const dvipdfmxConfigOption = /^config_special: Unknown option .*?/
 
 const bibtexPattern = /^This is BibTeX, Version.*$/m

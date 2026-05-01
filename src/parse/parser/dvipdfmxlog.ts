@@ -6,10 +6,10 @@ import { l3backend } from '../../compile/build'
 
 const logger = lw.log('Parser', 'DvipdfmxLog')
 
-const divpdfmxWarn = /^dvipdfmx:warning: (.+)$/
-const dvipdfmxContinuedWarn = /^dvipdfmx:warning: >> (.*)$/
-const divpdfmxFatal = /^dvipdfmx:fatal: (.+)$/
-const dvipdfmxArgsError = /^dvipdfmx: ((Missing argument|Unexpected argument in) .+?|Multiple dvi filenames\?)/
+const divpdfmxWarn = /^x?dvipdfmx:warning: (.+)$/
+const dvipdfmxContinuedWarn = /^x?dvipdfmx:warning: >> (.*)$/
+const divpdfmxFatal = /^x?dvipdfmx:fatal: (.+)$/
+const dvipdfmxArgsError = /^x?dvipdfmx: ((Missing argument|Unexpected argument in) .+?|Multiple dvi filenames\?)/
 const dvipdfmxConfigError = /^config_special: (Unknown option .+)/
 const additionalMessage = /^\s*(CMap name|input str|Font|CMap):/
 const noOutputPDF = 'No output PDF file written.'
@@ -64,11 +64,11 @@ function parse(log: string, rootFile?: string) {
         dvipdfmxBuffer: []
     }
 
-    if (l3backend !== 'dvipdfmx' && l3backend !== 'unknown') {
+    if (l3backend !== 'dvipdfmx' && l3backend !== 'xetex' && l3backend !== 'unknown') {
         pushLog(
             'warning',
             rootFile,
-            `${latexWorkshopMesg} Detected backend: \`${l3backend}'.\nThis document appears to require the dvipdfmx backend.\nPlease specify \`dvipdfmx' in your global options within \\documentclass.`,
+            `${latexWorkshopMesg} Detected l3backend: \`${l3backend}'.\nThe recipe uses dvipdfmx, but the l3backend used in the DVI file generated this time\ndoes not support it. You should add \`dvipdfmx' to option list of  \\documentclass.\n\t\\documentclass[dvipdfmx, ...]{...}`,
             1,
             excludeRegexp
         )
