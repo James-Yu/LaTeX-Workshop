@@ -65,17 +65,17 @@ export function setTrimCSS() {
 function getPageRule(pageNum: number, pageHeight: number, pageWidth: number): string {
     return `
         .page[data-page-number="${pageNum + 1}"] {
-            width: round(down, calc(var(--scale-factor) * ${pageWidth}px * (1 - var(--trim-factor) / 100)), 1px) !important;
-            height: round(down, calc(var(--scale-factor) * ${pageHeight}px * (1 - var(--trim-factor) / 100)), 1px) !important;
+            width: round(down, calc(var(--total-scale-factor) * ${pageWidth}px * (1 - var(--trim-factor) / 100)), var(--scale-round-x)) !important;
+            height: round(down, calc(var(--total-scale-factor) * ${pageHeight}px * (1 - var(--trim-factor) / 100)), var(--scale-round-y)) !important;
         }`
 }
 
 function getCanvasRule(className: string, pageNum: number, pageHeight: number, pageWidth: number): string {
     return `
         .page[data-page-number="${pageNum + 1}"] .${className} {
-            width: round(down, calc(var(--scale-factor) * ${pageWidth}px), 1px) !important;
-            height: round(down, calc(var(--scale-factor) * ${pageHeight}px), 1px) !important;
-            margin-left: round(down, calc(var(--scale-factor) * ${pageWidth}px * var(--trim-factor) / -200), 1px) !important;
-            margin-top: round(down, calc(var(--scale-factor) * ${pageHeight}px * var(--trim-factor) / -200), 1px) !important;
+            width: round(down, calc(var(--total-scale-factor) * ${pageWidth}px), var(--scale-round-x)) !important;
+            height: round(down, calc(var(--total-scale-factor) * ${pageHeight}px), var(--scale-round-y)) !important;
+            margin-left: round(down, calc(var(--total-scale-factor) * ${pageWidth}px * var(--trim-factor) / -200), var(--scale-round-x)) !important;
+            margin-top: round(down, calc(var(--total-scale-factor) * ${pageHeight}px * var(--trim-factor) / -200), var(--scale-round-y)) !important;
         }`
 }
