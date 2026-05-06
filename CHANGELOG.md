@@ -1,5 +1,19 @@
 # Change Log
 
+## [10.15.0] - 2026-05-06
+
+### Added
+- (#4827) Add support for reverse proxy configuration in PDF viewer URL.
+- (#4856) Add a new config item of string type `latex.build.fromFolder`
+  - The original boolean `latex.build.fromWorkspaceFolder` is replaced for more general usage.
+- (#4856) Two new tool placeholders `%RELATIVE_CWD_DIR%` and `%RELATIVE_CWD_DOC%` are added to provide relative paths from `this new building folder`.
+
+### Fixed
+- (#4844) Fix scrollbar color inconsistency recurrence in dark mode.
+- (#4863) Fix `querySelector` and SyncTeX keybindings.
+- (#4869) Correctly display Latex 'info' as information instead of warning.
+- (#4879) Fix trimming CSS rounding at fractional DPI.
+
 ## [10.14.1] - 2026-04-08
 
 ### Fixed
