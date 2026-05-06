@@ -1,6 +1,5 @@
 import * as vsls from 'vsls/vscode'
 import * as vscode from 'vscode'
-import * as url from 'url'
 import http from 'http'
 import ws from 'ws'
 import { lw } from '../lw'
@@ -130,7 +129,7 @@ async function getHostServerPort(reset: boolean = false): Promise<number> {
     // delay here instead of doing await vscode.commands.executeCommand acquires the port more reliably because await vscode.commands.executeCommand does not return until the user closes the info box of the command or clicks copy again.
     await sleep(500)
     const hostUrl = await vscode.env.clipboard.readText()
-    const hostServerPort = Number(url.parse(hostUrl).port)
+    const hostServerPort = Number((new URL(hostUrl)).port)
     state.hostServerPort = hostServerPort
     await vscode.env.clipboard.writeText(savedClipboard)
     return hostServerPort
@@ -359,12 +358,12 @@ async function handleServerRequest(request: http.IncomingMessage, response: http
         return true
     }
 
-    const requestUrl = url.parse(request.url)
+    const requestUrl = new URL(request.url)
 
     const options = {
         host: requestUrl.hostname,
         port: await getHostServerPort(),
-        path: requestUrl.path,
+        path: requestUrl.pathname,
         method: request.method,
         headers: request.headers,
     }
