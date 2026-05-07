@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.15.2] - 2026-05-07
+
+### Fixed
+- (#4883) Legacy PDF.js files not bundled in release.
+
 ## [10.15.1] - 2026-05-07
 
 ### Fixed
