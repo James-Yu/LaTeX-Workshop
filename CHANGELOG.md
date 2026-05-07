@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.15.1] - 2026-05-07
+
+### Fixed
+- (#4882) Use legacy PDF.js dist build files for PDF rendering.
+
 ## [10.15.0] - 2026-05-06
 
 ### Added
