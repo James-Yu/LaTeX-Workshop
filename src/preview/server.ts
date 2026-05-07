@@ -285,7 +285,9 @@ async function handler(request: http.IncomingMessage, response: http.ServerRespo
         return
     }
     let root: string
-    if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/') || request.url.startsWith('/wasm/')) {
+    if (request.url.startsWith('/build/')) {
+        root = path.resolve(lw.extensionRoot, 'node_modules', 'pdfjs-dist', 'legacy')
+    } else if (request.url.startsWith('/cmaps/') || request.url.startsWith('/standard_fonts/') || request.url.startsWith('/wasm/')) {
         root = path.resolve(lw.extensionRoot, 'node_modules', 'pdfjs-dist')
     } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
         // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
