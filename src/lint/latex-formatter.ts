@@ -3,8 +3,8 @@ import { lw } from '../lw'
 import { LaTeXFormatter } from '../types'
 import { latexindent } from './latex-formatter/latexindent'
 import { texfmt } from './latex-formatter/tex-fmt'
-import { fixQuotes } from '../extras/quote-fixer'
-import { fixMath } from '../extras/math-fixer'
+import { fixQuotes, applyQuoteFixer } from '../extras/quote-fixer'
+import { fixMath, applyMathFixer } from '../extras/math-fixer'
 
 const logger = lw.log('Format', 'LaTeX')
 
@@ -35,12 +35,13 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
         const edits: vscode.TextEdit[] = []
         const formatEdit = await this.formatter?.formatDocument(document)
         if (formatEdit) {
+            // Apply fixers to the formatter output to avoid overlapping ranges.
+            formatEdit.newText = applyMathFixer(document, applyQuoteFixer(document, formatEdit.newText))
             edits.push(formatEdit)
+        } else {
+            edits.push(...fixQuotes(document, undefined))
+            edits.push(...fixMath(document, undefined))
         }
-        const quoteEdits = fixQuotes(document, undefined)
-        edits.push(...quoteEdits)
-        const mathEdits = fixMath(document, undefined)
-        edits.push(...mathEdits)
         return edits
     }
 
@@ -58,13 +59,13 @@ class FormattingProvider implements vscode.DocumentFormattingEditProvider, vscod
                 // In this case, the first line need some leading whitespaces.
                 formatEdit.newText = ' '.repeat(firstLine.firstNonWhitespaceCharacterIndex - range.start.character) + formatEdit.newText
             }
+            // Apply fixers to the formatter output to avoid overlapping ranges.
+            formatEdit.newText = applyMathFixer(document, applyQuoteFixer(document, formatEdit.newText))
             edits.push(formatEdit)
+        } else {
+            edits.push(...fixQuotes(document, range))
+            edits.push(...fixMath(document, range))
         }
-
-        const quoteEdits = fixQuotes(document, range)
-        edits.push(...quoteEdits)
-        const mathEdits = fixMath(document, range)
-        edits.push(...mathEdits)
         return edits
     }
 }

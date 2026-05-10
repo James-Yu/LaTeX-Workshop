@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import { stripCommentsAndVerbatim } from '../utils/utils'
+import { applyEditsToString } from './quote-fixer'
 
 /**
  * Represent the type of math environment we are currently in.
@@ -123,4 +124,23 @@ export function fixMath(document: vscode.TextDocument, range: vscode.Range | und
     const targetRange = range ?? new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
     const text = document.getText() // Get full text to ensure correct line numbers
     return mathFixer.getEdits(text).filter(e => targetRange.contains(e.range))
+}
+
+/**
+ * Apply LaTeX math delimiter normalization to a piece of text and return the result.
+ *
+ * Used by the formatter to fold math fixes into the formatter's output text
+ * instead of producing additional `TextEdit`s that would overlap with the
+ * formatter's full-range edit.
+ *
+ * @param document The document used to look up the relevant configuration.
+ * @param text The text to normalize.
+ * @returns The normalized text, or the original text if math fixing is disabled.
+ */
+export function applyMathFixer(document: vscode.TextDocument, text: string): string {
+    const config = vscode.workspace.getConfiguration('latex-workshop', document.uri)
+    if (!config.get('format.fixMath.enabled', false)) {
+        return text
+    }
+    return applyEditsToString(text, new MathFixer().getEdits(text))
 }

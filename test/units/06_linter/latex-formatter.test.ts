@@ -147,16 +147,31 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 assert.ok(edits.length > 0, 'Expected fixMath to produce edits')
             })
 
-            it('should combine formatter edits and fixQuotes edits', async () => {
+            it('should apply fixQuotes to formatter output without producing overlapping edits', async () => {
                 set.config('format.fixQuotes.enabled', true)
-                const formatterEdit = vscode.TextEdit.replace(new vscode.Range(0, 0, 0, 5), 'formatted')
+                const formatterEdit = vscode.TextEdit.replace(new vscode.Range(0, 0, 0, 13), '"hello" world')
                 latexindentStub.resolves(formatterEdit)
 
                 const edits = await formatter.provideDocumentFormattingEdits(makeDocument('"hello" world\n'), dummyOptions, dummyToken)
 
+                // A single edit avoids "Overlapping ranges are not allowed!" from VS Code.
+                assert.strictEqual(edits.length, 1)
                 assert.ok(edits.includes(formatterEdit))
-                // fixQuotes edits should also be present
-                assert.ok(edits.length > 1)
+                assert.ok(edits[0].newText.includes("``hello''"))
+            })
+
+            it('should apply fixMath to formatter output without producing overlapping edits', async () => {
+                set.config('format.fixMath.enabled', true)
+                const formatterEdit = vscode.TextEdit.replace(new vscode.Range(0, 0, 0, 5), '$x^2$')
+                latexindentStub.resolves(formatterEdit)
+
+                const edits = await formatter.provideDocumentFormattingEdits(makeDocument('$x^2$\n'), dummyOptions, dummyToken)
+
+                // A single edit avoids "Overlapping ranges are not allowed!" from VS Code.
+                assert.strictEqual(edits.length, 1)
+                assert.ok(edits.includes(formatterEdit))
+                assert.ok(edits[0].newText.includes('\\(x^2\\)'))
+                assert.ok(!edits[0].newText.includes('$'))
             })
         })
     })
@@ -309,16 +324,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(edits.length > 0, 'Expected fixMath to produce edits')
         })
 
-        it('should combine formatter edit and fixQuotes edits for range formatting', async () => {
+        it('should apply fixQuotes to formatter output for range formatting without overlapping edits', async () => {
             set.config('format.fixQuotes.enabled', true)
             const range = new vscode.Range(0, 0, 0, 13)
-            const formatterEdit = vscode.TextEdit.replace(range, 'formatted')
+            const formatterEdit = vscode.TextEdit.replace(range, '"hello" world')
             latexindentStub.resolves(formatterEdit)
 
             const edits = await formatter.provideDocumentRangeFormattingEdits(makeDocument('"hello" world\n'), range, dummyOptions, dummyToken)
 
+            assert.strictEqual(edits.length, 1)
             assert.ok(edits.includes(formatterEdit))
-            assert.ok(edits.length > 1, 'Expected both formatter and fixQuotes edits')
+            assert.ok(edits[0].newText.includes("``hello''"))
         })
     })
 })
