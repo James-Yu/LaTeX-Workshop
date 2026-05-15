@@ -280,6 +280,10 @@ function handler(websocket: ws, msg: string): void {
             void lw.locate.synctex.toTeX(data, uri)
             break
         }
+        case 'cannot_synctex': {
+            logger.showErrorMessage('SyncTeX is not supported if the PDF viewer is in Page Scrolling mode.')
+            break
+        }
         case 'external_link': {
             const uri = vscode.Uri.parse(data.url)
             if (['http', 'https'].includes(uri.scheme)) {

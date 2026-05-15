@@ -21,6 +21,10 @@ export function setSyncTeXKey(binding: string) {
 }
 
 function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
+    if (PDFViewerApplication.pdfViewer.scrollMode === 3) {
+        void send({ type: 'cannot_synctex' })
+        return
+    }
     const canvasDom = pageDom.getElementsByTagName('canvas')[0]
     const selection = window.getSelection()
     let textBeforeSelection = ''
@@ -142,6 +146,11 @@ function forwardSynctexCirc(data: SynctexData) {
 export function forwardSynctex(data: SynctexData | SynctexRangeData[]) {
     if (!isSyncTeXEnabled()) {
         sendLog('SyncTeX temporarily disabled.')
+        return
+    }
+
+    if (PDFViewerApplication.pdfViewer.scrollMode === 3) {
+        void send({ type: 'cannot_synctex' })
         return
     }
 

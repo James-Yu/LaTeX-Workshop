@@ -93,6 +93,8 @@ export type ClientRequest = {
     textBeforeSelection: string,
     textAfterSelection: string
 } | {
+    type: 'cannot_synctex'
+} | {
     type: 'add_log',
     message: string
 } | {
