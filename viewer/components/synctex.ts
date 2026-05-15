@@ -120,7 +120,7 @@ function forwardSynctexRect(data: SynctexRangeData[]) {
         const { scrollX, scrollY } = scrollToPosition(page, pos_left_top[0], pos_left_top[1])
 
         if (record.indicator) {
-            const width_px = pos_right_down[0] - Math.max(scrollX, pos_left_top[0])
+            const width_px = pos_right_down[0] - pos_left_top[0]
             const height_px = pos_left_top[1] - pos_right_down[1]
             createIndicator('rect', scrollX, scrollY, width_px, height_px)
         }
