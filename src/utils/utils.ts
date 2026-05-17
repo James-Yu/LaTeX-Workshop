@@ -267,6 +267,12 @@ export function resolveFileGlob(dirs: string[], inputGlob: string, suffix: strin
     return []
 }
 
+/**
+ * Return the working folder for a given root file, considering the
+ * `latex.build.fromFolder` configuration setting.
+ * @param rootFile The path of the root file.
+ * @returns The absolute path of the working folder.
+ */
 export function getWorkingFolder(rootFile: string): string {
     const rootFileUri = lw.file.toUri(rootFile)
     const rootDir = path.dirname(rootFileUri.fsPath)

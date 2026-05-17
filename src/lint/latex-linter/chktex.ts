@@ -6,6 +6,7 @@ import { lw } from '../../lw'
 import type { LaTeXLinter } from '../../types'
 import { processWrapper } from './utils'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
+import { getWorkingFolder } from '../../utils/utils'
 
 const logger = lw.log('Linter', 'ChkTeX')
 
@@ -61,7 +62,7 @@ async function chktexWrapper(linterid: string, configScope: vscode.Configuration
     try {
         linterProcess?.kill()
         logger.logCommand(`Linter for ${getName()} command`, command, args.concat(requiredArgs).filter(arg => arg !== ''))
-        linterProcess = lw.external.spawn(command, args.concat(requiredArgs).filter(arg => arg !== ''), { cwd: path.dirname(filePath) })
+        linterProcess = lw.external.spawn(command, args.concat(requiredArgs).filter(arg => arg !== ''), { cwd: getWorkingFolder(filePath) })
         stdout = await processWrapper(linterid, linterProcess, content)
     } catch (err: any) {
         if ('stdout' in err) {
