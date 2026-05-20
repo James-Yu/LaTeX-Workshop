@@ -346,7 +346,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await chkTeX.lintRootFile('/tmp/dir/main.tex')
 
             const spawnOptions = spawnStub.firstCall.args[2] as { cwd?: string }
-            assert.strictEqual(spawnOptions.cwd, '/tmp/dir')
+            assert.strictEqual(spawnOptions.cwd, '/tmp/dir'.replaceAll('/', path.sep))
         })
 
         it('should parse resulting log output and set diagnostics', async () => {
@@ -451,7 +451,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await chkTeX.lintFile(document)
 
             const spawnOptions = spawnStub.firstCall.args[2] as { cwd?: string }
-            assert.strictEqual(spawnOptions.cwd, '/tmp/subdir')
+            assert.strictEqual(spawnOptions.cwd, '/tmp/subdir'.replaceAll('/', path.sep))
         })
 
         it('should parse resulting log and report diagnostics for single file', async () => {

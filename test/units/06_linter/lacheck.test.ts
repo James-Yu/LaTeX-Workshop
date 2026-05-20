@@ -237,7 +237,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.ok(spawnStub.calledOnce)
 			assert.strictEqual(spawnStub.firstCall.args[0], 'lacheck')
 			assert.deepStrictEqual(spawnStub.firstCall.args[1], ['/tmp/sub/main.tex'])
-			assert.strictEqual(spawnStub.firstCall.args[2].cwd, '/tmp/sub')
+			assert.strictEqual(spawnStub.firstCall.args[2].cwd, '/tmp/sub'.replaceAll('/', path.sep))
 		})
 
 		it('should parse stdout and set diagnostics when spawn throws with stdout', async () => {
@@ -303,7 +303,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.ok(spawnStub.calledOnce)
 			assert.strictEqual(spawnStub.firstCall.args[0], 'lacheck')
 			assert.deepStrictEqual(spawnStub.firstCall.args[1], ['/tmp/sub/main.tex'])
-			assert.strictEqual(spawnStub.firstCall.args[2].cwd, '/tmp/sub')
+			assert.strictEqual(spawnStub.firstCall.args[2].cwd, '/tmp/sub'.replaceAll('/', path.sep))
 			assert.ok(proc.stdinWrite.calledWith('\\documentclass{article}'))
 		})
 
