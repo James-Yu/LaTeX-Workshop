@@ -762,12 +762,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!step.args?.includes('--max-print-line=' + lw.constant.MAX_PRINT_LINE), step.args?.join(' '))
         })
 
-        it('should add --max-print-line argument to the arg string with MikTeX and %!TeX options', async () => {
-            await set.config('latex.option.maxPrintLine.enabled', true)
-            await set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
-            await set.config('latex.build.enableMagicComments', true)
+        it('should quote TeX options containing spaces for shell mode on MiKTeX', async () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.build.enableMagicComments', true)
             syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
-            readStub.resolves('% !TEX program = latexmk\n% !TEX options = -synctex=1 -interaction=nonstopmode -file-line-error\n')
+            readStub.resolves('% !TEX program = latexmk\n% !TEX options = -output-directory="C:/Users/Test User/out"\n')
             const rootFile = set.root('main.tex')
             initialize()
 
@@ -775,7 +775,39 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             const step = queue.getStep()
             assert.ok(step)
-            assert.strictEqual(step.args?.[0], '--max-print-line=10000 -synctex=1 -interaction=nonstopmode -file-line-error', JSON.stringify(step.args))
+            assert.ok(step.args?.[0].includes('"-output-directory="C:/Users/Test User/out""'), JSON.stringify(step.args))
+        })
+
+        it('should add --max-print-line to TeX options in shell mode on MiKTeX', async () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.build.enableMagicComments', true)
+            syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
+            readStub.resolves('% !TEX program = latexmk\n% !TEX options = -synctex=1\n')
+            const rootFile = set.root('main.tex')
+            initialize()
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.strictEqual(step.args?.[0], `--max-print-line=${lw.constant.MAX_PRINT_LINE} -synctex=1`, JSON.stringify(step.args))
+        })
+
+        it('should keep TeX options unquoted when they do not contain spaces in shell mode on MiKTeX', async () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.build.enableMagicComments', true)
+            syncStub.returns({ stdout: 'pdfTeX 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7350 64-bit)' })
+            readStub.resolves('% !TEX program = latexmk\n% !TEX options = -synctex=1\n')
+            const rootFile = set.root('main.tex')
+            initialize()
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.ok(step.args?.[0].endsWith(' -synctex=1'), JSON.stringify(step.args))
         })
     })
 
