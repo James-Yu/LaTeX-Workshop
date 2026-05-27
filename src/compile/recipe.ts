@@ -389,7 +389,9 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
             if ((isLaTeXmk || tool.command === 'pdflatex') && isMikTeX()) {
                 if (tool.name === lw.constant.TEX_MAGIC_PROGRAM_NAME) {
                     // %!TeX options is present. All args are provided in a string and { shell: true }
-                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${tool.args.join(' ')}` ]
+                    // Quote arguments containing spaces to prevent path splitting
+                    const quoted = tool.args.map((a: string) => a.includes(' ') ? `"${a}"` : a).join(' ')
+                    tool.args = [ `--max-print-line=${lw.constant.MAX_PRINT_LINE} ${quoted}` ]
                 } else {
                     tool.args.unshift('--max-print-line=' + lw.constant.MAX_PRINT_LINE)
                 }
