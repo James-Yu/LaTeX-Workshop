@@ -1,5 +1,14 @@
 # Change Log
 
+## [10.15.3] - 2026-05-27
+
+### Fixed
+- (#4893) Linter cwd respect `latex.build.fromFolder`.
+- (#4895) Remove obsolete `tex-fmt.args` config key-value pair description.
+- (#4897) Enhance TeX directory handling to support both single and double hyphen arguments.
+- (#4906) MathFixer ignore dollar signs in `expl3` syntax.
+- (#4908) Fix build failure when file path contains spaces under MikTeX.
+
 ## [10.15.2] - 2026-05-07
 
 ### Fixed
