@@ -10,6 +10,8 @@ enum MathMode {
     Display, // $$ ... $$
 }
 
+type LineRange = {start: number, end: number}
+
 /**
  * Transform inline math delimiters $ ... $ into \( ... \) and
  * display math delimiters $$ ... $$ into \[ ... \].
@@ -20,6 +22,7 @@ export class MathFixer {
     // Group 2: Display math ($$)
     // Group 3: Inline math ($)
     private readonly tokenPattern = /(\\.)|(\$\$)|(\$)/g
+    private readonly explPattern = /\\ExplSyntax(On|Off)/g
 
     /**
      * Generate a list of TextEdits to transform math delimiters.
@@ -28,11 +31,14 @@ export class MathFixer {
      * @returns An array of TextEdits.
      */
     public getEdits(text: string): vscode.TextEdit[] {
+        // Strip comments and verbatim-like content first so delimiter positions stay stable
+        // while ignored regions no longer participate in math detection.
         const stripped = stripCommentsAndVerbatim(text)
         const strippedLines = stripped.split('\n')
 
         const mathStack: MathMode[] = []
         const edits: vscode.TextEdit[] = []
+        let explOn = false
 
         for (let i = 0; i < strippedLines.length; i++) {
             const sLine = strippedLines[i]
@@ -41,68 +47,84 @@ export class MathFixer {
                 continue
             }
 
+            // expl3 blocks may contain `$` as ordinary characters, so skip token handling
+            // anywhere between \explOn and \ExplSyntaxOff.
+            const explState = this.getExplRanges(sLine, explOn)
+            explOn = explState.explOn
             let match: RegExpExecArray | null
             this.tokenPattern.lastIndex = 0
             while ((match = this.tokenPattern.exec(sLine)) !== null) {
                 const index = match.index
-                const fullMatch = match[0]
-                const escaped = match[1]
-                const displayMath = match[2]
-                const inlineMath = match[3]
-
-                if (escaped) {
-                    // Ignore escaped character
+                if (match[1] !== undefined || explState.ranges.some(range => range.start <= index && index < range.end)) {
                     continue
-                } else if (displayMath) {
-                    // Special case: consecutive $$ with no content between should be treated as
-                    // two inline math delimiters (empty inline math expression)
-                    // Check if this is opening display math and there's no closing $$ on this line
-                    const isOpening = mathStack.length === 0 || mathStack[mathStack.length - 1] !== MathMode.Display
+                }
 
-                    if (isOpening) {
-                        // Look for closing $$ on the same line
-                        const restOfLine = sLine.substring(index + 2)
-                        const closingIndex = restOfLine.indexOf('$$')
-
-                        // If no closing $$ or closing is immediate (empty content), treat as two inline $
-                        if (closingIndex === -1 || closingIndex === 0) {
-                            // Treat as two separate inline math delimiters
-                            // First $: opening
-                            const range1 = new vscode.Range(i, index, i, index + 1)
-                            mathStack.push(MathMode.Inline)
-                            edits.push(vscode.TextEdit.replace(range1, '\\('))
-
-                            // Second $: closing
-                            const range2 = new vscode.Range(i, index + 1, i, index + 2)
-                            mathStack.pop()
-                            edits.push(vscode.TextEdit.replace(range2, '\\)'))
-                            continue
-                        }
-                    }
-
-                    // Normal display math handling
-                    const range = new vscode.Range(i, index, i, index + fullMatch.length)
-                    if (mathStack.length > 0 && mathStack[mathStack.length - 1] === MathMode.Display) {
-                        mathStack.pop()
-                        edits.push(vscode.TextEdit.replace(range, '\\]'))
-                    } else {
-                        mathStack.push(MathMode.Display)
-                        edits.push(vscode.TextEdit.replace(range, '\\['))
-                    }
-                } else if (inlineMath) {
-                    const range = new vscode.Range(i, index, i, index + fullMatch.length)
-                    if (mathStack.length > 0 && mathStack[mathStack.length - 1] === MathMode.Inline) {
-                        mathStack.pop()
-                        edits.push(vscode.TextEdit.replace(range, '\\)'))
-                    } else {
-                        mathStack.push(MathMode.Inline)
-                        edits.push(vscode.TextEdit.replace(range, '\\('))
-                    }
+                // `$$` is handled before `$` so display math keeps precedence over inline math.
+                if (match[2]) {
+                    this.handleDisplayMath(i, sLine, index, mathStack, edits)
+                } else if (match[3]) {
+                    this.toggleMathDelimiter(i, index, 1, MathMode.Inline, mathStack, edits)
                 }
             }
         }
 
         return edits
+    }
+
+    private getExplRanges(sLine: string, explOn: boolean): { ranges: LineRange[], explOn: boolean } {
+        const ranges: LineRange[] = []
+        let rangeStart = explOn ? 0 : undefined
+
+        this.explPattern.lastIndex = 0
+        let explMatch: RegExpExecArray | null
+        while ((explMatch = this.explPattern.exec(sLine)) !== null) {
+            if (explMatch[1] === 'On') {
+                if (!explOn) {
+                    rangeStart = explMatch.index
+                    explOn = true
+                }
+            } else if (explOn) {
+                ranges.push({ start: rangeStart ?? 0, end: explMatch.index + explMatch[0].length })
+                rangeStart = undefined
+                explOn = false
+            }
+        }
+
+        if (explOn) {
+            ranges.push({ start: rangeStart ?? 0, end: sLine.length })
+        }
+
+        return { ranges, explOn }
+    }
+    private handleDisplayMath(lineNumber: number, sLine: string, index: number, mathStack: MathMode[], edits: vscode.TextEdit[]) {
+        if (this.shouldTreatAsEmptyInlineMath(sLine, index, mathStack)) {
+            this.toggleMathDelimiter(lineNumber, index, 1, MathMode.Inline, mathStack, edits)
+            this.toggleMathDelimiter(lineNumber, index + 1, 1, MathMode.Inline, mathStack, edits)
+            return
+        }
+
+        this.toggleMathDelimiter(lineNumber, index, 2, MathMode.Display, mathStack, edits)
+    }
+
+    private shouldTreatAsEmptyInlineMath(sLine: string, index: number, mathStack: MathMode[]): boolean {
+        const isOpeningDisplay = mathStack.length === 0 || mathStack[mathStack.length - 1] !== MathMode.Display
+        if (!isOpeningDisplay) {
+            return false
+        }
+
+        const closingIndex = sLine.substring(index + 2).indexOf('$$')
+        return closingIndex === -1 || closingIndex === 0
+    }
+
+    private toggleMathDelimiter(lineNumber: number, index: number, length: number, mode: MathMode, mathStack: MathMode[], edits: vscode.TextEdit[]) {
+        const range = new vscode.Range(lineNumber, index, lineNumber, index + length)
+        if (mathStack.length > 0 && mathStack[mathStack.length - 1] === mode) {
+            mathStack.pop()
+            edits.push(vscode.TextEdit.replace(range, mode === MathMode.Display ? '\\]' : '\\)'))
+        } else {
+            mathStack.push(mode)
+            edits.push(vscode.TextEdit.replace(range, mode === MathMode.Display ? '\\[' : '\\('))
+        }
     }
 }
 

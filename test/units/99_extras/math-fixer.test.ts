@@ -111,5 +111,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(edits[0].newText, '\\[')
             assert.strictEqual(edits[1].newText, '\\]')
         })
+
+        it('should ignore dollar signs inside expl3 syntax blocks (#4906)', () => {
+            const text = '\\ExplSyntaxOn\n\\sys_get_shell:nnN {echo~$HOME}{} \\home\n\\ExplSyntaxOff'
+            const edits = fixer.getEdits(text)
+            assert.strictEqual(edits.length, 0)
+        })
     })
 })

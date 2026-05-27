@@ -710,11 +710,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             ])
             const rootFile = set.root('main.tex')
 
-            const stub = sinon.stub(lw.file, 'setTeXDirs')
-            await build(rootFile, 'latex', async () => {})
-            stub.restore()
+            getAuxDirStub.restore()
+            try {
+                await build(rootFile, 'latex', async () => {})
 
-            assert.listStrictEqual(stub.getCall(0).args, [rootFile, 'out', 'aux'])
+                assert.pathStrictEqual(lw.file.getOutDir(rootFile), 'out')
+                assert.pathStrictEqual(lw.file.getAuxDir(rootFile), 'aux')
+            } finally {
+                getAuxDirStub = sinon.stub(lw.file, 'getAuxDir').returns('.')
+            }
         })
 
         it('should set TeX directories correctly with double hyphen arguments', async () => {
@@ -730,11 +734,15 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             ])
             const rootFile = set.root('main.tex')
 
-            const stub = sinon.stub(lw.file, 'setTeXDirs')
-            await build(rootFile, 'latex', async () => {})
-            stub.restore()
+            getAuxDirStub.restore()
+            try {
+                await build(rootFile, 'latex', async () => {})
 
-            assert.listStrictEqual(stub.getCall(0).args, [rootFile, 'out', 'aux'])
+                assert.pathStrictEqual(lw.file.getOutDir(rootFile), 'out')
+                assert.pathStrictEqual(lw.file.getAuxDir(rootFile), 'aux')
+            } finally {
+                getAuxDirStub = sinon.stub(lw.file, 'getAuxDir').returns('.')
+            }
         })
 
         it('should process environment variables correctly', async () => {
