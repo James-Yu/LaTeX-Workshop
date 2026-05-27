@@ -11,7 +11,9 @@ const dvipdfmxContinuedWarn = /^x?dvipdfmx:warning: >> (.*)$/
 const divpdfmxFatal = /^x?dvipdfmx:fatal: (.+)$/
 const dvipdfmxArgsError = /^x?dvipdfmx: ((Missing argument|Unexpected argument in) .+?|Multiple dvi filenames\?)/
 const dvipdfmxConfigError = /^config_special: (Unknown option .+)/
-const additionalMessage = /^\s*(CMap name|input str|Font|CMap):/
+const additionalMessage = /^\s*(CMap name:|input str:|Font:|CMap:|Current input buffer is)/
+const dvipdfmxInfo = /(fontmap|pdf_color|pdf_font|pdf_image|subfont|truetype|otf_cmap|otl_gsub)>> (.*)/
+const kpathseaMissfont = 'kpathsea: Appending font creation commands to missfont.log.'
 const noOutputPDF = 'No output PDF file written.'
 
 const latexWorkshopMesg = 'Message from LaTeX Workshop:'
@@ -35,8 +37,8 @@ function showLog() {
 }
 
 type ParserState = {
-    currentType?: 'warning' | 'error',
-    dvipdfmxBuffer: string[]
+    currentType?: 'information' | 'warning' | 'error',
+    buffer: string[]
 }
 
 function parse(log: string, rootFile?: string) {
@@ -61,14 +63,14 @@ function parse(log: string, rootFile?: string) {
 
     const state: ParserState = {
         currentType: undefined,
-        dvipdfmxBuffer: []
+        buffer: []
     }
 
     if (l3backend !== 'dvipdfmx' && l3backend !== 'xetex' && l3backend !== 'unknown') {
         pushLog(
-            'warning',
+            'information',
             rootFile,
-            `${latexWorkshopMesg} Detected l3backend: \`${l3backend}'.\nThe recipe uses dvipdfmx, but the l3backend used in the DVI file generated this time\ndoes not support it. You should add \`dvipdfmx' to option list of  \\documentclass.\n\t\\documentclass[dvipdfmx, ...]{...}`,
+            `${latexWorkshopMesg} Detected l3backend driver: \`${l3backend}'.\nThe build recipe uses dvipdfmx, but the l3backend used in the DVI file generated this time\ndoes not support it. You should add \`dvipdfmx' to option list of  \\documentclass.\n\t\\documentclass[dvipdfmx, ...]{...}`,
             1,
             excludeRegexp
         )
@@ -83,6 +85,7 @@ function parse(log: string, rootFile?: string) {
     return buildLog
 }
 
+let infoTag = ""
 function parseLine(line: string, state: ParserState, rootFile: string, excludeRegexp: RegExp[]) {
     let result: RegExpMatchArray | null = null
 
@@ -92,7 +95,7 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
             flushLog(state, rootFile, excludeRegexp)
             state.currentType = 'warning'
         }
-        state.dvipdfmxBuffer.push(result[1].trim())
+        state.buffer.push(result[1].trim())
         return
     }
 
@@ -103,7 +106,27 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
             state.currentType = 'warning'
         }
         line = line.replace(/^\s*/, '\t')
-        state.dvipdfmxBuffer.push(line)
+        state.buffer.push(line)
+        return
+    }
+
+    result = line.match(dvipdfmxInfo)
+    if (result) {
+        const tag = result[1]
+        const msg = result[2]
+        if (state.currentType !== 'information') {
+            flushLog(state, rootFile, excludeRegexp)
+            infoTag = tag
+            state.currentType = 'information'
+            state.buffer.push(`${tag}>>\n\t${msg}`)
+        } else if (infoTag === tag) {
+            state.buffer.push(`\t${msg}`)
+        } else {
+            flushLog(state, rootFile, excludeRegexp)
+            infoTag = tag
+            state.currentType = 'information'
+            state.buffer.push(`${tag}>>\n\t${msg}`)
+        }
         return
     }
 
@@ -111,15 +134,17 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
     if (result) {
         flushLog(state, rootFile, excludeRegexp)
         state.currentType = 'warning'
-        state.dvipdfmxBuffer.push(result[1].trim())
+        state.buffer.push(result[1].trim())
         return
     }
 
     result = line.match(divpdfmxFatal)
     if (result) {
-        flushLog(state, rootFile, excludeRegexp)
+        if (result[1] !== 'Cannot proceed without .vf or "physical" font for PDF output...') {
+            flushLog(state, rootFile, excludeRegexp)
+        }
         state.currentType = 'error'
-        state.dvipdfmxBuffer.push(result[1].trim())
+        state.buffer.push(result[1].trim())
         return
     }
 
@@ -127,7 +152,7 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
     if (result) {
         flushLog(state, rootFile, excludeRegexp)
         state.currentType = 'error'
-        state.dvipdfmxBuffer.push(result[1].trim())
+        state.buffer.push(result[1].trim())
         return
     }
 
@@ -135,22 +160,28 @@ function parseLine(line: string, state: ParserState, rootFile: string, excludeRe
     if (result) {
         flushLog(state, rootFile, excludeRegexp)
         state.currentType = 'error'
-        state.dvipdfmxBuffer.push(result[1].trim())
+        state.buffer.push(result[1].trim())
+        return
+    }
+
+    if (line.match(kpathseaMissfont)) {
+        flushLog(state, rootFile, excludeRegexp)
+        pushLog('information', rootFile, kpathseaMissfont, 1, excludeRegexp)
         return
     }
 
     if (line.includes(noOutputPDF)) {
         flushLog(state, rootFile, excludeRegexp)
-        pushLog('error', rootFile, noOutputPDF, 1, excludeRegexp)
+        pushLog('error', rootFile, line, 1, excludeRegexp)
         return
     }
 }
 
 function flushLog(state: ParserState, rootFile: string, excludeRegexp: RegExp[]) {
-    if (state.currentType && state.dvipdfmxBuffer.length > 0) {
-        pushLog(state.currentType, rootFile!, state.dvipdfmxBuffer.join('\n'), 1, excludeRegexp)
+    if (state.currentType && state.buffer.length > 0) {
+        pushLog(state.currentType, rootFile!, state.buffer.join('\n'), 1, excludeRegexp)
     }
-    state.dvipdfmxBuffer.length = 0
+    state.buffer.length = 0
     state.currentType = undefined
 }
 
