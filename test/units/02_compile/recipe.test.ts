@@ -697,12 +697,34 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.pathStrictEqual(step.args?.[2], get.path(''))
         })
 
-        it('should set TeX directories correctly', async () => {
+        it('should set TeX directories correctly with single hyphen arguments', async () => {
+            set.config('latex.outDir', '%DIR%')
+            set.config('latex.auxDir', '%OUTDIR%')
             set.config('latex.tools', [
                 {
                     name: 'latexmk',
                     command: 'latexmk',
                     args: ['-out-directory=out', '-aux-directory=aux'],
+                    env: {},
+                },
+            ])
+            const rootFile = set.root('main.tex')
+
+            const stub = sinon.stub(lw.file, 'setTeXDirs')
+            await build(rootFile, 'latex', async () => {})
+            stub.restore()
+
+            assert.listStrictEqual(stub.getCall(0).args, [rootFile, 'out', 'aux'])
+        })
+
+        it('should set TeX directories correctly with double hyphen arguments', async () => {
+            set.config('latex.outDir', '%DIR%')
+            set.config('latex.auxDir', '%OUTDIR%')
+            set.config('latex.tools', [
+                {
+                    name: 'latexmk',
+                    command: 'latexmk',
+                    args: ['--out-directory=out', '--aux-directory=aux'],
                     env: {},
                 },
             ])

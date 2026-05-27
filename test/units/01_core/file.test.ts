@@ -54,7 +54,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
-        describe('lw.file.getAuxDir', () => {
+    describe('lw.file.getAuxDir', () => {
         it('should get aux directory from root', () => {
             set.root(fixture, 'main.tex')
             assert.pathStrictEqual(lw.file.getAuxDir(), lw.root.dir.path)

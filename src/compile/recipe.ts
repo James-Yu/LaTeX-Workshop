@@ -367,8 +367,18 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
         lw.file.setTeXDirs(
             rootFile,
-            tool.args?.filter(arg => arg.startsWith('-out-directory') || arg.startsWith('-outdir'))[0]?.replace(/^-out-directory=|^-outdir=/, ''),
-            tool.args?.filter(arg => arg.startsWith('-aux-directory') || arg.startsWith('-auxdir'))[0]?.replace(/^-aux-directory=|^-auxdir=/, '')
+            tool.args?.filter(arg =>
+                arg.startsWith('-out-directory')
+                || arg.startsWith('--out-directory')
+                || arg.startsWith('-outdir')
+                || arg.startsWith('--outdir')
+            )[0]?.replace(/^-out-directory=|^--out-directory=|^-outdir=|^--outdir=/, ''),
+            tool.args?.filter(arg =>
+                arg.startsWith('-aux-directory')
+                || arg.startsWith('--aux-directory')
+                || arg.startsWith('-auxdir')
+                || arg.startsWith('--auxdir')
+            )[0]?.replace(/^-aux-directory=|^--aux-directory=|^-auxdir=|^--auxdir=/, '')
         )
         const env = tool.env ?? {}
         Object.entries(env).forEach(([key, value]) => {
