@@ -163,6 +163,7 @@ export default [{
 
         "no-new-wrappers": "error",
         "no-trailing-spaces": "error",
+        "no-useless-assignment": "off",
 
         "no-empty": ["error", {
             allowEmptyCatch: true,
