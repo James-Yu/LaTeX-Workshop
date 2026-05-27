@@ -182,7 +182,7 @@ TEXIFY LOG
         })
     })
 
-    describe.only('lw.parser->latex', () => {
+    describe('lw.parser->latex', () => {
         beforeEach(() => {
             set.config('message.badbox.show', 'both')
         })
