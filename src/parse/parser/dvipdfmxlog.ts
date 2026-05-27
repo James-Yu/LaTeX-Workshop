@@ -85,7 +85,7 @@ function parse(log: string, rootFile?: string) {
     return buildLog
 }
 
-let infoTag = ""
+let infoTag = ''
 function parseLine(line: string, state: ParserState, rootFile: string, excludeRegexp: RegExp[]) {
     let result: RegExpMatchArray | null = null
 
