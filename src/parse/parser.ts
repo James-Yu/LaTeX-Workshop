@@ -6,6 +6,7 @@ import type { bibtexParser } from 'latex-utensils'
 import { lw } from '../lw'
 import type { Worker } from './parser/unified'
 import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
+import { parseRepeatedRunsBool } from '../compile/recipe'
 import { bibtexLogParser } from './parser/bibtexlog'
 import { biberLogParser } from './parser/biberlog'
 import { latexLogParser } from './parser/latexlog'
@@ -88,6 +89,10 @@ const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
+const latexRepeatPattern = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/gm
+const latexRepeatLog = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
+const latexRepeatLogLatex = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
+
 const dvipdfmxPattern = /(\.dvi|\.xdv|stdin) -> .*\.pdf/
 const dvipdfmxPatternAlt = /^x?dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
 const dvipdfmxConfigOption = /^config_special: Unknown option .*?/
@@ -121,6 +126,8 @@ function log(msg: string, rootFile?: string): boolean {
         msg = trimLaTeXmk(msg)
     } else if (msg.match(texifyPattern)) {
         msg = trimTexify(msg)
+    } else if (msg.match(latexRepeatPattern) && parseRepeatedRunsBool) {
+        msg = trimLatexRepeat(msg)
     }
     if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexIntErrPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)
@@ -152,6 +159,9 @@ function trimTexify(msg: string): string {
     return trimPattern(msg, texifyLogLatex, texifyLog)
 }
 
+function trimLatexRepeat(msg: string): string {
+    return trimPattern(msg, latexRepeatLogLatex, latexRepeatLog)
+}
 
 /**
  * Return the lines between the last occurrences of `beginPattern` and `endPattern`.
