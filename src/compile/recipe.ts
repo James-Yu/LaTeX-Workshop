@@ -1,6 +1,6 @@
 import vscode from 'vscode'
 import path from 'path'
-import { getWorkingFolder, replaceArgumentPlaceholders } from '../utils/utils'
+import { getWorkingFolder, replaceArgumentPlaceholders, resolveFile } from '../utils/utils'
 
 import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
@@ -183,7 +183,7 @@ async function createBuildTools(rootFile: string, langId: string, recipeName?: s
     // Use JSON.parse and JSON.stringify for a deep copy.
     buildTools = JSON.parse(JSON.stringify(buildTools)) as Tool[]
 
-    populateTools(rootFile, buildTools)
+    await populateTools(rootFile, buildTools)
 
     return buildTools
 }
@@ -341,15 +341,15 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
  *
  * @param {string} rootFile - Path to the root LaTeX file.
  * @param {Tool[]} buildTools - An array of Tool objects to be populated.
- * @returns {Tool[]} - An array of Tool objects with expanded values.
+ * @returns {Promise<Tool[]>} - An array of Tool objects with expanded values.
  */
-function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
+async function populateTools(rootFile: string, buildTools: Tool[]): Promise<Tool[]> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const docker = configuration.get('docker.enabled')
     const defaultCwd = getWorkingFolder(rootFile)
     const replaceFn = replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)
 
-    buildTools.forEach(tool => {
+    await Promise.all(buildTools.map(async tool => {
         if (docker) {
             switch (tool.command) {
                 case 'latexmk':
@@ -390,6 +390,10 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         Object.entries(env).forEach(([key, value]) => {
             env[key] = value && replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)(value)
         })
+        if (await shouldAddLaTeXmkCD(tool, rootFile)) {
+            tool.args = tool.args ?? []
+            tool.args.push('-cd')
+        }
         if (configuration.get('latex.option.maxPrintLine.enabled')) {
             tool.args = tool.args ?? []
             const isLaTeXmk =
@@ -413,8 +417,48 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                 }
             }
         }
-    })
+    }))
     return buildTools
+}
+
+async function shouldAddLaTeXmkCD(tool: Tool, rootFile: string): Promise<boolean> {
+    // Don't add -cd if the tool is not latexmk
+    if (tool.command !== 'latexmk') {
+        return false
+    }
+    // Don't add -cd if the tool already has a working directory specified by
+    // cwd or defined in args
+    if (tool.cwd || tool.args?.includes('-cd') || tool.args?.includes('--cd')) {
+        return false
+    }
+    // Don't add -cd if the root file is not in the workspace root or its
+    // subdirectories
+    if (rootFile !== lw.root.subfiles.path || lw.root.dir.path === undefined || path.dirname(rootFile) !== lw.root.dir.path) {
+        return false
+    }
+    // Don't add -cd if the root file does not contain
+    // \documentclass[...]{subfiles}
+    const regex = /(?:\\documentclass\[(.*)\]{subfiles})/s
+    const result = (await lw.file.read(lw.root.subfiles.path) ?? '').match(regex)
+    if (!result) {
+        return false
+    }
+    // Now `cwd` does not exist in the tool, check if the file indicated in the
+    // \documentclass macro exist w.r.t cwd
+    let filePath = await resolveFile([getWorkingFolder(rootFile)], result[1])
+    // If the file exist, then it means the root file can be compiled in its own
+    // directory and we don't need to add -cd
+    if (filePath) {
+        return false
+    }
+    // If the file does not exist, try to resolve it w.r.t the directory of the
+    // root file
+    filePath = await resolveFile([path.dirname(lw.root.subfiles.path)], result[1])
+    if (filePath) {
+        return true
+    }
+
+    return false
 }
 
 /**
