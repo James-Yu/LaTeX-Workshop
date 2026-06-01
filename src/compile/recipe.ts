@@ -53,7 +53,7 @@ function setDockerPath() {
  */
 export async function build(rootFile: string, langId: string, buildLoop: () => Promise<void>, recipeName?: string) {
     logger.log(`Build root file ${rootFile}`)
-    const cwd = getWorkingFolder(rootFile)
+    const defaultCwd = getWorkingFolder(rootFile)
 
     // Save all open files in the workspace
     await vscode.workspace.saveAll()
@@ -76,7 +76,7 @@ export async function build(rootFile: string, langId: string, buildLoop: () => P
 
     // Add tools to the queue with timestamp
     const timestamp = Date.now()
-    tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp, false, cwd))
+    tools.forEach(tool => queue.add(tool, rootFile, recipeName || 'Build', timestamp, false, tool.cwd || defaultCwd))
 
     // #4513 If the recipe contains a forced latexmk compilation, don't set the
     // compiledPDFPath so that PDF refresh is handled by file watcher.
@@ -346,6 +346,8 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
 function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', lw.file.toUri(rootFile))
     const docker = configuration.get('docker.enabled')
+    const defaultCwd = getWorkingFolder(rootFile)
+    const replaceFn = replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath)
 
     buildTools.forEach(tool => {
         if (docker) {
@@ -364,7 +366,11 @@ function populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
                     break
             }
         }
-        tool.args = tool.args?.map(replaceArgumentPlaceholders(rootFile, lw.file.tmpDirPath))
+        tool.args = tool.args?.map(replaceFn)
+        tool.cwd = tool.cwd && replaceFn(tool.cwd)
+        if (tool.cwd && !path.isAbsolute(tool.cwd)) {
+            tool.cwd = path.resolve(defaultCwd, tool.cwd)
+        }
         lw.file.setTeXDirs(
             rootFile,
             tool.args?.filter(arg =>
