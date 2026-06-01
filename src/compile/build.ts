@@ -241,13 +241,12 @@ function spawnProcess(step: Step): ProcessEnv {
     if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
         logger.clearCompilerMessage()
     }
-    let cwd = step.cwd
 
     logger.refreshStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ' ' + queue.getStepString(step))
     logger.logCommand(`Recipe step ${step.index + 1}`, step.command, step.args)
     logger.log(`env: ${JSON.stringify(step.env)}`)
     logger.log(`root: ${step.rootFile}`)
-    logger.log(`cwd: ${cwd}`)
+    logger.log(`cwd: ${step.cwd}`)
 
     const env: ProcessEnv = { ...process.env, ...step.env }
     env['max_print_line'] = lw.constant.MAX_PRINT_LINE
@@ -259,21 +258,16 @@ function spawnProcess(step: Step): ProcessEnv {
         const args = step.args
         if (args && !step.name.endsWith(lw.constant.MAGIC_PROGRAM_ARGS_SUFFIX)) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd, env, shell: true})
+            lw.compile.process = lw.external.spawn(`${step.command} ${args[0]}`, [], {cwd: step.cwd, env, shell: true})
         } else {
-            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd, env})
+            lw.compile.process = lw.external.spawn(step.command, args ?? [], {cwd: step.cwd, env})
         }
     } else if (!step.isExternal) {
-        if (step.command === 'latexmk' && step.rootFile === lw.root.subfiles.path && lw.root.dir.path && cwd === path.dirname(step.rootFile)) {
-            cwd = lw.root.dir.path
-        }
         if (step.command === 'bibtex' && step.args && step.args.length > 0) {
-            step.args[step.args.length - 1] = normalizeArgForCwd(step.args[step.args.length - 1], cwd, cwd)
+            step.args[step.args.length - 1] = normalizeArgForCwd(step.args[step.args.length - 1], step.cwd, step.cwd)
         }
-        logger.log(`cwd: ${cwd}`)
-        lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd, env})
+        lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd: step.cwd, env})
     } else {
-        logger.log(`cwd: ${step.cwd}`)
         lw.compile.process = lw.external.spawn(step.command, step.args ?? [], {cwd: step.cwd})
     }
     logger.log(`LaTeX build process spawned with PID ${lw.compile.process.pid}.`)
