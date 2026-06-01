@@ -112,6 +112,52 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.pathStrictEqual(lw.compile.compiledPDFPath, rootFile.replace('.tex', '.pdf'))
         })
+
+        it('should use tool cwd instead of the default working folder', async () => {
+            const rootFile = set.root('main.tex')
+            const customCwd = get.path('custom-build-dir')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: customCwd }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, customCwd)
+        })
+
+        it('should keep separate cwd overrides for different tools in the same recipe', async () => {
+            const rootFile = set.root('main.tex')
+            const firstCwd = get.path('build-a')
+            const secondCwd = get.path('build-b')
+            set.config('latex.tools', [
+                { name: 'Tool1', command: 'pdflatex', cwd: firstCwd },
+                { name: 'Tool2', command: 'bibtex', cwd: secondCwd }
+            ])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['Tool1', 'Tool2'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            const firstStep = queue.getStep()
+            const secondStep = queue.getStep()
+            assert.ok(firstStep)
+            assert.ok(secondStep)
+            assert.pathStrictEqual(firstStep.cwd, firstCwd)
+            assert.pathStrictEqual(secondStep.cwd, secondCwd)
+        })
+
+        it('should fall back to the default working folder when tool cwd is not set', async () => {
+            const rootFile = set.root('main.tex')
+            set.config('latex.build.fromFolder', 'build')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk' }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, get.path('build'))
+        })
     })
 
     describe('lw.compile->recipe.createBuildTools', () => {
@@ -695,6 +741,54 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.pathStrictEqual(step.args?.[0], rootFile.replace('.tex', ''))
             assert.pathStrictEqual(step.args?.[1], rootFile.replace('.tex', ''))
             assert.pathStrictEqual(step.args?.[2], get.path(''))
+        })
+
+        it('should replace cwd placeholders', async () => {
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: '%DIR%/build', env: {} }])
+            const rootFile = set.root('main.tex')
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, path.resolve(path.dirname(rootFile), 'build'))
+        })
+
+        it('should keep absolute cwd paths unchanged', async () => {
+            const absoluteCwd = path.resolve(get.path('absolute-build'))
+            set.config('latex.build.fromFolder', 'build-root')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: absoluteCwd, env: {} }])
+            const rootFile = set.root('tex', 'main.tex')
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, absoluteCwd)
+        })
+
+        it('should resolve relative cwd values from the default working folder', async () => {
+            set.config('latex.build.fromFolder', 'build-root')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: 'nested', env: {} }])
+            const rootFile = set.root('tex', 'main.tex')
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, path.resolve(get.path('build-root'), 'nested'))
+        })
+
+        it('should resolve relative cwd placeholders from the default working folder', async () => {
+            set.config('latex.build.fromFolder', 'test/units')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: '%RELATIVE_CWD_DIR%', env: {} }])
+            const rootFile = set.root('main.tex')
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.pathStrictEqual(step.cwd, path.dirname(rootFile))
         })
 
         it('should set TeX directories correctly with single hyphen arguments', async () => {
