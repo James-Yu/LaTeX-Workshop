@@ -158,6 +158,114 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(step)
             assert.pathStrictEqual(step.cwd, get.path('build'))
         })
+
+        const fileStat = { type: vscode.FileType.File, ctime: 0, mtime: 0, size: 0 }
+
+        it('should add -cd for a subfiles build when the main file resolves only from the subfile directory', async () => {
+            const rootFile = set.root('main.tex')
+            lw.root.subfiles.path = get.path('section', 'main.tex')
+            const readStub = sinon.stub(lw.file, 'read').resolves('\\documentclass[../main.tex]{subfiles}\n')
+            const existsStub = sinon.stub(lw.file, 'exists').callsFake((target: string | vscode.Uri) => {
+                return Promise.resolve(target === get.path('main.tex') ? fileStat : false)
+            })
+
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['-pdf'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            readStub.restore()
+            existsStub.restore()
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-pdf', '-cd'])
+        })
+
+        it('should not add -cd when no subfiles root is used', async () => {
+            const rootFile = set.root('main.tex')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['-pdf'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-pdf'])
+        })
+
+        it('should not add -cd when the main file already resolves from the working folder', async () => {
+            const rootFile = set.root('main.tex')
+            lw.root.subfiles.path = get.path('section', 'main.tex')
+            const readStub = sinon.stub(lw.file, 'read').resolves('\\documentclass[../main.tex]{subfiles}\n')
+            const existsStub = sinon.stub(lw.file, 'exists').callsFake((target: string | vscode.Uri) => {
+                return Promise.resolve(target === get.path('main.tex') ? fileStat : false)
+            })
+            set.config('latex.build.fromFolder', 'section')
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['-pdf'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            readStub.restore()
+            existsStub.restore()
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-pdf'])
+        })
+
+        it('should not add -cd when latexmk already defines a cwd override', async () => {
+            const rootFile = set.root('main.tex')
+            lw.root.subfiles.path = get.path('section', 'main.tex')
+            const readStub = sinon.stub(lw.file, 'read').resolves('\\documentclass[../main.tex]{subfiles}\n')
+            const existsStub = sinon.stub(lw.file, 'exists').resolves(false)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', cwd: 'build', args: ['-pdf'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            readStub.restore()
+            existsStub.restore()
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-pdf'])
+        })
+
+        it('should not add -cd when latexmk already includes the switch in its args', async () => {
+            const rootFile = set.root('main.tex')
+            lw.root.subfiles.path = get.path('section', 'main.tex')
+            const readStub = sinon.stub(lw.file, 'read').resolves('\\documentclass[../main.tex]{subfiles}\n')
+            const existsStub = sinon.stub(lw.file, 'exists').resolves(false)
+            set.config('latex.tools', [{ name: 'latexmk', command: 'latexmk', args: ['-pdf', '-cd'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['latexmk'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            readStub.restore()
+            existsStub.restore()
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-pdf', '-cd'])
+        })
+
+        it('should not add -cd for non-latexmk tools even in a subfiles build', async () => {
+            const rootFile = set.root('main.tex')
+            lw.root.subfiles.path = get.path('section', 'main.tex')
+            const readStub = sinon.stub(lw.file, 'read').resolves('\\documentclass[../main.tex]{subfiles}\n')
+            const existsStub = sinon.stub(lw.file, 'exists').callsFake((target: string | vscode.Uri) => {
+                return Promise.resolve(target === get.path('main.tex') ? fileStat : false)
+            })
+
+            set.config('latex.tools', [{ name: 'pdflatex', command: 'pdflatex', args: ['-interaction=nonstopmode'] }])
+            set.config('latex.recipes', [{ name: 'Recipe1', tools: ['pdflatex'] }])
+
+            await build(rootFile, 'latex', async () => {})
+
+            readStub.restore()
+            existsStub.restore()
+            const step = queue.getStep()
+            assert.ok(step)
+            assert.listStrictEqual(step.args, ['-interaction=nonstopmode'])
+        })
     })
 
     describe('lw.compile->recipe.createBuildTools', () => {

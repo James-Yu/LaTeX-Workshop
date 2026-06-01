@@ -431,9 +431,8 @@ async function shouldAddLaTeXmkCD(tool: Tool, rootFile: string): Promise<boolean
     if (tool.cwd || tool.args?.includes('-cd') || tool.args?.includes('--cd')) {
         return false
     }
-    // Don't add -cd if the root file is not in the workspace root or its
-    // subdirectories
-    if (rootFile !== lw.root.subfiles.path || lw.root.dir.path === undefined || path.dirname(rootFile) !== lw.root.dir.path) {
+    // Don't add -cd if the root file is the same as the subfile
+    if (rootFile === lw.root.subfiles.path || lw.root.subfiles.path === undefined) {
         return false
     }
     // Don't add -cd if the root file does not contain
