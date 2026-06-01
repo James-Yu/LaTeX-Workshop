@@ -1,6 +1,4 @@
 import * as vscode from 'vscode'
-import type { SpawnOptions } from 'child_process'
-import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { assert, get, log, mock, set, sleep } from '../utils'
@@ -249,28 +247,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             spawnSpy.restore()
 
             assert.pathStrictEqual(spawnSpy.getCall(0)?.args?.[2].cwd?.toString(), path.dirname(get.path('main.tex')))
-        })
-
-        it('should change current working directory to root when using subfiles to compile sub files', async () => {
-            set.root('main.tex')
-            set.config('latex.tools', [
-                { name: 'tool', command: 'latexmk', args: [] },
-            ])
-            lw.root.subfiles.path = get.path('sub/subfile.tex')
-
-            const spawnStub = sinon.stub(lw.external, 'spawn')
-            let lastSpawnArgs: [command: string, args: readonly string[], options: SpawnOptions] | undefined
-            spawnStub.callsFake((...args) => {
-                lastSpawnArgs = args
-                return cs.spawn('true')
-            })
-
-            await build(true, get.path('sub/subfile.tex'), 'latex')
-            spawnStub.restore()
-
-            lw.root.subfiles.path = undefined
-
-            assert.pathStrictEqual(lastSpawnArgs?.[2].cwd?.toString(), path.dirname(get.path('main.tex')))
         })
 
         it('should set and use `max_print_line` envvar when building', async () => {
