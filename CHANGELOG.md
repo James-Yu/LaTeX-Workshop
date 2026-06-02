@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.16.1] - 2026-06-02
+
+### Fixed
+- (#4915) Remove duplicated viewer.mjs script reference from viewer.html.
+
 ## [10.16.0] - 2026-06-02
 
 ### Added
