@@ -1,5 +1,15 @@
 # Change Log
 
+## [10.16.0] - 2026-06-02
+
+### Added
+- Update to PDF.js v5.7.284.
+- Add `cwd` to tools. A long missing bit.
+
+### Fixed
+- Remove obsolete `cwd` change with subfile root.
+- (#4910) Improve dvipdfmx log parser and add information message type
+
 ## [10.15.3] - 2026-05-27
 
 ### Fixed
