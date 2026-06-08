@@ -313,7 +313,7 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
     }
     if (recipeName) {
         recipe = recipes.find(candidate => candidate.name === recipeName)
-        const parseRepeatedRuns = recipe?.parseRepeatedRuns ?? false
+        const parseRepeatedRuns = recipe?.parseRepeatedRuns ?? true
         parseRepeatedRunsBool = parseRepeatedRuns
 
         if (recipe === undefined) {
