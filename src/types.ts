@@ -71,8 +71,7 @@ export type Tool = {
 
 export type Recipe = {
     name: string,
-    tools: (string | Tool)[],
-    parseRepeatedRuns: boolean
+    tools: (string | Tool)[]
 }
 
 export type RecipeStep = Tool & {

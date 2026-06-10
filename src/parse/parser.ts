@@ -6,7 +6,6 @@ import type { bibtexParser } from 'latex-utensils'
 import { lw } from '../lw'
 import type { Worker } from './parser/unified'
 import { getEnvDefs, getMacroDefs } from './parser/unified-defs'
-import { parseRepeatedRunsBool } from '../compile/recipe'
 import { bibtexLogParser } from './parser/bibtexlog'
 import { biberLogParser } from './parser/biberlog'
 import { latexLogParser } from './parser/latexlog'
@@ -117,10 +116,8 @@ function log(msg: string, rootFile?: string): boolean {
         bibtexLogParser.showLog()
     }
 
-    if (parseRepeatedRunsBool) {
-        if (msg.match(latexRepeatPattern)) {
-            msg = trimLatexRepeat(msg)
-        }
+    if (msg.match(latexRepeatPattern)) {
+        msg = trimLatexRepeat(msg)
     }
     if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexIntErrPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)

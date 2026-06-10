@@ -6,10 +6,6 @@ import { lw } from '../lw'
 import type { Recipe, Tool } from '../types'
 import { queue } from './queue'
 
-export {
-    parseRepeatedRunsBool
-}
-
 const logger = lw.log('Build', 'Recipe')
 
 let state: {
@@ -281,8 +277,6 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
     }
 }
 
-let parseRepeatedRunsBool: boolean
-
 /**
  * Find a recipe based on the provided recipe name, language ID, and root file.
  *
@@ -313,8 +307,6 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
     }
     if (recipeName) {
         recipe = recipes.find(candidate => candidate.name === recipeName)
-        const parseRepeatedRuns = recipe?.parseRepeatedRuns ?? true
-        parseRepeatedRunsBool = parseRepeatedRuns
 
         if (recipe === undefined) {
             logger.log(`Failed to resolve build recipe: ${recipeName}.`)
