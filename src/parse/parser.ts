@@ -80,13 +80,12 @@ const latexIntErrPattern = /^! Internal error: /gm
 const latexXeNoOutputPattern = /^No pages of output.$/gm
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
-const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/m
 
-const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
-const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
-const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
+const latexRepeatPattern = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/gm
+const latexRepeatLog = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
+const latexRepeatLogLatex = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
 
 const dvipdfmxPattern = /(\.dvi|\.xdv|stdin) -> .*\.pdf/
 const dvipdfmxPatternAlt = /^x?dvipdfmx: ((Missing argument|Unexpected argument in).*|Multiple dvi filenames\?)/
@@ -117,10 +116,8 @@ function log(msg: string, rootFile?: string): boolean {
         bibtexLogParser.showLog()
     }
 
-    if (msg.match(latexmkPattern)) {
-        msg = trimLaTeXmk(msg)
-    } else if (msg.match(texifyPattern)) {
-        msg = trimTexify(msg)
+    if (msg.match(latexRepeatPattern)) {
+        msg = trimLatexRepeat(msg)
     }
     if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexIntErrPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)
@@ -128,16 +125,13 @@ function log(msg: string, rootFile?: string): boolean {
     } else if (latexmkSkipped(msg)) {
         isLaTeXmkSkipped = true
     }
+
     if (msg.match(dvipdfmxPattern) || msg.match(dvipdfmxPatternAlt) || msg.match(dvipdfmxConfigOption)) {
         dvipdfmxLogParser.parse(msg, rootFile)
         dvipdfmxLogParser.showLog()
     }
 
     return isLaTeXmkSkipped
-}
-
-function trimLaTeXmk(msg: string): string {
-    return trimPattern(msg, latexmkLogLatex, latexmkLog)
 }
 
 function trimLaTeXmkBibTeX(msg: string): string {
@@ -148,10 +142,9 @@ function trimLaTeXmkBiber(msg: string): string {
     return trimPattern(msg, biberPattern, latexmkLogLatex)
 }
 
-function trimTexify(msg: string): string {
-    return trimPattern(msg, texifyLogLatex, texifyLog)
+function trimLatexRepeat(msg: string): string {
+    return trimPattern(msg, latexRepeatLogLatex, latexRepeatLog)
 }
-
 
 /**
  * Return the lines between the last occurrences of `beginPattern` and `endPattern`.
