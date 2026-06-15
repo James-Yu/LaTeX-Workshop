@@ -83,6 +83,9 @@ const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/m
 
+// These variables describe the same pattern, following the variable naming conventions used in log analysis for latexmk that was previously in use.
+// See below for an example of their use in latexmk log analysis.
+// https://github.com/James-Yu/LaTeX-Workshop/blob/19468dbb183c5db0b6dcdc45e69a909527458429/src/parse/parser.ts#L82-L84
 const latexRepeatPattern = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/gm
 const latexRepeatLog = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
 const latexRepeatLogLatex = /^This\sis\s(pdf|LuaHB|Xe|e-up)TeX,\sVersion/
