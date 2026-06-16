@@ -277,7 +277,6 @@ function createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): To
     }
 }
 
-
 /**
  * Find a recipe based on the provided recipe name, language ID, and root file.
  *
@@ -308,6 +307,7 @@ function findRecipe(rootFile: string, langId: string, recipeName?: string): Reci
     }
     if (recipeName) {
         recipe = recipes.find(candidate => candidate.name === recipeName)
+
         if (recipe === undefined) {
             logger.log(`Failed to resolve build recipe: ${recipeName}.`)
             void logger.showErrorMessage(`[Builder] Failed to resolve build recipe: ${recipeName}.`)
