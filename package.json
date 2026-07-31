@@ -569,6 +569,18 @@
         "icon": "$(open-preview)"
       },
       {
+        "command": "latex-workshop.buildStatusOk",
+        "title": "%command.buildStatusOk%",
+        "category": "LaTeX Workshop",
+        "icon": "$(check)"
+      },
+      {
+        "command": "latex-workshop.buildStatusError",
+        "title": "%command.buildStatusError%",
+        "category": "LaTeX Workshop",
+        "icon": "$(error)"
+      },
+      {
         "command": "latex-workshop.tab",
         "title": "%command.tab%",
         "category": "LaTeX Workshop"
@@ -2944,6 +2956,16 @@
           "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@1"
+        },
+        {
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == ok",
+          "command": "latex-workshop.buildStatusOk",
+          "group": "navigation@0"
+        },
+        {
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == error",
+          "command": "latex-workshop.buildStatusError",
+          "group": "navigation@0"
         }
       ]
     },
