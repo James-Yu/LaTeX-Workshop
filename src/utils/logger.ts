@@ -152,6 +152,8 @@ function refreshStatus(
     STATUS_ITEM.text = `$(${icon})${build}`
     STATUS_ITEM.tooltip = message
     STATUS_ITEM.color = new vscode.ThemeColor(color)
+    void vscode.commands.executeCommand('setContext', 'latex-workshop:buildStatus',
+        icon === 'check' ? 'ok' : icon === 'x' ? 'error' : 'progress')
     if (message === undefined) {
         return
     }

@@ -185,6 +185,16 @@ export function showLog(compiler?: string) {
     }
 }
 
+export function buildStatusOk() {
+    logger.log('BUILDSTATUSOK command invoked.')
+    logger.showCompilerLog()
+}
+
+export function buildStatusError() {
+    logger.log('BUILDSTATUSERROR command invoked.')
+    logger.showCompilerLog()
+}
+
 export async function gotoSection(filePath: string, lineNumber: number) {
     logger.log(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
 

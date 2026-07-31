@@ -188,6 +188,8 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
         vscode.commands.registerCommand('latex-workshop.wordcount', () => lw.commands.wordcount()),
         vscode.commands.registerCommand('latex-workshop.log', () => lw.commands.showLog()),
         vscode.commands.registerCommand('latex-workshop.compilerlog', () => lw.commands.showLog('compiler')),
+        vscode.commands.registerCommand('latex-workshop.buildStatusOk', () => lw.commands.buildStatusOk()),
+        vscode.commands.registerCommand('latex-workshop.buildStatusError', () => lw.commands.buildStatusError()),
         vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => lw.lint.latex.action(d, r, c, m)),
         vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => lw.commands.gotoSection(filePath, lineNumber)),
         vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => lw.commands.navigateToEnvPair()),
