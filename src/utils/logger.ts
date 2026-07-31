@@ -152,12 +152,14 @@ function refreshStatus(
     STATUS_ITEM.text = `$(${icon})${build}`
     STATUS_ITEM.tooltip = message
     STATUS_ITEM.color = new vscode.ThemeColor(color)
-    void vscode.commands.executeCommand('setContext', 'latex-workshop:buildStatus',
-        icon === 'check' ? 'ok' : icon === 'x' ? 'error' : 'progress')
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (configuration.get('view.editorTitleBuildStatus.enable')) {
+        void vscode.commands.executeCommand('setContext', 'latex-workshop:buildStatus',
+            icon === 'check' ? 'ok' : icon === 'x' ? 'error' : 'progress')
+    }
     if (message === undefined) {
         return
     }
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     switch (severity) {
         case 'info':
             if (configuration.get('message.information.show')) {
