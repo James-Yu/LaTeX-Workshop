@@ -1711,6 +1711,12 @@
           "default": false,
           "markdownDescription": "Auto focus the LaTeX view when switching from non-tex to tex files. This will cause the view to appear consistently upon activating the extension."
         },
+        "latex-workshop.view.editorTitleBuildStatus.enable": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Show a build success/failure icon next to the Build and View PDF icons in the editor title bar. Useful when the status bar is hidden, e.g. in Zen Mode."
+        },
         "latex-workshop.view.pdf.viewer": {
           "scope": "window",
           "type": "string",
@@ -2958,12 +2964,12 @@
           "group": "navigation@1"
         },
         {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == ok",
+          "when": "config.latex-workshop.view.editorTitleBuildStatus.enable && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == ok",
           "command": "latex-workshop.buildStatusOk",
           "group": "navigation@0"
         },
         {
-          "when": "editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == error",
+          "when": "config.latex-workshop.view.editorTitleBuildStatus.enable && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/ && latex-workshop:buildStatus == error",
           "command": "latex-workshop.buildStatusError",
           "group": "navigation@0"
         }
