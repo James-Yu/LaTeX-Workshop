@@ -82,5 +82,13 @@ bar — so it's visible even in Zen Mode (which hides the status bar by default)
   maintenance is the actual complexity, not the code change itself.
 
 ## Status
-Not yet implemented. Plan reviewed and agreed; next step (if pursued) is to clone
-the repo and make the patch above.
+Implemented on branch `claude/implement-plan-uhi7en`:
+- `package.json`: added `buildStatusOk`/`buildStatusError` commands + `editor/title`
+  entries gated on `latex-workshop:buildStatus`.
+- `src/utils/logger.ts`: `refreshStatus()` now also sets the `latex-workshop:buildStatus`
+  context (`ok`/`error`/`progress`).
+- `src/core/commands.ts` / `src/main.ts`: registered the two new commands (they open
+  the compiler log on click).
+- `package.nls.json`: added titles for the two new commands.
+
+`npx tsc --noEmit` and `eslint` pass on the changed files.
