@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../../src/lw'
 import { assert, get, mock, set } from '../utils'
-import { provider } from '../../../src/completion/completer/reference'
+import { provider, reference } from '../../../src/completion/completer/reference'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
     const fixture = get.fixture(__filename)
@@ -79,6 +80,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!labels.includes('label:1'))
             assert.ok(!labels.includes('label:2'))
             assert.ok(labels.includes('label:3'))
+        })
+
+        it('should get reference numbers from the auxiliary file named after latex.jobname', () => {
+            set.config('latex.auxDir', 'aux')
+            set.config('latex.jobname', 'custom-output')
+            const auxDir = path.resolve(path.dirname(texPath), 'aux')
+            const auxFile = path.join(auxDir, 'custom-output.aux')
+            const removeAuxDir = !fs.existsSync(auxDir)
+            fs.mkdirSync(auxDir, {recursive: true})
+            fs.writeFileSync(auxFile, '\\newlabel{sec:1}{{3}{7}}')
+
+            try {
+                reference.setNumbersFromAuxFile(texPath)
+                assert.deepStrictEqual(reference.getItem('sec:1')?.prevIndex, {refNumber: '3', pageNumber: '7'})
+            } finally {
+                fs.unlinkSync(auxFile)
+                if (removeAuxDir) {
+                    fs.rmdirSync(auxDir)
+                }
+            }
         })
 
         it('should parse `xr` package references', async () => {
