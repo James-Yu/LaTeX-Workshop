@@ -256,7 +256,7 @@ function parseContent(content: string, filePath: string): ReferenceItem[] {
 function setNumbersFromAuxFile(rootFile: string) {
     const auxDir = lw.file.getAuxDir(rootFile)
     const rootDir = path.dirname(rootFile)
-    const auxFile = path.resolve(rootDir, path.join(auxDir, path.basename(rootFile, '.tex') + '.aux'))
+    const auxFile = path.resolve(rootDir, path.join(auxDir, path.parse(lw.file.getJobname(rootFile)).name + '.aux'))
     data.suggestions.forEach((entry) => {
         entry.prevIndex = undefined
     })
