@@ -22,10 +22,12 @@ export function run(): Promise<void> {
     ;(globalThis as any).mocha = mocha
 
     return new Promise((resolve, reject) => {
-        glob.sync('**/**.test.js', { cwd: __dirname })
-            .filter(f => process.env['LATEXWORKSHOP_UNIT'] ? process.env['LATEXWORKSHOP_UNIT'].split(',').find(candidate => f.includes(candidate)) !== undefined : true)
+        glob.sync('**/*.test.ts', { cwd: path.resolve(__dirname, '../../../test/units') })
+            .map(sourceFile => sourceFile.replace(/\.ts$/, '.js'))
+            .filter(compiledFile => process.env['LATEXWORKSHOP_UNIT'] ? process.env['LATEXWORKSHOP_UNIT'].split(',').some(candidate => compiledFile.includes(candidate)) : true)
             .sort()
-            .forEach(f => mocha.addFile(path.resolve(__dirname, f)))
+            .map(compiledFile => path.resolve(__dirname, compiledFile))
+            .forEach(testFile => mocha.addFile(testFile))
         // Run the mocha test
         import('../../src/main').then(() => {
             mocha.run(failures => {
