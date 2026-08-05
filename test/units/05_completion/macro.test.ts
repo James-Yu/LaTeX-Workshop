@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../../src/lw'
+import type { CompletionItem } from '../../../src/types'
 import { assert, get, mock, set } from '../utils'
 import { provider } from '../../../src/completion/completer/macro'
 
@@ -175,6 +176,39 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(getMacros().includes('\\overline{}'))
             await set.codeConfig('intellisense.command.user', { 'overline{}': '' })
             assert.ok(!getMacros().includes('\\overline{}'))
+        })
+
+        it('should surround selected text without extra braces (#3716)', async () => {
+            const sandbox = sinon.createSandbox()
+            try {
+                const selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 1))
+                const replace = sandbox.spy()
+                const editor = {
+                    document: {
+                        languageId: 'latex',
+                        getText: sandbox.stub().returns('a')
+                    },
+                    selections: [selection],
+                    edit: sandbox.stub().callsFake((callback: (editBuilder: vscode.TextEditorEdit) => void) => {
+                        callback({ replace } as unknown as vscode.TextEditorEdit)
+                        return Promise.resolve(true)
+                    })
+                } as unknown as vscode.TextEditor
+                sandbox.stub(vscode.window, 'activeTextEditor').value(editor)
+                sandbox.stub(vscode.window, 'showQuickPick').callsFake(async items => (await items)[0])
+                const item = getSuggestions().find(suggestion => suggestion.label === '\\fbox{}')
+                assert.ok(item)
+
+                lw.completion.macro.surround([ item as CompletionItem ])
+                await new Promise(resolve => setImmediate(resolve))
+
+                sinon.assert.calledOnce(replace)
+                const [range, text] = replace.firstCall.args as [vscode.Range, string]
+                assert.ok(range.isEqual(selection))
+                assert.strictEqual(text, '\\fbox{a}')
+            } finally {
+                sandbox.restore()
+            }
         })
     })
 })

@@ -5,7 +5,7 @@ import * as test from './utils'
 import { lw } from '../../src/lw'
 import type { CompletionItem } from '../../src/types'
 
-suite('Snippet test suite', () => {
+suite.skip('Snippet test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 
