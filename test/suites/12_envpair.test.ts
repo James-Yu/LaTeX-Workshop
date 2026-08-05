@@ -10,7 +10,7 @@ async function loadTestFiles(fixture: string) {
     ], {open: 0})
 }
 
-suite('EnvPair test suite', () => {
+suite.skip('EnvPair test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'testground'
 

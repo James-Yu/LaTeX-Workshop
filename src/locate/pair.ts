@@ -442,28 +442,18 @@ async function name(action: 'selection'|'cursor'|'equationToggle') {
         } else {
             envNameLength = matchedPair.start.length - '\\begin{}'.length
         }
-    } else {
-        // Bad match
-        return
     }
 
     void vscode.workspace.applyEdit(edit).then(success => {
         if (success || edit.size === 0) {
-            switch (action) {
-                case 'cursor':
-                    editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
-                    break
-                case 'selection': {
-                    const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
-                    const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
-                    editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
-                    break
-                }
-                case 'equationToggle':
-                    editor.selection = new vscode.Selection(startingPos, startingPos)
-                    break
-                default:
-                    logger.log('Error while selecting environment name')
+            if (action === 'cursor') {
+                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
+            } else if (action === 'selection') {
+                const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
+                const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
+                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
+            } else {
+                editor.selection = new vscode.Selection(startingPos, startingPos)
             }
         }
     })
@@ -493,11 +483,9 @@ async function select(mode: 'content' | 'whole') {
             if (mode === 'content') {
                 startEnvPos = macroPair.startPosition.translate(0, macroPair.start.length)
                 endEnvPos = macroPair.endPosition.translate(0, -macroPair.end.length)
-            } else if (mode === 'whole') {
+            } else {
                 startEnvPos = macroPair.startPosition
                 endEnvPos = macroPair.endPosition
-            } else {
-                return
             }
             editor.selections = [new vscode.Selection(startEnvPos, endEnvPos)]
             if (editor.selections[0].contains(startingPos)) {
