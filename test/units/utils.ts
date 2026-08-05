@@ -84,9 +84,12 @@ export const get = {
     fixture: (filename: string) => {
         return filename.split(path.sep).slice(-2, -1)[0] + path.sep + path.basename(filename).split('.')[0]
     },
+    workspace: (name: string) => {
+        return vscode.workspace.workspaceFolders?.find(folder => folder.name === name)
+    },
     path: (...paths: string[]) => {
         const result = path.resolve(
-            vscode.workspace.workspaceFile?.fsPath ?? vscode.workspace.workspaceFolders?.[0].uri.fsPath ?? '',
+            get.workspace('units')?.uri.fsPath ?? '',
             ...paths
         )
         if (os.platform() === 'win32') {

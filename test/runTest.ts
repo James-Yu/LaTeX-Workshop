@@ -12,7 +12,7 @@ async function runTestSuites(fixture: 'multiroot' | 'unittest') {
         if (fixture === 'multiroot') {
             fixturePath = 'test/fixtures/' + fixture + '/resource.code-workspace'
         } else {
-            fixturePath = 'test/units'
+            fixturePath = 'test/units/test.code-workspace'
         }
 
         await runTests({
