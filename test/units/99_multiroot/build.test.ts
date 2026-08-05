@@ -27,8 +27,10 @@ describe(path.basename(__filename).split('.')[0] + ': multiroot', () => {
         sinon.stub(lw.cache, 'getIncludedTeX').returns(new Set())
     })
 
-    beforeEach(() => {
+    beforeEach(async () => {
         initialize()
+        await set.codeConfig('docker.enabled', false)
+        await set.codeConfig('latex.external.build.command', '', projectA)
     })
 
     afterEach(() => {
@@ -70,6 +72,7 @@ describe(path.basename(__filename).split('.')[0] + ': multiroot', () => {
 
     it('should resolve outDir from the TeX file workspace folder', async () => {
         const rootB = path.resolve(projectB.uri.fsPath, 'switch/main.tex')
+        await set.codeConfig('latex.outDir', '%DIR%')
         await set.codeConfig('latex.outDir', './out', projectA)
 
         assert.strictEqual(lw.file.getOutDir(root), 'out')

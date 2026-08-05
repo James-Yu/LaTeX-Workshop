@@ -21,6 +21,10 @@ describe(path.basename(__filename).split('.')[0] + ': multiroot', () => {
         sinon.stub(lw.cache, 'getIncludedTeX').returns(new Set())
     })
 
+    beforeEach(async () => {
+        await set.codeConfig('latex.rootFile.indicator', '\\documentclass[]{}')
+    })
+
     after(() => {
         sinon.restore()
     })
@@ -28,37 +32,36 @@ describe(path.basename(__filename).split('.')[0] + ': multiroot', () => {
     async function findFrom(file: string, content: string) {
         const editor = mock.activeTextEditor(file, content)
         await lw.root.find()
+        const root = lw.root.file.path
         editor.restore()
+        return root
     }
 
     it('should search with the active folder include pattern', async () => {
         await set.codeConfig('latex.search.rootFiles.include', ['root/alt/*.tex'], projectA)
 
-        await findFrom(inProject(projectA, 'root/sub/s.tex'), 'subfile')
+        const root = await findFrom(inProject(projectA, 'root/sub/s.tex'), 'subfile')
 
-        assert.pathStrictEqual(lw.root.file.path, inProject(projectA, 'root/alt/main.tex'))
+        assert.pathStrictEqual(root, inProject(projectA, 'root/alt/main.tex'))
     })
 
     it('should search with the active folder exclude pattern', async () => {
         await set.codeConfig('latex.search.rootFiles.include', ['root/**/*.tex'], projectA)
         await set.codeConfig('latex.search.rootFiles.exclude', ['root/*.tex'], projectA)
 
-        await findFrom(inProject(projectA, 'root/sub/s.tex'), 'subfile')
+        const root = await findFrom(inProject(projectA, 'root/sub/s.tex'), 'subfile')
 
-        assert.pathStrictEqual(lw.root.file.path, inProject(projectA, 'root/alt/main.tex'))
+        assert.pathStrictEqual(root, inProject(projectA, 'root/alt/main.tex'))
     })
 
     it('should switch roots with the active workspace folder', async () => {
         const rootA = inProject(projectA, 'switch/main.tex')
         const rootB = inProject(projectB, 'switch/main.tex')
 
-        await findFrom(rootA, '\\documentclass{article}')
-        assert.pathStrictEqual(lw.root.file.path, rootA)
+        assert.pathStrictEqual(await findFrom(rootA, '\\documentclass{article}'), rootA)
 
-        await findFrom(rootB, '\\documentclass{article}')
-        assert.pathStrictEqual(lw.root.file.path, rootB)
+        assert.pathStrictEqual(await findFrom(rootB, '\\documentclass{article}'), rootB)
 
-        await findFrom(rootA, '\\documentclass{article}')
-        assert.pathStrictEqual(lw.root.file.path, rootA)
+        assert.pathStrictEqual(await findFrom(rootA, '\\documentclass{article}'), rootA)
     })
 })

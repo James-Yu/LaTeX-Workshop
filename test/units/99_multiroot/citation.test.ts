@@ -32,6 +32,7 @@ describe(path.basename(__filename).split('.')[0] + ': multiroot', () => {
     }
 
     it('should resolve citation labels from the document workspace folder', async () => {
+        await set.codeConfig('bibtex.maxFileSize', 5, projectA)
         await set.codeConfig('intellisense.citation.label', 'bibtex key')
         await set.codeConfig('intellisense.citation.label', 'title', projectA)
         lw.root.file.path = texA

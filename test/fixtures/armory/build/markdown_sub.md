@@ -1,5 +1,0 @@
-## Sample
-sample
-
-### Sample
-sample
