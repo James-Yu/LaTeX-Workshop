@@ -179,36 +179,34 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should surround selected text without extra braces (#3716)', async () => {
-            const sandbox = sinon.createSandbox()
-            try {
-                const selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 1))
-                const replace = sandbox.spy()
-                const editor = {
-                    document: {
-                        languageId: 'latex',
-                        getText: sandbox.stub().returns('a')
-                    },
-                    selections: [selection],
-                    edit: sandbox.stub().callsFake((callback: (editBuilder: vscode.TextEditorEdit) => void) => {
-                        callback({ replace } as unknown as vscode.TextEditorEdit)
-                        return Promise.resolve(true)
-                    })
-                } as unknown as vscode.TextEditor
-                sandbox.stub(vscode.window, 'activeTextEditor').value(editor)
-                sandbox.stub(vscode.window, 'showQuickPick').callsFake(async items => (await items)[0])
-                const item = getSuggestions().find(suggestion => suggestion.label === '\\fbox{}')
-                assert.ok(item)
+            const item = getSuggestions().find(suggestion => suggestion.label === '\\fbox{}')
+            assert.ok(item)
 
-                lw.completion.macro.surround([ item as CompletionItem ])
-                await new Promise(resolve => setImmediate(resolve))
+            const selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 1))
+            const replace = sinon.spy()
+            const editor = {
+                document: {
+                    languageId: 'latex',
+                    getText: sinon.stub().returns('a')
+                },
+                selections: [selection],
+                edit: sinon.stub().callsFake((callback: (editBuilder: vscode.TextEditorEdit) => void) => {
+                    callback({ replace } as unknown as vscode.TextEditorEdit)
+                    return Promise.resolve(true)
+                })
+            } as unknown as vscode.TextEditor
+            const editorStub = sinon.stub(vscode.window, 'activeTextEditor').value(editor)
+            const quickPickStub = sinon.stub(vscode.window, 'showQuickPick').callsFake(async items => (await items)[0])
 
-                sinon.assert.calledOnce(replace)
-                const [range, text] = replace.firstCall.args as [vscode.Range, string]
-                assert.ok(range.isEqual(selection))
-                assert.strictEqual(text, '\\fbox{a}')
-            } finally {
-                sandbox.restore()
-            }
+            lw.completion.macro.surround([ item as CompletionItem ])
+            editorStub.restore()
+            quickPickStub.restore()
+            await new Promise(resolve => setImmediate(resolve))
+
+            sinon.assert.calledOnce(replace)
+            const [range, text] = replace.firstCall.args as [vscode.Range, string]
+            assert.ok(range.isEqual(selection))
+            assert.strictEqual(text, '\\fbox{a}')
         })
     })
 })
