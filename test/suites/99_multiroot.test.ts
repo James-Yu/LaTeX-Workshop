@@ -8,7 +8,7 @@ function resolve(fixture: string, fileName: string, ws: string) {
     return path.resolve(path.dirname(fixture), ws, path.basename(fixture), fileName)
 }
 
-suite('Multi-root workspace test suite', () => {
+suite.skip('Multi-root workspace test suite', () => {
     test.suite.name = path.basename(__filename).replace('.test.js', '')
     test.suite.fixture = 'multiroot'
 

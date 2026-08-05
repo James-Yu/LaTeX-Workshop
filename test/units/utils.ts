@@ -104,7 +104,7 @@ export const get = {
 }
 
 const configs: Map<string, any> = new Map()
-const changedConfigs: Set<string> = new Set()
+const changedConfigs: { section: string, scope?: vscode.ConfigurationScope }[] = []
 export const set = {
     root: (...paths: string[]) => {
         const rootFile = get.path(...paths)
@@ -116,9 +116,11 @@ export const set = {
     config: (section: string, value: any) => {
         configs.set(section, value)
     },
-    codeConfig: async (section: string, value: any) => {
-        changedConfigs.add(section)
-        await vscode.workspace.getConfiguration('latex-workshop').update(section, value)
+    codeConfig: async (section: string, value: any, scope?: vscode.ConfigurationScope) => {
+        if (!changedConfigs.some(config => config.section === section && config.scope === scope)) {
+            changedConfigs.push({ section, scope })
+        }
+        await vscode.workspace.getConfiguration('latex-workshop', scope).update(section, value)
     }
 }
 
@@ -131,10 +133,10 @@ export const reset = {
         lw.cache.reset()
     },
     config: async () => {
-        for (const section of changedConfigs.values()) {
-            await set.codeConfig(section, undefined)
+        for (const { section, scope } of changedConfigs.slice().reverse()) {
+            await vscode.workspace.getConfiguration('latex-workshop', scope).update(section, undefined)
         }
-        changedConfigs.clear()
+        changedConfigs.length = 0
         configs.clear()
     },
     log: () => {
