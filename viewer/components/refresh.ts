@@ -1,5 +1,4 @@
 import * as utils from './utils.js'
-import { getTrimValue, setTrimValue } from './trimming.js'
 import { sendLog } from './connection.js'
 import { viewerState, viewerStatePromise } from './state.js'
 import { type PDFViewerApplicationType, type PDFViewerApplicationOptionsType, RenderingStates } from './interface.js'
@@ -19,7 +18,6 @@ export function toggleAutoRefresh() {
 
 let prevState: {
     page: number,
-    trim: number,
     scale: string,
     scrollMode: number,
     sidebarView: number,
@@ -59,7 +57,6 @@ export async function refresh() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
         page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
-        trim: getTrimValue(),
         scale: PDFViewerApplication.pdfViewer.currentScaleValue ?? prevState?.scale,
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode ?? prevState?.scrollMode,
         sidebarView: PDFViewerApplication.viewsManager.visibleView ?? prevState?.sidebarView,
@@ -110,9 +107,6 @@ export async function restoreState() {
     if (prevState.page !== undefined) {
         PDFViewerApplication.pdfViewer.currentPageNumber = prevState.page
     }
-    if (prevState.trim !== undefined) {
-        setTrimValue(prevState.trim)
-    }
     if (prevState.scale !== undefined) {
         PDFViewerApplication.pdfViewer.currentScaleValue = prevState.scale
     }
@@ -138,9 +132,6 @@ export async function restoreState() {
 async function restoreDefault() {
     const params = await utils.getParams()
 
-    if (params.trim !== undefined) {
-        setTrimValue(params.trim)
-    }
     // By setting the scale, scaling will be invoked if necessary.
     // The scale can be a non-number one.
     if (params.scale !== undefined) {

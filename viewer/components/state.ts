@@ -1,7 +1,6 @@
 import * as utils from './utils.js'
 import type { PDFViewerApplicationType } from './interface'
 import type { PanelManagerResponse, PdfViewerState } from '../../types/latex-workshop-protocol-types/index.js'
-import { getTrimValue } from './trimming.js'
 import { isSyncTeXEnabled, registerSyncTeX, setSyncTeXKey } from './synctex.js'
 import { IsAutoRefreshEnabled } from './refresh.js'
 import { sendLog, sendPanel } from './connection.js'
@@ -40,7 +39,6 @@ export function uploadState() {
     const state: PdfViewerState = {
         pdfFileUri: utils.parseURL().pdfFileUri,
         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
-        trim: getTrimValue(),
         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
         sidebarView: PDFViewerApplication.viewsManager.visibleView,
         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,

@@ -41,7 +41,6 @@ export type PdfViewerParams = {
         view: 'thumbnails' | 'outline' | 'attachments' | 'layers' | 'persist',
     }
     scale: string,
-    trim: number,
     scrollMode: number,
     spreadMode: number,
     hand: boolean,
@@ -133,7 +132,6 @@ export type PdfViewerState = {
     scrollTop?: number,
     scrollLeft?: number,
     sidebarView?: number,
-    trim?: number,
     scrollMode?: number,
     spreadMode?: number,
     synctexEnabled?: boolean,

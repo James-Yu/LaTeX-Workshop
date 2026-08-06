@@ -335,7 +335,6 @@ function getParams(): PdfViewerParams {
             view: configuration.get('view.pdf.sidebar.view') as 'thumbnails' | 'outline' | 'attachments' | 'layers' | 'persist',
         },
         scale: configuration.get('view.pdf.zoom') as string,
-        trim: configuration.get('view.pdf.trim') as number,
         scrollMode: configuration.get('view.pdf.scrollMode') as number,
         spreadMode: configuration.get('view.pdf.spreadMode') as number,
         hand: configuration.get('view.pdf.hand') as boolean,

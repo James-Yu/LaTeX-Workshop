@@ -2,7 +2,6 @@ import { patchViewerUI, registerKeyBind, registerPersistentState, repositionAnno
 import * as utils from './components/utils.js'
 
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
-import { initTrim, setTrimCSS } from './components/trimming.js'
 import { doneRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
 import { initConnect, send } from './components/connection.js'
@@ -60,10 +59,6 @@ async function initialization() {
             sidebarViewOnLoad: 0,
             workerSrc: './build/pdf.worker.mjs',
             forcePageColors: true,
-            // The following allow clear display with large zoom values. This is necessary to enable trimming.
-            maxCanvasPixels: -1,
-            maxCanvasDim: -1,
-            enableDetailCanvas: false,
             ...color
         }
         PDFViewerApplicationOptions.setAll(options)
@@ -86,20 +81,17 @@ onPDFViewerEvent('documentloaded', () => {
     })
 }, { once: true })
 onPDFViewerEvent('pagesinit', () => {
-    initTrim()
     void restoreState()
     registerSyncTeX()
     registerPersistentState()
 })
 onPDFViewerEvent('pagesloaded', () => {
-    initTrim()
     void restoreState()
         .then(() => uploadState())
         .then(() => send({ type: 'loaded', pdfFileUri: utils.parseURL().pdfFileUri }))
     repositionAnnotation()
     doneRefresh()
 })
-onPDFViewerEvent('rotationchanging', () => setTrimCSS())
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')

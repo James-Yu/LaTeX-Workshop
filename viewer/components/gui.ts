@@ -69,12 +69,7 @@ export async function patchViewerUI() {
 
     const template = document.createElement('template')
     template.innerHTML =
-`<button id="TrimButton" class="toolbarButton labeled" type="button" title="${getL10n('trimMargin')}" tabindex="70">
-    <label for="trimPct">${getL10n('trimMargin')}</label>
-    <input type="number" id="trimPct" name="trimPct" min="0" max="99" value="0">
-    <label for="trimPct">%</label>
-</button>
-<button id="synctexOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableSyncTeX')}" tabindex="71">
+`<button id="synctexOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableSyncTeX')}" tabindex="71">
     <input id="synctexOn" type="checkbox" checked><span>${getL10n('enableSyncTeX')}</span>
 </button>
 <button id="autoRefreshOnButton" class="toolbarButton labeled" type="button" title="${getL10n('enableRefresh')}" tabindex="72">
@@ -85,10 +80,6 @@ export async function patchViewerUI() {
     for (const node of template.content.childNodes) {
         anchor.parentNode?.insertBefore(node, anchor)
     }
-    const trimButton = document.getElementById('TrimButton')! as HTMLButtonElement
-    trimButton.addEventListener('click', (e) => {
-        e.stopPropagation()
-    })
     registerSynctexCheckBox()
     registerAutoReloadCheckBox()
 
