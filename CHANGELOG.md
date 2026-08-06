@@ -1,5 +1,10 @@
 # Change Log
 
+## [10.17.1] - 2026-08-06
+
+### Updated
+- Update to PDF.js v6.2.108
+
 ## [10.17.0] - 2026-08-06
 
 ### Removed
