@@ -131,7 +131,7 @@ export interface LaTeXFormatter {
     formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit | undefined>
 }
 
-export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField }
+export enum TeXElementType { Environment, Macro, Section, SectionAst, SubFile, BibItem, BibField, SetCounter }
 
 export type TeXElement = {
     readonly type: TeXElementType,
@@ -142,7 +142,8 @@ export type TeXElement = {
     readonly filePath: string,
     children: TeXElement[],
     parent?: TeXElement,
-    appendix?: boolean
+    appendix?: boolean,
+    counterValue?: number
 }
 
 export type TeXMathEnv = {

@@ -62,6 +62,7 @@ async function getToC(document: vscode.TextDocument, docContent: string) {
         }
     }
     let struct = root.children
+    struct = outline.applySectionCounters(struct, config)
     struct = outline.nestNonSection(struct)
     struct = outline.nestSection(struct, config)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
