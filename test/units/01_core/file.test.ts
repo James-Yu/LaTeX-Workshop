@@ -1,7 +1,8 @@
 import * as vscode from 'vscode'
-import * as os from 'os'
+import os from 'os'
 import * as path from 'path'
 import * as sinon from 'sinon'
+import * as utils from '../../../src/utils/utils'
 import { assert, get, mock, set } from '../utils'
 import { lw } from '../../../src/lw'
 import { initialize } from '../../../src/core/file'
@@ -29,28 +30,35 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.notStrictEqual(tmpDir1, lw.file.tmpDirPath)
         })
 
-        function forbiddenTemp(chars: string[ ]) {
-            const tmp = process.env.TMP ?? process.env.TEMP ?? process.env.TMPDIR
+        function forbiddenTemp(chars: string[], expectedMessage: string) {
             const tmpNames = ['TMP', 'TEMP', 'TMPDIR']
+            const originalValues = new Map(tmpNames.map(name => [name, process.env[name]]))
             chars.forEach(char => {
-                tmpNames.forEach(envvar => process.env[envvar] = (process.env[envvar] === undefined ? undefined : ('\\Test ' + char)))
+                const showErrorStub = sinon.stub(vscode.window, 'showErrorMessage').resolves(undefined)
+                tmpNames.forEach(envvar => process.env[envvar] = `\\Test ${char}`)
                 try {
-                    initialize()
-                    assert.fail('Expected an error to be thrown')
-                } catch {
-                    assert.ok(true)
+                    assert.throws(() => initialize(), Error)
+                    sinon.assert.calledWith(showErrorStub, sinon.match(expectedMessage))
                 } finally {
-                    tmpNames.forEach(envvar => { if (process.env[envvar] !== undefined) { process.env[envvar] = tmp } })
+                    showErrorStub.restore()
+                    tmpNames.forEach(envvar => {
+                        const original = originalValues.get(envvar)
+                        if (original === undefined) {
+                            delete process.env[envvar]
+                        } else {
+                            process.env[envvar] = original
+                        }
+                    })
                 }
             })
         }
 
         it('should alert temporary directory name with quotes', () => {
-            forbiddenTemp(['\'', '"'])
+            forbiddenTemp(['\'', '"'], 'The path of tmpdir cannot include single quotes and double quotes')
         })
 
         it('should alert temporary directory name with forbidden characters', () => {
-            forbiddenTemp(['/'])
+            forbiddenTemp(['/'], 'Error during making tmpdir to build TeX files')
         })
     })
 
@@ -173,6 +181,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 assert.pathStrictEqual(lw.file.getAuxDir('c:\\path\\to\\file.tex'), 'c:/path/to')
             }
         })
+
+    })
+
+    describe('lw.file.setTeXDirs', () => {
+        it('should append the .tex extension before recording build directories', () => {
+            const texPathWithoutExt = get.path(fixture, 'generated')
+            set.config('latex.outDir', '%DIR%')
+
+            lw.file.setTeXDirs(texPathWithoutExt, '/generated-output')
+
+            assert.pathStrictEqual(lw.file.getOutDir(`${texPathWithoutExt}.tex`), '/generated-output')
+        })
     })
 
     describe('lw.file.getOutDir', () => {
@@ -285,6 +305,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 assert.pathStrictEqual(lw.file.getOutDir('c:\\path\\to\\file.tex'), 'c:/path/to')
             }
         })
+
     })
 
     describe('lw.file.getFlsPath', () => {
@@ -540,6 +561,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
+    describe('lw.file.hasAlwaysRootExt', () => {
+        it('should identify extensions that are always root files', () => {
+            assert.ok(lw.file.hasAlwaysRootExt('.dtx'))
+            assert.ok(!lw.file.hasAlwaysRootExt('.tex'))
+        })
+    })
+
     describe('lw.file.hasBinaryExt', () => {
         it('should return true for non-TeX source extensions', () => {
             assert.ok(lw.file.hasBinaryExt('.pdf'))
@@ -594,10 +622,33 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
+    describe('lw.file.hasLaTeXClassPackageLangId', () => {
+        it('should identify LaTeX class and package language IDs', () => {
+            assert.ok(lw.file.hasLaTeXClassPackageLangId('latex-class'))
+            assert.ok(lw.file.hasLaTeXClassPackageLangId('latex-package'))
+            assert.ok(!lw.file.hasLaTeXClassPackageLangId('latex'))
+        })
+    })
+
     describe('lw.file.hasTeXLangId', () => {
         it('should return true for supported TeX languages', () => {
             assert.ok(lw.file.hasTeXLangId('tex'))
             assert.ok(lw.file.hasTeXLangId('doctex-installer'))
+        })
+
+        it('should return false for unsupported TeX languages', () => {
+            assert.ok(!lw.file.hasTeXLangId('latex'))
+        })
+    })
+
+    describe('lw.file.hasLaTeXWorkshopLangId', () => {
+        it('should identify every language handled by LaTeX Workshop', () => {
+            assert.ok(lw.file.hasLaTeXWorkshopLangId('latex'))
+            assert.ok(lw.file.hasLaTeXWorkshopLangId('latex-class'))
+            assert.ok(lw.file.hasLaTeXWorkshopLangId('tex'))
+            assert.ok(lw.file.hasLaTeXWorkshopLangId('bibtex'))
+            assert.ok(lw.file.hasLaTeXWorkshopLangId('doctex'))
+            assert.ok(!lw.file.hasLaTeXWorkshopLangId('markdown'))
         })
     })
 
@@ -629,6 +680,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should read the content of an existing file', async () => {
             set.root(fixture, 'main.tex')
             const content = await lw.file.read(lw.root.file.path ?? '')
+            assert.strictEqual(content, '\\documentclass{article}\n\\begin{document}\nabc\n\\end{document}\n')
+        })
+
+        it('should read the content of an existing file URI', async () => {
+            const fileUri = vscode.Uri.file(get.path(fixture, 'main.tex'))
+            const content = await lw.file.read(fileUri)
+
             assert.strictEqual(content, '\\documentclass{article}\n\\begin{document}\nabc\n\\end{document}\n')
         })
 
@@ -705,6 +763,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(result1, result2)
         })
 
+        it('should resolve relative output against the root directory', () => {
+            set.root(fixture, 'main.tex')
+            const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 0, stdout: 'relative.cls', output: [''], stderr: '', signal: 'SIGTERM' })
+
+            const result = lw.file.kpsewhich('relative.cls')
+            stub.restore()
+
+            assert.pathStrictEqual(result, get.path(fixture, 'relative.cls'))
+        })
+
         it('should not cache on non-zero return', () => {
             const stub = sinon.stub(lw.external, 'sync').returns({ pid: 0, status: 1, stdout: get.path(fixture, 'article.cls'), output: [''], stderr: '', signal: 'SIGTERM' })
             lw.file.kpsewhich('another-article.cls')
@@ -718,6 +786,33 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const result = lw.file.kpsewhich('yet-another-article.cls')
             stub.restore()
             assert.strictEqual(result, undefined)
+        })
+    })
+
+    describe('lw.file Windows and Live Share paths', () => {
+        it('should normalize the drive letter of BibTeX paths on Windows', async () => {
+            const platformStub = sinon.stub(os, 'platform').returns('win32')
+            const resolveStub = sinon.stub(utils, 'resolveFile').resolves('C:\\Project\\References.bib')
+
+            const result = await lw.file.getBibPath('references', 'C:\\Project')
+            platformStub.restore()
+            resolveStub.restore()
+
+            assert.listStrictEqual(result, ['c:\\Project\\References.bib'])
+        })
+
+        it('should remove a Windows drive letter from Live Share guest paths', () => {
+            const platformStub = sinon.stub(os, 'platform').returns('win32')
+            const guestStub = (lw.extra.liveshare.isGuest as sinon.SinonStub).returns(true)
+            const workspaceStub = sinon.stub(vscode.workspace, 'workspaceFolders').value([])
+
+            const uri = lw.file.toUri('C:\\Project\\main.tex')
+            platformStub.restore()
+            workspaceStub.restore()
+            guestStub.reset()
+
+            assert.strictEqual(uri.scheme, 'vsls')
+            assert.ok(!uri.path.startsWith('/C:'))
         })
     })
 })

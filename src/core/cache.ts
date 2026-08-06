@@ -61,7 +61,7 @@ lw.watcher.src.onDelete(uri => {
 })
 
 // Dispose handler: resets the state when the application is disposed of.
-lw.onDispose({ dispose: () => reset() })
+lw.onDispose({ dispose: reset })
 
 /**
  * Determines if a file can be cached based on its extension and specific
@@ -701,7 +701,7 @@ async function parseAuxFile(filePath: string, srcDir: string) {
     const regex = /^\\bibdata\{([^}]*)\}/gm
     let result: RegExpExecArray | null
     while ((result = regex.exec(content)) !== null) {
-        const bibs = (result[1] ?? '').split(',').map(b => b.trim()).filter(b => b.length > 0)
+        const bibs = result[1].split(',').map(b => b.trim()).filter(b => b.length > 0)
         if (bibs.length === 0) {
             logger.log(`Empty \\bibdata in .aux ${filePath} , skip.`)
             continue
@@ -811,11 +811,10 @@ function getIncludedGlossaryBib(filePath?: string): string[] {
  * root file path.
  * @returns {string[]} - An array of paths to included TeX files.
  */
-function getIncludedTeX(filePath?: string): Set<string> {
-    const includedTeX = new Set<string>()
+function getIncludedTeX(filePath?: string, includedTeX = new Set<string>()): Set<string> {
     filePath = filePath ?? lw.root.file.path
     if (filePath === undefined) {
-        return new Set()
+        return includedTeX
     }
     const fileCache = get(filePath)
     if (fileCache === undefined) {
@@ -827,7 +826,7 @@ function getIncludedTeX(filePath?: string): Set<string> {
             // Already included
             continue
         }
-        getIncludedTeX(child.filePath).forEach(texFile => includedTeX.add(texFile))
+        getIncludedTeX(child.filePath, includedTeX)
     }
     return includedTeX
 }

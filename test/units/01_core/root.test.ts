@@ -57,6 +57,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(workspace, get.workspace('units')?.uri)
         })
 
+        it('should fall back to the first workspace for a file outside every workspace', () => {
+            const workspace = lw.root.getWorkspace('/outside/workspace/main.tex')
+
+            assert.strictEqual(workspace, get.workspace('units')?.uri)
+        })
+
         it('should return the first workspace if no file is provided or opened', () => {
             const workspace = lw.root.getWorkspace()
 
@@ -84,6 +90,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             stub.restore()
 
             assert.notHasLog('Try finding root from magic comment.')
+        })
+
+        it('should skip magic comments when they are disabled', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const stub = mock.activeTextEditor(texPath, '%!TeX root=main.tex')
+            set.config('latex.build.enableMagicComments', false)
+
+            await lw.root.find()
+            stub.restore()
+
+            assert.hasLog('Skip finding root from magic comment.')
         })
 
         it('should find root from magic comment', async () => {
@@ -140,13 +157,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog(`Non-existent magic root ${get.path(fixture, 'find_magic', 'non-existent.tex')} .`)
         })
 
-        it('should return the looped root if the chain forms a loop `a->b->c->a`', async () => {
+        it('should return the repeated root if the magic chain forms a loop', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const stub = mock.activeTextEditor(texPath, '%!TeX root=find_magic/loop_1.tex')
             await lw.root.find()
             stub.restore()
 
-            assert.strictEqual(lw.root.file.path, texPath)
+            assert.strictEqual(lw.root.file.path, get.path(fixture, 'find_magic', 'loop_1.tex'))
         })
 
         it('should find root from magic comment with different syntax', async () => {
@@ -248,6 +265,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.pathStrictEqual(lw.root.file.path, toParse)
         })
 
+        it('should retain the root for an included LaTeX class file', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const toParse = get.path(fixture, 'find_root', 'root.tex')
+            set.root(toParse)
+            await lw.cache.refreshCache(texPath)
+            await lw.cache.refreshCache(toParse)
+            const stub = mock.activeTextEditor(texPath, '', {languageId: 'latex-class'})
+
+            await lw.root.find()
+            stub.restore()
+
+            assert.pathStrictEqual(lw.root.file.path, toParse)
+        })
+
         it('should return undefined if active file is not in the root tex tree', async () => {
             const texPath = get.path(fixture, 'main.tex')
             const toParse = get.path(fixture, 'find_root', 'root_no_input.tex')
@@ -297,6 +328,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             assert.hasLog(`Found root file from active editor: ${texPath}`)
             assert.pathStrictEqual(lw.root.file.path, texPath)
+        })
+
+        it('should treat always-root extensions as roots without an indicator', async () => {
+            const dtxPath = get.path(fixture, 'main.dtx')
+            const stub = mock.activeTextEditor(dtxPath, '')
+
+            await lw.root.find()
+            stub.restore()
+
+            assert.pathStrictEqual(lw.root.file.path, dtxPath)
         })
 
         it('should ignore root file indicators in comments', async () => {
@@ -372,6 +413,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog(`Found root file from active editor: ${texPath}`)
             assert.pathStrictEqual(lw.root.file.path, texPath)
         })
+
+        it('should use \\startTEXpage when configured', async () => {
+            set.config('latex.rootFile.indicator', '\\startTEXpage')
+            const texPath = get.path(fixture, 'main.tex')
+            const stub = mock.activeTextEditor(texPath, '\\startTEXpage\n\\stopTEXpage\n')
+
+            await lw.root.find()
+            stub.restore()
+
+            assert.pathStrictEqual(lw.root.file.path, texPath)
+        })
     })
 
     describe('lw.root.findInWorkspace', () => {
@@ -383,6 +435,36 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             set.config('latex.search.rootFiles.include', ['absolutely-nothing.tex'])
             await lw.root.find()
 
+            assert.strictEqual(lw.root.file.path, undefined)
+        })
+
+        it('should stop workspace search when no workspace is open', async () => {
+            const workspaceStub = sinon.stub(vscode.workspace, 'workspaceFolders').value([])
+
+            await lw.root.find()
+            workspaceStub.restore()
+
+            assert.hasLog('Try finding root from current workspaceRootDir:  .')
+            assert.strictEqual(lw.root.file.path, undefined)
+        })
+
+        it('should skip non-file candidates returned by workspace search', async () => {
+            const findFilesStub = sinon.stub(vscode.workspace, 'findFiles').resolves([vscode.Uri.parse('https://example.com/main.tex')])
+
+            await lw.root.find()
+            findFilesStub.restore()
+
+            assert.hasLog('Skip the file: https://example.com/main.tex')
+            assert.strictEqual(lw.root.file.path, undefined)
+        })
+
+        it('should handle workspace search failures', async () => {
+            const findFilesStub = sinon.stub(vscode.workspace, 'findFiles').rejects(new Error('search failed'))
+
+            await lw.root.find()
+            findFilesStub.restore()
+
+            assert.hasLog('Error finding root file in workspace')
             assert.strictEqual(lw.root.file.path, undefined)
         })
 

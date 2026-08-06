@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import os from 'os'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { assert, get, log, mock, set, sleep } from '../utils'
@@ -48,6 +49,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache('/dev/null')
             log.stop()
             assert.notHasLog('File is excluded from caching: /dev/null .')
+        })
+
+        it('should normalize Windows paths before matching ignore globs', async () => {
+            const platformStub = sinon.stub(os, 'platform').returns('win32')
+            set.config('latex.watch.files.ignore', ['C:/ignored/*.tex'])
+
+            await lw.cache.refreshCache('C:\\ignored\\main.tex')
+            platformStub.restore()
+
+            assert.hasLog('File is excluded from caching: C:\\ignored\\main.tex .')
         })
     })
 
@@ -602,6 +613,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(fileCache)
             assert.strictEqual(fileCache.external[texPath], 'prefix')
         })
+
+        it('should not recache an external document that is already watched', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const toParse = get.path(fixture, 'update_children_xr', 'input_main.tex')
+            lw.watcher.src.add(vscode.Uri.file(texPath))
+
+            await lw.cache.refreshCache(toParse)
+
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
+            assert.strictEqual(lw.cache.get(texPath), undefined)
+        })
     })
 
     describe('lw.cache.updateBibfiles', () => {
@@ -675,12 +697,61 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
     })
 
+    describe('lw.cache.updateGlossaryBibFiles', () => {
+        it('should add and watch glossary files from both supported macros', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const bibPath = get.path(fixture, 'main.bib')
+            const documentStub = mock.textDocument(texPath, '\\GlsXtrLoadResources[src={main}]\n\\glsbibdata{main}', { isDirty: true })
+
+            await lw.cache.refreshCache(texPath)
+            documentStub.restore()
+
+            assert.listStrictEqual(Array.from(lw.cache.get(texPath)?.glossarybibfiles ?? []), [bibPath])
+            assert.listStrictEqual(lw.cache.getIncludedGlossaryBib(texPath), [bibPath])
+            assert.ok(lw.watcher.glossary.has(vscode.Uri.file(bibPath)))
+        })
+
+        it('should ignore excluded and empty glossary paths', async () => {
+            const texPath = get.path(fixture, 'main.tex')
+            const bibPath = get.path(fixture, 'main.bib')
+            const documentStub = mock.textDocument(texPath, '\\glsbibdata{main,empty}', { isDirty: true })
+            const getBibPathStub = sinon.stub(lw.file, 'getBibPath')
+            getBibPathStub.withArgs('main', sinon.match.any).resolves([bibPath])
+            getBibPathStub.withArgs('empty', sinon.match.any).resolves([''])
+            set.config('latex.watch.files.ignore', ['**/main.bib'])
+
+            await lw.cache.refreshCache(texPath)
+            documentStub.restore()
+            getBibPathStub.restore()
+
+            assert.listStrictEqual(lw.cache.getIncludedGlossaryBib(texPath), [])
+        })
+
+        it('should return an empty list without a root or cached file', () => {
+            assert.listStrictEqual(lw.cache.getIncludedGlossaryBib(), [])
+            assert.listStrictEqual(lw.cache.getIncludedGlossaryBib(get.path(fixture, 'missing.tex')), [])
+        })
+    })
+
     describe('lw.cache.loadFlsFile and lw.cache.parseFlsContent', () => {
         it('should do nothing if no .fls is found', async () => {
             const texPathAnother = get.path(fixture, 'another.tex')
 
             await lw.cache.loadFlsFile(texPathAnother)
             assert.notHasLog('Parsing .fls ')
+        })
+
+        it('should parse an unreadable .fls file as empty', async () => {
+            const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+            const flsPath = get.path(fixture, 'load_fls_file', 'include_main.fls')
+            const readStub = sinon.stub(lw.file, 'read').callThrough()
+            readStub.withArgs(flsPath).resolves(undefined)
+
+            await lw.cache.loadFlsFile(toParse)
+            readStub.restore()
+
+            assert.strictEqual(lw.cache.get(toParse), undefined)
+            assert.hasLog(`Parsed .fls ${flsPath} .`)
         })
 
         it('should not consider files that are both INPUT and OUTPUT', async () => {
@@ -767,6 +838,16 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.ok(!lw.watcher.src.has(vscode.Uri.file(get.path(fixture, 'load_fls_file', 'main.aux'))))
             assert.ok(!lw.watcher.src.has(vscode.Uri.file(get.path(fixture, 'load_fls_file', 'main.out'))))
         })
+
+        it('should handle an excluded root while parsing TeX inputs', async () => {
+            const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+            set.config('latex.watch.files.ignore', ['**/include_main.tex'])
+
+            await lw.cache.loadFlsFile(toParse)
+
+            assert.strictEqual(lw.cache.get(toParse), undefined)
+            assert.hasLog(`Cache not finished on ${toParse} when parsing fls.`)
+        })
     })
 
     describe('lw.cache.parseAuxFile', () => {
@@ -776,6 +857,31 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await lw.cache.refreshCache(toParse)
             await lw.cache.loadFlsFile(toParse)
             assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? new Set([''])), [])
+        })
+
+        it('should ignore an empty \\bibdata entry', async () => {
+            const toParse = get.path(fixture, 'load_aux_file', 'empty.tex')
+            set.root(fixture, 'load_aux_file', 'empty.tex')
+
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+
+            assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? new Set([''])), [])
+            assert.hasLog('Empty \\bibdata in .aux ')
+        })
+
+        it('should parse an unreadable auxiliary file as empty', async () => {
+            const toParse = get.path(fixture, 'load_aux_file', 'main.tex')
+            const auxPath = get.path(fixture, 'load_aux_file', 'main.aux')
+            const readStub = sinon.stub(lw.file, 'read').callThrough()
+            readStub.withArgs(auxPath).resolves(undefined)
+            set.root(fixture, 'load_aux_file', 'main.tex')
+
+            await lw.cache.refreshCache(toParse)
+            await lw.cache.loadFlsFile(toParse)
+            readStub.restore()
+
+            assert.listStrictEqual(Array.from(lw.cache.get(toParse)?.bibfiles ?? []), [])
         })
 
         it('should add \\bibdata from .aux file', async () => {
@@ -836,9 +942,12 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should return a list of included .bib files with circular inclusions', async () => {
             const bibPath = get.path(fixture, 'main.bib')
             const toParse = get.path(fixture, 'included_bib', 'circular_1.tex')
+            const circularChild = get.path(fixture, 'included_bib', 'circular_2.tex')
 
+            lw.cache.add(toParse)
+            lw.cache.add(circularChild)
             await lw.cache.refreshCache(toParse)
-            await lw.cache.wait(get.path(fixture, 'included_bib', 'circular_2.tex'))
+            await lw.cache.refreshCache(circularChild)
             assert.listStrictEqual(lw.cache.getIncludedBib(toParse), [bibPath])
         })
 
@@ -873,8 +982,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         it('should return a list of included .tex files with circular inclusions', async () => {
             const toParse = get.path(fixture, 'included_tex', 'circular_1.tex')
+            const circularChild = get.path(fixture, 'included_tex', 'circular_2.tex')
+            lw.cache.add(toParse)
+            lw.cache.add(circularChild)
             await lw.cache.refreshCache(toParse)
-            await lw.cache.wait(get.path(fixture, 'included_tex', 'circular_2.tex'))
+            await lw.cache.refreshCache(circularChild)
             const includedFiles = lw.cache.getIncludedTeX(toParse)
             assert.strictEqual(includedFiles.size, 2)
             assert.ok(includedFiles.has(toParse))
@@ -906,6 +1018,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
 
             assert.listStrictEqual(await lw.cache.getFlsChildren(toParse), [texPath])
+        })
+
+        it('should return no input files when the .fls file cannot be read', async () => {
+            const toParse = get.path(fixture, 'load_fls_file', 'include_main.tex')
+            const flsPath = get.path(fixture, 'load_fls_file', 'include_main.fls')
+            const readStub = sinon.stub(lw.file, 'read').callThrough()
+            readStub.withArgs(flsPath).resolves(undefined)
+
+            const children = await lw.cache.getFlsChildren(toParse)
+            readStub.restore()
+
+            assert.listStrictEqual(children, [])
         })
     })
 })

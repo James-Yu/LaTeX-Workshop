@@ -16,6 +16,13 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     const getOnChangeHandlers = () => _onChangeHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
     let _onDeleteHandlersSpy: sinon.SinonSpy
     const getOnDeleteHandlers = () => _onDeleteHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
+    let _onCreateHandlersSpy: sinon.SinonSpy
+    const getOnCreateHandlers = () => _onCreateHandlersSpy.call(lw.watcher.src) as Set<(uri: vscode.Uri) => void>
+    const getPolling = () => (lw.watcher.src as any).polling as {[uri: string]: {time: number, size: number}}
+    let _handlePollingSpy: sinon.SinonSpy
+    const callHandlePolling = async (uri: vscode.Uri, firstChangeTime: number, interval: NodeJS.Timeout) => {
+        await _handlePollingSpy.call(lw.watcher.src, uri, firstChangeTime, interval)
+    }
 
     before(() => {
         mock.init(lw, 'watcher')
@@ -24,6 +31,8 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         _watchersSpy = sinon.spy(lw.watcher.src as any, 'watchers', ['get']).get
         _onChangeHandlersSpy = sinon.spy(lw.watcher.src as any, 'onChangeHandlers', ['get']).get
         _onDeleteHandlersSpy = sinon.spy(lw.watcher.src as any, 'onDeleteHandlers', ['get']).get
+        _onCreateHandlersSpy = sinon.spy(lw.watcher.src as any, 'onCreateHandlers', ['get']).get
+        _handlePollingSpy = sinon.spy(lw.watcher.src as any, 'handlePolling')
     })
 
     after(() => {
@@ -69,6 +78,21 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(Object.keys(getWatchers()), [ rootDir ])
             assert.ok(getWatchers()[rootDir].files.has('another.tex'))
         })
+
+        it('should notify create handlers for files added to new and existing folder watchers', () => {
+            const handler = sinon.spy()
+            const mainUri = vscode.Uri.file(get.path(fixture, 'main.tex'))
+            const anotherUri = vscode.Uri.file(get.path(fixture, 'another.tex'))
+            lw.watcher.src.onCreate(handler)
+
+            lw.watcher.src.add(mainUri)
+            lw.watcher.src.add(anotherUri)
+            getOnCreateHandlers().delete(handler)
+
+            sinon.assert.calledTwice(handler)
+            sinon.assert.calledWith(handler, mainUri)
+            sinon.assert.calledWith(handler, anotherUri)
+        })
     })
 
     describe('lw.watcher.src.remove', () => {
@@ -89,8 +113,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         it('should not throw an error if the file is not being watched', () => {
             const texPath = get.path(fixture, 'main.tex')
 
-            lw.watcher.src.remove(vscode.Uri.file(texPath))
-            assert.ok(true)
+            assert.doesNotThrow(() => lw.watcher.src.remove(vscode.Uri.file(texPath)))
         })
     })
 
@@ -100,19 +123,17 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         })
 
         it('should return true if a file is being watched', () => {
-            const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
             lw.watcher.src.add(vscode.Uri.file(texPath))
-            assert.ok(getWatchers()[rootDir].files.has('main.tex'))
+            assert.ok(lw.watcher.src.has(vscode.Uri.file(texPath)))
         })
 
         it('should return false if a file is not being watched', () => {
-            const rootDir = get.path(fixture)
             const texPath = get.path(fixture, 'main.tex')
 
             lw.watcher.src.add(vscode.Uri.file(texPath))
-            assert.ok(!getWatchers()[rootDir].files.has('another.tex'))
+            assert.ok(!lw.watcher.src.has(vscode.Uri.file(get.path(fixture, 'another.tex'))))
         })
     })
 
@@ -228,12 +249,60 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.listStrictEqual(stub.getCall(0).args, [ texPath ])
         })
 
-        it('should not call onChangeHandlers when watched file is deleted then created in a short time', async () => {
+        it('should ignore deletion events for files that are not watched', async () => {
+            await callOnDidDelete(vscode.Uri.file(get.path(fixture, 'another.tex')))
+
+            assert.strictEqual(stub.callCount, 0)
+        })
+
+        it('should not call onDeleteHandlers when a delete event is emitted for an existing file', async () => {
             const binPath = get.path(fixture, 'main.bin')
 
             lw.watcher.src.add(vscode.Uri.file(binPath))
             await callOnDidDelete(vscode.Uri.file(binPath))
             assert.strictEqual(stub.callCount, 0)
+        })
+    })
+
+    describe('lw.watcher.src.handlePolling', () => {
+        it('should stop polling when the file disappears', async () => {
+            const uri = vscode.Uri.file(get.path(fixture, 'main.bin'))
+            const uriString = uri.toString(true)
+            const existsStub = sinon.stub(lw.file, 'exists').resolves(false)
+            const interval = setInterval(() => {}, 10000)
+            getPolling()[uriString] = {time: Date.now(), size: 1}
+
+            await callHandlePolling(uri, Date.now(), interval)
+            existsStub.restore()
+
+            assert.strictEqual(getPolling()[uriString], undefined)
+        })
+
+        it('should stop a stale interval when polling state is gone', async () => {
+            const uri = vscode.Uri.file(get.path(fixture, 'main.bin'))
+            const clearIntervalSpy = sinon.spy(global, 'clearInterval')
+            const interval = setInterval(() => {}, 10000)
+
+            await callHandlePolling(uri, Date.now(), interval)
+            clearIntervalSpy.restore()
+
+            assert.ok(clearIntervalSpy.calledWith(interval))
+        })
+
+        it('should update polling state when the file size changes', async () => {
+            const uri = vscode.Uri.file(get.path(fixture, 'main.bin'))
+            const uriString = uri.toString(true)
+            const statStub = sinon.stub(lw.external, 'stat').resolves({type: 0, ctime: 0, mtime: 0, size: 2})
+            const interval = setInterval(() => {}, 10000)
+            getPolling()[uriString] = {time: 0, size: 1}
+
+            await callHandlePolling(uri, Date.now(), interval)
+            clearInterval(interval)
+            statStub.restore()
+
+            assert.strictEqual(getPolling()[uriString].size, 2)
+            assert.ok(getPolling()[uriString].time > 0)
+            delete getPolling()[uriString]
         })
     })
 })
