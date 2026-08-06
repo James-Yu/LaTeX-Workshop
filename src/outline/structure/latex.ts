@@ -306,6 +306,8 @@ function nestNonSection(struct: TeXElement[]): TeXElement[] {
  * and removes the internal counter elements. This runs after subfiles are
  * expanded to preserve document order, but before structure elements are
  * nested, which would attach counter elements to the preceding section.
+ *
+ * @see https://github.com/James-Yu/LaTeX-Workshop/issues/4955
  */
 function applySectionCounters(
         struct: TeXElement[],
@@ -318,6 +320,7 @@ function applySectionCounters(
             if (level !== undefined && element.counterValue !== undefined) {
                 pending[element.name] = element.counterValue
             }
+            // Consume the internal marker without adding it to the visible structure.
             continue
         }
         if (element.type === TeXElementType.Section && level !== undefined && pending[element.name] !== undefined) {
