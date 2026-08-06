@@ -39,6 +39,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
     // In rare cases, the following struct may be undefined. Typically in tests
     // where roots are changed rapidly.
     let struct = subFile ? insertSubFile(structs) : structs[filePath] ?? []
+    struct = applySectionCounters(struct, config)
     struct = nestNonSection(struct)
     struct = nestSection(struct, config)
     fixSectionToLine(struct, config, Number.MAX_SAFE_INTEGER)
@@ -117,6 +118,21 @@ async function parseNode(
             label: chooseCaption(node.args?.[1], node.args?.[2]),
             appendix: inAppendix,
             ...attributes
+        }
+    } else if (node.type === 'macro' && node.content === 'setcounter') {
+        const counterName = argContentToStr(node.args?.[0]?.content ?? []).trim()
+        const counterValueString = argContentToStr(node.args?.[1]?.content ?? []).trim()
+        const counterValue = Number(counterValueString)
+        if (config.secIndex[counterName] !== undefined
+            && /^[+-]?\d+$/.test(counterValueString)
+            && Number.isSafeInteger(counterValue)) {
+            element = {
+                type: TeXElementType.SetCounter,
+                name: counterName,
+                label: '',
+                counterValue,
+                ...attributes
+            }
         }
     } else if (node.type === 'macro' && config.macros.cmds.includes(node.content)) {
         const argStr = argContentToStr(node.args?.[2]?.content || [])
@@ -285,6 +301,37 @@ function nestNonSection(struct: TeXElement[]): TeXElement[] {
     return elements
 }
 
+/**
+ * Applies each parsed \setcounter value to the next matching numbered section
+ * and removes the internal counter elements. This runs after subfiles are
+ * expanded to preserve document order, but before structure elements are
+ * nested, which would attach counter elements to the preceding section.
+ */
+function applySectionCounters(
+        struct: TeXElement[],
+        config: StructureConfig,
+        pending: {[counter: string]: number} = {}): TeXElement[] {
+    const elements: TeXElement[] = []
+    for (const element of struct) {
+        const level = config.secIndex[element.name]
+        if (element.type === TeXElementType.SetCounter) {
+            if (level !== undefined && element.counterValue !== undefined) {
+                pending[element.name] = element.counterValue
+            }
+            continue
+        }
+        if (element.type === TeXElementType.Section && level !== undefined && pending[element.name] !== undefined) {
+            element.counterValue = pending[element.name]
+            delete pending[element.name]
+        }
+        if (element.children.length > 0) {
+            element.children = applySectionCounters(element.children, config, pending)
+        }
+        elements.push(element)
+    }
+    return elements
+}
+
 function nestSection(struct: TeXElement[], config: StructureConfig): TeXElement[] {
     const stack: TeXElement[] = []
     const elements: TeXElement[] = []
@@ -364,7 +411,8 @@ function addSectionNumber(struct: TeXElement[], config: StructureConfig, tag?: s
             continue
         }
         if (element.type === TeXElementType.Section) {
-            counter[config.secIndex[element.name]] = (counter[config.secIndex[element.name]] ?? 0) + 1
+            const level = config.secIndex[element.name]
+            counter[level] = (element.counterValue ?? counter[level] ?? 0) + 1
         }
         let sectionNumber = tag +
             '0.'.repeat(config.secIndex[element.name] - lowest) +
@@ -426,6 +474,7 @@ function refreshLaTeXModelConfig(subFile: boolean = true, defaultFloats = ['fram
 export const outline = {
     refreshLaTeXModelConfig,
     parseNode,
+    applySectionCounters,
     nestNonSection,
     nestSection,
     addFloatNumber,

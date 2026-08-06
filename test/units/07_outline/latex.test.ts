@@ -118,6 +118,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual(root.children.length, 0)
 		})
 
+		it('should parse literal section counter assignments as internal elements', async () => {
+			const node = await firstNode('\\setcounter{chapter}{-1}')
+			const root = { children: [] as TeXElement[] }
+			const config = outline.refreshLaTeXModelConfig()
+
+			await outline.parseNode(node, [], root, get.path('main.tex'), config, {}, false)
+
+			assert.strictEqual(root.children.length, 1)
+			assert.strictEqual(root.children[0].type, TeXElementType.SetCounter)
+			assert.strictEqual(root.children[0].name, 'chapter')
+			assert.strictEqual(root.children[0].counterValue, -1)
+		})
+
 		it('should resolve and parse input subfiles when enabled', async () => {
 			const node = await firstNode('\\input{sub}')
 			const root = { children: [] as TeXElement[] }
@@ -338,6 +351,35 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual(result.length, 1)
 			assert.strictEqual(result[0].children[0].label, '1.1 Section 1.1')
 			assert.strictEqual(result[0].children[0].children[0].label, '1.1.1 Section 1.1.1')
+		})
+
+		it('should apply setcounter values without exposing internal elements', async () => {
+			const main = set.root('main.tex')
+			await cacheAst(main, [
+				'\\documentclass{report}',
+				'\\begin{document}',
+				'\\setcounter{chapter}{-1}',
+				'\\chapter{Introduction}',
+				'\\chapter{Next}',
+				'\\setcounter{chapter}{4}',
+				'\\chapter{Fifth}',
+				'\\end{document}'
+			].join('\n'))
+
+			const numbered = await construct(main, true)
+			set.config('view.outline.numbers.enabled', false)
+			const unnumbered = await construct(main, true)
+
+			assert.deepStrictEqual(numbered.map(element => element.label), [
+				'0 Introduction',
+				'1 Next',
+				'5 Fifth'
+			])
+			assert.deepStrictEqual(unnumbered.map(element => element.label), [
+				'Introduction',
+				'Next',
+				'Fifth'
+			])
 		})
 
 		it('should preserve numbering gaps for skipped section levels', async () => {
@@ -609,6 +651,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual((lw.cache.wait as sinon.SinonStub).withArgs(sub).callCount, 1)
 			assert.strictEqual(result.length, 2)
 			assert.strictEqual(result[0].label, '1 From sub')
+		})
+
+		it('should apply setcounter values before expanded subfile sections', async () => {
+			const main = set.root('main.tex')
+			const sub = get.path('sections/sub.tex')
+			const resolveFileStub = sinon.stub(utils, 'resolveFile').resolves(sub)
+			await cacheAst(main, '\\setcounter{chapter}{-1}\n\\input{sub}')
+			await cacheAst(sub, '\\chapter{From sub}')
+
+			const result = await construct(main, true)
+			resolveFileStub.restore()
+
+			assert.strictEqual(result.length, 1)
+			assert.strictEqual(result[0].label, '0 From sub')
 		})
 
 		it('should inline nested input, import and subimport subfiles', async () => {
