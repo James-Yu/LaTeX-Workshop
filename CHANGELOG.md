@@ -1,5 +1,20 @@
 # Change Log
 
+## [10.17.0] - 2026-08-06
+
+### Removed
+- Remove trimming feature from PDF viewer
+  - The feature is not provided by PDF.js and is causing issues regarding scaling and displaying. The maintenance burden is high.
+  - If you missed this feature, please consider make a feature request at official PDF.js' repository.
+
+### Fixed
+- (#4912) Improve log parsing for repeated-run LaTeX build tools
+- (#4919) Modify latex error log regex to exclude "ignored error"
+- (#4936) Fix CTRL/CMD+A functionality in viewer input boxes
+- (#4941) Enable IntelliSense and hover for multiline citation
+- (#4947) File name completion with overlay specification
+- (#4950) Fix reference numbers with custom jobname
+
 ## [10.16.1] - 2026-06-02
 
 ### Fixed
