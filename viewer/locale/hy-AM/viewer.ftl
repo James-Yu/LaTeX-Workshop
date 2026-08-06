@@ -153,6 +153,15 @@ pdfjs-document-properties-linearized = Արագ վեբ դիտում․
 pdfjs-document-properties-linearized-yes = Այո
 pdfjs-document-properties-linearized-no = Ոչ
 pdfjs-document-properties-close-button = Փակել
+# Shown beneath an invalid signature card to explain why verification
+# failed. The text comes from NSS (e.g. "Signature integrity has been
+# compromised", "PKCS#7 signature could not be parsed") and is not
+# itself localized — it is the underlying error message produced by
+# the verification backend.
+# Variables:
+#   $reason (String) - error message describing why the signature
+#                      could not be verified.
+pdfjs-digital-signature-properties-reason = Պատճառը՝ { $reason }
 
 ## Print
 
@@ -355,7 +364,7 @@ pdfjs-editor-stamp-add-image-button-label = Հավելել պատկեր
 # This refers to the thickness of the line used for free highlighting (not bound to text)
 pdfjs-editor-free-highlight-thickness-input = Հաստություն
 pdfjs-editor-free-highlight-thickness-title =
-    .title = Փոխել հաստությունը տեքստից բացի այլ տարրեր նշելիս
+    .title = Փոխել հաստությունը՝ տեքստից բացի այլ տարրեր գունանշելիս
 pdfjs-editor-add-signature-container =
     .aria-label = Ստորագրության կառավարման տարրեր և պահված ստորագրություններ
 pdfjs-editor-signature-add-signature-button =
@@ -566,7 +575,7 @@ pdfjs-editor-add-signature-draw-thickness-range-label = Հաստություն
 # Variables:
 #   $thickness (Number) - the thickness (in pixels) of the line used to draw a signature.
 pdfjs-editor-add-signature-draw-thickness-range =
-    .title = Նկաելու հաստությունը՝ { $thickness }
+    .title = Նկարելու հաստությունը՝ { $thickness }
 pdfjs-editor-add-signature-image-placeholder = Քաշեք ֆայլը այստեղ՝ վերբեռնելու համար
 pdfjs-editor-add-signature-image-browse-link =
     { PLATFORM() ->

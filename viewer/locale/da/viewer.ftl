@@ -660,13 +660,69 @@ pdfjs-views-manager-view-selector-button =
 pdfjs-views-manager-view-selector-button-label = Visninger
 pdfjs-views-manager-pages-title = Sider
 pdfjs-views-manager-attachments-title = Vedhæftede filer
+pdfjs-views-manager-layers-title1 = Lag
+    .title = Lag (dobbeltklik for at nulstille alle lag til standard-tilstanden)
 pdfjs-views-manager-pages-option-label = Sider
+pdfjs-views-manager-outlines-option-label = Dokument-disposition
+pdfjs-views-manager-attachments-option-label = Vedhæftede filer
+pdfjs-views-manager-layers-option-label = Lag
+pdfjs-views-manager-add-file-button =
+    .title = Tilføj fil
+pdfjs-views-manager-add-file-button-label = Tilføj fil
+# Variables:
+#   $count (Number) - the number of selected pages.
+pdfjs-views-manager-pages-status-action-label =
+    { $count ->
+        [one] { $count } valgt
+       *[other] { $count } valgt
+    }
+pdfjs-views-manager-pages-status-none-action-label = Vælg sider
+pdfjs-views-manager-pages-status-action-button-label = Håndter
+pdfjs-views-manager-pages-status-copy-button-label = Kopier
+pdfjs-views-manager-pages-status-cut-button-label = Klip
+pdfjs-views-manager-pages-status-delete-button-label = Slet
+pdfjs-views-manager-pages-status-export-selected-button-label = Eksporter valgte…
+# Variables:
+#   $count (Number) - the number of selected pages to be cut.
+pdfjs-views-manager-status-undo-cut-label =
+    { $count ->
+        [one] 1 side klippet
+       *[other] { $count } sider klippet
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be copied.
+pdfjs-views-manager-pages-status-undo-copy-label =
+    { $count ->
+        [one] 1 side kopieret
+       *[other] { $count } sider kopieret
+    }
+# Variables:
+#   $count (Number) - the number of selected pages to be deleted.
+pdfjs-views-manager-pages-status-undo-delete-label =
+    { $count ->
+        [one] 1 side slettet
+       *[other] { $count } sider slettet
+    }
+pdfjs-views-manager-pages-status-waiting-ready-label = Gør din fil klar…
+pdfjs-views-manager-pages-status-waiting-uploading-label = Uploader fil…
+pdfjs-views-manager-status-undo-button-label = Fortryd
+pdfjs-views-manager-status-done-button-label = Færdig
+pdfjs-views-manager-status-close-button =
+    .title = Luk
+pdfjs-views-manager-status-close-button-label = Luk
+pdfjs-views-manager-paste-button-label = Indsæt
 pdfjs-views-manager-paste-button-before =
     .title = Indsæt før første side
 # Variables:
 #   $page (Number) - the page number after which the paste button is.
 pdfjs-views-manager-paste-button-after =
     .title = Indsæt efter side { $page }
+# Badge used to promote a new feature in the UI, keep it as short as possible.
+# It's spelled uppercase for English, but it can be translated as usual.
+pdfjs-new-badge-content = NY
+pdfjs-views-manager-waiting-for-file = Uploader fil…
+pdfjs-toggle-views-manager-button1 =
+    .title = Håndter sider
 
 ## Main menu for adding/removing signatures
 

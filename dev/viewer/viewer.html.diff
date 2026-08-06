@@ -1,13 +1,16 @@
 diff --git a/../../web/viewer.html b/../viewer/viewer.html
-index 7c5a916c..7f036d01 100644
+index fb601a1a..bc5b87a9 100644
 --- a/../../web/viewer.html
 +++ b/../viewer/viewer.html
-@@ -25,14 +25,17 @@ See https://github.com/adobe-type-tools/cmap-resources
+@@ -25,6 +25,7 @@ See https://github.com/adobe-type-tools/cmap-resources
      <meta charset="utf-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
      <meta name="google" content="notranslate" />
 +    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
      <title>PDF.js viewer</title>
+ 
+   <meta
+@@ -34,11 +35,12 @@ See https://github.com/adobe-type-tools/cmap-resources
  
  <!-- This snippet is used in production (included from viewer.html) -->
  <link rel="resource" type="application/l10n" href="locale/locale.json" />
@@ -17,11 +20,12 @@ index 7c5a916c..7f036d01 100644
      <link rel="stylesheet" href="viewer.css" />
 +    <link rel="stylesheet" href="latexworkshop.css" />
  
+-  <script src="viewer.mjs" type="module"></script>
 +  <script src="out/viewer/latexworkshop.js" type="module"></script>
-   <script src="viewer.mjs" type="module"></script>
    </head>
  
-@@ -41,7 +44,7 @@ See https://github.com/adobe-type-tools/cmap-resources
+   <body tabindex="0">
+@@ -46,7 +48,7 @@ See https://github.com/adobe-type-tools/cmap-resources
        <span id="viewer-alert" class="visuallyHidden" role="alert"></span>
  
        <div id="mainContainer">
@@ -30,7 +34,7 @@ index 7c5a916c..7f036d01 100644
            <div id="toolbarContainer">
              <div id="toolbarViewer" class="toolbarHorizontalGroup">
                <div id="toolbarViewerLeft" class="toolbarHorizontalGroup">
-@@ -224,7 +227,7 @@ See https://github.com/adobe-type-tools/cmap-resources
+@@ -229,7 +231,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                  </div>
                  <!-- sidebarContainer -->
  

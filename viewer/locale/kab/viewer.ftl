@@ -125,7 +125,7 @@ pdfjs-document-properties-creator = Yerna-t:
 pdfjs-document-properties-producer = Afecku n uselket PDF:
 pdfjs-document-properties-version = Lqem PDF:
 pdfjs-document-properties-page-count = Amḍan n yisebtar:
-pdfjs-document-properties-page-size = Tuγzi n usebter:
+pdfjs-document-properties-page-size = Teɣzi n usebter:
 pdfjs-document-properties-page-size-unit-inches = deg
 pdfjs-document-properties-page-size-unit-millimeters = mm
 pdfjs-document-properties-page-size-orientation-portrait = s teɣzi
@@ -598,6 +598,8 @@ pdfjs-editor-edit-comment-popup-button =
 pdfjs-editor-delete-comment-popup-button-label = Kkes awennit
 pdfjs-editor-delete-comment-popup-button =
     .title = Kkes awennit
+pdfjs-show-comment-button =
+    .title = Sken awennit
 
 ##  Edit a comment dialog
 
