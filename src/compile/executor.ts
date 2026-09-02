@@ -388,6 +388,17 @@ export class Executor {
                 logger.logError('Failed to clean auxiliary files after build failure.', error)
             }
         }
+        // MiKTeX ships latexmk (and other Perl-based tools) as wrappers that need
+        // an external Perl, which Windows does not provide out of the box. The
+        // resulting failure is a setup problem, not a document problem, so point
+        // at the remedy instead of the generic message. Only the Perl diagnostic
+        // is matched: MiKTeX uses the same wording for other missing script
+        // engines (e.g. Python), whose remedy is different.
+        const output = result.result.stdout + result.result.stderr
+        if (output.includes('MiKTeX could not find the script engine \'perl\'')) {
+            void logger.showErrorMessageWithCompilerLogButton(`Recipe terminated with error: MiKTeX could not run "${result.step.command}" because it needs a Perl installation, and none was found. Install Perl (e.g. Strawberry Perl), then quit and relaunch VS Code so it picks up the new PATH (reloading the window is not enough) — or switch to a recipe that does not need Perl, such as "pdflatex ➞ bibtex ➞ pdflatex × 2".`)
+            return
+        }
         void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
     }
 

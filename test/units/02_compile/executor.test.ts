@@ -610,6 +610,51 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
             assert.ok((lw.extra.clean as sinon.SinonStub).notCalled)
         })
+
+        it('points at Perl when MiKTeX cannot find the Perl script engine', async () => {
+            const showError = sinon.stub(vscode.window, 'showErrorMessage')
+            createPlanStub.callsFake(() => {
+                const plan = createPlan('latexmk', {tools: [{name: 'latexmk', command: 'latexmk'}]})
+                sinon.stub(plan, 'run').resolves(planResult(plan, {
+                    status: 'failed',
+                    result: stepResult({
+                        status: 'failed',
+                        code: 1,
+                        stderr: 'Sorry, but latexmk did not succeed for the following reason:\n\n' +
+                            '  MiKTeX could not find the script engine \'perl\' which is required to execute \'latexmk\'.\n'
+                    })
+                }))
+                return plan
+            })
+            await executor.run({isAuto: false, isBibChanged: false})
+            assert.ok(showError.calledOnce)
+            const message = showError.firstCall.args[0] as string
+            assert.ok(message.includes('MiKTeX could not run "latexmk"'), message)
+            assert.ok(message.includes('Install Perl'), message)
+            assert.notStrictEqual(message, 'Recipe terminated with error.')
+            showError.restore()
+        })
+
+        it('keeps the generic message for other failures and other missing script engines', async () => {
+            for (const stderr of [
+                '! Undefined control sequence.',
+                'MiKTeX could not find the script engine \'python\' which is required to execute \'pythontex\'.'
+            ]) {
+                const showError = sinon.stub(vscode.window, 'showErrorMessage')
+                createPlanStub.callsFake(() => {
+                    const plan = createPlan()
+                    sinon.stub(plan, 'run').resolves(planResult(plan, {
+                        status: 'failed',
+                        result: stepResult({status: 'failed', code: 1, stderr})
+                    }))
+                    return plan
+                })
+                await executor.run({isAuto: false, isBibChanged: false})
+                assert.ok(showError.calledOnce, stderr)
+                assert.strictEqual(showError.firstCall.args[0], 'Recipe terminated with error.', stderr)
+                showError.restore()
+            }
+        })
     })
 
     describe('Executor pending and drain state', () => {
