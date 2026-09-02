@@ -26,7 +26,7 @@ jobs:
           ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
     - name: Download install-tl.zip
       run: |
-        curl -s -O -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+        curl -fsSL --retry 5 --retry-all-errors -O http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
         unzip -q install-tl.zip
         mv install-tl-2* install-tl-dir
       if: steps.cache-texlive.outputs.cache-hit != 'true'
@@ -42,7 +42,7 @@ jobs:
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - name: Download latexindent binary
       run: |
-        curl -s -O -L http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
+        curl -fsSL --retry 5 --retry-all-errors -O http://mirrors.ctan.org/support/latexindent/bin/macos/latexindent
         [ -d /Users/runner/texlive/bin/x86_64-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/x86_64-darwin/latexindent && chmod +x /Users/runner/texlive/bin/x86_64-darwin/latexindent || [ -d /Users/runner/texlive/bin/universal-darwin/ ] && mv -f latexindent /Users/runner/texlive/bin/universal-darwin/latexindent && chmod +x /Users/runner/texlive/bin/universal-darwin/latexindent
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v7
