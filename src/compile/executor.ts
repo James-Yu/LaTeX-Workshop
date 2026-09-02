@@ -395,7 +395,7 @@ export class Executor {
         // of the generic message.
         const output = result.result.stdout + result.result.stderr
         if (output.includes('could not find the script engine')) {
-            void logger.showErrorMessageWithCompilerLogButton(`Recipe terminated with error: MiKTeX could not run "${result.step.command}" because it needs a Perl installation, and none was found. Install Perl (e.g. Strawberry Perl) and restart VS Code, or switch to a recipe that does not need Perl, such as "pdflatex ➞ bibtex ➞ pdflatex × 2".`)
+            void logger.showErrorMessageWithCompilerLogButton(`Recipe terminated with error: MiKTeX could not run "${result.step.command}" because it needs a Perl installation, and none was found. Install Perl (e.g. Strawberry Perl), then quit and relaunch VS Code so it picks up the new PATH (reloading the window is not enough) — or switch to a recipe that does not need Perl, such as "pdflatex ➞ bibtex ➞ pdflatex × 2".`)
             return
         }
         void logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
