@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as sinon from 'sinon'
 import { lw } from '../../../src/lw'
-import { assert, get, mock, set } from '../utils'
+import { assert, deferred, get, mock, set } from '../utils'
 import { citation, provider } from '../../../src/completion/completer/citation'
 import type { CitationItem, FileCache } from '../../../src/types'
 
@@ -140,6 +140,51 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             suggestion = suggestions.find(s => s.label === 'Jane Miller and Robert Smith')
             assert.ok(suggestion)
             assert.strictEqual(suggestion.label, suggestion.fields.author)
+        })
+
+        it('should configure citation browser labels and multiple selection', () => {
+            set.config('intellisense.citation.label', 'bibtex key')
+            const quickPickStub = sinon.stub(vscode.window, 'showQuickPick').resolves(undefined)
+
+            citation.browser({ uri: vscode.Uri.file(texPath), langId: 'latex', line: '', position: new vscode.Position(0, 0) })
+
+            const items = quickPickStub.firstCall.args[0] as readonly vscode.QuickPickItem[]
+            const options = quickPickStub.firstCall.args[1] as vscode.QuickPickOptions & { canPickMany: boolean }
+            const suggestion = items.find((item: vscode.QuickPickItem) => item.label === 'miller2024')
+            assert.ok(suggestion)
+            assert.strictEqual(suggestion.description, 'An Overview of Quantum Computing: Challenges and Future Directions')
+            assert.strictEqual(options.canPickMany, true)
+            quickPickStub.restore()
+        })
+
+        it('should insert multiple citations', async () => {
+            const selection = new vscode.Selection(new vscode.Position(0, 0), new vscode.Position(0, 0))
+            const replace = sinon.spy()
+            const editCalled = deferred<boolean>()
+            const editor = {
+                document: { getText: sinon.stub().returns('') },
+                selection,
+                edit: sinon.stub().callsFake((callback: (editBuilder: vscode.TextEditorEdit) => void) => {
+                    callback({ replace } as unknown as vscode.TextEditorEdit)
+                    editCalled.resolve(true)
+                    return Promise.resolve(true)
+                })
+            } as unknown as vscode.TextEditor
+            const editorStub = sinon.stub(vscode.window, 'activeTextEditor').value(editor)
+            const quickPickStub = sinon.stub(vscode.window, 'showQuickPick').resolves([
+                { label: 'miller2024', key: 'miller2024' },
+                { label: 'miller2025', key: 'miller2025' }
+            ] as unknown as vscode.QuickPickItem)
+
+            citation.browser()
+            await editCalled.promise
+            editorStub.restore()
+            quickPickStub.restore()
+
+            sinon.assert.calledOnce(replace)
+            const [range, text] = replace.firstCall.args as [vscode.Range, string]
+            assert.ok(range.isEqual(selection))
+            assert.strictEqual(text, 'miller2024,miller2025')
         })
 
         it('should follow `latex-workshop.intellisense.citation.filterText`', () => {

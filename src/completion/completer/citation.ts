@@ -94,6 +94,16 @@ function from(_result: RegExpMatchArray, args: CompletionArgs) {
     return provide(args.uri, args.line, args.position)
 }
 
+function getCitationLabel(item: CitationItem, label: string): string {
+    if (label === 'title' && item.fields.title) {
+        return item.fields.title
+    }
+    if (label === 'authors' && item.fields.author) {
+        return item.fields.author
+    }
+    return item.key
+}
+
 function provide(uri: vscode.Uri, line: string, position: vscode.Position): CompletionItem[] {
     // Compile the suggestion array to vscode completion array
     const configuration = vscode.workspace.getConfiguration('latex-workshop', uri)
@@ -136,23 +146,7 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
         return filterText
     }
     return [...items, ...alts].map(item => {
-        // Compile the completion item label
-        switch(label) {
-            case 'bibtex key':
-            default:
-                item.label = item.key
-                break
-            case 'title':
-                if (item.fields.title) {
-                    item.label = item.fields.title
-                }
-                break
-            case 'authors':
-                if (item.fields.author) {
-                    item.label = item.fields.author
-                }
-                break
-        }
+        item.label = getCitationLabel(item, label)
         item.filterText = getFilterText(item)
         item.insertText = item.key
         item.range = range
@@ -166,19 +160,23 @@ function browser(args?: CompletionArgs) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration, label)
-    void vscode.window.showQuickPick(updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
+    const items = updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
+        const itemLabel = getCitationLabel(item, label)
         return {
-            label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
-            description: item.key,
-            detail: item.fields.join(fields, true, ', ')
+            label: itemLabel,
+            description: itemLabel === item.key ? (item.fields.title ? trimMultiLineString(item.fields.title) : '') : item.key,
+            detail: item.fields.join(fields, true, ', '),
+            key: item.key
         }
-    }), {
-        placeHolder: 'Press ENTER to insert citation key at cursor',
+    }).sort((a, b) => a.label.localeCompare(b.label))
+    void vscode.window.showQuickPick(items, {
+        placeHolder: 'Select citation keys, then press ENTER',
+        canPickMany: true,
         matchOnDetail: true,
         matchOnDescription: true,
         ignoreFocusOut: true
     }).then(selected => {
-        if (!selected) {
+        if (!selected || selected.length === 0) {
             return
         }
         if (vscode.window.activeTextEditor) {
@@ -190,7 +188,7 @@ function browser(args?: CompletionArgs) {
                 const commaStart = content.lastIndexOf(',') + 1
                 start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
             }
-            void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.end), selected.description || ''))
+            void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.end), selected.map(item => item.key).join(',')))
                         .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
         }
     })
