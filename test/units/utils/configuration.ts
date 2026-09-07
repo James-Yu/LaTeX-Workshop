@@ -34,7 +34,7 @@ export function hasTestConfig(section: string): boolean {
 
 /**
  * Reads an in-memory configuration override.
- * This is used internally by the configuration mock rather than by tests directly.
+ * This is used internally by the `configuration mock rather than by tests directly.
  */
 export function getTestConfig<T>(section: string): T | undefined {
     return configs.get(section) as T | undefined

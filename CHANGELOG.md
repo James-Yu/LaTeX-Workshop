@@ -1,5 +1,10 @@
 # Change Log
 
+## [Unreleased]
+
+### Added
+- (#4522) Add `latex-workshop.intellisense.citation.fuzzy` (default `false`) to rank `\cite{}` suggestions by fzf-style fuzzy similarity to the typed text, weighting the bibtex key highest and then the fields from `intellisense.citation.format`. Works in both `inline` and `browser` citation modes; in `browser` mode it also matches fields (e.g. author) beyond the completion filter's 128-character limit.
+
 ## [10.18.1] - 2026-08-17
 
 ### Fixed

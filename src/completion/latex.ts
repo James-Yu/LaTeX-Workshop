@@ -22,7 +22,7 @@ export class Provider implements vscode.CompletionItemProvider {
     provideCompletionItems(
         document: vscode.TextDocument,
         position: vscode.Position
-    ): vscode.CompletionItem[] | undefined {
+    ): vscode.CompletionItem[] | vscode.CompletionList | undefined {
         const currentLine = document.lineAt(position.line).text
         if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
             return
@@ -35,17 +35,26 @@ export class Provider implements vscode.CompletionItemProvider {
         })
     }
 
-    provide(args: CompletionArgs): vscode.CompletionItem[] {
+    provide(args: CompletionArgs): vscode.CompletionItem[] | vscode.CompletionList {
         // Note that the order of the following array affects the result.
         // 'macro' must be at the last because it matches any macros.
         for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'argument', 'macro', 'subsuper', 'closeenv']) {
             const suggestions = this.completion(type, args)
             if (suggestions.length > 0) {
                 if (type === 'citation') {
-                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                    // Pass the document URI so resource-scoped settings such as
+                    // `intellisense.citation.fuzzy` honour per-folder overrides.
+                    const configuration = vscode.workspace.getConfiguration('latex-workshop', args.uri)
                     if (configuration.get('intellisense.citation.type') as string === 'browser') {
                         setTimeout(() => citation.browser(args), 10)
                         return []
+                    }
+                    if (configuration.get('intellisense.citation.fuzzy') as boolean) {
+                        // The citation provider has already ranked the entries and
+                        // set their `sortText`/`filterText`. Returning an incomplete
+                        // list makes VS Code re-query on each keystroke so we re-rank,
+                        // and preserves our order instead of applying its own sort.
+                        return new vscode.CompletionList(suggestions, true)
                     }
                 }
                 return suggestions
