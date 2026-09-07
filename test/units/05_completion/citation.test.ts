@@ -274,10 +274,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             await citation.parseBibFile(bibPath)
         })
 
-        afterEach(() => {
-            sinon.restore()
-        })
-
         // Minimal stand-in for vscode.QuickPick that captures the value handler so
         // the test can simulate typing without a real UI.
         function fakeQuickPick() {
@@ -309,6 +305,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
             citation.browser(args())
 
+            create.restore()
             assert.ok(create.called)
             // Description and detail matching on so the QuickPick bold-highlights
             // matches across key, title, and author.

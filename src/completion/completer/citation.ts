@@ -201,7 +201,7 @@ function provideFuzzy(line: string, range: vscode.Range, suggestions: CitationIt
 }
 
 function browser(args?: CompletionArgs) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.uri)
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const label = configuration.get('intellisense.citation.label') as string
     const fields = readCitationFormat(configuration, label)
 
