@@ -6,7 +6,7 @@ import type { FileCache } from '../../types'
 
 import { trimMultiLineString } from '../../utils/utils'
 import { computeFilteringRange } from './completerutils'
-import { rankCitations } from './citationrank'
+import { rankCitations } from './utils/citationrank'
 
 const logger = lw.log('Intelli', 'Citation')
 
@@ -171,27 +171,32 @@ function provide(uri: vscode.Uri, line: string, position: vscode.Position): Comp
     // entry. The provider dispatcher wraps the result in an incomplete
     // `CompletionList` so VS Code re-queries — and we re-rank — on each keystroke.
     if (configuration.get('intellisense.citation.fuzzy') && range) {
-        const query = line.substring(range.start.character, range.end.character)
-        if (query.trim().length > 0) {
-            const ranked = rankCitations(suggestions, query, { format: fields })
-            // On a zero-match keystroke fall back to the full list rather than an
-            // empty one: the dispatcher only marks the completion list incomplete
-            // while the citation provider returns entries, and a complete empty
-            // list would stop VS Code from re-querying (so ranking would not
-            // re-engage once a later edit matches again). VS Code's own filter
-            // then applies to the unranked fallback.
-            if (ranked.length === 0) {
-                return suggestions
-            }
-            const width = Math.max(4, String(ranked.length).length)
-            ranked.forEach((item, index) => {
-                item.sortText = String(index).padStart(width, '0')
-                item.filterText = query
-            })
-            return ranked
-        }
+        return provideFuzzy(line, range, suggestions, fields)
     }
 
+    return suggestions
+}
+
+function provideFuzzy(line: string, range: vscode.Range, suggestions: CitationItem[], fields: string[]): CompletionItem[] {
+    const query = line.substring(range.start.character, range.end.character)
+    if (query.trim().length > 0) {
+        const ranked = rankCitations(suggestions, query, { format: fields })
+        // On a zero-match keystroke fall back to the full list rather than an
+        // empty one: the dispatcher only marks the completion list incomplete
+        // while the citation provider returns entries, and a complete empty
+        // list would stop VS Code from re-querying (so ranking would not
+        // re-engage once a later edit matches again). VS Code's own filter
+        // then applies to the unranked fallback.
+        if (ranked.length === 0) {
+            return suggestions
+        }
+        const width = Math.max(4, String(ranked.length).length)
+        ranked.forEach((item, index) => {
+            item.sortText = String(index).padStart(width, '0')
+            item.filterText = query
+        })
+        return ranked
+    }
     return suggestions
 }
 
@@ -201,50 +206,7 @@ function browser(args?: CompletionArgs) {
     const fields = readCitationFormat(configuration, label)
 
     if (configuration.get('intellisense.citation.fuzzy') as boolean) {
-        // Fuzzy browser search: drive the QuickPick ourselves so that our ranking
-        // decides which entries appear. Every ranked item is flagged `alwaysShow`,
-        // which bypasses the QuickPick's built-in filter (that filter would
-        // otherwise drop entries whose visible label does not contain the query,
-        // e.g. matches that hit only the author). Description and detail matching
-        // stay enabled so matched characters are still bold-highlighted across the
-        // key, title and author. We re-rank on each keystroke via onDidChangeValue.
-        const entries = updateAll(lw.cache.getIncludedBib(lw.root.file.path))
-        const rankFields = readCitationFormat(configuration)
-        const quickPick = vscode.window.createQuickPick()
-        quickPick.placeholder = 'Fuzzy search bib entries; press ENTER to insert citation key at cursor'
-        quickPick.matchOnDescription = true
-        quickPick.matchOnDetail = true
-        quickPick.ignoreFocusOut = true
-        const refresh = (value: string): void => {
-            const ranked = value.trim().length > 0 ? rankCitations(entries, value, { format: rankFields }) : entries
-            quickPick.items = ranked.map(item => ({
-                label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
-                description: item.key,
-                detail: item.fields.join(fields, true, ', '),
-                alwaysShow: true
-            }))
-        }
-        refresh('')
-        quickPick.onDidChangeValue(refresh)
-        quickPick.onDidAccept(() => {
-            const key = quickPick.selectedItems[0]?.description
-            quickPick.hide()
-            if (key && vscode.window.activeTextEditor) {
-                const editor = vscode.window.activeTextEditor
-                const content = editor.document.getText(new vscode.Range(new vscode.Position(0, 0), editor.selection.start))
-                let start = editor.selection.start
-                if (content.lastIndexOf('\\cite') > content.lastIndexOf('}')) {
-                    const curlyStart = content.lastIndexOf('{') + 1
-                    const commaStart = content.lastIndexOf(',') + 1
-                    start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
-                }
-                void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.end), key))
-                            .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
-            }
-        })
-        quickPick.onDidHide(() => quickPick.dispose())
-        quickPick.show()
-        return
+        return browserFuzzy(args?.uri, fields)
     }
 
     void vscode.window.showQuickPick(updateAll(lw.cache.getIncludedBib(lw.root.file.path)).map(item => {
@@ -275,6 +237,53 @@ function browser(args?: CompletionArgs) {
                         .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
         }
     })
+}
+
+function browserFuzzy(uri: vscode.Uri | undefined, fields: string[]) {
+    // Fuzzy browser search: drive the QuickPick ourselves so that our ranking
+    // decides which entries appear. Every ranked item is flagged `alwaysShow`,
+    // which bypasses the QuickPick's built-in filter (that filter would
+    // otherwise drop entries whose visible label does not contain the query,
+    // e.g. matches that hit only the author). Description and detail matching
+    // stay enabled so matched characters are still bold-highlighted across the
+    // key, title and author. We re-rank on each keystroke via onDidChangeValue.
+    const entries = updateAll(lw.cache.getIncludedBib(lw.root.file.path))
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', uri)
+    const rankFields = readCitationFormat(configuration)
+    const quickPick = vscode.window.createQuickPick()
+    quickPick.placeholder = 'Fuzzy search bib entries; press ENTER to insert citation key at cursor'
+    quickPick.matchOnDescription = true
+    quickPick.matchOnDetail = true
+    quickPick.ignoreFocusOut = true
+    const refresh = (value: string): void => {
+        const ranked = value.trim().length > 0 ? rankCitations(entries, value, { format: rankFields }) : entries
+        quickPick.items = ranked.map(item => ({
+            label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
+            description: item.key,
+            detail: item.fields.join(fields, true, ', '),
+            alwaysShow: true
+        }))
+    }
+    refresh('')
+    quickPick.onDidChangeValue(refresh)
+    quickPick.onDidAccept(() => {
+        const key = quickPick.selectedItems[0]?.description
+        quickPick.hide()
+        if (key && vscode.window.activeTextEditor) {
+            const editor = vscode.window.activeTextEditor
+            const content = editor.document.getText(new vscode.Range(new vscode.Position(0, 0), editor.selection.start))
+            let start = editor.selection.start
+            if (content.lastIndexOf('\\cite') > content.lastIndexOf('}')) {
+                const curlyStart = content.lastIndexOf('{') + 1
+                const commaStart = content.lastIndexOf(',') + 1
+                start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
+            }
+            void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.end), key))
+                        .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
+        }
+    })
+    quickPick.onDidHide(() => quickPick.dispose())
+    quickPick.show()
 }
 
 function getRawItem(key: string): CitationItem | undefined {

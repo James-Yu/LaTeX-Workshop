@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { fzfScore, rankCitations, type RankableCitation } from '../../../src/completion/completer/citationrank'
+import { fzfScore, rankCitations, type RankableCitation } from '../../../src/completion/completer/utils/citationrank'
 
 /**
  * Build a minimal rankable citation. `fields` is a plain object flattened into
