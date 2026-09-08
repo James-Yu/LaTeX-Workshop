@@ -174,7 +174,7 @@ export class Plan {
     /**
      * Adds MiKTeX's max-print-line option to compatible pdfLaTeX tools.
      * Disabled, non-MiKTeX, and non-pdfLaTeX paths are unchanged; magic
-     * options are kept as one quoted shell string while regular args prepend it.
+     * options retain their shell quoting while regular args prepend it.
      */
     private static configureMaxPrintLine(tool: Tool, configuration: vscode.WorkspaceConfiguration) {
         if (!configuration.get('latex.option.maxPrintLine.enabled')) {
@@ -182,19 +182,23 @@ export class Plan {
         }
 
         tool.args = tool.args ?? []
+        // Explicit magic options are a shell command fragment, not an argv array.
+        // Keep quoted words together so option-like text inside a value is ignored.
+        const args = tool.name === TEX_MAGIC_PROGRAM_NAME
+            ? (tool.args[0]?.match(/(?:[^\s"'\\]|\\.|"(?:[^"\\]|\\.)*"|'[^']*')+/g) ?? [])
+                .map(arg => arg.replace(/["']/g, ''))
+            : tool.args
         const isPdfLaTeXmk = tool.command === 'latexmk' && ![
             '-lualatex', '-pdflua', '-pdflualatex', '--lualatex', '--pdflua', '--pdflualatex'
-        ].some(arg => tool.args!.includes(arg))
+        ].some(arg => args.includes(arg))
         if (!(isPdfLaTeXmk || tool.command === 'pdflatex') || !Plan.isMikTeX()) {
             return
         }
 
         if (tool.name === TEX_MAGIC_PROGRAM_NAME) {
-            // %!TeX options is present. All args are provided in a string and {
-            // shell: true }. Quote arguments containing spaces to prevent path
-            // splitting.
-            const quoted = tool.args.map(arg => arg.includes(' ') ? `"${arg}"` : arg).join(' ')
-            tool.args = [`--max-print-line=${MAX_PRINT_LINE} ${quoted}`]
+            // The shell parses the original options, including quoted paths.
+            // Quoting the whole fragment would collapse it into a single argument.
+            tool.args = [`--max-print-line=${MAX_PRINT_LINE} ${tool.args[0] ?? ''}`]
         } else {
             tool.args.unshift(`--max-print-line=${MAX_PRINT_LINE}`)
         }

@@ -4,6 +4,7 @@ import * as vscode from 'vscode'
 import { lw } from '../../../src/lw'
 import { MAX_PRINT_LINE, TEX_MAGIC_PROGRAM_NAME } from '../../../src/compile/constants'
 import { Plan } from '../../../src/compile/plan'
+import { Recipe } from '../../../src/compile/recipe'
 import type { StepResult, Tool } from '../../../src/compile/types'
 import { assert, get, mock, set } from '../utils'
 
@@ -350,19 +351,153 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog('`pdflatex` is provided by MiKTeX.')
         })
 
-        it('combines and quotes TeX magic options for MiKTeX', () => {
+        it('builds the issue #4976 magic comments without changing argument boundaries', async () => {
+            set.config('latex.build.enableMagicComments', true)
             set.config('latex.option.maxPrintLine.enabled', true)
             syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-lualatex -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"'
+            const readStub = sinon.stub(lw.file, 'read').resolves(`%!TEX program = latexmk\n%!TEX options = ${options}\n`)
+            try {
+                const recipe = await Recipe.create(rootFile, 'latex')
+                assert.ok(recipe)
+                const plan = Plan.create(recipe)
+                assert.ok(plan)
+                assert.strictEqual(plan.steps[0].command, 'latexmk')
+                assert.deepStrictEqual(plan.steps[0].args, [
+                    options.replace('%DOC%', rootFile.replace(/\\/g, '/').replace(/\.tex$/, ''))
+                ])
+                assert.ok(syncStub.notCalled)
+            } finally {
+                readStub.restore()
+            }
+        })
 
-            const plan = createPlan([{
-                name: TEX_MAGIC_PROGRAM_NAME,
-                command: 'pdflatex',
-                args: ['--output-directory=with space', '-synctex=1']
-            }])
+        it('recognizes the lualatex magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-lualatex main'
 
-            assert.deepStrictEqual(plan.steps[0].args, [
-                `--max-print-line=${MAX_PRINT_LINE} "--output-directory=with space" -synctex=1`
-            ])
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes the pdflua magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-pdflua main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes the pdflualatex magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-pdflualatex main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes the double-dash lualatex magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '--lualatex main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes the double-dash pdflua magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '--pdflua main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes the double-dash pdflualatex magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '--pdflualatex main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes a double-quoted LuaLaTeX magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '"-lualatex" main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('recognizes a single-quoted LuaLaTeX magic option', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = "'-lualatex' main"
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [options])
+            assert.ok(syncStub.notCalled)
+        })
+
+        it('preserves a quoted path in pdflatex magic options', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '"C:/with space/main"'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'pdflatex', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [`--max-print-line=${MAX_PRINT_LINE} ${options}`])
+        })
+
+        it('preserves a quoted output directory in latexmk magic options', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '--output-directory="with space" main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [`--max-print-line=${MAX_PRINT_LINE} ${options}`])
+        })
+
+        it('ignores a LuaLaTeX flag inside a quoted value', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-jobname="example -lualatex document" main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [`--max-print-line=${MAX_PRINT_LINE} ${options}`])
+        })
+
+        it('requires a complete LuaLaTeX option match', () => {
+            set.config('latex.option.maxPrintLine.enabled', true)
+            syncStub.returns({stdout: Buffer.from('MiKTeX')})
+            const options = '-lualatex-suffix main'
+
+            const plan = createPlan([{name: TEX_MAGIC_PROGRAM_NAME, command: 'latexmk', args: [options]}])
+
+            assert.deepStrictEqual(plan.steps[0].args, [`--max-print-line=${MAX_PRINT_LINE} ${options}`])
         })
 
         it('logs and caches MiKTeX probe errors as false', () => {
