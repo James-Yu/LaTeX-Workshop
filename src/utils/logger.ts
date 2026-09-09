@@ -134,8 +134,8 @@ function showLog() {
     LOG_PANEL.show()
 }
 
-function showCompilerLog() {
-    COMPILER_PANEL.show()
+function showCompilerLog(preserveFocus = false) {
+    COMPILER_PANEL.show(preserveFocus)
 }
 
 function showStatus() {
