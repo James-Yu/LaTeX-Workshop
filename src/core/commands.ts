@@ -176,10 +176,10 @@ export function wordcount() {
     }
 }
 
-export function showLog(compiler?: string) {
+export function showLog(compiler?: string, preserveFocus = false) {
     logger.log(`SHOWLOG command invoked: ${compiler || 'default'}`)
     if (compiler) {
-        logger.showCompilerLog()
+        logger.showCompilerLog(preserveFocus)
     } else {
         logger.showLog()
     }
