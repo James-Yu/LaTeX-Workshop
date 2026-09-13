@@ -130,8 +130,8 @@ function clearCompilerMessage() {
     CACHED_COMPILER.length = 0
 }
 
-function showLog() {
-    LOG_PANEL.show()
+function showLog(preserveFocus = false) {
+    LOG_PANEL.show(preserveFocus)
 }
 
 function showCompilerLog(preserveFocus = false) {

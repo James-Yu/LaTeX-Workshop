@@ -181,7 +181,7 @@ export function showLog(compiler?: string, preserveFocus = false) {
     if (compiler) {
         logger.showCompilerLog(preserveFocus)
     } else {
-        logger.showLog()
+        logger.showLog(preserveFocus)
     }
 }
 
