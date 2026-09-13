@@ -107,6 +107,9 @@ function log(msg: string, rootFile?: string): boolean {
     let isLaTeXmkSkipped = false
     // Canonicalize line-endings
     msg = msg.replace(/(\r\n)|\r/g, '\n')
+    // Keep the original output for skipped-build detection: repeated-run
+    // trimming can remove the latexmk rule marker. See #4981.
+    const untrimmedMsg = msg
 
     if (msg.match(bibtexPattern)) {
         bibtexLogParser.parse(msg.match(latexmkPattern) ? trimLaTeXmkBibTeX(msg) : msg, rootFile)
@@ -125,7 +128,7 @@ function log(msg: string, rootFile?: string): boolean {
     if (msg.match(latexPattern) || msg.match(latexFatalPattern) || msg.match(latexIntErrPattern) || msg.match(latexXeNoOutputPattern)) {
         latexLogParser.parse(msg, rootFile)
         latexLogParser.showLog()
-    } else if (latexmkSkipped(msg)) {
+    } else if (latexmkSkipped(untrimmedMsg)) {
         isLaTeXmkSkipped = true
     }
 

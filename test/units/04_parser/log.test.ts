@@ -181,6 +181,19 @@ TEXIFY LOG
             resetSpies()
             assert.ok(!parser.log(log, 'main.tex'))
         })
+
+        it('should not mark a wrapped latexmk build as skipped (#4981)', () => {
+            const log = [
+                "Latexmk: applying rule 'pdflatex'...",
+                'This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025)',
+                'Output written on .output/preview-refresh-reproduction-with-a-deliberately-long',
+                '-document-name.pdf (1 page, 14248 bytes).',
+                'Latexmk: All targets (.output/preview-refresh-reproduction-with-a-deliberately-long-document-name.pdf) are up-to-date'
+            ].join('\n')
+
+            resetSpies()
+            assert.ok(!parser.log(log, 'main.tex'))
+        })
     })
 
     describe('lw.parser->latex', () => {
