@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM debian:bullseye-slim
+FROM debian:trixie-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
@@ -11,12 +11,13 @@ RUN apt-get update \
 
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 # https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
-RUN apt -y install curl
+RUN apt-get update && apt-get install -y curl
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get install -y nodejs
+RUN apt-get update && apt-get install -y nodejs
 
 # Verify git and needed tools are installed
-RUN apt-get install --no-install-recommends -y git procps
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y git procps
 
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade \
