@@ -358,7 +358,9 @@ async function handleServerRequest(request: http.IncomingMessage, response: http
         return true
     }
 
-    const requestUrl = new URL(request.url)
+    const requestUrl = (request.url === '*' || request.url.startsWith('/')) ?
+        { hostname: null, pathname: request.url } : // emulate url.parse behavior
+        new URL(request.url)
 
     const options = {
         host: requestUrl.hostname,
