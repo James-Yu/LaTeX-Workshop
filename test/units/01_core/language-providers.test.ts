@@ -63,7 +63,10 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         const completion = providers[providerNames.indexOf('registerCompletionItemProvider')]
         const count = completion.callCount
         set.config('intellisense.triggers.latex', ['!'])
-        const callback = configurationChange.getCalls().find(call => call.args[0] === 'intellisense.triggers.latex')?.args[1] as () => void
+        const callback = configurationChange.getCalls().find(call => call.args[0] === 'intellisense.triggers.latex')?.args[1] as (() => void) | undefined
+        if (typeof callback !== 'function') {
+            throw new Error('Expected a completion-trigger configuration callback')
+        }
         callback()
 
         assert.strictEqual(completion.callCount, count + 1)
