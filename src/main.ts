@@ -245,6 +245,25 @@ function registerLatexWorkshopCommands(extensionContext: vscode.ExtensionContext
 }
 
 function registerProviders(extensionContext: vscode.ExtensionContext) {
+    extensionContext.subscriptions.push(
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
+        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
+        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.preview.mathpreview.serializer)
+    )
+
+    extensionContext.subscriptions.push(
+        vscode.window.registerWebviewViewProvider(
+            'latex-workshop-math-symbols',
+            lw.extra.snippet.provider,
+            { webviewOptions: { retainContextWhenHidden: true } }
+        )
+    )
+
+    if (!vscode.workspace.getConfiguration('latex-workshop').get('languageFeatures.enabled', true)) {
+        logger.log('Language providers disabled by configuration.')
+        return
+    }
+
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
     // According to cmhughes/latexindent.pl, it aims to beautify .tex, .sty and .cls files.
@@ -259,12 +278,6 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
         vscode.languages.registerDocumentFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter),
         vscode.languages.registerDocumentRangeFormattingEditProvider(latexindentSelector, lw.lint.latex.formatter),
         vscode.languages.registerDocumentRangeFormattingEditProvider(bibtexSelector, lw.lint.bibtex.formatter)
-    )
-
-    extensionContext.subscriptions.push(
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', lw.viewer.serializer),
-        vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', lw.viewer.hook, {supportsMultipleEditorsPerDocument: true, webviewOptions: {retainContextWhenHidden: true}}),
-        vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', lw.preview.mathpreview.serializer)
     )
 
     extensionContext.subscriptions.push(
@@ -329,15 +342,9 @@ function registerProviders(extensionContext: vscode.ExtensionContext) {
     if (selectionLatex) {
         extensionContext.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, lw.language.selectionRage))
     }
-
-    extensionContext.subscriptions.push(
-        vscode.window.registerWebviewViewProvider(
-            'latex-workshop-math-symbols',
-            lw.extra.snippet.provider,
-            { webviewOptions: { retainContextWhenHidden: true } }
-        )
-    )
 }
+
+export const testing = { registerProviders }
 
 function conflictCheck() {
     function check(ID: string, name: string, suggestion: string) {
