@@ -1,9 +1,21 @@
 # Change Log
 
-## [Unreleased]
+## [10.19.0] - 2026-09-17
 
 ### Added
-- (#4522) Add `latex-workshop.intellisense.citation.fuzzy` (default `false`) to rank `\cite{}` suggestions by fzf-style fuzzy similarity to the typed text, weighting the bibtex key highest and then the fields from `intellisense.citation.format`. Works in both `inline` and `browser` citation modes; in `browser` mode it also matches fields (e.g. author) beyond the completion filter's 128-character limit.
+- (#4964) Improve LaTeX outline labels by removing presentation-only markup and converting common math commands to Unicode.
+- (#4968) Add optional Badness support to LaTeX Workshop.
+- (#4969) Rank `\cite{}` suggestions by fzf-style fuzzy similarity to the typed text.
+  - Add `latex-workshop.intellisense.citation.fuzzy` (default `false`) to enable this feature.
+- (#4985) Enhance float numbering for report and book document classes.
+
+## Fixed
+- (#4936) Handle editing shortcuts in embedded PDF.js viewer.
+- (#4970) Actionable error message when MiKTeX cannot run `latexmk` without Perl.
+- (#4976) Enhance magic option handling in Plan for MiKTeX with TeX options.
+- (#4978) Allow compiler log to preserve editor focus.
+- (#4981) Preserve `latexmk` rule for skipped-build detection.
+- (#4983) handle request URL parsing for wildcard and relative paths.
 
 ## [10.18.1] - 2026-08-17
 
