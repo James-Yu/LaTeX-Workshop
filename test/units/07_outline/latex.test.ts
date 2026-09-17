@@ -318,6 +318,84 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual(result[1].label, '2 Next')
 		})
 
+		it('should qualify and reset figure/table numbers for report and book classes', async () => {
+			for (const documentClass of ['report', 'book']) {
+				const main = set.root('main.tex')
+				await cacheAst(main, [
+					`\\documentclass[12pt]{${documentClass}}`,
+					'\\begin{document}',
+					'\\chapter{First}',
+					'\\begin{table}',
+					'\\caption{First table}',
+					'\\end{table}',
+					'\\begin{figure}',
+					'\\caption{First figure}',
+					'\\end{figure}',
+					'\\chapter{Second}',
+					'\\begin{table}',
+					'\\caption{Second table}',
+					'\\end{table}',
+					'\\begin{figure}',
+					'\\caption{Second figure}',
+					'\\end{figure}',
+					'\\end{document}'
+				].join('\n'))
+
+				const result = await construct(main, true)
+
+				assert.deepStrictEqual(result.map(chapter => chapter.children.map(float => float.label)), [
+					['Table 1.1: First table', 'Figure 1.1: First figure'],
+					['Table 2.1: Second table', 'Figure 2.1: Second figure']
+				])
+			}
+		})
+
+		it('should preserve float numbering across starred chapters and honor chapter setcounter values', async () => {
+			const main = set.root('main.tex')
+			await cacheAst(main, [
+				'\\documentclass{report}',
+				'\\begin{document}',
+				'\\chapter{First}',
+				'\\begin{table}',
+				'\\caption{First table}',
+				'\\end{table}',
+				'\\chapter*{Unnumbered}',
+				'\\begin{table}',
+				'\\caption{Unnumbered table}',
+				'\\end{table}',
+				'\\setcounter{chapter}{4}',
+				'\\chapter{Fifth}',
+				'\\begin{table}',
+				'\\caption{Fifth table}',
+				'\\end{table}',
+				'\\appendix',
+				'\\chapter{Appendix}',
+				'\\begin{table}',
+				'\\caption{Appendix table}',
+				'\\end{table}',
+				'\\end{document}'
+			].join('\n'))
+
+			const numbered = await construct(main, true)
+			assert.deepStrictEqual(numbered.map(chapter => chapter.children[0].label), [
+				'Table 1.1: First table',
+				'Table 1.2: Unnumbered table',
+				'Table 5.1: Fifth table',
+				'Table A.1: Appendix table'
+			])
+
+			set.config('view.outline.numbers.enabled', false)
+			const sectionsHidden = await construct(main, true)
+			assert.deepStrictEqual(sectionsHidden.map(chapter => chapter.label), [
+				'First',
+				'Unnumbered',
+				'Fifth',
+				'Appendix'
+			])
+			assert.strictEqual(sectionsHidden[2].children[0].label, 'Table 5.1: Fifth table')
+			assert.strictEqual(sectionsHidden[3].children[0].label, 'Table A.1: Appendix table')
+		})
+
 		it('should omit section numbering when view.outline.numbers.enabled is false', async () => {
 			set.config('view.outline.numbers.enabled', false)
 			const main = set.root('main.tex')

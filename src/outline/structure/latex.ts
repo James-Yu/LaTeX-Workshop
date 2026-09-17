@@ -20,7 +20,10 @@ type StructureConfig = {
     readonly texDirs: string[],
     subFile: boolean,
     // view.outline.floats.caption.enabled
-    caption: boolean
+    caption: boolean,
+    // The document class is used for the small set of standard float
+    // numbering rules that can be inferred without executing LaTeX.
+    documentClass?: string
 }
 type FileStructureCache = {
     [filePath: string]: TeXElement[]
@@ -36,6 +39,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
     const config = refreshLaTeXModelConfig(subFile)
     const structs: FileStructureCache = {}
     await constructFile(filePath, config, structs)
+    config.documentClass = getDocumentClass(lw.cache.get(filePath)?.ast)
     // In rare cases, the following struct may be undefined. Typically in tests
     // where roots are changed rapidly.
     let struct = subFile ? insertSubFile(structs) : structs[filePath] ?? []
@@ -45,7 +49,7 @@ export async function construct(filePath: string | undefined = undefined, subFil
     fixSectionToLine(struct, config, Number.MAX_SAFE_INTEGER)
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (subFile && configuration.get('view.outline.floats.number.enabled') as boolean) {
-        struct = addFloatNumber(struct)
+        struct = addFloatNumber(struct, config)
     }
     if (subFile && configuration.get('view.outline.numbers.enabled') as boolean) {
         struct = addSectionNumber(struct, config)
@@ -91,6 +95,18 @@ function chooseCaption(...args: (Ast.Argument | undefined)[]): string {
         }
     }
     return ''
+}
+
+function getDocumentClass(ast: Ast.Root | undefined): string | undefined {
+    if (ast === undefined) {
+        return undefined
+    }
+    const documentClass = ast.content.find(node => node.type === 'macro' && node.content === 'documentclass') as Ast.Macro | undefined
+    if (documentClass === undefined) {
+        return undefined
+    }
+    const className = argContentToStr(documentClass.args?.[1]?.content ?? []).trim().toLowerCase()
+    return className || undefined
 }
 
 async function parseNode(
@@ -383,16 +399,47 @@ function fixSectionToLine(structure: TeXElement[], config: StructureConfig, last
     })
 }
 
-function addFloatNumber(struct: TeXElement[], counter: {[env: string]: number} = {}): TeXElement[] {
+type FloatNumberState = {
+    counter: {[env: string]: number},
+    chapterNumber?: number,
+    inAppendix?: boolean
+}
+
+function addFloatNumber(
+        struct: TeXElement[],
+        config?: StructureConfig,
+        state: FloatNumberState = { counter: {} }): TeXElement[] {
+    const hierarchical = config?.documentClass === 'report' || config?.documentClass === 'book'
     for (const element of struct) {
+        if (hierarchical && element.appendix && !state.inAppendix) {
+            state.inAppendix = true
+            state.chapterNumber = 0
+            state.counter.figure = 0
+            state.counter.table = 0
+        }
+        // report.cls and book.cls define figure/table with [chapter]. A
+        // starred chapter does not advance the chapter counter and therefore
+        // must not reset the float counters.
+        if (hierarchical && element.type === TeXElementType.Section && element.name === 'chapter') {
+            state.chapterNumber = (element.counterValue ?? state.chapterNumber ?? 0) + 1
+            state.counter.figure = 0
+            state.counter.table = 0
+        }
         if (element.type === TeXElementType.Environment && element.name !== 'macro' && element.name !== 'environment') {
-            counter[element.name] = (counter[element.name] ?? 0) + 1
+            state.counter[element.name] = (state.counter[element.name] ?? 0) + 1
             const parts = element.label.split(':')
-            parts[0] += ` ${(counter[element.name] ?? 0).toString()}`
+            const chapterNumber = state.inAppendix && state.chapterNumber !== undefined
+                ? String.fromCharCode(state.chapterNumber + 64)
+                : state.chapterNumber?.toString()
+            const number = hierarchical && chapterNumber !== undefined && state.chapterNumber !== undefined && state.chapterNumber > 0 &&
+                (element.name === 'figure' || element.name === 'table')
+                ? `${chapterNumber}.${state.counter[element.name]}`
+                : state.counter[element.name].toString()
+            parts[0] += ` ${number}`
             element.label = parts.join(':')
         }
         if (element.children.length > 0) {
-            addFloatNumber(element.children, counter)
+            addFloatNumber(element.children, config, state)
         }
     }
     return struct
