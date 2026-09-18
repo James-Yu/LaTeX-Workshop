@@ -94,7 +94,8 @@ html[dir='rtl'] .findbar {
     box-shadow: 0px 0px 0px 1px lightgrey;
 }
 
-:is(.pdfViewer .canvasWrapper) canvas{
+/* Keep PDF.js detail canvases absolutely positioned over the base canvas. */
+:is(.pdfViewer .canvasWrapper) canvas:first-child{
     position: relative !important;
 }
 
