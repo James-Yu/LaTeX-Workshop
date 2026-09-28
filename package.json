@@ -33,7 +33,7 @@
   ],
   "main": "./out/src/main.js",
   "capabilities": {
-    "colorProvider" : "true",
+    "colorProvider": "true",
     "virtualWorkspaces": {
       "supported": "limited",
       "description": "Only a few features are supported."
@@ -1358,7 +1358,8 @@
           "default": [
             "verbatim",
             "lstlisting",
-            "minted"
+            "minted",
+            "filecontents"
           ],
           "markdownDescription": "List environments with verbatim-like content. These environments are stripped off the `.tex` files before any parsing occurs. The environment names are not case sensitive and their star `*` versions are automatically added. Note that this variable has no effect on syntax highlighting."
         },
@@ -3090,5 +3091,10 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0",
     "vscode-extend-language": "0.3.0"
+  },
+  "allowScripts": {
+    "@vscode/vsce-sign@2.0.9": true,
+    "esbuild@0.28.1": true,
+    "keytar@7.9.0": true
   }
 }
