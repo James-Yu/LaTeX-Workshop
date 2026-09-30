@@ -2,11 +2,12 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import { lw } from '../../lw'
+import { svg2DataUrl } from './utils'
 
 const logger = lw.log('Preview', 'Graphics')
 
 export async function onGraphics(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
-    const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
+    const pat = /\\(?:includegraphics|includesvg)\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
     const range = document.getWordRangeAtPosition(position, pat)
     if (!range) {
         return
@@ -18,7 +19,8 @@ export async function onGraphics(document: vscode.TextDocument, position: vscode
     if (!execArray || !relPath) {
         return
     }
-    const filePath = findFilePath(relPath, document)
+    const macro = /^\\(includegraphics|includesvg)/.exec(cmdString)?.[1]
+    const filePath = findFilePath(relPath, document, macro === 'includesvg')
     if (filePath === undefined) {
         return
     }
@@ -47,6 +49,17 @@ export async function graph2md(filePath: string, opts: { height: number, width: 
         const md = new vscode.MarkdownString(`<img src="${filePathUriString}" height="${opts.height}">`)
         md.supportHtml = true
         return md
+    }
+    if (/\.svg$/i.exec(filePath)) {
+        try {
+            const svg = await fs.promises.readFile(filePath, 'utf8')
+            const md = new vscode.MarkdownString(`<img src="${svg2DataUrl(svg)}" height="${opts.height}">`)
+            md.supportHtml = true
+            return md
+        } catch (e: unknown) {
+            logger.logError(`Failed rendering SVG ${filePath}`, e)
+            return
+        }
     }
     if (/\.pdf$/i.exec(filePath)) {
         const pdfOpts = { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
@@ -97,7 +110,13 @@ async function renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: numbe
     }
 }
 
-function findFilePath(relPath: string, document: vscode.TextDocument): string | undefined {
+function findFilePath(relPath: string, document: vscode.TextDocument, isSvg = false): string | undefined {
+    if (isSvg) {
+        const extension = path.extname(relPath)
+        if (!/\.svg$/i.test(relPath)) {
+            relPath = `${extension ? relPath.slice(0, -extension.length) : relPath}.svg`
+        }
+    }
     if (path.isAbsolute(relPath)) {
         if (fs.existsSync(relPath)) {
             return relPath
