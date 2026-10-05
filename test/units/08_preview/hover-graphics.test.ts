@@ -6,7 +6,7 @@ import { onGraphics } from '../../../src/preview/hover/ongraphics'
 import { assert, get, TextDocument } from '../utils'
 
 describe(path.basename(__filename).split('.')[0] + ':', () => {
-    const imagePath = get.path('08_preview', 'figure.svg')
+    const imagePath = get.path('08_preview', 'hover', 'figure.svg')
 
     after(() => {
         sinon.restore()
