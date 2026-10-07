@@ -27,22 +27,22 @@ function colorParserHTML(colorAsString: string): vscode.Color | undefined {
     return new vscode.Color(r, g, b, 1)
 }
 
-function colorParserRGB(colorAsString: string): vscode.Color | undefined {
+function colorParserRGB(colorAsString: string, scale: number = 1): vscode.Color | undefined {
     const tokens = colorAsString.split(',')
     if (tokens.length !== 3) {
         return undefined
     }
-    const r = parseFloat(tokens[0])
-    const g = parseFloat(tokens[1])
-    const b = parseFloat(tokens[2])
+    const r = parseFloat(tokens[0]) / scale
+    const g = parseFloat(tokens[1]) / scale
+    const b = parseFloat(tokens[2]) / scale
     return new vscode.Color(r, g, b, 1)
 }
 
-function colorParserGray(colorAsString: string): vscode.Color | undefined{
+function colorParserGray(colorAsString: string, scale: number = 1): vscode.Color | undefined{
     if (!colorAsString.match(/^[0-9.]*$/)) {
         return undefined
     }
-    const gray = parseFloat(colorAsString)
+    const gray = parseFloat(colorAsString) / scale
     if (gray < 0 || gray > 1) {
         return undefined
     }
@@ -61,15 +61,21 @@ export class DocColorProvider implements vscode.DocumentColorProvider {
             const start = document.positionAt(match.index + match[1].length)
             const end = start.translate(0, match[3].length)
             let color: vscode.Color | undefined = undefined
-            switch(match[2].toLowerCase()) {
-                case 'html':
+            switch(match[2]) {
+                case 'HTML':
                     color = colorParserHTML(match[3])
                     break
                 case 'gray':
                     color = colorParserGray(match[3])
                     break
+                case 'Gray':
+                    color = colorParserGray(match[3], 15)
+                    break
                 case 'rgb':
                     color = colorParserRGB(match[3])
+                    break
+                case 'RGB':
+                    color = colorParserRGB(match[3], 255)
                     break
                 case 'cmyk':
                     color = colorParserCMYK(match[3])
@@ -100,15 +106,19 @@ export class DocColorProvider implements vscode.DocumentColorProvider {
         if (match === null) {
             return
         }
-        const type = match[1].toLowerCase()
+        const type = match[1]
         switch (type) {
-            case 'html': {
+            case 'HTML': {
                 const toHex = (value: number) => Math.round(value * 255).toString(16).padStart(2, '0')
                 label = `${toHex(color.red)}${toHex(color.green)}${toHex(color.blue)}`
                 break
             }
             case 'rgb': {
                 label = `${color.red.toFixed(precision)},${color.green.toFixed(precision)},${color.blue.toFixed(precision)}`
+                break
+            }
+            case 'RGB': {
+                label = `${Math.round(color.red * 255)},${Math.round(color.green * 255)},${Math.round(color.blue * 255)}`
                 break
             }
             case 'cmyk': {
@@ -133,6 +143,11 @@ export class DocColorProvider implements vscode.DocumentColorProvider {
             case 'gray': {
                 const gray = (color.red + color.green + color.blue) / 3
                 label = `${gray.toFixed(precision)}`
+                break
+            }
+            case 'Gray': {
+                const gray = (color.red + color.green + color.blue) / 3
+                label = `${Math.round(gray * 15)}`
                 break
             }
             default:
