@@ -6,6 +6,14 @@ import { escapeHtml, sleep } from '../../utils/utils'
 
 const logger = lw.log('Viewer', 'Panel')
 
+// A panel is reloaded at most `RELOAD_LIMIT` times within `RELOAD_WINDOW` ms,
+// so that an unreachable server does not cause an endless reload loop.
+const RELOAD_LIMIT = 3
+const RELOAD_WINDOW = 10 * 60 * 1000
+// How long the webview waits for the embedded viewer to initialize
+// before it reports the viewer as unreachable.
+const INITIALIZE_TIMEOUT = 30 * 1000
+
 export {
     type PdfViewerPanel,
     serializer,
@@ -16,6 +24,7 @@ class PdfViewerPanel {
     readonly webviewPanel: vscode.WebviewPanel
     readonly pdfUri: vscode.Uri
     private viewerState: PdfViewerState | undefined
+    private reloadTimes: number[] = []
 
     constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
         this.pdfUri = pdfFileUri
@@ -25,6 +34,11 @@ class PdfViewerPanel {
                 case 'state': {
                     this.viewerState = msg.state
                     lw.event.fire(lw.event.ViewerStatusChanged, msg.state)
+                    break
+                }
+                case 'disconnected':
+                case 'unreachable': {
+                    void this.reload(msg.type)
                     break
                 }
                 default: {
@@ -38,11 +52,43 @@ class PdfViewerPanel {
         return this.viewerState
     }
 
+    /**
+     * Reloads the webview content with a freshly resolved server URL.
+     *
+     * The server URL is baked into the webview HTML when the panel is created.
+     * It becomes stale when the server is restarted or when the port forwarding
+     * of a remote session is re-established after a reconnect, e.g. after the
+     * machine resumed from sleep. The panel then stays blank until the window is
+     * reloaded. Resolving the URL again via `asExternalUri` and resetting the
+     * HTML recovers the panel. The viewer state is restored from the webview
+     * state store, so the scroll position and zoom are preserved.
+     *
+     * @param reason Why the reload is requested, for logging.
+     * @returns `false` if the reload was skipped because of the rate limit.
+     */
+    async reload(reason: string): Promise<boolean> {
+        const now = Date.now()
+        this.reloadTimes = this.reloadTimes.filter(time => now - time < RELOAD_WINDOW)
+        if (this.reloadTimes.length >= RELOAD_LIMIT) {
+            logger.log(`Viewer ${reason}, but not reloading ${this.pdfUri.toString(true)} again (${RELOAD_LIMIT} reloads within ${RELOAD_WINDOW / 1000}s).`)
+            return false
+        }
+        this.reloadTimes.push(now)
+        logger.log(`Viewer ${reason}, reloading ${this.pdfUri.toString(true)} .`)
+        const html = await getPDFViewerContent(this.pdfUri)
+        // VS Code ignores assignments of unchanged HTML. Clear it first so that
+        // the viewer is reloaded even if the resolved URL is the same as before,
+        // e.g. when a dead port forwarding was re-established on the same port.
+        this.webviewPanel.webview.html = ''
+        this.webviewPanel.webview.html = html
+        return true
+    }
+
 }
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
-        // await lw.server.initialized
+        await lw.server.initialized()
         logger.log(`Restoring at column ${panel.viewColumn} with state ${JSON.stringify(argState.state)}.`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
@@ -88,7 +134,7 @@ async function patchCodespaces(url: vscode.Uri) {
 
 // Create a PdfViewerPanel inside an existing vscode.WebviewPanel
 async function populate(pdfUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel>{
-    // await lw.server.initialized
+    await lw.server.initialized()
     const htmlContent = await getPDFViewerContent(pdfUri)
     panel.webview.html = htmlContent
     const pdfPanel = new PdfViewerPanel(pdfUri, panel)
@@ -140,6 +186,14 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     });
 
     const vsStore = acquireVsCodeApi();
+
+    // Report to the extension if the viewer does not come up in time,
+    // e.g. because the server URL above is stale after a reconnect.
+    // The extension then reloads this panel with a fresh URL.
+    const initializeTimeout = setTimeout(() => {
+        vsStore.postMessage({type: 'unreachable'});
+    }, ${INITIALIZE_TIMEOUT});
+
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
@@ -149,6 +203,7 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
         }
         switch (e.data.type) {
             case 'initialized': {
+                clearTimeout(initializeTimeout);
                 const state = vsStore.getState();
                 if (state) {
                     state.type = 'restore_state';

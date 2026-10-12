@@ -90,6 +90,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.hasLog('BE AWARE: YOU ARE PUBLIC TO ::1 !')
         })
 
+        it('should resolve `initialized()` once the new server is ready', async () => {
+            const newPort = 34568 !== lw.server.getPort() ? 34568 : 45679
+            set.config('view.pdf.internal.port', newPort)
+            lw.server.initialize()
+
+            await Promise.race([
+                lw.server.initialized(),
+                sleep(1000).then(() => assert.fail('Timed out waiting for `initialized()`.'))
+            ])
+            assert.strictEqual(lw.server.getPort(), newPort)
+        })
+
         after(async () => {
             await waitInitialize()
             await connectWs()
