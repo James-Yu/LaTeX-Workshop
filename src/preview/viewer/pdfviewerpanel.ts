@@ -75,6 +75,7 @@ class PdfViewerPanel {
         }
         this.reloadTimes.push(now)
         logger.log(`Viewer ${reason}, reloading ${this.pdfUri.toString(true)} .`)
+        await lw.server.initialized()
         const html = await getPDFViewerContent(this.pdfUri)
         // VS Code ignores assignments of unchanged HTML. Clear it first so that
         // the viewer is reloaded even if the resolved URL is the same as before,
