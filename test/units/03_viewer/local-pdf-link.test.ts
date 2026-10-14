@@ -171,5 +171,16 @@ describe('local-pdf-link:', () => {
             assert.match(warning.lastCall.args[0] as string, /changed/)
             assert.strictEqual(panels.callCount, 0)
         })
+
+        it('rechecks workspace trust after confirmation', async () => {
+            warning.callsFake(() => {
+                trust.value(false)
+                return Promise.resolve('Open PDF')
+            })
+            await openPdfLink(vscode.Uri.file(source), '../outside.pdf')
+            assert.strictEqual(warning.callCount, 2)
+            assert.match(warning.lastCall.args[0] as string, /trust changed/)
+            assert.strictEqual(panels.callCount, 0)
+        })
     })
 })

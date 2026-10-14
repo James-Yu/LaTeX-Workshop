@@ -113,4 +113,22 @@ describe('pdf-links:', function () {
             external.restore()
         }
     })
+
+    it('navigates after refreshing the target and reloading the source panel', async () => {
+        await lw.viewer.view(sourceUri, 'tab')
+        await lw.viewer.openPdfLink(sourceUri, 'target.pdf#section.1')
+        const target = await browser.viewer('target.pdf')
+        await waitForViewer(() => target<boolean>('PDFViewerApplication.pdfViewer.currentPageNumber === 2'))
+        await target('window.previousPdf = PDFViewerApplication.pdfDocument; PDFViewerApplication.pdfViewer.currentPageNumber = 1')
+        lw.viewer.refresh(targetUri)
+        await waitForViewer(() => target<boolean>('PDFViewerApplication.pdfDocument !== window.previousPdf && PDFViewerApplication.pdfViewer.pagesCount === 2'))
+        const sourcePanel = [...manager.getPanels(sourceUri) ?? []][0]
+        assert.ok(sourcePanel)
+        await sourcePanel.reload('disconnected')
+        const source = await browser.viewer('source.pdf')
+        await waitForViewer(() => source<boolean>('!!document.querySelector("a[data-local-pdf-link]")'))
+        await source('document.querySelector("a[data-local-pdf-link]").click()')
+        await waitForViewer(() => target<boolean>('PDFViewerApplication.pdfViewer.currentPageNumber === 2'))
+        assert.strictEqual(warning.callCount, 0)
+    })
 })

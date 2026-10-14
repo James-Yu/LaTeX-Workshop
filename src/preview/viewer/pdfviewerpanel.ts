@@ -249,7 +249,7 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
     window.addEventListener('message', (e) => {
         // Only VS Code's parent frame can send host-to-viewer navigation.
-        if (e.source === window.parent && e.origin === window.location.origin && e.data?.type === 'navigate_pdf') {
+        if (e.source === window.parent && e.origin === window.origin && e.data?.type === 'navigate_pdf') {
             iframe.contentWindow.postMessage(e.data, '${iframeSrcOrigin}');
             return;
         }
