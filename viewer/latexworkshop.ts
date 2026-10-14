@@ -6,6 +6,7 @@ import { doneRefresh, restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
 import { initConnect, send } from './components/connection.js'
 import { registerSyncTeX } from './components/synctex.js'
+import { bindPdfLinks, initPdfLinks, pdfLinksLoading, pdfLinksReady } from './components/pdflinks.js'
 
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
@@ -65,6 +66,7 @@ async function initialization() {
     })
 
     initConnect()
+    initPdfLinks()
     await patchViewerUI()
     registerKeyBind()
 }
@@ -81,6 +83,7 @@ onPDFViewerEvent('documentloaded', () => {
     })
 }, { once: true })
 onPDFViewerEvent('pagesinit', () => {
+    pdfLinksLoading()
     void restoreState()
     registerSyncTeX()
     registerPersistentState()
@@ -89,8 +92,14 @@ onPDFViewerEvent('pagesloaded', () => {
     void restoreState()
         .then(() => uploadState())
         .then(() => send({ type: 'loaded', pdfFileUri: utils.parseURL().pdfFileUri }))
+        .then(() => pdfLinksReady())
     repositionAnnotation()
     doneRefresh()
+})
+onPDFViewerEvent('annotationlayerrendered', event => {
+    if (!event.error) {
+        void bindPdfLinks(event.source as import('./components/interface.js').PDFViewerPage)
+    }
 })
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096

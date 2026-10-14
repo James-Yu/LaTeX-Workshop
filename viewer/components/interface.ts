@@ -3,6 +3,7 @@ export type PdfjsEventName
     | 'pagesinit'
     | 'pagesloaded'
     | 'pagerendered'
+    | 'annotationlayerrendered'
     | 'scalechanged'
     | 'zoomin'
     | 'zoomout'
@@ -13,7 +14,10 @@ export type PdfjsEventName
     | 'rotationchanging'
     | 'sidebarviewchanged'
 
-type PDFViewerPage = {
+export type PDFViewerPage = {
+    pdfPage?: {
+        getAnnotations(): Promise<{ id: string, subtype: string, url?: string, unsafeUrl?: string, dest?: unknown }[]>
+    },
     viewport: {
         rawDims: {
             pageHeight: number,
@@ -48,6 +52,14 @@ export type PDFViewerApplicationType = {
         open(): void
     },
     initializedPromise: Promise<void>,
+    pdfDocument: {
+        numPages: number,
+        getDestination(name: string): Promise<unknown[] | null>,
+        getPageIndex(ref: unknown): Promise<number>
+    },
+    pdfLinkService: {
+        goToDestination(destination: string | unknown[]): Promise<void>
+    },
     isViewerEmbedded: boolean,
     pdfViewer: {
         _currentScale: number,

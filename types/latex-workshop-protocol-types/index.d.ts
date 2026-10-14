@@ -112,10 +112,21 @@ export type ClientRequest = {
 export type PanelManagerResponse = {
     type: 'restore_state',
     state: PdfViewerState
+} | {
+    type: 'navigate_pdf',
+    destination: string
 }
 
 export type PanelRequest = {
     type: 'initialized'
+} | {
+    type: 'open_pdf_link',
+    href: string
+} | {
+    type: 'pdf_loading' | 'pdf_ready'
+} | {
+    type: 'pdf_link_error',
+    message: string
 } | {
     type: 'keyboard_event',
     event: any

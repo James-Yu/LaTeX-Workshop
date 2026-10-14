@@ -4,6 +4,7 @@ import WebSocket from 'ws'
 import { sleep } from './async'
 
 type Evaluate = <T = unknown>(expression: string) => Promise<T>
+type Pending = { resolve: (value: unknown) => void, reject: (error: Error) => void }
 type Message = {
     id?: number,
     error?: { message: string },
@@ -26,7 +27,7 @@ export async function waitForViewer(predicate: () => Promise<boolean>, timeout =
 /** Connect only to the isolated extension-test instance, never the user's editor. */
 export class ViewerDevtools {
     private sequence = 0
-    private readonly pending = new Map<number, { resolve: (value: unknown) => void, reject: (error: Error) => void }>()
+    private readonly pending = new Map<number, Pending>()
     private readonly contexts = new Map<string, Set<number>>()
     private readonly sessions = new Map<string, string>()
 

@@ -20,6 +20,41 @@ Since it is difficult to map WebSockets to tabs of VS Code, we do not use WebSoc
 
 JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files for ES2015 modules.
 
+## Relative PDF links
+
+The internal viewer supports relative local PDF links such as
+`\href{other.pdf#section.1}{another section}`. Named and explicit PDF destinations
+are resolved in the target document after its saved view has been restored. An
+already-open target tab is reused. HTTPS and same-document links retain PDF.js's
+existing behavior; this does not change the external-browser viewer.
+
+Only PDF files are opened, through the extension's viewer. Both source and target
+must be local files. In a trusted VS Code workspace, links whose canonical source
+and target paths are inside workspace roots open without a prompt. Other local
+targets require confirmation showing the resolved target path. Directory traversal
+and symlinks do not bypass that confirmation. An untrusted workspace cannot open
+these links. Absolute paths, URI schemes, network paths and non-PDF targets are not
+supported; nothing is passed to a shell or external application.
+
+`components/pdflinks.ts` binds the unresolved link annotations after PDF.js renders
+each annotation layer. Requests travel through the originating webview panel, so
+the extension host supplies the source PDF rather than trusting a path from the
+document. The server's existing PDF access checks and PDF.js's URL policy remain
+unchanged.
+
+The regression tests use a disposable VS Code profile and DevTools connection to
+exercise the actual embedded viewer, not just PDF annotation parsing:
+
+```sh
+npm ci
+npm run compile
+LATEXWORKSHOP_UNIT=03_viewer npm test
+# On Linux without a display: LATEXWORKSHOP_UNIT=03_viewer xvfb-run -a npm test
+```
+
+The synthetic source and target PDFs and their TeX sources are in
+`test/units/03_viewer/pdf-links/`. The target section is on page 2.
+
 ## Limitation
 
 We cannot use Node.js API and VS Code API in `latexworkshop.ts` since it is executed in the context of the browser. We cannot import TypeScript files under `../src` either.
