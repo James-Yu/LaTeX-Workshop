@@ -104,4 +104,6 @@ async function reconnect() {
         tries++
     }
     console.error('Cannot reconnect to LaTeX Workshop.')
+    // Let the hosting webview panel reload the viewer with a freshly resolved server URL.
+    sendPanel({ type: 'disconnected' })
 }

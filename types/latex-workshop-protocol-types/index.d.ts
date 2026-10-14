@@ -122,6 +122,12 @@ export type PanelRequest = {
 } | {
     type: 'state',
     state: PdfViewerState
+} | {
+    // The viewer gave up reconnecting its WebSocket to the server.
+    type: 'disconnected'
+} | {
+    // The embedded viewer did not initialize in time, e.g. because its URL is stale.
+    type: 'unreachable'
 }
 
 export type PdfViewerState = {

@@ -12,7 +12,7 @@ export {
     getUrl,
     setHandler,
     initialize,
-    // initialized
+    initialized
 }
 
 class WsServer extends ws.Server {
@@ -49,10 +49,9 @@ class WsServer extends ws.Server {
 }
 
 logger.log('Creating LaTeX Workshop http and websocket server.')
-// let initializeResolve: ((value: unknown) => void) | undefined = undefined
-// const initialized = new Promise((resolve) => initializeResolve = resolve)
+let initializeResolve: (() => void) | undefined = undefined
+let initializedPromise: Promise<void> // assigned by initialize() below
 const state: {
-    // initialized: Promise<unknown>,
     httpServer: http.Server,
     wsServer?: WsServer,
     address?: AddressInfo,
@@ -61,7 +60,6 @@ const state: {
 } = {
     httpServer: initialize(),
     handlers: []
-    // initialized
 }
 
 lw.onDispose({ dispose: () => state.httpServer.close() })
@@ -73,6 +71,16 @@ function getPort(): number {
         throw new Error('Server port number is undefined.')
     }
     return portNum
+}
+
+/**
+ * Returns a promise that resolves once the server is listening and its
+ * external URI has been resolved, i.e. once `getUrl` can be called.
+ * Callers that run early during activation, e.g. restoring webview panels,
+ * must await this before they embed the server URL.
+ */
+function initialized(): Promise<void> {
+    return initializedPromise
 }
 
 async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Uri}> {
@@ -154,6 +162,7 @@ function initialize(hostname?: string): http.Server {
         state.httpServer.close()
         state.address = undefined
     }
+    initializedPromise = new Promise<void>((resolve) => { initializeResolve = resolve })
     const httpServer = http.createServer((request, response) => handler(request, response))
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const viewerPort = configuration.get('view.pdf.internal.port') as number
@@ -172,9 +181,9 @@ function initialize(hostname?: string): http.Server {
             getExternalUrlPrefix(resolvedUri)
             logger.log(`validOrigin is ${getValidOrigin()}`)
             initializeWsServer(httpServer, getValidOrigin())
-            // if (initializeResolve) {
-            //     initializeResolve(undefined)
-            // }
+            if (initializeResolve) {
+                initializeResolve()
+            }
         } else {
             logger.log(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
         }

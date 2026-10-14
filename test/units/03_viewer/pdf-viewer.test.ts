@@ -291,6 +291,35 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(execSpy.firstCall.args[0], 'workbench.action.moveEditorToLeftGroup')
         })
 
+        it('should reload the webview panel when the viewer reports it is disconnected', async () => {
+            let promise = waitMessage('loaded')
+            await viewInWebviewPanel(pdfUri, 'current', true)
+            await promise
+            const panel = [...manager.getPanels(pdfUri) ?? []][0]
+            assert.ok(panel)
+
+            promise = waitMessage('loaded')
+            assert.ok(await panel.reload('disconnected'))
+            await promise
+
+            assert.hasLog(`Viewer disconnected, reloading ${pdfUri.toString(true)} .`)
+        })
+
+        it('should not reload the webview panel again when the reload limit is reached', async () => {
+            const promise = waitMessage('loaded')
+            await viewInWebviewPanel(pdfUri, 'current', true)
+            await promise
+            const panel = [...manager.getPanels(pdfUri) ?? []][0]
+            assert.ok(panel)
+
+            assert.ok(await panel.reload('unreachable'))
+            assert.ok(await panel.reload('unreachable'))
+            assert.ok(await panel.reload('unreachable'))
+            assert.ok(!await panel.reload('unreachable'))
+
+            assert.hasLog(`Viewer unreachable, but not reloading ${pdfUri.toString(true)} again`)
+        })
+
         it('should not log internal viewer DOM errors while applying params', async () => {
             set.config('view.pdf.invertMode.enabled', 'always')
 
