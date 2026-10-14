@@ -248,8 +248,9 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
     window.addEventListener('message', (e) => {
-        // Only VS Code's parent frame can send host-to-viewer navigation.
-        if (e.source === window.parent && e.origin === window.origin && e.data?.type === 'navigate_pdf') {
+        // VS Code masks window.parent. Its host messages use this webview's
+        // unique origin, unlike messages from the cross-origin PDF.js frame.
+        if (e.origin === window.origin && e.source !== iframe.contentWindow && e.data?.type === 'navigate_pdf') {
             iframe.contentWindow.postMessage(e.data, '${iframeSrcOrigin}');
             return;
         }
