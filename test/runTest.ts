@@ -7,6 +7,7 @@ async function runTestSuite() {
     try {
         const extensionDevelopmentPath = path.resolve(__dirname, '../../')
         const extensionTestsPath = path.resolve(__dirname, './units/index')
+        const userData = tmpFile.dirSync({ unsafeCleanup: true }).name
 
         await runTests({
             version: '1.114.0',
@@ -14,12 +15,14 @@ async function runTestSuite() {
             extensionTestsPath,
             launchArgs: [
                 'test/units/test.code-workspace',
-                '--user-data-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                '--user-data-dir=' + userData,
                 '--extensions-dir=' + tmpFile.dirSync({ unsafeCleanup: true }).name,
+                '--remote-debugging-port=0',
                 '--disable-gpu'
             ],
             extensionTestsEnv: {
-                LATEXWORKSHOP_CITEST: '1'
+                LATEXWORKSHOP_CITEST: '1',
+                LATEXWORKSHOP_TEST_USER_DATA: userData
             }
         })
     } catch (error) {
