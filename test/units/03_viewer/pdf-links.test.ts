@@ -71,13 +71,14 @@ describe('pdf-links:', function () {
         assert.strictEqual(warning.callCount, 0, 'Trusted workspace links do not prompt')
     })
 
-    it('opens explicit destinations and reports missing destinations visibly', async () => {
+    it('opens explicit destinations and both logs and displays missing-destination errors', async () => {
         await lw.viewer.openPdfLink(sourceUri, 'target.pdf#[1,{"name":"Fit"}]')
         const target = await browser.viewer('target.pdf')
         await waitForViewer(() => target<boolean>('PDFViewerApplication.pdfViewer.currentPageNumber === 2'))
         await lw.viewer.openPdfLink(sourceUri, 'target.pdf#missing-destination')
         await waitForViewer(() => Promise.resolve(warning.called))
         assert.match(warning.firstCall.args[0] as string, /destination not found/)
+        assert.hasLog(`[Viewer][Panel] Unable to navigate ${targetUri.toString(true)}: PDF destination not found: missing-destination`)
         assert.strictEqual(await target('PDFViewerApplication.pdfViewer.currentPageNumber'), 2)
     })
 

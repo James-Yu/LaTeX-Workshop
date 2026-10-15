@@ -51,6 +51,7 @@ class PdfViewerPanel {
                 }
                 case 'pdf_link_error': {
                     if (typeof msg.message === 'string') {
+                        logger.log(`Unable to navigate ${this.pdfUri.toString(true)}: ${msg.message}`)
                         void vscode.window.showWarningMessage(msg.message)
                     }
                     break
