@@ -72,6 +72,18 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             }
         }
 
+        it('should attach arguments of commands configured after parsing', async () => {
+            const ast = await parser.tex('\\mynote{text}')
+            assert.strictEqual((ast.content[0] as Ast.Macro).args, undefined)
+
+            set.config('view.outline.commands', ['mynote'])
+            const parsed = await parser.args(ast)
+
+            const node = parsed.content[0] as Ast.Macro
+            assert.strictEqual(node.content, 'mynote')
+            assert.strictEqual(node.args?.at(-1)?.content[0].type, 'string')
+        })
+
         it('should correctly parse arguments of `InputIfFileExists`', async () => {
             await hasArgs('\\InputIfFileExists{file}', 's')
         })

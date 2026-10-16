@@ -16,9 +16,11 @@ function parseLaTeX(content: string): Ast.Root {
     return unifiedParser.parse(content)
 }
 
-function parseArgs(ast: Ast.Root, macros: Ast.MacroInfoRecord) {
+function parseArgs(ast: Ast.Root, macros: Ast.MacroInfoRecord): Ast.Root {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     attachMacroArgs(ast, macros)
+    // The AST is a structured clone in this worker; return it so the caller sees the args.
+    return ast
 }
 
 function reset(macros: Ast.MacroInfoRecord, environments: Ast.EnvInfoRecord) {

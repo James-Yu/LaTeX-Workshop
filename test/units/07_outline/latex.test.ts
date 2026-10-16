@@ -13,8 +13,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 	const cache = new Map<string, FileCache>()
 
 	async function cacheAst(filePath: string, content: string) {
-		const ast = await lw.parser.parse.tex(content)
-		await lw.parser.parse.args(ast)
+		const ast = await lw.parser.parse.args(await lw.parser.parse.tex(content))
 		cache.set(filePath, { content, ast } as any as FileCache)
 	}
 
