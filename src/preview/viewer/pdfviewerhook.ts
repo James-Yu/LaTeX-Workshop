@@ -31,7 +31,7 @@ class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvider {
             if (document.uri === undefined || !document.uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
                 return
             }
-            void lw.viewer.viewInWebviewPanel(document.uri, 'current', false)
+            await lw.viewer.viewInWebviewPanel(document.uri, 'current', false)
         }
     }
 }

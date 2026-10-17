@@ -25,12 +25,37 @@ class PdfViewerPanel {
     readonly pdfUri: vscode.Uri
     private viewerState: PdfViewerState | undefined
     private reloadTimes: number[] = []
+    private ready = false
+    private loaded = false
+    private pendingDestination: string | undefined
+    private suppressInitialSynctex = false
 
     constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
         this.pdfUri = pdfFileUri
         this.webviewPanel = panel
         panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
             switch(msg.type) {
+                case 'open_pdf_link': {
+                    void lw.viewer.openPdfLink(this.pdfUri, msg.href)
+                    break
+                }
+                case 'pdf_loading': {
+                    this.ready = false
+                    this.loaded = false
+                    break
+                }
+                case 'pdf_ready': {
+                    this.ready = true
+                    void this.sendDestination()
+                    break
+                }
+                case 'pdf_link_error': {
+                    if (typeof msg.message === 'string') {
+                        logger.log(`Unable to navigate ${this.pdfUri.toString(true)}: ${msg.message}`)
+                        void vscode.window.showWarningMessage(msg.message)
+                    }
+                    break
+                }
                 case 'state': {
                     this.viewerState = msg.state
                     lw.event.fire(lw.event.ViewerStatusChanged, msg.state)
@@ -50,6 +75,29 @@ class PdfViewerPanel {
 
     get state() {
         return this.viewerState
+    }
+
+    navigateTo(destination: string) {
+        this.pendingDestination = destination
+        this.suppressInitialSynctex ||= !this.loaded
+        void this.sendDestination()
+    }
+
+    didLoad(): boolean {
+        this.loaded = true
+        const suppress = this.suppressInitialSynctex
+        this.suppressInitialSynctex = false
+        return suppress
+    }
+
+    private async sendDestination() {
+        if (!this.ready || this.pendingDestination === undefined) {
+            return
+        }
+        const destination = this.pendingDestination
+        if (await this.webviewPanel.webview.postMessage({ type: 'navigate_pdf', destination }) && this.pendingDestination === destination) {
+            this.pendingDestination = undefined
+        }
     }
 
     /**
@@ -74,6 +122,8 @@ class PdfViewerPanel {
             return false
         }
         this.reloadTimes.push(now)
+        this.ready = false
+        this.loaded = false
         logger.log(`Viewer ${reason}, reloading ${this.pdfUri.toString(true)} .`)
         await lw.server.initialized()
         const html = await getPDFViewerContent(this.pdfUri)
@@ -199,7 +249,13 @@ async function getPDFViewerContent(pdfUri: vscode.Uri): Promise<string> {
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
     window.addEventListener('message', (e) => {
-        if (e.origin !== '${iframeSrcOrigin}') {
+        // VS Code masks window.parent. Its host messages use this webview's
+        // unique origin, unlike messages from the cross-origin PDF.js frame.
+        if (e.origin === window.origin && e.source !== iframe.contentWindow && e.data?.type === 'navigate_pdf') {
+            iframe.contentWindow.postMessage(e.data, '${iframeSrcOrigin}');
+            return;
+        }
+        if (e.origin !== '${iframeSrcOrigin}' || e.source !== iframe.contentWindow) {
             return;
         }
         switch (e.data.type) {

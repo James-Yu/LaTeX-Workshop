@@ -7,6 +7,7 @@ import { lw } from '../lw'
 import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, ViewerMode } from '../types'
 import * as manager from './viewer/pdfviewermanager'
 import { populate } from './viewer/pdfviewerpanel'
+import { resolveLocalPdfLink } from './viewer/localpdflink'
 
 import type { ClientRequest, PdfViewerParams, PdfViewerState } from '../../types/latex-workshop-protocol-types/index'
 import { Client } from './viewer/client'
@@ -20,6 +21,7 @@ export {
     getViewerState,
     handler,
     isViewing,
+    openPdfLink,
     locate,
     viewInWebviewPanel,
     refresh,
@@ -39,6 +41,48 @@ lw.onConfigChange(['view.pdf.toolbar.hide.timeout', 'view.pdf.invert', 'view.pdf
 })
 
 const isViewing = (fileUri: vscode.Uri) => manager.getClients(fileUri) !== undefined
+
+async function openPdfLink(source: vscode.Uri, href: string): Promise<void> {
+    try {
+        if (!vscode.workspace.isTrusted || source.scheme !== 'file' || source.authority) {
+            throw new Error('Linked local PDFs can only be opened from a trusted local workspace.')
+        }
+        const roots = () => (vscode.workspace.workspaceFolders ?? [])
+            .filter(folder => folder.uri.scheme === 'file' && !folder.uri.authority)
+            .map(folder => folder.uri.fsPath)
+        const link = await resolveLocalPdfLink(source.fsPath, href, roots())
+        if (!link.trusted) {
+            const choice = await vscode.window.showWarningMessage('Open a linked PDF outside the trusted workspace?', {
+                modal: true,
+                detail: `Source: ${source.fsPath}\nTarget: ${link.file}`
+            }, 'Open PDF')
+            if (choice !== 'Open PDF') {
+                return
+            }
+        }
+        const current = await resolveLocalPdfLink(source.fsPath, href, roots())
+        if (current.file !== link.file || (link.trusted && !current.trusted) || !vscode.workspace.isTrusted) {
+            throw new Error('The linked PDF or workspace trust changed. Please activate the link again.')
+        }
+        const uri = vscode.Uri.file(link.file)
+        const findPanel = () => [...manager.getPanels(uri) ?? []]
+            .filter(panel => path.relative(panel.pdfUri.fsPath, link.file) === '')
+            .sort((a, b) => Number(b.webviewPanel.active) - Number(a.webviewPanel.active))[0]
+        let panel = findPanel()
+        if (!panel) {
+            await view(uri, 'tab')
+            panel = findPanel()
+        }
+        if (!panel) {
+            throw new Error('Unable to open the linked PDF viewer.')
+        }
+        panel.navigateTo(link.destination)
+        panel.webviewPanel.reveal(undefined, false)
+    } catch (error) {
+        logger.logError('Unable to open linked PDF.', error)
+        void vscode.window.showWarningMessage(error instanceof Error ? error.message : 'Unable to open the linked PDF.')
+    }
+}
 
 function reload(): void {
     manager.getClients()?.forEach(client => {
@@ -266,9 +310,10 @@ function handler(websocket: ws, msg: string): void {
         case 'loaded': {
             lw.event.fire(lw.event.ViewerPageLoaded)
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+            const uri = vscode.Uri.parse(data.pdfFileUri, true)
+            const suppressSynctex = [...manager.getPanels(uri) ?? []].map(panel => panel.didLoad()).some(suppress => suppress)
+            if (!suppressSynctex && configuration.get('synctex.afterBuild.enabled') as boolean) {
                 logger.log('SyncTex after build invoked.')
-                const uri = vscode.Uri.parse(data.pdfFileUri, true)
                 lw.locate.synctex.toPDF(uri)
             }
             break
