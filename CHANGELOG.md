@@ -1,5 +1,18 @@
 # Change Log
 
+## [10.20.0] - 2026-10-17
+
+### Added
+- (#4990) Hovering support SVG graphics preview.
+
+### Fixed
+- (#4986) Fix blurry high-zoom PDF rendering caused by detail canvas positioning.
+- (#4987) Declare `filecontents` as verbatim.
+- (#4999) Distinguish RGB and Gray models in the color provider.
+- (#5000) `biblatex` language mode uses LaTeX syntax.
+- (#5001) Fix blank internal PDF viewer after reconnect.
+- (#5006) "Go to Definition" fails for a custom macro followed by `\\[length]` on the same line.
+
 ## [10.19.0] - 2026-09-17
 
 ### Added
