@@ -9,28 +9,11 @@ import * as utils from './utils'
  * @param position The position to be scanned at.
  */
 function macroTokenizer(document: vscode.TextDocument, position: vscode.Position): vscode.Range | undefined {
-    let startRegex: RegExp
-    if (document.languageId === 'latex-expl3') {
-        startRegex = /\\(?=[^\\{},[\]]*$)/
-    } else {
-        startRegex = /\\(?=[a-zA-Z]*$)/
-    }
-    const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(startRegex)
-    if (startResult === null || startResult.index === undefined || startResult.index < 0) {
-        return
-    }
-    const firstBracket = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[[{]/)
-    if (firstBracket && firstBracket.index !== undefined && firstBracket.index > 0) {
-        return new vscode.Range(
-                new vscode.Position(position.line, startResult.index),
-                new vscode.Position(position.line, position.character + firstBracket.index)
-            )
-    }
-    const wordRange = document.getWordRangeAtPosition(position)
-    if (wordRange) {
-        return wordRange.with(new vscode.Position(position.line, startResult.index))
-    }
-    return
+    // A control sequence is a control word or a single non-whitespace symbol.
+    const pattern = document.languageId === 'latex-expl3'
+        ? /\\(?:[a-zA-Z_@:]+|[^\sa-zA-Z_@:])/
+        : /\\(?:[a-zA-Z]+|[^\sa-zA-Z])/
+    return document.getWordRangeAtPosition(position, pattern)
 }
 
 /**
