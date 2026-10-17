@@ -38,7 +38,7 @@ async function tex(content: string): Promise<Ast.Root> {
     return (await proxy).parseLaTeX(content)
 }
 
-async function args(ast: Ast.Root): Promise<void> {
+async function args(ast: Ast.Root): Promise<Ast.Root> {
     return (await proxy).parseArgs(ast, getMacroDefs())
 }
 

@@ -201,7 +201,7 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 
         beforeEach(() => {
             parseResetStub = sinon.stub(lw.parser.parse, 'reset').resolves()
-            parseArgsStub = sinon.stub(lw.parser.parse, 'args').resolves()
+            parseArgsStub = sinon.stub(lw.parser.parse, 'args').callsFake(ast => Promise.resolve(ast))
             treeChangedSpy = sinon.spy(vscode.EventEmitter.prototype, 'fire')
             ;(lw.cache.paths as sinon.SinonStub).returns([])
             activeStub = mock.activeTextEditor(get.path('main.tex'), '', { languageId: 'latex' })
