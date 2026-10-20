@@ -18,6 +18,14 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             edit.replace(document.uri, new vscode.Range(document.positionAt(0), document.positionAt(document.getText().length)), content)
             assert.ok(await vscode.workspace.applyEdit(edit))
         }
+        // Keep offsets in the input string aligned with the reused document.
+        const eol = content.includes('\r\n') ? vscode.EndOfLine.CRLF : vscode.EndOfLine.LF
+        if (document.eol !== eol) {
+            const edit = new vscode.WorkspaceEdit()
+            edit.set(document.uri, [vscode.TextEdit.setEndOfLine(eol)])
+            assert.ok(await vscode.workspace.applyEdit(edit))
+        }
+        assert.strictEqual(document.getText(), content)
         return document
     }
 
@@ -182,9 +190,11 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
     })
 
     describe('line-local ranges', () => {
-        it('should return the correct range on a nonzero line', async () => {
-            await assertTokenAtCursor('\\previous{X}\nName: & \\stu|dentname \\\\[0.5cm]\n\\next{Y}', '\\studentname')
-        })
+        for (const eol of ['\n', '\r\n']) {
+            it(`should return the correct range on a nonzero line (${eol === '\n' ? 'LF' : 'CRLF'})`, async () => {
+                await assertTokenAtCursor(`\\previous{X}${eol}Name: & \\stu|dentname \\\\[0.5cm]${eol}\\next{Y}`, '\\studentname')
+            })
+        }
 
         it('should not use a command start from the previous line', async () => {
             await assertTokenAtCursor('\\previous\npla|in', undefined)
