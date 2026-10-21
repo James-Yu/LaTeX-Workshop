@@ -121,10 +121,11 @@ async function parseSyncTexForPdf(pdfUri: vscode.Uri): Promise<PdfSyncObject | u
     return undefined
 }
 
-function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
+function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject, pdfUri: vscode.Uri): string | undefined {
+    const pdfDir = path.dirname(pdfUri.fsPath)
     for (const inputFilePath in pdfSyncObject.blockNumberLine) {
         try {
-            if (isSameRealPath(inputFilePath, filePath)) {
+            if (isSameRealPath(path.resolve(pdfDir, inputFilePath), filePath)) {
                 return inputFilePath
             }
         } catch { }
@@ -134,7 +135,7 @@ function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject
             let convertedInputFilePath = ''
             try {
                 convertedInputFilePath = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
-                if (isSameRealPath(convertedInputFilePath, filePath)) {
+                if (isSameRealPath(path.resolve(pdfDir, convertedInputFilePath), filePath)) {
                     return inputFilePath
                 }
             } catch { }
@@ -148,7 +149,7 @@ async function syncTeXToPDF(line: number, filePath: string, pdfUri: vscode.Uri):
     if (!pdfSyncObject) {
         return undefined
     }
-    const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
+    const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject, pdfUri)
     if (inputFilePath === undefined) {
         logger.log('No relevant entries found.')
         return undefined
@@ -233,19 +234,23 @@ async function syncTeXToTeX(page: number, x: number, y: number, pdfUri: vscode.U
         return undefined
     }
 
-    const input = convInputFilePath(record.input)
+    const input = convInputFilePath(record.input, pdfUri)
     return input ? { input, line: record.line, column: 0 } : undefined
 }
 
-function convInputFilePath(inputFilePath: string): string | undefined {
-    if (fs.existsSync(inputFilePath)) {
-        return inputFilePath
+function convInputFilePath(inputFilePath: string, pdfUri: vscode.Uri): string | undefined {
+    const pdfDir = path.dirname(pdfUri.fsPath)
+    const resolved = path.resolve(pdfDir, inputFilePath)
+    if (fs.existsSync(resolved)) {
+        return resolved
     }
     for (const enc of iconvLiteSupportedEncodings) {
         try {
-            const s = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
-            if (fs.existsSync(s)) {
-                return s
+            // Decode only the Input entry; the PDF directory is already Unicode.
+            const decoded = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
+            const candidate = path.resolve(pdfDir, decoded)
+            if (fs.existsSync(candidate)) {
+                return candidate
             }
         } catch {}
     }
