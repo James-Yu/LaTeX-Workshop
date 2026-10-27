@@ -87,8 +87,9 @@ async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Ur
     // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
     const origUrl = await vscode.env.asExternalUri(vscode.Uri.parse(`http://127.0.0.1:${getPort()}`, true))
     // When running as `code serve-web` behind a reverse proxy, `asExternalUri` cannot perform port
-    // forwarding and returns the localhost URL unchanged. In that case, fall back to the user-configured
-    // URL prefix so that the browser can reach the PDF viewer server through the proxy.
+    // forwarding and returns the localhost URL unchanged. With Remote Tunnels, it forwards the port to an
+    // authenticated devtunnels URL that the webview iframe cannot sign in to. In both cases, a
+    // user-configured URL prefix takes precedence so that the viewer can reach the server another way.
     const urlPrefixUri = getExternalUrlPrefix(origUrl)
     const urlPrefix = urlPrefixUri.toString().replace(/\/$/, '')
     const url = urlPrefix + (pdfUri ? ('/viewer.html?file=' + encodePathWithPrefix(pdfUri)) : '')
@@ -96,35 +97,31 @@ async function getUrl(pdfUri?: vscode.Uri): Promise<{url: string, uri: vscode.Ur
 }
 
 function getExternalUrlPrefix(resolvedUri: vscode.Uri, updateValidOrigin: boolean = true): vscode.Uri {
-    const authority = resolvedUri.authority
-    const host = authority.split(':')[0].toLowerCase()
-    if (host === '127.0.0.1' || host === 'localhost') {
-        const configuredRaw = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
-        const configured = configuredRaw.trim()
-        if (configured) {
-            try {
-                const candidate = vscode.Uri.parse(configured, true)
-                const hasValidScheme = candidate.scheme === 'http' || candidate.scheme === 'https'
-                if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
-                    // Keep origin validation tied to the actual loopback listen address,
-                    // even when a custom external URL prefix is used for URL construction.
-                    if (updateValidOrigin) {
-                        state.validOriginUri = resolvedUri
-                    }
-                    return candidate.with({ path: candidate.path.replace(/\/$/, '') })
-                } else {
-                    logger.log(
-                        `[Server] Invalid value for "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
-                        'Expected an absolute http/https URL without query or fragment. ' +
-                        `Falling back to resolved URI "${resolvedUri.toString(true)}".`
-                    )
+    const configuredRaw = vscode.workspace.getConfiguration('latex-workshop').get<string>('view.pdf.internal.urlPrefix', '')
+    const configured = configuredRaw.trim()
+    if (configured) {
+        try {
+            const candidate = vscode.Uri.parse(configured, true)
+            const hasValidScheme = candidate.scheme === 'http' || candidate.scheme === 'https'
+            if (hasValidScheme && candidate.authority && !candidate.query && !candidate.fragment) {
+                // Keep origin validation tied to the resolved URI (the loopback listen address
+                // unless the port is forwarded), even when a custom URL prefix is used for URL construction.
+                if (updateValidOrigin) {
+                    state.validOriginUri = resolvedUri
                 }
-            } catch {
+                return candidate.with({ path: candidate.path.replace(/\/$/, '') })
+            } else {
                 logger.log(
-                    `[Server] Failed to parse "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
+                    `[Server] Invalid value for "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
+                    'Expected an absolute http/https URL without query or fragment. ' +
                     `Falling back to resolved URI "${resolvedUri.toString(true)}".`
                 )
             }
+        } catch {
+            logger.log(
+                `[Server] Failed to parse "latex-workshop.view.pdf.internal.urlPrefix": "${configured}". ` +
+                `Falling back to resolved URI "${resolvedUri.toString(true)}".`
+            )
         }
     }
     // When no custom prefix is configured, also base origin validation on the
