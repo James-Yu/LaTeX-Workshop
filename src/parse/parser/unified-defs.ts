@@ -49,7 +49,11 @@ export function getMacroDefs(): MacroInfoRecord {
 
     const macroDefs = Object.assign({}, MACROS)
     cmds.forEach(cmd => macroDefs[cmd] = { signature: 'd<> o m' })
-    secs.forEach(sec => macroDefs[sec] = { signature: 's o m' })
+    // Sections accept a beamer mode/overlay specification, e.g.,
+    // \section<article>{...}. With a specification, beamer expects the star
+    // after it, \section<article>*{...}, while a plain \section*{...} keeps
+    // the star first, hence the two star slots.
+    secs.forEach(sec => macroDefs[sec] = { signature: 's d<> s o m' })
 
     return macroDefs
 }
