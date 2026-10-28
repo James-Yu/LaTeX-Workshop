@@ -1770,7 +1770,7 @@
           "scope": "window",
           "type": "string",
           "default": "",
-          "markdownDescription": "The base URL prefix used to construct the PDF viewer URL when running VS Code as a web server (`code serve-web`) behind a reverse proxy. When the internal PDF server port cannot be automatically forwarded (i.e., `asExternalUri` returns a localhost URL unchanged), this prefix is used instead. The value should be the externally reachable URL at which the proxy forwards traffic to the internal PDF server port, e.g. `https://myserver.example.com/latex-workshop-pdf`. Requires `#latex-workshop.view.pdf.internal.port#` to be fixed and a corresponding reverse proxy rule. Leave empty (default) for automatic port forwarding."
+          "markdownDescription": "The base URL prefix used to construct the PDF viewer URL instead of the automatically forwarded one. Use it when the internal PDF server port cannot be reached through automatic forwarding, e.g., when running VS Code as a web server (`code serve-web`) behind a reverse proxy, or with Remote Tunnels where the forwarded devtunnels URL requires a sign-in that the viewer cannot complete. When set, this prefix always takes precedence over the result of `asExternalUri`. The value should be the externally reachable URL at which the proxy forwards traffic to the internal PDF server port, e.g. `https://myserver.example.com/latex-workshop-pdf`. Requires `#latex-workshop.view.pdf.internal.port#` to be fixed and a corresponding reverse proxy rule. Leave empty (default) for automatic port forwarding."
         },
         "latex-workshop.view.pdf.internal.synctex.keybinding": {
           "scope": "window",

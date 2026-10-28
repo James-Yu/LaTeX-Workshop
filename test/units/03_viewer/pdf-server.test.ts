@@ -215,7 +215,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                     `Expected URL to contain viewer.html, got: ${url.url}`)
             })
 
-            it('should not use configured urlPrefix when asExternalUri returns non-localhost', async () => {
+            it('should use configured urlPrefix when asExternalUri returns non-localhost', async () => {
+                asExternalUriStub.callsFake((uri: vscode.Uri) => {
+                    return Promise.resolve(vscode.Uri.parse(`https://external.example.com:8443${uri.path}`))
+                })
+
+                const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
+                assert.ok(url.url.startsWith('https://myproxy.example.com/latex-workshop-pdf'),
+                    `Expected URL to start with configured prefix, got: ${url.url}`)
+                assert.ok(!url.url.startsWith('https://external.example.com:8443'),
+                    `Expected URL to not use asExternalUri result, got: ${url.url}`)
+            })
+
+            it('should use asExternalUri result when urlPrefix is not configured', async () => {
+                set.config('view.pdf.internal.urlPrefix', '')
                 asExternalUriStub.callsFake((uri: vscode.Uri) => {
                     return Promise.resolve(vscode.Uri.parse(`https://external.example.com:8443${uri.path}`))
                 })
@@ -223,8 +236,6 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
                 const url = await lw.server.getUrl(vscode.Uri.file(get.path(fixture, 'main.pdf')))
                 assert.ok(url.url.startsWith('https://external.example.com:8443'),
                     `Expected URL to use asExternalUri result, got: ${url.url}`)
-                assert.ok(!url.url.startsWith('https://myproxy.example.com/'),
-                    `Expected URL to not use configured prefix, got: ${url.url}`)
             })
         })
 
