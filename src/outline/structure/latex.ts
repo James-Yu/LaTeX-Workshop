@@ -97,6 +97,25 @@ function chooseCaption(...args: (Ast.Argument | undefined)[]): string {
     return ''
 }
 
+/**
+ * Extracts the `label` key from a beamer frame's options, e.g., `name` from
+ * `\begin{frame}<1->[fragile,label=name]{Title}`.
+ *
+ * The frame environment has the signature `!d<> !o !o !d{} !d{}`. The options
+ * may be in either optional argument, since the first can instead hold a
+ * default overlay specification such as `[<+->]`.
+ */
+function getFrameLabel(node: Ast.Environment): string | undefined {
+    for (const arg of [node.args?.[1], node.args?.[2]]) {
+        const options = argContentToStr(arg?.content ?? [])
+        const match = /(?:^|,)\s*label\s*=\s*\{?([^,}]+)\}?/.exec(options)
+        if (match) {
+            return match[1].trim()
+        }
+    }
+    return undefined
+}
+
 function getDocumentClass(ast: Ast.Root | undefined): string | undefined {
     if (ast === undefined) {
         return undefined
@@ -123,15 +142,18 @@ async function parseNode(
         filePath, children: []
     }
     let element: TeXElement | undefined
-    if (node.type === 'macro' && config.macros.secs.includes(node.content) && node.args?.[2].openMark === '{') {
+    if (node.type === 'macro' && config.macros.secs.includes(node.content) && node.args?.[4].openMark === '{') {
         // To use a macro as an outline item, the macro must have an explicit
         // mandatory argument e.g. \section{} instead of \section. This is to
         // ignore cases like \titleformat{\section} when \titleformat is not
         // globbing arguments in unified-latex.
+        // Arguments follow the signature 's d<> s o m', see `getMacroDefs`.
+        const mode = argContentToStr(node.args?.[1]?.content ?? []).trim()
+        const caption = chooseCaption(node.args?.[3], node.args?.[4])
         element = {
-            type: node.args?.[0]?.content[0] ? TeXElementType.SectionAst : TeXElementType.Section,
+            type: (node.args?.[0]?.content[0] || node.args?.[2]?.content[0]) ? TeXElementType.SectionAst : TeXElementType.Section,
             name: node.content,
-            label: chooseCaption(node.args?.[1], node.args?.[2]),
+            label: mode ? `<${mode}> ${caption}` : caption,
             appendix: inAppendix,
             ...attributes
         }
@@ -168,6 +190,19 @@ async function parseNode(
             name: node.env,
             label: `${node.env.charAt(0).toUpperCase()}${node.env.slice(1)}` + (config.caption && caption ? `: ${caption}` : ''),
             ...attributes
+        }
+        // A beamer frame label, \begin{frame}[label=name], is listed like a
+        // \label{name} inside the frame.
+        const frameLabel = getFrameLabel(node)
+        if (frameLabel && config.macros.cmds.includes('label')) {
+            element.children.push({
+                type: TeXElementType.Macro,
+                name: 'label',
+                label: `#label: ${frameLabel}`,
+                lineFr: attributes.lineFr,
+                lineTo: attributes.lineFr,
+                filePath, children: []
+            })
         }
     } else if ((node.type === 'environment') && (
                 (node.env === 'figure' || node.env === 'figure*') && config.macros.envs.includes('figure') ||

@@ -510,6 +510,26 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual(result[1].children[1].label, '* Section *')
 		})
 
+		it('should show beamer mode specifications on sections', async () => {
+			const main = set.root('main.tex')
+			await cacheAst(main, [
+				'\\documentclass{beamer}',
+				'\\begin{document}',
+				'\\section<article>{Mode}',
+				'\\section<presentation>*{Starred}',
+				'\\section<beamer>[Short]{Long}',
+				'\\section*{Plain starred}',
+				'\\end{document}'
+			].join('\n'))
+
+			const result = await construct(main, true)
+
+			assert.strictEqual(result[0].label, '1 <article> Mode')
+			assert.strictEqual(result[1].label, '* <presentation> Starred')
+			assert.strictEqual(result[2].label, '2 <beamer> Short')
+			assert.strictEqual(result[3].label, '* Plain starred')
+		})
+
 		it('should keep atypical section titles readable', async () => {
 			const main = set.root('main.tex')
 			await cacheAst(main, [
@@ -676,6 +696,32 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
 			assert.strictEqual(captioned[3].label, 'Frame 4: Frame 4')
 			assert.strictEqual(captioned[4].label, 'Frame 5')
 			assert.strictEqual(plain[0].label, 'Frame 1')
+		})
+
+		it('should list beamer frame label keys like label commands', async () => {
+			set.config('view.outline.commands', ['label'])
+			const main = set.root('main.tex')
+			await cacheAst(main, [
+				'\\documentclass{beamer}',
+				'\\begin{document}',
+				'\\begin{frame}[label=first]{Frame 1}',
+				'\\end{frame}',
+				'\\begin{frame}<1->[<+->][fragile, label={second}]',
+				'\\end{frame}',
+				'\\begin{frame}[fragile]',
+				'\\end{frame}',
+				'\\end{document}'
+			].join('\n'))
+
+			const labeled = await construct(main, true)
+			set.config('view.outline.commands', [])
+			const unlabeled = await construct(main, true)
+
+			assert.strictEqual(labeled[0].label, 'Frame 1: Frame 1')
+			assert.strictEqual(labeled[0].children[0].label, '#label: first')
+			assert.strictEqual(labeled[1].children[0].label, '#label: second')
+			assert.strictEqual(labeled[2].children.length, 0)
+			assert.strictEqual(unlabeled[0].children.length, 0)
 		})
 
 		it('should build floats and nested floats and respect float toggles', async () => {
