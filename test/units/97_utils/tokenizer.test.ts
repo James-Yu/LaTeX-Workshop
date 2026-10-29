@@ -218,18 +218,23 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             [String.raw`\ref{sec:test}`, 'sec:test'],
             [String.raw`\cite{first,second:key}`, 'second:key'],
             [String.raw`\usepackage[opt]{my-package}`, 'my-package'],
-            [String.raw`\studentname[option]`, 'option']
+            [String.raw`\studentname[option]`, 'option'],
+            [String.raw`\ref{Even theorem}`, 'Even theorem'],
+            [String.raw`\cref{first,Even theorem}`, 'Even theorem'],
+            [String.raw`\input{chapter one.tex}`, 'chapter one.tex']
         ]
 
         for (const [content, expected] of cases) {
             it(`should select the argument in ${JSON.stringify(content)}`, async () => {
                 const document = await getDocument(content, 'latex')
                 const start = content.indexOf(expected)
-                const range = tokenizer(document, new vscode.Position(0, start + 1))
+                for (let character = start; character <= start + expected.length; character++) {
+                    const range = tokenizer(document, new vscode.Position(0, character))
 
-                assert.ok(range)
-                assert.strictEqual(document.getText(range), expected)
-                assert.ok(range.isEqual(new vscode.Range(0, start, 0, start + expected.length)))
+                    assert.ok(range)
+                    assert.strictEqual(document.getText(range), expected, `Wrong token at column ${character}`)
+                    assert.ok(range.isEqual(new vscode.Range(0, start, 0, start + expected.length)))
+                }
             })
         }
 
@@ -240,7 +245,9 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             ['\\ref{sec:test|}', 'sec:test'],
             ['\\cite{first,se|cond}', 'second'],
             ['\\cite{first, se|cond}', 'second'],
-            ['\\macro{first se|cond}', 'second'],
+            ['\\macro{first se|cond}', 'first second'],
+            ['\\cite{first,  se|cond  }', 'second'],
+            ['\\ref{  Even the|orem  }', 'Even theorem'],
             ['\\macro{unfi|nished', 'unfinished'],
             ['\\macro{key|$rest}', 'key'],
             ['\\macro{outer{in|ner}}', 'inner']
@@ -248,6 +255,19 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             it(`should fall back to the argument in ${JSON.stringify(content)}`, async () => {
                 await assertTokenAtCursor(content, expected)
             })
+        }
+
+        for (const eol of ['\n', '\r\n']) {
+            for (const content of [
+                `\\cite{${eol}    fir|st,${eol}    second${eol}}`,
+                `\\cite{${eol}\tfirst, se|cond,${eol}}`,
+                `\\cite{${eol}    first,${eol}    sec|ond}${eol}`,
+                `\\cite{${eol}    first,${eol}    sec|ond${eol}}`
+            ]) {
+                it(`should preserve multiline citation ranges in ${JSON.stringify(content)}`, async () => {
+                    await assertTokenAtCursor(content, content.includes('fir|st') ? 'first' : 'second')
+                })
+            }
         }
     })
 })

@@ -24,18 +24,22 @@ function macroTokenizer(document: vscode.TextDocument, position: vscode.Position
  * @param position The position to be scanned at.
  */
 function argTokenizer(document: vscode.TextDocument, position: vscode.Position): vscode.Range | undefined {
-    const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/[{,[\s](?=[^{},[\]\s]*$)/)
+    const line = document.lineAt(position.line).text
+    const prefix = line.slice(0, position.character)
+    // Prefer an explicit argument boundary so spaces inside labels and filenames are preserved.
+    const argumentStart = prefix.match(/[{,[](?=[^{},[\]]*$)/)
+    // A continuation line may have only indentation before a citation key.
+    const startResult = argumentStart ?? prefix.match(/\s(?=[^{},[\]\s]*$)/)
     if (startResult === null || startResult.index === undefined || startResult.index < 0) {
         return
     }
-    const endResult = document.getText(new vscode.Range(position, new vscode.Position(position.line, 65535))).match(/[}\],\s$]|$/)
+    const endResult = line.slice(position.character).match(argumentStart ? /[}\],$]|$/ : /[}\],\s$]|$/)
     if (endResult === null || endResult.index === undefined || endResult.index < 0) {
         return
     }
-    return new vscode.Range(
-        new vscode.Position(position.line, startResult.index + 1),
-        new vscode.Position(position.line, position.character + endResult.index)
-    )
+    const argument = line.slice(startResult.index + 1, position.character + endResult.index)
+    const start = startResult.index + 1 + argument.length - argument.trimStart().length
+    return new vscode.Range(position.line, start, position.line, start + argument.trim().length)
 }
 
 
