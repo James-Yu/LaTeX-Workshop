@@ -3,7 +3,6 @@ import { sendLog } from './connection.js'
 import { viewerState, viewerStatePromise } from './state.js'
 import { type PDFViewerApplicationType, type PDFViewerApplicationOptionsType, RenderingStates } from './interface.js'
 
-declare const pdfjsLib: any
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
 
@@ -87,13 +86,13 @@ export async function refresh() {
     PDFViewerApplication.eventBus.on('pagerendered', cb)
 
     const { encodedPath, docTitle } = utils.parseURL()
-    /* eslint-disable */
-    const doc = await pdfjsLib.getDocument({
+    // open() closes the previously owned loading task before creating the next.
+    // Passing getDocument(...).promise directly to load() bypasses task ownership,
+    // leaving the old document's worker alive after each refresh.
+    await PDFViewerApplication.open({
         url: `${utils.pdfFilePrefix}${encodedPath}`,
         cMapUrl: '../cmaps/'
-    }).promise
-    PDFViewerApplication.load(doc)
-    /* eslint-enable */
+    })
     // reset the document title to the original value to avoid duplication
     document.title = docTitle
 }
