@@ -210,4 +210,12 @@ export default [{
         "@typescript-eslint/no-unnecessary-type-assertion": "off",
         "@typescript-eslint/ban-ts-comment": "off",
     },
+}, {
+    files: ["dev/pdf-refresh/**/*.mjs", "dev/pdf-refresh/**/*.cjs"],
+    languageOptions: {
+        parserOptions: { project: null },
+        globals: { ...globals.browser, ...globals.node }
+    },
+    rules: { "@typescript-eslint/no-require-imports": "off" }
 }];
+// Standalone integration probes run in browser/VS Code contexts, not the TS project.

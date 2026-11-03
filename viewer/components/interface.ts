@@ -72,6 +72,7 @@ export type PDFViewerApplicationType = {
         close: () => void,
         isOpen: boolean
     },
+    open(options: { url: string, cMapUrl: string }): Promise<void>,
     load(doc: any): void
 }
 
