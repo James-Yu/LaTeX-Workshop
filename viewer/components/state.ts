@@ -90,7 +90,7 @@ export async function setParams() {
         const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
         if (viewerContainer) {
-            viewerContainer.style.filter = filter
+            viewerContainer.style.setProperty('--lw-page-filter', filter)
         }
         if (thumbnailView) {
             thumbnailView.style.filter = filter

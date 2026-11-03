@@ -94,6 +94,12 @@ html[dir='rtl'] .findbar {
     box-shadow: 0px 0px 0px 1px lightgrey;
 }
 
+/* Invert PDF pages and reload snapshots, but not the viewer background. */
+#viewerContainer .pdfViewer .page,
+#viewerContainer .page-loading-mask {
+    filter: var(--lw-page-filter, none);
+}
+
 /* Keep PDF.js detail canvases absolutely positioned over the base canvas. */
 :is(.pdfViewer .canvasWrapper) canvas:first-child{
     position: relative !important;
