@@ -30,8 +30,13 @@ export interface LineSource {
 /** A character that never occurs in the reduced PDF text. */
 const BARRIER = '\u0000'
 
-/** Do not trust a match that agrees on fewer reduced characters than this. */
-const MIN_SCORE = 3
+/**
+ * Do not trust a match that agrees on fewer reduced characters than this.
+ * Measured on a 28-page article: wrong matches for clicks on text that is not
+ * in the source (citations, generated headings) mostly score 3 or 4, correct
+ * matches almost always 5 or more.
+ */
+const MIN_SCORE = 5
 
 /**
  * Commands whose arguments do not appear in the PDF where the command is, or
