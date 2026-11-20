@@ -33,16 +33,12 @@ class Rectangle {
         return this.left <= rect.left && this.right >= rect.right && this.bottom >= rect.bottom && this.top <= rect.top
     }
 
-    distanceY(y: number): number {
-        return Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) )
-    }
-
-    distanceXY(x: number, y: number): number {
-        return Math.sqrt(Math.pow(Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) ), 2) + Math.pow(Math.min( Math.abs(this.left - x), Math.abs(this.right - x) ), 2))
-    }
-
-    distanceFromCenter(x: number, y: number): number {
-        return Math.sqrt(Math.pow((this.left + this.right) / 2 - x, 2) + Math.pow((this.bottom + this.top) / 2 - y, 2))
+    distanceWeighted(x: number, y: number): number {
+        const dx = x < this.left ? this.left - x : x > this.right ? x - this.right : 0
+        const dy = y < this.top ? this.top - y : y > this.bottom ? y - this.bottom : 0
+        // Weight vertical distance higher so a horizontally close block on an adjacent visual line
+        // does not beat a block on the clicked line.
+        return Math.hypot(dx, 4 * dy)
     }
 }
 
@@ -64,29 +60,26 @@ function toRect(blocks: any): Rectangle {
         const block = blocks as Block
         const top = block.bottom - block.height
         const bottom = block.bottom
-        const left = block.left
-        const right = block.width ? block.left + block.width : block.left
+        const end = block.width ? block.left + block.width : block.left
+        const left = Math.min(block.left, end)
+        const right = Math.max(block.left, end)
         return new Rectangle({top, bottom, left, right})
     } else {
         let cTop = 2e16
         let cBottom = 0
         let cLeft = 2e16
         let cRight = 0
+        const list = blocks as Block[]
+        const nonKern = list.filter(b => b.elements === undefined && b.type !== 'k' && b.type !== 'r')
+        const candidates = nonKern.length > 0 ? nonKern : list.filter(b => b.elements === undefined && b.type !== 'r')
 
-        for (const b of blocks as Block[]) {
-            // Skip a block if they have boxes inside, or their type is kern or rule.
-            // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
-            if (b.elements !== undefined || b.type === 'k' || b.type === 'r') {
-                continue
-            }
+        for (const b of candidates) {
             cBottom = Math.max(b.bottom, cBottom)
             const top = b.bottom - b.height
             cTop = Math.min(top, cTop)
-            cLeft = Math.min(b.left, cLeft)
-            if (b.width !== undefined) {
-                const right = b.left + b.width
-                cRight = Math.max(right, cRight)
-            }
+            const end = b.width !== undefined ? b.left + b.width : b.left
+            cLeft = Math.min(b.left, end, cLeft)
+            cRight = Math.max(b.left, end, cRight)
         }
         return new Rectangle({ top: cTop, bottom: cBottom, left: cLeft, right: cRight })
     }
@@ -211,17 +204,17 @@ async function syncTeXToTeX(page: number, x: number, y: number, pdfUri: vscode.U
                 }
                 const blocks = pageBlocks[Number(pageNum)]
                 for (const block of blocks) {
-                    // Skip a block if they have boxes inside, or their type is kern or rule.
-                    // See also https://github.com/jlaurens/synctex/blob/c11fe00dbdc6423a0e54d4e531563be645f78679/synctex_parser.c#L4706-L4727 for types.
-                    if (block.elements !== undefined || block.type === 'k' || block.type === 'r') {
+                    // Skip container blocks and rules, but keep `k` (kern) nodes: XeTeX prose
+                    // paragraphs emit almost exclusively `k` nodes for line/word positions.
+                    if (block.elements !== undefined || block.type === 'r') {
                         continue
                     }
                     const rect = toRect(block)
-                    const distFromCenter = rect.distanceFromCenter(x0, y0)
-                    if ( record.rect.include(rect) || (distFromCenter < record.distanceFromCenter && !rect.include(record.rect)) ) {
+                    const dist = rect.distanceWeighted(x0, y0)
+                    if ( (record.rect.include(rect) && dist <= record.distanceFromCenter) || (dist < record.distanceFromCenter && !rect.include(record.rect)) ) {
                         record.input = fileName
                         record.line = Number(lineNum)
-                        record.distanceFromCenter = distFromCenter
+                        record.distanceFromCenter = dist
                         record.rect = rect
                     }
                 }
