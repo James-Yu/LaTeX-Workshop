@@ -20,6 +20,33 @@ export function setSyncTeXKey(binding: string) {
     reverseSynctexKeybinding = binding
 }
 
+/**
+ * Minimum number of characters of context sent on each side of the caret for
+ * backward SyncTeX. A text-layer span may hold a single word, e.g., when it is
+ * typeset in another font (`\emph{word}`), so the text of the neighbouring
+ * spans is added until this length is reached.
+ */
+const SYNCTEX_CONTEXT_LENGTH = 100
+
+function getTextAroundCaret(node: Node, offset: number): [string, string] {
+    const text = node.textContent ?? ''
+    let textBefore = text.substring(0, offset)
+    let textAfter = text.substring(offset)
+    const textLayer = node.parentElement?.closest('.textLayer')
+    if (textLayer) {
+        const walker = document.createTreeWalker(textLayer, NodeFilter.SHOW_TEXT)
+        walker.currentNode = node
+        while (textBefore.length < SYNCTEX_CONTEXT_LENGTH && walker.previousNode()) {
+            textBefore = (walker.currentNode.textContent ?? '') + textBefore
+        }
+        walker.currentNode = node
+        while (textAfter.length < SYNCTEX_CONTEXT_LENGTH && walker.nextNode()) {
+            textAfter += walker.currentNode.textContent ?? ''
+        }
+    }
+    return [textBefore, textAfter]
+}
+
 function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
     if (PDFViewerApplication.pdfViewer.scrollMode === 3) {
         void send({ type: 'cannot_synctex' })
@@ -31,11 +58,7 @@ function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerCo
     let textAfterSelection = ''
     // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
     if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
-        const text = selection.anchorNode.textContent
-        if (text) {
-            textBeforeSelection = text.substring(0, selection.anchorOffset)
-            textAfterSelection = text.substring(selection.anchorOffset)
-        }
+        [textBeforeSelection, textAfterSelection] = getTextAroundCaret(selection.anchorNode, selection.anchorOffset)
     }
     const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
     const left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft - canvas.offsetLeft

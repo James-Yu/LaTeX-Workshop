@@ -5,6 +5,7 @@ import * as cs from 'cross-spawn'
 import { lw } from '../lw'
 import type { SyncTeXRecordToPDF, SyncTeXRecordToPDFAll, SyncTeXRecordToTeX } from '../types'
 import { syncTeXToPDF, syncTeXToTeX } from './synctex/worker'
+import { getRowAndColumn } from './synctex/column'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { isSameRealPath } from '../utils/pathnormalize'
 import type { ClientRequest } from '../../types/latex-workshop-protocol-types'
@@ -19,6 +20,7 @@ export const synctex = {
         synctexToPDFCombined,
         computeToTeX,
         openTeX,
+        getRowAndColumn,
         getCurrentEditorCoordinates
     }
 }
@@ -554,6 +556,7 @@ async function openTeX(input: string, line: number, column: number, textBeforeSe
         // columns are typically not supplied by SyncTex, this could change in the future for some engines though
         if (col === 0) {
             [row, col] = getRowAndColumn(doc, row, textBeforeSelection, textAfterSelection)
+            logger.log(`Backward SyncTeX column from clicked text ${JSON.stringify(textBeforeSelection.slice(-30))} | ${JSON.stringify(textAfterSelection.slice(0, 30))}: line ${line} -> ${row + 1}:${col + 1} .`)
         }
         const pos = new vscode.Position(row, col)
 
@@ -612,113 +615,6 @@ function getViewColumnOfVisibleTextEditor(): vscode.ViewColumn | undefined {
                             .filter((column): column is vscode.ViewColumn => column !== undefined)
                             .sort()
     return viewColumnArray[0]
-}
-
-/**
- * Get the row and column based on surrounding text.
- *
- * This function calculates the row and column based on the surrounding text in
- * the specified document, considering the text before and after the selection.
- *
- * @param doc - The TextDocument in which to search for the position.
- * @param row - The initial row for the search.
- * @param textBeforeSelectionFull - The full text before the selection.
- * @param textAfterSelectionFull - The full text after the selection.
- * @returns An array containing the row and column.
- */
-function getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-    let tempCol = getColumnBySurroundingText(doc.lineAt(row).text, textBeforeSelectionFull, textAfterSelectionFull)
-    if (tempCol !== null) {
-        return [row, tempCol]
-    }
-
-    if (row - 1 >= 0) {
-        tempCol = getColumnBySurroundingText(doc.lineAt(row - 1).text, textBeforeSelectionFull, textAfterSelectionFull)
-        if (tempCol !== null) {
-            return [row - 1, tempCol]
-        }
-    }
-
-    if (row + 1 < doc.lineCount) {
-        tempCol = getColumnBySurroundingText(doc.lineAt(row + 1).text, textBeforeSelectionFull, textAfterSelectionFull)
-        if (tempCol !== null) {
-            return [row + 1, tempCol]
-        }
-    }
-
-    return [row, 0]
-}
-
-/**
- * Get the column based on surrounding text.
- *
- * This function calculates the column based on the surrounding text in the
- * specified line, considering the text before and after the selection.
- *
- * @param line - The line of text in which to search for the column.
- * @param textBeforeSelectionFull - The full text before the selection.
- * @param textAfterSelectionFull - The full text after the selection.
- * @returns The calculated column.
- */
-function getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-    let previousColumnMatches = Object.create(null) as { [k: string]: number }
-
-    for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
-        const columns: number[] = []
-        const textBeforeSelection = textBeforeSelectionFull.substring(textBeforeSelectionFull.length - length, textBeforeSelectionFull.length)
-        const textAfterSelection = textAfterSelectionFull.substring(0, length)
-
-        // Get all indexes for the before and after text
-        if (textBeforeSelection !== '') {
-            columns.push(...indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
-        }
-        if (textAfterSelection !== '') {
-            columns.push(...indexes(line, textAfterSelection))
-        }
-
-        // Get number or occurrences for each column
-        const columnMatches = Object.create(null) as { [k: string]: number }
-        columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
-        const values = Object.values(columnMatches).sort()
-
-        // At least two matches with equal fit
-        if (values.length > 1 && values[0] === values[1]) {
-            previousColumnMatches = columnMatches
-            continue
-        }
-        // Only one match or one best match
-        if (values.length >= 1) {
-            return parseInt(Object.keys(columnMatches).reduce((a, b) => columnMatches[a] > columnMatches[b] ? a : b))
-        }
-        // No match in current iteration, return first best match from previous run or 0
-        if (Object.keys(previousColumnMatches).length > 0) {
-            return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => previousColumnMatches[a] > previousColumnMatches[b] ? a : b))
-        } else {
-            return null
-        }
-    }
-    // Should never be reached
-    return null
-}
-
-/**
- * Find all indexes of a substring in a source string.
- *
- * This function returns an array containing all indexes of the specified
- * substring in the source string.
- *
- * @param source - The source string in which to find the indexes.
- * @param find - The substring to search for.
- * @returns An array of indexes.
- */
-function indexes(source: string, find: string) {
-    const result: number[] = []
-    for (let i = 0; i < source.length; ++i) {
-        if (source.substring(i, i + find.length) === find) {
-            result.push(i)
-        }
-    }
-    return result
 }
 
 /**
