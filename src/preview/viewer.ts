@@ -282,7 +282,7 @@ function handler(websocket: ws, msg: string): void {
             break
         }
         case 'cannot_synctex': {
-            logger.showErrorMessage('SyncTeX is not supported if the PDF viewer is in Page Scrolling mode.')
+            logger.showErrorMessage('SyncTeX forward search is not supported if the PDF viewer is in Page Scrolling mode.')
             break
         }
         case 'external_link': {

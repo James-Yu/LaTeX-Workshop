@@ -21,10 +21,6 @@ export function setSyncTeXKey(binding: string) {
 }
 
 function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
-    if (PDFViewerApplication.pdfViewer.scrollMode === 3) {
-        void send({ type: 'cannot_synctex' })
-        return
-    }
     const canvasDom = pageDom.getElementsByTagName('canvas')[0]
     const selection = window.getSelection()
     let textBeforeSelection = ''
@@ -37,9 +33,18 @@ function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerCo
             textAfterSelection = text.substring(selection.anchorOffset)
         }
     }
-    const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
-    const left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft - canvas.offsetLeft
-    const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop - canvas.offsetTop
+    let left: number
+    let top: number
+    if (PDFViewerApplication.pdfViewer.scrollMode === 3) {
+        // Page Scrolling: measure from the clicked canvas on screen, not from the page offsets.
+        const rect = canvasDom.getBoundingClientRect()
+        left = e.clientX - rect.left
+        top = e.clientY - rect.top
+    } else {
+        const canvas = document.getElementsByClassName('canvasWrapper')[0] as HTMLElement
+        left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft - canvas.offsetLeft
+        top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop - canvas.offsetTop
+    }
     const pos = PDFViewerApplication.pdfViewer._pages[page-1]?.getPagePoint(left, canvasDom.offsetHeight - top)
     if (pos === undefined) {
         return

@@ -412,6 +412,20 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
             assert.strictEqual(stub.callCount, 1)
         })
 
+        it('should handle `cannot_synctex` message and report that only forward search is unsupported', async () => {
+            const showError = sinon.stub(vscode.window, 'showErrorMessage').resolves(undefined)
+            try {
+                const promise = waitMessage('cannot_synctex')
+                websocket.send(JSON.stringify({ type: 'cannot_synctex' }))
+                await promise
+
+                assert.ok(showError.calledOnce)
+                assert.match(String(showError.firstCall.args[0]), /forward search is not supported.*Page Scrolling/)
+            } finally {
+                showError.restore()
+            }
+        })
+
         it('should handle `external_link` message and opens http/https link', async () => {
             let stub = sinon.stub(vscode.env, 'openExternal')
             let promise = waitMessage('external_link')
