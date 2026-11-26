@@ -49,12 +49,14 @@ export type PDFViewerApplicationType = {
     },
     initializedPromise: Promise<void>,
     isViewerEmbedded: boolean,
+    pdfLoadingTask: { promise: Promise<unknown> } | null,
     pdfViewer: {
         _currentScale: number,
         _getVisiblePages(): { first: number, last: number, views: { id: number, x: number, y: number, view: PDFViewerPage, percent: number }[], ids: Set<number> },
         _pages: PDFViewerPage[],
         currentPageNumber: number,
         currentScaleValue: string,
+        pagesPromise: Promise<unknown> | null,
         scrollMode: number,
         spreadMode: number
     },
@@ -72,7 +74,7 @@ export type PDFViewerApplicationType = {
         close: () => void,
         isOpen: boolean
     },
-    load(doc: any): void
+    open(args: { url: string }): Promise<void>
 }
 
 export type PDFViewerApplicationOptionsType = {
