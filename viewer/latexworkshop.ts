@@ -2,7 +2,7 @@ import { patchViewerUI, registerKeyBind, registerPersistentState, repositionAnno
 import * as utils from './components/utils.js'
 
 import type { PdfjsEventName, PDFViewerApplicationType, PDFViewerApplicationOptionsType } from './components/interface.js'
-import { doneRefresh, restoreState } from './components/refresh.js'
+import { restoreState } from './components/refresh.js'
 import { initUploadState, setParams, uploadState } from './components/state.js'
 import { initConnect, send } from './components/connection.js'
 import { registerSyncTeX } from './components/synctex.js'
@@ -64,7 +64,6 @@ async function initialization() {
         PDFViewerApplicationOptions.setAll(options)
     })
 
-    initConnect()
     await patchViewerUI()
     registerKeyBind()
 }
@@ -90,8 +89,8 @@ onPDFViewerEvent('pagesloaded', () => {
         .then(() => uploadState())
         .then(() => send({ type: 'loaded', pdfFileUri: utils.parseURL().pdfFileUri }))
     repositionAnnotation()
-    doneRefresh()
 })
 
 // @ts-expect-error Must import viewer.mjs here, otherwise some config won't work. #4096
 await import('../../viewer/viewer.mjs')
+initConnect()

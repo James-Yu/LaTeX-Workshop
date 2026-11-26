@@ -3,7 +3,6 @@ import { sendLog } from './connection.js'
 import { viewerState, viewerStatePromise } from './state.js'
 import { type PDFViewerApplicationType, type PDFViewerApplicationOptionsType, RenderingStates } from './interface.js'
 
-declare const pdfjsLib: any
 declare const PDFViewerApplication: PDFViewerApplicationType
 declare const PDFViewerApplicationOptions: PDFViewerApplicationOptionsType
 
@@ -26,19 +25,8 @@ let prevState: {
     scrollLeft: number
 } | undefined
 
-// https://github.com/James-Yu/LaTeX-Workshop/pull/4295#issuecomment-2191226562
-export function doneRefresh() {
-    refreshing = false
-    clearTimeout(doneRefreshTimeout)
-    if (shouldRefreshAgain) {
-        shouldRefreshAgain = false
-        void refresh()
-    }
-}
-
 let refreshing = false
 let shouldRefreshAgain = false
-let doneRefreshTimeout = 0
 export async function refresh() {
     if (!IsAutoRefreshEnabled()) {
         sendLog('Auto reload temporarily disabled.')
@@ -49,11 +37,23 @@ export async function refresh() {
         sendLog('Auto reload rate-limiting.')
         return
     }
-    // https://github.com/James-Yu/LaTeX-Workshop/pull/4295#issuecomment-2191384019
     refreshing = true
-    clearTimeout(doneRefreshTimeout)
-    doneRefreshTimeout = setTimeout(() => doneRefresh(), 1000)
+    try {
+        await PDFViewerApplication.initializedPromise
+        await PDFViewerApplication.pdfLoadingTask?.promise.catch(() => {})
+        await reloadDocument()
+    } catch (error) {
+        sendLog(`PDF refresh failed: ${String(error)}`)
+    } finally {
+        refreshing = false
+        if (shouldRefreshAgain) {
+            shouldRefreshAgain = false
+            void refresh()
+        }
+    }
+}
 
+async function reloadDocument() {
     // Fail-safe. For unknown reasons, the pack may have null values #4076
     const currentState = {
         page: PDFViewerApplication.pdfViewer.currentPageNumber ?? prevState?.page,
@@ -66,9 +66,9 @@ export async function refresh() {
     }
     prevState = currentState
 
-    // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+    // Without viewOnLoad = INITIAL (1), restoring the position after the refresh can fail if
     // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-    PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
+    PDFViewerApplicationOptions.set('viewOnLoad', 1)
 
     // Override the spread mode specified in PDF documents with the current one.
     // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
@@ -76,26 +76,34 @@ export async function refresh() {
         PDFViewerApplicationOptions.set('spreadModeOnLoad', prevState.spreadMode)
     }
 
+    const { encodedPath, docTitle } = utils.parseURL()
     const masks = addMasks()
-    const cb = () => {
-        if (!allPagesRendered()) {
-            return
+    let renderTimeout = 0
+    let onPageRendered: (() => void) | undefined
+    try {
+        // open() closes the previous document and destroys its loading task and worker.
+        await PDFViewerApplication.open({ url: `${utils.pdfFilePrefix}${encodedPath}` })
+        const rendered = new Promise<void>(resolve => {
+            onPageRendered = () => {
+                if (allPagesRendered()) {
+                    resolve()
+                }
+            }
+            PDFViewerApplication.eventBus.on('pagerendered', onPageRendered)
+            onPageRendered()
+        })
+        await Promise.race([
+            Promise.all([PDFViewerApplication.pdfViewer.pagesPromise, rendered]),
+            new Promise<void>(resolve => { renderTimeout = window.setTimeout(resolve, 1000) })
+        ])
+    } finally {
+        clearTimeout(renderTimeout)
+        if (onPageRendered) {
+            PDFViewerApplication.eventBus.off('pagerendered', onPageRendered)
         }
         removeMasks(masks)
-        PDFViewerApplication.eventBus.off('pagerendered', cb)
+        document.title = docTitle
     }
-    PDFViewerApplication.eventBus.on('pagerendered', cb)
-
-    const { encodedPath, docTitle } = utils.parseURL()
-    /* eslint-disable */
-    const doc = await pdfjsLib.getDocument({
-        url: `${utils.pdfFilePrefix}${encodedPath}`,
-        cMapUrl: '../cmaps/'
-    }).promise
-    PDFViewerApplication.load(doc)
-    /* eslint-enable */
-    // reset the document title to the original value to avoid duplication
-    document.title = docTitle
 }
 
 export async function restoreState() {
