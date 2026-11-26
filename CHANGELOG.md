@@ -1,5 +1,16 @@
 # Change Log
 
+## [10.20.1] - 2026-11-26
+
+### Fixed
+- (#5008) Fix relative SyncTeX input path resolution.
+- (#5011) Always honor `view.pdf.internal.urlPrefix` when it is configured.
+- (#5017) Outline beamer section mode specifications and frame label keys.
+- (#5018) Fix reference lookup for labels containing spaces.
+- (#5019) Fix PDF inversion affecting viewer background.
+- (#5023) Fix `addTexRoot` guard rejecting every document.
+- (#5030) Re-enable reverse SyncTeX in Page Scrolling mode.
+
 ## [10.20.0] - 2026-10-17
 
 ### Added
@@ -563,7 +574,7 @@ files.
 ### Fixed
 - Prevent `.aux` and `.out` file changes from triggering auto-build
 - (#4207) Cursor tracing in structure works across files with 2+ level differences.
-- ($4220) Synctex does not work while using vscode in browser.
+- (#4220) Synctex does not work while using vscode in browser.
 
 ## [9.19.1] - 2024-03-12
 
@@ -1914,7 +1925,7 @@ files.
 - (#1449) Add option to force recipe usage.
 - (#1457) Honor `journaltitle` in citation browser.
 - (#1458) Show `stderr` on recipe error.
-- ($1463) Pass `DeclareMathOperator` to `mathjax`.
+- (#1463) Pass `DeclareMathOperator` to `mathjax`.
 
 ## [7.0.2] - 2019-06-07
 
