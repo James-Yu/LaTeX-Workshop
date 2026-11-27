@@ -104,4 +104,48 @@ describe(path.basename(__filename).split('.')[0] + ':', () => {
         assert.strictEqual(await syncTeXToTeX(1, 125, 195, pdfUri), undefined)
         assert.strictEqual(await syncTeXToPDF(3, path.join(pdfDir, 'missing.tex'), pdfUri), undefined)
     })
+
+    it('should locate kern-only XeTeX lines and prefer the clicked visual line', async () => {
+        const texPath = path.join(pdfDir, 'main.tex')
+        fs.writeFileSync(texPath, 'source')
+        // Line 66 sits at y=230.8 (height ~9) with kerns at x=310..315, while line 67 sits on the
+        // next visual line at y=248.7 with a kern at x=328..333. Clicking (329, 230.6) is horizontally
+        // closer to line 67's kern, but vertically inside line 66's band. Only line 72 has a glue `g`.
+        const unit = 65781.76
+        const pt = (v: number) => Math.round(v * unit)
+        const body = [
+            'SyncTeX Version:1',
+            `Input:1:${texPath}`,
+            'Output:pdf',
+            'Magnification:1000',
+            'Unit:1',
+            'X Offset:0',
+            'Y Offset:0',
+            'Content:',
+            '{1',
+            `(1,74:0,${pt(230.8)}:${pt(450)},${pt(9)},0`,
+            `k1,66:${pt(310)},${pt(230.8)}:${pt(5)}`,
+            ')',
+            `(1,74:0,${pt(248.7)}:${pt(450)},${pt(9)},0`,
+            `k1,67:${pt(328)},${pt(248.7)}:${pt(5)}`,
+            ')',
+            `(1,74:0,${pt(392.1)}:${pt(450)},${pt(9)},0`,
+            `g1,72:${pt(228)},${pt(392.1)}`,
+            ')',
+            '}1',
+            'Postamble:',
+            'Count:5',
+            'Post scriptum:'
+        ].join('\n')
+        fs.writeFileSync(path.join(pdfDir, 'main.synctex.gz'), zlib.gzipSync(Buffer.from(body)))
+
+        const reverse = await syncTeXToTeX(1, 329, 230.6, pdfUri)
+        assert.ok(reverse)
+        assert.strictEqual(reverse.line, 66)
+
+        const forward = await syncTeXToPDF(66, texPath, pdfUri)
+        assert.ok(forward)
+        assert.ok(Math.abs(forward.x - 310) < 1e-3)
+        assert.ok(Math.abs(forward.y - 230.8) < 1e-3)
+    })
 })

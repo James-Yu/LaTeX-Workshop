@@ -20,18 +20,66 @@ export function setSyncTeXKey(binding: string) {
     reverseSynctexKeybinding = binding
 }
 
+/**
+ * Minimum number of characters of context sent on each side of the caret for
+ * backward SyncTeX. A text-layer span may hold a single word, e.g., when it is
+ * typeset in another font (`\emph{word}`), so the text of the neighbouring
+ * spans is added until this length is reached.
+ */
+const SYNCTEX_CONTEXT_LENGTH = 100
+
+function getTextAroundCaret(node: Node, offset: number): [string, string] {
+    const text = node.textContent ?? ''
+    let textBefore = text.substring(0, offset)
+    let textAfter = text.substring(offset)
+    const textLayer = node.parentElement?.closest('.textLayer')
+    if (textLayer) {
+        const walker = document.createTreeWalker(textLayer, NodeFilter.SHOW_TEXT)
+        walker.currentNode = node
+        while (textBefore.length < SYNCTEX_CONTEXT_LENGTH && walker.previousNode()) {
+            textBefore = (walker.currentNode.textContent ?? '') + textBefore
+        }
+        walker.currentNode = node
+        while (textAfter.length < SYNCTEX_CONTEXT_LENGTH && walker.nextNode()) {
+            textAfter += walker.currentNode.textContent ?? ''
+        }
+    }
+    return [textBefore, textAfter]
+}
+
+function getClickedCaret(e: MouseEvent, pageDom: HTMLElement): { node: Node, offset: number } | undefined {
+    const doc = document as Document & {
+        caretPositionFromPoint?: (x: number, y: number) => { offsetNode: Node, offset: number } | null
+    }
+    if (typeof doc.caretPositionFromPoint === 'function') {
+        const pos = doc.caretPositionFromPoint(e.clientX, e.clientY)
+        if (pos && pos.offsetNode.nodeName === '#text' && pageDom.contains(pos.offsetNode)) {
+            return { node: pos.offsetNode, offset: pos.offset }
+        }
+    }
+    if (typeof document.caretRangeFromPoint === 'function') {
+        const range = document.caretRangeFromPoint(e.clientX, e.clientY)
+        if (range && range.startContainer.nodeName === '#text' && pageDom.contains(range.startContainer)) {
+            return { node: range.startContainer, offset: range.startOffset }
+        }
+    }
+    const selection = window.getSelection()
+    if (selection && selection.anchorNode && selection.anchorNode.nodeName === '#text' && pageDom.contains(selection.anchorNode)) {
+        return { node: selection.anchorNode, offset: selection.anchorOffset }
+    }
+    return undefined
+}
+
 function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
     const canvasDom = pageDom.getElementsByTagName('canvas')[0]
-    const selection = window.getSelection()
     let textBeforeSelection = ''
     let textAfterSelection = ''
-    // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
-    if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
-        const text = selection.anchorNode.textContent
-        if (text) {
-            textBeforeSelection = text.substring(0, selection.anchorOffset)
-            textAfterSelection = text.substring(selection.anchorOffset)
-        }
+    // Prefer caret position at the actual click coordinates: Ctrl+Click does not
+    // always move `window.getSelection()`, which otherwise leaves stale text
+    // from an earlier click (possibly on another page).
+    const caret = getClickedCaret(e, pageDom)
+    if (caret) {
+        [textBeforeSelection, textAfterSelection] = getTextAroundCaret(caret.node, caret.offset)
     }
     let left: number
     let top: number
