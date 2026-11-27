@@ -358,16 +358,21 @@ function callSyncTeXToPDF(line: number, col: number, filePath: string, pdfUri: v
             reject()
         })
 
-        proc.on('exit', exitCode => {
+        proc.on('close', exitCode => {
             if (exitCode !== 0) {
                 logger.logError(`(${logTag}) Forward SyncTeX failed, fallback to synctex.js.`, exitCode, stderr)
                 reject()
             } else {
-                const record = indicator === 'rectangle' ? parseToPDFList(stdout) : parseToPDF(stdout)
-                if (!Array.isArray(record)) {
-                    record.indicator = indicator !== 'none'
+                try {
+                    const record = indicator === 'rectangle' ? parseToPDFList(stdout) : parseToPDF(stdout)
+                    if (!Array.isArray(record)) {
+                        record.indicator = indicator !== 'none'
+                    }
+                    resolve(record)
+                } catch (err) {
+                    logger.logError(`(${logTag}) Forward SyncTeX failed, fallback to synctex.js.`, err, stderr)
+                    reject(err)
                 }
-                resolve(record)
             }
         })
     }) as Promise<SyncTeXRecordToPDF> | Promise<SyncTeXRecordToPDFAll[]>
