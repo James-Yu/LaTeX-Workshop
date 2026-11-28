@@ -129,13 +129,16 @@ async function viewInBrowser(pdfUri: vscode.Uri): Promise<void> {
 async function viewInCustomEditor(pdfUri: vscode.Uri): Promise<void> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const editorGroup = configuration.get('view.pdf.tab.editorGroup') as string
+    // A diff's embedded text editor can have an undefined viewColumn. Its tab
+    // group supplies the source column so the configured left/right placement
+    // works for both ordinary editors and Working Tree diffs.
+    const currentColumn = vscode.window.tabGroups.activeTabGroup.viewColumn
     const showOptions: vscode.TextDocumentShowOptions = {
         viewColumn: vscode.ViewColumn.Active,
         preserveFocus: true
     }
     if (editorGroup === 'left') {
-        const currentColumn = vscode.window.activeTextEditor?.viewColumn
-        if (currentColumn && currentColumn > 1) {
+        if (currentColumn > 1) {
             showOptions.viewColumn = currentColumn - 1
             await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
             await vscode.commands.executeCommand('workbench.action.focusRightGroup')
@@ -144,8 +147,9 @@ async function viewInCustomEditor(pdfUri: vscode.Uri): Promise<void> {
             await moveActiveEditor('left', true)
         }
     } else if (editorGroup === 'right') {
-        const currentColumn = vscode.window.activeTextEditor?.viewColumn
-        showOptions.viewColumn = (currentColumn ?? 0) + 1
+        // Retain the existing next-group placement and focus restoration.
+        // In a multi-row layout, group numbering need not follow visual direction.
+        showOptions.viewColumn = currentColumn + 1
         await vscode.commands.executeCommand('vscode.openWith', pdfUri, 'latex-workshop-pdf-hook', showOptions)
         await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
     } else {
