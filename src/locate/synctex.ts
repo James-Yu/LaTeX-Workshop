@@ -559,8 +559,30 @@ async function openTeX(input: string, line: number, column: number, textBeforeSe
 
         const tab = findTab(doc)
         const viewColumn = tab?.group.viewColumn ?? getViewColumnOfVisibleTextEditor() ?? vscode.ViewColumn.Beside
-        const editor = await vscode.window.showTextDocument(doc, viewColumn)
-        editor.selection = new vscode.Selection(pos, pos)
+        let editor: vscode.TextEditor
+        if (tab?.input instanceof vscode.TabInputTextDiff) {
+            // Reveal the same original/modified URI pair in the diff's own group.
+            // showTextDocument would open a separate regular source tab; vscode.diff
+            // reuses the diff and applies the SyncTeX selection to its modified side.
+            await vscode.commands.executeCommand('vscode.diff', tab.input.original, tab.input.modified, tab.label, {
+                viewColumn,
+                selection: new vscode.Range(pos, pos),
+                preserveFocus: false,
+                preview: tab.isPreview // Carry over the existing tab's preview setting.
+            })
+            // The command returns no TextEditor. Confirm the modified document is
+            // active before revealing or highlighting it. A failure reaches the
+            // existing SyncTeX error handler instead of opening another source tab.
+            const activeEditor = vscode.window.activeTextEditor
+            if (!activeEditor || activeEditor.document.uri.toString() !== doc.uri.toString()) {
+                throw new Error('The modified side of the target diff did not become active.')
+            }
+            editor = activeEditor
+        } else {
+            // Keep normal navigation for a regular source tab or no matching tab.
+            editor = await vscode.window.showTextDocument(doc, viewColumn)
+            editor.selection = new vscode.Selection(pos, pos)
+        }
         await vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
         animateToNotify(editor, pos)
     } catch(e: unknown) {
@@ -569,13 +591,15 @@ async function openTeX(input: string, line: number, column: number, textBeforeSe
 }
 
 /**
- * Find the first tab containing the specified document.
+ * Find an existing tab for the source document resolved by SyncTeX.
  *
- * This function searches for the first tab containing the specified document
- * URI. If the document is not found in active tabs, it returns undefined.
+ * Matches ordinary text tabs and the modified side of text diffs. Preserve the
+ * existing selection order: the first match selected in its group wins;
+ * otherwise use the leftmost matching tab. Diffs do not take priority over
+ * ordinary tabs, and multiple selected matches follow group traversal order.
  *
  * @param doc - The TextDocument for which to find the tab.
- * @returns The first tab containing the document or undefined if not found.
+ * @returns The selected matching tab, or undefined if no tab matches.
  */
 function findTab(doc: vscode.TextDocument): vscode.Tab | undefined {
     let notActive: vscode.Tab[] = []
@@ -583,8 +607,12 @@ function findTab(doc: vscode.TextDocument): vscode.Tab | undefined {
     for (const tabGroup of vscode.window.tabGroups.all) {
         for (const tab of tabGroup.tabs) {
             const tabInput = tab.input
-            if (tabInput instanceof vscode.TabInputText) {
-                if (docUriString === tabInput.uri.toString()) {
+            // Match the diff's modified document only. Its original side may be
+            // a historical revision that differs from the compiled source.
+            const tabUri = tabInput instanceof vscode.TabInputText ? tabInput.uri
+                : tabInput instanceof vscode.TabInputTextDiff ? tabInput.modified : undefined
+            if (tabUri) {
+                if (docUriString === tabUri.toString()) {
                     if (tab.isActive) {
                         return tab
                     } else {
